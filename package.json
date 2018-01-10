@@ -1,0 +1,22 @@
+{
+  "name": "backpack-ios",
+  "version": "1.0.0",
+  "private": "true",
+  "engines": {
+    "node": "^8.9.4",
+    "npm": "^5.6.0"
+  },
+  "scripts": {
+    "preinstall": "node -e \"$(curl -fsSL https://raw.githubusercontent.com/Skyscanner/ensure-node-env/master/dist/index.js)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skyscanner/backpack-ios.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Skyscanner/backpack-ios/issues"
+  },
+  "homepage": "https://github.com/Skyscanner/backpack-ios#readme"
+}
