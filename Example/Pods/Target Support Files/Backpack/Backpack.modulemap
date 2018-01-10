@@ -1,0 +1,6 @@
+framework module Backpack {
+  umbrella header "Backpack-umbrella.h"
+
+  export *
+  module * { export * }
+}

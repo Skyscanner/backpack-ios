@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Backpack_Example' do
+  pod 'Backpack', :path => '../'
+
+  target 'Backpack_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
