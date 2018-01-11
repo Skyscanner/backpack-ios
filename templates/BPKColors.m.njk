@@ -15,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "BPKColor.h"
 
-@import UIKit;
-
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@implementation BPKColor
+{% for c in color %}
++ (UIColor *){{c.name}} {
+  return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
+}
+{% endfor %}
 @end

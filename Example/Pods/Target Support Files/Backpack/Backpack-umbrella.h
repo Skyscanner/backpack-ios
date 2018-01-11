@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "Backpack.h"
+#import "BPKColor.h"
 
 FOUNDATION_EXPORT double BackpackVersionNumber;
 FOUNDATION_EXPORT const unsigned char BackpackVersionString[];
