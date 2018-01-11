@@ -1,5 +1,5 @@
 PODS:
-  - Backpack (0.1.0)
+  - Backpack (0.0.1)
 
 DEPENDENCIES:
   - Backpack (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Backpack: 454f86ee57ee74abbe089c66a97ba30cde96c442
+  Backpack: 297898a9b93746d398ca2ad1b2c42a8948215806
 
 PODFILE CHECKSUM: 3ea4daad5bf25deaa186a67e666ee43d170d2fc4
 

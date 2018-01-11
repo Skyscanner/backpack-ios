@@ -15,11 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import <Foundation/Foundation.h>
 
-@import UIKit;
-
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+NS_ASSUME_NONNULL_BEGIN
+@class UIColor;
+@interface BPKColor: NSObject
+{% for c in color %}
++ (UIColor *){{c.name}};
+{% endfor %}
 @end
+NS_ASSUME_NONNULL_END

@@ -16,10 +16,8 @@
  * limitations under the License.
  */
 
-@import UIKit;
+#ifndef __BACKPACK__
+    #define __BACKPACK__
 
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@end
+    #import "BPKColor.h"
+#endif

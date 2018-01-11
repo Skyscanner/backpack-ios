@@ -1,10 +1,18 @@
-#
-# Be sure to run `pod lib lint Backpack.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
+# Backpack - Skyscanner's Design System
+
+# Copyright 2018 Skyscanner Ltd
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#   http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
@@ -18,12 +26,14 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/Skyscanner/backpack-ios'
   s.license          = { type: 'Apache-2.0', file: 'LICENSE' }
   s.author           = {
-    'Hugo Tunius' => 'hugo.tunius@skyscanner.net'
+    'Backpack Design System' => 'backpack@skyscanner.net'
   }
   s.source = {
     git: 'git@github.com:Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'Backpack/Classes/**/*'
+  s.source_files = 'Backpack/Classes/**/*.{h,m}'
+  s.frameworks = 'UIKit', 'Foundation'
+  s.requires_arc = true
 end

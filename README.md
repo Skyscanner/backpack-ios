@@ -1,6 +1,6 @@
 # Backpack
 
-[![CI Status](http://img.shields.io/travis/Hugo Tunius/Backpack.svg?style=flat)](https://travis-ci.org/Hugo Tunius/Backpack)
+[![CI Status](http://img.shields.io/travis/skyscanner/backpack-ios.svg?style=flat)](https://travis-ci.org/skyscanner/backpack-ios)
 [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
 [![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
 [![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
