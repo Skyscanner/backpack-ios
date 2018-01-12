@@ -20,7 +20,7 @@ def ask(question)
 end
 
 def has_trunk_push
-  result = %{be pod trunk me}
+  result = `bundle exec pod trunk me`
   $?.exitstatus == 0 && result.chomp.include?('Backpack')
 end
 
