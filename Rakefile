@@ -41,6 +41,8 @@ task :lint do
   sh "bundle exec pod lib lint"
 end
 
+task ci: [:lint, :test]
+
 # task release: :test do
 task :release do
   abort red 'Must be on master branch' unless current_branch == 'master'

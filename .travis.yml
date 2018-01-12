@@ -9,5 +9,4 @@ install:
   - bundle install
   - cd Example && bundle exec pod install
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Backpack.xcworkspace -scheme Backpack-Example -sdk iphonesimulator11.2 ONLY_ACTIVE_ARCH=NO | xcpretty
-- bundle exec pod lib lint
+  - bundle exec rake ci
