@@ -19,6 +19,11 @@ def ask(question)
   valid_input
 end
 
+def has_trunk_push
+  result = %{be pod trunk me}
+  $?.exitstatus == 0 && result.chomp.include?('Backpack')
+end
+
 def last_version
   %x{git describe --abbrev=0 --tags}
 end
@@ -38,7 +43,9 @@ end
 
 # task release: :test do
 task :release do
-  fail 'Must be on master branch' unless current_branch == 'master'
+  abort red 'Must be on master branch' unless current_branch == 'master'
+  abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
+
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
@@ -68,7 +75,7 @@ task :release do
   File.open(PODSPEC, 'w') { |file| file.puts contents }
 
   has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
-  abort "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry
+  abort red "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry
 
   puts "Comitting, tagging, and pushing"
   message = "[Release] Version #{version_string}"
