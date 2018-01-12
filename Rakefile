@@ -79,6 +79,7 @@ task :release do
   puts "Pushing to CocoaPods trunk."
   sh "bundle exec pod trunk push #{PODSPEC}"
 
+  puts green("🎉 All went well. Version #{version_string} published.")
 end
 
 # Helpers
