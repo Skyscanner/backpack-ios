@@ -62,7 +62,7 @@ task :release do
   when :minor
     version.minor += 1
     version.patch = 0
-  when :path
+  when :patch
     version.patch += 1
   end
 
@@ -79,8 +79,8 @@ task :release do
 
   puts "Comitting, tagging, and pushing"
   message = "[Release] Version #{version_string}"
-  sh "git commit -am #{message}"
-  sh "git tag #{version_string} -m #{message}"
+  sh "git commit -am '#{message}'"
+  sh "git tag #{version_string} -m '#{message}'"
   sh "git push  --follow-tags"
 
   puts "Pushing to CocoaPods trunk."
