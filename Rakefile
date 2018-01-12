@@ -61,9 +61,9 @@ task :release do
     version.patch =0
   when :minor
     version.minor += 1
-    version.path = 0
+    version.patch = 0
   when :path
-    version.path += 1
+    version.patch += 1
   end
 
   puts "New version will be #{green(version)}"
@@ -79,7 +79,7 @@ task :release do
 
   puts "Comitting, tagging, and pushing"
   message = "[Release] Version #{version_string}"
-  sh "git commit -am -m #{message}"
+  sh "git commit -am #{message}"
   sh "git tag #{version_string} -m #{message}"
   sh "git push  --follow-tags"
 
