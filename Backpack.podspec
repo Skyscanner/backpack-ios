@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     'Backpack Design System' => 'backpack@skyscanner.net'
   }
   s.source = {
-    git: 'git@github.com:Skyscanner/backpack-ios.git', tag: s.version.to_s
+    git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '9.0'
 
