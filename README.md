@@ -21,7 +21,8 @@ This project uses both Ruby and Node. To manage the version of these we use `rbe
 
 + `rbenv install` to install the required version of Ruby
 + `nvm use` to set the projects node version
-+ `bundler install` to install ruby dependencies
++ `gem install bundler` to install bundler
++ `bundle install` to install ruby dependencies
 + `npm install` to install npm dependencies
 + `(cd Example && bundle exec pod install)` To setup the example project.
 + `open Example/Backpack.xcworkspace` to open the example project
