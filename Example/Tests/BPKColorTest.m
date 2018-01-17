@@ -18,7 +18,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Backpack.h>
+#import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKColorTest : XCTestCase
