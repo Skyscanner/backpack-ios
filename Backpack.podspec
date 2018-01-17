@@ -33,7 +33,11 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = "9.0"
 
-  s.source_files = "Backpack/Classes/**/*.{h,m}"
+  s.subspec 'Color' do |ss|
+    ss.source_files = 'Backpack/Classes/Color/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Color/**/*.h'
+  end
+
   s.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end

@@ -1,5 +1,7 @@
 PODS:
-  - Backpack (0.0.2)
+  - Backpack (0.0.2):
+    - Backpack/Color (= 0.0.2)
+  - Backpack/Color (0.0.2)
 
 DEPENDENCIES:
   - Backpack (from `../`)
@@ -9,7 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Backpack: 505285f3e25ff7c2c0bbdaeca516b8c068c7aecc
+  Backpack: c08356662c3a815e5972cd931d1ff1eba5bfb256
 
 PODFILE CHECKSUM: 3ea4daad5bf25deaa186a67e666ee43d170d2fc4
 

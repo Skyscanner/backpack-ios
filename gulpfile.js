@@ -28,7 +28,7 @@ const tokens = require('bpk-tokens/tokens/base.ios.json');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
-  output: path.join(__dirname, 'Backpack', 'Classes', 'Generated'),
+  output: path.join(__dirname, 'Backpack', 'Classes'),
 };
 
 const TYPES = new Set(['color']);
@@ -69,14 +69,14 @@ gulp.task('template', () => {
       gulp.src(path.join(PATHS.templates, `BPK${processedType}s.h.njk`))
       .pipe(data(() => templateData))
       .pipe(nunjucks.compile())
-      .pipe(rename(`BPK${processedType}.h`))
+      .pipe(rename(`${processedType}/Generated/BPK${processedType}.h`))
     );
 
     streams.push(
       gulp.src(path.join(PATHS.templates, `BPK${processedType}s.m.njk`))
       .pipe(data(() => templateData))
       .pipe(nunjucks.compile())
-      .pipe(rename(`BPK${processedType}.m`))
+      .pipe(rename(`${processedType}/Generated/BPK${processedType}.m`))
     );
   }
 
