@@ -31,7 +31,21 @@ const PATHS = {
   output: path.join(__dirname, 'Backpack', 'Classes'),
 };
 
-const TYPES = new Set(['color']);
+const TYPES = new Set(['color', 'font']);
+const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl', 'xxl']);
+const WEIGHT_MAP = {
+  normal: 'UIFontWeightRegular',
+  bold: 'UIFontWeightBold',
+  100: 'UIFontWeightUltraLight',
+  200: 'UIFontWeightThin',
+  300: 'UIFontWeightLight',
+  400: 'UIFontWeightRegular',
+  500: 'UIFontWeightMedium',
+  600: 'UIFontWeightSemibold',
+  700: 'UIFontWeightBold',
+  800: 'UIFontWeightHeavy',
+  900: 'UIFontWeightBlack',
+};
 
 const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
@@ -48,14 +62,55 @@ const parseColor = (color) => {
   };
 };
 
-const parseTokens = (tokensData) => (
-  _
-    .chain(tokensData.properties)
-    .filter(({ type }) => TYPES.has(type))
-    .map(({ name, value, type }) => ({ name, type, value: type === 'color' ? parseColor(value) : value }))
-    .groupBy(({ type }) => type)
-    .value()
-);
+const convertFontWeight = (weightString) => {
+  const weight = WEIGHT_MAP[weightString.trim()];
+
+  if(!weight) {
+    throw new Error(`Invalid weight string \`${weightString}\``);
+  }
+
+  return weight;
+};
+
+const parseTokens = (tokensData) => {
+  const colors = _
+                  .chain(tokensData.properties)
+                  .filter(({ type }) => type === 'color')
+                  .map(({ value, ...rest }) => ({ value: parseColor(value), ...rest }))
+                  .value();
+
+  const fonts = _
+                  .chain(tokensData.properties)
+                  .filter(({ category }) => category === 'font-sizes' || category === 'font-weights')
+                  .groupBy(({ name }) => name.replace('FontSize', '').replace('FontWeight', ''))
+                  .map((values, key) => [values, key])
+                  .filter((data) => VALID_TEXT_STYLES.has(data[1].replace('text', '').toLowerCase()))
+                  .map((data) => {
+                    const properties = data[0];
+                    const key = data[1];
+
+                    const sizeProp = _.filter(properties, ({ category }) => category === 'font-sizes');
+                    const weightProp = _.filter(properties, ({ category }) => category === 'font-weights');
+
+                    if (sizeProp.length !== 1 || weightProp.length !== 1) {
+                      throw new Error('Expected all text sizes to have both a weight and font size');
+                    }
+
+
+                    return {
+                      name: key,
+                      size: Number.parseInt(sizeProp[0].value, 10),
+                      weight: convertFontWeight(weightProp[0].value),
+                      type: 'font',
+                    };
+                  })
+                  .value();
+
+  return _
+           .chain([...colors, ...fonts])
+           .groupBy(({ type }) => type)
+           .value();
+};
 
 
 gulp.task('template', () => {
@@ -66,14 +121,14 @@ gulp.task('template', () => {
     const processedType = format(type);
 
     streams.push(
-      gulp.src(path.join(PATHS.templates, `BPK${processedType}s.h.njk`))
+      gulp.src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
       .pipe(data(() => templateData))
       .pipe(nunjucks.compile())
       .pipe(rename(`${processedType}/Generated/BPK${processedType}.h`))
     );
 
     streams.push(
-      gulp.src(path.join(PATHS.templates, `BPK${processedType}s.m.njk`))
+      gulp.src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
       .pipe(data(() => templateData))
       .pipe(nunjucks.compile())
       .pipe(rename(`${processedType}/Generated/BPK${processedType}.m`))
