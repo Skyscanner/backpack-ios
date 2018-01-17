@@ -1,8 +1,20 @@
 # Unreleased
 
+__Nothing so far...__
+
+# 0.1.0
+
 *Breaking:*
 
 - Moved colors to a subspec in `Backpack/Color`.
+
+Use as
+
+```
+#import <Backpack/Color.h>
+
+[BPKColor colorBlue500];
+```
 
 # 0.0.2
 
