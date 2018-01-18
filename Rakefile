@@ -44,7 +44,7 @@ end
 task ci: [:lint, :test]
 
 # task release: :test do
-task :release do
+task release: :ci do
   abort red 'Must be on master branch' unless current_branch == 'master'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
 

@@ -31,7 +31,7 @@ This project uses both Ruby and Node. To manage the version of these we use `rbe
 
 > Backpack team only
 
-To issue a new release make sure you've set the project up as above, that you have push acess to the Backpack CocoaPod and that you're logged in to CocoaPods trunk. `bundle exec pod trunk me` should print your info and including the Backpack pod in the output. Make sure you've added a new entry in the `CHANGELOG.md` with the version you're publishing then run `be rake release`.
+To issue a new release make sure you've set the project up as above, that you have push acess to the Backpack CocoaPod and that you're logged in to CocoaPods trunk. `bundle exec pod trunk me` should print your info and including the Backpack pod in the output. Make sure you've added a new entry in the `CHANGELOG.md` with the version you're publishing then run `bundle exec rake release`.
 
 ## License
 
