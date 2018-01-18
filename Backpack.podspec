@@ -38,6 +38,11 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Backpack/Classes/Color/**/*.h'
   end
 
+  s.subspec 'Font' do |ss|
+    ss.source_files = 'Backpack/Classes/Font/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Font/**/*.h'
+  end
+
   s.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end

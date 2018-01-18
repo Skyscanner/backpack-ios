@@ -1,6 +1,9 @@
 # Unreleased
 
-__Nothing so far...__
+**Added:**
+
+- Introduced Backpack Font stack via `BPKFont` and the `Backpack/Font` subspec.
+
 
 # 0.1.0
 
