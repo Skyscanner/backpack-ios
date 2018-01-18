@@ -18,25 +18,48 @@
 
 #import "BPKFontsViewController.h"
 #import <Backpack/Font.h>
+#import <Backpack/Color.h>
 
 @interface BPKFontsViewController ()
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray<UILabel *> *labels;
+@property (nonatomic, assign, getter=isEmphasized) BOOL emphasized;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 
+- (void)setFontsWithEmphasized:(BOOL)isEmphasized;
 @end
 
 @implementation BPKFontsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray<NSString *> *selectors = @[ @"textXs", @"textSm", @"textBase", @"textLg", @"textXl", @"textXxl"];
 
-    NSAssert(self.labels.count == selectors.count, @"The number of labels must match the number of selcetors above");
+    [self setFontsWithEmphasized:NO];
+}
+
+- (IBAction)toggleEmphasized:(id)sender {
+    self.emphasized = !self.isEmphasized;
+    [self setFontsWithEmphasized:self.isEmphasized];
+}
+
+#pragma mark - Private
+
+- (void)setFontsWithEmphasized:(BOOL)isEmphasized {
+    NSArray<NSString *> *regularSelectors = @[ @"textXs", @"textSm", @"textBase", @"textLg", @"textXl"];
+    NSArray<NSString *> *emphasizedSelectors = @[ @"textXsEmphasized", @"textSmEmphasized", @"textBaseEmphasized", @"textLgEmphasized", @"textXlEmphasized"];
+
+    NSArray<NSString *> *selectors = regularSelectors;
+    if (isEmphasized) {
+        selectors = emphasizedSelectors;
+    }
+
+    NSAssert(self.labels.count == selectors.count, @"The number of labels must match the number of selectors above");
     for (int i = 0; i < self.labels.count; i++) {
         SEL selector = NSSelectorFromString(selectors[i]);
+        UILabel *label = self.labels[i];
 
         if ([BPKFont respondsToSelector:selector]) {
-            self.labels[i].font = [BPKFont performSelector:selector];
-            self.labels[i].text = selectors[i];
+            label.font = [BPKFont performSelector:selector];
+            label.text = @"Backpack BPKFont";
+            label.textColor = [BPKColor colorGray700];
         } else {
             NSAssert(NO, @"Invalid selector %@", selectors[i]);
         }

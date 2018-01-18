@@ -23,15 +23,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)textXs;
 
++ (UIFont *)textXsEmphasized;
+
 + (UIFont *)textSm;
+
++ (UIFont *)textSmEmphasized;
 
 + (UIFont *)textBase;
 
++ (UIFont *)textBaseEmphasized;
+
 + (UIFont *)textLg;
+
++ (UIFont *)textLgEmphasized;
 
 + (UIFont *)textXl;
 
-+ (UIFont *)textXxl;
++ (UIFont *)textXlEmphasized;
 
 @end
 NS_ASSUME_NONNULL_END

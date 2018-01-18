@@ -27,7 +27,13 @@
 @implementation BPKFontTest
 
 - (void)setUp {
-    self.expectedSelectors = @[ @"textXs", @"textSm", @"textBase", @"textLg", @"textXl", @"textXxl"];
+    self.expectedSelectors = @[
+                               @"textXs", @"textXsEmphasized",
+                               @"textSm", @"textSmEmphasized",
+                               @"textBase", @"textBaseEmphasized",
+                               @"textLg", @"textLgEmphasized",
+                               @"textXl", @"textXlEmphasized"
+                            ];
 }
 
 - (void)testHasExpectedTextStyles {

@@ -23,24 +23,40 @@
     return [UIFont systemFontOfSize:11 weight:UIFontWeightRegular];
 }
 
++ (UIFont *)textXsEmphasized {
+    return [UIFont systemFontOfSize:11 weight:UIFontWeightSemibold];
+}
+
 + (UIFont *)textSm {
     return [UIFont systemFontOfSize:13 weight:UIFontWeightRegular];
+}
+
++ (UIFont *)textSmEmphasized {
+    return [UIFont systemFontOfSize:13 weight:UIFontWeightSemibold];
 }
 
 + (UIFont *)textBase {
     return [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
 }
 
++ (UIFont *)textBaseEmphasized {
+    return [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+}
+
 + (UIFont *)textLg {
     return [UIFont systemFontOfSize:17 weight:UIFontWeightRegular];
+}
+
++ (UIFont *)textLgEmphasized {
+    return [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
 }
 
 + (UIFont *)textXl {
     return [UIFont systemFontOfSize:20 weight:UIFontWeightRegular];
 }
 
-+ (UIFont *)textXxl {
-    return [UIFont systemFontOfSize:34 weight:UIFontWeightBold];
++ (UIFont *)textXlEmphasized {
+    return [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
 }
 
 

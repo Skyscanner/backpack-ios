@@ -32,7 +32,7 @@ const PATHS = {
 };
 
 const TYPES = new Set(['color', 'font']);
-const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl', 'xxl']);
+const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
   bold: 'UIFontWeightBold',
@@ -79,6 +79,9 @@ const parseTokens = (tokensData) => {
                   .map(({ value, ...rest }) => ({ value: parseColor(value), ...rest }))
                   .value();
 
+  const emphazisedWeight = convertFontWeight(
+    _.filter(tokensData.properties, ({ name }) => name === 'textEmphasizedFontWeight')[0].value
+  );
   const fonts = _
                   .chain(tokensData.properties)
                   .filter(({ category }) => category === 'font-sizes' || category === 'font-weights')
@@ -104,6 +107,9 @@ const parseTokens = (tokensData) => {
                       type: 'font',
                     };
                   })
+                  .flatMap(properties =>
+                    [properties, { ...properties, weight: emphazisedWeight, name: properties.name + 'Emphasized' }]
+                  )
                   .value();
 
   return _
