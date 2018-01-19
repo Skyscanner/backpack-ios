@@ -10,9 +10,7 @@ install:
   - cd Example && bundle exec pod install
 script:
   - bundle exec rake ci
-# This causes builds for merges and direct pushes to master.
-# Other branches are pull requests and build are triggered via the
-# pull request hook
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
