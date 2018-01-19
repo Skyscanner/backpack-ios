@@ -4,8 +4,20 @@
 
 osx_image: xcode9.2
 language: objective-c
-cache: cocoapods
+cache:
+  - cocoapods
+  - bundler
+  - npm
 install:
+  - rm -rf ~/.nvm
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm"
+  - nvm ls-remote
+  - nvm install
+  - nvm use
+  - npm install
+  - npm run gulp
+  - (! git status --porcelain | grep -q .) || (echo "Please ensure you have ran `npm run gulp`to generate the templated classes." && false)
   - bundle install
   - cd Example && bundle exec pod install
 script:
