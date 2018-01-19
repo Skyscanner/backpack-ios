@@ -8,31 +8,46 @@
 ## Installation
 
 Backpack is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+all of it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'Backpack'
 ```
 
+This will install all of Backpack. We use subspecs to subdivide the library so you might want to only install specific subspecs instead.
 
-## Setup
+## Subspecs
 
-This project uses both Ruby and Node. To manage the version of these we use `rbenv` for Ruby and `nvm` for Node. Please ensure you have both of these installed. Then run:
+### Backpack/Color
 
-+ `rbenv install` to install the required version of Ruby
-+ `nvm use` to set the projects node version
-+ `gem install bundler` to install bundler
-+ `bundle install` to install ruby dependencies
-+ `npm install` to install npm dependencies
-+ `(cd Example && bundle exec pod install)` To setup the example project.
-+ `open Example/Backpack.xcworkspace` to open the example project
+`Backpack/Color` contains our color palette contained in a single class `BPKColor`. Add `Backpack/Color` to your `Podfile` or `podspec` and then use it as follows.
 
-## Releasing
+```objective-c
+#import <Backpack/Color.h>
 
-> Backpack team only
+[BPKColor colorBlue500];
+[BPKColor colorGray900];
+```
 
-To issue a new release make sure you've set the project up as above, that you have push acess to the Backpack CocoaPod and that you're logged in to CocoaPods trunk. `bundle exec pod trunk me` should print your info and including the Backpack pod in the output. Make sure you've added a new entry in the `CHANGELOG.md` with the version you're publishing then run `bundle exec rake release`.
+### Backpack/Font
+
+`Backpack/Font` contains the Backpack typography styles in a single class `BPKFont`. Add `Backpack/Font` to your `Podfile` or `podspec` and then use it as follows.
+
+```objective-c
+#import <Backpack/Font.h>
+
+[BPKFont textXs];
+[BPKFont textXsEmphasized];
+```
+
+We support a variety of sizes and an emphasized style for each.
+
+## Contributing to Backpack
+
+Please see the [Contributing guide][0] for instructions on contributing to this project.
 
 ## License
 
 Backpack is available under the Apache 2.0 license. See the LICENSE file for more info.
+
+[0]: CONTRIBUTING.md
