@@ -1,0 +1,152 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Badge/BPKBadge.h",
+      "line": 21,
+      "symbol": "BPKBadgeType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Badge/BPKBadge.h",
+      "line": 21,
+      "symbol": "BPKBadgeType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Badge/BPKBadge.h",
+      "line": 31,
+      "symbol": "BPKBadge",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Color/Generated/BPKColor.h",
+      "line": 502,
+      "symbol": "BPKColor.+clear",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Font/Generated/BPKFont.h",
+      "line": 20,
+      "symbol": "BPKFontStyle",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Font/Generated/BPKFont.h",
+      "line": 20,
+      "symbol": "BPKFontStyle",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Font/Generated/BPKFont.h",
+      "line": 41,
+      "symbol": "BPKFont.+fontWithStyle:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Gradient/BPKGradient.h",
+      "line": 3,
+      "symbol": "BPKGradientDirection",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Gradient/BPKGradient.h",
+      "line": 3,
+      "symbol": "BPKGradientDirection",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Gradient/BPKGradient.h",
+      "line": 16,
+      "symbol": "BPKGradient",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Label/BPKLabel.h",
+      "line": 22,
+      "symbol": "BPKLabel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Panel/BPKPanel.h",
+      "line": 22,
+      "symbol": "BPKPanel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Radii/Generated/BPKRadii.h",
+      "line": 22,
+      "symbol": "BPKBorderRadiusPill",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Radii/Generated/BPKRadii.h",
+      "line": 24,
+      "symbol": "BPKBorderRadiusSm",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Shadow/Generated/BPKShadow.h",
+      "line": 22,
+      "symbol": "BPKShadow",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 22,
+      "symbol": "BPKSpacingBase",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 24,
+      "symbol": "BPKSpacingLg",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 26,
+      "symbol": "BPKSpacingMd",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 28,
+      "symbol": "BPKSpacingSm",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 30,
+      "symbol": "BPKSpacingXl",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hugotunius/Development/Work/backpack-ios/Backpack/Classes/Spacing/Generated/BPKSpacing.h",
+      "line": 32,
+      "symbol": "BPKSpacingXxl",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/hugotunius/Development/Work/backpack-ios"
+}

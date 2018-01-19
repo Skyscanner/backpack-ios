@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Backpack  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Backpack  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Backpack Docs</a> (79% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Backpack Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Backpack  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/BPKColor.html">BPKColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BPKFont.html">BPKFont</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='backpack' class='heading'>Backpack</h1>
+
+<p><a href="https://travis-ci.org/Skyscanner/backpack-ios"><img src="http://img.shields.io/travis/Skyscanner/backpack-ios.svg?style=flat" alt="CI Status"></a>
+<a href="http://cocoapods.org/pods/Backpack"><img src="https://img.shields.io/cocoapods/v/Backpack.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/Backpack"><img src="https://img.shields.io/cocoapods/l/Backpack.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/Backpack"><img src="https://img.shields.io/cocoapods/p/Backpack.svg?style=flat" alt="Platform"></a>
+<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/Skyscanner/backpack-ios.svg" alt="Greenkeeper badge"></a></p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>Backpack is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+all of it, simply add the following line to your Podfile:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'Backpack'</span>
+</code></pre>
+
+<p>This will install all of Backpack. We use subspecs to subdivide the library so you might want to only install specific subspecs instead.</p>
+<h2 id='subspecs' class='heading'>Subspecs</h2>
+<h3 id='backpack-color' class='heading'>Backpack/Color</h3>
+
+<p><code>Backpack/Color</code> contains our color palette contained in a single class <code><a href="Classes/BPKColor.html">BPKColor</a></code>. Add <code>Backpack/Color</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Color.h&gt;
+
+[BPKColor blue500];
+[BPKColor gray900];
+</code></pre>
+<h3 id='backpack-font' class='heading'>Backpack/Font</h3>
+
+<p><code>Backpack/Font</code> contains the Backpack typography styles in a single class <code><a href="Classes/BPKFont.html">BPKFont</a></code>. Add <code>Backpack/Font</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Font.h&gt;
+
+[BPKFont textXs];
+[BPKFont textXsEmphasized];
+</code></pre>
+
+<p>We support a variety of sizes and an emphasized style for each.</p>
+<h3 id='backpack-spacing' class='heading'>Backpack/Spacing</h3>
+
+<p><code>Backpack/Spacing</code> contains the Backpack spacing values as <code>CGFloat</code> constants. Add <code>Backpack/Spacing</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Spacing.h&gt;
+
+CGFloat myAppSpacingSmall = BPKSpacingSm;
+CGFloat myAppSpacingLarge = BPKSpacingLg;
+</code></pre>
+<h3 id='backpack-radii' class='heading'>Backpack/Radii</h3>
+
+<p><code>Backpack/Radii</code> contains the Backpack radii values as <code>CGFloat</code> constants. Add <code>Backpack/Radii</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Radii.h&gt;
+
+CGFloat myAppBorderRadiusSmall = BPKBorderRadiusSm;
+CGFloat myAppBorderRadiusLarge = BPKBorderRadiusPill;
+</code></pre>
+<h3 id='backpack-shadow' class='heading'>Backpack/Shadow</h3>
+
+<p><code>Backpack/Shadow</code> contains the Backpack shadow definitions in the class <code>BPKShadow</code>. Add <code>Backpack/Shadow</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Shadow.h&gt;
+
+BPKShadow *shadow = [BPKShadow shadowSm];
+// BPKShadow *shadowLg = [BPKShadow shadowLg];
+// BPKShadow *shadowXl = [BPKShadow shadowXl];
+
+[shadow applyToLayer:myView.layer];
+</code></pre>
+<h3 id='backpack-gradient' class='heading'>Backpack/Gradient</h3>
+
+<p><code>Backpack/Gradient</code> contains the Backpack gradient definitions in the class <code>BPKGradient</code>. <code>BPKGradient</code> has the two properties:</p>
+
+<ul>
+<li><code>colors</code> of type <code>NSArray&lt;UIColor *&gt; *</code></li>
+<li><code>stops</code> encoded as <code>CGPoints</code> with components in the range 0-1 encoded as <code>NSValue * in NSArray&lt;NSValue *&gt; *</code></li>
+</ul>
+
+<p>Add <code>Backpack/Gradient</code> to your <code>Podfile</code> or <code>podspec</code> and then use it as follows.</p>
+<pre class="highlight plaintext"><code>#import &lt;Backpack/Gradient.h&gt;
+
+BPKGradient *gradientDefault = [BPKGradient gradient];
+BPKGradient *gradientTopRight =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
+</code></pre>
+<h2 id='contributing-to-backpack' class='heading'>Contributing to Backpack</h2>
+
+<p>Please see the <a href="CONTRIBUTING.md">Contributing guide</a> for instructions on contributing to this project.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>Backpack is available under the Apache 2.0 license. See the LICENSE file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/Skyscanner/backpack-ios" target="_blank" rel="external">Backpack</a>. All rights reserved. (Last updated: 2018-08-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
