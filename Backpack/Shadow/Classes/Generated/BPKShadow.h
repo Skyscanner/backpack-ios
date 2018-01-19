@@ -19,22 +19,56 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor, CALayer;
+
+/**
+ * The `BPKShadow` class contains definitions for Backpack shaddows.
+ * It has factory methods for creating instances of supported shaddows.
+ */
 @interface BPKShadow: NSObject
+
+/**
+ * The color of the shadow.
+ */
 @property(nonatomic, strong, readonly) UIColor *color;
+
+/**
+ * The offset of the shadow.
+ */
 @property(nonatomic, readonly) CGSize offset;
+
+/**
+ * The opacity of the shadow.
+ */
 @property(nonatomic, readonly) CGFloat opacity;
+
+/**
+ * The radius of the shadow.
+ */
 @property(nonatomic, readonly) CGFloat radius;
 
 - (instancetype)init __attribute__((unavailable("init not available, use factory methods")));
 + (instancetype)new __attribute__((unavailable("new not available, use factory methods")));
 
+/**
+ * Apply the shadow of the reciever to the given `CALayer`.
+ * @param layer The layer to apply the shadow to.
+ */
 - (void)applyToLayer:(CALayer *)layer;
 
 
+/**
+ * The Skyscanner large shadow.
+ */
 + (instancetype)shadowLg;
 
+/**
+ * The Skyscanner small shadow.
+ */
 + (instancetype)shadowSm;
 
+/**
+ * The Skyscanner extra large shadow.
+ */
 + (instancetype)shadowXl;
 
 @end

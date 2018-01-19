@@ -19,6 +19,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 {% for r in radii %}
+/**
+ * The Skyscanner {{r.legibleName}} radius.
+ */
 extern CGFloat const {{r.name}};
 {% endfor %}
 NS_ASSUME_NONNULL_END

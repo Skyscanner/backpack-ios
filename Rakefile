@@ -103,6 +103,11 @@ task release: :ci do
   puts green("🎉 All went well. Version #{version_string} published.")
 end
 
+task :docs, :outputDir do |t, args|
+  args.with_defaults(:outputDir => "docs")
+  sh "bundle exec jazzy -o #{args.outputDir} --objc --author Backpack --umbrella-header Backpack/Backpack.h --framework-root Backpack --module Backpack --skip-undocumented"
+end
+
 # Helpers
 def green(string)
   "\033[0;32m#{string}\e[0m"

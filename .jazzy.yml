@@ -1,0 +1,11 @@
+objc: true
+clean: true
+sdk: iphone
+source_directory: Backpack
+author: Backpack
+author_url: http://backpack.github.io/
+theme: apple
+readme: README.md
+framework_root: .
+umbrella_header: Backpack/Classes/Backpack.h
+module: Backpack

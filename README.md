@@ -25,7 +25,6 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 * [Backpack/Radii](Backpack/Radii/README.md)
 * [Backpack/Shadow](Backpack/Shadow/README.md)
 * [Backpack/Gradient](Backpack/Gradient/README.md)
-
 * [Backpack/Badge](Backpack/Badge/README.md)
 * [Backpack/Label](Backpack/Label/README.md)
 * [Backpack/Panel](Backpack/Panel/README.md)

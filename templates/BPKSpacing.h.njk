@@ -19,6 +19,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 {% for s in spacing %}
+/**
+ * The Skyscanner {{s.legibleName}} shadow.
+ */
 extern CGFloat const {{s.name}};
 {% endfor %}
 NS_ASSUME_NONNULL_END

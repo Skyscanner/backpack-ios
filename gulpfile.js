@@ -47,8 +47,30 @@ const WEIGHT_MAP = {
   800: 'UIFontWeightHeavy',
   900: 'UIFontWeightBlack',
 };
+const LEGIBLE_NAMES = [
+  { identifier: 'Sm', legibleName: 'small' },
+  { identifier: 'Md', legibleName: 'medium' },
+  { identifier: 'Base', legibleName: 'base' },
+  { identifier: 'Lg', legibleName: 'large' },
+  { identifier: 'Xl', legibleName: 'extra large' },
+  { identifier: 'Xxl', legibleName: 'extra extra large' },
+  { identifier: 'Pill', legibleName: 'pill' },
+];
 
 const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
+
+const getLegibleName = name => {
+  let result = null;
+  LEGIBLE_NAMES.forEach(t => {
+    if (name.includes(t.identifier)) {
+      result = t.legibleName;
+    }
+  });
+  if (result) {
+    return result;
+  }
+  throw new Error(`No legible name found for ${name}`);
+};
 
 const parseColor = color => {
   const parsedColor = tinycolor(color);
@@ -73,12 +95,11 @@ const convertFontWeight = weightString => {
   return weight;
 };
 
-const generatePrefixedConst = ({ type, name, value }) => {
+const generatePrefixedConst = ({ name, ...rest }) => {
   const capitalize = input => input.charAt(0).toUpperCase() + input.slice(1);
   return {
-    type,
     name: `BPK${capitalize(name)}`,
-    value,
+    ...rest,
   };
 };
 
@@ -90,6 +111,7 @@ const parseTokens = tokensData => {
       return {
         value: parseColor(value),
         name: newName[0].toLowerCase() + newName.slice(1),
+        hex: value.toString(),
         ...rest,
       };
     })
@@ -163,6 +185,7 @@ const parseTokens = tokensData => {
         type: 'spacing',
         name,
         value,
+        legibleName: getLegibleName(name),
       }),
     )
     .value();
@@ -215,6 +238,7 @@ const parseTokens = tokensData => {
         color: parseColor(colorProp[0].value),
         opacity: opacityProp[0].value,
         radius: radiusProp[0].value,
+        legibleName: getLegibleName(key),
       };
     })
     .value();
@@ -226,6 +250,7 @@ const parseTokens = tokensData => {
         type: 'radii',
         name,
         value,
+        legibleName: getLegibleName(name),
       }),
     )
     .value();
