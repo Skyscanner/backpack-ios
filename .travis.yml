@@ -9,16 +9,23 @@ cache:
   bundler: true
   directories:
     - node_modules
-install:
+before_install:
   - nvm install 8.9.4
+  - npm install -g greenkeeper-lockfile@1
+install:
   - npm install
+  - bundle install
+  - (cd Example && bundle exec pod install)
+before_script: greenkeeper-lockfile-update
+script:
   - npm run build
   - ./scripts/check-pristine-state package-lock.json
-  - bundle install
-  - cd Example && bundle exec pod install
-script:
-  - bundle exec rake ci
+  - (cd Example && bundle exec rake ci)
+after_script: greenkeeper-lockfile-upload
 branches:
   only:
     - master
     - /^greenkeeper/.*$/
+env:
+  global:
+    secure: bUZWfYEhroeGDgYUpi+0vJc+W6Nh8zb35YG48z/kT/iQ1G5JRAp1kOl/sQymiPRoVVZErrVT7Ah6ER+kFqPHcsToWLA7AxWA1ZkAbsZOmhlhZY2yEnXlr/gJMmoOK0Va67cAlqSuASD7Dq8jlKjiRZqKPWVgMi1nFZSAmQuLTFn29qoIcm4XW1qTNjCykUfIwnCEv6Zj/diSVyfkLH6diNogUJnT53Uf8HdjJeg20q+m2S1GxrEAMkAiIty4+caGBLJ1h9Ldo2ki90p5QWapF+7wZ4xPsMG3pBS7LpbDQL/g2y3llsB0tiWCXk5ehq7X7t81HZbqKNA2PicXOhbQgiT25TKChA+9k+ct0QeveiZ3bD2P8oi05GFkH7hEGBWKQqqOmUBGu7ITaLh8Z/wR2y4D5Uz3hVb6vY1Zk3sJ5/kkJghSSYHLd6IoMCFpV4AgKtk0PM1dcLo3lg9VqPsmY5bdmJ3qQGdyElHvYIgFeK2R/9+dLsyoHzt8THA8/v/ZjuVde9nfwOV9OwGkm1EZ5NGmzCM+k+KgnzQ5UcGBXcNv65oC/5T87NpWkKs7Vo0qczaHfHOl/6IudUTwio+9b5+NQXrVfoiXOeerD0Rg86xmQhQZo2k5U6Gs/uplSCXe1NY2Qdh2t7wJLB8bAO11HOKvTxwZeO+39+D+BtdNaaY=
