@@ -43,6 +43,11 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Backpack/Classes/Font/**/*.h'
   end
 
+  s.subspec 'Spacing' do |ss|
+    ss.source_files = 'Backpack/Classes/Spacing/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Spacing/**/*.h'
+  end
+
   s.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end

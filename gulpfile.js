@@ -31,8 +31,9 @@ const PATHS = {
   output: path.join(__dirname, 'Backpack', 'Classes'),
 };
 
-const TYPES = new Set(['color', 'font']);
+const TYPES = new Set(['color', 'font', 'spacing']);
 const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
+const VALID_SPACINGS = new Set(['sm', 'md', 'base', 'lg', 'xl', 'xxl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
   bold: 'UIFontWeightBold',
@@ -112,8 +113,24 @@ const parseTokens = (tokensData) => {
                   )
                   .value();
 
-  return _
-           .chain([...colors, ...fonts])
+  const spacings = _
+                  .chain(tokensData.properties)
+                  .filter(({ category }) => category === 'spacings')
+                  .filter(({ name }) => VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase()))
+                  .map(({ name, value }) => {
+                    const capitalize = (input) => (
+                      input.charAt(0).toUpperCase() + input.slice(1)
+                    );
+                    return {
+                      type: 'spacing',
+                      name: `BPK${capitalize(name)}`,
+                      value,
+                    };
+                  })
+                  .value();
+
+  return  _
+           .chain([...colors, ...fonts, ...spacings])
            .groupBy(({ type }) => type)
            .value();
 };
