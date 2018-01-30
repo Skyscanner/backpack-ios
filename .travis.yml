@@ -4,8 +4,16 @@
 
 osx_image: xcode9.2
 language: objective-c
-cache: cocoapods
+cache:
+  cocoapods: true
+  bundler: true
+  directories:
+    - node_modules
 install:
+  - nvm install 8.9.4
+  - npm install
+  - npm run build
+  - ./scripts/check-pristine-state package-lock.json
   - bundle install
   - cd Example && bundle exec pod install
 script:
