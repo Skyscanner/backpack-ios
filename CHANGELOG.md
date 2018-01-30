@@ -1,6 +1,8 @@
 # Unreleased
 
-_Nothing yet..._minor
+**Added:**
+
+- Backpack spacing constants via `BpkSpacing` and the `Backpack/Spacing` subspec.
 
 ## 0.2.0
 
