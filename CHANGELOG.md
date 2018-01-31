@@ -1,20 +1,24 @@
 # Unreleased
 
+_Nothing yet!_
+
+## 0.3.0
+
 **Added:**
 
-- Backpack spacing constants via `BpkSpacing` and the `Backpack/Spacing` subspec.
+* Backpack spacing constants via `BpkSpacing` and the `Backpack/Spacing` subspec.
 
 ## 0.2.0
 
 **Added:**
 
-- Introduced Backpack Font stack via `BPKFont` and the `Backpack/Font` subspec.
+* Introduced Backpack Font stack via `BPKFont` and the `Backpack/Font` subspec.
 
 ## 0.1.0
 
 **Breaking:**
 
-- Moved colors to a subspec in `Backpack/Color`.
+* Moved colors to a subspec in `Backpack/Color`.
 
 Use as
 
