@@ -43,6 +43,17 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 
 We support a variety of sizes and an emphasized style for each.
 
+### Backpack/Spacing
+
+`Backpack/Spacing` contains the Backpack spacing values as `CGFloat` constants. Add `Backpack/Spacing` to your `Podfile` or `podspec` and then use it as follows.
+
+```objective-c
+#import <Backpack/Spacing.h>
+
+CGFloat myAppSpacingSmall = BPKSpacingSm;
+CGFloat myAppSpacingLarge = BPKSpacingLg;
+```
+
 ## Contributing to Backpack
 
 Please see the [Contributing guide][0] for instructions on contributing to this project.
