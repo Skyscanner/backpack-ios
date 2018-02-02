@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-const gulp = require('gulp')
+const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
 const rename = require('gulp-rename');
@@ -48,9 +48,9 @@ const WEIGHT_MAP = {
   900: 'UIFontWeightBlack',
 };
 
-const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
+const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
-const parseColor = (color) => {
+const parseColor = color => {
   const parsedColor = tinycolor(color);
 
   const { r, g, b, a } = parsedColor.toRgb();
@@ -63,102 +63,124 @@ const parseColor = (color) => {
   };
 };
 
-const convertFontWeight = (weightString) => {
+const convertFontWeight = weightString => {
   const weight = WEIGHT_MAP[weightString.trim()];
 
-  if(!weight) {
+  if (!weight) {
     throw new Error(`Invalid weight string \`${weightString}\``);
   }
 
   return weight;
 };
 
-const parseTokens = (tokensData) => {
-  const colors = _
-                  .chain(tokensData.properties)
-                  .filter(({ type }) => type === 'color')
-                  .map(({ value, ...rest }) => ({ value: parseColor(value), ...rest }))
-                  .value();
+const parseTokens = tokensData => {
+  const colors = _.chain(tokensData.properties)
+    .filter(({ type }) => type === 'color')
+    .map(({ value, ...rest }) => ({ value: parseColor(value), ...rest }))
+    .value();
 
   const emphazisedWeight = convertFontWeight(
-    _.filter(tokensData.properties, ({ name }) => name === 'textEmphasizedFontWeight')[0].value
+    _.filter(
+      tokensData.properties,
+      ({ name }) => name === 'textEmphasizedFontWeight',
+    )[0].value,
   );
-  const fonts = _
-                  .chain(tokensData.properties)
-                  .filter(({ category }) => category === 'font-sizes' || category === 'font-weights')
-                  .groupBy(({ name }) => name.replace('FontSize', '').replace('FontWeight', ''))
-                  .map((values, key) => [values, key])
-                  .filter((data) => VALID_TEXT_STYLES.has(data[1].replace('text', '').toLowerCase()))
-                  .map((data) => {
-                    const properties = data[0];
-                    const key = data[1];
 
-                    const sizeProp = _.filter(properties, ({ category }) => category === 'font-sizes');
-                    const weightProp = _.filter(properties, ({ category }) => category === 'font-weights');
+  const fonts = _.chain(tokensData.properties)
+    .filter(
+      ({ category }) =>
+        category === 'font-sizes' || category === 'font-weights',
+    )
+    .groupBy(({ name }) =>
+      name.replace('FontSize', '').replace('FontWeight', ''),
+    )
+    .map((values, key) => [values, key])
+    .filter(token =>
+      VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase()),
+    )
+    .map(token => {
+      const properties = token[0];
+      const key = token[1];
 
-                    if (sizeProp.length !== 1 || weightProp.length !== 1) {
-                      throw new Error('Expected all text sizes to have both a weight and font size');
-                    }
+      const sizeProp = _.filter(
+        properties,
+        ({ category }) => category === 'font-sizes',
+      );
+      const weightProp = _.filter(
+        properties,
+        ({ category }) => category === 'font-weights',
+      );
 
+      if (sizeProp.length !== 1 || weightProp.length !== 1) {
+        throw new Error(
+          'Expected all text sizes to have both a weight and font size',
+        );
+      }
 
-                    return {
-                      name: key,
-                      size: Number.parseInt(sizeProp[0].value, 10),
-                      weight: convertFontWeight(weightProp[0].value),
-                      type: 'font',
-                    };
-                  })
-                  .flatMap(properties =>
-                    [properties, { ...properties, weight: emphazisedWeight, name: properties.name + 'Emphasized' }]
-                  )
-                  .value();
+      return {
+        name: key,
+        size: Number.parseInt(sizeProp[0].value, 10),
+        weight: convertFontWeight(weightProp[0].value),
+        type: 'font',
+      };
+    })
+    .flatMap(properties => [
+      properties,
+      {
+        ...properties,
+        weight: emphazisedWeight,
+        name: `${properties.name}Emphasized`,
+      },
+    ])
+    .value();
 
-  const spacings = _
-                  .chain(tokensData.properties)
-                  .filter(({ category }) => category === 'spacings')
-                  .filter(({ name }) => VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase()))
-                  .map(({ name, value }) => {
-                    const capitalize = (input) => (
-                      input.charAt(0).toUpperCase() + input.slice(1)
-                    );
-                    return {
-                      type: 'spacing',
-                      name: `BPK${capitalize(name)}`,
-                      value,
-                    };
-                  })
-                  .value();
+  const spacings = _.chain(tokensData.properties)
+    .filter(({ category }) => category === 'spacings')
+    .filter(({ name }) =>
+      VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase()),
+    )
+    .map(({ name, value }) => {
+      const capitalize = input =>
+        input.charAt(0).toUpperCase() + input.slice(1);
+      return {
+        type: 'spacing',
+        name: `BPK${capitalize(name)}`,
+        value,
+      };
+    })
+    .value();
 
-  return  _
-           .chain([...colors, ...fonts, ...spacings])
-           .groupBy(({ type }) => type)
-           .value();
+  return _.chain([...colors, ...fonts, ...spacings])
+    .groupBy(({ type }) => type)
+    .value();
 };
 
-
 gulp.task('template', () => {
-  let streams = [];
+  const streams = [];
   const templateData = parseTokens(tokens);
 
-  for (let type of TYPES) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const type of TYPES) {
     const processedType = format(type);
 
     streams.push(
-      gulp.src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
-      .pipe(data(() => templateData))
-      .pipe(nunjucks.compile())
-      .pipe(rename(`${processedType}/Generated/BPK${processedType}.h`))
+      gulp
+        .src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
+        .pipe(data(() => templateData))
+        .pipe(nunjucks.compile())
+        .pipe(rename(`${processedType}/Generated/BPK${processedType}.h`)),
     );
 
     streams.push(
-      gulp.src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
-      .pipe(data(() => templateData))
-      .pipe(nunjucks.compile())
-      .pipe(rename(`${processedType}/Generated/BPK${processedType}.m`))
+      gulp
+        .src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
+        .pipe(data(() => templateData))
+        .pipe(nunjucks.compile())
+        .pipe(rename(`${processedType}/Generated/BPK${processedType}.m`)),
     );
   }
 
-  return merge2(streams).pipe(gulp.dest(PATHS.output))
+  return merge2(streams).pipe(gulp.dest(PATHS.output));
 });
 
 gulp.task('default', ['template']);

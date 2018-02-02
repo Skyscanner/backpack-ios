@@ -1,0 +1,21 @@
+{
+  "extends": [
+      "skyscanner",
+      "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "settings": {
+    "node": {
+      "extensions": [
+        ".js",
+        ".json"
+      ]
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-console": "off"
+  }
+}
