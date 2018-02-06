@@ -15,27 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "BPKRadii.h"
 
-#import <XCTest/XCTest.h>
+CGFloat const BPKBorderRadiusSm = 4;
 
-#import <Backpack/Spacing.h>
+CGFloat const BPKBorderRadiusPill = 40;
 
-NS_ASSUME_NONNULL_BEGIN
-@interface BPKSpacingTest : XCTestCase
-
-@end
-
-@implementation BPKSpacingTest
-
-- (void)testSpacingsHaveCorrectValues {
-    XCTAssertEqual(BPKSpacingSm, 4);
-    XCTAssertEqual(BPKSpacingMd, 8);
-    XCTAssertEqual(BPKSpacingBase, 16);
-    XCTAssertEqual(BPKSpacingLg, 24);
-    XCTAssertEqual(BPKSpacingXl, 32);
-    XCTAssertEqual(BPKSpacingXxl, 40);
-}
-
-@end
-
-NS_ASSUME_NONNULL_END

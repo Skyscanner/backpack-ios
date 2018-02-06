@@ -16,26 +16,9 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
+#import <UIKit/UIKit.h>
 
-#import <Backpack/Spacing.h>
-
-NS_ASSUME_NONNULL_BEGIN
-@interface BPKSpacingTest : XCTestCase
+@interface BPKRadiiViewController : UIViewController
 
 @end
 
-@implementation BPKSpacingTest
-
-- (void)testSpacingsHaveCorrectValues {
-    XCTAssertEqual(BPKSpacingSm, 4);
-    XCTAssertEqual(BPKSpacingMd, 8);
-    XCTAssertEqual(BPKSpacingBase, 16);
-    XCTAssertEqual(BPKSpacingLg, 24);
-    XCTAssertEqual(BPKSpacingXl, 32);
-    XCTAssertEqual(BPKSpacingXxl, 40);
-}
-
-@end
-
-NS_ASSUME_NONNULL_END

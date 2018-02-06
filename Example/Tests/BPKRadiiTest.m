@@ -18,24 +18,21 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Spacing.h>
+#import <Backpack/Radii.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKSpacingTest : XCTestCase
+@interface BPKRadiiTest : XCTestCase
 
 @end
 
-@implementation BPKSpacingTest
+@implementation BPKRadiiTest
 
-- (void)testSpacingsHaveCorrectValues {
-    XCTAssertEqual(BPKSpacingSm, 4);
-    XCTAssertEqual(BPKSpacingMd, 8);
-    XCTAssertEqual(BPKSpacingBase, 16);
-    XCTAssertEqual(BPKSpacingLg, 24);
-    XCTAssertEqual(BPKSpacingXl, 32);
-    XCTAssertEqual(BPKSpacingXxl, 40);
+- (void)testRadiiHaveCorrectValues {
+    XCTAssertEqual(BPKBorderRadiusSm, 4);
+    XCTAssertEqual(BPKBorderRadiusPill, 40);
 }
 
 @end
 
 NS_ASSUME_NONNULL_END
+

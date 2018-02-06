@@ -1,6 +1,8 @@
 # Unreleased
 
-_Nothing yet!_
+**Added:**
+
+* Backpack radii constants via `BpkRadii` and the `Backpack/Radii` subspec.
 
 ## 0.3.0
 

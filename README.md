@@ -54,6 +54,17 @@ CGFloat myAppSpacingSmall = BPKSpacingSm;
 CGFloat myAppSpacingLarge = BPKSpacingLg;
 ```
 
+### Backpack/Radii
+
+`Backpack/Radii` contains the Backpack radiu values as `CGFloat` constants. Add `Backpack/Radii` to your `Podfile` or `podspec` and then use it as follows.
+
+```objective-c
+#import <Backpack/Radii.h>
+
+CGFloat myAppBorderRadiusSmall = BPKBorderRadiusSm;
+CGFloat myAppBorderRadiusLarge = BPKBorderRadiusPill;
+```
+
 ## Contributing to Backpack
 
 Please see the [Contributing guide][0] for instructions on contributing to this project.
