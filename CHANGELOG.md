@@ -1,6 +1,8 @@
 # Unreleased
 
-_Nothing yet.._
+**Added:**
+
+* Backpack shadows via `BPKShadow` and the `Backpack/Shadow` subpsec.
 
 ## 0.4.0
 

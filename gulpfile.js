@@ -31,7 +31,7 @@ const PATHS = {
   output: path.join(__dirname, 'Backpack', 'Classes'),
 };
 
-const TYPES = new Set(['color', 'font', 'spacing', 'radii']);
+const TYPES = new Set(['color', 'font', 'spacing', 'radii', 'shadow']);
 const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
 const VALID_SPACINGS = new Set(['sm', 'md', 'base', 'lg', 'xl', 'xxl']);
 const WEIGHT_MAP = {
@@ -157,6 +157,58 @@ const parseTokens = tokensData => {
     )
     .value();
 
+  const shadows = _.chain(tokensData.properties)
+    .filter(({ category }) => category === 'box-shadows')
+    .groupBy(({ name }) =>
+      name
+        .replace('OffsetHeight', '')
+        .replace('OffsetWidth', '')
+        .replace('Opacity', '')
+        .replace('Radius', '')
+        .replace('Color', ''),
+    )
+    .tap(console.dir)
+    .map((values, key) => [values, key])
+    .map(([properties, key]) => {
+      const findByName = name => props => props.name === name;
+      const offsetHeightProp = _.filter(
+        properties,
+        findByName(`${key}OffsetHeight`),
+      );
+      const offsetWidthProp = _.filter(
+        properties,
+        findByName(`${key}OffsetWidth`),
+      );
+      const opacityProp = _.filter(properties, findByName(`${key}Opacity`));
+      const radiusProp = _.filter(properties, findByName(`${key}Radius`));
+      const colorProp = _.filter(properties, findByName(`${key}Color`));
+
+      if (
+        offsetHeightProp.length === 0 ||
+        offsetWidthProp.length === 0 ||
+        opacityProp.length === 0 ||
+        radiusProp.length === 0 ||
+        colorProp.length === 0
+      ) {
+        throw new Error(
+          `Expected all shadow definitions to have offset, opacity, radius and color. ${key} did not`,
+        );
+      }
+
+      return {
+        name: key,
+        type: 'shadow',
+        offset: {
+          x: offsetWidthProp[0].value,
+          y: offsetHeightProp[0].value,
+        },
+        color: parseColor(colorProp[0].value),
+        opacity: opacityProp[0].value,
+        radius: radiusProp[0].value,
+      };
+    })
+    .value();
+
   const radii = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'radii')
     .map(({ name, value }) =>
@@ -168,7 +220,7 @@ const parseTokens = tokensData => {
     )
     .value();
 
-  return _.chain([...colors, ...fonts, ...spacings, ...radii])
+  return _.chain([...colors, ...fonts, ...spacings, ...radii, ...shadows])
     .groupBy(({ type }) => type)
     .value();
 };
