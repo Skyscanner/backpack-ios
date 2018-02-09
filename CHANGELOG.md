@@ -1,36 +1,38 @@
 # Unreleased
 
-__Nothing yet...___
+**Fixed:**
+
+- Ensure that the root pod spec can be used and that the `Backpack/Backpack.h` import works as expected.
 
 # 0.5.0
 
 **Added:**
 
-* Backpack shadows via `BPKShadow` and the `Backpack/Shadow` subpsec.
+- Backpack shadows via `BPKShadow` and the `Backpack/Shadow` subpsec.
 
 ## 0.4.0
 
 **Added:**
 
-* Backpack radii constants via `BpkRadii` and the `Backpack/Radii` subspec.
+- Backpack radii constants via `BpkRadii` and the `Backpack/Radii` subspec.
 
 ## 0.3.0
 
 **Added:**
 
-* Backpack spacing constants via `BpkSpacing` and the `Backpack/Spacing` subspec.
+- Backpack spacing constants via `BpkSpacing` and the `Backpack/Spacing` subspec.
 
 ## 0.2.0
 
 **Added:**
 
-* Introduced Backpack Font stack via `BPKFont` and the `Backpack/Font` subspec.
+- Introduced Backpack Font stack via `BPKFont` and the `Backpack/Font` subspec.
 
 ## 0.1.0
 
 **Breaking:**
 
-* Moved colors to a subspec in `Backpack/Color`.
+- Moved colors to a subspec in `Backpack/Color`.
 
 Use as
 

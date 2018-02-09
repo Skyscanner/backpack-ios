@@ -32,6 +32,8 @@ Pod::Spec.new do |s|
     git: "https://github.com/Skyscanner/backpack-ios.git", tag: s.version.to_s
   }
   s.ios.deployment_target = "9.0"
+  s.source_files = 'Backpack/Classes/Backpack.h'
+  s.public_header_files = 'Backpack/Classes/Backpack.h'
 
   s.subspec 'Color' do |ss|
     ss.source_files = 'Backpack/Classes/Color/**/*.{h,m}'
