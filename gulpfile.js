@@ -167,7 +167,6 @@ const parseTokens = tokensData => {
         .replace('Radius', '')
         .replace('Color', ''),
     )
-    .tap(console.dir)
     .map((values, key) => [values, key])
     .map(([properties, key]) => {
       const findByName = name => props => props.name === name;
