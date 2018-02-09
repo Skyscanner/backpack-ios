@@ -17,7 +17,6 @@
  */
 
 #import "BPKAppDelegate.h"
-#import <Backpack/Font.h>
 
 @implementation BPKAppDelegate
 
