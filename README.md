@@ -65,6 +65,20 @@ CGFloat myAppBorderRadiusSmall = BPKBorderRadiusSm;
 CGFloat myAppBorderRadiusLarge = BPKBorderRadiusPill;
 ```
 
+### Backpack/Shadow
+
+`Backpack/Shadow` contains the Backpack shadow definitions in the class `BPKShadow`. Add `Backpack/Shadow` to your `Podfile` or `podspec` and then use it as follows.
+
+```objective-c
+#import <Backpack/Shadow.h>
+
+BPKShadow *shadow = [BPKShadow shadowSm];
+// BPKShadow *shadowLg = [BPKShadow shadowLg];
+// BPKShadow *shadowXl = [BPKShadow shadowXl];
+
+[shadow applyToLayer:myView.layer];
+```
+
 ## Contributing to Backpack
 
 Please see the [Contributing guide][0] for instructions on contributing to this project.

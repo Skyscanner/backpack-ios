@@ -1,0 +1,71 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+#import "BPKShadow.h"
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+@interface BPKShadow()
+@property(nonatomic, strong) UIColor *color;
+@property(nonatomic) CGSize offset;
+@property(nonatomic) CGFloat opacity;
+@property(nonatomic) CGFloat radius;
+
+- (instancetype)initWithColor:(UIColor *)color offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
+@end
+
+@implementation BPKShadow
+
+- (instancetype)initWithColor:(UIColor *)color offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius {
+  self = [super init];
+
+  if (self) {
+    self.color = color;
+    self.offset = offset;
+    self.opacity = opacity;
+    self.radius = radius;
+  }
+
+  return self;
+}
+
+- (void)applyToLayer:(CALayer *)layer {
+    layer.shadowColor = self.color.CGColor;
+    layer.shadowOffset = self.offset;
+    layer.shadowRadius = self.radius;
+    layer.shadowOpacity = self.opacity;
+}
+
+{% for s in shadow %}
++ (instancetype){{s.name}} {
+    static dispatch_once_t {{s.name}}OnceToken;
+    static BPKShadow *{{s.name}};
+
+    dispatch_once(&{{s.name}}OnceToken, ^{
+        UIColor *color = [UIColor colorWithRed:{{s.color.r}} green:{{s.color.g}} blue:{{s.color.b}} alpha:{{s.color.a}}];
+        {{s.name}} = [[BPKShadow alloc] initWithColor:color
+                                               offset:CGSizeMake({{s.offset.x}}, {{s.offset.y}})
+                                              opacity:{{s.opacity}}
+                                               radius:{{s.radius}}];
+
+    });
+
+    return {{s.name}};
+}
+{% endfor %}
+@end
+NS_ASSUME_NONNULL_END

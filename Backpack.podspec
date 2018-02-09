@@ -53,6 +53,11 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Backpack/Classes/Radii/**/*.h'
   end
 
+  s.subspec 'Shadow' do |ss|
+    ss.source_files = 'Backpack/Classes/Shadow/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Shadow/**/*.h'
+  end
+
   s.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end
