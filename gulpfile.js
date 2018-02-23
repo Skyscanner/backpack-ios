@@ -59,7 +59,7 @@ const parseColor = color => {
     r: (r / 255.0).toFixed(3),
     g: (g / 255.0).toFixed(3),
     b: (b / 255.0).toFixed(3),
-    a,
+    a: (a / 255.0).toFixed(3),
   };
 };
 
