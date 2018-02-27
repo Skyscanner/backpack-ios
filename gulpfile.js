@@ -59,7 +59,7 @@ const parseColor = color => {
     r: (r / 255.0).toFixed(3),
     g: (g / 255.0).toFixed(3),
     b: (b / 255.0).toFixed(3),
-    a: (a / 255.0).toFixed(3),
+    a,
   };
 };
 
@@ -85,7 +85,12 @@ const generatePrefixedConst = ({ type, name, value }) => {
 const parseTokens = tokensData => {
   const colors = _.chain(tokensData.properties)
     .filter(({ type }) => type === 'color')
-    .map(({ value, ...rest }) => ({ value: parseColor(value), ...rest }))
+    .map(({ value, name, ...rest }) => ({
+      value: parseColor(value),
+      name: name
+      .replace("color", "")
+      .toLowerCase(), ...rest
+    }))
     .value();
 
   const emphazisedWeight = convertFontWeight(

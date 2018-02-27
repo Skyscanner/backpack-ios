@@ -23,5 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 {% for c in color %}
 + (UIColor *){{c.name}};
 {% endfor %}
++ (UIColor *)clear;
+
 @end
 NS_ASSUME_NONNULL_END
