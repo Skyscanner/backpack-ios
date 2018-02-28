@@ -2,6 +2,12 @@
 
 __Nothing so far...__
 
+# 0.6.0
+
+**Breaking:**
+
+- The `color` prefix in `BPKColor` methods have been removed as it was deemed to be redundant. Thanks to [@danielnagy81](https://github.com/danielnagy81) for contributing.
+
 # 0.5.1
 
 **Fixed:**

@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Backpack"
-  s.version          = "0.5.1"
+  s.version          = "0.6.0"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
