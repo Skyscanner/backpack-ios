@@ -59,7 +59,7 @@
         if ([BPKFont respondsToSelector:selector]) {
             label.font = [BPKFont performSelector:selector];
             label.text = @"Backpack BPKFont";
-            label.textColor = [BPKColor colorGray700];
+            label.textColor = [BPKColor gray700];
         } else {
             NSAssert(NO, @"Invalid selector %@", selectors[i]);
         }

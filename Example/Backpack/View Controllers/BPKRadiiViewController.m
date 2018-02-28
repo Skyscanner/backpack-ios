@@ -50,8 +50,8 @@
     for (int i = 0; i < self.labels.count; i++) {
         UILabel *label = self.labels[i];
         label.text = [NSString stringWithFormat:@"%@ = %@", keys[i], values[i]];
-        label.backgroundColor = [BPKColor colorGray700];
-        label.textColor = [BPKColor colorWhite];
+        label.backgroundColor = [BPKColor gray700];
+        label.textColor = [BPKColor white];
         label.layer.masksToBounds = YES;
         label.layer.cornerRadius = [values[i] floatValue];
 

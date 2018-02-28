@@ -56,7 +56,7 @@
     for (int i = 0; i < self.labels.count; i++) {
         UILabel *label = self.labels[i];
         label.text = [NSString stringWithFormat:@"%@ = %@", spacingKeys[i], spacingValues[i]];
-        label.textColor = [BPKColor colorGray700];
+        label.textColor = [BPKColor gray700];
     }
 }
 

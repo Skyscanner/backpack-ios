@@ -29,25 +29,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testColorSubsetExists {
     // Test that a subset of critical color exists
-    XCTAssert([BPKColor respondsToSelector:@selector(colorBlue500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorGreen500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorRed500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorYellow500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorPink500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorGray500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(colorWhite)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(blue500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(green500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(red500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(yellow500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(pink500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(gray500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(white)]);
 }
 
 - (void)testColorSubsetHasCorrectValues {
     // NOTE: These comparison don't take colorspace into consideration and could fail for that reason.
     // This is tradeoff, if we change the colorspace we can change these tests
-    XCTAssertEqualObjects([BPKColor colorBlue500], [UIColor colorWithRed:0 green:0.698 blue:0.839 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorGreen500], [UIColor colorWithRed:0 green:0.843 blue:0.459 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorRed500], [UIColor colorWithRed:1 green:0.329 blue:0.322 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorYellow500], [UIColor colorWithRed:1 green:0.733 blue:0 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorPink500], [UIColor colorWithRed:0.98 green:0.282 blue:0.541 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorGray500], [UIColor colorWithRed:0.506 green:0.482 blue:0.561 alpha:1]);
-    XCTAssertEqualObjects([BPKColor colorWhite], [UIColor colorWithRed:1 green:1 blue:1 alpha:1]);
+    XCTAssertEqualObjects([BPKColor blue500], [UIColor colorWithRed:0 green:0.698 blue:0.839 alpha:1]);
+    XCTAssertEqualObjects([BPKColor green500], [UIColor colorWithRed:0 green:0.843 blue:0.459 alpha:1]);
+    XCTAssertEqualObjects([BPKColor red500], [UIColor colorWithRed:1 green:0.329 blue:0.322 alpha:1]);
+    XCTAssertEqualObjects([BPKColor yellow500], [UIColor colorWithRed:1 green:0.733 blue:0 alpha:1]);
+    XCTAssertEqualObjects([BPKColor pink500], [UIColor colorWithRed:0.98 green:0.282 blue:0.541 alpha:1]);
+    XCTAssertEqualObjects([BPKColor gray500], [UIColor colorWithRed:0.506 green:0.482 blue:0.561 alpha:1]);
+    XCTAssertEqualObjects([BPKColor white], [UIColor colorWithRed:1 green:1 blue:1 alpha:1]);
 }
 
 @end
