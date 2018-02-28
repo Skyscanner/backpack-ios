@@ -47,7 +47,7 @@ const static NSInteger LabelTag = 72817;
         UILabel *shadowLabel = [shadowView viewWithTag:LabelTag];
         shadowLabel.font = [BPKFont textBaseEmphasized];
         shadowLabel.text = factoryMethods[i];
-        shadowLabel.textColor = [BPKColor colorGray700];
+        shadowLabel.textColor = [BPKColor gray700];
 
 
         SEL selector = NSSelectorFromString(factoryMethods[i]);

@@ -26,8 +26,8 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 ```objective-c
 #import <Backpack/Color.h>
 
-[BPKColor colorBlue500];
-[BPKColor colorGray900];
+[BPKColor blue500];
+[BPKColor gray900];
 ```
 
 ### Backpack/Font
