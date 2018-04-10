@@ -17,7 +17,7 @@
  */
 #import "BPKRadii.h"
 
-CGFloat const BPKBorderRadiusSm = 4;
-
 CGFloat const BPKBorderRadiusPill = 40;
+
+CGFloat const BPKBorderRadiusSm = 4;
 
