@@ -2,6 +2,12 @@
 
 __Nothing so far...__
 
+# 0.6.1
+
+**Fixed:**
+
+- The generated code has been re-oredered due to changes in the underlying `bpk-tokens` package.
+
 # 0.6.0
 
 **Breaking:**
