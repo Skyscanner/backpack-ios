@@ -19,26 +19,6 @@
 
 @implementation BPKColor
 
-+ (UIColor *)shadowSmColor {
-  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
-}
-
-+ (UIColor *)shadowLgColor {
-  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
-}
-
-+ (UIColor *)shadowXlColor {
-  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
-}
-
-+ (UIColor *)white {
-  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
-}
-
-+ (UIColor *)blue50 {
-  return [UIColor colorWithRed:0.882 green:0.957 blue:0.973 alpha:1];
-}
-
 + (UIColor *)blue100 {
   return [UIColor colorWithRed:0.796 green:0.933 blue:0.961 alpha:1];
 }
@@ -53,6 +33,10 @@
 
 + (UIColor *)blue400 {
   return [UIColor colorWithRed:0.251 green:0.769 blue:0.875 alpha:1];
+}
+
++ (UIColor *)blue50 {
+  return [UIColor colorWithRed:0.882 green:0.957 blue:0.973 alpha:1];
 }
 
 + (UIColor *)blue500 {
@@ -75,10 +59,6 @@
   return [UIColor colorWithRed:0.000 green:0.333 blue:0.404 alpha:1];
 }
 
-+ (UIColor *)gray50 {
-  return [UIColor colorWithRed:0.953 green:0.949 blue:0.961 alpha:1];
-}
-
 + (UIColor *)gray100 {
   return [UIColor colorWithRed:0.902 green:0.894 blue:0.922 alpha:1];
 }
@@ -93,6 +73,10 @@
 
 + (UIColor *)gray400 {
   return [UIColor colorWithRed:0.604 green:0.584 blue:0.655 alpha:1];
+}
+
++ (UIColor *)gray50 {
+  return [UIColor colorWithRed:0.953 green:0.949 blue:0.961 alpha:1];
 }
 
 + (UIColor *)gray500 {
@@ -115,10 +99,6 @@
   return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
 }
 
-+ (UIColor *)green50 {
-  return [UIColor colorWithRed:0.875 green:0.969 blue:0.925 alpha:1];
-}
-
 + (UIColor *)green100 {
   return [UIColor colorWithRed:0.796 green:0.961 blue:0.886 alpha:1];
 }
@@ -133,6 +113,10 @@
 
 + (UIColor *)green400 {
   return [UIColor colorWithRed:0.251 green:0.871 blue:0.592 alpha:1];
+}
+
++ (UIColor *)green50 {
+  return [UIColor colorWithRed:0.875 green:0.969 blue:0.925 alpha:1];
 }
 
 + (UIColor *)green500 {
@@ -155,90 +139,6 @@
   return [UIColor colorWithRed:0.000 green:0.400 blue:0.220 alpha:1];
 }
 
-+ (UIColor *)red50 {
-  return [UIColor colorWithRed:0.988 green:0.949 blue:0.949 alpha:1];
-}
-
-+ (UIColor *)red100 {
-  return [UIColor colorWithRed:1.000 green:0.839 blue:0.835 alpha:1];
-}
-
-+ (UIColor *)red200 {
-  return [UIColor colorWithRed:1.000 green:0.733 blue:0.729 alpha:1];
-}
-
-+ (UIColor *)red300 {
-  return [UIColor colorWithRed:1.000 green:0.588 blue:0.580 alpha:1];
-}
-
-+ (UIColor *)red400 {
-  return [UIColor colorWithRed:0.996 green:0.455 blue:0.443 alpha:1];
-}
-
-+ (UIColor *)red500 {
-  return [UIColor colorWithRed:1.000 green:0.329 blue:0.322 alpha:1];
-}
-
-+ (UIColor *)red600 {
-  return [UIColor colorWithRed:0.922 green:0.259 blue:0.247 alpha:1];
-}
-
-+ (UIColor *)red700 {
-  return [UIColor colorWithRed:0.871 green:0.196 blue:0.184 alpha:1];
-}
-
-+ (UIColor *)red800 {
-  return [UIColor colorWithRed:0.800 green:0.122 blue:0.114 alpha:1];
-}
-
-+ (UIColor *)red900 {
-  return [UIColor colorWithRed:0.659 green:0.012 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)yellow50 {
-  return [UIColor colorWithRed:1.000 green:0.976 blue:0.902 alpha:1];
-}
-
-+ (UIColor *)yellow100 {
-  return [UIColor colorWithRed:1.000 green:0.953 blue:0.812 alpha:1];
-}
-
-+ (UIColor *)yellow200 {
-  return [UIColor colorWithRed:1.000 green:0.925 blue:0.722 alpha:1];
-}
-
-+ (UIColor *)yellow300 {
-  return [UIColor colorWithRed:1.000 green:0.882 blue:0.549 alpha:1];
-}
-
-+ (UIColor *)yellow400 {
-  return [UIColor colorWithRed:1.000 green:0.812 blue:0.290 alpha:1];
-}
-
-+ (UIColor *)yellow500 {
-  return [UIColor colorWithRed:1.000 green:0.733 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)yellow600 {
-  return [UIColor colorWithRed:0.941 green:0.690 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)yellow700 {
-  return [UIColor colorWithRed:0.882 green:0.647 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)yellow800 {
-  return [UIColor colorWithRed:0.761 green:0.557 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)yellow900 {
-  return [UIColor colorWithRed:0.612 green:0.447 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)pink50 {
-  return [UIColor colorWithRed:0.992 green:0.894 blue:0.929 alpha:1];
-}
-
 + (UIColor *)pink100 {
   return [UIColor colorWithRed:1.000 green:0.749 blue:0.843 alpha:1];
 }
@@ -253,6 +153,10 @@
 
 + (UIColor *)pink400 {
   return [UIColor colorWithRed:1.000 green:0.380 blue:0.608 alpha:1];
+}
+
++ (UIColor *)pink50 {
+  return [UIColor colorWithRed:0.992 green:0.894 blue:0.929 alpha:1];
 }
 
 + (UIColor *)pink500 {
@@ -275,11 +179,107 @@
   return [UIColor colorWithRed:0.580 green:0.020 blue:0.227 alpha:1];
 }
 
-+ (UIColor *)underlayColor {
++ (UIColor *)red100 {
+  return [UIColor colorWithRed:1.000 green:0.839 blue:0.835 alpha:1];
+}
+
++ (UIColor *)red200 {
+  return [UIColor colorWithRed:1.000 green:0.733 blue:0.729 alpha:1];
+}
+
++ (UIColor *)red300 {
+  return [UIColor colorWithRed:1.000 green:0.588 blue:0.580 alpha:1];
+}
+
++ (UIColor *)red400 {
+  return [UIColor colorWithRed:0.996 green:0.455 blue:0.443 alpha:1];
+}
+
++ (UIColor *)red50 {
+  return [UIColor colorWithRed:0.988 green:0.949 blue:0.949 alpha:1];
+}
+
++ (UIColor *)red500 {
+  return [UIColor colorWithRed:1.000 green:0.329 blue:0.322 alpha:1];
+}
+
++ (UIColor *)red600 {
+  return [UIColor colorWithRed:0.922 green:0.259 blue:0.247 alpha:1];
+}
+
++ (UIColor *)red700 {
+  return [UIColor colorWithRed:0.871 green:0.196 blue:0.184 alpha:1];
+}
+
++ (UIColor *)red800 {
+  return [UIColor colorWithRed:0.800 green:0.122 blue:0.114 alpha:1];
+}
+
++ (UIColor *)red900 {
+  return [UIColor colorWithRed:0.659 green:0.012 blue:0.000 alpha:1];
+}
+
++ (UIColor *)white {
+  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
++ (UIColor *)yellow100 {
+  return [UIColor colorWithRed:1.000 green:0.953 blue:0.812 alpha:1];
+}
+
++ (UIColor *)yellow200 {
+  return [UIColor colorWithRed:1.000 green:0.925 blue:0.722 alpha:1];
+}
+
++ (UIColor *)yellow300 {
+  return [UIColor colorWithRed:1.000 green:0.882 blue:0.549 alpha:1];
+}
+
++ (UIColor *)yellow400 {
+  return [UIColor colorWithRed:1.000 green:0.812 blue:0.290 alpha:1];
+}
+
++ (UIColor *)yellow50 {
+  return [UIColor colorWithRed:1.000 green:0.976 blue:0.902 alpha:1];
+}
+
++ (UIColor *)yellow500 {
+  return [UIColor colorWithRed:1.000 green:0.733 blue:0.000 alpha:1];
+}
+
++ (UIColor *)yellow600 {
+  return [UIColor colorWithRed:0.941 green:0.690 blue:0.000 alpha:1];
+}
+
++ (UIColor *)yellow700 {
+  return [UIColor colorWithRed:0.882 green:0.647 blue:0.000 alpha:1];
+}
+
++ (UIColor *)yellow800 {
+  return [UIColor colorWithRed:0.761 green:0.557 blue:0.000 alpha:1];
+}
+
++ (UIColor *)yellow900 {
+  return [UIColor colorWithRed:0.612 green:0.447 blue:0.000 alpha:1];
+}
+
++ (UIColor *)shadowLgColor {
+  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
+}
+
++ (UIColor *)shadowSmColor {
+  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
+}
+
++ (UIColor *)shadowXlColor {
   return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
 }
 
 + (UIColor *)touchableOverlayColor {
+  return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
+}
+
++ (UIColor *)underlayColor {
   return [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
 }
 

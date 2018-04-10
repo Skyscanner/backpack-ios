@@ -21,14 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class UIFont;
 @interface BPKFont: NSObject
 
-+ (UIFont *)textXs;
-
-+ (UIFont *)textXsEmphasized;
-
-+ (UIFont *)textSm;
-
-+ (UIFont *)textSmEmphasized;
-
 + (UIFont *)textBase;
 
 + (UIFont *)textBaseEmphasized;
@@ -37,9 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)textLgEmphasized;
 
++ (UIFont *)textSm;
+
++ (UIFont *)textSmEmphasized;
+
 + (UIFont *)textXl;
 
 + (UIFont *)textXlEmphasized;
+
++ (UIFont *)textXs;
+
++ (UIFont *)textXsEmphasized;
 
 @end
 NS_ASSUME_NONNULL_END

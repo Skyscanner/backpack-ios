@@ -19,8 +19,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern CGFloat const BPKBorderRadiusSm;
-
 extern CGFloat const BPKBorderRadiusPill;
+
+extern CGFloat const BPKBorderRadiusSm;
 
 NS_ASSUME_NONNULL_END
