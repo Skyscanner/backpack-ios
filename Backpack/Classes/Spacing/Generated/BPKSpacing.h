@@ -19,13 +19,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern CGFloat const BPKSpacingSm;
-
-extern CGFloat const BPKSpacingMd;
-
 extern CGFloat const BPKSpacingBase;
 
 extern CGFloat const BPKSpacingLg;
+
+extern CGFloat const BPKSpacingMd;
+
+extern CGFloat const BPKSpacingSm;
 
 extern CGFloat const BPKSpacingXl;
 

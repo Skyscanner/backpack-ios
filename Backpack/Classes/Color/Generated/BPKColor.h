@@ -21,16 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
 @interface BPKColor: NSObject
 
-+ (UIColor *)shadowSmColor;
-
-+ (UIColor *)shadowLgColor;
-
-+ (UIColor *)shadowXlColor;
-
-+ (UIColor *)white;
-
-+ (UIColor *)blue50;
-
 + (UIColor *)blue100;
 
 + (UIColor *)blue200;
@@ -38,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)blue300;
 
 + (UIColor *)blue400;
+
++ (UIColor *)blue50;
 
 + (UIColor *)blue500;
 
@@ -49,8 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)blue900;
 
-+ (UIColor *)gray50;
-
 + (UIColor *)gray100;
 
 + (UIColor *)gray200;
@@ -58,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)gray300;
 
 + (UIColor *)gray400;
+
++ (UIColor *)gray50;
 
 + (UIColor *)gray500;
 
@@ -69,8 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)gray900;
 
-+ (UIColor *)green50;
-
 + (UIColor *)green100;
 
 + (UIColor *)green200;
@@ -78,6 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)green300;
 
 + (UIColor *)green400;
+
++ (UIColor *)green50;
 
 + (UIColor *)green500;
 
@@ -89,48 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)green900;
 
-+ (UIColor *)red50;
-
-+ (UIColor *)red100;
-
-+ (UIColor *)red200;
-
-+ (UIColor *)red300;
-
-+ (UIColor *)red400;
-
-+ (UIColor *)red500;
-
-+ (UIColor *)red600;
-
-+ (UIColor *)red700;
-
-+ (UIColor *)red800;
-
-+ (UIColor *)red900;
-
-+ (UIColor *)yellow50;
-
-+ (UIColor *)yellow100;
-
-+ (UIColor *)yellow200;
-
-+ (UIColor *)yellow300;
-
-+ (UIColor *)yellow400;
-
-+ (UIColor *)yellow500;
-
-+ (UIColor *)yellow600;
-
-+ (UIColor *)yellow700;
-
-+ (UIColor *)yellow800;
-
-+ (UIColor *)yellow900;
-
-+ (UIColor *)pink50;
-
 + (UIColor *)pink100;
 
 + (UIColor *)pink200;
@@ -138,6 +88,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)pink300;
 
 + (UIColor *)pink400;
+
++ (UIColor *)pink50;
 
 + (UIColor *)pink500;
 
@@ -149,9 +101,57 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)pink900;
 
-+ (UIColor *)underlayColor;
++ (UIColor *)red100;
+
++ (UIColor *)red200;
+
++ (UIColor *)red300;
+
++ (UIColor *)red400;
+
++ (UIColor *)red50;
+
++ (UIColor *)red500;
+
++ (UIColor *)red600;
+
++ (UIColor *)red700;
+
++ (UIColor *)red800;
+
++ (UIColor *)red900;
+
++ (UIColor *)white;
+
++ (UIColor *)yellow100;
+
++ (UIColor *)yellow200;
+
++ (UIColor *)yellow300;
+
++ (UIColor *)yellow400;
+
++ (UIColor *)yellow50;
+
++ (UIColor *)yellow500;
+
++ (UIColor *)yellow600;
+
++ (UIColor *)yellow700;
+
++ (UIColor *)yellow800;
+
++ (UIColor *)yellow900;
+
++ (UIColor *)shadowLgColor;
+
++ (UIColor *)shadowSmColor;
+
++ (UIColor *)shadowXlColor;
 
 + (UIColor *)touchableOverlayColor;
+
++ (UIColor *)underlayColor;
 
 + (UIColor *)clear;
 

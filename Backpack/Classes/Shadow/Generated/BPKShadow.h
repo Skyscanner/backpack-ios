@@ -31,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)applyToLayer:(CALayer *)layer;
 
 
-+ (instancetype)shadowSm;
-
 + (instancetype)shadowLg;
+
++ (instancetype)shadowSm;
 
 + (instancetype)shadowXl;
 
