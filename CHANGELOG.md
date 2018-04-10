@@ -2,11 +2,16 @@
 
 __Nothing so far...__
 
-# 0.6.1
+# 0.6.2
 
 **Fixed:**
 
 - The generated code has been re-oredered due to changes in the underlying `bpk-tokens` package.
+
+
+# 0.6.1
+
+This release ended up broken don't use this version.
 
 # 0.6.0
 
