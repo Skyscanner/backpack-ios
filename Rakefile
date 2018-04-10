@@ -33,7 +33,7 @@ def current_branch
 end
 
 def branch_up_to_date
-  result = `git remote update && git status -uno | grep -q -v 'Your branch is behind'`
+  `git remote update && git status -uno | grep -q -v 'Your branch is behind'`
   $?.exitstatus == 0
 end
 
