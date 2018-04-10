@@ -32,6 +32,11 @@ def current_branch
   %x{git rev-parse --abbrev-ref HEAD}.strip
 end
 
+def branch_up_to_date
+  result = `git remote update && git status -uno | grep -q -v 'Your branch is behind'`
+  $?.exitstatus == 0
+end
+
 
 task :test do
   sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme #{EXAMPLE_SCHEMA} -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO | xcpretty"
@@ -47,6 +52,7 @@ task ci: [:lint, :test]
 task release: :ci do
   abort red 'Must be on master branch' unless current_branch == 'master'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
+  abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 
 
   version = SemVer.parse(last_version)
