@@ -179,6 +179,10 @@
   return [UIColor colorWithRed:0.580 green:0.020 blue:0.227 alpha:1];
 }
 
++ (UIColor *)primaryGradientLight {
+  return [UIColor colorWithRed:0.008 green:0.867 blue:0.847 alpha:1];
+}
+
 + (UIColor *)red100 {
   return [UIColor colorWithRed:1.000 green:0.839 blue:0.835 alpha:1];
 }

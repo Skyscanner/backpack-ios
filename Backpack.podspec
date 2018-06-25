@@ -60,6 +60,12 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Backpack/Classes/Shadow/**/*.h'
   end
 
+  s.subspec 'Gradient' do |ss|
+    ss.source_files = 'Backpack/Classes/Gradient/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Gradient/**/*.h'
+    ss.dependency 'Backpack/Color'
+  end
+
   s.frameworks = "UIKit", "Foundation"
   s.requires_arc = true
 end
