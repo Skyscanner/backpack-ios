@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */; };
 		44373D645BCE20F92FD941F4 /* Pods_Backpack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -47,6 +48,7 @@
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; };
 		5BDC00DF358FDC7E213EC2B3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Backpack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backpack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 				60127A712021B6BC00703622 /* BPKSpacingTest.m */,
 				6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */,
 				D6391601202CAF07006E8329 /* BPKShadowTest.m */,
+				2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
+				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
