@@ -101,6 +101,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)pink900;
 
++ (UIColor *)primaryGradientLight;
+
 + (UIColor *)red100;
 
 + (UIColor *)red200;
