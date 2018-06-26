@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.7.0
+
 - Backpack gradient via `BPKGradient` and the `Backpack/Gradient` subpsec.
 
 # 0.6.2
