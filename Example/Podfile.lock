@@ -1,18 +1,18 @@
 PODS:
-  - Backpack (0.6.2):
-    - Backpack/Color (= 0.6.2)
-    - Backpack/Font (= 0.6.2)
-    - Backpack/Gradient (= 0.6.2)
-    - Backpack/Radii (= 0.6.2)
-    - Backpack/Shadow (= 0.6.2)
-    - Backpack/Spacing (= 0.6.2)
-  - Backpack/Color (0.6.2)
-  - Backpack/Font (0.6.2)
-  - Backpack/Gradient (0.6.2):
+  - Backpack (0.7.0):
+    - Backpack/Color (= 0.7.0)
+    - Backpack/Font (= 0.7.0)
+    - Backpack/Gradient (= 0.7.0)
+    - Backpack/Radii (= 0.7.0)
+    - Backpack/Shadow (= 0.7.0)
+    - Backpack/Spacing (= 0.7.0)
+  - Backpack/Color (0.7.0)
+  - Backpack/Font (0.7.0)
+  - Backpack/Gradient (0.7.0):
     - Backpack/Color
-  - Backpack/Radii (0.6.2)
-  - Backpack/Shadow (0.6.2)
-  - Backpack/Spacing (0.6.2)
+  - Backpack/Radii (0.7.0)
+  - Backpack/Shadow (0.7.0)
+  - Backpack/Spacing (0.7.0)
 
 DEPENDENCIES:
   - Backpack (from `../`)
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: b45b94745b98bfc86b985e19b5927df0b3245170
+  Backpack: 899530cbf4a2226c63928c77699e80abd7d37ec6
 
 PODFILE CHECKSUM: 7880d76507cd66e0a959028156ed8d32d0718b58
 
