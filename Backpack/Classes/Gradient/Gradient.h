@@ -16,14 +16,8 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#ifndef __BACKPACK_GRADIENT__
+    #define __BACKPACK_GRADIENT__
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+    #import "BPKGradient.h"
 #endif
-
