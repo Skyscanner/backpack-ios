@@ -81,7 +81,12 @@ BPKShadow *shadow = [BPKShadow shadowSm];
 
 ### Backpack/Gradient
 
-`Backpack/Gradient` contains the Backpack gradient definitions in the class `BPKGradient`. Add `Backpack/Gradient` to your `Podfile` or `podspec` and then use it as follows.
+`Backpack/Gradient` contains the Backpack gradient definitions in the class `BPKGradient`. `BPKGradient` has the two properties:
+
+* `colors` of type `NSArray<UIColor *> *`
+* `stops` encoded as `CGPoints` with components in the range 0-1 encoded as `NSValue * in NSArray<NSValue *> *`
+
+Add `Backpack/Gradient` to your `Podfile` or `podspec` and then use it as follows.
 
 ```objective-c
 #import <Backpack/Gradient.h>
