@@ -1,15 +1,15 @@
 PODS:
-  - Backpack (0.6.0):
-    - Backpack/Color (= 0.6.0)
-    - Backpack/Font (= 0.6.0)
-    - Backpack/Radii (= 0.6.0)
-    - Backpack/Shadow (= 0.6.0)
-    - Backpack/Spacing (= 0.6.0)
-  - Backpack/Color (0.6.0)
-  - Backpack/Font (0.6.0)
-  - Backpack/Radii (0.6.0)
-  - Backpack/Shadow (0.6.0)
-  - Backpack/Spacing (0.6.0)
+  - Backpack (0.6.2):
+    - Backpack/Color (= 0.6.2)
+    - Backpack/Font (= 0.6.2)
+    - Backpack/Radii (= 0.6.2)
+    - Backpack/Shadow (= 0.6.2)
+    - Backpack/Spacing (= 0.6.2)
+  - Backpack/Color (0.6.2)
+  - Backpack/Font (0.6.2)
+  - Backpack/Radii (0.6.2)
+  - Backpack/Shadow (0.6.2)
+  - Backpack/Spacing (0.6.2)
 
 DEPENDENCIES:
   - Backpack (from `../`)
@@ -19,8 +19,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Backpack: e6a07e018b155aaa12a35814df68341ca8ba30d5
+  Backpack: 789974a8ab92aebf5f3934e41d1ecb143cdb0341
 
-PODFILE CHECKSUM: 616a3d74af75a352aed7508397a150c90a592d17
+PODFILE CHECKSUM: 7880d76507cd66e0a959028156ed8d32d0718b58
 
 COCOAPODS: 1.3.1
