@@ -56,7 +56,7 @@ CGFloat myAppSpacingLarge = BPKSpacingLg;
 
 ### Backpack/Radii
 
-`Backpack/Radii` contains the Backpack radiu values as `CGFloat` constants. Add `Backpack/Radii` to your `Podfile` or `podspec` and then use it as follows.
+`Backpack/Radii` contains the Backpack radii values as `CGFloat` constants. Add `Backpack/Radii` to your `Podfile` or `podspec` and then use it as follows.
 
 ```objective-c
 #import <Backpack/Radii.h>
@@ -77,6 +77,17 @@ BPKShadow *shadow = [BPKShadow shadowSm];
 // BPKShadow *shadowXl = [BPKShadow shadowXl];
 
 [shadow applyToLayer:myView.layer];
+```
+
+### Backpack/Gradient
+
+`Backpack/Gradient` contains the Backpack gradient definitions in the class `BPKGradient`. Add `Backpack/Gradient` to your `Podfile` or `podspec` and then use it as follows.
+
+```objective-c
+#import <Backpack/Gradient.h>
+
+BPKGradient *gradientDefault = [BPKGradient gradient];
+BPKGradient *gradientTopRight =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
 ```
 
 ## Contributing to Backpack

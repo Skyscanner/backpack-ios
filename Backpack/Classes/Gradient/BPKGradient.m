@@ -3,7 +3,7 @@
 #import <Backpack/Color.h>
 #import <UIKit/UIKit.h>
 
-CGPoint startPointForDirection(BPKGradientDirection direction){
+CGPoint startPointForDirection(BPKGradientDirection direction) {
     switch (direction) {
         case BPKGradientDirectionUp:
             return CGPointMake(0.5, 1.0);
@@ -23,11 +23,10 @@ CGPoint startPointForDirection(BPKGradientDirection direction){
             return CGPointMake(0.0, 0.0);
         default:
             return CGPointMake(0.0, 0.0);
-            break;
     }
 }
 
-CGPoint endPointForDirection(BPKGradientDirection direction){
+CGPoint endPointForDirection(BPKGradientDirection direction) {
     switch (direction) {
         case BPKGradientDirectionUp:
             return CGPointMake(0.5, 0.0);
@@ -47,16 +46,18 @@ CGPoint endPointForDirection(BPKGradientDirection direction){
             return CGPointMake(1.0, 1.0);
         default:
             return CGPointMake(1.0, 1.0);
-            break;
     }
 }
 
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradient()
 @property (copy, nonatomic) NSArray<UIColor *> *colors;
 @property (nonatomic) NSArray<NSValue *> *stops;
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction;
 @end
+NS_ASSUME_NONNULL_END
 
+NS_ASSUME_NONNULL_BEGIN
 @implementation BPKGradient
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
@@ -109,3 +110,4 @@ CGPoint endPointForDirection(BPKGradientDirection direction){
 }
 
 @end
+NS_ASSUME_NONNULL_END

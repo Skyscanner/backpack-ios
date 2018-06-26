@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqualObjects(gradient.stops, expectedStops);
 }
 
-- (void)testSingleInstancePrimaryGradient{
+- (void)testSingleInstancePrimaryGradient {
     BPKGradient *first =  [BPKGradient primary];
     BPKGradient *second =  [BPKGradient primary];
     
     XCTAssertEqual(first,second);
 }
 
-- (void)testSingleInstanceGradient{
+- (void)testSingleInstanceGradient {
     BPKGradient *first =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
     BPKGradient *second =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
     
