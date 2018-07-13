@@ -176,7 +176,8 @@ const parseTokens = tokensData => {
     )
     .map((values, key) => [values, key])
     .map(([properties, key]) => {
-      const findByName = name => props => props.name === name;
+      const findByName = name => ({ name: packageName }) =>
+        packageName === name;
       const offsetHeightProp = _.filter(
         properties,
         findByName(`${key}OffsetHeight`),
