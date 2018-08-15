@@ -85,8 +85,8 @@ task release: :ci do
   puts "Updating podspec."
   contents = File.read(PODSPEC)
   contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
-  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
   File.open(PODSPEC, 'w') { |file| file.puts contents }
+  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
 
   has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
   abort red "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry

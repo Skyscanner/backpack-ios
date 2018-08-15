@@ -1,11 +1,13 @@
 # Unreleased
 
-# 0.8.0
+# 0.8.1
 
 **Added:**
 
 - Introducing `Backpack/Panel`, the panel component.
 - Introducing `Backpack/Badge`, the badge component.
+
+Note: `0.8.0` was skipped because of a bug.
 
 # 0.7.0
 
