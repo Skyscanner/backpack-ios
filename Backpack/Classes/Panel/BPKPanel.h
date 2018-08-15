@@ -24,6 +24,7 @@ IB_DESIGNABLE @interface BPKPanel: UIView
 
 - (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (instancetype)new NS_UNAVAILABLE;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 @end
 NS_ASSUME_NONNULL_END
