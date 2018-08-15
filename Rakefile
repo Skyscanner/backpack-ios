@@ -37,6 +37,11 @@ def branch_up_to_date
   $?.exitstatus == 0
 end
 
+def file_is_dirty(filename)
+  `git diff --exit-code --name-only #{filename}`
+  $?.exitstatus != 0
+end
+
 
 task :test do
   sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme #{EXAMPLE_SCHEMA} -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO | xcpretty"
@@ -79,7 +84,8 @@ task release: :ci do
   version_string = version.format(VERSION_FORMAT)
   puts "Updating podspec."
   contents = File.read(PODSPEC)
-  contents.gsub!(/s\.version\s*=\s"\d+\.\d+\.\d+(-\w+\.\d)?"/, "s.version          = \"#{version_string}\"")
+  #contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
+  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
   File.open(PODSPEC, 'w') { |file| file.puts contents }
 
   has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
