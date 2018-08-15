@@ -84,7 +84,7 @@ task release: :ci do
   version_string = version.format(VERSION_FORMAT)
   puts "Updating podspec."
   contents = File.read(PODSPEC)
-  #contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
+  contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
   abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
   File.open(PODSPEC, 'w') { |file| file.puts contents }
 
