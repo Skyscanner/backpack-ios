@@ -2,7 +2,8 @@
 
 **Added:**
 
-- Introducing `Backpack/Panel`, the panel component
+- Introducing `Backpack/Panel`, the panel component.
+- Introducing `Backpack/Badge` the badge component.
 
 # 0.7.0
 

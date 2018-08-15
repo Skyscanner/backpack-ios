@@ -74,6 +74,15 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Radii'
   end
 
+  s.subspec 'Badge' do |ss|
+    ss.source_files = 'Backpack/Classes/Badge/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Badge/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Radii'
+    ss.dependency 'Backpack/Font'
+  end
+
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true
 end
