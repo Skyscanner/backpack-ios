@@ -33,6 +33,8 @@
 		D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C517200F9BA400CB39AF /* BPKFontsViewController.m */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
 		D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F12124230000154D92 /* BPKPanelTest.m */; };
+		D6CE74F721242D8A00154D92 /* BPKBadgesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F621242D8A00154D92 /* BPKBadgesViewController.m */; };
+		D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F821243A4500154D92 /* BPKBadgeTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,9 @@
 		D655C517200F9BA400CB39AF /* BPKFontsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontsViewController.m; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
 		D6CE74F12124230000154D92 /* BPKPanelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPanelTest.m; sourceTree = "<group>"; };
+		D6CE74F521242D8A00154D92 /* BPKBadgesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKBadgesViewController.h; sourceTree = "<group>"; };
+		D6CE74F621242D8A00154D92 /* BPKBadgesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgesViewController.m; sourceTree = "<group>"; };
+		D6CE74F821243A4500154D92 /* BPKBadgeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeTest.m; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +192,7 @@
 				D6391601202CAF07006E8329 /* BPKShadowTest.m */,
 				2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */,
 				D6CE74F12124230000154D92 /* BPKPanelTest.m */,
+				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -233,6 +239,8 @@
 				6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */,
 				D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */,
 				D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */,
+				D6CE74F521242D8A00154D92 /* BPKBadgesViewController.h */,
+				D6CE74F621242D8A00154D92 /* BPKBadgesViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -402,6 +410,7 @@
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				D6CE74F721242D8A00154D92 /* BPKBadgesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
+				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
