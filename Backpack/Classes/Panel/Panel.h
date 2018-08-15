@@ -15,16 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BACKPACK_PANEL__
+#define __BACKPACK_PANEL__
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
-
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-    #import "Panel.h"
+#import "BPKPanel.h"
 #endif
-

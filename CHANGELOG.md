@@ -1,5 +1,9 @@
 # Unreleased
 
+**Added:**
+
+- Introducing `Backpack/Panel`, the panel component
+
 # 0.7.0
 
 - Backpack gradient via `BPKGradient` and the `Backpack/Gradient` subpsec.

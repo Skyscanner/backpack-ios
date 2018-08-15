@@ -15,23 +15,23 @@
 # limitations under the License.
 
 Pod::Spec.new do |s|
-  s.name             = "Backpack"
-  s.version          = "0.7.0"
+  s.name             = 'Backpack'
+  s.version          = '0.7.0'
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
   The Skyscanner Design System, Backpack, for iOS apps
                        DESC
 
-  s.homepage         = "https://github.com/Skyscanner/backpack-ios"
-  s.license          = { type: "Apache-2.0", file: "LICENSE" }
+  s.homepage         = 'https://github.com/Skyscanner/backpack-ios'
+  s.license          = { type: 'Apache-2.0', file: 'LICENSE' }
   s.author           = {
-    "Backpack Design System" => "backpack@skyscanner.net"
+    'Backpack Design System' => 'backpack@skyscanner.net'
   }
   s.source = {
-    git: "https://github.com/Skyscanner/backpack-ios.git", tag: s.version.to_s
+    git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
-  s.ios.deployment_target = "9.0"
+  s.ios.deployment_target = '9.0'
   s.source_files = 'Backpack/Classes/Backpack.h'
   s.public_header_files = 'Backpack/Classes/Backpack.h'
 
@@ -66,6 +66,14 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
   end
 
-  s.frameworks = "UIKit", "Foundation"
+  s.subspec 'Panel' do |ss|
+    ss.source_files = 'Backpack/Classes/Panel/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Panel/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Radii'
+  end
+
+  s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true
 end

@@ -15,16 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+NS_ASSUME_NONNULL_BEGIN
+IB_DESIGNABLE @interface BPKPanel: UIView
+@property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-    #import "Panel.h"
-#endif
-
+- (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+@end
+NS_ASSUME_NONNULL_END
