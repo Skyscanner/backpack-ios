@@ -1,29 +1,29 @@
 PODS:
-  - Backpack (0.8.0):
-    - Backpack/Badge (= 0.8.0)
-    - Backpack/Color (= 0.8.0)
-    - Backpack/Font (= 0.8.0)
-    - Backpack/Gradient (= 0.8.0)
-    - Backpack/Panel (= 0.8.0)
-    - Backpack/Radii (= 0.8.0)
-    - Backpack/Shadow (= 0.8.0)
-    - Backpack/Spacing (= 0.8.0)
-  - Backpack/Badge (0.8.0):
+  - Backpack (0.8.1):
+    - Backpack/Badge (= 0.8.1)
+    - Backpack/Color (= 0.8.1)
+    - Backpack/Font (= 0.8.1)
+    - Backpack/Gradient (= 0.8.1)
+    - Backpack/Panel (= 0.8.1)
+    - Backpack/Radii (= 0.8.1)
+    - Backpack/Shadow (= 0.8.1)
+    - Backpack/Spacing (= 0.8.1)
+  - Backpack/Badge (0.8.1):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Color (0.8.0)
-  - Backpack/Font (0.8.0)
-  - Backpack/Gradient (0.8.0):
+  - Backpack/Color (0.8.1)
+  - Backpack/Font (0.8.1)
+  - Backpack/Gradient (0.8.1):
     - Backpack/Color
-  - Backpack/Panel (0.8.0):
+  - Backpack/Panel (0.8.1):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (0.8.0)
-  - Backpack/Shadow (0.8.0)
-  - Backpack/Spacing (0.8.0)
+  - Backpack/Radii (0.8.1)
+  - Backpack/Shadow (0.8.1)
+  - Backpack/Spacing (0.8.1)
 
 DEPENDENCIES:
   - Backpack (from `../`)
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 20cde0d87b8b0872f22f969297231035d549f740
+  Backpack: f8012078429b355b543e73c1f087a98ae3ad91b8
 
 PODFILE CHECKSUM: 313929165517deae8771c067308555dd11dc4345
 
