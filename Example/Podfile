@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'Backpack_Example' do
+target 'Backpack Native' do
   pod 'Backpack', :path => '../'
 
   target 'Backpack_Tests' do
