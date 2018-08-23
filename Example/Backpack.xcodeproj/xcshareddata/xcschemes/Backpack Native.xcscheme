@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "Backpack_Example.app"
-               BlueprintName = "Backpack_Example"
+               BuildableName = "Backpack Native.app"
+               BlueprintName = "Backpack Native"
                ReferencedContainer = "container:Backpack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -44,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Backpack_Example.app"
-            BlueprintName = "Backpack_Example"
+            BuildableName = "Backpack Native.app"
+            BlueprintName = "Backpack Native"
             ReferencedContainer = "container:Backpack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,7 +55,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -68,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Backpack_Example.app"
-            BlueprintName = "Backpack_Example"
+            BuildableName = "Backpack Native.app"
+            BlueprintName = "Backpack Native"
             ReferencedContainer = "container:Backpack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -87,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Backpack_Example.app"
-            BlueprintName = "Backpack_Example"
+            BuildableName = "Backpack Native.app"
+            BlueprintName = "Backpack Native"
             ReferencedContainer = "container:Backpack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
