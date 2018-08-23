@@ -16,18 +16,21 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import "BPKRootListTableViewController.h"
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+@interface BPKRootListTableViewController ()
 
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-#endif
+@end
 
+@implementation BPKRootListTableViewController
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // We cheat and use the same view controller for both fonts and labels
+    if ([segue.identifier isEqualToString:@"ShowFontsSegue"]) {
+        segue.destinationViewController.title = NSLocalizedString(@"FONTS_CONTROLLER_TTILE", nil);
+    } else if ([segue.identifier isEqualToString:@"ShowLabelsSegue"]) {
+        segue.destinationViewController.title = NSLocalizedString(@"LABELS_CONTROLLER_TITLE", nil);
+    }
+}
+
+@end

@@ -16,18 +16,8 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import <UIKit/UIKit.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+@interface BPKRootListTableViewController : UITableViewController
 
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-#endif
-
+@end

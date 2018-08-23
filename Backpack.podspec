@@ -35,6 +35,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Backpack/Classes/Backpack.h'
   s.public_header_files = 'Backpack/Classes/Backpack.h'
 
+  # Tokens
   s.subspec 'Color' do |ss|
     ss.source_files = 'Backpack/Classes/Color/**/*.{h,m}'
     ss.public_header_files = 'Backpack/Classes/Color/**/*.h'
@@ -66,13 +67,7 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
   end
 
-  s.subspec 'Panel' do |ss|
-    ss.source_files = 'Backpack/Classes/Panel/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Panel/**/*.h'
-    ss.dependency 'Backpack/Color'
-    ss.dependency 'Backpack/Spacing'
-    ss.dependency 'Backpack/Radii'
-  end
+  # Components
 
   s.subspec 'Badge' do |ss|
     ss.source_files = 'Backpack/Classes/Badge/**/*.{h,m}'
@@ -82,6 +77,22 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Radii'
     ss.dependency 'Backpack/Font'
   end
+
+  s.subspec 'Label' do |ss|
+    ss.source_files = 'Backpack/Classes/Label/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Label/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Font'
+  end
+
+  s.subspec 'Panel' do |ss|
+    ss.source_files = 'Backpack/Classes/Panel/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Classes/Panel/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Radii'
+  end
+
 
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true

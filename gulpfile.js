@@ -150,6 +150,7 @@ const parseTokens = tokensData => {
         enumName: `${properties.enumName}Emphasized`,
       },
     ])
+    .sortBy(['name'])
     .value();
 
   const spacings = _.chain(tokensData.properties)

@@ -19,7 +19,7 @@
 
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 {% for f in font %}
-    {{f.enumName}},{% endfor %}
+    {{f.enumName}} = {{loop.index0}},{% endfor %}
 };
 
 NS_ASSUME_NONNULL_BEGIN

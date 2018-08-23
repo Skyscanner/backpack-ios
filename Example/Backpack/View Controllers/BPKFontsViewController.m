@@ -17,8 +17,7 @@
  */
 
 #import "BPKFontsViewController.h"
-#import <Backpack/Font.h>
-#import <Backpack/Color.h>
+#import <Backpack/Label.h>
 
 @interface BPKFontsViewController ()
 @property (nonatomic, assign, getter=isEmphasized) BOOL emphasized;
@@ -43,26 +42,20 @@
 #pragma mark - Private
 
 - (void)setFontsWithEmphasized:(BOOL)isEmphasized {
-    NSArray<NSString *> *regularSelectors = @[ @"textXs", @"textSm", @"textBase", @"textLg", @"textXl"];
-    NSArray<NSString *> *emphasizedSelectors = @[ @"textXsEmphasized", @"textSmEmphasized", @"textBaseEmphasized", @"textLgEmphasized", @"textXlEmphasized"];
+    BPKFontStyle styles[] = { BPKFontStyleTextXs, BPKFontStyleTextSm, BPKFontStyleTextBase, BPKFontStyleTextLg, BPKFontStyleTextXl };
+    BPKFontStyle emphasizedStyles[] = { BPKFontStyleTextXsEmphasized, BPKFontStyleTextSmEmphasized, BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized, BPKFontStyleTextXlEmphasized };
 
-    NSArray<NSString *> *selectors = regularSelectors;
-    if (isEmphasized) {
-        selectors = emphasizedSelectors;
-    }
+    NSAssert(self.labels.count == sizeof(styles) / sizeof(styles[0]), @"The number of labels must match the number of styles above");
+    NSAssert(self.labels.count == sizeof(emphasizedStyles) / sizeof(emphasizedStyles[0]), @"The number of labels must match the number of styles above");
 
-    NSAssert(self.labels.count == selectors.count, @"The number of labels must match the number of selectors above");
     for (int i = 0; i < self.labels.count; i++) {
-        SEL selector = NSSelectorFromString(selectors[i]);
-        UILabel *label = self.labels[i];
-
-        if ([BPKFont respondsToSelector:selector]) {
-            label.font = [BPKFont performSelector:selector];
-            label.text = @"Backpack BPKFont";
-            label.textColor = [BPKColor gray700];
+        BPKLabel *label = self.labels[i];
+        if (isEmphasized) {
+            label.fontStyle = emphasizedStyles[i];
         } else {
-            NSAssert(NO, @"Invalid selector %@", selectors[i]);
+            label.fontStyle = styles[i];
         }
+        label.text = @"Backpack Rocks";
     }
 }
 
