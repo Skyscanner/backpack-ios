@@ -18,6 +18,17 @@
 #import "BPKFont.h"
 
 @implementation BPKFont
+
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style {
+    switch (style) {
+    {% for f in font %}
+        case {{f.enumName}}:
+            return [BPKFont {{f.name}}];{% endfor %}
+    }
+
+    return nil;
+}
+
 {% for f in font %}
 + (UIFont *){{f.name}} {
     return [UIFont systemFontOfSize:{{f.size}} weight:{{f.weight}}];

@@ -17,9 +17,24 @@
  */
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, BPKFontStyle) {
+
+    BPKFontStyleTextBase,
+    BPKFontStyleTextBaseEmphasized,
+    BPKFontStyleTextLg,
+    BPKFontStyleTextLgEmphasized,
+    BPKFontStyleTextSm,
+    BPKFontStyleTextSmEmphasized,
+    BPKFontStyleTextXl,
+    BPKFontStyleTextXlEmphasized,
+    BPKFontStyleTextXs,
+    BPKFontStyleTextXsEmphasized,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 @class UIFont;
 @interface BPKFont: NSObject
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style;
 
 + (UIFont *)textBase;
 

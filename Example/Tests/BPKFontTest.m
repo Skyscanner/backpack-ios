@@ -46,7 +46,29 @@
     for (NSString *selector in self.expectedSelectors) {
         XCTAssertNotNil([BPKFont performSelector:NSSelectorFromString(selector)], @"Expected BPKFont to have a textStyle called `%@` that returns a valid value", selector);
     }
+}
 
+- (void)testFontWithStyle {
+    // These tests rely on internal pointer caching by UIFont which is why pointer
+    // equality can be used to compare the results. If this starts to break
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXs], [BPKFont textXs]);
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXsEmphasized], [BPKFont textXsEmphasized]);
+
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont textSm]);
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextSmEmphasized], [BPKFont textSmEmphasized]);
+
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextBase], [BPKFont textBase]);
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextBaseEmphasized], [BPKFont textBaseEmphasized]);
+
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextLg], [BPKFont textLg]);
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextLgEmphasized], [BPKFont textLgEmphasized]);
+
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont textXl]);
+    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXlEmphasized], [BPKFont textXlEmphasized]);
+
+    // Small sanity checks
+    XCTAssertNotEqual([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont fontWithStyle:BPKFontStyleTextLg]);
+    XCTAssertNotEqual([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont fontWithStyle:BPKFontStyleTextBase]);
 }
 
 @end

@@ -17,9 +17,15 @@
  */
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, BPKFontStyle) {
+{% for f in font %}
+    {{f.enumName}},{% endfor %}
+};
+
 NS_ASSUME_NONNULL_BEGIN
 @class UIFont;
 @interface BPKFont: NSObject
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style;
 {% for f in font %}
 + (UIFont *){{f.name}};
 {% endfor %}
