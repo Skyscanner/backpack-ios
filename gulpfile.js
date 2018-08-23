@@ -135,6 +135,7 @@ const parseTokens = tokensData => {
 
       return {
         name: key,
+        enumName: `BPKFontStyle${_.upperFirst(key)}`,
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
@@ -146,6 +147,7 @@ const parseTokens = tokensData => {
         ...properties,
         weight: emphazisedWeight,
         name: `${properties.name}Emphasized`,
+        enumName: `${properties.enumName}Emphasized`,
       },
     ])
     .value();

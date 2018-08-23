@@ -19,6 +19,35 @@
 
 @implementation BPKFont
 
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style {
+    switch (style) {
+    
+        case BPKFontStyleTextBase:
+            return [BPKFont textBase];
+        case BPKFontStyleTextBaseEmphasized:
+            return [BPKFont textBaseEmphasized];
+        case BPKFontStyleTextLg:
+            return [BPKFont textLg];
+        case BPKFontStyleTextLgEmphasized:
+            return [BPKFont textLgEmphasized];
+        case BPKFontStyleTextSm:
+            return [BPKFont textSm];
+        case BPKFontStyleTextSmEmphasized:
+            return [BPKFont textSmEmphasized];
+        case BPKFontStyleTextXl:
+            return [BPKFont textXl];
+        case BPKFontStyleTextXlEmphasized:
+            return [BPKFont textXlEmphasized];
+        case BPKFontStyleTextXs:
+            return [BPKFont textXs];
+        case BPKFontStyleTextXsEmphasized:
+            return [BPKFont textXsEmphasized];
+    }
+
+    return nil;
+}
+
+
 + (UIFont *)textBase {
     return [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
 }
