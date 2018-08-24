@@ -20,7 +20,7 @@
 
 #import <Backpack/Shadow.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKShadowTest : XCTestCase
 @property(nonatomic, copy) NSArray<NSString *> *selectors;
 @end
@@ -46,3 +46,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

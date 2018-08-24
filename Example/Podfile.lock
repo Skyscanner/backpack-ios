@@ -28,9 +28,15 @@ PODS:
   - Backpack/Radii (0.9.0)
   - Backpack/Shadow (0.9.0)
   - Backpack/Spacing (0.9.0)
+  - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
   - Backpack (from `../`)
+  - iOSSnapshotTestCase/Core
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - iOSSnapshotTestCase
 
 EXTERNAL SOURCES:
   Backpack:
@@ -38,7 +44,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Backpack: baf1137df6daffeffe6fd570f87fc58a21f4aeb3
+  iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
-PODFILE CHECKSUM: ab2a2331391dcb4bfe794872621c5f62a912894e
+PODFILE CHECKSUM: 79b6692abe5846b0f174538346afc66a8d7974e0
 
 COCOAPODS: 1.5.3

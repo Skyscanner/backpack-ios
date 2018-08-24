@@ -20,7 +20,7 @@
 
 #import <Backpack/Badge.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKBadgeTest : XCTestCase
 
 @end
@@ -35,3 +35,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,6 +23,7 @@
 
 @end
 
+NS_ASSUME_NONNULL_BEGIN
 @implementation BPKPanelTest
 
 - (void)testInitWithPadded {
@@ -34,3 +35,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
