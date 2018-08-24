@@ -16,22 +16,21 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
+#import "BPKRootListTableViewController.h"
 
-#import <Backpack/Badge.h>
-
-
-@interface BPKBadgeTest : XCTestCase
+@interface BPKRootListTableViewController ()
 
 @end
 
-@implementation BPKBadgeTest
+@implementation BPKRootListTableViewController
 
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // We cheat and use the same view controller for both fonts and labels
+    if ([segue.identifier isEqualToString:@"ShowFontsSegue"]) {
+        segue.destinationViewController.title = NSLocalizedString(@"FONTS_CONTROLLER_TTILE", nil);
+    } else if ([segue.identifier isEqualToString:@"ShowLabelsSegue"]) {
+        segue.destinationViewController.title = NSLocalizedString(@"LABELS_CONTROLLER_TITLE", nil);
+    }
 }
 
 @end

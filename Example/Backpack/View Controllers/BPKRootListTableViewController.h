@@ -16,22 +16,8 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
+#import <UIKit/UIKit.h>
 
-#import <Backpack/Badge.h>
-
-
-@interface BPKBadgeTest : XCTestCase
-
-@end
-
-@implementation BPKBadgeTest
-
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
-}
+@interface BPKRootListTableViewController : UITableViewController
 
 @end

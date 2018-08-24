@@ -4,6 +4,7 @@ PODS:
     - Backpack/Color (= 0.8.1)
     - Backpack/Font (= 0.8.1)
     - Backpack/Gradient (= 0.8.1)
+    - Backpack/Label (= 0.8.1)
     - Backpack/Panel (= 0.8.1)
     - Backpack/Radii (= 0.8.1)
     - Backpack/Shadow (= 0.8.1)
@@ -17,6 +18,9 @@ PODS:
   - Backpack/Font (0.8.1)
   - Backpack/Gradient (0.8.1):
     - Backpack/Color
+  - Backpack/Label (0.8.1):
+    - Backpack/Color
+    - Backpack/Font
   - Backpack/Panel (0.8.1):
     - Backpack/Color
     - Backpack/Radii
@@ -33,7 +37,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: f8012078429b355b543e73c1f087a98ae3ad91b8
+  Backpack: 34fb0d1e32da48108eda9b63d20d2275e8458c62
 
 PODFILE CHECKSUM: ab2a2331391dcb4bfe794872621c5f62a912894e
 

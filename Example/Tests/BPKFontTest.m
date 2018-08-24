@@ -49,26 +49,24 @@
 }
 
 - (void)testFontWithStyle {
-    // These tests rely on internal pointer caching by UIFont which is why pointer
-    // equality can be used to compare the results. If this starts to break
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXs], [BPKFont textXs]);
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXsEmphasized], [BPKFont textXsEmphasized]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXs], [BPKFont textXs]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXsEmphasized], [BPKFont textXsEmphasized]);
 
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont textSm]);
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextSmEmphasized], [BPKFont textSmEmphasized]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont textSm]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSmEmphasized], [BPKFont textSmEmphasized]);
 
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextBase], [BPKFont textBase]);
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextBaseEmphasized], [BPKFont textBaseEmphasized]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextBase], [BPKFont textBase]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextBaseEmphasized], [BPKFont textBaseEmphasized]);
 
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextLg], [BPKFont textLg]);
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextLgEmphasized], [BPKFont textLgEmphasized]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextLg], [BPKFont textLg]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextLgEmphasized], [BPKFont textLgEmphasized]);
 
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont textXl]);
-    XCTAssertEqual([BPKFont fontWithStyle:BPKFontStyleTextXlEmphasized], [BPKFont textXlEmphasized]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont textXl]);
+    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXlEmphasized], [BPKFont textXlEmphasized]);
 
     // Small sanity checks
-    XCTAssertNotEqual([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont fontWithStyle:BPKFontStyleTextLg]);
-    XCTAssertNotEqual([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont fontWithStyle:BPKFontStyleTextBase]);
+    XCTAssertNotEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont fontWithStyle:BPKFontStyleTextLg]);
+    XCTAssertNotEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont fontWithStyle:BPKFontStyleTextBase]);
 }
 
 @end

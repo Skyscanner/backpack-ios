@@ -15,23 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import <Foundation/Foundation.h>
+#import <Backpack/Font.h>
 
-#import <XCTest/XCTest.h>
+NS_ASSUME_NONNULL_BEGIN
+IB_DESIGNABLE @interface BPKLabel: UILabel
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
-#import <Backpack/Badge.h>
+/**
+ Create a `BPKLabel` with a specific BPKFont style.
 
+ @see BPKFontStyle
+ */
+- (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
-@interface BPKBadgeTest : XCTestCase
+/**
+ The font style used for the label.
 
+ @see BPKFontStyle for the integer values to use when setting from Interface Builder.
+ */
+@property(nonatomic) BPKFontStyle fontStyle;
 @end
-
-@implementation BPKBadgeTest
-
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
-}
-
-@end
+NS_ASSUME_NONNULL_END

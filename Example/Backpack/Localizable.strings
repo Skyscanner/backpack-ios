@@ -16,22 +16,6 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
+"FONTS_CONTROLLER_TTILE" = "Fonts";
 
-#import <Backpack/Badge.h>
-
-
-@interface BPKBadgeTest : XCTestCase
-
-@end
-
-@implementation BPKBadgeTest
-
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
-}
-
-@end
+"LABELS_CONTROLLER_TITLE" = "Labels";

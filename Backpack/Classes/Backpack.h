@@ -25,6 +25,9 @@
     #import "Shadow.h"
     #import "Spacing.h"
     #import "Gradient.h"
+
+    #import "Badge.h"
+    #import "Label.h"
     #import "Panel.h"
 #endif
 

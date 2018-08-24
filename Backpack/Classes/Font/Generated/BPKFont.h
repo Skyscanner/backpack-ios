@@ -19,16 +19,16 @@
 
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 
-    BPKFontStyleTextBase,
-    BPKFontStyleTextBaseEmphasized,
-    BPKFontStyleTextLg,
-    BPKFontStyleTextLgEmphasized,
-    BPKFontStyleTextSm,
-    BPKFontStyleTextSmEmphasized,
-    BPKFontStyleTextXl,
-    BPKFontStyleTextXlEmphasized,
-    BPKFontStyleTextXs,
-    BPKFontStyleTextXsEmphasized,
+    BPKFontStyleTextBase = 0,
+    BPKFontStyleTextBaseEmphasized = 1,
+    BPKFontStyleTextLg = 2,
+    BPKFontStyleTextLgEmphasized = 3,
+    BPKFontStyleTextSm = 4,
+    BPKFontStyleTextSmEmphasized = 5,
+    BPKFontStyleTextXl = 6,
+    BPKFontStyleTextXlEmphasized = 7,
+    BPKFontStyleTextXs = 8,
+    BPKFontStyleTextXsEmphasized = 9,
 };
 
 NS_ASSUME_NONNULL_BEGIN

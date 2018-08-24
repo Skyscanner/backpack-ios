@@ -15,23 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BACKPACK_LABEL__
+#define __BACKPACK_LABEL__
 
-#import <XCTest/XCTest.h>
+#import "BPKLabel.h"
+#endif
 
-#import <Backpack/Badge.h>
-
-
-@interface BPKBadgeTest : XCTestCase
-
-@end
-
-@implementation BPKBadgeTest
-
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
-}
-
-@end
