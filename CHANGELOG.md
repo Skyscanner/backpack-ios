@@ -1,6 +1,6 @@
 # Unreleased
 
-# 0.8.1
+## 0.8.1
 
 **Added:**
 
@@ -9,7 +9,7 @@
 
 Note: `0.8.0` was skipped because of a bug.
 
-# 0.7.0
+## 0.7.0
 
 - Backpack gradient via `BPKGradient` and the `Backpack/Gradient` subpsec.
 
@@ -20,11 +20,11 @@ Note: `0.8.0` was skipped because of a bug.
 - The generated code has been re-oredered due to changes in the underlying `bpk-tokens` package.
 
 
-# 0.6.1
+## 0.6.1
 
 This release ended up broken don't use this version.
 
-# 0.6.0
+## 0.6.0
 
 **Breaking:**
 
@@ -34,13 +34,13 @@ This release ended up broken don't use this version.
 
 - Added `[BPKColor clear]`. Thanks to [@danielnagy81](https://github.com/danielnagy81) for contributing.
 
-# 0.5.1
+## 0.5.1
 
 **Fixed:**
 
 - Ensure that the root pod spec can be used and that the `Backpack/Backpack.h` import works as expected.
 
-# 0.5.0
+## 0.5.0
 
 **Added:**
 
