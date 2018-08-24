@@ -1,5 +1,11 @@
 # Unreleased
 
+## 0.9.0
+
+**Added:**
+
+- Introducing `Backpack/Label`, the label component.
+
 ## 0.8.1
 
 **Added:**
