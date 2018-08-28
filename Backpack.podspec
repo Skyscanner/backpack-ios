@@ -32,46 +32,46 @@ Pod::Spec.new do |s|
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '9.0'
-  s.source_files = 'Backpack/Classes/Backpack.h'
-  s.public_header_files = 'Backpack/Classes/Backpack.h'
+  s.source_files = 'Backpack/Backpack.h'
+  s.public_header_files = 'Backpack/Backpack.h'
 
   # Tokens
   s.subspec 'Color' do |ss|
-    ss.source_files = 'Backpack/Classes/Color/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Color/**/*.h'
+    ss.source_files = 'Backpack/Color/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Color/Classes/**/*.h'
   end
 
   s.subspec 'Font' do |ss|
-    ss.source_files = 'Backpack/Classes/Font/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Font/**/*.h'
+    ss.source_files = 'Backpack/Font/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Font/Classes/**/*.h'
   end
 
   s.subspec 'Spacing' do |ss|
-    ss.source_files = 'Backpack/Classes/Spacing/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Spacing/**/*.h'
+    ss.source_files = 'Backpack/Spacing/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Spacing/Classes/**/*.h'
   end
 
   s.subspec 'Radii' do |ss|
-    ss.source_files = 'Backpack/Classes/Radii/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Radii/**/*.h'
+    ss.source_files = 'Backpack/Radii/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Radii/Classes/**/*.h'
   end
 
   s.subspec 'Shadow' do |ss|
-    ss.source_files = 'Backpack/Classes/Shadow/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Shadow/**/*.h'
+    ss.source_files = 'Backpack/Shadow/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Shadow/Classes/**/*.h'
   end
 
   s.subspec 'Gradient' do |ss|
-    ss.source_files = 'Backpack/Classes/Gradient/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Gradient/**/*.h'
+    ss.source_files = 'Backpack/Gradient/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Gradient/Classes/**/*.h'
     ss.dependency 'Backpack/Color'
   end
 
   # Components
 
   s.subspec 'Badge' do |ss|
-    ss.source_files = 'Backpack/Classes/Badge/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Badge/**/*.h'
+    ss.source_files = 'Backpack/Badge/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Badge/Classes/**/*.h'
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
@@ -79,15 +79,15 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Label' do |ss|
-    ss.source_files = 'Backpack/Classes/Label/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Label/**/*.h'
+    ss.source_files = 'Backpack/Label/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Label/Classes/**/*.h'
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Font'
   end
 
   s.subspec 'Panel' do |ss|
-    ss.source_files = 'Backpack/Classes/Panel/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Classes/Panel/**/*.h'
+    ss.source_files = 'Backpack/Panel/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Panel/Classes/**/*.h'
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
