@@ -73,7 +73,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 
     [view.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor].active = YES;
     [view.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor].active = YES;
-    [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:view.trailingAnchor];
+    [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:view.trailingAnchor].active = YES;
     [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
 }
 

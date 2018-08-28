@@ -20,6 +20,7 @@
 
 #import <Backpack/Font.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKFontTest : XCTestCase
 @property(nonatomic, copy) NSArray<NSString *> *expectedSelectors;
 @end
@@ -70,3 +71,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

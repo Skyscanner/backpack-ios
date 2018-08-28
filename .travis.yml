@@ -15,6 +15,7 @@ before_install:
 install:
   - npm install
   - bundle install
+  - bundle exec pod repo update
   - (cd Example && bundle exec pod install)
 before_script: greenkeeper-lockfile-update
 script:

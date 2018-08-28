@@ -6,6 +6,7 @@ target 'Backpack Native' do
 
   target 'Backpack_Tests' do
     inherit! :search_paths
+    pod 'iOSSnapshotTestCase/Core'
 
 
   end
