@@ -1,8 +1,7 @@
 {
   "extends": [
-      "skyscanner-with-prettier",
+    "skyscanner-with-prettier"
   ],
-  "settings": {},
   "rules": {
     "no-console": "off"
   }
