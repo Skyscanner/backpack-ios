@@ -32,7 +32,7 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 
 ### Backpack/Font
 
-`Backpack/Font` contains the Backpack typography styles in a single class `BPKFont`. Add `Backpack/Font` to your `Podfile` or `podspec` and then use it as follows.
+`Backpack/Font` contains the Backpack typography styles in a single class `BPKFont`. Add `Backpack/Font` to your `Podfile` or `podspec` and then use it as follows. This subspec also contains an enum defining all the text styles supported by Backpack, `BPKFontStyle` which can be used with `+fontWithStyle:`.
 
 ```objective-c
 #import <Backpack/Font.h>
@@ -93,6 +93,41 @@ Add `Backpack/Gradient` to your `Podfile` or `podspec` and then use it as follow
 
 BPKGradient *gradientDefault = [BPKGradient gradient];
 BPKGradient *gradientTopRight =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
+```
+
+### Backpack/Badge
+
+`Backpack/Badge` contains the Backpack Badge component in the class `BPKBadge`. It has 6 different styles defined in `BPKBadgeType` and can contain a message.
+
+
+```objective-c
+#import <Backpack/Badge.h>
+
+BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Hello World"];
+```
+
+### Backpack/Label
+
+`Backpack/Label` contains the Backpack Label component which is a subclass of `UILabel` with Skyscanner default styles. It accepts a Backpack font style to set the desired size. While the component doesn't currently support Dynamic Text the intention is to support this in the future.
+
+```objective-c
+#import <Backpack/Label.h>
+
+BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+// Position label with autolayout or other method
+```
+
+### Backpack/Panel
+
+`Backpack/Panel` contains the Backpack Panel component. The panel is a simple container view with a subtle shadow. It has a padded and non-padded variation. `BPKPanel` can only have 1 direct subview and will add the appropriate constraints automatically when calling `-addSubview:`.
+
+
+```objective-c
+#import <Backpack/Panel.h>
+
+BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
+[panel addSubview:myInnerView];
+panel.padded = NO;
 ```
 
 ## Contributing to Backpack
