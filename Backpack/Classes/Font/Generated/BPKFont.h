@@ -33,27 +33,61 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 
 NS_ASSUME_NONNULL_BEGIN
 @class UIFont;
+/**
+  BPKFont is the entry point for the Backpack typography stack. It expose the
+  supported text styles as static methods.
+*/
 @interface BPKFont: NSObject
 + (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style;
 
+/**
+  The `textBase` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textBase;
 
+/**
+  The `textBaseEmphasized` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textBaseEmphasized;
 
+/**
+  The `textLg` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textLg;
 
+/**
+  The `textLgEmphasized` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textLgEmphasized;
 
+/**
+  The `textSm` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textSm;
 
+/**
+  The `textSmEmphasized` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textSmEmphasized;
 
+/**
+  The `textXl` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textXl;
 
+/**
+  The `textXlEmphasized` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textXlEmphasized;
 
+/**
+  The `textXs` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textXs;
 
+/**
+  The `textXsEmphasized` text style from the Backpack typograhpy stack.
+*/
 + (UIFont *)textXsEmphasized;
 
 @end
