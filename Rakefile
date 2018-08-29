@@ -103,8 +103,9 @@ task release: :ci do
   puts green("🎉 All went well. Version #{version_string} published.")
 end
 
-task :docs do
-  sh "bundle exec jazzy --objc --author Backpack --umbrella-header Backpack/Classes/Backpack.h --framework-root Backpack --module Backpack --skip-undocumented"
+task :docs, :outputDir do |t, args|
+  args.with_defaults(:outputDir => "docs")
+  sh "bundle exec jazzy -o #{args.outputDir} --objc --author Backpack --umbrella-header Backpack/Classes/Backpack.h --framework-root Backpack --module Backpack --skip-undocumented"
 end
 
 # Helpers
