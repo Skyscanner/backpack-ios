@@ -8,6 +8,8 @@ We use both Ruby and Node in this project. To manage these language runtimes we 
 
 With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
 
+Use the most recent stable version of Xcode, however the project should work with old verisons of the same major.
+
 ## Setup
 
 Given that you have a compatible environment as stated above you can now setup the project.
