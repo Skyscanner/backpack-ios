@@ -1,6 +1,6 @@
 require 'semver'
 
-BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator11.2'
+BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator11.4'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
 EXAMPLE_SCHEMA = 'Backpack Native'
 VERSION_FORMAT = '%M.%m.%p%s%d'
