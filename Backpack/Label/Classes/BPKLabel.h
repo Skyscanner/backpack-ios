@@ -19,13 +19,18 @@
 #import <Backpack/Font.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKLabel` is a subclass of `UILabel` which uses the Skyscanner style.
+ */
 IB_DESIGNABLE @interface BPKLabel: UILabel
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 /**
- Create a `BPKLabel` with a specific BPKFont style.
-
- @see BPKFontStyle
+ * Create a `BPKLabel` with a specific BPKFont style.
+ * 
+ * @param style Font style to be used by the label.
+ * @see BPKFontStyle
  */
 - (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;

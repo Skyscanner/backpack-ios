@@ -371,7 +371,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geZ-jU-8Ws">
-                                                        <rect key="frame" x="8" y="8" width="64.5" height="0.0"/>
+                                                        <rect key="frame" x="8" y="8" width="64.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>

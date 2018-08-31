@@ -32,10 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKBadge
 
+- (instancetype)initWithMessage:(NSString *)message {
+      self = [self initWithType:BPKBadgeTypeSuccess message:message];
+
+    return self;
+}
+
 - (instancetype)initWithType:(BPKBadgeType)type message:(NSString *)message {
-    self = [self initWithFrame:CGRectZero];
+    self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        [self setup];
         self.type = type;
         self.message = message;
     }

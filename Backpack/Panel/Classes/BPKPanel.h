@@ -19,7 +19,17 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKPanel` is a subclass of `UIView` which contains the Skyscanner panel style.
+ * Panels are a lightweight container with a subtle shadow.
+ * Panels can be configured to have padding or not.
+ */
 IB_DESIGNABLE @interface BPKPanel: UIView
+
+/**
+ * Whether the panel should provide padding or not.
+ */ 
 @property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 - (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;

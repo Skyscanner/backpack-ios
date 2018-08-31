@@ -17,10 +17,24 @@
  */
 #import <Foundation/Foundation.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
+/**
+ * BPKColor is the entry point for the Backpack color palette. It expose the whole palette
+ * as static methods.
+*/
 @interface BPKColor: NSObject
+
+///-----------------------
+/// @name Colors
+///-----------------------
 {% for c in color %}
+/**
+ * The `{{c.name}}` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: {{c.hex}}; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
 + (UIColor *){{c.name}};
 {% endfor %}
 + (UIColor *)clear;

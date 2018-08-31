@@ -18,20 +18,70 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+/**
+ * These constants represent the type of badge.
+ */
 typedef NS_ENUM(NSUInteger, BPKBadgeType) {
+
+    /**
+     * Success badge type.
+     */
     BPKBadgeTypeSuccess = 0,
+
+    /**
+     * Warning badge type.
+     */
     BPKBadgeTypeWarning,
+
+    /**
+     * Destructive badge type.
+     */
     BPKBadgeTypeDestructive,
+
+    /**
+     * Light badge type.
+     */
     BPKBadgeTypeLight,
+
+    /**
+     * Inverse badge type.
+     */
     BPKBadgeTypeInverse,
+
+    /**
+     * Outline badge type.
+     */
     BPKBadgeTypeOutline
 };
 
 NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE @interface BPKBadge: UIView
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+/**
+ * The type of the badge.
+ */
 @property(nonatomic, assign) BPKBadgeType type;
+
+/**
+ * The message to show inside the badge.
+ */
 @property(nonatomic, copy) IBInspectable NSString *message;
 
-- (instancetype)initWithType:(BPKBadgeType)type message:(NSString *)message;
+/**
+ * Create a `BPKBadge` with the given message.
+ * 
+ * @param message The message to show in the badge.
+ */
+- (instancetype)initWithMessage:(NSString *)message;
+
+/**
+ * Create a `BPKBadge` with the given message and type.
+ * 
+ * @param type The type of badge to create.
+ * @param message The message to show in the badge.
+ */
+- (instancetype)initWithType:(BPKBadgeType)type message:(NSString *)message NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 @end
 NS_ASSUME_NONNULL_END
