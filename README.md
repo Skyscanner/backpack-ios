@@ -1,4 +1,6 @@
-# Backpack
+# Backpack iOS
+
+> Backpack is a collection of design resources, reusable components and guidelines for creating Skyscanner's products.
 
 [![CI Status](http://img.shields.io/travis/Skyscanner/backpack-ios.svg?style=flat)](https://travis-ci.org/Skyscanner/backpack-ios)
 [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
@@ -38,3 +40,6 @@ Please see the [Contributing guide][0] for instructions on contributing to this 
 Backpack is available under the Apache 2.0 license. See the LICENSE file for more info.
 
 [0]: CONTRIBUTING.md
+
+## Contact
+- backpack@skyscanner.net
