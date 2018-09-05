@@ -95,6 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
             self.layer.borderColor = [BPKColor white].CGColor;
             self.layer.borderWidth = 1.0;
             break;
+        case BPKBadgeTypeGray:
+            self.backgroundColor = [BPKColor gray100];
+            break;
         default:
             break;
     }
