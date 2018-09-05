@@ -51,7 +51,12 @@ typedef NS_ENUM(NSUInteger, BPKBadgeType) {
     /**
      * Outline badge type.
      */
-    BPKBadgeTypeOutline
+    BPKBadgeTypeOutline,
+    
+    /**
+     * Gray badge type.
+     */
+    BPKBadgeTypeGray
 };
 
 NS_ASSUME_NONNULL_BEGIN
