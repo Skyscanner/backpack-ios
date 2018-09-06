@@ -8,6 +8,7 @@ EXAMPLE_SCHEMA = 'Backpack Native'
 UNIT_TEST_SCHEMA = 'Backpack Native Unit Tests'
 VERSION_FORMAT = '%M.%m.%p%s%d'
 PODSPEC = 'Backpack.podspec'
+ANALYZE_FAIL_MESSAGE = '⚠️'
 
 def ask(question)
   valid_input = true
@@ -45,6 +46,9 @@ def file_is_dirty(filename)
   $?.exitstatus != 0
 end
 
+task :analyze do
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+end
 
 task :test do
   only_testing = SNAPSHOT_TESTS ? '' : '-only-testing:Backpack_Tests'
@@ -55,7 +59,7 @@ task :lint do
   sh "bundle exec pod lib lint"
 end
 
-task ci: [:lint, :test]
+task ci: [:lint, :analyze, :test]
 
 # task release: :test do
 task release: :ci do
