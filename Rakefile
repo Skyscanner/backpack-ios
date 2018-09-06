@@ -1,8 +1,11 @@
 require 'semver'
 
+SNAPSHOT_TESTS = ENV['SNAPSHOT_TESTS'] != 'false'
 BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator11.4'
+DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
 EXAMPLE_SCHEMA = 'Backpack Native'
+UNIT_TEST_SCHEMA = 'Backpack Native Unit Tests'
 VERSION_FORMAT = '%M.%m.%p%s%d'
 PODSPEC = 'Backpack.podspec'
 
@@ -44,7 +47,8 @@ end
 
 
 task :test do
-  sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO | xcpretty"
+  only_testing = SNAPSHOT_TESTS ? '' : '-only-testing:Backpack_Tests'
+  sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
 end
 
 task :lint do
