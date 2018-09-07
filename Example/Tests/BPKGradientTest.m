@@ -26,15 +26,45 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKGradientTest
 
+- (void)testInitWithColorsStopsStartPointEndPoint {
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
+                                                          stops:@[@0.0, @0.5, @1.0]
+                                                     startPoint:startPointForDirection(BPKGradientDirectionBottomRight)
+                                                       endPoint:endPointForDirection(BPKGradientDirectionBottomRight)];
+    NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
+    NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
+
+    XCTAssertEqualObjects(gradient.colors, expectedColors);
+    XCTAssertEqualObjects(gradient.stops, expectedStops);
+    XCTAssert(CGPointEqualToPoint(gradient.startPoint, CGPointMake(0.0, 0.0)));
+    XCTAssert(CGPointEqualToPoint(gradient.endPoint, CGPointMake(1.0, 1.0)));
+}
+
+- (void)testInitWithColorsStartPointEndPoint {
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
+                                                     startPoint:startPointForDirection(BPKGradientDirectionBottomRight)
+                                                       endPoint:endPointForDirection(BPKGradientDirectionBottomRight)];
+    NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
+    NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
+
+    XCTAssertEqualObjects(gradient.colors, expectedColors);
+    XCTAssertEqualObjects(gradient.stops, expectedStops);
+    XCTAssert(CGPointEqualToPoint(gradient.startPoint, CGPointMake(0.0, 0.0)));
+    XCTAssert(CGPointEqualToPoint(gradient.endPoint, CGPointMake(1.0, 1.0)));
+}
+
 - (void)testPrimaryGradientColorsHasCorrectValues {
     // NOTE: These comparison don't take colorspace into consideration and could fail for that reason.
     // This is tradeoff, if we change the colorspace we can change these tests
     BPKGradient *gradient =  [BPKGradient primary];
 
     NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
-    NSArray<NSValue *> *expectedStops = @[[NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)], [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)]];
+    NSArray<NSNumber *> *expectedStops = @[@0, @1];
+
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);
+    XCTAssert(CGPointEqualToPoint(gradient.startPoint, CGPointMake(0.0, 0.0)));
+    XCTAssert(CGPointEqualToPoint(gradient.endPoint, CGPointMake(1.0, 1.0)));
 }
 
 - (void)testGradientColorsHasCorrectValues {
@@ -43,10 +73,12 @@ NS_ASSUME_NONNULL_BEGIN
     BPKGradient *gradient =  [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
     
     NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
-    NSArray<NSValue *> *expectedStops = @[[NSValue valueWithCGPoint:CGPointMake(0.0, 1.0)], [NSValue valueWithCGPoint:CGPointMake(1.0, 0.0)]];
+    NSArray<NSNumber *> *expectedStops = @[@0, @1];
     
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);
+    XCTAssert(CGPointEqualToPoint(gradient.startPoint, CGPointMake(0.0, 1.0)));
+    XCTAssert(CGPointEqualToPoint(gradient.endPoint, CGPointMake(1.0, 0.0)));
 }
 
 - (void)testSingleInstancePrimaryGradient {

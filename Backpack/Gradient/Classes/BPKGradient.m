@@ -68,8 +68,11 @@ CGPoint endPointForDirection(BPKGradientDirection direction) {
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradient()
-@property (copy, nonatomic) NSArray<UIColor *> *colors;
-@property (nonatomic) NSArray<NSValue *> *stops;
+@property(nonatomic, copy) NSArray<UIColor *> *colors;
+@property(nonatomic, copy) NSArray<NSNumber *> *stops;
+@property(nonatomic) CGPoint startPoint;
+@property(nonatomic) CGPoint endPoint;
+
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction;
 @end
 NS_ASSUME_NONNULL_END
@@ -77,18 +80,40 @@ NS_ASSUME_NONNULL_END
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKGradient
 
-- (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
-    self = [super init];
-    
-    if (self) {
-        self.colors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
-        NSValue *start = [NSValue valueWithCGPoint:startPointForDirection(direction)];
-        NSValue *end = [NSValue valueWithCGPoint:endPointForDirection(direction)];
-        
-        self.stops = @[start, end];
+- (instancetype)initWithColors:(NSArray<UIColor *> *)colors
+                    startPoint:(CGPoint)startPoint
+                      endPoint:(CGPoint)endPoint {
+    NSMutableArray *stops = [[NSMutableArray alloc] initWithCapacity:colors.count];
+
+    for (NSUInteger i = 0; i < colors.count; i++) {
+        stops[i] = @(1.0 / (colors.count - 1) * i);
     }
-    
+
+    return [self initWithColors:colors stops:stops startPoint:startPoint endPoint:endPoint];
+}
+
+
+- (instancetype)initWithColors:(NSArray<UIColor *> *)colors
+                         stops:(NSArray<NSNumber *> *)stops
+                    startPoint:(CGPoint)startPoint
+                      endPoint:(CGPoint)endPoint {
+    self = [super init];
+
+    if (self) {
+        self.colors = colors;
+        self.stops = stops;
+        self.startPoint = startPoint;
+        self.endPoint = endPoint;
+    }
+
     return self;
+}
+
+
+- (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
+    return [self initWithColors:@[BPKColor.blue500, BPKColor.primaryGradientLight]
+                     startPoint:startPointForDirection(direction)
+                       endPoint:endPointForDirection(direction)];
 }
 
 + (instancetype)primary {
