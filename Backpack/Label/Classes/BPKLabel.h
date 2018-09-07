@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKLabel` is a subclass of `UILabel` which uses the Skyscanner style.
  */
-IB_DESIGNABLE @interface BPKLabel: UILabel
+NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel: UILabel
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 /**

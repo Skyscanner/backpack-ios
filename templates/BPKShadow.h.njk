@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The `BPKShadow` class contains definitions for Backpack shaddows.
  * It has factory methods for creating instances of supported shaddows.
  */
-@interface BPKShadow: NSObject
+NS_SWIFT_NAME(Shadow) @interface BPKShadow: NSObject
 
 /**
  * The color of the shadow.
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Apply the shadow of the reciever to the given `CALayer`.
  * @param layer The layer to apply the shadow to.
  */
-- (void)applyToLayer:(CALayer *)layer;
+- (void)applyToLayer:(CALayer *)layer NS_SWIFT_NAME(apply(to:));
 
 {% for s in shadow %}
 /**
