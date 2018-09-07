@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) CGPoint startPoint;
 
 /**
- * The end point of the gradinet in a (0, 1) range for x and y.
+ * The end point of the gradient in a (0, 1) range for x and y.
  */
 @property(nonatomic, readonly) CGPoint endPoint;
 
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The factory methods for defined Backpack gradients are preferred, but this init can
  * be used for cases when they are not suitable.
  *
- * @param colors The colors to use in the gradient
+ * @param colors The colors to use in the gradient.
  * @param stops The locations to draw the corresponding color at,
  *              must have the same length as `colors`.
  * @param startPoint The start point of the gradient.
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
  * be used for cases when they are not suitable. The `stops` are set to be evenly spaced
  * along the line formed by the `startPoint` and `endPoint`.
  *
- * @param colors The colors to use in the gradient
+ * @param colors The colors to use in the gradient.
  * @param startPoint The start point of the gradient.
  * @param endPoint The end point of the gradient.
  */
