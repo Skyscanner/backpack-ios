@@ -15,10 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import <QuartzCore/QuartzCore.h>
 
-#ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+NS_ASSUME_NONNULL_BEGIN
+@class BPKGradient;
 
-    #import "BPKGradient.h"
-    #import "BPKGradientView.h"
-#endif
+/**
+ * `BPKGradientLayer` is a `CALayer` subclass that can correctly
+ * render Backpack gradients for non-square views. It should be
+ * preferred in favour of `CAGradientLayer` as it does not correctly
+ * render gradients for non-square views.
+ */
+@interface BPKGradientLayer : CALayer
+/**
+ * The gradient being drawn by the layer. Changing this will cause
+ * the layer to redraw with the new gradient.
+ */
+@property(nullable, nonatomic, strong) BPKGradient *gradient;
+@end
+NS_ASSUME_NONNULL_END

@@ -64,10 +64,6 @@ typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
     BPKGradientDirectionBottomRight,
 };
 
-extern CGPoint startPointForDirection(BPKGradientDirection direction);
-extern CGPoint endPointForDirection(BPKGradientDirection direction);
-
-
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
 
@@ -78,8 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
  * are not concerned with rendering.
  * @warning Don't render Backpack gradients with `CAGradientLayer`
  * as it does not accurately render gradients for non-square views.
+ * Instead use `BPKGradientView` which is backed by `BPKGradientLayer`.
+ *
+ * @see BPKGradientView
  */
-@interface BPKGradient: NSObject
+NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
 
 /**
  * The colors that define the gradient.
@@ -156,7 +155,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param direction The desired direction.
  * @return The Skyscanner primary gradient.
  */
-+ (instancetype)primaryWithDirection:(BPKGradientDirection)direction;
++ (instancetype)primaryWithDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(primary(direction:));
 
++ (CGPoint)startPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(startPoint(for:));
++ (CGPoint)endPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(endPointFor(for:));
 @end
 NS_ASSUME_NONNULL_END

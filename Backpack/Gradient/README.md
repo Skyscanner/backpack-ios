@@ -12,10 +12,12 @@ and then run `pod install`.
 
 ## Usage
 
-`Backpack/Gradient` contains the Backpack gradient definitions in the class `BPKGradient`. `BPKGradient` has the two properties:
+`Backpack/Gradient` contains the Backpack gradient definitions in the class `BPKGradient`. `BPKGradient` has the four properties:
 
-* `colors` of type `NSArray<UIColor *> *`
-* `stops` encoded as `CGPoints` with components in the range 0-1 encoded as `NSValue`s in an `NSArray<NSValue *> *`
++ `colors`
++ `stops`
++ `startPoint`
++ `endPoint`
 
 
 ```objective-c

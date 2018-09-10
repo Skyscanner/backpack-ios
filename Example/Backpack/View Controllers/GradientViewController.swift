@@ -15,10 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Foundation
+import UIKit
+import Backpack
 
-#ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+class GradientViewController: UIViewController {
+    @IBOutlet weak var gradientView: Backpack.GradientView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    #import "BPKGradient.h"
-    #import "BPKGradientView.h"
-#endif
+        self.gradientView.gradient = Backpack.Gradient.primary()
+    }
+}

@@ -20,52 +20,6 @@
 #import <Backpack/Color.h>
 #import <UIKit/UIKit.h>
 
-CGPoint startPointForDirection(BPKGradientDirection direction) {
-    switch (direction) {
-        case BPKGradientDirectionUp:
-            return CGPointMake(0.5, 1.0);
-        case BPKGradientDirectionDown:
-            return CGPointMake(0.5, 0.0);
-        case BPKGradientDirectionLeft:
-            return CGPointMake(1.0, 0.5);
-        case BPKGradientDirectionRight:
-            return CGPointMake(0.0, 0.5);
-        case BPKGradientDirectionTopLeft:
-            return CGPointMake(1.0, 1.0);
-        case BPKGradientDirectionTopRight:
-            return CGPointMake(0.0, 1.0);
-        case BPKGradientDirectionBottomLeft:
-            return CGPointMake(1.0, 0.0);
-        case BPKGradientDirectionBottomRight:
-            return CGPointMake(0.0, 0.0);
-        default:
-            return CGPointMake(0.0, 0.0);
-    }
-}
-
-CGPoint endPointForDirection(BPKGradientDirection direction) {
-    switch (direction) {
-        case BPKGradientDirectionUp:
-            return CGPointMake(0.5, 0.0);
-        case BPKGradientDirectionDown:
-            return CGPointMake(0.5, 1.0);
-        case BPKGradientDirectionLeft:
-            return CGPointMake(0.0, 0.5);
-        case BPKGradientDirectionRight:
-            return CGPointMake(1.0, 0.5);
-        case BPKGradientDirectionTopLeft:
-            return CGPointMake(0.0, 0.0);
-        case BPKGradientDirectionTopRight:
-            return CGPointMake(1.0, 0.0);
-        case BPKGradientDirectionBottomLeft:
-            return CGPointMake(0.0, 1.0);
-        case BPKGradientDirectionBottomRight:
-            return CGPointMake(1.0, 1.0);
-        default:
-            return CGPointMake(1.0, 1.0);
-    }
-}
-
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradient()
 @property(nonatomic, copy) NSArray<UIColor *> *colors;
@@ -112,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
     return [self initWithColors:@[BPKColor.blue500, BPKColor.primaryGradientLight]
-                     startPoint:startPointForDirection(direction)
-                       endPoint:endPointForDirection(direction)];
+                     startPoint:[[self class] startPointForDirection:direction]
+                       endPoint:[[self class] endPointForDirection:direction]];
 }
 
 + (instancetype)primary {
@@ -149,6 +103,52 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     return nil;
+}
+
++ (CGPoint)startPointForDirection:(BPKGradientDirection)direction {
+    switch (direction) {
+        case BPKGradientDirectionUp:
+            return CGPointMake(0.5, 1.0);
+        case BPKGradientDirectionDown:
+            return CGPointMake(0.5, 0.0);
+        case BPKGradientDirectionLeft:
+            return CGPointMake(1.0, 0.5);
+        case BPKGradientDirectionRight:
+            return CGPointMake(0.0, 0.5);
+        case BPKGradientDirectionTopLeft:
+            return CGPointMake(1.0, 1.0);
+        case BPKGradientDirectionTopRight:
+            return CGPointMake(0.0, 1.0);
+        case BPKGradientDirectionBottomLeft:
+            return CGPointMake(1.0, 0.0);
+        case BPKGradientDirectionBottomRight:
+            return CGPointMake(0.0, 0.0);
+        default:
+            return CGPointMake(0.0, 0.0);
+    }
+}
+
++ (CGPoint)endPointForDirection:(BPKGradientDirection)direction {
+    switch (direction) {
+        case BPKGradientDirectionUp:
+            return CGPointMake(0.5, 0.0);
+        case BPKGradientDirectionDown:
+            return CGPointMake(0.5, 1.0);
+        case BPKGradientDirectionLeft:
+            return CGPointMake(0.0, 0.5);
+        case BPKGradientDirectionRight:
+            return CGPointMake(1.0, 0.5);
+        case BPKGradientDirectionTopLeft:
+            return CGPointMake(0.0, 0.0);
+        case BPKGradientDirectionTopRight:
+            return CGPointMake(1.0, 0.0);
+        case BPKGradientDirectionBottomLeft:
+            return CGPointMake(0.0, 1.0);
+        case BPKGradientDirectionBottomRight:
+            return CGPointMake(1.0, 1.0);
+        default:
+            return CGPointMake(1.0, 1.0);
+    }
 }
 
 @end
