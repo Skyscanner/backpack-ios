@@ -5,3 +5,4 @@ This directory is a collection of decisions that the squad has made on various t
 ## Decisions
 
 <!-- Please keep this in alphabetical order. -->
++ [Assume non-null by default in Objective-C](./assume-non-null-by-default.md)
