@@ -64,10 +64,6 @@ typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
     BPKGradientDirectionBottomRight,
 };
 
-extern CGPoint startPointForDirection(BPKGradientDirection direction) NS_SWIFT_NAME(startPointFor(direction:));
-extern CGPoint endPointForDirection(BPKGradientDirection direction) NS_SWIFT_NAME(endPointFor(direction:));
-
-
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
 
@@ -159,7 +155,9 @@ NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
  * @param direction The desired direction.
  * @return The Skyscanner primary gradient.
  */
-+ (instancetype)primaryWithDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(primaryWith(direction:));
++ (instancetype)primaryWithDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(primary(direction:));
 
++ (CGPoint)startPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(startPoint(for:));
++ (CGPoint)endPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(endPointFor(for:));
 @end
 NS_ASSUME_NONNULL_END
