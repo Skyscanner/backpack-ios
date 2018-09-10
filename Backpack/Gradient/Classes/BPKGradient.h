@@ -64,6 +64,10 @@ typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
     BPKGradientDirectionBottomRight,
 };
 
+extern CGPoint startPointForDirection(BPKGradientDirection direction);
+extern CGPoint endPointForDirection(BPKGradientDirection direction);
+
+
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
 
@@ -80,22 +84,64 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The colors that define the gradient.
  */
-@property (copy, nonatomic, readonly) NSArray<UIColor *> *colors;
+@property(copy, nonatomic, readonly) NSArray<UIColor *> *colors;
 
 /**
- * The position of the stops that define the gradient.
+ * The position of the stops defined as a number between 0 to 1 along the line
+ * created between the `startPoint` and `endPoint`.
+ *
  * The number of stops will always match the number of colors for a given gradient.
  * For stop `n`, the color at index `n` is used.
- * 
- * @note The values used for the stops are `CGPoints` encoded as `NSValues` using `valueWithPoint`.
- * You can get the values back using `stops[0].GCPointValue`.
- * 
+ *
  * @see colors
+ * @see startPoint
+ * @see endPoint
  */
-@property (nonatomic, readonly) NSArray<NSValue *> *stops;
+@property(nonatomic, readonly) NSArray<NSNumber *> *stops;
+
+/**
+ * The start point of the gradient in a (0, 1) range for x and y.
+ */
+@property(nonatomic, readonly) CGPoint startPoint;
+
+/**
+ * The end point of the gradient in a (0, 1) range for x and y.
+ */
+@property(nonatomic, readonly) CGPoint endPoint;
+
 
 - (instancetype)init __attribute__((unavailable("init not available, use factory methods")));
 + (instancetype)new __attribute__((unavailable("new not available, use factory methods")));
+
+/**
+ * Create a custom `BPKGradient` with specific `colors`, `stops`, `startPoint` and `endPoint`.
+ * The factory methods for defined Backpack gradients are preferred, but this init can
+ * be used for cases when they are not suitable.
+ *
+ * @param colors The colors to use in the gradient.
+ * @param stops The locations to draw the corresponding color at,
+ *              must have the same length as `colors`.
+ * @param startPoint The start point of the gradient.
+ * @param endPoint The end point of the gradient.
+ */
+- (instancetype)initWithColors:(NSArray<UIColor *> *)colors
+                         stops:(NSArray<NSNumber *> *)stops
+                    startPoint:(CGPoint)startPoint
+                      endPoint:(CGPoint)endPoint NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Create a custom `BPKGradient` with specific `colors`, `startPoint` and `endPoint`.
+ * The factory methods for defined Backpack gradients are preferred, but this init can
+ * be used for cases when they are not suitable. The `stops` are set to be evenly spaced
+ * along the line formed by the `startPoint` and `endPoint`.
+ *
+ * @param colors The colors to use in the gradient.
+ * @param startPoint The start point of the gradient.
+ * @param endPoint The end point of the gradient.
+ */
+- (instancetype)initWithColors:(NSArray<UIColor *> *)colors
+                    startPoint:(CGPoint)startPoint
+                      endPoint:(CGPoint)endPoint;
 
 /**
  * The Skyscanner primary gradient with the default direction.
