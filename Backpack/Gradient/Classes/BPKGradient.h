@@ -78,6 +78,9 @@ NS_ASSUME_NONNULL_BEGIN
  * are not concerned with rendering.
  * @warning Don't render Backpack gradients with `CAGradientLayer`
  * as it does not accurately render gradients for non-square views.
+ * Instead use `BPKGradientView` which is backed by `BPKGradientLayer`.
+ *
+ * @see BPKGradientView
  */
 NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
 

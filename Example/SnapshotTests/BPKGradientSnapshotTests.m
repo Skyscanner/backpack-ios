@@ -16,9 +16,27 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
-    #import "BPKGradient.h"
-    #import "BPKGradientView.h"
-#endif
+#import <Backpack/Gradient.h>
+
+@interface BPKGradientSnapshotTests : FBSnapshotTestCase
+
+@end
+
+@implementation BPKGradientSnapshotTests
+
+- (void)setUp {
+    [super setUp];
+    self.recordMode = NO;
+}
+
+- (void)testPrimaryGradient {
+    BPKGradientView *view = [[BPKGradientView alloc] initWithGradient:[BPKGradient primary]];
+    view.frame = CGRectMake(0, 0, 150, 200);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+
+@end

@@ -7,3 +7,4 @@
 **Added:**
 
 - Added two new initializers to `BPKGradient`: `-initWithColors:stops:startPoint:endPoint` and `-initWithColors:startPoint:endPoint`.
+- `BPKGradientView`(`Backpack.GradientView` in Swift) for drawing instance of `BPKGradient`.
