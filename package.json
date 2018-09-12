@@ -8,7 +8,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "preinstall": "node -e \"$(curl -fsSL https://raw.githubusercontent.com/Skyscanner/ensure-node-env/master/dist/index.js)\"",
+    "preinstall": "npx ensure-node-env",
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\""
