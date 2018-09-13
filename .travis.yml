@@ -19,7 +19,7 @@ matrix:
     - osx_image: xcode8.3
       env: BUILD_SDK=iphonesimulator10.3 DESTINATION="platform=iOS Simulator,name=iPhone 7" SNAPSHOT_TESTS="false" MAIN_STAGE="false"
 before_install:
-  - nvm install 8.9.4
+  - nvm install 8.12.0
   - '[ "$MAIN_STAGE" = true ] && npm install -g greenkeeper-lockfile@1 || true'
 install:
   - npm install
