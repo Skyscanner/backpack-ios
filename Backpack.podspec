@@ -92,7 +92,15 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
   end
-
+  
+  s.subspec 'Button' do |ss|
+      ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Spacing'
+      ss.dependency 'Backpack/Radii'
+      ss.dependency 'Backpack/Font'
+  end
 
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true
