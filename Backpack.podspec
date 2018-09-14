@@ -93,6 +93,15 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Radii'
   end
 
+  s.subspec 'Icon' do |ss|
+    ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'
+    ss.ios.resource_bundle = {
+      'Icon' => 'Backpack/Icon/Assets/*'
+    }
+    ss.frameworks = 'CoreText'
+  end
+
 
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true
