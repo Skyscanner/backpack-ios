@@ -178,6 +178,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGFloat)horizontalPadding {
+    if (self.style == BPKButtonStyleLink) {
+        return 0.0f;
+    }
+    
     BOOL hasText = self.titleLabel.text.length > 0;
     CGFloat multiplier = hasText ? 1.5f : 1.0f;
     switch (self.size) {
@@ -191,6 +195,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGFloat)verticalPadding {
+    if (self.style == BPKButtonStyleLink) {
+        return 0.0f;
+    }
+    
     switch (self.size) {
         case BPKButtonSizeDefault: return 8.0f;
         case BPKButtonSizeLarge: return 14.0f;
@@ -231,6 +239,10 @@ NS_ASSUME_NONNULL_BEGIN
                 [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.pink500
                                                           gradientOnBottom:BPKColor.pink600
                                                              selectedColor:BPKColor.pink700];
+                break;
+            }
+            case BPKButtonStyleLink: {
+                [self setLinkStyleWithColor:BPKColor.blue500];
                 break;
             }
             default: {
@@ -303,6 +315,14 @@ NS_ASSUME_NONNULL_BEGIN
     [self.layer setBorderWidth:self.isSelected ? 4 : 2];
 }
 
+- (void)setLinkStyleWithColor:(UIColor *)color {
+    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.white];
+    [self setContentColor:color];
+    
+    [self.layer setBorderColor:BPKColor.clear.CGColor];
+    [self.layer setBorderWidth:0];
+}
+
 - (void)setContentColor:(UIColor *)color {
     [self setTintColor:color];
     [self setTitleColor:color forState:UIControlStateNormal];
@@ -311,7 +331,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setDisabledStyle {
-    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.gray100];
+    UIColor *backgroundColor = self.style == BPKButtonStyleLink ? BPKColor.white : BPKColor.gray100;
+    self.gradientLayer.gradient = [self gradientWithSingleColor:backgroundColor];
     [self setTintColor:BPKColor.gray300];
     [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
     self.layer.borderColor = BPKColor.clear.CGColor;

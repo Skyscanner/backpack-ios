@@ -29,6 +29,8 @@
         target.style = BPKButtonStyleDestructive;
     } else if ([segue.identifier isEqualToString:@"featured"]) {
         target.style = BPKButtonStyleFeatured;
+    } else if ([segue.identifier isEqualToString:@"link"]) {
+        target.style = BPKButtonStyleLink;
     }
 }
 
