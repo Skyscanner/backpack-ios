@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         [self setupWithSize:size
                       style:style
-              imagePosition:BPKButtonImagePositionRight];
+              imagePosition:BPKButtonImagePositionTrailing];
     }
 
     return self;
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         [self setupWithSize:BPKButtonSizeDefault
                       style:BPKButtonStylePrimary
-              imagePosition:BPKButtonImagePositionRight];
+              imagePosition:BPKButtonImagePositionTrailing];
     }
 
     return self;
@@ -135,11 +135,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutLabelAndImage {
     switch (self.imagePosition) {
-        case BPKButtonImagePositionLeft: {
+        case BPKButtonImagePositionLeading: {
             [self layoutViewsNextToEachOther:@[self.imageView, self.titleLabel]];
             break;
         }
-        case BPKButtonImagePositionRight: {
+        case BPKButtonImagePositionTrailing: {
             [self layoutViewsNextToEachOther:@[self.titleLabel, self.imageView]];
             break;
         }

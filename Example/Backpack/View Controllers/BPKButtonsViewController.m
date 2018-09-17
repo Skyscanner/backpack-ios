@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *defaultButtons;
 @property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *largeButtons;
-@property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *rightImageButtons;
+@property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *buttonsWithTrailingImagePosition;
 
 @end
 
@@ -36,19 +36,19 @@
 
 - (void)setupButtons {
     for (BPKButton *button in self.defaultButtons) {
-        [button setImagePosition:BPKButtonImagePositionLeft];
+        [button setImagePosition:BPKButtonImagePositionLeading];
         [button setSize:BPKButtonSizeDefault];
         [button setStyle:self.style];
     }
     
     for (BPKButton *button in self.largeButtons) {
-        [button setImagePosition:BPKButtonImagePositionLeft];
+        [button setImagePosition:BPKButtonImagePositionLeading];
         [button setSize:BPKButtonSizeLarge];
         [button setStyle:self.style];
     }
     
-    for (BPKButton *button in self.rightImageButtons) {
-        [button setImagePosition:BPKButtonImagePositionRight];
+    for (BPKButton *button in self.buttonsWithTrailingImagePosition) {
+        [button setImagePosition:BPKButtonImagePositionTrailing];
     }
 }
 

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setGradient:(BPKGradient *_Nullable)gradient {
     _gradient = gradient;
-
+    
     // NOTE: We could not make this work with `needsDisplayForKey:`
     // this this explicit call is required.
     [self setNeedsDisplay];

@@ -40,8 +40,8 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
  * Enum values for specifying image position compared to the title label
  */
 typedef NS_ENUM(NSUInteger, BPKButtonImagePosition) {
-    BPKButtonImagePositionRight = 0,
-    BPKButtonImagePositionLeft = 1,
+    BPKButtonImagePositionTrailing = 0,
+    BPKButtonImagePositionLeading = 1,
 };
 
 NS_ASSUME_NONNULL_BEGIN
