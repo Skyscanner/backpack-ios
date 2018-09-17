@@ -53,6 +53,27 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style imagePosition:(BPKButtonImagePosition)imagePosition {
+    [self setClipsToBounds:YES];
+    [self setAdjustsImageWhenHighlighted:NO];
+    [self setAdjustsImageWhenDisabled:NO];
+    [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    _backgroundView = [[BPKGradientView alloc] initWithGradient:[self gradientWithTopColor:BPKColor.clear bottomColor:BPKColor.clear]];
+    [_backgroundView setUserInteractionEnabled:NO];
+    [self insertSubview:_backgroundView atIndex:0];
+    
+    self.size = size;
+    self.stlye = style;
+    self.imagePosition = imagePosition;
+}
+
+- (UIButtonType)buttonType {
+    return UIButtonTypeCustom;
+}
+
+#pragma mark - Style setters
+
 - (void)setSize:(BPKButtonSize)size {
     _size = size;
     [self didChangeProperty];
@@ -68,22 +89,54 @@ NS_ASSUME_NONNULL_BEGIN
     [self didChangeProperty];
 }
 
+#pragma mark - State setters
+
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    
+    [self didChangeProperty];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    [self didChangeProperty];
+}
+
+- (void)setHighlighted:(BOOL)highlighted {
+    [super setHighlighted:highlighted];
+    
+    [self didChangeProperty];
+}
+
+#pragma mark - Layout
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    [self setCornerRadius];
+    [self layoutGradientBackground];
+    [self layoutLabelAndImage];
+}
+
+- (void)setCornerRadius {
     CGFloat radius = CGRectGetHeight(self.bounds) / 2.0;
     [self.layer setCornerRadius:radius];
-    
+}
+
+- (void)layoutGradientBackground {
     [_backgroundView setFrame:self.bounds];
     [self sendSubviewToBack:_backgroundView];
-    
+}
+
+- (void)layoutLabelAndImage {
     CGFloat height = self.intrinsicContentSize.height;
     CGSize titleSize = self.titleLabel.intrinsicContentSize;
     CGSize imageSize = self.imageView.intrinsicContentSize;
     
     switch (self.imagePosition) {
         case BPKButtonImagePositionLeft: {
-            [self.imageView setFrame:CGRectMake(self.horizontalSpacing,
+            [self.imageView setFrame:CGRectMake(self.horizontalPadding,
                                                 (height - imageSize.height) / 2.0,
                                                 imageSize.width,
                                                 imageSize.height)];
@@ -94,7 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonImagePositionRight: {
-            [self.titleLabel setFrame:CGRectMake(self.horizontalSpacing,
+            [self.titleLabel setFrame:CGRectMake(self.horizontalPadding,
                                                  (height - titleSize.height) / 2.0,
                                                  titleSize.width,
                                                  titleSize.height)];
@@ -112,9 +165,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake(self.titleLabel.intrinsicContentSize.width + self.spacing + self.imageView.intrinsicContentSize.width + 2 * self.horizontalSpacing,
-                      MAX(self.titleLabel.intrinsicContentSize.height, self.imageView.intrinsicContentSize.height) + 2 * self.verticalSpacing);
+    return CGSizeMake(self.titleLabel.intrinsicContentSize.width + self.spacing + self.imageView.intrinsicContentSize.width + 2 * self.horizontalPadding,
+                      MAX(self.titleLabel.intrinsicContentSize.height, self.imageView.intrinsicContentSize.height) + 2 * self.verticalPadding);
 }
+
+#pragma mark Spacing
 
 - (CGFloat)spacing {
     BOOL hasImage = self.imageView.image != nil;
@@ -122,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
     return hasImage && hasText ? 8 : 0;
 }
 
-- (CGFloat)horizontalSpacing {
+- (CGFloat)horizontalPadding {
     BOOL hasText = self.titleLabel.text.length > 0;
     CGFloat multiplier = hasText ? 1.5 : 1;
     switch (self.size) {
@@ -135,7 +190,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (CGFloat)verticalSpacing {
+- (CGFloat)verticalPadding {
     switch (self.size) {
         case BPKButtonSizeDefault: return 8;
         case BPKButtonSizeLarge: return 14;
@@ -146,58 +201,68 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setEnabled:(BOOL)enabled {
-    [super setEnabled:enabled];
-    
-    [self didChangeProperty];
-}
-
-#pragma mark - Private
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style imagePosition:(BPKButtonImagePosition)imagePosition {
-    [self setClipsToBounds:YES];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    _backgroundView = [[BPKGradientView alloc] initWithGradient:[self gradientWithTopColor:BPKColor.clear bottomColor:BPKColor.clear]];
-    [self insertSubview:_backgroundView atIndex:0];
-    
-    self.size = size;
-    self.stlye = style;
-    self.imagePosition = imagePosition;
-}
+#pragma mark - State change
 
 - (void)didChangeProperty {
     switch (self.stlye) {
         case BPKButtonStylePrimary: {
-            _backgroundView.gradient = [self gradientWithTopColor:BPKColor.green500 bottomColor:BPKColor.green600];
+            if (self.isHighlighted) {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.green600 bottomColor:BPKColor.green600];
+            } else if (self.isSelected) {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.green700 bottomColor:BPKColor.green700];
+            } else {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.green500 bottomColor:BPKColor.green600];
+            }
             [self setTintColor:BPKColor.white];
             [self setTitleColor:BPKColor.white forState:UIControlStateNormal];
-            self.layer.borderColor = BPKColor.clear.CGColor;
-            self.layer.borderWidth = 0;
+            [self setTitleColor:BPKColor.white forState:UIControlStateHighlighted];
+            [self setTitleColor:BPKColor.white forState:UIControlStateSelected];
+            [self.layer setBorderColor:BPKColor.clear.CGColor];
+            [self.layer setBorderWidth:0];
             break;
         }
         case BPKButtonStyleSecondary: {
             _backgroundView.gradient = [self gradientWithTopColor:BPKColor.white bottomColor:BPKColor.white];
             [self setTintColor:BPKColor.blue500];
             [self setTitleColor:BPKColor.blue500 forState:UIControlStateNormal];
-            self.layer.borderColor = BPKColor.gray50.CGColor;
-            self.layer.borderWidth = 2;
+            [self setTitleColor:BPKColor.blue500 forState:UIControlStateHighlighted];
+            [self setTitleColor:BPKColor.blue500 forState:UIControlStateSelected];
+            if (self.isSelected || self.isHighlighted) {
+                [self.layer setBorderColor:BPKColor.blue500.CGColor];
+            } else {
+                [self.layer setBorderColor:BPKColor.gray50.CGColor];
+            }
+            [self.layer setBorderWidth:2];
             break;
         }
         case BPKButtonStyleDestructive: {
             _backgroundView.gradient = [self gradientWithTopColor:BPKColor.white bottomColor:BPKColor.white];
             [self setTintColor:BPKColor.red500];
             [self setTitleColor:BPKColor.red500 forState:UIControlStateNormal];
-            self.layer.borderColor = BPKColor.gray50.CGColor;
-            self.layer.borderWidth = 2;
+            [self setTitleColor:BPKColor.red500 forState:UIControlStateHighlighted];
+            [self setTitleColor:BPKColor.red500 forState:UIControlStateSelected];
+            if (self.isSelected || self.isHighlighted) {
+                [self.layer setBorderColor:BPKColor.red500.CGColor];
+            } else {
+                [self.layer setBorderColor:BPKColor.gray50.CGColor];
+            }
+            [self.layer setBorderWidth:2];
             break;
         }
         case BPKButtonStyleFeatured: {
-            _backgroundView.gradient = [self gradientWithTopColor:BPKColor.pink500 bottomColor:BPKColor.pink600];
+            if (self.isHighlighted) {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.pink600 bottomColor:BPKColor.pink600];
+            } else if (self.isSelected) {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.pink700 bottomColor:BPKColor.pink700];
+            } else {
+                _backgroundView.gradient = [self gradientWithTopColor:BPKColor.pink500 bottomColor:BPKColor.pink600];
+            }
             [self setTintColor:BPKColor.white];
             [self setTitleColor:BPKColor.white forState:UIControlStateNormal];
-            self.layer.borderColor = BPKColor.clear.CGColor;
-            self.layer.borderWidth = 0;
+            [self setTitleColor:BPKColor.white forState:UIControlStateHighlighted];
+            [self setTitleColor:BPKColor.white forState:UIControlStateSelected];
+            [self.layer setBorderColor:BPKColor.clear.CGColor];
+            [self.layer setBorderWidth:0];
             break;
         }
         default: {
@@ -221,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
     }
     
-    if (!self.enabled) {
+    if (!self.isEnabled) {
         _backgroundView.gradient = [self gradientWithTopColor:BPKColor.gray100 bottomColor:BPKColor.gray100];
         [self setTintColor:BPKColor.gray300];
         [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
@@ -231,6 +296,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     [self setNeedsLayout];
 }
+
+#pragma mark - Helpers
 
 - (BPKGradient *)gradientWithTopColor:(UIColor *)top bottomColor:(UIColor *)bottom {
     NSParameterAssert(top);
