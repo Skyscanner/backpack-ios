@@ -290,7 +290,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.layer setBorderColor:color.CGColor];
         [self.layer setBorderWidth:4];
     } else {
-        [self.layer setBorderColor:BPKColor.gray50.CGColor];
+        [self.layer setBorderColor:BPKColor.gray100.CGColor];
         [self.layer setBorderWidth:2];
     }
 }
