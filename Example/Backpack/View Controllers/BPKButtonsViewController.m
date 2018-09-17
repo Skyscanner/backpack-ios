@@ -38,13 +38,13 @@
     for (BPKButton *button in self.defaultButtons) {
         [button setImagePosition:BPKButtonImagePositionLeft];
         [button setSize:BPKButtonSizeDefault];
-        [button setStlye:self.style];
+        [button setStyle:self.style];
     }
     
     for (BPKButton *button in self.largeButtons) {
         [button setImagePosition:BPKButtonImagePositionLeft];
         [button setSize:BPKButtonSizeLarge];
-        [button setStlye:self.style];
+        [button setStyle:self.style];
     }
     
     for (BPKButton *button in self.rightImageButtons) {

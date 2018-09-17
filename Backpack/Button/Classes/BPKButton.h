@@ -86,7 +86,7 @@ IBInspectable @property(nonatomic) BPKButtonSize size;
  *
  * @see BPKButtonStyle
  */
-IBInspectable @property(nonatomic) BPKButtonStyle stlye;
+IBInspectable @property(nonatomic) BPKButtonStyle style;
 
 /**
  * Image position on the button compared to the title label

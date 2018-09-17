@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     self.size = size;
-    self.stlye = style;
+    self.style = style;
     self.imagePosition = imagePosition;
 }
 
@@ -98,8 +98,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self didChangeProperty];
 }
 
-- (void)setStlye:(BPKButtonStyle)stlye {
-    _stlye = stlye;
+- (void)setStyle:(BPKButtonStyle)style {
+    _style = style;
     [self didChangeProperty];
 }
 
@@ -216,7 +216,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setColors {
     if (self.isEnabled) {
-        switch (self.stlye) {
+        switch (self.style) {
             case BPKButtonStylePrimary: {
                 [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.green500
                                                           gradientOnBottom:BPKColor.green600
@@ -238,7 +238,7 @@ NS_ASSUME_NONNULL_BEGIN
                 break;
             }
             default: {
-                NSAssert(NO, @"Invalid style value %d", (int)self.stlye);
+                NSAssert(NO, @"Invalid style value %d", (int)self.style);
                 break;
             }
         }
