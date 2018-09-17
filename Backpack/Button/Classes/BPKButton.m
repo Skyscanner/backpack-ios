@@ -15,12 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKButton.h"
-#import <Backpack/Color.h>
+#import <Backpack/BPKFont.h>
+#import <Backpack/BPKColor.h>
 #import <Backpack/BPKGradientLayer.h>
 #import <Backpack/BPKGradient.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface BPKButton()
 
 @property(readonly, nonatomic) BPKGradientLayer *gradientLayer;
@@ -53,7 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style imagePosition:(BPKButtonImagePosition)imagePosition {
+- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style
+        imagePosition:(BPKButtonImagePosition)imagePosition {
     [self setClipsToBounds:YES];
     [self setAdjustsImageWhenHighlighted:NO];
     [self setAdjustsImageWhenDisabled:NO];
@@ -129,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setCornerRadius {
-    CGFloat radius = CGRectGetHeight(self.bounds) / 2.0;
+    CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
     [self.layer setCornerRadius:radius];
 }
 
@@ -157,14 +161,17 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat x = self.horizontalPadding;
     for (UIView *view in views) {
         CGSize size = view.intrinsicContentSize;
-        [view setFrame:CGRectMake(x, (height - size.height) / 2.0, size.width, size.height)];
+        [view setFrame:CGRectMake(x, (height - size.height) / 2.0f, size.width, size.height)];
         x = CGRectGetMaxX(view.frame) + self.spacing;
     }
 }
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake(self.titleLabel.intrinsicContentSize.width + self.spacing + self.imageView.intrinsicContentSize.width + 2 * self.horizontalPadding,
-                      MAX(self.titleLabel.intrinsicContentSize.height, self.imageView.intrinsicContentSize.height) + 2 * self.verticalPadding);
+    CGSize titleSize = self.titleLabel.intrinsicContentSize;
+    CGSize imageSize = self.imageView.intrinsicContentSize;
+    CGFloat width = self.horizontalPadding + titleSize.width + self.spacing + imageSize.width + self.horizontalPadding;
+    CGFloat height = self.verticalPadding + MAX(titleSize.height, imageSize.height) + self.verticalPadding;
+    return CGSizeMake(width, height);
 }
 
 #pragma mark Spacing
@@ -172,15 +179,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)spacing {
     BOOL hasImage = self.imageView.image != nil;
     BOOL hasText = self.titleLabel.text.length > 0;
-    return hasImage && hasText ? 8 : 0;
+    return hasImage && hasText ? 8.0f : 0.0f;
 }
 
 - (CGFloat)horizontalPadding {
     BOOL hasText = self.titleLabel.text.length > 0;
-    CGFloat multiplier = hasText ? 1.5 : 1;
+    CGFloat multiplier = hasText ? 1.5f : 1.0f;
     switch (self.size) {
-        case BPKButtonSizeDefault: return 8 * multiplier;
-        case BPKButtonSizeLarge: return 14 * multiplier;
+        case BPKButtonSizeDefault: return 8.0f * multiplier;
+        case BPKButtonSizeLarge: return 14.0f * multiplier;
         default: {
             NSAssert(NO, @"Invalid size %d", (int)self.size);
             break;
@@ -190,8 +197,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)verticalPadding {
     switch (self.size) {
-        case BPKButtonSizeDefault: return 8;
-        case BPKButtonSizeLarge: return 14;
+        case BPKButtonSizeDefault: return 8.0f;
+        case BPKButtonSizeLarge: return 14.0f;
         default: {
             NSAssert(NO, @"Invalid size %d", (int)self.size);
             break;
@@ -211,7 +218,9 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.isEnabled) {
         switch (self.stlye) {
             case BPKButtonStylePrimary: {
-                [self setFilledStyleWithNormalBackgroundColorGradientTop:BPKColor.green500 gradientBottom:BPKColor.green600 selectedColor:BPKColor.green700];
+                [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.green500
+                                                          gradientOnBottom:BPKColor.green600
+                                                             selectedColor:BPKColor.green700];
                 break;
             }
             case BPKButtonStyleSecondary: {
@@ -223,7 +232,9 @@ NS_ASSUME_NONNULL_BEGIN
                 break;
             }
             case BPKButtonStyleFeatured: {
-                [self setFilledStyleWithNormalBackgroundColorGradientTop:BPKColor.pink500 gradientBottom:BPKColor.pink600 selectedColor:BPKColor.pink700];
+                [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.pink500
+                                                          gradientOnBottom:BPKColor.pink600
+                                                             selectedColor:BPKColor.pink700];
                 break;
             }
             default: {
@@ -265,7 +276,9 @@ NS_ASSUME_NONNULL_BEGIN
                                       endPoint:[BPKGradient endPointForDirection:direction]];
 }
 
-- (void)setFilledStyleWithNormalBackgroundColorGradientTop:(UIColor *)normalColorTop gradientBottom:(UIColor *)normalColorBottom selectedColor:(UIColor *)selectedColor {
+- (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorTop
+                                            gradientOnBottom:(UIColor *)normalColorBottom
+                                               selectedColor:(UIColor *)selectedColor {
     if (self.isHighlighted) {
         self.gradient = [self gradientWithTopColor:normalColorBottom bottomColor:normalColorBottom];
     } else if (self.isSelected) {
