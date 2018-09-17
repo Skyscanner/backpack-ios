@@ -17,17 +17,17 @@
  */
 #import "BPKButton.h"
 #import <Backpack/Color.h>
-#import <Backpack/BPKGradientView.h>
+#import <Backpack/BPKGradientLayer.h>
 #import <Backpack/BPKGradient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton()
 
+@property(readonly, nonatomic) BPKGradientLayer *gradientLayer;
+
 @end
 
-@implementation BPKButton {
-    BPKGradientView *_backgroundView;
-}
+@implementation BPKButton
 
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     self = [super initWithFrame:CGRectZero];
@@ -59,10 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self setAdjustsImageWhenDisabled:NO];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
-    _backgroundView = [[BPKGradientView alloc] initWithGradient:[self gradientWithTopColor:BPKColor.clear bottomColor:BPKColor.clear]];
-    [_backgroundView setUserInteractionEnabled:NO];
-    [self insertSubview:_backgroundView atIndex:0];
-    
     self.size = size;
     self.stlye = style;
     self.imagePosition = imagePosition;
@@ -70,6 +66,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIButtonType)buttonType {
     return UIButtonTypeCustom;
+}
+
+#pragma mark - Gradient
+
++ (Class)layerClass {
+    return [BPKGradientLayer class];
+}
+
+- (BPKGradientLayer *)gradientLayer {
+    return (BPKGradientLayer *)self.layer;
+}
+
+- (void)setGradient:(BPKGradient *)gradient {
+    self.gradientLayer.gradient = gradient;
 }
 
 #pragma mark - Style setters
@@ -115,18 +125,12 @@ NS_ASSUME_NONNULL_BEGIN
     [super layoutSubviews];
     
     [self setCornerRadius];
-    [self layoutGradientBackground];
     [self layoutLabelAndImage];
 }
 
 - (void)setCornerRadius {
     CGFloat radius = CGRectGetHeight(self.bounds) / 2.0;
     [self.layer setCornerRadius:radius];
-}
-
-- (void)layoutGradientBackground {
-    [_backgroundView setFrame:self.bounds];
-    [self sendSubviewToBack:_backgroundView];
 }
 
 - (void)layoutLabelAndImage {
@@ -263,11 +267,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setFilledStyleWithNormalBackgroundColorGradientTop:(UIColor *)normalColorTop gradientBottom:(UIColor *)normalColorBottom selectedColor:(UIColor *)selectedColor {
     if (self.isHighlighted) {
-        _backgroundView.gradient = [self gradientWithTopColor:normalColorBottom bottomColor:normalColorBottom];
+        self.gradient = [self gradientWithTopColor:normalColorBottom bottomColor:normalColorBottom];
     } else if (self.isSelected) {
-        _backgroundView.gradient = [self gradientWithTopColor:selectedColor bottomColor:selectedColor];
+        self.gradient = [self gradientWithTopColor:selectedColor bottomColor:selectedColor];
     } else {
-        _backgroundView.gradient = [self gradientWithTopColor:normalColorTop bottomColor:normalColorBottom];
+        self.gradient = [self gradientWithTopColor:normalColorTop bottomColor:normalColorBottom];
     }
     [self setTintColor:BPKColor.white];
     [self setTitleColor:BPKColor.white forState:UIControlStateNormal];
@@ -278,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setBorderedStyleWithColor:(UIColor *)color {
-    _backgroundView.gradient = [self gradientWithTopColor:BPKColor.white bottomColor:BPKColor.white];
+    self.gradient = [self gradientWithTopColor:BPKColor.white bottomColor:BPKColor.white];
     [self setTintColor:color];
     [self setTitleColor:color forState:UIControlStateNormal];
     [self setTitleColor:color forState:UIControlStateHighlighted];
@@ -296,7 +300,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setDisabledStyle {
-    _backgroundView.gradient = [self gradientWithTopColor:BPKColor.gray100 bottomColor:BPKColor.gray100];
+    self.gradient = [self gradientWithTopColor:BPKColor.gray100 bottomColor:BPKColor.gray100];
     [self setTintColor:BPKColor.gray300];
     [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
     self.layer.borderColor = BPKColor.clear.CGColor;
