@@ -38,6 +38,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7El-aB-MgV" kind="show" id="hnE-iy-1VP"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ecR-F3-4Go" style="IBUITableViewCellStyleDefault" id="YgI-OY-lL2">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
@@ -421,6 +424,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mC-Kh-9NY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1697" y="-2367"/>
+        </scene>
+        <!--Colors-->
+        <scene sceneID="d4t-AN-NKR">
+            <objects>
+                <collectionViewController title="Colors" id="7El-aB-MgV" customClass="ColorsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rgx-iW-FF8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0tA-e1-dUZ">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="7El-aB-MgV" id="zdU-vn-GFB"/>
+                            <outlet property="delegate" destination="7El-aB-MgV" id="R41-Ab-Sk3"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dea-xt-Ajk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="-2507"/>
         </scene>
         <!--Badges-->
         <scene sceneID="9ur-QD-Aoq">
