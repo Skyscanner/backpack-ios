@@ -33,7 +33,7 @@ const PATHS = {
 
 const TYPES = new Set(['color', 'font', 'spacing', 'radii', 'shadow']);
 const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
-const VALID_SPACINGS = new Set(['sm', 'md', 'base', 'lg', 'xl', 'xxl']);
+const VALID_SPACINGS = new Set(['sm', 'md', 'base', 'lg', 'xl', 'xxl', 'none']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
   bold: 'UIFontWeightBold',

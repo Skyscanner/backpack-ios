@@ -49,4 +49,9 @@ extern CGFloat const BPKSpacingXl;
  */
 extern CGFloat const BPKSpacingXxl;
 
+/**
+ * No spacing.
+ */
+extern CGFloat const BPKSpacingNone;
+
 NS_ASSUME_NONNULL_END

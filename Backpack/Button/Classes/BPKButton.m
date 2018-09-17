@@ -20,6 +20,7 @@
 #import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -173,19 +174,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)spacing {
     BOOL hasImage = self.imageView.image != nil;
     BOOL hasText = self.titleLabel.text.length > 0;
-    return hasImage && hasText ? 8.0f : 0.0f;
+    return hasImage && hasText ? BPKSpacingMd : BPKSpacingNone;
 }
 
 - (CGFloat)horizontalPadding {
     if (self.style == BPKButtonStyleLink) {
-        return 0.0f;
+        return BPKSpacingNone;
     }
     
     BOOL hasText = self.titleLabel.text.length > 0;
-    CGFloat multiplier = hasText ? 1.5f : 1.0f;
     switch (self.size) {
-        case BPKButtonSizeDefault: return 8.0f * multiplier;
-        case BPKButtonSizeLarge: return 14.0f * multiplier;
+        case BPKButtonSizeDefault: return hasText ? BPKSpacingMd + BPKSpacingSm : BPKSpacingMd;
+        case BPKButtonSizeLarge: return hasText ? BPKSpacingBase + BPKSpacingMd : BPKSpacingBase;
         default: {
             NSAssert(NO, @"Invalid size %d", (int)self.size);
             break;
@@ -195,12 +195,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)verticalPadding {
     if (self.style == BPKButtonStyleLink) {
-        return 0.0f;
+        return BPKSpacingNone;
     }
     
     switch (self.size) {
-        case BPKButtonSizeDefault: return 8.0f;
-        case BPKButtonSizeLarge: return 14.0f;
+        case BPKButtonSizeDefault: return BPKSpacingMd;
+        case BPKButtonSizeLarge: return BPKSpacingBase;
         default: {
             NSAssert(NO, @"Invalid size %d", (int)self.size);
             break;

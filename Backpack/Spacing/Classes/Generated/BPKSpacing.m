@@ -30,3 +30,4 @@ CGFloat const BPKSpacingXl = 32;
 
 CGFloat const BPKSpacingXxl = 40;
 
+CGFloat const BPKSpacingNone = 0;

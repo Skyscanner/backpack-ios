@@ -18,7 +18,7 @@ PODS:
   - Backpack/Button (0.9.0):
     - Backpack/Color
     - Backpack/Font
-    - Backpack/Radii
+    - Backpack/Gradient
     - Backpack/Spacing
   - Backpack/Color (0.9.0)
   - Backpack/Font (0.9.0)
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 77a7882fcaa7bc81a5300016e816d662e2cad690
+  Backpack: cf3abf483fc6b1ef29c882434965ca7c4e938080
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
