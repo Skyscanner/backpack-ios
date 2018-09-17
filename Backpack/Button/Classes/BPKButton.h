@@ -39,19 +39,23 @@ typedef NS_ENUM(NSUInteger, BPKButtonImagePosition) {
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKButton` is a subclass of `UIButton` which uses the Skyscanner style.
+ * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
 IB_DESIGNABLE @interface BPKButton: UIButton
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("initWithFrame: is not available, use initWithSize:style:")));
+- (instancetype)init __attribute__((unavailable("init not available, use initWithSize:style:")));
++ (instancetype)new __attribute__((unavailable("new not available, use alloc + initWithSize:style:")));
 
 /**
- * Create a `BPKButton` with a specific BPKFont style.
+ * Create a `BPKButton` with a specific size and style.
  * 
  * @param size Size to be used by the button.
  * @param style Style of the button.
- * @see BPKFontStyle
  */
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style NS_DESIGNATED_INITIALIZER;
+
+
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 IBInspectable @property(nonatomic) BPKButtonSize size;
