@@ -6,14 +6,14 @@
 //  Copyright © 2018. Skyscanner. All rights reserved.
 //
 
-#import "BPKButtonSelecorViewController.h"
+#import "BPKButtonSelectorViewController.h"
 #import "BPKButtonsViewController.h"
 
-@interface BPKButtonSelecorViewController ()
+@interface BPKButtonSelectorViewController ()
 
 @end
 
-@implementation BPKButtonSelecorViewController
+@implementation BPKButtonSelectorViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *cell = sender;
