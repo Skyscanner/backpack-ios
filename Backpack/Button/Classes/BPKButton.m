@@ -17,10 +17,9 @@
  */
 
 #import "BPKButton.h"
-#import <Backpack/BPKFont.h>
-#import <Backpack/BPKColor.h>
-#import <Backpack/BPKGradientLayer.h>
-#import <Backpack/BPKGradient.h>
+#import <Backpack/Font.h>
+#import <Backpack/Color.h>
+#import <Backpack/Gradient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

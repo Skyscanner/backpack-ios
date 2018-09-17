@@ -98,7 +98,7 @@ Pod::Spec.new do |s|
       ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
       ss.dependency 'Backpack/Color'
       ss.dependency 'Backpack/Spacing'
-      ss.dependency 'Backpack/Radii'
+      ss.dependency 'Backpack/Gradient'
       ss.dependency 'Backpack/Font'
   end
 

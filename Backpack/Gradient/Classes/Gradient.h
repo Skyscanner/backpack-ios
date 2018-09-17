@@ -20,5 +20,6 @@
     #define __BACKPACK_GRADIENT__
 
     #import "BPKGradient.h"
+    #import "BPKGradientLayer.h"
     #import "BPKGradientView.h"
 #endif
