@@ -82,10 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
     return (BPKGradientLayer *)self.layer;
 }
 
-- (void)setGradient:(BPKGradient *)gradient {
-    self.gradientLayer.gradient = gradient;
-}
-
 #pragma mark - Style setters
 
 - (void)setSize:(BPKButtonSize)size {
@@ -138,7 +134,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)layoutLabelAndImage {
-    
     switch (self.imagePosition) {
         case BPKButtonImagePositionLeft: {
             [self layoutViewsNextToEachOther:@[self.imageView, self.titleLabel]];
@@ -211,6 +206,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didChangeProperty {
     [self setColors];
     [self setFont];
+    [self setNeedsDisplay];
     [self setNeedsLayout];
 }
 
@@ -266,6 +262,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Helpers
 
+- (BPKGradient *)gradientWithSingleColor:(UIColor *)color {
+    NSParameterAssert(color);
+    
+    return [self gradientWithTopColor:color bottomColor:color];
+}
+
 - (BPKGradient *)gradientWithTopColor:(UIColor *)top bottomColor:(UIColor *)bottom {
     NSParameterAssert(top);
     NSParameterAssert(bottom);
@@ -276,44 +278,40 @@ NS_ASSUME_NONNULL_BEGIN
                                       endPoint:[BPKGradient endPointForDirection:direction]];
 }
 
-- (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorTop
-                                            gradientOnBottom:(UIColor *)normalColorBottom
+- (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorOnTop
+                                            gradientOnBottom:(UIColor *)normalColorOnBottom
                                                selectedColor:(UIColor *)selectedColor {
     if (self.isHighlighted) {
-        self.gradient = [self gradientWithTopColor:normalColorBottom bottomColor:normalColorBottom];
+        self.gradientLayer.gradient = [self gradientWithSingleColor:normalColorOnBottom];
     } else if (self.isSelected) {
-        self.gradient = [self gradientWithTopColor:selectedColor bottomColor:selectedColor];
+        self.gradientLayer.gradient = [self gradientWithSingleColor:selectedColor];
     } else {
-        self.gradient = [self gradientWithTopColor:normalColorTop bottomColor:normalColorBottom];
+        self.gradientLayer.gradient = [self gradientWithTopColor:normalColorOnTop bottomColor:normalColorOnBottom];
     }
-    [self setTintColor:BPKColor.white];
-    [self setTitleColor:BPKColor.white forState:UIControlStateNormal];
-    [self setTitleColor:BPKColor.white forState:UIControlStateHighlighted];
-    [self setTitleColor:BPKColor.white forState:UIControlStateSelected];
+    [self setContentColor:BPKColor.white];
+    
     [self.layer setBorderColor:BPKColor.clear.CGColor];
     [self.layer setBorderWidth:0];
 }
 
 - (void)setBorderedStyleWithColor:(UIColor *)color {
-    self.gradient = [self gradientWithTopColor:BPKColor.white bottomColor:BPKColor.white];
+    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.white];
+    [self setContentColor:color];
+    
+    UIColor *borderColor = self.isHighlighted || self.isSelected ? color : BPKColor.gray100;
+    [self.layer setBorderColor:borderColor.CGColor];
+    [self.layer setBorderWidth:self.isSelected ? 4 : 2];
+}
+
+- (void)setContentColor:(UIColor *)color {
     [self setTintColor:color];
     [self setTitleColor:color forState:UIControlStateNormal];
     [self setTitleColor:color forState:UIControlStateHighlighted];
     [self setTitleColor:color forState:UIControlStateSelected];
-    if (self.isHighlighted) {
-        [self.layer setBorderColor:color.CGColor];
-        [self.layer setBorderWidth:2];
-    } else if (self.isSelected) {
-        [self.layer setBorderColor:color.CGColor];
-        [self.layer setBorderWidth:4];
-    } else {
-        [self.layer setBorderColor:BPKColor.gray100.CGColor];
-        [self.layer setBorderWidth:2];
-    }
 }
 
 - (void)setDisabledStyle {
-    self.gradient = [self gradientWithTopColor:BPKColor.gray100 bottomColor:BPKColor.gray100];
+    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.gray100];
     [self setTintColor:BPKColor.gray300];
     [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
     self.layer.borderColor = BPKColor.clear.CGColor;
