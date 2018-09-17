@@ -31,6 +31,9 @@ install:
 before_script: '[ "$MAIN_STAGE" = true ] && greenkeeper-lockfile-update || true'
 script:
   - npm run build
+  - rake "docs['./docs/versions/$TRAVIS_TAG']"
+  - echo "<!DOCTYPE html> <html> <script type=\"text/javascript\"> window.location = \"/ios/versions/latest\"; </script> </html>" > ./docs/index.html
+  - mkdir ./docs/versions/latest && echo "<!DOCTYPE html> <html> <script type=\"text/javascript\"> window.location = \"/ios/versions/$TRAVIS_TAG\"; </script> </html>" > ./docs/versions/latest/index.html
   - '[ "$MAIN_STAGE" = true ] && ./scripts/check-pristine-state package-lock.json || true'
   - (cd Example && bundle exec rake ci)
 after_script: '[ "$MAIN_STAGE" = true ] && greenkeeper-lockfile-upload || true'
@@ -38,6 +41,22 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $IOS_DOCS_DEPLOY_TOKEN
+  on:
+    branch: master
+    tags: true
+  local_dir: docs
+  skip_cleanup: true
+  detect_encoding: true
+  repo: backpack/ios
+  target-branch: master
+  keep-history: true
+  verbose: true
+
 env:
   global:
     - secure: qKO1dhfy5WsvI1bIeTLA+V89DoYd2HzbNJ72mK71FF/vEewfDOyxDA7TbBc4ogwpKZv8YZdIahDZe+BdR12ICm5h5J3sV7uqVAm1TnJr79k+G/YfrNtevAxfv1Ja9oYed7brqz8MkxtzM4An8o9ncmV1T9fDxJExyDvWGF6YkN46QXuz7wBg7jrRZ/P/WAvrdYXtisXjhMQjWQOzgF/6DKhexGHirrE/IE26AmJA3akSbYZn1sQSxQXyzX4cfabewHODEjxtHWWQr97yYvmKY2bCRbFN+IxPY7/wFCjKv9IKePKs4tajlwsj7gknxJC7PqdJOqjSGSFvbm98WJ66dFKzZbQpYaGz3v87w6EmcQp7xaKjmcqThDGHtKSPLtppKedFki0wAkZSQyE+vnqVV2eCpY8JLqweoPIaXw3eHDU7Q/4xqSXzb7sMCEu3l4W2DQ/ZanRQkQwlwslleAK+QHyFfnOkGYJWr2EoB3kLqIbgyvEn8+LOH6GhFOR5Z9Rh2REAqCXgWCEMRaIycDigJS+9OCxZlpP740EtqCQsASKx/cEoz8lbEGA6bQWGyjbGE5XsSDx6gMUszIDMK+e48KqKatLosMkPDM1hyGVwxyRf8bh7Ske8NIfJ0Whw667Qo/5UWMtC9OiG9NZ+iSLbur9Gtq/X7MEZDaM6Y5BnB2w=
