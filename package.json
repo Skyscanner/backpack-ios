@@ -11,7 +11,8 @@
     "preinstall": "npx ensure-node-env",
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp",
-    "prettier": "prettier --config .prettierrc --write \"**/*.js\""
+    "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
+    "gulp": "gulp"
   },
   "lint-staged": {
     "*.js": [
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/Skyscanner/backpack-ios#readme",
   "devDependencies": {
+    "bpk-svgs": "^5.19.0",
     "bpk-tokens": "^27.0.4",
     "del": "^3.0.0",
     "eslint-config-skyscanner-with-prettier": "^0.3.0",

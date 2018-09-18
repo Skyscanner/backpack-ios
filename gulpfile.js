@@ -292,5 +292,11 @@ gulp.task('template', () => {
   return merge2(streams).pipe(gulp.dest(PATHS.output));
 });
 
-gulp.task('default', ['template']);
+gulp.task('copy-icon-font', () => {
+  gulp
+    .src('node_modules/bpk-svgs/dist/font/{BpkIcon.ttf,iconMapping.json}')
+    .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
+});
+
+gulp.task('default', ['template', 'copy-icon-font']);
 gulp.task('clean', () => del([PATHS.output], { force: true }));
