@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  */
 NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
 
+@property(class, nonatomic, readonly, nullable) NSDictionary<NSString*, NSString*> *iconMapping;
+
 /**
  * Render a given icon as a UIImage.
  *
@@ -44,11 +46,11 @@ NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
 + (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
 
 /**
- * Calculates the concrete point size a given BPKIconSize
+ * Calculates the concrete point size a given BPKIconSize.
  *
  * @param size The size for which to calculate the concrete size.
  * @return The concerete point size for the given size.
  */
-+ (CGSize)concreteSizeForIconSize:(BPKIconSize)size;
++ (CGSize)concreteSizeForIconSize:(BPKIconSize)size NS_SWIFT_NAME(concreteSize(forSize:));
 @end
 NS_ASSUME_NONNULL_END

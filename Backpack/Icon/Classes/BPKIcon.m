@@ -26,7 +26,6 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
 @property(class, nonatomic, readonly) UIFont *iconFont;
 @property(class, nonatomic, readonly) NSCache<NSString *, UIImage *> *imageCache;
 @property(class, nonatomic, readonly) NSParagraphStyle *paragraphStyle;
-@property(class, nonatomic, readonly, nullable) NSDictionary *iconMapping;
 
 + (NSBundle *)iconBundle;
 + (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size;

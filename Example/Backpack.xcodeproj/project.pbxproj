@@ -25,13 +25,15 @@
 		60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60127A712021B6BC00703622 /* BPKSpacingTest.m */; };
 		6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */; };
 		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
+		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
+		6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */; };
 		60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
-		D2B8A01B2147FF6A002290DE /* ColorPreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* ColorPreviewCollectionViewHeader.swift */; };
+		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D613CE542006795400D60CC4 /* BPKColorTest.m */; };
 		D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */; };
@@ -106,6 +108,8 @@
 		6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiTest.m; sourceTree = "<group>"; };
 		6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKRadiiViewController.h; sourceTree = "<group>"; };
 		6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiViewController.m; sourceTree = "<group>"; };
+		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
+		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		60D302CD201B77B9006DBC18 /* BPKSpacingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSpacingsViewController.h; sourceTree = "<group>"; };
 		60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingsViewController.m; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		D2B8A01A2147FF6A002290DE /* ColorPreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
+		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D613CE542006795400D60CC4 /* BPKColorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKColorTest.m; sourceTree = "<group>"; };
 		D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKShadowViewController.h; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */,
+				6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */,
 			);
 			path = "CollectionView Cells";
 			sourceTree = "<group>";
@@ -326,7 +331,7 @@
 		D2B8A0192147FF49002290DE /* CollectionView Headers */ = {
 			isa = PBXGroup;
 			children = (
-				D2B8A01A2147FF6A002290DE /* ColorPreviewCollectionViewHeader.swift */,
+				D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */,
 			);
 			path = "CollectionView Headers";
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */,
 				3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */,
 				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
+				6055821621523A1300BF9F3E /* IconsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -602,16 +608,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
 				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
-				D2B8A01B2147FF6A002290DE /* ColorPreviewCollectionViewHeader.swift in Sources */,
+				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
+				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
