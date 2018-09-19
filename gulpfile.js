@@ -55,6 +55,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'Xl', legibleName: 'extra large' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
+  { identifier: 'None', legibleName: 'none' },
 ];
 
 const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));

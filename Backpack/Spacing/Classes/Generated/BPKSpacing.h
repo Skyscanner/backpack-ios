@@ -35,6 +35,11 @@ extern CGFloat const BPKSpacingLg;
 extern CGFloat const BPKSpacingMd;
 
 /**
+ * The Skyscanner none shadow.
+ */
+extern CGFloat const BPKSpacingNone;
+
+/**
  * The Skyscanner small shadow.
  */
 extern CGFloat const BPKSpacingSm;
@@ -48,10 +53,5 @@ extern CGFloat const BPKSpacingXl;
  * The Skyscanner extra extra large shadow.
  */
 extern CGFloat const BPKSpacingXxl;
-
-/**
- * No spacing.
- */
-extern CGFloat const BPKSpacingNone;
 
 NS_ASSUME_NONNULL_END
