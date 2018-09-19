@@ -34,9 +34,19 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
 
 /**
+ * Render a given icon as a UIImage for use as a template, i.e. with
+ * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @param size The size to render the icon in.
+ * @return The rendered icon as a `UIImage` in template mode.
+ */
++ (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
+
+/**
  * Render a given icon as a UIImage.
  *
- * @param name The name of the icon e.g. "flight"
+ * @param name The name of the icon e.g. "flight".
  * @param color The color to render the icon in.
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.

@@ -45,6 +45,16 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+
+    if (self) {
+        [self setupWithStyle:BPKFontStyleTextBase];
+    }
+
+    return self;
+}
+
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     _fontStyle = fontStyle;
     UIFont *font = [BPKFont fontWithStyle:fontStyle];

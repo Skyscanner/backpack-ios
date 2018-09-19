@@ -50,6 +50,7 @@
 		D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F12124230000154D92 /* BPKPanelTest.m */; };
 		D6CE74F721242D8A00154D92 /* BPKBadgesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F621242D8A00154D92 /* BPKBadgesViewController.m */; };
 		D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F821243A4500154D92 /* BPKBadgeTest.m */; };
+		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */; };
 		D6D81D54213FEE800013BB96 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		D6D81D55213FEE800013BB96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -139,6 +140,7 @@
 		D6CE74F521242D8A00154D92 /* BPKBadgesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKBadgesViewController.h; sourceTree = "<group>"; };
 		D6CE74F621242D8A00154D92 /* BPKBadgesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgesViewController.m; sourceTree = "<group>"; };
 		D6CE74F821243A4500154D92 /* BPKBadgeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeTest.m; sourceTree = "<group>"; };
+		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKLabelSnapshotTest.m; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				6003F59C195388D20070C39A /* BPKAppDelegate.h */,
 				6003F59D195388D20070C39A /* BPKAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -483,6 +486,7 @@
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
+				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

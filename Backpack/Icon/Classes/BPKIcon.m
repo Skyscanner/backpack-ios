@@ -40,6 +40,9 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
 @dynamic iconMapping;
 
 + (void)load {
+#ifdef TARGET_INTERFACE_BUILDER
+    // This loading of the icon font breaks IB previews
+#else
     NSBundle *bundle = [self iconBundle];
 
     NSURL *url = [bundle URLForResource:@"BpkIcon" withExtension:@"ttf"];
@@ -68,6 +71,13 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
     }
 
     CFRelease(provider);
+#endif
+}
+
++ (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
+    UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
+
+    return [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 + (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {

@@ -78,6 +78,26 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Font'
   end
 
+  s.subspec 'Button' do |ss|
+      ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Spacing'
+      ss.dependency 'Backpack/Gradient'
+      ss.dependency 'Backpack/Font'
+      ss.dependency 'Backpack/Label'
+      ss.dependency 'Backpack/RTLSupport'
+  end
+
+  s.subspec 'Icon' do |ss|
+    ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'
+    ss.ios.resource_bundle = {
+      'Icon' => 'Backpack/Icon/Assets/*'
+    }
+    ss.frameworks = 'CoreText'
+  end
+
   s.subspec 'Label' do |ss|
     ss.source_files = 'Backpack/Label/Classes/**/*.{h,m}'
     ss.public_header_files = 'Backpack/Label/Classes/**/*.h'
@@ -92,23 +112,10 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
   end
-  
-  s.subspec 'Button' do |ss|
-      ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
-      ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
-      ss.dependency 'Backpack/Color'
-      ss.dependency 'Backpack/Spacing'
-      ss.dependency 'Backpack/Gradient'
-      ss.dependency 'Backpack/Font'
-  end
 
-  s.subspec 'Icon' do |ss|
-    ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'
-    ss.ios.resource_bundle = {
-      'Icon' => 'Backpack/Icon/Assets/*'
-    }
-    ss.frameworks = 'CoreText'
+  s.subspec 'RTLSupport' do |ss|
+    ss.source_files = 'Backpack/RTLSupport/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/RTLSupport/Classes/**/*.h'
   end
 
   s.frameworks = 'UIKit', 'Foundation'

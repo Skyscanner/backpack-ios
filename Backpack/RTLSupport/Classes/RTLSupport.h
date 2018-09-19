@@ -15,12 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BACKPACK_RTL_SUPPORT__
+#define __BACKPACK_RTL_SUPPORT__
 
-#import <UIKit/UIKit.h>
-#import <Backpack/Button.h>
+#import "BPKRTLSupport.h"
+#endif
 
-@interface BPKButtonsViewController : UIViewController
-
-@property (nonatomic) BPKButtonStyle style;
-
-@end
