@@ -15,12 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #import <UIKit/UIKit.h>
-#import <Backpack/Button.h>
 
-@interface BPKButtonsViewController : UIViewController
-
-@property (nonatomic) BPKButtonStyle style;
-
+NS_ASSUME_NONNULL_BEGIN
+@interface BPKRTLSupport: NSObject
++ (BOOL)viewIsRTL:(UIView *)view;
++ (UIEdgeInsets)makeRTLAwareEdgeInsetsForView:(UIView *)view
+                                          top:(CGFloat)top
+                                      leading:(CGFloat)leading
+                                       bottom:(CGFloat)bottom
+                                     trailing:(CGFloat)trailing;
 @end
+NS_ASSUME_NONNULL_END

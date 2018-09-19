@@ -18,12 +18,26 @@
 
 #import "BPKButtonsViewController.h"
 
+#import <Backpack/Icon.h>
+#import <Backpack/Color.h>
+
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
+@property (weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultIconOnlyButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
 
-@property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *defaultButtons;
-@property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *largeButtons;
-@property (nonatomic, strong) IBOutletCollection(BPKButton) NSArray<BPKButton *> *buttonsWithTrailingImagePosition;
+@property (weak, nonatomic) IBOutlet BPKButton *largeTextButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
 
+
+- (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
+@property (nonatomic, getter=isRTL, readonly) BOOL isRTL;
 @end
 
 @implementation BPKButtonsViewController
@@ -35,21 +49,42 @@
 }
 
 - (void)setupButtons {
-    for (BPKButton *button in self.defaultButtons) {
-        [button setImagePosition:BPKButtonImagePositionLeading];
-        [button setSize:BPKButtonSizeDefault];
-        [button setStyle:self.style];
-    }
-    
-    for (BPKButton *button in self.largeButtons) {
-        [button setImagePosition:BPKButtonImagePositionLeading];
-        [button setSize:BPKButtonSizeLarge];
-        [button setStyle:self.style];
-    }
-    
-    for (BPKButton *button in self.buttonsWithTrailingImagePosition) {
-        [button setImagePosition:BPKButtonImagePositionTrailing];
-    }
+    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall] : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+    [self setupButton:self.defaultTextButton image:nil title:@"Button"];
+    [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
+    [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
+    [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
+
+
+    UIImage *largeLongArrowIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeLarge];
+
+    [self setupButton:self.largeTextButton image:nil title:@"Button"];
+    [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];
+    [self setupButton:self.largeLeadingIconButton image:largeLongArrowIcon title:@"With icon"];
+    [self setupButton:self.largeIconOnlyButton image:largeLongArrowIcon title:nil];
+
+    self.defaultTextButton.style = self.style;
+    self.defaultDisabledButton.style = self.style;
+    self.defaultIconOnlyButton.style = self.style;
+    self.defaultTrailingIconButton.style = self.style;
+    self.defaultLeadingIconButton.style = self.style;
+
+    self.largeTextButton.style = self.style;
+    self.largeDisabledButton.style = self.style;
+    self.largeIconOnlyButton.style = self.style;
+    self.largeTrailingIconButton.style = self.style;
+    self.largeLeadingIconButton.style = self.style;
+}
+
+- (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
+    [button setImage:image];
+    [button setTitle:title];
+}
+
+- (BOOL)isRTL {
+    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
 }
 
 @end
+NS_ASSUME_NONNULL_END
+

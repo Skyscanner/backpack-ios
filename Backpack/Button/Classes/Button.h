@@ -18,8 +18,6 @@
 
 #ifndef __BACKPACK_BUTTON__
 #define __BACKPACK_BUTTON__
-
-#import "BPKButton.h"
-
+    #import "BPKButton.h"
 #endif
 

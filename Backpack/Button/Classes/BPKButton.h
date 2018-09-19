@@ -38,11 +38,19 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
 };
 
 /**
- * Enum values for specifying image position compared to the title label
+ * The position of the `imageView` with respect to the `titleLabel`
+ * in the button.
  */
 typedef NS_ENUM(NSUInteger, BPKButtonImagePosition) {
-    BPKButtonImagePositionTrailing = 0,
-    BPKButtonImagePositionLeading = 1,
+    /**
+     * The image positioned on the leading side of the label.
+     */
+    BPKButtonImagePositionLeading = 0,
+
+    /**
+     * The image positioned on the trailing side of the label.
+     */
+    BPKButtonImagePositionTrailing = 1,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -50,18 +58,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKButton: UIButton
+NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
 
-- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("initWithFrame: is not available, use initWithSize:style:")));
-- (instancetype)init __attribute__((unavailable("init not available, use initWithSize:style:")));
-+ (instancetype)new __attribute__((unavailable("new not available, use alloc + initWithSize:style:")));
+- (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
+- (void)setImage:(UIImage *_Nullable)image forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 
+- (void)setTitle:(NSString *_Nullable)title;
+- (void)setImage:(UIImage *_Nullable)image;
 /**
  * Creates a `BPKButton` with a specific size and style.
  *
  * @param size Size to be used by the button.
  * @param style Style of the button.
- * @return `BPKButton` instance
+ * @return `BPKButton` instance.
  * @see BPKButtonSize
  * @see BPKButtonStyle
  */
@@ -71,30 +80,40 @@ IB_DESIGNABLE @interface BPKButton: UIButton
  * Creates a `BPKButton` with a decoder (typically when creating form Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKButton` instance
+ * @return `BPKButton` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Create a `BPKButton` with a given frame.
+ *
+ * @param frame The initial frame of the button.
+ * @return `BPKButton` instance.
+ */
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
 
 /**
  * Size of the button
  *
  * @see BPKButtonSize
  */
-IBInspectable @property(nonatomic) BPKButtonSize size;
+@property(nonatomic) BPKButtonSize size;
 
 /**
  * Style of the button
  *
  * @see BPKButtonStyle
  */
-IBInspectable @property(nonatomic) BPKButtonStyle style;
+@property(nonatomic) BPKButtonStyle style;
 
 /**
- * Image position on the button compared to the title label
+ * Position of the image in the button. This has
+ * no effect for icon only buttons.
  *
  * @see BPKButtonImagePosition
  */
-IBInspectable @property(nonatomic) BPKButtonImagePosition imagePosition;
+@property(nonatomic) BPKButtonImagePosition imagePosition;
 
 @end
 
