@@ -33,7 +33,7 @@ const PATHS = {
 
 const TYPES = new Set(['color', 'font', 'spacing', 'radii', 'shadow']);
 const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
-const VALID_SPACINGS = new Set(['sm', 'md', 'base', 'lg', 'xl', 'xxl']);
+const VALID_SPACINGS = new Set(['none', 'sm', 'md', 'base', 'lg', 'xl', 'xxl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
   bold: 'UIFontWeightBold',
@@ -55,6 +55,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'Xl', legibleName: 'extra large' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
+  { identifier: 'None', legibleName: 'none' },
 ];
 
 const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
