@@ -1,16 +1,16 @@
 PODS:
-  - Backpack (0.9.0):
-    - Backpack/Badge (= 0.9.0)
-    - Backpack/Button (= 0.9.0)
-    - Backpack/Color (= 0.9.0)
-    - Backpack/Font (= 0.9.0)
-    - Backpack/Gradient (= 0.9.0)
-    - Backpack/Label (= 0.9.0)
-    - Backpack/Panel (= 0.9.0)
-    - Backpack/Radii (= 0.9.0)
-    - Backpack/Shadow (= 0.9.0)
-    - Backpack/Spacing (= 0.9.0)
-  - Backpack/Badge (0.9.0):
+  - Backpack (0.10.0):
+    - Backpack/Badge (= 0.10.0)
+    - Backpack/Color (= 0.10.0)
+    - Backpack/Font (= 0.10.0)
+    - Backpack/Gradient (= 0.10.0)
+    - Backpack/Icon (= 0.10.0)
+    - Backpack/Label (= 0.10.0)
+    - Backpack/Panel (= 0.10.0)
+    - Backpack/Radii (= 0.10.0)
+    - Backpack/Shadow (= 0.10.0)
+    - Backpack/Spacing (= 0.10.0)
+  - Backpack/Badge (0.10.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
@@ -23,17 +23,21 @@ PODS:
   - Backpack/Color (0.9.0)
   - Backpack/Font (0.9.0)
   - Backpack/Gradient (0.9.0):
+  - Backpack/Color (0.10.0)
+  - Backpack/Font (0.10.0)
+  - Backpack/Gradient (0.10.0):
     - Backpack/Color
-  - Backpack/Label (0.9.0):
+  - Backpack/Icon (0.10.0)
+  - Backpack/Label (0.10.0):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (0.9.0):
+  - Backpack/Panel (0.10.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (0.9.0)
-  - Backpack/Shadow (0.9.0)
-  - Backpack/Spacing (0.9.0)
+  - Backpack/Radii (0.10.0)
+  - Backpack/Shadow (0.10.0)
+  - Backpack/Spacing (0.10.0)
   - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
@@ -49,7 +53,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: cf3abf483fc6b1ef29c882434965ca7c4e938080
+  Backpack: 654e4ebddf584d435e310a62d9fae9129026bc1a
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67

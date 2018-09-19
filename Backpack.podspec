@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "0.9.0"
+  s.version          = "0.10.0"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
@@ -100,6 +100,15 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/Spacing'
       ss.dependency 'Backpack/Gradient'
       ss.dependency 'Backpack/Font'
+  end
+
+  s.subspec 'Icon' do |ss|
+    ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'
+    ss.ios.resource_bundle = {
+      'Icon' => 'Backpack/Icon/Assets/*'
+    }
+    ss.frameworks = 'CoreText'
   end
 
   s.frameworks = 'UIKit', 'Foundation'
