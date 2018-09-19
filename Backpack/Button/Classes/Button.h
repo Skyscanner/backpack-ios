@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+#ifndef __BACKPACK_BUTTON__
+#define __BACKPACK_BUTTON__
 
-    #import "BPKGradient.h"
-    #import "BPKGradientLayer.h"
-    #import "BPKGradientView.h"
+#import "BPKButton.h"
+
 #endif
+

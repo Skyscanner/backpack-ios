@@ -16,10 +16,11 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+#import <UIKit/UIKit.h>
+#import <Backpack/BPKButton.h>
 
-    #import "BPKGradient.h"
-    #import "BPKGradientLayer.h"
-    #import "BPKGradientView.h"
-#endif
+@interface BPKButtonsViewController : UIViewController
+
+@property (nonatomic) BPKButtonStyle style;
+
+@end
