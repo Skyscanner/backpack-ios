@@ -32,6 +32,10 @@ before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update;
 script:
   - npm run build
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
+  - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then mkdir -p ./docs/versions/$TRAVIS_TAG; fi'
+  - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then rake "docs[\"./docs/versions/$TRAVIS_TAG\"]"; fi'
+  - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then echo "<\!DOCTYPE html> <html> <meta http-equiv=\"refresh\" content=\"0;url=/ios/versions/latest\" /> </html>" > ./docs/index.html; fi'
+  - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then mkdir -p ./docs/versions/latest && echo "<\!DOCTYPE html> <html> <meta http-equiv=\"refresh\" content=\"0;url=/ios/versions/$TRAVIS_TAG\" /> </html>" > ./docs/versions/latest/index.html; fi'
   - (cd Example && bundle exec rake ci)
 after_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
 branches:
