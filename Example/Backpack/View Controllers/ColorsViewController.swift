@@ -27,11 +27,11 @@ class ColorsViewController: UICollectionViewController {
     fileprivate static var allColors = [("Primary colors", ColorsViewController.primaryColors), ("Secondary colors", ColorsViewController.secondaryColors), ("Grays", ColorsViewController.grayColors)]
     
     fileprivate static let cellIdentifier = "ColorPreviewCollectionViewCell"
-    fileprivate static let headerIdentifier = "ColorPreviewCollectionViewHeader"
+    fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
     
     override func viewDidLoad() {
         collectionView?.register(ColorPreviewCollectionViewCell.self, forCellWithReuseIdentifier: ColorsViewController.cellIdentifier)
-        collectionView?.register(ColorPreviewCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ColorsViewController.headerIdentifier)
+        collectionView?.register(PreviewCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ColorsViewController.headerIdentifier)
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -72,7 +72,7 @@ extension ColorsViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionElementKindSectionHeader) {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ColorsViewController.headerIdentifier, for: indexPath) as? ColorPreviewCollectionViewHeader else{
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ColorsViewController.headerIdentifier, for: indexPath) as? PreviewCollectionViewHeader else{
                 fatalError("Color View Headers are expected to be of type ColorPreviewCollectionViewHeader")
             }
             // Customize headerView here
@@ -89,6 +89,6 @@ extension ColorsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         let (sectionName, _) = ColorsViewController.allColors[section]
-        return ColorPreviewCollectionViewHeader.referenceSize(collectionView: collectionView, text: sectionName)
+        return PreviewCollectionViewHeader.referenceSize(collectionView: collectionView, text: sectionName)
     }
 }

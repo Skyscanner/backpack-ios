@@ -19,7 +19,7 @@
 import UIKit
 import Backpack
 
-class ColorPreviewCollectionViewHeader: UICollectionReusableView {
+class PreviewCollectionViewHeader: UICollectionReusableView {
     var name: String? {
         didSet {
             label.text = name
@@ -41,7 +41,7 @@ class ColorPreviewCollectionViewHeader: UICollectionReusableView {
     }
     
     public static func referenceSize(collectionView: UICollectionView, text: String) -> CGSize {
-        let mockLabel = Backpack.Label(fontStyle: BPKFontStyle.textLgEmphasized)
+        let mockLabel = Backpack.Label(fontStyle: .textLgEmphasized)
         mockLabel.text = text
         mockLabel.sizeToFit()
         
@@ -57,7 +57,6 @@ class ColorPreviewCollectionViewHeader: UICollectionReusableView {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: self.topAnchor, constant: BPKSpacingMd),
-            self.topAnchor.constraint(equalTo: label.topAnchor, constant: BPKSpacingSm)
         ])
     }
 }
