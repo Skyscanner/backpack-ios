@@ -31,7 +31,13 @@ install:
 before_script: '[ "$MAIN_STAGE" = true ] && greenkeeper-lockfile-update || true'
 script:
   - npm run build
+  - 'echo "$MAIN_STAGE"'
+  - 'echo "$TRAVIS_TAG"'
   - '[ "$MAIN_STAGE" = true ] && ./scripts/check-pristine-state package-lock.json || true'
+  - '[ "$MAIN_STAGE" = true ] && [ "$TRAVIS_TAG" ] && mkdir -p ./docs/versions/$TRAVIS_TAG'
+  - '[ "$MAIN_STAGE" = true ] && [ "$TRAVIS_TAG" ] && rake "docs[\"./docs/versions/$TRAVIS_TAG\"]"'
+  - '[ "$MAIN_STAGE" = true ] && [ "$TRAVIS_TAG" ] && echo "<!DOCTYPE html> <html> <script type=\"text/javascript\"> window.location = \"/ios/versions/latest\"; </script> </html>" > ./docs/index.html'
+  - '[ "$MAIN_STAGE" = true ] && [ "$TRAVIS_TAG" ] && mkdir -p ./docs/versions/latest && echo "<!DOCTYPE html> <html> <script type=\"text/javascript\"> window.location = \"/ios/versions/$TRAVIS_TAG\"; </script> </html>" > ./docs/versions/latest/index.html'
   - (cd Example && bundle exec rake ci)
 after_script: '[ "$MAIN_STAGE" = true ] && greenkeeper-lockfile-upload || true'
 branches:
