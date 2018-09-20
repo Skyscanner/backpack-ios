@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.11.0
+
+**Added:**
+- Backpack/Icon
+  - Added `iconMapping` property for an exhaustive list of available icon names.
+
 ## 0.10.0
 
 **Breaking:**
