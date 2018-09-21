@@ -1,41 +1,41 @@
 PODS:
-  - Backpack (0.11.6):
-    - Backpack/Badge (= 0.11.6)
-    - Backpack/Button (= 0.11.6)
-    - Backpack/Color (= 0.11.6)
-    - Backpack/Font (= 0.11.6)
-    - Backpack/Gradient (= 0.11.6)
-    - Backpack/Icon (= 0.11.6)
-    - Backpack/Label (= 0.11.6)
-    - Backpack/Panel (= 0.11.6)
-    - Backpack/Radii (= 0.11.6)
-    - Backpack/Shadow (= 0.11.6)
-    - Backpack/Spacing (= 0.11.6)
-  - Backpack/Badge (0.11.6):
+  - Backpack (0.11.7):
+    - Backpack/Badge (= 0.11.7)
+    - Backpack/Button (= 0.11.7)
+    - Backpack/Color (= 0.11.7)
+    - Backpack/Font (= 0.11.7)
+    - Backpack/Gradient (= 0.11.7)
+    - Backpack/Icon (= 0.11.7)
+    - Backpack/Label (= 0.11.7)
+    - Backpack/Panel (= 0.11.7)
+    - Backpack/Radii (= 0.11.7)
+    - Backpack/Shadow (= 0.11.7)
+    - Backpack/Spacing (= 0.11.7)
+  - Backpack/Badge (0.11.7):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Button (0.11.6):
+  - Backpack/Button (0.11.7):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Gradient
     - Backpack/Spacing
-  - Backpack/Color (0.11.6)
-  - Backpack/Font (0.11.6)
-  - Backpack/Gradient (0.11.6):
+  - Backpack/Color (0.11.7)
+  - Backpack/Font (0.11.7)
+  - Backpack/Gradient (0.11.7):
     - Backpack/Color
-  - Backpack/Icon (0.11.6)
-  - Backpack/Label (0.11.6):
+  - Backpack/Icon (0.11.7)
+  - Backpack/Label (0.11.7):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (0.11.6):
+  - Backpack/Panel (0.11.7):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (0.11.6)
-  - Backpack/Shadow (0.11.6)
-  - Backpack/Spacing (0.11.6)
+  - Backpack/Radii (0.11.7)
+  - Backpack/Shadow (0.11.7)
+  - Backpack/Spacing (0.11.7)
   - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
@@ -51,7 +51,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 1c47a8b8f84d2acb0afb94ecde8e40af1c4b0e7d
+  Backpack: b450ab2f1afd8d50658863e69c14c83e57d6f1eb
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
