@@ -1,41 +1,41 @@
 PODS:
-  - Backpack (0.11.10):
-    - Backpack/Badge (= 0.11.10)
-    - Backpack/Button (= 0.11.10)
-    - Backpack/Color (= 0.11.10)
-    - Backpack/Font (= 0.11.10)
-    - Backpack/Gradient (= 0.11.10)
-    - Backpack/Icon (= 0.11.10)
-    - Backpack/Label (= 0.11.10)
-    - Backpack/Panel (= 0.11.10)
-    - Backpack/Radii (= 0.11.10)
-    - Backpack/Shadow (= 0.11.10)
-    - Backpack/Spacing (= 0.11.10)
-  - Backpack/Badge (0.11.10):
+  - Backpack (0.11.11):
+    - Backpack/Badge (= 0.11.11)
+    - Backpack/Button (= 0.11.11)
+    - Backpack/Color (= 0.11.11)
+    - Backpack/Font (= 0.11.11)
+    - Backpack/Gradient (= 0.11.11)
+    - Backpack/Icon (= 0.11.11)
+    - Backpack/Label (= 0.11.11)
+    - Backpack/Panel (= 0.11.11)
+    - Backpack/Radii (= 0.11.11)
+    - Backpack/Shadow (= 0.11.11)
+    - Backpack/Spacing (= 0.11.11)
+  - Backpack/Badge (0.11.11):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Button (0.11.10):
+  - Backpack/Button (0.11.11):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Gradient
     - Backpack/Spacing
-  - Backpack/Color (0.11.10)
-  - Backpack/Font (0.11.10)
-  - Backpack/Gradient (0.11.10):
+  - Backpack/Color (0.11.11)
+  - Backpack/Font (0.11.11)
+  - Backpack/Gradient (0.11.11):
     - Backpack/Color
-  - Backpack/Icon (0.11.10)
-  - Backpack/Label (0.11.10):
+  - Backpack/Icon (0.11.11)
+  - Backpack/Label (0.11.11):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (0.11.10):
+  - Backpack/Panel (0.11.11):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (0.11.10)
-  - Backpack/Shadow (0.11.10)
-  - Backpack/Spacing (0.11.10)
+  - Backpack/Radii (0.11.11)
+  - Backpack/Shadow (0.11.11)
+  - Backpack/Spacing (0.11.11)
   - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
@@ -51,7 +51,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 5810228e72fe24c59d5c01184899d61afcb59667
+  Backpack: aaaabfc9f12cef12172755510ff688886c9c9f95
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
