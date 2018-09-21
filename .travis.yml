@@ -51,7 +51,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-    condition: $MAIN_STAGE
+    condition: $MAIN_STAGE=true
   local_dir: docs/
   skip_cleanup: true
   detect_encoding: true
