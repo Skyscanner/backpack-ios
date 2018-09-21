@@ -23,10 +23,6 @@ before_install:
   # alias so we specify the version directly.
   - nvm install 8.12.0
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
-  - 'echo "Travis tag: $TRAVIS_TAG"'
-  - 'echo "Travis branch: $TRAVIS_BRANCH"'
-  - 'echo "Travis commit: $TRAVIS_COMMIT"'
-  - 'echo "Travis commit message: $TRAVIS_COMMIT_MESSAGE"'
 install:
   - npm install
   - bundle install
