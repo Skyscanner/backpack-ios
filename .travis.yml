@@ -31,6 +31,7 @@ install:
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
 script:
   - npm run build
+  - 'echo "Travis tag: $TRAVIS_TAG"'
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then mkdir -p ./docs/versions/$TRAVIS_TAG; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then rake "docs[\"./docs/versions/$TRAVIS_TAG\"]"; fi'
