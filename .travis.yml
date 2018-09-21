@@ -53,8 +53,9 @@ deploy:
   skip_cleanup: true
   github_token: $IOS_DOCS_DEPLOY_TOKEN
   on:
-    branch: master
-    condition: $MAIN_STAGE && $TRAVIS_TAG # We could just use `tags: true`, but there are issues so best to avoid it https://github.com/travis-ci/travis-ci/issues/1670
+    tags: true
+    all_branches: true
+    condition: $MAIN_STAGE
   local_dir: docs/
   skip_cleanup: true
   detect_encoding: true
