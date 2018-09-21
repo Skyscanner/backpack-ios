@@ -2,6 +2,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.11.12
+
+**Fixed:**
+- Updated release process to fix docs deploys.
+
 ## 0.11.11
 
 **Fixed:**
