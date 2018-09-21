@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const {
+    promisify
+} = require("util");
+const {
+    exec
+} = require('child_process');
+const execAsync = promisify(exec);
+
+const [node, path, releaseTag, ...rest] = process.argv;
+
+async function buildDocs() {
+    fs.mkdirSync(`./docs`, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+
+    fs.mkdirSync(`./docs/versions`, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+
+    fs.mkdirSync(`./docs/versions/${releaseTag}`, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+
+    fs.mkdirSync(`./docs/versions/latest`, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+
+    fs.writeFile(`docs/index.html`, `<!DOCTYPE html> <html> <meta http-equiv="refresh" content="0;url=/ios/versions/latest" /> </html>`, { flag: 'w' }, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+    fs.writeFile(`docs/index.html`, `<!DOCTYPE html> <html> <meta http-equiv="refresh" content="0;url=/ios/versions/${releaseTag}" /> </html>`, { flag: 'w' }, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+    
+    await execAsync(`rake "docs['./docs/versions/${releaseTag}']"`, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+}
+
+buildDocs();
+
