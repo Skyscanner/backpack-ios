@@ -2,6 +2,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.11.15
+
+**Fixed:**
+- Update release process to cater for links from docs
+
 ## 0.11.14
 
 **Fixed:**

@@ -46,7 +46,9 @@ async function buildDocs() {
     <meta http-equiv="refresh" content="1;url=/ios/versions/latest" />
     <script type="text/javascript">
       const iosDocsPath = (window.location + '').split('ios/versions/latest');
-      window.location = \`/ios/versions/${releaseTag}\${iosDocsPath[1]}\`;
+      if (iosDocsPath.length > 1) {
+        window.location = \`/ios/versions/${releaseTag}\${iosDocsPath[1]}\`;
+      }
     </script>
   </html>
 `, { flag: 'w' }, function(err) {
