@@ -4,78 +4,8 @@
 
 ## 0.11.15
 
-**Fixed:**
-- Update release process to cater for links from docs
-
-## 0.11.14
-
-**Fixed:**
-- Update release process to cater for links from docs
-
-## 0.11.13
-
-**Fixed:**
-- Update release process to cater for links from docs
-
-## 0.11.12
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.11
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.10
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.9
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.8
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.7
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.6
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.5
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.4
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.3
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.2
-
-**Fixed:**
-- Updated release process to fix docs deploys.
-
-## 0.11.1
-
-**Fixed:**
-- Updated release process to fix docs deploys.
+**Added:**
+- Automated API docs publishing to https://backpack.github.io/ios
 
 ## 0.11.0
 
