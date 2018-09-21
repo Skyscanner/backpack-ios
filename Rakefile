@@ -48,7 +48,7 @@ end
 
 def install_pods_in_example_project()
   `(cd Example && bundle exec pod install)`
-  $?.exitstatus != 0
+  $?.exitstatus == 0
 end
 
 def git_working_tree_is_clean()
