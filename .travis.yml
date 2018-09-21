@@ -23,6 +23,7 @@ before_install:
   # alias so we specify the version directly.
   - nvm install 8.12.0
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
+  - 'echo "Travis tag: $TRAVIS_TAG"'
 install:
   - npm install
   - bundle install
@@ -31,7 +32,6 @@ install:
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
 script:
   - npm run build
-  - 'echo "Travis tag: $TRAVIS_TAG"'
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then mkdir -p ./docs/versions/$TRAVIS_TAG; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then rake "docs[\"./docs/versions/$TRAVIS_TAG\"]"; fi'
@@ -43,14 +43,16 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
+    - /^tag-.*$/
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $IOS_DOCS_DEPLOY_TOKEN
   on:
-    branch: master
-    condition: $MAIN_STAGE && $TRAVIS_TAG
+    tags: true
+    all_branches: true # Required for tags: true to take effect, due to issue https://github.com/travis-ci/travis-ci/issues/1670
+    condition: $MAIN_STAGE
   local_dir: docs/
   skip_cleanup: true
   detect_encoding: true
