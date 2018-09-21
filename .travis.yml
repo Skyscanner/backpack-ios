@@ -49,8 +49,7 @@ deploy:
   github_token: $IOS_DOCS_DEPLOY_TOKEN
   on:
     branch: master
-    tags: true
-    condition: $MAIN_STAGE
+    condition: $MAIN_STAGE && $TRAVIS_TAG
   local_dir: docs/
   skip_cleanup: true
   detect_encoding: true
