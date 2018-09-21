@@ -40,13 +40,40 @@ async function buildDocs() {
       }
     });
 
-    fs.writeFile(`docs/index.html`, `<!DOCTYPE html> <html> <meta http-equiv="refresh" content="0;url=/ios/versions/latest" /> </html>`, { flag: 'w' }, function(err) {
+    fs.writeFile(`docs/404.html`,
+`<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="1;url=/ios/versions/latest" />
+    <script type="text/javascript">
+      const iosDocsPath = (window.location + '').split('ios/versions/latest');
+      window.location = \`/ios/versions/\${releaseTag}\${iosDocsPath[1]}\`;
+    </script>
+  </html>
+`, { flag: 'w' }, function(err) {
       if(err) {
           console.log(err);
           process.exit(1);
       }
     });
-    fs.writeFile(`docs/index.html`, `<!DOCTYPE html> <html> <meta http-equiv="refresh" content="0;url=/ios/versions/${releaseTag}" /> </html>`, { flag: 'w' }, function(err) {
+
+    fs.writeFile(`docs/index.html`,
+`<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="0;url=/ios/versions/latest" />
+  </html>
+`, { flag: 'w' }, function(err) {
+      if(err) {
+          console.log(err);
+          process.exit(1);
+      }
+    });
+
+    fs.writeFile(`docs/versions/latest/index.html`, 
+`<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="0;url=/ios/versions/${releaseTag}" />
+  </html>
+`, { flag: 'w' }, function(err) {
       if(err) {
           console.log(err);
           process.exit(1);
