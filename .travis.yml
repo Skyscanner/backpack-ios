@@ -24,6 +24,7 @@ before_install:
   - nvm install 8.12.0
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
   - 'echo "Travis tag: $TRAVIS_TAG"'
+  - 'echo "Travis branch: $TRAVIS_BRANCH"'
 install:
   - npm install
   - bundle install
@@ -43,16 +44,14 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
-    - /^tag-.*$/
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $IOS_DOCS_DEPLOY_TOKEN
   on:
-    tags: true
-    all_branches: true # Required for tags: true to take effect, due to issue https://github.com/travis-ci/travis-ci/issues/1670
-    condition: $MAIN_STAGE
+    branch: master
+    condition: $MAIN_STAGE && $TRAVIS_TAG # We could just use `tags: true`, but there are issues so best to avoid it https://github.com/travis-ci/travis-ci/issues/1670
   local_dir: docs/
   skip_cleanup: true
   detect_encoding: true
