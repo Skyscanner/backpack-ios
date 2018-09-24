@@ -20,10 +20,10 @@ import UIKit
 import Backpack
 
 class ColorsViewController: UICollectionViewController {
-    fileprivate static var primaryColors = [("blue500", BPKColor.blue500()), ("blue700", BPKColor.blue700()), ("white",BPKColor.white())]
-    fileprivate static var secondaryColors = [("green500",BPKColor.green500()), ("yellow500",BPKColor.yellow500()), ("red500",BPKColor.red500())]
-    fileprivate static var grayColors = [("gray50",BPKColor.gray50()),  ("gray100",BPKColor.gray100()), ("gray300",BPKColor.gray300()),
-                                         ("gray500",BPKColor.gray500()), ("gray700",BPKColor.gray700()), ("gray900",BPKColor.gray900())]
+    fileprivate static var primaryColors = [("blue500", Backpack.Color.blue500), ("blue700", Backpack.Color.blue700), ("white", Backpack.Color.white)]
+    fileprivate static var secondaryColors = [("green500", Backpack.Color.green500), ("yellow500",Backpack.Color.yellow500), ("red500", Backpack.Color.red500)]
+    fileprivate static var grayColors = [("gray50", Backpack.Color.gray50),  ("gray100",Backpack.Color.gray100), ("gray300",Backpack.Color.gray300),
+                                         ("gray500",Backpack.Color.gray500), ("gray700",Backpack.Color.gray700), ("gray900",Backpack.Color.gray900)]
     fileprivate static var allColors = [("Primary colors", ColorsViewController.primaryColors), ("Secondary colors", ColorsViewController.secondaryColors), ("Grays", ColorsViewController.grayColors)]
     
     fileprivate static let cellIdentifier = "ColorPreviewCollectionViewCell"

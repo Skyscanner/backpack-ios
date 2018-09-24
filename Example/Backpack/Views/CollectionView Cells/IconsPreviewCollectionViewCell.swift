@@ -23,7 +23,7 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
     
     var icon: String? {
         didSet {
-            imageView.image = Backpack.Icon.makeIcon(name: icon!, color: BPKColor.gray900(), size: .large)
+            imageView.image = Backpack.Icon.makeIcon(name: icon!, color: Backpack.Color.gray900, size: .large)
         }
     }
     
