@@ -30,5 +30,6 @@
     #import "Label.h"
     #import "Panel.h"
     #import "Icon.h"
+    #import "Button.h"
 #endif
 
