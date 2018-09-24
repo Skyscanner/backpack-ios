@@ -227,7 +227,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EjZ-Hm-tKd" style="IBUITableViewCellStyleDefault" id="iba-k7-h0e">
-                                        <rect key="frame" x="0.0" y="507.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="551.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iba-k7-h0e" id="d5D-wb-y4h">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -246,6 +246,26 @@
                                             <segue destination="upF-fH-nU0" kind="show" identifier="ShowButtonsSegue" id="KIa-gj-Ksa"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Bzx-4T-MLR" style="IBUITableViewCellStyleDefault" id="5M3-vm-0Gj">
+                                        <rect key="frame" x="0.0" y="595.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5M3-vm-0Gj" id="7tA-iL-wPC">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Alerts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bzx-4T-MLR" userLabel="Alerts">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Ot8-UI-Wrl" kind="show" identifier="" id="sqN-X3-pxY"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -259,6 +279,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqv-Dk-doc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="385"/>
+        </scene>
+        <!--Alerts-->
+        <scene sceneID="1lo-Gi-01Y">
+            <objects>
+                <viewController title="Alerts" id="Ot8-UI-Wrl" customClass="BPKAlertViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bP8-Xi-jjx"/>
+                        <viewControllerLayoutGuide type="bottom" id="RAG-Ln-9HK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F7H-cK-BUi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrj-Xs-iX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2591" y="167"/>
         </scene>
         <!--Spacings-->
         <scene sceneID="F2s-ME-Yp8">
@@ -492,7 +530,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geZ-jU-8Ws">
-                                                        <rect key="frame" x="8" y="8" width="64.5" height="0.0"/>
+                                                        <rect key="frame" x="8" y="8" width="64.5" height="1.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1364,7 +1402,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5G-zk-qDB" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="74" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="74" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1373,7 +1411,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuC-cy-vwb" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="74" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="74" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1382,7 +1420,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBk-RN-X5e" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="74" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="74" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1391,7 +1429,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDs-08-VIR" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="74" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="74" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1406,7 +1444,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1L-Hm-wq8" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="210" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="210" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1415,7 +1453,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tl-gs-heM" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="210" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="198" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1424,7 +1462,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-XA-oej" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="210" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="186" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1433,7 +1471,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODN-nY-xVb" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="210" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="186" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1448,7 +1486,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqP-B3-eHS" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="141" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="141" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1457,7 +1495,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLH-mH-NRb" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="141" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="141" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1466,7 +1504,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMU-qX-GG7" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="141" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="129" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1475,7 +1513,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-5P-mKE" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="141" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="129" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1490,7 +1528,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POk-Bb-6ZR" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="275" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="275" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1499,7 +1537,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t2-0b-0lR" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="275" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="251" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1508,7 +1546,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pv-Ko-67Z" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="275" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="239" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1517,7 +1555,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-3s-ujA" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="275" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="239" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1538,7 +1576,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ll9-jZ-DiA" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="371" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="371" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1547,7 +1585,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2n-xH-95V" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="371" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="335" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1556,7 +1594,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0u-A4-crN" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="371" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="323" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1565,7 +1603,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnw-Mr-dz3" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="371" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="323" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1580,7 +1618,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xJ-Bt-sJ3" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="505" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="505" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1589,7 +1627,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uq-iz-2Q2" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="505" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="493" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1598,7 +1636,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZV-Le-mIL" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="505" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="433" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1607,7 +1645,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzF-b8-4nG" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="505" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="433" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1622,7 +1660,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttq-ys-CzH" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="572" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="572" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1631,7 +1669,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEe-dH-ll1" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="572" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="548" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1640,7 +1678,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEW-r7-7W5" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="572" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="488" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1649,7 +1687,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buK-iG-QXR" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="572" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="488" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1664,7 +1702,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yf-nn-mYc" userLabel="Text only" customClass="BPKButton">
-                                        <rect key="frame" x="20" y="438" width="43.5" height="34"/>
+                                        <rect key="frame" x="20" y="438" width="30" height="34"/>
                                         <state key="normal" title="Go">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1673,7 +1711,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dp4-mn-F8s" userLabel="Icon only" customClass="BPKButton">
-                                        <rect key="frame" x="83.5" y="438" width="35" height="34"/>
+                                        <rect key="frame" x="70" y="438" width="19" height="22"/>
                                         <state key="normal" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1682,7 +1720,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-7r-h83" userLabel="Image on the left side" customClass="BPKButton">
-                                        <rect key="frame" x="133.5" y="438" width="71.5" height="34"/>
+                                        <rect key="frame" x="104" y="378" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1691,7 +1729,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfw-0i-UR1" userLabel="Image on the right side" customClass="BPKButton">
-                                        <rect key="frame" x="229" y="438" width="71.5" height="34"/>
+                                        <rect key="frame" x="171" y="378" width="43" height="22"/>
                                         <state key="normal" title="Go" image="rightArrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1856,6 +1894,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="g3q-NS-xNi"/>
-        <segue reference="Ft0-kA-1VX"/>
+        <segue reference="okJ-KK-9zS"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
+		1BFD20902158FA1B008001BE /* BPKAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD208F2158FA1B008001BE /* BPKAlertViewController.swift */; };
 		2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */; };
 		3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1BFD208F2158FA1B008001BE /* BPKAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKAlertViewController.swift; sourceTree = "<group>"; };
 		2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
 		3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonSelectorViewController.h; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */,
 				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
 				6055821621523A1300BF9F3E /* IconsViewController.swift */,
+				1BFD208F2158FA1B008001BE /* BPKAlertViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
+				1BFD20902158FA1B008001BE /* BPKAlertViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
