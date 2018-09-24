@@ -16,20 +16,10 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#ifndef __BACKPACK_ALERT__
+#define __BACKPACK_ALERT__
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+#import "BPKAlert.h"
 
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Alert.h"
 #endif
 

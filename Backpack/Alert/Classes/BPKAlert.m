@@ -16,20 +16,17 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import "BPKAlert.h"
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+NS_ASSUME_NONNULL_BEGIN
 
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Alert.h"
-#endif
+@interface BPKAlert()
 
+
+@end
+
+@implementation BPKAlert
+
+@end
+
+NS_ASSUME_NONNULL_END
