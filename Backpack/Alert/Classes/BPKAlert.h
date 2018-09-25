@@ -17,6 +17,9 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <Backpack/Color.h>
+#import <Backpack/Button.h>
+#import "BPKAlertView.h"
 
 typedef void (^BPKAlertActionItemHandler)(void);
 
@@ -30,14 +33,25 @@ typedef NS_ENUM(NSUInteger, BPKAlertStyle) {
 /**
  * `BPKAlert` is a...
  */
-@interface BPKAlert: NSObject
+@interface BPKAlert: NSObject<BPKAlertViewDelegate>
+
+@property (nonatomic, getter=isFaderDismissingAlert) BOOL faderDismissingAlert;
+
+-(void)setTitle:(NSString *)titleString;
+-(void)setDescription:(NSString *)descriptionString;
+-(void)setPrimaryButtonStyle:(BPKButtonStyle)style;
+-(void)setSecondaryButtonStyle:(BPKButtonStyle)style;
+
 
 - (void)alertWithTitle:(NSString * _Nonnull)title
            description:(NSString * _Nonnull)description
                  style:(BPKAlertStyle)style
   primaryActionHandler:(_Nullable BPKAlertActionItemHandler)primaryActionHandler
+    primaryButtonTitle:(NSString *_Nonnull)primaryButtonTitle
 secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandler
+  secondaryButtonTitle:(NSString *_Nonnull)secondaryButtonTitle
          hasDropShadow:(BOOL)isDropShadowEnabled
+        doneButtonText:(NSString * _Nonnull)doneButtonText
                 onView:(UIView * _Nonnull)baseView;
 
 @end

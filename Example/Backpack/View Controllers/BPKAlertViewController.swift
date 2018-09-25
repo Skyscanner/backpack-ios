@@ -45,20 +45,34 @@ class BPKAlertViewController: UIViewController {
         self.destructiveButton.frame = CGRect(x: 20, y: 350, width: destructiveButton.intrinsicContentSize.width, height: destructiveButton.intrinsicContentSize.height)
         self.warningButton.frame = CGRect(x: 20, y: 400, width: warningButton.intrinsicContentSize.width, height: warningButton.intrinsicContentSize.height)
     }
-    
+
     func showNormal(_ sender: UIButton!) {
-        self.alertController.alert(withTitle: "test", description: "test description", style: .error, primaryActionHandler: {
+        self.alertController.setPrimaryButtonStyle(.primary)
+        self.alertController.setSecondaryButtonStyle(.secondary)
+        self.alertController.alert(withTitle: "YAAAY", description: "yaaay description", style: .normal, primaryActionHandler: {
             NSLog("success")
-        }, secondaryActionHandler: {
+        }, primaryButtonTitle: "Continue", secondaryActionHandler: {
             NSLog("cancel")
-        }, hasDropShadow: true, on: self.view.window!)
+        }, secondaryButtonTitle: "Cancel",  hasDropShadow: true, doneButtonText: "Done", on: self.view.window!)
     }
-    
+
     func showError(_ sender: UIButton!) {
-        NSLog("error")
+        self.alertController.setPrimaryButtonStyle(.destructive)
+        self.alertController.setSecondaryButtonStyle(.secondary)
+        self.alertController.alert(withTitle: "Nooo!!", description: "Don't delete me please", style: .error, primaryActionHandler: {
+            NSLog("success")
+        }, primaryButtonTitle: "Delete", secondaryActionHandler: {
+            NSLog("cancel")
+        }, secondaryButtonTitle: "Cancel",  hasDropShadow: false, doneButtonText: "", on: self.view.window!)
     }
-    
+
     func showWarning(_ sender: UIButton!) {
-        NSLog("warning")
+        self.alertController.setPrimaryButtonStyle(.featured)
+        self.alertController.setSecondaryButtonStyle(.secondary)
+        self.alertController.alert(withTitle: "ERRi-o-i!!", description: "Warning, Engines too hot, please put device under water or snow", style: .warning, primaryActionHandler: {
+            NSLog("success")
+        }, primaryButtonTitle: "Understood", secondaryActionHandler: {
+            NSLog("cancel")
+        }, secondaryButtonTitle: "Cancel",  hasDropShadow: true, doneButtonText: "", on: self.view.window!)
     }
 }

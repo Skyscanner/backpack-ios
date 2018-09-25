@@ -17,9 +17,28 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Backpack/Button.h>
+#import <Backpack/Color.h>
+
+
+@protocol BPKAlertViewDelegate <NSObject>
+
+- (void)primaryActionTapped;
+- (void)secondaryActionTapped;
+
+@end
 
 @interface BPKAlertView : UIView
 
+@property (nonatomic, weak) id<BPKAlertViewDelegate> delegate;
+@property (nonatomic) BOOL hasShadow;
 
+-(void)setHeadColor:(BPKColor * _Nullable)color;
+-(void)setTitle:(NSString *)titleString;
+-(void)setDescription:(NSString *)descriptionString;
+-(void)setPrimaryButtonStyle:(BPKButtonStyle)style;
+-(void)setPrimaryButtonTitle:(NSString *)buttonTitle;
+-(void)setSecondaryButtonStyle:(BPKButtonStyle)style;
+-(void)setSecondaryButtonTitle:(NSString *)buttonTitle;
 
 @end

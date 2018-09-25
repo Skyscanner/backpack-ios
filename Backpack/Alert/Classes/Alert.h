@@ -20,6 +20,7 @@
 #define __BACKPACK_ALERT__
 
 #import "BPKAlert.h"
+#import "BPKAlertView.h"
 
 #endif
 
