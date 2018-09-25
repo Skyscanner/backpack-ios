@@ -1,45 +1,45 @@
 PODS:
-  - Backpack (0.12.0):
-    - Backpack/Badge (= 0.12.0)
-    - Backpack/Button (= 0.12.0)
-    - Backpack/Color (= 0.12.0)
-    - Backpack/Font (= 0.12.0)
-    - Backpack/Gradient (= 0.12.0)
-    - Backpack/Icon (= 0.12.0)
-    - Backpack/Label (= 0.12.0)
-    - Backpack/Panel (= 0.12.0)
-    - Backpack/Radii (= 0.12.0)
-    - Backpack/RTLSupport (= 0.12.0)
-    - Backpack/Shadow (= 0.12.0)
-    - Backpack/Spacing (= 0.12.0)
-  - Backpack/Badge (0.12.0):
+  - Backpack (0.13.0):
+    - Backpack/Badge (= 0.13.0)
+    - Backpack/Button (= 0.13.0)
+    - Backpack/Color (= 0.13.0)
+    - Backpack/Font (= 0.13.0)
+    - Backpack/Gradient (= 0.13.0)
+    - Backpack/Icon (= 0.13.0)
+    - Backpack/Label (= 0.13.0)
+    - Backpack/Panel (= 0.13.0)
+    - Backpack/Radii (= 0.13.0)
+    - Backpack/RTLSupport (= 0.13.0)
+    - Backpack/Shadow (= 0.13.0)
+    - Backpack/Spacing (= 0.13.0)
+  - Backpack/Badge (0.13.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Button (0.12.0):
+  - Backpack/Button (0.13.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Gradient
     - Backpack/Label
     - Backpack/RTLSupport
     - Backpack/Spacing
-  - Backpack/Color (0.12.0)
-  - Backpack/Font (0.12.0)
-  - Backpack/Gradient (0.12.0):
+  - Backpack/Color (0.13.0)
+  - Backpack/Font (0.13.0)
+  - Backpack/Gradient (0.13.0):
     - Backpack/Color
-  - Backpack/Icon (0.12.0)
-  - Backpack/Label (0.12.0):
+  - Backpack/Icon (0.13.0)
+  - Backpack/Label (0.13.0):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (0.12.0):
+  - Backpack/Panel (0.13.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (0.12.0)
-  - Backpack/RTLSupport (0.12.0)
-  - Backpack/Shadow (0.12.0)
-  - Backpack/Spacing (0.12.0)
+  - Backpack/Radii (0.13.0)
+  - Backpack/RTLSupport (0.13.0)
+  - Backpack/Shadow (0.13.0)
+  - Backpack/Spacing (0.13.0)
   - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: a0ac01aa336419662a30a420ac674610dcdff87c
+  Backpack: 81c15fa0a0ad089b086f5cb54c42b861ca3d1534
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
