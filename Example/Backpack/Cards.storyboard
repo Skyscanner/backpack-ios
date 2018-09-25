@@ -81,6 +81,66 @@
                                             <segue destination="UVm-Uc-6tJ" kind="show" identifier="selected" id="tdg-8w-V3d"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="vWi-ef-4S8" style="IBUITableViewCellStyleDefault" id="6Dg-vc-hvI">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Dg-vc-hvI" id="kbB-8u-dPf">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vWi-ef-4S8">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="msG-uW-dQe" kind="show" identifier="divided_horizontal" id="MUD-Le-NgL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fSN-tX-6Tt" style="IBUITableViewCellStyleDefault" id="jFL-Uc-bqH">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jFL-Uc-bqH" id="ayr-A0-dag">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider arranged vertically" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSN-tX-6Tt">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="msG-uW-dQe" kind="show" identifier="divided_vertical" id="qgk-3y-zBT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="eQk-jR-Fio" style="IBUITableViewCellStyleDefault" id="ago-V1-e2e">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ago-V1-e2e" id="PaM-o7-KtH">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider without padding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQk-jR-Fio">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="msG-uW-dQe" kind="show" identifier="divided_vertical_no_padding" id="mTw-OZ-Pmq"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -94,15 +154,15 @@
             </objects>
             <point key="canvasLocation" x="1562" y="2420"/>
         </scene>
-        <!--Cards View Controller-->
+        <!--Cards-->
         <scene sceneID="Key-dr-x8S">
             <objects>
-                <viewController id="UVm-Uc-6tJ" customClass="CardsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Cards" id="UVm-Uc-6tJ" customClass="CardsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gKV-RN-Byx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkJ-QX-XUu" customClass="BPKCard">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkJ-QX-XUu" customClass="BPKCard">
                                 <rect key="frame" x="167" y="313" width="40" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -117,15 +177,47 @@
                         <viewLayoutGuide key="safeArea" id="bZj-oM-QOj"/>
                     </view>
                     <connections>
-                        <outlet property="card" destination="vkJ-QX-XUu" id="uBx-8D-fdj"/>
+                        <outlet property="card" destination="vkJ-QX-XUu" id="yXg-wN-9D2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjb-xD-ezC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321" y="2419"/>
+            <point key="canvasLocation" x="2542" y="2085"/>
+        </scene>
+        <!--Divided cards-->
+        <scene sceneID="648-43-VCz">
+            <objects>
+                <viewController title="Divided cards" id="msG-uW-dQe" customClass="DividedCardsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Oi-V5-nf8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jEZ-E3-2U1" customClass="BPKDividedCard">
+                                <rect key="frame" x="167" y="313" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jEZ-E3-2U1" firstAttribute="centerX" secondItem="4Oi-V5-nf8" secondAttribute="centerX" id="9to-uf-uOe"/>
+                            <constraint firstItem="jEZ-E3-2U1" firstAttribute="centerY" secondItem="4Oi-V5-nf8" secondAttribute="centerY" id="eKk-g5-6Cm"/>
+                            <constraint firstItem="jEZ-E3-2U1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cNN-VH-aJx" secondAttribute="leading" constant="16" id="vbH-8n-Ajj"/>
+                            <constraint firstItem="cNN-VH-aJx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jEZ-E3-2U1" secondAttribute="trailing" constant="16" id="zz7-KI-ZQu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cNN-VH-aJx"/>
+                    </view>
+                    <connections>
+                        <outlet property="card" destination="jEZ-E3-2U1" id="3kN-6A-AEU"/>
+                        <outlet property="dividedCard" destination="jEZ-E3-2U1" id="o4r-ns-iKW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chT-ve-rub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2542" y="2859"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tdg-8w-V3d"/>
+        <segue reference="mTw-OZ-Pmq"/>
+        <segue reference="ZUE-5k-Uh6"/>
     </inferredMetricsTieBreakers>
 </document>

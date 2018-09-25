@@ -1,4 +1,7 @@
 # Unreleased
 
-_Nothing so far..._
+**Added:**
+
+- Backpack/Card:
+  - Added divided card styles.
 

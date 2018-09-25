@@ -21,10 +21,33 @@ import Backpack.Card
 class CardsSelectorViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let target = segue.destination as? CardsViewController else{
-            fatalError("Expected destination to be of type CardsViewController.")
+        if(segue.identifier?.contains("divided"))!{
+            guard let target = segue.destination as? DividedCardsViewController else {
+                fatalError("Expected destination to be of type DividedCardsViewController.")
+            }
+            switch segue.identifier {
+            case "divided_horizontal":
+                target.navigationItem.title = "With divider"
+                target.divisionDirection = .horizontal
+                break
+            case "divided_vertical":
+                target.navigationItem.title = "With divider arranged vertically"
+                target.divisionDirection = .vertical
+                break
+            case "divided_vertical_no_padding":
+                target.navigationItem.title = "With divider, without padding"
+                target.divisionDirection = .vertical
+                target.padded = false
+                break
+            default:
+                fatalError("The identifier \(segue.identifier.debugDescription) does not match an example DividedCard configuration.")
+            }
+            return;
         }
         
+        guard let target = segue.destination as? CardsViewController else {
+            fatalError("Expected destination to be of type CardsViewController.")
+        }
         switch segue.identifier {
         case "default":
             target.navigationItem.title = "Default"
