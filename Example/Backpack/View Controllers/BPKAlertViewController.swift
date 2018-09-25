@@ -23,7 +23,7 @@ class BPKAlertViewController: UIViewController {
     let primaryButton:BPKButton = BPKButton(size: .default, style: .primary)
     let destructiveButton:BPKButton = BPKButton(size: .default, style: .destructive)
     let warningButton:BPKButton = BPKButton(size: .default, style: .secondary)
-
+    let alertController:BPKAlert = BPKAlert()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,11 @@ class BPKAlertViewController: UIViewController {
     }
     
     func showNormal(_ sender: UIButton!) {
-        NSLog("normal")
+        self.alertController.alert(withTitle: "test", description: "test description", style: .error, primaryActionHandler: {
+            NSLog("success")
+        }, secondaryActionHandler: {
+            NSLog("cancel")
+        }, hasDropShadow: true, on: self.view.window!)
     }
     
     func showError(_ sender: UIButton!) {

@@ -18,13 +18,27 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^BPKAlertActionItemHandler)(void);
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSUInteger, BPKAlertStyle) {
+    BPKAlertStyleError,
+    BPKAlertStyleWarning,
+    BPKAlertStyleNormal
+};
 
 /**
  * `BPKAlert` is a...
  */
 @interface BPKAlert: NSObject
+
+- (void)alertWithTitle:(NSString * _Nonnull)title
+           description:(NSString * _Nonnull)description
+                 style:(BPKAlertStyle)style
+  primaryActionHandler:(_Nullable BPKAlertActionItemHandler)primaryActionHandler
+secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandler
+         hasDropShadow:(BOOL)isDropShadowEnabled
+                onView:(UIView * _Nonnull)baseView;
 
 @end
 
