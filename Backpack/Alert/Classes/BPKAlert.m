@@ -160,7 +160,7 @@ secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandl
 
 -(void)faderTapped:(UITapGestureRecognizer *)gestureRecognizer {
     if( gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
-        [self finishWithSuccess];
+        [self finishWithCancel];
     }
 }
 

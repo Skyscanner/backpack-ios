@@ -49,7 +49,7 @@ class BPKAlertViewController: UIViewController {
     func showNormal(_ sender: UIButton!) {
         self.alertController.setPrimaryButtonStyle(.primary)
         self.alertController.setSecondaryButtonStyle(.secondary)
-        self.alertController.alert(withTitle: "YAAAY", description: "yaaay description", style: .normal, primaryActionHandler: {
+        self.alertController.alert(withTitle: "YAAAY", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in nulla dignissim, porta eros vel, iaculis orci. Aliquam erat elit, consectetur vitae lectus auctor, vestibulum ullamcorper libero. Quisque pellentesque eros est, eget mattis libero mattis sed. Suspendisse vestibulum ultricies ex, et efficitur nisi gravida eget. Curabitur rhoncus nisi ut nisl ultricies, ac pellentesque nulla consectetur. Phasellus non tellus accumsan, pharetra ipsum sit amet, scelerisque diam. Phasellus mattis leo nec dolor pharetra, at pellentesque purus dictum. Vivamus placerat justo nibh, et sodales neque mattis a. Ut posuere orci eros, id tincidunt eros ornare a.", style: .normal, primaryActionHandler: {
             NSLog("success")
         }, primaryButtonTitle: "Continue", secondaryActionHandler: {
             NSLog("cancel")
