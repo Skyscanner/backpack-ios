@@ -55,11 +55,11 @@
     _contentHolderView.layer.cornerRadius = 4;
     
     _circularView = [[UIView alloc] initWithFrame:CGRectZero];
-    _circularView.layer.cornerRadius = 50;
+    _circularView.layer.cornerRadius = 35;
     _circularView.backgroundColor = BPKColor.white;
     
     _iconContainerView = [[UIView alloc] initWithFrame:CGRectZero];
-    _iconContainerView.layer.cornerRadius = 45;
+    _iconContainerView.layer.cornerRadius = 30;
     _iconContainerView.backgroundColor = BPKColor.red500;
     
     _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLgEmphasized];
@@ -96,15 +96,15 @@
 - (void)setupConstraints {
     [_circularView.topAnchor constraintEqualToAnchor:_circularView.superview.topAnchor].active = YES;
     [_circularView.centerXAnchor constraintEqualToAnchor:_contentHolderView.centerXAnchor].active = YES;
-    [_circularView.heightAnchor constraintEqualToConstant:100].active = YES;
-    [_circularView.widthAnchor constraintEqualToConstant:100].active = YES;
+    [_circularView.heightAnchor constraintEqualToConstant:70].active = YES;
+    [_circularView.widthAnchor constraintEqualToConstant:70].active = YES;
   
     [_iconContainerView.centerYAnchor constraintEqualToAnchor:_circularView.centerYAnchor].active = YES;
     [_iconContainerView.centerXAnchor constraintEqualToAnchor:_circularView.centerXAnchor].active = YES;
-    [_iconContainerView.heightAnchor constraintEqualToConstant:90].active = YES;
-    [_iconContainerView.widthAnchor constraintEqualToConstant:90].active = YES;
+    [_iconContainerView.heightAnchor constraintEqualToConstant:60].active = YES;
+    [_iconContainerView.widthAnchor constraintEqualToConstant:60].active = YES;
     
-    [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-50].active = YES;
+    [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-35].active = YES;
     [_contentHolderView.bottomAnchor constraintEqualToAnchor:_contentHolderView.superview.bottomAnchor].active = YES;
     [_contentHolderView.leadingAnchor constraintEqualToAnchor:_contentHolderView.superview.leadingAnchor].active = YES;
     [_contentHolderView.trailingAnchor constraintEqualToAnchor:_contentHolderView.superview.trailingAnchor].active = YES;
