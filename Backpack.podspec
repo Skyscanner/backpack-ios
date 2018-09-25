@@ -89,6 +89,15 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/RTLSupport'
   end
 
+  s.subspec 'Card' do |ss|
+      ss.source_files = 'Backpack/Card/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Card/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Radii'
+      ss.dependency 'Backpack/Shadow'
+      ss.dependency 'Backpack/Spacing'
+  end
+
   s.subspec 'Icon' do |ss|
     ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
     ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'

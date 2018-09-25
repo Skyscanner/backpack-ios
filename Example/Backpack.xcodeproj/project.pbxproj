@@ -36,8 +36,11 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
+		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
+		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
+		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D613CE542006795400D60CC4 /* BPKColorTest.m */; };
 		D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */; };
 		D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6391601202CAF07006E8329 /* BPKShadowTest.m */; };
@@ -135,8 +138,11 @@
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
+		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
+		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D613CE542006795400D60CC4 /* BPKColorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKColorTest.m; sourceTree = "<group>"; };
 		D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKShadowViewController.h; sourceTree = "<group>"; };
 		D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKShadowViewController.m; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
+				D233F00E2162159E00A07D9B /* Cards.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -363,6 +370,8 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */,
+				D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */,
 				D643B6DD2142C36C008AB669 /* GradientViewController.swift */,
 				D655C516200F9BA400CB39AF /* BPKFontsViewController.h */,
 				D655C517200F9BA400CB39AF /* BPKFontsViewController.m */,
@@ -517,6 +526,7 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
+				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
@@ -648,7 +658,9 @@
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
 				D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */,
+				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
+				D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
