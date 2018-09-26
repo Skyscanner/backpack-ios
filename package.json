@@ -7,16 +7,21 @@
     "npm": "^6.4.1"
   },
   "scripts": {
-    "precommit": "lint-staged",
     "preinstall": "npx ensure-node-env",
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
     "gulp": "gulp"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.js": [
-      "eslint"
+      "eslint --fix",
+      "git add"
     ]
   },
   "repository": {
