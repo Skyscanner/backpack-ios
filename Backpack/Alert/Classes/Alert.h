@@ -19,8 +19,9 @@
 #ifndef __BACKPACK_ALERT__
 #define __BACKPACK_ALERT__
 
-#import "BPKAlert.h"
+#import "BPKAlertController.h"
 #import "BPKAlertView.h"
+#import "BPKAlertButtonConfiguration.h"
 
 #endif
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKAlert.h"
+#import "BPKAlertController.h"
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/Font.h>
@@ -24,7 +24,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKAlert()
+@interface BPKAlertController()
 
 @property (nonatomic, strong) UIView *faderView;
 @property (nonatomic, strong) UIButton *doneButton;
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@implementation BPKAlert
+@implementation BPKAlertController
 {
     BPKAlertActionItemHandler _primaryHandler;
     BPKAlertActionItemHandler _secondaryhandler;
@@ -66,36 +66,27 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)alertWithTitle:(NSString * _Nonnull)title
-           description:(NSString * _Nonnull)description
-                 style:(BPKAlertStyle)style
-  primaryActionHandler:(_Nullable BPKAlertActionItemHandler)primaryActionHandler
-    primaryButtonTitle:(NSString *_Nonnull)primaryButtonTitle
-secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandler
-  secondaryButtonTitle:(NSString *_Nonnull)secondaryButtonTitle
-         hasDropShadow:(BOOL)isDropShadowEnabled
-        doneButtonText:(NSString * _Nonnull)doneButtonText
-                onView:(UIView * _Nonnull)baseView {
+- (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
+                        onView:(UIView * _Nonnull)baseView {
     
-    _primaryHandler = primaryActionHandler;
-    _secondaryhandler = secondaryActionHandler;
+    // _primaryHandler = configuration.buttonConfigurations;
+    // _secondaryhandler = secondaryActionHandler;
     
     // show fader
     _faderView.frame = baseView.bounds;
     [baseView addSubview:_faderView];
     
-    [_doneButton setTitle:doneButtonText forState:UIControlStateNormal];
+    [_doneButton setTitle:configuration.doneButtonText forState:UIControlStateNormal];
     _doneButton.frame = CGRectMake(baseView.frame.size.width - BPKSpacingBase - _doneButton.intrinsicContentSize.width, BPKSpacingLg, _doneButton.intrinsicContentSize.width, _doneButton.intrinsicContentSize.height);
     [baseView addSubview:_doneButton];
-    [_doneButton setHidden:(doneButtonText.length == 0)];
+    [_doneButton setHidden:(configuration.doneButtonText.length == 0)];
     
     // create alert view && show alert
-    [_alertView setTitle:title];
-    [_alertView setHasShadow:isDropShadowEnabled];
-    [_alertView setPrimaryButtonTitle:primaryButtonTitle];
-    [_alertView setSecondaryButtonTitle:secondaryButtonTitle];
-    [_alertView setDescription:description];
-    [_alertView setHeadColor:[self colorForStyle:style]];
+    [_alertView setTitle:configuration.titleText];
+    [_alertView setHasShadow:configuration.hasShadow];
+    [_alertView setButtonConfigurations:configuration.buttonConfigurations];
+    [_alertView setDescription:configuration.descriptionText];
+    [_alertView setHeadColor:configuration.circleColor];
     [baseView addSubview:_alertView];
     [_alertView.centerXAnchor constraintEqualToAnchor:baseView.centerXAnchor].active = YES;
     [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = YES;
@@ -107,41 +98,6 @@ secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandl
     
 }
 
--(BPKColor * _Nonnull)colorForStyle:(BPKAlertStyle)style {
-    switch (style) {
-        case BPKAlertStyleError:
-            return (BPKColor *)BPKColor.red500;
-            break;
-        case BPKAlertStyleNormal:
-            return (BPKColor *)BPKColor.green500;
-            break;
-        case BPKAlertStyleWarning:
-            return (BPKColor *)BPKColor.yellow500;
-            break;
-        default:
-            return (BPKColor *)BPKColor.gray50;
-            break;
-    }
-}
-
-#pragma mark - PUBLIC
--(void)setTitle:(NSString *)titleString {
-    [_alertView setTitle:titleString];
-}
-
--(void)setDescription:(NSString *)descriptionString {
-    [_alertView setDescription:descriptionString];
-}
-
--(void)setPrimaryButtonStyle:(BPKButtonStyle)style {
-    [_alertView setPrimaryButtonStyle:style];
-}
-
--(void)setSecondaryButtonStyle:(BPKButtonStyle)style {
-    [_alertView setSecondaryButtonStyle:style];
-}
-
-
 - (void)removeViews {
     [self.faderView removeFromSuperview];
     [self.doneButton removeFromSuperview];
@@ -150,12 +106,12 @@ secondaryActionHandler:(_Nullable BPKAlertActionItemHandler)secondaryActionHandl
 
 - (void)finishWithSuccess {
     [self removeViews];
-    _primaryHandler();
+  //  _primaryHandler();
 }
 
 - (void)finishWithCancel {
     [self removeViews];
-    _secondaryhandler();
+//    _secondaryhandler();
 }
 
 -(void)faderTapped:(UITapGestureRecognizer *)gestureRecognizer {

@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Backpack Native" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Backpack" TARGET_NAME="Backpack Native" CONFIG_NAME="Debug" SCHEME_NAME="Backpack Native" IS_LOCATION_SIMULATION_ALLOWED="true" RUN_TARGET_PROJECT_NAME="Backpack" RUN_TARGET_NAME="Backpack Native" MAKE_ACTIVE="TRUE">
+    <envs>
+      <env name="IMAGE_DIFF_DIR" value="$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs" />
+      <env name="FB_REFERENCE_IMAGE_DIR" value="$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages" />
+    </envs>
+    <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+      <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+    </EXTENSION>
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

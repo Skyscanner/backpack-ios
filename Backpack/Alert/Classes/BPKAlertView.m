@@ -34,8 +34,10 @@
     UIView *_contentHolderView;
     BPKLabel *_titleLabel;
     BPKLabel *_descriptionLabel;
-    BPKButton *_primaryButton;
-    BPKButton *_secondaryButton;
+    NSArray<BPKButton *> *_buttons;
+    UIStackView *_buttonStackView;
+    
+    NSDictionary<BPKAlertButtonConfiguration *, BPKButton *> *_buttonConfigurationMap;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -67,19 +69,17 @@
     _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
     _descriptionLabel.numberOfLines = 0;
     _descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    _primaryButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
-    [_primaryButton addTarget:self action:@selector(primaryActionTapped) forControlEvents:UIControlEventTouchUpInside];
-    _secondaryButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary];
-    [_secondaryButton addTarget:self action:@selector(secondaryActionTapped) forControlEvents:UIControlEventTouchUpInside];
     
+    _buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
+    _buttonStackView.axis = UILayoutConstraintAxisVertical;
+    _buttonStackView.spacing = BPKSpacingMd;
+    
+    _buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _primaryButton.translatesAutoresizingMaskIntoConstraints = NO;
     _circularView.translatesAutoresizingMaskIntoConstraints = NO;
     _iconContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-
-    _secondaryButton.translatesAutoresizingMaskIntoConstraints = NO;
-    _contentHolderView.translatesAutoresizingMaskIntoConstraints = NO;    
+    _contentHolderView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)addViews {
@@ -89,8 +89,7 @@
     
     [_contentHolderView addSubview:_titleLabel];
     [_contentHolderView addSubview:_descriptionLabel];
-    [_contentHolderView addSubview:_primaryButton];
-    [_contentHolderView addSubview:_secondaryButton];
+    [_contentHolderView addSubview:_buttonStackView];
 }
 
 - (void)setupConstraints {
@@ -116,12 +115,10 @@
     [_descriptionLabel.leadingAnchor constraintEqualToAnchor:_descriptionLabel.superview.leadingAnchor constant:BPKSpacingLg].active = YES;
     [_descriptionLabel.trailingAnchor constraintEqualToAnchor:_descriptionLabel.superview.trailingAnchor constant:-BPKSpacingLg].active = YES;
     
-    [_primaryButton.topAnchor constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:BPKSpacingLg].active = YES;
-    [_primaryButton.centerXAnchor constraintEqualToAnchor:_primaryButton.superview.centerXAnchor].active = YES;
-  
-    [_secondaryButton.topAnchor constraintEqualToAnchor:_primaryButton.bottomAnchor constant:BPKSpacingMd].active = YES;
-    [_secondaryButton.centerXAnchor constraintEqualToAnchor:_secondaryButton.superview.centerXAnchor].active = YES;
-    [_secondaryButton.bottomAnchor constraintEqualToAnchor:_secondaryButton.superview.bottomAnchor constant:-BPKSpacingLg].active = YES;
+    [_buttonStackView.topAnchor constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:BPKSpacingLg].active = YES;
+    [_buttonStackView.leadingAnchor constraintEqualToAnchor:_buttonStackView.superview.leadingAnchor constant:BPKSpacingXl].active = YES;
+    [_buttonStackView.trailingAnchor constraintEqualToAnchor:_buttonStackView.superview.trailingAnchor constant:-BPKSpacingXl].active = YES;
+    [_buttonStackView.bottomAnchor constraintEqualToAnchor:_buttonStackView.superview.bottomAnchor constant:-BPKSpacingLg].active = YES;
 }
 
 - (void)setupShadowOnView:(UIView *)view {
@@ -150,12 +147,12 @@
     [self setNeedsLayout];
 }
 
-- (void)primaryActionTapped {
-    [self.delegate primaryActionTapped];
-}
-
-- (void)secondaryActionTapped {
-    [self.delegate secondaryActionTapped];
+- (void)buttonTapped:(BPKButton *)button {
+    
+//    if (_buttonConfigurationMap[button]) {
+//        BPKAlertButtonConfiguration *config = _buttonConfigurationMap[button];
+//        config.handler();
+//    }
 }
 
 #pragma mark - PUBLIC
@@ -171,20 +168,21 @@
     [_descriptionLabel setText:descriptionString];
 }
 
--(void)setPrimaryButtonStyle:(BPKButtonStyle)style {
-    [_primaryButton setStyle:style];
+-(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations {
+    NSMutableDictionary<BPKAlertButtonConfiguration *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
+    
+    for (NSInteger i = 0; i < buttonConfigurations.count; i++) {
+        BPKAlertButtonConfiguration *buttonConfig = buttonConfigurations[i];
+        BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
+        [button setTitle:buttonConfig.title forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        btnConfigMap[buttonConfig] = button;
+        
+        [_buttonStackView addArrangedSubview:button];
+    }
+    
+    _buttonConfigurationMap = [btnConfigMap copy];
+    
+    [self setNeedsUpdateConstraints];
 }
-
--(void)setPrimaryButtonTitle:(NSString *)buttonTitle {
-    [_primaryButton setTitle:buttonTitle forState:UIControlStateNormal];
-}
-
--(void)setSecondaryButtonStyle:(BPKButtonStyle)style {
-    [_secondaryButton setStyle:style];
-}
-
--(void)setSecondaryButtonTitle:(NSString *)buttonTitle {
-    [_secondaryButton setTitle:buttonTitle forState:UIControlStateNormal];
-}
-
 @end

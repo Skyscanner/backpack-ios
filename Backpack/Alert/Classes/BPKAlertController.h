@@ -16,26 +16,24 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import <Backpack/Button.h>
+#import <Foundation/Foundation.h>
 #import <Backpack/Color.h>
-#import "BPKAlertButtonConfiguration.h"
+#import <Backpack/Button.h>
+#import "BPKAlertView.h"
+#import "BPKAlertConfiguration.h"
 
-@protocol BPKAlertViewDelegate <NSObject>
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)primaryActionTapped;
-- (void)secondaryActionTapped;
+typedef void (^BPKAlertActionItemHandler)(void);
 
-@end
+/**
+ * `BPKAlert` is a...
+ */
+@interface BPKAlertController: NSObject<BPKAlertViewDelegate>
 
-@interface BPKAlertView : UIView
-
-@property (nonatomic, weak) id<BPKAlertViewDelegate> delegate;
-@property (nonatomic) BOOL hasShadow;
-
--(void)setHeadColor:(BPKColor * _Nullable)color;
--(void)setTitle:(NSString *)titleString;
--(void)setDescription:(NSString *)descriptionString;
--(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations;
+- (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
+                        onView:(UIView * _Nonnull)baseView;
 
 @end
+
+NS_ASSUME_NONNULL_END
