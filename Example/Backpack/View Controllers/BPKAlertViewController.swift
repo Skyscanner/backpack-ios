@@ -56,10 +56,31 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showError(_ sender: UIButton!) {
-
+        let alertConfig = BPKAlertConfiguration.errorConfiguration(withTitle: "Primary title", description: "Test string Lorem", primaryButtonText: "Continue", secondaryButtonText: "Cancel", primaryActionHandler: {
+            NSLog("success")
+        }, secondaryActionHandler: {
+            NSLog("cancel")
+        })
+        self.alertController.alert(with: alertConfig, on: self.view.window!)
     }
 
     func showWarning(_ sender: UIButton!) {
-
+        let primaryBtn = BPKAlertButtonConfiguration.init(style: .primary, title: "Continue", actionHandler: {
+            //
+        })
+        let skipButton = BPKAlertButtonConfiguration.init(style: .link, title: "Skip", actionHandler: {
+            //
+        })
+        
+        let alertConfig = BPKAlertConfiguration.init(circleColor: Color.blue500,
+                                                     titleText: "Warning",
+                                                     descriptionText: "This is a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning",
+                                                     buttonConfigurations: [primaryBtn, skipButton],
+                                                     hasShadow: true,
+                                                     hasDoneButton: true,
+                                                     doneButtonText: "Done",
+                                                     faderIsDismissAction: true,
+                                                     isFullScreen: false)
+        self.alertController.alert(with: alertConfig, on: self.view.window!)
     }
 }

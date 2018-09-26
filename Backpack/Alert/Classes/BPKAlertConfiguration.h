@@ -23,7 +23,7 @@
 
 @interface BPKAlertConfiguration : NSObject
 
-@property (nonatomic) BPKColor *circleColor;
+@property (nonatomic) UIColor *circleColor;
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *descriptionText;
 @property (nonatomic) NSString *doneButtonText;
@@ -33,7 +33,7 @@
 @property (nonatomic) BOOL faderIsDismissAction;
 @property (nonatomic) BOOL isFullScreen;
 
-- (instancetype)initWithCircleColor:(BPKColor *)circleColor
+- (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
                           titleText:(NSString *)titleText
                     descriptionText:(NSString *)descriptionText
                buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations

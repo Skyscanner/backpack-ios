@@ -35,10 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKAlertController
 {
-    BPKAlertActionItemHandler _primaryHandler;
-    BPKAlertActionItemHandler _secondaryhandler;
+    BPKAlertConfiguration *_configuration;
 }
-
 - (instancetype)init
 {
     self = [super init];
@@ -68,18 +66,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
                         onView:(UIView * _Nonnull)baseView {
+    _configuration = configuration;
     
-    // _primaryHandler = configuration.buttonConfigurations;
-    // _secondaryhandler = secondaryActionHandler;
-    
-    // show fader
     _faderView.frame = baseView.bounds;
     [baseView addSubview:_faderView];
     
     [_doneButton setTitle:configuration.doneButtonText forState:UIControlStateNormal];
     _doneButton.frame = CGRectMake(baseView.frame.size.width - BPKSpacingBase - _doneButton.intrinsicContentSize.width, BPKSpacingLg, _doneButton.intrinsicContentSize.width, _doneButton.intrinsicContentSize.height);
     [baseView addSubview:_doneButton];
-    [_doneButton setHidden:(configuration.doneButtonText.length == 0)];
+    [_doneButton setHidden:!(configuration.hasDoneButton)];
     
     // create alert view && show alert
     [_alertView setTitle:configuration.titleText];
@@ -92,10 +87,6 @@ NS_ASSUME_NONNULL_BEGIN
     [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = YES;
     [_alertView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor constant:BPKSpacingLg].active = YES;
     [_alertView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
-    
-    // finish --> remove fader && remove alert view
-    
-    
 }
 
 - (void)removeViews {
@@ -104,32 +95,20 @@ NS_ASSUME_NONNULL_BEGIN
     [self.alertView removeFromSuperview];
 }
 
-- (void)finishWithSuccess {
-    [self removeViews];
-  //  _primaryHandler();
-}
-
-- (void)finishWithCancel {
-    [self removeViews];
-//    _secondaryhandler();
-}
 
 -(void)faderTapped:(UITapGestureRecognizer *)gestureRecognizer {
-    if( gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
-        [self finishWithCancel];
+    if( gestureRecognizer.state == UIGestureRecognizerStateRecognized && _configuration.faderIsDismissAction) {
+        [self removeViews];
     }
 }
 
 -(void)doneTapped:(UIButton *)button {
-    [self finishWithCancel];
+    [self removeViews];
 }
 
--(void)primaryActionTapped {
-    [self finishWithSuccess];
-}
-
--(void)secondaryActionTapped {
-    [self finishWithCancel];
+-(void)closeAlertWithHandler:(BPKAlertButtonActionHandler)handler {
+    [self removeViews];
+    handler();
 }
 
 @end

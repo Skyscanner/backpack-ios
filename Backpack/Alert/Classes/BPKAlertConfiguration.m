@@ -29,7 +29,7 @@
     return self;
 }
 
-- (instancetype)initWithCircleColor:(BPKColor *)circleColor
+- (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
                           titleText:(NSString *)titleText
                     descriptionText:(NSString *)descriptionText
                buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
@@ -67,7 +67,7 @@
                                                                                                  title:secondaryButtonText
                                                                                          actionHandler:secondaryHandler];
     
-    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:(BPKColor *)[BPKColor green500]
+    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor green500]
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]
@@ -94,7 +94,7 @@
                                                                                                  title:secondaryButtonText
                                                                                          actionHandler:secondaryHandler];
     
-    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:(BPKColor *)[BPKColor red500]
+    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor red500]
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]
@@ -112,15 +112,16 @@
                                  secondaryButtonText:(NSString *)secondaryButtonText
                                 primaryActionHandler:(BPKAlertButtonActionHandler)primaryHandler
                               secondaryActionHandler:(BPKAlertButtonActionHandler)secondaryHandler {
-    BPKAlertButtonConfiguration *primaryConfig = [BPKAlertButtonConfiguration configurationWithStyle:BPKButtonStyleFeatured
-                                                                                               title:primaryButtonText
-                                                                                       actionHandler:primaryHandler];
+    BPKAlertButtonConfiguration *primaryConfig = [BPKAlertButtonConfiguration
+                                                  configurationWithStyle:BPKButtonStyleFeatured
+                                                  title:primaryButtonText
+                                                  actionHandler:primaryHandler];
     
     BPKAlertButtonConfiguration *secondaryConfig = [BPKAlertButtonConfiguration configurationWithStyle:BPKButtonStyleSecondary
                                                                                                  title:secondaryButtonText
                                                                                          actionHandler:secondaryHandler];
     
-    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:(BPKColor *)[BPKColor red500]
+    BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor red500]
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]

@@ -148,16 +148,26 @@
 }
 
 - (void)buttonTapped:(BPKButton *)button {
+    BPKAlertButtonConfiguration *config = [self configForButton:button];
+    if (config) {
+        [self.delegate closeAlertWithHandler:config.handler];
+    }
+}
+
+- (BPKAlertButtonConfiguration *)configForButton:(BPKButton *)button {
+    for (NSInteger i = 0; i < [_buttonConfigurationMap allValues].count; i++) {
+        BPKButton *btn = [_buttonConfigurationMap allValues][i];
+        if ([btn isEqual:button]) {
+            return [_buttonConfigurationMap allKeys][i];
+        }
+    }
     
-//    if (_buttonConfigurationMap[button]) {
-//        BPKAlertButtonConfiguration *config = _buttonConfigurationMap[button];
-//        config.handler();
-//    }
+    return nil;
 }
 
 #pragma mark - PUBLIC
--(void)setHeadColor:(BPKColor * _Nullable)color {
-    _iconContainerView.backgroundColor = (UIColor *)color;
+-(void)setHeadColor:(UIColor * _Nullable)color {
+    _iconContainerView.backgroundColor = color;
 }
 
 -(void)setTitle:(NSString *)titleString {

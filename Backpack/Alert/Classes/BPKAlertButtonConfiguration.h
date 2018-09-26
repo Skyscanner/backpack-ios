@@ -27,6 +27,6 @@ typedef void (^BPKAlertButtonActionHandler)(void);
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) BPKAlertButtonActionHandler handler;
 
-+ (instancetype)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
++ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
 
 @end

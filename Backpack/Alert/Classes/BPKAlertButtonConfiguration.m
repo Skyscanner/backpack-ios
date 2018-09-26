@@ -20,7 +20,7 @@
 
 @implementation BPKAlertButtonConfiguration
 
-- (instancetype)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
+- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
     self = [super init];
     if (self) {
         _style = style;
@@ -30,7 +30,7 @@
     return self;
 }
 
-+ (instancetype)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
++ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
     return [[self alloc] initWithButtonStyle:style title:title actionHandler:handler];
 }
 
