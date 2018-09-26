@@ -17,8 +17,7 @@
  */
 
 #import "BPKSpinner.h"
-#import "Color.h"
-#import "Spacing.h"
+#import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
