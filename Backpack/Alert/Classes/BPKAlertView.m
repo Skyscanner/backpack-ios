@@ -170,11 +170,12 @@
 
 -(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations {
     NSMutableDictionary<BPKAlertButtonConfiguration *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
+    [self resetStackViewContent];
     
     for (NSInteger i = 0; i < buttonConfigurations.count; i++) {
         BPKAlertButtonConfiguration *buttonConfig = buttonConfigurations[i];
         BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
-        [button setTitle:buttonConfig.title forState:UIControlStateNormal];
+        [button setTitle:buttonConfig.title];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         btnConfigMap[buttonConfig] = button;
         
@@ -185,4 +186,10 @@
     
     [self setNeedsUpdateConstraints];
 }
+- (void)resetStackViewContent {
+    [[_buttonStackView arrangedSubviews] enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+        [view removeFromSuperview];
+    }];
+}
+
 @end

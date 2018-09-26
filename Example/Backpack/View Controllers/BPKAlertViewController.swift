@@ -20,9 +20,9 @@ import UIKit
 import Backpack
 
 class BPKAlertViewController: UIViewController {
-    let primaryButton:BPKButton = BPKButton(size: .default, style: .primary)
-    let destructiveButton:BPKButton = BPKButton(size: .default, style: .destructive)
-    let warningButton:BPKButton = BPKButton(size: .default, style: .secondary)
+    let primaryButton:Button = Button(size: .default, style: .primary)
+    let destructiveButton:Button = Button(size: .default, style: .destructive)
+    let warningButton:Button = Button(size: .default, style: .secondary)
     let alertController:BPKAlertController = BPKAlertController()
     
     override func viewDidLoad() {
@@ -31,9 +31,9 @@ class BPKAlertViewController: UIViewController {
         self.view.addSubview(destructiveButton)
         self.view.addSubview(warningButton)
         
-        primaryButton.setTitle("normal", for: .normal)
-        destructiveButton.setTitle("error", for: .normal)
-        warningButton.setTitle("warning", for: .normal)
+        primaryButton.setTitle("normal")
+        destructiveButton.setTitle("error")
+        warningButton.setTitle("warning")
         
         primaryButton.addTarget(self, action:#selector(BPKAlertViewController.showNormal(_:)), for: .touchUpInside)
         destructiveButton.addTarget(self, action: #selector(BPKAlertViewController.showError(_:)), for: .touchUpInside)
