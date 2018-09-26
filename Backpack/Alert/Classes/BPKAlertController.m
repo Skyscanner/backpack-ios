@@ -78,7 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
     [_faderView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = YES;
     
     [_doneButton setTitle:configuration.doneButtonConfiguration.titleText forState:UIControlStateNormal];
-//    _doneButton.frame = CGRectMake(baseView.frame.size.width - BPKSpacingBase - _doneButton.intrinsicContentSize.width, BPKSpacingLg, _doneButton.intrinsicContentSize.width, _doneButton.intrinsicContentSize.height);
     [baseView addSubview:_doneButton];
     
     [_doneButton.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
