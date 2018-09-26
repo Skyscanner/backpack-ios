@@ -65,23 +65,20 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showWarning(_ sender: UIButton!) {
-        let primaryBtn = BPKAlertButtonConfiguration.init(style: .primary, title: "Continue", actionHandler: {
-            //
-        })
-        let skipButton = BPKAlertButtonConfiguration.init(style: .link, title: "Skip", actionHandler: {
+        let primaryBtn = BPKAlertButtonConfiguration.init(style: .destructive, title: "Delete", actionHandler: {
             //
         })
         
         let alertConfig = BPKAlertConfiguration.init(circleColor: Color.red500,
                                                      icon:Backpack.Icon.makeIcon(name: "trash", color: Color.white, size: .large),
-                                                     titleText: "Warning",
-                                                     descriptionText: "This is a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning",
-                                                     buttonConfigurations: [primaryBtn, skipButton],
+                                                     titleText: "Delete?",
+                                                     descriptionText: "This is a longer text for warning a longer text for warning a longer text for warning This is a longer text for warning a longer text for warning a longer text for warning This is a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning",
+                                                     buttonConfigurations: [primaryBtn],
                                                      hasShadow: true,
                                                      hasDoneButton: true,
                                                      doneButtonText: "Done",
-                                                     faderIsDismissAction: true,
-                                                     isFullScreen: false)
+                                                     faderIsDismissAction: false,
+                                                     isFullScreen: true)
         self.alertController.alert(with: alertConfig, on: self.view.window!)
     }
 }

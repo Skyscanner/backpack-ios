@@ -84,10 +84,22 @@ NS_ASSUME_NONNULL_BEGIN
     [_alertView setDescription:configuration.descriptionText];
     [_alertView setHeadColor:configuration.circleColor];
     [baseView addSubview:_alertView];
+    
     [_alertView.centerXAnchor constraintEqualToAnchor:baseView.centerXAnchor].active = YES;
-    [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = YES;
     [_alertView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor constant:BPKSpacingLg].active = YES;
     [_alertView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
+    
+    if (configuration.isFullScreen) {
+        [_alertView.topAnchor constraintGreaterThanOrEqualToAnchor:_doneButton.bottomAnchor constant:BPKSpacingMd].active = YES;
+        [_alertView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = YES;
+        [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = NO;
+
+    } else {
+        [_alertView.topAnchor constraintGreaterThanOrEqualToAnchor:_doneButton.bottomAnchor constant:BPKSpacingMd].active = NO;
+        [_alertView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = NO;
+        [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = YES;
+    }
+    
 }
 
 - (void)removeViews {
@@ -105,6 +117,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)doneTapped:(UIButton *)button {
     [self removeViews];
+}
+
+-(void)dismissAlertWithFaderTap {
+    if (_configuration.faderIsDismissAction) {
+        [self removeViews];
+    }
 }
 
 -(void)closeAlertWithHandler:(BPKAlertButtonActionHandler)handler {

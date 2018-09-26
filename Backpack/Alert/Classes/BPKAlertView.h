@@ -24,10 +24,11 @@
 @protocol BPKAlertViewDelegate <NSObject>
 
 - (void)closeAlertWithHandler:(BPKAlertButtonActionHandler)handler;
+- (void)dismissAlertWithFaderTap;
 
 @end
 
-@interface BPKAlertView : UIView
+@interface BPKAlertView : UIView<UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) id<BPKAlertViewDelegate> delegate;
 @property (nonatomic) BOOL hasShadow;

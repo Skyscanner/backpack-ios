@@ -48,6 +48,12 @@
         [self setupViews];
         [self addViews];
         [self setupConstraints];
+        
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapView:)];
+        tap.delegate = self;
+        [self setUserInteractionEnabled:YES];
+        [self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -67,9 +73,9 @@
     
     _iconImageView = [[UIImageView alloc] init];
     
-    _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLgEmphasized];
+    _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
     
-    _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
+    _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
     _descriptionLabel.numberOfLines = 0;
     _descriptionLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -173,6 +179,18 @@
     return nil;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isEqual:self]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)tapView:(UITapGestureRecognizer *)tapGesture {
+    [self.delegate dismissAlertWithFaderTap];
+}
+
 #pragma mark - PUBLIC
 -(void)setHeadColor:(UIColor * _Nullable)color {
     _iconContainerView.backgroundColor = color;
@@ -185,7 +203,6 @@
 -(void)setIcon:(UIImage *)iconImage {
     [_iconImageView setImage:iconImage];
 }
-
 
 -(void)setDescription:(NSString *)descriptionString {
     [_descriptionLabel setText:descriptionString];
