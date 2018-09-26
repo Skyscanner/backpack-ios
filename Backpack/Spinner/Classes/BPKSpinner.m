@@ -36,13 +36,30 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
+- (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self setupWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault];
+        [self setupWithDefaultValues];
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupWithDefaultValues];
+    }
+    return self;
+}
+
+- (void)setupWithDefaultValues {
+    [self setupWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault];
+}
+
+- (void)setupWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
+    _style = style;
+    _size = size;
+    [self render];
 }
 
 - (void)setSize:(BPKSpinnerSize)size {
@@ -53,12 +70,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setStyle:(BPKSpinnerStyle)style {
     _style = style;
-    [self render];
-}
-
-- (void)setupWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
-    _style = style;
-    _size = size;
     [self render];
 }
 

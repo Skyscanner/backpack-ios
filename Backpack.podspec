@@ -116,9 +116,7 @@ Pod::Spec.new do |s|
   s.subspec 'Spinner' do |ss|
       ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'
-      ss.dependency 'Backpack/Icon'
       ss.dependency 'Backpack/Color'
-      ss.dependency 'Backpack/Spacing'
   end
 
   s.subspec 'RTLSupport' do |ss|

@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BPKSpinnerSize) {
 };
 
 /**
- * Enum values for specifying button style
+ * Enum values for specifying spinner style
  */
 typedef NS_ENUM(NSUInteger, BPKSpinnerStyle) {
     BPKSpinnerStylePrimary = 0,
@@ -43,7 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
 
+/**
+ * Style of the spinner
+ * @see BPKSpinnerStyle
+ */
 @property (nonatomic) BPKSpinnerStyle style;
+
+/**
+ * Size of the spinner
+ * @see BPKSpinnerSize
+ */
 @property (nonatomic) BPKSpinnerSize size;
 
 /**
@@ -55,10 +64,24 @@ NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicator
  * @see BPKSpinnerSize
  */
 - (instancetype)initWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Creates a `BPKSpinner` with a decoder (typically when creating form Storyboards)
+ *
+ * @param coder Decoder object to extract parameters from
+ * @return `BPKButton` instance.
+ */
 - (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
+/**
+ * Create a `BPKSpinner` with a given frame.
+ *
+ * @param frame The initial frame of the spinner.
+ * @return `BPKSpinner` instance.
+ */
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style __attribute__((unavailable("use initWithStyle:size: instead")));
-- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithStyle:size: instead")));
 
 @end
 
