@@ -1,0 +1,204 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#import <Foundation/Foundation.h>
+
+FOUNDATION_EXPORT NSString * const BPKIconNameAccessibility;
+FOUNDATION_EXPORT NSString * const BPKIconNameAccountAdd;
+FOUNDATION_EXPORT NSString * const BPKIconNameAccountIdCard;
+FOUNDATION_EXPORT NSString * const BPKIconNameAccountPermit;
+FOUNDATION_EXPORT NSString * const BPKIconNameAccountCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameAccount;
+FOUNDATION_EXPORT NSString * const BPKIconNameAddCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameAdult;
+FOUNDATION_EXPORT NSString * const BPKIconNameAircon;
+FOUNDATION_EXPORT NSString * const BPKIconNameAirlineMultiple;
+FOUNDATION_EXPORT NSString * const BPKIconNameAirline;
+FOUNDATION_EXPORT NSString * const BPKIconNameAirports;
+FOUNDATION_EXPORT NSString * const BPKIconNameAlertActive;
+FOUNDATION_EXPORT NSString * const BPKIconNameAlertAdd;
+FOUNDATION_EXPORT NSString * const BPKIconNameAlertExpired;
+FOUNDATION_EXPORT NSString * const BPKIconNameAlertRemove;
+FOUNDATION_EXPORT NSString * const BPKIconNameArrowDown;
+FOUNDATION_EXPORT NSString * const BPKIconNameArrowLeft;
+FOUNDATION_EXPORT NSString * const BPKIconNameArrowRight;
+FOUNDATION_EXPORT NSString * const BPKIconNameArrowUp;
+FOUNDATION_EXPORT NSString * const BPKIconNameAward;
+FOUNDATION_EXPORT NSString * const BPKIconNameBabyCarriage;
+FOUNDATION_EXPORT NSString * const BPKIconNameBaggageAdd;
+FOUNDATION_EXPORT NSString * const BPKIconNameBaggageRemove;
+FOUNDATION_EXPORT NSString * const BPKIconNameBaggageCross;
+FOUNDATION_EXPORT NSString * const BPKIconNameBaggageTick;
+FOUNDATION_EXPORT NSString * const BPKIconNameBaggage;
+FOUNDATION_EXPORT NSString * const BPKIconNameBar;
+FOUNDATION_EXPORT NSString * const BPKIconNameBeer;
+FOUNDATION_EXPORT NSString * const BPKIconNameBreakfastCross;
+FOUNDATION_EXPORT NSString * const BPKIconNameBreakfastTick;
+FOUNDATION_EXPORT NSString * const BPKIconNameBus;
+FOUNDATION_EXPORT NSString * const BPKIconNameBusiness;
+FOUNDATION_EXPORT NSString * const BPKIconNameCafe;
+FOUNDATION_EXPORT NSString * const BPKIconNameCalendar;
+FOUNDATION_EXPORT NSString * const BPKIconNameCamera;
+FOUNDATION_EXPORT NSString * const BPKIconNameCamperVan;
+FOUNDATION_EXPORT NSString * const BPKIconNameCars;
+FOUNDATION_EXPORT NSString * const BPKIconNameChart;
+FOUNDATION_EXPORT NSString * const BPKIconNameChauffeur;
+FOUNDATION_EXPORT NSString * const BPKIconNameChevronDown;
+FOUNDATION_EXPORT NSString * const BPKIconNameChevronLeft;
+FOUNDATION_EXPORT NSString * const BPKIconNameChevronRight;
+FOUNDATION_EXPORT NSString * const BPKIconNameChevronUp;
+FOUNDATION_EXPORT NSString * const BPKIconNameChildSeat;
+FOUNDATION_EXPORT NSString * const BPKIconNameChild;
+FOUNDATION_EXPORT NSString * const BPKIconNameCityCenter;
+FOUNDATION_EXPORT NSString * const BPKIconNameCity;
+FOUNDATION_EXPORT NSString * const BPKIconNameCloakroom;
+FOUNDATION_EXPORT NSString * const BPKIconNameCloseCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameClose;
+FOUNDATION_EXPORT NSString * const BPKIconNameContentCopy;
+FOUNDATION_EXPORT NSString * const BPKIconNameContentEvent;
+FOUNDATION_EXPORT NSString * const BPKIconNameContentGuides;
+FOUNDATION_EXPORT NSString * const BPKIconNameCurrency;
+FOUNDATION_EXPORT NSString * const BPKIconNameData;
+FOUNDATION_EXPORT NSString * const BPKIconNameDeals;
+FOUNDATION_EXPORT NSString * const BPKIconNameDepart;
+FOUNDATION_EXPORT NSString * const BPKIconNameDeviceMid;
+FOUNDATION_EXPORT NSString * const BPKIconNameDeviceWide;
+FOUNDATION_EXPORT NSString * const BPKIconNameDirect;
+FOUNDATION_EXPORT NSString * const BPKIconNameDownload;
+FOUNDATION_EXPORT NSString * const BPKIconNameDuration;
+FOUNDATION_EXPORT NSString * const BPKIconNameEdit;
+FOUNDATION_EXPORT NSString * const BPKIconNameEstimated;
+FOUNDATION_EXPORT NSString * const BPKIconNameExclamationCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameExpand;
+FOUNDATION_EXPORT NSString * const BPKIconNameFamily;
+FOUNDATION_EXPORT NSString * const BPKIconNameFastTrack;
+FOUNDATION_EXPORT NSString * const BPKIconNameFastTrain;
+FOUNDATION_EXPORT NSString * const BPKIconNameFlag;
+FOUNDATION_EXPORT NSString * const BPKIconNameFlask;
+FOUNDATION_EXPORT NSString * const BPKIconNameFlight;
+FOUNDATION_EXPORT NSString * const BPKIconNameFood;
+FOUNDATION_EXPORT NSString * const BPKIconNameGearsAutomaticCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameGearsAutomatic;
+FOUNDATION_EXPORT NSString * const BPKIconNameGearsManualCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameGearsManual;
+FOUNDATION_EXPORT NSString * const BPKIconNameGlobe;
+FOUNDATION_EXPORT NSString * const BPKIconNameHeadset;
+FOUNDATION_EXPORT NSString * const BPKIconNameHealthFitness;
+FOUNDATION_EXPORT NSString * const BPKIconNameHeart;
+FOUNDATION_EXPORT NSString * const BPKIconNameHelpCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameHelp;
+FOUNDATION_EXPORT NSString * const BPKIconNameHotelsDisabledFacilities;
+FOUNDATION_EXPORT NSString * const BPKIconNameHotelsJacuzzi;
+FOUNDATION_EXPORT NSString * const BPKIconNameHotelsPetsAllowed;
+FOUNDATION_EXPORT NSString * const BPKIconNameHotelsSmoking;
+FOUNDATION_EXPORT NSString * const BPKIconNameHotels;
+FOUNDATION_EXPORT NSString * const BPKIconNameInfant;
+FOUNDATION_EXPORT NSString * const BPKIconNameInformationLanguageAlert;
+FOUNDATION_EXPORT NSString * const BPKIconNameInformationLanguageQuestion;
+FOUNDATION_EXPORT NSString * const BPKIconNameInformationLanguage;
+FOUNDATION_EXPORT NSString * const BPKIconNameInformationCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameInformation;
+FOUNDATION_EXPORT NSString * const BPKIconNameInsurance;
+FOUNDATION_EXPORT NSString * const BPKIconNameKey;
+FOUNDATION_EXPORT NSString * const BPKIconNameLandmark;
+FOUNDATION_EXPORT NSString * const BPKIconNameLanguage;
+FOUNDATION_EXPORT NSString * const BPKIconNameLegroomExtra;
+FOUNDATION_EXPORT NSString * const BPKIconNameLegroomNormal;
+FOUNDATION_EXPORT NSString * const BPKIconNameLegroomReduced;
+FOUNDATION_EXPORT NSString * const BPKIconNameLeisure;
+FOUNDATION_EXPORT NSString * const BPKIconNameLightning;
+FOUNDATION_EXPORT NSString * const BPKIconNameList;
+FOUNDATION_EXPORT NSString * const BPKIconNameLocation;
+FOUNDATION_EXPORT NSString * const BPKIconNameLock;
+FOUNDATION_EXPORT NSString * const BPKIconNameLongArrowDown;
+FOUNDATION_EXPORT NSString * const BPKIconNameLongArrowLeft;
+FOUNDATION_EXPORT NSString * const BPKIconNameLongArrowRight;
+FOUNDATION_EXPORT NSString * const BPKIconNameLongArrowUp;
+FOUNDATION_EXPORT NSString * const BPKIconNameLounge;
+FOUNDATION_EXPORT NSString * const BPKIconNameLuggageall;
+FOUNDATION_EXPORT NSString * const BPKIconNameMail;
+FOUNDATION_EXPORT NSString * const BPKIconNameMap;
+FOUNDATION_EXPORT NSString * const BPKIconNameMedia;
+FOUNDATION_EXPORT NSString * const BPKIconNameMenuHorizontal;
+FOUNDATION_EXPORT NSString * const BPKIconNameMenuVertical;
+FOUNDATION_EXPORT NSString * const BPKIconNameMenu;
+FOUNDATION_EXPORT NSString * const BPKIconNameMileage;
+FOUNDATION_EXPORT NSString * const BPKIconNameMinus;
+FOUNDATION_EXPORT NSString * const BPKIconNameMobile;
+FOUNDATION_EXPORT NSString * const BPKIconNameMoney;
+FOUNDATION_EXPORT NSString * const BPKIconNameMusic;
+FOUNDATION_EXPORT NSString * const BPKIconNameNativeAndroidBack;
+FOUNDATION_EXPORT NSString * const BPKIconNameNativeAndroidClose;
+FOUNDATION_EXPORT NSString * const BPKIconNameNativeAndroidForward;
+FOUNDATION_EXPORT NSString * const BPKIconNameNativeiOSClose;
+FOUNDATION_EXPORT NSString * const BPKIconNameNavigation;
+FOUNDATION_EXPORT NSString * const BPKIconNameNewWindow;
+FOUNDATION_EXPORT NSString * const BPKIconNameNews;
+FOUNDATION_EXPORT NSString * const BPKIconNameNight;
+FOUNDATION_EXPORT NSString * const BPKIconNameNotAllowed;
+FOUNDATION_EXPORT NSString * const BPKIconNameOnsen;
+FOUNDATION_EXPORT NSString * const BPKIconNamePaperclip;
+FOUNDATION_EXPORT NSString * const BPKIconNameParking;
+FOUNDATION_EXPORT NSString * const BPKIconNamePassport;
+FOUNDATION_EXPORT NSString * const BPKIconNamePaymentCard;
+FOUNDATION_EXPORT NSString * const BPKIconNamePetrol;
+FOUNDATION_EXPORT NSString * const BPKIconNamePicture;
+FOUNDATION_EXPORT NSString * const BPKIconNamePin;
+FOUNDATION_EXPORT NSString * const BPKIconNamePlaneSeat;
+FOUNDATION_EXPORT NSString * const BPKIconNamePlus;
+FOUNDATION_EXPORT NSString * const BPKIconNamePolicy;
+FOUNDATION_EXPORT NSString * const BPKIconNamePowerplug;
+FOUNDATION_EXPORT NSString * const BPKIconNamePriceAlerts;
+FOUNDATION_EXPORT NSString * const BPKIconNameRecentSearches;
+FOUNDATION_EXPORT NSString * const BPKIconNameRefresh;
+FOUNDATION_EXPORT NSString * const BPKIconNameReturn;
+FOUNDATION_EXPORT NSString * const BPKIconNameRoom;
+FOUNDATION_EXPORT NSString * const BPKIconNameScales;
+FOUNDATION_EXPORT NSString * const BPKIconNameSearch;
+FOUNDATION_EXPORT NSString * const BPKIconNameServices;
+FOUNDATION_EXPORT NSString * const BPKIconNameSettings;
+FOUNDATION_EXPORT NSString * const BPKIconNameShareAndroid;
+FOUNDATION_EXPORT NSString * const BPKIconNameShareiOS;
+FOUNDATION_EXPORT NSString * const BPKIconNameShare;
+FOUNDATION_EXPORT NSString * const BPKIconNameSort;
+FOUNDATION_EXPORT NSString * const BPKIconNameStarHalf;
+FOUNDATION_EXPORT NSString * const BPKIconNameStar;
+FOUNDATION_EXPORT NSString * const BPKIconNameStops;
+FOUNDATION_EXPORT NSString * const BPKIconNameSwap;
+FOUNDATION_EXPORT NSString * const BPKIconNameTaxi;
+FOUNDATION_EXPORT NSString * const BPKIconNameThumbsDown;
+FOUNDATION_EXPORT NSString * const BPKIconNameThumbsUp;
+FOUNDATION_EXPORT NSString * const BPKIconNameTickCircle;
+FOUNDATION_EXPORT NSString * const BPKIconNameTick;
+FOUNDATION_EXPORT NSString * const BPKIconNameTicket;
+FOUNDATION_EXPORT NSString * const BPKIconNameTime;
+FOUNDATION_EXPORT NSString * const BPKIconNameToilets;
+FOUNDATION_EXPORT NSString * const BPKIconNameTrain;
+FOUNDATION_EXPORT NSString * const BPKIconNameTransmissionAutomatic;
+FOUNDATION_EXPORT NSString * const BPKIconNameTransmissionManual;
+FOUNDATION_EXPORT NSString * const BPKIconNameTrash;
+FOUNDATION_EXPORT NSString * const BPKIconNameTrend;
+FOUNDATION_EXPORT NSString * const BPKIconNameTrips;
+FOUNDATION_EXPORT NSString * const BPKIconNameUnlock;
+FOUNDATION_EXPORT NSString * const BPKIconNameUpgrade;
+FOUNDATION_EXPORT NSString * const BPKIconNameUseLocation;
+FOUNDATION_EXPORT NSString * const BPKIconNameView;
+FOUNDATION_EXPORT NSString * const BPKIconNameWeather;
+FOUNDATION_EXPORT NSString * const BPKIconNameWifi;
+FOUNDATION_EXPORT NSString * const BPKIconNameWindowReduce;
+FOUNDATION_EXPORT NSString * const BPKIconNameWindow;

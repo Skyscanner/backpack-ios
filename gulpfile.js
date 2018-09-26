@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
@@ -25,6 +26,7 @@ const path = require('path');
 const _ = require('lodash');
 const tinycolor = require('tinycolor2');
 const tokens = require('bpk-tokens/tokens/base.ios.json');
+const fs = require('fs');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
@@ -58,7 +60,9 @@ const LEGIBLE_NAMES = [
   { identifier: 'None', legibleName: 'none' },
 ];
 
-const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const getLegibleName = name => {
   let result = null;
@@ -267,7 +271,7 @@ gulp.task('template', () => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const type of TYPES) {
-    const processedType = format(type);
+    const processedType = capitalizeFirstLetter(type);
 
     streams.push(
       gulp
@@ -299,5 +303,33 @@ gulp.task('copy-icon-font', () => {
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
 });
 
-gulp.task('default', ['template', 'copy-icon-font']);
+gulp.task('generate-icon-names', () => {
+  const content = JSON.parse(
+    fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
+  );
+  const codify = name =>
+    name
+      .replace('--', '-')
+      .split('-')
+      .map(capitalizeFirstLetter)
+      .join('')
+      .replace('Ios', 'iOS');
+  const templateData = Object.assign(
+    ...Object.entries(content).map(([k]) => ({ [k]: codify(k) })),
+  );
+
+  gulp
+    .src(path.join(PATHS.templates, `{BPKIconNames.h.njk,BPKIconNames.m.njk}`))
+    .pipe(data(() => ({ icons: templateData })))
+    .pipe(nunjucks.compile())
+    .pipe(
+      rename(file => {
+        // eslint-disable-next-line no-param-reassign
+        file.extname = '';
+      }),
+    )
+    .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
+});
+
+gulp.task('default', ['template', 'copy-icon-font', 'generate-icon-names']);
 gulp.task('clean', () => del([PATHS.output], { force: true }));
