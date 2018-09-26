@@ -59,21 +59,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
     _style = style;
     _size = size;
-    [self render];
+    [self didChangeProperty];
 }
 
 - (void)setSize:(BPKSpinnerSize)size {
     _size = size;
-    [self render];
+    [self didChangeProperty];
     [self setNeedsLayout];
 }
 
 - (void)setStyle:(BPKSpinnerStyle)style {
     _style = style;
-    [self render];
+    [self didChangeProperty];
 }
 
-- (void)render {
+- (void)didChangeProperty {
     self.activityIndicatorViewStyle = [self.class styleForSpinnerSize:self.size];
     self.color = [self.class colorForSpinnerStyle:self.style];
     [self setNeedsDisplay];
