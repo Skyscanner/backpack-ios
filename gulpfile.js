@@ -60,9 +60,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'None', legibleName: 'none' },
 ];
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
 const getLegibleName = name => {
   let result = null;
@@ -271,7 +269,7 @@ gulp.task('template', ['generate-icon-names'], () => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const type of TYPES) {
-    const processedType = capitalizeFirstLetter(type);
+    const processedType = format(type);
 
     streams.push(
       gulp
@@ -311,7 +309,7 @@ gulp.task('generate-icon-names', () => {
     name
       .replace('--', '-')
       .split('-')
-      .map(capitalizeFirstLetter)
+      .map(format)
       .join('')
       .replace('Ios', 'iOS');
   const templateData = Object.assign(
