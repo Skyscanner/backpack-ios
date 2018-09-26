@@ -21,18 +21,19 @@
 #import <Backpack/Button.h>
 #import <Backpack/Icon.h>
 #import "BPKAlertButtonConfiguration.h"
+#import "BPKAlertFaderConfiguration.h"
+#import "BPKAlertDoneButtonConfiguration.h"
 
-@interface BPKAlertConfiguration : NSObject
+NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
 
 @property (nonatomic) UIColor *circleColor;
 @property (nonatomic) UIImage *iconImage;
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *descriptionText;
-@property (nonatomic) NSString *doneButtonText;
 @property (nonatomic) NSArray<BPKAlertButtonConfiguration *> *buttonConfigurations;
+@property (nonatomic) BPKAlertDoneButtonConfiguration *doneButtonConfiguration;
+@property (nonatomic) BPKAlertFaderConfiguration *faderConfiguration;
 @property (nonatomic) BOOL hasShadow;
-@property (nonatomic) BOOL hasDoneButton;
-@property (nonatomic) BOOL faderIsDismissAction;
 @property (nonatomic) BOOL isFullScreen;
 
 - (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
@@ -41,30 +42,8 @@
                     descriptionText:(NSString *)descriptionText
                buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
                           hasShadow:(BOOL)hasShadow
-                    hasDoneButton:(BOOL)hasDoneButton
-                     doneButtonText:(NSString *)doneButtonText
-                faderIsDismissAction:(BOOL)faderIsDismissAction
+                     doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
+                     faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration
                         isFullScreen:(BOOL)isFullScreen;
-
-+ (instancetype _Nonnull)normalConfigurationWithTitle:(NSString *)title
-                                          description:(NSString *)description
-                                    primaryButtonText:(NSString *)primaryButtonText
-                                  secondaryButtonText:(NSString *)secondaryButtonText
-                                 primaryActionHandler:(BPKAlertButtonActionHandler)primaryHandler
-                               secondaryActionHandler:(BPKAlertButtonActionHandler)secondaryHandler;
-
-+ (instancetype _Nonnull)errorConfigurationWithTitle:(NSString *)title
-                                         description:(NSString *)description
-                                   primaryButtonText:(NSString *)primaryButtonText
-                                 secondaryButtonText:(NSString *)secondaryButtonText
-                                primaryActionHandler:(BPKAlertButtonActionHandler)primaryHandler
-                              secondaryActionHandler:(BPKAlertButtonActionHandler)secondaryHandler;
-
-+ (instancetype _Nonnull)warningConfigurationWithTitle:(NSString *)title
-                                           description:(NSString *)description
-                                     primaryButtonText:(NSString *)primaryButtonText
-                                   secondaryButtonText:(NSString *)secondaryButtonText
-                                  primaryActionHandler:(BPKAlertButtonActionHandler)primaryHandler
-                                secondaryActionHandler:(BPKAlertButtonActionHandler)secondaryHandler;
 
 @end

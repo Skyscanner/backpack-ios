@@ -17,16 +17,15 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Backpack/Button.h>
 
-typedef void (^BPKAlertButtonActionHandler)(void);
+typedef void (^BPKAlertDoneButtonActionHandler)(void);
 
-NS_SWIFT_NAME(AlertButtonConfiguration) @interface BPKAlertButtonConfiguration : NSObject <NSCopying>
+NS_SWIFT_NAME(AlertDoneButtonConfiguration) @interface BPKAlertDoneButtonConfiguration : NSObject
 
-@property (nonatomic, readonly) BPKButtonStyle style;
-@property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) BPKAlertButtonActionHandler handler;
+@property (nonatomic, readonly) BPKAlertDoneButtonActionHandler handler;
+@property (nonatomic, readonly) NSString *titleText;
+@property (readonly, getter=isVisible) BOOL visible;
 
-+ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
++ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText;
 
 @end

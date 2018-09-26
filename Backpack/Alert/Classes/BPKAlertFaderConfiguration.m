@@ -16,14 +16,31 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_ALERT__
-#define __BACKPACK_ALERT__
-
-#import "BPKAlertController.h"
-#import "BPKAlertView.h"
-#import "BPKAlertButtonConfiguration.h"
-#import "BPKAlertDoneButtonConfiguration.h"
 #import "BPKAlertFaderConfiguration.h"
 
-#endif
+@implementation BPKAlertFaderConfiguration
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSAssert(NO, @"Please use the configurationWithActionHandler method");
+    }
+    return self;
+}
+
+- (instancetype)initWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
+    self = [super init];
+    if (self) {
+        _handler = handler;
+        _shouldDismiss = shouldDismiss;
+    }
+    return self;
+}
+
+
++ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
+    return [[self alloc] initWithActionHandler:handler shouldDismiss:shouldDismiss];
+}
+
+@end

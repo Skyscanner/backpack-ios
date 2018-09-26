@@ -17,16 +17,14 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Backpack/Button.h>
 
-typedef void (^BPKAlertButtonActionHandler)(void);
+typedef void (^BPKAlertFaderActionHandler)(BOOL didDismiss);
 
-NS_SWIFT_NAME(AlertButtonConfiguration) @interface BPKAlertButtonConfiguration : NSObject <NSCopying>
+NS_SWIFT_NAME(AlertFaderConfiguration) @interface BPKAlertFaderConfiguration : NSObject
 
-@property (nonatomic, readonly) BPKButtonStyle style;
-@property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) BPKAlertButtonActionHandler handler;
+@property (nonatomic, readonly) BPKAlertFaderActionHandler handler;
+@property (readonly) BOOL shouldDismiss;
 
-+ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
++ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 
 @end

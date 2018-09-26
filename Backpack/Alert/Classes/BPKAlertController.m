@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
         _faderView.userInteractionEnabled = YES;
         _faderView.backgroundColor = BPKColor.gray900;
         _faderView.alpha = 0.5;
+        _faderView.translatesAutoresizingMaskIntoConstraints = NO;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(faderTapped:)];
         [_faderView addGestureRecognizer:tapGesture];
 
@@ -56,7 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
         [_doneButton addTarget:self action:@selector(doneTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_doneButton setHidden:YES];
         [_doneButton.titleLabel setFont:[BPKFont textBaseEmphasized]];
-
+        _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
+        
         _alertView = [[BPKAlertView alloc] initWithFrame:CGRectZero];
         _alertView.translatesAutoresizingMaskIntoConstraints = NO;
         _alertView.delegate = self;
@@ -68,13 +70,26 @@ NS_ASSUME_NONNULL_BEGIN
                         onView:(UIView * _Nonnull)baseView {
     _configuration = configuration;
     
-    _faderView.frame = baseView.bounds;
+
     [baseView addSubview:_faderView];
+    [_faderView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor].active = YES;
+    [_faderView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor].active = YES;
+    [_faderView.topAnchor constraintEqualToAnchor:baseView.topAnchor].active = YES;
+    [_faderView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = YES;
     
-    [_doneButton setTitle:configuration.doneButtonText forState:UIControlStateNormal];
-    _doneButton.frame = CGRectMake(baseView.frame.size.width - BPKSpacingBase - _doneButton.intrinsicContentSize.width, BPKSpacingLg, _doneButton.intrinsicContentSize.width, _doneButton.intrinsicContentSize.height);
+    [_doneButton setTitle:configuration.doneButtonConfiguration.titleText forState:UIControlStateNormal];
+//    _doneButton.frame = CGRectMake(baseView.frame.size.width - BPKSpacingBase - _doneButton.intrinsicContentSize.width, BPKSpacingLg, _doneButton.intrinsicContentSize.width, _doneButton.intrinsicContentSize.height);
     [baseView addSubview:_doneButton];
-    [_doneButton setHidden:!(configuration.hasDoneButton)];
+    
+    [_doneButton.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
+    if (@available(iOS 11.0, *)) {
+        CGFloat topInset = baseView.safeAreaInsets.top;
+        CGFloat offsetConstant = topInset == 0 ? 20+BPKSpacingMd : BPKSpacingMd;
+        [_doneButton.topAnchor constraintEqualToAnchor:baseView.safeAreaLayoutGuide.topAnchor constant:offsetConstant].active = YES;
+    } else {
+        [_doneButton.topAnchor constraintEqualToAnchor:baseView.topAnchor constant:20+BPKSpacingLg].active = YES; // notch only available on iOS 11+ devices
+    }
+    [_doneButton setHidden:!(configuration.doneButtonConfiguration.isVisible)];
     
     // create alert view && show alert
     [_alertView setTitle:configuration.titleText];
@@ -86,8 +101,18 @@ NS_ASSUME_NONNULL_BEGIN
     [baseView addSubview:_alertView];
     
     [_alertView.centerXAnchor constraintEqualToAnchor:baseView.centerXAnchor].active = YES;
-    [_alertView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor constant:BPKSpacingLg].active = YES;
-    [_alertView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
+    
+    NSLayoutConstraint *leadConstraint = [_alertView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor constant:BPKSpacingLg];
+    leadConstraint.priority = UILayoutPriorityDefaultHigh;
+    leadConstraint.active = YES;
+
+    NSLayoutConstraint *trailingConstraint = [_alertView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg];
+    trailingConstraint.priority = UILayoutPriorityDefaultHigh;
+    trailingConstraint.active = YES;
+    
+    NSLayoutConstraint *widthConstraint = [_alertView.widthAnchor constraintLessThanOrEqualToConstant:baseView.bounds.size.width - 2*BPKSpacingMd];
+    widthConstraint.priority = UILayoutPriorityRequired;
+    widthConstraint.active = YES;
     
     if (configuration.isFullScreen) {
         [_alertView.topAnchor constraintGreaterThanOrEqualToAnchor:_doneButton.bottomAnchor constant:BPKSpacingMd].active = YES;
@@ -110,17 +135,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 -(void)faderTapped:(UITapGestureRecognizer *)gestureRecognizer {
-    if( gestureRecognizer.state == UIGestureRecognizerStateRecognized && _configuration.faderIsDismissAction) {
-        [self removeViews];
+    if( gestureRecognizer.state == UIGestureRecognizerStateRecognized ) {
+        [self dismissAlertWithFaderTap];
     }
 }
 
 -(void)doneTapped:(UIButton *)button {
-    [self removeViews];
+    if (_configuration.doneButtonConfiguration.handler) {
+        [self removeViews];
+        _configuration.doneButtonConfiguration.handler();
+    }
 }
 
 -(void)dismissAlertWithFaderTap {
-    if (_configuration.faderIsDismissAction) {
+    if (_configuration.faderConfiguration.handler) {
+        _configuration.faderConfiguration.handler(_configuration.faderConfiguration.shouldDismiss);
+    }
+    
+    if (_configuration.faderConfiguration.shouldDismiss) {
         [self removeViews];
     }
 }

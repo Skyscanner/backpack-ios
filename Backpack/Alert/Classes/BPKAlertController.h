@@ -29,7 +29,7 @@ typedef void (^BPKAlertActionItemHandler)(void);
 /**
  * `BPKAlert` is a...
  */
-@interface BPKAlertController: NSObject<BPKAlertViewDelegate>
+NS_SWIFT_NAME(AlertController) @interface BPKAlertController: NSObject<BPKAlertViewDelegate>
 
 - (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
                         onView:(UIView * _Nonnull)baseView;
