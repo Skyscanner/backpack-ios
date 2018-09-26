@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
-#import "BPKIconName.h"
+#import "BPKIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, BPKIconSize) {

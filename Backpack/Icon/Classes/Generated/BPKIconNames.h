@@ -17,7 +17,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "BPKIconName.h"
+
+typedef NSString * NS_SWIFT_NAME(IconName) BPKIconName NS_EXTENSIBLE_STRING_ENUM;
 
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccessibility;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountAdd;
