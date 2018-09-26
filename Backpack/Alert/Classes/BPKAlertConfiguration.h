@@ -19,11 +19,13 @@
 #import <Foundation/Foundation.h>
 #import <Backpack/Color.h>
 #import <Backpack/Button.h>
+#import <Backpack/Icon.h>
 #import "BPKAlertButtonConfiguration.h"
 
 @interface BPKAlertConfiguration : NSObject
 
 @property (nonatomic) UIColor *circleColor;
+@property (nonatomic) UIImage *iconImage;
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *descriptionText;
 @property (nonatomic) NSString *doneButtonText;
@@ -34,6 +36,7 @@
 @property (nonatomic) BOOL isFullScreen;
 
 - (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
+                                        icon:(UIImage *)iconImage
                           titleText:(NSString *)titleText
                     descriptionText:(NSString *)descriptionText
                buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations

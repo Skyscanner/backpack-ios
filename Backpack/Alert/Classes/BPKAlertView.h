@@ -36,5 +36,6 @@
 -(void)setTitle:(NSString *)titleString;
 -(void)setDescription:(NSString *)descriptionString;
 -(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations;
+-(void)setIcon:(UIImage *)iconImage;
 
 @end

@@ -72,7 +72,8 @@ class BPKAlertViewController: UIViewController {
             //
         })
         
-        let alertConfig = BPKAlertConfiguration.init(circleColor: Color.blue500,
+        let alertConfig = BPKAlertConfiguration.init(circleColor: Color.red500,
+                                                     icon:Backpack.Icon.makeIcon(name: "trash", color: Color.white, size: .large),
                                                      titleText: "Warning",
                                                      descriptionText: "This is a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning a longer text for warning",
                                                      buttonConfigurations: [primaryBtn, skipButton],

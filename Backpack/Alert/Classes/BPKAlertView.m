@@ -30,7 +30,8 @@
 {
     UIView *_circularView;
     UIView *_iconContainerView;
-
+    UIImageView *_iconImageView;
+    
     UIView *_contentHolderView;
     BPKLabel *_titleLabel;
     BPKLabel *_descriptionLabel;
@@ -64,6 +65,8 @@
     _iconContainerView.layer.cornerRadius = 30;
     _iconContainerView.backgroundColor = BPKColor.red500;
     
+    _iconImageView = [[UIImageView alloc] init];
+    
     _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLgEmphasized];
     
     _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
@@ -74,6 +77,7 @@
     _buttonStackView.axis = UILayoutConstraintAxisVertical;
     _buttonStackView.spacing = BPKSpacingMd;
     
+    _iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
     _buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -86,7 +90,8 @@
     [self addSubview:_contentHolderView];
     [self addSubview:_circularView];
     [_circularView addSubview:_iconContainerView];
-    
+    [_circularView addSubview:_iconImageView];
+
     [_contentHolderView addSubview:_titleLabel];
     [_contentHolderView addSubview:_descriptionLabel];
     [_contentHolderView addSubview:_buttonStackView];
@@ -102,6 +107,9 @@
     [_iconContainerView.centerXAnchor constraintEqualToAnchor:_circularView.centerXAnchor].active = YES;
     [_iconContainerView.heightAnchor constraintEqualToConstant:60].active = YES;
     [_iconContainerView.widthAnchor constraintEqualToConstant:60].active = YES;
+   
+    [_iconImageView.centerYAnchor constraintEqualToAnchor:_iconContainerView.centerYAnchor].active = YES;
+    [_iconImageView.centerXAnchor constraintEqualToAnchor:_iconContainerView.centerXAnchor].active = YES;
     
     [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-35].active = YES;
     [_contentHolderView.bottomAnchor constraintEqualToAnchor:_contentHolderView.superview.bottomAnchor].active = YES;
@@ -173,6 +181,11 @@
 -(void)setTitle:(NSString *)titleString {
     [_titleLabel setText:titleString];
 }
+
+-(void)setIcon:(UIImage *)iconImage {
+    [_iconImageView setImage:iconImage];
+}
+
 
 -(void)setDescription:(NSString *)descriptionString {
     [_descriptionLabel setText:descriptionString];

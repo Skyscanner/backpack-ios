@@ -78,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     // create alert view && show alert
     [_alertView setTitle:configuration.titleText];
+    [_alertView setIcon:configuration.iconImage];
     [_alertView setHasShadow:configuration.hasShadow];
     [_alertView setButtonConfigurations:configuration.buttonConfigurations];
     [_alertView setDescription:configuration.descriptionText];

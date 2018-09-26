@@ -30,6 +30,7 @@
 }
 
 - (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
+                                        icon:(UIImage *)iconImage
                           titleText:(NSString *)titleText
                     descriptionText:(NSString *)descriptionText
                buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
@@ -41,6 +42,7 @@
     self = [super init];
     if (self) {
         _circleColor = circleColor;
+        _iconImage = iconImage;
         _titleText = titleText;
         _descriptionText = descriptionText;
         _buttonConfigurations = buttonConfigurations;
@@ -68,6 +70,7 @@
                                                                                          actionHandler:secondaryHandler];
     
     BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor green500]
+                                                                                  icon:nil
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]
@@ -95,6 +98,7 @@
                                                                                          actionHandler:secondaryHandler];
     
     BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor red500]
+                                                                                  icon:nil
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]
@@ -122,6 +126,7 @@
                                                                                          actionHandler:secondaryHandler];
     
     BPKAlertConfiguration *config = [[BPKAlertConfiguration alloc] initWithCircleColor:[BPKColor red500]
+                                                                                  icon:nil
                                                                              titleText:title
                                                                        descriptionText:description
                                                                   buttonConfigurations:@[primaryConfig, secondaryConfig]
