@@ -17,7 +17,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <Backpack/BPKButton.h>
+#import <Backpack/Button.h>
 
 @interface BPKButtonsViewController : UIViewController
 

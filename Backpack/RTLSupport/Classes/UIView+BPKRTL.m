@@ -15,21 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "UIView+BPKRTL.h"
+#import "BPKRTLSupport.h"
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
-
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-#endif
-
+NS_ASSUME_NONNULL_BEGIN
+@implementation UIView(BPKRTL)
+- (UIEdgeInsets)bpk_makeRTLAwareEdgeInsetsWithTop:(CGFloat)top
+                                          leading:(CGFloat)leading
+                                           bottom:(CGFloat)bottom
+                                         trailing:(CGFloat)trailing {
+    return [BPKRTLSupport makeRTLAwareEdgeInsetsForView:self top:top leading:leading bottom:bottom trailing:trailing];
+}
+@end
+NS_ASSUME_NONNULL_END

@@ -18,6 +18,20 @@ and then run `pod install`.
 #import <Backpack/Button.h>
 
 BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
+[button setTitle:@"My Button"];
+// Position button with autolayout or other method
+```
+
+With Icon
+
+```objective-c
+#import <Backpack/Button.h>
+#import <Backpack/Icon.h>
+
+UIImage *icon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
+[button setTitle:@"My Button"];
+[button setImage:icon];
 // Position button with autolayout or other method
 ```
 

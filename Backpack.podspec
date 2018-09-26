@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "0.11.14"
+  s.version          = "0.13.0"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
@@ -78,21 +78,6 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Font'
   end
 
-  s.subspec 'Label' do |ss|
-    ss.source_files = 'Backpack/Label/Classes/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Label/Classes/**/*.h'
-    ss.dependency 'Backpack/Color'
-    ss.dependency 'Backpack/Font'
-  end
-
-  s.subspec 'Panel' do |ss|
-    ss.source_files = 'Backpack/Panel/Classes/**/*.{h,m}'
-    ss.public_header_files = 'Backpack/Panel/Classes/**/*.h'
-    ss.dependency 'Backpack/Color'
-    ss.dependency 'Backpack/Spacing'
-    ss.dependency 'Backpack/Radii'
-  end
-  
   s.subspec 'Button' do |ss|
       ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
@@ -100,6 +85,8 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/Spacing'
       ss.dependency 'Backpack/Gradient'
       ss.dependency 'Backpack/Font'
+      ss.dependency 'Backpack/Label'
+      ss.dependency 'Backpack/RTLSupport'
   end
 
     s.subspec 'Alert' do |ss|
@@ -115,6 +102,26 @@ Pod::Spec.new do |s|
       'Icon' => 'Backpack/Icon/Assets/*'
     }
     ss.frameworks = 'CoreText'
+  end
+
+  s.subspec 'Label' do |ss|
+    ss.source_files = 'Backpack/Label/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Label/Classes/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Font'
+  end
+
+  s.subspec 'Panel' do |ss|
+    ss.source_files = 'Backpack/Panel/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Panel/Classes/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Radii'
+  end
+
+  s.subspec 'RTLSupport' do |ss|
+    ss.source_files = 'Backpack/RTLSupport/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/RTLSupport/Classes/**/*.h'
   end
 
   s.frameworks = 'UIKit', 'Foundation'

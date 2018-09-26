@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKLabel` is a subclass of `UILabel` which uses the Skyscanner style.
  */
 NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel: UILabel
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 /**
  * Create a `BPKLabel` with a specific BPKFont style.
@@ -34,6 +33,8 @@ NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel: UILabel
  */
 - (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
 
 /**
  The font style used for the label.

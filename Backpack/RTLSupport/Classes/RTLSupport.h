@@ -15,21 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef __BACKPACK_RTL_SUPPORT__
+#define __BACKPACK_RTL_SUPPORT__
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
-
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
+#import "BPKRTLSupport.h"
 #endif
 

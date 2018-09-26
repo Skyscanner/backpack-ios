@@ -16,20 +16,12 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+import UIKit
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-#endif
-
+class LabelsSelectorTableViewController: UITableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowLabelsSegue") {
+            segue.destination.title = NSLocalizedString("LABELS_CONTROLLER_TITLE", comment: "")
+        }
+    }
+}
