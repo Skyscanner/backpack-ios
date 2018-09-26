@@ -26,9 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^BPKAlertActionItemHandler)(void);
 
-/**
- * `BPKAlert` is a...
- */
 NS_SWIFT_NAME(AlertController) @interface BPKAlertController: NSObject<BPKAlertViewDelegate>
 
 - (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
