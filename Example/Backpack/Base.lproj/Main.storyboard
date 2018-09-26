@@ -1058,7 +1058,7 @@
         <!--Spinners-->
         <scene sceneID="JED-xv-eDU">
             <objects>
-                <viewController title="Spinners" id="43g-uI-FxF" customClass="BPKSpinnersViewController" sceneMemberID="viewController">
+                <viewController title="Spinners" id="43g-uI-FxF" customClass="SpinnersViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FXT-xZ-cB5"/>
                         <viewControllerLayoutGuide type="bottom" id="7nr-dV-htR"/>
@@ -1077,7 +1077,7 @@
                                         </constraints>
                                     </activityIndicatorView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5Ky-q8-ewW" customClass="BPKSpinner">
-                                        <rect key="frame" x="259" y="23" width="20" height="22"/>
+                                        <rect key="frame" x="242" y="23" width="37" height="22"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1122,7 +1122,7 @@
                                 <rect key="frame" x="16" y="225" width="343" height="58"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sYy-YV-lpc" customClass="BPKSpinner">
-                                        <rect key="frame" x="259" y="19" width="20" height="20"/>
+                                        <rect key="frame" x="242" y="10.5" width="37" height="37"/>
                                     </activityIndicatorView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tky-sL-Lqd" customClass="BPKSpinner">
                                         <rect key="frame" x="82" y="9" width="40" height="40"/>
@@ -1145,7 +1145,7 @@
                                 <rect key="frame" x="16" y="305" width="343" height="58"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yae-fe-ZSk" customClass="BPKSpinner">
-                                        <rect key="frame" x="260" y="19" width="20" height="20"/>
+                                        <rect key="frame" x="243" y="10.5" width="37" height="37"/>
                                     </activityIndicatorView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1lP-Fi-Ddr" customClass="BPKSpinner">
                                         <rect key="frame" x="80" y="10" width="40" height="41"/>

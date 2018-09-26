@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
 		2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */; };
-		3A2405A5215BC4D50070B9D9 /* BPKSpinnersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2405A4215BC4D50070B9D9 /* BPKSpinnersViewController.m */; };
 		3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
+		3AA018EF215BE26600838FBB /* BPKSpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* BPKSpinnersViewController.swift */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -88,12 +88,11 @@
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
-		3A2405A3215BC4D50070B9D9 /* BPKSpinnersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSpinnersViewController.h; sourceTree = "<group>"; };
-		3A2405A4215BC4D50070B9D9 /* BPKSpinnersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpinnersViewController.m; sourceTree = "<group>"; };
 		3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonSelectorViewController.h; sourceTree = "<group>"; };
 		3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSelectorViewController.m; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
+		3AA018EE215BE26500838FBB /* BPKSpinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSpinnersViewController.swift; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		5BDC00DF358FDC7E213EC2B3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -375,8 +374,7 @@
 				6055821621523A1300BF9F3E /* IconsViewController.swift */,
 				D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */,
 				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
-				3A2405A3215BC4D50070B9D9 /* BPKSpinnersViewController.h */,
-				3A2405A4215BC4D50070B9D9 /* BPKSpinnersViewController.m */,
+				3AA018EE215BE26500838FBB /* BPKSpinnersViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -630,10 +628,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA018EF215BE26600838FBB /* BPKSpinnersViewController.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
-				3A2405A5215BC4D50070B9D9 /* BPKSpinnersViewController.m in Sources */,
 				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */,
