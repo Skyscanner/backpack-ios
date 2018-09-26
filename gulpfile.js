@@ -265,7 +265,7 @@ const parseTokens = tokensData => {
     .value();
 };
 
-gulp.task('template', () => {
+gulp.task('template', ['generate-icon-names'], () => {
   const streams = [];
   const templateData = parseTokens(tokens);
 
@@ -331,5 +331,5 @@ gulp.task('generate-icon-names', () => {
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
 });
 
-gulp.task('default', ['template', 'copy-icon-font', 'generate-icon-names']);
+gulp.task('default', ['template', 'copy-icon-font']);
 gulp.task('clean', () => del([PATHS.output], { force: true }));
