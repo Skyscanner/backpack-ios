@@ -19,5 +19,5 @@
 #import "BPKIconNames.h"
 
 {% for iconName, iconValue in icons -%}
-NSString * const BPKIconName{{iconValue}} = @"{{iconName}}";
+BPKIconName const BPKIconName{{iconValue}} = @"{{iconName}}";
 {% endfor %}

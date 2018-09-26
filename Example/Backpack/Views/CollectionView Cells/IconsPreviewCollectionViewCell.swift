@@ -21,7 +21,7 @@ import Backpack
 
 class IconsPreviewCollectionViewCell: UICollectionViewCell {
     
-    var icon: String? {
+    var icon: IconName? {
         didSet {
             imageView.image = Backpack.Icon.makeIcon(name: icon!, color: Backpack.Color.gray900, size: .large)
         }

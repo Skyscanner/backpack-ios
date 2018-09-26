@@ -17,8 +17,5 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "BPKIconName.h"
 
-{% for iconName, iconValue in icons -%}
-FOUNDATION_EXPORT BPKIconName const BPKIconName{{iconValue}};
-{% endfor %}
+typedef NSString * NS_SWIFT_NAME(IconName) BPKIconName NS_EXTENSIBLE_STRING_ENUM;
