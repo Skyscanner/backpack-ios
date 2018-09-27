@@ -119,6 +119,12 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
   end
+  
+  s.subspec 'Spinner' do |ss|
+      ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+  end
 
   s.subspec 'RTLSupport' do |ss|
     ss.source_files = 'Backpack/RTLSupport/Classes/**/*.{h,m}'
