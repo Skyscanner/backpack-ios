@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.14.0
+
+**Added:**
+
+- Backpack/Spinner
+  - A thin wrapper around `UIActivityIndicatorView` with the Skyscanner colors.
+
+- Backpack/Icon
+  - Added constants for icon names to avoid bugs due to the stringly typed API.
+
 ## 0.13.0
 
 **Breaking:**
