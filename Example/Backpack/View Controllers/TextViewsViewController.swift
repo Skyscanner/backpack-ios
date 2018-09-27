@@ -16,22 +16,15 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+import UIKit
+import Backpack.TextView
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-
-    #import "Badge.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner."
-    #import "TextView.h"
-#endif
-
+class TextViewsViewController: UIViewController {
+    @IBOutlet weak var textView: TextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+}
