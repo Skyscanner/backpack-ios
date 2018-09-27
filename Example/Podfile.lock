@@ -12,6 +12,7 @@ PODS:
     - Backpack/RTLSupport (= 0.13.0)
     - Backpack/Shadow (= 0.13.0)
     - Backpack/Spacing (= 0.13.0)
+    - Backpack/Spinner (= 0.13.0)
   - Backpack/Badge (0.13.0):
     - Backpack/Color
     - Backpack/Font
@@ -40,6 +41,8 @@ PODS:
   - Backpack/RTLSupport (0.13.0)
   - Backpack/Shadow (0.13.0)
   - Backpack/Spacing (0.13.0)
+  - Backpack/Spinner (0.13.0):
+    - Backpack/Color
   - iOSSnapshotTestCase/Core (3.0.0)
 
 DEPENDENCIES:
@@ -55,7 +58,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 81c15fa0a0ad089b086f5cb54c42b861ca3d1534
+  Backpack: 82d77eddc85c6915fe6bd7742b922b87f3155545
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67

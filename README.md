@@ -32,6 +32,7 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 * [Backpack/Label](Backpack/Label/README.md)
 * [Backpack/Panel](Backpack/Panel/README.md)
 * [Backpack/Button](Backpack/Button/README.md)
+* [Backpack/Spinner](Backpack/Spinner/README.md)
 
 ## Contributing to Backpack
 
