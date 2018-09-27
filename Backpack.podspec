@@ -104,6 +104,13 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Font'
   end
+  
+  s.subspec 'TextView' do |ss|
+      ss.source_files = 'Backpack/TextView/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/TextView/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Font'
+  end
 
   s.subspec 'Panel' do |ss|
     ss.source_files = 'Backpack/Panel/Classes/**/*.{h,m}'
