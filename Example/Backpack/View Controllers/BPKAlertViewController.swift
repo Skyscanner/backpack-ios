@@ -53,6 +53,10 @@ class BPKAlertViewController: UIViewController {
         let skipBtnConfig = AlertButtonAction(title: "skip", style: .link) {
             NSLog("Primary tapped")
         }
+        
+        let doneButtonConfig = AlertDoneButtonAction(title: "Done", isVisible: true) {
+            NSLog("Done pressed")
+        }
 
         let faderConfig = AlertFaderAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
@@ -64,7 +68,7 @@ class BPKAlertViewController: UIViewController {
                                                   descriptionText: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
                                                   buttonConfigurations: [primaryBtnConfig, skipBtnConfig],
                                                   hasShadow: true,
-                                                  doneButtonConfiguration: nil,
+                                                  doneButtonConfiguration: doneButtonConfig,
                                                   faderConfiguration: faderConfig,
                                                   isFullScreen: false)
         self.alertController.alert(with: alertConfig, on: self.view.window!)

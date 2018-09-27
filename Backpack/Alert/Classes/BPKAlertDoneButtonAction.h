@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^BPKAlertDoneButtonActionHandler)(void);
 
-NS_SWIFT_NAME(AlertDoneButtonConfiguration) @interface BPKAlertDoneButtonConfiguration : NSObject
+NS_SWIFT_NAME(AlertDoneButtonAction) @interface BPKAlertDoneButtonAction : NSObject
 
 - (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
@@ -30,7 +30,7 @@ NS_SWIFT_NAME(AlertDoneButtonConfiguration) @interface BPKAlertDoneButtonConfigu
 @property (nonatomic, readonly) NSString *titleText;
 @property (readonly, getter=isVisible) BOOL visible;
 
-+ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText;
++ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler;
 
 @end
 NS_ASSUME_NONNULL_END

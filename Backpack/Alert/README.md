@@ -38,7 +38,7 @@ BPKAlertFaderConfiguration *faderConfiguration = [BPKAlertFaderConfiguration con
     NSLog(@"fader tapped, didDismiss? %@", @(didDismiss));
 } shouldDismiss:YES];
     
-BPKAlertDoneButtonConfiguration *doneButtonConfiguration = [BPKAlertDoneButtonConfiguration configurationWithActionHandler:^{
+BPKAlertDoneButtonAction *doneButtonConfiguration = [BPKAlertDoneButtonAction configurationWithActionHandler:^{
     NSLog(@"Done tapped tapped");
 } isVisible:NO titleText:@"Done"];
     

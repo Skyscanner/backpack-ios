@@ -24,7 +24,7 @@
 #import <Backpack/Button.h>
 #import "BPKAlertConfiguration.h"
 #import "BPKAlertButtonAction.h"
-#import "BPKAlertDoneButtonConfiguration.h"
+#import "BPKAlertDoneButtonAction.h"
 #import "BPKAlertFaderAction.h"
 
 NS_ASSUME_NONNULL_BEGIN

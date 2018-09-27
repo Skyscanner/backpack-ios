@@ -26,7 +26,7 @@
                              descriptionText:(NSString *)descriptionText
                         buttonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations
                                    hasShadow:(BOOL)hasShadow
-                     doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
+                     doneButtonConfiguration:(BPKAlertDoneButtonAction *)doneButtonConfiguration
                           faderConfiguration:(BPKAlertFaderAction *)faderConfiguration
                                 isFullScreen:(BOOL)isFullScreen {
     self = [super init];

@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#import "BPKAlertDoneButtonConfiguration.h"
+#import "BPKAlertDoneButtonAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKAlertDoneButtonConfiguration
+@implementation BPKAlertDoneButtonAction
 
 - (instancetype)initWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText {
     self = [super init];
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-+ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText {
++ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler {
     return [[self alloc] initWithActionHandler:handler isVisible:isVisible titleText:titleText];
 }
 
