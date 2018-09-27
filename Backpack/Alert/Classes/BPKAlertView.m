@@ -104,35 +104,37 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupConstraints {
-    [_circularView.topAnchor constraintEqualToAnchor:_circularView.superview.topAnchor].active = YES;
-    [_circularView.centerXAnchor constraintEqualToAnchor:_contentHolderView.centerXAnchor].active = YES;
-    [_circularView.heightAnchor constraintEqualToConstant:70].active = YES;
-    [_circularView.widthAnchor constraintEqualToConstant:70].active = YES;
-  
-    [_iconContainerView.centerYAnchor constraintEqualToAnchor:_circularView.centerYAnchor].active = YES;
-    [_iconContainerView.centerXAnchor constraintEqualToAnchor:_circularView.centerXAnchor].active = YES;
-    [_iconContainerView.heightAnchor constraintEqualToConstant:60].active = YES;
-    [_iconContainerView.widthAnchor constraintEqualToConstant:60].active = YES;
-   
-    [_iconImageView.centerYAnchor constraintEqualToAnchor:_iconContainerView.centerYAnchor].active = YES;
-    [_iconImageView.centerXAnchor constraintEqualToAnchor:_iconContainerView.centerXAnchor].active = YES;
-    
-    [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-35].active = YES;
-    [_contentHolderView.bottomAnchor constraintEqualToAnchor:_contentHolderView.superview.bottomAnchor].active = YES;
-    [_contentHolderView.leadingAnchor constraintEqualToAnchor:_contentHolderView.superview.leadingAnchor].active = YES;
-    [_contentHolderView.trailingAnchor constraintEqualToAnchor:_contentHolderView.superview.trailingAnchor].active = YES;
-    
-    [_titleLabel.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:BPKSpacingLg].active = YES;
-    [_titleLabel.centerXAnchor constraintEqualToAnchor:_titleLabel.superview.centerXAnchor].active = YES;
-    
-    [_descriptionLabel.topAnchor constraintEqualToAnchor:_titleLabel.bottomAnchor constant:BPKSpacingLg].active = YES;
-    [_descriptionLabel.leadingAnchor constraintEqualToAnchor:_descriptionLabel.superview.leadingAnchor constant:BPKSpacingLg].active = YES;
-    [_descriptionLabel.trailingAnchor constraintEqualToAnchor:_descriptionLabel.superview.trailingAnchor constant:-BPKSpacingLg].active = YES;
-    
-    [_buttonStackView.topAnchor constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:BPKSpacingLg].active = YES;
-    [_buttonStackView.leadingAnchor constraintEqualToAnchor:_buttonStackView.superview.leadingAnchor constant:BPKSpacingXl].active = YES;
-    [_buttonStackView.trailingAnchor constraintEqualToAnchor:_buttonStackView.superview.trailingAnchor constant:-BPKSpacingXl].active = YES;
-    [_buttonStackView.bottomAnchor constraintEqualToAnchor:_buttonStackView.superview.bottomAnchor constant:-BPKSpacingLg].active = YES;
+    [NSLayoutConstraint activateConstraints:@[
+                                              [_circularView.topAnchor constraintEqualToAnchor:_circularView.superview.topAnchor],
+                                              [_circularView.centerXAnchor constraintEqualToAnchor:_contentHolderView.centerXAnchor],
+                                              [_circularView.heightAnchor constraintEqualToConstant:70],
+                                              [_circularView.widthAnchor constraintEqualToConstant:70],
+                                              
+                                              [_iconContainerView.centerYAnchor constraintEqualToAnchor:_circularView.centerYAnchor],
+                                              [_iconContainerView.centerXAnchor constraintEqualToAnchor:_circularView.centerXAnchor],
+                                              [_iconContainerView.heightAnchor constraintEqualToConstant:60],
+                                              [_iconContainerView.widthAnchor constraintEqualToConstant:60],
+                                              
+                                              [_iconImageView.centerYAnchor constraintEqualToAnchor:_iconContainerView.centerYAnchor],
+                                              [_iconImageView.centerXAnchor constraintEqualToAnchor:_iconContainerView.centerXAnchor],
+                                              
+                                              [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-35],
+                                              [_contentHolderView.bottomAnchor constraintEqualToAnchor:_contentHolderView.superview.bottomAnchor],
+                                              [_contentHolderView.leadingAnchor constraintEqualToAnchor:_contentHolderView.superview.leadingAnchor],
+                                              [_contentHolderView.trailingAnchor constraintEqualToAnchor:_contentHolderView.superview.trailingAnchor],
+                                              
+                                              [_titleLabel.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:BPKSpacingLg],
+                                              [_titleLabel.centerXAnchor constraintEqualToAnchor:_titleLabel.superview.centerXAnchor],
+                                              
+                                              [_descriptionLabel.topAnchor constraintEqualToAnchor:_titleLabel.bottomAnchor constant:BPKSpacingLg],
+                                              [_descriptionLabel.leadingAnchor constraintEqualToAnchor:_descriptionLabel.superview.leadingAnchor constant:BPKSpacingLg],
+                                              [_descriptionLabel.trailingAnchor constraintEqualToAnchor:_descriptionLabel.superview.trailingAnchor constant:-BPKSpacingLg],
+                                              
+                                              [_buttonStackView.topAnchor constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:BPKSpacingLg],
+                                              [_buttonStackView.leadingAnchor constraintEqualToAnchor:_buttonStackView.superview.leadingAnchor constant:BPKSpacingXl],
+                                              [_buttonStackView.trailingAnchor constraintEqualToAnchor:_buttonStackView.superview.trailingAnchor constant:-BPKSpacingXl],
+                                              [_buttonStackView.bottomAnchor constraintEqualToAnchor:_buttonStackView.superview.bottomAnchor constant:-BPKSpacingLg]
+                                              ]];
 }
 
 - (void)setupTopOffsetShadowOnView:(UIView *)view {
