@@ -49,7 +49,7 @@ class BPKAlertViewController: UIViewController {
         let alertController:AlertController = AlertController(title: "Such Wow!",
                                                               message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
                                                               style: .alert,
-                                                              shadowStyle: .noShadow,
+                                                              shadowStyle: .shadow,
                                                               head: Color.green500,
                                                               iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
         
@@ -77,10 +77,51 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showWarning(_ sender: UIButton!) {
-
+        let alertController:AlertController = AlertController(title: "!#$Warning-0-1!#$#$?",
+                                                              message: "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!",
+                                                              style: .alert,
+                                                              shadowStyle: .shadow,
+                                                              head: Color.yellow500,
+                                                              iconImage: Backpack.Icon.makeIcon(name: .lightning, color: Color.white, size: .large))
+        
+        let mainAction = AlertButtonAction(title: "OK", style: .link) {
+            NSLog("Primary tapped")
+        }
+        
+        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
+        }, shouldDismiss: true)
+        
+        alertController.addButtonAction(mainAction)
+        alertController.addFaderAction(faderAction);
+        
+        self.present(alertController, animated: false, completion: nil);
     }
 
     func showError(_ sender: UIButton!) {
-
+        let alertController:AlertController = AlertController(title: "Delete?",
+                                                              message: "Are you sure you would like to delete your avatar?",
+                                                              style: .bottomSheet,
+                                                              shadowStyle: .shadow,
+                                                              head: Color.red500,
+                                                              iconImage: Backpack.Icon.makeIcon(name: .trash, color: Color.white, size: .large))
+        
+        let mainAction = AlertButtonAction(title: "Delete", style: .primary) {
+            NSLog("Primary tapped")
+        }
+        
+        let doneAction = AlertDoneButtonAction(title: "Cancel", isVisible: true) {
+            NSLog("Done pressed")
+        }
+        
+        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
+        }, shouldDismiss: false)
+        
+        alertController.addButtonAction(mainAction)
+        alertController.addDoneButtonAction(doneAction);
+        alertController.addFaderAction(faderAction);
+        
+        self.present(alertController, animated: false, completion: nil);
     }
 }

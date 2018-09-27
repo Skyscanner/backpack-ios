@@ -76,6 +76,11 @@ extension IconsViewController {
         }
         fatalError("Headers are the only supplimental elements available")
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let icon = IconsViewController.icons[indexPath.row];
+        NSLog("icon tapped: %@", icon.rawValue)
+    }
 }
 
 extension IconsViewController: UICollectionViewDelegateFlowLayout {
