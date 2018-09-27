@@ -33,7 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSpinners {
-    UIStackView *view = [self createAllVariants];
+    NSArray<BPKSpinner *> *views = [self createAllSpinnerVariants];
+    UIView *view = [self embedViewsInStackView:views];
+    
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
     
@@ -42,36 +44,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (UIStackView *)createAllVariants {
+- (NSArray<BPKSpinner *> *)createAllSpinnerVariants {
+    return @[[self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault],
+             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault],
+             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault],
+             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall],
+             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall],
+             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall]];
+}
+
+- (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
+    BPKSpinner *spinner = [[BPKSpinner alloc] initWithStyle:style size:size];
+    [spinner setHidesWhenStopped:NO];
+    return spinner;
+}
+
+- (UIStackView *)embedViewsInStackView:(NSArray<UIView *> *)views {
     UIStackView *horizontalStackview = [[UIStackView alloc] initWithFrame:CGRectZero];
     horizontalStackview.axis = UILayoutConstraintAxisHorizontal;
     horizontalStackview.alignment = UIStackViewAlignmentCenter;
     horizontalStackview.distribution = UIStackViewDistributionEqualSpacing;
     horizontalStackview.spacing = BPKSpacingSm * 5;
     
-    BPKSpinner *defaultPrimary = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault];
-    [defaultPrimary setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:defaultPrimary];
-    
-    BPKSpinner *defaultDark = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault];
-    [defaultDark setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:defaultDark];
-    
-    BPKSpinner *defaultLight = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault];
-    [defaultLight setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:defaultLight];
-    
-    BPKSpinner *smallPrimary = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall];
-    [smallPrimary setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:smallPrimary];
-    
-    BPKSpinner *smallDark = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall];
-    [smallDark setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:smallDark];
-    
-    BPKSpinner *smallLight = [[BPKSpinner alloc] initWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall];
-    [smallLight setHidesWhenStopped:NO];
-    [horizontalStackview addArrangedSubview:smallLight];
+    for (UIView *view in views) {
+        [horizontalStackview addArrangedSubview:view];
+    }
     
     return horizontalStackview;
 }
