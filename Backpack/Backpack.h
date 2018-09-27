@@ -31,5 +31,7 @@
     #import "Panel.h"
     #import "Icon.h"
     #import "Button.h"
+    #import "Spinner."
+    #import "TextView.h"
 #endif
 
