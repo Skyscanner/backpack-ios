@@ -51,7 +51,7 @@ class BPKAlertViewController: UIViewController {
                                                               style: .alert,
                                                               shadowStyle: .noShadow,
                                                               head: Color.green500,
-                                                              iconImage: Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large))
+                                                              iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
         
         let mainAction = AlertButtonAction(title: "Continue", style: .primary) {
             NSLog("Primary tapped")

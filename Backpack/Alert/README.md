@@ -38,7 +38,7 @@ BPKAlertController *alertController = [BPKAlertController alertControllerWithTit
                                                                              style:BPKAlertControllerStyleAlert
                                                                        shadowStyle:BPKAlertControllerShadowStyleShadow
                                                                          headColor:BPKColor.blue500
-                                                                         iconImage:[BPKIcon iconNamed:@"tick" color:BPKColor.white size:BPKIconSizeLarge]];
+                                                                         iconImage:[BPKIcon iconNamed:BPKIconNameTick color:BPKColor.white size:BPKIconSizeLarge]];
                                                                          
 [alertController addFaderAction:faderAction];
 [alertController addButtonAction:buttonAction];
