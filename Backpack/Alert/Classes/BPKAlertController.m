@@ -23,6 +23,9 @@
 #import <Backpack/Color.h>
 #import <Backpack/Button.h>
 #import "BPKAlertConfiguration.h"
+#import "BPKAlertButtonConfiguration.h"
+#import "BPKAlertDoneButtonConfiguration.h"
+#import "BPKAlertFaderConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,13 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *faderView;
 @property (nonatomic, strong) UIButton *doneButton;
 @property (nonatomic, strong) BPKAlertView *alertView;
+@property (nonatomic, strong) BPKAlertConfiguration *configuration;
 
 @end
 
 @implementation BPKAlertController
-{
-    BPKAlertConfiguration *_configuration;
-}
+
 - (instancetype)init
 {
     self = [super init];

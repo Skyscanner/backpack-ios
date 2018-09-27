@@ -17,9 +17,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <Backpack/Button.h>
-#import <Backpack/Color.h>
 #import "BPKAlertButtonConfiguration.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @protocol BPKAlertViewDelegate <NSObject>
 

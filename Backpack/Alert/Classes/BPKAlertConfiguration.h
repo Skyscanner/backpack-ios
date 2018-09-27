@@ -17,12 +17,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Backpack/Color.h>
-#import <Backpack/Button.h>
-#import <Backpack/Icon.h>
-#import "BPKAlertButtonConfiguration.h"
-#import "BPKAlertFaderConfiguration.h"
-#import "BPKAlertDoneButtonConfiguration.h"
+
+@class BPKAlertButtonConfiguration;
+@class BPKAlertFaderConfiguration;
+@class BPKAlertDoneButtonConfiguration;
 
 NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
 
