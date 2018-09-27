@@ -14,7 +14,6 @@ and then run `pod install`.
 
 `Backpack/Alert` contains the Backpack Alert component in the class `BPKAlertController` .
 
-#### Make sure you have a retained BPKAlertController, else you wont be able to dismiss the alert!
 
 ### Objective-C
 ```
@@ -22,62 +21,61 @@ and then run `pod install`.
 
 ...
 
-_alertController = [[BPKAlertController alloc] init];
-
-...
-
-BPKAlertButtonConfiguration *primaryButtonConfiguration = [BPKAlertButtonConfiguration configurationWithStyle:BPKButtonStylePrimary title:@"Continue" actionHandler:^{
-    NSLog(@"Continue tapped");
-}];
-    
-BPKAlertButtonConfiguration *skipButtonConfiguration = [BPKAlertButtonConfiguration configurationWithStyle:BPKButtonStyleLink title:@"Skip" actionHandler:^{
-    NSLog(@"Skip tapped");
-}];
-    
-BPKAlertFaderConfiguration *faderConfiguration = [BPKAlertFaderConfiguration configurationWithActionHandler:^(BOOL didDismiss) {
-    NSLog(@"fader tapped, didDismiss? %@", @(didDismiss));
+BPKAlertFaderAction *faderAction = [BPKAlertFaderAction actionWithHandler:^(BOOL didDismiss) {
+    //
 } shouldDismiss:YES];
     
-BPKAlertDoneButtonAction *doneButtonConfiguration = [BPKAlertDoneButtonAction configurationWithActionHandler:^{
-    NSLog(@"Done tapped tapped");
-} isVisible:NO titleText:@"Done"];
+BPKAlertButtonAction *buttonAction = [BPKAlertButtonAction actionWithTitle:@"Continue" style:BPKButtonStylePrimary handler:^{
+    //
+}];
     
-BPKAlertConfiguration *configuration = [[BPKAlertConfiguration alloc] initWithCircleColor:BPKColor.green500
-                                                                                     icon:[BPKIcon iconNamed:@"tick" color:BPKColor.white size:BPKIconSizeLarge]
-                                                                                titleText:@"Title"
-                                                                          descriptionText:@"Lorem Ipsum Dolor Sit Amet"
-                                                                     buttonConfigurations:@[primaryButtonConfiguration, skipButtonConfiguration]
-                                                                                hasShadow:YES
-                                                                  doneButtonConfiguration:doneButtonConfiguration
-                                                                       faderConfiguration:faderConfiguration
-                                                                             isFullScreen:NO];
+BPKAlertDoneButtonAction *doneAction = [BPKAlertDoneButtonAction actionWithTitle:@"Done" isVisible:NO handler:^{
+    //
+}];
     
-[_alertController alertWithConfiguration:configuration onView:self.view.window];
-...
+BPKAlertController *alertController = [BPKAlertController alertControllerWithTitle:@"Such Wow!"
+                                                                           message:@"your description on the alert"
+                                                                             style:BPKAlertControllerStyleAlert
+                                                                       shadowStyle:BPKAlertControllerShadowStyleShadow
+                                                                         headColor:BPKColor.blue500
+                                                                         iconImage:[BPKIcon iconNamed:@"tick" color:BPKColor.white size:BPKIconSizeLarge]];
+                                                                         
+[alertController addFaderAction:faderAction];
+[alertController addButtonAction:buttonAction];
+[alertController addDoneButtonAction:doneAction];
+    
+[self presentViewController:alertController animated:NO completion:nil];
+
 ```
 
 ### Swift:
 ```
-let primaryBtnConfig = AlertButtonConfiguration.init(style: .primary, title: "Continue", actionHandler: {
-    NSLog("Primary tapped")
-})
+let alertController:AlertController = AlertController(title: "Such Wow!",
+                                                    message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
+                                                      style: .alert,
+                                                shadowStyle: .noShadow,
+                                                       head: Color.green500,
+                                                  iconImage: Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large))
     
-let skipBtnConfig = AlertButtonConfiguration.init(style: .link, title: "skip", actionHandler: {
+let mainAction = AlertButtonAction(title: "Continue", style: .primary) {
+    NSLog("Primary tapped")
+}
+let skipAction = AlertButtonAction(title: "skip", style: .link) {
     NSLog("skip tapped")
-})
+}
+    
+let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
+    NSLog("Done pressed")
+}
 
-let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
+let faderAction = AlertFaderAction(handler: { (didDismiss) in
     NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
 }, shouldDismiss: true)
     
-let alertConfig = AlertConfiguration.init(circleColor: Color.green500,
-                                          icon:Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large),
-                                          titleText: "Such Wow!",
-                                          descriptionText: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
-                                          buttonConfigurations: [primaryBtnConfig, skipBtnConfig],
-                                          hasShadow: true,
-                                          doneButtonConfiguration: nil,
-                                          faderConfiguration: faderConfig,
-                                          isFullScreen: false)
-self.alertController.alert(with: alertConfig, on: self.view.window!)
+alertController.addButtonAction(mainAction)
+alertController.addButtonAction(skipAction);
+alertController.addDoneButtonAction(doneAction);
+alertController.addFaderAction(faderAction);
+    
+self.present(alertController, animated: false, completion: nil);
 ```
