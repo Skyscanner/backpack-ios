@@ -1,5 +1,6 @@
 PODS:
   - Backpack (0.14.0):
+    - Backpack/Alert (= 0.14.0)
     - Backpack/Badge (= 0.14.0)
     - Backpack/Button (= 0.14.0)
     - Backpack/Color (= 0.14.0)
@@ -14,6 +15,9 @@ PODS:
     - Backpack/Spacing (= 0.14.0)
     - Backpack/Spinner (= 0.14.0)
     - Backpack/TextView (= 0.14.0)
+  - Backpack/Alert (0.14.0):
+    - Backpack/Button
+    - Backpack/Shadow
   - Backpack/Badge (0.14.0):
     - Backpack/Color
     - Backpack/Font
@@ -62,7 +66,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 3e85286540a5ca47ac1da095e5e18e19287967da
+  Backpack: bf678257b4794897967ed89aa23e5eb3d671c2ce
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
