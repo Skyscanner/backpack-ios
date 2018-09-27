@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
@@ -25,6 +26,7 @@ const path = require('path');
 const _ = require('lodash');
 const tinycolor = require('tinycolor2');
 const tokens = require('bpk-tokens/tokens/base.ios.json');
+const fs = require('fs');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
@@ -261,7 +263,7 @@ const parseTokens = tokensData => {
     .value();
 };
 
-gulp.task('template', () => {
+gulp.task('template', ['generate-icon-names'], () => {
   const streams = [];
   const templateData = parseTokens(tokens);
 
@@ -297,6 +299,34 @@ gulp.task('copy-icon-font', () => {
   gulp
     .src('node_modules/bpk-svgs/dist/font/{BpkIcon.ttf,iconMapping.json}')
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
+});
+
+gulp.task('generate-icon-names', () => {
+  const content = JSON.parse(
+    fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
+  );
+  const codify = name =>
+    name
+      .replace('--', '-')
+      .split('-')
+      .map(format)
+      .join('')
+      .replace('Ios', 'iOS');
+  const templateData = Object.assign(
+    ...Object.entries(content).map(([k]) => ({ [k]: codify(k) })),
+  );
+
+  gulp
+    .src(path.join(PATHS.templates, `{BPKIconNames.h.njk,BPKIconNames.m.njk}`))
+    .pipe(data(() => ({ icons: templateData })))
+    .pipe(nunjucks.compile())
+    .pipe(
+      rename(file => {
+        // eslint-disable-next-line no-param-reassign
+        file.extname = '';
+      }),
+    )
+    .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
 });
 
 gulp.task('default', ['template', 'copy-icon-font']);

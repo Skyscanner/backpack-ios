@@ -15,11 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_ICON__
-#define __BACKPACK_ICON__
 
-#import "BPKIcon.h"
-#import "BPKIconNames.h"
-
+#ifndef __BACKPACK_SPINNER__
+#define __BACKPACK_SPINNER__
+    #import "BPKSpinner.h"
 #endif
 

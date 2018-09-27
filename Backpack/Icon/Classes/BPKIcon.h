@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 #import <Foundation/Foundation.h>
+#import "BPKIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, BPKIconSize) {
@@ -33,7 +34,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  */
 NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
 
-@property(class, nonatomic, readonly, nullable) NSDictionary<NSString*, NSString*> *iconMapping;
+@property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
 
 /**
  * Render a given icon as a UIImage for use as a template, i.e. with
@@ -43,7 +44,7 @@ NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage` in template mode.
  */
-+ (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
++ (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
 
 /**
  * Render a given icon as a UIImage.
@@ -53,7 +54,7 @@ NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
++ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
 
 /**
  * Calculates the concrete point size a given BPKIconSize.

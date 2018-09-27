@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_ICON__
-#define __BACKPACK_ICON__
 
-#import "BPKIcon.h"
-#import "BPKIconNames.h"
+#import <Foundation/Foundation.h>
 
-#endif
+typedef NSString * NS_SWIFT_NAME(IconName) BPKIconName NS_EXTENSIBLE_STRING_ENUM;
 
+{% for iconName, iconValue in icons -%}
+FOUNDATION_EXPORT BPKIconName const BPKIconName{{iconValue}};
+{% endfor %}

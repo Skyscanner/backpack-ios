@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "0.13.0"
+  s.version          = "0.14.0"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
@@ -118,6 +118,12 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
+  end
+  
+  s.subspec 'Spinner' do |ss|
+      ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
   end
 
   s.subspec 'RTLSupport' do |ss|
