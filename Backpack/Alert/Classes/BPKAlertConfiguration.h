@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BPKAlertButtonConfiguration;
+@class BPKAlertButtonAction;
 @class BPKAlertFaderConfiguration;
 @class BPKAlertDoneButtonConfiguration;
 
@@ -28,7 +28,7 @@ NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
 @property (nonatomic) UIImage *iconImage;
 @property (nonatomic) NSString *titleText;
 @property (nonatomic) NSString *descriptionText;
-@property (nonatomic) NSArray<BPKAlertButtonConfiguration *> *buttonConfigurations;
+@property (nonatomic) NSArray<BPKAlertButtonAction *> *buttonConfigurations;
 @property (nonatomic) BPKAlertDoneButtonConfiguration *doneButtonConfiguration;
 @property (nonatomic) BPKAlertFaderConfiguration *faderConfiguration;
 @property (nonatomic) BOOL hasShadow;
@@ -39,7 +39,7 @@ NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
                                         icon:(UIImage *)iconImage
                                    titleText:(NSString *)titleText
                              descriptionText:(NSString *)descriptionText
-                        buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
+                        buttonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations
                                    hasShadow:(BOOL)hasShadow
                      doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
                           faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration

@@ -23,13 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^BPKAlertButtonActionHandler)(void);
 
-NS_SWIFT_NAME(AlertButtonConfiguration) @interface BPKAlertButtonConfiguration : NSObject <NSCopying>
+NS_SWIFT_NAME(AlertButtonAction) @interface BPKAlertButtonAction : NSObject <NSCopying>
 
 @property (nonatomic, readonly) BPKButtonStyle style;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) BPKAlertButtonActionHandler handler;
 
-+ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
+- (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKAlertButtonActionHandler)handler;
 
 @end
 NS_ASSUME_NONNULL_END

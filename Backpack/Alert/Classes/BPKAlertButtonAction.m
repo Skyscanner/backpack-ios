@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#import "BPKAlertButtonConfiguration.h"
+#import "BPKAlertButtonAction.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKAlertButtonConfiguration
+@implementation BPKAlertButtonAction
 
 - (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
     self = [super init];
@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-+ (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKAlertButtonActionHandler)handler {
     return [[self alloc] initWithButtonStyle:style title:title actionHandler:handler];
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    BPKAlertButtonConfiguration *copy = [[[self class] allocWithZone:zone] init];
+    BPKAlertButtonAction *copy = [[[self class] allocWithZone:zone] init];
 
     if (copy != nil) {
         copy->_style = _style;

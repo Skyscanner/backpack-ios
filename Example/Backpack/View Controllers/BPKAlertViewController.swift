@@ -47,18 +47,17 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showNormal(_ sender: UIButton!) {
-        let primaryBtnConfig = AlertButtonConfiguration.init(style: .primary, title: "Continue", actionHandler: {
+        let primaryBtnConfig = AlertButtonAction(title: "title", style: .primary) {
             NSLog("Primary tapped")
-        })
-        
-        let skipBtnConfig = AlertButtonConfiguration.init(style: .link, title: "skip", actionHandler: {
-            NSLog("skip tapped")
-        })
+        }
+        let skipBtnConfig = AlertButtonAction(title: "skip", style: .link) {
+            NSLog("Primary tapped")
+        }
 
         let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
-        
+
         let alertConfig = AlertConfiguration.init(circleColor: Color.green500,
                                                   icon:Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large),
                                                   titleText: "Such Wow!",
@@ -72,48 +71,48 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showWarning(_ sender: UIButton!) {
-        let goBackButton = AlertButtonConfiguration.init(style: .secondary, title: "Back", actionHandler: {
-            NSLog("Primary tapped")
-        })
-        
-        let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
-            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
-        }, shouldDismiss: true)
-        
-        let alertConfig = AlertConfiguration.init(circleColor: Color.yellow500,
-                                                  icon:Backpack.Icon.makeIcon(name: "exclamation-circle", color: Color.white, size: .large),
-                                                  titleText: "Warr!?-1-0-$%",
-                                                  descriptionText: "Something is throwing a warning m8 🤔",
-                                                  buttonConfigurations: [goBackButton],
-                                                  hasShadow: true,
-                                                  doneButtonConfiguration: nil,
-                                                  faderConfiguration: faderConfig,
-                                                  isFullScreen: false)
-        self.alertController.alert(with: alertConfig, on: self.view.window!)
+//        let goBackButton = AlertButtonAction.init(style: .secondary, title: "Back", actionHandler: {
+//            NSLog("Primary tapped")
+//        })
+//
+//        let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
+//            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
+//        }, shouldDismiss: true)
+//
+//        let alertConfig = AlertConfiguration.init(circleColor: Color.yellow500,
+//                                                  icon:Backpack.Icon.makeIcon(name: "exclamation-circle", color: Color.white, size: .large),
+//                                                  titleText: "Warr!?-1-0-$%",
+//                                                  descriptionText: "Something is throwing a warning m8 🤔",
+//                                                  buttonConfigurations: [goBackButton],
+//                                                  hasShadow: true,
+//                                                  doneButtonConfiguration: nil,
+//                                                  faderConfiguration: faderConfig,
+//                                                  isFullScreen: false)
+//        self.alertController.alert(with: alertConfig, on: self.view.window!)
     }
 
     func showError(_ sender: UIButton!) {
-        let primaryBtnConfig = AlertButtonConfiguration.init(style: .destructive, title: "Delete", actionHandler: {
-            NSLog("Primary tapped")
-        })
-        
-        let doneConfig = AlertDoneButtonConfiguration.init(actionHandler: {
-            NSLog("Done tapped")
-        }, isVisible: true, titleText: "Cancel")
-        
-        let faderConifif = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
-            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
-        }, shouldDismiss: false)
-        
-        let alertConfig = AlertConfiguration.init(circleColor: Color.red500,
-                                                     icon:Backpack.Icon.makeIcon(name: "trash", color: Color.white, size: .large),
-                                                     titleText: "Delete?",
-                                                     descriptionText: "Are you sure, you would like to delete your review?",
-                                                     buttonConfigurations: [primaryBtnConfig],
-                                                     hasShadow: true,
-                                                     doneButtonConfiguration: doneConfig,
-                                                     faderConfiguration: faderConifif,
-                                                     isFullScreen: true)
-        self.alertController.alert(with: alertConfig, on: self.view.window!)
+//        let primaryBtnConfig = AlertButtonAction.init(style: .destructive, title: "Delete", actionHandler: {
+//            NSLog("Primary tapped")
+//        })
+//
+//        let doneConfig = AlertDoneButtonConfiguration.init(actionHandler: {
+//            NSLog("Done tapped")
+//        }, isVisible: true, titleText: "Cancel")
+//
+//        let faderConifif = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
+//            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
+//        }, shouldDismiss: false)
+//
+//        let alertConfig = AlertConfiguration.init(circleColor: Color.red500,
+//                                                     icon:Backpack.Icon.makeIcon(name: "trash", color: Color.white, size: .large),
+//                                                     titleText: "Delete?",
+//                                                     descriptionText: "Are you sure, you would like to delete your review?",
+//                                                     buttonConfigurations: [primaryBtnConfig],
+//                                                     hasShadow: true,
+//                                                     doneButtonConfiguration: doneConfig,
+//                                                     faderConfiguration: faderConifif,
+//                                                     isFullScreen: true)
+//        self.alertController.alert(with: alertConfig, on: self.view.window!)
     }
 }

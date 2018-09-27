@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSArray<BPKButton *> *_buttons;
     UIStackView *_buttonStackView;
     
-    NSDictionary<BPKAlertButtonConfiguration *, BPKButton *> *_buttonConfigurationMap;
+    NSDictionary<BPKAlertButtonAction *, BPKButton *> *_buttonConfigurationMap;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -156,13 +156,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)buttonTapped:(BPKButton *)button {
-    BPKAlertButtonConfiguration *config = [self configForButton:button];
+    BPKAlertButtonAction *config = [self configForButton:button];
     if (config) {
         [self.delegate closeAlertWithHandler:config.handler];
     }
 }
 
-- (BPKAlertButtonConfiguration *)configForButton:(BPKButton *)button {
+- (BPKAlertButtonAction *)configForButton:(BPKButton *)button {
     for (NSInteger i = 0; i < [_buttonConfigurationMap allValues].count; i++) {
         BPKButton *btn = [_buttonConfigurationMap allValues][i];
         if ([btn isEqual:button]) {
@@ -202,12 +202,12 @@ NS_ASSUME_NONNULL_BEGIN
     [_descriptionLabel setText:descriptionString];
 }
 
--(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations {
-    NSMutableDictionary<BPKAlertButtonConfiguration *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
+-(void)setButtonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations {
+    NSMutableDictionary<BPKAlertButtonAction *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
     [self resetStackViewContent];
     
     for (NSInteger i = 0; i < buttonConfigurations.count; i++) {
-        BPKAlertButtonConfiguration *buttonConfig = buttonConfigurations[i];
+        BPKAlertButtonAction *buttonConfig = buttonConfigurations[i];
         BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
         [button setTitle:buttonConfig.title];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];

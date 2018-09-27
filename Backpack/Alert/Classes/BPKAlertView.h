@@ -17,7 +17,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BPKAlertButtonConfiguration.h"
+#import "BPKAlertButtonAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol BPKAlertViewDelegate <NSObject>
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setHeadColor:(UIColor * _Nullable)color;
 -(void)setTitle:(NSString *)titleString;
 -(void)setDescription:(NSString *)descriptionString;
--(void)setButtonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations;
+-(void)setButtonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations;
 -(void)setIcon:(UIImage *)iconImage;
 
 @end

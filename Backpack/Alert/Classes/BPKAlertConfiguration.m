@@ -24,7 +24,7 @@
                                         icon:(UIImage *)iconImage
                                    titleText:(NSString *)titleText
                              descriptionText:(NSString *)descriptionText
-                        buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
+                        buttonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations
                                    hasShadow:(BOOL)hasShadow
                      doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
                           faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration

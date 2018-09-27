@@ -21,7 +21,7 @@
 
 #import "BPKAlertController.h"
 #import "BPKAlertView.h"
-#import "BPKAlertButtonConfiguration.h"
+#import "BPKAlertButtonAction.h"
 #import "BPKAlertDoneButtonConfiguration.h"
 #import "BPKAlertFaderConfiguration.h"
 
