@@ -19,6 +19,8 @@
 #import <UIKit/UIKit.h>
 #import "BPKAlertButtonAction.h"
 
+@class BPKShadow;
+
 NS_ASSUME_NONNULL_BEGIN
 @protocol BPKAlertViewDelegate <NSObject>
 
@@ -30,12 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKAlertView : UIView<UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) id<BPKAlertViewDelegate> delegate;
-@property (nonatomic) BOOL hasShadow;
+
+- (void)setShadow:(NSShadow *)shadow __attribute__((unavailable("setShadow: not available, use setBackpackShadow: instead")));
+@property (nonatomic) BPKShadow *backpackShadow;
 
 -(void)setHeadColor:(UIColor * _Nullable)color;
 -(void)setTitle:(NSString *)titleString;
 -(void)setDescription:(NSString *)descriptionString;
--(void)setButtonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations;
+-(void)setButtonActions:(NSArray<BPKAlertButtonAction *> *)buttonActions;
 -(void)setIcon:(UIImage *)iconImage;
 
 @end

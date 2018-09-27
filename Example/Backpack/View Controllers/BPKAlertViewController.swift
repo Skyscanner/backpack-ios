@@ -23,7 +23,7 @@ class BPKAlertViewController: UIViewController {
     let primaryButton:Button = Button(size: .default, style: .primary)
     let destructiveButton:Button = Button(size: .default, style: .destructive)
     let warningButton:Button = Button(size: .default, style: .secondary)
-    let alertController:AlertController = AlertController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,31 +47,34 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showNormal(_ sender: UIButton!) {
-        let primaryBtnConfig = AlertButtonAction(title: "title", style: .primary) {
+        let alertController:AlertController = AlertController(title: "Such Wow!",
+                                                              message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
+                                                              style: .alert,
+                                                              shadow: Shadow.shadowLg(),
+                                                              head: Color.green500,
+                                                              iconImage: Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large))
+        
+        let mainAction = AlertButtonAction(title: "Continue", style: .primary) {
             NSLog("Primary tapped")
         }
-        let skipBtnConfig = AlertButtonAction(title: "skip", style: .link) {
+        let skipAction = AlertButtonAction(title: "skip", style: .link) {
             NSLog("Primary tapped")
         }
         
-        let doneButtonConfig = AlertDoneButtonAction(title: "Done", isVisible: true) {
+        let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
             NSLog("Done pressed")
         }
 
-        let faderConfig = AlertFaderAction(handler: { (didDismiss) in
+        let faderAction = AlertFaderAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
+        
+        alertController.add(mainAction);
+        alertController.add(skipAction);
+        alertController.add(doneAction);
+        alertController.add(faderAction);
 
-        let alertConfig = AlertConfiguration.init(circleColor: Color.green500,
-                                                  icon:Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large),
-                                                  titleText: "Such Wow!",
-                                                  descriptionText: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
-                                                  buttonConfigurations: [primaryBtnConfig, skipBtnConfig],
-                                                  hasShadow: true,
-                                                  doneButtonConfiguration: doneButtonConfig,
-                                                  faderConfiguration: faderConfig,
-                                                  isFullScreen: false)
-        self.alertController.alert(with: alertConfig, on: self.view.window!)
+        self.present(alertController, animated: false, completion: nil);
     }
 
     func showWarning(_ sender: UIButton!) {

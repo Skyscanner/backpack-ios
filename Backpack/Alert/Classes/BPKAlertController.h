@@ -20,15 +20,33 @@
 #import "BPKAlertView.h"
 
 @class BPKAlertConfiguration;
+@class BPKAlertFaderAction;
+@class BPKAlertButtonAction;
+@class BPKAlertDoneButtonAction;
+@class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^BPKAlertActionItemHandler)(void);
 
-NS_SWIFT_NAME(AlertController) @interface BPKAlertController: NSObject<BPKAlertViewDelegate>
+typedef NS_ENUM(NSInteger, BPKAlertControllerStyle) {
+    BPKAlertControllerStyleBottomSheet = 0,
+    BPKAlertControllerStyleAlert
+};
 
-- (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
-                        onView:(UIView * _Nonnull)baseView;
+NS_SWIFT_NAME(AlertController) @interface BPKAlertController: UIViewController<BPKAlertViewDelegate>
+
+- (void)addButtonAction:(BPKAlertButtonAction *)action;
+- (void)addFaderAction:(BPKAlertFaderAction *)action;
+- (void)addDoneButtonAction:(BPKAlertDoneButtonAction *)action;
+
+- (instancetype)init __attribute__((unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
++ (instancetype)alertControllerWithTitle:(NSString *)title
+                                 message:(NSString *)message
+                                   style:(BPKAlertControllerStyle)style
+                                  shadow:(BPKShadow *)shadow
+                               headColor:(UIColor *)headColor
+                               iconImage:(UIImage *)iconImage;
 
 @end
 

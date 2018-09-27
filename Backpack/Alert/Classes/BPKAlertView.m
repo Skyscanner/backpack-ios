@@ -142,16 +142,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.hasShadow) {
-        BPKShadow *shadowLg = [BPKShadow shadowSm];
-        [shadowLg applyToLayer:self.layer];
+    if (self.backpackShadow) {
+        [self.backpackShadow applyToLayer:self.layer];
     } else {
         [self.layer setShadowOpacity:0];
     }
 }
 
--(void)setHasShadow:(BOOL)hasShadow {
-    _hasShadow = hasShadow;
+-(void)setBackpackShadow:(BPKShadow *)backpackShadow {
+    _backpackShadow = backpackShadow;
     [self setNeedsLayout];
 }
 
@@ -202,12 +201,12 @@ NS_ASSUME_NONNULL_BEGIN
     [_descriptionLabel setText:descriptionString];
 }
 
--(void)setButtonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations {
+-(void)setButtonActions:(NSArray<BPKAlertButtonAction *> *)buttonActions {
     NSMutableDictionary<BPKAlertButtonAction *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
     [self resetStackViewContent];
     
-    for (NSInteger i = 0; i < buttonConfigurations.count; i++) {
-        BPKAlertButtonAction *buttonConfig = buttonConfigurations[i];
+    for (NSInteger i = 0; i < buttonActions.count; i++) {
+        BPKAlertButtonAction *buttonConfig = buttonActions[i];
         BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
         [button setTitle:buttonConfig.title];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];

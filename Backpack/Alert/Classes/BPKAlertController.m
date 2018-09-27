@@ -31,100 +31,134 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKAlertController()
 
-@property (nonatomic, strong) UIView *faderView;
-@property (nonatomic, strong) UIButton *doneButton;
-@property (nonatomic, strong) BPKAlertView *alertView;
-@property (nonatomic, strong) BPKAlertConfiguration *configuration;
+@property (nonatomic, readwrite) UIColor *headColor;
+@property (nonatomic, readwrite) UIImage *iconImage;
+@property (nonatomic, readwrite) NSString *titleText;
+@property (nonatomic, readwrite) NSString *messageText;
+@property (nonatomic, readwrite) BPKShadow *shadow;
+@property (nonatomic, readwrite) BPKAlertControllerStyle style;
+
+@property (nonatomic, readwrite) UIView *faderView;
+@property (nonatomic, readwrite) UIButton *doneButton;
+@property (nonatomic, readwrite) BPKAlertView *alertView;
+
+@property (nonatomic, readwrite) NSMutableArray<BPKAlertButtonAction *> *buttonActions;
+@property (nonatomic, readwrite) BPKAlertDoneButtonAction *doneAction;
+@property (nonatomic, readwrite) BPKAlertFaderAction *faderAction;
 
 @end
 
 @implementation BPKAlertController
 
-- (instancetype)init
-{
+- (instancetype)initWithTitle:(nullable NSString *)title
+                      message:(nullable NSString *)message
+                        style:(BPKAlertControllerStyle)style
+                       shadow:(BPKShadow *)shadow
+                    headColor:(UIColor *)headColor
+                    iconImage:(UIImage *)iconImage {
     self = [super init];
     if (self) {
-        _faderView = [UIView new];
-        _faderView.clipsToBounds = YES;
-        _faderView.userInteractionEnabled = YES;
-        _faderView.backgroundColor = BPKColor.gray900;
-        _faderView.alpha = 0.5;
-        _faderView.translatesAutoresizingMaskIntoConstraints = NO;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(faderTapped:)];
-        [_faderView addGestureRecognizer:tapGesture];
-
-        _doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_doneButton setTitleColor:BPKColor.white forState:UIControlStateNormal];
-        [_doneButton addTarget:self action:@selector(doneTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_doneButton setHidden:YES];
-        [_doneButton.titleLabel setFont:[BPKFont textBaseEmphasized]];
-        _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
+        self.titleText = title;
+        self.messageText = message;
+        self.style = style;
+        self.shadow = shadow;
+        self.headColor = headColor;
+        self.iconImage = iconImage;
         
-        _alertView = [[BPKAlertView alloc] initWithFrame:CGRectZero];
-        _alertView.translatesAutoresizingMaskIntoConstraints = NO;
-        _alertView.delegate = self;
+        self.buttonActions = [NSMutableArray new];
+        
+        [self setupViews];
+        [self addViews];
+        [self setupConstraints];
     }
     return self;
 }
 
-- (void)alertWithConfiguration:(BPKAlertConfiguration * _Nonnull)configuration
-                        onView:(UIView * _Nonnull)baseView {
-    _configuration = configuration;
-    
++(instancetype)alertControllerWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(BPKAlertControllerStyle)style
+                                 shadow:(BPKShadow *)shadow
+                              headColor:(UIColor *)headColor
+                              iconImage:(UIImage *)iconImage {
+    return [[self alloc] initWithTitle:title message:message style:style shadow:shadow headColor:headColor iconImage:iconImage];
+}
 
-    [baseView addSubview:_faderView];
-    [_faderView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor].active = YES;
-    [_faderView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor].active = YES;
-    [_faderView.topAnchor constraintEqualToAnchor:baseView.topAnchor].active = YES;
-    [_faderView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = YES;
+- (void)setupViews
+{
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(faderTapped:)];
     
-    [_doneButton setTitle:configuration.doneButtonConfiguration.titleText forState:UIControlStateNormal];
-    [baseView addSubview:_doneButton];
+    _faderView = [UIView new];
+    _faderView.clipsToBounds = YES;
+    _faderView.userInteractionEnabled = YES;
+    _faderView.backgroundColor = BPKColor.gray900;
+    _faderView.alpha = 0.5;
+    _faderView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_faderView addGestureRecognizer:tapGesture];
+
+    _doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_doneButton setTitleColor:BPKColor.white forState:UIControlStateNormal];
+    [_doneButton addTarget:self action:@selector(doneTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButton setHidden:YES];
+    [_doneButton.titleLabel setFont:[BPKFont textBaseEmphasized]];
+    _doneButton.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [_doneButton.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg].active = YES;
+    _alertView = [[BPKAlertView alloc] initWithFrame:CGRectZero];
+    _alertView.translatesAutoresizingMaskIntoConstraints = NO;
+    _alertView.delegate = self;
+    [_alertView setTitle:self.titleText];
+    [_alertView setIcon:self.iconImage];
+    [_alertView setBackpackShadow:self.shadow];
+    [_alertView setButtonActions:self.buttonActions];
+    [_alertView setDescription:self.messageText];
+    [_alertView setHeadColor:self.headColor];
+}
+
+- (void)setupConstraints {
+    [NSLayoutConstraint activateConstraints:@[
+                                              [_faderView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+                                              [_faderView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+                                              [_faderView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+                                              [_faderView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+                                              
+                                              [_doneButton.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-BPKSpacingLg]
+                                              ]];
+    
+    // Notch and status bar
     if (@available(iOS 11.0, *)) {
-        CGFloat topInset = baseView.safeAreaInsets.top;
-        CGFloat offsetConstant = topInset == 0 ? 20+BPKSpacingMd : BPKSpacingMd;
-        [_doneButton.topAnchor constraintEqualToAnchor:baseView.safeAreaLayoutGuide.topAnchor constant:offsetConstant].active = YES;
+        [_doneButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:BPKSpacingSm].active = YES;
     } else {
-        [_doneButton.topAnchor constraintEqualToAnchor:baseView.topAnchor constant:20+BPKSpacingLg].active = YES; // notch only available on iOS 11+ devices
+        [_doneButton.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:20+BPKSpacingLg].active = YES; // notch only available on iOS 11+ devices
     }
-    [_doneButton setHidden:!(configuration.doneButtonConfiguration.isVisible)];
     
-    // create alert view && show alert
-    [_alertView setTitle:configuration.titleText];
-    [_alertView setIcon:configuration.iconImage];
-    [_alertView setHasShadow:configuration.hasShadow];
-    [_alertView setButtonConfigurations:configuration.buttonConfigurations];
-    [_alertView setDescription:configuration.descriptionText];
-    [_alertView setHeadColor:configuration.circleColor];
-    [baseView addSubview:_alertView];
-    
-    [_alertView.centerXAnchor constraintEqualToAnchor:baseView.centerXAnchor].active = YES;
-    
-    NSLayoutConstraint *leadConstraint = [_alertView.leadingAnchor constraintEqualToAnchor:baseView.leadingAnchor constant:BPKSpacingLg];
+    NSLayoutConstraint *leadConstraint = [_alertView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:BPKSpacingLg];
     leadConstraint.priority = UILayoutPriorityDefaultHigh;
     leadConstraint.active = YES;
-
-    NSLayoutConstraint *trailingConstraint = [_alertView.trailingAnchor constraintEqualToAnchor:baseView.trailingAnchor constant:-BPKSpacingLg];
+    
+    NSLayoutConstraint *trailingConstraint = [_alertView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-BPKSpacingLg];
     trailingConstraint.priority = UILayoutPriorityDefaultHigh;
     trailingConstraint.active = YES;
     
-    NSLayoutConstraint *widthConstraint = [_alertView.widthAnchor constraintLessThanOrEqualToConstant:baseView.bounds.size.width - 2*BPKSpacingMd];
+    NSLayoutConstraint *widthConstraint = [_alertView.widthAnchor constraintLessThanOrEqualToConstant:self.view.bounds.size.width - 2*BPKSpacingMd];
     widthConstraint.priority = UILayoutPriorityRequired;
     widthConstraint.active = YES;
     
-    if (configuration.isFullScreen) {
+    [_alertView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    if (self.style == BPKAlertControllerStyleBottomSheet) {
         [_alertView.topAnchor constraintGreaterThanOrEqualToAnchor:_doneButton.bottomAnchor constant:BPKSpacingMd].active = YES;
-        [_alertView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = YES;
-        [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = NO;
-
-    } else {
+        [_alertView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+        [_alertView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = NO;
+    } else if (self.style == BPKAlertControllerStyleAlert) {
         [_alertView.topAnchor constraintGreaterThanOrEqualToAnchor:_doneButton.bottomAnchor constant:BPKSpacingMd].active = NO;
-        [_alertView.bottomAnchor constraintEqualToAnchor:baseView.bottomAnchor].active = NO;
-        [_alertView.centerYAnchor constraintEqualToAnchor:baseView.centerYAnchor].active = YES;
+        [_alertView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = NO;
+        [_alertView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
     }
-    
+
+}
+
+- (void)addViews {
+    [self.view addSubview:_faderView];
+    [self.view addSubview:_alertView];
+    [self.view addSubview:_doneButton];
 }
 
 - (void)removeViews {
@@ -141,27 +175,50 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)doneTapped:(UIButton *)button {
-    if (_configuration.doneButtonConfiguration.handler) {
-        [self removeViews];
-        _configuration.doneButtonConfiguration.handler();
+    if (self.doneAction.handler) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+        self.doneAction.handler();
     }
 }
 
 -(void)dismissAlertWithFaderTap {
-    if (_configuration.faderConfiguration.handler) {
-        _configuration.faderConfiguration.handler(_configuration.faderConfiguration.shouldDismiss);
+    if (self.faderAction.handler) {
+        self.faderAction.handler(self.faderAction.shouldDismiss);
     }
     
-    if (_configuration.faderConfiguration.shouldDismiss) {
-        [self removeViews];
+    if (self.faderAction.shouldDismiss) {
+        [self dismissViewControllerAnimated:NO completion:nil];
     }
 }
 
 -(void)closeAlertWithHandler:(BPKAlertButtonActionHandler)handler {
-    [self removeViews];
+    [self dismissViewControllerAnimated:NO completion:nil];
     handler();
 }
 
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationOverCurrentContext;
+}
+
+-(UIModalTransitionStyle)modalTransitionStyle {
+    return UIModalTransitionStyleCoverVertical;
+}
+
+#pragma mark - PUBLIC
+-(void)addFaderAction:(BPKAlertFaderAction *)action {
+    self.faderAction = action;
+}
+
+-(void)addButtonAction:(BPKAlertButtonAction *)action {
+    [self.buttonActions addObject:action];
+    [_alertView setButtonActions:self.buttonActions];
+}
+
+-(void)addDoneButtonAction:(BPKAlertDoneButtonAction *)action {
+    self.doneAction = action;
+    [_doneButton setTitle:self.doneAction.titleText forState:UIControlStateNormal];
+    [_doneButton setHidden:!(self.doneAction.isVisible)];
+}
 @end
 
 NS_ASSUME_NONNULL_END
