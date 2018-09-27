@@ -22,7 +22,6 @@
 #import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Button.h>
-#import "BPKAlertConfiguration.h"
 #import "BPKAlertButtonAction.h"
 #import "BPKAlertDoneButtonAction.h"
 #import "BPKAlertFaderAction.h"

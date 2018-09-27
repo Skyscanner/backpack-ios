@@ -27,22 +27,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKAlertView()
 
+@property (nonatomic, readwrite) UIView *circularView;
+@property (nonatomic, readwrite) UIView *iconContainerView;
+@property (nonatomic, readwrite) UIImageView *iconImageView;
+
+@property (nonatomic, readwrite) UIView *contentHolderView;
+@property (nonatomic, readwrite) BPKLabel *titleLabel;
+@property (nonatomic, readwrite) BPKLabel *descriptionLabel;
+@property (nonatomic, readwrite) NSArray<BPKButton *> *buttons;
+@property (nonatomic, readwrite) UIStackView *buttonStackView;
+
+@property (nonatomic, readwrite) NSDictionary<BPKAlertButtonAction *, BPKButton *> *buttonConfigurationMap;
+
 @end
 
 @implementation BPKAlertView
-{
-    UIView *_circularView;
-    UIView *_iconContainerView;
-    UIImageView *_iconImageView;
-    
-    UIView *_contentHolderView;
-    BPKLabel *_titleLabel;
-    BPKLabel *_descriptionLabel;
-    NSArray<BPKButton *> *_buttons;
-    UIStackView *_buttonStackView;
-    
-    NSDictionary<BPKAlertButtonAction *, BPKButton *> *_buttonConfigurationMap;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
