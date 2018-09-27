@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 
 @class BPKAlertButtonAction;
-@class BPKAlertFaderConfiguration;
+@class BPKAlertFaderAction;
 @class BPKAlertDoneButtonConfiguration;
 
 NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
@@ -30,7 +30,7 @@ NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
 @property (nonatomic) NSString *descriptionText;
 @property (nonatomic) NSArray<BPKAlertButtonAction *> *buttonConfigurations;
 @property (nonatomic) BPKAlertDoneButtonConfiguration *doneButtonConfiguration;
-@property (nonatomic) BPKAlertFaderConfiguration *faderConfiguration;
+@property (nonatomic) BPKAlertFaderAction *faderConfiguration;
 @property (nonatomic) BOOL hasShadow;
 @property (nonatomic) BOOL isFullScreen;
 
@@ -42,7 +42,7 @@ NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
                         buttonConfigurations:(NSArray<BPKAlertButtonAction *> *)buttonConfigurations
                                    hasShadow:(BOOL)hasShadow
                      doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
-                          faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration
+                          faderConfiguration:(BPKAlertFaderAction *)faderConfiguration
                                 isFullScreen:(BOOL)isFullScreen;
 
 @end

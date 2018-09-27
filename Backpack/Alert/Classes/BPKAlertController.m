@@ -25,7 +25,7 @@
 #import "BPKAlertConfiguration.h"
 #import "BPKAlertButtonAction.h"
 #import "BPKAlertDoneButtonConfiguration.h"
-#import "BPKAlertFaderConfiguration.h"
+#import "BPKAlertFaderAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

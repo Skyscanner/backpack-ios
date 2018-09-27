@@ -20,13 +20,13 @@
 
 typedef void (^BPKAlertFaderActionHandler)(BOOL didDismiss);
 
-NS_SWIFT_NAME(AlertFaderConfiguration) @interface BPKAlertFaderConfiguration : NSObject
+NS_SWIFT_NAME(AlertFaderAction) @interface BPKAlertFaderAction : NSObject
 
 - (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
 @property (nonatomic, readonly) BPKAlertFaderActionHandler handler;
 @property (readonly) BOOL shouldDismiss;
 
-+ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
++ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 
 @end

@@ -54,7 +54,7 @@ class BPKAlertViewController: UIViewController {
             NSLog("Primary tapped")
         }
 
-        let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
+        let faderConfig = AlertFaderAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
 

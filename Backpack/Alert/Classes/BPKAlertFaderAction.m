@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import "BPKAlertFaderConfiguration.h"
+#import "BPKAlertFaderAction.h"
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKAlertFaderConfiguration
+@implementation BPKAlertFaderAction
 
 - (instancetype)initWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     self = [super init];
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-+ (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
++ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     return [[self alloc] initWithActionHandler:handler shouldDismiss:shouldDismiss];
 }
 
