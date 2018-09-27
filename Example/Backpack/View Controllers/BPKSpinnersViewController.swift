@@ -18,6 +18,7 @@
 
 import UIKit
 import Backpack.Spinner
+import Backpack.Color
 
 class SpinnersViewController: UIViewController {
     @IBOutlet weak var defaultPrimarySpinner: Spinner!
@@ -26,10 +27,13 @@ class SpinnersViewController: UIViewController {
     @IBOutlet weak var smallPrimarySpinner: Spinner!
     @IBOutlet weak var smallDarkSpinner: Spinner!
     @IBOutlet weak var smallLightSpinner: Spinner!
-    
+    @IBOutlet weak var darkSpinnerBackgroundView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        darkSpinnerBackgroundView.backgroundColor = Color.gray900
+
         defaultPrimarySpinner.size = .default;
         defaultPrimarySpinner.style = .primary;
         
