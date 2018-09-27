@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <Backpack/Button.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^BPKAlertButtonActionHandler)(void);
 
 NS_SWIFT_NAME(AlertButtonConfiguration) @interface BPKAlertButtonConfiguration : NSObject <NSCopying>
@@ -30,3 +32,4 @@ NS_SWIFT_NAME(AlertButtonConfiguration) @interface BPKAlertButtonConfiguration :
 + (instancetype _Nonnull)configurationWithStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler;
 
 @end
+NS_ASSUME_NONNULL_END

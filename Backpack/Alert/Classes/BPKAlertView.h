@@ -20,7 +20,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import "BPKAlertButtonConfiguration.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @protocol BPKAlertViewDelegate <NSObject>
 
 - (void)closeAlertWithHandler:(BPKAlertButtonActionHandler)handler;
@@ -40,3 +40,4 @@
 -(void)setIcon:(UIImage *)iconImage;
 
 @end
+NS_ASSUME_NONNULL_END

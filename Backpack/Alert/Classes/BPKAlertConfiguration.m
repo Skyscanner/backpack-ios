@@ -20,15 +20,6 @@
 
 @implementation BPKAlertConfiguration
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        NSAssert(NO, @"Please call the custom init or the static methods");
-    }
-    return self;
-}
-
 - (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
                                         icon:(UIImage *)iconImage
                                    titleText:(NSString *)titleText

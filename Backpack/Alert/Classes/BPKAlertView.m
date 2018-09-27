@@ -20,7 +20,7 @@
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/Shadow.h>
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKAlertView()
 
@@ -63,12 +63,12 @@
     _contentHolderView.backgroundColor = BPKColor.white;
     _contentHolderView.layer.cornerRadius = 4;
     
-    _circularView = [[UIView alloc] initWithFrame:CGRectZero];
-    _circularView.layer.cornerRadius = 35;
+    _circularView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+    _circularView.layer.cornerRadius = _circularView.frame.size.width / 2;
     _circularView.backgroundColor = BPKColor.white;
     
-    _iconContainerView = [[UIView alloc] initWithFrame:CGRectZero];
-    _iconContainerView.layer.cornerRadius = 30;
+    _iconContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    _iconContainerView.layer.cornerRadius = _iconContainerView.frame.size.width / 2;
     _iconContainerView.backgroundColor = BPKColor.red500;
     
     _iconImageView = [[UIImageView alloc] init];
@@ -135,8 +135,8 @@
     [_buttonStackView.bottomAnchor constraintEqualToAnchor:_buttonStackView.superview.bottomAnchor constant:-BPKSpacingLg].active = YES;
 }
 
-- (void)setupShadowOnView:(UIView *)view {
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds cornerRadius:view.layer.cornerRadius];
+- (void)setupTopOffsetShadowOnView:(UIView *)view {
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithOvalInRect:view.bounds];
     view.layer.masksToBounds = NO;
     view.layer.shadowColor = [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1].CGColor;
     view.layer.shadowOffset = CGSizeMake(0, -8);
@@ -149,7 +149,7 @@
     if (self.hasShadow) {
         BPKShadow *shadowSm = [BPKShadow shadowLg];
         [shadowSm applyToLayer:_contentHolderView.layer];
-        [self setupShadowOnView:_circularView];
+        [self setupTopOffsetShadowOnView:_circularView];
     } else {
         [_circularView.layer setShadowOpacity:0];
         [_contentHolderView.layer setShadowOpacity:0];
@@ -233,3 +233,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END

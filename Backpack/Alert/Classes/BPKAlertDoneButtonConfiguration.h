@@ -18,9 +18,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^BPKAlertDoneButtonActionHandler)(void);
 
 NS_SWIFT_NAME(AlertDoneButtonConfiguration) @interface BPKAlertDoneButtonConfiguration : NSObject
+
+- (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
 @property (nonatomic, readonly) BPKAlertDoneButtonActionHandler handler;
 @property (nonatomic, readonly) NSString *titleText;
@@ -29,3 +33,4 @@ NS_SWIFT_NAME(AlertDoneButtonConfiguration) @interface BPKAlertDoneButtonConfigu
 + (instancetype _Nonnull)configurationWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText;
 
 @end
+NS_ASSUME_NONNULL_END

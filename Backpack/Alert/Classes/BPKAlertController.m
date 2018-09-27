@@ -20,7 +20,9 @@
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/Font.h>
-#import "BPKAlertView.h"
+#import <Backpack/Color.h>
+#import <Backpack/Button.h>
+#import "BPKAlertConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *faderView;
 @property (nonatomic, strong) UIButton *doneButton;
 @property (nonatomic, strong) BPKAlertView *alertView;
-@property (nonatomic, strong) UIWindow *window;
 
 @end
 
@@ -41,8 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 {
     self = [super init];
     if (self) {
-        _window = [[UIApplication sharedApplication] keyWindow];
-        
         _faderView = [UIView new];
         _faderView.clipsToBounds = YES;
         _faderView.userInteractionEnabled = YES;

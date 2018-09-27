@@ -17,17 +17,8 @@
  */
 
 #import "BPKAlertFaderConfiguration.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @implementation BPKAlertFaderConfiguration
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        NSAssert(NO, @"Please use the configurationWithActionHandler method");
-    }
-    return self;
-}
 
 - (instancetype)initWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     self = [super init];
@@ -44,3 +35,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END

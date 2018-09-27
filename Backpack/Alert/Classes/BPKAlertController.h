@@ -17,10 +17,9 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Backpack/Color.h>
-#import <Backpack/Button.h>
 #import "BPKAlertView.h"
-#import "BPKAlertConfiguration.h"
+
+@class BPKAlertConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -17,6 +17,7 @@
  */
 
 #import "BPKAlertButtonConfiguration.h"
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKAlertButtonConfiguration
 
@@ -47,3 +48,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END

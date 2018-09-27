@@ -36,14 +36,15 @@ NS_SWIFT_NAME(AlertConfiguration) @interface BPKAlertConfiguration : NSObject
 @property (nonatomic) BOOL hasShadow;
 @property (nonatomic) BOOL isFullScreen;
 
+- (instancetype _Nonnull)init __attribute__((unavailable("use initWithCircleColor: instead")));
 - (instancetype _Nonnull)initWithCircleColor:(UIColor *)circleColor
                                         icon:(UIImage *)iconImage
-                          titleText:(NSString *)titleText
-                    descriptionText:(NSString *)descriptionText
-               buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
-                          hasShadow:(BOOL)hasShadow
+                                   titleText:(NSString *)titleText
+                             descriptionText:(NSString *)descriptionText
+                        buttonConfigurations:(NSArray<BPKAlertButtonConfiguration *> *)buttonConfigurations
+                                   hasShadow:(BOOL)hasShadow
                      doneButtonConfiguration:(BPKAlertDoneButtonConfiguration *)doneButtonConfiguration
-                     faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration
-                        isFullScreen:(BOOL)isFullScreen;
+                          faderConfiguration:(BPKAlertFaderConfiguration *)faderConfiguration
+                                isFullScreen:(BOOL)isFullScreen;
 
 @end

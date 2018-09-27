@@ -18,14 +18,8 @@
 
 #import "BPKAlertDoneButtonConfiguration.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @implementation BPKAlertDoneButtonConfiguration
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        NSAssert(NO, @"Please use the configurationWithActionHandler method");
-    }
-    return self;
-}
 
 - (instancetype)initWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText {
     self = [super init];
@@ -43,3 +37,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END
