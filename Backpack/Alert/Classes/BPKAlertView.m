@@ -142,15 +142,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.backpackShadow) {
-        [self.backpackShadow applyToLayer:self.layer];
+    if (self.hasShadow) {
+        [[BPKShadow shadowLg] applyToLayer:self.layer];
     } else {
         [self.layer setShadowOpacity:0];
     }
 }
 
--(void)setBackpackShadow:(BPKShadow *)backpackShadow {
-    _backpackShadow = backpackShadow;
+-(void)setHasShadow:(BOOL)hasShadow {
+    _hasShadow = hasShadow;
     [self setNeedsLayout];
 }
 

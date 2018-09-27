@@ -32,9 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKAlertView : UIView<UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) id<BPKAlertViewDelegate> delegate;
-
-- (void)setShadow:(NSShadow *)shadow __attribute__((unavailable("setShadow: not available, use setBackpackShadow: instead")));
-@property (nonatomic) BPKShadow *backpackShadow;
+@property (nonatomic) BOOL hasShadow;
 
 -(void)setHeadColor:(UIColor * _Nullable)color;
 -(void)setTitle:(NSString *)titleString;

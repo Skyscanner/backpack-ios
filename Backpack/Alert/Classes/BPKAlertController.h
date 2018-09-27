@@ -34,6 +34,11 @@ typedef NS_ENUM(NSInteger, BPKAlertControllerStyle) {
     BPKAlertControllerStyleAlert
 };
 
+typedef NS_ENUM(NSInteger, BPKAlertControllerShadowStyle) {
+    BPKAlertControllerShadowStyleNoShadow = 0,
+    BPKAlertControllerShadowStyleShadow
+};
+
 NS_SWIFT_NAME(AlertController) @interface BPKAlertController: UIViewController<BPKAlertViewDelegate>
 
 - (void)addButtonAction:(BPKAlertButtonAction *)action;
@@ -44,7 +49,7 @@ NS_SWIFT_NAME(AlertController) @interface BPKAlertController: UIViewController<B
 + (instancetype)alertControllerWithTitle:(NSString *)title
                                  message:(NSString *)message
                                    style:(BPKAlertControllerStyle)style
-                                  shadow:(BPKShadow *)shadow
+                             shadowStyle:(BPKAlertControllerShadowStyle)shadowStyle
                                headColor:(UIColor *)headColor
                                iconImage:(UIImage *)iconImage;
 

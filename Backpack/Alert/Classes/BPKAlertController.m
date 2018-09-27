@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite) UIImage *iconImage;
 @property (nonatomic, readwrite) NSString *titleText;
 @property (nonatomic, readwrite) NSString *messageText;
-@property (nonatomic, readwrite) BPKShadow *shadow;
+@property (nonatomic, readwrite) BPKAlertControllerShadowStyle shadowStyle;
 @property (nonatomic, readwrite) BPKAlertControllerStyle style;
 
 @property (nonatomic, readwrite) UIView *faderView;
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(nullable NSString *)title
                       message:(nullable NSString *)message
                         style:(BPKAlertControllerStyle)style
-                       shadow:(BPKShadow *)shadow
+                  shadowStyle:(BPKAlertControllerShadowStyle)shadowStyle
                     headColor:(UIColor *)headColor
                     iconImage:(UIImage *)iconImage {
     self = [super init];
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.titleText = title;
         self.messageText = message;
         self.style = style;
-        self.shadow = shadow;
+        self.shadowStyle = shadowStyle;
         self.headColor = headColor;
         self.iconImage = iconImage;
         
@@ -77,10 +77,10 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)alertControllerWithTitle:(NSString *)title
                                 message:(NSString *)message
                                   style:(BPKAlertControllerStyle)style
-                                 shadow:(BPKShadow *)shadow
+                            shadowStyle:(BPKAlertControllerShadowStyle)shadowStyle
                               headColor:(UIColor *)headColor
                               iconImage:(UIImage *)iconImage {
-    return [[self alloc] initWithTitle:title message:message style:style shadow:shadow headColor:headColor iconImage:iconImage];
+    return [[self alloc] initWithTitle:title message:message style:style shadowStyle:shadowStyle headColor:headColor iconImage:iconImage];
 }
 
 - (void)setupViews
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
     _alertView.delegate = self;
     [_alertView setTitle:self.titleText];
     [_alertView setIcon:self.iconImage];
-    [_alertView setBackpackShadow:self.shadow];
+    [_alertView setHasShadow:self.shadowStyle == BPKAlertControllerShadowStyleShadow];
     [_alertView setButtonActions:self.buttonActions];
     [_alertView setDescription:self.messageText];
     [_alertView setHeadColor:self.headColor];

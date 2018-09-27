@@ -50,7 +50,7 @@ class BPKAlertViewController: UIViewController {
         let alertController:AlertController = AlertController(title: "Such Wow!",
                                                               message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
                                                               style: .alert,
-                                                              shadow: Shadow.shadowLg(),
+                                                              shadowStyle: .noShadow,
                                                               head: Color.green500,
                                                               iconImage: Backpack.Icon.makeIcon(name: "tick", color: Color.white, size: .large))
         
@@ -78,48 +78,10 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showWarning(_ sender: UIButton!) {
-//        let goBackButton = AlertButtonAction.init(style: .secondary, title: "Back", actionHandler: {
-//            NSLog("Primary tapped")
-//        })
-//
-//        let faderConfig = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
-//            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
-//        }, shouldDismiss: true)
-//
-//        let alertConfig = AlertConfiguration.init(circleColor: Color.yellow500,
-//                                                  icon:Backpack.Icon.makeIcon(name: "exclamation-circle", color: Color.white, size: .large),
-//                                                  titleText: "Warr!?-1-0-$%",
-//                                                  descriptionText: "Something is throwing a warning m8 🤔",
-//                                                  buttonConfigurations: [goBackButton],
-//                                                  hasShadow: true,
-//                                                  doneButtonConfiguration: nil,
-//                                                  faderConfiguration: faderConfig,
-//                                                  isFullScreen: false)
-//        self.alertController.alert(with: alertConfig, on: self.view.window!)
+
     }
 
     func showError(_ sender: UIButton!) {
-//        let primaryBtnConfig = AlertButtonAction.init(style: .destructive, title: "Delete", actionHandler: {
-//            NSLog("Primary tapped")
-//        })
-//
-//        let doneConfig = AlertDoneButtonConfiguration.init(actionHandler: {
-//            NSLog("Done tapped")
-//        }, isVisible: true, titleText: "Cancel")
-//
-//        let faderConifif = AlertFaderConfiguration.init(actionHandler: { (didDismiss) in
-//            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
-//        }, shouldDismiss: false)
-//
-//        let alertConfig = AlertConfiguration.init(circleColor: Color.red500,
-//                                                     icon:Backpack.Icon.makeIcon(name: "trash", color: Color.white, size: .large),
-//                                                     titleText: "Delete?",
-//                                                     descriptionText: "Are you sure, you would like to delete your review?",
-//                                                     buttonConfigurations: [primaryBtnConfig],
-//                                                     hasShadow: true,
-//                                                     doneButtonConfiguration: doneConfig,
-//                                                     faderConfiguration: faderConifif,
-//                                                     isFullScreen: true)
-//        self.alertController.alert(with: alertConfig, on: self.view.window!)
+
     }
 }
