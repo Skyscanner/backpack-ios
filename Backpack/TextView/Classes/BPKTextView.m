@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKTextView
 
 - (instancetype)initWithFontStyle:(BPKFontStyle)style {
-    self = [super initWithFrame:CGRectZero];
+    self = [super initWithFrame:CGRectZero textContainer:nil];
 
     if (self) {
         [self setupWithStyle:style];
@@ -45,8 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+- (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer {
+    self = [super initWithFrame:frame textContainer:textContainer];
 
     if (self) {
         [self setupWithStyle:BPKFontStyleTextBase];
