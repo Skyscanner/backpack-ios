@@ -41,9 +41,9 @@ typedef NS_ENUM(NSInteger, BPKAlertControllerShadowStyle) {
 
 NS_SWIFT_NAME(AlertController) @interface BPKAlertController: UIViewController<BPKAlertViewDelegate>
 
-- (void)addButtonAction:(BPKAlertButtonAction *)action;
-- (void)addFaderAction:(BPKAlertFaderAction *)action;
-- (void)addDoneButtonAction:(BPKAlertDoneButtonAction *)action;
+- (void)addButtonAction:(BPKAlertButtonAction *)action NS_SWIFT_NAME(addButtonAction(_:));
+- (void)addFaderAction:(BPKAlertFaderAction *)action NS_SWIFT_NAME(addFaderAction(_:));
+- (void)addDoneButtonAction:(BPKAlertDoneButtonAction *)action NS_SWIFT_NAME(addDoneButtonAction(_:));
 
 - (instancetype)init __attribute__((unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
 + (instancetype)alertControllerWithTitle:(NSString *)title

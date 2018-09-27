@@ -24,7 +24,6 @@ class BPKAlertViewController: UIViewController {
     let destructiveButton:Button = Button(size: .default, style: .destructive)
     let warningButton:Button = Button(size: .default, style: .secondary)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(primaryButton)
@@ -58,7 +57,7 @@ class BPKAlertViewController: UIViewController {
             NSLog("Primary tapped")
         }
         let skipAction = AlertButtonAction(title: "skip", style: .link) {
-            NSLog("Primary tapped")
+            NSLog("skip tapped")
         }
         
         let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
@@ -69,11 +68,11 @@ class BPKAlertViewController: UIViewController {
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
         
-        alertController.add(mainAction);
-        alertController.add(skipAction);
-        alertController.add(doneAction);
-        alertController.add(faderAction);
-
+        alertController.addButtonAction(mainAction)
+        alertController.addButtonAction(skipAction);
+        alertController.addDoneButtonAction(doneAction);
+        alertController.addFaderAction(faderAction);
+        
         self.present(alertController, animated: false, completion: nil);
     }
 
