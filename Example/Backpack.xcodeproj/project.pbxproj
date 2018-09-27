@@ -49,6 +49,8 @@
 		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
 		D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */; };
 		D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */; };
+		D696CA20215CC09400682666 /* BPKIconTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D696CA1F215CC09400682666 /* BPKIconTest.m */; };
+		D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696CA21215CC1BD00682666 /* IconSwiftTest.swift */; };
 		D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */; };
 		D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */; };
 		D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
@@ -147,6 +149,8 @@
 		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
 		D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsPerformanceViewController.swift; sourceTree = "<group>"; };
+		D696CA1F215CC09400682666 /* BPKIconTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconTest.m; sourceTree = "<group>"; };
+		D696CA21215CC1BD00682666 /* IconSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSwiftTest.swift; sourceTree = "<group>"; };
 		D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SnapshotTests-Info.plist"; sourceTree = "<group>"; };
 		D6CE74F12124230000154D92 /* BPKPanelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPanelTest.m; sourceTree = "<group>"; };
 		D6CE74F521242D8A00154D92 /* BPKBadgesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKBadgesViewController.h; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 				D6CE74F12124230000154D92 /* BPKPanelTest.m */,
 				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
+				D696CA1F215CC09400682666 /* BPKIconTest.m */,
+				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -654,7 +660,9 @@
 				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
+				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
+				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
@@ -893,6 +901,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backpack Native.app/Backpack Native";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -914,6 +923,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backpack Native.app/Backpack Native";
 				WRAPPER_EXTENSION = xctest;
 			};
