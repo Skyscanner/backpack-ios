@@ -123,7 +123,6 @@ NS_ASSUME_NONNULL_BEGIN
                                               [_doneButton.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-BPKSpacingLg]
                                               ]];
     
-    // Notch and status bar
     if (@available(iOS 11.0, *)) {
         [_doneButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:BPKSpacingSm].active = YES;
     } else {
