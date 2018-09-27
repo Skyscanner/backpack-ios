@@ -155,13 +155,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)buttonTapped:(BPKButton *)button {
-    BPKAlertButtonAction *config = [self configForButton:button];
+    BPKAlertButtonAction *config = [self actionForButton:button];
     if (config) {
         [self.delegate closeAlertWithHandler:config.handler];
     }
 }
 
-- (BPKAlertButtonAction *)configForButton:(BPKButton *)button {
+- (BPKAlertButtonAction * _Nullable)actionForButton:(BPKButton *)button {
     for (NSInteger i = 0; i < [_buttonConfigurationMap allValues].count; i++) {
         BPKButton *btn = [_buttonConfigurationMap allValues][i];
         if ([btn isEqual:button]) {
