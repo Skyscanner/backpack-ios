@@ -137,24 +137,13 @@ NS_ASSUME_NONNULL_BEGIN
                                               ]];
 }
 
-- (void)setupTopOffsetShadowOnView:(UIView *)view {
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithOvalInRect:view.bounds];
-    view.layer.masksToBounds = NO;
-    view.layer.shadowColor = [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1].CGColor;
-    view.layer.shadowOffset = CGSizeMake(0, -8);
-    view.layer.shadowOpacity = 0.13;
-    view.layer.shadowPath = shadowPath.CGPath;
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.hasShadow) {
-        BPKShadow *shadowSm = [BPKShadow shadowLg];
-        [shadowSm applyToLayer:_contentHolderView.layer];
-        [self setupTopOffsetShadowOnView:_circularView];
+        BPKShadow *shadowLg = [BPKShadow shadowSm];
+        [shadowLg applyToLayer:self.layer];
     } else {
-        [_circularView.layer setShadowOpacity:0];
-        [_contentHolderView.layer setShadowOpacity:0];
+        [self.layer setShadowOpacity:0];
     }
 }
 
