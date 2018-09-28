@@ -21,6 +21,7 @@ import Backpack
 
 class BPKAlertViewController: UIViewController {
     let primaryButton:Button = Button(size: .default, style: .primary)
+    let dbookInfoAlert:Button = Button(size: .default, style: .primary)
     let destructiveButton:Button = Button(size: .default, style: .destructive)
     let warningButton:Button = Button(size: .default, style: .secondary)
     
@@ -29,25 +30,29 @@ class BPKAlertViewController: UIViewController {
         self.view.addSubview(primaryButton)
         self.view.addSubview(destructiveButton)
         self.view.addSubview(warningButton)
+        self.view.addSubview(dbookInfoAlert)
         
         primaryButton.setTitle("normal")
         destructiveButton.setTitle("error")
         warningButton.setTitle("warning")
-        
+        dbookInfoAlert.setTitle("Dbook success")
+
         primaryButton.addTarget(self, action:#selector(BPKAlertViewController.showNormal(_:)), for: .touchUpInside)
         destructiveButton.addTarget(self, action: #selector(BPKAlertViewController.showError(_:)), for: .touchUpInside)
         warningButton.addTarget(self, action: #selector(BPKAlertViewController.showWarning(_:)), for: .touchUpInside)
+        dbookInfoAlert.addTarget(self, action: #selector(BPKAlertViewController.showSucccess(_:)), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
         self.primaryButton.frame = CGRect(x: 20, y: 300, width: primaryButton.intrinsicContentSize.width, height: primaryButton.intrinsicContentSize.height)
         self.destructiveButton.frame = CGRect(x: 20, y: 350, width: destructiveButton.intrinsicContentSize.width, height: destructiveButton.intrinsicContentSize.height)
         self.warningButton.frame = CGRect(x: 20, y: 400, width: warningButton.intrinsicContentSize.width, height: warningButton.intrinsicContentSize.height)
+        self.dbookInfoAlert.frame = CGRect(x: 20, y: 450, width: dbookInfoAlert.intrinsicContentSize.width, height: dbookInfoAlert.intrinsicContentSize.height)
     }
 
     func showNormal(_ sender: UIButton!) {
         let alertController:AlertController = AlertController(title: "Such Wow!",
-                                                              message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus. Integer pretium risus in ultrices maximus. In vitae convallis leo, ut ultricies metus. Proin molestie vestibulum lobortis. Maecenas a ultricies magna, vel iaculis nulla.",
+                                                              message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus.",
                                                               style: .alert,
                                                               shadowStyle: .shadow,
                                                               head: Color.green500,
@@ -59,10 +64,6 @@ class BPKAlertViewController: UIViewController {
         let skipAction = AlertButtonAction(title: "skip", style: .link) {
             NSLog("skip tapped")
         }
-        
-        let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
-            NSLog("Done pressed")
-        }
 
         let faderAction = AlertFaderAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
@@ -70,6 +71,28 @@ class BPKAlertViewController: UIViewController {
         
         alertController.addButtonAction(mainAction)
         alertController.addButtonAction(skipAction);
+        alertController.addFaderAction(faderAction);
+        
+        self.present(alertController, animated: false, completion: nil);
+    }
+    
+    func showSucccess(_ sender: UIButton!) {
+        let alertController:AlertController = AlertController(title: "You're almost ready to pack your bags!",
+                                                              message: "Your booking is being processed with Trip.com\n\nAs soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com\n\nRemember to check your junk mail folder\n\nPlease note down your reference number and contact Trip.com if you need to track, change or cancel your booking\n\nSafe travels!",
+                                                              style: .bottomSheet,
+                                                              shadowStyle: .noShadow,
+                                                              head: Color.green500,
+                                                              iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
+        
+        
+        let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
+            NSLog("Done pressed")
+        }
+        
+        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+            NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
+        }, shouldDismiss: true)
+        
         alertController.addDoneButtonAction(doneAction);
         alertController.addFaderAction(faderAction);
         

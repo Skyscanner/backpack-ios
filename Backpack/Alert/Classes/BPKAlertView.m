@@ -76,7 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
     _iconImageView = [[UIImageView alloc] init];
     
     _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
-    
+    _titleLabel.numberOfLines = 0;
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+
     _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
     _descriptionLabel.numberOfLines = 0;
     _descriptionLabel.textAlignment = NSTextAlignmentCenter;
@@ -127,6 +129,8 @@ NS_ASSUME_NONNULL_BEGIN
                                               
                                               [_titleLabel.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:BPKSpacingLg],
                                               [_titleLabel.centerXAnchor constraintEqualToAnchor:_titleLabel.superview.centerXAnchor],
+                                              [_titleLabel.leadingAnchor constraintEqualToAnchor:_titleLabel.superview.leadingAnchor constant:BPKSpacingLg],
+                                              [_titleLabel.trailingAnchor constraintEqualToAnchor:_titleLabel.superview.trailingAnchor constant:-BPKSpacingLg],
                                               
                                               [_descriptionLabel.topAnchor constraintEqualToAnchor:_titleLabel.bottomAnchor constant:BPKSpacingLg],
                                               [_descriptionLabel.leadingAnchor constraintEqualToAnchor:_descriptionLabel.superview.leadingAnchor constant:BPKSpacingLg],
