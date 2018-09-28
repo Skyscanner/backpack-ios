@@ -15,13 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 
+#import "BPKAlertFaderAction.h"
 NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
+@implementation BPKAlertFaderAction
+
+- (instancetype)initWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
+    self = [super init];
+    if (self) {
+        _handler = handler;
+        _shouldDismiss = shouldDismiss;
+    }
+    return self;
+}
+
+
++ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
+    return [[self alloc] initWithActionHandler:handler shouldDismiss:shouldDismiss];
+}
+
+@end
 NS_ASSUME_NONNULL_END

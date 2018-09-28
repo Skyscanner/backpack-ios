@@ -15,13 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
-NS_ASSUME_NONNULL_END
+#ifndef __BACKPACK_ALERT__
+#define __BACKPACK_ALERT__
+
+#import "BPKAlertController.h"
+#import "BPKAlertView.h"
+#import "BPKAlertButtonAction.h"
+#import "BPKAlertDoneButtonAction.h"
+#import "BPKAlertFaderAction.h"
+
+#endif
+

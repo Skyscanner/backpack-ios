@@ -15,13 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import <Foundation/Foundation.h>
+#import <Backpack/Button.h>
 
 NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
+
+typedef void (^BPKAlertButtonActionHandler)(void);
+
+NS_SWIFT_NAME(AlertButtonAction) @interface BPKAlertButtonAction : NSObject <NSCopying>
+
+@property (nonatomic, readonly) BPKButtonStyle style;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) BPKAlertButtonActionHandler handler;
+
+- (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKAlertButtonActionHandler)handler;
+
+@end
 NS_ASSUME_NONNULL_END

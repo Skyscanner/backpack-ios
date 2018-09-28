@@ -15,13 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
+
+#import "BPKAlertDoneButtonAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
+@implementation BPKAlertDoneButtonAction
+
+- (instancetype)initWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText {
+    self = [super init];
+    if (self) {
+        _handler = handler;
+        _titleText = titleText;
+        _visible = isVisible;
+    }
+    return self;
+}
+
+
++ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler {
+    return [[self alloc] initWithActionHandler:handler isVisible:isVisible titleText:titleText];
+}
+
+@end
 NS_ASSUME_NONNULL_END

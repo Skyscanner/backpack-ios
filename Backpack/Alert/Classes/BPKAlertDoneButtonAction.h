@@ -15,13 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
+
+typedef void (^BPKAlertDoneButtonActionHandler)(void);
+
+NS_SWIFT_NAME(AlertDoneButtonAction) @interface BPKAlertDoneButtonAction : NSObject
+
+- (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
+
+@property (nonatomic, readonly) BPKAlertDoneButtonActionHandler handler;
+@property (nonatomic, readonly) NSString *titleText;
+@property (readonly, getter=isVisible) BOOL visible;
+
++ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler;
+
+@end
 NS_ASSUME_NONNULL_END

@@ -15,13 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-{% for s in spacing %}
-/**
- * The Skyscanner {{s.legibleName}} ({{s.value}}px) spacing.
- */
-extern CGFloat const {{s.name}};
-{% endfor %}
-NS_ASSUME_NONNULL_END
+typedef void (^BPKAlertFaderActionHandler)(BOOL didDismiss);
+
+NS_SWIFT_NAME(AlertFaderAction) @interface BPKAlertFaderAction : NSObject
+
+- (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
+
+@property (nonatomic, readonly) BPKAlertFaderActionHandler handler;
+@property (readonly) BOOL shouldDismiss;
+
++ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
+
+@end
