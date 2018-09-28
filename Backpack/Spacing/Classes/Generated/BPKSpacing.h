@@ -20,37 +20,37 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * The Skyscanner base spacing. (16)
+ * The Skyscanner base (16px) spacing.
  */
 extern CGFloat const BPKSpacingBase;
 
 /**
- * The Skyscanner large spacing. (24)
+ * The Skyscanner large (24px) spacing.
  */
 extern CGFloat const BPKSpacingLg;
 
 /**
- * The Skyscanner medium spacing.(8)
+ * The Skyscanner medium (8px) spacing.
  */
 extern CGFloat const BPKSpacingMd;
 
 /**
- * The Skyscanner none spacing.
+ * The Skyscanner none (0px) spacing.
  */
 extern CGFloat const BPKSpacingNone;
 
 /**
- * The Skyscanner small spacing. (4)
+ * The Skyscanner small (4px) spacing.
  */
 extern CGFloat const BPKSpacingSm;
 
 /**
- * The Skyscanner extra large spacing. (32)
+ * The Skyscanner extra large (32px) spacing.
  */
 extern CGFloat const BPKSpacingXl;
 
 /**
- * The Skyscanner extra extra large spacing. (40)
+ * The Skyscanner extra extra large (40px) spacing.
  */
 extern CGFloat const BPKSpacingXxl;
 
