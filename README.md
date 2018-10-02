@@ -23,16 +23,18 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 
 * [Backpack/Color](Backpack/Color/README.md)
 * [Backpack/Font](Backpack/Font/README.md)
-* [Backpack/Spacing](Backpack/Spacing/README.md)
-* [Backpack/Radii](Backpack/Radii/README.md)
-* [Backpack/Shadow](Backpack/Shadow/README.md)
 * [Backpack/Gradient](Backpack/Gradient/README.md)
+* [Backpack/Radii](Backpack/Radii/README.md)
+* [Backpack/Spacing](Backpack/Spacing/README.md)
+* [Backpack/Shadow](Backpack/Shadow/README.md)
+
 * [Backpack/Badge](Backpack/Badge/README.md)
+* [Backpack/Button](Backpack/Button/README.md)
+* [Backpack/Card](Backpack/Card/README.md)
 * [Backpack/Icon](Backpack/Icon/README.md)
 * [Backpack/Label](Backpack/Label/README.md)
-* [Backpack/TextView](Backpack/TextView/README.md)
 * [Backpack/Panel](Backpack/Panel/README.md)
-* [Backpack/Button](Backpack/Button/README.md)
+* [Backpack/TextView](Backpack/TextView/README.md)
 * [Backpack/Spinner](Backpack/Spinner/README.md)
 
 ## Contributing to Backpack
