@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.15.0
+
+**Added:**
+
+- Backpack/TextView
+  - A `UITextView` subclass with Skyscanner styles.
+
+- Backpack/Card
+  - A `UIControl` subclass with Skyscanner card styling.
+
 ## 0.14.0
 
 **Added:**
