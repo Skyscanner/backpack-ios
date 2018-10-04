@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.16.0
+
+**Added:**
+- Backpack/Gradient
+  - `BPKGradientLayer` now allows `gradient` being `nil` in which case it will render transparent
+- Backpack/Card:
+  - Added divided card styles.
+
+**Fixed:**
+- Backpack/Button
+  - Link style `BPKButton`s do not have white background anymore.
+
+
 ## 0.15.0
 
 **Added:**
