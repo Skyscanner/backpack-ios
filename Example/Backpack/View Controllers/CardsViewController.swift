@@ -26,6 +26,10 @@ class CardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupCard()
+    }
+    
+    func setupCard() {
         let label = Label(fontStyle: .textBase);
         label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.";
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
