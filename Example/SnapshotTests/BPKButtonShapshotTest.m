@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
 }
 
 - (void)testLargePrimary {
@@ -110,10 +110,8 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
 }
-
-
 
 #pragma mark - Private
 
