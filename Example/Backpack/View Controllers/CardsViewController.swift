@@ -34,7 +34,7 @@ class CardsViewController: UIViewController {
         label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.";
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
-        card.addSubview(label);
+        card.subview = label;
         card.isPadded = padded;
         card.isSelected = selected;
     }

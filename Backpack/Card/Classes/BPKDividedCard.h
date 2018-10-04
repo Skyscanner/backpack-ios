@@ -36,6 +36,16 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
 @property(nonatomic, assign) IBInspectable UILayoutConstraintAxis orientation;
 
 /**
+ * The primary subview within the divided card.
+ */
+@property(nonatomic, assign, nullable) UIView *primarySubview;
+
+/**
+ * The secondary subview within the divided card.
+ */
+@property(nonatomic, assign, nullable) UIView *secondarySubview;
+
+/**
  * Create a `BPKDividedCard` with padded initially set.
  *
  * @param padded Whether the card should have padding or not.

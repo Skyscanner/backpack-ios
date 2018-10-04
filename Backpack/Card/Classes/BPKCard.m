@@ -28,6 +28,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 @interface BPKCard()
 
 - (void)setupWithPadded:(BOOL)padded;
+@property(nonatomic, strong) UIView *innerView;
 @end
 
 
@@ -66,8 +67,10 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setPadded:(BOOL)padded {
     if (padded) {
         self.layoutMargins = UIEdgeInsetsMake(BPKSpacingBase, BPKSpacingBase, BPKSpacingBase, BPKSpacingBase);
+        self.innerView.layer.cornerRadius = 0;
     } else {
         self.layoutMargins = UIEdgeInsetsZero;
+        self.innerView.layer.cornerRadius = BPKBorderRadiusSm;
     }
     
     _padded = padded;
@@ -92,30 +95,43 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self.backgroundColor = highlighted ? BPKColor.gray100 : BPKColor.white;
 }
 
-- (void)addSubview:(UIView *)view {
-    NSAssert(self.subviews.count == 0, @"BPKCard can only have a single subview");
-    if (self.subviews.count > 0) {
-        return;
+- (void)setSubview:(UIView *_Nullable)view {
+    if (self.subview != nil) {
+        [self.subview removeFromSuperview];
     }
-    [super addSubview:view];
+    _subview = view;
+    [self.innerView addSubview:view];
     view.translatesAutoresizingMaskIntoConstraints = NO;
     
     [NSLayoutConstraint activateConstraints:@[
-                                              [view.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
-                                              [view.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
-                                              [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
-                                              [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:view.bottomAnchor]
+                                              [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor],
+                                              [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
+                                              [self.innerView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
+                                              [self.innerView.bottomAnchor constraintEqualToAnchor:view.bottomAnchor]
                                               ]];
 }
 
 #pragma mark - Private
 
 - (void)setupWithPadded:(BOOL)padded {
-    self.padded = padded;
-    self.backgroundColor = [BPKColor white];
     self.layer.cornerRadius = BPKBorderRadiusSm;
     self.layer.masksToBounds = NO;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
+    
+    self.innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.innerView.layer.masksToBounds = YES;
+    self.innerView.userInteractionEnabled = NO;
+    self.padded = padded;
+    [super addSubview:self.innerView];
+    
+    self.innerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [self.innerView.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
+                                              [self.innerView.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
+                                              [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.innerView.trailingAnchor],
+                                              [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.innerView.bottomAnchor]
+                                              ]];
 }
 
 @end
