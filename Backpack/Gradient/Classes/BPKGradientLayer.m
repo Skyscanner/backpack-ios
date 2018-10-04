@@ -46,8 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
     CGContextSaveGState(ctx);
     CGSize size = self.bounds.size;
 
-    NSAssert(self.gradient != nil, @"`gradient` should never be nil when the layer is rendered");
     if (self.gradient == nil) {
+        CGContextRestoreGState(ctx);
         return;
     }
 
@@ -56,11 +56,14 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAssert(colors.count == stops.count, @"`colors` and `stops` must have the same length");
     if (colors.count != stops.count) {
+        CGContextRestoreGState(ctx);
         return;
     }
 
-    if (colors.count == 0 || size.width == 0.0 || size.height == 0.0)
+    if (colors.count == 0 || size.width == 0.0 || size.height == 0.0) {
+        CGContextRestoreGState(ctx);
         return;
+    }
 
     CGFloat *locations = nil;
     locations = malloc(sizeof(CGFloat) * colors.count);

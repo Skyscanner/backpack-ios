@@ -466,7 +466,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setLinkStyleWithColor:(UIColor *)color {
-    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.white];
+    self.gradientLayer.gradient = nil;
     
     [self.layer setBorderColor:BPKColor.clear.CGColor];
     [self.layer setBorderWidth:0];
