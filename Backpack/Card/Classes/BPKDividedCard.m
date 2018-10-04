@@ -106,11 +106,11 @@ NS_ASSUME_NONNULL_BEGIN
     
     self.lineView = [[BPKCardDivider alloc] initWithOrientation:self.orientation];
     
-    if (primarySubview != nil) {
+    if (self.primarySubview != nil) {
         [self.contentView addArrangedSubview:self.primarySubview];
     }
     [self.contentView addArrangedSubview:self.lineView];
-    if (secondarySubview != nil) {
+    if (self.secondarySubview != nil) {
         [self.contentView addArrangedSubview:self.secondarySubview];
     }
     
