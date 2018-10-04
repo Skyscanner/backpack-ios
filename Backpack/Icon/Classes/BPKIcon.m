@@ -21,6 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
+NSString * const BPKIconFontName = @"BpkIconIOS";
 
 @interface BPKIcon()
 @property(class, nonatomic, readonly) UIFont *iconFont;
@@ -44,15 +45,15 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
 #else
     NSBundle *bundle = [self iconBundle];
 
-    NSURL *url = [bundle URLForResource:@"BpkIcon" withExtension:@"ttf"];
-    NSAssert(url != nil, @"`BpkIcon.ttf` must be present in the bundle.");
+    NSURL *url = [bundle URLForResource:BPKIconFontName withExtension:@"ttf"];
+    NSAssert(url != nil, @"`%@.ttf` must be present in the bundle.", BPKIconFontName);
     if (url == nil) {
         return;
     }
 
     NSError *dataError;
     NSData *fontData = [NSData dataWithContentsOfURL:url options:0 error:&dataError];
-    NSAssert(dataError == nil, @"BpkIcon.ttf could not be read with error %@", dataError);
+    NSAssert(dataError == nil, @"%@.ttf could not be read with error %@", BPKIconFontName, dataError);
     if (dataError != nil) {
         return;
     }
@@ -63,7 +64,12 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
     if (font) {
         CFErrorRef error = NULL;
         if (CTFontManagerRegisterGraphicsFont(font, &error) == NO) {
-            NSAssert(NO, @"Failed to register BpkIcon.ttf with error %@", (__bridge_transfer NSString *)CFErrorCopyDescription(error));
+            NSError *registerError = (__bridge NSError*)error;
+
+            // If the font has already been registered the error is safe to ignore
+            if ([registerError code] != kCTFontManagerErrorAlreadyRegistered) {
+                NSAssert(NO, @"Failed to register %@.ttf with error %@", BPKIconFontName, (__bridge_transfer NSString *)CFErrorCopyDescription(error));
+            }
         }
 
         CFRelease(font);
@@ -96,7 +102,7 @@ NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
     }
     NSString *iconCodepoint = [self stringForUnicodeCodepoint:[self.iconMapping objectForKey:name]];
 
-    UIFont *font = [UIFont fontWithName:@"BpkIcon" size:iconSize.height];
+    UIFont *font = [UIFont fontWithName:BPKIconFontName size:iconSize.height];
     NSAssert(font, @"`BpkIcon` was not correctly registered.");
 
     if (font == nil) {

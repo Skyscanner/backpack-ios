@@ -296,9 +296,14 @@ gulp.task('template', ['generate-icon-names'], () => {
 });
 
 gulp.task('copy-icon-font', () => {
-  gulp
-    .src('node_modules/bpk-svgs/dist/font/{BpkIcon.ttf,iconMapping.json}')
-    .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
+  merge2([
+    gulp.src('node_modules/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
+      rename({
+        basename: 'BpkIconIOS',
+      }),
+    ),
+    gulp.src('node_modules/bpk-svgs/dist/font/iconMapping.json'),
+  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
 });
 
 gulp.task('generate-icon-names', () => {
