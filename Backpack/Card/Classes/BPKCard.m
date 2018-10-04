@@ -116,6 +116,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setupWithPadded:(BOOL)padded {
     self.layer.cornerRadius = BPKBorderRadiusSm;
     self.layer.masksToBounds = NO;
+    self.backgroundColor = BPKColor.white;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
     
     self.innerView = [[UIView alloc] initWithFrame:CGRectZero];
