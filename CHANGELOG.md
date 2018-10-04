@@ -2,6 +2,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.16.1
+
+**Fixed:**
+
+- Backpack/Icon
+  - Prevent collision with React Native icon font.
+  - Prevent assertion error by not attempting to register the icon font if it's already been registered.
+
 ## 0.16.0
 
 **Added:**
