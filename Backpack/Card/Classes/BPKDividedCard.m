@@ -28,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKDividedCard()
 @property(strong, nonatomic) UIStackView *contentView;
 @property(strong, nonatomic) BPKCardDivider *lineView;
-@property(assign, nonatomic, nullable) UIView *primarySubview;
-@property(assign, nonatomic, nullable) UIView *secondarySubview;
 @end
 
 @implementation BPKDividedCard
@@ -38,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        [self setupViews];
+        [self setupViewsWithPadded:NO];
     }
     
     return self;
@@ -48,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
     
     if (self) {
-        [self setupViews];
+        [self setupViewsWithPadded:NO];
     }
     
     return self;
@@ -64,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         self.primarySubview = primarySubview;
         self.secondarySubview = secondarySubview;
-        [self setupViews];
+        [self setupViewsWithPadded:padded];
     }
     
     return self;
@@ -98,11 +96,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (void)setupViews {
+- (void)setupViewsWithPadded:(BOOL) padded {
     self.contentView = [[UIStackView alloc] initWithFrame:CGRectZero];
     [self.contentView setUserInteractionEnabled:false];
     self.contentView.distribution = UIStackViewDistributionFillProportionally;
     self.contentView.alignment = UIStackViewAlignmentFill;
+    self.padded = padded;
     
     self.lineView = [[BPKCardDivider alloc] initWithOrientation:self.orientation];
     
@@ -114,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.contentView addArrangedSubview:self.secondarySubview];
     }
     
-    [super addSubview:(self.contentView)];
+    [super setSubview:(self.contentView)];
 }
 
 @end

@@ -33,6 +33,11 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
 @property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 /**
+ * The view to display within the card.
+ */
+@property(nonatomic, assign, nullable) UIView *subview;
+
+/**
  * Create a `BPKCard` with padded initially set.
  *
  * @param padded Whether the card should have padding or not.
@@ -46,6 +51,8 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
  * @return `BPKCard` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+- (void)addSubview:(UIView *)view __attribute__((unavailable("`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
 
 /**
  * Creates a `BPKCard` with a decoder (typically when creating form Storyboards)

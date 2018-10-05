@@ -21,7 +21,7 @@ Given that you have a compatible environment as stated above you can now setup t
 
 ## Testing
 
-Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be ran on a 2x device otherwise they will fail.
+Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on a 2x device otherwise they will fail.
 
 ## Releasing
 
