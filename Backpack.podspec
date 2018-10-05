@@ -79,21 +79,21 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Button' do |ss|
-      ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
-      ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
-      ss.dependency 'Backpack/Color'
-      ss.dependency 'Backpack/Spacing'
-      ss.dependency 'Backpack/Gradient'
-      ss.dependency 'Backpack/Font'
-      ss.dependency 'Backpack/Label'
-      ss.dependency 'Backpack/RTLSupport'
+    ss.source_files = 'Backpack/Button/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Button/Classes/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Gradient'
+    ss.dependency 'Backpack/Font'
+    ss.dependency 'Backpack/Label'
+    ss.dependency 'Backpack/RTLSupport'
   end
 
-    s.subspec 'Alert' do |ss|
-      ss.source_files = 'Backpack/Alert/Classes/**/*.{h,m}'
-      ss.public_header_files = 'Backpack/Alert/Classes/**/*.h'
-      ss.dependency 'Backpack/Button'
-      ss.dependency 'Backpack/Shadow'
+  s.subspec 'Dialog' do |ss|
+    ss.source_files = 'Backpack/Dialog/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Dialog/Classes/**/*.h'
+    ss.dependency 'Backpack/Button'
+    ss.dependency 'Backpack/Shadow'
   end
 
   s.subspec 'Icon' do |ss|
@@ -111,12 +111,12 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Font'
   end
-  
+
   s.subspec 'TextView' do |ss|
-      ss.source_files = 'Backpack/TextView/Classes/**/*.{h,m}'
-      ss.public_header_files = 'Backpack/TextView/Classes/**/*.h'
-      ss.dependency 'Backpack/Color'
-      ss.dependency 'Backpack/Font'
+    ss.source_files = 'Backpack/TextView/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/TextView/Classes/**/*.h'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Font'
   end
 
   s.subspec 'Panel' do |ss|
@@ -126,11 +126,11 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
   end
-  
+
   s.subspec 'Spinner' do |ss|
-      ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
-      ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'
-      ss.dependency 'Backpack/Color'
+    ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'
+    ss.dependency 'Backpack/Color'
   end
 
   s.subspec 'RTLSupport' do |ss|

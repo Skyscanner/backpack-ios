@@ -16,21 +16,31 @@
  * limitations under the License.
  */
 
-#import "BPKAlertFaderAction.h"
-NS_ASSUME_NONNULL_BEGIN
-@implementation BPKAlertFaderAction
+#import "BPKDialogScrimAction.h"
 
-- (instancetype)initWithActionHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
+NS_ASSUME_NONNULL_BEGIN
+@interface BPKDialogScrimAction()
+@property (nonatomic, strong) BPKDialogScrimActionHandler handler;
+@property (nonatomic, assign) BOOL shouldDismiss;
+
+- (instancetype)initWithActionHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
+@end
+
+@implementation BPKDialogScrimAction
+
+- (instancetype)initWithActionHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     self = [super init];
+
     if (self) {
-        _handler = handler;
-        _shouldDismiss = shouldDismiss;
+        self.handler = handler;
+        self.shouldDismiss = shouldDismiss;
     }
+
     return self;
 }
 
 
-+ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
++ (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     return [[self alloc] initWithActionHandler:handler shouldDismiss:shouldDismiss];
 }
 

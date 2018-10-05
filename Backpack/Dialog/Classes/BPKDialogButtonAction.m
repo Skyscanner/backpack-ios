@@ -16,31 +16,41 @@
  * limitations under the License.
  */
 
-#import "BPKAlertButtonAction.h"
+#import "BPKDialogButtonAction.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKAlertButtonAction
+@interface BPKDialogButtonAction()
+@property (nonatomic, assign) BPKButtonStyle style;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) BPKDialogButtonActionHandler handler;
 
-- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKAlertButtonActionHandler)handler {
+- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKDialogButtonActionHandler)handler;
+@end
+
+@implementation BPKDialogButtonAction
+
+- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKDialogButtonActionHandler)handler {
     self = [super init];
+
     if (self) {
-        _style = style;
-        _title = title;
-        _handler = handler;
+        self.style = style;
+        self.title = title;
+        self.handler = handler;
     }
+
     return self;
 }
 
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKAlertButtonActionHandler)handler {
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler {
     return [[self alloc] initWithButtonStyle:style title:title actionHandler:handler];
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    BPKAlertButtonAction *copy = [[[self class] allocWithZone:zone] init];
+    BPKDialogButtonAction *copy = [[[self class] allocWithZone:zone] init];
 
     if (copy != nil) {
         copy->_style = _style;
-        copy->_title = _title;
+        copy->_title = [_title copy];
         copy->_handler = _handler;
     }
 

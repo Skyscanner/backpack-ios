@@ -18,15 +18,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^BPKAlertFaderActionHandler)(BOOL didDismiss);
+typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
 
-NS_SWIFT_NAME(AlertFaderAction) @interface BPKAlertFaderAction : NSObject
+NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
 
 - (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
-@property (nonatomic, readonly) BPKAlertFaderActionHandler handler;
-@property (readonly) BOOL shouldDismiss;
+@property (nonatomic, strong, readonly) BPKDialogScrimActionHandler handler;
+@property (nonatomic, assign, readonly) BOOL shouldDismiss;
 
-+ (instancetype _Nonnull)actionWithHandler:(BPKAlertFaderActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
++ (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 
 @end

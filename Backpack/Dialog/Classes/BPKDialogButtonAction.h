@@ -16,25 +16,21 @@
  * limitations under the License.
  */
 
-#import "BPKAlertDoneButtonAction.h"
+#import <Foundation/Foundation.h>
+#import <Backpack/Button.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKAlertDoneButtonAction
 
-- (instancetype)initWithActionHandler:(BPKAlertDoneButtonActionHandler)handler isVisible:(BOOL)isVisible titleText:(NSString *)titleText {
-    self = [super init];
-    if (self) {
-        _handler = handler;
-        _titleText = titleText;
-        _visible = isVisible;
-    }
-    return self;
-}
+typedef void (^BPKDialogButtonActionHandler)(void);
 
+NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject <NSCopying>
 
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler {
-    return [[self alloc] initWithActionHandler:handler isVisible:isVisible titleText:titleText];
-}
+@property (nonatomic, assign, readonly) BPKButtonStyle style;
+@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, strong, readonly) BPKDialogButtonActionHandler handler;
+
+- (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler;
 
 @end
 NS_ASSUME_NONNULL_END

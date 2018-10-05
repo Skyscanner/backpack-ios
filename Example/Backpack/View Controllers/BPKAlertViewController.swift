@@ -51,99 +51,94 @@ class BPKAlertViewController: UIViewController {
     }
 
     func showNormal(_ sender: UIButton!) {
-        let alertController:AlertController = AlertController(title: "Such Wow!",
-                                                              message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus.",
-                                                              style: .alert,
-                                                              shadowStyle: .shadow,
-                                                              head: Color.green500,
-                                                              iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
+        let dialogController  = DialogController(title: "Such Wow!",
+                                                message: "Mauris auctor, arcu at consequat condimentum, sem lorem mollis turpis, sit amet tristique mi eros eget tellus.",
+                                                style: .alert,
+                                                shadowStyle: .shadow,
+                                                head: Color.green500,
+                                                iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
         
-        let mainAction = AlertButtonAction(title: "Continue", style: .primary) {
+        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
             NSLog("Primary tapped")
         }
-        let skipAction = AlertButtonAction(title: "skip", style: .link) {
+        let skipAction = DialogButtonAction(title: "skip", style: .link) {
             NSLog("skip tapped")
         }
 
-        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
         
-        alertController.addButtonAction(mainAction)
-        alertController.addButtonAction(skipAction);
-        alertController.addFaderAction(faderAction);
+        dialogController.addButtonAction(mainAction)
+        dialogController.addButtonAction(skipAction);
+        dialogController.addScrimAction(scrimAction);
         
-        self.present(alertController, animated: false, completion: nil);
+        self.present(dialogController, animated: false, completion: nil);
     }
     
     func showSucccess(_ sender: UIButton!) {
-        let alertController:AlertController = AlertController(title: "You're almost ready to pack your bags!",
-                                                              message: "Your booking is being processed with Trip.com\n\nAs soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com\n\nRemember to check your junk mail folder\n\nPlease note down your reference number and contact Trip.com if you need to track, change or cancel your booking\n\nSafe travels!",
-                                                              style: .bottomSheet,
-                                                              shadowStyle: .noShadow,
-                                                              head: Color.green500,
-                                                              iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
+        let alertController = DialogController(title: "You're almost ready to pack your bags!",
+                                               message: "Your booking is being processed with Trip.com\n\nAs soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com\n\nRemember to check your junk mail folder\n\nPlease note down your reference number and contact Trip.com if you need to track, change or cancel your booking\n\nSafe travels!",
+                                               style: .bottomSheet,
+                                               shadowStyle: .noShadow,
+                                               head: Color.green500,
+                                               iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
         
         
-        let doneAction = AlertDoneButtonAction(title: "Done", isVisible: true) {
-            NSLog("Done pressed")
-        }
-        
-        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
         
-        alertController.addDoneButtonAction(doneAction);
-        alertController.addFaderAction(faderAction);
+        alertController.addScrimAction(scrimAction);
         
         self.present(alertController, animated: false, completion: nil);
     }
 
     func showWarning(_ sender: UIButton!) {
-        let alertController:AlertController = AlertController(title: "!#$Warning-0-1!#$#$?",
-                                                              message: "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!",
-                                                              style: .alert,
-                                                              shadowStyle: .shadow,
-                                                              head: Color.yellow500,
-                                                              iconImage: Backpack.Icon.makeIcon(name: .lightning, color: Color.white, size: .large))
+        let alertController = DialogController(title: "!#$Warning-0-1!#$#$?",
+                                               message: "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!",
+                                               style: .alert,
+                                               shadowStyle: .shadow,
+                                               head: Color.yellow500,
+                                               iconImage: Backpack.Icon.makeIcon(name: .lightning, color: Color.white, size: .large))
         
-        let mainAction = AlertButtonAction(title: "OK", style: .link) {
+        let mainAction = DialogButtonAction(title: "OK", style: .link) {
             NSLog("Primary tapped")
         }
         
-        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
         
         alertController.addButtonAction(mainAction)
-        alertController.addFaderAction(faderAction);
+        alertController.addScrimAction(scrimAction);
         
         self.present(alertController, animated: false, completion: nil);
     }
 
     func showError(_ sender: UIButton!) {
-        let alertController:AlertController = AlertController(title: "Delete?",
-                                                              message: "Are you sure you would like to delete your avatar?",
-                                                              style: .bottomSheet,
-                                                              shadowStyle: .shadow,
-                                                              head: Color.red500,
-                                                              iconImage: Backpack.Icon.makeIcon(name: .trash, color: Color.white, size: .large))
+        let alertController = DialogController(title: "Delete?",
+                                               message: "Are you sure you would like to delete your avatar?",
+                                               style: .bottomSheet,
+                                               shadowStyle: .shadow,
+                                               head: Color.red500,
+                                               iconImage: Backpack.Icon.makeIcon(name: .trash, color: Color.white, size: .large))
         
-        let mainAction = AlertButtonAction(title: "Delete", style: .primary) {
+        let mainAction = DialogButtonAction(title: "Delete", style: .destructive) {
             NSLog("Primary tapped")
         }
-        
-        let doneAction = AlertDoneButtonAction(title: "Cancel", isVisible: true) {
-            NSLog("Done pressed")
+
+        let cancelAction = DialogButtonAction(title: "Cancel", style: .secondary) {
+
         }
-        
-        let faderAction = AlertFaderAction(handler: { (didDismiss) in
+
+        let faderAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: false)
         
         alertController.addButtonAction(mainAction)
-        alertController.addDoneButtonAction(doneAction);
-        alertController.addFaderAction(faderAction);
+        alertController.addButtonAction(cancelAction)
+        alertController.addScrimAction(faderAction);
         
         self.present(alertController, animated: false, completion: nil);
     }

@@ -16,14 +16,13 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_ALERT__
-#define __BACKPACK_ALERT__
+#ifndef __BACKPACK_DIALOG__
+#define __BACKPACK_DIALOG__
 
-#import "BPKAlertController.h"
-#import "BPKAlertView.h"
-#import "BPKAlertButtonAction.h"
-#import "BPKAlertDoneButtonAction.h"
-#import "BPKAlertFaderAction.h"
+#import "BPKDialogController.h"
+#import "BPKDialogView.h"
+#import "BPKDialogButtonAction.h"
+#import "BPKDialogScrimAction.h"
 
 #endif
 

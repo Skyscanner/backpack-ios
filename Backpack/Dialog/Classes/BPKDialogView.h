@@ -16,21 +16,29 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "BPKDialogButtonAction.h"
+
+@class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^BPKAlertDoneButtonActionHandler)(void);
+@protocol BPKDialogViewDelegate <NSObject>
+- (void)closeDialogWithHandler:(BPKDialogButtonActionHandler)handler;
+- (void)dismissDialogWithScrimTap;
+@end
 
-NS_SWIFT_NAME(AlertDoneButtonAction) @interface BPKAlertDoneButtonAction : NSObject
+@interface BPKDialogView : UIView<UIGestureRecognizerDelegate>
 
-- (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
+@property (nonatomic, weak) id<BPKDialogViewDelegate> delegate;
+@property (nonatomic) BOOL hasShadow;
 
-@property (nonatomic, readonly) BPKAlertDoneButtonActionHandler handler;
-@property (nonatomic, readonly) NSString *titleText;
-@property (readonly, getter=isVisible) BOOL visible;
-
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)titleText isVisible:(BOOL)isVisible handler:(BPKAlertDoneButtonActionHandler)handler;
+-(void)setHeadColor:(UIColor * _Nullable)color;
+-(void)setTitle:(NSString *)titleString;
+-(void)setDescription:(NSString *)descriptionString;
+-(void)setButtonActions:(NSArray<BPKDialogButtonAction *> *)buttonActions;
+-(void)setIcon:(UIImage *)iconImage;
 
 @end
 NS_ASSUME_NONNULL_END

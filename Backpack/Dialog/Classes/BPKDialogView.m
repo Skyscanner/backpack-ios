@@ -16,7 +16,8 @@
  * limitations under the License.
  */
 
-#import "BPKAlertView.h"
+#import "BPKDialogView.h"
+
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/Shadow.h>
@@ -25,7 +26,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKAlertView()
+@interface BPKDialogView()
 
 @property (nonatomic, readwrite) UIView *circularView;
 @property (nonatomic, readwrite) UIView *iconContainerView;
@@ -37,15 +38,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite) NSArray<BPKButton *> *buttons;
 @property (nonatomic, readwrite) UIStackView *buttonStackView;
 
-@property (nonatomic, readwrite) NSDictionary<BPKAlertButtonAction *, BPKButton *> *buttonConfigurationMap;
+@property (nonatomic, readwrite) NSDictionary<BPKDialogButtonAction *, BPKButton *> *buttonConfigurationMap;
 
 @end
 
-@implementation BPKAlertView
+@implementation BPKDialogView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
     if (self) {
         [self setupViews];
         [self addViews];
@@ -57,6 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self setUserInteractionEnabled:YES];
         [self addGestureRecognizer:tap];
     }
+
     return self;
 }
 
@@ -158,13 +160,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)buttonTapped:(BPKButton *)button {
-    BPKAlertButtonAction *config = [self actionForButton:button];
+    BPKDialogButtonAction *config = [self actionForButton:button];
     if (config) {
-        [self.delegate closeAlertWithHandler:config.handler];
+        [self.delegate closeDialogWithHandler:config.handler];
     }
 }
 
-- (BPKAlertButtonAction * _Nullable)actionForButton:(BPKButton *)button {
+- (BPKDialogButtonAction * _Nullable)actionForButton:(BPKButton *)button {
     for (NSInteger i = 0; i < [_buttonConfigurationMap allValues].count; i++) {
         BPKButton *btn = [_buttonConfigurationMap allValues][i];
         if ([btn isEqual:button]) {
@@ -184,7 +186,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)tapView:(UITapGestureRecognizer *)tapGesture {
-    [self.delegate dismissAlertWithFaderTap];
+    [self.delegate dismissDialogWithScrimTap];
 }
 
 #pragma mark - PUBLIC
@@ -204,12 +206,12 @@ NS_ASSUME_NONNULL_BEGIN
     [_descriptionLabel setText:descriptionString];
 }
 
--(void)setButtonActions:(NSArray<BPKAlertButtonAction *> *)buttonActions {
-    NSMutableDictionary<BPKAlertButtonAction *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
+-(void)setButtonActions:(NSArray<BPKDialogButtonAction *> *)buttonActions {
+    NSMutableDictionary<BPKDialogButtonAction *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
     [self resetStackViewContent];
     
     for (NSInteger i = 0; i < buttonActions.count; i++) {
-        BPKAlertButtonAction *buttonConfig = buttonActions[i];
+        BPKDialogButtonAction *buttonConfig = buttonActions[i];
         BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
         [button setTitle:buttonConfig.title];
         [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
