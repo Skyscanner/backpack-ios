@@ -18,28 +18,35 @@
 
 #import "BPKDialogView.h"
 
+#import "BPKDialogIconView.h"
+
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
+#import <Backpack/Radii.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@interface BPKActionButtonPair : NSObject
+@property(nonatomic, strong) BPKDialogButtonAction *action;
+@property(nonatomic, weak) BPKButton *button;
+@end
+
+@implementation BPKActionButtonPair
+@end
+
 
 @interface BPKDialogView()
 
-@property (nonatomic, readwrite) UIView *circularView;
-@property (nonatomic, readwrite) UIView *iconContainerView;
-@property (nonatomic, readwrite) UIImageView *iconImageView;
+@property(nonatomic, strong) BPKDialogIconView *iconView;
 
-@property (nonatomic, readwrite) UIView *contentHolderView;
-@property (nonatomic, readwrite) BPKLabel *titleLabel;
-@property (nonatomic, readwrite) BPKLabel *descriptionLabel;
-@property (nonatomic, readwrite) NSArray<BPKButton *> *buttons;
-@property (nonatomic, readwrite) UIStackView *buttonStackView;
+@property(nonatomic, strong) UIView *contentView;
+@property(nonatomic, strong) BPKLabel *titleLabel;
+@property(nonatomic, strong) BPKLabel *descriptionLabel;
+@property(nonatomic, strong) UIStackView *buttonStackView;
 
-@property (nonatomic, readwrite) NSDictionary<BPKDialogButtonAction *, BPKButton *> *buttonConfigurationMap;
-
+@property(nonatomic, strong) NSMutableArray<BPKActionButtonPair *> *registeredActions;
 @end
 
 @implementation BPKDialogView
@@ -48,105 +55,82 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
+        self.registeredActions = [NSMutableArray new];
+
         [self setupViews];
         [self addViews];
         [self setupConstraints];
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapView:)];
-        tap.delegate = self;
-        [self setUserInteractionEnabled:YES];
-        [self addGestureRecognizer:tap];
     }
 
     return self;
 }
 
 - (void)setupViews {
-    _contentHolderView = [UIView new];
-    _contentHolderView.backgroundColor = BPKColor.white;
-    _contentHolderView.layer.cornerRadius = 4;
-    
-    _circularView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    _circularView.layer.cornerRadius = _circularView.frame.size.width / 2;
-    _circularView.backgroundColor = BPKColor.white;
-    
-    _iconContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    _iconContainerView.layer.cornerRadius = _iconContainerView.frame.size.width / 2;
-    _iconContainerView.backgroundColor = BPKColor.red500;
-    
-    _iconImageView = [[UIImageView alloc] init];
-    
-    _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
-    _titleLabel.numberOfLines = 0;
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.contentView = [UIView new];
+    self.contentView.backgroundColor = BPKColor.white;
+    self.contentView.layer.cornerRadius = BPKBorderRadiusSm;
 
-    _descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
-    _descriptionLabel.numberOfLines = 0;
-    _descriptionLabel.textAlignment = NSTextAlignmentCenter;
+    self.iconView = [BPKDialogIconView new];
+
+    self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+    self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
+    self.descriptionLabel.numberOfLines = 0;
+    self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
     
-    _buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
-    _buttonStackView.axis = UILayoutConstraintAxisVertical;
-    _buttonStackView.spacing = BPKSpacingMd;
+    self.buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
+    self.buttonStackView.axis = UILayoutConstraintAxisVertical;
+    self.buttonStackView.spacing = BPKSpacingMd;
     
-    _iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
-    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _circularView.translatesAutoresizingMaskIntoConstraints = NO;
-    _iconContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-    _contentHolderView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)addViews {
-    [self addSubview:_contentHolderView];
-    [self addSubview:_circularView];
-    [_circularView addSubview:_iconContainerView];
-    [_circularView addSubview:_iconImageView];
+    [self addSubview:self.contentView];
+    [self addSubview:self.iconView];
 
-    [_contentHolderView addSubview:_titleLabel];
-    [_contentHolderView addSubview:_descriptionLabel];
-    [_contentHolderView addSubview:_buttonStackView];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.descriptionLabel];
+    [self.contentView addSubview:self.buttonStackView];
 }
 
 - (void)setupConstraints {
+    CGSize iconViewSize = [[self.iconView class] viewSize];
+    self.contentView.layoutMargins = UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg, self.contentView.layoutMargins.bottom, BPKSpacingLg);
+
     [NSLayoutConstraint activateConstraints:@[
-                                              [_circularView.topAnchor constraintEqualToAnchor:_circularView.superview.topAnchor],
-                                              [_circularView.centerXAnchor constraintEqualToAnchor:_contentHolderView.centerXAnchor],
-                                              [_circularView.heightAnchor constraintEqualToConstant:70],
-                                              [_circularView.widthAnchor constraintEqualToConstant:70],
+                                              [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
+                                              [self.iconView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
+
+                                              [self.contentView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:-(iconViewSize.height / 2.0)],
+                                              [self.contentView.superview.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor],
+                                              [self.contentView.trailingAnchor constraintEqualToAnchor:self.contentView.superview.trailingAnchor],
                                               
-                                              [_iconContainerView.centerYAnchor constraintEqualToAnchor:_circularView.centerYAnchor],
-                                              [_iconContainerView.centerXAnchor constraintEqualToAnchor:_circularView.centerXAnchor],
-                                              [_iconContainerView.heightAnchor constraintEqualToConstant:60],
-                                              [_iconContainerView.widthAnchor constraintEqualToConstant:60],
+                                              [self.titleLabel.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:BPKSpacingBase],
+                                              [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.titleLabel.superview.centerXAnchor],
+                                              [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.titleLabel.superview.layoutMarginsGuide.leadingAnchor],
+                                              [self.titleLabel.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor],
                                               
-                                              [_iconImageView.centerYAnchor constraintEqualToAnchor:_iconContainerView.centerYAnchor],
-                                              [_iconImageView.centerXAnchor constraintEqualToAnchor:_iconContainerView.centerXAnchor],
+                                              [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+                                              [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.descriptionLabel.superview.layoutMarginsGuide.leadingAnchor],
+                                              [self.descriptionLabel.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
                                               
-                                              [_contentHolderView.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:-35],
-                                              [_contentHolderView.bottomAnchor constraintEqualToAnchor:_contentHolderView.superview.bottomAnchor],
-                                              [_contentHolderView.leadingAnchor constraintEqualToAnchor:_contentHolderView.superview.leadingAnchor],
-                                              [_contentHolderView.trailingAnchor constraintEqualToAnchor:_contentHolderView.superview.trailingAnchor],
-                                              
-                                              [_titleLabel.topAnchor constraintEqualToAnchor:_circularView.bottomAnchor constant:BPKSpacingLg],
-                                              [_titleLabel.centerXAnchor constraintEqualToAnchor:_titleLabel.superview.centerXAnchor],
-                                              [_titleLabel.leadingAnchor constraintEqualToAnchor:_titleLabel.superview.leadingAnchor constant:BPKSpacingLg],
-                                              [_titleLabel.trailingAnchor constraintEqualToAnchor:_titleLabel.superview.trailingAnchor constant:-BPKSpacingLg],
-                                              
-                                              [_descriptionLabel.topAnchor constraintEqualToAnchor:_titleLabel.bottomAnchor constant:BPKSpacingLg],
-                                              [_descriptionLabel.leadingAnchor constraintEqualToAnchor:_descriptionLabel.superview.leadingAnchor constant:BPKSpacingLg],
-                                              [_descriptionLabel.trailingAnchor constraintEqualToAnchor:_descriptionLabel.superview.trailingAnchor constant:-BPKSpacingLg],
-                                              
-                                              [_buttonStackView.topAnchor constraintEqualToAnchor:_descriptionLabel.bottomAnchor constant:BPKSpacingLg],
-                                              [_buttonStackView.leadingAnchor constraintEqualToAnchor:_buttonStackView.superview.leadingAnchor constant:BPKSpacingXl],
-                                              [_buttonStackView.trailingAnchor constraintEqualToAnchor:_buttonStackView.superview.trailingAnchor constant:-BPKSpacingXl],
-                                              [_buttonStackView.bottomAnchor constraintEqualToAnchor:_buttonStackView.superview.bottomAnchor constant:-BPKSpacingLg]
+                                              [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor constant:BPKSpacingBase],
+                                              [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.buttonStackView.superview.layoutMarginsGuide.leadingAnchor constant:(BPKSpacingXl - BPKSpacingLg)],
+                                              [self.buttonStackView.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor constant:(BPKSpacingXl - BPKSpacingLg)],
+                                              [self.buttonStackView.superview.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.buttonStackView.bottomAnchor]
                                               ]];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
     if (self.hasShadow) {
         [[BPKShadow shadowLg] applyToLayer:self.layer];
     } else {
@@ -160,74 +144,73 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)buttonTapped:(BPKButton *)button {
-    BPKDialogButtonAction *config = [self actionForButton:button];
-    if (config) {
-        [self.delegate closeDialogWithHandler:config.handler];
+    BPKDialogButtonAction *action = [self actionForButton:button];
+    if (action) {
+        [self.delegate didInvokeButtonAction:action];
     }
 }
 
 - (BPKDialogButtonAction * _Nullable)actionForButton:(BPKButton *)button {
-    for (NSInteger i = 0; i < [_buttonConfigurationMap allValues].count; i++) {
-        BPKButton *btn = [_buttonConfigurationMap allValues][i];
-        if ([btn isEqual:button]) {
-            return [_buttonConfigurationMap allKeys][i];
+    for (BPKActionButtonPair *pair in self.registeredActions) {
+        if (pair.button == button) {
+            return pair.action;
         }
     }
-    
+
     return nil;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if ([touch.view isEqual:self]) {
-        return YES;
-    }
-    return NO;
+#pragma mark - Public
+
+
+#pragma mark - Property overrides
+
+- (void)setIconBackgroundColor:(UIColor *_Nullable)iconBackgroundColor {
+    self.iconView.iconBackgroundColor = iconBackgroundColor;
 }
 
-- (void)tapView:(UITapGestureRecognizer *)tapGesture {
-    [self.delegate dismissDialogWithScrimTap];
+- (UIColor *_Nullable)iconBackgroundColor {
+    return self.iconView.iconBackgroundColor;
 }
 
-#pragma mark - PUBLIC
--(void)setHeadColor:(UIColor * _Nullable)color {
-    _iconContainerView.backgroundColor = color;
+- (void)setIconImage:(UIImage *_Nullable)iconImage {
+    self.iconView.iconImage = iconImage;
 }
 
--(void)setTitle:(NSString *)titleString {
-    [_titleLabel setText:titleString];
+- (UIImage *_Nullable)iconImage {
+    return self.iconView.iconImage;
 }
 
--(void)setIcon:(UIImage *)iconImage {
-    [_iconImageView setImage:iconImage];
+- (void)setTitle:(NSString *_Nullable)title {
+    self.titleLabel.text = title;
 }
 
--(void)setDescription:(NSString *)descriptionString {
-    [_descriptionLabel setText:descriptionString];
+- (NSString *_Nullable)title {
+    return self.titleLabel.text;
 }
 
--(void)setButtonActions:(NSArray<BPKDialogButtonAction *> *)buttonActions {
-    NSMutableDictionary<BPKDialogButtonAction *, BPKButton *> *btnConfigMap = [NSMutableDictionary new];
-    [self resetStackViewContent];
-    
-    for (NSInteger i = 0; i < buttonActions.count; i++) {
-        BPKDialogButtonAction *buttonConfig = buttonActions[i];
-        BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:buttonConfig.style];
-        [button setTitle:buttonConfig.title];
-        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        btnConfigMap[buttonConfig] = button;
-        
-        [_buttonStackView addArrangedSubview:button];
-    }
-    
-    _buttonConfigurationMap = [btnConfigMap copy];
-    
-    [self setNeedsUpdateConstraints];
+
+- (void)setDescription:(NSString *_Nullable)description {
+    self.descriptionLabel.text = description;
 }
-- (void)resetStackViewContent {
-    [[_buttonStackView arrangedSubviews] enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-        [view removeFromSuperview];
-    }];
+
+- (NSString *_Nullable)description {
+    return self.descriptionLabel.text;
+}
+
+#pragma mark - Other public methods
+
+- (void)addButtonAction:(BPKDialogButtonAction *)action {
+    BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeLarge style:action.style];
+    [button setTitle:action.title];
+    [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonStackView addArrangedSubview:button];
+
+
+    BPKActionButtonPair *pair = [[BPKActionButtonPair alloc] init];
+    pair.button = button;
+    pair.action = action;
+    [self.registeredActions addObject:pair];
 }
 
 @end

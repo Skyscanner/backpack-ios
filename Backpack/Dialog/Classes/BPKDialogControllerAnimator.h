@@ -15,25 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #import <Foundation/Foundation.h>
-#import <Backpack/Button.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class BPKDialogButtonAction;
-typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
-
-NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject <NSCopying>
-
-@property (nonatomic, assign, readonly) BPKButtonStyle style;
-@property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, strong, readonly) BPKDialogButtonActionHandler handler;
-
-- (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler;
-
+@interface BPKDialogControllerAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@property(nonatomic, assign, getter=isPresenting) BOOL presenting;
 @end
-
-
 NS_ASSUME_NONNULL_END

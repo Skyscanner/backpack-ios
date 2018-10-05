@@ -20,6 +20,7 @@
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogScrimAction.h"
+#import "BPKDialogControllerAnimator.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
@@ -31,19 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogController()
 
-@property (nonatomic, strong) UIColor *headColor;
-@property (nonatomic, strong) UIImage *iconImage;
-@property (nonatomic, copy) NSString *titleText;
-@property (nonatomic, copy) NSString *messageText;
-@property (nonatomic, assign) BPKDialogControllerShadowStyle shadowStyle;
-@property (nonatomic, assign) BPKDialogControllerStyle style;
+@property(nonatomic, strong) UIColor *headColor;
+@property(nonatomic, strong) UIImage *iconImage;
+@property(nonatomic, copy) NSString *titleText;
+@property(nonatomic, copy) NSString *messageText;
 
-@property (nonatomic, strong) UIView *scrimView;
-@property (nonatomic, strong) BPKDialogView *dialogView;
+@property(nonatomic, strong) UIView *scrimView;
+@property(nonatomic, strong) BPKDialogView *dialogView;
 
-@property (nonatomic, strong) NSMutableArray<BPKDialogButtonAction *> *buttonActions;
-@property (nonatomic, strong) BPKDialogScrimAction *scrimAction;
+@property(nonatomic, strong) BPKDialogScrimAction *scrimAction;
 
+@property(nonatomic, strong) NSLayoutConstraint *bottomAnchorConstraint;
 @end
 
 @implementation BPKDialogController
@@ -55,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
                     headColor:(UIColor *)headColor
                     iconImage:(UIImage *)iconImage {
     self = [super init];
+
     if (self) {
         self.titleText = title;
         self.messageText = message;
@@ -62,13 +62,13 @@ NS_ASSUME_NONNULL_BEGIN
         self.shadowStyle = shadowStyle;
         self.headColor = headColor;
         self.iconImage = iconImage;
-        
-        self.buttonActions = [NSMutableArray new];
-        
+        self.transitioningDelegate = self;
+
         [self setupViews];
         [self addViews];
         [self setupConstraints];
     }
+    
     return self;
 }
 
@@ -84,65 +84,48 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupViews {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrimTapped:)];
     
-    _scrimView = [UIView new];
-    _scrimView.clipsToBounds = YES;
-    _scrimView.userInteractionEnabled = YES;
-    _scrimView.backgroundColor = BPKColor.gray900;
-    _scrimView.alpha = 0.5;
-    _scrimView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_scrimView addGestureRecognizer:tapGesture];
+    self.scrimView = [UIView new];
+    self.scrimView.clipsToBounds = YES;
+    self.scrimView.userInteractionEnabled = YES;
+    self.scrimView.backgroundColor = BPKColor.gray900;
+    self.scrimView.alpha = 0.5;
+    self.scrimView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.scrimView addGestureRecognizer:tapGesture];
 
-    _dialogView = [[BPKDialogView alloc] initWithFrame:CGRectZero];
-    _dialogView.translatesAutoresizingMaskIntoConstraints = NO;
-    _dialogView.delegate = self;
-    [_dialogView setTitle:self.titleText];
-    [_dialogView setIcon:self.iconImage];
-    _dialogView.hasShadow = self.shadowStyle == BPKDialogControllerShadowStyleShadow;
-    [_dialogView setButtonActions:self.buttonActions];
-    [_dialogView setDescription:self.messageText];
-    [_dialogView setHeadColor:self.headColor];
+    self.dialogView = [[BPKDialogView alloc] initWithFrame:CGRectZero];
+    self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dialogView.delegate = self;
+    [self.dialogView setTitle:self.titleText];
+    [self.dialogView setIconImage:self.iconImage];
+    self.dialogView.hasShadow = self.shadowStyle == BPKDialogControllerShadowStyleShadow;
+    [self.dialogView setDescription:self.messageText];
+    [self.dialogView setIconBackgroundColor:self.headColor];
 }
 
 - (void)setupConstraints {
     [NSLayoutConstraint activateConstraints:@[
-                                              [_scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-                                              [_scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-                                              [_scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-                                              [_scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
-                                              ]];
+                                              [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+                                              [self.scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+                                              [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+                                              [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
-    NSLayoutConstraint *leadConstraint = [_dialogView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:BPKSpacingLg];
-    leadConstraint.priority = UILayoutPriorityDefaultHigh;
-    leadConstraint.active = YES;
+                                              [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
+                                              [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
+                                              ]];
     
-    NSLayoutConstraint *trailingConstraint = [_dialogView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-BPKSpacingLg];
-    trailingConstraint.priority = UILayoutPriorityDefaultHigh;
-    trailingConstraint.active = YES;
-    
-    NSLayoutConstraint *widthConstraint = [_dialogView.widthAnchor constraintLessThanOrEqualToConstant:self.view.bounds.size.width - 2*BPKSpacingMd];
-    widthConstraint.priority = UILayoutPriorityRequired;
-    widthConstraint.active = YES;
-    
-    [_dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     if (self.style == BPKDialogControllerStyleBottomSheet) {
-        [_dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:BPKSpacingBase].active = YES;
-        [_dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = NO;
+        self.bottomAnchorConstraint = [self.dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+        self.bottomAnchorConstraint.active = YES;
     } else if (self.style == BPKDialogControllerStyleAlert) {
-        [_dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = NO;
-        [_dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
     }
 }
 
 - (void)addViews {
-    [self.view addSubview:_scrimView];
-    [self.view addSubview:_dialogView];
+    [self.view addSubview:self.scrimView];
+    [self.view addSubview:self.dialogView];
 }
-
-- (void)removeViews {
-    [self.scrimView removeFromSuperview];
-    [self.dialogView removeFromSuperview];
-}
-
 
 - (void)scrimTapped:(UITapGestureRecognizer *)gestureRecognizer {
     if( gestureRecognizer.state == UIGestureRecognizerStateRecognized ) {
@@ -156,14 +139,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     if (self.scrimAction.shouldDismiss) {
-        // TODO: Should this be the responsibility of the presenter?
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-}
-
-- (void)closeDialogWithHandler:(BPKDialogButtonActionHandler)handler {
-    [self dismissViewControllerAnimated:NO completion:nil];
-    handler();
 }
 
 - (UIModalPresentationStyle)modalPresentationStyle {
@@ -174,15 +151,72 @@ NS_ASSUME_NONNULL_BEGIN
     return UIModalTransitionStyleCoverVertical;
 }
 
-#pragma mark - PUBLIC
+#pragma mark - Public
 
 - (void)addScrimAction:(BPKDialogScrimAction *)action {
     self.scrimAction = action;
 }
 
 - (void)addButtonAction:(BPKDialogButtonAction *)action {
-    [self.buttonActions addObject:action];
-    [_dialogView setButtonActions:self.buttonActions];
+    [self.dialogView addButtonAction:action];
+}
+
+- (void)addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
+    if (self.style == BPKDialogControllerStyleBottomSheet) {
+        CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        self.bottomAnchorConstraint.constant = sheetSize.height;
+        [self.view layoutIfNeeded];
+
+        self.bottomAnchorConstraint.constant = 0.0;
+        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    } else {
+        self.dialogView.alpha = 0.0;
+        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
+            self.dialogView.alpha = 1.0;
+        }];
+    }
+}
+
+- (void)addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
+    if (self.style == BPKDialogControllerStyleBottomSheet) {
+        CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        self.bottomAnchorConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+
+        self.bottomAnchorConstraint.constant = sheetSize.height;
+        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
+- (void)setScrimAlpha:(double)scrimAlpha {
+    self.scrimView.alpha = 0.5 * fmax(fmin(scrimAlpha, 1.0), 0.0);
+}
+
+#pragma mark - BPKDialogViewDelegate
+
+- (void)didInvokeButtonAction:(BPKDialogButtonAction *)action {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:^{
+            action.handler(action);
+        }];
+    });
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [BPKDialogControllerAnimator new];
+}
+
+- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    BPKDialogControllerAnimator *animator = [BPKDialogControllerAnimator new];
+    animator.presenting = NO;
+
+    return animator;
 }
 
 @end

@@ -15,34 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #import <UIKit/UIKit.h>
-
-#import "BPKDialogButtonAction.h"
-
-@class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BPKDialogViewDelegate <NSObject>
-@required
-/**
- * Called when a button action is invoked. At this point the handler has
- * not yet been called. The receiver should call it.
- */
-- (void)didInvokeButtonAction:(BPKDialogButtonAction *)action;
-@end
-
-@interface BPKDialogView : UIView<UIGestureRecognizerDelegate>
-
-@property(nonatomic, weak) id<BPKDialogViewDelegate> delegate;
-@property(nonatomic, assign) BOOL hasShadow;
+@interface BPKDialogIconView : UIView
 @property(nullable, nonatomic, strong) UIColor *iconBackgroundColor;
 @property(nullable, nonatomic, strong) UIImage *iconImage;
-@property(nullable, nonatomic, copy) NSString *title;
-@property(nullable, nonatomic, copy) NSString *description;
 
-- (void)addButtonAction:(BPKDialogButtonAction *)action;
 
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+
++ (CGSize)viewSize;
 @end
+
 NS_ASSUME_NONNULL_END

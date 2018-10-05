@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
-		1BFD209E215B851B008001BE /* BPKAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD209D215B851B008001BE /* BPKAlertViewController.swift */; };
+		1BFD209E215B851B008001BE /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD209D215B851B008001BE /* DialogViewController.swift */; };
 		2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */; };
 		3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
@@ -47,6 +47,8 @@
 		D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EB212F0A2A00B25A9E /* BPKRootListTableViewController.m */; };
 		D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D649E8ED212F0B6500B25A9E /* Localizable.strings */; };
 		D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */; };
+		D65081FE216B505300154AFE /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65081FD216B505300154AFE /* Dialogs.storyboard */; };
+		D6508200216B531A00154AFE /* DialogSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65081FF216B531A00154AFE /* DialogSelectorViewController.swift */; };
 		D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C517200F9BA400CB39AF /* BPKFontsViewController.m */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
 		D690703821590F0A0088C97B /* BPKButtonShapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonShapshotTest.m */; };
@@ -91,7 +93,7 @@
 /* Begin PBXFileReference section */
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		1BFD209D215B851B008001BE /* BPKAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKAlertViewController.swift; sourceTree = "<group>"; };
+		1BFD209D215B851B008001BE /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
 		3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonSelectorViewController.h; sourceTree = "<group>"; };
@@ -150,6 +152,8 @@
 		D649E8EB212F0A2A00B25A9E /* BPKRootListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRootListTableViewController.m; sourceTree = "<group>"; };
 		D649E8ED212F0B6500B25A9E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKLabelTest.m; sourceTree = "<group>"; };
+		D65081FD216B505300154AFE /* Dialogs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
+		D65081FF216B531A00154AFE /* DialogSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelectorViewController.swift; sourceTree = "<group>"; };
 		D655C516200F9BA400CB39AF /* BPKFontsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKFontsViewController.h; sourceTree = "<group>"; };
 		D655C517200F9BA400CB39AF /* BPKFontsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontsViewController.m; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
 				D6907039215A39D30088C97B /* Labels.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				D65081FD216B505300154AFE /* Dialogs.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
@@ -365,7 +370,7 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1BFD209D215B851B008001BE /* BPKAlertViewController.swift */,
+				1BFD209D215B851B008001BE /* DialogViewController.swift */,
 				D643B6DD2142C36C008AB669 /* GradientViewController.swift */,
 				D655C516200F9BA400CB39AF /* BPKFontsViewController.h */,
 				D655C517200F9BA400CB39AF /* BPKFontsViewController.m */,
@@ -389,6 +394,7 @@
 				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
 				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
 				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
+				D65081FF216B531A00154AFE /* DialogSelectorViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -480,7 +486,6 @@
 				ORGANIZATIONNAME = Skyscanner;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = WZLXWEEH2U;
 						LastSwiftMigration = 0940;
 					};
 					6003F5AD195388D20070C39A = {
@@ -522,6 +527,7 @@
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
+				D65081FE216B505300154AFE /* Dialogs.storyboard in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 			);
@@ -650,11 +656,12 @@
 				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
+				D6508200216B531A00154AFE /* DialogSelectorViewController.swift in Sources */,
 				D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
-				1BFD209E215B851B008001BE /* BPKAlertViewController.swift in Sources */,
+				1BFD209E215B851B008001BE /* DialogViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
@@ -847,7 +854,7 @@
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = WZLXWEEH2U;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -877,7 +884,7 @@
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = WZLXWEEH2U;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

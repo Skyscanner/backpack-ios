@@ -94,6 +94,8 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Backpack/Dialog/Classes/**/*.h'
     ss.dependency 'Backpack/Button'
     ss.dependency 'Backpack/Shadow'
+    ss.dependency 'Backpack/Radii'
+    ss.dependency 'Backpack/Color'
   end
 
   s.subspec 'Icon' do |ss|

@@ -17,6 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
+
 #import "BPKDialogView.h"
 
 @class BPKDialogConfiguration;
@@ -26,8 +27,6 @@
 @class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^BPKDialogActionItemHandler)(void);
 
 typedef NS_ENUM(NSInteger, BPKDialogControllerStyle) {
     BPKDialogControllerStyleBottomSheet = 0,
@@ -39,8 +38,11 @@ typedef NS_ENUM(NSInteger, BPKDialogControllerShadowStyle) {
     BPKDialogControllerShadowStyleShadow
 };
 
-NS_SWIFT_NAME(DialogController) @interface BPKDialogController: UIViewController<BPKDialogViewDelegate>
+NS_SWIFT_NAME(DialogController) @interface BPKDialogController: UIViewController<BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
+@property(nonatomic, assign) BPKDialogControllerShadowStyle shadowStyle;
+@property(nonatomic, assign) BPKDialogControllerStyle style;
 
+- (void)setScrimAlpha:(double)scrimAlpha;
 - (void)addButtonAction:(BPKDialogButtonAction *)action NS_SWIFT_NAME(addButtonAction(_:));
 - (void)addScrimAction:(BPKDialogScrimAction *)action NS_SWIFT_NAME(addScrimAction(_:));
 
@@ -52,6 +54,8 @@ NS_SWIFT_NAME(DialogController) @interface BPKDialogController: UIViewController
                                 headColor:(UIColor *)headColor
                                 iconImage:(UIImage *)iconImage;
 
+- (void)addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration;
+- (void)addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration;
 @end
 
 NS_ASSUME_NONNULL_END
