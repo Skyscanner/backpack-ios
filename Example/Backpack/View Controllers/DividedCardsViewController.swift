@@ -31,7 +31,7 @@ class DividedCardsViewController: CardsViewController {
         label2.text = "Lorem ipsum dolor sit amet.";
         label2.lineBreakMode = NSLineBreakMode.byWordWrapping
         label2.numberOfLines = 0
-        dividedCard.setPrimarySubview(label1, secondarySubview: label2)
+        dividedCard.setSubviews(primarySubview:label1, secondarySubview: label2)
         dividedCard.isPadded = padded
         dividedCard.isSelected = selected
         dividedCard.orientation = divisionDirection

@@ -83,7 +83,7 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
  * @param primarySubview The primary subview for the divided card.
  * @param secondarySubview The secondary subview for the divided card.
  */
-- (void)setPrimarySubview:(UIView *)primarySubview secondarySubview:(UIView*)secondarySubview;
+- (void)setPrimarySubview:(UIView *)primarySubview secondarySubview:(UIView*)secondarySubview  NS_SWIFT_NAME(setSubviews(primarySubview:secondarySubview:));
 
 /**
  * Set the orientation used in the Divided Card
