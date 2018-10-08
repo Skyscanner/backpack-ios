@@ -1,6 +1,6 @@
 require 'semver'
 
-SNAPSHOT_TESTS = ENV['SNAPSHOT_TESTS'] != 'false'
+FULL_TESTS = ENV['FULL_TESTS'] != 'false'
 BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator11.4'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
@@ -56,7 +56,7 @@ task :analyze do
 end
 
 task :test do
-  only_testing = SNAPSHOT_TESTS ? '' : '-only-testing:Backpack_Tests'
+  only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
   sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
 end
 

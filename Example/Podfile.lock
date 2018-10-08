@@ -4,6 +4,7 @@ PODS:
     - Backpack/Button (= 1.0.0)
     - Backpack/Card (= 1.0.0)
     - Backpack/Color (= 1.0.0)
+    - Backpack/Dialog (= 1.0.0)
     - Backpack/Font (= 1.0.0)
     - Backpack/Gradient (= 1.0.0)
     - Backpack/Icon (= 1.0.0)
@@ -33,6 +34,13 @@ PODS:
     - Backpack/Shadow
     - Backpack/Spacing
   - Backpack/Color (1.0.0)
+  - Backpack/Dialog (1.0.0):
+    - Backpack/Button
+    - Backpack/Color
+    - Backpack/Label
+    - Backpack/Radii
+    - Backpack/Shadow
+    - Backpack/Spacing
   - Backpack/Font (1.0.0)
   - Backpack/Gradient (1.0.0):
     - Backpack/Color
@@ -68,7 +76,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: f4913b2eea48c41ecbbdb05c0b2817d90c479701
+  Backpack: 6e3dbdc3de2c0fbaf0aaac9812b4876bace7913e
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
 
 PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
