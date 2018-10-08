@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 0.17.1
+
+**Fixed:**
+
+- Backpack/Card:
+  - Backpack card shadows will now be rendered correctly on MacOS. (Affect snapshot tests only)
+
 ## 0.17.0
 
 **Breaking:**
