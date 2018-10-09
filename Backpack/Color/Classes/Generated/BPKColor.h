@@ -499,7 +499,10 @@ NS_SWIFT_NAME(Color) @interface BPKColor: NSObject
 */
 @property(nonatomic, class, readonly) UIColor * underlayColor;
 
-+ (UIColor *)clear;
+/**
+ * The `clear` color from the Backpack palette.
+*/
+@property(nonatomic, class, readonly) UIColor * clear;
 
 @end
 NS_ASSUME_NONNULL_END

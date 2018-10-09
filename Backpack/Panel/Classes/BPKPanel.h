@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Panels are a lightweight container with a subtle shadow.
  * Panels can be configured to have padding or not.
  */
-IB_DESIGNABLE @interface BPKPanel: UIView
+NS_SWIFT_NAME(Panel) IB_DESIGNABLE @interface BPKPanel: UIView
 
 /**
  * Whether the panel should provide padding or not.

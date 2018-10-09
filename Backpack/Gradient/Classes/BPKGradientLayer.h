@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * preferred in favour of `CAGradientLayer` as it does not correctly
  * render gradients for non-square views.
  */
-@interface BPKGradientLayer : CALayer
+NS_SWIFT_NAME(GradientLayer) @interface BPKGradientLayer : CALayer
 /**
  * The gradient being drawn by the layer. Changing this will cause
  * the layer to redraw with the new gradient.

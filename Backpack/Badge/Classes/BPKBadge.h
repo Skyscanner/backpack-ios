@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, BPKBadgeType) {
 };
 
 NS_ASSUME_NONNULL_BEGIN
-IB_DESIGNABLE @interface BPKBadge: UIView
+NS_SWIFT_NAME(Badge) IB_DESIGNABLE @interface BPKBadge: UIView
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /**
