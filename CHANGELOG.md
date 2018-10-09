@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 1.0.0
+
+**Fixed:**
+
+- Backpack/Badge:
+- Backpack/Card:
+- Backpack/Color:
+- Backpack/Font:
+- Backpack/Gradient:
+- Backpack/Panel:
+  - Swift API updated to follow language conventions.
+
 ## 0.17.1
 
 **Fixed:**
