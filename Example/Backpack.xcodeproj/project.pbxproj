@@ -52,6 +52,7 @@
 		D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EB212F0A2A00B25A9E /* BPKRootListTableViewController.m */; };
 		D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D649E8ED212F0B6500B25A9E /* Localizable.strings */; };
 		D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */; };
+		D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6517B4A216DF63700D85FF9 /* DialogUITest.swift */; };
 		D655C518200F9BA400CB39AF /* BPKFontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C517200F9BA400CB39AF /* BPKFontsViewController.m */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
 		D690703821590F0A0088C97B /* BPKButtonShapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonShapshotTest.m */; };
@@ -74,6 +75,10 @@
 		D6D81D56213FEE800013BB96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		D6D81D57213FEE800013BB96 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D6D81D59213FEE800013BB96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
+		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
+		D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */; };
+		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +88,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = Backpack;
+		};
+		D6517B44216DF5F800D85FF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = "Backpack Native";
 		};
 		D6D81D44213FEE800013BB96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -160,6 +172,10 @@
 		D649E8EB212F0A2A00B25A9E /* BPKRootListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRootListTableViewController.m; sourceTree = "<group>"; };
 		D649E8ED212F0B6500B25A9E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKLabelTest.m; sourceTree = "<group>"; };
+		D6517B3F216DF5F800D85FF9 /* Backpack NativeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack NativeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6517B43216DF5F800D85FF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack NativeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D6517B4A216DF63700D85FF9 /* DialogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUITest.swift; sourceTree = "<group>"; };
 		D655C516200F9BA400CB39AF /* BPKFontsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKFontsViewController.h; sourceTree = "<group>"; };
 		D655C517200F9BA400CB39AF /* BPKFontsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontsViewController.m; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
@@ -180,6 +196,10 @@
 		D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
+		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
+		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
+		D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogSelectorViewController.swift; sourceTree = "<group>"; };
+		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9BCCEB5F97CE209BCB4B278 /* Pods-Backpack_SnapshotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +228,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6517B3C216DF5F800D85FF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6D81D53213FEE800013BB96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +257,7 @@
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
 				6003F5B5195388D20070C39A /* Tests */,
+				D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				C92ADAF91733A08AB077E3E3 /* Pods */,
@@ -242,6 +270,7 @@
 				6003F58A195388D20070C39A /* Backpack Native.app */,
 				6003F5AE195388D20070C39A /* Backpack_Tests.xctest */,
 				D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */,
+				D6517B3F216DF5F800D85FF9 /* Backpack NativeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +301,7 @@
 				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
 				D6907039215A39D30088C97B /* Labels.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
@@ -374,9 +404,21 @@
 			path = "CollectionView Headers";
 			sourceTree = "<group>";
 		};
+		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D6517B43216DF5F800D85FF9 /* Info.plist */,
+				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
+				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
+			);
+			path = "Backpack NativeUITests";
+			sourceTree = "<group>";
+		};
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */,
+				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
 				D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */,
 				D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */,
 				D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */,
@@ -419,6 +461,7 @@
 				D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */,
 				D690703721590F0A0088C97B /* BPKButtonShapshotTest.m */,
 				3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */,
+				D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -464,6 +507,24 @@
 			productReference = 6003F5AE195388D20070C39A /* Backpack_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D6517B3E216DF5F800D85FF9 /* Backpack NativeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6517B48216DF5F800D85FF9 /* Build configuration list for PBXNativeTarget "Backpack NativeUITests" */;
+			buildPhases = (
+				D6517B3B216DF5F800D85FF9 /* Sources */,
+				D6517B3C216DF5F800D85FF9 /* Frameworks */,
+				D6517B3D216DF5F800D85FF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6517B45216DF5F800D85FF9 /* PBXTargetDependency */,
+			);
+			name = "Backpack NativeUITests";
+			productName = "Backpack NativeUITests";
+			productReference = D6517B3F216DF5F800D85FF9 /* Backpack NativeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D6D81D42213FEE800013BB96 /* Backpack_SnapshotTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6D81D5B213FEE800013BB96 /* Build configuration list for PBXNativeTarget "Backpack_SnapshotTests" */;
@@ -491,6 +552,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BPK;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Skyscanner;
 				TargetAttributes = {
@@ -499,6 +561,12 @@
 						LastSwiftMigration = 0940;
 					};
 					6003F5AD195388D20070C39A = {
+						TestTargetID = 6003F589195388D20070C39A;
+					};
+					D6517B3E216DF5F800D85FF9 = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 					D6D81D42213FEE800013BB96 = {
@@ -522,6 +590,7 @@
 				6003F589195388D20070C39A /* Backpack Native */,
 				6003F5AD195388D20070C39A /* Backpack_Tests */,
 				D6D81D42213FEE800013BB96 /* Backpack_SnapshotTests */,
+				D6517B3E216DF5F800D85FF9 /* Backpack NativeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -539,6 +608,7 @@
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
+				D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,6 +618,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6517B3D216DF5F800D85FF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,10 +752,12 @@
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
+				D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
 				D6CE74F721242D8A00154D92 /* BPKBadgesViewController.m in Sources */,
@@ -704,6 +783,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6517B3B216DF5F800D85FF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6D81D46213FEE800013BB96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -712,6 +799,7 @@
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonShapshotTest.m in Sources */,
 				D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */,
+				D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
 				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
@@ -726,6 +814,11 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* Backpack Native */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		D6517B45216DF5F800D85FF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6003F589195388D20070C39A /* Backpack Native */;
+			targetProxy = D6517B44216DF5F800D85FF9 /* PBXContainerItemProxy */;
 		};
 		D6D81D43213FEE800013BB96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -965,6 +1058,70 @@
 			};
 			name = Release;
 		};
+		D6517B46216DF5F800D85FF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Backpack NativeUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-NativeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Backpack NativeUITests/Backpack NativeUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backpack Native";
+			};
+			name = Debug;
+		};
+		D6517B47216DF5F800D85FF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Backpack NativeUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-NativeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Backpack NativeUITests/Backpack NativeUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backpack Native";
+			};
+			name = Release;
+		};
 		D6D81D5C213FEE800013BB96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9BCCEB5F97CE209BCB4B278 /* Pods-Backpack_SnapshotTests.debug.xcconfig */;
@@ -1041,6 +1198,15 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6517B48216DF5F800D85FF9 /* Build configuration list for PBXNativeTarget "Backpack NativeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6517B46216DF5F800D85FF9 /* Debug */,
+				D6517B47216DF5F800D85FF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

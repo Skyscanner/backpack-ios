@@ -89,6 +89,17 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/RTLSupport'
   end
 
+  s.subspec 'Dialog' do |ss|
+    ss.source_files = 'Backpack/Dialog/Classes/**/*.{h,m}'
+    ss.public_header_files = 'Backpack/Dialog/Classes/**/*.h'
+    ss.dependency 'Backpack/Button'
+    ss.dependency 'Backpack/Shadow'
+    ss.dependency 'Backpack/Radii'
+    ss.dependency 'Backpack/Color'
+    ss.dependency 'Backpack/Spacing'
+    ss.dependency 'Backpack/Label'
+  end
+
   s.subspec 'Card' do |ss|
       ss.source_files = 'Backpack/Card/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/Card/Classes/**/*.h'
@@ -113,7 +124,7 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Font'
   end
-  
+
   s.subspec 'TextView' do |ss|
       ss.source_files = 'Backpack/TextView/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/TextView/Classes/**/*.h'
@@ -128,7 +139,7 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
   end
-  
+
   s.subspec 'Spinner' do |ss|
       ss.source_files = 'Backpack/Spinner/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/Spinner/Classes/**/*.h'

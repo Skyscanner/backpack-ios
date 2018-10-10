@@ -62,6 +62,16 @@
                ReferencedContainer = "container:Backpack.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D6517B3E216DF5F800D85FF9"
+               BuildableName = "Backpack NativeUITests.xctest"
+               BlueprintName = "Backpack NativeUITests"
+               ReferencedContainer = "container:Backpack.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
