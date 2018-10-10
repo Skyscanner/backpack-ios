@@ -21,10 +21,11 @@
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Font.h>
+#import <Backpack/Label.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKBadge()
-@property(nonatomic, strong) UILabel *label;
+@property(nonatomic, strong) BPKLabel *label;
 
 - (void)setup;
 @end
@@ -117,8 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Private
 
 - (void)setup {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-    label.font = [BPKFont textXs];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXs];
     [self addSubview:label];
     label.translatesAutoresizingMaskIntoConstraints = NO;
 
