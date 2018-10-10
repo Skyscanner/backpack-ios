@@ -21,7 +21,7 @@
 
 @interface BPKFontsViewController ()
 @property (nonatomic, assign, getter=isEmphasized) BOOL emphasized;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *labels;
 
 - (void)setFontsWithEmphasized:(BOOL)isEmphasized;
 @end

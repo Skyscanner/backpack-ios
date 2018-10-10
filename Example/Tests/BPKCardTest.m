@@ -20,6 +20,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Card.h>
+#import <Backpack/Label.h>
 
 @interface BPKCardTest : XCTestCase
 
@@ -44,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetSubview {
     BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
-    UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    BPKLabel *testLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     testLabel.text = @"TEST";
     [c setSubview:testLabel];
     

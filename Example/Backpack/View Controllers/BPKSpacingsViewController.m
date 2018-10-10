@@ -17,12 +17,14 @@
  */
 
 #import "BPKSpacingsViewController.h"
+
 #import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Label.h>
 
 @interface BPKSpacingsViewController ()
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *labels;
 @end
 
 @implementation BPKSpacingsViewController
@@ -54,9 +56,8 @@
                                            ];
     NSAssert(self.labels.count == spacingKeys.count, @"The number of labels must match the number of selectors above");
     for (int i = 0; i < self.labels.count; i++) {
-        UILabel *label = self.labels[i];
+        BPKLabel *label = self.labels[i];
         label.text = [NSString stringWithFormat:@"%@ = %@", spacingKeys[i], spacingValues[i]];
-        label.textColor = [BPKColor gray700];
     }
 }
 

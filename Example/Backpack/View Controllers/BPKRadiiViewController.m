@@ -17,12 +17,14 @@
  */
 
 #import "BPKRadiiViewController.h"
+
 #import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Label.h>
 
 @interface BPKRadiiViewController ()
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *labels;
 @end
 
 @implementation BPKRadiiViewController
@@ -48,7 +50,7 @@
     
     NSAssert(self.labels.count == keys.count, @"The number of labels must match the number of keys above");
     for (int i = 0; i < self.labels.count; i++) {
-        UILabel *label = self.labels[i];
+        BPKLabel *label = self.labels[i];
         label.text = [NSString stringWithFormat:@"%@ = %@", keys[i], values[i]];
         label.backgroundColor = [BPKColor gray700];
         label.textColor = [BPKColor white];

@@ -75,7 +75,7 @@ Pod::Spec.new do |s|
     ss.dependency 'Backpack/Color'
     ss.dependency 'Backpack/Spacing'
     ss.dependency 'Backpack/Radii'
-    ss.dependency 'Backpack/Font'
+    ss.dependency 'Backpack/Label'
   end
 
   s.subspec 'Button' do |ss|

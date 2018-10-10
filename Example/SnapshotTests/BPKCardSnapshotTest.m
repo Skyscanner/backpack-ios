@@ -17,8 +17,10 @@
  */
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+
 #import <Backpack/Card.h>
 #import <Backpack/Color.h>
+#import <Backpack/Label.h>
 
 @interface BPKCardSnapshotTest : FBSnapshotTestCase
 
@@ -78,8 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotWithPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
-    UILabel *firstInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
-    UILabel *secondInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     firstInnerView.text = @"Lorem ipse";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
@@ -93,8 +95,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotWithPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
-    UILabel *firstInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
-    UILabel *secondInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     firstInnerView.text = @"Lorem ipse";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
@@ -110,8 +112,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotWithoutPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
-    UILabel *firstInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
-    UILabel *secondInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     firstInnerView.text = @"Lorem ipse";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
@@ -125,8 +127,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotWithoutPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
-    UILabel *firstInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
-    UILabel *secondInnerView = [[UILabel alloc] initWithFrame:CGRectZero];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     firstInnerView.text = @"Lorem ipse";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
