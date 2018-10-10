@@ -22,6 +22,7 @@
 #import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Label.h>
 
 const static NSInteger LabelTag = 72817;
 
@@ -44,8 +45,7 @@ const static NSInteger LabelTag = 72817;
 
     for (int i = 0; i < factoryMethods.count; i++) {
         UIView *shadowView = self.shadowViews[i];
-        UILabel *shadowLabel = [shadowView viewWithTag:LabelTag];
-        shadowLabel.font = [BPKFont textBaseEmphasized];
+        BPKLabel *shadowLabel = [shadowView viewWithTag:LabelTag];
         shadowLabel.text = factoryMethods[i];
         shadowLabel.textColor = [BPKColor gray700];
 
