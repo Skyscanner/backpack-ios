@@ -2,40 +2,47 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 1.1.0
+
+**Added:**
+
+- Backpack/Dialog
+  - A new component for showing Skyscanner style alerts and buttom sheets.
+
 ## 1.0.0
 
 **Fixed:**
 
-- Backpack/Badge:
-- Backpack/Card:
-- Backpack/Color:
-- Backpack/Font:
-- Backpack/Gradient:
-- Backpack/Panel:
+- Backpack/Badge
+- Backpack/Card
+- Backpack/Color
+- Backpack/Font
+- Backpack/Gradient
+- Backpack/Panel
   - Swift API updated to follow language conventions.
 
 ## 0.17.1
 
 **Fixed:**
 
-- Backpack/Card:
+- Backpack/Card
   - Backpack card shadows will now be rendered correctly on MacOS. (Affect snapshot tests only)
 
 ## 0.17.0
 
 **Breaking:**
 
-- Backpack/Card:
+- Backpack/Card
   - Backpack Card no longer allows `addSubview` to be used. Instead, Cards have a `subview` property that can be set.
 
 **Fixed:**
 
-- Backpack/Card:
+- Backpack/Card
   - Non-padded cards will now correctly clip bounds of items placed inside.
 
 **Added:**
 
-- Backpack/Card:
+- Backpack/Card
   - Divided cards now expose `primarySubview` and `secondarySubview` properties
 
 ## 0.16.1
