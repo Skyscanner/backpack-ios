@@ -23,6 +23,10 @@ Given that you have a compatible environment as stated above you can now setup t
 
 Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on a 2x device otherwise they will fail.
 
+## Git
+
+Please submit your requested changes as a pull request to the `master` branch. If your branch becomes out of date and conflicts need to be resolved with `master` use `git rebase`, do not merge `master` into your feature branch.
+
 ## Releasing
 
 > Backpack team only
