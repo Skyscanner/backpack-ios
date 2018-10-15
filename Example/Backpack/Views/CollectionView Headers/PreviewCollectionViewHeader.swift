@@ -25,38 +25,38 @@ class PreviewCollectionViewHeader: UICollectionReusableView {
             label.text = name
         }
     }
-    
+
     private let label: Backpack.Label
-    
+
     override init(frame: CGRect) {
         self.label = Backpack.Label(fontStyle: .textXlEmphasized)
-        
+
         super.init(frame: frame)
-        
+
         self.setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
-    
+
     public static func referenceSize(collectionView: UICollectionView, text: String) -> CGSize {
         let mockLabel = Backpack.Label(fontStyle: .textLgEmphasized)
         mockLabel.text = text
         mockLabel.sizeToFit()
-        
+
         return CGSize(width: collectionView.frame.width, height: mockLabel.frame.height + BPKSpacingMd + BPKSpacingSm)
     }
-    
+
     // MARK: private
     private func setup() {
         self.addSubview(label)
-        
+
         self.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.topAnchor, constant: BPKSpacingMd),
+            label.topAnchor.constraint(equalTo: self.topAnchor, constant: BPKSpacingMd)
         ])
     }
 }

@@ -34,22 +34,22 @@ class SpinnersViewController: UIViewController {
 
         darkSpinnerBackgroundView.backgroundColor = Color.gray900
 
-        defaultPrimarySpinner.size = .default;
-        defaultPrimarySpinner.style = .primary;
-        
-        defaultDarkSpinner.size = .default;
-        defaultDarkSpinner.style = .dark;
-        
-        defaultLightSpinner.size = .default;
-        defaultLightSpinner.style = .light;
-        
-        smallPrimarySpinner.size = .small;
-        smallPrimarySpinner.style = .primary;
-        
-        smallDarkSpinner.size = .small;
-        smallDarkSpinner.style = .dark;
-        
-        smallLightSpinner.size = .small;
-        smallLightSpinner.style = .light;
+        defaultPrimarySpinner.size = .default
+        defaultPrimarySpinner.style = .primary
+
+        defaultDarkSpinner.size = .default
+        defaultDarkSpinner.style = .dark
+
+        defaultLightSpinner.size = .default
+        defaultLightSpinner.style = .light
+
+        smallPrimarySpinner.size = .small
+        smallPrimarySpinner.style = .primary
+
+        smallDarkSpinner.size = .small
+        smallDarkSpinner.style = .dark
+
+        smallLightSpinner.size = .small
+        smallLightSpinner.style = .light
     }
 }

@@ -31,7 +31,7 @@ class DialogViewController: UIViewController {
     var type: DialogType = .normal
 
     @IBAction func show(_ sender: Backpack.Button) {
-        switch (type) {
+        switch type {
         case .normal:
             showNormal()
         case .warning:
@@ -44,12 +44,14 @@ class DialogViewController: UIViewController {
     }
 
     func showNormal() {
+        let message = "Your flight is all booked. Why not check out some hotels now?"
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
         let dialogController  = DialogController(title: "You are going to Tokyo!",
-                                                message: "Your flight is all booked. Why not check out some hotels now?",
+                                                message: message,
                                                 style: .alert,
                                                 iconBackgroundColor: Color.green500,
-                                                iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
-        
+                                                iconImage: iconTemplate)
+
         let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
@@ -60,59 +62,73 @@ class DialogViewController: UIViewController {
         let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: true)
-        
+
         dialogController.addButtonAction(mainAction)
         dialogController.addButtonAction(skipAction)
         dialogController.scrimAction = scrimAction
 
-        self.present(dialogController, animated: true, completion: nil);
+        self.present(dialogController, animated: true, completion: nil)
     }
-    
+
     func showConfirmation() {
+        let message = """
+        Your booking is being processed with Trip.com
+
+        As soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com
+
+        Remember to check your junk mail folder
+
+        Please note down your reference number and contact Trip.com if you need to track, change or cancel your booking
+
+        Safe travels!
+        """
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
         let alertController = DialogController(title: "You're almost ready to pack your bags!",
-                                               message: "Your booking is being processed with Trip.com\n\nAs soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com\n\nRemember to check your junk mail folder\n\nPlease note down your reference number and contact Trip.com if you need to track, change or cancel your booking\n\nSafe travels!",
+                                               message: message,
                                                style: .bottomSheet,
                                                iconBackgroundColor: Color.green500,
-                                               iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
-        
-        
+                                               iconImage: iconTemplate)
+
         let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
-        
+
         alertController.scrimAction = scrimAction
-        
-        self.present(alertController, animated: true, completion: nil);
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func showWarning() {
+        let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .lightning, size: .large)
         let alertController = DialogController(title: "!#$Warning-0-1!#$#$?",
-                                               message: "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!",
+                                               message: message,
                                                style: .alert,
                                                iconBackgroundColor: Color.yellow500,
-                                               iconImage: Backpack.Icon.makeIcon(name: .lightning, color: Color.white, size: .large))
-        
+                                               iconImage: iconTemplate)
+
         let mainAction = DialogButtonAction(title: "OK", style: .link) { _ in
             NSLog("Primary tapped")
         }
-        
+
         let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
-        
+
         alertController.addButtonAction(mainAction)
         alertController.scrimAction = scrimAction
-        
-        self.present(alertController, animated: true, completion: nil);
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func showDelete() {
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .trash, size: .large)
         let alertController = DialogController(title: "Delete?",
                                                message: "Are you sure you would like to delete your avatar?",
                                                style: .bottomSheet,
                                                iconBackgroundColor: Color.red500,
-                                               iconImage: Backpack.Icon.makeIcon(name: .trash, color: Color.white, size: .large))
-        
+                                               iconImage: iconTemplate)
+
         let mainAction = DialogButtonAction(title: "Delete", style: .destructive) { _ in
             NSLog("Primary tapped")
         }
@@ -124,11 +140,11 @@ class DialogViewController: UIViewController {
         let faderAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: false)
-        
+
         alertController.addButtonAction(mainAction)
         alertController.addButtonAction(cancelAction)
         alertController.scrimAction = faderAction
-        
-        self.present(alertController, animated: true, completion: nil);
+
+        self.present(alertController, animated: true, completion: nil)
     }
 }

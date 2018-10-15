@@ -62,14 +62,17 @@ PODS:
     - Backpack/Color
     - Backpack/Font
   - iOSSnapshotTestCase/Core (3.0.0)
+  - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - Backpack (from `../`)
   - iOSSnapshotTestCase/Core
+  - SwiftLint (~> 0.27.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - iOSSnapshotTestCase
+    - SwiftLint
 
 EXTERNAL SOURCES:
   Backpack:
@@ -78,7 +81,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Backpack: 4ecffbc7476b3a696f650b60178c4d2789879032
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 068fad060f1b7571756e966350b17f7e2b12da67
+PODFILE CHECKSUM: 9dbb9f6c7f18cc17244aa33cedb8a0368f782f13
 
 COCOAPODS: 1.5.3

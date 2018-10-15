@@ -25,17 +25,18 @@ class DividedCardsViewController: CardsViewController {
     #else
     var divisionDirection: UILayoutConstraintAxis = .horizontal
     #endif
-    
-    override func setupCard() {        
-        let label1 = Label(fontStyle: .textBase);
-        label1.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
+
+    override func setupCard() {
+        let label1 = Label(fontStyle: .textBase)
+        label1.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+                        "Aenean commodo ligula eget dolor. Aenean massa."
         label1.lineBreakMode = NSLineBreakMode.byWordWrapping
         label1.numberOfLines = 0
-        let label2 = Label(fontStyle: .textBase);
-        label2.text = "Lorem ipsum dolor sit amet.";
+        let label2 = Label(fontStyle: .textBase)
+        label2.text = "Lorem ipsum dolor sit amet."
         label2.lineBreakMode = NSLineBreakMode.byWordWrapping
         label2.numberOfLines = 0
-        dividedCard.setSubviews(primarySubview:label1, secondarySubview: label2)
+        dividedCard.setSubviews(primarySubview: label1, secondarySubview: label2)
         dividedCard.isPadded = padded
         dividedCard.isSelected = selected
         dividedCard.orientation = divisionDirection

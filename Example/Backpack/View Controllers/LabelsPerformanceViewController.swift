@@ -22,7 +22,7 @@ import Backpack
 class LabelsPerformanceViewController: UIViewController {
     @IBOutlet weak var verticalStackView: UIStackView!
 
-    static let styles: Array<(BPKFontStyle, BPKFontStyle)> = [
+    static let styles: [(BPKFontStyle, BPKFontStyle)] = [
         (BPKFontStyle.textXs, BPKFontStyle.textXsEmphasized),
         (BPKFontStyle.textSm, BPKFontStyle.textSmEmphasized),
         (BPKFontStyle.textBase, BPKFontStyle.textBaseEmphasized),
@@ -32,8 +32,8 @@ class LabelsPerformanceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in 0..<100 {
-            let emphasized = i % 2 == 0
+        for index in 0..<100 {
+            let emphasized = index % 2 == 0
             let view = LabelsPerformanceViewController.buildHorizontalStackView(emphasized: emphasized)
             verticalStackView.addArrangedSubview(view)
         }

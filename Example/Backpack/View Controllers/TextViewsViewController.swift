@@ -21,10 +21,9 @@ import Backpack.TextView
 
 class TextViewsViewController: UIViewController {
     @IBOutlet weak var textView: TextView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
     }
 }
