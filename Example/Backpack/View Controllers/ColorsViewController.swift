@@ -31,7 +31,11 @@ class ColorsViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         collectionView?.register(ColorPreviewCollectionViewCell.self, forCellWithReuseIdentifier: ColorsViewController.cellIdentifier)
-        collectionView?.register(PreviewCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ColorsViewController.headerIdentifier)
+        #if swift(>=4.2)
+            collectionView?.register(PreviewCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ColorsViewController.headerIdentifier)
+        #else
+            collectionView?.register(PreviewCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ColorsViewController.headerIdentifier)
+        #endif
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -71,7 +75,13 @@ extension ColorsViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if (kind == UICollectionElementKindSectionHeader) {
+        #if swift(>=4.2)
+            let isExpectedHeader = kind == UICollectionView.elementKindSectionHeader
+        #else
+            let isExpectedHeader = kind == UICollectionElementKindSectionHeader
+        #endif
+
+        if (isExpectedHeader) {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ColorsViewController.headerIdentifier, for: indexPath) as? PreviewCollectionViewHeader else{
                 fatalError("Color View Headers are expected to be of type ColorPreviewCollectionViewHeader")
             }

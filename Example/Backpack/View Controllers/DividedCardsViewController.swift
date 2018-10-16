@@ -20,7 +20,11 @@ import Backpack
 
 class DividedCardsViewController: CardsViewController {
     @IBOutlet weak var dividedCard: Backpack.DividedCard!
+    #if swift(>=4.2)
+    var divisionDirection: NSLayoutConstraint.Axis = .horizontal
+    #else
     var divisionDirection: UILayoutConstraintAxis = .horizontal
+    #endif
     
     override func setupCard() {        
         let label1 = Label(fontStyle: .textBase);

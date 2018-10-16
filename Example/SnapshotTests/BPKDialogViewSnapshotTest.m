@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewNoButtons {
     BPKDialogView *view = [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
-                                                       message:@"orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
+                                                       message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
                                            iconBackgroundColor:BPKColor.green500
                                                      iconImage:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]];
 
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewWithButtons {
     BPKDialogView *view = [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
-                                                       message:@"orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
+                                                       message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
                                            iconBackgroundColor:BPKColor.yellow500
                                                      iconImage:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
