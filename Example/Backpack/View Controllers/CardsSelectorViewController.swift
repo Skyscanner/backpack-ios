@@ -19,50 +19,50 @@
 import Backpack.Card
 
 class CardsSelectorViewController: UITableViewController {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier?.contains("divided"))!{
-            guard let target = segue.destination as? DividedCardsViewController else {
-                fatalError("Expected destination to be of type DividedCardsViewController.")
-            }
-            switch segue.identifier {
-            case "divided_horizontal":
-                target.navigationItem.title = "With divider"
-                target.divisionDirection = .horizontal
-                break
-            case "divided_vertical":
-                target.navigationItem.title = "With divider arranged vertically"
-                target.divisionDirection = .vertical
-                break
-            case "divided_vertical_no_padding":
-                target.navigationItem.title = "With divider, without padding"
-                target.divisionDirection = .vertical
-                target.padded = false
-                break
-            default:
-                fatalError("The identifier \(segue.identifier.debugDescription) does not match an example DividedCard configuration.")
-            }
-            return;
+    func prepareDevided(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let target = segue.destination as? DividedCardsViewController else {
+            fatalError("Expected destination to be of type DividedCardsViewController.")
         }
-        
+        switch segue.identifier {
+        case "divided_horizontal":
+            target.navigationItem.title = "With divider"
+            target.divisionDirection = .horizontal
+        case "divided_vertical":
+            target.navigationItem.title = "With divider arranged vertically"
+            target.divisionDirection = .vertical
+        case "divided_vertical_no_padding":
+            target.navigationItem.title = "With divider, without padding"
+            target.divisionDirection = .vertical
+            target.padded = false
+        default:
+            fatalError("The identifier \(segue.identifier.debugDescription) does not " +
+                "match an example DividedCard configuration.")
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier?.contains("divided") ?? false {
+            prepareDevided(for: segue, sender: sender)
+            return
+        }
+
         guard let target = segue.destination as? CardsViewController else {
             fatalError("Expected destination to be of type CardsViewController.")
         }
+
         switch segue.identifier {
         case "default":
             target.navigationItem.title = "Default"
-            break
         case "without_padding":
             target.navigationItem.title = "Without padding"
-            target.padded = false;
-            break
+            target.padded = false
         case "selected":
             target.navigationItem.title = "Selected"
-            target.selected = true;
-            break
+            target.selected = true
         default:
-            fatalError("The identifier \(segue.identifier.debugDescription) does not match an example Card configuration.")
+            fatalError("The identifier \(segue.identifier.debugDescription) does not " +
+                "match an example Card configuration.")
         }
     }
-    
+
 }

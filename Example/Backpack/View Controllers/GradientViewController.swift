@@ -21,7 +21,7 @@ import Backpack
 
 class GradientViewController: UIViewController {
     @IBOutlet weak var gradientView: Backpack.GradientView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

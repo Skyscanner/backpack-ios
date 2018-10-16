@@ -21,11 +21,13 @@ import UIKit
 class DialogSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationController = segue.destination as? DialogViewController  else {
-            fatalError("The destination of all segues in `DialogSelectorViewController` should be `DialogViewController`")
+            fatalError("""
+                The destination of all seguesf in `DialogSelectorViewController`
+                should be `DialogViewController`
+            """)
         }
 
-
-        switch (segue.identifier) {
+        switch segue.identifier {
         case "ShowNormal":
             destinationController.type = .normal
             destinationController.title = "Normal"

@@ -20,7 +20,7 @@ import UIKit
 
 class LabelsSelectorTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShowLabelsSegue") {
+        if segue.identifier == "ShowLabelsSegue" {
             segue.destination.title = NSLocalizedString("LABELS_CONTROLLER_TITLE", comment: "")
         }
     }

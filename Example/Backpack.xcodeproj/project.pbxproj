@@ -478,6 +478,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				84EFE62BE1534CD46CAFBDBF /* [CP] Embed Pods Frameworks */,
+				D68AF8FA2174CB9C00BA743D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -693,6 +694,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D68AF8FA2174CB9C00BA743D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		D6D81D45213FEE800013BB96 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

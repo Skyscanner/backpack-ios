@@ -22,20 +22,22 @@ class CardsViewController: UIViewController {
     @IBOutlet weak var card: Card!
     var padded: Bool = true
     var selected: Bool = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.setupCard()
     }
-    
+
     func setupCard() {
-        let label = Label(fontStyle: .textBase);
-        label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.";
+        let label = Label(fontStyle: .textBase)
+        label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
+            "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, " +
+            "nascetur ridiculus mus."
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 0
-        card.subview = label;
-        card.isPadded = padded;
-        card.isSelected = selected;
+        card.subview = label
+        card.isPadded = padded
+        card.isSelected = selected
     }
 }

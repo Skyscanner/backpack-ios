@@ -20,49 +20,49 @@ import UIKit
 import Backpack
 
 class IconsPreviewCollectionViewCell: UICollectionViewCell {
-    
+
     var icon: IconName? {
         didSet {
             imageView.image = Backpack.Icon.makeIcon(name: icon!, color: Backpack.Color.gray900, size: .large)
         }
     }
-    
+
     private let imageView: UIImageView
-    
+
     override init(frame: CGRect) {
         self.imageView = UIImageView(frame: CGRect.zero)
-        
+
         super.init(frame: frame)
-        
+
         self.setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
-    
+
     public static func estimatedSize() -> CGSize {
         return Backpack.Icon.concreteSize(forSize: .large)
     }
-    
+
     // MARK: private
     private func setup() {
         contentView.addSubview(imageView)
-        
+
         contentView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: Backpack.Icon.concreteSize(forSize: .large).width),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            
+
             contentView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: BPKSpacingSm),
-            
+
             contentView.trailingAnchor.constraint(greaterThanOrEqualTo: imageView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: BPKSpacingSm)
         ])
-        
+
     }
 }
