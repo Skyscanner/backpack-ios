@@ -64,7 +64,7 @@ NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
 - (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
 - (void)setImage:(UIImage *_Nullable)image forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 
-- (void)setTitle:(NSString *_Nullable)title;
+@property(nonatomic, copy, nullable) NSString *title;
 - (void)setImage:(UIImage *_Nullable)image;
 /**
  * Creates a `BPKButton` with a specific size and style.

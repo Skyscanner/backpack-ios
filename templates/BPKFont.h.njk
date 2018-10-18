@@ -19,7 +19,7 @@
 
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 {% for f in font %}
-    {{f.enumName}} = {{loop.index0}},{% endfor %}
+    {{f.enumName}} = {{f.enumValue}},{% endfor %}
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,14 +27,44 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * BPKFont is the entry point for the Backpack typography stack. It expose the
  * supported text styles as static methods.
+ *
 */
 NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
-+ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:));
+/*
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+ */
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:)) DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 {% for f in font %}
 /**
  * The `{{f.name}}` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *){{f.name}};
++ (UIFont *){{f.name}} DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 {% endfor %}
+
+/**
+ * Create an attributed string with a specified fontStyle and content. The default Backpack
+ * text color will be used.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param content The content of the attributedString.
+ * @return An attributed string with the specified styles.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ */
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content;
+
+/**
+ * Create an attributed string with a specified fontStyle, content, and text color.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param content The content of the attributedString.
+ * @param textColor The text color to use.
+ * @return An attributed string with the specified styles.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ */
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor;
 @end
 NS_ASSUME_NONNULL_END

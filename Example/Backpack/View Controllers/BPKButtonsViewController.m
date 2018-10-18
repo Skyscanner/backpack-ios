@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupButtons {
     UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall] : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
-    [self setupButton:self.defaultTextButton image:nil title:@"Button"];
+    [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];

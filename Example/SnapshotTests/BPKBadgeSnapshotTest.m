@@ -17,8 +17,13 @@
  */
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Badge.h>
+
 #import <Backpack/Color.h>
+#import <Backpack/Spacing.h>
+
+
+#import <Backpack/Badge.h>
+
 
 @interface BPKBadgeSnapshotTest : FBSnapshotTestCase
 
@@ -32,17 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
-- (UIView *)buildParentView {
-    // 375x812 = iPhone X dimensions.
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 812)];
-    parentView.backgroundColor = [BPKColor gray100];
-    return parentView;
-}
-
 - (UIStackView *)buildStackView {
-    UIStackView *stackView = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, 100, 812)];
+    UIStackView *stackView = [[UIStackView alloc] initWithFrame:CGRectZero];
     stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.alignment = UIStackViewAlignmentLeading;
     stackView.distribution = UIStackViewDistributionEqualCentering;
+    stackView.spacing = BPKSpacingMd;
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
     return stackView;
 }
 
@@ -63,8 +64,18 @@ NS_ASSUME_NONNULL_BEGIN
         BPKBadge *badge = [[BPKBadge alloc] initWithType:types[i] message:@"Backpack rocks"];
         [stackView addArrangedSubview:badge];
     }
-    UIView *parentView = [self buildParentView];
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    parentView.backgroundColor = BPKColor.gray100;
+    parentView.translatesAutoresizingMaskIntoConstraints = NO;
+
     [parentView addSubview:stackView];
+    [NSLayoutConstraint activateConstraints:@[
+                                              [stackView.topAnchor constraintEqualToAnchor:parentView.topAnchor],
+                                              [stackView.leadingAnchor constraintEqualToAnchor:parentView.leadingAnchor],
+                                              [parentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor],
+                                              [parentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor],
+                                              ]];
+
     FBSnapshotVerifyView(parentView, nil);
 }
 

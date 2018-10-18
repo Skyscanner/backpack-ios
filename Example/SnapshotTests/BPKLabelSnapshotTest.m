@@ -51,11 +51,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testViewSnapshotWithFontStyle {
     BPKFontStyle styles[] = {
+        BPKFontStyleTextCaps,
         BPKFontStyleTextXs,
         BPKFontStyleTextSm,
         BPKFontStyleTextBase,
         BPKFontStyleTextLg,
         BPKFontStyleTextXl,
+        BPKFontStyleTextXxl,
+        BPKFontStyleTextXxxl
     };
     
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -75,17 +78,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testViewSnapshotWithFontStyleEmphasized {
     BPKFontStyle styles[] = {
+        BPKFontStyleTextCapsEmphasized,
         BPKFontStyleTextXsEmphasized,
         BPKFontStyleTextSmEmphasized,
         BPKFontStyleTextBaseEmphasized,
         BPKFontStyleTextLgEmphasized,
-        BPKFontStyleTextXlEmphasized
+        BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXxlEmphasized,
+        BPKFontStyleTextXxxlEmphasized,
     };
     
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
 
     UIStackView *stackView = [self buildStackView];
 
+    for (NSUInteger i = 0; i < length; i++) {
+        BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
+        label.text = @"Backpack Rocks";
+        [stackView addArrangedSubview:label];
+        [label setNeedsLayout];
+        [label sizeToFit];
+    }
+    UIView *parentView = [self buildParentView];
+    [parentView addSubview:stackView];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testViewSnapshotWithFontStyleHeavy {
+    BPKFontStyle styles[] = {
+        BPKFontStyleTextXlHeavy,
+        BPKFontStyleTextXxlHeavy,
+        BPKFontStyleTextXxxlHeavy,
+    };
+    
+    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
+    
+    UIStackView *stackView = [self buildStackView];
+    
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
         label.text = @"Backpack Rocks";

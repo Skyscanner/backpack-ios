@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, getter=isTextAndIcon) BOOL textAndIcon;
 
 @property(nonatomic, readonly) UIColor *currentContentColor;
+@property(nonatomic, readonly) BPKFontStyle currentFontStyle;
 @property(nonatomic, class, readonly) UIColor *highlightedWhite;
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
@@ -140,11 +141,17 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setTitle:(NSString *_Nullable)title {
-    [super setTitle:title forState:UIControlStateNormal];
+    _title = [title copy];
+//    [super setTitle:title forState:UIControlStateNormal];
+    if (title) {
+        NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle content:title textColor:self.currentContentColor];
+        [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+    } else {
+        [self setAttributedTitle:nil forState:UIControlStateNormal];
+    }
 
     [self updateFont];
     [self updateEdgeInsets];
-    [self updateFont];
 }
 
 - (void)setImage:(UIImage *_Nullable)image {
@@ -332,31 +339,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateFont {
-    switch (self.size) {
-        case BPKButtonSizeDefault: {
-            if (!self.iconOnly) {
-                self.titleLabel.font = BPKFont.textSmEmphasized;
-            } else {
-                // NOTE: `intrinsicContentSize` takes the font into account
-                // even if there is not text hence we set it to 0
-                self.titleLabel.font = [UIFont systemFontOfSize:0];
-            }
-            break;
-        }
-        case BPKButtonSizeLarge: {
-            if (!self.iconOnly) {
-                self.titleLabel.font = BPKFont.textLgEmphasized;
-            } else {
-                // NOTE: `intrinsicContentSize` takes the font into account
-                // even if there is not text hence we set it to 0
-                self.titleLabel.font = [UIFont systemFontOfSize:0];
-            }
-            break;
-        }
-        default: {
-            NSAssert(NO, @"Invalid size %d", (int)self.size);
-            break;
-        }
+    if (self.isIconOnly) {
+        self.titleLabel.font = [UIFont systemFontOfSize:0];
+        [self setAttributedTitle:nil forState:UIControlStateNormal];
     }
 
     [self setNeedsDisplay];
@@ -364,6 +349,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateContentColor {
     [self setTitleColor:self.currentContentColor forState:UIControlStateNormal];
+    if (self.title) {
+        NSAttributedString *attributedTitle = [BPKFont
+                                               attributedStringWithFontStyle:self.currentFontStyle
+                                                                     content:self.title
+                                                                   textColor:self.currentContentColor];
+        [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+    } else {
+        [self setAttributedTitle:nil forState:UIControlStateNormal];
+    }
+
+
     self.imageView.tintColor = self.currentContentColor;
     UIColor *highlightedContentColor;
 
@@ -387,8 +383,16 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (highlightedContentColor) {
-        [self setTitleColor:highlightedContentColor forState:UIControlStateHighlighted];
-        [self setTitleColor:highlightedContentColor forState:UIControlStateSelected];
+        if (self.title) {
+            NSAttributedString *attributedHighlightedTitle = [BPKFont
+                                                              attributedStringWithFontStyle:self.currentFontStyle
+                                                                                    content:self.title
+                                                                                  textColor:highlightedContentColor];
+
+            [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
+            [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];
+        }
+
         self.imageView.tintColor = self.isHighlighted ? highlightedContentColor : self.currentContentColor;
     }
 
@@ -406,6 +410,18 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - Helpers
+
+- (BPKFontStyle)currentFontStyle {
+    switch (self.size) {
+        case BPKButtonSizeDefault:
+            return BPKFontStyleTextSmEmphasized;
+        case BPKButtonSizeLarge:
+            return BPKFontStyleTextLgEmphasized;
+        default:
+            NSAssert(NO, @"Unknown button size %ld", self.size);
+            return BPKFontStyleTextSmEmphasized;
+    }
+}
 
 - (UIColor *)currentContentColor {
     switch(self.style) {

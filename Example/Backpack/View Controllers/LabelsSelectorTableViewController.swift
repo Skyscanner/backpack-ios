@@ -20,8 +20,22 @@ import UIKit
 
 class LabelsSelectorTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowLabelsSegue" {
-            segue.destination.title = NSLocalizedString("LABELS_CONTROLLER_TITLE", comment: "")
+        let maybeLabelsController = segue.destination as? LabelsViewController
+
+        switch segue.identifier {
+        case "ShowNormal":
+            segue.destination.title = "Default"
+            maybeLabelsController?.type = .normal
+        case "ShowEmphasized":
+            segue.destination.title = "Emphasized"
+            maybeLabelsController?.type = .emphasized
+        case "ShowHeavy":
+            segue.destination.title = "Heavy"
+            maybeLabelsController?.type = .heavy
+        case "ShowPerformance":
+            segue.destination.title = "Performance"
+        default:
+            fatalError("Unknown segue identifer \(segue.identifier?.debugDescription)")
         }
     }
 }

@@ -21,14 +21,23 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 
     BPKFontStyleTextBase = 0,
     BPKFontStyleTextBaseEmphasized = 1,
+    BPKFontStyleTextCaps = 11,
+    BPKFontStyleTextCapsEmphasized = 12,
     BPKFontStyleTextLg = 2,
     BPKFontStyleTextLgEmphasized = 3,
     BPKFontStyleTextSm = 4,
     BPKFontStyleTextSmEmphasized = 5,
     BPKFontStyleTextXl = 6,
     BPKFontStyleTextXlEmphasized = 7,
+    BPKFontStyleTextXlHeavy = 10,
     BPKFontStyleTextXs = 8,
     BPKFontStyleTextXsEmphasized = 9,
+    BPKFontStyleTextXxl = 13,
+    BPKFontStyleTextXxlEmphasized = 14,
+    BPKFontStyleTextXxlHeavy = 15,
+    BPKFontStyleTextXxxl = 16,
+    BPKFontStyleTextXxxlEmphasized = 17,
+    BPKFontStyleTextXxxlHeavy = 18,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -36,59 +45,170 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * BPKFont is the entry point for the Backpack typography stack. It expose the
  * supported text styles as static methods.
+ *
 */
 NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
-+ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:));
+/*
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+ */
++ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:)) DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textBase` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textBase;
++ (UIFont *)textBase DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textBaseEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textBaseEmphasized;
++ (UIFont *)textBaseEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textCaps` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textCaps DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textCapsEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textCapsEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textLg` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textLg;
++ (UIFont *)textLg DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textLgEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textLgEmphasized;
++ (UIFont *)textLgEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textSm` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textSm;
++ (UIFont *)textSm DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textSmEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textSmEmphasized;
++ (UIFont *)textSmEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textXl` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textXl;
++ (UIFont *)textXl DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textXlEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textXlEmphasized;
++ (UIFont *)textXlEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXlHeavy` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXlHeavy DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textXs` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textXs;
++ (UIFont *)textXs DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
 /**
  * The `textXsEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
-+ (UIFont *)textXsEmphasized;
++ (UIFont *)textXsEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 
+/**
+ * The `textXxl` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxl DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXxlEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxlEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXxlHeavy` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxlHeavy DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXxxl` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxxl DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXxxlEmphasized` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxxlEmphasized DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+/**
+ * The `textXxxlHeavy` text style from the Backpack typograhpy stack.
+ *
+ * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
+*/
++ (UIFont *)textXxxlHeavy DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
+
+
+/**
+ * Create an attributed string with a specified fontStyle and content. The default Backpack
+ * text color will be used.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param content The content of the attributedString.
+ * @return An attributed string with the specified styles.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ */
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content;
+
+/**
+ * Create an attributed string with a specified fontStyle, content, and text color.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param content The content of the attributedString.
+ * @param textColor The text color to use.
+ * @return An attributed string with the specified styles.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ */
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor;
 @end
 NS_ASSUME_NONNULL_END

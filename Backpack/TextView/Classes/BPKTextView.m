@@ -55,16 +55,19 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (void)setText:(NSString *_Nullable)text {
+    if (text == nil) {
+        self.attributedText = nil;
+        return;
+    }
+    
+    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+    self.attributedText = attributedString;
+}
+
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     _fontStyle = fontStyle;
-    UIFont *font = [BPKFont fontWithStyle:fontStyle];
-    NSAssert(font != nil, @"Invalid font style supplied to BPKTextView");
-
-    if (font == nil) {
-        font = [BPKFont textBase];
-    }
-
-    self.font = font;
+    [self setText:self.attributedText.string];
 }
 
 #pragma mark - Private

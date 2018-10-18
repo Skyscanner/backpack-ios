@@ -34,7 +34,16 @@ const PATHS = {
 };
 
 const TYPES = new Set(['color', 'font', 'spacing', 'radii', 'shadow']);
-const VALID_TEXT_STYLES = new Set(['xs', 'sm', 'base', 'lg', 'xl']);
+const VALID_TEXT_STYLES = new Set([
+  'caps',
+  'xs',
+  'sm',
+  'base',
+  'lg',
+  'xl',
+  'xxl',
+  'xxxl',
+]);
 const VALID_SPACINGS = new Set(['none', 'sm', 'md', 'base', 'lg', 'xl', 'xxl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
@@ -60,7 +69,52 @@ const LEGIBLE_NAMES = [
   { identifier: 'None', legibleName: 'none' },
 ];
 
+const TEXT_STYLES_WITH_HEAVY = new Set(['xl', 'xxl', 'xxxl']);
+
+// NOTE: These values MUST be stable and any change
+// other than introducing new unique values is a breaking change.
+const FONT_ENUM_VALUES = {
+  BPKFontStyleTextBase: 0,
+  BPKFontStyleTextBaseEmphasized: 1,
+
+  BPKFontStyleTextLg: 2,
+  BPKFontStyleTextLgEmphasized: 3,
+
+  BPKFontStyleTextSm: 4,
+  BPKFontStyleTextSmEmphasized: 5,
+
+  BPKFontStyleTextXl: 6,
+  BPKFontStyleTextXlEmphasized: 7,
+  BPKFontStyleTextXlHeavy: 10,
+
+  BPKFontStyleTextXs: 8,
+  BPKFontStyleTextXsEmphasized: 9,
+
+  BPKFontStyleTextCaps: 11,
+  BPKFontStyleTextCapsEmphasized: 12,
+
+  BPKFontStyleTextXxl: 13,
+  BPKFontStyleTextXxlEmphasized: 14,
+  BPKFontStyleTextXxlHeavy: 15,
+
+  BPKFontStyleTextXxxl: 16,
+  BPKFontStyleTextXxxlEmphasized: 17,
+  BPKFontStyleTextXxxlHeavy: 18,
+};
+
 const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
+
+const enumValueForName = name => {
+  const enumValue = FONT_ENUM_VALUES[name];
+
+  if (typeof enumValue !== 'number') {
+    throw new Error(
+      `No font enum value found for \`${name}\` in \`FONT_ENUM_VALUES\`. Every font variant MUST have a value in this object`,
+    );
+  }
+
+  return enumValue;
+};
 
 const getLegibleName = name => {
   let result = null;
@@ -130,11 +184,17 @@ const parseTokens = tokensData => {
   const fonts = _.chain(tokensData.properties)
     .filter(
       ({ category }) =>
-        category === 'font-sizes' || category === 'font-weights',
+        category === 'font-sizes' ||
+        category === 'font-weights' ||
+        category === 'letter-spacings',
     )
     .groupBy(({ name }) =>
-      name.replace('FontSize', '').replace('FontWeight', ''),
+      name
+        .replace('FontSize', '')
+        .replace('FontWeight', '')
+        .replace('LetterSpacing', ''),
     )
+    .tap(console.log)
     .map((values, key) => [values, key])
     .filter(token =>
       VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase()),
@@ -151,30 +211,65 @@ const parseTokens = tokensData => {
         properties,
         ({ category }) => category === 'font-weights',
       );
+      const trackingProp = _.filter(
+        properties,
+        ({ category }) => category === 'letter-spacings',
+      );
 
-      if (sizeProp.length !== 1 || weightProp.length !== 1) {
+      if (
+        sizeProp.length !== 1 ||
+        weightProp.length !== 1 ||
+        trackingProp.length !== 1
+      ) {
         throw new Error(
-          'Expected all text sizes to have both a weight and font size',
+          `Expected all text sizes to have line height, letter spacing, weight, and font size. Not all were found for ${key}`,
         );
       }
+      const enumName = `BPKFontStyle${_.upperFirst(key)}`;
+      const enumValue = enumValueForName(enumName);
 
       return {
         name: key,
-        enumName: `BPKFontStyle${_.upperFirst(key)}`,
+        enumName,
+        enumValue,
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
+        trackingAdjustment: Number.parseFloat(trackingProp[0].value),
       };
     })
-    .flatMap(properties => [
-      properties,
-      {
-        ...properties,
-        weight: emphazisedWeight,
-        name: `${properties.name}Emphasized`,
-        enumName: `${properties.enumName}Emphasized`,
-      },
-    ])
+    .flatMap(properties => {
+      const emphasizedEnumName = `${properties.enumName}Emphasized`;
+      const emphasizedEnumValue = enumValueForName(emphasizedEnumName);
+
+      const baseName = properties.name.replace('text', '').toLowerCase();
+      const hasHeavyStyle = TEXT_STYLES_WITH_HEAVY.has(baseName);
+      let heavyEnumName = null;
+      let heavyEnumValue = null;
+
+      if (hasHeavyStyle) {
+        heavyEnumName = `${properties.enumName}Heavy`;
+        heavyEnumValue = enumValueForName(heavyEnumName);
+      }
+
+      return [
+        properties,
+        {
+          ...properties,
+          weight: emphazisedWeight,
+          name: `${properties.name}Emphasized`,
+          enumName: emphasizedEnumName,
+          enumValue: emphasizedEnumValue,
+        },
+        hasHeavyStyle && {
+          ...properties,
+          weight: convertFontWeight('800'), // TODO: From tokens
+          name: `${properties.name}Heavy`,
+          enumName: heavyEnumName,
+          enumValue: heavyEnumValue,
+        },
+      ].filter(x => !!x);
+    })
     .sortBy(['name'])
     .value();
 

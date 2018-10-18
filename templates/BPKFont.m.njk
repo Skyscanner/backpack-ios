@@ -17,6 +17,19 @@
  */
 #import "BPKFont.h"
 
+#import <Backpack/Color.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BPKFont()
+@property(nonatomic, strong, readonly) NSCache<NSString *, NSDictionary *> *attributesCache;
+
++ (NSDictionary *)attributesForStyle:(BPKFontStyle)style;
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style;
++ (UIFont *)fontForStyle:(BPKFontStyle)style;
++ (CGFloat)trackingForStyle:(BPKFontStyle)style;
+@end
+
 @implementation BPKFont
 
 + (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style {
@@ -35,4 +48,80 @@
 }
 {% endfor %}
 
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content {
+    NSDictionary *attributes = [self attributesForStyle:fontStyle];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
+
+    return attributedString;
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor {
+    NSMutableDictionary *attributes = [[self attributesForStyle:fontStyle] mutableCopy];
+    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
+
+
+    return attributedString;
+}
+
+
+#pragma mark - Private
+
++ (NSCache<NSString *, NSDictionary *> *)attributesCache {
+    static dispatch_once_t onceToken;
+    static NSCache *_attributesCache = nil;
+    dispatch_once(&onceToken, ^{
+        _attributesCache = [[NSCache alloc] init];
+    });
+
+    return _attributesCache;
+}
+
++ (NSDictionary *)attributesForStyle:(BPKFontStyle)style {
+    NSString *cacheKey = [self cacheKeyForFontStyle:style];
+    NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
+
+    if (potentialCacheHit) {
+        return potentialCacheHit;
+    }
+
+    UIFont *font = [self fontForStyle:style];
+    CGFloat tracking = [self trackingForStyle:style];
+    NSDictionary *result = @{
+                             NSKernAttributeName: @(tracking),
+                             NSForegroundColorAttributeName: BPKColor.gray700,
+                             NSFontAttributeName: font,
+                             };
+
+
+    [[self attributesCache] setObject:result forKey:cacheKey];
+
+    return result;
+}
+
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
+    return [NSString stringWithFormat:@"%ld", style];
+}
+
++ (UIFont *)fontForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}
+            case {{f.enumName}}:
+                return [UIFont systemFontOfSize:{{f.size}} weight:{{f.weight}}];{% endfor %}
+            default:
+              NSAssert(NO, @"Unknown fontStyle %ld", style);
+    }
+}
+
++ (CGFloat)trackingForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}
+            case {{f.enumName}}:
+                return {{f.trackingAdjustment}};{% endfor %}
+            default:
+              NSAssert(NO, @"Unknown fontStyle %ld", style);
+    }
+}
+
 @end
+NS_ASSUME_NONNULL_END
