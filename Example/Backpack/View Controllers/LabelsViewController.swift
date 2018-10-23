@@ -33,13 +33,14 @@ class LabelsViewController: UIViewController {
         .textCaps, .textXs, .textSm, .textBase, .textLg, .textXl, .textXxl, .textXxxl
     ]
     static let emphasizedStyles: [BPKFontStyle] = [
-        .textCapsEmphasized, .textXsEmphasized, .textSmEmphasized, .textBaseEmphasized, .textLgEmphasized, .textXlEmphasized, .textXxlEmphasized, .textXxxlEmphasized
+        .textCapsEmphasized, .textXsEmphasized, .textSmEmphasized, .textBaseEmphasized,
+        .textLgEmphasized, .textXlEmphasized, .textXxlEmphasized, .textXxxlEmphasized
     ]
-    static let heavyStyles: [BPKFontStyle] = [.textXlHeavy, .textXxlHeavy,.textXxxlHeavy]
-    
+    static let heavyStyles: [BPKFontStyle] = [.textXlHeavy, .textXxlHeavy, .textXxxlHeavy]
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         var styles: [BPKFontStyle]! = nil
         switch type {
         case .normal:
@@ -50,7 +51,7 @@ class LabelsViewController: UIViewController {
             styles = LabelsViewController.heavyStyles
         }
         assert(styles.count <= labels.count, "Number of styles must be less than or equal to the number of labels")
-        
+
         labels[0..<(labels.count - styles.count)].forEach {
             $0.isHidden = true
         }

@@ -35,7 +35,7 @@ class LabelsSelectorTableViewController: UITableViewController {
         case "ShowPerformance":
             segue.destination.title = "Performance"
         default:
-            fatalError("Unknown segue identifer \(segue.identifier?.debugDescription)")
+            fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
         }
     }
 }
