@@ -194,7 +194,6 @@ const parseTokens = tokensData => {
         .replace('FontWeight', '')
         .replace('LetterSpacing', ''),
     )
-    .tap(console.log)
     .map((values, key) => [values, key])
     .filter(token =>
       VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase()),
