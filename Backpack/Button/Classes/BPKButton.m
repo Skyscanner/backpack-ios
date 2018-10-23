@@ -418,7 +418,7 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonSizeLarge:
             return BPKFontStyleTextLgEmphasized;
         default:
-            NSAssert(NO, @"Unknown button size %ld", self.size);
+            NSAssert(NO, @"Unknown button size %ld", (unsigned long)self.size);
             return BPKFontStyleTextSmEmphasized;
     }
 }
