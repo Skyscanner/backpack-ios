@@ -37,11 +37,15 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
 
 /**
  * The primary subview within the divided card.
+ * This is the leading view when the orientation is horizontal and
+ * the top view when the orientation is vertical.
  */
 @property(nonatomic, assign, nullable) UIView *primarySubview;
 
 /**
  * The secondary subview within the divided card.
+ * This is the trailing view when the orientation is horizontal and
+ * the bottom view when the orientation is vertical.
  */
 @property(nonatomic, assign, nullable) UIView *secondarySubview;
 
@@ -80,8 +84,8 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
 /**
  * Set the subviews used in the Divided Card
  *
- * @param primarySubview The primary subview for the divided card.
- * @param secondarySubview The secondary subview for the divided card.
+ * @param primarySubview The primary subview for the divided card. Leading or top depending on orientation.
+ * @param secondarySubview The secondary subview for the divided card. Trailing or bottom depending on orientation.
  */
 - (void)setPrimarySubview:(UIView *)primarySubview secondarySubview:(UIView*)secondarySubview  NS_SWIFT_NAME(setSubviews(primarySubview:secondarySubview:));
 
