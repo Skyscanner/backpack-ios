@@ -36,7 +36,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
 + (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:)) DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
 {% for f in font %}
 /**
- * The `{{f.name}}` text style from the Backpack typograhpy stack.
+ * The `{{f.name}}` text style from the Backpack typography stack.
  *
  * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
 */
