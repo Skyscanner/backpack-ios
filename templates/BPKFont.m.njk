@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
-    return [NSString stringWithFormat:@"%ld", style];
+    return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
             case {{f.enumName}}:
                 return [UIFont systemFontOfSize:{{f.size}} weight:{{f.weight}}];{% endfor %}
             default:
-              NSAssert(NO, @"Unknown fontStyle %ld", style);
+              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
             case {{f.enumName}}:
                 return {{f.trackingAdjustment}};{% endfor %}
             default:
-              NSAssert(NO, @"Unknown fontStyle %ld", style);
+              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 

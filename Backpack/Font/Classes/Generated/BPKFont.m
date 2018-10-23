@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
-    return [NSString stringWithFormat:@"%ld", style];
+    return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
@@ -253,7 +253,7 @@ NS_ASSUME_NONNULL_BEGIN
             case BPKFontStyleTextXxxlHeavy:
                 return [UIFont systemFontOfSize:42 weight:UIFontWeightHeavy];
             default:
-              NSAssert(NO, @"Unknown fontStyle %ld", style);
+              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
@@ -299,7 +299,7 @@ NS_ASSUME_NONNULL_BEGIN
             case BPKFontStyleTextXxxlHeavy:
                 return -1.6199999999999999;
             default:
-              NSAssert(NO, @"Unknown fontStyle %ld", style);
+              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
