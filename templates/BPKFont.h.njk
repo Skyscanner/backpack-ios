@@ -30,18 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
 */
 NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
-/*
- * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
- */
-+ (UIFont * _Nullable)fontWithStyle:(BPKFontStyle)style  NS_SWIFT_NAME(makeFont(style:)) DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
-{% for f in font %}
+
 /**
- * The `{{f.name}}` text style from the Backpack typography stack.
+ * Create a dictionary of attributes for a specific text styles. This is some times useful
+ * when building custom attributed strings is required.
  *
- * @warning This method is deprecated and using the font does not correctly render text with the Skyscanner style.
-*/
-+ (UIFont *){{f.name}} DEPRECATED_MSG_ATTRIBUTE("Use `attributedStringWithFontStyle:content` instead.");
-{% endfor %}
+ * @param fontStyle The desired fontStyle.
+ */
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle;
 
 /**
  * Create an attributed string with a specified fontStyle and content. The default Backpack

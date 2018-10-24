@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKFont()
 @property(nonatomic, strong, readonly) NSCache<NSString *, NSDictionary *> *attributesCache;
 
-+ (NSDictionary *)attributesForStyle:(BPKFontStyle)style;
 + (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style;
 + (UIFont *)fontForStyle:(BPKFontStyle)style;
 + (CGFloat)trackingForStyle:(BPKFontStyle)style;
@@ -157,14 +156,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content {
-    NSDictionary *attributes = [self attributesForStyle:fontStyle];
+    NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
 
     return attributedString;
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor {
-    NSMutableDictionary *attributes = [[self attributesForStyle:fontStyle] mutableCopy];
+    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
     [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
 
@@ -185,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
     return _attributesCache;
 }
 
-+ (NSDictionary *)attributesForStyle:(BPKFontStyle)style {
++ (NSDictionary *)attributesForFontStyle:(BPKFontStyle)style {
     NSString *cacheKey = [self cacheKeyForFontStyle:style];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
 

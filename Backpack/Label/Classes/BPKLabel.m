@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
     
-    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
     super.attributedText = attributedString;
 }
 
