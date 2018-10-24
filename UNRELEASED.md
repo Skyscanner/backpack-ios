@@ -1,3 +1,11 @@
 # Unreleased
 
-__Nothing yet!__
+**Added:**
+ - Added new icons:
+  BPKIconNameCallBack
+  BPKIconNameEndCall
+  BPKIconNameKeypad
+  BPKIconNameMute
+  BPKIconNamePhoneCall
+  BPKIconNameSendMessage
+  BPKIconNameUnmute
