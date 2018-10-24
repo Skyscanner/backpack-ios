@@ -142,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setTitle:(NSString *_Nullable)title {
     _title = [title copy];
-//    [super setTitle:title forState:UIControlStateNormal];
+
     if (title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle content:title textColor:self.currentContentColor];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
