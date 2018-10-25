@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 1.2.0
+
+**Added:**
+- Backpack/Icon
+  - Added new icons
+  - BPKIconNameCallBack
+  - BPKIconNameEndCall
+  - BPKIconNameKeypad
+  - BPKIconNameMute
+  - BPKIconNamePhoneCall
+  - BPKIconNameSendMessage
+  - BPKIconNameUnmute
+
 ## 1.1.0
 
 **Added:**
