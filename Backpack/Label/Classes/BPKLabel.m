@@ -60,8 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
         self.attributedText = nil;
         return;
     }
-    
-    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
+
+    NSAttributedString *_Nullable attributedString = nil;
+    if (self.textColor) {
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
+    } else {
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+    }
     super.attributedText = attributedString;
 }
 
@@ -74,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
+    self.textColor = BPKColor.gray700;
 }
 
 @end
