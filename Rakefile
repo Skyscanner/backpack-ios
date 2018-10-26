@@ -1,7 +1,7 @@
 require 'semver'
 
 FULL_TESTS = ENV['FULL_TESTS'] != 'false'
-BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator11.4'
+BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator12.0'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
 EXAMPLE_SCHEMA = 'Backpack Native'
