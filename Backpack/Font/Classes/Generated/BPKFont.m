@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style;
 + (UIFont *)fontForStyle:(BPKFontStyle)style;
-+ (CGFloat)trackingForStyle:(BPKFontStyle)style;
++ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style;
 @end
 
 @implementation BPKFont
@@ -193,12 +193,22 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     UIFont *font = [self fontForStyle:style];
-    CGFloat tracking = [self trackingForStyle:style];
-    NSDictionary *result = @{
-                             NSKernAttributeName: @(tracking),
-                             NSForegroundColorAttributeName: BPKColor.gray700,
-                             NSFontAttributeName: font,
-                             };
+    NSNumber *_Nullable tracking = [self trackingForStyle:style];
+    NSDictionary *result;
+
+    if (tracking) {
+        result = @{
+                   NSKernAttributeName: tracking,
+                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSFontAttributeName: font,
+                   };
+
+    } else {
+        result = @{
+                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSFontAttributeName: font,
+                   };
+   }
 
 
     [[self attributesCache] setObject:result forKey:cacheKey];
@@ -256,47 +266,85 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (CGFloat)trackingForStyle:(BPKFontStyle)style {
++ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style {
     switch (style) {
         
             case BPKFontStyleTextBase:
-                return 0.12;
+              
+                return @(0.12);
+              
             case BPKFontStyleTextBaseEmphasized:
-                return 0.12;
+              
+                return @(0.12);
+              
             case BPKFontStyleTextCaps:
-                return 0.28;
+              
+                return @(0.28);
+              
             case BPKFontStyleTextCapsEmphasized:
-                return 0.28;
+              
+                return @(0.28);
+              
             case BPKFontStyleTextLg:
-                return -0.78;
+              
+                return  nil;
+              
             case BPKFontStyleTextLgEmphasized:
-                return -0.78;
+              
+                return  nil;
+              
             case BPKFontStyleTextSm:
-                return 0.154;
+              
+                return @(0.154);
+              
             case BPKFontStyleTextSmEmphasized:
-                return 0.154;
+              
+                return @(0.154);
+              
             case BPKFontStyleTextXl:
-                return -0.96;
+              
+                return  nil;
+              
             case BPKFontStyleTextXlEmphasized:
-                return -0.96;
+              
+                return  nil;
+              
             case BPKFontStyleTextXlHeavy:
-                return -0.96;
+              
+                return  nil;
+              
             case BPKFontStyleTextXs:
-                return 0;
+              
+                return  nil;
+              
             case BPKFontStyleTextXsEmphasized:
-                return 0;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxl:
-                return -1.396;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxlEmphasized:
-                return -1.396;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxlHeavy:
-                return -1.396;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxxl:
-                return -1.6199999999999999;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxxlEmphasized:
-                return -1.6199999999999999;
+              
+                return  nil;
+              
             case BPKFontStyleTextXxxlHeavy:
-                return -1.6199999999999999;
+              
+                return  nil;
+              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }

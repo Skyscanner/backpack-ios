@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style;
 + (UIFont *)fontForStyle:(BPKFontStyle)style;
-+ (CGFloat)trackingForStyle:(BPKFontStyle)style;
++ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style;
 @end
 
 @implementation BPKFont
@@ -85,12 +85,22 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     UIFont *font = [self fontForStyle:style];
-    CGFloat tracking = [self trackingForStyle:style];
-    NSDictionary *result = @{
-                             NSKernAttributeName: @(tracking),
-                             NSForegroundColorAttributeName: BPKColor.gray700,
-                             NSFontAttributeName: font,
-                             };
+    NSNumber *_Nullable tracking = [self trackingForStyle:style];
+    NSDictionary *result;
+
+    if (tracking) {
+        result = @{
+                   NSKernAttributeName: tracking,
+                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSFontAttributeName: font,
+                   };
+
+    } else {
+        result = @{
+                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSFontAttributeName: font,
+                   };
+   }
 
 
     [[self attributesCache] setObject:result forKey:cacheKey];
@@ -112,11 +122,15 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (CGFloat)trackingForStyle:(BPKFontStyle)style {
++ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style {
     switch (style) {
         {% for f in font %}
             case {{f.enumName}}:
-                return {{f.trackingAdjustment}};{% endfor %}
+              {% if f.trackingAdjustment %}
+                return @({{f.trackingAdjustment}});
+              {% else %}
+                return  nil;
+              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
