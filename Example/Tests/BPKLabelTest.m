@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyleWithTracking {
     BPKFontStyle styles[] = {
+        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized,
         BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
         BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized,
         BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
@@ -53,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyleWithoutTracking {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized,
         BPKFontStyleTextLg, BPKFontStyleTextLgEmphasized,
         BPKFontStyleTextXl, BPKFontStyleTextXlEmphasized, BPKFontStyleTextXlHeavy,
         BPKFontStyleTextXxl, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxlHeavy,
