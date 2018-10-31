@@ -196,7 +196,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSNumber *_Nullable tracking = [self trackingForStyle:style];
     NSDictionary *result;
 
-    if (tracking) {
+    if (tracking != nil) {
         result = @{
                    NSKernAttributeName: tracking,
                    NSForegroundColorAttributeName: BPKColor.gray700,
@@ -270,80 +270,61 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
         
             case BPKFontStyleTextBase:
-              
-                return @(0.12);
+              return @(0.12);
               
             case BPKFontStyleTextBaseEmphasized:
-              
-                return @(0.12);
+              return @(0.12);
               
             case BPKFontStyleTextCaps:
-              
-                return @(0.28);
+              return @(0.28);
               
             case BPKFontStyleTextCapsEmphasized:
-              
-                return @(0.28);
+              return @(0.28);
               
             case BPKFontStyleTextLg:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextLgEmphasized:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextSm:
-              
-                return @(0.154);
+              return @(0.154);
               
             case BPKFontStyleTextSmEmphasized:
-              
-                return @(0.154);
+              return @(0.154);
               
             case BPKFontStyleTextXl:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXlEmphasized:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXlHeavy:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXs:
-              
-                return  nil;
+              return @(0);
               
             case BPKFontStyleTextXsEmphasized:
-              
-                return  nil;
+              return @(0);
               
             case BPKFontStyleTextXxl:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXxlEmphasized:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXxlHeavy:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXxxl:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXxxlEmphasized:
-              
-                return  nil;
+              return  nil;
               
             case BPKFontStyleTextXxxlHeavy:
-              
-                return  nil;
+              return  nil;
               
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

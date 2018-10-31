@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSNumber *_Nullable tracking = [self trackingForStyle:style];
     NSDictionary *result;
 
-    if (tracking) {
+    if (tracking != nil) {
         result = @{
                    NSKernAttributeName: tracking,
                    NSForegroundColorAttributeName: BPKColor.gray700,
@@ -126,9 +126,9 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
         {% for f in font %}
             case {{f.enumName}}:
-              {% if f.trackingAdjustment %}
+              {% if f.trackingAdjustment or f.trackingAdjustment == 0 -%}
                 return @({{f.trackingAdjustment}});
-              {% else %}
+              {% else -%}
                 return  nil;
               {% endif %}{% endfor %}
             default:
