@@ -55,23 +55,31 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setFontStyle:(BPKFontStyle)fontStyle {
-    _fontStyle = fontStyle;
-    UIFont *font = [BPKFont fontWithStyle:fontStyle];
-    NSAssert(font != nil, @"Invalid font style supplied to BPKLabel");
-
-    if (font == nil) {
-        font = [BPKFont textBase];
+- (void)setText:(NSString *_Nullable)text {
+    if (text == nil) {
+        self.attributedText = nil;
+        return;
     }
 
-    self.font = font;
+    NSAttributedString *_Nullable attributedString = nil;
+    if (self.textColor) {
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
+    } else {
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+    }
+    super.attributedText = attributedString;
+}
+
+- (void)setFontStyle:(BPKFontStyle)fontStyle {
+    _fontStyle = fontStyle;
+    self.text = self.attributedText.string;
 }
 
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
-    self.textColor = [BPKColor gray700];
+    self.textColor = BPKColor.gray700;
 }
 
 @end

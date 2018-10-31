@@ -44,6 +44,8 @@ Pod::Spec.new do |s|
   s.subspec 'Font' do |ss|
     ss.source_files = 'Backpack/Font/Classes/**/*.{h,m}'
     ss.public_header_files = 'Backpack/Font/Classes/**/*.h'
+
+    ss.dependency 'Backpack/Color'
   end
 
   s.subspec 'Spacing' do |ss|

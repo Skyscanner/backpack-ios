@@ -26,13 +26,12 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKLabelTest
 
-- (void)testInitWithFontStyle {
+- (void)testInitWithFontStyleWithTracking {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
-        BPKFontStyleTextLg, BPKFontStyleTextLgEmphasized,
+        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized,
+        BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
         BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized,
-        BPKFontStyleTextXl, BPKFontStyleTextXlEmphasized,
-        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized
+        BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -40,13 +39,46 @@ NS_ASSUME_NONNULL_BEGIN
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
-        UIFont *labelFont = label.font;
-        UIFont *expectedFont = [BPKFont fontWithStyle:styles[i]];
+        label.text = @"Hello world";
 
-        XCTAssertEqualObjects(labelFont, expectedFont);
-        XCTAssertEqualObjects(label.textColor, expectedColor);
+        NSAttributedString *attributedString = label.attributedText;
+        NSRange range = NSMakeRange(0, label.text.length);
+        NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
+
+        XCTAssertNotNil(attributes[NSKernAttributeName]);
+        XCTAssertNotNil(attributes[NSFontAttributeName]);
+        XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
+        XCTAssertNil(attributes[NSParagraphStyleAttributeName], @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
     }
 }
+
+- (void)testInitWithFontStyleWithoutTracking {
+    BPKFontStyle styles[] = {
+        BPKFontStyleTextLg, BPKFontStyleTextLgEmphasized,
+        BPKFontStyleTextXl, BPKFontStyleTextXlEmphasized, BPKFontStyleTextXlHeavy,
+        BPKFontStyleTextXxl, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxlHeavy,
+        BPKFontStyleTextXxxl, BPKFontStyleTextXxxlEmphasized, BPKFontStyleTextXxxlHeavy,
+    };
+
+    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
+    UIColor *expectedColor = [BPKColor gray700];
+
+    for (NSUInteger i = 0; i < length; i++) {
+        BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
+        label.text = @"Hello world";
+
+        NSAttributedString *attributedString = label.attributedText;
+        NSRange range = NSMakeRange(0, label.text.length);
+        NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
+
+        XCTAssertNil(attributes[NSKernAttributeName]);
+        XCTAssertNotNil(attributes[NSFontAttributeName]);
+        XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
+        XCTAssertNil(attributes[NSParagraphStyleAttributeName], @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
+    }
+}
+
+
 @end
 
 NS_ASSUME_NONNULL_END
