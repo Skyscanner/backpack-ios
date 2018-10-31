@@ -16,24 +16,32 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import <Backpack/Switch.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+@interface BPKSwitchSnapshotTest : FBSnapshotTestCase
 
-    #import "Badge.h"
-    #import "Card.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
+@end
 
+NS_ASSUME_NONNULL_BEGIN
+@implementation BPKSwitchSnapshotTest
+
+- (void)setUp {
+    [super setUp];
+    self.recordMode = NO;
+}
+
+- (void)testSwitchWhenOff {
+    BPKSwitch *bpkSwitch = [[BPKSwitch alloc] initWithFrame:CGRectZero];
+    FBSnapshotVerifyView(bpkSwitch, nil);
+}
+
+- (void)testSwitchWhenOn {
+    BPKSwitch *bpkSwitch = [[BPKSwitch alloc] initWithFrame:CGRectZero];
+    [bpkSwitch setOn:YES];
+    FBSnapshotVerifyView(bpkSwitch, nil);
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

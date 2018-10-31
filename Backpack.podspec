@@ -148,6 +148,12 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/Color'
   end
 
+  s.subspec 'Switch' do |ss|
+      ss.source_files = 'Backpack/Switch/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Switch/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+  end
+
   s.subspec 'RTLSupport' do |ss|
     ss.source_files = 'Backpack/RTLSupport/Classes/**/*.{h,m}'
     ss.public_header_files = 'Backpack/RTLSupport/Classes/**/*.h'

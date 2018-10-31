@@ -16,24 +16,39 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import "BPKSwitch.h"
+#import <Backpack/Color.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+NS_ASSUME_NONNULL_BEGIN
 
-    #import "Badge.h"
-    #import "Card.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
+@interface BPKSwitch()
 
+@end
+
+@implementation BPKSwitch
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    self.tintColor = BPKColor.gray100;
+    self.onTintColor = BPKColor.blue500;
+    [self setNeedsDisplay];
+}
+
+@end
+
+NS_ASSUME_NONNULL_END
