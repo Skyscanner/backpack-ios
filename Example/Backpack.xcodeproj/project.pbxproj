@@ -25,11 +25,14 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */; };
 		60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60127A712021B6BC00703622 /* BPKSpacingTest.m */; };
 		6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */; };
 		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
 		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
 		6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */; };
+		60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CE0F982189F99200309211 /* SwitchesViewController.swift */; };
+		60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CE0F9A2189FC5000309211 /* Switches.storyboard */; };
 		60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
@@ -135,6 +138,7 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSwitchSnapshotTest.m; sourceTree = "<group>"; };
 		60127A712021B6BC00703622 /* BPKSpacingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingTest.m; sourceTree = "<group>"; };
 		6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiTest.m; sourceTree = "<group>"; };
 		6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKRadiiViewController.h; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		60CE0F982189F99200309211 /* SwitchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchesViewController.swift; sourceTree = "<group>"; };
+		60CE0F9A2189FC5000309211 /* Switches.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Switches.storyboard; sourceTree = "<group>"; };
 		60D302CD201B77B9006DBC18 /* BPKSpacingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSpacingsViewController.h; sourceTree = "<group>"; };
 		60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingsViewController.m; sourceTree = "<group>"; };
 		699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_SnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,10 +307,11 @@
 				D6907039215A39D30088C97B /* Labels.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
-				D233F00E2162159E00A07D9B /* Cards.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
+				D233F00E2162159E00A07D9B /* Cards.storyboard */,
+				60CE0F9A2189FC5000309211 /* Switches.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -443,6 +450,7 @@
 				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
 				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
+				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -460,6 +468,7 @@
 				D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */,
 				3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */,
 				D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */,
+				600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -600,6 +609,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -777,6 +787,7 @@
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
+				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				D6CE74F721242D8A00154D92 /* BPKBadgesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +828,7 @@
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */,
 				D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */,
+				600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
 				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
@@ -1044,6 +1056,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1071,6 +1084,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

@@ -15,6 +15,7 @@ PODS:
     - Backpack/Shadow (= 2.0.0)
     - Backpack/Spacing (= 2.0.0)
     - Backpack/Spinner (= 2.0.0)
+    - Backpack/Switch (= 2.0.0)
     - Backpack/TextView (= 2.0.0)
   - Backpack/Badge (2.0.0):
     - Backpack/Color
@@ -59,6 +60,8 @@ PODS:
   - Backpack/Spacing (2.0.0)
   - Backpack/Spinner (2.0.0):
     - Backpack/Color
+  - Backpack/Switch (2.0.0):
+    - Backpack/Color
   - Backpack/TextView (2.0.0):
     - Backpack/Color
     - Backpack/Font
@@ -80,7 +83,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 8e18c6dba2bbd41acac34f62b2233c489e498f8c
+  Backpack: 46dd95803d168f71173fe97be061f0570d7b19cd
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
