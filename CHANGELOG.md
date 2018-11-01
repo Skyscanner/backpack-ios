@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 2.1.0
+
+**Added:**
+
+- Backpack/Switch
+  - A new component for showing Skyscanner-branded switches, to be used in place of `UISwitch`.
+
 ## 2.0.0
 
 **Breaking:**
