@@ -22,11 +22,11 @@
 #import <Backpack/Icon.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKButtonShapshotTest : FBSnapshotTestCase
+@interface BPKButtonSnapshotTest : FBSnapshotTestCase
 - (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style;
 @end
 
-@implementation BPKButtonShapshotTest
+@implementation BPKButtonSnapshotTest
 
 - (void)setUp {
     [super setUp];

@@ -69,7 +69,7 @@ NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicator
  * Creates a `BPKSpinner` with a decoder (typically when creating form Storyboards)
  *
  * @param coder Decoder object to extract parameters from
- * @return `BPKButton` instance.
+ * @return `BPKSpinner` instance.
  */
 - (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
