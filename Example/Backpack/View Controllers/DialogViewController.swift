@@ -74,7 +74,7 @@ class DialogViewController: UIViewController {
         let message = """
         Your booking is being processed with Trip.com
 
-        As soon as your booking has been completed, your confirmation email will be sent to arriaaksj@gmail.com
+        As soon as your booking has been completed, your confirmation email will be sent to your email account.
 
         Remember to check your junk mail folder
 
