@@ -16,25 +16,15 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+import UIKit
+import Backpack.Chip
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+class ChipsViewController: UIViewController {
+    @IBOutlet weak var regularChip: Chip!
+    @IBOutlet weak var selectedChip: Chip!
+    @IBOutlet weak var disabledChip: Chip!
 
-    #import "Badge.h"
-    #import "Card.h"
-    #import "Chip.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}

@@ -111,6 +111,15 @@ Pod::Spec.new do |s|
       ss.dependency 'Backpack/Spacing'
   end
 
+  s.subspec 'Chip' do |ss|
+      ss.source_files = 'Backpack/Chip/Classes/**/*.{h,m}'
+      ss.public_header_files = 'Backpack/Chip/Classes/**/*.h'
+      ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Label'
+      ss.dependency 'Backpack/Shadow'
+      ss.dependency 'Backpack/Spacing'
+  end
+
   s.subspec 'Icon' do |ss|
     ss.source_files = 'Backpack/Icon/Classes/**/*.{h,m}'
     ss.public_header_files = 'Backpack/Icon/Classes/**/*.h'

@@ -1,3 +1,6 @@
 # Unreleased
 
-_Nothing yet.._
+**Added:**
+
+- Backpack/Chip
+  - A new Skyscanner-branded chip component.
