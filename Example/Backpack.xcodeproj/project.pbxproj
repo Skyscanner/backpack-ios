@@ -44,6 +44,8 @@
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
+		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
+		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
@@ -166,6 +168,8 @@
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
+		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
+		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				D233F00E2162159E00A07D9B /* Cards.storyboard */,
 				60CE0F9A2189FC5000309211 /* Switches.storyboard */,
 				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
+				D27EE9292193159C00C877EA /* Chips.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -457,6 +462,7 @@
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
 				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
 				D6D6BB6521958D4400312C1C /* GradientSelectorTableViewController.swift */,
+				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -571,10 +577,11 @@
 				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = WZLXWEEH2U;
+						DevelopmentTeam = 28PF4W85NQ;
 						LastSwiftMigration = 1000;
 					};
 					6003F5AD195388D20070C39A = {
+						DevelopmentTeam = 28PF4W85NQ;
 						LastSwiftMigration = 1000;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -618,6 +625,7 @@
 				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
@@ -771,6 +779,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
+				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
@@ -1004,7 +1013,7 @@
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = WZLXWEEH2U;
+				DEVELOPMENT_TEAM = 28PF4W85NQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1016,7 +1025,7 @@
 				INFOPLIST_FILE = "Backpack/Backpack-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example121";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Backpack/Backpack Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1035,7 +1044,7 @@
 				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = WZLXWEEH2U;
+				DEVELOPMENT_TEAM = 28PF4W85NQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1047,7 +1056,7 @@
 				INFOPLIST_FILE = "Backpack/Backpack-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example121";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Backpack/Backpack Native-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1064,7 +1073,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 28PF4W85NQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1092,7 +1101,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 28PF4W85NQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

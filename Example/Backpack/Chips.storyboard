@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chips-->
+        <scene sceneID="x0U-mC-0pr">
+            <objects>
+                <viewController storyboardIdentifier="ChipsViewController" title="Chips" id="QGy-y9-Jik" customClass="ChipsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ztx-pF-T3A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWa-mN-fgA" customClass="BPKChip">
+                                <rect key="frame" x="164.33333333333334" y="351.66666666666669" width="85.333333333333343" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ethiopia"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tip-cm-m6T" customClass="BPKChip">
+                                <rect key="frame" x="164.33333333333334" y="298.66666666666669" width="85.333333333333343" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Belgium"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDP-dj-sO7" customClass="BPKChip">
+                                <rect key="frame" x="167" y="404.66666666666669" width="80" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Kosovo"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enabled" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CWa-mN-fgA" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="1ch-g3-V7T"/>
+                            <constraint firstItem="CWa-mN-fgA" firstAttribute="top" secondItem="Tip-cm-m6T" secondAttribute="bottom" constant="20" id="R0d-KW-5q6"/>
+                            <constraint firstItem="zDP-dj-sO7" firstAttribute="top" secondItem="CWa-mN-fgA" secondAttribute="bottom" constant="20" id="SjJ-V3-dId"/>
+                            <constraint firstItem="zDP-dj-sO7" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="W64-KQ-ef9"/>
+                            <constraint firstItem="CWa-mN-fgA" firstAttribute="centerY" secondItem="ztx-pF-T3A" secondAttribute="centerY" id="kAV-Rt-Kii"/>
+                            <constraint firstItem="Tip-cm-m6T" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="xiQ-kn-46w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pep-xR-dlL"/>
+                    </view>
+                    <connections>
+                        <outlet property="disabledChip" destination="zDP-dj-sO7" id="u8y-o3-vhx"/>
+                        <outlet property="regularChip" destination="Tip-cm-m6T" id="gIC-Nh-nYL"/>
+                        <outlet property="selectedChip" destination="CWa-mN-fgA" id="iza-cm-jAp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="62c-NM-uaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-54" y="135"/>
+        </scene>
+    </scenes>
+</document>
