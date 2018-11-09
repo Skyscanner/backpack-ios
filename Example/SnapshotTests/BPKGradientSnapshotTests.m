@@ -45,6 +45,7 @@
 
     BPKGradientView *view = [[BPKGradientView alloc] initWithGradient:[BPKGradient baselineScrim]];
     view.translatesAutoresizingMaskIntoConstraints = NO;
+    view.opaque = NO;
 
     [container addSubview:view];
 
