@@ -157,6 +157,24 @@ NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
  */
 + (instancetype)primaryWithDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(primary(direction:));
 
+/**
+ * The Skyscanner baseline scrim gradient for use on images that contain text.
+ *
+ * The default direction is `BPKGradientDirectionUp` which is appropriate when the text
+ * content is at the bottom.
+ * @return The default Skyscanner baseline scrim.
+ */
++ (instancetype)baselineScrim;
+
+/**
+ * The Skyscanner baseline scrim gradient for use on images that contain text.
+ *
+ * @param direction The desired direction. The text should be positioned near the
+ * start of the gradient.
+ * @return The default Skyscanner baseline scrim.
+ */
++ (instancetype)baselineScrimWithDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(baselineScrim(direction:));
+
 + (CGPoint)startPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(startPoint(for:));
 + (CGPoint)endPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(endPointFor(for:));
 @end

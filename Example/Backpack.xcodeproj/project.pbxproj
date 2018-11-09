@@ -73,6 +73,8 @@
 		D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F821243A4500154D92 /* BPKBadgeTest.m */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */; };
+		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
+		D6D6BB6621958D4400312C1C /* GradientSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D6BB6521958D4400312C1C /* GradientSelectorTableViewController.swift */; };
 		D6D81D54213FEE800013BB96 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		D6D81D55213FEE800013BB96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		D6D81D56213FEE800013BB96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -197,6 +199,8 @@
 		D6CE74F821243A4500154D92 /* BPKBadgeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeTest.m; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconSnapshotTest.m; sourceTree = "<group>"; };
+		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
+		D6D6BB6521958D4400312C1C /* GradientSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeSnapshotTest.m; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
 				D233F00E2162159E00A07D9B /* Cards.storyboard */,
 				60CE0F9A2189FC5000309211 /* Switches.storyboard */,
+				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -451,6 +456,7 @@
 				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
 				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
+				D6D6BB6521958D4400312C1C /* GradientSelectorTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
@@ -782,6 +789,7 @@
 				D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
+				D6D6BB6621958D4400312C1C /* GradientSelectorTableViewController.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
