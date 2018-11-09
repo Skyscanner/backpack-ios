@@ -26,7 +26,5 @@ class ChipsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        selectedChip.title = "Test"
-//        disabledChip.setEnabled(true)
     }
 }

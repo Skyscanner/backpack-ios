@@ -23,7 +23,6 @@
 #import <Backpack/Color.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKChip()
@@ -59,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.initializing = YES;
     
     self.titleLabel = [[BPKLabel alloc]initWithFrame:CGRectZero];
-    [self.titleLabel setFontStyle:BPKFontStyleTextSm];
+    self.titleLabel.fontStyle = BPKFontStyleTextSm;
     [self addSubview:self.titleLabel];
     
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -68,6 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     [self addGestureRecognizer:singleFingerTap];
+    
+    [self setupConstraints];
+    self.layer.cornerRadius = self.bounds.size.height / 2;
+    
+    BPKShadow *shadow = [BPKShadow shadowSm];
+    [shadow applyToLayer:self.layer];
     
     [self updateStyle];
     self.initializing = NO;
@@ -93,52 +98,34 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (void)setHighlighted:(BOOL)highlighted {
-    [super setHighlighted:highlighted];
-}
-
 #pragma mark - Layout
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self setConstraints];
-    self.layer.cornerRadius = self.bounds.size.height / 2;
-    
-    BPKShadow *shadow = [BPKShadow shadowSm];
-    [shadow applyToLayer:self.layer];
-}
-
-- (void)setConstraints {
-    self.translatesAutoresizingMaskIntoConstraints = NO;
+- (void)setupConstraints {
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [[self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor] setActive:YES];
-        [[self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor] setActive:YES];
-}
-
-- (CGSize)intrinsicContentSize {
-    CGSize labelSize = self.titleLabel.bounds.size;
-    return CGSizeMake(labelSize.width + 2*BPKSpacingBase, labelSize.height + 2*BPKSpacingMd);
+    
+    [[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase] setActive:YES];
+    [[self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:BPKSpacingMd] setActive:YES];
+    [[self.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor constant:BPKSpacingBase] setActive:YES];
+    [[self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd] setActive:YES];
 }
 
 #pragma mark - Updates
 
 - (void)updateStyle {
     if(self.selected) {
-        self.backgroundColor = [BPKColor blue500];
-        self.textColor = [BPKColor white];
+        self.backgroundColor = BPKColor.blue500;
+        self.textColor = BPKColor.white;
     } else {
-        self.backgroundColor = [BPKColor white];
-        self.textColor = [BPKColor gray700];
+        self.backgroundColor = BPKColor.white;
+        self.textColor = BPKColor.gray700;
     }
     
     if(!self.enabled){
-        self.backgroundColor = [BPKColor white];
-        self.textColor = [BPKColor gray100];
+        self.backgroundColor = BPKColor.white;
+        self.textColor = BPKColor.gray100;
     }
     
     [self updateTitle];
-    [self setNeedsDisplay];
 }
 
 - (void)updateTitle {
@@ -147,7 +134,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     self.titleLabel.text = self.title;
-    [self.titleLabel sizeToFit];
     [self.titleLabel setTextColor:self.textColor];
 }
 

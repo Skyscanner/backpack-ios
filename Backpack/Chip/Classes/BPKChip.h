@@ -34,13 +34,6 @@ NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip: UIControl
 /**
  * Creates a `BPKChip` with a decoder (typically when creating from Storyboards)
  *
- * @param enabled BOOL the new value
- */
-- (void)setEnabled:(BOOL)enabled;
-
-/**
- * Creates a `BPKChip` with a decoder (typically when creating from Storyboards)
- *
  * @param aDecoder Decoder object to extract parameters from
  * @return `BPKChip` instance.
  */
