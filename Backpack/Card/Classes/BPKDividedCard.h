@@ -74,7 +74,7 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKDividedCard` with a decoder (typically when creating form Storyboards)
+ * Creates a `BPKDividedCard` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
  * @return `BPKDividedCard` instance.

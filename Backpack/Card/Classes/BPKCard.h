@@ -55,7 +55,7 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
 - (void)addSubview:(UIView *)view __attribute__((unavailable("`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
 
 /**
- * Creates a `BPKCard` with a decoder (typically when creating form Storyboards)
+ * Creates a `BPKCard` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
  * @return `BPKCard` instance.

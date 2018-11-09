@@ -78,7 +78,7 @@ NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKButton` with a decoder (typically when creating form Storyboards)
+ * Creates a `BPKButton` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
  * @return `BPKButton` instance.
