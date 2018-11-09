@@ -568,7 +568,7 @@
 				CLASSPREFIX = BPK;
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = Skyscanner;
+				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = WZLXWEEH2U;
