@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 2.2.0
+
+**Added:**
+
+Backpack/Gradient:
+  - Added Baseline Scrim for use as an overlay on images that contain text content.
+
 ## 2.1.0
 
 **Added:**
