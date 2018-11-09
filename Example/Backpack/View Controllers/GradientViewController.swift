@@ -19,12 +19,23 @@ import Foundation
 import UIKit
 import Backpack
 
+enum GradientType {
+    case primary
+    case baselinesSrim
+}
+
 class GradientViewController: UIViewController {
     @IBOutlet weak var gradientView: Backpack.GradientView!
+    var gradientType: GradientType = .primary
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.gradientView.gradient = Backpack.Gradient.primary()
+        switch gradientType {
+        case .primary:
+            self.gradientView.gradient = Backpack.Gradient.primary()
+        case .baselinesSrim:
+            self.gradientView.gradient = Backpack.Gradient.baselineScrim()
+        }
     }
 }

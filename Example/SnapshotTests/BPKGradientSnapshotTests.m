@@ -38,5 +38,30 @@
     FBSnapshotVerifyView(view, nil);
 }
 
+- (void)testBaselineScrimGradient {
+    UIView *container  = [UIView new];
+    container.backgroundColor = UIColor.whiteColor;
+    container.translatesAutoresizingMaskIntoConstraints = NO;
+
+    BPKGradientView *view = [[BPKGradientView alloc] initWithGradient:[BPKGradient baselineScrim]];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    view.opaque = NO;
+
+    [container addSubview:view];
+
+    [NSLayoutConstraint activateConstraints:@[
+                                              [view.widthAnchor constraintEqualToConstant:150],
+                                              [view.heightAnchor constraintEqualToConstant:200],
+
+                                              [view.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
+                                              [view.topAnchor constraintEqualToAnchor:container.topAnchor],
+                                              [container.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
+                                              [container.bottomAnchor constraintEqualToAnchor:view.bottomAnchor],
+                                              ]];
+
+    [container layoutIfNeeded];
+    FBSnapshotVerifyView(container, nil);
+}
+
 
 @end

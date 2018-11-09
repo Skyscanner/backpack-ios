@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) CGPoint endPoint;
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction;
+- (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction;
 @end
 NS_ASSUME_NONNULL_END
 
@@ -70,6 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
                        endPoint:[[self class] endPointForDirection:direction]];
 }
 
+- (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction {
+    return [self initWithColors:@[[BPKColor.gray900 colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
+                     startPoint:[[self class] startPointForDirection:direction]
+                       endPoint:[[self class] endPointForDirection:direction]];
+}
+
 + (instancetype)primary {
     static dispatch_once_t gradientOnceToken;
     static BPKGradient *gradient;
@@ -102,6 +109,41 @@ NS_ASSUME_NONNULL_BEGIN
         return gradient;
     }
     
+    return nil;
+}
+
++ (instancetype)baselineScrim {
+    static dispatch_once_t gradientOnceToken;
+    static BPKGradient *gradient;
+
+    dispatch_once(&gradientOnceToken, ^{
+        gradient = [[BPKGradient alloc] initBaselineScrimWithDirection:BPKGradientDirectionUp];
+
+    });
+
+    return gradient;
+}
+
++ (instancetype)baselineScrimWithDirection:(BPKGradientDirection)direction {
+    static dispatch_once_t gradientOnceToken;
+    static NSMutableDictionary<NSNumber *, BPKGradient *> *dict;
+
+    dispatch_once(&gradientOnceToken, ^{
+        dict = [NSMutableDictionary new];
+    });
+    @synchronized(dict){
+        NSNumber *boxedDirection = [NSNumber numberWithUnsignedInteger:(NSUInteger)direction];
+
+        if ([dict objectForKey:boxedDirection] != nil) {
+            return [dict objectForKey:boxedDirection];
+        }
+
+        BPKGradient *gradient = [[BPKGradient alloc] initBaselineScrimWithDirection:direction];
+        [dict setObject:gradient forKey:boxedDirection];
+
+        return gradient;
+    }
+
     return nil;
 }
 
@@ -149,6 +191,10 @@ NS_ASSUME_NONNULL_BEGIN
         default:
             return CGPointMake(1.0, 1.0);
     }
+}
+
++ (UIColor *)scrimBaselineEndColor {
+    return [UIColor colorWithRed:0.298 green:0.263 blue:0.384 alpha:0.0];
 }
 
 @end
