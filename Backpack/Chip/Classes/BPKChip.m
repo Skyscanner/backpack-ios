@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.textColor = [BPKColor white];
     } else {
         self.backgroundColor = [BPKColor white];
-        self.textColor = [BPKColor gray800];
+        self.textColor = [BPKColor gray700];
     }
     
     if(!self.enabled){
@@ -151,8 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.titleLabel setTextColor:self.textColor];
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
-{
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     [self setSelected:!self.selected];
 }
 
