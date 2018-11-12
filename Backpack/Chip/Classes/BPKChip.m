@@ -100,6 +100,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
+- (void)setHighlighted:(BOOL)highlighted {
+    [super setHighlighted:highlighted];
+    [self updateStyle];
+}
+
 - (void)setEnabled:(BOOL)enabled {
     [super setEnabled:enabled];
     [self updateStyle];
@@ -122,9 +127,15 @@ NS_ASSUME_NONNULL_BEGIN
     if(self.selected) {
         self.backgroundColor = BPKColor.blue500;
         self.textColor = BPKColor.white;
+        if(self.highlighted){
+            self.backgroundColor = BPKColor.gray100;
+        }
     } else {
         self.backgroundColor = BPKColor.white;
         self.textColor = BPKColor.gray700;
+        if(self.highlighted){
+            self.backgroundColor = BPKColor.blue700;
+        }
     }
     
     if(!self.enabled){
