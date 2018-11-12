@@ -66,7 +66,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchDown];
     
     [self setupConstraints];
-    self.layer.cornerRadius = self.bounds.size.height / 2;
     
     BPKShadow *shadow = [BPKShadow shadowSm];
     [shadow applyToLayer:self.layer];
@@ -75,15 +74,26 @@ NS_ASSUME_NONNULL_BEGIN
     self.initializing = NO;
 }
 
-#pragma mark - Style setters
+#pragma mark - Layout overrides
+
+- (void)layoutSubviews {
+    self.layer.cornerRadius = self.bounds.size.height / 2;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    [self.titleLabel sizeToFit];
+    float width = self.titleLabel.frame.size.width + 2 * BPKSpacingBase;
+    float height = self.titleLabel.frame.size.height + 2 * BPKSpacingMd;
+    return CGSizeMake(width, height);
+}
+
+#pragma mark - State setters
 
 - (void)setTitle:(NSString *_Nullable)title {
     _title = [title copy];
     
     [self updateTitle];
 }
-
-#pragma mark - State setters
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
@@ -133,6 +143,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.text = self.title;
     [self.titleLabel setTextColor:self.textColor];
 }
+
+#pragma mark - Actions
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     [self setSelected:!self.selected];
