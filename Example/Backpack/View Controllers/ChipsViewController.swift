@@ -23,7 +23,7 @@ class ChipsViewController: UIViewController {
     @IBOutlet weak var regularChip: Chip!
     @IBOutlet weak var selectedChip: Chip!
     @IBOutlet weak var disabledChip: Chip!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
