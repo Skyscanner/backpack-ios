@@ -63,10 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(handleSingleTap:)];
-    [self addGestureRecognizer:singleFingerTap];
+    [self addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchDown];
     
     [self setupConstraints];
     self.layer.cornerRadius = self.bounds.size.height / 2;
