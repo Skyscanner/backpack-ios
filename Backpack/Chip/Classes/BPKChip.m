@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setup];
+        [self setUp];
     }
 
     return self;
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setup];
+        [self setUp];
     }
 
     return self;
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        [self setup];
+        [self setUp];
     }
 
     [self setTitle:title];
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setup {
+- (void)setUp {
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.gray600.CGColor;
     self.tintLayer.opacity = 0;
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];
 
-    [self setupConstraints];
+    [self setUpConstraints];
 
     BPKShadow *shadow = [BPKShadow shadowSm];
     [shadow applyToLayer:self.layer];
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Layout
 
-- (void)setupConstraints {
+- (void)setUpConstraints {
     CGFloat chipHorizontalSpacing = [self chipHorizontalSpacing];
     CGFloat chipVerticalSpacing = [self chipVerticalSpacing];
 
