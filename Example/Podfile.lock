@@ -41,7 +41,7 @@ PODS:
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Chip (3.0.0):
+  - Backpack/Chip (2.3.1):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Shadow
@@ -77,6 +77,7 @@ PODS:
   - Backpack/TextView (3.0.0):
     - Backpack/Color
     - Backpack/Font
+  - FSCalendar (2.8.0)
   - iOSSnapshotTestCase/Core (3.0.0)
   - SwiftLint (0.27.0)
 
@@ -87,6 +88,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FSCalendar
     - iOSSnapshotTestCase
     - SwiftLint
 
@@ -96,6 +98,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Backpack: ccbb9ee44916a02e5ce91d16c7cf5637ace558da
+  FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
