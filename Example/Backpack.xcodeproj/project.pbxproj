@@ -46,6 +46,9 @@
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
 		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
+		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
+		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
+		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
@@ -170,6 +173,9 @@
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
 		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
+		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
+		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
+		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 			children = (
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
+				D29349BE2199C7650099D2EC /* BPKChipTest.m */,
 				D613CE542006795400D60CC4 /* BPKColorTest.m */,
 				D655C519200FA18100CB39AF /* BPKFontTest.m */,
 				60127A712021B6BC00703622 /* BPKSpacingTest.m */,
@@ -426,6 +433,7 @@
 				D6517B43216DF5F800D85FF9 /* Info.plist */,
 				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
 				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
+				D28B3610219C209000E82A79 /* ChipUITest.swift */,
 			);
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
@@ -472,6 +480,7 @@
 			children = (
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
+				D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */,
 				D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */,
 				D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */,
 				D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */,
@@ -815,6 +824,7 @@
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
 				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
+				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
@@ -832,6 +842,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
+				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,6 +857,7 @@
 				D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */,
 				600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
+				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,

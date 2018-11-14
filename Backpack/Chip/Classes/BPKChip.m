@@ -54,11 +54,25 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithTitle:(NSString *)title {
+    self = [super initWithFrame:CGRectZero];
+
+    if (self) {
+        [self setup];
+    }
+
+    [self setTitle:title];
+
+    return self;
+}
+
 - (void)setup {
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.gray600.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
+
+    self.isAccessibilityElement = YES;
 
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.fontStyle = BPKFontStyleTextSm;
@@ -154,6 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
+    self.accessibilityLabel = self.title;
     self.titleLabel.text = self.title;
     [self.titleLabel setTextColor:self.textColor];
 }
