@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKCalendarAppearance.h"
 
 @class BPKCalendar;
 
@@ -66,10 +65,5 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
  * The latest date that the user is allowed to select
  */
 @property (nonatomic) NSDate *maxDate;
-
-/**
- * Appearance settimgs of the calendar
- */
-@property (nonatomic) BPKCalendarAppearance *appearance;
 
 @end
