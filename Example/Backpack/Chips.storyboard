@@ -10,57 +10,78 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Chips-->
-        <scene sceneID="x0U-mC-0pr">
+        <!--Chips View Controller-->
+        <scene sceneID="9rk-Eg-xdt">
             <objects>
-                <viewController storyboardIdentifier="ChipsViewController" title="Chips" id="QGy-y9-Jik" customClass="ChipsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ztx-pF-T3A">
+                <viewController storyboardIdentifier="ChipsViewController" id="SHl-Oi-FFr" customClass="ChipsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kec-l1-3BA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWa-mN-fgA" customClass="BPKChip">
-                                <rect key="frame" x="164.33333333333334" y="351.66666666666669" width="85.333333333333343" height="33"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HBs-ET-Q43">
+                                <rect key="frame" x="0.0" y="368" width="414" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ethiopia"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tip-cm-m6T" customClass="BPKChip">
-                                <rect key="frame" x="164.33333333333334" y="298.66666666666669" width="85.333333333333343" height="33"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Belgium"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDP-dj-sO7" customClass="BPKChip">
-                                <rect key="frame" x="167" y="404.66666666666669" width="80" height="33"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Kosovo"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enabled" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="fzz-zD-5ga"/>
+                                </constraints>
+                                <collectionViewLayout key="collectionViewLayout" id="ulG-j4-65S" customClass="UICollectionViewMasonryFlowLayout" customModule="Backpack_Native" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Za9-Xn-aT5">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="CWa-mN-fgA" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="1ch-g3-V7T"/>
-                            <constraint firstItem="CWa-mN-fgA" firstAttribute="top" secondItem="Tip-cm-m6T" secondAttribute="bottom" constant="20" id="R0d-KW-5q6"/>
-                            <constraint firstItem="zDP-dj-sO7" firstAttribute="top" secondItem="CWa-mN-fgA" secondAttribute="bottom" constant="20" id="SjJ-V3-dId"/>
-                            <constraint firstItem="zDP-dj-sO7" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="W64-KQ-ef9"/>
-                            <constraint firstItem="CWa-mN-fgA" firstAttribute="centerY" secondItem="ztx-pF-T3A" secondAttribute="centerY" id="kAV-Rt-Kii"/>
-                            <constraint firstItem="Tip-cm-m6T" firstAttribute="centerX" secondItem="ztx-pF-T3A" secondAttribute="centerX" id="xiQ-kn-46w"/>
+                            <constraint firstItem="h4y-YC-Uzb" firstAttribute="trailing" secondItem="HBs-ET-Q43" secondAttribute="trailing" id="4oR-S8-fnE"/>
+                            <constraint firstItem="HBs-ET-Q43" firstAttribute="leading" secondItem="h4y-YC-Uzb" secondAttribute="leading" id="CT7-Sb-uGK"/>
+                            <constraint firstItem="HBs-ET-Q43" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="LxL-12-tVe"/>
+                            <constraint firstItem="HBs-ET-Q43" firstAttribute="centerY" secondItem="Kec-l1-3BA" secondAttribute="centerY" id="tAt-Rp-gnl"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Pep-xR-dlL"/>
+                        <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
                     </view>
                     <connections>
-                        <outlet property="disabledChip" destination="zDP-dj-sO7" id="u8y-o3-vhx"/>
-                        <outlet property="regularChip" destination="Tip-cm-m6T" id="gIC-Nh-nYL"/>
-                        <outlet property="selectedChip" destination="CWa-mN-fgA" id="iza-cm-jAp"/>
+                        <outlet property="collectionView" destination="HBs-ET-Q43" id="tkN-gZ-lBR"/>
+                        <outlet property="heightConstraint" destination="fzz-zD-5ga" id="FWh-2b-QE0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhy-C9-82w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="-542"/>
+        </scene>
+        <!--Chips-->
+        <scene sceneID="x0U-mC-0pr">
+            <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62c-NM-uaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Chips" id="QGy-y9-Jik" customClass="ChipsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="m4C-86-QYc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eS3-I7-ug6" customClass="UICollectionViewMasonryFlowLayout" customModule="Backpack_Native" customModuleProvider="target">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="u2l-Ti-QFA">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
+                </viewController>
             </objects>
             <point key="canvasLocation" x="-54" y="135"/>
         </scene>
