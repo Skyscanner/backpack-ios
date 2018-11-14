@@ -1,74 +1,74 @@
 PODS:
-  - Backpack (2.2.0):
-    - Backpack/Badge (= 2.2.0)
-    - Backpack/Button (= 2.2.0)
-    - Backpack/Card (= 2.2.0)
-    - Backpack/Chip (= 2.2.0)
-    - Backpack/Color (= 2.2.0)
-    - Backpack/Dialog (= 2.2.0)
-    - Backpack/Font (= 2.2.0)
-    - Backpack/Gradient (= 2.2.0)
-    - Backpack/Icon (= 2.2.0)
-    - Backpack/Label (= 2.2.0)
-    - Backpack/Panel (= 2.2.0)
-    - Backpack/Radii (= 2.2.0)
-    - Backpack/RTLSupport (= 2.2.0)
-    - Backpack/Shadow (= 2.2.0)
-    - Backpack/Spacing (= 2.2.0)
-    - Backpack/Spinner (= 2.2.0)
-    - Backpack/Switch (= 2.2.0)
-    - Backpack/TextView (= 2.2.0)
-  - Backpack/Badge (2.2.0):
+  - Backpack (2.3.0):
+    - Backpack/Badge (= 2.3.0)
+    - Backpack/Button (= 2.3.0)
+    - Backpack/Card (= 2.3.0)
+    - Backpack/Chip (= 2.3.0)
+    - Backpack/Color (= 2.3.0)
+    - Backpack/Dialog (= 2.3.0)
+    - Backpack/Font (= 2.3.0)
+    - Backpack/Gradient (= 2.3.0)
+    - Backpack/Icon (= 2.3.0)
+    - Backpack/Label (= 2.3.0)
+    - Backpack/Panel (= 2.3.0)
+    - Backpack/Radii (= 2.3.0)
+    - Backpack/RTLSupport (= 2.3.0)
+    - Backpack/Shadow (= 2.3.0)
+    - Backpack/Spacing (= 2.3.0)
+    - Backpack/Spinner (= 2.3.0)
+    - Backpack/Switch (= 2.3.0)
+    - Backpack/TextView (= 2.3.0)
+  - Backpack/Badge (2.3.0):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Button (2.2.0):
+  - Backpack/Button (2.3.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Gradient
     - Backpack/Label
     - Backpack/RTLSupport
     - Backpack/Spacing
-  - Backpack/Card (2.2.0):
+  - Backpack/Card (2.3.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Chip (2.2.0):
+  - Backpack/Chip (2.3.0):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Color (2.2.0)
-  - Backpack/Dialog (2.2.0):
+  - Backpack/Color (2.3.0)
+  - Backpack/Dialog (2.3.0):
     - Backpack/Button
     - Backpack/Color
     - Backpack/Label
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Font (2.2.0):
+  - Backpack/Font (2.3.0):
     - Backpack/Color
-  - Backpack/Gradient (2.2.0):
+  - Backpack/Gradient (2.3.0):
     - Backpack/Color
-  - Backpack/Icon (2.2.0)
-  - Backpack/Label (2.2.0):
+  - Backpack/Icon (2.3.0)
+  - Backpack/Label (2.3.0):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (2.2.0):
+  - Backpack/Panel (2.3.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (2.2.0)
-  - Backpack/RTLSupport (2.2.0)
-  - Backpack/Shadow (2.2.0)
-  - Backpack/Spacing (2.2.0)
-  - Backpack/Spinner (2.2.0):
+  - Backpack/Radii (2.3.0)
+  - Backpack/RTLSupport (2.3.0)
+  - Backpack/Shadow (2.3.0)
+  - Backpack/Spacing (2.3.0)
+  - Backpack/Spinner (2.3.0):
     - Backpack/Color
-  - Backpack/Switch (2.2.0):
+  - Backpack/Switch (2.3.0):
     - Backpack/Color
-  - Backpack/TextView (2.2.0):
+  - Backpack/TextView (2.3.0):
     - Backpack/Color
     - Backpack/Font
   - iOSSnapshotTestCase/Core (3.0.0)
@@ -89,7 +89,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: a7ac6798ba002ded5720b3dee8c514b827d32232
+  Backpack: 3f683e5f85ad455045eef92ffec90152932ee809
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 

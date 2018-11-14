@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 2.3.0
+
+**Added:**
+
+- Backpack/Chip
+  - Added a new Skyscanner-branded chip component that supports toggling of `selected` state, and can be disabled.
+
 ## 2.2.0
 
 **Added:**
