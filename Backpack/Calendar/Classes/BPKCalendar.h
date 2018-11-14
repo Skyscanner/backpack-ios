@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
 
 @end
 
-@interface BPKCalendar : UIView
+NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
 /**
  * Locale used for displaying name of days and months

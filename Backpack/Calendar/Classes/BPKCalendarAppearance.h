@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BPKCalendarAppearance : NSObject
+NS_SWIFT_NAME(CalendarAppearance) @interface BPKCalendarAppearance : NSObject
 
 /**
  * The font of the weekday text.
