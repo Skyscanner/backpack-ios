@@ -2,6 +2,7 @@ PODS:
   - Backpack (2.3.0):
     - Backpack/Badge (= 2.3.0)
     - Backpack/Button (= 2.3.0)
+    - Backpack/Calendar (= 2.3.0)
     - Backpack/Card (= 2.3.0)
     - Backpack/Chip (= 2.3.0)
     - Backpack/Color (= 2.3.0)
@@ -29,6 +30,11 @@ PODS:
     - Backpack/Gradient
     - Backpack/Label
     - Backpack/RTLSupport
+    - Backpack/Spacing
+  - Backpack/Calendar (2.3.0):
+    - Backpack/Color
+    - Backpack/Radii
+    - Backpack/Shadow
     - Backpack/Spacing
   - Backpack/Card (2.3.0):
     - Backpack/Color
@@ -89,7 +95,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 3f683e5f85ad455045eef92ffec90152932ee809
+  Backpack: 8f847b50c64a87aa64437fd030d34b1e2f98c3ba
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
