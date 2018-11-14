@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setup];
+        [self setUp];
     }
 
     return self;
@@ -48,17 +48,31 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setup];
+        [self setUp];
     }
 
     return self;
 }
 
-- (void)setup {
+- (instancetype)initWithTitle:(NSString *)title {
+    self = [super initWithFrame:CGRectZero];
+
+    if (self) {
+        [self setUp];
+    }
+
+    [self setTitle:title];
+
+    return self;
+}
+
+- (void)setUp {
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.gray600.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
+
+    self.isAccessibilityElement = YES;
 
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.fontStyle = BPKFontStyleTextSm;
@@ -68,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];
 
-    [self setupConstraints];
+    [self setUpConstraints];
 
     BPKShadow *shadow = [BPKShadow shadowSm];
     [shadow applyToLayer:self.layer];
@@ -114,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Layout
 
-- (void)setupConstraints {
+- (void)setUpConstraints {
     CGFloat chipHorizontalSpacing = [self chipHorizontalSpacing];
     CGFloat chipVerticalSpacing = [self chipVerticalSpacing];
 
@@ -154,6 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
+    self.accessibilityLabel = self.title;
     self.titleLabel.text = self.title;
     [self.titleLabel setTextColor:self.textColor];
 }

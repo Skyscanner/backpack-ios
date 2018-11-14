@@ -32,6 +32,13 @@ NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip: UIControl
 @property(nonatomic, copy, nullable) NSString *title;
 
 /**
+ * Creates a `BPKChip` with the title given.
+ *
+ * @param title NSString to use as the title.
+ */
+- (instancetype)initWithTitle:(NSString*)title NS_DESIGNATED_INITIALIZER;
+
+/**
  * Creates a `BPKChip` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
