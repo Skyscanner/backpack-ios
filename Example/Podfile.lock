@@ -36,7 +36,14 @@ PODS:
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
+    - FSCalendar (~> 2.8)
   - Backpack/Card (3.0.0):
+    - Backpack/Color
+    - Backpack/Radii
+    - Backpack/Shadow
+    - Backpack/Spacing
+    - FSCalendar (~> 2.8)
+  - Backpack/Card (2.2.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Shadow
