@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
         UIColor *color = [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
         shadowLg = [[BPKShadow alloc] initWithColor:color
                                                offset:CGSizeMake(0, 4)
-                                              opacity:0.25
-                                               radius:14];
+                                              opacity:0.15
+                                               radius:16];
 
     });
 
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
         UIColor *color = [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
         shadowSm = [[BPKShadow alloc] initWithColor:color
                                                offset:CGSizeMake(0, 1)
-                                              opacity:0.3
+                                              opacity:0.15
                                                radius:3];
 
     });
