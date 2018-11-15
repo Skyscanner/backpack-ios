@@ -19,7 +19,6 @@ and then run `pod install`.
 
 BPKShadow *shadowSm = [BPKShadow shadowSm];
 // BPKShadow *shadowLg = [BPKShadow shadowLg];
-// BPKShadow *shadowXl = [BPKShadow shadowXl];
 
 [shadowSm applyToLayer:myView.layer];
 ```

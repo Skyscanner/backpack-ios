@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKShadowTest
 
 - (void)setUp {
-    self.selectors =  @[ @"shadowSm", @"shadowLg", @"shadowXl" ];
+    self.selectors =  @[ @"shadowSm", @"shadowLg" ];
 }
 
 - (void)testExpectedShadowStylesAreAvailable {
