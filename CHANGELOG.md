@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 2.3.1
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Updated `bpk_send_message` icon.
+
 ## 2.3.0
 
 **Added:**
