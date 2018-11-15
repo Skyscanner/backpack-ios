@@ -1,3 +1,5 @@
 # Unreleased
 
-__Nothing yet__
+## Breaking
+ - BPKShadow:
+  - Removed `Xl` variant of BPKShadow.

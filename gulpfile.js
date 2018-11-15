@@ -44,6 +44,7 @@ const VALID_TEXT_STYLES = new Set([
   'xxl',
   'xxxl',
 ]);
+const VALID_SHADOWS = new Set(['sm', 'lg']);
 const VALID_SPACINGS = new Set(['none', 'sm', 'md', 'base', 'lg', 'xl', 'xxl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
@@ -289,6 +290,16 @@ const parseTokens = tokensData => {
 
   const shadows = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'box-shadows')
+    .filter(({ name }) => {
+      const size = name
+        .replace('shadow', '')
+        .replace('Color', '')
+        .replace('OffsetHeight', '')
+        .replace('OffsetWidth', '')
+        .replace('Opacity', '')
+        .replace('Radius', '');
+      return VALID_SHADOWS.has(size.toLowerCase());
+    })
     .groupBy(({ name }) =>
       name
         .replace('OffsetHeight', '')
