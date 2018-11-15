@@ -1,5 +1,4 @@
 #import "BPKCalendar.h"
-#import "BPKCalendarHeaderView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
