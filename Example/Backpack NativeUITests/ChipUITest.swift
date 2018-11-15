@@ -23,12 +23,16 @@ class ChipUITest: XCTestCase {
         return XCUIApplication()
     }()
 
+    lazy var afghanistanChip: XCUIElement = {
+        return app.buttons["Afghanistan"]
+    }()
+
     lazy var belgiumChip: XCUIElement = {
-        return app.otherElements["Belgium"]
+        return app.buttons["Belgium"]
     }()
 
     lazy var ethiopiaChip: XCUIElement = {
-        return app.otherElements["Ethiopia"]
+        return app.buttons["Ethiopia"]
     }()
 
     override func setUp() {
@@ -68,5 +72,13 @@ class ChipUITest: XCTestCase {
 
         XCTAssertTrue(belgiumChip.isSelected, "The chip should have been selected when tapped")
         saveScreenshot(named: "Chip selected")
+    }
+
+    func testDisabledChip() {
+        XCTContext.runActivity(named: "Navigate") { _ in
+            navigateAndShow()
+        }
+
+        XCTAssertFalse(afghanistanChip.isEnabled, "The chip should not yet have been selected")
     }
 }

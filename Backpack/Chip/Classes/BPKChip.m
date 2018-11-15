@@ -73,6 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.layer addSublayer:self.tintLayer];
 
     self.isAccessibilityElement = YES;
+    self.accessibilityTraits = UIAccessibilityTraitButton;
 
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.fontStyle = BPKFontStyleTextSm;
@@ -159,6 +160,10 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundColor = BPKColor.white;
         self.textColor = BPKColor.gray100;
     }
+
+    uint64_t selectedTraitBits = self.selected ? UIAccessibilityTraitSelected : 0;
+    uint64_t enabledTraitBits = !self.enabled ? UIAccessibilityTraitNotEnabled : 0;
+    self.accessibilityTraits = UIAccessibilityTraitButton | selectedTraitBits | enabledTraitBits;
 
     [self updateTitle];
 }
