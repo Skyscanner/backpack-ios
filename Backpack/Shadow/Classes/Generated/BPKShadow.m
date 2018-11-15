@@ -83,21 +83,5 @@ NS_ASSUME_NONNULL_BEGIN
     return shadowSm;
 }
 
-+ (instancetype)shadowXl {
-    static dispatch_once_t shadowXlOnceToken;
-    static BPKShadow *shadowXl;
-
-    dispatch_once(&shadowXlOnceToken, ^{
-        UIColor *color = [UIColor colorWithRed:0.145 green:0.125 blue:0.200 alpha:1];
-        shadowXl = [[BPKShadow alloc] initWithColor:color
-                                               offset:CGSizeMake(0, 12)
-                                              opacity:0.2
-                                               radius:50];
-
-    });
-
-    return shadowXl;
-}
-
 @end
 NS_ASSUME_NONNULL_END

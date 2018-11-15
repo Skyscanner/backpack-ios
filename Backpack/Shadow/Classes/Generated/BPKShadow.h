@@ -66,10 +66,5 @@ NS_SWIFT_NAME(Shadow) @interface BPKShadow: NSObject
  */
 + (instancetype)shadowSm;
 
-/**
- * The Skyscanner extra large shadow.
- */
-+ (instancetype)shadowXl;
-
 @end
 NS_ASSUME_NONNULL_END
