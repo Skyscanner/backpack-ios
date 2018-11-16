@@ -36,7 +36,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    BPKFontStyle fontStyle = ((BPKCalendarAppearance *)self.header.calendar.appearance).headerTitleFontStyle;
+    FSCalendarAppearance *appearance = self.header.calendar.appearance;
+    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
+    BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];
     self.titleLabel.attributedText = monthText;
 }

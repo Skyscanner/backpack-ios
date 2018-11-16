@@ -52,7 +52,9 @@
 
 - (void)setMonth:(NSDate *)month {
     [super setMonth:month];
-    BPKFontStyle fontStyle = ((BPKCalendarAppearance *)self.calendar.appearance).headerTitleFontStyle;
+    FSCalendarAppearance *appearance = self.calendar.appearance;
+    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
+    BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];
     self.titleLabel.attributedText = monthText;
 }
