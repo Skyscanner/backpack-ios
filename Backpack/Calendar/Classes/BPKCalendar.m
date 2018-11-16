@@ -1,8 +1,20 @@
 #import "BPKCalendar.h"
+#import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarStickyHeader.h"
+#import "BPKCalendarAppearance.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <FSCalendar/FSCalendar.h>
+#import <FSCalendar/FSCalendarCollectionView.h>
+#import <Foundation/Foundation.h>
+#import <objc/runtime.h>
+
+@interface FSCalendar (Private)
+
+@property (weak  , nonatomic) FSCalendarCollectionView   *collectionView;
+
+@end
 
 @interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource>
 
@@ -17,8 +29,6 @@
     self = [super initWithCoder:coder];
     if (self) {
         [self setupViews];
-        [self addViews];
-        [self setupConstraints];
     }
     return self;
 }
@@ -28,8 +38,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupViews];
-        [self addViews];
-        [self setupConstraints];
     }
     return self;
 }
@@ -45,32 +53,35 @@
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
     
-    NSDictionary<NSAttributedStringKey, id> *monthTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLgEmphasized];
     NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
     
-    FSCalendarAppearance *appearance = self.calendarView.appearance;
+    BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = @"MMMM";
-    appearance.headerTitleFont = monthTextAttributes[NSFontAttributeName];
     appearance.headerTitleColor = [BPKColor gray900];
+    appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
     appearance.weekdayTextColor = weekdayTextAttributes[NSForegroundColorAttributeName];
     appearance.todayColor = [BPKColor gray100];
     appearance.titleTodayColor = [BPKColor gray900];
     appearance.titleDefaultColor = [BPKColor gray900];
     appearance.selectionColor = [BPKColor blue500];
-}
-
-- (void)addViews {
+    appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
+    
+    Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
+    object_setIvar(self.calendarView, ivar, appearance);
+    
+    // Register our Custom Header Class
+    [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class] forCellWithReuseIdentifier:@"cell"];
+    [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    
     [self addSubview:self.calendarView];
-}
-
-- (void)setupConstraints {
+    
     [NSLayoutConstraint activateConstraints:@[
                                               [self.calendarView.topAnchor constraintEqualToAnchor:self.topAnchor],
                                               [self.calendarView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-                                              [self.calendarView.leftAnchor constraintEqualToAnchor:self.leftAnchor],
-                                              [self.calendarView.rightAnchor constraintEqualToAnchor:self.rightAnchor]
-                                            ]];
+                                              [self.calendarView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                              [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
+                                              ]];
 }
 
 #pragma mark - <FSCalendarDelegateAppearance>

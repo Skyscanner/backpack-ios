@@ -33,6 +33,7 @@ PODS:
     - Backpack/Spacing
   - Backpack/Calendar (3.0.0):
     - Backpack/Color
+    - Backpack/Font
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
