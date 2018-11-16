@@ -43,7 +43,7 @@ PODS:
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Chip (2.3.1):
+  - Backpack/Chip (3.0.0):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Shadow
@@ -99,7 +99,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: ccbb9ee44916a02e5ce91d16c7cf5637ace558da
+  Backpack: a96688db7a51456d04febf0b821d79c3a9be1e3f
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 23984ffe05289728d646cbb6a7a10b4fb1c93440
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
