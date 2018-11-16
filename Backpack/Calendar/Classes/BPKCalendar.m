@@ -24,8 +24,7 @@
 
 @implementation BPKCalendar
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
+- (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
         [self setupViews];
@@ -33,8 +32,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupViews];
@@ -86,16 +84,14 @@
 
 #pragma mark - <FSCalendarDelegateAppearance>
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date
-{
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
     if([self isDateInToday:date]) {
         return [UIColor clearColor];
     }
     return appearance.borderDefaultColor;
 }
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date
-{
+- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
     if([self isDateInToday:date]) {
         return appearance.todayColor;
     }
@@ -104,8 +100,7 @@
 
 #pragma mark - helpers
 
-- (BOOL)isDateInToday:(NSDate *)date
-{
+- (BOOL)isDateInToday:(NSDate *)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [gregorian isDateInToday:date];
 }

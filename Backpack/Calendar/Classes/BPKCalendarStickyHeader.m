@@ -19,8 +19,7 @@
 
 @implementation BPKCalendarStickyHeader
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -35,14 +34,12 @@
     [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     self.titleLabel.frame = self.contentView.bounds;
 }
 
-- (void)setMonth:(NSDate *)month
-{
+- (void)setMonth:(NSDate *)month {
     [super setMonth:month];
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)self.calendar.appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];

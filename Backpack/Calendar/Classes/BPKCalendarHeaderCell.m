@@ -14,8 +14,7 @@
 
 @implementation BPKCalendarHeaderCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self)
     {
@@ -24,8 +23,7 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)self.header.calendar.appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];

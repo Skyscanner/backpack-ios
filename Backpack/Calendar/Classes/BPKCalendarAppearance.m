@@ -9,8 +9,7 @@
 
 @implementation BPKCalendarAppearance
 
-+(instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance
-{
++(instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance {
     BPKCalendarAppearance *instance = [[BPKCalendarAppearance alloc] init];
     
     instance.titleFont = appearance.titleFont;
