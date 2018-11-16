@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 3.0.0
+
+**Breaking:**
+ - BPKShadow:
+  - Removed `Xl` variant of BPKShadow.
+
+**Fixed:**
+ - BPKChip:
+  - Updated accessibility traits.
+
 ## 2.3.1
 
 **Fixed:**
