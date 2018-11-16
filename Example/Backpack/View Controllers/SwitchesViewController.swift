@@ -17,7 +17,7 @@
  */
 
 import UIKit
-import Backpack.Switch
+import Backpack
 
 class SwitchesViewController: UIViewController {
 

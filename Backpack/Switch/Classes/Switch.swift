@@ -15,40 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import UIKit
 
-#import "BPKSwitch.h"
-#import <Backpack/Color.h>
+@objc(BPKSwitch) public class Switch: UISwitch {
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface BPKSwitch()
-
-@end
-
-@implementation BPKSwitch
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setup];
+        self.setUp()
     }
-    return self;
-}
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        self.setUp()
     }
-    return self;
+
+    private func setUp() {
+        tintColor = Backpack.Color.gray100
+        onTintColor = Backpack.Color.blue500
+
+        setNeedsDisplay()
+        
+    }
 }
-
-- (void)setup {
-    self.tintColor = BPKColor.gray100;
-    self.onTintColor = BPKColor.blue500;
-    [self setNeedsDisplay];
-}
-
-@end
-
-NS_ASSUME_NONNULL_END

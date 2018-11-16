@@ -17,11 +17,15 @@
  */
 
 #import "BPKAppDelegate.h"
+#import <Backpack/Backpack-Swift.h>
 
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    BPKSwitch *s = [[BPKSwitch alloc] init];
+    s.on = YES;
+
     // Override point for customization after application launch.
     return YES;
 }

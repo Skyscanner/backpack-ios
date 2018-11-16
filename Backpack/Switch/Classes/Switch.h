@@ -18,6 +18,5 @@
 
 #ifndef __BACKPACK_SWITCH__
 #define __BACKPACK_SWITCH__
-    #import "BPKSwitch.h"
 #endif
 
