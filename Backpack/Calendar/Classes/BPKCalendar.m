@@ -23,20 +23,24 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
+#import <Backpack/Spacing.h>
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarCollectionView.h>
+#import <FSCalendar/FSCalendarDynamicHeader.h>
+#import <FSCalendar/FSCalendarWeekdayView.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 @interface FSCalendar (Private)
 
-@property (weak  , nonatomic) FSCalendarCollectionView   *collectionView;
+@property (weak, nonatomic) FSCalendarCollectionView *collectionView;
 
 @end
 
 @interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource>
 
 @property (nonatomic) FSCalendar *calendarView;
+@property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
 
 @end
 
@@ -97,6 +101,31 @@
                                               [self.calendarView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
                                               [self.calendarView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                               [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
+                                              ]];
+    
+    _calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
+    _calendarWeekdayView.translatesAutoresizingMaskIntoConstraints = NO;
+    _calendarWeekdayView.calendar = _calendarView;
+    _calendarWeekdayView.backgroundColor = [BPKColor white];
+    [self addSubview:_calendarWeekdayView];
+    
+    UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
+    bottomBorder.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomBorder.backgroundColor = [BPKColor gray100];
+    [_calendarWeekdayView addSubview:bottomBorder];
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [_calendarWeekdayView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [_calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                              [_calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+                                              [_calendarWeekdayView.heightAnchor constraintEqualToConstant:48]
+                                              ]];
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [bottomBorder.bottomAnchor constraintEqualToAnchor:_calendarWeekdayView.bottomAnchor],
+                                              [bottomBorder.leadingAnchor constraintEqualToAnchor:_calendarWeekdayView.leadingAnchor],
+                                              [bottomBorder.trailingAnchor constraintEqualToAnchor:_calendarWeekdayView.trailingAnchor],
+                                              [bottomBorder.heightAnchor constraintEqualToConstant:1.0]
                                               ]];
 }
 
