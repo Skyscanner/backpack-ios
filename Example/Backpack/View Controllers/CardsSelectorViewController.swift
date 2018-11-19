@@ -27,6 +27,10 @@ class CardsSelectorViewController: UITableViewController {
         case "divided_horizontal":
             target.navigationItem.title = "With divider"
             target.divisionDirection = .horizontal
+        case "divided_horizontal_corner_style_large":
+            target.navigationItem.title = "With divider and Corner style large"
+            target.divisionDirection = .horizontal
+            target.cornerStyle = .large
         case "divided_vertical":
             target.navigationItem.title = "With divider arranged vertically"
             target.divisionDirection = .vertical
@@ -59,6 +63,9 @@ class CardsSelectorViewController: UITableViewController {
         case "selected":
             target.navigationItem.title = "Selected"
             target.selected = true
+        case "corner_style_large":
+            target.navigationItem.title = "Corner style large"
+            target.cornerStyle = BPKCardCornerStyle.large
         default:
             fatalError("The identifier \(segue.identifier.debugDescription) does not " +
                 "match an example Card configuration.")

@@ -17,6 +17,7 @@
  */
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "BPKCardCornerStyleValues.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,6 +34,11 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
 @property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 /**
+ * The corner-style to apply to the card.
+ */
+@property (nonatomic, assign) IBInspectable BPKCardCornerStyle cornerStyle;
+
+/**
  * The view to display within the card.
  */
 @property(nonatomic, assign, nullable) UIView *subview;
@@ -42,7 +48,15 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
  *
  * @param padded Whether the card should have padding or not.
  */
-- (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPadded:(BOOL)padded;
+
+/**
+ * Create a `BPKCard` with padded and cornerStyle initially set.
+ *
+ * @param padded Whether the card should have padding or not.
+ * @param cornerStyle The corner style that the card should have.
+ */
+- (instancetype)initWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a `BPKCard` with a given frame.

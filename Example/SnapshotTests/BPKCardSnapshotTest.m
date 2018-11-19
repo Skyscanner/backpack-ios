@@ -19,6 +19,7 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/Card.h>
+#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
 #import <Backpack/Label.h>
 
@@ -66,12 +67,34 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testViewSnapshotWithoutPaddedAndLargeCornerStyle {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCard *card = [[BPKCard alloc] initWithPadded:NO cornerStyle:BPKCardCornerStyleLarge];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor red500];
+
+    [self configureCard:card withInnerView:innerView];
+    [self configureParentView:parentView forCard:card];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testViewSnapshotWithPadded {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
     innerView.backgroundColor = [BPKColor red500];
-    
+
+    [self configureCard:card withInnerView:innerView];
+    [self configureParentView:parentView forCard:card];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testViewSnapshotWithPaddedAndLargeCornerStyle {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCard *card = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor red500];
+
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
     FBSnapshotVerifyView(parentView, nil);
@@ -86,7 +109,23 @@ NS_ASSUME_NONNULL_BEGIN
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
     secondInnerView.backgroundColor = [BPKColor green500];
-    
+
+    [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
+    [self configureParentView:parentView forCard:dividedCard];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    firstInnerView.text = @"Lorem ipse";
+    secondInnerView.text = @"dolor sit amet";
+    firstInnerView.backgroundColor = [BPKColor red500];
+    secondInnerView.backgroundColor = [BPKColor green500];
+    dividedCard.cornerStyle = BPKCardCornerStyleLarge;
+
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
     FBSnapshotVerifyView(parentView, nil);
@@ -119,6 +158,23 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor red500];
     secondInnerView.backgroundColor = [BPKColor green500];
     
+    [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
+    [self configureParentView:parentView forCard:dividedCard];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
+    [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2*BPKSpacingLg] setActive:YES];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    firstInnerView.text = @"Lorem ipse";
+    secondInnerView.text = @"dolor sit amet";
+    firstInnerView.backgroundColor = [BPKColor red500];
+    secondInnerView.backgroundColor = [BPKColor green500];
+    dividedCard.cornerStyle = BPKCardCornerStyleLarge;
+
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
     FBSnapshotVerifyView(parentView, nil);

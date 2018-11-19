@@ -37,6 +37,7 @@ class DividedCardsViewController: CardsViewController {
         label2.lineBreakMode = NSLineBreakMode.byWordWrapping
         label2.numberOfLines = 0
         dividedCard.setSubviews(primarySubview: label1, secondarySubview: label2)
+        dividedCard.cornerStyle = cornerStyle
         dividedCard.isPadded = padded
         dividedCard.isSelected = selected
         dividedCard.orientation = divisionDirection
