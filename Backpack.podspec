@@ -105,7 +105,9 @@ Pod::Spec.new do |s|
   s.subspec 'Calendar' do |ss|
       ss.source_files = 'Backpack/Calendar/Classes/**/*.{h,m}'
       ss.public_header_files = 'Backpack/Calendar/Classes/**/*.h'
+      ss.dependency 'FSCalendar', '~> 2.8'
       ss.dependency 'Backpack/Color'
+      ss.dependency 'Backpack/Font'
       ss.dependency 'Backpack/Radii'
       ss.dependency 'Backpack/Shadow'
       ss.dependency 'Backpack/Spacing'

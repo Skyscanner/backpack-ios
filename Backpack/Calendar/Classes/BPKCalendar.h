@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKCalendarAppearance.h"
 
 @class BPKCalendar;
 
@@ -40,7 +39,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
 
 @end
 
-@interface BPKCalendar : UIView
+NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
 /**
  * Locale used for displaying name of days and months
@@ -66,10 +65,5 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
  * The latest date that the user is allowed to select
  */
 @property (nonatomic) NSDate *maxDate;
-
-/**
- * Appearance settimgs of the calendar
- */
-@property (nonatomic) BPKCalendarAppearance *appearance;
 
 @end

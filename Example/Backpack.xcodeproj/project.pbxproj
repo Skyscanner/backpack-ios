@@ -73,6 +73,7 @@
 		D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */; };
 		D696CA20215CC09400682666 /* BPKIconTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D696CA1F215CC09400682666 /* BPKIconTest.m */; };
 		D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696CA21215CC1BD00682666 /* IconSwiftTest.swift */; };
+		D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698E64E219C528100D03060 /* CalendarViewController.swift */; };
 		D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */; };
 		D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */; };
 		D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
@@ -210,6 +211,7 @@
 		D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsPerformanceViewController.swift; sourceTree = "<group>"; };
 		D696CA1F215CC09400682666 /* BPKIconTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconTest.m; sourceTree = "<group>"; };
 		D696CA21215CC1BD00682666 /* IconSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSwiftTest.swift; sourceTree = "<group>"; };
+		D698E64E219C528100D03060 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SnapshotTests-Info.plist"; sourceTree = "<group>"; };
 		D6CE74F12124230000154D92 /* BPKPanelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPanelTest.m; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D698E64E219C528100D03060 /* CalendarViewController.swift */,
 				D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */,
 				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
 				D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */,
@@ -735,10 +738,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Backpack/Backpack.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Backpack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -750,11 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -831,6 +832,7 @@
 				D6D6BB6621958D4400312C1C /* GradientSelectorTableViewController.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,

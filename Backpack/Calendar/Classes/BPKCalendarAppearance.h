@@ -16,93 +16,17 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import <FSCalendar/FSCalendar.h>
+#import <Backpack/Font.h>
 
-@interface BPKCalendarAppearance : NSObject
+NS_ASSUME_NONNULL_BEGIN
 
-/**
- * The font of the weekday text.
- */
-@property (nonatomic) UIFont *weekdayFont;
+@interface BPKCalendarAppearance : FSCalendarAppearance
 
-/**
- * The font of the month text.
- */
-@property (nonatomic) UIFont *headerTitleFont;
+@property BPKFontStyle headerTitleFontStyle;
 
-/**
- * The color of weekday text.
- */
-@property (nonatomic) UIColor *weekdayTextColor;
-
-/**
- * The color of month header text.
- */
-@property (nonatomic) UIColor *headerTitleColor;
-
-/**
- * The date format of the month header.
- */
-@property (nonatomic) NSString *headerDateFormat;
-
-/**
- * The alpha value of month label staying on the fringes.
- */
-@property (nonatomic) CGFloat headerMinimumDissolvedAlpha;
-
-/**
- * The day text color for unselected state.
- */
-@property (nonatomic) UIColor *dayTextDefaultColor;
-
-/**
- * The day text color for selected state.
- */
-@property (nonatomic) UIColor *dayTextSelectionColor;
-
-/**
- * The day text color for today in the calendar.
- */
-@property (nonatomic) UIColor *dayTextTodayColor;
-
-/**
- * The day text color for days out of current month.
- */
-@property (nonatomic) UIColor *dayTextPlaceholderColor;
-
-/**
- * The day text color for weekend.
- */
-@property (nonatomic) UIColor *dayTextWeekendColor;
-
-/**
- * The fill color of the shape for selected state.
- */
-@property (nonatomic) UIColor *selectionColor;
-
-/**
- * The fill color of the shape for today.
- */
-@property (nonatomic) UIColor *todayColor;
-
-/**
- * The fill color of the shape for today and selected state.
- */
-@property (nonatomic) UIColor *todaySelectionColor;
-
-/**
- * The border color of the shape for unselected state.
- */
-@property (nonatomic) UIColor *borderDefaultColor;
-
-/**
- * The border color of the shape for selected state.
- */
-@property (nonatomic) UIColor *borderSelectionColor;
-
-/**
- * The border radius, while 1 means a circle, 0 means a rectangle, and the middle value will give it a corner radius.
- */
-@property (nonatomic) CGFloat borderRadius;
++(instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance;
 
 @end
+
+NS_ASSUME_NONNULL_END
