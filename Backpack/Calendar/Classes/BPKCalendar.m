@@ -17,6 +17,7 @@
  */
 
 #import "BPKCalendar.h"
+#import "BPKCalendarCell.h"
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarAppearance.h"
@@ -69,6 +70,7 @@
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.scrollEnabled = YES;
     self.calendarView.pagingEnabled = NO;
+    self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
     self.calendarView.placeholderType = FSCalendarPlaceholderTypeNone;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
@@ -90,7 +92,7 @@
     Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
     object_setIvar(self.calendarView, ivar, appearance);
     
-    // Register our Custom Header Class
+    [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:@"cell"];
     [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class] forCellWithReuseIdentifier:@"cell"];
     [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     
@@ -129,6 +131,41 @@
                                               ]];
 }
 
+- (void)setSelectionType:(BPKCalendarSelection)selectionType {
+    _selectionType = selectionType;
+    self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+}
+
+#pragma mark - <FSCalendarDataSource>
+
+- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
+    return cell;
+}
+
+- (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition: (FSCalendarMonthPosition)monthPosition
+{
+    [self configureCell:cell forDate:date atMonthPosition:monthPosition];
+}
+
+#pragma mark - <FSCalendarDelegate>
+
+- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    return YES;
+}
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    [self configureVisibleCells];
+}
+
+- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    [self configureVisibleCells];
+}
+
 #pragma mark - <FSCalendarDelegateAppearance>
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
@@ -143,6 +180,59 @@
         return appearance.todayColor;
     }
     return appearance.borderDefaultColor;
+}
+
+#pragma mark - private
+
+- (void)configureVisibleCells
+{
+    [self.calendarView.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDate *date = [self.calendarView dateForCell:obj];
+        FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
+        [self configureCell:obj forDate:date atMonthPosition:position];
+    }];
+}
+
+- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
+{
+    NSCalendar *gregorian = self.calendarView.gregorian;
+    NSArray<NSDate *> *selectedDates = self.calendarView.selectedDates;
+    BPKCalendarCell *diyCell = (BPKCalendarCell *)cell;
+    
+    // Configure selection layer
+    if (monthPosition == FSCalendarMonthPositionCurrent) {
+        
+        SelectionType selectionType = SelectionTypeNone;
+        if ([self.calendarView.selectedDates containsObject:date]) {
+            NSDate *previousDate = [gregorian dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:date options:0];
+            NSDate *nextDate = [gregorian dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
+            if ([selectedDates containsObject:date]) {
+                if ([selectedDates containsObject:previousDate] && [selectedDates containsObject:nextDate]) {
+                    selectionType = SelectionTypeMiddle;
+                } else if ([selectedDates containsObject:previousDate] && [selectedDates containsObject:date]) {
+                    selectionType = SelectionTypeRightBorder;
+                } else if ([selectedDates containsObject:nextDate]) {
+                    selectionType = SelectionTypeLeftBorder;
+                } else {
+                    selectionType = SelectionTypeSingle;
+                }
+            }
+        } else {
+            selectionType = SelectionTypeNone;
+        }
+        
+        if (selectionType == SelectionTypeNone) {
+            diyCell.selectionLayer.hidden = YES;
+            return;
+        }
+        
+        diyCell.selectionLayer.hidden = NO;
+        diyCell.selectionType = selectionType;
+        
+    } else {
+        diyCell.selectionLayer.hidden = YES;
+        
+    }
 }
 
 #pragma mark - helpers
