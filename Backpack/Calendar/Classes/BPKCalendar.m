@@ -118,7 +118,7 @@
                                               [_calendarWeekdayView.topAnchor constraintEqualToAnchor:self.topAnchor],
                                               [_calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                               [_calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [_calendarWeekdayView.heightAnchor constraintEqualToConstant:48]
+                                              [_calendarWeekdayView.heightAnchor constraintEqualToConstant:6*BPKSpacingMd]
                                               ]];
     
     [NSLayoutConstraint activateConstraints:@[
