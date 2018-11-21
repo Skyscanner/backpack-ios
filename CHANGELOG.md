@@ -6,17 +6,17 @@
 
 **Added:**
  - BPKCard:
-  - Added `cornerStyles` options of small (default) and large.
+   - Added `cornerStyles` options of small (default) and large.
 
 ## 3.0.0
 
 **Breaking:**
  - BPKShadow:
-  - Removed `Xl` variant of BPKShadow.
+   - Removed `Xl` variant of BPKShadow.
 
 **Fixed:**
  - BPKChip:
-  - Updated accessibility traits.
+   - Updated accessibility traits.
 
 ## 2.3.1
 
