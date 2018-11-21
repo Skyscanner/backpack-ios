@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 3.1.0
+
+**Added:**
+ - BPKCard:
+  - Added `cornerStyles` options of small (default) and large.
+
 ## 3.0.0
 
 **Breaking:**
