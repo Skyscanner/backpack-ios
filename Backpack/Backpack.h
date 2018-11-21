@@ -30,6 +30,7 @@
     #import "Calendar.h"
     #import "Card.h"
     #import "Chip.h"
+    #import "Dialog.h"
     #import "Label.h"
     #import "Panel.h"
     #import "Icon.h"
