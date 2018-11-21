@@ -34,15 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 typedef NS_ENUM(NSInteger, BPKDialogControllerStyle) {
     /**
-     * An alert style Dialog displaying its content in
-     * the middle of the screen.
+     * A bottom sheet displayed at the bottom of the screen.
+     * Suitable for confirming potential dangerous actions or
+     * making choices.
      */
     BPKDialogControllerStyleBottomSheet = 0,
 
     /**
-     * A bottom sheet displayed at the bottom of the screen.
-     * Suitable for confirming potential dangerous actions or
-     * making choices.
+     * An alert style Dialog displaying its content in
+     * the middle of the screen.
      */
     BPKDialogControllerStyleAlert
 };

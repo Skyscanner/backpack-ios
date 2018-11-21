@@ -62,7 +62,7 @@ class DialogUITest: XCTestCase {
 
     func testTapScrimToDismiss() {
         XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow(story: "Normal")
+            navigateAndShow(story: "With call to action")
         }
 
         XCTAssertTrue(dialogScrimView.exists, "The scrim should have been shown")
@@ -80,7 +80,7 @@ class DialogUITest: XCTestCase {
 
     func testTapScrimDoesNotDismissButtonDoes() {
         XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow(story: "Delete")
+            navigateAndShow(story: "Delete confirmation")
         }
         XCTAssertTrue(dialogScrimView.exists, "The scrim should have been shown")
         XCTAssertTrue(dialogView.exists, "The dialog view should have been shown")

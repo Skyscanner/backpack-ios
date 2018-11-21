@@ -28,18 +28,18 @@ class DialogSelectorViewController: UITableViewController {
         }
 
         switch segue.identifier {
-        case "ShowNormal":
+        case "ShowCTA":
             destinationController.type = .normal
-            destinationController.title = "Normal"
+            destinationController.title = "With call to action"
         case "ShowWarning":
             destinationController.type = .warning
             destinationController.title = "Warning"
         case "ShowDelete":
             destinationController.type = .delete
             destinationController.title = "Delete confirmation"
-        case "ShowConfirmation":
+        case "ShowSuccess":
             destinationController.type = .confirmation
-            destinationController.title = "Booking confirmation"
+            destinationController.title = "Success"
         default:
             fatalError("Unrecognized segue \(segue.identifier.debugDescription)")
         }
