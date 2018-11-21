@@ -22,5 +22,10 @@ import Backpack.Calendar
 
 class CalendarViewController: UIViewController {
     @IBOutlet weak var myView: Backpack.Calendar!
-    var calendar: Backpack.Calendar!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+
+    @IBAction func valueChanged(_ sender: Any) {
+        myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
+        myView.reloadData()
+    }
 }

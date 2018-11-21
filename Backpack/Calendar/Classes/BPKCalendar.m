@@ -82,7 +82,7 @@
     appearance.headerTitleColor = [BPKColor gray900];
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
-    appearance.weekdayTextColor = weekdayTextAttributes[NSForegroundColorAttributeName];
+    appearance.weekdayTextColor = [BPKColor gray500];
     appearance.todayColor = [BPKColor gray100];
     appearance.titleTodayColor = [BPKColor gray900];
     appearance.titleDefaultColor = [BPKColor gray900];
@@ -134,6 +134,14 @@
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
     _selectionType = selectionType;
     self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+    for (NSDate *date in _calendarView.selectedDates) {
+        [_calendarView deselectDate:date];
+    }
+}
+
+-(void)reloadData
+{
+    [_calendarView reloadData];
 }
 
 #pragma mark - <FSCalendarDataSource>
@@ -153,6 +161,10 @@
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
+    if (_selectionType == BPKCalendarSelectionRange
+        && calendar.selectedDates.count >= 2) {
+        [calendar deselectDate:calendar.selectedDates.lastObject];
+    }
     return YES;
 }
 
@@ -195,42 +207,40 @@
 
 - (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
-    NSCalendar *gregorian = self.calendarView.gregorian;
-    NSArray<NSDate *> *selectedDates = self.calendarView.selectedDates;
-    BPKCalendarCell *diyCell = (BPKCalendarCell *)cell;
+    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
+        return [a compare:b];
+    }];
+    BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
     
     // Configure selection layer
     if (monthPosition == FSCalendarMonthPositionCurrent) {
-        
         SelectionType selectionType = SelectionTypeNone;
-        if ([self.calendarView.selectedDates containsObject:date]) {
-            NSDate *previousDate = [gregorian dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:date options:0];
-            NSDate *nextDate = [gregorian dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
-            if ([selectedDates containsObject:date]) {
-                if ([selectedDates containsObject:previousDate] && [selectedDates containsObject:nextDate]) {
-                    selectionType = SelectionTypeMiddle;
-                } else if ([selectedDates containsObject:previousDate] && [selectedDates containsObject:date]) {
-                    selectionType = SelectionTypeRightBorder;
-                } else if ([selectedDates containsObject:nextDate]) {
+        
+        if (selectedDates.count > 1 && _selectionType == BPKCalendarSelectionRange) {
+            NSDate *minDate = [selectedDates firstObject];
+            NSDate *maxDate = [selectedDates lastObject];
+            BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
+            if (dateInsideRange) {
+                BOOL isMinDate = [date isEqualToDate:minDate];
+                BOOL isMaxDate = [date isEqualToDate:maxDate];
+                
+                if (isMinDate) {
                     selectionType = SelectionTypeLeftBorder;
+                } else if (isMaxDate) {
+                    selectionType = SelectionTypeRightBorder;
                 } else {
-                    selectionType = SelectionTypeSingle;
+                    selectionType = SelectionTypeMiddle;
                 }
             }
-        } else {
-            selectionType = SelectionTypeNone;
+        } else if ([selectedDates containsObject:date]) {
+            selectionType = SelectionTypeSingle;
         }
         
-        if (selectionType == SelectionTypeNone) {
-            diyCell.selectionLayer.hidden = YES;
-            return;
-        }
-        
-        diyCell.selectionLayer.hidden = NO;
-        diyCell.selectionType = selectionType;
+        calendarCell.selectionLayer.hidden = (selectionType == SelectionTypeNone);
+        calendarCell.selectionType = selectionType;
         
     } else {
-        diyCell.selectionLayer.hidden = YES;
+        calendarCell.selectionLayer.hidden = YES;
         
     }
 }
@@ -240,6 +250,17 @@
 - (BOOL)isDateInToday:(NSDate *)date {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     return [gregorian isDateInToday:date];
+}
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+    
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+    
+    return YES;
 }
 
 @end

@@ -17,8 +17,10 @@
  */
 
 #import "BPKCalendarCell.h"
+#import <FSCalendar/FSCalendarDynamicHeader.h>
 #import <FSCalendar/FSCalendarExtensions.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 
 @implementation BPKCalendarCell
 
@@ -59,6 +61,39 @@
     }
     
     self.selectionLayer.path = [UIBezierPath bezierPathWithRect:selectionRect].CGPath;
+    [self configureAppearance];
+}
+
+-(void)configureAppearance
+{
+    [super configureAppearance];
+
+    UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
+    UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
+    
+    if (self.titleLabel.text) {
+        if (self.selectionType == SelectionTypeMiddle) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
+                                                                            content:self.titleLabel.text
+                                                                          textColor:selectedColor];
+        } else if (self.selectionType == SelectionTypeLeftBorder) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+                                                                            content:self.titleLabel.text
+                                                                          textColor:selectedColor];
+        } else if (self.selectionType == SelectionTypeRightBorder) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+                                                                            content:self.titleLabel.text
+                                                                          textColor:selectedColor];
+        } else if (self.selectionType == SelectionTypeSingle) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+                                                                            content:self.titleLabel.text
+                                                                          textColor:color];
+        } else {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
+                                                                            content:self.titleLabel.text
+                                                                          textColor:color];
+        }
+    }
 }
 
 - (void)setSelectionType:(SelectionType)selectionType

@@ -39,7 +39,7 @@
     FSCalendarAppearance *appearance = self.header.calendar.appearance;
     NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
-    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];
+    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 }
 
