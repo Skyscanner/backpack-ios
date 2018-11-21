@@ -32,15 +32,31 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testInitWithPadded {
     BPKCard *c1 = [[BPKCard alloc] initWithPadded:YES];
     XCTAssertTrue(c1.padded);
-    
+    XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleSmall);
+
     BPKCard *c2 = [[BPKCard alloc] initWithPadded:NO];
     XCTAssertFalse(c2.padded);
+    XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleSmall);
+}
+
+- (void)testInitWithPaddedAndCornerStyle {
+    BPKCard *c1 = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
+    XCTAssertEqual(c1.cornerStyle, BPKCardCornerStyleLarge);
+
+    BPKCard *c2 = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleSmall];
+    XCTAssertEqual(c2.cornerStyle, BPKCardCornerStyleSmall);
 }
 
 - (void)testSetPadded {
     BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
     c.padded = NO;
     XCTAssertFalse(c.padded);
+}
+
+- (void)testSetCornerStyle {
+    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    c.cornerStyle = BPKCardCornerStyleLarge;
+    XCTAssertEqual(c.cornerStyle, BPKCardCornerStyleLarge);
 }
 
 - (void)testSetSubview {

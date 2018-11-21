@@ -22,6 +22,7 @@ class CardsViewController: UIViewController {
     @IBOutlet weak var card: Card!
     var padded: Bool = true
     var selected: Bool = false
+    var cornerStyle: BPKCardCornerStyle = .small
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class CardsViewController: UIViewController {
         label.numberOfLines = 0
         card.subview = label
         card.isPadded = padded
+        card.cornerStyle = cornerStyle
         card.isSelected = selected
     }
 }

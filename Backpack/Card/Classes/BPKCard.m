@@ -27,7 +27,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 
 @interface BPKCard()
 
-- (void)setupWithPadded:(BOOL)padded;
+- (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle;
 @property(nonatomic, strong) UIView *innerView;
 @end
 
@@ -38,7 +38,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        [self setupWithPadded:BPKCardDefaultPaddedValue];
+        [self setupWithPadded:BPKCardDefaultPaddedValue cornerStyle:BPKCardDefaultCornerStyle];
     }
     
     return self;
@@ -48,32 +48,40 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self = [super initWithFrame:frame];
     
     if (self) {
-        [self setupWithPadded:BPKCardDefaultPaddedValue];
+        [self setupWithPadded:BPKCardDefaultPaddedValue cornerStyle:BPKCardDefaultCornerStyle];
     }
     
     return self;
 }
 
 - (instancetype)initWithPadded:(BOOL)padded {
+    return [self initWithPadded:padded cornerStyle:BPKCardDefaultCornerStyle];
+}
+
+- (instancetype)initWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
     self = [super initWithFrame:CGRectZero];
-    
+
     if (self) {
-        [self setupWithPadded:padded];
+        [self setupWithPadded:padded cornerStyle:cornerStyle];
     }
-    
+
     return self;
 }
 
 - (void)setPadded:(BOOL)padded {
     if (padded) {
         self.layoutMargins = UIEdgeInsetsMake(BPKSpacingBase, BPKSpacingBase, BPKSpacingBase, BPKSpacingBase);
-        self.innerView.layer.cornerRadius = 0;
     } else {
         self.layoutMargins = UIEdgeInsetsZero;
-        self.innerView.layer.cornerRadius = BPKBorderRadiusSm;
     }
-    
+
     _padded = padded;
+    [self updateCorners];
+}
+
+- (void)setCornerStyle:(BPKCardCornerStyle)cornerStyle {
+    _cornerStyle = cornerStyle;
+    [self updateCorners];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -102,7 +110,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     _subview = view;
     [self.innerView addSubview:view];
     view.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     [NSLayoutConstraint activateConstraints:@[
                                               [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor],
                                               [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
@@ -113,8 +121,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 
 #pragma mark - Private
 
-- (void)setupWithPadded:(BOOL)padded {
-    self.layer.cornerRadius = BPKBorderRadiusSm;
+- (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
     self.layer.masksToBounds = NO;
     self.backgroundColor = BPKColor.white;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
@@ -123,6 +130,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self.innerView.layer.masksToBounds = YES;
     self.innerView.userInteractionEnabled = NO;
     self.padded = padded;
+    self.cornerStyle = cornerStyle;
     [super addSubview:self.innerView];
     
     self.innerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -133,6 +141,29 @@ const BOOL BPKCardDefaultPaddedValue = YES;
                                               [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.innerView.trailingAnchor],
                                               [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.innerView.bottomAnchor]
                                               ]];
+}
+
+- (void)updateCorners {
+    CGFloat cornerRadius = 0;
+
+    switch (self.cornerStyle) {
+        case BPKCardCornerStyleSmall:
+            cornerRadius = BPKBorderRadiusSm;
+            break;
+        case BPKCardCornerStyleLarge:
+            cornerRadius = BPKBorderRadiusLg;
+            break;
+        default:
+            break;
+    }
+
+    self.layer.cornerRadius = cornerRadius;
+
+    if (self.isPadded) {
+        self.innerView.layer.cornerRadius = 0;
+    } else {
+        self.innerView.layer.cornerRadius = cornerRadius;
+    }
 }
 
 @end
