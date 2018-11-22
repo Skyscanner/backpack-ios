@@ -21,6 +21,7 @@
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarAppearance.h"
+#import "BPKCalendarYearPill.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -42,6 +43,7 @@
 
 @property (nonatomic) FSCalendar *calendarView;
 @property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
+@property (nonatomic) BPKCalendarYearPill *yearPill;
 
 @end
 
@@ -129,6 +131,15 @@
                                               [bottomBorder.trailingAnchor constraintEqualToAnchor:_calendarWeekdayView.trailingAnchor],
                                               [bottomBorder.heightAnchor constraintEqualToConstant:1.0]
                                               ]];
+    
+    _yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
+    _yearPill.hidden = YES;
+    [self addSubview:_yearPill];
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [_yearPill.topAnchor constraintEqualToAnchor:_calendarWeekdayView.bottomAnchor constant:BPKSpacingLg],
+                                              [_yearPill.centerXAnchor constraintEqualToAnchor:self.centerXAnchor]
+                                              ]];
 }
 
 #pragma mark - property getters/setters
@@ -176,13 +187,6 @@
     return cell;
 }
 
-- (void)calendar:(FSCalendar *)calendar
- willDisplayCell:(FSCalendarCell *)cell
-         forDate:(NSDate *)date
- atMonthPosition: (FSCalendarMonthPosition)monthPosition {
-    [self configureCell:cell forDate:date atMonthPosition:monthPosition];
-}
-
 -(NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return _minDate;
 }
@@ -209,6 +213,25 @@
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
+}
+
+- (void)calendar:(FSCalendar *)calendar
+ willDisplayCell:(FSCalendarCell *)cell
+         forDate:(NSDate *)date
+ atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSDateComponents *components = [_calendarView.gregorian components:NSCalendarUnitYear fromDate:date];
+    NSDateComponents *todayComponents = [_calendarView.gregorian components:NSCalendarUnitYear fromDate:NSDate.date];
+    BOOL isDateOutsideCurrentYear = components.year != todayComponents.year;
+    
+    if (monthPosition == FSCalendarMonthPositionCurrent
+        && isDateOutsideCurrentYear) {
+        _yearPill.hidden = NO;
+        _yearPill.year = [NSNumber numberWithInteger:components.year];
+    } else {
+        _yearPill.hidden = YES;
+    }
+    
+    [self configureCell:cell forDate:date atMonthPosition:monthPosition];
 }
 
 #pragma mark - <FSCalendarDelegateAppearance>
@@ -279,8 +302,7 @@
 #pragma mark - helpers
 
 - (BOOL)isDateInToday:(NSDate *)date {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    return [gregorian isDateInToday:date];
+    return [_calendarView.gregorian isDateInToday:date];
 }
 
 + (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
