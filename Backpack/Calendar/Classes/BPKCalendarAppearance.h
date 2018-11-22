@@ -21,7 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKCalendarAppearance : FSCalendarAppearance
+@interface BPKCalendarAppearance: FSCalendarAppearance
 
 @property BPKFontStyle headerTitleFontStyle;
 

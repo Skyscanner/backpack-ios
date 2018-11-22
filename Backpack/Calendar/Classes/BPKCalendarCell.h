@@ -23,12 +23,12 @@ typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeSingle,
     SelectionTypeLeftBorder,
     SelectionTypeMiddle,
-    SelectionTypeRightBorder
+    SelectionTypeRightBorder,
+    SelectionTypeRowStart,
+    SelectionTypeRowEnd
 };
 
-@interface BPKCalendarCell : FSCalendarCell
-
-@property (weak, nonatomic) CAShapeLayer *selectionLayer;
+@interface BPKCalendarCell: FSCalendarCell
 
 @property (assign, nonatomic) SelectionType selectionType;
 

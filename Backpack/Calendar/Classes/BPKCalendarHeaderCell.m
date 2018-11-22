@@ -27,10 +27,12 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
     if (self)
     {
         [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
+
     return self;
 }
 

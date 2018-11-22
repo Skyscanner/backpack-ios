@@ -39,7 +39,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate
 
 @end
 
-NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
+NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 
 /**
  * Locale used for displaying name of days and months

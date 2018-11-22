@@ -21,35 +21,50 @@
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Shadow.h>
+
+@interface BPKCalendarYearPill ()
+
+@property (nonatomic) UILabel *label;
+
+@end
 
 @implementation BPKCalendarYearPill
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
     if (self) {
+        self.label = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.label.translatesAutoresizingMaskIntoConstraints = NO;
+        self.label.textAlignment = NSTextAlignmentCenter;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        self.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized content:@"" textColor:[BPKColor white]];
-        self.textAlignment = NSTextAlignmentCenter;
-        self.layer.cornerRadius = BPKSpacingLg/2.0;
         self.layer.backgroundColor = [BPKColor gray900].CGColor;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.layer.shadowOffset = CGSizeMake(0.0, 4.0);
-        self.layer.shadowOpacity = 0.15;
-        self.layer.shadowRadius = 10.0;
         
+        [[BPKShadow shadowLg] applyToLayer:self.layer];
+        [self addSubview:self.label];
         [NSLayoutConstraint activateConstraints:@[
-                                                  [self.widthAnchor constraintEqualToConstant:BPKSpacingXl*2.0],
-                                                  [self.heightAnchor constraintEqualToConstant:BPKSpacingLg]
+                                                  [self.label.topAnchor constraintEqualToAnchor:self.topAnchor constant:BPKSpacingSm],
+                                                  [self.label.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
+                                                  [self.label.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
+                                                  [self.label.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase],
                                                   ]];
     }
+
     return self;
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    self.layer.cornerRadius = self.frame.size.height/2.0;
 }
 
 - (void)setYear:(nonnull NSNumber *)year {
     _year = year;
-    self.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+    self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
                                                          content:[year stringValue]
                                                        textColor:[BPKColor white]];
+    [self.label sizeToFit];
 }
 
 @end
