@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property BPKFontStyle headerTitleFontStyle;
 
-+(instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance;
++ (instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance;
 
 @end
 

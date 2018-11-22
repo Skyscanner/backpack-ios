@@ -144,11 +144,11 @@
 
 #pragma mark - property getters/setters
 
--(NSLocale *)locale {
+- (NSLocale *)locale {
     return _calendarView.locale;
 }
 
--(void)setLocale:(NSLocale *)locale {
+- (void)setLocale:(NSLocale *)locale {
     _calendarView.locale = locale;
 }
 
@@ -160,7 +160,7 @@
     }
 }
 
--(NSArray<NSDate *> *)selectedDates {
+- (NSArray<NSDate *> *)selectedDates {
     return _calendarView.selectedDates;
 }
 
@@ -176,7 +176,7 @@
 
 #pragma mark - public methods
 
--(void)reloadData {
+- (void)reloadData {
     [_calendarView reloadData];
 }
 
@@ -187,11 +187,11 @@
     return cell;
 }
 
--(NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
     return _minDate;
 }
 
--(NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
+- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
     return _maxDate;
 }
 

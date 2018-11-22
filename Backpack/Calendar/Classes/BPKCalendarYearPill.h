@@ -18,12 +18,8 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BPKCalendarYearPill : UILabel
 
-@property (nonatomic) NSNumber *year;
+@property (nonatomic, nonnull) NSNumber *year;
 
 @end
-
-NS_ASSUME_NONNULL_END

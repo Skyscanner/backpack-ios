@@ -45,7 +45,7 @@
     return self;
 }
 
-- (void)setYear:(NSNumber *)year {
+- (void)setYear:(nonnull NSNumber *)year {
     _year = year;
     self.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
                                                          content:[year stringValue]
