@@ -46,7 +46,7 @@
     
     self.shapeLayer.hidden = NO;
     self.selectionLayer.frame = self.bounds;
-    UIColor *rangeColor = [self.appearance.selectionColor colorWithAlphaComponent:0.7];
+    UIColor *rangeColor = [self.appearance.selectionColor colorWithAlphaComponent:0.5];
     self.selectionLayer.fillColor = rangeColor.CGColor;
     
     if (self.selectionType == SelectionTypeMiddle) {
