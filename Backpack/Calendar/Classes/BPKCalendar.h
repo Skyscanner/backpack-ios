@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
     BPKCalendarSelectionMultiple = 2,
 };
 
-@protocol BPKCalendarDelegate
+NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate
 
 /**
  * Called when a date selection changed.
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
 
 @end
 
-NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
+NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 
 /**
  * Locale used for displaying name of days and months
@@ -65,5 +65,12 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
  * The latest date that the user is allowed to select
  */
 @property (nonatomic) NSDate *maxDate;
+
+/**
+ * The calendar's delegate
+ */
+@property (nonatomic) id<BPKCalendarDelegate> delegate;
+
+- (void)reloadData;
 
 @end

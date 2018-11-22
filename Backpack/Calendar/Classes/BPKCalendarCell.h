@@ -17,16 +17,19 @@
  */
 
 #import <FSCalendar/FSCalendar.h>
-#import <Backpack/Font.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSUInteger, SelectionType) {
+    SelectionTypeNone,
+    SelectionTypeSingle,
+    SelectionTypeLeftBorder,
+    SelectionTypeMiddle,
+    SelectionTypeRightBorder,
+    SelectionTypeRowStart,
+    SelectionTypeRowEnd
+};
 
-@interface BPKCalendarAppearance: FSCalendarAppearance
+@interface BPKCalendarCell: FSCalendarCell
 
-@property BPKFontStyle headerTitleFontStyle;
-
-+ (instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance;
+@property (assign, nonatomic) SelectionType selectionType;
 
 @end
-
-NS_ASSUME_NONNULL_END

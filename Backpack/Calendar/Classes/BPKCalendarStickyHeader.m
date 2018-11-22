@@ -19,12 +19,13 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarAppearance.h"
 #import <Backpack/Font.h>
+#import <Backpack/Spacing.h>
 
 @interface FSCalendarStickyHeader (Private)
 
-@property (weak  , nonatomic) UIView  *contentView;
-@property (weak  , nonatomic) UIView  *bottomBorder;
-@property (weak  , nonatomic) FSCalendarWeekdayView *weekdayView;
+@property (weak, nonatomic) UIView  *contentView;
+@property (weak, nonatomic) UIView  *bottomBorder;
+@property (weak, nonatomic) FSCalendarWeekdayView *weekdayView;
 
 @end
 
@@ -32,11 +33,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
     if (self) {
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.weekdayView removeFromSuperview];
         [self.bottomBorder removeFromSuperview];
     }
+
     return self;
 }
 
@@ -47,7 +50,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.titleLabel.frame = self.contentView.bounds;
+    CGFloat w =  self.contentView.bounds.size.width;
+    CGFloat h =  self.contentView.bounds.size.height;
+    self.titleLabel.frame = CGRectMake(BPKSpacingBase, 0, w, h);
 }
 
 - (void)setMonth:(NSDate *)month {
@@ -55,7 +60,9 @@
     FSCalendarAppearance *appearance = self.calendar.appearance;
     NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
-    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text];
+    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
+                                                                   content:self.titleLabel.text
+                                                                 textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 }
 

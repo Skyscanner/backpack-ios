@@ -16,17 +16,10 @@
  * limitations under the License.
  */
 
-#import <FSCalendar/FSCalendar.h>
-#import <Backpack/Font.h>
+#import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@interface BPKCalendarYearPill: UIView
 
-@interface BPKCalendarAppearance: FSCalendarAppearance
-
-@property BPKFontStyle headerTitleFontStyle;
-
-+ (instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance;
+@property (nonatomic, nonnull) NSNumber *year;
 
 @end
-
-NS_ASSUME_NONNULL_END

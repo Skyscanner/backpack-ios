@@ -17,9 +17,11 @@
  */
 
 #import "BPKCalendar.h"
+#import "BPKCalendarCell.h"
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarAppearance.h"
+#import "BPKCalendarYearPill.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -41,24 +43,33 @@
 
 @property (nonatomic) FSCalendar *calendarView;
 @property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
+@property (nonatomic) BPKCalendarYearPill *yearPill;
 
 @end
 
 @implementation BPKCalendar
 
+NSString * const CellReuseId = @"cell";
+NSString * const HeaderReuseId = @"header";
+NSString * const HeaderDateFormat = @"MMMM";
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
+
     self = [super initWithCoder:coder];
     if (self) {
         [self setupViews];
     }
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+
     if (self) {
         [self setupViews];
     }
+
     return self;
 }
 
@@ -69,6 +80,7 @@
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.scrollEnabled = YES;
     self.calendarView.pagingEnabled = NO;
+    self.calendarView.allowsMultipleSelection = self.selectionType != BPKCalendarSelectionSingle;
     self.calendarView.placeholderType = FSCalendarPlaceholderTypeNone;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
@@ -76,11 +88,11 @@
     NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
     
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
-    appearance.headerDateFormat = @"MMMM";
+    appearance.headerDateFormat = HeaderDateFormat;
     appearance.headerTitleColor = [BPKColor gray900];
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
-    appearance.weekdayTextColor = weekdayTextAttributes[NSForegroundColorAttributeName];
+    appearance.weekdayTextColor = [BPKColor gray500];
     appearance.todayColor = [BPKColor gray100];
     appearance.titleTodayColor = [BPKColor gray900];
     appearance.titleDefaultColor = [BPKColor gray900];
@@ -90,9 +102,9 @@
     Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
     object_setIvar(self.calendarView, ivar, appearance);
     
-    // Register our Custom Header Class
-    [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class] forCellWithReuseIdentifier:@"cell"];
-    [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
+    [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class] forCellWithReuseIdentifier:CellReuseId];
+    [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderReuseId];
     
     [self addSubview:self.calendarView];
     
@@ -103,30 +115,131 @@
                                               [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
                                               ]];
     
-    _calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
-    _calendarWeekdayView.translatesAutoresizingMaskIntoConstraints = NO;
-    _calendarWeekdayView.calendar = _calendarView;
-    _calendarWeekdayView.backgroundColor = [BPKColor white];
-    [self addSubview:_calendarWeekdayView];
+    self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
+    self.calendarWeekdayView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.calendarWeekdayView.calendar = self.calendarView;
+    self.calendarWeekdayView.backgroundColor = [BPKColor white];
+    [self addSubview:self.calendarWeekdayView];
     
     UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
     bottomBorder.translatesAutoresizingMaskIntoConstraints = NO;
     bottomBorder.backgroundColor = [BPKColor gray100];
-    [_calendarWeekdayView addSubview:bottomBorder];
+    [self.calendarWeekdayView addSubview:bottomBorder];
     
     [NSLayoutConstraint activateConstraints:@[
-                                              [_calendarWeekdayView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [_calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [_calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [_calendarWeekdayView.heightAnchor constraintEqualToConstant:6*BPKSpacingMd]
+                                              [self.calendarWeekdayView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [self.calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                              [self.calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+                                              [self.calendarWeekdayView.heightAnchor constraintEqualToConstant:6*BPKSpacingMd]
                                               ]];
     
     [NSLayoutConstraint activateConstraints:@[
-                                              [bottomBorder.bottomAnchor constraintEqualToAnchor:_calendarWeekdayView.bottomAnchor],
-                                              [bottomBorder.leadingAnchor constraintEqualToAnchor:_calendarWeekdayView.leadingAnchor],
-                                              [bottomBorder.trailingAnchor constraintEqualToAnchor:_calendarWeekdayView.trailingAnchor],
+                                              [bottomBorder.bottomAnchor constraintEqualToAnchor:self.calendarWeekdayView.bottomAnchor],
+                                              [bottomBorder.leadingAnchor constraintEqualToAnchor:self.calendarWeekdayView.leadingAnchor],
+                                              [bottomBorder.trailingAnchor constraintEqualToAnchor:self.calendarWeekdayView.trailingAnchor],
                                               [bottomBorder.heightAnchor constraintEqualToConstant:1.0]
                                               ]];
+    
+    self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
+    self.yearPill.hidden = YES;
+    [self addSubview:self.yearPill];
+    
+    [NSLayoutConstraint activateConstraints:@[
+                                              [self.yearPill.topAnchor constraintEqualToAnchor:self.calendarWeekdayView.bottomAnchor constant:BPKSpacingLg],
+                                              [self.yearPill.centerXAnchor constraintEqualToAnchor:self.centerXAnchor]
+                                              ]];
+}
+
+#pragma mark - property getters/setters
+
+- (NSLocale *)locale {
+    return self.calendarView.locale;
+}
+
+- (void)setLocale:(NSLocale *)locale {
+    self.calendarView.locale = locale;
+}
+
+- (void)setSelectionType:(BPKCalendarSelection)selectionType {
+    _selectionType = selectionType;
+    self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+    for (NSDate *date in self.calendarView.selectedDates) {
+        [self.calendarView deselectDate:date];
+    }
+}
+
+- (NSArray<NSDate *> *)selectedDates {
+    return self.calendarView.selectedDates;
+}
+
+- (void)setSelectedDates:(NSArray<NSDate *> *)selectedDates {
+    for (NSDate *date in self.calendarView.selectedDates) {
+        [self.calendarView deselectDate:date];
+    }
+    
+    for (NSDate *date in selectedDates) {
+        [self.calendarView selectDate:date];
+    }
+}
+
+#pragma mark - public methods
+
+- (void)reloadData {
+    [self.calendarView reloadData];
+}
+
+#pragma mark - <FSCalendarDataSource>
+
+- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:CellReuseId forDate:date atMonthPosition:monthPosition];
+    return cell;
+}
+
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+    return self.minDate;
+}
+
+- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
+    return self.maxDate;
+}
+
+#pragma mark - <FSCalendarDelegate>
+
+- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    if (self.selectionType == BPKCalendarSelectionRange
+        && calendar.selectedDates.count >= 2) {
+        [calendar deselectDate:calendar.selectedDates.lastObject];
+    }
+    return YES;
+}
+
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    [self configureVisibleCells];
+    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
+}
+
+- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    [self configureVisibleCells];
+    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
+}
+
+- (void)calendar:(FSCalendar *)calendar
+ willDisplayCell:(FSCalendarCell *)cell
+         forDate:(NSDate *)date
+ atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear fromDate:date];
+    NSDateComponents *todayComponents = [self.calendarView.gregorian components:NSCalendarUnitYear fromDate:NSDate.date];
+    BOOL isDateOutsideCurrentYear = components.year != todayComponents.year;
+    
+    if (monthPosition == FSCalendarMonthPositionCurrent
+        && isDateOutsideCurrentYear) {
+        self.yearPill.hidden = NO;
+        self.yearPill.year = [NSNumber numberWithInteger:components.year];
+    } else {
+        self.yearPill.hidden = YES;
+    }
+    
+    [self configureCell:cell forDate:date atMonthPosition:monthPosition];
 }
 
 #pragma mark - <FSCalendarDelegateAppearance>
@@ -145,11 +258,64 @@
     return appearance.borderDefaultColor;
 }
 
+#pragma mark - private
+
+- (void)configureVisibleCells {
+    [self.calendarView.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDate *date = [self.calendarView dateForCell:obj];
+        FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
+        [self configureCell:obj forDate:date atMonthPosition:position];
+    }];
+}
+
+- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
+        return [a compare:b];
+    }];
+    BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
+    
+    // Configure selection layer
+    if (monthPosition == FSCalendarMonthPositionCurrent) {
+        SelectionType selectionType = SelectionTypeNone;
+        
+        if (selectedDates.count > 1 && self.selectionType == BPKCalendarSelectionRange) {
+            NSDate *minDate = [selectedDates firstObject];
+            NSDate *maxDate = [selectedDates lastObject];
+            BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
+            if (dateInsideRange) {
+                BOOL isMinDate = [date isEqualToDate:minDate];
+                BOOL isMaxDate = [date isEqualToDate:maxDate];
+                
+                if (isMinDate) {
+                    selectionType = SelectionTypeLeftBorder;
+                } else if (isMaxDate) {
+                    selectionType = SelectionTypeRightBorder;
+                } else {
+                    selectionType = SelectionTypeMiddle;
+                }
+            }
+        } else if ([selectedDates containsObject:date]) {
+            selectionType = SelectionTypeSingle;
+        }
+        
+        calendarCell.selectionType = selectionType;
+    }
+}
+
 #pragma mark - helpers
 
 - (BOOL)isDateInToday:(NSDate *)date {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    return [gregorian isDateInToday:date];
+    return [self.calendarView.gregorian isDateInToday:date];
+}
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+    
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+    
+    return YES;
 }
 
 @end

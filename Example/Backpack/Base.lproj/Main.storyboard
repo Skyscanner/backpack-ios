@@ -1083,24 +1083,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SpO-8z-gEV" customClass="BPKCalendar">
-                                <rect key="frame" x="16" y="116" width="343" height="551"/>
+                                <rect key="frame" x="16" y="160" width="343" height="507"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wX5-SW-qOH">
+                                <rect key="frame" x="92" y="124" width="191" height="29"/>
+                                <segments>
+                                    <segment title="Single"/>
+                                    <segment title="Range"/>
+                                    <segment title="Multiple"/>
+                                </segments>
+                                <connections>
+                                    <action selector="valueChanged:" destination="Vin-MS-7na" eventType="valueChanged" id="HSS-jl-Dv7"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="SpO-8z-gEV" firstAttribute="top" secondItem="wX5-SW-qOH" secondAttribute="bottom" constant="8" id="A5w-zB-bKC"/>
+                            <constraint firstItem="wX5-SW-qOH" firstAttribute="centerX" secondItem="0BT-F8-7ZP" secondAttribute="centerX" id="B04-dx-yqQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SpO-8z-gEV" secondAttribute="trailing" id="FqP-kb-qBE"/>
                             <constraint firstItem="SpO-8z-gEV" firstAttribute="leading" secondItem="0BT-F8-7ZP" secondAttribute="leadingMargin" id="Ltp-Av-5RY"/>
-                            <constraint firstItem="SpO-8z-gEV" firstAttribute="top" secondItem="c7K-wR-WXZ" secondAttribute="bottom" id="ODg-vY-9pW"/>
                             <constraint firstItem="x3l-OP-88w" firstAttribute="top" secondItem="SpO-8z-gEV" secondAttribute="bottom" id="ONW-ZA-no9"/>
+                            <constraint firstItem="wX5-SW-qOH" firstAttribute="top" secondItem="c7K-wR-WXZ" secondAttribute="bottom" constant="8" id="xPP-Yy-esL"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="myView" destination="SpO-8z-gEV" id="vmK-5L-1b0"/>
+                        <outlet property="segmentedControl" destination="wX5-SW-qOH" id="IBf-Rc-ONt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LoS-0t-Lsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="291"/>
+            <point key="canvasLocation" x="2180" y="290.10494752623691"/>
         </scene>
         <!--GradientSelectorTableViewController-->
         <scene sceneID="ynX-2w-5sA">
