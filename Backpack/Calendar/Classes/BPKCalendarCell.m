@@ -24,8 +24,7 @@
 
 @implementation BPKCalendarCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         CAShapeLayer *selectionLayer = [[CAShapeLayer alloc] init];
@@ -37,8 +36,7 @@
 }
 
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     
     CGRect selectionRect = CGRectZero;
@@ -64,8 +62,7 @@
     [self configureAppearance];
 }
 
--(void)configureAppearance
-{
+-(void)configureAppearance {
     [super configureAppearance];
 
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
@@ -96,8 +93,7 @@
     }
 }
 
-- (void)setSelectionType:(SelectionType)selectionType
-{
+- (void)setSelectionType:(SelectionType)selectionType {
     if (_selectionType != selectionType) {
         _selectionType = selectionType;
         [self setNeedsLayout];

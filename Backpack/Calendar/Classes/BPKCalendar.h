@@ -66,6 +66,11 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
  */
 @property (nonatomic) NSDate *maxDate;
 
+/**
+ * The calendar's delegate
+ */
+@property (nonatomic) id<BPKCalendarDelegate> delegate;
+
 - (void)reloadData;
 
 @end

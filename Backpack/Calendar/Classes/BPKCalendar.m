@@ -131,6 +131,16 @@
                                               ]];
 }
 
+#pragma mark - property getters/setters
+
+-(NSLocale *)locale {
+    return _calendarView.locale;
+}
+
+-(void)setLocale:(NSLocale *)locale {
+    _calendarView.locale = locale;
+}
+
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
     _selectionType = selectionType;
     self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
@@ -139,28 +149,51 @@
     }
 }
 
--(void)reloadData
-{
+-(NSArray<NSDate *> *)selectedDates {
+    return _calendarView.selectedDates;
+}
+
+- (void)setSelectedDates:(NSArray<NSDate *> *)selectedDates {
+    for (NSDate *date in _calendarView.selectedDates) {
+        [_calendarView deselectDate:date];
+    }
+    
+    for (NSDate *date in selectedDates) {
+        [_calendarView selectDate:date];
+    }
+}
+
+#pragma mark - public methods
+
+-(void)reloadData {
     [_calendarView reloadData];
 }
 
 #pragma mark - <FSCalendarDataSource>
 
-- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
+- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
     return cell;
 }
 
-- (void)calendar:(FSCalendar *)calendar willDisplayCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition: (FSCalendarMonthPosition)monthPosition
-{
+- (void)calendar:(FSCalendar *)calendar
+ willDisplayCell:(FSCalendarCell *)cell
+         forDate:(NSDate *)date
+ atMonthPosition: (FSCalendarMonthPosition)monthPosition {
     [self configureCell:cell forDate:date atMonthPosition:monthPosition];
+}
+
+-(NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
+    return _minDate;
+}
+
+-(NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
+    return _maxDate;
 }
 
 #pragma mark - <FSCalendarDelegate>
 
-- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
+- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     if (_selectionType == BPKCalendarSelectionRange
         && calendar.selectedDates.count >= 2) {
         [calendar deselectDate:calendar.selectedDates.lastObject];
@@ -168,14 +201,14 @@
     return YES;
 }
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
+- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
+    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
 }
 
-- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
+- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
+    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
 }
 
 #pragma mark - <FSCalendarDelegateAppearance>
@@ -196,8 +229,7 @@
 
 #pragma mark - private
 
-- (void)configureVisibleCells
-{
+- (void)configureVisibleCells {
     [self.calendarView.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDate *date = [self.calendarView dateForCell:obj];
         FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
@@ -205,8 +237,7 @@
     }];
 }
 
-- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
-{
+- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
         return [a compare:b];
     }];
@@ -252,8 +283,7 @@
     return [gregorian isDateInToday:date];
 }
 
-+ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
-{
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
     if ([date compare:beginDate] == NSOrderedAscending)
         return NO;
     
