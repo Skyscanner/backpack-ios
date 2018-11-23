@@ -49,8 +49,8 @@
     
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.selectionLayer.bounds;
-    CGFloat centerX = bounds.size.width / 2.0;
     CGFloat height = self.shapeLayer.fs_height;
+    CGFloat shapeLayerX = self.shapeLayer.frame.origin.x;
     
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
@@ -58,18 +58,44 @@
     UIColor *rangeColor = [self.appearance.selectionColor colorWithAlphaComponent:0.5];
     self.selectionLayer.fillColor = rangeColor.CGColor;
     
-    switch (_selectionType) {
+    UIRectCorner corners = 0;
+    CGSize cornerRadii = CGSizeZero;
+    
+    switch (self.rowType) {
+        case RowTypeStart:
+            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
+            cornerRadii = CGSizeMake(height/2.0, height/2.0);
+            break;
+            
+        case RowTypeEnd:
+            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+            cornerRadii = CGSizeMake(height/2.0, height/2.0);
+            break;
+            
+        case RowTypeBoth:
+            corners = UIRectCornerAllCorners;
+            cornerRadii = CGSizeMake(height/2.0, height/2.0);
+            
+        default:
+            break;
+    }
+    
+    switch (self.selectionType) {
         case SelectionTypeMiddle:
             self.shapeLayer.hidden = !self.dateIsToday;
             selectionRect = CGRectMake(0, 0, bounds.size.width, height);
             break;
-            
-        case SelectionTypeLeftBorder:
-            selectionRect = CGRectMake(centerX, 0, centerX, height);
+        
+        case SelectionTypeRightBorder:
+            selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
+            corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
+            cornerRadii = CGSizeMake(height/2.0, height/2.0);
             break;
             
-        case SelectionTypeRightBorder:
-            selectionRect = CGRectMake(0, 0, centerX, height);
+        case SelectionTypeLeftBorder:
+            selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
+            corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
+            cornerRadii = CGSizeMake(height/2.0, height/2.0);
             break;
             
         default:
@@ -77,7 +103,9 @@
             break;
     }
     
-    self.selectionLayer.path = [UIBezierPath bezierPathWithRect:selectionRect].CGPath;
+    self.selectionLayer.path = [UIBezierPath bezierPathWithRoundedRect:selectionRect
+                                                     byRoundingCorners:corners
+                                                           cornerRadii:cornerRadii].CGPath;
     [self configureAppearance];
 }
 
@@ -88,26 +116,26 @@
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
     
     if (self.titleLabel.text) {
-        if (self.selectionType == SelectionTypeMiddle) {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
-        } else if (self.selectionType == SelectionTypeLeftBorder) {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
-        } else if (self.selectionType == SelectionTypeRightBorder) {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
-        } else if (self.selectionType == SelectionTypeSingle) {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:color];
-        } else {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
-                                                                            content:self.titleLabel.text
-                                                                          textColor:color];
+        switch (self.selectionType) {
+            case SelectionTypeSingle:
+            case SelectionTypeLeftBorder:
+            case SelectionTypeRightBorder:
+                self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+                                                                                content:self.titleLabel.text
+                                                                              textColor:selectedColor];
+                break;
+
+            case SelectionTypeMiddle:
+                self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
+                                                                                content:self.titleLabel.text
+                                                                              textColor:selectedColor];
+                break;
+
+            default:
+                self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
+                                                                                content:self.titleLabel.text
+                                                                              textColor:color];
+                break;
         }
     }
 }

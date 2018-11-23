@@ -24,6 +24,10 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var myView: Backpack.Calendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+    override func viewDidLoad() {
+        myView.minDate = Date()
+    }
+
     @IBAction func valueChanged(_ sender: Any) {
         myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
         myView.reloadData()
