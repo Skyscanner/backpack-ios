@@ -206,9 +206,16 @@ NSString * const HeaderDateFormat = @"MMMM";
 #pragma mark - <FSCalendarDelegate>
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    if (self.selectionType == BPKCalendarSelectionRange
-        && calendar.selectedDates.count >= 2) {
-        [calendar deselectDate:calendar.selectedDates.lastObject];
+    if (self.selectionType == BPKCalendarSelectionRange) {
+        if (calendar.selectedDates.count >= 2) {
+            [calendar deselectDate:calendar.selectedDates.lastObject];
+        }
+        
+        for (NSDate *currentDate in calendar.selectedDates) {
+            if ([date compare:currentDate] == NSOrderedAscending) {
+                [calendar deselectDate:currentDate];
+            }
+        }
     }
     return YES;
 }
