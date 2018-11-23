@@ -29,6 +29,7 @@
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarCollectionView.h>
 #import <FSCalendar/FSCalendarDynamicHeader.h>
+#import <FSCalendar/FSCalendarExtensions.h>
 #import <FSCalendar/FSCalendarWeekdayView.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
@@ -109,7 +110,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     [self addSubview:self.calendarView];
     
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.calendarView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [self.calendarView.topAnchor constraintEqualToAnchor:self.topAnchor constant:6*BPKSpacingMd],
                                               [self.calendarView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
                                               [self.calendarView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                               [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
@@ -211,9 +212,9 @@ NSString * const HeaderDateFormat = @"MMMM";
             [calendar deselectDate:calendar.selectedDates.lastObject];
         }
         
-        for (NSDate *currentDate in calendar.selectedDates) {
-            if ([date compare:currentDate] == NSOrderedAscending) {
-                [calendar deselectDate:currentDate];
+        for (NSDate *selectedDate in calendar.selectedDates) {
+            if ([date compare:selectedDate] == NSOrderedAscending) {
+                [calendar deselectDate:selectedDate];
             }
         }
     }
@@ -284,6 +285,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     // Configure selection layer
     if (monthPosition == FSCalendarMonthPositionCurrent) {
         SelectionType selectionType = SelectionTypeNone;
+        RowType rowType = RowTypeMiddle;
         
         if (selectedDates.count > 1 && self.selectionType == BPKCalendarSelectionRange) {
             NSDate *minDate = [selectedDates firstObject];
@@ -292,6 +294,23 @@ NSString * const HeaderDateFormat = @"MMMM";
             if (dateInsideRange) {
                 BOOL isMinDate = [date isEqualToDate:minDate];
                 BOOL isMaxDate = [date isEqualToDate:maxDate];
+                NSCalendar *gregorian = self.calendarView.gregorian;
+                NSDate *firstWeekday = [gregorian fs_firstDayOfWeek:date];
+                NSDate *lastWeekday = [gregorian fs_lastDayOfWeek:date];
+                NSDate *firstDayOfMonth = [gregorian fs_firstDayOfMonth:date];
+                NSDate *lastDayOfMonth = [gregorian fs_lastDayOfMonth:date];
+                BOOL isRowStart = [gregorian isDate:date inSameDayAsDate:firstWeekday]
+                || [gregorian isDate:date inSameDayAsDate:firstDayOfMonth];
+                BOOL isRowEnd = [gregorian isDate:date inSameDayAsDate:lastWeekday]
+                || [gregorian isDate:date inSameDayAsDate:lastDayOfMonth];
+                
+                if (isRowStart && isRowEnd) {
+                    rowType = RowTypeBoth;
+                } else if (isRowStart) {
+                    rowType = RowTypeStart;
+                } else if (isRowEnd) {
+                    rowType = RowTypeEnd;
+                }
                 
                 if (isMinDate) {
                     selectionType = SelectionTypeLeftBorder;
@@ -306,6 +325,7 @@ NSString * const HeaderDateFormat = @"MMMM";
         }
         
         calendarCell.selectionType = selectionType;
+        calendarCell.rowType = rowType;
     }
 }
 

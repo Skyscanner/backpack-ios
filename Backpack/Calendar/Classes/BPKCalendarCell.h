@@ -24,12 +24,18 @@ typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeLeftBorder,
     SelectionTypeMiddle,
     SelectionTypeRightBorder,
-    SelectionTypeRowStart,
-    SelectionTypeRowEnd
+};
+
+typedef NS_ENUM(NSUInteger, RowType) {
+    RowTypeMiddle,
+    RowTypeStart,
+    RowTypeEnd,
+    RowTypeBoth
 };
 
 @interface BPKCalendarCell: FSCalendarCell
 
-@property (assign, nonatomic) SelectionType selectionType;
+@property (nonatomic) SelectionType selectionType;
+@property (nonatomic) RowType rowType;
 
 @end
