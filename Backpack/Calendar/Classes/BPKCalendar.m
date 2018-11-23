@@ -159,6 +159,8 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 - (void)setLocale:(NSLocale *)locale {
     self.calendarView.locale = locale;
+    self.calendarView.firstWeekday = [[locale objectForKey:NSLocaleCalendar] firstWeekday];
+    [self.calendarWeekdayView configureAppearance];
 }
 
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {

@@ -26,6 +26,7 @@ class CalendarViewController: UIViewController {
 
     override func viewDidLoad() {
         myView.minDate = Date()
+        myView.locale = Locale.current
     }
 
     @IBAction func valueChanged(_ sender: Any) {
