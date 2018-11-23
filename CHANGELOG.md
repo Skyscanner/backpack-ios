@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 3.2.0
+
+**Added:**
+ - BPKCalendar:
+   - Added Calendar component which was kindly contributed by Stark.
+
 ## 3.1.0
 
 **Added:**
