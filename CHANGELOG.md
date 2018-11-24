@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 3.2.1
+
+**Fixed:**
+ - BPKCalendar:
+   - Minor tweaks
+
 ## 3.2.0
 
 **Added:**
