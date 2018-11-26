@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 4.0.0
+
+**Breaking:**
+
+- Backpack/Font
+  - XXL and XXXL font sizes are now 30pt and 36pt (previously 36pt and 42pt). The 42pt font size has been removed for the time being.
+
 ## 3.2.1
 
 **Fixed:**
