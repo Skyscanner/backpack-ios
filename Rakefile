@@ -51,6 +51,11 @@ def install_pods_in_example_project()
   $?.exitstatus == 0
 end
 
+def check_pristine()
+  changes = `git status --porcelain | grep -Ev "CHANGELOG|UNRELEASED"`.lines
+  changes.length == 0
+end
+
 task :analyze do
   sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
@@ -72,6 +77,9 @@ task release: :ci do
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 
+  sh "npm ci"
+  sh "npx gulp"
+  abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
