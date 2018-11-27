@@ -112,8 +112,8 @@ NSString * const HeaderDateFormat = @"MMMM";
     [NSLayoutConstraint activateConstraints:@[
                                               [self.calendarView.topAnchor constraintEqualToAnchor:self.topAnchor constant:6*BPKSpacingMd],
                                               [self.calendarView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-                                              [self.calendarView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
+                                              [self.calendarView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
+                                              [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase]
                                               ]];
     
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
