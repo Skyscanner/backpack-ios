@@ -237,15 +237,17 @@ NSString * const HeaderDateFormat = @"MMMM";
  willDisplayCell:(FSCalendarCell *)cell
          forDate:(NSDate *)date
  atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear fromDate:date];
+    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
     NSDateComponents *todayComponents = [self.calendarView.gregorian components:NSCalendarUnitYear fromDate:NSDate.date];
     BOOL isDateOutsideCurrentYear = components.year != todayComponents.year;
+    BOOL notJanuaryOrDecember = components.month != 1 && components.month != 12;
     
     if (monthPosition == FSCalendarMonthPositionCurrent
-        && isDateOutsideCurrentYear) {
+        && isDateOutsideCurrentYear
+        && notJanuaryOrDecember) {
         self.yearPill.hidden = NO;
         self.yearPill.year = [NSNumber numberWithInteger:components.year];
-    } else {
+    } else if (notJanuaryOrDecember) {
         self.yearPill.hidden = YES;
     }
     
