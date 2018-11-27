@@ -38,9 +38,11 @@
 
 @property (weak, nonatomic) FSCalendarCollectionView *collectionView;
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
 @end
 
-@interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource>
+@interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) FSCalendar *calendarView;
 @property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
@@ -85,6 +87,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     self.calendarView.placeholderType = FSCalendarPlaceholderTypeNone;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
+    self.calendarView.collectionView.delegate = self;
     
     NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
     
@@ -270,6 +273,15 @@ NSString * const HeaderDateFormat = @"MMMM";
     return appearance.borderDefaultColor;
 }
 
+#pragma mark - <UICollectionViewDelegate>
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(calendar:didScroll:)]) {
+        [self.delegate calendar:self didScroll:scrollView.contentOffset];
+    }
+    [self.calendarView scrollViewDidScroll:scrollView];
+}
+
 #pragma mark - private
 
 - (void)configureVisibleCells {
@@ -347,6 +359,20 @@ NSString * const HeaderDateFormat = @"MMMM";
         return NO;
     
     return YES;
+}
+
+#pragma mark -
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [super respondsToSelector:aSelector] || [self.calendarView respondsToSelector:aSelector];
+}
+
+- (id)forwardingTargetForSelector:(SEL)selector
+{
+    if ([self.calendarView respondsToSelector:selector]) {
+        return self.calendarView;
+    }
+    return [super forwardingTargetForSelector:selector];
 }
 
 @end

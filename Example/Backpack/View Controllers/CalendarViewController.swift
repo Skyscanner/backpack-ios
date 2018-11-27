@@ -20,17 +20,26 @@
 import UIKit
 import Backpack.Calendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, CalendarDelegate {
     @IBOutlet weak var myView: Backpack.Calendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
         myView.minDate = Date()
         myView.locale = Locale.current
+        myView.delegate = self
     }
 
     @IBAction func valueChanged(_ sender: Any) {
         myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
         myView.reloadData()
+    }
+
+    func calendar(_ calendar: Backpack.Calendar!, didChangeDateSelection dateList: [Date]!) {
+        NSLog("calendar:%@ didChangeDateSelection:%@", calendar, dateList)
+    }
+
+    func calendar(_ calendar: Backpack.Calendar!, didScroll contentOffset: CGPoint) {
+        NSLog("calendar:%@ didScroll:%@", calendar, NSCoder.string(for: contentOffset))
     }
 }
