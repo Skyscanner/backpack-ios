@@ -1083,7 +1083,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SpO-8z-gEV" customClass="BPKCalendar">
-                                <rect key="frame" x="16" y="160" width="343" height="507"/>
+                                <rect key="frame" x="0.0" y="160" width="375" height="507"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wX5-SW-qOH">
                                 <rect key="frame" x="92" y="124" width="191" height="29"/>
@@ -1101,9 +1101,9 @@
                         <constraints>
                             <constraint firstItem="SpO-8z-gEV" firstAttribute="top" secondItem="wX5-SW-qOH" secondAttribute="bottom" constant="8" id="A5w-zB-bKC"/>
                             <constraint firstItem="wX5-SW-qOH" firstAttribute="centerX" secondItem="0BT-F8-7ZP" secondAttribute="centerX" id="B04-dx-yqQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SpO-8z-gEV" secondAttribute="trailing" id="FqP-kb-qBE"/>
-                            <constraint firstItem="SpO-8z-gEV" firstAttribute="leading" secondItem="0BT-F8-7ZP" secondAttribute="leadingMargin" id="Ltp-Av-5RY"/>
                             <constraint firstItem="x3l-OP-88w" firstAttribute="top" secondItem="SpO-8z-gEV" secondAttribute="bottom" id="ONW-ZA-no9"/>
+                            <constraint firstItem="SpO-8z-gEV" firstAttribute="leading" secondItem="0BT-F8-7ZP" secondAttribute="leading" id="lxH-u1-M6C"/>
+                            <constraint firstAttribute="trailing" secondItem="SpO-8z-gEV" secondAttribute="trailing" id="uwH-PT-uNG"/>
                             <constraint firstItem="wX5-SW-qOH" firstAttribute="top" secondItem="c7K-wR-WXZ" secondAttribute="bottom" constant="8" id="xPP-Yy-esL"/>
                         </constraints>
                     </view>

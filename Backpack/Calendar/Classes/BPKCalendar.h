@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
     BPKCalendarSelectionMultiple = 2,
 };
 
-NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate
+NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 
 /**
  * Called when a date selection changed.
@@ -36,6 +36,15 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate
  * @param dateList List of selected dates.
  */
 - (void)calendar:(BPKCalendar *)calendar didChangeDateSelection:(NSArray<NSDate *> *)dateList;
+
+@optional
+
+/**
+ * Called when the calendar was scrolled
+ * @param calendar The backpack calendar.
+ * @param contentOffset The content offset
+ */
+- (void)calendar:(BPKCalendar *)calendar didScroll:(CGPoint)contentOffset;
 
 @end
 
