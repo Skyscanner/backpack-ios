@@ -36,10 +36,10 @@ class CalendarViewController: UIViewController, CalendarDelegate {
     }
 
     func calendar(_ calendar: Backpack.Calendar!, didChangeDateSelection dateList: [Date]!) {
-        NSLog("calendar:%@ didChangeDateSelection:%@", calendar, dateList)
+        print("calendar:", calendar, "didChangeDateSelection:", dateList)
     }
 
     func calendar(_ calendar: Backpack.Calendar!, didScroll contentOffset: CGPoint) {
-        NSLog("calendar:%@ didScroll:%@", calendar, NSCoder.string(for: contentOffset))
+        print("calendar:", calendar, "didScroll:", contentOffset)
     }
 }
