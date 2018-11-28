@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 4.0.1
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Minor fixes
+
 ## 4.0.0
 
 **Breaking:**
