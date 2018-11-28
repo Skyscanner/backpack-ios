@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *messageText;
 
 @property(nonatomic, strong) UIView *scrimView;
+@property(nonatomic, strong) UIVisualEffectView *blurView;
 @property(nonatomic, strong) BPKDialogView *dialogView;
 
 @property(nonatomic, strong) NSMutableArray<BPKDialogScrimAction *> *scrimActions;
@@ -90,11 +91,16 @@ NS_ASSUME_NONNULL_BEGIN
     self.scrimView = [[UIView alloc] initWithFrame:CGRectZero];
     self.scrimView.clipsToBounds = YES;
     self.scrimView.userInteractionEnabled = YES;
-    self.scrimView.backgroundColor = BPKColor.gray900;
-    self.scrimView.alpha = 0.5;
+//    self.scrimView.backgroundColor = BPKColor.gray900;
+//    self.scrimView.alpha = 0.5;
     self.scrimView.translatesAutoresizingMaskIntoConstraints = NO;
     self.scrimView.accessibilityIdentifier = @"dialogScrimView";
     [self.scrimView addGestureRecognizer:tapGesture];
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular];
+    self.blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    self.blurView.backgroundColor = [BPKColor.gray900 colorWithAlphaComponent:0.9];
+    self.blurView.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.dialogView = [[BPKDialogView alloc] initWithFrame:CGRectZero];
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -112,6 +118,11 @@ NS_ASSUME_NONNULL_BEGIN
                                               [self.scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
                                               [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
                                               [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+                                              
+                                              [self.blurView.leadingAnchor constraintEqualToAnchor:self.scrimView.leadingAnchor],
+                                              [self.blurView.trailingAnchor constraintEqualToAnchor:self.scrimView.trailingAnchor],
+                                              [self.blurView.topAnchor constraintEqualToAnchor:self.scrimView.topAnchor],
+                                              [self.blurView.bottomAnchor constraintEqualToAnchor:self.scrimView.bottomAnchor],
 
                                               [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
                                               [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
@@ -127,6 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)addViews {
+    [self.scrimView addSubview:self.blurView];
     [self.view addSubview:self.scrimView];
     [self.view addSubview:self.dialogView];
 }
@@ -193,7 +205,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)_setScrimAlpha:(double)scrimAlpha {
-    self.scrimView.alpha = 0.5 * fmax(fmin(scrimAlpha, 1.0), 0.0);
+    self.blurView.alpha = 1.0 * fmax(fmin(scrimAlpha, 1.0), 0.0);
 }
 
 #pragma mark - BPKDialogViewDelegate
