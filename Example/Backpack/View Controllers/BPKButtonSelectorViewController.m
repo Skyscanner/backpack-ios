@@ -31,6 +31,8 @@
         target.style = BPKButtonStyleFeatured;
     } else if ([segue.identifier isEqualToString:@"link"]) {
         target.style = BPKButtonStyleLink;
+    } else if ([segue.identifier isEqualToString:@"outline"]) {
+        target.style = BPKButtonStyleOutline;
     }
 }
 

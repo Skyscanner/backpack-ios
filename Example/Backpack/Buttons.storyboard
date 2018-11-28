@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,6 +121,26 @@
                                             <segue destination="yaK-Q8-sWi" kind="show" identifier="link" id="B4W-9E-Jwr"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="GXG-v9-ZAn" style="IBUITableViewCellStyleDefault" id="DST-AP-pZ6">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DST-AP-pZ6" id="7sl-Ed-MfQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Outline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXG-v9-ZAn">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="yaK-Q8-sWi" kind="show" identifier="outline" id="TkA-nu-YHs"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -170,7 +190,7 @@
                                                                 <state key="normal" title="Go"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-th-apx" customClass="BPKButton">
-                                                                <rect key="frame" x="38" y="0.0" width="60" height="34"/>
+                                                                <rect key="frame" x="38" y="2" width="60" height="30"/>
                                                                 <state key="normal" title="Disabled"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzc-e4-W0P" customClass="BPKButton">
@@ -338,6 +358,12 @@
                         <outlet property="largeLeadingIconButton" destination="GJf-SN-OB4" id="z8F-1r-68A"/>
                         <outlet property="largeTextButton" destination="yhi-lX-0z6" id="atc-NE-kM7"/>
                         <outlet property="largeTrailingIconButton" destination="htS-s3-5bd" id="Zcz-Yv-bOr"/>
+                        <outletCollection property="contentViews" destination="FEW-9A-aRv" id="0Dy-nU-yML"/>
+                        <outletCollection property="contentViews" destination="fqb-N5-Kfh" id="OO2-td-3s9"/>
+                        <outletCollection property="contentViews" destination="fez-oG-XpD" id="5wM-fS-n0e"/>
+                        <outletCollection property="storyHeadings" destination="lPG-ZD-nKO" id="rJ8-dX-KI7"/>
+                        <outletCollection property="storyHeadings" destination="s6e-sa-mbj" id="G77-6J-i9N"/>
+                        <outletCollection property="contentViews" destination="S87-he-ZeP" id="fPy-Nd-w8k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZY-Xj-Kae" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,6 +372,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0AV-BF-gfo"/>
+        <segue reference="TkA-nu-YHs"/>
     </inferredMetricsTieBreakers>
 </document>
