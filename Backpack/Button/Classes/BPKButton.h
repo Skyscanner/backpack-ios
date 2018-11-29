@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
     BPKButtonStyleDestructive = 2,
     BPKButtonStyleFeatured = 3,
     BPKButtonStyleLink = 4,
+    BPKButtonStyleOutline = 5,
 };
 
 /**

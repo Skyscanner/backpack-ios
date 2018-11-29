@@ -65,6 +65,14 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(view, nil);
 }
 
+- (void)testDefaultOutline {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleOutline];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
 - (void)testDefaultLink {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -111,6 +119,14 @@ NS_ASSUME_NONNULL_BEGIN
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
     FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+}
+
+- (void)testLargeOutline {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleOutline];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
 }
 
 #pragma mark - Private

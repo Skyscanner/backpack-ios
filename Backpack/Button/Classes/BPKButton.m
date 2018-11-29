@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) UIColor *currentContentColor;
 @property(nonatomic, readonly) BPKFontStyle currentFontStyle;
 @property(nonatomic, class, readonly) UIColor *highlightedWhite;
+@property(nonatomic, class, readonly) UIColor *highlightedOutline;
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
 @property(nonatomic, class, readonly) CGFloat buttonTitleIconSpacing;
@@ -262,6 +263,7 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleFeatured:
         case BPKButtonStyleSecondary:
         case BPKButtonStyleDestructive:
+        case BPKButtonStyleOutline:
             switch (size) {
                 case BPKButtonSizeDefault: {
                     if (self.isIconOnly) {
@@ -291,8 +293,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateBackgroundAndStyle {
     UIColor *highlightedWhite = [UIColor colorWithRed:0.871 green:0.867 blue:0.878 alpha:1];
+    UIColor *highlightedOutline = [BPKColor.gray900 colorWithAlphaComponent:0.2];
 
     if (self.isEnabled) {
+
+        // We need this here so that if the button was disabled, and is now enabled, opacity is reset.
+        self.layer.opacity = 1;
         switch (self.style) {
             case BPKButtonStylePrimary: {
                 [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.green500
@@ -301,7 +307,7 @@ NS_ASSUME_NONNULL_BEGIN
                 break;
             }
             case BPKButtonStyleSecondary: {
-                [self setBorderedStyleWithColor:BPKColor.blue500];
+                [self setBorderedStyleWithColor:BPKColor.gray100 withGradientColor:BPKColor.white];
                 if (self.isHighlighted) {
                     self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedWhite];
                     [self.gradientLayer setNeedsDisplay];
@@ -309,9 +315,18 @@ NS_ASSUME_NONNULL_BEGIN
                 break;
             }
             case BPKButtonStyleDestructive: {
-                [self setBorderedStyleWithColor:BPKColor.red500];
+                [self setBorderedStyleWithColor:BPKColor.gray100 withGradientColor:BPKColor.white];
                 if (self.isHighlighted) {
                     self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedWhite];
+                    [self.gradientLayer setNeedsDisplay];
+                }
+                break;
+            }
+            case BPKButtonStyleOutline: {
+                [self setBorderedStyleWithColor:BPKColor.white withGradientColor:BPKColor.clear];
+                if (self.isHighlighted) {
+                    [self setBorderedStyleWithColor:[self class].highlightedOutline withGradientColor:BPKColor.clear];
+                    self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedOutline];
                     [self.gradientLayer setNeedsDisplay];
                 }
                 break;
@@ -375,6 +390,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleDestructive:
             highlightedContentColor = [self class].highlightedRed;
             break;
+        case BPKButtonStyleOutline:
+            highlightedContentColor = [self class].highlightedOutline;
+            break;
         case BPKButtonStyleLink:
             highlightedContentColor = [self.currentContentColor colorWithAlphaComponent:0.2];
             break;
@@ -435,6 +453,8 @@ NS_ASSUME_NONNULL_BEGIN
             return BPKColor.blue500;
         case BPKButtonStyleDestructive:
             return BPKColor.red500;
+        case BPKButtonStyleOutline:
+            return BPKColor.white;
         default:
             NSAssert(NO, @"Unknown BPKButtonStyle %d", (int)self.style);
             return BPKColor.white;
@@ -473,10 +493,10 @@ NS_ASSUME_NONNULL_BEGIN
     [self.layer setBorderWidth:0];
 }
 
-- (void)setBorderedStyleWithColor:(UIColor *)color {
-    self.gradientLayer.gradient = [self gradientWithSingleColor:BPKColor.white];
+- (void)setBorderedStyleWithColor:(UIColor *)color withGradientColor:(UIColor *)gradientColor {
+    self.gradientLayer.gradient = [self gradientWithSingleColor:gradientColor];
 
-    UIColor *borderColor = BPKColor.gray100;
+    UIColor *borderColor = color;
     [self.layer setBorderColor:borderColor.CGColor];
     self.layer.borderWidth = 2;
 }
@@ -489,18 +509,23 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setDisabledStyle {
-    UIColor *backgroundColor = self.style == BPKButtonStyleLink ? BPKColor.white : BPKColor.gray100;
-    self.gradientLayer.gradient = [self gradientWithSingleColor:backgroundColor];
-    [self setTintColor:BPKColor.gray300];
-    [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
-    self.layer.borderColor = BPKColor.clear.CGColor;
-    self.layer.borderWidth = 0;
+    UIColor *backgroundColor = (self.style == BPKButtonStyleLink || self.style == BPKButtonStyleOutline) ? BPKColor.white : BPKColor.gray100;
+        self.gradientLayer.gradient = [self gradientWithSingleColor:backgroundColor];
+        [self setTintColor:BPKColor.gray300];
+        [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
+        self.layer.borderColor = BPKColor.clear.CGColor;
+        self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
+        self.layer.borderWidth = 0;
 }
 
 + (UIColor *)highlightedWhite {
     // white overlayed with gray900 at 15%
     // TODO: Add a method to blend programatically via BPKColor
     return [UIColor colorWithRed:0.871 green:0.867 blue:0.878 alpha:1];
+}
+
++ (UIColor *)highlightedOutline {
+    return [BPKColor.white colorWithAlphaComponent:0.8];
 }
 
 + (UIColor *)highlightedBlue {

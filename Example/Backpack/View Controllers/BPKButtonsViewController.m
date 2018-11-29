@@ -20,9 +20,12 @@
 
 #import <Backpack/Icon.h>
 #import <Backpack/Color.h>
+#import <Backpack/Label.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
+@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
 @property (weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
 @property (weak, nonatomic) IBOutlet BPKButton *defaultIconOnlyButton;
 @property (weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
@@ -49,6 +52,17 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupButtons {
+    if(self.style == BPKButtonStyleOutline) {
+        for (UIView* contentView in self.contentViews) {
+            [contentView setBackgroundColor:BPKColor.blue400];
+        }
+
+        for (UILabel* storyHeading in self.storyHeadings) {
+            [storyHeading setTextColor:BPKColor.white];
+        }
+    }
+
+
     UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall] : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
