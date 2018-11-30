@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 4.1.0
+
+**Added:**
+
+- Backpack/Button
+  - New `outline` button type which renders just an outline and the text. Designed for use on more colourful backgrounds.
+
 ## 4.0.1
 
 **Fixed:**
