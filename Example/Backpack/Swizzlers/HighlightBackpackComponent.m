@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#import "ReplaceSetNeedsDisplay.h"
+#import "HighlightBackpackComponent.h"
 #import <objc/runtime.h>
 
-@implementation UIView (ReplacesetNeedsDisplay)
+@implementation CALayer (HighlightBackpackComponent)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -27,10 +27,10 @@
 
         Class class = [self class];
 
-        printf("DOING THE SWIZZLING NOW\nReplacesetNeedsDisplay load\n\n");
+        printf("DOING THE SWIZZLING NOW\nHighlightBackpackComponent load\n\n");
 
-        SEL defaultSelector = @selector(setNeedsDisplay);
-        SEL swizzledSelector = @selector(swizzled_setNeedsDisplay);
+        SEL defaultSelector = @selector(display);
+        SEL swizzledSelector = @selector(swizzled_display);
 
         Method defaultMethod = class_getInstanceMethod(class, defaultSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
@@ -47,19 +47,15 @@
 }
 
 #pragma mark - Method Swizzling
--(void)swizzled_setNeedsDisplay {
-    [self swizzled_setNeedsDisplay];
+-(void)swizzled_display {
+    [self swizzled_display];
 
     // TODO Store the view in the instance so that we don't keep recreating it
 
     // TODO In apps codebase, simply add condition on debug switch being set
     NSString *componentName = NSStringFromClass([self class]);
     if([componentName hasPrefix:@"BPK"]) {
-        UIView *myBox  = [[UIView alloc] initWithFrame:self.bounds];
-        myBox.backgroundColor =  [UIColor purpleColor];
-        [myBox setAlpha:0.2];
-        [myBox setUserInteractionEnabled:NO];
-        [self addSubview:myBox];
+        // TODO RENDER
         printf("%s swizzled\n\n", [componentName UTF8String]);
     }
 }

@@ -18,6 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UIView (ReplaceSetNeedsDisplay)
+@interface CALayer (HighlightBackpackComponent)
 
 @end
