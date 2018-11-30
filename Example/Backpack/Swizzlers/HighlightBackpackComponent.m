@@ -53,11 +53,27 @@
     // TODO Store the view in the instance so that we don't keep recreating it
 
     // TODO In apps codebase, simply add condition on debug switch being set
-    NSString *componentName = NSStringFromClass([self class]);
+    NSString *componentName = NSStringFromClass([self.delegate class]);
+    printf("Component: %s\n\n", [componentName UTF8String]);
     if([componentName hasPrefix:@"BPK"]) {
-        // TODO RENDER
+
+        CALayer *tintLayer = [CALayer layer];
+        [tintLayer setFrame:self.frame];
+        printf("bounds: %s\n", [NSStringFromCGSize(self.bounds.size) UTF8String]);
+        tintLayer.backgroundColor = [UIColor greenColor].CGColor;
+        tintLayer.opacity = 0.2;
+        [self addSublayer:tintLayer];
+
         printf("%s swizzled\n\n", [componentName UTF8String]);
     }
 }
+
+//-(UIView*)getParentView:(CALayer*)layer {
+//    if([layer.delegate class] == [UIView class]){
+//        return layer.delegate;
+//    }else {
+////        return getParentView:layer.delegate;
+//    }
+//}
 
 @end
