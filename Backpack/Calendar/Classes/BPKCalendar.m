@@ -48,6 +48,8 @@
 @property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
 @property (nonatomic) BPKCalendarYearPill *yearPill;
 
+@property BOOL sameDayRange;
+
 @end
 
 @implementation BPKCalendar
@@ -175,12 +177,21 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (NSArray<NSDate *> *)selectedDates {
+    if (self.sameDayRange) {
+        return [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
+    }
+    
     return self.calendarView.selectedDates;
 }
 
 - (void)setSelectedDates:(NSArray<NSDate *> *)selectedDates {
     for (NSDate *date in self.calendarView.selectedDates) {
         [self.calendarView deselectDate:date];
+    }
+    
+    if (selectedDates.count == 2
+        && [selectedDates.firstObject isEqualToDate:selectedDates.lastObject]) {
+        self.sameDayRange = YES;
     }
     
     for (NSDate *date in selectedDates) {
@@ -212,6 +223,10 @@ NSString * const HeaderDateFormat = @"MMMM";
 #pragma mark - <FSCalendarDelegate>
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    if (self.sameDayRange) {
+        self.sameDayRange = NO;
+    }
+    
     if (self.selectionType == BPKCalendarSelectionRange) {
         if (calendar.selectedDates.count >= 2) {
             [calendar deselectDate:calendar.selectedDates.lastObject];
@@ -226,14 +241,34 @@ NSString * const HeaderDateFormat = @"MMMM";
     return YES;
 }
 
+-(BOOL)calendar:(FSCalendar *)calendar shouldDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    if (self.sameDayRange || self.selectionType != BPKCalendarSelectionRange) {
+        self.sameDayRange = NO;
+    } else {
+        for (NSDate *aDate in calendar.selectedDates) {
+            if ([date compare:aDate] == NSOrderedAscending) {
+                [calendar deselectDate:aDate];
+            }
+        }
+        
+        self.sameDayRange = [date isEqualToDate:calendar.selectedDates.firstObject];
+        
+        if (self.sameDayRange) {
+            [self calendar:self.calendarView didSelectDate:date atMonthPosition:monthPosition];
+        }
+    }
+    
+    return !self.sameDayRange;
+}
+
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
-    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
+    [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 }
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
-    [self.delegate calendar:self didChangeDateSelection:calendar.selectedDates];
+    [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 }
 
 - (void)calendar:(FSCalendar *)calendar
@@ -337,7 +372,7 @@ NSString * const HeaderDateFormat = @"MMMM";
                 }
             }
         } else if ([selectedDates containsObject:date]) {
-            selectionType = SelectionTypeSingle;
+            selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
         
         calendarCell.selectionType = selectionType;

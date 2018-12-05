@@ -21,10 +21,12 @@
 #import <FSCalendar/FSCalendarExtensions.h>
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
+#import <Backpack/Spacing.h>
 
 @interface BPKCalendarCell ()
 
 @property (weak, nonatomic) CAShapeLayer *selectionLayer;
+@property (weak, nonatomic) CAShapeLayer *samedayLayer;
 
 @end
 
@@ -35,9 +37,13 @@
 
     if (self) {
         CAShapeLayer *selectionLayer = [[CAShapeLayer alloc] init];
+        CAShapeLayer *samedayLayer = [[CAShapeLayer alloc] init];
         selectionLayer.actions = @{@"hidden":[NSNull null]};
-        [self.contentView.layer insertSublayer:selectionLayer below:self.shapeLayer];
+        samedayLayer.actions = @{@"hidden":[NSNull null]};
+        [self.contentView.layer insertSublayer:samedayLayer below:self.shapeLayer];
+        [self.contentView.layer insertSublayer:selectionLayer below:samedayLayer];
         self.selectionLayer = selectionLayer;
+        self.samedayLayer = samedayLayer;
     }
 
     return self;
@@ -47,16 +53,27 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    CGFloat padding = (self.bounds.size.width - self.shapeLayer.bounds.size.width)/2.0 - 0.5;
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.selectionLayer.bounds;
     CGFloat height = self.shapeLayer.fs_height;
     CGFloat shapeLayerX = self.shapeLayer.frame.origin.x;
+    UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.shapeLayer.frame
+                                                      byRoundingCorners:UIRectCornerAllCorners
+                                                            cornerRadii:self.shapeLayer.frame.size];
+    [sameDayPath setLineWidth:3.0];
     
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
     self.selectionLayer.frame = self.bounds;
     UIColor *rangeColor = [self.appearance.selectionColor colorWithAlphaComponent:0.5];
     self.selectionLayer.fillColor = rangeColor.CGColor;
+    
+    self.samedayLayer.hidden = YES;
+    self.samedayLayer.frame = CGRectMake(-padding, 0.0, self.bounds.size.width, self.bounds.size.height);
+    self.samedayLayer.fillColor = [UIColor clearColor].CGColor;
+    self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
+    self.samedayLayer.path = sameDayPath.CGPath;
     
     UIRectCorner corners = 0;
     CGSize cornerRadii = CGSizeZero;
@@ -98,6 +115,15 @@
             cornerRadii = CGSizeMake(height/2.0, height/2.0);
             break;
             
+        case SelectionTypeSameDay:
+            self.samedayLayer.hidden = NO;
+            self.selectionLayer.hidden = YES;
+            self.shapeLayer.frame = CGRectMake(padding,
+                                               0.0,
+                                               self.shapeLayer.frame.size.width,
+                                               self.shapeLayer.frame.size.height);
+            break;
+            
         default:
             self.selectionLayer.hidden = YES;
             break;
@@ -120,6 +146,7 @@
             case SelectionTypeSingle:
             case SelectionTypeLeftBorder:
             case SelectionTypeRightBorder:
+            case SelectionTypeSameDay:
                 self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                                 content:self.titleLabel.text
                                                                               textColor:selectedColor];
