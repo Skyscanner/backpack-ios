@@ -39,7 +39,6 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
-		D218F05621B1B3D2002869F3 /* HighlightBackpackComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D218F05421B1B3D2002869F3 /* HighlightBackpackComponent.m */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
@@ -55,6 +54,7 @@
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
+		D2C4EA9221B7EE7D000A85ED /* HighlightBackpackComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -172,8 +172,6 @@
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		D218F05421B1B3D2002869F3 /* HighlightBackpackComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightBackpackComponent.m; sourceTree = "<group>"; };
-		D218F05521B1B3D2002869F3 /* HighlightBackpackComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightBackpackComponent.h; sourceTree = "<group>"; };
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
 		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
@@ -189,6 +187,8 @@
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
+		D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightBackpackComponents.m; sourceTree = "<group>"; };
+		D2C4EA9121B7EE7D000A85ED /* HighlightBackpackComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightBackpackComponents.h; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
@@ -455,8 +455,8 @@
 		D2EE9A1621B15223006B2F6D /* Swizzlers */ = {
 			isa = PBXGroup;
 			children = (
-				D218F05521B1B3D2002869F3 /* HighlightBackpackComponent.h */,
-				D218F05421B1B3D2002869F3 /* HighlightBackpackComponent.m */,
+				D2C4EA9121B7EE7D000A85ED /* HighlightBackpackComponents.h */,
+				D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */,
 			);
 			path = Swizzlers;
 			sourceTree = "<group>";
@@ -847,11 +847,11 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
-				D218F05621B1B3D2002869F3 /* HighlightBackpackComponent.m in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
+				D2C4EA9221B7EE7D000A85ED /* HighlightBackpackComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

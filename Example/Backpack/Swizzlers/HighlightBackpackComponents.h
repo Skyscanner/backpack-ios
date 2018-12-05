@@ -18,6 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CALayer (HighlightBackpackComponent)
+@interface UIView (HighlightBackpackComponents)
 
 @end

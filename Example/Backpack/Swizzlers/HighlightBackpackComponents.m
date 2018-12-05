@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#import "HighlightBackpackComponent.h"
+#import "HighlightBackpackComponents.h"
 #import <objc/runtime.h>
 
-@implementation CALayer (HighlightBackpackComponent)
+@implementation UIView (HighlightBackpackComponents)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -27,10 +27,10 @@
 
         Class class = [self class];
 
-        printf("DOING THE SWIZZLING NOW\nHighlightBackpackComponent load\n\n");
+        printf("DOING THE SWIZZLING NOW\nHighlightBackpackComponents load\n\n");
 
-        SEL defaultSelector = @selector(display);
-        SEL swizzledSelector = @selector(swizzled_display);
+        SEL defaultSelector = @selector(setNeedsDisplay);
+        SEL swizzledSelector = @selector(swizzled_setNeedsDisplay);
 
         Method defaultMethod = class_getInstanceMethod(class, defaultSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
@@ -47,33 +47,21 @@
 }
 
 #pragma mark - Method Swizzling
--(void)swizzled_display {
-    [self swizzled_display];
+-(void)swizzled_setNeedsDisplay {
+    [self swizzled_setNeedsDisplay];
 
     // TODO Store the view in the instance so that we don't keep recreating it
 
     // TODO In apps codebase, simply add condition on debug switch being set
-    NSString *componentName = NSStringFromClass([self.delegate class]);
-    printf("Component: %s\n\n", [componentName UTF8String]);
+    NSString *componentName = NSStringFromClass([self class]);
     if([componentName hasPrefix:@"BPK"]) {
-
-        CALayer *tintLayer = [CALayer layer];
-        [tintLayer setFrame:self.frame];
-        printf("bounds: %s\n", [NSStringFromCGSize(self.bounds.size) UTF8String]);
-        tintLayer.backgroundColor = [UIColor greenColor].CGColor;
-        tintLayer.opacity = 0.2;
-        [self addSublayer:tintLayer];
-
+        UIView *myBox  = [[UIView alloc] initWithFrame:self.bounds];
+        myBox.backgroundColor =  [UIColor purpleColor];
+        [myBox setAlpha:0.2];
+        [myBox setUserInteractionEnabled:NO];
+        [self addSubview:myBox];
         printf("%s swizzled\n\n", [componentName UTF8String]);
     }
 }
-
-//-(UIView*)getParentView:(CALayer*)layer {
-//    if([layer.delegate class] == [UIView class]){
-//        return layer.delegate;
-//    }else {
-////        return getParentView:layer.delegate;
-//    }
-//}
 
 @end
