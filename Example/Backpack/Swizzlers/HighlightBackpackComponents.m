@@ -29,8 +29,8 @@
 
         printf("DOING THE SWIZZLING NOW\nHighlightBackpackComponents load\n\n");
 
-        SEL defaultSelector = @selector(setNeedsDisplay);
-        SEL swizzledSelector = @selector(swizzled_setNeedsDisplay);
+        SEL defaultSelector = @selector(initWithFrame:);
+        SEL swizzledSelector = @selector(swizzled_initWithFrame:);
 
         Method defaultMethod = class_getInstanceMethod(class, defaultSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
@@ -47,21 +47,47 @@
 }
 
 #pragma mark - Method Swizzling
--(void)swizzled_setNeedsDisplay {
-    [self swizzled_setNeedsDisplay];
-
-    // TODO Store the view in the instance so that we don't keep recreating it
+-(id)swizzled_initWithFrame:(CGRect)frame {
+    // This looks like a mistake - the method is calling itself. However this is correct
+    // practise for swizzling. So just trust me, yeah?
+    id result = [self swizzled_initWithFrame:frame];
 
     // TODO In apps codebase, simply add condition on debug switch being set
-    NSString *componentName = NSStringFromClass([self class]);
-    if([componentName hasPrefix:@"BPK"]) {
-        UIView *myBox  = [[UIView alloc] initWithFrame:self.bounds];
-        myBox.backgroundColor =  [UIColor purpleColor];
-        [myBox setAlpha:0.2];
-        [myBox setUserInteractionEnabled:NO];
-        [self addSubview:myBox];
-        printf("%s swizzled\n\n", [componentName UTF8String]);
+
+    // TODO what if the setup actually causes the layer properties we set to be overridden?
+    // Do we need to handle such events and swallow them? - maybe swizzle `setBorderColor` too?
+
+    //    // Safe guard: do we have an UIView (or something that has a layer)?
+    if ([result respondsToSelector:@selector(layer)]) {
+        NSString *componentName = NSStringFromClass([self class]);
+        if([componentName hasPrefix:@"BPK"]) {
+            // Get layer for this view.
+            CALayer *layer = [result layer];
+            // Set border on layer.
+            layer.borderWidth = 2;
+            layer.borderColor = [[UIColor redColor] CGColor];
+            printf("%s swizzled\n\n", [componentName UTF8String]);
+
+            //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
+            //        tap.delegate = self;
+            //        tap.numberOfTapsRequired = 3;
+            //        tap.numberOfTouchesRequired = 1;
+            //        [self addGestureRecognizer:tap];
+        }
     }
+
+    return result;
+
+    // This is how I was originally trying to highlight BPK components:
+    //    NSString *componentName = NSStringFromClass([self class]);
+    //    if([componentName hasPrefix:@"BPK"]) {
+    //        UIView *myBox  = [[UIView alloc] initWithFrame:self.bounds];
+    //        myBox.backgroundColor =  [UIColor purpleColor];
+    //        [myBox setAlpha:0.2];
+    //        [myBox setUserInteractionEnabled:NO];
+    //        [self addSubview:myBox];
+    //        printf("%s swizzled\n\n", [componentName UTF8String]);
+    //    }
 }
 
 @end
