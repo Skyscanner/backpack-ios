@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 4.2.0
+
+**Added:**
+
+- Backpack/Calendar
+  - Added ability for a user to select a range of dates beginning and ending on the same day.
+
 ## 4.1.0
 
 **Added:**

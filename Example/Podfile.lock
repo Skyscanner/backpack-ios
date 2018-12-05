@@ -1,82 +1,82 @@
 PODS:
-  - Backpack (4.1.0):
-    - Backpack/Badge (= 4.1.0)
-    - Backpack/Button (= 4.1.0)
-    - Backpack/Calendar (= 4.1.0)
-    - Backpack/Card (= 4.1.0)
-    - Backpack/Chip (= 4.1.0)
-    - Backpack/Color (= 4.1.0)
-    - Backpack/Dialog (= 4.1.0)
-    - Backpack/Font (= 4.1.0)
-    - Backpack/Gradient (= 4.1.0)
-    - Backpack/Icon (= 4.1.0)
-    - Backpack/Label (= 4.1.0)
-    - Backpack/Panel (= 4.1.0)
-    - Backpack/Radii (= 4.1.0)
-    - Backpack/RTLSupport (= 4.1.0)
-    - Backpack/Shadow (= 4.1.0)
-    - Backpack/Spacing (= 4.1.0)
-    - Backpack/Spinner (= 4.1.0)
-    - Backpack/Switch (= 4.1.0)
-    - Backpack/TextView (= 4.1.0)
-  - Backpack/Badge (4.1.0):
+  - Backpack (4.2.0):
+    - Backpack/Badge (= 4.2.0)
+    - Backpack/Button (= 4.2.0)
+    - Backpack/Calendar (= 4.2.0)
+    - Backpack/Card (= 4.2.0)
+    - Backpack/Chip (= 4.2.0)
+    - Backpack/Color (= 4.2.0)
+    - Backpack/Dialog (= 4.2.0)
+    - Backpack/Font (= 4.2.0)
+    - Backpack/Gradient (= 4.2.0)
+    - Backpack/Icon (= 4.2.0)
+    - Backpack/Label (= 4.2.0)
+    - Backpack/Panel (= 4.2.0)
+    - Backpack/Radii (= 4.2.0)
+    - Backpack/RTLSupport (= 4.2.0)
+    - Backpack/Shadow (= 4.2.0)
+    - Backpack/Spacing (= 4.2.0)
+    - Backpack/Spinner (= 4.2.0)
+    - Backpack/Switch (= 4.2.0)
+    - Backpack/TextView (= 4.2.0)
+  - Backpack/Badge (4.2.0):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Button (4.1.0):
+  - Backpack/Button (4.2.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Gradient
     - Backpack/Label
     - Backpack/RTLSupport
     - Backpack/Spacing
-  - Backpack/Calendar (4.1.0):
+  - Backpack/Calendar (4.2.0):
     - Backpack/Color
     - Backpack/Font
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
     - FSCalendar (~> 2.8)
-  - Backpack/Card (4.1.0):
+  - Backpack/Card (4.2.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Chip (4.1.0):
+  - Backpack/Chip (4.2.0):
     - Backpack/Color
     - Backpack/Label
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Color (4.1.0)
-  - Backpack/Dialog (4.1.0):
+  - Backpack/Color (4.2.0)
+  - Backpack/Dialog (4.2.0):
     - Backpack/Button
     - Backpack/Color
     - Backpack/Label
     - Backpack/Radii
     - Backpack/Shadow
     - Backpack/Spacing
-  - Backpack/Font (4.1.0):
+  - Backpack/Font (4.2.0):
     - Backpack/Color
-  - Backpack/Gradient (4.1.0):
+  - Backpack/Gradient (4.2.0):
     - Backpack/Color
-  - Backpack/Icon (4.1.0)
-  - Backpack/Label (4.1.0):
+  - Backpack/Icon (4.2.0)
+  - Backpack/Label (4.2.0):
     - Backpack/Color
     - Backpack/Font
-  - Backpack/Panel (4.1.0):
+  - Backpack/Panel (4.2.0):
     - Backpack/Color
     - Backpack/Radii
     - Backpack/Spacing
-  - Backpack/Radii (4.1.0)
-  - Backpack/RTLSupport (4.1.0)
-  - Backpack/Shadow (4.1.0)
-  - Backpack/Spacing (4.1.0)
-  - Backpack/Spinner (4.1.0):
+  - Backpack/Radii (4.2.0)
+  - Backpack/RTLSupport (4.2.0)
+  - Backpack/Shadow (4.2.0)
+  - Backpack/Spacing (4.2.0)
+  - Backpack/Spinner (4.2.0):
     - Backpack/Color
-  - Backpack/Switch (4.1.0):
+  - Backpack/Switch (4.2.0):
     - Backpack/Color
-  - Backpack/TextView (4.1.0):
+  - Backpack/TextView (4.2.0):
     - Backpack/Color
     - Backpack/Font
   - FSCalendar (2.8.0)
@@ -99,7 +99,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 692cb379aa0f7312c881c7c41465d3647da8fac4
+  Backpack: ade0a956db05f5926fbd786673e1573bdb42f157
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
