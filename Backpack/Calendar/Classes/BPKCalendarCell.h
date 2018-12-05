@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeLeftBorder,
     SelectionTypeMiddle,
     SelectionTypeRightBorder,
+    SelectionTypeSameDay
 };
 
 typedef NS_ENUM(NSUInteger, RowType) {
