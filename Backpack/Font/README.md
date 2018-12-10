@@ -1,25 +1,28 @@
-# Backpack/Font
-
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/Font'
-```
-
-and then run `pod install`.
+# Backpack Font tokens
 
 ## Usage
 
-`Backpack/Font` contains the Backpack typography styles in a single class `BPKFont`. This subspec also contains an enum defining all the text styles supported by Backpack, `BPKFontStyle` which can be used with `+fontWithStyle:`.
+All Backpack text rendering is done with `NSAttributedString` to correctly reflect our desired typography. For most cases you don't have care about this and can just use `BPKLabe`/`Backpack.Label` or `BPKTextView`/`Backpack.TextView`. If you do need more control `BPKFont`/`Backpack/Font` provide several methods for constructing `NSAttributedString`s.
+
+### Objective-C
+
+`Backpack/Font.h` contains the Backpack typography styles in a single class `BPKFont`.
 
 ```objective-c
 #import <Backpack/Font.h>
 
-[BPKFont textXs];
-[BPKFont textXsEmphasized];
-[BPKFont fontWithStyle:BPKFontStyleTextBase];
+BPKFontStyle sm = BPKFontStyleTextBase;
+
+[BPKFont attributedStringWithFontStyle:sm content:@"Hello travel"];
 ```
 
-We support a variety of sizes and an emphasized style for each.
+### Swift
+
+```Swift
+import Backpack
+
+let style = BPKFontStyleTextBase;
+
+let attributedString = Backpack.Font.makeAttributedString(fontStyle: style, content: "Hello Travel")
+```
+

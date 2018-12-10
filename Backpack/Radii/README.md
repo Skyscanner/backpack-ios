@@ -1,22 +1,24 @@
 # Backpack/Radii
 
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/Radii'
-```
-
-and then run `pod install`.
-
 ## Usage
 
-`Backpack/Radii` contains the Backpack radii values as `CGFloat` constants.
+### Objective-C
 
 ```objective-c
 #import <Backpack/Radii.h>
 
 CGFloat myAppBorderRadiusSmall = BPKBorderRadiusSm;
-CGFloat myAppBorderRadiusLarge = BPKBorderRadiusPill;
+CGFloat myAppBorderRadiusLarge = BPKBorderRadiusLg;
 ```
+
+
+### Swift
+
+```swift
+import Backpack
+
+let smallRadius = Backpack.BPKBorderRadiusSm
+let largeRadius = Backpack.BPKBorderRadiusLg
+```
+
+

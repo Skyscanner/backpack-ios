@@ -19,25 +19,25 @@ pod 'Backpack'
 
 This will install all of Backpack. We use subspecs to subdivide the library so you might want to only install specific subspecs instead.
 
-## Subspecs
+## Components
 
-* [Backpack/Color](Backpack/Color/README.md)
-* [Backpack/Font](Backpack/Font/README.md)
-* [Backpack/Gradient](Backpack/Gradient/README.md)
-* [Backpack/Radii](Backpack/Radii/README.md)
-* [Backpack/Spacing](Backpack/Spacing/README.md)
-* [Backpack/Shadow](Backpack/Shadow/README.md)
+* [Color](Backpack/Color/README.md)
+* [Font](Backpack/Font/README.md)
+* [Gradient](Backpack/Gradient/README.md)
+* [Radii](Backpack/Radii/README.md)
+* [Spacing](Backpack/Spacing/README.md)
+* [Shadow](Backpack/Shadow/README.md)
 
-* [Backpack/Badge](Backpack/Badge/README.md)
-* [Backpack/Button](Backpack/Button/README.md)
-* [Backpack/Dialog](Backpack/Dialog/README.md)
-* [Backpack/Card](Backpack/Card/README.md)
-* [Backpack/Icon](Backpack/Icon/README.md)
-* [Backpack/Label](Backpack/Label/README.md)
-* [Backpack/Panel](Backpack/Panel/README.md)
-* [Backpack/TextView](Backpack/TextView/README.md)
-* [Backpack/Spinner](Backpack/Spinner/README.md)
-* [Backpack/Switch](Backpack/Switch/README.md)
+* [Badge](Backpack/Badge/README.md)
+* [Button](Backpack/Button/README.md)
+* [Dialog](Backpack/Dialog/README.md)
+* [Card](Backpack/Card/README.md)
+* [Icon](Backpack/Icon/README.md)
+* [Label](Backpack/Label/README.md)
+* [Panel](Backpack/Panel/README.md)
+* [TextView](Backpack/TextView/README.md)
+* [Spinner](Backpack/Spinner/README.md)
+* [Switch](Backpack/Switch/README.md)
 
 ## Contributing to Backpack
 

@@ -1,26 +1,27 @@
 # Backpack/TextView
 
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/TextView'
-```
-
-and then run `pod install`.
-
 ## Usage
 
-`Backpack/TextView` contains the Backpack TextView component in the class `BPKTextView` which is a subclass of `UITextView` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
+`BPKTextView`/`Backpack.TextView` contains the Backpack TextView component which is a subclass of `UITextView` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
+
+### Objective-C
 
 ```objective-c
 #import <Backpack/TextView.h>
 
-BPKTextView *TextView = [[BPKTextView alloc] initWithFontStyle:BPKFontStyleTextBase];
+BPKTextView *textView = [[BPKTextView alloc] initWithFontStyle:BPKFontStyleTextBase];
+// Position textView with autolayout or other method
+```
+
+### Swift
+
+```swift
+#import <Backpack/TextView.h>
+
+let textView = Backpack.TextView(fontStyle: .base)
 // Position TextView with autolayout or other method
 ```
 
-### Dynamic Text
+## Dynamic Text
 
-`BPKTextView` doesn't currently support **Dynamic Text**, but this is planned for a later release.
+`BPKTextView`/`Backpack.TextView` doesn't currently support **Dynamic Text**, but this is planned for a later release.
