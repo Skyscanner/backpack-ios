@@ -54,6 +54,7 @@
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
+		D2C4EA9221B7EE7D000A85ED /* HighlightBackpackComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -188,6 +189,8 @@
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
+		D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightBackpackComponents.m; sourceTree = "<group>"; };
+		D2C4EA9121B7EE7D000A85ED /* HighlightBackpackComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightBackpackComponents.h; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
@@ -350,6 +353,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2EE9A1621B15223006B2F6D /* Swizzlers */,
 				6003F595195388D20070C39A /* Backpack-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -450,6 +454,15 @@
 				D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */,
 			);
 			path = "CollectionView Headers";
+			sourceTree = "<group>";
+		};
+		D2EE9A1621B15223006B2F6D /* Swizzlers */ = {
+			isa = PBXGroup;
+			children = (
+				D2C4EA9121B7EE7D000A85ED /* HighlightBackpackComponents.h */,
+				D2C4EA9021B7EE7D000A85ED /* HighlightBackpackComponents.m */,
+			);
+			path = Swizzlers;
 			sourceTree = "<group>";
 		};
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
@@ -844,6 +857,7 @@
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
+				D2C4EA9221B7EE7D000A85ED /* HighlightBackpackComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
