@@ -46,9 +46,9 @@
         [self addSubview:self.label];
         [NSLayoutConstraint activateConstraints:@[
                                                   [self.label.topAnchor constraintEqualToAnchor:self.topAnchor constant:BPKSpacingSm],
-                                                  [self.label.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
                                                   [self.label.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
                                                   [self.label.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase],
+                                                  [self.label.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
                                                   ]];
     }
 

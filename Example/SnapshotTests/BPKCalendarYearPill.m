@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright © 2018. Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +17,25 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarYearPill.h"
-#endif
 
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import <Backpack/Calendar.h>
+
+@interface BPKCalendarYearPillSnapshotTest : FBSnapshotTestCase
+
+@end
+
+@implementation BPKCalendarYearPillSnapshotTest
+
+- (void)setUp {
+    [super setUp];
+    self.recordMode = NO;
+}
+
+- (void)testYearPill {
+    BPKCalendarYearPill *yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
+    yearPill.year = @2019;
+    FBSnapshotVerifyView(yearPill, nil);
+}
+
+@end

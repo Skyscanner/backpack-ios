@@ -30,6 +30,11 @@
 @end
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * There seems to be a bug in FBSnapshotTestCase regarding intristict content size handling.
+ * We exposed the year pill to be able to snapshot test it separately as a workaround.
+ */
 @implementation BPKCalendarSnapshotTest
 
 - (void)setUp {
