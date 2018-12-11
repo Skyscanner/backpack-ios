@@ -1,22 +1,13 @@
 # Backpack/Dialog
 
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/Dialog'
-```
-
-and then run `pod install`.
-
 ## Usage
 
-`Backpack/Dialog` contains the Backpack Dialog component in the class `BPKDialogController` .
+`BPKDialogController`/`Backpack.DialogController` contains the Backpack Dialog component.
 
 
 ### Objective-C
-```
+
+```objective-c
 #import <Backpack/Dialog.h>
 
 ...
@@ -47,7 +38,8 @@ dialogController.scrimAction = scrimAction;
 ```
 
 ### Swift:
-```
+
+```swift
 let dialogController  = DialogController(title: "You are going to Tokyo!",
                                         message: "Your flight is all booked. Why not check out some hotels now?",
                                         style: .alert,

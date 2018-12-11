@@ -1,19 +1,10 @@
 # Backpack/Icon
 
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/Icon'
-```
-
-and then run `pod install`.
-
 ## Usage
 
-`Backpack/Icon` contains the Backpack Icon component in the class `BPKIcon`. It supports rendering any Backpack icon to `UIImage`s using a caching mechanism to reduce performance impact.
+`BPKIcon`/`Backpack.Icon` contains the Backpack Icon component. It supports rendering any Backpack icon to `UIImage`s using a caching mechanism to reduce performance impact.
 
+### Objective-C
 
 ```objective-c
 #import <Backpack/Icon.h>
@@ -21,3 +12,12 @@ and then run `pod install`.
 
 UIImage *renderedIcon = [BPKIcon iconNamed:@"flight" color:[BPKolor gray900] size:BPKIconSizeSmall];
 ```
+
+### Swift
+
+```swift
+import Backpack
+
+let renderedIcon = Backpack.Icon.makeIcon(name: .flight, color: Backpack.Color.gray900, size:.small);
+```
+

@@ -37,7 +37,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @param fontStyle The desired fontStyle.
  */
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle;
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
 
 /**
  * Create an attributed string with a specified fontStyle and content. The default Backpack
@@ -49,7 +49,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content;
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content NS_SWIFT_NAME(makeAttributedString(fontStyle:content:));
 
 /**
  * Create an attributed string with a specified fontStyle, content, and text color.
@@ -61,6 +61,6 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor;
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
 @end
 NS_ASSUME_NONNULL_END

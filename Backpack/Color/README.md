@@ -1,22 +1,25 @@
-# Backpack/Color
-
-## Installation
-
-In `Podfile` add
-
-```
-pod 'Backpack/Color'
-```
-
-and then run `pod install`.
+# Backpack Color tokens
 
 ## Usage
 
-`Backpack/Color` contains our color palette contained in a single class `BPKColor`.
+### Objective-c
+
+`Backpack/Color.h` contains our color palette contained in a single class `BPKColor`.
 
 ```objective-c
 #import <Backpack/Color.h>
 
-[BPKColor blue500];
-[BPKColor gray900];
+BPKColor.blue500;
+BPKColor.gray900;
+```
+
+### Swift
+
+`Backpack.Color` contains our color palette.
+
+```swift
+import Backpack
+
+Backpack.Color.blue500
+Backpack.Color.gray900
 ```
