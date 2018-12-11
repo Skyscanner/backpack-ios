@@ -38,6 +38,7 @@
         self.label = [[UILabel alloc] initWithFrame:CGRectZero];
         self.label.translatesAutoresizingMaskIntoConstraints = NO;
         self.label.textAlignment = NSTextAlignmentCenter;
+        self.label.numberOfLines = 1;
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.layer.backgroundColor = [BPKColor gray900].CGColor;
         
