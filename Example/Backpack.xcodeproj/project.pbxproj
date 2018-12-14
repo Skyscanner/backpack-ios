@@ -79,6 +79,8 @@
 		D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
 		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
 		D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */; };
+		D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */; };
+		D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPill.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPill.m */; };
 		D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F12124230000154D92 /* BPKPanelTest.m */; };
 		D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F821243A4500154D92 /* BPKBadgeTest.m */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
@@ -214,6 +216,8 @@
 		D698E64E219C528100D03060 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SnapshotTests-Info.plist"; sourceTree = "<group>"; };
+		D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKCalendarSnapshotTest.m; sourceTree = "<group>"; };
+		D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPill.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKCalendarYearPill.m; sourceTree = "<group>"; };
 		D6CE74F12124230000154D92 /* BPKPanelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPanelTest.m; sourceTree = "<group>"; };
 		D6CE74F821243A4500154D92 /* BPKBadgeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeTest.m; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
@@ -511,6 +515,8 @@
 				3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */,
 				D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */,
 				600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */,
+				D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */,
+				D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPill.m */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -885,6 +891,8 @@
 				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
+				D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPill.m in Sources */,
+				D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
