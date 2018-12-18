@@ -29,11 +29,10 @@
     
     NSArray<UILabel *> *labels = self.weekdayLabels;
     
-    NSInteger sideSpacing = 0;
-    NSInteger x = sideSpacing;
+    NSInteger x = 0;
     for (NSInteger i = 0; i < labels.count; i++) {
         UILabel *label = labels[i];
-        CGFloat fullWidth = label.superview.bounds.size.width - 2 * sideSpacing;
+        CGFloat fullWidth = label.superview.bounds.size.width;
         CGFloat width = fullWidth / labels.count;
         label.frame = CGRectMake(x, 0, width, label.frame.size.height);
         x += width;
