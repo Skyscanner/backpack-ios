@@ -317,6 +317,18 @@ NSString * const HeaderDateFormat = @"MMMM";
     [self.calendarView scrollViewDidScroll:scrollView];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.yearPill.alpha = 0;
+    }];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+        self.yearPill.alpha = 1;
+    } completion:nil];
+}
+
 #pragma mark - private
 
 - (void)configureVisibleCells {
