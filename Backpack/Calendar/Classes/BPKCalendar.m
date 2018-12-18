@@ -22,6 +22,7 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarAppearance.h"
 #import "BPKCalendarYearPill.h"
+#import "BPKCalendarWeekdayView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -30,7 +31,6 @@
 #import <FSCalendar/FSCalendarCollectionView.h>
 #import <FSCalendar/FSCalendarDynamicHeader.h>
 #import <FSCalendar/FSCalendarExtensions.h>
-#import <FSCalendar/FSCalendarWeekdayView.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
@@ -45,7 +45,7 @@
 @interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UICollectionViewDelegate>
 
 @property (nonatomic) FSCalendar *calendarView;
-@property (nonatomic) FSCalendarWeekdayView *calendarWeekdayView;
+@property (nonatomic) BPKCalendarWeekdayView *calendarWeekdayView;
 @property (nonatomic) BPKCalendarYearPill *yearPill;
 
 @property BOOL sameDayRange;
@@ -121,7 +121,7 @@ NSString * const HeaderDateFormat = @"MMMM";
                                               [self.calendarView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase]
                                               ]];
     
-    self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
+    self.calendarWeekdayView = [[BPKCalendarWeekdayView alloc] initWithFrame:CGRectZero];
     self.calendarWeekdayView.translatesAutoresizingMaskIntoConstraints = NO;
     self.calendarWeekdayView.calendar = self.calendarView;
     self.calendarWeekdayView.backgroundColor = [BPKColor white];
@@ -134,9 +134,9 @@ NSString * const HeaderDateFormat = @"MMMM";
     
     [NSLayoutConstraint activateConstraints:@[
                                               [self.calendarWeekdayView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [self.calendarWeekdayView.heightAnchor constraintEqualToConstant:6*BPKSpacingMd]
+                                              [self.calendarWeekdayView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
+                                              [self.calendarWeekdayView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase],
+                                              [self.calendarWeekdayView.heightAnchor constraintEqualToConstant:6 * BPKSpacingMd]
                                               ]];
     
     [NSLayoutConstraint activateConstraints:@[
