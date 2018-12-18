@@ -24,7 +24,7 @@ BPKGradient *gradientTopRight =  [BPKGradient primaryWithDirection:BPKGradientDi
 ### Swift
 
 ```swift
-import Backpac
+import Backpack
 
 let gradientDefault = Backpack.Gradient.primary()
 let gradientTopRight = Backpack.Gradient.primary(direction: .topRight)
