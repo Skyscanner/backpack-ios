@@ -55,12 +55,19 @@ NS_ASSUME_NONNULL_BEGIN
     [parentView layoutIfNeeded];
 }
 
-- (void)testCalendarWithoutSelection {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
-    [self configureParentView:parentView forCalendar:bpkCalendar];
-    FBSnapshotVerifyView(parentView, nil);
-}
+// TODO uncomment this
+// it's commented out because currently the calendar always highlights today's date,
+// meaning this test fails every time it runs on different days.
+//
+// We should fix this by exposing FSCalendar's 'calendar.today' property and setting it to
+// a constant date here.
+//
+//- (void)testCalendarWithoutSelection {
+//    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+//    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+//    [self configureParentView:parentView forCalendar:bpkCalendar];
+//    FBSnapshotVerifyView(parentView, nil);
+//}
 
 - (void)testCalendarWithSingleSelection {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
