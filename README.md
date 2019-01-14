@@ -30,8 +30,9 @@ This will install all of Backpack. We use subspecs to subdivide the library so y
 
 * [Badge](Backpack/Badge/README.md)
 * [Button](Backpack/Button/README.md)
-* [Dialog](Backpack/Dialog/README.md)
 * [Card](Backpack/Card/README.md)
+* [Calendar](Backpack/Calendar/README.md)
+* [Dialog](Backpack/Dialog/README.md)
 * [Icon](Backpack/Icon/README.md)
 * [Label](Backpack/Label/README.md)
 * [Panel](Backpack/Panel/README.md)

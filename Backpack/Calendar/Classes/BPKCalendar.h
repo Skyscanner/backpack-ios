@@ -48,6 +48,9 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 
 @end
 
+/**
+ * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
+ */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 
 /**
