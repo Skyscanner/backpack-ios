@@ -368,50 +368,7 @@ const parseTokens = tokensData => {
     .value();
 };
 
-gulp.task('template', ['generate-icon-names'], () => {
-  const streams = [];
-  const templateData = parseTokens(tokens);
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const type of TYPES) {
-    const processedType = format(type);
-
-    streams.push(
-      gulp
-        .src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
-        .pipe(data(() => templateData))
-        .pipe(nunjucks.compile())
-        .pipe(
-          rename(`${processedType}/Classes/Generated/BPK${processedType}.h`),
-        ),
-    );
-
-    streams.push(
-      gulp
-        .src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
-        .pipe(data(() => templateData))
-        .pipe(nunjucks.compile())
-        .pipe(
-          rename(`${processedType}/Classes/Generated/BPK${processedType}.m`),
-        ),
-    );
-  }
-
-  return merge2(streams).pipe(gulp.dest(PATHS.output));
-});
-
-gulp.task('copy-icon-font', () => {
-  merge2([
-    gulp.src('node_modules/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
-      rename({
-        basename: 'BpkIconIOS',
-      }),
-    ),
-    gulp.src('node_modules/bpk-svgs/dist/font/iconMapping.json'),
-  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
-});
-
-gulp.task('generate-icon-names', () => {
+gulp.task('generate-icon-names', done => {
   const content = JSON.parse(
     fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
   );
@@ -437,7 +394,55 @@ gulp.task('generate-icon-names', () => {
       }),
     )
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
+  done();
 });
 
-gulp.task('default', ['template', 'copy-icon-font']);
+gulp.task(
+  'template',
+  gulp.series('generate-icon-names', () => {
+    const streams = [];
+    const templateData = parseTokens(tokens);
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const type of TYPES) {
+      const processedType = format(type);
+
+      streams.push(
+        gulp
+          .src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
+          .pipe(data(() => templateData))
+          .pipe(nunjucks.compile())
+          .pipe(
+            rename(`${processedType}/Classes/Generated/BPK${processedType}.h`),
+          ),
+      );
+
+      streams.push(
+        gulp
+          .src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
+          .pipe(data(() => templateData))
+          .pipe(nunjucks.compile())
+          .pipe(
+            rename(`${processedType}/Classes/Generated/BPK${processedType}.m`),
+          ),
+      );
+    }
+
+    return merge2(streams).pipe(gulp.dest(PATHS.output));
+  }),
+);
+
+gulp.task('copy-icon-font', done => {
+  merge2([
+    gulp.src('node_modules/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
+      rename({
+        basename: 'BpkIconIOS',
+      }),
+    ),
+    gulp.src('node_modules/bpk-svgs/dist/font/iconMapping.json'),
+  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
+  done();
+});
+
+gulp.task('default', gulp.series('template', 'copy-icon-font'));
 gulp.task('clean', () => del([PATHS.output], { force: true }));
