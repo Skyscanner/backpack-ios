@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'Backpack Native' do
@@ -20,7 +20,7 @@ post_install do |installer|
     config.build_settings.delete('CODE_SIGNING_ALLOWED')
     config.build_settings.delete('CODE_SIGNING_REQUIRED')
   end
-  
+
   puts 'Removing static analyzer support'
   installer.pods_project.targets.each do |target|
       if target.name == "FSCalendar"
