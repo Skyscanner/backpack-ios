@@ -46,8 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configureParentView:(UIView *)parentView forCalendar:(BPKCalendar *)calendar {
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
+    calendar.translatesAutoresizingMaskIntoConstraints = NO;
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:calendar];
+
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[calendar]-16-|" options:0 metrics:nil views:@{@"calendar": calendar}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[calendar]-16-|" options:0 metrics:nil views:@{@"calendar": calendar}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(320)]" options:0 metrics:nil views:@{@"parentView": parentView}]];
@@ -72,12 +74,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testCalendarWithSingleSelection {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
-    
+
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionSingle;
     bpkCalendar.selectedDates = @[ self.date1 ];
     [bpkCalendar reloadData];
-    
+
     FBSnapshotVerifyView(parentView, nil);
 }
 
