@@ -49,7 +49,7 @@ class LabelsPerformanceViewController: UIViewController {
             let fontStyle = emphasized ? style.1 : style.0
 
             let label = Backpack.Label(fontStyle: fontStyle)
-            label.text = "Backpack"
+            label.text = "Lorem ipsum"
             horizontalStackView.addArrangedSubview(label)
         }
 

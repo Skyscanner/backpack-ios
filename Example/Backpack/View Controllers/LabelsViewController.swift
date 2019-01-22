@@ -30,13 +30,30 @@ class LabelsViewController: UIViewController {
     var type: LabelsDisplayType = .normal
 
     static let normalStyles: [BPKFontStyle] = [
-        .textCaps, .textXs, .textSm, .textBase, .textLg, .textXl, .textXxl, .textXxxl
+        .textXxxl,
+        .textXxl,
+        .textXl,
+        .textLg,
+        .textBase,
+        .textSm,
+        .textXs,
+        .textCaps
     ]
     static let emphasizedStyles: [BPKFontStyle] = [
-        .textCapsEmphasized, .textXsEmphasized, .textSmEmphasized, .textBaseEmphasized,
-        .textLgEmphasized, .textXlEmphasized, .textXxlEmphasized, .textXxxlEmphasized
+        .textXxxlEmphasized,
+        .textXxlEmphasized,
+        .textXlEmphasized,
+        .textLgEmphasized,
+        .textBaseEmphasized,
+        .textSmEmphasized,
+        .textXsEmphasized,
+        .textCapsEmphasized
     ]
-    static let heavyStyles: [BPKFontStyle] = [.textXlHeavy, .textXxlHeavy, .textXxxlHeavy]
+    static let heavyStyles: [BPKFontStyle] = [
+        .textXxxlHeavy,
+        .textXxlHeavy,
+        .textXlHeavy
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +79,9 @@ class LabelsViewController: UIViewController {
             label.fontStyle = style
 
             if style != .textCaps && style != .textCapsEmphasized {
-                label.text = "Backpack rocks!"
+                label.text = "Lorem ipsum"
             } else {
-                label.text = "BACKPACK ROCKS!"
+                label.text = "LOREM IPSUM"
             }
         }
     }
