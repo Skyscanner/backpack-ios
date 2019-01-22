@@ -1,6 +1,8 @@
 platform :ios, '10.0'
 use_frameworks!
 
+install! 'cocoapods', disable_input_output_paths: true
+
 target 'Backpack Native' do
   pod 'Backpack', :path => '../'
   pod 'SwiftLint', '~> 0.27.0'

@@ -742,18 +742,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Backpack/Backpack.framework",
-				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Backpack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack Native/Pods-Backpack Native-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D68AF8FA2174CB9C00BA743D /* ShellScript */ = {
@@ -793,16 +788,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
