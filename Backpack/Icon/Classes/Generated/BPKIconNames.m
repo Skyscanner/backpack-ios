@@ -182,6 +182,7 @@ BPKIconName const BPKIconNameShareAndroid = @"share--android";
 BPKIconName const BPKIconNameShareiOS = @"share--ios";
 BPKIconName const BPKIconNameShare = @"share";
 BPKIconName const BPKIconNameSort = @"sort";
+BPKIconName const BPKIconNameSpeaker = @"speaker";
 BPKIconName const BPKIconNameStarHalf = @"star-half";
 BPKIconName const BPKIconNameStar = @"star";
 BPKIconName const BPKIconNameStops = @"stops";

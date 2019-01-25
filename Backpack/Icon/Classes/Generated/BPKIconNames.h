@@ -184,6 +184,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameShareAndroid;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameShareiOS;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameShare;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSort;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeaker;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalf;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStar;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStops;
