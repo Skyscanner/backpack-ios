@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.1.0
+
+**Added:**
++ Backpack/Icon
+  + Added new icons
+    + BPKIconNameSpeaker
+
 ### 6.0.0
 
 **Breaking:**

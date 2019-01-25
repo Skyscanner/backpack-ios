@@ -1,6 +1,3 @@
 # Unreleased
 
-**Added:**
-+ Backpack/Icon
-  + Added new icons
-    + BPKIconNameSpeaker
+_Nothing yet..._
