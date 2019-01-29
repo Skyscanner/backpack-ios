@@ -1,7 +1,5 @@
 # Unreleased
 
-**Fixed:**
+_Nothing yet..._
 
-- Backpack/Calendar
-  - Expose the `NSCalendar` instance used as a readonly property.
 

@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.1.1
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Expose the `NSCalendar` instance used as a readonly property.
+
 ### 6.1.0
 
 **Added:**
