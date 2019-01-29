@@ -54,6 +54,11 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 
 /**
+ * The active calendar being used by the reciever.
+ */
+@property(nonatomic, strong, nonnull, readonly) NSCalendar *gregorian;
+
+/**
  * Locale used for displaying name of days and months
  */
 @property (copy, nonatomic) NSLocale *locale;
