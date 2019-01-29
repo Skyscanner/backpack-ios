@@ -16,28 +16,15 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import <UIKit/UIAppearance.h>
+#import <Foundation/Foundation.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+NS_ASSUME_NONNULL_BEGIN
 
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "DiscoNinja.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
+/**
+ * `BPKDiscoNinjaContainer` is a subclass of `UIView` which informs BPKComponents to dance like a Disco Ninja
+ */
+NS_SWIFT_NAME(DiscoNinjaContainer) @interface BPKDiscoNinjaContainer: UIView
 
+@end
+NS_ASSUME_NONNULL_END

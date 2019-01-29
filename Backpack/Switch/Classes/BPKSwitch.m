@@ -45,8 +45,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setup {
     self.tintColor = BPKColor.gray100;
-    self.onTintColor = BPKColor.blue500;
+    
+    self.onTintColor = self.dancing ? [UIColor orangeColor] : BPKColor.blue500;
+    if(self.dancing){
+        self.tintColor = [UIColor orangeColor];
+    }
     [self setNeedsDisplay];
+}
+
+- (void) setDancing:(BOOL)dancing {
+    _dancing = dancing;
+    [self setup];
 }
 
 @end

@@ -16,28 +16,9 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#ifndef __BACKPACK_DISCO_NINJA__
+#define __BACKPACK_DISCO_NINJA__
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
-
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "DiscoNinja.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
+#import "BPKDiscoNinjaContainer.h"
+#import "BPKDiscoNinja.h"
 #endif
-

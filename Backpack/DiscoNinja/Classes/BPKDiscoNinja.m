@@ -16,28 +16,16 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import "BPKDiscoNinja.h"
+#import "BPKDiscoNinjaContainer.h"
+#import <Backpack/Switch.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+@implementation BPKDiscoNinja
 
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "DiscoNinja.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
++ (void)startDancingYo
+{
+    // TODO Do this for all BPK components!
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[[BPKDiscoNinjaContainer class]]]setDancing:YES];
+}
 
+@end

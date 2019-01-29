@@ -17,12 +17,14 @@
  */
 
 #import "BPKAppDelegate.h"
+#import <Backpack/DiscoNinja.h>
 
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [BPKDiscoNinja startDancingYo];
     return YES;
 }
 
