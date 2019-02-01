@@ -38,6 +38,8 @@
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
+		D209838C2204BB3900FCC918 /* RuntimeThemes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D209838B2204BB3900FCC918 /* RuntimeThemes.storyboard */; };
+		D209838E2204BC4B00FCC918 /* RuntimeThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D209838D2204BC4B00FCC918 /* RuntimeThemesViewController.swift */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
@@ -172,6 +174,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
+		D209838B2204BB3900FCC918 /* RuntimeThemes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RuntimeThemes.storyboard; sourceTree = "<group>"; };
+		D209838D2204BC4B00FCC918 /* RuntimeThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeThemesViewController.swift; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
 		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
 				D27EE9292193159C00C877EA /* Chips.storyboard */,
 				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
+				D209838B2204BB3900FCC918 /* RuntimeThemes.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -496,6 +501,7 @@
 				D6D6BB6521958D4400312C1C /* GradientSelectorTableViewController.swift */,
 				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
+				D209838D2204BC4B00FCC918 /* RuntimeThemesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				D209838C2204BB3900FCC918 /* RuntimeThemes.storyboard in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
 				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */,
@@ -813,6 +820,7 @@
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
 				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
 				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
+				D209838E2204BC4B00FCC918 /* RuntimeThemesViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,

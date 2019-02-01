@@ -16,15 +16,9 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIAppearance.h>
-#import <Foundation/Foundation.h>
+@interface BPKRuntimeTheme : NSObject
 
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- * `BPKLondonThemeContainer` is a subclass of `UIView` which allows the BPKLondon theme to be applied to all its children.
- */
-NS_SWIFT_NAME(LondonThemeContainer) @interface BPKLondonThemeContainer: UIView
+// TODO This should accept the NSDictionary of values to apply:
++ (UIView*)applyTheme:(NSDictionary*)themeSpecification;
 
 @end
-NS_ASSUME_NONNULL_END
