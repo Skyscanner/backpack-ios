@@ -43,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
 
+@property (nonatomic) UIColor *primaryColor500 UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *darkColor700 UI_APPEARANCE_SELECTOR;
+
 /**
  * Style of the spinner
  * @see BPKSpinnerStyle

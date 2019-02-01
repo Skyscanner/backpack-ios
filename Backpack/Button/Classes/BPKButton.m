@@ -300,9 +300,10 @@ NS_ASSUME_NONNULL_BEGIN
         // We need this here so that if the button was disabled, and is now enabled, opacity is reset.
         self.layer.opacity = 1;
         switch (self.style) {
+
             case BPKButtonStylePrimary: {
-                [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.green500
-                                                          gradientOnBottom:BPKColor.green600
+                [self setFilledStyleWithNormalBackgroundColorGradientOnTop:self.primaryColor600 ? self.primaryColor500 : BPKColor.green500
+                                                          gradientOnBottom:self.primaryColor600 ? self.primaryColor600 : BPKColor.green600
                                                              selectedColor:BPKColor.green700];
                 break;
             }
@@ -516,6 +517,16 @@ NS_ASSUME_NONNULL_BEGIN
         self.layer.borderColor = BPKColor.clear.CGColor;
         self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
         self.layer.borderWidth = 0;
+}
+
+- (void) setPrimaryColor500:(UIColor *)color {
+    _primaryColor500 = color;
+    [self updateBackgroundAndStyle];
+}
+
+- (void) setPrimaryColor600:(UIColor *)color {
+    _primaryColor600 = color;
+    [self updateBackgroundAndStyle];
 }
 
 + (UIColor *)highlightedWhite {

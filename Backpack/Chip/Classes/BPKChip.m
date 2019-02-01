@@ -127,6 +127,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
+- (void) setPrimaryColor500:(UIColor *)color {
+    _primaryColor500 = color;
+    [self updateStyle];
+}
+
 #pragma mark - Layout
 
 - (void)setUpConstraints {
@@ -149,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     if(self.selected) {
-        self.backgroundColor = BPKColor.blue500;
+        self.backgroundColor = self.primaryColor500 ? self.primaryColor500 : BPKColor.blue500;
         self.textColor = BPKColor.white;
     } else {
         self.backgroundColor = BPKColor.white;

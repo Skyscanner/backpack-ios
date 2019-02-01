@@ -62,6 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
 
+
+@property (nonatomic) UIColor *primaryColor500 UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *primaryColor600 UI_APPEARANCE_SELECTOR;
+
 - (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
 - (void)setImage:(UIImage *_Nullable)image forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 

@@ -663,7 +663,7 @@
                         <viewControllerLayoutGuide type="top" id="FXT-xZ-cB5"/>
                         <viewControllerLayoutGuide type="bottom" id="7nr-dV-htR"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="huZ-Lr-aHP">
+                    <view key="view" contentMode="scaleToFill" id="huZ-Lr-aHP" customClass="BPKLondonThemeContainer">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

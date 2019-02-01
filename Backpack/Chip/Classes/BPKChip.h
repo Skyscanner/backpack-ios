@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip: UIControl
 
+@property (nonatomic) UIColor *primaryColor500 UI_APPEARANCE_SELECTOR;
+
 /**
  * The title to display inside the chip.
  */

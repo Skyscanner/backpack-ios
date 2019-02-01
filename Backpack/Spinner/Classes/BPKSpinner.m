@@ -74,8 +74,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didChangeProperty {
     self.activityIndicatorViewStyle = [self.class styleForSpinnerSize:self.size];
-    self.color = [self.class colorForSpinnerStyle:self.style];
+    self.color = [self.class colorForSpinnerStyle:self.style instance:self];
     [self setNeedsDisplay];
+}
+
+- (void) setPrimaryColor500:(UIColor *)color {
+    _primaryColor500 = color;
+    [self didChangeProperty];
+}
+
+- (void) setDarkColor700:(UIColor *)color {
+    _darkColor700 = color;
+    [self didChangeProperty];
 }
 
 + (UIActivityIndicatorViewStyle)styleForSpinnerSize:(BPKSpinnerSize)size {
@@ -90,18 +100,22 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
++ (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style instance:(BPKSpinner* _Nullable)instance {
     switch (style) {
         case BPKSpinnerStylePrimary:
-            return BPKColor.blue500;
+            return instance && instance.primaryColor500 ? instance.primaryColor500 : BPKColor.blue500;
         case BPKSpinnerStyleDark:
-            return BPKColor.gray700;
+            return instance && instance.darkColor700 ? instance.darkColor700 : BPKColor.gray700;
         case BPKSpinnerStyleLight:
             return BPKColor.white;
         default:
             NSAssert(NO, @"Undefined style: %d", (int) style);
             break;
     }
+}
+
++ (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
+    return [self colorForSpinnerStyle:style instance:nil];
 }
 
 @end

@@ -16,43 +16,15 @@
  * limitations under the License.
  */
 
-#import "BPKSwitch.h"
-#import <Backpack/Color.h>
+#import "BPKLondonThemeContainer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSwitch()
+@interface BPKLondonThemeContainer()
 
 @end
 
-@implementation BPKSwitch
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (void)setup {
-    self.tintColor = BPKColor.gray100;
-    self.onTintColor = self.primaryColor500 ? self.primaryColor500 : BPKColor.blue500;
-    [self setNeedsDisplay];
-}
-
-- (void) setPrimaryColor500:(UIColor *)color {
-    _primaryColor500 = color;
-    [self setup];
-}
+@implementation BPKLondonThemeContainer
 
 @end
 

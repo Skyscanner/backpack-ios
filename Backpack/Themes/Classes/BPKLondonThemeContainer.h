@@ -16,34 +16,15 @@
  * limitations under the License.
  */
 
+#import <UIKit/UIAppearance.h>
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
+ * `BPKLondonThemeContainer` is a subclass of `UIView` which informs BPKComponents to dance like a Disco Ninja
  */
-NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
-
-@property (nonatomic) UIColor *primaryColor500 UI_APPEARANCE_SELECTOR;
-
-/**
- * Creates a `BPKSwitch` with a decoder (typically when creating from storyboards)
- *
- * @param coder Decoder object to extract parameters from
- * @return `BPKSwitch` instance.
- */
-- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-
-/**
- * Create a `BPKSwitch` with a given frame.
- *
- * @param frame The initial frame of the switch.
- * @return `BPKSwitch` instance.
- */
-- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+NS_SWIFT_NAME(LondonThemeContainer) @interface BPKLondonThemeContainer: UIView
 
 @end
-
 NS_ASSUME_NONNULL_END
