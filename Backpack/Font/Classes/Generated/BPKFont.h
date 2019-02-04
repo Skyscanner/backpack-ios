@@ -54,8 +54,25 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * when building custom attributed strings is required.
  *
  * @param fontStyle The desired fontStyle.
+ * @return A dictionary of attributes describing the specified style.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
+
+/**
+ * Create a dictionary of attributes for a specific text styles. This is some times useful
+ * when building custom attributed strings is required.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param customAttributes Additional attributes to include in the result. Attributes that would break the Backpack type
+ *  rendering are ignored.
+ * @return A dictionary of attributes describing the specified style and custom attributes.
+ *
+ * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ */
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:));
 
 /**
  * Create an attributed string with a specified fontStyle and content. The default Backpack
