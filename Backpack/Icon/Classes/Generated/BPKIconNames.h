@@ -101,6 +101,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameGearsAutomatic;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameGearsManualCircle;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameGearsManual;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameGlobe;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameGridLayout;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHeadset;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHealthFitness;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHeart;

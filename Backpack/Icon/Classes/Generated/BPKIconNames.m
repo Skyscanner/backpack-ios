@@ -99,6 +99,7 @@ BPKIconName const BPKIconNameGearsAutomatic = @"gears-automatic";
 BPKIconName const BPKIconNameGearsManualCircle = @"gears-manual-circle";
 BPKIconName const BPKIconNameGearsManual = @"gears-manual";
 BPKIconName const BPKIconNameGlobe = @"globe";
+BPKIconName const BPKIconNameGridLayout = @"grid-layout";
 BPKIconName const BPKIconNameHeadset = @"headset";
 BPKIconName const BPKIconNameHealthFitness = @"health-fitness";
 BPKIconName const BPKIconNameHeart = @"heart";

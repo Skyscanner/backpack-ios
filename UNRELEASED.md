@@ -4,3 +4,4 @@
 + Backpack/Icon
   + Added new icon
     + BPKIconNameSocialLike
+    + BPKIconNameGridLayout
