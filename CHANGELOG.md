@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.2.0
+
+**Added:**
+
++ Backpack/Icon
+  + Added new icons
+    + BPKIconNameSocialLike
+    + BPKIconNameGridLayout
+
++ Backpack/Font
+    + Added new API to make it easier to deal with custom attributes. `attributesForForStyle:withCustomAttributes:` in Objective-C and `makeAttributes(fontStyle:customAttributes:)` in Swift. Note this API will ignore some overrides that would change the text rendering to the point where it is no longer conforming to the Backpack style.
++
+
 ### 6.1.1
 
 **Fixed:**
