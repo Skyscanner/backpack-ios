@@ -49,6 +49,28 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)testAttributesForFontStyleWithCustomAttributes {
+    UIFont *font = [UIFont systemFontOfSize:120.0];
+
+    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg withCustomAttributes:@{
+                                                                                                        NSKernAttributeName: @1.5,
+                                                                                                        NSFontAttributeName: font,
+                                                                                                        NSForegroundColorAttributeName: UIColor.redColor,
+                                                                                                        }];
+
+    XCTAssertNotEqualObjects(
+                             attributes[NSKernAttributeName],
+                             @1.5,
+                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSKernAttributeName`"
+                             );
+    XCTAssertNotEqualObjects(
+                             attributes[NSFontAttributeName],
+                             font,
+                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSFontAttributeName`"
+                             );
+    XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], UIColor.redColor);
+}
+
 - (void)testFontWithStyle {
     /*
     XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXs], [BPKFont textXs]);

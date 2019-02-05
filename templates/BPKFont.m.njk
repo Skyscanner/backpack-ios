@@ -76,7 +76,24 @@ NS_ASSUME_NONNULL_BEGIN
     return _attributesCache;
 }
 
-+ (NSDictionary *)attributesForFontStyle:(BPKFontStyle)style {
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
+
+    for (NSAttributedStringKey key in customAttributes) {
+        if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
+            // We explicitly ignore these as they would change the look of the rendered text significantly
+            // enough that it would no longer be the Backpack style.
+            continue;
+        }
+
+        [attributes setObject:customAttributes[key] forKey:key];
+    }
+
+    return [attributes copy];
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
     NSString *cacheKey = [self cacheKeyForFontStyle:style];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
 
