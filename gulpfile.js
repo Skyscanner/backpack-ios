@@ -16,17 +16,18 @@
  * limitations under the License.
  */
 
+const path = require('path');
+const fs = require('fs');
+
 const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
 const rename = require('gulp-rename');
 const merge2 = require('merge2');
 const del = require('del');
-const path = require('path');
 const _ = require('lodash');
 const tinycolor = require('tinycolor2');
 const tokens = require('bpk-tokens/tokens/base.ios.json');
-const fs = require('fs');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
