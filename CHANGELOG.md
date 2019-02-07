@@ -2,6 +2,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.2.1
+
+**Fixed:**
+
++ Backpack/Button
+  + Bug fix to ensure disabled style is not overridden when title is set.
+  + Bug fix to make link button background transparent.
+
 ### 6.2.0
 
 **Added:**
