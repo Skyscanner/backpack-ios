@@ -1,0 +1,54 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2019 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+#import <UIKit/UIKit.h>
+
+#import "BPKIcon.h"
+#import "BPKIconNames.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * A `UIImageView` subclass that makes working with Backpack icons easier for cases
+ * where a single icon is used and colour is controlled via `tintColor`. The icon is
+ * always rendered using template rendering.
+ */
+NS_SWIFT_NAME(IconView) @interface BPKIconView : UIImageView
+
+/**
+ * Initializes and returns a Backpack Icon View with the specific icon name and size.
+ *
+ * @param iconName The name of the Backpack icon to display in the view.
+ * @param size The size the icon should be displayed at.
+ * @return An initialized Backpack icon view
+ */
+- (instancetype)initWithIconName:(nullable BPKIconName)iconName size:(BPKIconSize)size;
+
+/**
+ * The name of the icon currently being displayed. Setting updates
+ * the displayed icon.
+ */
+@property(nullable, nonatomic, copy) BPKIconName iconName;
+
+- (instancetype)initWithImage:(nullable UIImage *)image __attribute__((unavailable("use `initWithIconName:size:` instead")));
+- (instancetype)initWithImage:(nullable UIImage *)image
+             highlightedImage:(nullable UIImage *)highlightedImage __attribute__((unavailable("use a `UIImageView` and `BPKIcon`s `iconNamed:color:size:` instead.")));
+- (void)setImage:(nullable UIImage *)image __attribute__((unavailable("use `iconName` instead. If you need to set arbitrary images use `UIImageView`")));
+
+@end
+
+NS_ASSUME_NONNULL_END

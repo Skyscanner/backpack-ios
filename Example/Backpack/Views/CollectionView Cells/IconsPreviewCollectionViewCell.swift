@@ -23,14 +23,14 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
 
     var icon: IconName? {
         didSet {
-            imageView.image = Backpack.Icon.makeIcon(name: icon!, color: Backpack.Color.gray900, size: .large)
+            imageView.iconName = icon
         }
     }
 
-    private let imageView: UIImageView
+    private let imageView: Backpack.IconView
 
     override init(frame: CGRect) {
-        self.imageView = UIImageView(frame: CGRect.zero)
+        self.imageView = Backpack.IconView(iconName: nil, size: .large)
 
         super.init(frame: frame)
 
