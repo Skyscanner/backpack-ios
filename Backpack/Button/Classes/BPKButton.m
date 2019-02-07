@@ -47,52 +47,52 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     self = [super initWithFrame:CGRectZero];
-
+    
     if (self) {
         [self setupWithSize:size
                       style:style];
     }
-
+    
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-
+    
     if (self) {
         [self setupWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
     }
-
+    
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-
+    
     if (self) {
         [self setupWithSize:BPKButtonSizeDefault
                       style:BPKButtonStylePrimary];
     }
-
+    
     return self;
 }
 
 - (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     self.initializing = YES;
-
+    
     self.layer.masksToBounds = YES;
     self.adjustsImageWhenHighlighted = NO;
     self.adjustsImageWhenDisabled = NO;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-
+    
     self.size = size;
     self.style = style;
     self.imagePosition = BPKButtonImagePositionTrailing;
-
+    
     self.gradientLayer = [[BPKGradientLayer alloc] init];
     [self.layer insertSublayer:self.gradientLayer atIndex:0];
-
+    
     [self updateEdgeInsets];
     [self updateContentColor];
     [self updateFont];
@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSize:(BPKButtonSize)size {
     if (_size != size || self.isInitializing) {
         _size = size;
-
+        
         [self updateFont];
         [self updateEdgeInsets];
     }
@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setStyle:(BPKButtonStyle)style {
     if (_style != style || self.isInitializing) {
         _style = style;
-
+        
         [self updateBackgroundAndStyle];
         [self updateContentColor];
         [self updateEdgeInsets];
@@ -136,28 +136,28 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setImagePosition:(BPKButtonImagePosition)imagePosition {
     if (_imagePosition != imagePosition || self.isInitializing) {
         _imagePosition = imagePosition;
-
+        
         [self setNeedsLayout];
     }
 }
 
 - (void)setTitle:(NSString *_Nullable)title {
     _title = [title copy];
-
+    
     if (title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle content:title textColor:self.currentContentColor];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
     }
-
+    
     [self updateFont];
     [self updateEdgeInsets];
 }
 
 - (void)setImage:(UIImage *_Nullable)image {
     [super setImage:image forState:UIControlStateNormal];
-
+    
     [self updateContentColor];
     [self updateFont];
     [self updateEdgeInsets];
@@ -167,9 +167,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setEnabled:(BOOL)enabled {
     BOOL changed = self.isEnabled != enabled;
-
+    
     [super setEnabled:enabled];
-
+    
     if (changed) {
         [self updateBackgroundAndStyle];
         [self updateFont];
@@ -184,9 +184,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setHighlighted:(BOOL)highlighted {
     BOOL changed = self.isHighlighted != highlighted;
-
+    
     [super setHighlighted:highlighted];
-
+    
     if (changed) {
         [self updateBackgroundAndStyle];
         [self updateContentColor];
@@ -197,9 +197,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
+    
     self.gradientLayer.frame = self.layer.bounds;
-
+    
     if (self.style != BPKButtonStyleLink) {
         CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
         [self.layer setCornerRadius:radius];
@@ -207,7 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.layer.cornerRadius = 0;
     }
     CGFloat buttonTitleIconSpacing = [[self class] buttonTitleIconSpacing];
-
+    
     if (self.isTextAndIcon) {
         if (self.imagePosition == BPKButtonImagePositionTrailing) {
             UIEdgeInsets titleEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
@@ -215,7 +215,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                                             bottom:0
                                                                           trailing:(self.imageView.bounds.size.width + buttonTitleIconSpacing / 2.0)];
             self.titleEdgeInsets = titleEdgeInsets;
-
+            
             UIEdgeInsets imageEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
                                                                            leading:(self.titleLabel.bounds.size.width + buttonTitleIconSpacing / 2.0)
                                                                             bottom:0
@@ -227,7 +227,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                                             bottom:0
                                                                           trailing:-(buttonTitleIconSpacing / 2.0)];
             self.titleEdgeInsets = titleEdgeInsets;
-
+            
             UIEdgeInsets imageEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
                                                                            leading:-(buttonTitleIconSpacing / 2.0)
                                                                             bottom:0
@@ -246,8 +246,8 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.isIconOnly || self.isTextOnly) {
         return superSize;
     }
-
-
+    
+    
     return CGSizeMake(superSize.width + [[self class] buttonTitleIconSpacing], superSize.height);
 }
 
@@ -257,8 +257,8 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
         case BPKButtonStyleLink:
             return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
-
-         // NOTE: Explicit fall-through
+            
+            // NOTE: Explicit fall-through
         case BPKButtonStylePrimary:
         case BPKButtonStyleFeatured:
         case BPKButtonStyleSecondary:
@@ -294,9 +294,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateBackgroundAndStyle {
     UIColor *highlightedWhite = [UIColor colorWithRed:0.871 green:0.867 blue:0.878 alpha:1];
     UIColor *highlightedOutline = [BPKColor.gray900 colorWithAlphaComponent:0.2];
-
+    
     if (self.isEnabled) {
-
+        
         // We need this here so that if the button was disabled, and is now enabled, opacity is reset.
         self.layer.opacity = 1;
         switch (self.style) {
@@ -349,7 +349,7 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         [self setDisabledStyle];
     }
-
+    
     [self setNeedsDisplay];
 }
 
@@ -358,7 +358,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.titleLabel.font = [UIFont systemFontOfSize:0];
         [self setAttributedTitle:nil forState:UIControlStateNormal];
     }
-
+    
     [self setNeedsDisplay];
 }
 
@@ -367,19 +367,19 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont
                                                attributedStringWithFontStyle:self.currentFontStyle
-                                                                     content:self.title
-                                                                   textColor:self.currentContentColor];
+                                               content:self.title
+                                               textColor:self.currentContentColor];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
     }
-
-
+    
+    
     self.imageView.tintColor = self.currentContentColor;
     UIColor *highlightedContentColor;
-
+    
     switch (self.style) {
-        // Explicit fall-through
+            // Explicit fall-through
         case BPKButtonStylePrimary:
         case BPKButtonStyleFeatured:
             highlightedContentColor = [self class].highlightedWhite;
@@ -399,21 +399,21 @@ NS_ASSUME_NONNULL_BEGIN
         default:
             highlightedContentColor = nil;
     }
-
+    
     if (highlightedContentColor) {
         if (self.title) {
             NSAttributedString *attributedHighlightedTitle = [BPKFont
                                                               attributedStringWithFontStyle:self.currentFontStyle
-                                                                                    content:self.title
-                                                                                  textColor:highlightedContentColor];
-
+                                                              content:self.title
+                                                              textColor:highlightedContentColor];
+            
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];
         }
-
+        
         self.imageView.tintColor = self.isHighlighted ? highlightedContentColor : self.currentContentColor;
     }
-
+    
     [self setNeedsDisplay];
 }
 
@@ -422,7 +422,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.imageEdgeInsets = UIEdgeInsetsZero;
         self.titleEdgeInsets = UIEdgeInsetsZero;
     }
-
+    
     self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     [self setNeedsLayout];
 }
@@ -442,12 +442,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)currentContentColor {
+    if(!self.enabled){
+        return BPKColor.gray300;
+    }
     switch(self.style) {
-        // Here be dragons, explicit fall-through
+            // Here be dragons, explicit fall-through
         case BPKButtonStylePrimary:
         case BPKButtonStyleFeatured:
             return BPKColor.white;
-        // Here be dragons, explicit fall-through
+            // Here be dragons, explicit fall-through
         case BPKButtonStyleSecondary:
         case BPKButtonStyleLink:
             return BPKColor.blue500;
@@ -488,14 +491,14 @@ NS_ASSUME_NONNULL_BEGIN
         self.gradientLayer.gradient = [self gradientWithTopColor:normalColorOnTop bottomColor:normalColorOnBottom];
     }
     [self.gradientLayer setNeedsDisplay];
-
+    
     [self.layer setBorderColor:BPKColor.clear.CGColor];
     [self.layer setBorderWidth:0];
 }
 
 - (void)setBorderedStyleWithColor:(UIColor *)color withGradientColor:(UIColor *)gradientColor {
     self.gradientLayer.gradient = [self gradientWithSingleColor:gradientColor];
-
+    
     UIColor *borderColor = color;
     [self.layer setBorderColor:borderColor.CGColor];
     self.layer.borderWidth = 2;
@@ -509,13 +512,31 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setDisabledStyle {
-    UIColor *backgroundColor = (self.style == BPKButtonStyleLink || self.style == BPKButtonStyleOutline) ? BPKColor.white : BPKColor.gray100;
-        self.gradientLayer.gradient = [self gradientWithSingleColor:backgroundColor];
-        [self setTintColor:BPKColor.gray300];
-        [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
-        self.layer.borderColor = BPKColor.clear.CGColor;
-        self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
-        self.layer.borderWidth = 0;
+    UIColor *backgroundColor = nil;
+    switch(self.style) {
+            // Explicit fall-through
+        case BPKButtonStylePrimary:
+        case BPKButtonStyleFeatured:
+        case BPKButtonStyleSecondary:
+        case BPKButtonStyleDestructive:
+            backgroundColor = BPKColor.gray100;
+            break;
+        case BPKButtonStyleOutline:
+            backgroundColor = BPKColor.white;
+            break;
+        case BPKButtonStyleLink:
+            backgroundColor = UIColor.clearColor;
+            break;
+        default:
+            backgroundColor = nil;
+    }
+    
+    self.gradientLayer.gradient = [self gradientWithSingleColor:backgroundColor];
+    [self setTintColor:BPKColor.gray300];
+    [self setTitleColor:BPKColor.gray300 forState:UIControlStateDisabled];
+    self.layer.borderColor = BPKColor.clear.CGColor;
+    self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
+    self.layer.borderWidth = 0;
 }
 
 + (UIColor *)highlightedWhite {
