@@ -60,7 +60,6 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(colorView)
         contentView.addSubview(label)
 
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         colorView.translatesAutoresizingMaskIntoConstraints = false
 
