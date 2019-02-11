@@ -211,15 +211,15 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.isTextAndIcon) {
         if (self.imagePosition == BPKButtonImagePositionTrailing) {
             UIEdgeInsets titleEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                                           leading:-(self.imageView.bounds.size.width + buttonTitleIconSpacing / 2.0)
+                                                                           leading:-(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)
                                                                             bottom:0
-                                                                          trailing:(self.imageView.bounds.size.width + buttonTitleIconSpacing / 2.0)];
+                                                                          trailing:(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)];
             self.titleEdgeInsets = titleEdgeInsets;
             
             UIEdgeInsets imageEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                                           leading:(self.titleLabel.bounds.size.width + buttonTitleIconSpacing / 2.0)
+                                                                           leading:(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)
                                                                             bottom:0
-                                                                          trailing:-(self.titleLabel.bounds.size.width + buttonTitleIconSpacing / 2.0)];
+                                                                          trailing:-(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)];
             self.imageEdgeInsets = imageEdgeInsets;
         } else {
             UIEdgeInsets titleEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0

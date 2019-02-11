@@ -56,8 +56,8 @@ class UICollectionViewMasonryFlowLayout: UICollectionViewFlowLayout {
         var currentRow: CGFloat = -1
 
         for attribute in attributes {
-            if currentRow != attribute.frame.origin.y {
-                currentRow = attribute.frame.origin.y
+            if currentRow != attribute.frame.minY {
+                currentRow = attribute.frame.minY
                 rows.append(CollectionViewRow(spacing: self.minimumInteritemSpacing))
             }
             rows.last?.add(attribute: attribute)

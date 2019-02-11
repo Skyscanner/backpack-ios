@@ -50,9 +50,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat w =  self.contentView.bounds.size.width;
-    CGFloat h =  self.contentView.bounds.size.height;
-    self.titleLabel.frame = CGRectMake(0, 0, w, h);
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
 }
 
 - (void)setMonth:(NSDate *)month {

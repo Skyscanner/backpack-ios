@@ -44,7 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)drawInContext:(CGContextRef)ctx {
     [super drawInContext:ctx];
     CGContextSaveGState(ctx);
-    CGSize size = self.bounds.size;
+    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat height = CGRectGetHeight(self.bounds);
 
     if (self.gradient == nil) {
         CGContextRestoreGState(ctx);
@@ -60,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    if (colors.count == 0 || size.width == 0.0 || size.height == 0.0) {
+    if (colors.count == 0 || width == 0.0 || height == 0.0) {
         CGContextRestoreGState(ctx);
         return;
     }
@@ -79,8 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
     free(locations);
     CGPoint start = self.gradient.startPoint, end = self.gradient.endPoint;
     CGContextDrawLinearGradient(ctx, gradient,
-                                CGPointMake(start.x * size.width, start.y * size.height),
-                                CGPointMake(end.x * size.width, end.y * size.height),
+                                CGPointMake(start.x * width, start.y * height),
+                                CGPointMake(end.x * width, end.y * height),
                                 kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);

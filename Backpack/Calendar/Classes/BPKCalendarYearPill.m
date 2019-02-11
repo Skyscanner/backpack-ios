@@ -57,7 +57,7 @@
 
 -(void)layoutSubviews {
     [super layoutSubviews];
-    self.layer.cornerRadius = self.frame.size.height/2.0;
+    self.layer.cornerRadius = CGRectGetHeight(self.frame) / 2.0;
 }
 
 - (void)setYear:(nonnull NSNumber *)year {
