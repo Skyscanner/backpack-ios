@@ -53,11 +53,11 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGFloat padding = (self.bounds.size.width - self.shapeLayer.bounds.size.width)/2.0 - 0.5;
+    CGFloat padding = (CGRectGetWidth(self.bounds) - CGRectGetWidth(self.shapeLayer.bounds)) / 2.0 - 0.5;
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.selectionLayer.bounds;
     CGFloat height = self.shapeLayer.fs_height;
-    CGFloat shapeLayerX = self.shapeLayer.frame.origin.x;
+    CGFloat shapeLayerX = CGRectGetMinX(self.shapeLayer.frame);
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.shapeLayer.frame
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
@@ -70,7 +70,7 @@
     self.selectionLayer.fillColor = rangeColor.CGColor;
     
     self.samedayLayer.hidden = YES;
-    self.samedayLayer.frame = CGRectMake(-padding, 0.0, self.bounds.size.width, self.bounds.size.height);
+    self.samedayLayer.frame = CGRectMake(-padding, 0.0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
     self.samedayLayer.fillColor = [UIColor clearColor].CGColor;
     self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
     self.samedayLayer.path = sameDayPath.CGPath;
@@ -120,8 +120,8 @@
             self.selectionLayer.hidden = YES;
             self.shapeLayer.frame = CGRectMake(padding,
                                                0.0,
-                                               self.shapeLayer.frame.size.width,
-                                               self.shapeLayer.frame.size.height);
+                                               CGRectGetWidth(self.shapeLayer.frame),
+                                               CGRectGetHeight(self.shapeLayer.frame));
             break;
             
         default:

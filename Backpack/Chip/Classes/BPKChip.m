@@ -95,9 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutSubviews {
     self.tintLayer.frame = self.bounds;
-    self.tintLayer.cornerRadius = self.bounds.size.height / 2;
+    self.tintLayer.cornerRadius = CGRectGetHeight(self.bounds) / 2.0;
 
-    self.layer.cornerRadius = self.bounds.size.height / 2;
+    self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2.0;
 }
 
 #pragma mark - State setters

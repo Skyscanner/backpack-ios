@@ -140,18 +140,19 @@ NSString * const HeaderDateFormat = @"MMMM";
     // Component from React Native. DON'T attempt to convert it to Auto Layout
 
     CGRect bounds = self.bounds;
-    CGFloat width = bounds.size.width;
-    CGFloat height = bounds.size.height;
+    CGFloat width = CGRectGetWidth(bounds);
+    CGFloat height = CGRectGetHeight(bounds);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
 
 
     self.calendarView.frame = CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
 
     self.calendarWeekdayView.frame = CGRectMake(0, 0, width, weekdayViewHeight);
-    self.bottomBorder.frame = CGRectMake(self.calendarWeekdayView.frame.origin.x, weekdayViewHeight - 1, self.calendarWeekdayView.frame.size.width, 1.0);
+    self.bottomBorder.frame = CGRectMake(CGRectGetMinX(self.calendarWeekdayView.frame), weekdayViewHeight - 1, CGRectGetWidth(self.calendarWeekdayView.frame), 1.0);
 
-    CGSize yearPillSize = self.yearPill.bounds.size;
-    self.yearPill.frame = CGRectMake(width / 2.0 - yearPillSize.width / 2.0, self.calendarWeekdayView.frame.size.height + BPKSpacingLg, yearPillSize.width, yearPillSize.height);
+    CGFloat yearPillWidth = CGRectGetWidth(self.yearPill.bounds);
+    CGFloat yearPillHeight = CGRectGetHeight(self.yearPill.bounds);
+    self.yearPill.frame = CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg, yearPillWidth, yearPillHeight);
 }
 
 #pragma mark - property getters/setters
