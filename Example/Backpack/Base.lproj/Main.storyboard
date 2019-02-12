@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i7P-2f-H5J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i7P-2f-H5J">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -514,13 +514,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W0S-Si-jqY">
-                                <rect key="frame" x="0.0" y="157" width="375" height="353.5"/>
+                                <rect key="frame" x="16" y="149" width="343" height="369.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBu-dZ-2rZ" customClass="BPKPanel">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="152.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="152.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDv-xQ-2n0" customClass="BPKLabel">
-                                                <rect key="frame" x="8" y="8" width="359" height="136.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDv-xQ-2n0" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="152.5"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempus nec velit sit amet volutpat. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -543,10 +544,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-3B-Knl" customClass="BPKPanel">
-                                        <rect key="frame" x="0.0" y="152.5" width="375" height="201"/>
+                                        <rect key="frame" x="0.0" y="168.5" width="343" height="201"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-Yx-jcE" customClass="BPKLabel">
-                                                <rect key="frame" x="8" y="8" width="359" height="185"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-Yx-jcE" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempus nec velit sit amet volutpat. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -571,13 +573,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="68y-nP-PNS"/>
+                                    <constraint firstItem="ex8-3B-Knl" firstAttribute="width" secondItem="OBu-dZ-2rZ" secondAttribute="width" id="SwX-ZJ-YLI"/>
+                                    <constraint firstItem="ex8-3B-Knl" firstAttribute="top" secondItem="OBu-dZ-2rZ" secondAttribute="bottom" constant="16" id="z3t-IJ-0Lo"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="W0S-Si-jqY" firstAttribute="leading" secondItem="qHE-l0-Inn" secondAttribute="leading" id="5Jv-IX-03f"/>
-                            <constraint firstAttribute="trailing" secondItem="W0S-Si-jqY" secondAttribute="trailing" id="f6g-gF-QzF"/>
+                            <constraint firstItem="W0S-Si-jqY" firstAttribute="leading" secondItem="qHE-l0-Inn" secondAttribute="leading" constant="16" id="5Jv-IX-03f"/>
+                            <constraint firstAttribute="trailing" secondItem="W0S-Si-jqY" secondAttribute="trailing" constant="16" id="f6g-gF-QzF"/>
                             <constraint firstItem="W0S-Si-jqY" firstAttribute="centerY" secondItem="qHE-l0-Inn" secondAttribute="centerY" id="lYJ-IJ-W95"/>
                         </constraints>
                     </view>
