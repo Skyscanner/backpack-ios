@@ -16,28 +16,24 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import "BPKLondonTheme.h"
+#import "BPKLondonThemeContainer.h"
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+#import <Backpack/Button.h>
+#import <Backpack/Chip.h>
+#import <Backpack/Spinner.h>
+#import <Backpack/Switch.h>
 
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "Theme.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
+@implementation BPKLondonTheme
 
+
++ (void)apply {
+    [self applyWithContainer:[BPKLondonThemeContainer class]];
+}
+
++ (void)applyWithContainer:(Class) class {
+    UIColor *switchPrimaryColor = [UIColor colorWithRed:237.0f/255.0f green:27.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:switchPrimaryColor];
+}
+
+@end

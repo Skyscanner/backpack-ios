@@ -16,28 +16,15 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-    #define __BACKPACK__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+NS_ASSUME_NONNULL_BEGIN
 
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "Theme.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
-#endif
+/**
+ * `BPKHongKongThemeContainer` is a subclass of `UIView` which allows the BPKHongKong theme to be applied to all its children.
+ */
+NS_SWIFT_NAME(HongKongThemeContainer) @interface BPKHongKongThemeContainer: UIView
 
+@end
+NS_ASSUME_NONNULL_END
