@@ -8,6 +8,10 @@ Please follow the [New York Times Objective-C style-guide](https://github.com/NY
 
 Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` blocks. Make sure to annotate any types that are nullable correctly.
 
+## How we review Backpack contributions
+
+Please see the [code review guidelines](CODE_REVIEW_GUIDELINES.md).
+
 ## Environment
 
 We use both Ruby and Node in this project. To manage these language runtimes we recommend using [`rbenv`][0] and [`nvm`][1] respectively. You should ensure you have these installed or some other means of handling Ruby and Node versions. The required ruby version is specified in `.ruby-version` and the Node version is in `.nvmrc`.
@@ -32,6 +36,8 @@ Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests s
 ## Git
 
 Please submit your requested changes as a pull request to the `master` branch. If your branch becomes out of date and conflicts need to be resolved with `master` use `git rebase`, do not merge `master` into your feature branch.
+
+Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
 
 ## Releasing
 
