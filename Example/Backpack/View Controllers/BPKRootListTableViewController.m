@@ -17,12 +17,21 @@
  */
 
 #import "BPKRootListTableViewController.h"
+#import <Backpack/Icon.h>
+#import <Backpack/Color.h>
 
 @interface BPKRootListTableViewController ()
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @end
 
 @implementation BPKRootListTableViewController
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+
+    UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
+    self.settingsButton.image = largeSettingsIcon;
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // We cheat and use the same view controller for both fonts and labels

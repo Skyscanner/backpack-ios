@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,22 @@
  * limitations under the License.
  */
 
-@import UIKit;
-#import "ShakeableWindow.h"
+import UIKit
+import Backpack
 
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
+class SettingsViewController: UITableViewController {
+    @IBOutlet weak var closeButton: UIBarButtonItem!
 
-@property (strong, nonatomic) UIWindow *window;
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-@property (strong, nonatomic) ShakeableWindow *shakeableWindow;
+        closeButton.tintColor = Color.blue500
+        closeButton.target = self
+        closeButton.action = #selector(SettingsViewController.btnAction)
+    }
 
-@end
+    @objc func btnAction() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+}
