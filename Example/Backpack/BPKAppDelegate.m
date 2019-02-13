@@ -18,6 +18,9 @@
 
 #import "BPKAppDelegate.h"
 #import "ShakeableWindow.h"
+#import "Backpack_Native-Swift.h"
+
+#import <Backpack/Theme.h>
 #import <Backpack/Color.h>
 
 @implementation BPKAppDelegate
@@ -36,6 +39,14 @@
     shakeableWindow.rootViewController = self.window.rootViewController;
     self.shakeableWindow = shakeableWindow;
     [shakeableWindow makeKeyAndVisible];
+
+    NSDictionary<NSString *, NSString *> *settings = [StorageHelpers readSettingsFromFile];
+    NSString *themeName = settings[@"themeEnabled"];
+    [ThemingHelpers applyExampleThemeWithThemeName:themeName];
+
+    [BPKLondonTheme apply];
+    [BPKHongKongTheme apply];
+    [BPKDohaTheme apply];
 
     return YES;
 }

@@ -40,8 +40,7 @@ bool additionalSubviewAdded = NO;
 }
 
 - (void) swapThemeContainers {
-    // TODO Get theme from settings once implemented!
-    NSString *themeName = nil;
+    NSString *themeName = ThemingHelpers.currentTheme;
 
     NSArray *subviewsToPreserve = [[self view] subviews];
     if(additionalSubviewAdded){
