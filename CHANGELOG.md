@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.4.0
+
+**Added:**
+ - Backpack/Theme
+   - New example themes and containers. 
+
 ### 6.3.0
 
 **Added:**
