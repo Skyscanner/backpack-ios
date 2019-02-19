@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,43 +16,15 @@
  * limitations under the License.
  */
 
-#import "BPKSwitch.h"
-#import <Backpack/Color.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSwitch()
+NS_SWIFT_NAME(DefaultTheme) @interface BPKDefaultTheme : NSObject
 
-@end
-
-@implementation BPKSwitch
-
-+ (UIColor *) defaultOnTintColor {
-    return BPKColor.blue500;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (void)setup {
-    self.tintColor = BPKColor.gray100;
-    self.onTintColor = BPKSwitch.defaultOnTintColor;
-    [self setNeedsDisplay];
-}
++ (void)applyWithContainer:(Class)class;
 
 @end
 
 NS_ASSUME_NONNULL_END
+

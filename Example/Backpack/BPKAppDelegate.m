@@ -17,12 +17,14 @@
  */
 
 #import "BPKAppDelegate.h"
+#import <Backpack/Theme.h>
 
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [BPKHongKongTheme applyWithContainer:UIView.class];
     return YES;
 }
 

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
 
++ (UIColor *) defaultOnTintColor;
+
 /**
  * Creates a `BPKSwitch` with a decoder (typically when creating from storyboards)
  *

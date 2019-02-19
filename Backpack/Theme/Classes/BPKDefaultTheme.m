@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,18 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_THEMES__
-#define __BACKPACK_THEMES__
-
-#import "BPKLondonThemeContainer.h"
-#import "BPKLondonTheme.h"
-#import "BPKHongKongThemeContainer.h"
-#import "BPKHongKongTheme.h"
 #import "BPKDefaultTheme.h"
-#endif
+
+#import <Backpack/Button.h>
+#import <Backpack/Chip.h>
+#import <Backpack/Spinner.h>
+#import <Backpack/Switch.h>
+#import <Backpack/Color.h>
+
+@implementation BPKDefaultTheme
+
++ (void)applyWithContainer:(Class) class {
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:BPKSwitch.defaultOnTintColor];
+}
+
+@end

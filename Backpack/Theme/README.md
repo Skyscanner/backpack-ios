@@ -19,6 +19,12 @@
 
 With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
 
+To unapply the theme, you need to apply `BPKDefaultTheme` to instances of `BPKLondonThemeContainer` as follows:
+
+```
+  [BPKDefaultTheme applyWithContainer:BPKLondonThemeContainer.class];
+```
+
 ### Swift
 
 
@@ -32,3 +38,9 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     return true
 }
 </pre>
+
+To unapply the theme, you need to apply `DefaultTheme` to instances of `LondonThemeContainer` as follows:
+
+```
+  DefaultTheme.apply(withContainer: UIView.self)
+```
