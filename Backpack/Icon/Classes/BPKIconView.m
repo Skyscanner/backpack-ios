@@ -18,6 +18,7 @@
 #import "BPKIconView.h"
 
 #import "BPKColor.h"
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKIconView
 
 - (instancetype)initWithIconName:(nullable BPKIconName)iconName size:(BPKIconSize)size {
+    BPKAssertMainThread();
     CGSize displaySize = [BPKIcon concreteSizeForIconSize:size];
 
     self = [super initWithFrame:CGRectMake(0, 0, displaySize.width, displaySize.height)];
@@ -52,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIconName:(nullable BPKIconName)iconName {
+    BPKAssertMainThread();
     if (![iconName isEqualToString:_iconName]) {
         _iconName = [iconName copy];
 

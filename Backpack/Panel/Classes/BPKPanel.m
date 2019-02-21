@@ -20,6 +20,7 @@
 #import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKPanelDefaultPaddedValue = YES;
@@ -34,6 +35,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 @implementation BPKPanel
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
 
     if (self) {
@@ -44,6 +46,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 }
 
 - (instancetype)initWithPadded:(BOOL)padded {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -54,6 +57,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 }
 
 - (void)setPadded:(BOOL)padded {
+    BPKAssertMainThread();
     if (padded) {
         self.layoutMargins = self.originalLayoutMargins;
     } else {
@@ -64,6 +68,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 }
 
 - (void)addSubview:(UIView *)view {
+    BPKAssertMainThread();
     NSAssert(self.subviews.count == 0, @"BPKPanel can only have a single subview");
     if (self.subviews.count > 0) {
         return;

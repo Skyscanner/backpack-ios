@@ -15,39 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#ifndef BPK_Common_h
+#define BPK_Common_h
 
-#import "BPKLondonThemeContainer.h"
-#import <Backpack/Common.h>
+#import <pthread.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#if !defined(NS_BLOCK_ASSERTIONS)
+#define BPK_ASSERTIONS_ENABLED 1
+#else
+#define BPK_ASSERTIONS_ENABLED 0
+#endif
 
-@interface BPKLondonThemeContainer()
+#define BPKAssert(condition, desc, ...) NSAssert(condition, desc, ##__VA_ARGS__)
+#define BPKAssertMainThread() BPKAssert(!BPK_ASSERTIONS_ENABLED || 0 != pthread_main_np(), @"This method must be called on the main thread")
 
-@end
-
-@implementation BPKLondonThemeContainer
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        BPKAssertMainThread();
-    }
-    return self;
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        BPKAssertMainThread();
-    }
-    return self;
-}
-
-- (void)addSubview:(UIView *)view {
-    [super addSubview:view];
-    BPKAssertMainThread();
-}
-
-@end
-
-NS_ASSUME_NONNULL_END
+#endif

@@ -26,6 +26,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
@@ -55,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
                       message:(NSString *)message
           iconBackgroundColor:(UIColor *)iconBackgroundColor
                     iconImage:(UIImage *)iconImage {
+    BPKAssertMainThread();
     self = [self initWithFrame:CGRectZero];
 
     if (self) {
@@ -68,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -82,6 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
 
     if (self) {
@@ -203,6 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Property overrides
 
 - (void)setIconBackgroundColor:(UIColor *_Nullable)iconBackgroundColor {
+    BPKAssertMainThread();
     self.iconView.iconBackgroundColor = iconBackgroundColor;
 }
 
@@ -211,6 +216,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIconImage:(UIImage *_Nullable)iconImage {
+    BPKAssertMainThread();
     self.iconView.iconImage = iconImage;
 }
 
@@ -219,6 +225,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setTitle:(NSString *_Nullable)title {
+    BPKAssertMainThread();
     self.titleLabel.text = title;
 }
 
@@ -228,6 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)setMessage:(NSString *_Nullable)description {
+    BPKAssertMainThread();
     self.descriptionLabel.text = description;
 }
 
@@ -238,6 +246,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Other public methods
 
 - (void)addButtonAction:(BPKDialogButtonAction *)action {
+    BPKAssertMainThread();
     BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeLarge style:action.style];
     [button setTitle:action.title];
     [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];

@@ -18,6 +18,7 @@
 #import "BPKGradientView.h"
 
 #import "BPKGradientLayer.h"
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradientView()
@@ -29,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @dynamic gradientLayer;
 
 - (instancetype)initWithGradient:(BPKGradient *)gradient {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -47,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setGradient:(BPKGradient *_Nullable)gradient {
+    BPKAssertMainThread();
     self.gradientLayer.gradient = gradient;
 }
 
