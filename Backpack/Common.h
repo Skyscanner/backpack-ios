@@ -20,13 +20,6 @@
 
 #import <pthread.h>
 
-#if !defined(NS_BLOCK_ASSERTIONS)
-#define BPK_ASSERTIONS_ENABLED 1
-#else
-#define BPK_ASSERTIONS_ENABLED 0
-#endif
-
-#define BPKAssert(condition, desc, ...) NSAssert(condition, desc, ##__VA_ARGS__)
-#define BPKAssertMainThread() BPKAssert(!BPK_ASSERTIONS_ENABLED || 0 != pthread_main_np(), @"This method must be called on the main thread")
+#define BPKAssertMainThread() NSAssert(0 != pthread_main_np(), @"This method must be called on the main thread")
 
 #endif
