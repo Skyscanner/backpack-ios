@@ -2,6 +2,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.4.1
+
+**Changed:**
+- Added a runtime check that all Backpack UI components are being called from the main thread.
+
 ### 6.4.0
 
 **Added:**
