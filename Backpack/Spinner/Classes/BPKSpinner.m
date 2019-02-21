@@ -18,6 +18,7 @@
 
 #import "BPKSpinner.h"
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKSpinner
 
 - (instancetype)initWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
+    BPKAssertMainThread();
     self = [super initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     if (self) {
         [self setupWithStyle:style size:size];
@@ -36,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
+    BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
         [self setupWithDefaultValues];
@@ -44,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
         [self setupWithDefaultValues];
@@ -62,12 +66,14 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setSize:(BPKSpinnerSize)size {
+    BPKAssertMainThread();
     _size = size;
     [self didChangeProperty];
     [self setNeedsLayout];
 }
 
 - (void)setStyle:(BPKSpinnerStyle)style {
+    BPKAssertMainThread();
     _style = style;
     [self didChangeProperty];
 }

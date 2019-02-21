@@ -23,6 +23,7 @@
 #import <Backpack/Gradient.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton()
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKButton
 
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
@@ -57,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -67,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
     
     if (self) {
@@ -115,6 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Style setters
 
 - (void)setSize:(BPKButtonSize)size {
+    BPKAssertMainThread();
     if (_size != size || self.isInitializing) {
         _size = size;
         
@@ -124,6 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setStyle:(BPKButtonStyle)style {
+    BPKAssertMainThread();
     if (_style != style || self.isInitializing) {
         _style = style;
         
@@ -142,6 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setTitle:(NSString *_Nullable)title {
+    BPKAssertMainThread();
     _title = [title copy];
     
     if (title) {
@@ -156,6 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setImage:(UIImage *_Nullable)image {
+    BPKAssertMainThread();
     [super setImage:image forState:UIControlStateNormal];
     
     [self updateContentColor];
@@ -166,6 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - State setters
 
 - (void)setEnabled:(BOOL)enabled {
+    BPKAssertMainThread();
     BOOL changed = self.isEnabled != enabled;
     
     [super setEnabled:enabled];
@@ -178,11 +187,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setSelected:(BOOL)selected {
+    BPKAssertMainThread();
     NSAssert(NO, @"The Backpack button does not support selected");
     [super setSelected:selected];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
+    BPKAssertMainThread();
     BOOL changed = self.isHighlighted != highlighted;
     
     [super setHighlighted:highlighted];

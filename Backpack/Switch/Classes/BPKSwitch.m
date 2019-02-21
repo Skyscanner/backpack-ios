@@ -18,6 +18,7 @@
 
 #import "BPKSwitch.h"
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKSwitch
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
+    BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
         [self setup];
@@ -36,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];

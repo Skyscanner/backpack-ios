@@ -17,6 +17,7 @@
  */
 #import "BPKTextView.h"
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKTextView()
@@ -26,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKTextView
 
 - (instancetype)initWithFontStyle:(BPKFontStyle)style {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero textContainer:nil];
 
     if (self) {
@@ -36,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
 
     if (self) {
@@ -46,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame textContainer:textContainer];
 
     if (self) {
@@ -56,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setText:(NSString *_Nullable)text {
+    BPKAssertMainThread();
     if (text == nil) {
         self.attributedText = nil;
         return;
@@ -71,6 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
+    BPKAssertMainThread();
     _fontStyle = fontStyle;
     [self setText:self.attributedText.string];
 }

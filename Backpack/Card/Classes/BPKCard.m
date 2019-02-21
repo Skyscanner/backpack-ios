@@ -21,6 +21,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKCardDefaultPaddedValue = YES;
@@ -35,6 +36,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 @implementation BPKCard
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
     
     if (self) {
@@ -45,6 +47,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -55,10 +58,12 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (instancetype)initWithPadded:(BOOL)padded {
+    BPKAssertMainThread();
     return [self initWithPadded:padded cornerStyle:BPKCardDefaultCornerStyle];
 }
 
 - (instancetype)initWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -69,6 +74,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (void)setPadded:(BOOL)padded {
+    BPKAssertMainThread();
     if (padded) {
         self.layoutMargins = UIEdgeInsetsMake(BPKSpacingBase, BPKSpacingBase, BPKSpacingBase, BPKSpacingBase);
     } else {
@@ -80,11 +86,13 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (void)setCornerStyle:(BPKCardCornerStyle)cornerStyle {
+    BPKAssertMainThread();
     _cornerStyle = cornerStyle;
     [self updateCorners];
 }
 
 - (void)setSelected:(BOOL)selected {
+    BPKAssertMainThread();
     [super setSelected:selected];
     BPKShadow *shadow = selected ? [BPKShadow shadowLg] : [BPKShadow shadowSm];
     [shadow applyToLayer:self.layer];
@@ -98,12 +106,14 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
+    BPKAssertMainThread();
     [super setHighlighted:highlighted];
     
     self.backgroundColor = highlighted ? BPKColor.gray100 : BPKColor.white;
 }
 
 - (void)setSubview:(UIView *_Nullable)view {
+    BPKAssertMainThread();
     if (self.subview != nil) {
         [self.subview removeFromSuperview];
     }

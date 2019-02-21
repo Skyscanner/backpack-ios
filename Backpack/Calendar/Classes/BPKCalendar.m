@@ -27,6 +27,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Common.h>
 
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarCollectionView.h>
@@ -65,7 +66,7 @@ NSString * const HeaderReuseId = @"header";
 NSString * const HeaderDateFormat = @"MMMM";
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
-
+    BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
         [self setup];
@@ -75,8 +76,8 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
-
     if (self) {
         [self setup];
     }
@@ -162,6 +163,7 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (void)setLocale:(NSLocale *)locale {
+    BPKAssertMainThread();
     self.gregorian.locale = locale;
     self.calendarView.locale = locale;
     self.calendarView.firstWeekday = [[locale objectForKey:NSLocaleCalendar] firstWeekday];
@@ -169,6 +171,7 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
+    BPKAssertMainThread();
     _selectionType = selectionType;
     self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
     for (NSDate *date in self.calendarView.selectedDates) {
@@ -198,6 +201,7 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (void)setSelectedDates:(NSArray<NSDate *> *)selectedDates {
+    BPKAssertMainThread();
     NSSet<BPKSimpleDate *> *previouslySelectedDates = [self createDateSet:self.calendarView.selectedDates];
     NSSet<BPKSimpleDate *> *newSelectedDates = [self createDateSet:selectedDates];
 

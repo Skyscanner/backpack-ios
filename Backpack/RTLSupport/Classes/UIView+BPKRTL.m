@@ -17,6 +17,7 @@
  */
 #import "UIView+BPKRTL.h"
 #import "BPKRTLSupport.h"
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @implementation UIView(BPKRTL)
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
                                           leading:(CGFloat)leading
                                            bottom:(CGFloat)bottom
                                          trailing:(CGFloat)trailing {
+    BPKAssertMainThread();
     return [BPKRTLSupport makeRTLAwareEdgeInsetsForView:self top:top leading:leading bottom:bottom trailing:trailing];
 }
 @end

@@ -22,6 +22,7 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKBadge()
@@ -34,12 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKBadge
 
 - (instancetype)initWithMessage:(NSString *)message {
+    BPKAssertMainThread();
       self = [self initWithType:BPKBadgeTypeSuccess message:message];
 
     return self;
 }
 
 - (instancetype)initWithType:(BPKBadgeType)type message:(NSString *)message {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -52,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -62,6 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
 
     if (self) {
@@ -72,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setType:(BPKBadgeType)type {
+    BPKAssertMainThread();
     _type = type;
 
     self.layer.borderWidth = 0.0;
@@ -108,6 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setMessage:(NSString *)message {
+    BPKAssertMainThread();
     self.label.text = message;
 }
 

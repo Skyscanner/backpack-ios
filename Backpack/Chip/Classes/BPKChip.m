@@ -23,6 +23,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKChip()
@@ -35,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKChip
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -45,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
 
     if (self) {
@@ -55,6 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithTitle:(NSString *)title {
+    BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -103,17 +107,20 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - State setters
 
 - (void)setTitle:(NSString *_Nullable)title {
+    BPKAssertMainThread();
     _title = [title copy];
 
     [self updateTitle];
 }
 
 - (void)setSelected:(BOOL)selected {
+    BPKAssertMainThread();
     [super setSelected:selected];
     [self updateStyle];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
+    BPKAssertMainThread();
     [super setHighlighted:highlighted];
 
     [CATransaction begin];
@@ -123,6 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setEnabled:(BOOL)enabled {
+    BPKAssertMainThread();
     [super setEnabled:enabled];
     [self updateStyle];
 }

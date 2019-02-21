@@ -17,6 +17,7 @@
  */
 
 #import "BPKHongKongThemeContainer.h"
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,27 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @implementation BPKHongKongThemeContainer
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        BPKAssertMainThread();
+    }
+    return self;
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        BPKAssertMainThread();
+    }
+    return self;
+}
+
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    BPKAssertMainThread();
+}
 
 @end
 
