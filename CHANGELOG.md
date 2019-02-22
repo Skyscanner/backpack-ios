@@ -2,6 +2,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.5.0
+
+**Added:**
+
++ Backpack/Icon
+  + Added new icons
+    + BPKIconNameEcoLeaf
+    + BPKIconNameHide
+
 ### 6.4.1
 
 **Changed:**
