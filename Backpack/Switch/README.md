@@ -22,3 +22,7 @@ import Backpack
 let `switch` = Backpack.Switch();
 // Position switch with autolayout or other method
 ```
+
+### Appearance attributes
+`(UIColor)onTintColor`
+
