@@ -48,7 +48,7 @@
     "lint-staged": "^8.0.4",
     "lodash": "^4.17.11",
     "merge2": "^1.2.1",
-    "through2": "^2.0.3",
+    "through2": "^3.0.1",
     "tinycolor2": "^1.4.1"
   }
 }
