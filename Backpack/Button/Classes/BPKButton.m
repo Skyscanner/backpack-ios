@@ -517,6 +517,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLinkStyleWithColor:(UIColor *)color {
     self.gradientLayer.gradient = nil;
+    [self setBackgroundColor:UIColor.purpleColor];
     
     [self.layer setBorderColor:BPKColor.clear.CGColor];
     [self.layer setBorderWidth:0];
@@ -536,7 +537,7 @@ NS_ASSUME_NONNULL_BEGIN
             backgroundColor = BPKColor.white;
             break;
         case BPKButtonStyleLink:
-            backgroundColor = UIColor.clearColor;
+            backgroundColor = UIColor.purpleColor;
             break;
         default:
             backgroundColor = nil;

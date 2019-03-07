@@ -91,8 +91,14 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
-    [button setImage:image];
+    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeLarge] : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+
+    [button setImage:smallLongArrowIcon];
+    [button setNeedsLayout];
+    [button setNeedsLayout];
+    [button layoutIfNeeded];
     [button setTitle:title];
+    [button setImage:nil];
 }
 
 - (BOOL)isRTL {
