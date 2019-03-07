@@ -105,15 +105,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)isIconOnly {
-    return self.imageView && self.imageView.image && self.titleLabel.text.length == 0;
+    return self.currentImage && self.titleLabel.text.length == 0;
 }
 
 - (BOOL)isTextOnly {
-    return (self.imageView == nil || self.imageView.image == nil) && self.titleLabel.text.length > 0;
+    return (self.currentImage == nil) && self.titleLabel.text.length > 0;
 }
 
 - (BOOL)isTextAndIcon {
-    return self.imageView && self.imageView.image && self.titleLabel.text.length > 0;
+    return self.currentImage && self.titleLabel.text.length > 0;
 }
 
 #pragma mark - Style setters
