@@ -337,7 +337,7 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([self.delegate respondsToSelector:@selector(calendar:didScroll:)]) {
-        [self.delegate calendar:self didScroll:scrollView.contentOffset];
+        [self.delegate calendar:self didScroll:scrollView];
     }
     [self.calendarView scrollViewDidScroll:scrollView];
 }

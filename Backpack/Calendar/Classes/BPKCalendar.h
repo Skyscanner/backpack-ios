@@ -42,9 +42,9 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 /**
  * Called when the calendar was scrolled
  * @param calendar The backpack calendar.
- * @param contentOffset The content offset
+ * @param scrollView The scrollView of the calendar
  */
-- (void)calendar:(BPKCalendar *)calendar didScroll:(CGPoint)contentOffset;
+- (void)calendar:(BPKCalendar *)calendar didScroll:(UIScrollView *)scrollView;
 
 @end
 
