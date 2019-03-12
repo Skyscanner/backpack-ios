@@ -10,7 +10,7 @@ Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` bl
 
 ## How we review Backpack contributions
 
-Please see the [code review guidelines](CODE_REVIEW_GUIDELINES.md).
+Please see the [code review guidelines](https://github.com/Skyscanner/backpack/blob/master/CODE_REVIEW_GUIDELINES.md).
 
 ## Environment
 
