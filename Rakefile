@@ -62,7 +62,7 @@ end
 
 task :test do
   only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
-  sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
+  sh "set -o pipefail && xcrun simctl erase all && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
 end
 
 task :lint do
