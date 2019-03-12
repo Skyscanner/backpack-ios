@@ -1,3 +1,4 @@
 # Unreleased
 
-- CalendarDelegate exposes the whole scrollview instead of just the content offset
+- BPKCalendar:
+  - Exposed some properties of the calendar's underlying scrollView

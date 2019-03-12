@@ -39,7 +39,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
     }
 
-    func calendar(_ calendar: Backpack.Calendar!, didScroll scrollView: UIScrollView!) {
-        print("calendar:", calendar, "didScroll:", scrollView.contentOffset)
+    func calendar(_ calendar: Backpack.Calendar!, didScroll contentOffset: CGPoint) {
+        print("calendar:", calendar, "didScroll:", contentOffset, "isTracking:", calendar.isTracking)
     }
 }
