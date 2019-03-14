@@ -6,39 +6,9 @@
 # latest iOS version. For example snapshot tests are only ran for the
 # latest version.
 osx_image: xcode10
-language: objective-c
 cache:
-  cocoapods: true
-  bundler: true
-  directories:
-    - node_modules
-matrix:
-  include:
-    - osx_image: xcode10
-      env: BUILD_SDK=iphonesimulator12.0 DESTINATION="OS=12.0,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
-    - osx_image: xcode9.4
-      env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=11.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
-    - osx_image: xcode9.4
-      env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=10.3.1,platform=iOS Simulator,name=iPhone 7" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
-  - nvm install
-  - nvm use
   - rvm use $(< .ruby-version) --install --binary --fuzzy --create
-  - brew update && brew outdated && brew upgrade
-  - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
-install:
-  - npm install
-  - bundle install
-  - bundle exec pod repo update
-  - (cd Example && bundle exec pod install)
-before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
-script:
-  - npm run build
-  - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
-  - 'if [[ "$MAIN_STAGE" = true ]]; then Example/Pods/SwiftLint/swiftlint lint --strict; fi'
-  - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci $TRAVIS_TAG; fi'
-  - (cd Example && bundle exec rake ci)
-after_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
 branches:
   only:
     - master
