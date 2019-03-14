@@ -24,6 +24,7 @@ before_install:
   - nvm install
   - nvm use
   - rvm use $(< .ruby-version) --install --binary --fuzzy --create
+  - brew update && brew outdated && brew upgrade
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
 install:
   - npm install
