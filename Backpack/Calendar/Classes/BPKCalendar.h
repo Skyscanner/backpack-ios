@@ -84,6 +84,36 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 @property (nonatomic) NSDate *maxDate;
 
 /**
+ * The underlying scrollView's content offset
+ */
+@property (readonly) CGPoint contentOffset;
+
+/**
+ * The underlying scrollView's content inset
+ */
+@property (readonly) UIEdgeInsets contentInset;
+
+/**
+ * The underlying scrollView's content size
+ */
+@property (readonly) CGSize contentSize;
+
+/**
+ * The underlying scrollView's isDecelerating
+ */
+@property (readonly) BOOL isDecelerating;
+
+/**
+ * The underlying scrollView's isTracking
+ */
+@property (readonly) BOOL isTracking;
+
+/**
+ * The underlying scrollView's isDragging
+ */
+@property (readonly) BOOL isDragging;
+
+/**
  * The calendar's delegate
  */
 @property (nonatomic) id<BPKCalendarDelegate> delegate;

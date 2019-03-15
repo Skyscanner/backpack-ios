@@ -344,6 +344,30 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 #pragma mark - private
 
+- (CGPoint)contentOffset {
+    return self.calendarView.collectionView.contentOffset;
+}
+
+- (UIEdgeInsets)contentInset {
+    return self.calendarView.collectionView.contentInset;
+}
+
+- (CGSize)contentSize {
+    return self.calendarView.collectionView.contentSize;
+}
+
+- (BOOL)isDecelerating {
+    return self.calendarView.collectionView.isDecelerating;
+}
+
+- (BOOL)isDragging {
+    return self.calendarView.collectionView.isDragging;
+}
+
+- (BOOL)isTracking {
+    return self.calendarView.collectionView.isTracking;
+}
+
 - (void)configureVisibleCells {
     [self.calendarView.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDate *date = [self.calendarView dateForCell:obj];
