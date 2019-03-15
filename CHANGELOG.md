@@ -2,6 +2,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.6.0
+
+**Added:**
+- Backapck/Calendar
+  - Exposed some read only properties of the calendar's underlying scrollView. These are:
+    - `contentInset`
+    - `contentSize`
+    - `isDecelerating`
+    - `isTracking`
+    - `isDragging`
+
 ### 6.5.1
 
 **Fixed:**
@@ -27,7 +38,7 @@
 
 **Added:**
  - Backpack/Theme
-   - New example themes and containers. 
+   - New example themes and containers.
 
 ### 6.3.0
 
