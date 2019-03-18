@@ -8,7 +8,7 @@
 
 ### Objective-C
 
-**BPKCard**
+**`BPKCard`**
 
 ```objective-c
 #import <Backpack/Card.h>
@@ -18,7 +18,7 @@ BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
 card.padded = NO;
 ```
 
-**BPKDividedCard**
+**`BPKDividedCard`**
 
 ```objective-c
 #import <Backpack/DividedCard.h>
@@ -30,7 +30,7 @@ dividedCard.orientation = UILayoutConstraintAxisVertical;
 
 ### Swift
 
-**Backpack.Card**
+**`Backpack.Card`**
 
 ```swift
 import Backpack
@@ -40,7 +40,7 @@ card.subview = myInnerView
 card.padded = false
 ```
 
-**Backpack.DividedCard**
+**`Backpack.DividedCard`**
 
 ```swift
 import Backpack
