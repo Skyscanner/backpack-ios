@@ -23,14 +23,12 @@
 
 @implementation BPKDohaTheme
 
-
-+ (void)apply {
-    [self applyWithContainer:[BPKDohaThemeContainer class]];
++ (UIColor *)getSwitchPrimaryColor {
+    return [UIColor colorWithRed:255.0f/255.0f green:184.0f/255.0f blue:2.0f/255.0f alpha:1.0f];
 }
 
-+ (void)applyWithContainer:(Class) class {
-    UIColor *switchPrimaryColor = [UIColor colorWithRed:237.0f/255.0f green:27.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:switchPrimaryColor];
++ (Class)getThemeContainerClass {
+    return [BPKDohaThemeContainer class];
 }
 
 @end
