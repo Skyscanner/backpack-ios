@@ -23,7 +23,12 @@ public class StorageHelpers: NSObject {
     static var SETTINGSFILENAME = "settings.json"
 
     @objc static func writeSettingsToFile(settings: [String: String]) {
-        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true) as [NSString]? {
+        if let dirs: [NSString] =
+              NSSearchPathForDirectoriesInDomains(
+                FileManager.SearchPathDirectory.documentDirectory,
+                FileManager.SearchPathDomainMask.allDomainsMask,
+                true
+              ) as [NSString]? {
             let dir = dirs[0] //documents directory
             let path = dir.strings(byAppendingPaths: [SETTINGSFILENAME])[0]
 
@@ -39,7 +44,12 @@ public class StorageHelpers: NSObject {
     }
 
     @objc static func readSettingsFromFile() -> [String: String] {
-        if let dirs: [NSString] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true) as [NSString]? {
+        if let dirs: [NSString] =
+              NSSearchPathForDirectoriesInDomains(
+                FileManager.SearchPathDirectory.documentDirectory,
+                FileManager.SearchPathDomainMask.allDomainsMask,
+                true
+              ) as [NSString]? {
             let dir = dirs[0] //documents directory
             let path = dir.strings(byAppendingPaths: [SETTINGSFILENAME])[0]
 
@@ -47,7 +57,8 @@ public class StorageHelpers: NSObject {
                 let text = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
                 if let data = text.data(using: String.Encoding.utf8) {
 
-                    if let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: String] {
+                    if let dictionary = try JSONSerialization.jsonObject(with: data,
+                      options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: String] {
 
                         return dictionary
 

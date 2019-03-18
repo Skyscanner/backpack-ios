@@ -31,7 +31,7 @@ class ThemingHelpers: NSObject {
         } else {
             currentTheme = themeName!
         }
-        ThemeContainerController.inst().swapThemeContainers()
+        ThemeContainerController.swapThemeContainers()
     }
 
 }

@@ -23,9 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : UINavigationController
 
-+ (BPKThemeContainerController *) themeContainerController;
+//+ (BPKThemeContainerController *) themeContainerController;
 
-- (void) swapThemeContainers;
++ (void) swapThemeContainers;
 
 @end
 

@@ -39,6 +39,11 @@ bool additionalSubviewAdded = NO;
     themeContainerController = self;
 }
 
++(void) swapThemeContainers {
+    BPKThemeContainerController *instance = [self themeContainerController];
+    [instance swapThemeContainers];
+}
+
 - (void) swapThemeContainers {
     NSString *themeName = ThemingHelpers.currentTheme;
 

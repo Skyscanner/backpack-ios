@@ -24,7 +24,7 @@ class UITableViewSelectableCell: UITableViewCell {
     let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
 
     func setApplied(applied: Bool) {
-        if(applied) {
+        if applied {
             tickIcon.tintColor = Color.blue500
             self.addSubview(tickIcon)
             tickIcon.translatesAutoresizingMaskIntoConstraints = false
