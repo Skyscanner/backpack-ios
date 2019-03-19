@@ -8,6 +8,7 @@ EXAMPLE_SCHEMA = 'Backpack Native'
 UNIT_TEST_SCHEMA = 'Backpack Native Unit Tests'
 VERSION_FORMAT = '%M.%m.%p%s%d'
 PODSPEC = 'Backpack.podspec'
+MAX_TEST_REPEATS = 3
 ANALYZE_FAIL_MESSAGE = '⚠️'
 
 def ask(question)
@@ -46,6 +47,21 @@ def file_is_dirty(filename)
   $?.exitstatus != 0
 end
 
+def repeat_on_fail(command, run_count = 1)
+  if run_count > MAX_TEST_REPEATS
+    puts "Process is still failing after #{MAX_TEST_REPEATS} attempts.\n Giving up."
+    abort "Tests failed."
+  end
+
+  puts "Running process. This is attempt #{run_count} of #{MAX_TEST_REPEATS}."
+  `#{command}`
+  if $?.exitstatus == 0
+    puts "Process succeeded on attempt #{run_count}."
+  else
+    repeat_on_fail(command, run_count + 1)
+  end
+end
+
 def install_pods_in_example_project()
   `(cd Example && bundle exec pod install)`
   $?.exitstatus == 0
@@ -60,16 +76,21 @@ task :analyze do
   sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
+task :erase_devices do
+  sh "xcrun simctl erase all"
+end
+
 task :test do
   only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
-  sh "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
+  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
+  repeat_on_fail(test_command)
 end
 
 task :lint do
   sh "bundle exec pod lib lint"
 end
 
-task ci: [:lint, :analyze, :test]
+task ci: [:lint, :analyze, :erase_devices, :test]
 
 # task release: :test do
 task release: :ci do
