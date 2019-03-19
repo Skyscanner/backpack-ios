@@ -41,6 +41,7 @@
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
 		D220CACC221467AB0086A72E /* ShakeableWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D220CACA221467AA0086A72E /* ShakeableWindow.m */; };
+		D2230D78221B23A6009E21AF /* ThemingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2230D77221B23A6009E21AF /* ThemingHelpers.swift */; };
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
@@ -54,6 +55,7 @@
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
+		D29F9C49221B1B5600773A6D /* StorageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F9C48221B1B5600773A6D /* StorageHelpers.swift */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
@@ -180,6 +182,7 @@
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
 		D220CACA221467AA0086A72E /* ShakeableWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeableWindow.m; sourceTree = "<group>"; };
 		D220CACB221467AB0086A72E /* ShakeableWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeableWindow.h; sourceTree = "<group>"; };
+		D2230D77221B23A6009E21AF /* ThemingHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemingHelpers.swift; sourceTree = "<group>"; };
 		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
+		D29F9C48221B1B5600773A6D /* StorageHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHelpers.swift; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				D29F9C47221B1B3200773A6D /* Utils */,
 				D6D81D60213FEEB90013BB96 /* SnapshotTests */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
@@ -454,6 +459,15 @@
 				6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */,
 			);
 			path = "CollectionView Cells";
+			sourceTree = "<group>";
+		};
+		D29F9C47221B1B3200773A6D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D2230D77221B23A6009E21AF /* ThemingHelpers.swift */,
+				D29F9C48221B1B5600773A6D /* StorageHelpers.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D2B8A0192147FF49002290DE /* CollectionView Headers */ = {
@@ -832,6 +846,7 @@
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
+				D2230D78221B23A6009E21AF /* ThemingHelpers.swift in Sources */,
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */,
@@ -845,6 +860,7 @@
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				D6D6BB6621958D4400312C1C /* GradientSelectorTableViewController.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
+				D29F9C49221B1B5600773A6D /* StorageHelpers.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
