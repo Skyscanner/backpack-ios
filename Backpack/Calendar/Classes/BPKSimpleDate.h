@@ -20,13 +20,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSimpleDate: NSObject
+NS_SWIFT_NAME(SimpleDate) @interface BPKSimpleDate: NSObject
 @property(nonatomic, readonly) NSUInteger day;
 @property(nonatomic, readonly) NSUInteger month;
 @property(nonatomic, readonly) NSUInteger year;
-@property(nonatomic, strong, readonly) NSDate *fullDate;
 
-- (instancetype)initWithDateComponent:(NSDateComponents *)components fullDate:(NSDate *)fullDate;
+- (instancetype)initWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day;
+
+- (BOOL)isEqualToSimpleDate:(BPKSimpleDate *)other;
+
 @end
 
 NS_ASSUME_NONNULL_END

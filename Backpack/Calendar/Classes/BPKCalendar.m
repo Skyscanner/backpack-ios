@@ -181,20 +181,20 @@ NSString * const HeaderDateFormat = @"MMMM";
     }
 }
 
-- (NSArray<NSDate *> *)selectedDates {
+- (NSArray<BPKSimpleDate *> *)selectedDates {
     if (self.sameDayRange) {
-        return [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
+        NSArray<NSDate *> *dates = [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
+        return [self simpleDatesFromDates:dates];
     }
     
-    return self.calendarView.selectedDates;
+    return [self simpleDatesFromDates:self.calendarView.selectedDates];
 }
 
 - (NSSet<BPKSimpleDate *> *)createDateSet:(NSArray<NSDate *> *)dates {
     NSMutableSet<BPKSimpleDate *> *set = [[NSMutableSet alloc] initWithCapacity:dates.count];
 
     for (NSDate *date in dates) {
-        NSDateComponents *components = [self.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
-        BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDateComponent:components fullDate:date];
+        BPKSimpleDate *simpleDate = [self simpleDateFromDate:date];
 
         [set addObject:simpleDate];
     }
@@ -202,14 +202,14 @@ NSString * const HeaderDateFormat = @"MMMM";
     return [set copy];
 }
 
-- (void)setSelectedDates:(NSArray<NSDate *> *)selectedDates {
+- (void)setSelectedDates:(NSArray<BPKSimpleDate *> *)selectedDates {
     BPKAssertMainThread();
     NSSet<BPKSimpleDate *> *previouslySelectedDates = [self createDateSet:self.calendarView.selectedDates];
-    NSSet<BPKSimpleDate *> *newSelectedDates = [self createDateSet:selectedDates];
+    NSSet<BPKSimpleDate *> *newSelectedDates = [NSSet setWithArray:selectedDates];
 
     for (BPKSimpleDate *date in newSelectedDates) {
         if (![previouslySelectedDates containsObject:date]) {
-            [self.calendarView selectDate:date.fullDate];
+            [self.calendarView selectDate:[self dateFromSimpleDate:date]];
         }
     }
 
@@ -217,11 +217,11 @@ NSString * const HeaderDateFormat = @"MMMM";
     [toDeselect minusSet:newSelectedDates];
 
     for (BPKSimpleDate *date in toDeselect) {
-        [self.calendarView deselectDate:date.fullDate];
+        [self.calendarView deselectDate:[self dateFromSimpleDate: date]];
     }
 
     if (selectedDates.count == 2
-        && [selectedDates.firstObject isEqualToDate:selectedDates.lastObject]) {
+        && [selectedDates.firstObject isEqualToSimpleDate:selectedDates.lastObject]) {
         self.sameDayRange = YES;
     }
 }
@@ -240,11 +240,11 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
-    return self.minDate;
+    return [self dateFromSimpleDate:self.minDate];
 }
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
-    return self.maxDate;
+    return [self dateFromSimpleDate:self.maxDate];
 }
 
 #pragma mark - <FSCalendarDelegate>
@@ -445,6 +445,41 @@ NSString * const HeaderDateFormat = @"MMMM";
         return NO;
     
     return YES;
+}
+
+- (BPKSimpleDate *_Nullable)simpleDateFromDate:(NSDate *_Nullable)date {
+    if(date == nil) {
+        return nil;
+    }
+    
+    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                                                  fromDate:date];
+    
+    return [[BPKSimpleDate alloc] initWithYear:components.year month:components.month day:components.day];
+}
+
+- (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates {
+    NSMutableArray *simpleDates = [[NSMutableArray alloc] initWithCapacity:dates.count];
+    
+    for (NSDate *date in dates) {
+        [simpleDates addObject:[self simpleDateFromDate:date]];
+    }
+    
+    return [simpleDates copy];
+}
+
+-(NSDate *_Nullable)dateFromSimpleDate:(BPKSimpleDate *_Nullable)simpleDate {
+    if(simpleDate == nil) {
+        return nil;
+    }
+    
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.timeZone = self.gregorian.timeZone;
+    [components setDay:simpleDate.day];
+    [components setMonth:simpleDate.month];
+    [components setYear:simpleDate.year];
+    
+    return [self.calendarView.gregorian dateFromComponents:components];
 }
 
 #pragma mark -

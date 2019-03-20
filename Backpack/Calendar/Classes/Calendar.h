@@ -20,5 +20,6 @@
 #define __BACKPACK_CALENDAR__
 #import "BPKCalendar.h"
 #import "BPKCalendarYearPill.h"
+#import "BPKSimpleDate.h"
 #endif
 
