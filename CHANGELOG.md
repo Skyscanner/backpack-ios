@@ -2,6 +2,10 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 6.6.3
+
+- Backpack/Calendar
+  - Fixes for iPad split screen: Layout updated at the right time (after screen transition completed)
 
 ### 6.6.2
 
