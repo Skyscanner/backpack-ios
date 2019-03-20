@@ -91,7 +91,7 @@ task :lint do
 end
 
 task ci: [:erase_devices, :all_checks]
-task all_checks: [:lint, :analyze, :erase_devices, :test]
+task all_checks: [:lint, :analyze, :test]
 
 # task release: :test do
 task release: :all_checks do
