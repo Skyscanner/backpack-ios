@@ -25,7 +25,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
-        myView.minDate = myView.simpleDate(from: Date())
+        myView.minDate = Date()
         myView.locale = Locale.current
         myView.delegate = self
     }
@@ -35,7 +35,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         myView.reloadData()
     }
 
-    func calendar(_ calendar: Backpack.Calendar!, didChangeDateSelection dateList: [SimpleDate]!) {
+    func calendar(_ calendar: Backpack.Calendar!, didChangeDateSelection dateList: [Date]!) {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
     }
 
