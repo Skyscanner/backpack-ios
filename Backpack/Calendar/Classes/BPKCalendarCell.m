@@ -54,8 +54,8 @@
     [super layoutSubviews];
     
     CGFloat padding = (CGRectGetWidth(self.bounds) - CGRectGetWidth(self.shapeLayer.bounds)) / 2.0 - 0.5;
-    if (padding > CGRectGetWidth(self.shapeLayer.bounds)/8.0) {
-        padding = CGRectGetWidth(self.shapeLayer.bounds)/8.0;
+    if (padding > CGRectGetWidth(self.shapeLayer.bounds) / 8.0) {
+        padding = CGRectGetWidth(self.shapeLayer.bounds) / 8.0;
     }
     
     CGRect selectionRect = CGRectZero;
@@ -65,7 +65,7 @@
     
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
-    self.selectionLayer.frame = CGRectMake(CGRectGetMinX(self.bounds),
+    self.selectionLayer.frame = CGRectMake(0.0,
                                            CGRectGetMinY(self.shapeLayer.frame),
                                            CGRectGetWidth(self.bounds),
                                            CGRectGetHeight(self.shapeLayer.frame));
