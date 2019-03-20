@@ -42,4 +42,9 @@ class CalendarViewController: UIViewController, CalendarDelegate {
     func calendar(_ calendar: Backpack.Calendar!, didScroll contentOffset: CGPoint) {
         print("calendar:", calendar, "didScroll:", contentOffset, "isTracking:", calendar.isTracking)
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        myView.reloadData()
+    }
 }

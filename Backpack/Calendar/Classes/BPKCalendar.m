@@ -128,7 +128,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
     self.bottomBorder.backgroundColor = [BPKColor gray100];
-    [self.calendarWeekdayView addSubview:self.bottomBorder];
+    [self addSubview:self.bottomBorder];
     
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
     self.yearPill.hidden = YES;
@@ -148,8 +148,8 @@ NSString * const HeaderDateFormat = @"MMMM";
 
     self.calendarView.frame = CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
 
-    self.calendarWeekdayView.frame = CGRectMake(0, 0, width, weekdayViewHeight);
-    self.bottomBorder.frame = CGRectMake(CGRectGetMinX(self.calendarWeekdayView.frame), weekdayViewHeight - 1, CGRectGetWidth(self.calendarWeekdayView.frame), 1.0);
+    self.calendarWeekdayView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, weekdayViewHeight);
+    self.bottomBorder.frame = CGRectMake(0.0, weekdayViewHeight - 1, width, 1.0);
 
     CGFloat yearPillWidth = CGRectGetWidth(self.yearPill.bounds);
     CGFloat yearPillHeight = CGRectGetHeight(self.yearPill.bounds);
