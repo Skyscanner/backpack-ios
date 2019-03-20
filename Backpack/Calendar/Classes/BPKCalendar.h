@@ -17,6 +17,7 @@
  */
 
 @class BPKCalendar;
+@class BPKSimpleDate;
 
 /**
  * Enum values for specifying calendar selection type
@@ -35,7 +36,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
  * @param calendar The backpack calendar.
  * @param dateList List of selected dates.
  */
-- (void)calendar:(BPKCalendar *)calendar didChangeDateSelection:(NSArray<NSDate *> *)dateList;
+- (void)calendar:(BPKCalendar *)calendar didChangeDateSelection:(NSArray<BPKSimpleDate *> *)dateList;
 
 @optional
 
@@ -71,17 +72,17 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 /**
  * List of selected dates
  */
-@property (nonatomic) NSArray<NSDate *> *selectedDates;
+@property (nonatomic) NSArray<BPKSimpleDate *> *selectedDates;
 
 /**
  * The earliest date that the user is allowed to select
  */
-@property (nonatomic) NSDate *minDate;
+@property (nonatomic) BPKSimpleDate *minDate;
 
 /**
  * The latest date that the user is allowed to select
  */
-@property (nonatomic) NSDate *maxDate;
+@property (nonatomic) BPKSimpleDate *maxDate;
 
 /**
  * The underlying scrollView's content offset
@@ -119,5 +120,19 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 @property (nonatomic) id<BPKCalendarDelegate> delegate;
 
 - (void)reloadData;
+
+/**
+ * Converts a Date to a SimpleDate based on the device's locale timezone
+ * @param date Date object in the device's local timezone
+ * @return SimpleDate representing a timezone independent date
+ */
+- (BPKSimpleDate *)simpleDateFromDate:(NSDate *)date;
+
+/**
+ * Converts a SimpleDate to a Date based on the device's locale timezone
+ * @param simpleDate A SimpleDate representing a timezone independent date
+ * @return Date object in the device's local timezone
+ */
+-(NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate;
 
 @end
