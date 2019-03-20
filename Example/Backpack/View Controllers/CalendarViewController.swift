@@ -35,11 +35,11 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         myView.reloadData()
     }
 
-    func calendar(_ calendar: Backpack.Calendar!, didChangeDateSelection dateList: [SimpleDate]!) {
+    func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
     }
 
-    func calendar(_ calendar: Backpack.Calendar!, didScroll contentOffset: CGPoint) {
+    func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
         print("calendar:", calendar, "didScroll:", contentOffset, "isTracking:", calendar.isTracking)
     }
 

@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
     BPKCalendarSelectionMultiple = 2,
 };
 
+NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 
 /**
@@ -53,6 +54,19 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
  * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
  */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
+
+/**
+ * Create a calendar with given minimum date and maximum date.
+ *
+ * @param minDate The minimum date that can be selected in the calendar.
+ * @param maxDate The maximum date that can be selected in the calendar.
+ * @return A configured calendar.
+ */
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
 
 /**
  * The active calendar being used by the reciever.
@@ -117,7 +131,7 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 /**
  * The calendar's delegate
  */
-@property (nonatomic) id<BPKCalendarDelegate> delegate;
+@property (nonatomic, nullable) id<BPKCalendarDelegate> delegate;
 
 - (void)reloadData;
 
@@ -136,3 +150,4 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 -(NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate;
 
 @end
+NS_ASSUME_NONNULL_END
