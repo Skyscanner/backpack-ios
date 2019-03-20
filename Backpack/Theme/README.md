@@ -2,33 +2,53 @@
 
 ## Usage
 
-### Objective-c
+There are two themes - `London` and `HongKong`.
 
-`Backpack/Themes.h` contains two themes, London and HongKong. `BPKHongKongTheme` and `BPKLondonTheme` are used to enable themes. To do this globally for the whole app, simply update the `didFinishLaunchingWithOptions` function in `AppDelegate.m`, as follows:
+To apply a theme globally, call the theme's `apply` method in `didFinishLaunchingWithOption` in `AppDelegate.m` or `AppDelegate.swift`. 
 
-<pre>
-<b>#import &ltBackpack/Themes.h&gt</b>
+### Objective-C
+
+
+#### Short example
+
+```
+[BPKLondonTheme apply];
+```
+
+#### Longer example
+
+```
+#import <Backpack/Themes.h>
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    <b>[BPKLondonTheme apply];</b>
+    [BPKLondonTheme apply];
     return YES;
 }
-</pre>
+```
 
-With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
 
 ### Swift
 
+#### Short example
 
-<pre>
-<b>import Backpack</b>
+```
+LondonTheme.apply()
+```
+
+#### Longer example
+
+```
+import Backpack
 
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     // Override point for customization after application launch. Here you can out the code you want.
-    <b>LondonTheme.apply()</b>
+    LondonTheme.apply()
     return true
 }
-</pre>
+```
+
+With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
+
