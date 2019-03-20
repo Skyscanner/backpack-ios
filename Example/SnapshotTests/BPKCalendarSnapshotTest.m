@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionSingle;
-    bpkCalendar.selectedDates = @[ self.date1 ];
+    bpkCalendar.selectedDates = @[ [bpkCalendar simpleDateFromDate:self.date1] ];
     [bpkCalendar reloadData];
 
     FBSnapshotVerifyView(parentView, nil);
@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
-    bpkCalendar.selectedDates = @[ self.date1, self.date2 ];
+    bpkCalendar.selectedDates = @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
     [bpkCalendar reloadData];
     
     FBSnapshotVerifyView(parentView, nil);
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
-    bpkCalendar.selectedDates = @[ self.date1, self.date2 ];
+    bpkCalendar.selectedDates = @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
     [bpkCalendar reloadData];
     
     FBSnapshotVerifyView(parentView, nil);
