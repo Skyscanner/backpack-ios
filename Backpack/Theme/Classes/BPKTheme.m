@@ -16,22 +16,34 @@
  * limitations under the License.
  */
 
-#import "BPKHongKongTheme.h"
-#import "BPKHongKongThemeContainer.h"
+#import "BPKTheme.h"
+#import "BPKDohaThemeContainer.h"
 
-#import <Backpack/Button.h>
-#import <Backpack/Chip.h>
-#import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
-@implementation BPKHongKongTheme
+@implementation BPKTheme
+
+
++ (void)apply {
+    [self applyWithContainer:[self getThemeContainerClass]];
+}
+
++ (void)applyWithContainer:(Class) class {
+    UIColor *switchPrimaryColor = [self getSwitchPrimaryColor];
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:switchPrimaryColor];
+}
 
 + (UIColor *)getSwitchPrimaryColor {
-    return [UIColor colorWithRed:76.0f/255.0f green:76.0f/255.0f blue:76.0f/255.0f alpha:1.0f];
+    // "BPKTheme should not be applied directly. Subclasses that override `getSwitchPrimaryColor` should be used instead.
+    assert(false);
+    return nil;
 }
 
 + (Class)getThemeContainerClass {
-    return [BPKHongKongThemeContainer class];
+    // "BPKTheme should not be applied directly. Subclasses that override `getThemeContainerClass` should be used instead.
+    assert(false);
+    return nil;
 }
+
 
 @end

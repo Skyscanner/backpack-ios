@@ -23,4 +23,7 @@
 #import "BPKLondonTheme.h"
 #import "BPKHongKongThemeContainer.h"
 #import "BPKHongKongTheme.h"
+#import "BPKDohaThemeContainer.h"
+#import "BPKDohaTheme.h"
+#import "BPKTheme.h"
 #endif

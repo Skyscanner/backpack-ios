@@ -17,11 +17,18 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "BPKTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(HongKongTheme) @interface BPKHongKongTheme : BPKTheme
+NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
+
++ (void)apply;
+
++ (void)applyWithContainer:(Class)class;
+
++ (UIColor *)getSwitchPrimaryColor;
+
++ (Class)getThemeContainerClass;
 
 @end
 

@@ -17,14 +17,11 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "BPKTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(LondonTheme) @interface BPKLondonTheme : NSObject
-
-+ (void)apply;
-
-+ (void)applyWithContainer:(Class)class;
+NS_SWIFT_NAME(LondonTheme) @interface BPKLondonTheme : BPKTheme
 
 @end
 
