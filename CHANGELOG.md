@@ -2,6 +2,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+
+### 6.6.1
+
+**Fixed:**
+
++ Backpack/Calendar
+  + Make sure screen rotation works correctly.
+  + Fixed layout issues on iPad.
+
 ### 6.6.0
 
 **Added:**
