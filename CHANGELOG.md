@@ -3,6 +3,13 @@
 [Unreleased changes](./UNRELEASED.md).
 
 
+### 6.6.2
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Revert breaking changes that were accidentally included in 6.6.1.
+
 ### 6.6.1
 
 **Fixed:**
