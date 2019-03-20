@@ -90,10 +90,11 @@ task :lint do
   sh "bundle exec pod lib lint"
 end
 
-task ci: [:lint, :analyze, :erase_devices, :test]
+task ci: [:erase_devices, :all_checks]
+task all_checks: [:lint, :analyze, :erase_devices, :test]
 
 # task release: :test do
-task release: :ci do
+task release: :all_checks do
   abort red 'Must be on master branch' unless current_branch == 'master'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
