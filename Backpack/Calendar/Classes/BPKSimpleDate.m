@@ -30,15 +30,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKSimpleDate
 
-- (instancetype)initWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day {
+- (instancetype)initWithDateComponent:(NSDateComponents *)components fullDate:(NSDate *)fullDate {
     self = [super init];
-    
+
     if (self) {
-        self.year = year;
-        self.month = month;
-        self.day = day;
+        self.year = components.year;
+        self.month = components.month;
+        self.day = components.day;
+        self.fullDate = fullDate;
     }
-    
+
     return self;
 }
 
@@ -64,10 +65,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSUInteger)hash {
     return self.year ^ self.month ^ self.day;
-}
-
--(NSString *)description {
-    return [NSString stringWithFormat:@"<BPKSimpleDate %lu-%lu-%lu>", (unsigned long)self.year, (unsigned long)self.month, (unsigned long)self.day];
 }
 
 @end
