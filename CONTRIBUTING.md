@@ -2,7 +2,7 @@
 
 In this document we describe how to setup this repository for development and the release process.
 
-## Codestyle
+## Code style
 
 Please follow the [New York Times Objective-C style-guide](https://github.com/NYTimes/objective-c-style-guide) when writing Objective-C. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
 
@@ -18,7 +18,7 @@ We use both Ruby and Node in this project. To manage these language runtimes we 
 
 With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
 
-Use the most recent stable version of Xcode, however the project should work with old verisons of the same major.
+Use the most recent stable version of Xcode, however the project should work with old versions of the same major.
 
 ## Setup
 

@@ -5,8 +5,8 @@
 ### 6.6.0
 
 **Added:**
-- Backapck/Calendar
-  - Exposed some read only properties of the calendar's underlying scrollView. These are:
+- Backpack/Calendar
+  - Exposed some read only properties of the calendar's underlying `scrollView`. These are:
     - `contentInset`
     - `contentSize`
     - `isDecelerating`
@@ -26,8 +26,8 @@
 
 + Backpack/Icon
   + Added new icons
-    + BPKIconNameEcoLeaf
-    + BPKIconNameHide
+    + `BPKIconNameEcoLeaf`
+    + `BPKIconNameHide`
 
 ### 6.4.1
 
@@ -44,7 +44,7 @@
 
 **Added:**
 
-- Backpack/Icon
+- `Backpack/Icon`
   - Added a new class `BPKIconView`(`IconView` in Swift) for displaying icons. It is based on `UIImageView` and the perfect choice when you just want to display an icon with a tint.
 
     ```objective-c
@@ -70,8 +70,8 @@
 
 + Backpack/Icon
   + Added new icons
-    + BPKIconNameSocialLike
-    + BPKIconNameGridLayout
+    + `BPKIconNameSocialLike`
+    + `BPKIconNameGridLayout`
 
 + Backpack/Font
     + Added new API to make it easier to deal with custom attributes. `attributesForForStyle:withCustomAttributes:` in Objective-C and `makeAttributes(fontStyle:customAttributes:)` in Swift. Note this API will ignore some overrides that would change the text rendering to the point where it is no longer conforming to the Backpack style.
@@ -82,14 +82,14 @@
 **Fixed:**
 
 - Backpack/Calendar
-  - Expose the `NSCalendar` instance used as a readonly property.
+  - Expose the `NSCalendar` instance used as a read only property.
 
 ### 6.1.0
 
 **Added:**
 + Backpack/Icon
   + Added new icons
-    + BPKIconNameSpeaker
+    + `BPKIconNameSpeaker`
 
 ### 6.0.0
 
@@ -105,7 +105,7 @@
 **Breaking:**
 
 - Backpack
-  - Remove all subspecs in favour of a single spec for the whole pod.
+  - Remove all subspecs in favour of a single specification for the whole pod.
 - `Backpack.Font`
   - Made the API more swifty by renaming the methods in Swift.
 
@@ -136,34 +136,34 @@
 **Breaking:**
 
 - Backpack/Font
-  - XXL and XXXL font sizes are now 30pt and 36pt (previously 36pt and 42pt). The 42pt font size has been removed for the time being.
+  - XXL and XXXL font sizes are now `30pt` and `36pt` (previously `36pt` and `42pt`). The `42pt` font size has been removed for the time being.
 
 ## 3.2.1
 
 **Fixed:**
- - BPKCalendar:
+ - `BPKCalendar`:
    - Minor tweaks
 
 ## 3.2.0
 
 **Added:**
- - BPKCalendar:
+ - `BPKCalendar`:
    - Added Calendar component which was kindly contributed by Stark.
 
 ## 3.1.0
 
 **Added:**
- - BPKCard:
+ - `BPKCard`:
    - Added `cornerStyles` options of small (default) and large.
 
 ## 3.0.0
 
 **Breaking:**
- - BPKShadow:
-   - Removed `Xl` variant of BPKShadow.
+ - `BPKShadow`:
+   - Removed `Xl` variant of `BPKShadow`.
 
 **Fixed:**
- - BPKChip:
+ - `BPKChip`:
    - Updated accessibility traits.
 
 ## 2.3.1
@@ -213,7 +213,7 @@ Backpack/Gradient:
 
 ### Migrating to the new type scale
 
-The good news are that if you already use one of the higher level components you don't need to do anything. If you are directly using `BPKFont` some methods have been removed, specifcally those that return `UIFont *` directly. The new type scale requires greater control of text rendering, because of this `UIFont` instances are not enough to fully qualify text. Example migration
+The good news are that if you already use one of the higher level components you don't need to do anything. If you are directly using `BPKFont` some methods have been removed, specifically those that return `UIFont *` directly. The new type scale requires greater control of text rendering, because of this `UIFont` instances are not enough to fully qualify text. Example migration
 
 #### Before
 
@@ -238,20 +238,20 @@ NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BP
 **Added:**
 - Backpack/Icon
   - Added new icons
-  - BPKIconNameCallBack
-  - BPKIconNameEndCall
-  - BPKIconNameKeypad
-  - BPKIconNameMute
-  - BPKIconNamePhoneCall
-  - BPKIconNameSendMessage
-  - BPKIconNameUnmute
+  - `BPKIconNameCallback`
+  - `BPKIconNameEndCall`
+  - `BPKIconNameKeypad`
+  - `BPKIconNameMute`
+  - `BPKIconNamePhoneCall`
+  - `BPKIconNameSendMessage`
+  - `BPKIconNameUnmute`
 
 ## 1.1.0
 
 **Added:**
 
 - Backpack/Dialog
-  - A new component for showing Skyscanner style alerts and buttom sheets.
+  - A new component for showing Skyscanner style alerts and bottom sheets.
 
 ## 1.0.0
 
@@ -307,7 +307,7 @@ NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BP
 
 **Fixed:**
 - Backpack/Button
-  - Link style `BPKButton`s do not have white background anymore.
+  - Link style `BPKButton`s do not have white background any more.
 
 
 ## 0.15.0
@@ -325,17 +325,17 @@ NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BP
 **Added:**
 
 - Backpack/Spinner
-  - A thin wrapper around `UIActivityIndicatorView` with the Skyscanner colors.
+  - A thin wrapper around `UIActivityIndicatorView` with the Skyscanner colours.
 
 - Backpack/Icon
-  - Added constants for icon names to avoid bugs due to the stringly typed API.
+  - Added constants for icon names to avoid bugs due to the strongly typed API.
 
 ## 0.13.0
 
 **Breaking:**
 
 - Backpack/Color
-  - Update Swift interface for Backpack colors. `BPKColor` is now `Backpack.Color` and the individual colors are class properties. `BPKColor.blue500()` becomes `Backpack.Color.blue500`.
+  - Update Swift interface for Backpack colours. `BPKColor` is now `Backpack.Color` and the individual colours are class properties. `BPKColor.blue500()` becomes `Backpack.Color.blue500`.
 
 ## 0.12.0
 
@@ -392,7 +392,7 @@ Note: `0.8.0` was skipped because of a bug.
 
 **Fixed:**
 
-- The generated code has been re-oredered due to changes in the underlying `bpk-tokens` package.
+- The generated code has been reordered due to changes in the underlying `bpk-tokens` package.
 
 
 ## 0.6.1
@@ -413,7 +413,7 @@ This release ended up broken don't use this version.
 
 **Fixed:**
 
-- Ensure that the root pod spec can be used and that the `Backpack/Backpack.h` import works as expected.
+- Ensure that the root pod specification can be used and that the `Backpack/Backpack.h` import works as expected.
 
 ## 0.5.0
 
@@ -443,7 +443,7 @@ This release ended up broken don't use this version.
 
 **Breaking:**
 
-- Moved colors to a subspec in `Backpack/Color`.
+- Moved colours to a subspec in `Backpack/Color`.
 
 Use as
 
