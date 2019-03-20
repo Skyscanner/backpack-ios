@@ -154,6 +154,8 @@ NSString * const HeaderDateFormat = @"MMMM";
     CGFloat yearPillWidth = CGRectGetWidth(self.yearPill.bounds);
     CGFloat yearPillHeight = CGRectGetHeight(self.yearPill.bounds);
     self.yearPill.frame = CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg, yearPillWidth, yearPillHeight);
+    
+    [self.calendarView.collectionViewLayout invalidateLayout];
 }
 
 #pragma mark - property getters/setters

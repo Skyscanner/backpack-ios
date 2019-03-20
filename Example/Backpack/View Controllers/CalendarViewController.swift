@@ -45,6 +45,6 @@ class CalendarViewController: UIViewController, CalendarDelegate {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        myView.reloadData()
+        coordinator.animate(alongsideTransition: nil, completion: { _ in self.myView.reloadData() })
     }
 }
