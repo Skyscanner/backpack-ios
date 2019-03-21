@@ -16,10 +16,8 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
 @import UIKit;
 
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface BPKExampleApp : UIApplication
 @end

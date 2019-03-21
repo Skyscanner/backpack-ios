@@ -40,9 +40,9 @@
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
-		D220CACC221467AB0086A72E /* ShakeableWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D220CACA221467AA0086A72E /* ShakeableWindow.m */; };
 		D2230D78221B23A6009E21AF /* ThemingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2230D77221B23A6009E21AF /* ThemingHelpers.swift */; };
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
+		D22BB4A92244061C00A92BD9 /* BPKExampleApp.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BB4A82244061C00A92BD9 /* BPKExampleApp.m */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D2387C22221C276100883F93 /* BPKThemeContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2387C20221C276000883F93 /* BPKThemeContainerController.m */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
@@ -180,10 +180,10 @@
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
-		D220CACA221467AA0086A72E /* ShakeableWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeableWindow.m; sourceTree = "<group>"; };
-		D220CACB221467AB0086A72E /* ShakeableWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeableWindow.h; sourceTree = "<group>"; };
 		D2230D77221B23A6009E21AF /* ThemingHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemingHelpers.swift; sourceTree = "<group>"; };
 		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
+		D22BB4A72244061000A92BD9 /* BPKExampleApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKExampleApp.h; sourceTree = "<group>"; };
+		D22BB4A82244061C00A92BD9 /* BPKExampleApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKExampleApp.m; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D2387C20221C276000883F93 /* BPKThemeContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKThemeContainerController.m; sourceTree = "<group>"; };
 		D2387C21221C276100883F93 /* BPKThemeContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKThemeContainerController.h; sourceTree = "<group>"; };
@@ -342,8 +342,6 @@
 			children = (
 				D2387C21221C276100883F93 /* BPKThemeContainerController.h */,
 				D2387C20221C276000883F93 /* BPKThemeContainerController.m */,
-				D220CACB221467AB0086A72E /* ShakeableWindow.h */,
-				D220CACA221467AA0086A72E /* ShakeableWindow.m */,
 				D2161D4F2146B8910097D0B1 /* Views */,
 				D655C515200F9B9200CB39AF /* View Controllers */,
 				6003F59C195388D20070C39A /* BPKAppDelegate.h */,
@@ -362,6 +360,8 @@
 				D27EE9292193159C00C877EA /* Chips.storyboard */,
 				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
 				D2A350B522143F0700DEA01F /* Settings.storyboard */,
+				D22BB4A72244061000A92BD9 /* BPKExampleApp.h */,
+				D22BB4A82244061C00A92BD9 /* BPKExampleApp.m */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -836,6 +836,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
+				D22BB4A92244061C00A92BD9 /* BPKExampleApp.m in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
@@ -866,7 +867,6 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
-				D220CACC221467AB0086A72E /* ShakeableWindow.m in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,

@@ -17,7 +17,6 @@
  */
 
 #import "BPKAppDelegate.h"
-#import "ShakeableWindow.h"
 #import <Backpack/Color.h>
 
 @implementation BPKAppDelegate
@@ -30,12 +29,6 @@
     if (@available(iOS 11.0, *)) {
         [UINavigationBar appearance].largeTitleTextAttributes =@{NSForegroundColorAttributeName: BPKColor.gray700};
     }
-
-    ShakeableWindow *shakeableWindow = [[ShakeableWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    shakeableWindow.windowLevel = UIWindowLevelAlert;
-    shakeableWindow.rootViewController = self.window.rootViewController;
-    self.shakeableWindow = shakeableWindow;
-    [shakeableWindow makeKeyAndVisible];
 
     return YES;
 }

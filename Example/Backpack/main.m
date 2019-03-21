@@ -22,6 +22,6 @@
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([BPKAppDelegate class]));
+        return UIApplicationMain(argc, argv, @"BPKExampleApp", NSStringFromClass([BPKAppDelegate class]));
     }
 }
