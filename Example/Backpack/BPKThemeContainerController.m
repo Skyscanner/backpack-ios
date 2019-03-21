@@ -39,9 +39,13 @@ bool additionalSubviewAdded = NO;
     themeContainerController = self;
 }
 
++(void) swapThemeContainers {
+    BPKThemeContainerController *instance = [self themeContainerController];
+    [instance swapThemeContainers];
+}
+
 - (void) swapThemeContainers {
-    // TODO Get theme from settings once implemented!
-    NSString *themeName = nil;
+    NSString *themeName = ThemingHelpers.currentTheme;
 
     NSArray *subviewsToPreserve = [[self view] subviews];
     if(additionalSubviewAdded){
@@ -50,10 +54,13 @@ bool additionalSubviewAdded = NO;
 
     UIView *themedView = nil;
     if ([themeName  isEqual: @"London"]){
+        [BPKLondonTheme apply];
         themedView = [[BPKLondonThemeContainer alloc]initWithFrame:self.view.frame];
     } else if ([themeName  isEqual: @"Hong Kong"]) {
+        [BPKHongKongTheme apply];
         themedView = [[BPKHongKongThemeContainer alloc]initWithFrame:self.view.frame];
     } else if ([themeName  isEqual: @"Doha"]) {
+        [BPKDohaTheme apply];
         themedView = [[BPKDohaThemeContainer alloc]initWithFrame:self.view.frame];
     }else{
         themedView = [[UIView alloc]initWithFrame:self.view.frame];

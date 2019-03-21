@@ -16,15 +16,22 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
+import Foundation
+import UIKit
+import Backpack
 
-NS_ASSUME_NONNULL_BEGIN
+@objcMembers
+class ThemingHelpers: NSObject {
 
-NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : UINavigationController
+    @objc static var currentTheme = "None"
 
-+ (void) swapThemeContainers;
+    @objc static func applyExampleTheme(themeName: String?) {
+        if themeName == nil {
+            currentTheme = "None"
+        } else {
+            currentTheme = themeName!
+        }
+        ThemeContainerController.swapThemeContainers()
+    }
 
-@end
-
-NS_ASSUME_NONNULL_END
+}
