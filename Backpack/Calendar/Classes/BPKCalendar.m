@@ -37,8 +37,8 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-// TODO: Refactor this class to use NS_ASSUME_NONNULL_BEGIN and NS_ASSUME_NONNULL_END
 
+NS_ASSUME_NONNULL_BEGIN
 @interface FSCalendar ()
 
 @property (weak, nonatomic) FSCalendarCollectionView *collectionView;
@@ -65,10 +65,14 @@ NSString * const CellReuseId = @"cell";
 NSString * const HeaderReuseId = @"header";
 NSString * const HeaderDateFormat = @"MMMM";
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
+        // FSCalendar does this internally, but we declare in or public interface that
+        // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
+        self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
+        self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
         [self setup];
     }
 
@@ -79,6 +83,23 @@ NSString * const HeaderDateFormat = @"MMMM";
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
+        // FSCalendar does this internally, but we declare in or public interface that
+        // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
+        self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
+        self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
+        [self setup];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate {
+    BPKAssertMainThread();
+    self = [super initWithFrame:CGRectZero];
+
+    if (self) {
+        self.minDate = minDate;
+        self.maxDate = maxDate;
         [self setup];
     }
 
@@ -161,6 +182,8 @@ NSString * const HeaderDateFormat = @"MMMM";
 #pragma mark - property getters/setters
 
 - (NSLocale *)locale {
+    // This will be nonnull as `FSCalendar` set it
+    // to `currentLocale` by default.
     return self.calendarView.locale;
 }
 
@@ -321,14 +344,14 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 #pragma mark - <FSCalendarDelegateAppearance>
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
+- (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
     if([self isDateInToday:date]) {
         return [UIColor clearColor];
     }
     return appearance.borderDefaultColor;
 }
 
-- (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
+- (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
     if([self isDateInToday:date]) {
         return appearance.todayColor;
     }
@@ -447,11 +470,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     return YES;
 }
 
-- (BPKSimpleDate *_Nullable)simpleDateFromDate:(NSDate *_Nullable)date {
-    if(date == nil) {
-        return nil;
-    }
-    
+- (BPKSimpleDate *)simpleDateFromDate:(NSDate *)date {
     NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                                                   fromDate:date];
     
@@ -468,11 +487,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     return [simpleDates copy];
 }
 
--(NSDate *_Nullable)dateFromSimpleDate:(BPKSimpleDate *_Nullable)simpleDate {
-    if(simpleDate == nil) {
-        return nil;
-    }
-    
+-(NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate {
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.timeZone = self.gregorian.timeZone;
     [components setDay:simpleDate.day];
@@ -497,3 +512,4 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 @end
+NS_ASSUME_NONNULL_END
