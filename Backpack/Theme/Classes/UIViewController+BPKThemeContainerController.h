@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2019 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,17 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_THEMES__
-#define __BACKPACK_THEMES__
+#import <UIKit/UIKit.h>
 
-#import "BPKLondonThemeContainer.h"
-#import "BPKLondonTheme.h"
-#import "BPKHongKongThemeContainer.h"
-#import "BPKHongKongTheme.h"
-#import "BPKDohaThemeContainer.h"
-#import "BPKDohaTheme.h"
-#import "BPKTheme.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "BPKThemeContainerController.h"
-#import "UIViewController+BPKThemeContainerController.h"
-#endif
+@class BPKThemeContainerController;
+@interface UIViewController(BPKThemeContainerController)
+
+/**
+ * The nearest ancestor in the view controller hierachy that is a theme container controller. This is `nil` if
+ * there are no theme container controllers among the receivers ancestors.
+ */
+@property(nonatomic, nullable, readonly) BPKThemeContainerController *themeContainerController;
+@end
+NS_ASSUME_NONNULL_END
