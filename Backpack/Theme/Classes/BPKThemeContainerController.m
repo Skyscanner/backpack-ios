@@ -20,6 +20,7 @@
 #import <Backpack/Common.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
 @interface BPKThemeContainerController ()
 @property(nonatomic, strong) UIViewController *rootViewController;
 @end
@@ -95,11 +96,11 @@
 
 #pragma mark - Overriden methods
 
-- (UIViewController *)childViewControllerForStatusBarStyle {
+- (nullable UIViewController *)childViewControllerForStatusBarStyle {
     return self.rootViewController;
 }
 
-- (UIViewController *)childViewControllerForStatusBarHidden {
+- (nullable UIViewController *)childViewControllerForStatusBarHidden {
     return self.rootViewController;
 }
 
@@ -131,3 +132,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END
