@@ -29,7 +29,7 @@
     if (@available(iOS 11.0, *)) {
         [UINavigationBar appearance].largeTitleTextAttributes =@{NSForegroundColorAttributeName: BPKColor.gray700};
     }
-
+    
     return YES;
 }
 
