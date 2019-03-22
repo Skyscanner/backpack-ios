@@ -21,10 +21,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : UINavigationController
+NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : UIViewController
 
-+ (void) swapThemeContainers;
+- (instancetype)initWithThemeContainer:(UIView *)container rootViewController:(UIViewController *)rootViewController;
 
+@property(nonatomic, assign, getter=isThemeActive) BOOL themeActive;
+@property(nonatomic,  strong) UIView *themeContainer;
 @end
 
 NS_ASSUME_NONNULL_END

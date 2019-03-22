@@ -21,33 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKLondonThemeContainer()
-
-@end
-
 @implementation BPKLondonThemeContainer
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        BPKAssertMainThread();
-    }
-    return self;
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        BPKAssertMainThread();
-    }
-    return self;
-}
-
-- (void)addSubview:(UIView *)view {
-    [super addSubview:view];
-    BPKAssertMainThread();
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

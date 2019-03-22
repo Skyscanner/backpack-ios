@@ -26,4 +26,5 @@
 #import "BPKDohaThemeContainer.h"
 #import "BPKDohaTheme.h"
 #import "BPKTheme.h"
+#import "BPKThemeContainerController.h"
 #endif

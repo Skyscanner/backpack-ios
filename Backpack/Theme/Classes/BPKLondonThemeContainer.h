@@ -25,6 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKLondonThemeContainer` is a subclass of `UIView` which allows the BPKLondon theme to be applied to all its children.
  */
 NS_SWIFT_NAME(LondonThemeContainer) @interface BPKLondonThemeContainer: UIView
-
 @end
+
 NS_ASSUME_NONNULL_END

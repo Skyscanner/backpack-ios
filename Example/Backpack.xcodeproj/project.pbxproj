@@ -44,7 +44,6 @@
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
 		D22BB4A92244061C00A92BD9 /* BPKExampleApp.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BB4A82244061C00A92BD9 /* BPKExampleApp.m */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
-		D2387C22221C276100883F93 /* BPKThemeContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2387C20221C276000883F93 /* BPKThemeContainerController.m */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
@@ -185,8 +184,6 @@
 		D22BB4A72244061000A92BD9 /* BPKExampleApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKExampleApp.h; sourceTree = "<group>"; };
 		D22BB4A82244061C00A92BD9 /* BPKExampleApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKExampleApp.m; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
-		D2387C20221C276000883F93 /* BPKThemeContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKThemeContainerController.m; sourceTree = "<group>"; };
-		D2387C21221C276100883F93 /* BPKThemeContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKThemeContainerController.h; sourceTree = "<group>"; };
 		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
@@ -340,8 +337,6 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
-				D2387C21221C276100883F93 /* BPKThemeContainerController.h */,
-				D2387C20221C276000883F93 /* BPKThemeContainerController.m */,
 				D2161D4F2146B8910097D0B1 /* Views */,
 				D655C515200F9B9200CB39AF /* View Controllers */,
 				6003F59C195388D20070C39A /* BPKAppDelegate.h */,
@@ -853,7 +848,6 @@
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */,
-				D2387C22221C276100883F93 /* BPKThemeContainerController.m in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,

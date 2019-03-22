@@ -23,15 +23,4 @@ import Backpack
 @objcMembers
 class ThemingHelpers: NSObject {
 
-    @objc static var currentTheme = "None"
-
-    @objc static func applyExampleTheme(themeName: String?) {
-        if themeName == nil {
-            currentTheme = "None"
-        } else {
-            currentTheme = themeName!
-        }
-        ThemeContainerController.swapThemeContainers()
-    }
-
 }
