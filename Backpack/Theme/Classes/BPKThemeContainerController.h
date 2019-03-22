@@ -40,6 +40,10 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
  */
 - (instancetype)initWithThemeContainer:(UIView *)container rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
+                         bundle:(nullable NSBundle *)nibBundleOrNil __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
+
 /**
  * Controls whether the theme defined in the container is currently active. The default value is `YES`.
  * Changing the value of this property will immediately cause the view hierarchy to update to reflect the

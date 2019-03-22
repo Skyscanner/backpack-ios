@@ -28,7 +28,7 @@
 
 - (instancetype)initWithThemeContainer:(UIView *)container
                     rootViewController:(nonnull UIViewController *)rootViewController {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:nil];
 
     if (self) {
         _themeActive = YES;
@@ -44,6 +44,8 @@
     [self.view addSubview:self.themeContainer];
 
     [self addChildViewController:self.rootViewController];
+    self.themeContainer.frame = [self frameForContainerView];
+    self.rootViewController.view.frame = [self frameForRootController];
     [self.themeContainer addSubview:self.rootViewController.view];
     [self.rootViewController didMoveToParentViewController:self];
 }
@@ -51,12 +53,8 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
-    if (self.isThemeActive) {
-        self.themeContainer.frame = self.view.bounds;
-        self.rootViewController.view.frame = self.themeContainer.bounds;
-    } else {
-        self.rootViewController.view.frame = self.view.bounds;
-    }
+    self.themeContainer.frame = [self frameForContainerView];
+    self.rootViewController.view.frame = [self frameForRootController];
 }
 
 - (void)setThemeActive:(BOOL)themeActive {
@@ -92,6 +90,34 @@
 
         [self reloadViews];
         [self.view setNeedsLayout];
+    }
+}
+
+#pragma mark - Overriden methods
+
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.rootViewController;
+}
+
+- (UIViewController *)childViewControllerForStatusBarHidden {
+    return self.rootViewController;
+}
+
+#pragma mark - Private
+
+- (CGRect)frameForContainerView {
+    if (self.isThemeActive) {
+        return self.view.bounds;
+    } else {
+        return CGRectZero;
+    }
+}
+
+- (CGRect)frameForRootController {
+    if (self.isThemeActive) {
+        return self.themeContainer.bounds;
+    } else {
+        return self.view.bounds;
     }
 }
 
