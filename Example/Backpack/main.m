@@ -16,12 +16,13 @@
  * limitations under the License.
  */
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "BPKAppDelegate.h"
+#import "BPKExampleApp.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, @"BPKExampleApp", NSStringFromClass([BPKAppDelegate class]));
+        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]), NSStringFromClass([BPKAppDelegate class]));
     }
 }

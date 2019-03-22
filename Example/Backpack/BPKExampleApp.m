@@ -19,10 +19,11 @@
 #import "BPKExampleApp.h"
 #import <Backpack/Color.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation BPKExampleApp
 
-- (void)sendEvent:(UIEvent *)event
-{
+- (void)sendEvent:(UIEvent *)event {
     if ( event.type == UIEventTypeMotion && event.subtype == UIEventSubtypeMotionShake ) {
         NSString * storyboardName = @"Main";
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
@@ -35,3 +36,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
