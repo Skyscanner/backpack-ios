@@ -16,13 +16,12 @@
  * limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "BPKAppDelegate.h"
-#import "BPKExampleApp.h"
 
-int main(int argc, char * argv[])
-{
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]), NSStringFromClass([BPKAppDelegate class]));
-    }
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BPKExampleApp : UIApplication
+@end
+
+NS_ASSUME_NONNULL_END

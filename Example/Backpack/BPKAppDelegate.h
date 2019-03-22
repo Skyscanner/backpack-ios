@@ -17,12 +17,9 @@
  */
 
 @import UIKit;
-#import "ShakeableWindow.h"
 
 @interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ShakeableWindow *shakeableWindow;
 
 @end
