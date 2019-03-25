@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "UIViewController+BPKThemeContainerController.h"
 
 #import "BPKThemeContainerController.h"
@@ -34,6 +35,49 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return nil;
+}
+
++(UIViewController*) findBestViewController:(UIViewController*)vc {
+
+    if (vc.presentedViewController) {
+        return [UIViewController findBestViewController:vc.presentedViewController];
+    } else if ([vc isKindOfClass:[UISplitViewController class]]) {
+        // Return right hand side
+        UISplitViewController* svc = (UISplitViewController*) vc;
+
+        if (svc.viewControllers.count > 0){
+            return [UIViewController findBestViewController:svc.viewControllers.lastObject];
+        }else{
+            return vc;
+        }
+    } else if ([vc isKindOfClass:[UINavigationController class]]) {
+        // Return top view
+        UINavigationController* svc = (UINavigationController*) vc;
+
+        if (svc.viewControllers.count > 0) {
+
+            return [UIViewController findBestViewController:svc.topViewController];
+        }        else {
+            return vc;
+        }
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        // Return visible view
+        UITabBarController* svc = (UITabBarController*) vc;
+
+        if (svc.viewControllers.count > 0){
+            return [UIViewController findBestViewController:svc.selectedViewController];
+        }else{
+            return vc;
+        }
+    }
+
+    // Default. Return the original `UIViewController`
+    return vc;
+}
+
++(UIViewController*) currentViewController {
+    UIViewController* rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [UIViewController findBestViewController:rootViewController];
 }
 
 @end

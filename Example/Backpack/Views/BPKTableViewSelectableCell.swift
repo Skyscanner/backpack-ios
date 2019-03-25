@@ -19,6 +19,7 @@
 import UIKit
 import Backpack.Spacing
 import Backpack.Icon
+import Backpack.Theme
 
 class BPKTableViewSelectableCell: UITableViewCell {
     let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
@@ -30,7 +31,7 @@ class BPKTableViewSelectableCell: UITableViewCell {
     }
 
     func setup() {
-        tickIcon.tintColor = Color.blue500
+        tickIcon.tintColor = Theme.primaryColor(for: UIViewController.current())
         contentView.addSubview(tickIcon)
         tickIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -38,9 +39,21 @@ class BPKTableViewSelectableCell: UITableViewCell {
             tickIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase)
         ])
         tickIcon.isHidden = true
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.receieveTheme),
+            name: NSNotification.Name(rawValue: NSNotification.Name.RawValue(Theme.didChangeNotification)),
+            object: nil
+        )
     }
 
     func setApplied(applied: Bool) {
         tickIcon.isHidden = !applied
+    }
+
+    @objc
+    func receieveTheme() {
+        tickIcon.tintColor = Theme.primaryColor(for: UIViewController.current())
     }
 }

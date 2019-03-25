@@ -28,5 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
  * there are no theme container controllers among the receivers ancestors.
  */
 @property(nonatomic, nullable, readonly) BPKThemeContainerController *themeContainerController;
+
+/**
+ * A convenience method that attempts to return the current `UIViewController`.
+ */
++(UIViewController*) currentViewController;
 @end
 NS_ASSUME_NONNULL_END
