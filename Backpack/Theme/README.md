@@ -2,7 +2,7 @@
 
 ## Usage
 
-There are two themes - `London` and `HongKong`.
+There are four themes - `Default`, `London` `HongKong`, and `Doha`.
 
 To apply a theme globally, call the theme's `apply` method in `didFinishLaunchingWithOption` in `AppDelegate.m` or `AppDelegate.swift`. 
 
