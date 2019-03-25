@@ -2,9 +2,10 @@
 
 ## Usage
 
-There are two themes - `London` and `HongKong`.
+There are four themes - `Default`, `Doha`, `HongKong`, and `London`.
 
 To apply a theme globally, call the theme's `apply` method in `didFinishLaunchingWithOption` in `AppDelegate.m` or `AppDelegate.swift`. 
+This will apply the theme to any Backpack components that are contained inside the appropriate theme container.
 
 ### Objective-C
 

@@ -18,10 +18,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BPKTheme.h"
+#import "BPKThemeDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(DohaTheme) @interface BPKDohaTheme : BPKTheme
+NS_SWIFT_NAME(DohaTheme) @interface BPKDohaTheme : NSObject<BPKThemeDefinition>
 
 @end
 

@@ -16,22 +16,17 @@
  * limitations under the License.
  */
 
-#import "BPKDohaTheme.h"
-#import "BPKDohaThemeContainer.h"
+#import <Foundation/Foundation.h>
 
-#import <Backpack/Button.h>
-#import <Backpack/Chip.h>
-#import <Backpack/Spinner.h>
-#import <Backpack/Switch.h>
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKDohaTheme
+@protocol BPKThemeDefinition
 
-- (UIColor *)switchPrimaryColor {
-    return [UIColor colorWithRed:255.0f/255.0f green:184.0f/255.0f blue:2.0f/255.0f alpha:1.0f];
-}
+@required
 
-- (Class)themeContainerClass {
-    return [BPKDohaThemeContainer class];
-}
+@property (nonatomic, readonly, strong) UIColor* switchPrimaryColor;
+@property (nonatomic, readonly) Class themeContainerClass;
 
 @end
+
+NS_ASSUME_NONNULL_END
