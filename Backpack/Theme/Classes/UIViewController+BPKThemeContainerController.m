@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2019 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "UIViewController+BPKThemeContainerController.h"
 
-#import "BPKLondonThemeContainer.h"
-#import <Backpack/Common.h>
+#import "BPKThemeContainerController.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
+@implementation UIViewController(BPKThemeContainerController)
 
-@implementation BPKLondonThemeContainer
+- (nullable BPKThemeContainerController *)themeContainerController {
+    UIViewController *parent = self;
+
+    while(parent != nil) {
+        if ([parent isKindOfClass:[BPKThemeContainerController class]]) {
+            return (BPKThemeContainerController *)parent;
+        }
+
+        parent = parent.parentViewController;
+    }
+
+    return nil;
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

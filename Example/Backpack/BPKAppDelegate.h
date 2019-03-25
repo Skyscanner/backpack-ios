@@ -19,7 +19,5 @@
 @import UIKit;
 
 @interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
 @end

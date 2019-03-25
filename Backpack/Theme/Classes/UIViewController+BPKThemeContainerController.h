@@ -17,14 +17,16 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : UINavigationController
+@class BPKThemeContainerController;
+@interface UIViewController(BPKThemeContainerController)
 
-+ (void) swapThemeContainers;
-
+/**
+ * The nearest ancestor in the view controller hierachy that is a theme container controller. This is `nil` if
+ * there are no theme container controllers among the receivers ancestors.
+ */
+@property(nonatomic, nullable, readonly) BPKThemeContainerController *themeContainerController;
 @end
-
 NS_ASSUME_NONNULL_END
