@@ -32,14 +32,17 @@
         [UINavigationBar appearance].largeTitleTextAttributes =@{NSForegroundColorAttributeName: BPKColor.gray700};
     }
 
-    [BPKLondonTheme apply];
-    [BPKDohaTheme apply];
-    [BPKHongKongTheme apply];
+    BPKLondonTheme *londTheme= [BPKLondonTheme new];
 
-    BPKLondonThemeContainer *londThemeContainer = [[BPKLondonThemeContainer alloc] init];
-    BPKThemeContainerController *themeContainer = [[BPKThemeContainerController alloc] initWithThemeContainer:londThemeContainer
+    [BPKTheme applyTheme:[BPKDefaultTheme new]];
+    [BPKTheme applyTheme:londTheme];
+    [BPKTheme applyTheme:[BPKDohaTheme new]];
+    [BPKTheme applyTheme:[BPKHongKongTheme new]];
+
+    UIView *themeContainer = [BPKTheme containerFor:londTheme];
+    BPKThemeContainerController *themeContainerController = [[BPKThemeContainerController alloc] initWithThemeContainer:themeContainer
                                                                                            rootViewController:self.window.rootViewController];
-    self.window.rootViewController = themeContainer;
+    self.window.rootViewController = themeContainerController;
     [self.window makeKeyAndVisible];
 
     return YES;

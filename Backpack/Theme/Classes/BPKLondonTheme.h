@@ -18,10 +18,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BPKTheme.h"
+#import "BPKThemeDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(LondonTheme) @interface BPKLondonTheme : BPKTheme
+NS_SWIFT_NAME(LondonTheme) @interface BPKLondonTheme : NSObject<BPKThemeDefinition>
 
 @end
 

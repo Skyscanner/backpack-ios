@@ -26,11 +26,11 @@
 
 @implementation BPKHongKongTheme
 
-+ (UIColor *)getSwitchPrimaryColor {
+- (UIColor *)switchPrimaryColor {
     return [UIColor colorWithRed:76.0f/255.0f green:76.0f/255.0f blue:76.0f/255.0f alpha:1.0f];
 }
 
-+ (Class)getThemeContainerClass {
+- (Class)themeContainerClass {
     return [BPKHongKongThemeContainer class];
 }
 

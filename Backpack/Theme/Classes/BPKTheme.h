@@ -17,18 +17,39 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "BPKThemeDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * An abstract base class to define a theme that can be applied to a
+ * view hierarchy containing Backpack components. This should be subclassed
+ * to create concrete themes.
+ */
+@protocol BPKThemeDefinition;
 NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 
-+ (void)apply;
+/**
+ * Creates and returns an instance of the container view for the receiver's theme.
+ *
+ * @return An instance of the container to use with this theme.
+ */
++ (UIView *)containerFor:(id<BPKThemeDefinition>)theme;
 
-+ (void)applyWithContainer:(Class)class;
+/**
+ * Apply the theme when contained in the default container
+ * as specified in `themeContainerClass`.
+ *
+ * @see themeContainerClass
+ */
++ (void)applyTheme:(id<BPKThemeDefinition>)theme;
 
-+ (UIColor *)getSwitchPrimaryColor;
-
-+ (Class)getThemeContainerClass;
+/**
+ * Apply the theme when contained in a specific view container class.
+ *
+ * @param class The class of the view to apply the theme to.
+ */
++ (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class;
 
 @end
 

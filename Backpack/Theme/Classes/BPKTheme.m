@@ -17,6 +17,7 @@
  */
 
 #import "BPKTheme.h"
+#import "BPKThemeDefinition.h"
 #import "BPKDohaThemeContainer.h"
 
 #import <Backpack/Switch.h>
@@ -24,25 +25,17 @@
 @implementation BPKTheme
 
 
-+ (void)apply {
-    [self applyWithContainer:[self getThemeContainerClass]];
++ (void)applyTheme:(id<BPKThemeDefinition>)theme {
+    [self applyTheme:theme withContainer:theme.themeContainerClass];
 }
 
-+ (void)applyWithContainer:(Class) class {
-    UIColor *switchPrimaryColor = [self getSwitchPrimaryColor];
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:switchPrimaryColor];
+
++ (UIView *)containerFor:(id<BPKThemeDefinition>)theme {
+    return [[theme.themeContainerClass alloc] initWithFrame:CGRectZero];
 }
 
-+ (UIColor *)getSwitchPrimaryColor {
-    // "BPKTheme should not be applied directly. Subclasses that override `getSwitchPrimaryColor` should be used instead.
-    assert(false);
-    return nil;
-}
-
-+ (Class)getThemeContainerClass {
-    // "BPKTheme should not be applied directly. Subclasses that override `getThemeContainerClass` should be used instead.
-    assert(false);
-    return nil;
++ (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class) class {
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:theme.switchPrimaryColor];
 }
 
 

@@ -26,11 +26,11 @@
 
 @implementation BPKLondonTheme
 
-+ (UIColor *)getSwitchPrimaryColor {
+- (UIColor *)switchPrimaryColor {
     return [UIColor colorWithRed:237.0f/255.0f green:27.0f/255.0f blue:40.0f/255.0f alpha:1.0f];
 }
 
-+ (Class)getThemeContainerClass {
+- (Class)themeContainerClass {
     return [BPKLondonThemeContainer class];
 }
 
