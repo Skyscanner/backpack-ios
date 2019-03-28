@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2019 Skyscanner Ltd
+ * Copyright © 2019 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +16,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Foundation
 
-#import <UIKit/UIKit.h>
-#import "BPKAppDelegate.h"
-#import <Backpack_Native-Swift.h>
+extension UIWindow {
+    func topMostController() -> UIViewController? {
+        var topController = self.rootViewController
 
-int main(int argc, char * argv[])
-{
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]), NSStringFromClass([BPKAppDelegate class]));
+        while topController?.presentedViewController != nil {
+            topController = topController?.presentedViewController
+        }
+
+        return topController
     }
 }
