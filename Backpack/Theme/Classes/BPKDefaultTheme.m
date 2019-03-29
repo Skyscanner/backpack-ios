@@ -27,6 +27,10 @@
 
 @implementation BPKDefaultTheme
 
+- (NSString *)themeName {
+    return @"Default";
+}
+
 - (UIColor *)switchPrimaryColor {
     return BPKColor.blue500;
 }

@@ -24,8 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-@property (nonatomic, readonly, strong) UIColor* switchPrimaryColor;
-@property (nonatomic, readonly) Class themeContainerClass;
+@property(nonatomic, readonly, strong) NSString *themeName;
+@property(nonatomic, readonly, strong) UIColor *switchPrimaryColor;
+@property(nonatomic, readonly) Class themeContainerClass;
 
 @end
 
