@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/Skyscanner/backpack-ios#readme",
   "devDependencies": {
-    "bpk-svgs": "^6.4.0",
+    "bpk-svgs": "^6.4.2",
     "bpk-tokens": "^27.4.7",
     "del": "^4.0.0",
     "eslint-config-skyscanner-with-prettier": "^0.8.0",
