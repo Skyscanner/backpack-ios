@@ -22,7 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSpinner()
+@interface BPKSpinner ()
 
 @end
 
@@ -86,27 +86,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIActivityIndicatorViewStyle)styleForSpinnerSize:(BPKSpinnerSize)size {
     switch (size) {
-        case BPKSpinnerSizeDefault:
-            return UIActivityIndicatorViewStyleWhiteLarge;
-        case BPKSpinnerSizeSmall:
-            return UIActivityIndicatorViewStyleWhite;
-        default:
-            NSAssert(NO, @"Undefined size: %d", (int) size);
-            break;
+    case BPKSpinnerSizeDefault:
+        return UIActivityIndicatorViewStyleWhiteLarge;
+    case BPKSpinnerSizeSmall:
+        return UIActivityIndicatorViewStyleWhite;
+    default:
+        NSAssert(NO, @"Undefined size: %d", (int)size);
+        break;
     }
 }
 
 + (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
     switch (style) {
-        case BPKSpinnerStylePrimary:
-            return BPKColor.blue500;
-        case BPKSpinnerStyleDark:
-            return BPKColor.gray700;
-        case BPKSpinnerStyleLight:
-            return BPKColor.white;
-        default:
-            NSAssert(NO, @"Undefined style: %d", (int) style);
-            break;
+    case BPKSpinnerStylePrimary:
+        return BPKColor.blue500;
+    case BPKSpinnerStyleDark:
+        return BPKColor.gray700;
+    case BPKSpinnerStyleLight:
+        return BPKColor.white;
+    default:
+        NSAssert(NO, @"Undefined style: %d", (int)style);
+        break;
     }
 }
 

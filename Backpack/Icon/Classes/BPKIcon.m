@@ -20,10 +20,10 @@
 #import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
-NSString * const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
-NSString * const BPKIconFontName = @"BpkIconIOS";
+NSString *const BPKIconFallbackGlyph = @"\u25A1"; // White box glyph
+NSString *const BPKIconFontName = @"BpkIconIOS";
 
-@interface BPKIcon()
+@interface BPKIcon ()
 @property(class, nonatomic, readonly) UIFont *iconFont;
 @property(class, nonatomic, readonly) NSCache<NSString *, UIImage *> *imageCache;
 @property(class, nonatomic, readonly) NSParagraphStyle *paragraphStyle;
@@ -64,11 +64,12 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
     if (font) {
         CFErrorRef error = NULL;
         if (CTFontManagerRegisterGraphicsFont(font, &error) == NO) {
-            NSError *registerError = (__bridge NSError*)error;
+            NSError *registerError = (__bridge NSError *)error;
 
             // If the font has already been registered the error is safe to ignore
             if ([registerError code] != kCTFontManagerErrorAlreadyRegistered) {
-                NSAssert(NO, @"Failed to register %@.ttf with error %@", BPKIconFontName, (__bridge_transfer NSString *)CFErrorCopyDescription(error));
+                NSAssert(NO, @"Failed to register %@.ttf with error %@", BPKIconFontName,
+                         (__bridge_transfer NSString *)CFErrorCopyDescription(error));
             }
         }
 
@@ -112,10 +113,10 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
 
     [iconCodepoint drawInRect:CGRectMake(0, 0, iconSize.width, iconSize.height)
                withAttributes:@{
-                                NSFontAttributeName : font,
-                                NSForegroundColorAttributeName : color,
-                                NSParagraphStyleAttributeName:self.paragraphStyle,
-                                }];
+                   NSFontAttributeName : font,
+                   NSForegroundColorAttributeName : color,
+                   NSParagraphStyleAttributeName : self.paragraphStyle,
+               }];
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
@@ -131,7 +132,7 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
     static dispatch_once_t dispatchOnceCacheToken;
 
     dispatch_once(&dispatchOnceCacheToken, ^{
-        _imageCache = [[NSCache alloc] init];
+      _imageCache = [[NSCache alloc] init];
     });
 
     return _imageCache;
@@ -142,10 +143,10 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
     static dispatch_once_t dispatchOnceParagraphStyleToken;
 
     dispatch_once(&dispatchOnceParagraphStyleToken, ^{
-        NSMutableParagraphStyle *mutableStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        mutableStyle.alignment = NSTextAlignmentCenter;
+      NSMutableParagraphStyle *mutableStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+      mutableStyle.alignment = NSTextAlignmentCenter;
 
-        _paragraphStyle = [mutableStyle copy];
+      _paragraphStyle = [mutableStyle copy];
     });
 
     return _paragraphStyle;
@@ -156,33 +157,33 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
     static dispatch_once_t dispatchOnceiconMappingToken;
 
     dispatch_once(&dispatchOnceiconMappingToken, ^{
-        NSBundle *bundle = [self iconBundle];
-        if (bundle == nil) {
-            _iconMapping = nil;
-            return;
-        }
+      NSBundle *bundle = [self iconBundle];
+      if (bundle == nil) {
+          _iconMapping = nil;
+          return;
+      }
 
+      NSURL *url = [bundle URLForResource:@"iconMapping" withExtension:@"json"];
+      NSAssert(url, @"`iconMapping.json` must be present in the bundle.");
+      if (url == nil) {
+          _iconMapping = nil;
+          return;
+      }
 
-        NSURL *url = [bundle URLForResource:@"iconMapping" withExtension:@"json"];
-        NSAssert(url, @"`iconMapping.json` must be present in the bundle.");
-        if (url == nil) {
-            _iconMapping = nil;
-            return;
-        }
+      NSData *data = [NSData dataWithContentsOfURL:url];
+      NSAssert1(data, @"`iconMapping.json` at %@ could not be loaded from the bundle", [url description]);
 
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        NSAssert1(data, @"`iconMapping.json` at %@ could not be loaded from the bundle", [url description]);
+      NSError *error = nil;
+      ;
+      NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+      NSAssert(!error, @"Expected `iconMapping.json` to be a valid JSON document, but got error %@", error);
+      NSAssert([parsedData isKindOfClass:[NSDictionary class]], @"Expectd `iconMapping.json` to be a dictionary");
+      if (error || parsedData == nil || ![parsedData isKindOfClass:[NSDictionary class]]) {
+          _iconMapping = nil;
+          return;
+      }
 
-        NSError *error = nil;;
-        NSDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSAssert(!error, @"Expected `iconMapping.json` to be a valid JSON document, but got error %@", error);
-        NSAssert([parsedData isKindOfClass:[NSDictionary class]], @"Expectd `iconMapping.json` to be a dictionary");
-        if (error || parsedData == nil || ![parsedData isKindOfClass:[NSDictionary class]]) {
-            _iconMapping = nil;
-            return;
-        }
-
-        _iconMapping = parsedData;
+      _iconMapping = parsedData;
     });
 
     return _iconMapping;
@@ -203,31 +204,32 @@ NSString * const BPKIconFontName = @"BpkIconIOS";
     NSString *sizeName;
 
     switch (size) {
-        case BPKIconSizeSmall:
-            sizeName = @"sm";
-            break;
-        case BPKIconSizeLarge:
-            sizeName = @"lg";
-            break;
-        default:
-            NSAssert(NO, @"Unknown icon size");
-            sizeName = @"unknown";
+    case BPKIconSizeSmall:
+        sizeName = @"sm";
+        break;
+    case BPKIconSizeLarge:
+        sizeName = @"lg";
+        break;
+    default:
+        NSAssert(NO, @"Unknown icon size");
+        sizeName = @"unknown";
     }
 
     CGFloat const *components = CGColorGetComponents(color.CGColor);
 
-    return [NSString stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
+    return [NSString
+        stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
 }
 
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
     switch (size) {
-        case BPKIconSizeSmall:
-            return CGSizeMake(16, 16);
-        case BPKIconSizeLarge:
-            return CGSizeMake(24, 24);
-        default:
-            NSAssert(NO, @"Unsupported icon size");
-            return CGSizeMake(16, 16);
+    case BPKIconSizeSmall:
+        return CGSizeMake(16, 16);
+    case BPKIconSizeLarge:
+        return CGSizeMake(24, 24);
+    default:
+        NSAssert(NO, @"Unsupported icon size");
+        return CGSizeMake(16, 16);
     }
 }
 

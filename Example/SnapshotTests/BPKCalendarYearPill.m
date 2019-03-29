@@ -17,9 +17,8 @@
  * limitations under the License.
  */
 
-
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import <Backpack/Calendar.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKCalendarYearPillSnapshotTest : FBSnapshotTestCase
 

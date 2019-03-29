@@ -31,7 +31,7 @@
 }
 
 - (UIColor *)switchPrimaryColor {
-    return [UIColor colorWithRed:76.0f/255.0f green:76.0f/255.0f blue:76.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:76.0f / 255.0f green:76.0f / 255.0f blue:76.0f / 255.0f alpha:1.0f];
 }
 
 - (Class)themeContainerClass {

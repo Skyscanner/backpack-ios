@@ -17,26 +17,25 @@
  */
 #import "BPKBadge.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
-#import <Backpack/Radii.h>
+#import <Backpack/Common.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
-#import <Backpack/Common.h>
+#import <Backpack/Radii.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKBadge()
+@interface BPKBadge ()
 @property(nonatomic, strong) BPKLabel *label;
 
 - (void)setup;
 @end
 
-
 @implementation BPKBadge
 
 - (instancetype)initWithMessage:(NSString *)message {
     BPKAssertMainThread();
-      self = [self initWithType:BPKBadgeTypeSuccess message:message];
+    self = [self initWithType:BPKBadgeTypeSuccess message:message];
 
     return self;
 }
@@ -82,28 +81,28 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.layer.borderWidth = 0.0;
     switch (type) {
-        case BPKBadgeTypeSuccess:
-            self.backgroundColor = [BPKColor green500];
-            break;
-        case BPKBadgeTypeWarning:
-            self.backgroundColor = [BPKColor yellow500];
-            break;
-        case BPKBadgeTypeDestructive:
-            self.backgroundColor = [BPKColor red500];
-            break;
-        case BPKBadgeTypeLight:
-            self.backgroundColor = [BPKColor gray50];
-            break;
-        case BPKBadgeTypeInverse:
-            self.backgroundColor = [BPKColor white];
-            break;
-        case BPKBadgeTypeOutline:
-            self.backgroundColor = [[BPKColor white] colorWithAlphaComponent:0.2];
-            self.layer.borderColor = [BPKColor white].CGColor;
-            self.layer.borderWidth = 1.0;
-            break;
-        default:
-            break;
+    case BPKBadgeTypeSuccess:
+        self.backgroundColor = [BPKColor green500];
+        break;
+    case BPKBadgeTypeWarning:
+        self.backgroundColor = [BPKColor yellow500];
+        break;
+    case BPKBadgeTypeDestructive:
+        self.backgroundColor = [BPKColor red500];
+        break;
+    case BPKBadgeTypeLight:
+        self.backgroundColor = [BPKColor gray50];
+        break;
+    case BPKBadgeTypeInverse:
+        self.backgroundColor = [BPKColor white];
+        break;
+    case BPKBadgeTypeOutline:
+        self.backgroundColor = [[BPKColor white] colorWithAlphaComponent:0.2];
+        self.layer.borderColor = [BPKColor white].CGColor;
+        self.layer.borderWidth = 1.0;
+        break;
+    default:
+        break;
     }
 
     if (type == BPKBadgeTypeOutline || type == BPKBadgeTypeDestructive) {

@@ -18,8 +18,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BPKCalendarYearPill: UIView
+@interface BPKCalendarYearPill : UIView
 
-@property (nonatomic, nonnull) NSNumber *year;
+@property(nonatomic, nonnull) NSNumber *year;
 
 @end

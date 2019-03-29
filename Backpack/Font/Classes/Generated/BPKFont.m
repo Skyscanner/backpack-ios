@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -350,3 +351,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
+// clang-format on

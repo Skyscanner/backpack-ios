@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-
 /**
  * Enum values for specifying corner style
  */

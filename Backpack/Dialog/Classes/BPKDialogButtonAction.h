@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <Backpack/Button.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKDialogButtonAction;
@@ -36,18 +36,17 @@ NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject
  *
  * @see BPKButtonStyle
  */
-@property (nonatomic, assign, readonly) BPKButtonStyle style;
+@property(nonatomic, assign, readonly) BPKButtonStyle style;
 
 /**
  * The title of the button.
  */
-@property (nonatomic, copy, readonly) NSString *title;
+@property(nonatomic, copy, readonly) NSString *title;
 
 /**
  * The handler to invoke when the button is tapped.
  */
-@property (nonatomic, strong, readonly) BPKDialogButtonActionHandler handler;
-
+@property(nonatomic, strong, readonly) BPKDialogButtonActionHandler handler;
 
 /**
  * Create an instance of the class.
@@ -56,7 +55,9 @@ NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject
  * @param style The style of the `BPKButton` to use.
  * @param handler The handler to invoke when the button is tapped.
  */
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler;
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title
+                                   style:(BPKButtonStyle)style
+                                 handler:(BPKDialogButtonActionHandler)handler;
 
 - (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
 

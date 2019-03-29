@@ -21,7 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHongKongThemeContainer()
+@interface BPKHongKongThemeContainer ()
 
 @end
 

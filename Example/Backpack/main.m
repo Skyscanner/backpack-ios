@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import "BPKAppDelegate.h"
 #import <Backpack_Native-Swift.h>
+#import <UIKit/UIKit.h>
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char *argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]), NSStringFromClass([BPKAppDelegate class]));
+        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]),
+                                 NSStringFromClass([BPKAppDelegate class]));
     }
 }

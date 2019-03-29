@@ -21,7 +21,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKThemeContainerController;
-@interface UIViewController(BPKThemeContainerController)
+@interface UIViewController (BPKThemeContainerController)
 
 /**
  * The nearest ancestor in the view controller hierachy that is a theme container controller. This is `nil` if

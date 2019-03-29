@@ -19,17 +19,21 @@
 #import "BPKDialogButtonAction.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKDialogButtonAction()
-@property (nonatomic, assign) BPKButtonStyle style;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) BPKDialogButtonActionHandler handler;
+@interface BPKDialogButtonAction ()
+@property(nonatomic, assign) BPKButtonStyle style;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, strong) BPKDialogButtonActionHandler handler;
 
-- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKDialogButtonActionHandler)handler;
+- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style
+                                       title:(NSString *)title
+                               actionHandler:(BPKDialogButtonActionHandler)handler;
 @end
 
 @implementation BPKDialogButtonAction
 
-- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style title:(NSString *)title actionHandler:(BPKDialogButtonActionHandler)handler {
+- (instancetype _Nonnull)initWithButtonStyle:(BPKButtonStyle)style
+                                       title:(NSString *)title
+                               actionHandler:(BPKDialogButtonActionHandler)handler {
     self = [super init];
 
     if (self) {
@@ -41,7 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler {
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title
+                                   style:(BPKButtonStyle)style
+                                 handler:(BPKDialogButtonActionHandler)handler {
     return [[self alloc] initWithButtonStyle:style title:title actionHandler:handler];
 }
 

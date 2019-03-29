@@ -15,26 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 #import <Backpack/Font.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * `BPKLabel` is a subclass of `UILabel` which uses the Skyscanner style.
  */
-NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel: UILabel
+NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
 
 /**
  * Create a `BPKLabel` with a specific BPKFont style.
- * 
+ *
  * @param style Font style to be used by the label.
  * @see BPKFontStyle
  */
 - (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
-
 
 /**
  The font style used for the label.

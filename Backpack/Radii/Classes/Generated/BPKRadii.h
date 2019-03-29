@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -35,3 +36,4 @@ extern CGFloat const BPKBorderRadiusPill;
 extern CGFloat const BPKBorderRadiusSm;
 
 NS_ASSUME_NONNULL_END
+// clang-format on

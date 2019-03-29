@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -214,3 +215,5 @@ BPKIconName const BPKIconNameWeather = @"weather";
 BPKIconName const BPKIconNameWifi = @"wifi";
 BPKIconName const BPKIconNameWindowReduce = @"window--reduce";
 BPKIconName const BPKIconNameWindow = @"window";
+
+// clang-format on

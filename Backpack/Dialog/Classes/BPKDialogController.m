@@ -19,17 +19,16 @@
 #import "BPKDialogController.h"
 
 #import "BPKDialogButtonAction.h"
-#import "BPKDialogScrimAction.h"
 #import "BPKDialogControllerAnimator.h"
+#import "BPKDialogScrimAction.h"
 
+#import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/Color.h>
-#import <Backpack/Button.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKDialogController()
+@interface BPKDialogController ()
 
 @property(nonatomic, strong) UIColor *iconBackgroundColor;
 @property(nonatomic, strong) UIImage *iconImage;
@@ -72,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self addViews];
         [self setupConstraints];
     }
-    
+
     return self;
 }
 
@@ -81,12 +80,17 @@ NS_ASSUME_NONNULL_BEGIN
                                     style:(BPKDialogControllerStyle)style
                       iconBackgroundColor:(UIColor *)iconBackgroundColor
                                 iconImage:(UIImage *)iconImage {
-    return [[self alloc] initWithTitle:title message:message style:style iconBackgroundColor:iconBackgroundColor iconImage:iconImage];
+    return [[self alloc] initWithTitle:title
+                               message:message
+                                 style:style
+                   iconBackgroundColor:iconBackgroundColor
+                             iconImage:iconImage];
 }
 
 - (void)setupViews {
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrimTapped:)];
-    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(scrimTapped:)];
+
     self.scrimView = [[UIView alloc] initWithFrame:CGRectZero];
     self.scrimView.clipsToBounds = YES;
     self.scrimView.userInteractionEnabled = YES;
@@ -108,15 +112,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupConstraints {
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-                                              [self.scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-                                              [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-                                              [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
-                                              [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
-                                              [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor constant:(BPKSpacingMd + BPKSpacingSm)],
-                                              ]];
-    
+        [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor
+                                                      constant:(BPKSpacingMd + BPKSpacingSm)],
+        [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor
+                                                                    constant:(BPKSpacingMd + BPKSpacingSm)],
+    ]];
+
     [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     if (self.style == BPKDialogControllerStyleBottomSheet) {
         self.bottomAnchorConstraint = [self.dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
@@ -161,34 +167,42 @@ NS_ASSUME_NONNULL_BEGIN
     [self.dialogView addButtonAction:action];
 }
 
-- (void)_addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
+- (void)_addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime
+                                                   relativeDuration:(double)duration {
     if (self.style == BPKDialogControllerStyleBottomSheet) {
         CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bottomAnchorConstraint.constant = sheetSize.height;
         [self.view layoutIfNeeded];
 
         self.bottomAnchorConstraint.constant = 0.0;
-        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
-            [self.view layoutIfNeeded];
-        }];
+        [UIView addKeyframeWithRelativeStartTime:startTime
+                                relativeDuration:duration
+                                      animations:^{
+                                        [self.view layoutIfNeeded];
+                                      }];
     } else {
         self.dialogView.alpha = 0.0;
-        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
-            self.dialogView.alpha = 1.0;
-        }];
+        [UIView addKeyframeWithRelativeStartTime:startTime
+                                relativeDuration:duration
+                                      animations:^{
+                                        self.dialogView.alpha = 1.0;
+                                      }];
     }
 }
 
-- (void)_addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
+- (void)_addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime
+                                                   relativeDuration:(double)duration {
     if (self.style == BPKDialogControllerStyleBottomSheet) {
         CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bottomAnchorConstraint.constant = 0;
         [self.view layoutIfNeeded];
 
         self.bottomAnchorConstraint.constant = sheetSize.height;
-        [UIView addKeyframeWithRelativeStartTime:startTime relativeDuration:duration animations:^{
-            [self.view layoutIfNeeded];
-        }];
+        [UIView addKeyframeWithRelativeStartTime:startTime
+                                relativeDuration:duration
+                                      animations:^{
+                                        [self.view layoutIfNeeded];
+                                      }];
     }
 }
 
@@ -200,19 +214,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didInvokeButtonAction:(BPKDialogButtonAction *)action {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:^{
-            action.handler(action);
-        }];
+      [self dismissViewControllerAnimated:YES
+                               completion:^{
+                                 action.handler(action);
+                               }];
     });
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
-- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+- (nullable id<UIViewControllerAnimatedTransitioning>)
+    animationControllerForPresentedController:(UIViewController *)presented
+                         presentingController:(UIViewController *)presenting
+                             sourceController:(UIViewController *)source {
     return [BPKDialogControllerAnimator new];
 }
 
-- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:
+    (UIViewController *)dismissed {
     BPKDialogControllerAnimator *animator = [BPKDialogControllerAnimator new];
     animator.presenting = NO;
 

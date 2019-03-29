@@ -21,7 +21,7 @@
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKGradientView()
+@interface BPKGradientView ()
 @property(readonly, nonatomic) BPKGradientLayer *gradientLayer;
 @end
 

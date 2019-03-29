@@ -18,8 +18,8 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Icon.h>
 #import <Backpack/Color.h>
+#import <Backpack/Icon.h>
 
 @interface BPKIconTest : XCTestCase
 

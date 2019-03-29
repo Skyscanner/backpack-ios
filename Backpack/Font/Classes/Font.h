@@ -17,7 +17,7 @@
  */
 
 #ifndef __BACKPACK_FONT__
-    #define __BACKPACK_FONT__
+#define __BACKPACK_FONT__
 
-    #import "BPKFont.h"
+#import "BPKFont.h"
 #endif

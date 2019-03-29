@@ -18,57 +18,55 @@
 
 #import "BPKButtonsViewController.h"
 
-#import <Backpack/Icon.h>
 #import <Backpack/Color.h>
+#import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
-@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultIconOnlyButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
+@property(strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
+@property(strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
 
-@property (weak, nonatomic) IBOutlet BPKButton *largeTextButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
-
+@property(weak, nonatomic) IBOutlet BPKButton *largeTextButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
-@property (nonatomic, getter=isRTL, readonly) BOOL isRTL;
+@property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
 @end
 
 @implementation BPKButtonsViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [self setupButtons];
 }
 
 - (void)setupButtons {
-    if(self.style == BPKButtonStyleOutline) {
-        for (UIView* contentView in self.contentViews) {
+    if (self.style == BPKButtonStyleOutline) {
+        for (UIView *contentView in self.contentViews) {
             [contentView setBackgroundColor:BPKColor.blue400];
         }
 
-        for (UILabel* storyHeading in self.storyHeadings) {
+        for (UILabel *storyHeading in self.storyHeadings) {
             [storyHeading setTextColor:BPKColor.white];
         }
     }
 
-
-    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall] : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall]
+                                             : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
-
 
     UIImage *largeLongArrowIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeLarge];
 
@@ -96,9 +94,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)isRTL {
-    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
+    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] ==
+           UIUserInterfaceLayoutDirectionRightToLeft;
 }
 
 @end
 NS_ASSUME_NONNULL_END
-

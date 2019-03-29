@@ -28,9 +28,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *cell = sender;
     BPKButtonsViewController *target = segue.destinationViewController;
-    
+
     target.title = cell.textLabel.text;
-    
+
     if ([segue.identifier isEqualToString:@"primary"]) {
         target.style = BPKButtonStylePrimary;
     } else if ([segue.identifier isEqualToString:@"secondary"]) {

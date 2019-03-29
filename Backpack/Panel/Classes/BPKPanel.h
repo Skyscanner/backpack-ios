@@ -15,8 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
  * Panels are a lightweight container with a subtle shadow.
  * Panels can be configured to have padding or not.
  */
-NS_SWIFT_NAME(Panel) IB_DESIGNABLE @interface BPKPanel: UIView
+NS_SWIFT_NAME(Panel) IB_DESIGNABLE @interface BPKPanel : UIView
 
 /**
  * Whether the panel should provide padding or not.
- */ 
-@property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
+ */
+@property(nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 - (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

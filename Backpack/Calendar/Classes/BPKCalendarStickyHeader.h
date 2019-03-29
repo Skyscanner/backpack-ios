@@ -21,7 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKCalendarStickyHeader: FSCalendarStickyHeader
+@interface BPKCalendarStickyHeader : FSCalendarStickyHeader
 
 @end
 

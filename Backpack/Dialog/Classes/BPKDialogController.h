@@ -58,7 +58,8 @@ typedef NS_ENUM(NSInteger, BPKDialogControllerStyle) {
  * The controller is exclusively intended to be used with `presentViewController:`.
 
  */
-NS_SWIFT_NAME(DialogController) @interface BPKDialogController: UIViewController<BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
+NS_SWIFT_NAME(DialogController)
+@interface BPKDialogController : UIViewController <BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
 
 /**
  * The style of the dialog.
@@ -83,7 +84,8 @@ NS_SWIFT_NAME(DialogController) @interface BPKDialogController: UIViewController
  */
 @property(nonatomic, strong, nullable) BPKDialogScrimAction *scrimAction;
 
-- (instancetype)init __attribute__((unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
+- (instancetype)init __attribute__((
+    unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
 
 /**
  * Create an instance of the controller.

@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see BPKDialogController
  */
-@interface BPKDialogView : UIView<UIGestureRecognizerDelegate>
+@interface BPKDialogView : UIView <UIGestureRecognizerDelegate>
 
 /**
  * The delegate of the view.

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import <Backpack/Button.h>
+#import <UIKit/UIKit.h>
 
 @interface BPKButtonsViewController : UIViewController
 
-@property (nonatomic) BPKButtonStyle style;
+@property(nonatomic) BPKButtonStyle style;
 
 @end

@@ -19,14 +19,13 @@
 
 #import "BPKThemeContainerController.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
-@implementation UIViewController(BPKThemeContainerController)
+@implementation UIViewController (BPKThemeContainerController)
 
 - (nullable BPKThemeContainerController *)themeContainerController {
     UIViewController *parent = self;
 
-    while(parent != nil) {
+    while (parent != nil) {
         if ([parent isKindOfClass:[BPKThemeContainerController class]]) {
             return (BPKThemeContainerController *)parent;
         }

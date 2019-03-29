@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
 };
 
 NS_ASSUME_NONNULL_BEGIN
-NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
+NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 
 /**
  * Called when a date selection changed.
@@ -53,7 +53,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate <NSObject>
 /**
  * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
+NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
 /**
  * Create a calendar with given minimum date and maximum date.
@@ -67,7 +67,6 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
-
 /**
  * The active calendar being used by the reciever.
  */
@@ -76,62 +75,62 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
 /**
  * Locale used for displaying name of days and months
  */
-@property (copy, nonatomic) NSLocale *locale;
+@property(copy, nonatomic) NSLocale *locale;
 
 /**
  * Type of selection allowed
  */
-@property (nonatomic) BPKCalendarSelection selectionType;
+@property(nonatomic) BPKCalendarSelection selectionType;
 
 /**
  * List of selected dates
  */
-@property (nonatomic) NSArray<BPKSimpleDate *> *selectedDates;
+@property(nonatomic) NSArray<BPKSimpleDate *> *selectedDates;
 
 /**
  * The earliest date that the user is allowed to select
  */
-@property (nonatomic) BPKSimpleDate *minDate;
+@property(nonatomic) BPKSimpleDate *minDate;
 
 /**
  * The latest date that the user is allowed to select
  */
-@property (nonatomic) BPKSimpleDate *maxDate;
+@property(nonatomic) BPKSimpleDate *maxDate;
 
 /**
  * The underlying scrollView's content offset
  */
-@property (readonly) CGPoint contentOffset;
+@property(readonly) CGPoint contentOffset;
 
 /**
  * The underlying scrollView's content inset
  */
-@property (readonly) UIEdgeInsets contentInset;
+@property(readonly) UIEdgeInsets contentInset;
 
 /**
  * The underlying scrollView's content size
  */
-@property (readonly) CGSize contentSize;
+@property(readonly) CGSize contentSize;
 
 /**
  * The underlying scrollView's isDecelerating
  */
-@property (readonly) BOOL isDecelerating;
+@property(readonly) BOOL isDecelerating;
 
 /**
  * The underlying scrollView's isTracking
  */
-@property (readonly) BOOL isTracking;
+@property(readonly) BOOL isTracking;
 
 /**
  * The underlying scrollView's isDragging
  */
-@property (readonly) BOOL isDragging;
+@property(readonly) BOOL isDragging;
 
 /**
  * The calendar's delegate
  */
-@property (nonatomic, nullable) id<BPKCalendarDelegate> delegate;
+@property(nonatomic, nullable) id<BPKCalendarDelegate> delegate;
 
 - (void)reloadData;
 
@@ -147,7 +146,7 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar: UIView
  * @param simpleDate A SimpleDate representing a timezone independent date
  * @return Date object in the device's local timezone
  */
--(NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate;
+- (NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate;
 
 @end
 NS_ASSUME_NONNULL_END

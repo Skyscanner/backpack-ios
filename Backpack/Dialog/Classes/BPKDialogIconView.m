@@ -21,7 +21,6 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogIconView ()
@@ -75,7 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.backgroundColor = BPKColor.white;
 
     CGSize iconContainerSize = [[self class] iconContainerSize];
-    self.iconContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
+    self.iconContainerView =
+        [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
     self.iconContainerView.layer.cornerRadius = iconContainerSize.width / 2.0;
     self.iconContainerView.backgroundColor = BPKColor.gray300;
 
@@ -89,16 +89,16 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconContainerView.translatesAutoresizingMaskIntoConstraints = NO;
     self.iconImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-                                              // Icon Container
-                                              [self.iconContainerView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-                                              [self.iconContainerView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
-                                              [self.iconContainerView.widthAnchor constraintEqualToConstant:iconContainerSize.width],
-                                              [self.iconContainerView.heightAnchor constraintEqualToConstant:iconContainerSize.height],
+        // Icon Container
+        [self.iconContainerView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.iconContainerView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
+        [self.iconContainerView.widthAnchor constraintEqualToConstant:iconContainerSize.width],
+        [self.iconContainerView.heightAnchor constraintEqualToConstant:iconContainerSize.height],
 
-                                              // Icon
-                                              [self.iconImageView.centerXAnchor constraintEqualToAnchor:self.iconContainerView.centerXAnchor],
-                                              [self.iconImageView.centerYAnchor constraintEqualToAnchor:self.iconContainerView.centerYAnchor],
-                                              ]];
+        // Icon
+        [self.iconImageView.centerXAnchor constraintEqualToAnchor:self.iconContainerView.centerXAnchor],
+        [self.iconImageView.centerYAnchor constraintEqualToAnchor:self.iconContainerView.centerYAnchor],
+    ]];
 }
 
 + (CGSize)viewSize {

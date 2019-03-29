@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Panel.h>
 #import <Backpack/Color.h>
+#import <Backpack/Panel.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKPanelSnapshotTest : FBSnapshotTestCase
 
@@ -36,16 +36,28 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:panel];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[panel]-16-|" options:0 metrics:nil views:@{@"panel": panel}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[panel]-16-|" options:0 metrics:nil views:@{@"panel": panel}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[panel]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"panel" : panel}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[panel]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"panel" : panel}]];
     [parentView layoutIfNeeded];
 }
 
 - (void)configurePanel:(BPKPanel *)panel withInnerView:(UIView *)innerView {
     panel.translatesAutoresizingMaskIntoConstraints = NO;
     [panel addSubview:innerView];
-    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
-    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
+    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
+                                                                  options:0
+                                                                  metrics:nil
+                                                                    views:@{@"innerView" : innerView}]];
+    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
+                                                                  options:0
+                                                                  metrics:nil
+                                                                    views:@{@"innerView" : innerView}]];
 }
 
 - (void)testViewSnapshotWithoutPadded {
@@ -64,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
     innerView.backgroundColor = [BPKColor red500];
-    
+
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
     FBSnapshotVerifyView(parentView, nil);

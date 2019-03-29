@@ -15,14 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 #import "BPKIconNames.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSUInteger, BPKIconSize) {
-    BPKIconSizeSmall,
-    BPKIconSizeLarge
-};
+typedef NS_ENUM(NSUInteger, BPKIconSize) { BPKIconSizeSmall, BPKIconSizeLarge };
 
 @class UIImage;
 
@@ -32,7 +29,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * times. Further the use of `NSCache` means that in low memory scenarios the cache will be cleared
  * to allow more important memory use.
  */
-NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
+NS_SWIFT_NAME(Icon) @interface BPKIcon : NSObject
 
 @property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
 
@@ -54,7 +51,9 @@ NS_SWIFT_NAME(Icon) @interface BPKIcon: NSObject
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
++ (UIImage *)iconNamed:(BPKIconName)name
+                 color:(UIColor *)color
+                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
 
 /**
  * Calculates the concrete point size a given BPKIconSize.

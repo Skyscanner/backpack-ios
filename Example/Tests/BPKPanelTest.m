@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
 #import <Backpack/Panel.h>
+#import <XCTest/XCTest.h>
 
 @interface BPKPanelTest : XCTestCase
 

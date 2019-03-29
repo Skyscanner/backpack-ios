@@ -23,9 +23,9 @@
 
 @interface FSCalendarStickyHeader (Private)
 
-@property (weak, nonatomic) UIView  *contentView;
-@property (weak, nonatomic) UIView  *bottomBorder;
-@property (weak, nonatomic) FSCalendarWeekdayView *weekdayView;
+@property(weak, nonatomic) UIView *contentView;
+@property(weak, nonatomic) UIView *bottomBorder;
+@property(weak, nonatomic) FSCalendarWeekdayView *weekdayView;
 
 @end
 
@@ -50,13 +50,15 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
+    self.titleLabel.frame =
+        CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
 }
 
 - (void)setMonth:(NSDate *)month {
     [super setMonth:month];
     FSCalendarAppearance *appearance = self.calendar.appearance;
-    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
+    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]],
+             @"Return value is not of type BPKCalendarAppearance as expected.");
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                    content:self.titleLabel.text

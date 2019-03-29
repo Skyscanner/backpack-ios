@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -68,3 +69,4 @@ NS_SWIFT_NAME(Shadow) @interface BPKShadow: NSObject
 
 @end
 NS_ASSUME_NONNULL_END
+// clang-format on

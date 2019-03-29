@@ -21,9 +21,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
 
-
 #import <Backpack/Badge.h>
-
 
 @interface BPKBadgeSnapshotTest : FBSnapshotTestCase
 
@@ -48,18 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testViewSnapshotWithTypes {
-    BPKBadgeType types[] = {
-        BPKBadgeTypeLight,
-        BPKBadgeTypeInverse,
-        BPKBadgeTypeOutline,
-        BPKBadgeTypeSuccess,
-        BPKBadgeTypeWarning,
-        BPKBadgeTypeDestructive
-    };
-    
+    BPKBadgeType types[] = {BPKBadgeTypeLight,   BPKBadgeTypeInverse, BPKBadgeTypeOutline,
+                            BPKBadgeTypeSuccess, BPKBadgeTypeWarning, BPKBadgeTypeDestructive};
+
     NSUInteger length = sizeof(types) / sizeof(types[0]);
     UIStackView *stackView = [self buildStackView];
-    
+
     for (NSUInteger i = 0; i < length; i++) {
         BPKBadge *badge = [[BPKBadge alloc] initWithType:types[i] message:@"Backpack rocks"];
         [stackView addArrangedSubview:badge];
@@ -70,11 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 
     [parentView addSubview:stackView];
     [NSLayoutConstraint activateConstraints:@[
-                                              [stackView.topAnchor constraintEqualToAnchor:parentView.topAnchor],
-                                              [stackView.leadingAnchor constraintEqualToAnchor:parentView.leadingAnchor],
-                                              [parentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor],
-                                              [parentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor],
-                                              ]];
+        [stackView.topAnchor constraintEqualToAnchor:parentView.topAnchor],
+        [stackView.leadingAnchor constraintEqualToAnchor:parentView.leadingAnchor],
+        [parentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor],
+        [parentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor],
+    ]];
 
     FBSnapshotVerifyView(parentView, nil);
 }

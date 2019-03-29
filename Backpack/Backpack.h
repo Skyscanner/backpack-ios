@@ -17,27 +17,26 @@
  */
 
 #ifndef __BACKPACK__
-    #define __BACKPACK__
+#define __BACKPACK__
 
-    #import "Color.h"
-    #import "Font.h"
-    #import "Radii.h"
-    #import "Shadow.h"
-    #import "Spacing.h"
-    #import "Gradient.h"
+#import "Color.h"
+#import "Font.h"
+#import "Gradient.h"
+#import "Radii.h"
+#import "Shadow.h"
+#import "Spacing.h"
 
-    #import "Badge.h"
-    #import "Calendar.h"
-    #import "Card.h"
-    #import "Theme.h"
-    #import "Chip.h"
-    #import "Dialog.h"
-    #import "Label.h"
-    #import "Panel.h"
-    #import "Icon.h"
-    #import "Button.h"
-    #import "Spinner.h"
-    #import "Switch.h"
-    #import "TextView.h"
+#import "Badge.h"
+#import "Button.h"
+#import "Calendar.h"
+#import "Card.h"
+#import "Chip.h"
+#import "Dialog.h"
+#import "Icon.h"
+#import "Label.h"
+#import "Panel.h"
+#import "Spinner.h"
+#import "Switch.h"
+#import "TextView.h"
+#import "Theme.h"
 #endif
-

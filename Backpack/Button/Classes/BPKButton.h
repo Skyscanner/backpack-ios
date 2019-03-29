@@ -60,10 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
+NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton : UIButton
 
-- (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
-- (void)setImage:(UIImage *_Nullable)image forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
+- (void)setTitle:(NSString *_Nullable)title
+        forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
+- (void)setImage:(UIImage *_Nullable)image
+        forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 
 @property(nonatomic, copy, nullable) NSString *title;
 - (void)setImage:(UIImage *_Nullable)image;
@@ -93,7 +95,6 @@ NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton: UIButton
  * @return `BPKButton` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
-
 
 /**
  * Size of the button

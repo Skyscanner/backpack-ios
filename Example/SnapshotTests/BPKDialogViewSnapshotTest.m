@@ -42,22 +42,24 @@ NS_ASSUME_NONNULL_BEGIN
     parent.backgroundColor = BPKColor.white;
     [parent addSubview:dialogView];
 
-
     [NSLayoutConstraint activateConstraints:@[
-                                              [parent.layoutMarginsGuide.topAnchor constraintEqualToAnchor:dialogView.topAnchor],
-                                              [parent.layoutMarginsGuide.leadingAnchor constraintEqualToAnchor:dialogView.leadingAnchor],
-                                              [dialogView.trailingAnchor constraintEqualToAnchor:parent.layoutMarginsGuide.trailingAnchor],
-                                              [dialogView.bottomAnchor constraintEqualToAnchor:parent.layoutMarginsGuide.bottomAnchor],
-                                              ]];
+        [parent.layoutMarginsGuide.topAnchor constraintEqualToAnchor:dialogView.topAnchor],
+        [parent.layoutMarginsGuide.leadingAnchor constraintEqualToAnchor:dialogView.leadingAnchor],
+        [dialogView.trailingAnchor constraintEqualToAnchor:parent.layoutMarginsGuide.trailingAnchor],
+        [dialogView.bottomAnchor constraintEqualToAnchor:parent.layoutMarginsGuide.bottomAnchor],
+    ]];
 
     return parent;
 }
 
 - (void)testDialogViewNoButtons {
-    BPKDialogView *view = [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
-                                                       message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
-                                           iconBackgroundColor:BPKColor.green500
-                                                     iconImage:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]];
+    BPKDialogView *view = [[BPKDialogView alloc]
+              initWithTitle:@"Lorem Ipsum"
+                    message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                            @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                            @"venenatis vitae. Cras sollicitudin porttitor semper."
+        iconBackgroundColor:BPKColor.green500
+                  iconImage:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]];
 
     [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
     view.translatesAutoresizingMaskIntoConstraints = NO;
@@ -68,18 +70,23 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDialogViewWithButtons {
-    BPKDialogView *view = [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
-                                                       message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus venenatis vitae. Cras sollicitudin porttitor semper."
-                                           iconBackgroundColor:BPKColor.yellow500
-                                                     iconImage:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]];
+    BPKDialogView *view = [[BPKDialogView alloc]
+              initWithTitle:@"Lorem Ipsum"
+                    message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                            @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                            @"venenatis vitae. Cras sollicitudin porttitor semper."
+        iconBackgroundColor:BPKColor.yellow500
+                  iconImage:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
-                                                                           handler:^(BPKDialogButtonAction *action) {
+                                                                           handler:^(BPKDialogButtonAction *action){
 
                                                                            }];
-    BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Skipz" style:BPKButtonStyleLink handler:^(BPKDialogButtonAction * action) {
+    BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Skipz"
+                                                                         style:BPKButtonStyleLink
+                                                                       handler:^(BPKDialogButtonAction *action){
 
-    }];
+                                                                       }];
 
     [view addButtonAction:continueAction];
     [view addButtonAction:skipAction];
@@ -91,7 +98,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     FBSnapshotVerifyView(parent, nil);
 }
-
 
 @end
 NS_ASSUME_NONNULL_END

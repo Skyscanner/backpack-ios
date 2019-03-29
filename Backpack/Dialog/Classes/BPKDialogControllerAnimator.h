@@ -19,7 +19,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDialogControllerAnimator : NSObject<UIViewControllerAnimatedTransitioning>
+@interface BPKDialogControllerAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 @property(nonatomic, assign, getter=isPresenting) BOOL presenting;
 @end
 NS_ASSUME_NONNULL_END

@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "UIView+BPKRTL.h"
 #import "BPKRTLSupport.h"
+#import "UIView+BPKRTL.h"
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation UIView(BPKRTL)
+@implementation UIView (BPKRTL)
 - (UIEdgeInsets)bpk_makeRTLAwareEdgeInsetsWithTop:(CGFloat)top
                                           leading:(CGFloat)leading
                                            bottom:(CGFloat)bottom

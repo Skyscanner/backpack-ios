@@ -39,7 +39,7 @@
 }
 
 - (void)testBaselineScrimGradient {
-    UIView *container  = [UIView new];
+    UIView *container = [UIView new];
     container.backgroundColor = UIColor.whiteColor;
     container.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -50,18 +50,17 @@
     [container addSubview:view];
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [view.widthAnchor constraintEqualToConstant:150],
-                                              [view.heightAnchor constraintEqualToConstant:200],
+        [view.widthAnchor constraintEqualToConstant:150],
+        [view.heightAnchor constraintEqualToConstant:200],
 
-                                              [view.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
-                                              [view.topAnchor constraintEqualToAnchor:container.topAnchor],
-                                              [container.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
-                                              [container.bottomAnchor constraintEqualToAnchor:view.bottomAnchor],
-                                              ]];
+        [view.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
+        [view.topAnchor constraintEqualToAnchor:container.topAnchor],
+        [container.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
+        [container.bottomAnchor constraintEqualToAnchor:view.bottomAnchor],
+    ]];
 
     [container layoutIfNeeded];
     FBSnapshotVerifyView(container, nil);
 }
-
 
 @end

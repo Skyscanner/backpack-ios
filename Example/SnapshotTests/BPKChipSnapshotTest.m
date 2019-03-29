@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Spacing.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKChipSnapshotTest : FBSnapshotTestCase
 
@@ -36,8 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
     chip.translatesAutoresizingMaskIntoConstraints = NO;
     [parentView addSubview:chip];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[chip]-padding-|" options:0 metrics:@{@"padding":@(BPKSpacingBase)} views:@{@"chip": chip}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[chip]-padding-|" options:0 metrics:@{@"padding":@(BPKSpacingBase)} views:@{@"chip": chip}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[chip]-padding-|"
+                                                                       options:0
+                                                                       metrics:@{@"padding" : @(BPKSpacingBase)}
+                                                                         views:@{@"chip" : chip}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[chip]-padding-|"
+                                                                       options:0
+                                                                       metrics:@{@"padding" : @(BPKSpacingBase)}
+                                                                         views:@{@"chip" : chip}]];
     [parentView layoutIfNeeded];
 }
 

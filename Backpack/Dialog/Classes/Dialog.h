@@ -19,10 +19,9 @@
 #ifndef __BACKPACK_DIALOG__
 #define __BACKPACK_DIALOG__
 
-#import "BPKDialogController.h"
-#import "BPKDialogView.h"
 #import "BPKDialogButtonAction.h"
+#import "BPKDialogController.h"
 #import "BPKDialogScrimAction.h"
+#import "BPKDialogView.h"
 
 #endif
-

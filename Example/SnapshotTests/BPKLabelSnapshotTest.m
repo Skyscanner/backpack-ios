@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Label.h>
 #import <Backpack/Color.h>
+#import <Backpack/Label.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKLabelSnapshotTest : FBSnapshotTestCase
 @end
@@ -50,21 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testViewSnapshotWithFontStyle {
-    BPKFontStyle styles[] = {
-        BPKFontStyleTextCaps,
-        BPKFontStyleTextXs,
-        BPKFontStyleTextSm,
-        BPKFontStyleTextBase,
-        BPKFontStyleTextLg,
-        BPKFontStyleTextXl,
-        BPKFontStyleTextXxl,
-        BPKFontStyleTextXxxl
-    };
-    
+    BPKFontStyle styles[] = {BPKFontStyleTextCaps, BPKFontStyleTextXs, BPKFontStyleTextSm,  BPKFontStyleTextBase,
+                             BPKFontStyleTextLg,   BPKFontStyleTextXl, BPKFontStyleTextXxl, BPKFontStyleTextXxxl};
+
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    
+
     UIStackView *stackView = [self buildStackView];
-    
+
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
         label.text = @"Backpack Rocks";
@@ -78,16 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testViewSnapshotWithFontStyleEmphasized {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextCapsEmphasized,
-        BPKFontStyleTextXsEmphasized,
-        BPKFontStyleTextSmEmphasized,
-        BPKFontStyleTextBaseEmphasized,
-        BPKFontStyleTextLgEmphasized,
-        BPKFontStyleTextXlEmphasized,
-        BPKFontStyleTextXxlEmphasized,
-        BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
+        BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXxlEmphasized,  BPKFontStyleTextXxxlEmphasized,
     };
-    
+
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
 
     UIStackView *stackView = [self buildStackView];
@@ -110,11 +97,11 @@ NS_ASSUME_NONNULL_BEGIN
         BPKFontStyleTextXxlHeavy,
         BPKFontStyleTextXxxlHeavy,
     };
-    
+
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    
+
     UIStackView *stackView = [self buildStackView];
-    
+
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
         label.text = @"Backpack Rocks";
