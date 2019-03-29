@@ -16,12 +16,18 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+import Backpack.Theme
 
-NS_ASSUME_NONNULL_BEGIN
+@objc class BPKExampleApp: UIApplication {
+    override func sendEvent(_ event: UIEvent) {
+        if event.type == .motion && event.subtype == .motionShake {
+            let storyboardName = "Main"
+            let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
+            let settingsViewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
 
-@interface BPKExampleApp : UIApplication
-@end
+            self.keyWindow?.topMostController()?.present(settingsViewController, animated: true, completion: nil)
+        }
 
-NS_ASSUME_NONNULL_END
+        super.sendEvent(event)
+    }
+}
