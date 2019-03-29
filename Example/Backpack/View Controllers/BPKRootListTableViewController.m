@@ -38,7 +38,7 @@
 }
 
 - (void)didTapSettingsButton {
-    [BPKExampleApp showSettingsView];
+    [ExampleApp showSettingsView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

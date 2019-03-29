@@ -30,7 +30,8 @@ class SettingsViewController: UITableViewController {
         closeButton.action = #selector(SettingsViewController.btnAction)
     }
 
-    @objc func btnAction() {
+    @objc
+    func btnAction() {
         self.dismiss(animated: true, completion: nil)
     }
 

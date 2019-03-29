@@ -18,17 +18,29 @@
 
 import Backpack.Theme
 
-@objc class BPKExampleApp: UIApplication {
+@objc
+class ExampleApp: UIApplication {
+    #if swift(>=4.2)
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
 
-    @objc override func sendEvent(_ event: UIEvent) {
-        if event.type == .motion && event.subtype == .motionShake {
-            BPKExampleApp.showSettingsView()
+        if motion == .motionShake {
+            type(of: self).showSettingsView()
         }
 
-        super.sendEvent(event)
+        super.motionEnded(motion, with: event)
     }
+    #else
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            type(of: self).showSettingsView()
+        }
 
-    @objc class func showSettingsView() {
+        super.motionEnded(motion, with: event)
+    }
+    #endif
+
+    @objc
+    class func showSettingsView() {
         let storyboardName = "Main"
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")

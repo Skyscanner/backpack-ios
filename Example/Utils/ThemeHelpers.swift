@@ -21,18 +21,21 @@ import Backpack.Theme
 
 class ThemeHelpers: NSObject {
 
-    @objc enum ThemeName: Int {
+    @objc
+    enum ThemeName: Int {
         case none = 0, london, hongKong, doha
     }
 
-    @objc class func applyAllThemes() {
+    @objc
+    class func applyAllThemes() {
         Theme.apply(DefaultTheme())
         Theme.apply(LondonTheme())
         Theme.apply(HongKongTheme())
         Theme.apply(DohaTheme())
     }
 
-    @objc class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
+    @objc
+    class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:
             return DefaultTheme()

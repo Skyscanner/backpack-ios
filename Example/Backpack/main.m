@@ -22,7 +22,7 @@
 
 int main(int argc, char *argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, NSStringFromClass([BPKExampleApp class]),
+        return UIApplicationMain(argc, argv, NSStringFromClass([ExampleApp class]),
                                  NSStringFromClass([BPKAppDelegate class]));
     }
 }

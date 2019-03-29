@@ -1,0 +1,9 @@
+opt_in_rules:
+  - anyobject_protocol
+  - attributes
+  - block_based_kvo
+  - closure_body_length
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_first_not_nil

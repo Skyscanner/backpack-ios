@@ -5,7 +5,7 @@ install! 'cocoapods', disable_input_output_paths: true
 
 target 'Backpack Native' do
   pod 'Backpack', :path => '../'
-  pod 'SwiftLint', '~> 0.27.0'
+  pod 'SwiftLint', '~> 0.31.0'
 
   target 'Backpack_Tests' do
     inherit! :search_paths
