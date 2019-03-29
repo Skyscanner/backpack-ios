@@ -291,7 +291,9 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     if (self.selectionType == BPKCalendarSelectionRange) {
         if (calendar.selectedDates.count >= 2) {
-            [calendar deselectDate:calendar.selectedDates.lastObject];
+            for (NSDate *date in calendar.selectedDates) {
+                [calendar deselectDate:date];
+            }
         }
 
         for (NSDate *selectedDate in calendar.selectedDates) {
@@ -308,21 +310,17 @@ NSString *const HeaderDateFormat = @"MMMM";
        atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     if (self.sameDayRange || self.selectionType != BPKCalendarSelectionRange) {
         self.sameDayRange = NO;
+        return YES;
     } else {
-        for (NSDate *aDate in calendar.selectedDates) {
-            if ([date compare:aDate] == NSOrderedAscending) {
-                [calendar deselectDate:aDate];
+        self.sameDayRange = calendar.selectedDates.count < 2;
+        for (NSDate *actualDate in calendar.selectedDates) {
+            if (![date isEqualToDate:actualDate]) {
+                [calendar deselectDate:actualDate];
             }
         }
-
-        self.sameDayRange = [date isEqualToDate:calendar.selectedDates.firstObject];
-
-        if (self.sameDayRange) {
-            [self calendar:self.calendarView didSelectDate:date atMonthPosition:monthPosition];
-        }
+        [self calendar:self.calendarView didSelectDate:date atMonthPosition:monthPosition];
+        return NO;
     }
-
-    return !self.sameDayRange;
 }
 
 - (void)calendar:(FSCalendar *)calendar
