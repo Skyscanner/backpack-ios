@@ -19,13 +19,13 @@
 #import "BPKDividedCard.h"
 #import "BPKCardDivider.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDividedCard()
+@interface BPKDividedCard ()
 @property(strong, nonatomic) UIStackView *contentView;
 @property(strong, nonatomic) BPKCardDivider *lineView;
 @end
@@ -34,21 +34,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    
+
     if (self) {
         [self setupViewsWithPadded:NO];
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         [self setupViewsWithPadded:NO];
     }
-    
+
     return self;
 }
 
@@ -60,13 +60,19 @@ NS_ASSUME_NONNULL_BEGIN
     return [self initWithPrimarySubview:nil secondarySubview:nil padded:padded cornerStyle:cornerStyle];
 }
 
-- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded {
-    return [self initWithPrimarySubview:primarySubview secondarySubview:secondarySubview padded:padded cornerStyle:BPKCardDefaultCornerStyle];
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded {
+    return [self initWithPrimarySubview:primarySubview
+                       secondarySubview:secondarySubview
+                                 padded:padded
+                            cornerStyle:BPKCardDefaultCornerStyle];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
                       secondarySubview:(UIView *_Nullable)secondarySubview
-       padded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
+                                padded:(BOOL)padded
+                           cornerStyle:(BPKCardCornerStyle)cornerStyle {
     self = [super initWithPadded:padded cornerStyle:cornerStyle];
 
     if (self) {
@@ -91,30 +97,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setPrimarySubview:(UIView *)primarySubview secondarySubview:(UIView *)secondarySubview {
     if (self.primarySubview != nil) {
-      [self.contentView removeArrangedSubview:self.primarySubview];
+        [self.contentView removeArrangedSubview:self.primarySubview];
     }
     if (self.secondarySubview != nil) {
-      [self.contentView removeArrangedSubview:self.secondarySubview];
+        [self.contentView removeArrangedSubview:self.secondarySubview];
     }
 
     self.primarySubview = primarySubview;
     self.secondarySubview = secondarySubview;
-    
+
     [self.contentView insertArrangedSubview:self.primarySubview atIndex:0];
     [self.contentView insertArrangedSubview:self.secondarySubview atIndex:2];
 }
 
 #pragma mark - Private
 
-- (void)setupViewsWithPadded:(BOOL) padded {
+- (void)setupViewsWithPadded:(BOOL)padded {
     self.contentView = [[UIStackView alloc] initWithFrame:CGRectZero];
     [self.contentView setUserInteractionEnabled:false];
     self.contentView.distribution = UIStackViewDistributionFillProportionally;
     self.contentView.alignment = UIStackViewAlignmentFill;
     self.padded = padded;
-    
+
     self.lineView = [[BPKCardDivider alloc] initWithOrientation:self.orientation];
-    
+
     if (self.primarySubview != nil) {
         [self.contentView addArrangedSubview:self.primarySubview];
     }
@@ -122,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.secondarySubview != nil) {
         [self.contentView addArrangedSubview:self.secondarySubview];
     }
-    
+
     [super setSubview:(self.contentView)];
 }
 

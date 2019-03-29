@@ -17,10 +17,9 @@
  * limitations under the License.
  */
 
-
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Color.h>
 #import <Backpack/Calendar.h>
+#import <Backpack/Color.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKCalendarSnapshotTest : FBSnapshotTestCase
 
@@ -50,10 +49,22 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:calendar];
 
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[calendar]-16-|" options:0 metrics:nil views:@{@"calendar": calendar}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[calendar]-16-|" options:0 metrics:nil views:@{@"calendar": calendar}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(320)]" options:0 metrics:nil views:@{@"parentView": parentView}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[parentView(568)]" options:0 metrics:nil views:@{@"parentView": parentView}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[calendar]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"calendar" : calendar}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[calendar]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"calendar" : calendar}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(320)]"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"parentView" : parentView}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[parentView(568)]"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"parentView" : parentView}]];
     [parentView layoutIfNeeded];
 }
 
@@ -86,24 +97,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testCalendarWithRangeSelection {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
-    
+
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
-    bpkCalendar.selectedDates = @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
+    bpkCalendar.selectedDates =
+        @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
     [bpkCalendar reloadData];
-    
+
     FBSnapshotVerifyView(parentView, nil);
 }
 
 - (void)testCalendarWithMultipleSelection {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
-    
+
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
-    bpkCalendar.selectedDates = @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
+    bpkCalendar.selectedDates =
+        @[ [bpkCalendar simpleDateFromDate:self.date1], [bpkCalendar simpleDateFromDate:self.date2] ];
     [bpkCalendar reloadData];
-    
+
     FBSnapshotVerifyView(parentView, nil);
 }
 

@@ -15,25 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <Foundation/Foundation.h>
 #import <Backpack/Font.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * `BPKTextView` is a subclass of `UITextView` which uses the Skyscanner style.
  */
-NS_SWIFT_NAME(TextView) IB_DESIGNABLE @interface BPKTextView: UITextView
+NS_SWIFT_NAME(TextView) IB_DESIGNABLE @interface BPKTextView : UITextView
 
 /**
  * Create a `BPKTextView` with a specific BPKFont style.
- * 
+ *
  * @param style Font style to be used by the TextView.
  * @see BPKFontStyle
  */
 - (instancetype)initWithFontStyle:(BPKFontStyle)style NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame
+                textContainer:(nullable NSTextContainer *)textContainer NS_DESIGNATED_INITIALIZER;
 
 /**
  The font style used for the TextView.

@@ -16,15 +16,16 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKHongKongThemeContainer` is a subclass of `UIView` which allows the BPKHongKong theme to be applied to all its children.
+ * `BPKHongKongThemeContainer` is a subclass of `UIView` which allows the BPKHongKong theme to be applied to all its
+ * children.
  */
-NS_SWIFT_NAME(HongKongThemeContainer) @interface BPKHongKongThemeContainer: UIView
+NS_SWIFT_NAME(HongKongThemeContainer) @interface BPKHongKongThemeContainer : UIView
 
 @end
 NS_ASSUME_NONNULL_END

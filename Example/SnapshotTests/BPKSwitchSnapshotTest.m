@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import <Backpack/Switch.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKSwitchSnapshotTest : FBSnapshotTestCase
 

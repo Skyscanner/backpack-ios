@@ -17,20 +17,19 @@
  */
 #import "BPKPanel.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
-#import <Backpack/Radii.h>
 #import <Backpack/Common.h>
+#import <Backpack/Radii.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKPanelDefaultPaddedValue = YES;
 
-@interface BPKPanel()
-@property (assign) UIEdgeInsets originalLayoutMargins;
+@interface BPKPanel ()
+@property(assign) UIEdgeInsets originalLayoutMargins;
 
 - (void)setupWithPadded:(BOOL)padded;
 @end
-
 
 @implementation BPKPanel
 
@@ -63,7 +62,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     } else {
         self.layoutMargins = UIEdgeInsetsZero;
     }
-    
+
     _padded = padded;
 }
 

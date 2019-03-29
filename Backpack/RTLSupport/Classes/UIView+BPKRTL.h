@@ -18,11 +18,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface UIView(BPKRTL)
+@interface UIView (BPKRTL)
 - (UIEdgeInsets)bpk_makeRTLAwareEdgeInsetsWithTop:(CGFloat)top
                                           leading:(CGFloat)leading
                                            bottom:(CGFloat)bottom
                                          trailing:(CGFloat)trailing;
 @end
 NS_ASSUME_NONNULL_END
-

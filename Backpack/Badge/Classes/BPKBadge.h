@@ -15,8 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * These constants represent the type of badge.
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKBadge` is a subclass of `UIView` which contains the Skyscanner badge style.
  */
-NS_SWIFT_NAME(Badge) IB_DESIGNABLE @interface BPKBadge: UIView
+NS_SWIFT_NAME(Badge) IB_DESIGNABLE @interface BPKBadge : UIView
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /**
@@ -74,14 +74,14 @@ NS_SWIFT_NAME(Badge) IB_DESIGNABLE @interface BPKBadge: UIView
 
 /**
  * Create a `BPKBadge` with the given message.
- * 
+ *
  * @param message The message to show in the badge.
  */
 - (instancetype)initWithMessage:(NSString *)message;
 
 /**
  * Create a `BPKBadge` with the given message and type.
- * 
+ *
  * @param type The type of badge to create.
  * @param message The message to show in the badge.
  */

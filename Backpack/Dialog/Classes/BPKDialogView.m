@@ -20,13 +20,13 @@
 
 #import "BPKDialogIconView.h"
 
-#import <Backpack/Label.h>
-#import <Backpack/Spacing.h>
-#import <Backpack/Shadow.h>
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
-#import <Backpack/Radii.h>
 #import <Backpack/Common.h>
+#import <Backpack/Label.h>
+#import <Backpack/Radii.h>
+#import <Backpack/Shadow.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
@@ -37,8 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKActionButtonPair
 @end
 
-
-@interface BPKDialogView()
+@interface BPKDialogView ()
 
 @property(nonatomic, strong) BPKDialogIconView *iconView;
 
@@ -113,11 +112,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
     self.descriptionLabel.numberOfLines = 0;
     self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    
+
     self.buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
     self.buttonStackView.axis = UILayoutConstraintAxisVertical;
     self.buttonStackView.spacing = BPKSpacingMd;
-    
+
     self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -135,35 +134,47 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupConstraints {
     CGSize iconViewSize = [[self.iconView class] viewSize];
-    self.contentView.layoutMargins = UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg, self.contentView.layoutMargins.bottom, BPKSpacingLg);
+    self.contentView.layoutMargins = UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg,
+                                                      self.contentView.layoutMargins.bottom, BPKSpacingLg);
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
-                                              [self.iconView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
+        [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
+        [self.iconView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
 
-                                              [self.contentView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:-(iconViewSize.height / 2.0)],
-                                              [self.contentView.superview.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor],
-                                              [self.contentView.trailingAnchor constraintEqualToAnchor:self.contentView.superview.trailingAnchor],
+        [self.contentView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
+                                                   constant:-(iconViewSize.height / 2.0)],
+        [self.contentView.superview.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor],
+        [self.contentView.trailingAnchor constraintEqualToAnchor:self.contentView.superview.trailingAnchor],
 
-                                              // NOTE: The constant here is explicitly not BPKSpacingLg because the icon view has a white border which
-                                              // blends with the contentView background. Using BPKSpacingLg makes it look unaligned with the BPKSpacingLg below.
-                                              // The border is BPKSpacingMd wide which when added to BPKSpacingBase makes it BPKSpacingLg. This ligns up
-                                              // nicely with the BPKSpacingLg between descriptionLabel and buttonStackView
-                                              [self.titleLabel.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:BPKSpacingBase],
-                                              [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.titleLabel.superview.centerXAnchor],
-                                              [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.titleLabel.superview.layoutMarginsGuide.leadingAnchor],
-                                              [self.titleLabel.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor],
-                                              
-                                              [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
-                                              [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.descriptionLabel.superview.layoutMarginsGuide.leadingAnchor],
-                                              [self.descriptionLabel.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
-                                              
-                                              [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor constant:BPKSpacingLg],
-                                              [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.buttonStackView.superview.layoutMarginsGuide.leadingAnchor constant:(BPKSpacingXl - BPKSpacingLg)],
-                                              [self.buttonStackView.superview.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor constant:(BPKSpacingXl - BPKSpacingLg)],
-                                              [self.buttonStackView.superview.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.buttonStackView.bottomAnchor]
-                                              ]];
+        // NOTE: The constant here is explicitly not BPKSpacingLg because the icon view has a white border which
+        // blends with the contentView background. Using BPKSpacingLg makes it look unaligned with the BPKSpacingLg
+        // below. The border is BPKSpacingMd wide which when added to BPKSpacingBase makes it BPKSpacingLg. This ligns
+        // up nicely with the BPKSpacingLg between descriptionLabel and buttonStackView
+        [self.titleLabel.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:BPKSpacingBase],
+        [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.titleLabel.superview.centerXAnchor],
+        [self.titleLabel.leadingAnchor
+            constraintEqualToAnchor:self.titleLabel.superview.layoutMarginsGuide.leadingAnchor],
+        [self.titleLabel.superview.layoutMarginsGuide.trailingAnchor
+            constraintEqualToAnchor:self.titleLabel.trailingAnchor],
+
+        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+        [self.descriptionLabel.leadingAnchor
+            constraintEqualToAnchor:self.descriptionLabel.superview.layoutMarginsGuide.leadingAnchor],
+        [self.descriptionLabel.superview.layoutMarginsGuide.trailingAnchor
+            constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
+
+        [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor
+                                                       constant:BPKSpacingLg],
+        [self.buttonStackView.leadingAnchor
+            constraintEqualToAnchor:self.buttonStackView.superview.layoutMarginsGuide.leadingAnchor
+                           constant:(BPKSpacingXl - BPKSpacingLg)],
+        [self.buttonStackView.superview.layoutMarginsGuide.trailingAnchor
+            constraintEqualToAnchor:self.buttonStackView.trailingAnchor
+                           constant:(BPKSpacingXl - BPKSpacingLg)],
+        [self.buttonStackView.superview.layoutMarginsGuide.bottomAnchor
+            constraintEqualToAnchor:self.buttonStackView.bottomAnchor]
+    ]];
 }
 
 - (void)layoutSubviews {
@@ -173,7 +184,8 @@ NS_ASSUME_NONNULL_BEGIN
     CGRect layerRect = self.contentView.layer.frame;
     CGRect iconViewRect = self.iconView.layer.frame;
     CGMutablePathRef shadowPath = CGPathCreateMutable();
-    CGPathAddRoundedRect(shadowPath, nil, layerRect, self.contentView.layer.cornerRadius, self.contentView.layer.cornerRadius);
+    CGPathAddRoundedRect(shadowPath, nil, layerRect, self.contentView.layer.cornerRadius,
+                         self.contentView.layer.cornerRadius);
     CGPathAddRoundedRect(shadowPath, nil, iconViewRect, iconViewRect.size.width / 2.0, iconViewRect.size.height / 2.0);
 
     [[BPKShadow shadowLg] applyToLayer:self.layer];
@@ -191,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (BPKDialogButtonAction * _Nullable)actionForButton:(BPKButton *)button {
+- (BPKDialogButtonAction *_Nullable)actionForButton:(BPKButton *)button {
     for (BPKActionButtonPair *pair in self.registeredActions) {
         if (pair.button == button) {
             return pair.action;
@@ -202,7 +214,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - Public
-
 
 #pragma mark - Property overrides
 
@@ -233,7 +244,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self.titleLabel.text;
 }
 
-
 - (void)setMessage:(NSString *_Nullable)description {
     BPKAssertMainThread();
     self.descriptionLabel.text = description;
@@ -251,7 +261,6 @@ NS_ASSUME_NONNULL_BEGIN
     [button setTitle:action.title];
     [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonStackView addArrangedSubview:button];
-
 
     BPKActionButtonPair *pair = [[BPKActionButtonPair alloc] init];
     pair.button = button;

@@ -19,15 +19,15 @@
 
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKRTLSupport()
+@interface BPKRTLSupport ()
 @end
 
 @implementation BPKRTLSupport
 
 + (BOOL)viewIsRTL:(UIView *)view {
-    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:view.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
+    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:view.semanticContentAttribute] ==
+           UIUserInterfaceLayoutDirectionRightToLeft;
 }
 
 + (UIEdgeInsets)makeRTLAwareEdgeInsetsForView:(UIView *)view
@@ -46,4 +46,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
-

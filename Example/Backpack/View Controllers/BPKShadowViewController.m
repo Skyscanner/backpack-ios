@@ -18,16 +18,16 @@
 
 #import "BPKShadowViewController.h"
 
-#import <Backpack/Shadow.h>
-#import <Backpack/Font.h>
 #import <Backpack/Color.h>
-#import <Backpack/Radii.h>
+#import <Backpack/Font.h>
 #import <Backpack/Label.h>
+#import <Backpack/Radii.h>
+#import <Backpack/Shadow.h>
 
 const static NSInteger LabelTag = 72817;
 
 @interface BPKShadowViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray<UIView *> *shadowViews;
+@property(strong, nonatomic) IBOutletCollection(UIView) NSArray<UIView *> *shadowViews;
 - (void)setupViews;
 @end
 
@@ -41,7 +41,8 @@ const static NSInteger LabelTag = 72817;
 - (void)setupViews {
     NSArray *factoryMethods = @[ @"shadowSm", @"shadowLg" ];
 
-    NSAssert(factoryMethods.count == self.shadowViews.count, @"Expected equal number of shadow views and factoryMethods");
+    NSAssert(factoryMethods.count == self.shadowViews.count,
+             @"Expected equal number of shadow views and factoryMethods");
 
     for (int i = 0; i < factoryMethods.count; i++) {
         UIView *shadowView = self.shadowViews[i];
@@ -49,13 +50,9 @@ const static NSInteger LabelTag = 72817;
         shadowLabel.text = factoryMethods[i];
         shadowLabel.textColor = [BPKColor gray700];
 
-
         SEL selector = NSSelectorFromString(factoryMethods[i]);
-        NSAssert(
-                 [BPKShadow respondsToSelector:selector],
-                 @"Expected BPKShadow to have factory method called %@", factoryMethods[i]
-        );
-
+        NSAssert([BPKShadow respondsToSelector:selector], @"Expected BPKShadow to have factory method called %@",
+                 factoryMethods[i]);
 
         BPKShadow *shadow = [BPKShadow performSelector:selector];
         [shadow applyToLayer:shadowView.layer];

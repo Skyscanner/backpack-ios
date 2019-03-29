@@ -20,7 +20,7 @@
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKLabel()
+@interface BPKLabel ()
 - (void)setupWithStyle:(BPKFontStyle)style;
 @end
 

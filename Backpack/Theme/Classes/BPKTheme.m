@@ -17,26 +17,23 @@
  */
 
 #import "BPKTheme.h"
-#import "BPKThemeDefinition.h"
 #import "BPKDohaThemeContainer.h"
+#import "BPKThemeDefinition.h"
 
 #import <Backpack/Switch.h>
 
 @implementation BPKTheme
 
-
 + (void)applyTheme:(id<BPKThemeDefinition>)theme {
     [self applyTheme:theme withContainer:theme.themeContainerClass];
 }
-
 
 + (UIView *)containerFor:(id<BPKThemeDefinition>)theme {
     return [[theme.themeContainerClass alloc] initWithFrame:CGRectZero];
 }
 
-+ (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class) class {
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setOnTintColor:theme.switchPrimaryColor];
++ (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class {
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setOnTintColor:theme.switchPrimaryColor];
 }
-
 
 @end

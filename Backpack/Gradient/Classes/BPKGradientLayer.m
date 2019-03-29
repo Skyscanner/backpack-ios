@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setGradient:(BPKGradient *_Nullable)gradient {
     _gradient = gradient;
-    
+
     // NOTE: We could not make this work with `needsDisplayForKey:`
     // this this explicit call is required.
     [self setNeedsDisplay];
@@ -79,8 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)cgColors, locations);
     free(locations);
     CGPoint start = self.gradient.startPoint, end = self.gradient.endPoint;
-    CGContextDrawLinearGradient(ctx, gradient,
-                                CGPointMake(start.x * width, start.y * height),
+    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(start.x * width, start.y * height),
                                 CGPointMake(end.x * width, end.y * height),
                                 kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
     CGGradientRelease(gradient);

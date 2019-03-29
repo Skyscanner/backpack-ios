@@ -18,7 +18,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKRTLSupport: NSObject
+@interface BPKRTLSupport : NSObject
 + (BOOL)viewIsRTL:(UIView *)view;
 + (UIEdgeInsets)makeRTLAwareEdgeInsetsForView:(UIView *)view
                                           top:(CGFloat)top

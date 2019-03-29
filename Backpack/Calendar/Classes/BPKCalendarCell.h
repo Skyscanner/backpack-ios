@@ -27,16 +27,11 @@ typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeSameDay
 };
 
-typedef NS_ENUM(NSUInteger, RowType) {
-    RowTypeMiddle,
-    RowTypeStart,
-    RowTypeEnd,
-    RowTypeBoth
-};
+typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, RowTypeBoth };
 
-@interface BPKCalendarCell: FSCalendarCell
+@interface BPKCalendarCell : FSCalendarCell
 
-@property (nonatomic) SelectionType selectionType;
-@property (nonatomic) RowType rowType;
+@property(nonatomic) SelectionType selectionType;
+@property(nonatomic) RowType rowType;
 
 @end

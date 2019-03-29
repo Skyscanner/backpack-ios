@@ -17,17 +17,17 @@
  */
 
 #import "BPKCalendar.h"
+#import "BPKCalendarAppearance.h"
 #import "BPKCalendarCell.h"
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarAppearance.h"
 #import "BPKCalendarYearPill.h"
 #import "BPKSimpleDate.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/Common.h>
 
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarCollectionView.h>
@@ -37,17 +37,17 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 @interface FSCalendar ()
 
-@property (weak, nonatomic) FSCalendarCollectionView *collectionView;
+@property(weak, nonatomic) FSCalendarCollectionView *collectionView;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 
 @end
 
-@interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UICollectionViewDelegate>
+@interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource,
+                           UICollectionViewDelegate>
 
 @property(nonatomic, strong, nonnull) FSCalendar *calendarView;
 @property(nonatomic, strong, nonnull) FSCalendarWeekdayView *calendarWeekdayView;
@@ -61,9 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKCalendar
 
-NSString * const CellReuseId = @"cell";
-NSString * const HeaderReuseId = @"header";
-NSString * const HeaderDateFormat = @"MMMM";
+NSString *const CellReuseId = @"cell";
+NSString *const HeaderReuseId = @"header";
+NSString *const HeaderDateFormat = @"MMMM";
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();
@@ -118,9 +118,10 @@ NSString * const HeaderDateFormat = @"MMMM";
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
-    
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
-    
+
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes =
+        [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
+
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
     appearance.headerTitleColor = [BPKColor gray900];
@@ -132,25 +133,28 @@ NSString * const HeaderDateFormat = @"MMMM";
     appearance.titleDefaultColor = [BPKColor gray900];
     appearance.selectionColor = [BPKColor blue500];
     appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
-    
+
     Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
     object_setIvar(self.calendarView, ivar, appearance);
-    
+
     [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
-    [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class] forCellWithReuseIdentifier:CellReuseId];
-    [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:HeaderReuseId];
-    
+    [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class]
+                                            forCellWithReuseIdentifier:CellReuseId];
+    [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class]
+                         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                withReuseIdentifier:HeaderReuseId];
+
     [self addSubview:self.calendarView];
 
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
     self.calendarWeekdayView.calendar = self.calendarView;
     self.calendarWeekdayView.backgroundColor = [BPKColor white];
     [self addSubview:self.calendarWeekdayView];
-    
+
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
     self.bottomBorder.backgroundColor = [BPKColor gray100];
     [self addSubview:self.bottomBorder];
-    
+
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
     self.yearPill.hidden = YES;
     [self addSubview:self.yearPill];
@@ -166,16 +170,18 @@ NSString * const HeaderDateFormat = @"MMMM";
     CGFloat height = CGRectGetHeight(bounds);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
 
-
-    self.calendarView.frame = CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
+    self.calendarView.frame =
+        CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
 
     self.calendarWeekdayView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, weekdayViewHeight);
     self.bottomBorder.frame = CGRectMake(0.0, weekdayViewHeight - 1, width, 1.0);
 
     CGFloat yearPillWidth = CGRectGetWidth(self.yearPill.bounds);
     CGFloat yearPillHeight = CGRectGetHeight(self.yearPill.bounds);
-    self.yearPill.frame = CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg, yearPillWidth, yearPillHeight);
-    
+    self.yearPill.frame =
+        CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg,
+                   yearPillWidth, yearPillHeight);
+
     [self.calendarView.collectionViewLayout invalidateLayout];
 }
 
@@ -206,10 +212,11 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 - (NSArray<BPKSimpleDate *> *)selectedDates {
     if (self.sameDayRange) {
-        NSArray<NSDate *> *dates = [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
+        NSArray<NSDate *> *dates =
+            [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
         return [self simpleDatesFromDates:dates];
     }
-    
+
     return [self simpleDatesFromDates:self.calendarView.selectedDates];
 }
 
@@ -240,11 +247,10 @@ NSString * const HeaderDateFormat = @"MMMM";
     [toDeselect minusSet:newSelectedDates];
 
     for (BPKSimpleDate *date in toDeselect) {
-        [self.calendarView deselectDate:[self dateFromSimpleDate: date]];
+        [self.calendarView deselectDate:[self dateFromSimpleDate:date]];
     }
 
-    if (selectedDates.count == 2
-        && [selectedDates.firstObject isEqualToSimpleDate:selectedDates.lastObject]) {
+    if (selectedDates.count == 2 && [selectedDates.firstObject isEqualToSimpleDate:selectedDates.lastObject]) {
         self.sameDayRange = YES;
     }
 }
@@ -257,8 +263,12 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 #pragma mark - <FSCalendarDataSource>
 
-- (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:CellReuseId forDate:date atMonthPosition:monthPosition];
+- (FSCalendarCell *)calendar:(FSCalendar *)calendar
+                 cellForDate:(NSDate *)date
+             atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:CellReuseId
+                                                                forDate:date
+                                                        atMonthPosition:monthPosition];
     return cell;
 }
 
@@ -272,16 +282,18 @@ NSString * const HeaderDateFormat = @"MMMM";
 
 #pragma mark - <FSCalendarDelegate>
 
-- (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+- (BOOL)calendar:(FSCalendar *)calendar
+    shouldSelectDate:(NSDate *)date
+     atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     if (self.sameDayRange) {
         self.sameDayRange = NO;
     }
-    
+
     if (self.selectionType == BPKCalendarSelectionRange) {
         if (calendar.selectedDates.count >= 2) {
             [calendar deselectDate:calendar.selectedDates.lastObject];
         }
-        
+
         for (NSDate *selectedDate in calendar.selectedDates) {
             if ([date compare:selectedDate] == NSOrderedAscending) {
                 [calendar deselectDate:selectedDate];
@@ -291,7 +303,9 @@ NSString * const HeaderDateFormat = @"MMMM";
     return YES;
 }
 
--(BOOL)calendar:(FSCalendar *)calendar shouldDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+- (BOOL)calendar:(FSCalendar *)calendar
+    shouldDeselectDate:(NSDate *)date
+       atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     if (self.sameDayRange || self.selectionType != BPKCalendarSelectionRange) {
         self.sameDayRange = NO;
     } else {
@@ -300,59 +314,67 @@ NSString * const HeaderDateFormat = @"MMMM";
                 [calendar deselectDate:aDate];
             }
         }
-        
+
         self.sameDayRange = [date isEqualToDate:calendar.selectedDates.firstObject];
-        
+
         if (self.sameDayRange) {
             [self calendar:self.calendarView didSelectDate:date atMonthPosition:monthPosition];
         }
     }
-    
+
     return !self.sameDayRange;
 }
 
-- (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    [self configureVisibleCells];
-    [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
-}
-
-- (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+- (void)calendar:(FSCalendar *)calendar
+      didSelectDate:(NSDate *)date
+    atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 }
 
 - (void)calendar:(FSCalendar *)calendar
- willDisplayCell:(FSCalendarCell *)cell
-         forDate:(NSDate *)date
- atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
-    NSDateComponents *todayComponents = [self.calendarView.gregorian components:NSCalendarUnitYear fromDate:NSDate.date];
+    didDeselectDate:(NSDate *)date
+    atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    [self configureVisibleCells];
+    [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
+}
+
+- (void)calendar:(FSCalendar *)calendar
+    willDisplayCell:(FSCalendarCell *)cell
+            forDate:(NSDate *)date
+    atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth
+                                                                  fromDate:date];
+    NSDateComponents *todayComponents = [self.calendarView.gregorian components:NSCalendarUnitYear
+                                                                       fromDate:NSDate.date];
     BOOL isDateOutsideCurrentYear = components.year != todayComponents.year;
     BOOL notJanuaryOrDecember = components.month != 1 && components.month != 12;
-    
-    if (monthPosition == FSCalendarMonthPositionCurrent
-        && isDateOutsideCurrentYear
-        && notJanuaryOrDecember) {
+
+    if (monthPosition == FSCalendarMonthPositionCurrent && isDateOutsideCurrentYear && notJanuaryOrDecember) {
         self.yearPill.hidden = NO;
         self.yearPill.year = [NSNumber numberWithInteger:components.year];
     } else if (notJanuaryOrDecember) {
         self.yearPill.hidden = YES;
     }
-    
+
     [self configureCell:cell forDate:date atMonthPosition:monthPosition];
 }
 
 #pragma mark - <FSCalendarDelegateAppearance>
 
-- (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date {
-    if([self isDateInToday:date]) {
+- (nullable UIColor *)calendar:(FSCalendar *)calendar
+                    appearance:(FSCalendarAppearance *)appearance
+       fillDefaultColorForDate:(NSDate *)date {
+    if ([self isDateInToday:date]) {
         return [UIColor clearColor];
     }
     return appearance.borderDefaultColor;
 }
 
-- (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
-    if([self isDateInToday:date]) {
+- (nullable UIColor *)calendar:(FSCalendar *)calendar
+                    appearance:(FSCalendarAppearance *)appearance
+     borderDefaultColorForDate:(NSDate *)date {
+    if ([self isDateInToday:date]) {
         return appearance.todayColor;
     }
     return appearance.borderDefaultColor;
@@ -394,24 +416,28 @@ NSString * const HeaderDateFormat = @"MMMM";
 }
 
 - (void)configureVisibleCells {
-    [self.calendarView.visibleCells enumerateObjectsUsingBlock:^(__kindof FSCalendarCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDate *date = [self.calendarView dateForCell:obj];
-        FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
-        [self configureCell:obj forDate:date atMonthPosition:position];
-    }];
+    [self.calendarView.visibleCells
+        enumerateObjectsUsingBlock:^(__kindof FSCalendarCell *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+          NSDate *date = [self.calendarView dateForCell:obj];
+          FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
+          [self configureCell:obj forDate:date atMonthPosition:position];
+        }];
 }
 
-- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
-        return [a compare:b];
-    }];
+- (void)configureCell:(FSCalendarCell *)cell
+              forDate:(NSDate *)date
+      atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSArray<NSDate *> *selectedDates =
+        [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
+          return [a compare:b];
+        }];
     BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
-    
+
     // Configure selection layer
     if (monthPosition == FSCalendarMonthPositionCurrent) {
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
-        
+
         if (selectedDates.count > 1 && self.selectionType == BPKCalendarSelectionRange) {
             NSDate *minDate = [selectedDates firstObject];
             NSDate *maxDate = [selectedDates lastObject];
@@ -424,11 +450,11 @@ NSString * const HeaderDateFormat = @"MMMM";
                 NSDate *lastWeekday = [gregorian fs_lastDayOfWeek:date];
                 NSDate *firstDayOfMonth = [gregorian fs_firstDayOfMonth:date];
                 NSDate *lastDayOfMonth = [gregorian fs_lastDayOfMonth:date];
-                BOOL isRowStart = [gregorian isDate:date inSameDayAsDate:firstWeekday]
-                || [gregorian isDate:date inSameDayAsDate:firstDayOfMonth];
-                BOOL isRowEnd = [gregorian isDate:date inSameDayAsDate:lastWeekday]
-                || [gregorian isDate:date inSameDayAsDate:lastDayOfMonth];
-                
+                BOOL isRowStart = [gregorian isDate:date inSameDayAsDate:firstWeekday] ||
+                                  [gregorian isDate:date inSameDayAsDate:firstDayOfMonth];
+                BOOL isRowEnd = [gregorian isDate:date inSameDayAsDate:lastWeekday] ||
+                                [gregorian isDate:date inSameDayAsDate:lastDayOfMonth];
+
                 if (isRowStart && isRowEnd) {
                     rowType = RowTypeBoth;
                 } else if (isRowStart) {
@@ -436,7 +462,7 @@ NSString * const HeaderDateFormat = @"MMMM";
                 } else if (isRowEnd) {
                     rowType = RowTypeEnd;
                 }
-                
+
                 if (isMinDate) {
                     selectionType = SelectionTypeLeftBorder;
                 } else if (isMaxDate) {
@@ -448,7 +474,7 @@ NSString * const HeaderDateFormat = @"MMMM";
         } else if ([selectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
-        
+
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
     }
@@ -460,40 +486,41 @@ NSString * const HeaderDateFormat = @"MMMM";
     return [self.calendarView.gregorian isDateInToday:date];
 }
 
-+ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate {
++ (BOOL)date:(NSDate *)date isBetweenDate:(NSDate *)beginDate andDate:(NSDate *)endDate {
     if ([date compare:beginDate] == NSOrderedAscending)
         return NO;
-    
+
     if ([date compare:endDate] == NSOrderedDescending)
         return NO;
-    
+
     return YES;
 }
 
 - (BPKSimpleDate *)simpleDateFromDate:(NSDate *)date {
-    NSDateComponents *components = [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                                                  fromDate:date];
-    
+    NSDateComponents *components =
+        [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                       fromDate:date];
+
     return [[BPKSimpleDate alloc] initWithYear:components.year month:components.month day:components.day];
 }
 
 - (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates {
     NSMutableArray *simpleDates = [[NSMutableArray alloc] initWithCapacity:dates.count];
-    
+
     for (NSDate *date in dates) {
         [simpleDates addObject:[self simpleDateFromDate:date]];
     }
-    
+
     return [simpleDates copy];
 }
 
--(NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate {
+- (NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate {
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.timeZone = self.gregorian.timeZone;
     [components setDay:simpleDate.day];
     [components setMonth:simpleDate.month];
     [components setYear:simpleDate.year];
-    
+
     return [self.calendarView.gregorian dateFromComponents:components];
 }
 
@@ -503,8 +530,7 @@ NSString * const HeaderDateFormat = @"MMMM";
     return [super respondsToSelector:aSelector] || [self.calendarView respondsToSelector:aSelector];
 }
 
-- (id)forwardingTargetForSelector:(SEL)selector
-{
+- (id)forwardingTargetForSelector:(SEL)selector {
     if ([self.calendarView respondsToSelector:selector]) {
         return self.calendarView;
     }

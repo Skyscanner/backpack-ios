@@ -20,8 +20,8 @@
 #import "BPKDefaultThemeContainer.h"
 
 #import <Backpack/Button.h>
-#import <Backpack/Color.h>
 #import <Backpack/Chip.h>
+#import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 

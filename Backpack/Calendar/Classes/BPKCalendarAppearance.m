@@ -22,7 +22,7 @@
 
 + (instancetype)fromFSCalendarAppearance:(FSCalendarAppearance *)appearance {
     BPKCalendarAppearance *instance = [[BPKCalendarAppearance alloc] init];
-    
+
     instance.titleFont = appearance.titleFont;
     instance.subtitleFont = appearance.subtitleFont;
     instance.weekdayFont = appearance.weekdayFont;
@@ -55,7 +55,7 @@
     instance.borderRadius = appearance.borderRadius;
     instance.caseOptions = appearance.caseOptions;
     instance.separators = appearance.separators;
-    
+
     return instance;
 }
 

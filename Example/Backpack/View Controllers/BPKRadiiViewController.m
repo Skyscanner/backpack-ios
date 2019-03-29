@@ -18,36 +18,31 @@
 
 #import "BPKRadiiViewController.h"
 
-#import <Backpack/Font.h>
 #import <Backpack/Color.h>
-#import <Backpack/Radii.h>
+#import <Backpack/Font.h>
 #import <Backpack/Label.h>
+#import <Backpack/Radii.h>
 
 @interface BPKRadiiViewController ()
-@property (strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *labels;
+@property(strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *labels;
 @end
 
 @implementation BPKRadiiViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self setLabels];
 }
 
 #pragma mark - Private
 
 - (void)setLabels {
-    NSArray<NSString *> *keys = @[
-                                 @"BPKBorderRadiusSm",
-                                 @"BPKBorderRadiusPill"
-                                 ];
+    NSArray<NSString *> *keys = @[ @"BPKBorderRadiusSm", @"BPKBorderRadiusPill" ];
 
-    NSArray<NSNumber *> *values = @[
-                                   [NSNumber numberWithFloat:BPKBorderRadiusSm],
-                                   [NSNumber numberWithFloat:BPKBorderRadiusPill]
-                                   ];
-    
+    NSArray<NSNumber *> *values =
+        @[ [NSNumber numberWithFloat:BPKBorderRadiusSm], [NSNumber numberWithFloat:BPKBorderRadiusPill] ];
+
     NSAssert(self.labels.count == keys.count, @"The number of labels must match the number of keys above");
     for (int i = 0; i < self.labels.count; i++) {
         BPKLabel *label = self.labels[i];
@@ -56,9 +51,7 @@
         label.textColor = [BPKColor white];
         label.layer.masksToBounds = YES;
         label.layer.cornerRadius = [values[i] floatValue];
-
     }
 }
 
 @end
-

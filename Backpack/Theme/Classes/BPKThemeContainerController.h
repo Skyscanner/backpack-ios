@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,11 +38,14 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
  * @param rootViewController The root view controller to be used as a child view controller.
  * @return A configured instance than can further be contained or set to be the `rootViewController` of a `window`.
  */
-- (instancetype)initWithThemeContainer:(UIView *)container rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithThemeContainer:(UIView *)container
+                    rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+    __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
-                         bundle:(nullable NSBundle *)nibBundleOrNil __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
+                         bundle:(nullable NSBundle *)nibBundleOrNil
+    __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
 
 /**
  * Controls whether the theme defined in the container is currently active. The default value is `YES`.

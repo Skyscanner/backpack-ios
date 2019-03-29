@@ -18,36 +18,35 @@
 
 #import "BPKCardDivider.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKCardDivider()
-@property(strong, nonatomic) CAShapeLayer * dottedLine;
+@interface BPKCardDivider ()
+@property(strong, nonatomic) CAShapeLayer *dottedLine;
 @end
-
 
 @implementation BPKCardDivider
 
 - (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation {
     self = [super initWithFrame:CGRectZero];
-    
+
     if (self) {
         self.orientation = orientation;
         [self setupViews];
     }
-    
+
     return self;
 }
 
 - (void)setupViews {
-    self.dottedLine = [[CAShapeLayer alloc]initWithLayer:self];
+    self.dottedLine = [[CAShapeLayer alloc] initWithLayer:self];
     self.dottedLine.strokeColor = [BPKColor gray100].CGColor;
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
-    self.dottedLine.lineDashPattern = @[@5, @3];
+    self.dottedLine.lineDashPattern = @[ @5, @3 ];
     [self.layer addSublayer:self.dottedLine];
 }
 
@@ -56,9 +55,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)layoutSubviews {
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
-    double lineSize = self.orientation == UILayoutConstraintAxisVertical ? CGRectGetWidth(self.bounds) : CGRectGetHeight(self.bounds);
-    CGPathAddLineToPoint(path, NULL, self.orientation == UILayoutConstraintAxisVertical ? lineSize : 0, self.orientation == UILayoutConstraintAxisVertical ? 0 : lineSize);
-    
+    double lineSize =
+        self.orientation == UILayoutConstraintAxisVertical ? CGRectGetWidth(self.bounds) : CGRectGetHeight(self.bounds);
+    CGPathAddLineToPoint(path, NULL, self.orientation == UILayoutConstraintAxisVertical ? lineSize : 0,
+                         self.orientation == UILayoutConstraintAxisVertical ? 0 : lineSize);
+
     [self.dottedLine setPath:path];
     CGPathRelease(path);
 }

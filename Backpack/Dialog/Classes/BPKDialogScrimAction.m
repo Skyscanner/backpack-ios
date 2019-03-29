@@ -19,9 +19,9 @@
 #import "BPKDialogScrimAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDialogScrimAction()
-@property (nonatomic, strong) BPKDialogScrimActionHandler handler;
-@property (nonatomic, assign) BOOL shouldDismiss;
+@interface BPKDialogScrimAction ()
+@property(nonatomic, strong) BPKDialogScrimActionHandler handler;
+@property(nonatomic, assign) BOOL shouldDismiss;
 
 - (instancetype)initWithActionHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 @end
@@ -38,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     return self;
 }
-
 
 + (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss {
     return [[self alloc] initWithActionHandler:handler shouldDismiss:shouldDismiss];

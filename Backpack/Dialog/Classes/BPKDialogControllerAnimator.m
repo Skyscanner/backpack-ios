@@ -20,7 +20,7 @@
 #import "BPKDialogController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDialogControllerAnimator()
+@interface BPKDialogControllerAnimator ()
 @property(nonatomic, assign, class, readonly) NSTimeInterval duration;
 @end
 
@@ -39,9 +39,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *containerView = transitionContext.containerView;
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-    UIViewController *_Nullable controller = self.isPresenting ? [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] : [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    BPKDialogController *dialogController = [controller isKindOfClass:[BPKDialogController class]] ? (BPKDialogController *)controller : nil;
-    NSAssert(dialogController, @"`UITransitionContextToViewControllerKey` for `BPKDialogControllerAnimator` should always be an instance of `BPKDialogController`");
+    UIViewController *_Nullable controller =
+        self.isPresenting ? [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey]
+                          : [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    BPKDialogController *dialogController =
+        [controller isKindOfClass:[BPKDialogController class]] ? (BPKDialogController *)controller : nil;
+    NSAssert(dialogController, @"`UITransitionContextToViewControllerKey` for `BPKDialogControllerAnimator` should "
+                               @"always be an instance of `BPKDialogController`");
 
     if (self.isPresenting) {
         [containerView addSubview:toView];
@@ -50,14 +54,19 @@ NS_ASSUME_NONNULL_BEGIN
         }
         [controller.view layoutIfNeeded];
 
-        [UIView animateKeyframesWithDuration:[[self class] duration] delay:0.0 options:0 animations:^{
-            if (dialogController) {
-                [dialogController _setScrimAlpha:1.0];
-                [dialogController _addPresentingKeyFrameContentAnimationWithRelativeStartTime:0.4 relativeDuration:0.6];
+        [UIView animateKeyframesWithDuration:[[self class] duration]
+            delay:0.0
+            options:0
+            animations:^{
+              if (dialogController) {
+                  [dialogController _setScrimAlpha:1.0];
+                  [dialogController _addPresentingKeyFrameContentAnimationWithRelativeStartTime:0.4
+                                                                               relativeDuration:0.6];
+              }
             }
-        } completion:^(BOOL finished) {
-            [transitionContext completeTransition:YES];
-        }];
+            completion:^(BOOL finished) {
+              [transitionContext completeTransition:YES];
+            }];
 
     } else {
         if (dialogController) {
@@ -65,16 +74,21 @@ NS_ASSUME_NONNULL_BEGIN
             [controller.view layoutIfNeeded];
         }
 
-        [UIView animateKeyframesWithDuration:[[self class] duration] delay:0.0 options:0 animations:^{
-            if (dialogController && dialogController.style == BPKDialogControllerStyleAlert) {
-                dialogController.view.alpha = 0.0;
-            } else if (dialogController && dialogController.style == BPKDialogControllerStyleBottomSheet) {
-                [dialogController _setScrimAlpha:0.0];
-                [dialogController _addDismissingKeyFrameContentAnimationWithRelativeStartTime:0.6 relativeDuration:0.4];
+        [UIView animateKeyframesWithDuration:[[self class] duration]
+            delay:0.0
+            options:0
+            animations:^{
+              if (dialogController && dialogController.style == BPKDialogControllerStyleAlert) {
+                  dialogController.view.alpha = 0.0;
+              } else if (dialogController && dialogController.style == BPKDialogControllerStyleBottomSheet) {
+                  [dialogController _setScrimAlpha:0.0];
+                  [dialogController _addDismissingKeyFrameContentAnimationWithRelativeStartTime:0.6
+                                                                               relativeDuration:0.4];
+              }
             }
-        } completion:^(BOOL finished) {
-            [transitionContext completeTransition:YES];
-        }];
+            completion:^(BOOL finished) {
+              [transitionContext completeTransition:YES];
+            }];
     }
 }
 

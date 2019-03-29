@@ -47,13 +47,13 @@ NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicator
  * Style of the spinner
  * @see BPKSpinnerStyle
  */
-@property (nonatomic) BPKSpinnerStyle style;
+@property(nonatomic) BPKSpinnerStyle style;
 
 /**
  * Size of the spinner
  * @see BPKSpinnerSize
  */
-@property (nonatomic) BPKSpinnerSize size;
+@property(nonatomic) BPKSpinnerSize size;
 
 /**
  * Creates a `BPKSpinner` with a specific style and size.
@@ -81,7 +81,8 @@ NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicator
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style __attribute__((unavailable("use initWithStyle:size: instead")));
+- (instancetype)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
+    __attribute__((unavailable("use initWithStyle:size: instead")));
 
 @end
 

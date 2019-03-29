@@ -18,8 +18,8 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/Button.h>
-#import <Backpack/Spacing.h>
 #import <Backpack/Icon.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonSnapshotTest : FBSnapshotTestCase

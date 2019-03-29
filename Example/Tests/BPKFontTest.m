@@ -29,45 +29,39 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     self.expectedSelectors = @[
-                               @"textXs", @"textXsEmphasized",
-                               @"textSm", @"textSmEmphasized",
-                               @"textBase", @"textBaseEmphasized",
-                               @"textLg", @"textLgEmphasized",
-                               @"textXl", @"textXlEmphasized"
-                            ];
+        @"textXs", @"textXsEmphasized", @"textSm", @"textSmEmphasized", @"textBase", @"textBaseEmphasized", @"textLg",
+        @"textLgEmphasized", @"textXl", @"textXlEmphasized"
+    ];
 }
 
 - (void)testHasExpectedTextStyles {
     for (NSString *selector in self.expectedSelectors) {
-        XCTAssert([BPKFont respondsToSelector:NSSelectorFromString(selector)], @"Expected BPKFont to have a textStyle called `%@`", selector);
+        XCTAssert([BPKFont respondsToSelector:NSSelectorFromString(selector)],
+                  @"Expected BPKFont to have a textStyle called `%@`", selector);
     }
 }
 
 - (void)testExpectedTextStylesAreDefined {
     for (NSString *selector in self.expectedSelectors) {
-        XCTAssertNotNil([BPKFont performSelector:NSSelectorFromString(selector)], @"Expected BPKFont to have a textStyle called `%@` that returns a valid value", selector);
+        XCTAssertNotNil([BPKFont performSelector:NSSelectorFromString(selector)],
+                        @"Expected BPKFont to have a textStyle called `%@` that returns a valid value", selector);
     }
 }
 
 - (void)testAttributesForFontStyleWithCustomAttributes {
     UIFont *font = [UIFont systemFontOfSize:120.0];
 
-    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg withCustomAttributes:@{
-                                                                                                        NSKernAttributeName: @1.5,
-                                                                                                        NSFontAttributeName: font,
-                                                                                                        NSForegroundColorAttributeName: UIColor.redColor,
-                                                                                                        }];
+    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg
+                                          withCustomAttributes:@{
+                                              NSKernAttributeName : @1.5,
+                                              NSFontAttributeName : font,
+                                              NSForegroundColorAttributeName : UIColor.redColor,
+                                          }];
 
-    XCTAssertNotEqualObjects(
-                             attributes[NSKernAttributeName],
-                             @1.5,
-                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSKernAttributeName`"
-                             );
-    XCTAssertNotEqualObjects(
-                             attributes[NSFontAttributeName],
-                             font,
-                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSFontAttributeName`"
-                             );
+    XCTAssertNotEqualObjects(attributes[NSKernAttributeName], @1.5,
+                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSKernAttributeName`");
+    XCTAssertNotEqualObjects(attributes[NSFontAttributeName], font,
+                             @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSFontAttributeName`");
     XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], UIColor.redColor);
 }
 

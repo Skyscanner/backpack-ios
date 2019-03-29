@@ -19,7 +19,7 @@
 
 /**
  * These constants represent the directions available for gradients in Backpack.
- * The direction specifies the location that the last color in the gradient will fall on. 
+ * The direction specifies the location that the last color in the gradient will fall on.
  */
 typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
 
@@ -29,28 +29,28 @@ typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
     BPKGradientDirectionUp,
 
     /**
-    * Gradient runs from top to bottom.
-    */
+     * Gradient runs from top to bottom.
+     */
     BPKGradientDirectionDown,
 
     /**
-    * Gradient runs from right to left.
-    */
+     * Gradient runs from right to left.
+     */
     BPKGradientDirectionLeft,
 
     /**
-    * Gradient runs from left to right.
-    */
+     * Gradient runs from left to right.
+     */
     BPKGradientDirectionRight,
 
     /**
-    * Gradient runs from bottom-right to top-left.
-    */
+     * Gradient runs from bottom-right to top-left.
+     */
     BPKGradientDirectionTopLeft,
 
     /**
-    * Gradient runs from bottom-left to top-right.
-    */
+     * Gradient runs from bottom-left to top-right.
+     */
     BPKGradientDirectionTopRight,
 
     /**
@@ -59,8 +59,8 @@ typedef NS_ENUM(NSUInteger, BPKGradientDirection) {
     BPKGradientDirectionBottomLeft,
 
     /**
-    * Gradient runs from top-left to bottom-right.
-    */
+     * Gradient runs from top-left to bottom-right.
+     */
     BPKGradientDirectionBottomRight,
 };
 
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see BPKGradientView
  */
-NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
+NS_SWIFT_NAME(Gradient) @interface BPKGradient : NSObject
 
 /**
  * The colors that define the gradient.
@@ -107,7 +107,6 @@ NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
  * The end point of the gradient in a (0, 1) range for x and y.
  */
 @property(nonatomic, readonly) CGPoint endPoint;
-
 
 - (instancetype)init __attribute__((unavailable("init not available, use factory methods")));
 + (instancetype)new __attribute__((unavailable("new not available, use factory methods")));
@@ -138,20 +137,18 @@ NS_SWIFT_NAME(Gradient) @interface BPKGradient: NSObject
  * @param startPoint The start point of the gradient.
  * @param endPoint The end point of the gradient.
  */
-- (instancetype)initWithColors:(NSArray<UIColor *> *)colors
-                    startPoint:(CGPoint)startPoint
-                      endPoint:(CGPoint)endPoint;
+- (instancetype)initWithColors:(NSArray<UIColor *> *)colors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /**
  * The Skyscanner primary gradient with the default direction.
- * 
+ *
  * @return The Skyscanner primary gradient.
  */
 + (instancetype)primary;
 
 /**
  * The Skyscanner primary gradient with the direction specified.
- * 
+ *
  * @param direction The desired direction.
  * @return The Skyscanner primary gradient.
  */

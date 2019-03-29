@@ -18,6 +18,6 @@
 #ifndef __BACKPACK_CARD__
 #define __BACKPACK_CARD__
 
-    #import "BPKCard.h"
-    #import "BPKDividedCard.h"
+#import "BPKCard.h"
+#import "BPKDividedCard.h"
 #endif

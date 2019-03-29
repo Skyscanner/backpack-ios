@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKChip` is a subclass of `UIControl` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip: UIControl
+NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip : UIControl
 
 /**
  * The title to display inside the chip.
@@ -36,7 +36,7 @@ NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip: UIControl
  *
  * @param title NSString to use as the title.
  */
-- (instancetype)initWithTitle:(NSString*)title NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTitle:(NSString *)title NS_DESIGNATED_INITIALIZER;
 
 /**
  * Creates a `BPKChip` with a decoder (typically when creating from Storyboards)

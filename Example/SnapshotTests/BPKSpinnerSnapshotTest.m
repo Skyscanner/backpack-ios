@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Spinner.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Spinner.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKSpinnerSnapshotTest : FBSnapshotTestCase
 
@@ -35,22 +35,24 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSpinners {
     NSArray<BPKSpinner *> *views = [self createAllSpinnerVariants];
     UIView *view = [self embedViewsInStackView:views];
-    
+
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
-    
+
     FBSnapshotVerifyView(view, nil);
 }
 
 #pragma mark - Private
 
 - (NSArray<BPKSpinner *> *)createAllSpinnerVariants {
-    return @[[self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault],
-             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault],
-             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault],
-             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall],
-             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall],
-             [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall]];
+    return @[
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall]
+    ];
 }
 
 - (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
@@ -65,11 +67,11 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalStackview.alignment = UIStackViewAlignmentCenter;
     horizontalStackview.distribution = UIStackViewDistributionEqualSpacing;
     horizontalStackview.spacing = BPKSpacingSm * 5;
-    
+
     for (UIView *view in views) {
         [horizontalStackview addArrangedSubview:view];
     }
-    
+
     return horizontalStackview;
 }
 

@@ -18,17 +18,17 @@
 
 #import "BPKChip.h"
 
+#import <Backpack/Color.h>
+#import <Backpack/Common.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
-#import <Backpack/Color.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKChip()
-@property(nonatomic) BPKLabel* titleLabel;
-@property(nonatomic) CALayer* tintLayer;
+@interface BPKChip ()
+@property(nonatomic) BPKLabel *titleLabel;
+@property(nonatomic) CALayer *tintLayer;
 
 @property(nonatomic) UIColor *textColor;
 @end
@@ -143,20 +143,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [NSLayoutConstraint activateConstraints:
-     @[
-       [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
-       [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:chipVerticalSpacing],
-       [self.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor constant:chipHorizontalSpacing],
-       [self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:chipVerticalSpacing]
-       ]
-     ];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
+        [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:chipVerticalSpacing],
+        [self.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor constant:chipHorizontalSpacing],
+        [self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:chipVerticalSpacing]
+    ]];
 }
 
 #pragma mark - Updates
 
 - (void)updateStyle {
-    if(self.selected) {
+    if (self.selected) {
         self.backgroundColor = BPKColor.blue500;
         self.textColor = BPKColor.white;
     } else {
@@ -164,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.textColor = BPKColor.gray700;
     }
 
-    if(!self.enabled){
+    if (!self.enabled) {
         self.backgroundColor = BPKColor.white;
         self.textColor = BPKColor.gray100;
     }
@@ -177,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateTitle {
-    if(self.title == nil){
+    if (self.title == nil) {
         return;
     }
 
@@ -205,4 +203,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-

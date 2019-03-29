@@ -16,10 +16,9 @@
  * limitations under the License.
  */
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import <Backpack/Icon.h>
 #import <Backpack/Color.h>
-
+#import <Backpack/Icon.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKIconSnapshotTest : FBSnapshotTestCase
 
@@ -35,7 +34,7 @@
 
 - (void)testSmallIcon {
     UIImage *icon = [BPKIcon iconNamed:@"flight" color:[BPKColor blue500] size:BPKIconSizeSmall];
-    UIImageView * view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 
     FBSnapshotVerifyView(view, nil)
@@ -43,7 +42,7 @@
 
 - (void)testLargeIcon {
     UIImage *icon = [BPKIcon iconNamed:@"hotels" color:[BPKColor blue500] size:BPKIconSizeLarge];
-    UIImageView * view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 
     FBSnapshotVerifyView(view, nil)

@@ -28,8 +28,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
 
-    if (self)
-    {
+    if (self) {
         [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
 
@@ -39,9 +38,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     FSCalendarAppearance *appearance = self.header.calendar.appearance;
-    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]], @"Return value is not of type BPKCalendarAppearance as expected.");
+    NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]],
+             @"Return value is not of type BPKCalendarAppearance as expected.");
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
-    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:appearance.headerTitleColor];
+    NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
+                                                                   content:self.titleLabel.text
+                                                                 textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 }
 

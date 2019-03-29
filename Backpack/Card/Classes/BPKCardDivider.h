@@ -16,21 +16,21 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 #import "BPKCard.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * `BPKCardDivider` is a subclass of `UIView` which contains the Skyscanner card divider style.
  */
-NS_SWIFT_NAME(CardDivider) IB_DESIGNABLE @interface BPKCardDivider: UIView
+NS_SWIFT_NAME(CardDivider) IB_DESIGNABLE @interface BPKCardDivider : UIView
 
 /**
  * The orientation of the card divider.
  */
-@property (nonatomic, assign) IBInspectable UILayoutConstraintAxis orientation;
+@property(nonatomic, assign) IBInspectable UILayoutConstraintAxis orientation;
 
 /**
  * Create a `BPKCardDivider` with orientation initially set.
@@ -39,10 +39,14 @@ NS_SWIFT_NAME(CardDivider) IB_DESIGNABLE @interface BPKCardDivider: UIView
  */
 - (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("CardDivider cannot be initialised with frame. Use `initWithOrientation` instead")));
-- (instancetype)init __attribute__((unavailable("CardDivider cannot be initialised using `init`. Use `initWithOrientation` instead")));
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
-+ (instancetype)new __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
+- (instancetype)initWithFrame:(CGRect)frame
+    __attribute__((unavailable("CardDivider cannot be initialised with frame. Use `initWithOrientation` instead")));
+- (instancetype)init
+    __attribute__((unavailable("CardDivider cannot be initialised using `init`. Use `initWithOrientation` instead")));
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder
+    __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
++ (instancetype)new
+    __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
 
 /**
  * Set the orientation for the card divider

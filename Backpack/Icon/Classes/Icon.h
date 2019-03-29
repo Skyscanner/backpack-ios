@@ -19,9 +19,7 @@
 #define __BACKPACK_ICON__
 
 #import "BPKIcon.h"
-#import "BPKIconView.h"
 #import "BPKIconNames.h"
-
+#import "BPKIconView.h"
 
 #endif
-

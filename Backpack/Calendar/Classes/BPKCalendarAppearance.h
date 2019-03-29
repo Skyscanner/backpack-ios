@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-#import <FSCalendar/FSCalendar.h>
 #import <Backpack/Font.h>
+#import <FSCalendar/FSCalendar.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKCalendarAppearance: FSCalendarAppearance
+@interface BPKCalendarAppearance : FSCalendarAppearance
 
 @property BPKFontStyle headerTitleFontStyle;
 

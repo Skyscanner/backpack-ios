@@ -17,7 +17,7 @@
  */
 
 #ifndef __BACKPACK_COLOR__
-    #define __BACKPACK_COLOR__
+#define __BACKPACK_COLOR__
 
-    #import "BPKColor.h"
+#import "BPKColor.h"
 #endif

@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -23,3 +24,4 @@ CGFloat const BPKBorderRadiusPill = 40;
 
 CGFloat const BPKBorderRadiusSm = 4;
 
+// clang-format on

@@ -22,7 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKIconView()
+@interface BPKIconView ()
 @property(nonatomic, assign) BPKIconSize size;
 
 - (void)setUp;

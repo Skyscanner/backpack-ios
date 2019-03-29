@@ -19,9 +19,9 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/Card.h>
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
 #import <Backpack/Label.h>
+#import <Backpack/Spacing.h>
 
 @interface BPKCardSnapshotTest : FBSnapshotTestCase
 
@@ -39,19 +39,33 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:card];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[card]-16-|" options:0 metrics:nil views:@{@"card": card}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[card]-16-|" options:0 metrics:nil views:@{@"card": card}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[card]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"card" : card}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[card]-16-|"
+                                                                       options:0
+                                                                       metrics:nil
+                                                                         views:@{@"card" : card}]];
     [parentView layoutIfNeeded];
 }
 
 - (void)configureCard:(BPKCard *)card withInnerView:(UIView *)innerView {
     card.translatesAutoresizingMaskIntoConstraints = NO;
     [card setSubview:innerView];
-    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
-    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
+    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:@{@"innerView" : innerView}]];
+    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
+                                                                 options:0
+                                                                 metrics:nil
+                                                                   views:@{@"innerView" : innerView}]];
 }
 
-- (void)configureDividedCard:(BPKDividedCard *)card firstInnerView:(UIView *)firstInnerView secondInnerView:(UIView *)secondInnerView {
+- (void)configureDividedCard:(BPKDividedCard *)card
+              firstInnerView:(UIView *)firstInnerView
+             secondInnerView:(UIView *)secondInnerView {
     card.translatesAutoresizingMaskIntoConstraints = NO;
     [card setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 }
@@ -140,9 +154,9 @@ NS_ASSUME_NONNULL_BEGIN
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
     secondInnerView.backgroundColor = [BPKColor green500];
-    
+
     dividedCard.orientation = UILayoutConstraintAxisVertical;
-    
+
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
     FBSnapshotVerifyView(parentView, nil);
@@ -157,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
     secondInnerView.backgroundColor = [BPKColor green500];
-    
+
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
     FBSnapshotVerifyView(parentView, nil);
@@ -166,7 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
-    [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2*BPKSpacingLg] setActive:YES];
+    [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2 * BPKSpacingLg] setActive:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     firstInnerView.text = @"Lorem ipse";
@@ -189,9 +203,9 @@ NS_ASSUME_NONNULL_BEGIN
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor red500];
     secondInnerView.backgroundColor = [BPKColor green500];
-    
+
     dividedCard.orientation = UILayoutConstraintAxisVertical;
-    
+
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
     FBSnapshotVerifyView(parentView, nil);

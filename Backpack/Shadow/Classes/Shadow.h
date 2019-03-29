@@ -17,7 +17,7 @@
  */
 
 #ifndef __BACKPACK_SHADOW__
-    #define __BACKPACK_SHADOW__
+#define __BACKPACK_SHADOW__
 
-    #import "BPKShadow.h"
+#import "BPKShadow.h"
 #endif

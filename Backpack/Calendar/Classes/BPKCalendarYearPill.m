@@ -20,12 +20,12 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
-#import <Backpack/Spacing.h>
 #import <Backpack/Shadow.h>
+#import <Backpack/Spacing.h>
 
 @interface BPKCalendarYearPill ()
 
-@property (nonatomic) UILabel *label;
+@property(nonatomic) UILabel *label;
 
 @end
 
@@ -41,21 +41,21 @@
         self.label.numberOfLines = 1;
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.layer.backgroundColor = [BPKColor gray900].CGColor;
-        
+
         [[BPKShadow shadowLg] applyToLayer:self.layer];
         [self addSubview:self.label];
         [NSLayoutConstraint activateConstraints:@[
-                                                  [self.label.topAnchor constraintEqualToAnchor:self.topAnchor constant:BPKSpacingSm],
-                                                  [self.label.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
-                                                  [self.label.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase],
-                                                  [self.label.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
-                                                  ]];
+            [self.label.topAnchor constraintEqualToAnchor:self.topAnchor constant:BPKSpacingSm],
+            [self.label.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
+            [self.label.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-BPKSpacingBase],
+            [self.label.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
+        ]];
     }
 
     return self;
 }
 
--(void)layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     self.layer.cornerRadius = CGRectGetHeight(self.frame) / 2.0;
 }
@@ -63,8 +63,8 @@
 - (void)setYear:(nonnull NSNumber *)year {
     _year = year;
     self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
-                                                         content:[year stringValue]
-                                                       textColor:[BPKColor white]];
+                                                               content:[year stringValue]
+                                                             textColor:[BPKColor white]];
     [self.label sizeToFit];
 }
 

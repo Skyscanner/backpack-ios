@@ -17,43 +17,42 @@
  */
 #import "BPKCard.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
-#import <Backpack/Common.h>
+#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKCardDefaultPaddedValue = YES;
 
-@interface BPKCard()
+@interface BPKCard ()
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle;
 @property(nonatomic, strong) UIView *innerView;
 @end
-
 
 @implementation BPKCard
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
-    
+
     if (self) {
         [self setupWithPadded:BPKCardDefaultPaddedValue cornerStyle:BPKCardDefaultCornerStyle];
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         [self setupWithPadded:BPKCardDefaultPaddedValue cornerStyle:BPKCardDefaultCornerStyle];
     }
-    
+
     return self;
 }
 
@@ -99,7 +98,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (CGSize)intrinsicContentSize {
-    if(self.subviews.count < 1) {
+    if (self.subviews.count < 1) {
         return CGSizeMake(BPKSpacingXxl, BPKSpacingXxl);
     }
     return CGSizeMake(UIViewNoIntrinsicMetric, UIViewNoIntrinsicMetric);
@@ -108,7 +107,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setHighlighted:(BOOL)highlighted {
     BPKAssertMainThread();
     [super setHighlighted:highlighted];
-    
+
     self.backgroundColor = highlighted ? BPKColor.gray100 : BPKColor.white;
 }
 
@@ -122,11 +121,11 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     view.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor],
-                                              [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
-                                              [self.innerView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
-                                              [self.innerView.bottomAnchor constraintEqualToAnchor:view.bottomAnchor]
-                                              ]];
+        [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor],
+        [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
+        [self.innerView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
+        [self.innerView.bottomAnchor constraintEqualToAnchor:view.bottomAnchor]
+    ]];
 }
 
 #pragma mark - Private
@@ -135,36 +134,36 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self.layer.masksToBounds = NO;
     self.backgroundColor = BPKColor.white;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
-    
+
     self.innerView = [[UIView alloc] initWithFrame:CGRectZero];
     self.innerView.layer.masksToBounds = YES;
     self.innerView.userInteractionEnabled = NO;
     self.padded = padded;
     self.cornerStyle = cornerStyle;
     [super addSubview:self.innerView];
-    
+
     self.innerView.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.innerView.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
-                                              [self.innerView.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
-                                              [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.innerView.trailingAnchor],
-                                              [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.innerView.bottomAnchor]
-                                              ]];
+        [self.innerView.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
+        [self.innerView.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
+        [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.innerView.trailingAnchor],
+        [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.innerView.bottomAnchor]
+    ]];
 }
 
 - (void)updateCorners {
     CGFloat cornerRadius = 0;
 
     switch (self.cornerStyle) {
-        case BPKCardCornerStyleSmall:
-            cornerRadius = BPKBorderRadiusSm;
-            break;
-        case BPKCardCornerStyleLarge:
-            cornerRadius = BPKBorderRadiusLg;
-            break;
-        default:
-            break;
+    case BPKCardCornerStyleSmall:
+        cornerRadius = BPKBorderRadiusSm;
+        break;
+    case BPKCardCornerStyleLarge:
+        cornerRadius = BPKBorderRadiusLg;
+        break;
+    default:
+        break;
     }
 
     self.layer.cornerRadius = cornerRadius;

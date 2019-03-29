@@ -17,9 +17,9 @@
  */
 
 #ifndef __BACKPACK_GRADIENT__
-    #define __BACKPACK_GRADIENT__
+#define __BACKPACK_GRADIENT__
 
-    #import "BPKGradient.h"
-    #import "BPKGradientLayer.h"
-    #import "BPKGradientView.h"
+#import "BPKGradient.h"
+#import "BPKGradientLayer.h"
+#import "BPKGradientView.h"
 #endif

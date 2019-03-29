@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 #import "BPKCardCornerStyleValues.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,17 +26,17 @@ NS_ASSUME_NONNULL_BEGIN
  * Cards are a lightweight control with a shadow.
  * Cards can be configured to have padding or not.
  */
-NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
+NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard : UIControl
 
 /**
  * Whether the card should provide padding or not.
  */
-@property (nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
+@property(nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 /**
  * The corner-style to apply to the card.
  */
-@property (nonatomic, assign) IBInspectable BPKCardCornerStyle cornerStyle;
+@property(nonatomic, assign) IBInspectable BPKCardCornerStyle cornerStyle;
 
 /**
  * The view to display within the card.
@@ -66,7 +66,8 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard: UIControl
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-- (void)addSubview:(UIView *)view __attribute__((unavailable("`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
+- (void)addSubview:(UIView *)view __attribute__((unavailable(
+                       "`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
 
 /**
  * Creates a `BPKCard` with a decoder (typically when creating from Storyboards)

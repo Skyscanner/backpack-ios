@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <XCTest/XCTest.h>
-#import <Backpack/Label.h>
 #import <Backpack/Color.h>
+#import <Backpack/Label.h>
+#import <XCTest/XCTest.h>
 
 @interface BPKLabelTest : XCTestCase
 
@@ -28,10 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyleWithTracking {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized,
-        BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
-        BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized,
-        BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
+        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized, BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
+        BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized, BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -48,16 +46,24 @@ NS_ASSUME_NONNULL_BEGIN
         XCTAssertNotNil(attributes[NSKernAttributeName]);
         XCTAssertNotNil(attributes[NSFontAttributeName]);
         XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
-        XCTAssertNil(attributes[NSParagraphStyleAttributeName], @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
+        XCTAssertNil(attributes[NSParagraphStyleAttributeName],
+                     @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
     }
 }
 
 - (void)testInitWithFontStyleWithoutTracking {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextLg, BPKFontStyleTextLgEmphasized,
-        BPKFontStyleTextXl, BPKFontStyleTextXlEmphasized, BPKFontStyleTextXlHeavy,
-        BPKFontStyleTextXxl, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxlHeavy,
-        BPKFontStyleTextXxxl, BPKFontStyleTextXxxlEmphasized, BPKFontStyleTextXxxlHeavy,
+        BPKFontStyleTextLg,
+        BPKFontStyleTextLgEmphasized,
+        BPKFontStyleTextXl,
+        BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXlHeavy,
+        BPKFontStyleTextXxl,
+        BPKFontStyleTextXxlEmphasized,
+        BPKFontStyleTextXxlHeavy,
+        BPKFontStyleTextXxxl,
+        BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextXxxlHeavy,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -74,10 +80,10 @@ NS_ASSUME_NONNULL_BEGIN
         XCTAssertNil(attributes[NSKernAttributeName]);
         XCTAssertNotNil(attributes[NSFontAttributeName]);
         XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
-        XCTAssertNil(attributes[NSParagraphStyleAttributeName], @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
+        XCTAssertNil(attributes[NSParagraphStyleAttributeName],
+                     @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
     }
 }
-
 
 @end
 

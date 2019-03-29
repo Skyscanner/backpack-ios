@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -32,3 +33,4 @@ CGFloat const BPKSpacingXl = 32;
 
 CGFloat const BPKSpacingXxl = 40;
 
+// clang-format on

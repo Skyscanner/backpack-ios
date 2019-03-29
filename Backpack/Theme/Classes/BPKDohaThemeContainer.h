@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * `BPKDohaThemeContainer` is a subclass of `UIView` which allows the BPKDoha theme to be applied to all its children.
  */
-NS_SWIFT_NAME(DohaThemeContainer) @interface BPKDohaThemeContainer: UIView
+NS_SWIFT_NAME(DohaThemeContainer) @interface BPKDohaThemeContainer : UIView
 
 @end
 NS_ASSUME_NONNULL_END

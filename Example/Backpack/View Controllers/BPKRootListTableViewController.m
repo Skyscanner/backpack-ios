@@ -17,16 +17,16 @@
  */
 
 #import "BPKRootListTableViewController.h"
-#import <Backpack/Icon.h>
 #import <Backpack/Color.h>
+#import <Backpack/Icon.h>
 
 @interface BPKRootListTableViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @end
 
 @implementation BPKRootListTableViewController
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];

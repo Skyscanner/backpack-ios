@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 #import "BPKCard.h"
 #import "BPKCardDivider.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Divided cards are a lightweight containers with a subtle shadow and two subviews.
  * Divided cards, like Cards, can be configured to have padding or not.
  */
-NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
+NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 
 /**
  * The orientation of the divided card.
@@ -63,7 +63,9 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
  * @param secondarySubview The secondary subview for the divided card.
  * @param padded Whether the card should have padding or not.
  */
-- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded;
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded;
 
 /**
  * Create a `BPKDividedCard` with two subviews.
@@ -73,7 +75,10 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
  * @param padded Whether the card should have padding or not.
  * @param cornerStyle The style of the corners that should be applied to the card.
  */
-- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded
+                           cornerStyle:(BPKCardCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a `BPKDividedCard` with a given frame.
@@ -97,7 +102,8 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
  * @param primarySubview The primary subview for the divided card. Leading or top depending on orientation.
  * @param secondarySubview The secondary subview for the divided card. Trailing or bottom depending on orientation.
  */
-- (void)setPrimarySubview:(UIView *)primarySubview secondarySubview:(UIView*)secondarySubview  NS_SWIFT_NAME(setSubviews(primarySubview:secondarySubview:));
+- (void)setPrimarySubview:(UIView *)primarySubview
+         secondarySubview:(UIView *)secondarySubview NS_SWIFT_NAME(setSubviews(primarySubview:secondarySubview:));
 
 /**
  * Set the orientation used in the Divided Card
@@ -106,7 +112,9 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard: BPKCard
  */
 - (void)setOrientation:(UILayoutConstraintAxis)orientation;
 
-- (void) addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or `initWithPrimarySubview:secondarySubview:padded:`")));
+- (void)addSubview:(UIView *)view
+    __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
+                               "`initWithPrimarySubview:secondarySubview:padded:`")));
 
 @end
 NS_ASSUME_NONNULL_END
