@@ -17,6 +17,7 @@
  */
 
 #import "BPKRootListTableViewController.h"
+#import "Backpack_Native-Swift.h"
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 
@@ -31,6 +32,13 @@
 
     UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
     self.settingsButton.image = largeSettingsIcon;
+
+    self.settingsButton.target = self;
+    self.settingsButton.action = @selector(didTapSettingsButton);
+}
+
+- (void)didTapSettingsButton {
+    [BPKExampleApp showSettingsView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

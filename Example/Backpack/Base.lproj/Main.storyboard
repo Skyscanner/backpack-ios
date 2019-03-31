@@ -393,11 +393,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Backpack" id="N7k-3Q-Qpj">
-                        <barButtonItem key="rightBarButtonItem" id="oJ6-zT-C2i">
-                            <connections>
-                                <segue destination="419-up-khy" kind="presentation" id="MgG-WK-vR0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="oJ6-zT-C2i"/>
                     </navigationItem>
                     <connections>
                         <outlet property="settingsButton" destination="oJ6-zT-C2i" id="QWm-4P-mcV"/>
@@ -1140,12 +1136,12 @@
         <!--SettingsViewController-->
         <scene sceneID="Mlh-DX-y4X">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJj-8e-vqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="SettingsViewController" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="419-up-khy" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="7om-Le-bM1"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SJj-8e-vqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="41"/>
+            <point key="canvasLocation" x="516" y="23"/>
         </scene>
     </scenes>
 </document>
