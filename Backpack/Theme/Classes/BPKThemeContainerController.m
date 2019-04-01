@@ -17,6 +17,9 @@
  */
 
 #import "BPKThemeContainerController.h"
+#import "BPKTheme.h"
+#import "BPKThemeDefinition.h"
+
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -91,6 +94,13 @@ NS_ASSUME_NONNULL_BEGIN
         [self reloadViews];
         [self.view setNeedsLayout];
     }
+}
+
+- (BPKThemeContainerController *)createIdenticalThemeContainerForRootController:(UIViewController *)rootController {
+    UIView *themeContainer = [[_themeContainer class] new];
+    BPKThemeContainerController *themeContainerController =
+        [[BPKThemeContainerController alloc] initWithThemeContainer:themeContainer rootViewController:rootController];
+    return themeContainerController;
 }
 
 #pragma mark - Overriden methods
