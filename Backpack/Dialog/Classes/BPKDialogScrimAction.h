@@ -29,7 +29,7 @@ NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
 /**
  * A block to invoke when the user taps the scrim.
  */
-@property(nonatomic, strong, readonly) BPKDialogScrimActionHandler handler;
+@property(nonatomic, strong, readonly) BPKDialogScrimActionHandler _Nonnull handler;
 
 /**
  * Whether the whole controller should be dismissed on scrim taps.
@@ -42,7 +42,8 @@ NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
  * @param handler The handler to associate with the action.
  * @param shouldDismiss Wether the controller should dimiss on scrim taps.
  */
-+ (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
++ (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler _Nonnull)handler
+                             shouldDismiss:(BOOL)shouldDismiss;
 
 - (instancetype _Nonnull)init
     __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
