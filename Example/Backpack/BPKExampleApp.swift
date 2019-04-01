@@ -20,12 +20,12 @@ import Backpack.Theme
 
 @objc class BPKExampleApp: UIApplication {
 
-    @objc override func sendEvent(_ event: UIEvent) {
-        if event.type == .motion && event.subtype == .motionShake {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if event != nil && event!.type == .motion && event!.subtype == .motionShake {
             BPKExampleApp.showSettingsView()
         }
 
-        super.sendEvent(event)
+        super.motionEnded(motion, with: event)
     }
 
     @objc class func showSettingsView() {
