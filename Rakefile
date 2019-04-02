@@ -72,6 +72,12 @@ def check_pristine()
   changes.length == 0
 end
 
+namespace :git do
+  task :fetch do
+    `git fetch`
+  end
+end
+
 task :analyze do
   sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
@@ -93,8 +99,7 @@ end
 task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
-# task release: :test do
-task release: :all_checks do
+task release: ['git:fetch', :all_checks] do
   abort red 'Must be on master branch' unless current_branch == 'master'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
