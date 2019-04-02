@@ -33,7 +33,7 @@ before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update;
 script:
   - npm run build
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
-  - 'if [[ "$MAIN_STAGE" = true ]]; then Example/Pods/SwiftLint/swiftlint lint --strict; fi'
+  - 'if [[ "$MAIN_STAGE" = true ]]; then Example/Pods/SwiftLint/swiftlint lint --strict --config Example/.swiftlint.yml; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci $TRAVIS_TAG; fi'
   - (cd Example && bundle exec rake ci)
 after_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
