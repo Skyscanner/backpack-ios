@@ -17,6 +17,7 @@
  */
 
 #import "BPKAppDelegate.h"
+#import "Backpack_Native-Swift.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
@@ -31,17 +32,14 @@
         [UINavigationBar appearance].largeTitleTextAttributes = @{NSForegroundColorAttributeName : BPKColor.gray700};
     }
 
-    BPKLondonTheme *londTheme = [BPKLondonTheme new];
+    [ThemeHelpers applyAllThemes];
 
-    [BPKTheme applyTheme:[BPKDefaultTheme new]];
-    [BPKTheme applyTheme:londTheme];
-    [BPKTheme applyTheme:[BPKDohaTheme new]];
-    [BPKTheme applyTheme:[BPKHongKongTheme new]];
+    id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
+    UIView *themeContainer = [BPKTheme containerFor:activeTheme];
 
-    UIView *themeContainer = [BPKTheme containerFor:londTheme];
     BPKThemeContainerController *themeContainerController =
-        [[BPKThemeContainerController alloc] initWithThemeContainer:themeContainer
-                                                 rootViewController:self.window.rootViewController];
+    [[BPKThemeContainerController alloc] initWithThemeContainer:themeContainer
+                                             rootViewController:self.window.rootViewController];
     self.window.rootViewController = themeContainerController;
     [self.window makeKeyAndVisible];
 
