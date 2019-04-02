@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKThemeContainerController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithThemeContainer:(UIView *)container
                     rootViewController:(nonnull UIViewController *)rootViewController {
     self = [super initWithNibName:nil bundle:nil];
@@ -37,9 +41,28 @@ NS_ASSUME_NONNULL_BEGIN
         _themeActive = YES;
         _themeContainer = container;
         self.rootViewController = rootViewController;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveTheme:)
+                                                     name:BPKTheme.didChangeNotification
+                                                   object:nil];
     }
 
     return self;
+}
+
+- (void)receiveTheme:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:BPKTheme.didChangeNotification]) {
+        NSAssert([[notification.object class] conformsToProtocol:@protocol(BPKThemeDefinition)],
+                 @"%@ notification should have an object that conforms to %@", BPKTheme.didChangeNotification,
+                 NSStringFromProtocol(@protocol(BPKThemeDefinition)));
+        if (![[[notification object] class] conformsToProtocol:@protocol(BPKThemeDefinition)]) {
+            return;
+        }
+
+        id<BPKThemeDefinition> definition = (id<BPKThemeDefinition>)notification.object;
+        [self setThemeContainer:[BPKTheme containerFor:definition]];
+    }
 }
 
 - (void)viewDidLoad {

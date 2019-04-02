@@ -22,7 +22,15 @@
 
 #import <Backpack/Switch.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification";
+
 @implementation BPKTheme
+
++ (NSString *)didChangeNotification {
+    return BPKThemeDidChangeNotification;
+}
 
 + (void)applyTheme:(id<BPKThemeDefinition>)theme {
     [self applyTheme:theme withContainer:theme.themeContainerClass];
@@ -37,3 +45,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
