@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
 
 /**
@@ -48,3 +50,5 @@ NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
     __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
 @end
+
+NS_ASSUME_NONNULL_END
