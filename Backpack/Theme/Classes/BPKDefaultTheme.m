@@ -35,6 +35,10 @@
     return BPKColor.blue500;
 }
 
+- (UIColor *)spinnerPrimaryColor {
+    return BPKColor.blue500;
+}
+
 - (Class)themeContainerClass {
     return [BPKDefaultThemeContainer class];
 }
