@@ -49,6 +49,8 @@ NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicator
  */
 @property(nonatomic) BPKSpinnerStyle style;
 
+@property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
+
 /**
  * Size of the spinner
  * @see BPKSpinnerSize

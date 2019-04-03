@@ -23,7 +23,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKSpinner ()
-
 @end
 
 @implementation BPKSpinner
@@ -80,33 +79,48 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didChangeProperty {
     self.activityIndicatorViewStyle = [self.class styleForSpinnerSize:self.size];
-    self.color = [self.class colorForSpinnerStyle:self.style];
+    self.color = [self themeableColorForSpinnerStyle:self.style];
     [self setNeedsDisplay];
+}
+
+- (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
+    if(primaryColor != _primaryColor) {
+        _primaryColor = primaryColor;
+        self.color = [self themeableColorForSpinnerStyle:self.style];
+    }
+}
+
+- (UIColor *)themeableColorForSpinnerStyle:(BPKSpinnerStyle)style {
+    if (style == BPKSpinnerStylePrimary && self.primaryColor != nil) {
+        return self.primaryColor;
+    }
+
+    return [self.class colorForSpinnerStyle:self.style];
 }
 
 + (UIActivityIndicatorViewStyle)styleForSpinnerSize:(BPKSpinnerSize)size {
     switch (size) {
-    case BPKSpinnerSizeDefault:
-        return UIActivityIndicatorViewStyleWhiteLarge;
-    case BPKSpinnerSizeSmall:
-        return UIActivityIndicatorViewStyleWhite;
-    default:
-        NSAssert(NO, @"Undefined size: %d", (int)size);
-        break;
+        case BPKSpinnerSizeDefault:
+            return UIActivityIndicatorViewStyleWhiteLarge;
+        case BPKSpinnerSizeSmall:
+            return UIActivityIndicatorViewStyleWhite;
+        default:
+            NSAssert(NO, @"Undefined size: %d", (int)size);
+            break;
     }
 }
 
 + (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
     switch (style) {
-    case BPKSpinnerStylePrimary:
-        return BPKColor.blue500;
-    case BPKSpinnerStyleDark:
-        return BPKColor.gray700;
-    case BPKSpinnerStyleLight:
-        return BPKColor.white;
-    default:
-        NSAssert(NO, @"Undefined style: %d", (int)style);
-        break;
+        case BPKSpinnerStylePrimary:
+            return BPKColor.blue500;
+        case BPKSpinnerStyleDark:
+            return BPKColor.gray700;
+        case BPKSpinnerStyleLight:
+            return BPKColor.white;
+        default:
+            NSAssert(NO, @"Undefined style: %d", (int)style);
+            break;
     }
 }
 
