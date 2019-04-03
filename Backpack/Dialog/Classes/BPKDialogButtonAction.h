@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 
-#import <Backpack/Button.h>
 #import <Foundation/Foundation.h>
+
+#import "Button.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKDialogButtonAction;
