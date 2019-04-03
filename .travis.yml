@@ -21,16 +21,19 @@ matrix:
     - osx_image: xcode9.4
       env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=10.3.1,platform=iOS Simulator,name=iPhone 7" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
+  - 'date'
   - nvm install
   - nvm use
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
 install:
+  - 'date'
   - npm install
   - bundle install
   - bundle exec pod repo update
   - (cd Example && bundle exec pod install)
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
 script:
+  - 'date'
   - npm run build
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
   - 'if [[ "$MAIN_STAGE" = true ]]; then Example/Pods/SwiftLint/swiftlint lint --strict --config Example/.swiftlint.yml; fi'
