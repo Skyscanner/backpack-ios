@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKThemeDefinition.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -34,12 +36,12 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
 /**
  * Create an instance with a given container view and root view controller.
  *
- * @param container The container view to render the root view controller's view hierarchy inside.
+ * @param themeDefinition The theme that we want to wrap the view hierarchy in.
  * @param rootViewController The root view controller to be used as a child view controller.
  * @return A configured instance than can further be contained or set to be the `rootViewController` of a `window`.
  */
-- (instancetype)initWithThemeContainer:(UIView *)container
-                    rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
+                     rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
     __attribute__((unavailable("use initWithThemeContainer:rootViewController: instead")));
@@ -58,10 +60,17 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
 
 /**
  * The theme container that is currently being used if the theme is active.
+ * This value is `readonly`. In order to change the `themeContainer`, the
+ * `themeDefinition` property must be updated.
+ */
+@property(readonly, nonatomic, strong) UIView *themeContainer;
+
+/**
+ * The theme container that is currently being used if the theme is active.
  * Changing the value of this property will immediately cause the view hierarchy to update to reflect the
  * new state. As such it should only be called on the main thread.
  */
-@property(nonatomic, strong) UIView *themeContainer;
+@property(nonatomic, strong) id<BPKThemeDefinition> themeDefinition;
 @end
 
 NS_ASSUME_NONNULL_END
