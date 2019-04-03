@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.1.0
+
+**Added:**
+
+- Backpack/Spinner
+  - Added `primaryColor` appearance attribute to support theming.
+
+- Backpack/Thee
+  - Themes now apply `primaryColor` to Backpack Spinner components.
+
 ### 8.0.0
 
 **Breaking:**
