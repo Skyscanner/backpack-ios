@@ -20,8 +20,8 @@
 #import "BPKDohaThemeContainer.h"
 #import "BPKThemeDefinition.h"
 
-#import <Backpack/Switch.h>
 #import <Backpack/Spinner.h>
+#import <Backpack/Switch.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

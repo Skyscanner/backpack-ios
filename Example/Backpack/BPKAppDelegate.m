@@ -37,8 +37,8 @@
     id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
 
     BPKThemeContainerController *themeContainerController =
-    [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
-                                             rootViewController:self.window.rootViewController];
+        [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
+                                                  rootViewController:self.window.rootViewController];
     self.window.rootViewController = themeContainerController;
     [self.window makeKeyAndVisible];
 

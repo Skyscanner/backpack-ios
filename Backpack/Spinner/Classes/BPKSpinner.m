@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
-    if(primaryColor != _primaryColor) {
+    if (primaryColor != _primaryColor) {
         _primaryColor = primaryColor;
         self.color = [self themeableColorForSpinnerStyle:self.style];
     }
