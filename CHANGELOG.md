@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.2.0
+
+**Added:**
+
+- Backpack/Theme
+  - Theme container controller now holds a reference to the currently applied theme.
+
 ### 8.1.0
 
 **Added:**
@@ -9,7 +16,7 @@
 - Backpack/Spinner
   - Added `primaryColor` appearance attribute to support theming.
 
-- Backpack/Thee
+- Backpack/Theme
   - Themes now apply `primaryColor` to Backpack Spinner components.
 
 ### 8.0.0
