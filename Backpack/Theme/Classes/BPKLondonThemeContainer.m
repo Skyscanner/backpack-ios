@@ -17,15 +17,15 @@
  */
 
 #import "BPKLondonThemeContainer.h"
-#import <Backpack/Common.h>
+#import "BPKLondonTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKLondonThemeContainer ()
-
-@end
-
 @implementation BPKLondonThemeContainer
+
+- (id<BPKThemeDefinition>)themeDefinition {
+    return [BPKLondonTheme new];
+}
 
 @end
 

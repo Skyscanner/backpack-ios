@@ -15,11 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKDefaultThemeContainer.h"
+#import "BPKDefaultTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKDefaultThemeContainer
+
+- (id<BPKThemeDefinition>)themeDefinition {
+    return [BPKDefaultTheme new];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

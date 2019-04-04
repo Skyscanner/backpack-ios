@@ -31,6 +31,13 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 @property(class, nonatomic, assign, readonly) NSString *didChangeNotification;
 
 /**
+ * Returns the themed primary color for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)primaryColorFor:(UIView *)view;
+
+/**
  * Creates and returns an instance of the container view for the receiver's theme.
  *
  * @return An instance of the container to use with this theme.

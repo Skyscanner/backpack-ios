@@ -17,15 +17,15 @@
  */
 
 #import "BPKHongKongThemeContainer.h"
-#import <Backpack/Common.h>
+#import "BPKHongKongTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHongKongThemeContainer ()
-
-@end
-
 @implementation BPKHongKongThemeContainer
+
+- (id<BPKThemeDefinition>)themeDefinition {
+    return [BPKHongKongTheme new];
+}
 
 @end
 

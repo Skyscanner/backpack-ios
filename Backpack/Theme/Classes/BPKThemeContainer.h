@@ -16,17 +16,23 @@
  * limitations under the License.
  */
 
-#import "BPKThemeContainer.h"
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKDefaultThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKDefault theme to be applied to
- * all its children.
+ * An abstract base class to define a theme that can be applied to a
+ * view hierarchy containing Backpack components. This should be subclassed
+ * to create concrete themes.
  */
-NS_SWIFT_NAME(DefaultThemeContainer) @interface BPKDefaultThemeContainer : BPKThemeContainer
+@protocol BPKThemeDefinition;
+NS_SWIFT_NAME(ThemeContainer) @interface BPKThemeContainer : UIView {
+  @protected
+    id<BPKThemeDefinition> _themeDefinition;
+}
+
+@property(strong, readonly) id<BPKThemeDefinition> themeDefinition;
 
 @end
+
 NS_ASSUME_NONNULL_END
