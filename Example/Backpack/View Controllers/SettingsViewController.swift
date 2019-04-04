@@ -21,6 +21,9 @@ import Backpack
 
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak var enableThemeSwitch: Switch!
+    var showThemeList: Bool = false
+    @IBOutlet var selectableCells: [BPKTableViewSelectableCell]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,9 @@ class SettingsViewController: UITableViewController {
         closeButton.tintColor = Color.blue500
         closeButton.target = self
         closeButton.action = #selector(SettingsViewController.btnAction)
+
+        let theme = Settings.sharedSettings.activeTheme
+        updateUI(theme: theme)
     }
 
     @objc
@@ -35,4 +41,56 @@ class SettingsViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func didToggleTheming(_ sender: UISwitch) {
+        if sender.isOn {
+            applyTheme(theme: .london)
+        } else {
+            applyTheme(theme: .none)
+        }
+    }
+
+    func updateUI(theme: ThemeHelpers.ThemeName) {
+        showThemeList = true
+
+        for cell in selectableCells {
+            cell.setApplied(applied: false)
+        }
+
+        switch theme {
+        case .london:
+            selectableCells[0].setApplied(applied: true)
+        case .hongKong:
+            selectableCells[1].setApplied(applied: true)
+        case .doha:
+            selectableCells[2].setApplied(applied: true)
+        case .none:
+            showThemeList = false
+        }
+
+        enableThemeSwitch.isOn = showThemeList
+
+        tableView.reloadData()
+    }
+
+    func applyTheme(theme: ThemeHelpers.ThemeName) {
+        let themeDefinition = ThemeHelpers.themeDefinition(forTheme: theme)
+        Settings.sharedSettings.activeTheme = theme
+
+        NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: Theme.didChangeNotification as String),
+            object: themeDefinition
+        )
+
+        updateUI(theme: theme)
+    }
+
+    // MARK: Table View
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        applyTheme(theme: ThemeHelpers.ThemeName(rawValue: 1 + Int(indexPath.row))!)
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return showThemeList ? 2 : 1
+    }
 }
