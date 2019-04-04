@@ -32,11 +32,15 @@
 }
 
 - (UIColor *)switchPrimaryColor {
+    return self.primaryColor;
+}
+
+- (UIColor *)primaryColor {
     return BPKColor.blue500;
 }
 
 - (UIColor *)spinnerPrimaryColor {
-    return BPKColor.blue500;
+    return self.primaryColor;
 }
 
 - (Class)themeContainerClass {
