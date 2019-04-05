@@ -21,7 +21,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BPKLondonThemeContainer ()
+
+@end
+
 @implementation BPKLondonThemeContainer
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
-                    rootViewController:(nonnull UIViewController *)rootViewController {
+                     rootViewController:(nonnull UIViewController *)rootViewController {
     self = [super initWithNibName:nil bundle:nil];
 
     if (self) {
@@ -122,7 +122,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKThemeContainerController *)createIdenticalThemeContainerForRootController:(UIViewController *)rootController {
     BPKThemeContainerController *themeContainerController =
-    [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition rootViewController:rootController];
+        [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition
+                                                  rootViewController:rootController];
     return themeContainerController;
 }
 
