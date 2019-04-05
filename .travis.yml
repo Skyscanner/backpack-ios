@@ -24,6 +24,10 @@ before_install:
   - sudo sntp -sS time.apple.com
   - brew install clang-format
   - brew install swiftlint
+  - find . -name "*.h" -exec clang-format -i {} \;
+  - find . -name "*.m" -exec clang-format -i {} \;
+  - cat ./.clang-format
+  - git diff
   - nvm install
   - nvm use
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
