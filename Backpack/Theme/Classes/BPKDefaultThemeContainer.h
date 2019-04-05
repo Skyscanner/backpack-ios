@@ -15,11 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKDefaultThemeContainer : UIView
+
+/**
+ * `BPKDefaultThemeContainer` is a subclass of `UIView` which allows the BPKDefault theme to be applied to all its
+ * children.
+ */
+NS_SWIFT_NAME(DefaultThemeContainer) @interface BPKDefaultThemeContainer : UIView
 
 @end
 NS_ASSUME_NONNULL_END

@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BPKThemeDefinition;
 NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 
-@property (class, nonatomic, assign, readonly) NSString *didChangeNotification;
+@property(class, nonatomic, assign, readonly) NSString *didChangeNotification;
 
 /**
  * Creates and returns an instance of the container view for the receiver's theme.
