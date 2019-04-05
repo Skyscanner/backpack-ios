@@ -62,6 +62,11 @@ def repeat_on_fail(command, run_count = 1)
   end
 end
 
+
+def swiftlint()
+  `swiftlint autocorrect`
+end
+
 def install_pods_in_example_project()
   `(cd Example && bundle exec pod install)`
   $?.exitstatus == 0
@@ -93,6 +98,9 @@ task :test do
 end
 
 task :lint do
+  abort red 'git status should be clean before linting.' unless check_pristine
+  swiftlint
+  abort red 'Swiftlint changed files.' unless check_pristine
   sh "bundle exec pod lib lint"
 end
 
