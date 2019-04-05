@@ -15,11 +15,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKDefaultThemeContainer.h"
+#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BPKDefaultThemeContainer ()
+
+@end
+
 @implementation BPKDefaultThemeContainer
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        BPKAssertMainThread();
+    }
+    return self;
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        BPKAssertMainThread();
+    }
+    return self;
+}
+
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    BPKAssertMainThread();
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
