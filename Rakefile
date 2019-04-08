@@ -63,8 +63,8 @@ def repeat_on_fail(command, run_count = 1)
 end
 
 def clang
-  `find . -name "*.h" -exec clang-format -i {} \\;`
-  `find . -name "*.m" -exec clang-format -i {} \\;`
+  `find . -name "*.h" -exec clang-format -i -style=file {} \\;`
+  `find . -name "*.m" -exec clang-format -i -style=file {} \\;`
   sh "git status --porcelain | grep .*\.[mh]"
   changes = `git status --porcelain | grep .*\.[mh]`.lines
   changes.length == 0
