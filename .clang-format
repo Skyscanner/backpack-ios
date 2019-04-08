@@ -3,3 +3,4 @@ IndentWidth: 4
 ColumnLimit: 120
 ReflowComments:  false
 DerivePointerAlignment: false
+BinPackArguments: true
