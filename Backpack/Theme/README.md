@@ -13,7 +13,8 @@ This will apply the theme to any Backpack components that are contained inside t
 #### Short example
 
 ```
-[BPKLondonTheme apply];
+id<BPKThemeDefinition *> londonTheme = [BPKLondonTheme new];
+[BPKTheme apply:londonTheme];
 ```
 
 #### Longer example
@@ -24,18 +25,27 @@ This will apply the theme to any Backpack components that are contained inside t
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [BPKLondonTheme apply];
+    id<BPKThemeDefinition *> londonTheme = [BPKLondonTheme new];
+    [BPKTheme apply:londonTheme];
     return YES;
 }
 ```
 
+With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
+
+A primary color utility is provided by `BPKTheme` to give easy access to the relevant primary colour for your view.
+
+```
+BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+iconView.tintColor = [BPKTheme primaryColorFor:self];
+```
 
 ### Swift
 
 #### Short example
 
 ```
-LondonTheme.apply()
+Theme.apply(londonTheme)
 ```
 
 #### Longer example
@@ -46,9 +56,20 @@ import Backpack
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     // Override point for customization after application launch. Here you can out the code you want.
-    LondonTheme.apply()
+    let londonTheme = LondonTheme()
+    Theme.apply(londonTheme)
     return true
 }
+```
+
+With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
+
+
+A primary color utility is provided by `BPKTheme` to give easy access to the relevant primary colour for your view.
+
+```
+let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
+tickIcon.tintColor = Theme.primaryColor(for: self)
 ```
 
 With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!
