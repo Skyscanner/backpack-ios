@@ -18,8 +18,11 @@
 
 #import "BPKTheme.h"
 #import "BPKDohaThemeContainer.h"
-#import "BPKThemeDefinition.h"
+#import "BPKThemeContainer.h"
+#import "BPKThemeContainerController.h"
+#import "UIView+BPKThemeContainer.h"
 
+#import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -28,6 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification";
 
 @implementation BPKTheme
+
++ (UIColor *)primaryColorFor:(UIView *)view {
+    BPKThemeContainer *themeContainer = view.themeContainer;
+    if (themeContainer != nil) {
+        return themeContainer.themeDefinition.primaryColor;
+    }
+
+    return BPKColor.blue500;
+}
 
 + (NSString *)didChangeNotification {
     return BPKThemeDidChangeNotification;

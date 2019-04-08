@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2019 Skyscanner Ltd
+ * Copyright 2019 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,18 @@
  * limitations under the License.
  */
 
-#import "BPKThemeContainer.h"
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BPKThemeContainer;
+@interface UIView (BPKThemeContainer)
+
 /**
- * `BPKDefaultThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKDefault theme to be applied to
- * all its children.
+ * The nearest ancestor in the view hierachy that is a `BPKThemeContainer`. If
+ * no ancestor is a `BPKThemeController`, this will return `nil`.
  */
-NS_SWIFT_NAME(DefaultThemeContainer) @interface BPKDefaultThemeContainer : BPKThemeContainer
+@property(nonatomic, nullable, readonly) BPKThemeContainer *themeContainer;
 
 @end
 NS_ASSUME_NONNULL_END
