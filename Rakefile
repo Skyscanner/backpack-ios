@@ -65,6 +65,7 @@ end
 def clang
   `find . -name "*.h" -exec clang-format -i {} \\;`
   `find . -name "*.m" -exec clang-format -i {} \\;`
+  sh "git status --porcelain | grep .*\.[mh]"
   changes = `git status --porcelain | grep .*\.[mh]`.lines
   changes.length == 0
 end
