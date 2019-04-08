@@ -62,6 +62,13 @@ def repeat_on_fail(command, run_count = 1)
   end
 end
 
+def clang
+  `find . -name "*.h" -exec clang-format -i {} \\;`
+  `find . -name "*.m" -exec clang-format -i {} \\;`
+  changes = `git status --porcelain | grep .*\.[mh]`.lines
+  changes.length == 0
+end
+
 def install_pods_in_example_project()
   `(cd Example && bundle exec pod install)`
   $?.exitstatus == 0
@@ -93,6 +100,7 @@ task :test do
 end
 
 task :lint do
+  abort red 'clang-format changed files.' unless clang
   sh "bundle exec pod lib lint"
 end
 
