@@ -506,6 +506,15 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 */
 @property(nonatomic, class, readonly) UIColor * clear;
 
+/**
+ * Combines two `UIColor` values with a specified weighting.
+ *
+ * @param firstColor The color you wish to modify.
+ * @param secondColor The color to blend with the first color.
+ * @param weight The relative weighting of the first color. Close to `1.0f` gives more weight to `firstColor`. Close to `0.0f` gives more weight to `secondColor`. 
+ */
++ (UIColor *) blend:(UIColor*) firstColor with:(UIColor*) secondColor weight: (double) weight;
+
 @end
 NS_ASSUME_NONNULL_END
 // clang-format on
