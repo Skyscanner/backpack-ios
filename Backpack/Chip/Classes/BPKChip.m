@@ -40,7 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setUp];
+    [self setUp];
+            
     }
 
     return self;
