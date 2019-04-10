@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.4.0
+
+**Added:**
+
+ - Backpack/Color
+   - Added colour blending utility, which can combine any two given colours with a specified weighting.
+
 ### 8.3.0
 
 **Added:**
