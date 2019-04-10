@@ -308,7 +308,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Updates
 
 - (void)updateBackgroundAndStyle {
-    UIColor *highlightedWhite = [UIColor colorWithRed:0.871 green:0.867 blue:0.878 alpha:1];
+    UIColor *highlightedWhite = [BPKColor blend:BPKColor.white with:BPKColor.gray900 weight:0.85f];
     UIColor *highlightedOutline = [BPKColor.gray900 colorWithAlphaComponent:0.2];
 
     if (self.isEnabled) {
@@ -554,9 +554,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedWhite {
-    // white overlayed with gray900 at 15%
-    // TODO: Add a method to blend programatically via BPKColor
-    return [UIColor colorWithRed:0.871 green:0.867 blue:0.878 alpha:1];
+    return [BPKColor blend:BPKColor.white with:BPKColor.gray900 weight:0.85f];
 }
 
 + (UIColor *)highlightedOutline {
@@ -564,15 +562,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedBlue {
-    // blue500 overlayed with gray900 at 15%
-    // TODO: Add a method to blend programatically via BPKColor
-    return [UIColor colorWithRed:0.0235 green:0.612 blue:0.745 alpha:1];
+    return [BPKColor blend:BPKColor.blue500 with:BPKColor.gray900 weight:0.85f];
 }
 
 + (UIColor *)highlightedRed {
-    // red500 overlayed with gray900 at 15%
-    // TODO: Add a method to blend programatically via BPKColor
-    return [UIColor colorWithRed:0.875 green:0.298 blue:0.302 alpha:1];
+    return [BPKColor blend:BPKColor.red500 with:BPKColor.gray900 weight:0.85f];
 }
 
 + (CGFloat)buttonTitleIconSpacing {
