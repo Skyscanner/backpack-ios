@@ -321,11 +321,8 @@ NS_ASSUME_NONNULL_BEGIN
             UIColor *startColor = self.primaryGradientStartColor ? self.primaryGradientStartColor : BPKColor.green500;
             UIColor *endColor = self.primaryGradientEndColor ? self.primaryGradientEndColor : BPKColor.green600;
 
-            // TODO What is green700 selected used for? VoiceOver?
-
             [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor
-                                                      gradientOnBottom:endColor
-                                                         selectedColor:BPKColor.green700];
+                                                      gradientOnBottom:endColor];
             break;
         }
         case BPKButtonStyleSecondary: {
@@ -355,8 +352,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
         case BPKButtonStyleFeatured: {
             [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.pink500
-                                                      gradientOnBottom:BPKColor.pink600
-                                                         selectedColor:BPKColor.pink700];
+                                                      gradientOnBottom:BPKColor.pink600];
             break;
         }
         case BPKButtonStyleLink: {
@@ -509,12 +505,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorOnTop
-                                            gradientOnBottom:(UIColor *)normalColorOnBottom
-                                               selectedColor:(UIColor *)selectedColor {
+                                            gradientOnBottom:(UIColor *)normalColorOnBottom {
     if (self.isHighlighted) {
         self.gradientLayer.gradient = [self gradientWithSingleColor:normalColorOnBottom];
-    } else if (self.isSelected) {
-        self.gradientLayer.gradient = [self gradientWithSingleColor:selectedColor];
     } else {
         self.gradientLayer.gradient = [self gradientWithTopColor:normalColorOnTop bottomColor:normalColorOnBottom];
     }
