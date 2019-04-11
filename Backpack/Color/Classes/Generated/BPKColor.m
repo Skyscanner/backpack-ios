@@ -292,7 +292,7 @@
   return UIColor.clearColor;
 }
 
-+ (UIColor *) blend:(UIColor*) firstColor with:(UIColor*) secondColor weight: (double) weight {
++ (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {
     double secondColorWeight = 1.0f - weight;
 
     CIColor *c1 = [[CIColor alloc] initWithColor:firstColor];
