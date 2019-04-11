@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The nearest ancestor in the view hierachy that is a `BPKThemeContainer`. If
  * no ancestor is a `BPKThemeController`, this will return `nil`.
  */
-@property(nonatomic, nullable, readonly) BPKThemeContainer *themeContainer;
+@property(weak, nullable, readonly) BPKThemeContainer *themeContainer;
 
 @end
 NS_ASSUME_NONNULL_END

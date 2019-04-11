@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKDohaThemeContainer
 
-- (id<BPKThemeDefinition>)themeDefinition {
+- (id<BPKThemeDefinition> _Nullable)themeDefinition {
     return [BPKDohaTheme new];
 }
 

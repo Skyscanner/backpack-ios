@@ -27,11 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol BPKThemeDefinition;
 NS_SWIFT_NAME(ThemeContainer) @interface BPKThemeContainer : UIView {
-  @protected
-    id<BPKThemeDefinition> _themeDefinition;
+    
 }
 
-@property(strong, readonly) id<BPKThemeDefinition> themeDefinition;
+@property(weak, readonly) id<BPKThemeDefinition> themeDefinition;
 
 @end
 
