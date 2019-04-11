@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.5.0
+
+**Added:**
+
+- Backpack/Theme:
+  - Added `primaryButtonContentColor`, `primaryButtonGradientStartColor`, and `primaryButtonGradientEndColor` properties to Backpack theme definitions.
+
+- Backpack/Button:
+  - Added `primaryContentColor`, `primaryGradientStartColor`, and `primaryGradientEndColor` appearance proxy properties to support theming.
+
 ### 8.4.0
 
 **Added:**
