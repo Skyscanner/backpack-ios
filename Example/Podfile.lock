@@ -1,5 +1,5 @@
 PODS:
-  - Backpack (8.5.0):
+  - Backpack (8.6.0):
     - FSCalendar (~> 2.8)
   - FSCalendar (2.8.0)
   - iOSSnapshotTestCase/Core (4.0.0)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: b50543f09ed37817cfa73c2f4fbd2fca68396456
+  Backpack: 91c822545a8c76cba72172a049f15d1eec183f2a
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3

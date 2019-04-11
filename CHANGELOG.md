@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.6.0
+
+**Changed:**
+- Backpack/Icon
+  - Updated `alert--active`, `alert--add`, `alert--expired`, `alert--remove`, `price-alerts` icons.
+
 ### 8.5.0
 
 **Added:**
