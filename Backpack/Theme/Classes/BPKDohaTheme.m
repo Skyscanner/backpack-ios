@@ -42,6 +42,18 @@
     return self.primaryColor;
 }
 
+- (UIColor *)buttonPrimaryContentColor {
+    return [UIColor colorWithRed:6.0f / 255.0f green:96.0f / 255.0f blue:96.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)buttonPrimaryGradientStartColor {
+    return [UIColor colorWithRed:255.0f / 255.0f green:219.0f / 255.0f blue:126.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)buttonPrimaryGradientEndColor {
+    return [UIColor colorWithRed:230.0f / 255.0f green:177.0f / 255.0f blue:42.0f / 255.0f alpha:1.0f];
+}
+
 - (Class)themeContainerClass {
     return [BPKDohaThemeContainer class];
 }

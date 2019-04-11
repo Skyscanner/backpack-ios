@@ -315,10 +315,16 @@ NS_ASSUME_NONNULL_BEGIN
 
         // We need this here so that if the button was disabled, and is now enabled, opacity is reset.
         self.layer.opacity = 1;
+
         switch (self.style) {
         case BPKButtonStylePrimary: {
-            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.green500
-                                                      gradientOnBottom:BPKColor.green600
+            UIColor *startColor = self.primaryGradientStartColor ? self.primaryGradientStartColor : BPKColor.green500;
+            UIColor *endColor = self.primaryGradientEndColor ? self.primaryGradientEndColor : BPKColor.green600;
+
+            // TODO What is green700 selected used for? VoiceOver?
+
+            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor
+                                                      gradientOnBottom:endColor
                                                          selectedColor:BPKColor.green700];
             break;
         }
@@ -393,8 +399,13 @@ NS_ASSUME_NONNULL_BEGIN
     UIColor *highlightedContentColor;
 
     switch (self.style) {
-        // Explicit fall-through
     case BPKButtonStylePrimary:
+        if (self.primaryContentColor != nil) {
+            highlightedContentColor = [BPKColor blend:self.primaryContentColor with:BPKColor.gray900 weight:0.85f];
+        } else {
+            highlightedContentColor = [self class].highlightedWhite;
+        }
+        break;
     case BPKButtonStyleFeatured:
         highlightedContentColor = [self class].highlightedWhite;
         break;
@@ -460,8 +471,11 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.gray300;
     }
     switch (self.style) {
-        // Here be dragons, explicit fall-through
     case BPKButtonStylePrimary:
+        if (self.primaryContentColor != nil) {
+            return self.primaryContentColor;
+        }
+        return BPKColor.white;
     case BPKButtonStyleFeatured:
         return BPKColor.white;
         // Here be dragons, explicit fall-through
@@ -551,6 +565,27 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderColor = BPKColor.clear.CGColor;
     self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
     self.layer.borderWidth = 0;
+}
+
+- (void)setPrimaryContentColor:(UIColor *_Nullable)primaryContentColor {
+    if (primaryContentColor != _primaryContentColor) {
+        _primaryContentColor = primaryContentColor;
+        [self updateContentColor];
+    }
+}
+
+- (void)setPrimaryGradientStartColor:(UIColor *_Nullable)primaryGradientStartColor {
+    if (primaryGradientStartColor != _primaryGradientStartColor) {
+        _primaryGradientStartColor = primaryGradientStartColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setPrimaryGradientEndColor:(UIColor *_Nullable)primaryGradientEndColor {
+    if (primaryGradientEndColor != _primaryGradientEndColor) {
+        _primaryGradientEndColor = primaryGradientEndColor;
+        [self updateBackgroundAndStyle];
+    }
 }
 
 + (UIColor *)highlightedWhite {

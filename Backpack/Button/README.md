@@ -51,3 +51,8 @@ button.image = icon
 ### Dynamic Text
 
 `BPKButton`/`Backpack.Button` doesn't currently support **Dynamic Text**, but this is planned for a later release.
+
+### Appearance attributes
+`(UIColor)primaryContentColor`
+`(UIColor)primaryGradientStartColor`
+`(UIColor)primaryGradientEndColor`
