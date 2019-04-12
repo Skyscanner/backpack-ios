@@ -55,7 +55,7 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 }
 
 + (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class {
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setOnTintColor:theme.switchPrimaryColor];
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.switchPrimaryColor];
     [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.spinnerPrimaryColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setPrimaryContentColor:theme.buttonPrimaryContentColor];

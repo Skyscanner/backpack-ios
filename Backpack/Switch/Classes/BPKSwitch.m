@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
+        _primaryColor = BPKColor.blue500;
+
         [self setup];
     }
     return self;
@@ -41,14 +43,23 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
+        _primaryColor = BPKColor.blue500;
+
         [self setup];
     }
     return self;
 }
 
+- (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
+    if (_primaryColor != primaryColor) {
+        _primaryColor = primaryColor;
+        self.onTintColor = primaryColor;
+    }
+}
+
 - (void)setup {
     self.tintColor = BPKColor.gray100;
-    self.onTintColor = BPKColor.blue500;
+    self.onTintColor = _primaryColor;
     [self setNeedsDisplay];
 }
 
