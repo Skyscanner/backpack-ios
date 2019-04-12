@@ -127,13 +127,20 @@ NS_ASSUME_NONNULL_BEGIN
     return themeContainerController;
 }
 
-#pragma mark - Overriden methods
+#pragma mark - UIViewController methods
 
 - (nullable UIViewController *)childViewControllerForStatusBarStyle {
     return self.rootViewController;
 }
 
 - (nullable UIViewController *)childViewControllerForStatusBarHidden {
+    return self.rootViewController;
+}
+
+#pragma mark - NSObject methods
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    NSAssert(NO, @"Forwarding unrecognized selector, %@, to `rootViewController` in `BPKThemeContainerController`. It is not recommended to rely on this behaviour", NSStringFromSelector(aSelector));
     return self.rootViewController;
 }
 
