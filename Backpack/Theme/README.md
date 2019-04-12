@@ -13,7 +13,7 @@ This will apply the theme to any Backpack components that are contained inside t
 #### Short example
 
 ```
-id<BPKThemeDefinition *> londonTheme = [BPKLondonTheme new];
+id<BPKThemeDefinition> londonTheme = [BPKLondonTheme new];
 [BPKTheme apply:londonTheme];
 ```
 
@@ -25,7 +25,7 @@ id<BPKThemeDefinition *> londonTheme = [BPKLondonTheme new];
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    id<BPKThemeDefinition *> londonTheme = [BPKLondonTheme new];
+    id<BPKThemeDefinition> londonTheme = [BPKLondonTheme new];
     [BPKTheme apply:londonTheme];
     return YES;
 }
