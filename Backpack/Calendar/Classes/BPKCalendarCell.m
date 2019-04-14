@@ -173,6 +173,10 @@
     }
 }
 
+- (void)setAccessibilityLabel:(NSString *)accessibilityLabel {
+    self.titleLabel.accessibilityLabel = accessibilityLabel;
+}
+
 - (void)setSelectionType:(SelectionType)selectionType {
     if (_selectionType != selectionType) {
         _selectionType = selectionType;
