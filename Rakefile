@@ -1,5 +1,8 @@
 require 'semver'
 
+CERTIFICATE_PASSWORD = ENV['CERTIFICATE_PASSWORD']
+CODE_SIGN_IDENTITY = ENV['CODE_SIGN_IDENTITY']
+SKYSCANNER_DEV_TEAM = ENV['SKYSCANNER_DEV_TEAM']
 FULL_TESTS = ENV['FULL_TESTS'] != 'false'
 BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator12.1'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
@@ -72,6 +75,26 @@ def check_pristine()
   changes.length == 0
 end
 
+def install_provisioning_profile(uuid)
+  `cp BackpackExample.mobileprovision ~/Library/MobileDevice/Provisioning\\ Profiles/#{uuid}.mobileprovision`
+end
+
+def install_signing_certificate()
+  `sudo security import ./ios_distribution.p12 -P #{CERTIFICATE_PASSWORD}`
+end
+
+def get_provisioning_profile_uuid()
+  uuid = `grep UUID -A1 -a BackpackExample.mobileprovision | grep -io "[-A-F0-9]\\{36\\}"`
+  return uuid.delete("\n")
+end
+
+def populate_export_plist(uuid)
+  content = `cat exportOptions.plist`.chomp
+  content.sub! 'SKYSCANNER_DEV_TEAM', "#{SKYSCANNER_DEV_TEAM}"
+  content.sub! 'UUID', "#{uuid}"
+  File.write('exportOptions.plist', content)
+end
+
 namespace :git do
   task :fetch do
     `git fetch`
@@ -80,6 +103,19 @@ end
 
 task :analyze do
   sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+end
+
+task :build_ipa do
+  uuid = get_provisioning_profile_uuid
+  install_provisioning_profile(uuid)
+  install_signing_certificate
+  populate_export_plist(uuid)
+
+  # TODO We need to somehow set the following, but only for some values otherwise we get errors:
+  # PROVISIONING_PROFILE_SPECIFIER=Backpack-Example CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=\"#{CODE_SIGN_IDENTITY}\"
+  sh "set -o pipefail && xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" DEVELOPMENT_TEAM=#{SKYSCANNER_DEV_TEAM} CODE_SIGN_IDENTITY=\"#{CODE_SIGN_IDENTITY}\" -destination generic/platform=iOS build"
+  sh "set -o pipefail && xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" DEVELOPMENT_TEAM=#{SKYSCANNER_DEV_TEAM} CODE_SIGN_IDENTITY=\"#{CODE_SIGN_IDENTITY}\" -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/CLI.xcarchive"
+  sh "xcodebuild -exportArchive -archivePath $PWD/build/CLI.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build"
 end
 
 task :erase_devices do

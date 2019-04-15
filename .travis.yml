@@ -22,6 +22,8 @@ matrix:
       env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=10.3.1,platform=iOS Simulator,name=iPhone 7" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
+  - openssl aes-256-cbc -K $encrypted_75cd92743e6f_key -iv $encrypted_75cd92743e6f_iv -in BackpackExample.mobileprovision.enc -out BackpackExample.mobileprovision -d 
+  - openssl aes-256-cbc -K $encrypted_75cd92743e6f_key -iv $encrypted_75cd92743e6f_iv -in ios_distribution.p12.enc -out ios_distribution.p12 -d 
   - nvm install
   - nvm use
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
@@ -33,11 +35,13 @@ install:
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
 script:
   - npm run build
-  - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
+  - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json BackpackExample.mobileprovision ios_distribution.p12; fi'
   - 'if [[ "$MAIN_STAGE" = true ]]; then Example/Pods/SwiftLint/swiftlint lint --strict --config Example/.swiftlint.yml; fi'
   - 'if [[ "$MAIN_STAGE" = true && ! -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci && rm -rf docs; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci $TRAVIS_TAG; fi'
   - (cd Example && bundle exec rake ci)
+  - 'if [[ "$MAIN_STAGE" = true ]]; then rake build_ipa; fi'
+  # TODO now upload the build ipa to app-center using the API https://docs.microsoft.com/en-us/appcenter/distribution/uploading#uploading-using-the-apis
 after_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
 branches:
   only:
