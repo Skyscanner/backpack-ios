@@ -475,10 +475,18 @@ NSString *const HeaderDateFormat = @"MMMM";
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
+        calendarCell.accessibilityLabel = [self formattedDate:date];
     }
 }
 
 #pragma mark - helpers
+
+- (NSString *)formattedDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.locale = self.locale;
+    dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    return [dateFormatter stringFromDate:date];
+}
 
 - (BOOL)isDateInToday:(NSDate *)date {
     return [self.calendarView.gregorian isDateInToday:date];
