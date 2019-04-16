@@ -2,6 +2,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.7.1
+
+**Fixed:**
+
+- Backpack/Switch
+- Backpack/Theme
+  - Fixed a race condition bug were `BPKSwitch` when created from code would not correctly support theming.
+
 ### 8.7.0
 
 **Added:**
