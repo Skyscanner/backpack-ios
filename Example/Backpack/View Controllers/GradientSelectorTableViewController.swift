@@ -22,6 +22,7 @@ class GradientSelectorTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? GradientViewController else {
             assert(false, "Destination for gradient segues shoudlbe `GradientViewController`")
+            return
         }
 
         switch segue.identifier {
