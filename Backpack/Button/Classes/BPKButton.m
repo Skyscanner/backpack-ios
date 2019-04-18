@@ -321,8 +321,7 @@ NS_ASSUME_NONNULL_BEGIN
             UIColor *startColor = self.primaryGradientStartColor ? self.primaryGradientStartColor : BPKColor.green500;
             UIColor *endColor = self.primaryGradientEndColor ? self.primaryGradientEndColor : BPKColor.green600;
 
-            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor
-                                                      gradientOnBottom:endColor];
+            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor gradientOnBottom:endColor];
             break;
         }
         case BPKButtonStyleSecondary: {
@@ -356,7 +355,9 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleLink: {
-            [self setLinkStyleWithColor:BPKColor.blue500];
+            UIColor *contentColor = self.linkContentColor ? self.linkContentColor : BPKColor.blue500;
+
+            [self setLinkStyleWithColor:contentColor];
             break;
         }
         default: {
@@ -474,9 +475,12 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.white;
     case BPKButtonStyleFeatured:
         return BPKColor.white;
-        // Here be dragons, explicit fall-through
     case BPKButtonStyleSecondary:
+        return BPKColor.blue500;
     case BPKButtonStyleLink:
+        if (self.linkContentColor != nil) {
+            return self.linkContentColor;
+        }
         return BPKColor.blue500;
     case BPKButtonStyleDestructive:
         return BPKColor.red500;
@@ -577,6 +581,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setPrimaryGradientEndColor:(UIColor *_Nullable)primaryGradientEndColor {
     if (primaryGradientEndColor != _primaryGradientEndColor) {
         _primaryGradientEndColor = primaryGradientEndColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setLinkContentColor:(UIColor *_Nullable)linkContentColor {
+    if (linkContentColor != _linkContentColor) {
+        _linkContentColor = linkContentColor;
         [self updateBackgroundAndStyle];
     }
 }

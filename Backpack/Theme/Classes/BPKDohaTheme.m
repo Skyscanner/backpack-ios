@@ -46,6 +46,10 @@
     return self.primaryColor;
 }
 
+- (UIColor *)buttonLinkContentColor {
+    return self.primaryColor;
+}
+
 - (UIColor *)buttonPrimaryContentColor {
     return [UIColor colorWithRed:6.0f / 255.0f green:96.0f / 255.0f blue:96.0f / 255.0f alpha:1.0f];
 }
