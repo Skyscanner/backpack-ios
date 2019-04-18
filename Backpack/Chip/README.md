@@ -22,3 +22,6 @@ BPKChip *chip = [[BPKChip alloc] init];
 chip.title = @"Some title";
 [chip setEnabled:NO];
 ```
+
+### Appearance attributes
+`(UIColor)primaryColor`
