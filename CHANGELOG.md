@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.8.0
+
+**Added:**
+
+- Backpack/Theme:
+  - Added `chipPrimaryColor` properties to Backpack theme definitions.
+
+- Backpack/Chip:
+  - Added `primaryColor` appearance proxy property to support theming.
+
 ### 8.7.1
 
 **Fixed:**
