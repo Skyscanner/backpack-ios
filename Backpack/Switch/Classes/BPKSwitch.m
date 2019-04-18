@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
+- (void)setPrimaryColor:(UIColor *)primaryColor {
     if (_primaryColor != primaryColor) {
         _primaryColor = primaryColor;
         self.onTintColor = primaryColor;

@@ -49,7 +49,7 @@ NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
  *
  * @warning This is not intended to be used directly, it exists to support theming only.
  */
-@property(nonatomic, nullable, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
 
 @end

@@ -31,6 +31,10 @@
     return @"London";
 }
 
+- (UIColor *)chipPrimaryColor {
+    return self.primaryColor;
+}
+
 - (UIColor *)switchPrimaryColor {
     return self.primaryColor;
 }

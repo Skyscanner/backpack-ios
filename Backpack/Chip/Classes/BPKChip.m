@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
+        _primaryColor = BPKColor.blue500;
+
         [self setUp];
     }
 
@@ -51,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
+        _primaryColor = BPKColor.blue500;
+
         [self setUp];
     }
 
@@ -62,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        _primaryColor = BPKColor.blue500;
+
         [self setUp];
     }
 
@@ -105,6 +111,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - State setters
+
+- (void)setPrimaryColor:(UIColor *)primaryColor {
+    if (_primaryColor != primaryColor) {
+        _primaryColor = primaryColor;
+        [self updateStyle];
+    }
+}
 
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
@@ -155,7 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     if (self.selected) {
-        self.backgroundColor = BPKColor.blue500;
+        self.backgroundColor = self.primaryColor;
         self.textColor = BPKColor.white;
     } else {
         self.backgroundColor = BPKColor.white;
