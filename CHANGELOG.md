@@ -7,7 +7,7 @@
 **Added:**
 
 - Backpack/Theme:
-  - Added `chipPrimaryColor` properties to Backpack theme definitions.
+  - Added `chipPrimaryColor` property to Backpack theme definitions.
 
 - Backpack/Chip:
   - Added `primaryColor` appearance proxy property to support theming.

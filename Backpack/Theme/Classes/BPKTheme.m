@@ -60,6 +60,8 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     [[BPKChip appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.chipPrimaryColor];
     [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.spinnerPrimaryColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setLinkContentColor:theme.buttonLinkContentColor];
+    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setPrimaryContentColor:theme.buttonPrimaryContentColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setPrimaryGradientStartColor:theme.buttonPrimaryGradientStartColor];

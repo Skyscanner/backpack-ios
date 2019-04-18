@@ -47,6 +47,10 @@
     return self.primaryColor;
 }
 
+- (UIColor *)buttonLinkContentColor {
+    return self.primaryColor;
+}
+
 - (UIColor *)buttonPrimaryContentColor {
     return BPKColor.white;
 }
