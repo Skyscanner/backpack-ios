@@ -30,6 +30,10 @@
     return @"Hong Kong";
 }
 
+- (UIColor *)chipPrimaryColor {
+    return self.primaryColor;
+}
+
 - (UIColor *)switchPrimaryColor {
     return self.primaryColor;
 }

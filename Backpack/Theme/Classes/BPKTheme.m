@@ -23,6 +23,7 @@
 #import "UIView+BPKThemeContainer.h"
 
 #import <Backpack/Button.h>
+#import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -56,6 +57,7 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 
 + (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class {
     [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.switchPrimaryColor];
+    [[BPKChip appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.chipPrimaryColor];
     [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.spinnerPrimaryColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setPrimaryContentColor:theme.buttonPrimaryContentColor];
