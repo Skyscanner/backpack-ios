@@ -325,9 +325,13 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleSecondary: {
-            [self setBorderedStyleWithColor:BPKColor.gray100 withGradientColor:BPKColor.white];
+            UIColor *backgroundColor = self.secondaryBackgroundColor ? self.secondaryBackgroundColor : BPKColor.white;
+            UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : BPKColor.gray100;
+            [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
-                self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedWhite];
+                self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
+                                                                                       with:BPKColor.gray900
+                                                                                     weight:0.85f]];
                 [self.gradientLayer setNeedsDisplay];
             }
             break;
@@ -407,7 +411,11 @@ NS_ASSUME_NONNULL_BEGIN
         highlightedContentColor = [self class].highlightedWhite;
         break;
     case BPKButtonStyleSecondary:
-        highlightedContentColor = [self class].highlightedBlue;
+        if (self.secondaryContentColor != nil) {
+            highlightedContentColor = [BPKColor blend:self.secondaryContentColor with:BPKColor.gray900 weight:0.85f];
+        } else {
+            highlightedContentColor = [self class].highlightedBlue;
+        }
         break;
     case BPKButtonStyleDestructive:
         highlightedContentColor = [self class].highlightedRed;
@@ -476,6 +484,9 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleFeatured:
         return BPKColor.white;
     case BPKButtonStyleSecondary:
+        if (self.secondaryContentColor != nil) {
+            return self.secondaryContentColor;
+        }
         return BPKColor.blue500;
     case BPKButtonStyleLink:
         if (self.linkContentColor != nil) {
@@ -581,6 +592,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setPrimaryGradientEndColor:(UIColor *_Nullable)primaryGradientEndColor {
     if (primaryGradientEndColor != _primaryGradientEndColor) {
         _primaryGradientEndColor = primaryGradientEndColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setSecondaryContentColor:(UIColor *_Nullable)secondaryContentColor {
+    if (secondaryContentColor != _secondaryContentColor) {
+        _secondaryContentColor = secondaryContentColor;
+        [self updateContentColor];
+    }
+}
+
+- (void)setSecondaryBackgroundColor:(UIColor *_Nullable)secondaryBackgroundColor {
+    if (secondaryBackgroundColor != _secondaryBackgroundColor) {
+        _secondaryBackgroundColor = secondaryBackgroundColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setSecondaryBorderColor:(UIColor *_Nullable)secondaryBorderColor {
+    if (secondaryBorderColor != _secondaryBorderColor) {
+        _secondaryBorderColor = secondaryBorderColor;
         [self updateBackgroundAndStyle];
     }
 }

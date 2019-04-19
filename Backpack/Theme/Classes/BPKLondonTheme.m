@@ -63,6 +63,18 @@
     return [UIColor colorWithRed:162.0f / 255.0f green:27.0f / 255.0f blue:36.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *)buttonSecondaryContentColor {
+    return self.primaryColor;
+}
+
+- (UIColor *)buttonSecondaryBackgroundColor {
+    return BPKColor.blue100;
+}
+
+- (UIColor *)buttonSecondaryBorderColor {
+    return self.primaryColor;
+}
+
 - (Class)themeContainerClass {
     return [BPKLondonThemeContainer class];
 }
