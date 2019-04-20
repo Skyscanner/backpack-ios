@@ -23,6 +23,7 @@
 #import "UIView+BPKThemeContainer.h"
 
 #import <Backpack/Button.h>
+#import <Backpack/Calendar.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
@@ -73,6 +74,10 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
         setSecondaryBackgroundColor:theme.buttonSecondaryBackgroundColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setSecondaryBorderColor:theme.buttonSecondaryBorderColor];
+    [[BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setDateSelectedContentColor:theme.calendarDateSelectedContentColor];
+    [[BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setDateSelectedBackgroundColor:theme.calendarDateSelectedBackgroundColor];
 }
 
 @end

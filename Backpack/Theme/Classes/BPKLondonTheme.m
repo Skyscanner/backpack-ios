@@ -75,6 +75,14 @@
     return self.primaryColor;
 }
 
+- (UIColor *)calendarDateSelectedContentColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)calendarDateSelectedBackgroundColor {
+    return self.primaryColor;
+}
+
 - (Class)themeContainerClass {
     return [BPKLondonThemeContainer class];
 }

@@ -75,6 +75,14 @@
     return BPKColor.gray100;
 }
 
+- (UIColor *)calendarDateSelectedContentColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)calendarDateSelectedBackgroundColor {
+    return self.primaryColor;
+}
+
 - (Class)themeContainerClass {
     return [BPKDefaultThemeContainer class];
 }

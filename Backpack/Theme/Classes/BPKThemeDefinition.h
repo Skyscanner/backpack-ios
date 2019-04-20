@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientEndColor;
 @property(nonatomic, readonly, strong) UIColor *primaryColor;
 @property(nonatomic, readonly) Class themeContainerClass;
+@property(nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
+@property(nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
 
 @end
 
