@@ -58,3 +58,7 @@ button.image = icon
 `(UIColor)primaryGradientEndColor`
 
 `(UIColor)linkContentColor`
+
+`(UIColor)secondaryContentColor`
+`(UIColor)secondaryBackgroundColor`
+`(UIColor)secondaryBorderColor`
