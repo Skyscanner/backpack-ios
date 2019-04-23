@@ -2,6 +2,21 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.10.0
+
+**Added:**
+
+- Backpack/Theme:
+  - Added `secondaryButtonContentColor`, `secondaryButtonBackgroundColor` and `secondaryButtonBorderColor` properties to Backpack theme definitions.
+
+- Backpack/Button:
+  - Added `secondaryContentColor`, `secondaryBackgroundColor` and `secondaryBorderColor` appearance proxy properties to support theming.
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Fixed the background of the header to be transparent.
+
 ### 8.9.0
 
 **Added:**
