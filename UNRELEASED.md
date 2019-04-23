@@ -9,3 +9,8 @@
 
 - Backpack/Button:
   - Added `secondaryContentColor`, `secondaryBackgroundColor` and `secondaryBorderColor` appearance proxy properties to support theming.
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Fixed the background of the header to be transparent.

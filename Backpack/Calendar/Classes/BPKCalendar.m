@@ -148,7 +148,6 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
     self.calendarWeekdayView.calendar = self.calendarView;
-    self.calendarWeekdayView.backgroundColor = [BPKColor white];
     [self addSubview:self.calendarWeekdayView];
 
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
