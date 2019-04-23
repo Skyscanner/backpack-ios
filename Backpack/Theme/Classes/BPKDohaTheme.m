@@ -21,6 +21,7 @@
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
+#import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -60,6 +61,18 @@
 
 - (UIColor *)buttonPrimaryGradientEndColor {
     return [UIColor colorWithRed:230.0f / 255.0f green:177.0f / 255.0f blue:42.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)buttonSecondaryContentColor {
+    return self.primaryColor;
+}
+
+- (UIColor *)buttonSecondaryBackgroundColor {
+    return BPKColor.green800;
+}
+
+- (UIColor *)buttonSecondaryBorderColor {
+    return self.primaryColor;
 }
 
 - (Class)themeContainerClass {

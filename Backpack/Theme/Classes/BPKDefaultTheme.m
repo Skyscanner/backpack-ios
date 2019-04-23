@@ -63,6 +63,18 @@
     return BPKColor.green600;
 }
 
+- (UIColor *)buttonSecondaryContentColor {
+    return self.primaryColor;
+}
+
+- (UIColor *)buttonSecondaryBackgroundColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)buttonSecondaryBorderColor {
+    return BPKColor.gray100;
+}
+
 - (Class)themeContainerClass {
     return [BPKDefaultThemeContainer class];
 }

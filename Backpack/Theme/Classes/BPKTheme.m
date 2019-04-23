@@ -67,6 +67,12 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
         setPrimaryGradientStartColor:theme.buttonPrimaryGradientStartColor];
     [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
         setPrimaryGradientEndColor:theme.buttonPrimaryGradientEndColor];
+    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setSecondaryContentColor:theme.buttonSecondaryContentColor];
+    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setSecondaryBackgroundColor:theme.buttonSecondaryBackgroundColor];
+    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
+        setSecondaryBorderColor:theme.buttonSecondaryBorderColor];
 }
 
 @end
