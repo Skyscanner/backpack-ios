@@ -75,6 +75,14 @@
     return self.primaryColor;
 }
 
+- (UIColor *)calendarDateSelectedContentColor {
+    return [UIColor colorWithRed:255.0f / 255.0f green:163.0f / 255.0f blue:203.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)calendarDateSelectedBackgroundColor {
+    return self.primaryColor;
+}
+
 - (Class)themeContainerClass {
     return [BPKHongKongThemeContainer class];
 }

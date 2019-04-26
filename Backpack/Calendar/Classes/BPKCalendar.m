@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) FSCalendar *calendarView;
 @property(nonatomic, strong, nonnull) FSCalendarWeekdayView *calendarWeekdayView;
 @property(nonatomic, strong, nonnull) BPKCalendarYearPill *yearPill;
+@property(nonatomic, strong, nonnull) BPKCalendarAppearance *appearance;
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 
@@ -73,6 +74,8 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
+        _dateSelectedBackgroundColor = BPKColor.blue500;
+        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -87,6 +90,8 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
+        _dateSelectedBackgroundColor = BPKColor.blue500;
+        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -100,6 +105,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (self) {
         self.minDate = minDate;
         self.maxDate = maxDate;
+        _dateSelectedBackgroundColor = BPKColor.blue500;
+        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -131,11 +138,14 @@ NSString *const HeaderDateFormat = @"MMMM";
     appearance.todayColor = [BPKColor gray100];
     appearance.titleTodayColor = [BPKColor gray900];
     appearance.titleDefaultColor = [BPKColor gray900];
-    appearance.selectionColor = [BPKColor blue500];
+    appearance.selectionColor = self.dateSelectedBackgroundColor;
+    appearance.titleSelectionColor = self.dateSelectedContentColor;
     appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
 
+    _appearance = appearance;
+
     Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
-    object_setIvar(self.calendarView, ivar, appearance);
+    object_setIvar(self.calendarView, ivar, self.appearance);
 
     [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
     [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class]
@@ -277,6 +287,22 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
     return [self dateFromSimpleDate:self.maxDate];
+}
+
+- (void)setDateSelectedBackgroundColor:(UIColor *)dateSelectedBackgroundColor {
+    if (dateSelectedBackgroundColor != _dateSelectedBackgroundColor) {
+        _dateSelectedBackgroundColor = dateSelectedBackgroundColor;
+        self.appearance.selectionColor = self.dateSelectedBackgroundColor;
+        [self.calendarView.collectionView reloadData];
+    }
+}
+
+- (void)setDateSelectedContentColor:(UIColor *)dateSelectedContentColor {
+    if (dateSelectedContentColor != _dateSelectedContentColor) {
+        _dateSelectedContentColor = dateSelectedContentColor;
+        self.appearance.titleSelectionColor = self.dateSelectedContentColor;
+        [self.calendarView.collectionView reloadData];
+    }
 }
 
 #pragma mark - <FSCalendarDelegate>

@@ -55,6 +55,9 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
+@property(nonatomic, strong) UIColor *dateSelectedContentColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *dateSelectedBackgroundColor UI_APPEARANCE_SELECTOR;
+
 /**
  * Create a calendar with given minimum date and maximum date.
  *
