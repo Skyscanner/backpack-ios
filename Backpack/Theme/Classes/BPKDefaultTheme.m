@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -41,6 +42,10 @@
 
 - (UIColor *)primaryColor {
     return BPKColor.blue500;
+}
+
+- (BPKGradient *)primaryGradient {
+    return BPKGradient.primary;
 }
 
 - (UIColor *)spinnerPrimaryColor {

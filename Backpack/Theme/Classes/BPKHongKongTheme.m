@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -46,6 +47,18 @@
 - (UIColor *)primaryColor {
     return [UIColor colorWithRed:76.0f / 255.0f green:76.0f / 255.0f blue:76.0f / 255.0f alpha:1.0f];
 }
+
+- (BPKGradient *)primaryGradient {
+    UIColor *startColor = [UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1];
+    UIColor *endColor = [UIColor colorWithRed:0.235 green:0.235 blue:0.235 alpha:1];
+    CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionUp];
+    CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionUp];
+
+    return [[BPKGradient alloc] initWithColors:@[startColor, endColor]
+                                    startPoint:startPoint
+                                      endPoint:endPoint];
+}
+
 
 - (UIColor *)secondaryColor {
     return [UIColor colorWithRed:0 green:0.392 blue:0.388 alpha:1];

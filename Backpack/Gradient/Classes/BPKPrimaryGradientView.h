@@ -15,24 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Foundation
-import UIKit
-import Backpack
+#import <UIKit/UIKit.h>
 
-enum GradientType {
-    case baselineScrim
-}
+NS_ASSUME_NONNULL_BEGIN
+@class BPKGradient;
 
-class GradientViewController: UIViewController {
-    @IBOutlet weak var gradientView: Backpack.GradientView!
-    var gradientType: GradientType = .baselineScrim
+/**
+ * This class is a `UIView` subclass that draws the primary gradient.
+ * It's backed by a layer that does the actual drawing, but using this view directly
+ * is preferred.
+ */
+IB_DESIGNABLE NS_SWIFT_NAME(PrimaryGradientView) @interface BPKPrimaryGradientView : UIView
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+/**
+ * The gradient currently being drawn.
+ * @warning Do not set this value directly. It's intended to be used via theming.
+ */
+@property(nonatomic, strong) BPKGradient *gradient UI_APPEARANCE_SELECTOR;
 
-        switch gradientType {
-        case .baselineScrim:
-            self.gradientView.gradient = Backpack.Gradient.baselineScrim()
-        }
-    }
-}
+@end
+NS_ASSUME_NONNULL_END

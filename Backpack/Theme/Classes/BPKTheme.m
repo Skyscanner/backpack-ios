@@ -26,6 +26,7 @@
 #import <Backpack/Calendar.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -74,6 +75,9 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
+
+    BPKPrimaryGradientView *primaryGradientViewAppearance = [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
+    primaryGradientViewAppearance.gradient = theme.primaryGradient;
 }
 
 @end
