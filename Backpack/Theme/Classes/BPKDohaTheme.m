@@ -24,6 +24,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+#import <Backpack/Radii.h>
 
 @implementation BPKDohaTheme
 
@@ -52,27 +53,31 @@
 }
 
 - (UIColor *)buttonPrimaryContentColor {
-    return [UIColor colorWithRed:6.0f / 255.0f green:96.0f / 255.0f blue:96.0f / 255.0f alpha:1.0f];
+    return BPKColor.white;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
-    return [UIColor colorWithRed:255.0f / 255.0f green:219.0f / 255.0f blue:126.0f / 255.0f alpha:1.0f];
+    return [UIColor colorWithRed:1 green:0.757 blue:0.0275 alpha:1];
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return [UIColor colorWithRed:230.0f / 255.0f green:177.0f / 255.0f blue:42.0f / 255.0f alpha:1.0f];
+    return [UIColor colorWithRed:1 green:0.702 blue:0 alpha:1];
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return self.primaryColor;
+    return [UIColor colorWithRed:0.608 green:0.0627 blue:0.298 alpha:1];
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return BPKColor.green800;
+    return BPKColor.white;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return self.primaryColor;
+    return BPKColor.gray100;
+}
+
+- (NSNumber *)buttonCornerRadius {
+    return @(BPKBorderRadiusSm * 2);
 }
 
 - (UIColor *)calendarDateSelectedContentColor {

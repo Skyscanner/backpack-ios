@@ -75,6 +75,10 @@
     return BPKColor.gray100;
 }
 
+- (NSNumber *)buttonCornerRadius {
+    return nil;
+}
+
 - (UIColor *)calendarDateSelectedContentColor {
     return BPKColor.white;
 }
