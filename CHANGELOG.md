@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.12.0
+
+**Added:**
+
+- Backpack/Theme:
+  - Added `buttonCornerRadius` properties to Backpack theme definitions.
+
+- Backpack/Button:
+  - Added `cornerRadius` appearance proxy properties to support theming.
+
 ### 8.11.0
 
 **Added:**
