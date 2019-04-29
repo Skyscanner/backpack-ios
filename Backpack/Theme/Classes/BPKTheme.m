@@ -60,24 +60,20 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.switchPrimaryColor];
     [[BPKChip appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.chipPrimaryColor];
     [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.spinnerPrimaryColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setLinkContentColor:theme.buttonLinkContentColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setPrimaryContentColor:theme.buttonPrimaryContentColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setPrimaryGradientStartColor:theme.buttonPrimaryGradientStartColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setPrimaryGradientEndColor:theme.buttonPrimaryGradientEndColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setSecondaryContentColor:theme.buttonSecondaryContentColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setSecondaryBackgroundColor:theme.buttonSecondaryBackgroundColor];
-    [[BPKButton appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setSecondaryBorderColor:theme.buttonSecondaryBorderColor];
-    [[BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setDateSelectedContentColor:theme.calendarDateSelectedContentColor];
-    [[BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[ class ]]
-        setDateSelectedBackgroundColor:theme.calendarDateSelectedBackgroundColor];
+
+    BPKButton *buttonAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    buttonAppearance.linkContentColor = theme.buttonLinkContentColor;
+    buttonAppearance.primaryContentColor = theme.buttonPrimaryContentColor;
+    buttonAppearance.primaryGradientStartColor = theme.buttonPrimaryGradientStartColor;
+    buttonAppearance.primaryGradientEndColor = theme.buttonPrimaryGradientEndColor;
+    buttonAppearance.secondaryContentColor = theme.buttonSecondaryContentColor;
+    buttonAppearance.secondaryBackgroundColor = theme.buttonSecondaryBackgroundColor;
+    buttonAppearance.secondaryBorderColor = theme.buttonSecondaryBorderColor;
+    buttonAppearance.cornerRadius = theme.buttonCornerRadius;
+
+    BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
+    calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
 }
 
 @end

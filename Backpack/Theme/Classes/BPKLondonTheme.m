@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -74,6 +75,8 @@
 - (UIColor *)buttonSecondaryBorderColor {
     return BPKColor.gray100;
 }
+- (NSNumber *)buttonCornerRadius {
+    return @(BPKBorderRadiusSm);
 }
 
 - (UIColor *)calendarDateSelectedContentColor {

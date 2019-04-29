@@ -23,11 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BPKThemeDefinition
 
 @required
-
+@property(nonatomic, readonly) Class themeContainerClass;
 @property(nonatomic, readonly, strong) NSString *themeName;
+
 @property(nonatomic, readonly, strong) UIColor *switchPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *chipPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
+
 @property(nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonSecondaryBackgroundColor;
@@ -35,8 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientStartColor;
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientEndColor;
+/**
+ * The corner radii for all button styles except link. If `nil` the default style of the button
+ * is used.
+ */
+@property(nullable, nonatomic, readonly, strong) NSNumber *buttonCornerRadius;
+
 @property(nonatomic, readonly, strong) UIColor *primaryColor;
-@property(nonatomic, readonly) Class themeContainerClass;
+
+
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
 

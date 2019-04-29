@@ -204,6 +204,14 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setCornerRadius:(nullable NSNumber *)cornerRadius {
+    if (_cornerRadius != cornerRadius) {
+        _cornerRadius = cornerRadius;
+
+        [self setNeedsLayout];
+    }
+}
+
 #pragma mark - Layout
 
 - (void)layoutSubviews {
@@ -212,8 +220,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.gradientLayer.frame = self.layer.bounds;
 
     if (self.style != BPKButtonStyleLink) {
-        CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
-        [self.layer setCornerRadius:radius];
+        if (self.cornerRadius != nil) {
+            self.layer.cornerRadius = self.cornerRadius.doubleValue;
+        } else {
+            // Pill shape
+            CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
+            [self.layer setCornerRadius:radius];
+        }
     } else {
         self.layer.cornerRadius = 0;
     }
