@@ -56,11 +56,11 @@
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
-    return [UIColor colorWithRed:237.0f / 255.0f green:27.0f / 255.0f blue:40.0f / 255.0f alpha:1.0f];
+    return [UIColor colorWithRed:0.00392 green:0.227 blue:0.463 alpha:1];
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return [UIColor colorWithRed:162.0f / 255.0f green:27.0f / 255.0f blue:36.0f / 255.0f alpha:1.0f];
+    return [UIColor colorWithRed:0 green:0.184 blue:0.38 alpha:1];
 }
 
 - (UIColor *)buttonSecondaryContentColor {
@@ -68,11 +68,12 @@
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return BPKColor.blue100;
+    return BPKColor.white;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return self.primaryColor;
+    return BPKColor.gray100;
+}
 }
 
 - (UIColor *)calendarDateSelectedContentColor {

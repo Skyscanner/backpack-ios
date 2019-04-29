@@ -25,6 +25,10 @@
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
+@interface BPKHongKongTheme()
+@property(nonatomic, readonly, strong) UIColor *secondaryColor;
+@end
+
 @implementation BPKHongKongTheme
 
 - (NSString *)themeName {
@@ -43,6 +47,10 @@
     return [UIColor colorWithRed:76.0f / 255.0f green:76.0f / 255.0f blue:76.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *)secondaryColor {
+    return [UIColor colorWithRed:0 green:0.392 blue:0.388 alpha:1];
+}
+
 - (UIColor *)spinnerPrimaryColor {
     return self.primaryColor;
 }
@@ -52,7 +60,7 @@
 }
 
 - (UIColor *)buttonPrimaryContentColor {
-    return [UIColor colorWithRed:255.0f / 255.0f green:163.0f / 255.0f blue:203.0f / 255.0f alpha:1.0f];
+    return BPKColor.white;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
@@ -64,15 +72,15 @@
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return self.primaryColor;
+    return self.secondaryColor;
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return BPKColor.red100;
+    return BPKColor.white;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return self.primaryColor;
+    return BPKColor.gray100;
 }
 
 - (UIColor *)calendarDateSelectedContentColor {
