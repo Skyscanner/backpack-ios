@@ -22,4 +22,5 @@
 #import "BPKGradient.h"
 #import "BPKGradientLayer.h"
 #import "BPKGradientView.h"
+#import "BPKPrimaryGradientView.h"
 #endif

@@ -20,24 +20,18 @@ import UIKit
 
 class GradientSelectorTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? GradientViewController else {
-            assert(false, "Destination for gradient segues shoudlbe `GradientViewController`")
-            return
-        }
-
-        switch segue.identifier {
-        case "ShowPrimary":
-            destination.gradientType = .primary
-            destination.title = "Primary"
-        case "ShowBaselineScrim":
-            destination.gradientType = .baselinesSrim
-            destination.title = "Baseline Scrim"
-        default:
-            assert(
-                false,
-                "Unknown segue identifier for `GradientSelectorTableViewController`:"
-                + "`\(String(describing: segue.identifier))`"
-            )
+        if let destination = segue.destination as? GradientViewController {
+            switch segue.identifier {
+            case "ShowBaselineScrim":
+                destination.gradientType = .baselineScrim
+                destination.title = "Baseline Scrim"
+            default:
+                assert(
+                    false,
+                    "Unknown segue identifier for `GradientSelectorTableViewController`:"
+                        + "`\(String(describing: segue.identifier))`"
+                )
+            }
         }
     }
 }

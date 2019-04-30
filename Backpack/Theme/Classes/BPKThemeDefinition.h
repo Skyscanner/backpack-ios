@@ -20,6 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BPKGradient;
 @protocol BPKThemeDefinition
 
 @required
@@ -44,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, readonly, strong) NSNumber *buttonCornerRadius;
 
 @property(nonatomic, readonly, strong) UIColor *primaryColor;
-
+@property(nonatomic, readonly, strong) BPKGradient *primaryGradient;
 
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;

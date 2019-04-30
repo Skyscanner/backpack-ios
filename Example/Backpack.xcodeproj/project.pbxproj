@@ -73,6 +73,7 @@
 		D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */; };
 		D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6517B4A216DF63700D85FF9 /* DialogUITest.swift */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
+		D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
 		D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */; };
 		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
 		D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */; };
@@ -221,6 +222,7 @@
 		D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack NativeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D6517B4A216DF63700D85FF9 /* DialogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUITest.swift; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
+		D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPrimaryGradientSnapshotTests.m; sourceTree = "<group>"; };
 		D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSnapshotTest.m; sourceTree = "<group>"; };
 		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
 		D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsSelectorTableViewController.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */,
 				D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPill.m */,
 				D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */,
+				D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -935,6 +938,7 @@
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
 				D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPill.m in Sources */,
 				D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */,
+				D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

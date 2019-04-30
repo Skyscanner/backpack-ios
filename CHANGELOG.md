@@ -7,10 +7,10 @@
 **Added:**
 
 - Backpack/Theme:
-  - Added `buttonCornerRadius` properties to Backpack theme definitions.
+  - Added `buttonCornerRadius` property to Backpack theme definitions.
 
 - Backpack/Button:
-  - Added `cornerRadius` appearance proxy properties to support theming.
+  - Added `cornerRadius` appearance proxy property to support theming.
 
 ### 8.11.0
 
