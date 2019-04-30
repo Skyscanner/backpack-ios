@@ -56,6 +56,18 @@
     return self.primaryColor;
 }
 
+- (UIColor *)buttonFeaturedContentColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)buttonFeaturedGradientStartColor {
+    return BPKColor.pink500;
+}
+
+- (UIColor *)buttonFeaturedGradientEndColor {
+    return BPKColor.pink600;
+}
+
 - (UIColor *)buttonPrimaryContentColor {
     return BPKColor.white;
 }

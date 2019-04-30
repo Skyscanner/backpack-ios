@@ -74,6 +74,18 @@
     return [UIColor colorWithRed:1 green:0.702 blue:0 alpha:1];
 }
 
+- (UIColor *)buttonFeaturedContentColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)buttonFeaturedGradientStartColor {
+    return [UIColor colorWithRed:0.749019608 green:0.211764706 blue:0.443137255 alpha:1];
+}
+
+- (UIColor *)buttonFeaturedGradientEndColor {
+    return [UIColor colorWithRed:0.368627451 green:0.02745098 blue:0.17254902 alpha:1];
+}
+
 - (UIColor *)buttonSecondaryContentColor {
     return [UIColor colorWithRed:0.608 green:0.0627 blue:0.298 alpha:1];
 }

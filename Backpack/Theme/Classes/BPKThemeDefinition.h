@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientStartColor;
 @property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientEndColor;
+@property(nonatomic, readonly, strong) UIColor *buttonFeaturedContentColor;
+@property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientStartColor;
+@property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientEndColor;
 /**
  * The corner radii for all button styles except link. If `nil` the default style of the button
  * is used.

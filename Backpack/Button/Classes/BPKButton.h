@@ -62,6 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton : UIButton
 
+@property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *featuredGradientStartColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *featuredGradientEndColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *primaryContentColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *primaryGradientStartColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *primaryGradientEndColor UI_APPEARANCE_SELECTOR;
