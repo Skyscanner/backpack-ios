@@ -52,4 +52,11 @@
     FBSnapshotVerifyView(view, nil);
 }
 
+- (void)testPrimaryGradientWithDirectionOverride {
+    BPKPrimaryGradientView *view = [[BPKPrimaryGradientView alloc] initWithFrame:CGRectMake(0, 0, 150, 200)];
+    view.directionOverride = @(BPKGradientDirectionLeft);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
 @end

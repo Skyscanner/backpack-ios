@@ -28,6 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE NS_SWIFT_NAME(PrimaryGradientView) @interface BPKPrimaryGradientView : UIView
 
 /**
+ * Override the direction in the configured primary gradient. If set this
+ * should be a valid value for the `BPKGradientDirection` enum.
+ */
+@property(nullable, nonatomic, strong) NSNumber *directionOverride;
+
+
+/**
  * The gradient currently being drawn.
  * @warning Do not set this value directly. It's intended to be used via theming.
  */

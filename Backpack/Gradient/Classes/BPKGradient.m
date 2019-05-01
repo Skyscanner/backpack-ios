@@ -61,6 +61,15 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)cloneWithNewDirection:(BPKGradientDirection)newDirection {
+    CGPoint newStart = [[self class] startPointForDirection:newDirection];
+    CGPoint newEnd = [[self class] endPointForDirection:newDirection];
+
+    return [[BPKGradient alloc] initWithColors:self.colors
+                                    startPoint:newStart
+                                      endPoint:newEnd];
+}
+
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
     return [self initWithColors:@[ BPKColor.blue500, BPKColor.primaryGradientLight ]
                      startPoint:[[self class] startPointForDirection:direction]
@@ -161,6 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKGradientDirectionBottomRight:
         return CGPointMake(0.0, 0.0);
     default:
+        NSAssert(NO, @"Invalid `BPKGradientDirection` value %lu", (unsigned long)direction);
         return CGPointMake(0.0, 0.0);
     }
 }
@@ -184,6 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKGradientDirectionBottomRight:
         return CGPointMake(1.0, 1.0);
     default:
+        NSAssert(NO, @"Invalid `BPKGradientDirection` value %lu", (unsigned long)direction);
         return CGPointMake(1.0, 1.0);
     }
 }
