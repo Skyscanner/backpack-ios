@@ -73,6 +73,9 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     buttonAppearance.secondaryContentColor = theme.buttonSecondaryContentColor;
     buttonAppearance.secondaryBackgroundColor = theme.buttonSecondaryBackgroundColor;
     buttonAppearance.secondaryBorderColor = theme.buttonSecondaryBorderColor;
+    buttonAppearance.destructiveContentColor = theme.buttonDestructiveContentColor;
+    buttonAppearance.destructiveBackgroundColor = theme.buttonDestructiveBackgroundColor;
+    buttonAppearance.destructiveBorderColor = theme.buttonDestructiveBorderColor;
     buttonAppearance.cornerRadius = theme.buttonCornerRadius;
 
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];

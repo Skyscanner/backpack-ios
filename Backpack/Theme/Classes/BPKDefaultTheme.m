@@ -92,6 +92,18 @@
     return BPKColor.gray100;
 }
 
+- (UIColor *)buttonDestructiveContentColor {
+    return BPKColor.red500;
+}
+
+- (UIColor *)buttonDestructiveBackgroundColor {
+    return BPKColor.white;
+}
+
+- (UIColor *)buttonDestructiveBorderColor {
+    return BPKColor.gray100;
+}
+
 - (NSNumber *)buttonCornerRadius {
     return nil;
 }
