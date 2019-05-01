@@ -42,7 +42,6 @@ NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-
 /**
  * The primary color of the reciever. This is used to control the
  * `onTintColor`.
@@ -50,7 +49,6 @@ NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
  * @warning This is not intended to be used directly, it exists to support theming only.
  */
 @property(nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
-
 
 @end
 

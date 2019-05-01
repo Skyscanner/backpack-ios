@@ -527,7 +527,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSParameterAssert(bottom);
 
     BPKGradientDirection direction = BPKGradientDirectionDown;
-    return [[BPKGradient alloc] initWithColors:@[ top, bottom ]
+    return [[BPKGradient alloc] initWithColors:@[top, bottom]
                                     startPoint:[BPKGradient startPointForDirection:direction]
                                       endPoint:[BPKGradient endPointForDirection:direction]];
 }

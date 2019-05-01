@@ -23,9 +23,9 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
-#import <Backpack/Radii.h>
 
 @implementation BPKDohaTheme
 
@@ -47,9 +47,7 @@
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionBottomLeft];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionBottomLeft];
 
-    return [[BPKGradient alloc] initWithColors:@[startColor, endColor]
-                                    startPoint:startPoint
-                                      endPoint:endPoint];
+    return [[BPKGradient alloc] initWithColors:@[startColor, endColor] startPoint:startPoint endPoint:endPoint];
 }
 
 - (UIColor *)chipPrimaryColor {

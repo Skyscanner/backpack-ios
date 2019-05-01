@@ -140,7 +140,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - NSObject methods
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    NSAssert(NO, @"Forwarding unrecognized selector, %@, to `rootViewController` in `BPKThemeContainerController`. It is not recommended to rely on this behaviour", NSStringFromSelector(aSelector));
+    NSAssert(NO,
+             @"Forwarding unrecognized selector, %@, to `rootViewController` in `BPKThemeContainerController`. It is "
+             @"not recommended to rely on this behaviour",
+             NSStringFromSelector(aSelector));
     return self.rootViewController;
 }
 

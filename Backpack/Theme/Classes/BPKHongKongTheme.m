@@ -26,7 +26,7 @@
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
-@interface BPKHongKongTheme()
+@interface BPKHongKongTheme ()
 @property(nonatomic, readonly, strong) UIColor *secondaryColor;
 @end
 
@@ -54,11 +54,8 @@
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionUp];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionUp];
 
-    return [[BPKGradient alloc] initWithColors:@[startColor, endColor]
-                                    startPoint:startPoint
-                                      endPoint:endPoint];
+    return [[BPKGradient alloc] initWithColors:@[startColor, endColor] startPoint:startPoint endPoint:endPoint];
 }
-
 
 - (UIColor *)secondaryColor {
     return [UIColor colorWithRed:0 green:0.392 blue:0.388 alpha:1];

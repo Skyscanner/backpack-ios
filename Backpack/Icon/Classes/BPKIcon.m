@@ -113,9 +113,9 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     [iconCodepoint drawInRect:CGRectMake(0, 0, iconSize.width, iconSize.height)
                withAttributes:@{
-                   NSFontAttributeName : font,
-                   NSForegroundColorAttributeName : color,
-                   NSParagraphStyleAttributeName : self.paragraphStyle,
+                   NSFontAttributeName: font,
+                   NSForegroundColorAttributeName: color,
+                   NSParagraphStyleAttributeName: self.paragraphStyle,
                }];
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

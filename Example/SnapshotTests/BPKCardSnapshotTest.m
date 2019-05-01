@@ -42,11 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[card]-16-|"
                                                                        options:0
                                                                        metrics:nil
-                                                                         views:@{@"card" : card}]];
+                                                                         views:@{@"card": card}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[card]-16-|"
                                                                        options:0
                                                                        metrics:nil
-                                                                         views:@{@"card" : card}]];
+                                                                         views:@{@"card": card}]];
     [parentView layoutIfNeeded];
 }
 
@@ -56,11 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
     [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
                                                                  options:0
                                                                  metrics:nil
-                                                                   views:@{@"innerView" : innerView}]];
+                                                                   views:@{@"innerView": innerView}]];
     [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
                                                                  options:0
                                                                  metrics:nil
-                                                                   views:@{@"innerView" : innerView}]];
+                                                                   views:@{@"innerView": innerView}]];
 }
 
 - (void)configureDividedCard:(BPKDividedCard *)card

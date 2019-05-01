@@ -28,12 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithColorsStopsStartPointEndPoint {
     BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[ UIColor.redColor, UIColor.blueColor, UIColor.greenColor ]
-                                      stops:@[ @0.0, @0.5, @1.0 ]
+        [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
+                                      stops:@[@0.0, @0.5, @1.0]
                                  startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
                                    endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
-    NSArray<UIColor *> *expectedColors = @[ UIColor.redColor, UIColor.blueColor, UIColor.greenColor ];
-    NSArray<NSNumber *> *expectedStops = @[ @0.0, @0.5, @1.0 ];
+    NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
+    NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);
@@ -43,11 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithColorsStartPointEndPoint {
     BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[ UIColor.redColor, UIColor.blueColor, UIColor.greenColor ]
+        [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
                                  startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
                                    endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
-    NSArray<UIColor *> *expectedColors = @[ UIColor.redColor, UIColor.blueColor, UIColor.greenColor ];
-    NSArray<NSNumber *> *expectedStops = @[ @0.0, @0.5, @1.0 ];
+    NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
+    NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);
@@ -60,8 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
     // This is tradeoff, if we change the colorspace we can change these tests
     BPKGradient *gradient = [BPKGradient primary];
 
-    NSArray<UIColor *> *expectedColors = @[ BPKColor.blue500, BPKColor.primaryGradientLight ];
-    NSArray<NSNumber *> *expectedStops = @[ @0, @1 ];
+    NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
+    NSArray<NSNumber *> *expectedStops = @[@0, @1];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);
@@ -74,8 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
     // This is tradeoff, if we change the colorspace we can change these tests
     BPKGradient *gradient = [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
 
-    NSArray<UIColor *> *expectedColors = @[ BPKColor.blue500, BPKColor.primaryGradientLight ];
-    NSArray<NSNumber *> *expectedStops = @[ @0, @1 ];
+    NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
+    NSArray<NSNumber *> *expectedStops = @[@0, @1];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);
     XCTAssertEqualObjects(gradient.stops, expectedStops);

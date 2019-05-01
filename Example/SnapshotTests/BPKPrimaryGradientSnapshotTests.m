@@ -48,7 +48,6 @@
                                              startPoint:startPoint
                                                endPoint:endPoint];
 
-
     FBSnapshotVerifyView(view, nil);
 }
 

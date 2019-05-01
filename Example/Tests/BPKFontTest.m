@@ -53,9 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg
                                           withCustomAttributes:@{
-                                              NSKernAttributeName : @1.5,
-                                              NSFontAttributeName : font,
-                                              NSForegroundColorAttributeName : UIColor.redColor,
+                                              NSKernAttributeName: @1.5,
+                                              NSFontAttributeName: font,
+                                              NSForegroundColorAttributeName: UIColor.redColor,
                                           }];
 
     XCTAssertNotEqualObjects(attributes[NSKernAttributeName], @1.5,

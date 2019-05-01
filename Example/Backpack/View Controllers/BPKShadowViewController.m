@@ -39,7 +39,7 @@ const static NSInteger LabelTag = 72817;
 }
 
 - (void)setupViews {
-    NSArray *factoryMethods = @[ @"shadowSm", @"shadowLg" ];
+    NSArray *factoryMethods = @[@"shadowSm", @"shadowLg"];
 
     NSAssert(factoryMethods.count == self.shadowViews.count,
              @"Expected equal number of shadow views and factoryMethods");

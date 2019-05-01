@@ -53,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-
 + (Class)layerClass {
     return [BPKGradientLayer class];
 }
@@ -72,4 +71,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 NS_ASSUME_NONNULL_END
-

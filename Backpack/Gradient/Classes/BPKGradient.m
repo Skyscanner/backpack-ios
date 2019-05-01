@@ -62,16 +62,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
-    return [self initWithColors:@[ BPKColor.blue500, BPKColor.primaryGradientLight ]
+    return [self initWithColors:@[BPKColor.blue500, BPKColor.primaryGradientLight]
                      startPoint:[[self class] startPointForDirection:direction]
                        endPoint:[[self class] endPointForDirection:direction]];
 }
 
 - (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction {
-    return
-        [self initWithColors:@[ [BPKColor.gray900 colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor] ]
-                  startPoint:[[self class] startPointForDirection:direction]
-                    endPoint:[[self class] endPointForDirection:direction]];
+    return [self initWithColors:@[[BPKColor.gray900 colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
+                     startPoint:[[self class] startPointForDirection:direction]
+                       endPoint:[[self class] endPointForDirection:direction]];
 }
 
 + (instancetype)primary {

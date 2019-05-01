@@ -38,8 +38,8 @@
     if (self) {
         CAShapeLayer *selectionLayer = [[CAShapeLayer alloc] init];
         CAShapeLayer *samedayLayer = [[CAShapeLayer alloc] init];
-        selectionLayer.actions = @{@"hidden" : [NSNull null]};
-        samedayLayer.actions = @{@"hidden" : [NSNull null]};
+        selectionLayer.actions = @{@"hidden": [NSNull null]};
+        samedayLayer.actions = @{@"hidden": [NSNull null]};
         [self.contentView.layer insertSublayer:samedayLayer below:self.shapeLayer];
         [self.contentView.layer insertSublayer:selectionLayer below:samedayLayer];
         self.selectionLayer = selectionLayer;

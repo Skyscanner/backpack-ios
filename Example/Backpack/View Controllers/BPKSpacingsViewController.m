@@ -39,7 +39,7 @@
 
 - (void)setSpacings {
     NSArray<NSString *> *spacingKeys =
-        @[ @"BPKSpacingSm", @"BPKSpacingMd", @"BPKSpacingBase", @"BPKSpacingLg", @"BPKSpacingXl", @"BPKSpacingXxl" ];
+        @[@"BPKSpacingSm", @"BPKSpacingMd", @"BPKSpacingBase", @"BPKSpacingLg", @"BPKSpacingXl", @"BPKSpacingXxl"];
     NSArray<NSNumber *> *spacingValues = @[
         [NSNumber numberWithFloat:BPKSpacingSm],
         [NSNumber numberWithFloat:BPKSpacingMd],

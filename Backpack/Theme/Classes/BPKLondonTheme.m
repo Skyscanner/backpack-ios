@@ -51,9 +51,7 @@
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionBottomRight];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionBottomRight];
 
-    return [[BPKGradient alloc] initWithColors:@[startColor, endColor]
-                                    startPoint:startPoint
-                                      endPoint:endPoint];
+    return [[BPKGradient alloc] initWithColors:@[startColor, endColor] startPoint:startPoint endPoint:endPoint];
 }
 
 - (UIColor *)spinnerPrimaryColor {

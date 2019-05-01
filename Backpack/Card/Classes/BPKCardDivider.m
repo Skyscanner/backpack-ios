@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dottedLine.strokeColor = [BPKColor gray100].CGColor;
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
-    self.dottedLine.lineDashPattern = @[ @5, @3 ];
+    self.dottedLine.lineDashPattern = @[@5, @3];
     [self.layer addSublayer:self.dottedLine];
 }
 

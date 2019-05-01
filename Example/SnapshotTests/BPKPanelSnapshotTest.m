@@ -39,11 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[panel]-16-|"
                                                                        options:0
                                                                        metrics:nil
-                                                                         views:@{@"panel" : panel}]];
+                                                                         views:@{@"panel": panel}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[panel]-16-|"
                                                                        options:0
                                                                        metrics:nil
-                                                                         views:@{@"panel" : panel}]];
+                                                                         views:@{@"panel": panel}]];
     [parentView layoutIfNeeded];
 }
 
@@ -53,11 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
     [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
                                                                   options:0
                                                                   metrics:nil
-                                                                    views:@{@"innerView" : innerView}]];
+                                                                    views:@{@"innerView": innerView}]];
     [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
                                                                   options:0
                                                                   metrics:nil
-                                                                    views:@{@"innerView" : innerView}]];
+                                                                    views:@{@"innerView": innerView}]];
 }
 
 - (void)testViewSnapshotWithoutPadded {

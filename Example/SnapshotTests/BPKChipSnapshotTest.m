@@ -38,12 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
     [parentView addSubview:chip];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[chip]-padding-|"
                                                                        options:0
-                                                                       metrics:@{@"padding" : @(BPKSpacingBase)}
-                                                                         views:@{@"chip" : chip}]];
+                                                                       metrics:@{@"padding": @(BPKSpacingBase)}
+                                                                         views:@{@"chip": chip}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[chip]-padding-|"
                                                                        options:0
-                                                                       metrics:@{@"padding" : @(BPKSpacingBase)}
-                                                                         views:@{@"chip" : chip}]];
+                                                                       metrics:@{@"padding": @(BPKSpacingBase)}
+                                                                         views:@{@"chip": chip}]];
     [parentView layoutIfNeeded];
 }
 

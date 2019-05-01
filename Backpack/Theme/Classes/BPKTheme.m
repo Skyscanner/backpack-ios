@@ -58,9 +58,9 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 }
 
 + (void)applyTheme:(id<BPKThemeDefinition>)theme withContainer:(Class)class {
-    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.switchPrimaryColor];
-    [[BPKChip appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.chipPrimaryColor];
-    [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[ class ]] setPrimaryColor:theme.spinnerPrimaryColor];
+    [[BPKSwitch appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.switchPrimaryColor];
+    [[BPKChip appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.chipPrimaryColor];
+    [[BPKSpinner appearanceWhenContainedInInstancesOfClasses:@[class]] setPrimaryColor:theme.spinnerPrimaryColor];
 
     BPKButton *buttonAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
     buttonAppearance.linkContentColor = theme.buttonLinkContentColor;
@@ -76,7 +76,8 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
 
-    BPKPrimaryGradientView *primaryGradientViewAppearance = [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKPrimaryGradientView *primaryGradientViewAppearance =
+        [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
 }
 
