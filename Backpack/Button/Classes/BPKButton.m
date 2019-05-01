@@ -367,8 +367,10 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleFeatured: {
-            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:BPKColor.pink500
-                                                      gradientOnBottom:BPKColor.pink600];
+            UIColor *startColor = self.featuredGradientStartColor ? self.featuredGradientStartColor : BPKColor.pink500;
+            UIColor *endColor = self.featuredGradientEndColor ? self.featuredGradientEndColor : BPKColor.pink600;
+
+            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor gradientOnBottom:endColor];
             break;
         }
         case BPKButtonStyleLink: {
@@ -421,7 +423,11 @@ NS_ASSUME_NONNULL_BEGIN
         }
         break;
     case BPKButtonStyleFeatured:
-        highlightedContentColor = [self class].highlightedWhite;
+        if (self.featuredContentColor != nil) {
+            highlightedContentColor = [BPKColor blend:self.featuredContentColor with:BPKColor.gray900 weight:0.85f];
+        } else {
+            highlightedContentColor = [self class].highlightedWhite;
+        }
         break;
     case BPKButtonStyleSecondary:
         if (self.secondaryContentColor != nil) {
@@ -495,6 +501,9 @@ NS_ASSUME_NONNULL_BEGIN
         }
         return BPKColor.white;
     case BPKButtonStyleFeatured:
+        if (self.featuredContentColor != nil) {
+            return self.featuredContentColor;
+        }
         return BPKColor.white;
     case BPKButtonStyleSecondary:
         if (self.secondaryContentColor != nil) {
@@ -586,6 +595,27 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderColor = BPKColor.clear.CGColor;
     self.layer.opacity = self.style == BPKButtonStyleOutline ? 0.8 : 1;
     self.layer.borderWidth = 0;
+}
+
+- (void)setFeaturedContentColor:(UIColor *_Nullable)featuredContentColor {
+    if (featuredContentColor != _featuredContentColor) {
+        _featuredContentColor = featuredContentColor;
+        [self updateContentColor];
+    }
+}
+
+- (void)setFeaturedGradientStartColor:(UIColor *_Nullable)featuredGradientStartColor {
+    if (featuredGradientStartColor != _featuredGradientStartColor) {
+        _featuredGradientStartColor = featuredGradientStartColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setFeaturedGradientEndColor:(UIColor *_Nullable)featuredGradientEndColor {
+    if (featuredGradientEndColor != _featuredGradientEndColor) {
+        _featuredGradientEndColor = featuredGradientEndColor;
+        [self updateBackgroundAndStyle];
+    }
 }
 
 - (void)setPrimaryContentColor:(UIColor *_Nullable)primaryContentColor {
