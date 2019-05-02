@@ -88,6 +88,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 
+    // Use this to get the title value if one has been set in storyboard.
+    if (self.titleLabel != nil && self.titleLabel.text != nil) {
+        _title = self.titleLabel.text;
+    }
+
     self.size = size;
     self.style = style;
     self.imagePosition = BPKButtonImagePositionTrailing;
