@@ -326,7 +326,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Updates
 
 - (void)updateBackgroundAndStyle {
-    UIColor *highlightedWhite = [BPKColor blend:BPKColor.white with:BPKColor.gray900 weight:0.85f];
     UIColor *highlightedOutline = [BPKColor.gray900 colorWithAlphaComponent:0.2];
 
     if (self.isEnabled) {
@@ -355,9 +354,14 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleDestructive: {
-            [self setBorderedStyleWithColor:BPKColor.gray100 withGradientColor:BPKColor.white];
+            UIColor *backgroundColor =
+                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : BPKColor.white;
+            UIColor *borderColor = self.destructiveBorderColor ? self.destructiveBorderColor : BPKColor.gray100;
+            [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
-                self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedWhite];
+                self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
+                                                                                       with:BPKColor.gray900
+                                                                                     weight:0.85f]];
                 [self.gradientLayer setNeedsDisplay];
             }
             break;
@@ -442,7 +446,11 @@ NS_ASSUME_NONNULL_BEGIN
         }
         break;
     case BPKButtonStyleDestructive:
-        highlightedContentColor = [self class].highlightedRed;
+        if (self.destructiveContentColor != nil) {
+            highlightedContentColor = [BPKColor blend:self.destructiveContentColor with:BPKColor.gray900 weight:0.85f];
+        } else {
+            highlightedContentColor = [self class].highlightedRed;
+        }
         break;
     case BPKButtonStyleOutline:
         highlightedContentColor = [self class].highlightedOutline;
@@ -521,6 +529,9 @@ NS_ASSUME_NONNULL_BEGIN
         }
         return BPKColor.blue500;
     case BPKButtonStyleDestructive:
+        if (self.destructiveContentColor != nil) {
+            return self.destructiveContentColor;
+        }
         return BPKColor.red500;
     case BPKButtonStyleOutline:
         return BPKColor.white;
@@ -661,6 +672,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSecondaryBorderColor:(UIColor *_Nullable)secondaryBorderColor {
     if (secondaryBorderColor != _secondaryBorderColor) {
         _secondaryBorderColor = secondaryBorderColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setDestructiveContentColor:(UIColor *_Nullable)destructiveContentColor {
+    if (destructiveContentColor != _destructiveContentColor) {
+        _destructiveContentColor = destructiveContentColor;
+        [self updateContentColor];
+    }
+}
+
+- (void)setDestructiveBackgroundColor:(UIColor *_Nullable)destructiveBackgroundColor {
+    if (destructiveBackgroundColor != _destructiveBackgroundColor) {
+        _destructiveBackgroundColor = destructiveBackgroundColor;
+        [self updateBackgroundAndStyle];
+    }
+}
+
+- (void)setDestructiveBorderColor:(UIColor *_Nullable)destructiveBorderColor {
+    if (destructiveBorderColor != _destructiveBorderColor) {
+        _destructiveBorderColor = destructiveBorderColor;
         [self updateBackgroundAndStyle];
     }
 }
