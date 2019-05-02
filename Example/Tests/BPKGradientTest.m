@@ -97,6 +97,18 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(first, second);
 }
 
+- (void)testCloneWithNewDirection {
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.blackColor, UIColor.whiteColor]
+                                                     startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
+                                                       endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
+
+    BPKGradient *newGradient = [gradient cloneWithNewDirection:BPKGradientDirectionTopRight];
+
+    XCTAssert(CGPointEqualToPoint(newGradient.startPoint, CGPointMake(0.0, 1.0)));
+    XCTAssert(CGPointEqualToPoint(newGradient.endPoint, CGPointMake(1.0, 0.0)));
+}
+
+
 @end
 
 NS_ASSUME_NONNULL_END

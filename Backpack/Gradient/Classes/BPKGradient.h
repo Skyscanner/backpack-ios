@@ -141,6 +141,13 @@ NS_SWIFT_NAME(Gradient) @interface BPKGradient : NSObject
 - (instancetype)initWithColors:(NSArray<UIColor *> *)colors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /**
+ * Create a new instance of the receiver with the same colors, but a new direction.
+ *
+ * @param newDirection The direction of the new instance.
+ */
+- (instancetype)cloneWithNewDirection:(BPKGradientDirection)newDirection;
+
+/**
  * The Skyscanner primary gradient with the default direction.
  *
  * @return The Skyscanner primary gradient.

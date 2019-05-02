@@ -65,7 +65,28 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (_gradient != gradient) {
         _gradient = gradient;
-        self.gradientLayer.gradient = _gradient;
+
+        [self configureGradientLayer];
+    }
+}
+
+- (void)setDirectionOverride:(nullable NSNumber *)directionOverride {
+    BPKAssertMainThread();
+    if (_directionOverride != directionOverride) {
+        _directionOverride = directionOverride;
+
+        [self configureGradientLayer];
+    }
+}
+
+#pragma mark - Private
+
+- (void)configureGradientLayer {
+    if (self.directionOverride != nil) {
+        BPKGradient *newGradient = [self.gradient cloneWithNewDirection:(BPKGradientDirection)self.directionOverride.unsignedIntegerValue];
+        self.gradientLayer.gradient = newGradient;
+    } else {
+        self.gradientLayer.gradient = self.gradient;
     }
 }
 
