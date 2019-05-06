@@ -63,6 +63,8 @@ class SettingsViewController: UITableViewController {
             selectableCells[1].setApplied(applied: true)
         case .doha:
             selectableCells[2].setApplied(applied: true)
+        case .silver:
+            selectableCells[3].setApplied(applied: true)
         case .none:
             showThemeList = false
         }

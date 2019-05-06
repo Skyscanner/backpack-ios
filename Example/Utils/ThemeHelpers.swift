@@ -23,7 +23,7 @@ class ThemeHelpers: NSObject {
 
     @objc
     enum ThemeName: Int {
-        case none = 0, london, hongKong, doha
+        case none = 0, london, hongKong, doha, silver
     }
 
     @objc
@@ -32,6 +32,7 @@ class ThemeHelpers: NSObject {
         Theme.apply(LondonTheme())
         Theme.apply(HongKongTheme())
         Theme.apply(DohaTheme())
+        Theme.apply(SilverTheme())
     }
 
     @objc
@@ -45,6 +46,8 @@ class ThemeHelpers: NSObject {
             return HongKongTheme()
         case .doha:
             return DohaTheme()
+        case .silver:
+            return SilverTheme()
         }
     }
 }

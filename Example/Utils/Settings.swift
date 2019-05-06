@@ -38,6 +38,8 @@ class Settings: NSObject {
                 return .hongKong
             case "Doha":
                 return .doha
+            case "Silver":
+                return .silver
             default:
                 return .none
             }
