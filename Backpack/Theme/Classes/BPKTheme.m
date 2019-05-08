@@ -27,8 +27,11 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+#import <Backpack/TextView.h>
+#import <Backpack/Theme.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -123,6 +126,34 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     return [self grayColor:BPKGrayColor900 for:view];
 }
 
++ (BPKFontMapping *)fontNameFor:(UIView *)view {
+    if (view == nil) {
+        return nil;
+    }
+
+    Boolean viewIsLabel = [view isKindOfClass:[BPKLabel class]];
+    Boolean viewIsTextView = [view isKindOfClass:[BPKTextView class]];
+    Boolean viewIsButton = [view isKindOfClass:[BPKButton class]];
+
+    NSAssert(viewIsLabel || viewIsTextView || viewIsButton,
+             @"fontNameFor: can only be used with a view that is an instance of BPKLabel, BPKTextView or BPKButton");
+
+    if (viewIsLabel) {
+        BPKLabel *label = (BPKLabel *)view;
+        return label.fontName;
+    }
+    if (viewIsTextView) {
+        BPKTextView *textView = (BPKTextView *)view;
+        return textView.fontName;
+    }
+    if (viewIsButton) {
+        BPKButton *button = (BPKButton *)view;
+        return button.fontName;
+    }
+
+    return nil;
+}
+
 + (NSString *)didChangeNotification {
     return BPKThemeDidChangeNotification;
 }
@@ -163,6 +194,15 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
+
+    BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
+    labelViewAppearance.fontName = theme.fontName;
+
+    BPKTextView *textViewAppearance = [BPKTextView appearanceWhenContainedInInstancesOfClasses:@[class]];
+    textViewAppearance.fontName = theme.fontName;
+
+    BPKButton *buttonViewAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    buttonViewAppearance.fontName = theme.fontName;
 }
 
 @end

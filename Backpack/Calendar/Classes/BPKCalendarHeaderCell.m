@@ -43,7 +43,8 @@
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                    content:self.titleLabel.text
-                                                                 textColor:appearance.headerTitleColor];
+                                                                 textColor:appearance.headerTitleColor
+                                                                   forView:self];
     self.titleLabel.attributedText = monthText;
 }
 

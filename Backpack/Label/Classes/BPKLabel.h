@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
 
+@property(nullable, nonatomic, strong) BPKFontMapping *fontName UI_APPEARANCE_SELECTOR;
+
 /**
  * Create a `BPKLabel` with a specific BPKFont style.
  *
@@ -43,5 +45,12 @@ NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
  @see BPKFontStyle for the integer values to use when setting from Interface Builder.
  */
 @property(nonatomic) BPKFontStyle fontStyle;
+
+/**
+ The font style used for the label.
+
+ @see BPKFontStyle for the integer values to use when setting from Interface Builder.
+ */
+@property(nonatomic, nullable) NSString *textV;
 @end
 NS_ASSUME_NONNULL_END

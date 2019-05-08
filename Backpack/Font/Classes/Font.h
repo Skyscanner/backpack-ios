@@ -18,6 +18,6 @@
 
 #ifndef __BACKPACK_FONT__
 #define __BACKPACK_FONT__
-
 #import "BPKFont.h"
+#import "BPKFontMapping.h"
 #endif
