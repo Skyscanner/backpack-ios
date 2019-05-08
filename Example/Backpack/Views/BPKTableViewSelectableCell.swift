@@ -42,7 +42,9 @@ class BPKTableViewSelectableCell: UITableViewCell {
 
     override func didMoveToWindow() {
         super.didMoveToWindow()
-        tickIcon.tintColor = Theme.primaryColor(for: self)
+        if self.window != nil {
+            tickIcon.tintColor = Theme.primaryColor(for: self)
+        }
     }
 
     func setApplied(applied: Bool) {

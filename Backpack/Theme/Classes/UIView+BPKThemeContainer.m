@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation UIView (BPKThemeContainer)
 
 - (nullable BPKThemeContainer *)themeContainer {
+    NSAssert(self.window != nil, @"To get a theme container from a view, the view must be within the view hierarchy.");
+
     UIView *parent = self;
 
     while (parent != nil) {
