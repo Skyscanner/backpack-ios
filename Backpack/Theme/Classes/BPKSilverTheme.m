@@ -32,6 +32,10 @@
     return @"Silver";
 }
 
+- (NSString *)fontName {
+    return @"Zapfino";
+}
+
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

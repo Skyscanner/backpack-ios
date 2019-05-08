@@ -59,20 +59,34 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setText:(NSString *_Nullable)text {
-    BPKAssertMainThread();
-    if (text == nil) {
+- (void)didMoveToWindow {
+    [self updateTextStyle];
+}
+
+- (void)updateTextStyle {
+    if (_textV == nil) {
         self.attributedText = nil;
         return;
     }
 
     NSAttributedString *_Nullable attributedString = nil;
     if (self.textColor) {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                          content:_textV
+                                                        textColor:self.textColor
+                                                          forView:self];
     } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:_textV forView:self];
     }
     super.attributedText = attributedString;
+}
+
+- (void)setText:(NSString *_Nullable)text {
+    BPKAssertMainThread();
+    if (text != _textV) {
+        _textV = text;
+        [self updateTextStyle];
+    }
 }
 
 - (void)setFontStyle:(BPKFontStyle)fontStyle {

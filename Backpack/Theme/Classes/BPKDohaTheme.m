@@ -33,6 +33,10 @@
     return @"Doha";
 }
 
+- (NSString *)fontName {
+    return @"ChalkboardSE-Bold";
+}
+
 - (UIColor *)switchPrimaryColor {
     return self.primaryColor;
 }

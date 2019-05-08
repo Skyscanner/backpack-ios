@@ -64,7 +64,7 @@
     _year = year;
     self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
                                                                content:[year stringValue]
-                                                             textColor:[BPKColor white]];
+                                                             textColor:[BPKColor white] forView:self];
     [self.label sizeToFit];
 }
 

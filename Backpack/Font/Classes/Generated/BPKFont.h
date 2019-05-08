@@ -59,7 +59,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle forView:(UIView *_Nullable)view  NS_SWIFT_NAME(makeAttributes(fontStyle:view:));
 
 /**
  * Create a dictionary of attributes for a specific text styles. This is some times useful
@@ -73,7 +73,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
-                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:));
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes forView:(UIView *_Nullable)view  NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:view:));
 
 /**
  * Create an attributed string with a specified fontStyle and content. The default Backpack
@@ -85,7 +85,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content NS_SWIFT_NAME(makeAttributedString(fontStyle:content:));
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content forView:(UIView *_Nullable)view  NS_SWIFT_NAME(makeAttributedString(fontStyle:content:view:));
 
 /**
  * Create an attributed string with a specified fontStyle, content, and text color.
@@ -97,7 +97,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *
  * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
  */
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor forView:(UIView *_Nullable)view  NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:view:));
 @end
 NS_ASSUME_NONNULL_END
 // clang-format on

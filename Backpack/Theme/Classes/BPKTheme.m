@@ -29,6 +29,7 @@
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+#import <Backpack/Theme.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,6 +44,15 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     }
 
     return BPKColor.blue500;
+}
+
++ (NSString *)fontNameFor:(UIView *)view {
+    BPKThemeContainer *themeContainer = view.themeContainer;
+    if (themeContainer != nil) {
+        return themeContainer.themeDefinition.fontName;
+    }
+
+    return @"System";
 }
 
 + (NSString *)didChangeNotification {

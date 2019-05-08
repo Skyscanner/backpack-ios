@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:title
-                                                                           textColor:self.currentContentColor];
+                                                                           textColor:self.currentContentColor forView:self];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -414,7 +414,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:self.title
-                                                                           textColor:self.currentContentColor];
+                                                                           textColor:self.currentContentColor forView:self];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -467,7 +467,7 @@ NS_ASSUME_NONNULL_BEGIN
             NSAttributedString *attributedHighlightedTitle =
                 [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                content:self.title
-                                             textColor:highlightedContentColor];
+                                             textColor:highlightedContentColor forView:self];
 
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];

@@ -32,6 +32,10 @@
     return @"Default";
 }
 
+- (NSString *)fontName {
+    return @"System";
+}
+
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

@@ -38,6 +38,13 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 + (UIColor *)primaryColorFor:(UIView *)view;
 
 /**
+ * Returns the themed primary color for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (NSString *)fontNameFor:(UIView *)view;
+
+/**
  * Creates and returns an instance of the container view for the receiver's theme.
  *
  * @return An instance of the container to use with this theme.

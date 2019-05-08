@@ -36,6 +36,10 @@
     return @"Hong Kong";
 }
 
+- (NSString *)fontName {
+    return @"ChalkboardSE-Bold";
+}
+
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

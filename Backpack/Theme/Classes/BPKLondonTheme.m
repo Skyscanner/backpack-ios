@@ -33,6 +33,10 @@
     return @"London";
 }
 
+- (NSString *)fontName {
+    return @"ChalkboardSE-Bold";
+}
+
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

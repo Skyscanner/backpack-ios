@@ -43,5 +43,12 @@ NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
  @see BPKFontStyle for the integer values to use when setting from Interface Builder.
  */
 @property(nonatomic) BPKFontStyle fontStyle;
+
+/**
+ The font style used for the label.
+
+ @see BPKFontStyle for the integer values to use when setting from Interface Builder.
+ */
+@property(nonatomic, nullable) NSString *textV;
 @end
 NS_ASSUME_NONNULL_END
