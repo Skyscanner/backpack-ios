@@ -38,7 +38,9 @@ script:
   - 'if [[ "$MAIN_STAGE" = true && ! -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci && rm -rf docs; fi'
   - 'if [[ "$MAIN_STAGE" = true && -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci $TRAVIS_TAG; fi'
   - (cd Example && bundle exec rake ci)
-after_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
+after_script:
+  - 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-upload; fi'
+  - 'if [ "$MAIN_STAGE" == true ] && [ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == false ]; then curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_API_KEY" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/Skyscanner%2Fbackpack-docs/requests; fi'
 branches:
   only:
     - master
