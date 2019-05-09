@@ -36,11 +36,12 @@ class BPKTableViewSelectableCell: UITableViewCell {
         NSLayoutConstraint.activate([
             tickIcon.centerYAnchor.constraint(equalTo: centerYAnchor),
             tickIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase)
-        ])
+            ])
         tickIcon.isHidden = true
     }
 
     override func didMoveToWindow() {
+        super.didMoveToWindow()
         tickIcon.tintColor = Theme.primaryColor(for: self)
     }
 
