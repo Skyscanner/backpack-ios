@@ -65,9 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGPoint newStart = [[self class] startPointForDirection:newDirection];
     CGPoint newEnd = [[self class] endPointForDirection:newDirection];
 
-    return [[BPKGradient alloc] initWithColors:self.colors
-                                    startPoint:newStart
-                                      endPoint:newEnd];
+    return [[BPKGradient alloc] initWithColors:self.colors startPoint:newStart endPoint:newEnd];
 }
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {

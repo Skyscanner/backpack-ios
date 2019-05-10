@@ -33,7 +33,6 @@ IB_DESIGNABLE NS_SWIFT_NAME(PrimaryGradientView) @interface BPKPrimaryGradientVi
  */
 @property(nullable, nonatomic, strong) NSNumber *directionOverride;
 
-
 /**
  * The gradient currently being drawn.
  * @warning Do not set this value directly. It's intended to be used via theming.
