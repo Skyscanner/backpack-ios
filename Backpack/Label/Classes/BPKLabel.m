@@ -59,10 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)didMoveToWindow {
-    [self updateTextStyle];
-}
-
 - (void)updateTextStyle {
     if (_textV == nil) {
         self.attributedText = nil;
@@ -93,6 +89,14 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     _fontStyle = fontStyle;
     self.text = self.attributedText.string;
+}
+
+- (void)setFontName:(NSString *_Nullable)fontName {
+    if (_fontName != fontName) {
+        _fontName = fontName;
+
+        [self updateTextStyle];
+    }
 }
 
 #pragma mark - Private

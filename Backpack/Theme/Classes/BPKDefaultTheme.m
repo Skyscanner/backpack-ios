@@ -33,7 +33,7 @@
 }
 
 - (NSString *)fontName {
-    return @"System";
+    return nil;
 }
 
 - (UIColor *)chipPrimaryColor {

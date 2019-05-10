@@ -126,8 +126,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
 
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes =
-        [BPKFont attributesForFontStyle:BPKFontStyleTextSm forView:self];
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm
+                                                                                             forView:self];
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;

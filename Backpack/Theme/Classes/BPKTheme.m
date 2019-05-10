@@ -27,8 +27,10 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+#import <Backpack/TextView.h>
 #import <Backpack/Theme.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -47,12 +49,31 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 }
 
 + (NSString *)fontNameFor:(UIView *)view {
-    BPKThemeContainer *themeContainer = view.themeContainer;
-    if (themeContainer != nil) {
-        return themeContainer.themeDefinition.fontName;
+    if (view == nil) {
+        return nil;
     }
 
-    return @"System";
+    Boolean viewIsLabel = [view isKindOfClass:[BPKLabel class]];
+    Boolean viewIsTextView = [view isKindOfClass:[BPKTextView class]];
+    Boolean viewIsButton = [view isKindOfClass:[BPKButton class]];
+
+    NSAssert(viewIsLabel || viewIsTextView || viewIsButton,
+             @"fontNameFor: can only be used with a view that is an instance of BPKLabel, BPKTextView or BPKButton");
+
+    if (viewIsLabel) {
+        BPKLabel *label = (BPKLabel *)view;
+        return label.fontName;
+    }
+    if (viewIsTextView) {
+        BPKTextView *textView = (BPKTextView *)view;
+        return textView.fontName;
+    }
+    if (viewIsButton) {
+        BPKButton *button = (BPKButton *)view;
+        return button.fontName;
+    }
+
+    return nil;
 }
 
 + (NSString *)didChangeNotification {
@@ -95,6 +116,15 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
+
+    BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
+    labelViewAppearance.fontName = theme.fontName;
+
+    BPKTextView *textViewAppearance = [BPKTextView appearanceWhenContainedInInstancesOfClasses:@[class]];
+    textViewAppearance.fontName = theme.fontName;
+
+    BPKButton *buttonViewAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    buttonViewAppearance.fontName = theme.fontName;
 }
 
 @end
