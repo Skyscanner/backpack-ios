@@ -36,8 +36,8 @@
     return @"Hong Kong";
 }
 
-- (NSString *)fontName {
-    return @"ChalkboardSE-Bold";
+- (UIFontDescriptor *)fontName {
+    return [UIFontDescriptor fontDescriptorWithName:@"ChalkboardSE-Regular" size:10.0];
 }
 
 - (UIColor *)chipPrimaryColor {

@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setFontName:(NSString *_Nullable)fontName {
+- (void)setFontName:(UIFontDescriptor *_Nullable)fontName {
     if (_fontName != fontName) {
         _fontName = fontName;
 

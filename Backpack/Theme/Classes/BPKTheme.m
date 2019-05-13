@@ -48,7 +48,7 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
     return BPKColor.blue500;
 }
 
-+ (NSString *)fontNameFor:(UIView *)view {
++ (UIFontDescriptor *)fontNameFor:(UIView *)view {
     if (view == nil) {
         return nil;
     }

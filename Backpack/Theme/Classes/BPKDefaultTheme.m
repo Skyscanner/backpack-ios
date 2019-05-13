@@ -32,7 +32,7 @@
     return @"Default";
 }
 
-- (NSString *)fontName {
+- (UIFontDescriptor *)fontName {
     return nil;
 }
 

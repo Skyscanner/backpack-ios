@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 @property(nonatomic, readonly) Class themeContainerClass;
-@property(nonatomic, readonly, strong) NSString *themeName;
+@property(nonatomic, readonly, strong) UIFontDescriptor *themeName;
 
 @property(nonatomic, readonly, strong) UIColor *switchPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *chipPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
-@property(nonatomic, readonly, strong) NSString *fontName;
+@property(nonatomic, readonly, strong) UIFontDescriptor *fontName;
 
 @property(nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;

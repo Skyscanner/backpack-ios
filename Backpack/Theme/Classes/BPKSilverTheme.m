@@ -32,8 +32,8 @@
     return @"Silver";
 }
 
-- (NSString *)fontName {
-    return @"Zapfino";
+- (UIFontDescriptor *)fontName {
+    return [UIFontDescriptor fontDescriptorWithName:@"Zapfino" size:10.0];
 }
 
 - (UIColor *)chipPrimaryColor {
