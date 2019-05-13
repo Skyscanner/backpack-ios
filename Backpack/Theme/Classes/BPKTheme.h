@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  * view hierarchy containing Backpack components. This should be subclassed
  * to create concrete themes.
  */
+@class BPKFontMapping;
 @protocol BPKThemeDefinition;
 NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 
@@ -42,7 +43,7 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
  *
  * @return the themed `UIColor` value.
  */
-+ (NSString *)fontNameFor:(UIView *)view;
++ (BPKFontMapping *)fontNameFor:(UIView *)view;
 
 /**
  * Creates and returns an instance of the container view for the receiver's theme.

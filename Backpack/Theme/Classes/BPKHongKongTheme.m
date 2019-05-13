@@ -21,6 +21,7 @@
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
+#import <Backpack/Font.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
@@ -36,8 +37,8 @@
     return @"Hong Kong";
 }
 
-- (UIFontDescriptor *)fontName {
-    return [UIFontDescriptor fontDescriptorWithName:@"ChalkboardSE-Regular" size:10.0];
+- (BPKFontMapping *)fontName {
+    return [[BPKFontMapping alloc] initWithFamily:@"ChalkboardSE-Regular" withBoldFamily:@"ChalkboardSE-Bold" withHeavyFamily:@"ChalkboardSE-Bold"];
 }
 
 - (UIColor *)chipPrimaryColor {

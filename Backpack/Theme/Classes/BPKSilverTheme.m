@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -32,8 +33,8 @@
     return @"Silver";
 }
 
-- (UIFontDescriptor *)fontName {
-    return [UIFontDescriptor fontDescriptorWithName:@"Zapfino" size:10.0];
+- (BPKFontMapping *)fontName {
+    return [[BPKFontMapping alloc] initWithFamily:@"Charter-Roman" withBoldFamily:@"Charter-Bold" withHeavyFamily:@"Charter-Black"];
 }
 
 - (UIColor *)chipPrimaryColor {

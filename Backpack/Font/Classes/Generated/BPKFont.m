@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 #import "BPKFont.h"
+#import "../BPKFontMapping.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
@@ -170,7 +171,6 @@ NS_ASSUME_NONNULL_BEGIN
     [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
     
-    
     return attributedString;
 }
 
@@ -205,7 +205,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style forView:(UIView * _Nullable)view {
-    UIFontDescriptor *themeFontName = [BPKTheme fontNameFor:view];
+    BPKFontMapping *themeFontName = [BPKTheme fontNameFor:view];
     NSString *cacheKey = [self cacheKeyForFontStyle:style andFontName:themeFontName];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
     
@@ -242,23 +242,23 @@ NS_ASSUME_NONNULL_BEGIN
     return result;
 }
 
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style andFontName:(UIFontDescriptor *)fontName {
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style andFontName:(BPKFontMapping *)fontName {
     if (fontName != nil) {
-        return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, [UIFont fontWithDescriptor:fontName size:10.0].fontName];
+        return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontName.baseFontFamily];
     }
     
     return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
-+ (UIFont *)fontForStyle:(BPKFontStyle)style withName:(UIFontDescriptor *)fontName {
++ (UIFont *)fontForStyle:(BPKFontStyle)style withName:(BPKFontMapping *)fontName {
     if(fontName == nil) {
         return [self fontForStyle:style];
     }
     
-    return [self fontWithName:fontName ForStyle:style];
+    return [self fontWithName:fontName forStyle:style];
 }
 
-+ (UIFont *)fontWithName:(UIFontDescriptor *)name ForStyle:(BPKFontStyle)style {
++ (UIFont *)fontWithName:(BPKFontMapping *)name forStyle:(BPKFontStyle)style {
     switch (style) {
         case BPKFontStyleTextBase:
             return [BPKFont fontWithDescriptor:name size:16.0 weight:@"Regular"];
@@ -303,14 +303,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (UIFont *)fontWithDescriptor:(UIFontDescriptor *)descriptor size:(double)size weight:(NSString *)face {
-    UIFontDescriptor *weightedDescriptor =  [UIFontDescriptor fontDescriptorWithName:@"ChalkboardSE-Regul ar" size:size];
-    if(weightedDescriptor == nil) {
-        weightedDescriptor = descriptor;
-    }
-    // TODO If font doesn't exist with weight:
-    // weightedDescriptor = descriptor;
-    return [UIFont fontWithDescriptor:weightedDescriptor size:size];
++ (UIFont *)fontWithDescriptor:(BPKFontMapping *)descriptor size:(double)size weight:(NSString *)weight {
+    return [UIFont fontWithName:[descriptor familyForWeight:weight] size:size];
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {

@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setFontName:(UIFontDescriptor *_Nullable)fontName {
+- (void)setFontName:(BPKFontMapping *_Nullable)fontName {
     if (_fontName != fontName) {
         _fontName = fontName;
 
@@ -423,7 +423,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:self.title
-                                                                           textColor:self.currentContentColor
+                                                                             textColor:self.currentContentColor
                                                                              forView:self];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {

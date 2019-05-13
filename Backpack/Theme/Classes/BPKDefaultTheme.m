@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -32,7 +33,7 @@
     return @"Default";
 }
 
-- (UIFontDescriptor *)fontName {
+- (BPKFontMapping *)fontName {
     return nil;
 }
 

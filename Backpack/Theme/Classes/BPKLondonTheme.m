@@ -20,6 +20,7 @@
 #import "BPKLondonThemeContainer.h"
 
 #import <Backpack/Button.h>
+#import <Backpack/Font.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
@@ -33,8 +34,8 @@
     return @"London";
 }
 
-- (UIFontDescriptor *)fontName {
-    return [UIFontDescriptor fontDescriptorWithName:@"ChalkboardSE-Bold" size:10.0];
+- (BPKFontMapping *)fontName {
+    return [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" withBoldFamily:@"SnellRoundhand-Bold" withHeavyFamily:@"SnellRoundhand-Black"];
 }
 
 - (UIColor *)chipPrimaryColor {
