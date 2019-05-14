@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.14.1
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Added `Button`, `Selected`, and `Not enabled` accessibility traits as appropriate.
+
 ### 8.14.0
 
 **Added:**
