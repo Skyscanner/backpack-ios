@@ -501,6 +501,21 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
         calendarCell.accessibilityLabel = [self formattedDate:date];
+
+        Boolean enabled = [BPKCalendar date:date
+                              isBetweenDate:[self dateFromSimpleDate:self.minDate]
+                                    andDate:[self dateFromSimpleDate:self.maxDate]];
+
+        calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
+
+        if (!enabled) {
+            calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitNotEnabled;
+        }
+
+        if (selectionType == SelectionTypeSingle || selectionType == SelectionTypeSameDay ||
+            selectionType == SelectionTypeLeftBorder || selectionType == SelectionTypeRightBorder) {
+            calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitSelected;
+        }
     }
 }
 
