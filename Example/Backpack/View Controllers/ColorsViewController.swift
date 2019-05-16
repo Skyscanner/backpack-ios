@@ -21,7 +21,7 @@ import Backpack
 
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
-        ("blue500", Backpack.Color.blue500), ("blue700", Backpack.Color.blue700), ("white", Backpack.Color.white)
+        ("primary color", Backpack.Color.blue500), ("blue700", Backpack.Color.blue700), ("white", Backpack.Color.white)
     ]
     fileprivate static var secondaryColors = [
         ("green500", Backpack.Color.green500),
@@ -40,6 +40,10 @@ class ColorsViewController: UICollectionViewController {
 
     fileprivate static let cellIdentifier = "ColorPreviewCollectionViewCell"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
+
+    override func viewDidAppear(_ animated: Bool) {
+        collectionView?.reloadData()
+    }
 
     override func viewDidLoad() {
         collectionView?.register(
@@ -97,7 +101,11 @@ extension ColorsViewController {
         let (_, sectionColors) = ColorsViewController.allColors[indexPath.section]
         let (name, color) = sectionColors[indexPath.row]
         cell.name = name
-        cell.color = color
+        if name == "primary color" {
+            cell.color = Theme.primaryColor(for: collectionView)
+        } else {
+            cell.color = color
+        }
 
         return cell
     }
