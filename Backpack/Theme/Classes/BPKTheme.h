@@ -38,6 +38,48 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 + (UIColor *)primaryColorFor:(UIView *)view;
 
 /**
+ * Returns the themed gray50 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray50ColorFor:(UIView *)view;
+
+/**
+ * Returns the themed gray100 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray100ColorFor:(UIView *)view;
+
+/**
+ * Returns the themed gray300 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray300ColorFor:(UIView *)view;
+
+/**
+ * Returns the themed gray500 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray500ColorFor:(UIView *)view;
+
+/**\
+ * Returns the themed gray700 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray700ColorFor:(UIView *)view;
+
+/**
+ * Returns the themed gray900 colour for a given `UIView`.
+ *
+ * @return the themed `UIColor` value.
+ */
++ (UIColor *)gray900ColorFor:(UIView *)view;
+
+/**
  * Creates and returns an instance of the container view for the receiver's theme.
  *
  * @return An instance of the container to use with this theme.

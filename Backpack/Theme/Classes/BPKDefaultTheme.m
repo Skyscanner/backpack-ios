@@ -44,6 +44,30 @@
     return BPKColor.blue500;
 }
 
+- (UIColor *)gray50 {
+    return BPKColor.gray50;
+}
+
+- (UIColor *)gray100 {
+    return BPKColor.gray100;
+}
+
+- (UIColor *)gray300 {
+    return BPKColor.gray300;
+}
+
+- (UIColor *)gray500 {
+    return BPKColor.gray500;
+}
+
+- (UIColor *)gray700 {
+    return BPKColor.gray700;
+}
+
+- (UIColor *)gray900 {
+    return BPKColor.gray900;
+}
+
 - (BPKGradient *)primaryGradient {
     return BPKGradient.primary;
 }
