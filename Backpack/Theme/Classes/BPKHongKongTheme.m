@@ -48,6 +48,30 @@
     return [UIColor colorWithRed:76.0f / 255.0f green:76.0f / 255.0f blue:76.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *)gray50 {
+    return [UIColor colorWithRed:241.0f / 255.0f green:243.0f / 255.0f blue:243.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)gray100 {
+    return [UIColor colorWithRed:220.0f / 255.0f green:223.0f / 255.0f blue:224.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)gray300 {
+    return [UIColor colorWithRed:179.0f / 255.0f green:186.0f / 255.0f blue:189.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)gray500 {
+    return [UIColor colorWithRed:101.0f / 255.0f green:113.0f / 255.0f blue:118.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)gray700 {
+    return [UIColor colorWithRed:75.0f / 255.0f green:84.0f / 255.0f blue:88.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)gray900 {
+    return [UIColor colorWithRed:11.0f / 255.0f green:26.0f / 255.0f blue:34.0f / 255.0f alpha:1.0f];
+}
+
 - (BPKGradient *)primaryGradient {
     UIColor *startColor = [UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1];
     UIColor *endColor = [UIColor colorWithRed:0.235 green:0.235 blue:0.235 alpha:1];

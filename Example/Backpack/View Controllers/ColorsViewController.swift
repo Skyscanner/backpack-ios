@@ -21,16 +21,46 @@ import Backpack
 
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
-        ("primary color", Backpack.Color.blue500), ("blue700", Backpack.Color.blue700), ("white", Backpack.Color.white)
+        ("primary color", { (view: UIView) -> UIColor in
+            return Theme.primaryColor(for: view)
+        }),
+        ("blue700", { (view: UIView) -> UIColor in
+            return Color.blue700
+        }),
+        ("white", { (view: UIView) -> UIColor in
+            return Color.white
+        })
     ]
     fileprivate static var secondaryColors = [
-        ("green500", Backpack.Color.green500),
-        ("yellow500", Backpack.Color.yellow500),
-        ("red500", Backpack.Color.red500)
+        ("green500", { (view: UIView) -> UIColor in
+            return Color.green500
+        }),
+        ("yellow500", { (view: UIView) -> UIColor in
+            return Color.yellow500
+        }),
+        ("red500", { (view: UIView) -> UIColor in
+            return Color.red500
+        })
     ]
     fileprivate static var grayColors = [
-        ("gray50", Backpack.Color.gray50), ("gray100", Backpack.Color.gray100), ("gray300", Backpack.Color.gray300),
-        ("gray500", Backpack.Color.gray500), ("gray700", Backpack.Color.gray700), ("gray900", Backpack.Color.gray900)
+        ("gray50", { (view: UIView) -> UIColor in
+            return Theme.gray50Color(for: view)
+        }),
+        ("gray100", { (view: UIView) -> UIColor in
+            return Theme.gray100Color(for: view)
+        }),
+        ("gray300", { (view: UIView) -> UIColor in
+            return Theme.gray300Color(for: view)
+        }),
+        ("gray500", { (view: UIView) -> UIColor in
+            return Theme.gray500Color(for: view)
+        }),
+        ("gray700", { (view: UIView) -> UIColor in
+            return Theme.gray700Color(for: view)
+        }),
+        ("gray900", { (view: UIView) -> UIColor in
+            return Theme.gray900Color(for: view)
+        })
     ]
     fileprivate static var allColors = [
         ("Primary colors", ColorsViewController.primaryColors),
@@ -99,13 +129,9 @@ extension ColorsViewController {
         }
 
         let (_, sectionColors) = ColorsViewController.allColors[indexPath.section]
-        let (name, color) = sectionColors[indexPath.row]
+        let (name, getColor) = sectionColors[indexPath.row]
         cell.name = name
-        if name == "primary color" {
-            cell.color = Theme.primaryColor(for: collectionView)
-        } else {
-            cell.color = color
-        }
+        cell.color = getColor(collectionView)
 
         return cell
     }

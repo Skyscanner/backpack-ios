@@ -44,6 +44,30 @@
     return BPKColor.blue700;
 }
 
+- (UIColor *)gray50 {
+    return BPKColor.blue400;
+}
+
+- (UIColor *)gray100 {
+    return BPKColor.pink500;
+}
+
+- (UIColor *)gray300 {
+    return BPKColor.red400;
+}
+
+- (UIColor *)gray500 {
+    return BPKColor.yellow700;
+}
+
+- (UIColor *)gray700 {
+    return BPKColor.green400;
+}
+
+- (UIColor *)gray900 {
+    return BPKColor.blue500;
+}
+
 - (BPKGradient *)primaryGradient {
     UIColor *startColor = BPKColor.gray200;
     UIColor *endColor = BPKColor.gray900;

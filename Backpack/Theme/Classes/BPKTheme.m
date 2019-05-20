@@ -36,13 +36,103 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 
 @implementation BPKTheme
 
+typedef NS_ENUM(NSInteger, GrayColor) {
+    GrayColor50,
+    GrayColor100,
+    GrayColor300,
+    GrayColor500,
+    GrayColor700,
+    GrayColor900
+};
+
 + (UIColor *)primaryColorFor:(UIView *)view {
     BPKThemeContainer *themeContainer = view.themeContainer;
+
     if (themeContainer != nil) {
         return themeContainer.themeDefinition.primaryColor;
     }
 
     return BPKColor.blue500;
+}
+
++ (UIColor *)grayColor:(GrayColor)gray for:(UIView *)view {
+    BPKThemeContainer *themeContainer = view.themeContainer;
+
+    if (themeContainer != nil) {
+        switch (gray) {
+        case GrayColor50:
+            return themeContainer.themeDefinition.gray50;
+            break;
+        case GrayColor100:
+            return themeContainer.themeDefinition.gray100;
+            break;
+        case GrayColor300:
+            return themeContainer.themeDefinition.gray300;
+            break;
+        case GrayColor500:
+            return themeContainer.themeDefinition.gray500;
+            break;
+        case GrayColor700:
+            return themeContainer.themeDefinition.gray700;
+            break;
+        case GrayColor900:
+            return themeContainer.themeDefinition.gray900;
+            break;
+        default:
+            NSAssert(false, @"Themed gray values must be a valid GrayColor");
+            break;
+        }
+    }
+
+    switch (gray) {
+    case GrayColor50:
+        return BPKColor.gray50;
+        break;
+    case GrayColor100:
+        return BPKColor.gray100;
+        break;
+    case GrayColor300:
+        return BPKColor.gray300;
+        break;
+    case GrayColor500:
+        return BPKColor.gray500;
+        break;
+    case GrayColor700:
+        return BPKColor.gray700;
+        break;
+    case GrayColor900:
+        return BPKColor.gray900;
+        break;
+    default:
+        NSAssert(false, @"Themed gray values must be a valid GrayColor");
+        break;
+    }
+
+    return BPKColor.gray500;
+}
+
++ (UIColor *)gray50ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor50 for:view];
+}
+
++ (UIColor *)gray100ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor100 for:view];
+}
+
++ (UIColor *)gray300ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor300 for:view];
+}
+
++ (UIColor *)gray500ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor500 for:view];
+}
+
++ (UIColor *)gray700ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor700 for:view];
+}
+
++ (UIColor *)gray900ColorFor:(UIView *)view {
+    return [self grayColor:GrayColor900 for:view];
 }
 
 + (NSString *)didChangeNotification {
