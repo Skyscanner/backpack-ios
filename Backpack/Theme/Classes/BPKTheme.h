@@ -33,6 +33,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed primary color for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the primary color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)primaryColorFor:(UIView *)view;
@@ -40,6 +42,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed gray50 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray50 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray50ColorFor:(UIView *)view;
@@ -47,6 +51,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed gray100 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray100 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray100ColorFor:(UIView *)view;
@@ -54,6 +60,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed gray300 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray300 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray300ColorFor:(UIView *)view;
@@ -61,6 +69,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed gray500 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray500 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray500ColorFor:(UIView *)view;
@@ -68,6 +78,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**\
  * Returns the themed gray700 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray700 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray700ColorFor:(UIView *)view;
@@ -75,6 +87,8 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 /**
  * Returns the themed gray900 colour for a given `UIView`.
  *
+ * @param view The UIView within the view hierarchy for which the gray900 color is being selected.
+ * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
  * @return the themed `UIColor` value.
  */
 + (UIColor *)gray900ColorFor:(UIView *)view;

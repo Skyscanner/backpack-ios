@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *buttonFeaturedContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientStartColor;
 @property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientEndColor;
+
 @property(nonatomic, readonly, strong) UIColor *gray50;
 @property(nonatomic, readonly, strong) UIColor *gray100;
 @property(nonatomic, readonly, strong) UIColor *gray300;

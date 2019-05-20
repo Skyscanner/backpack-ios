@@ -36,13 +36,13 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 
 @implementation BPKTheme
 
-typedef NS_ENUM(NSInteger, GrayColor) {
-    GrayColor50,
-    GrayColor100,
-    GrayColor300,
-    GrayColor500,
-    GrayColor700,
-    GrayColor900
+typedef NS_ENUM(NSInteger, BPKGrayColor) {
+    BPKGrayColor50,
+    BPKGrayColor100,
+    BPKGrayColor300,
+    BPKGrayColor500,
+    BPKGrayColor700,
+    BPKGrayColor900
 };
 
 + (UIColor *)primaryColorFor:(UIView *)view {
@@ -55,56 +55,44 @@ typedef NS_ENUM(NSInteger, GrayColor) {
     return BPKColor.blue500;
 }
 
-+ (UIColor *)grayColor:(GrayColor)gray for:(UIView *)view {
++ (UIColor *)grayColor:(BPKGrayColor)gray for:(UIView *)view {
     BPKThemeContainer *themeContainer = view.themeContainer;
 
     if (themeContainer != nil) {
         switch (gray) {
-        case GrayColor50:
+        case BPKGrayColor50:
             return themeContainer.themeDefinition.gray50;
-            break;
-        case GrayColor100:
+        case BPKGrayColor100:
             return themeContainer.themeDefinition.gray100;
-            break;
-        case GrayColor300:
+        case BPKGrayColor300:
             return themeContainer.themeDefinition.gray300;
-            break;
-        case GrayColor500:
+        case BPKGrayColor500:
             return themeContainer.themeDefinition.gray500;
-            break;
-        case GrayColor700:
+        case BPKGrayColor700:
             return themeContainer.themeDefinition.gray700;
-            break;
-        case GrayColor900:
+        case BPKGrayColor900:
             return themeContainer.themeDefinition.gray900;
-            break;
         default:
-            NSAssert(false, @"Themed gray values must be a valid GrayColor");
+            NSAssert(false, @"Themed gray values must be a valid BPKGrayColor");
             break;
         }
     }
 
     switch (gray) {
-    case GrayColor50:
+    case BPKGrayColor50:
         return BPKColor.gray50;
-        break;
-    case GrayColor100:
+    case BPKGrayColor100:
         return BPKColor.gray100;
-        break;
-    case GrayColor300:
+    case BPKGrayColor300:
         return BPKColor.gray300;
-        break;
-    case GrayColor500:
+    case BPKGrayColor500:
         return BPKColor.gray500;
-        break;
-    case GrayColor700:
+    case BPKGrayColor700:
         return BPKColor.gray700;
-        break;
-    case GrayColor900:
+    case BPKGrayColor900:
         return BPKColor.gray900;
-        break;
     default:
-        NSAssert(false, @"Themed gray values must be a valid GrayColor");
+        NSAssert(false, @"Themed gray values must be a valid BPKGrayColor");
         break;
     }
 
@@ -112,27 +100,27 @@ typedef NS_ENUM(NSInteger, GrayColor) {
 }
 
 + (UIColor *)gray50ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor50 for:view];
+    return [self grayColor:BPKGrayColor50 for:view];
 }
 
 + (UIColor *)gray100ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor100 for:view];
+    return [self grayColor:BPKGrayColor100 for:view];
 }
 
 + (UIColor *)gray300ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor300 for:view];
+    return [self grayColor:BPKGrayColor300 for:view];
 }
 
 + (UIColor *)gray500ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor500 for:view];
+    return [self grayColor:BPKGrayColor500 for:view];
 }
 
 + (UIColor *)gray700ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor700 for:view];
+    return [self grayColor:BPKGrayColor700 for:view];
 }
 
 + (UIColor *)gray900ColorFor:(UIView *)view {
-    return [self grayColor:GrayColor900 for:view];
+    return [self grayColor:BPKGrayColor900 for:view];
 }
 
 + (NSString *)didChangeNotification {
