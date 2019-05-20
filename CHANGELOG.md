@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.15.0
+
+**Added:**
+ - Backpack/Theme
+   - Added utilities for getting `gray50Color`, `gray100Color`, `gray300Color`, `gray500Color`, `gray700Color`, and `gray900Color`.
+
 ### 8.14.1
 
 **Fixed:**
