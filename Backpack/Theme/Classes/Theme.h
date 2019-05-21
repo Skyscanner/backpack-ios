@@ -32,6 +32,7 @@
 #import "BPKDefaultTheme.h"
 
 #import "BPKTheme.h"
+#import "BPKThemeContainer.h"
 #import "BPKThemeDefinition.h"
 
 #import "BPKThemeContainerController.h"
