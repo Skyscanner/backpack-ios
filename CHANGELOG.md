@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.15.1
+
+**Fixed:**
+ - Backpack/Theme:
+   - Exposed missing `BPKThemeContainer` interface.
+
 ### 8.15.0
 
 **Added:**
