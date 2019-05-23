@@ -159,6 +159,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
+    calendarAppearance.gray100Color = theme.gray100;
+    calendarAppearance.gray500Color = theme.gray500;
+    calendarAppearance.gray900Color = theme.gray900;
 
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];

@@ -131,13 +131,13 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
-    appearance.headerTitleColor = [BPKColor gray900];
+    appearance.headerTitleColor = self.gray900Color;
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
-    appearance.weekdayTextColor = [BPKColor gray500];
-    appearance.todayColor = [BPKColor gray100];
-    appearance.titleTodayColor = [BPKColor gray900];
-    appearance.titleDefaultColor = [BPKColor gray900];
+    appearance.weekdayTextColor = self.gray500Color;
+    appearance.todayColor = self.gray100Color;
+    appearance.titleTodayColor = self.gray900Color;
+    appearance.titleDefaultColor = self.gray900Color;
     appearance.selectionColor = self.dateSelectedBackgroundColor;
     appearance.titleSelectionColor = self.dateSelectedContentColor;
     appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
@@ -161,7 +161,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self addSubview:self.calendarWeekdayView];
 
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
-    self.bottomBorder.backgroundColor = [BPKColor gray100];
+    self.bottomBorder.backgroundColor = self.gray100Color;
     [self addSubview:self.bottomBorder];
 
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
@@ -293,6 +293,33 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (dateSelectedBackgroundColor != _dateSelectedBackgroundColor) {
         _dateSelectedBackgroundColor = dateSelectedBackgroundColor;
         self.appearance.selectionColor = self.dateSelectedBackgroundColor;
+        [self.calendarView.collectionView reloadData];
+    }
+}
+
+- (void)setGray100Color:(UIColor *)gray100Color {
+    if (gray100Color != _gray100Color) {
+        _gray100Color = gray100Color;
+        self.bottomBorder.backgroundColor = self.gray100Color;
+        self.appearance.todayColor = self.gray100Color;
+        [self.calendarView.collectionView reloadData];
+    }
+}
+
+- (void)setGray500Color:(UIColor *)gray500Color {
+    if (gray500Color != _gray500Color) {
+        _gray500Color = gray500Color;
+        self.appearance.weekdayTextColor = self.gray500Color;
+        [self.calendarView.collectionView reloadData];
+    }
+}
+
+- (void)setGray900Color:(UIColor *)gray900Color {
+    if (gray900Color != _gray900Color) {
+        _gray900Color = gray900Color;
+        self.appearance.headerTitleColor = self.gray900Color;
+        self.appearance.titleTodayColor = self.gray900Color;
+        self.appearance.titleDefaultColor = self.gray900Color;
         [self.calendarView.collectionView reloadData];
     }
 }
