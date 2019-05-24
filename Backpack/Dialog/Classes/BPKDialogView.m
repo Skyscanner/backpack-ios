@@ -27,6 +27,7 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKDialogIconView.h"
+#import "BPKDialogIconDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
@@ -39,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogView ()
 
-@property(nonatomic, strong) BPKDialogIconView *iconView;
+@property(nonatomic, strong, nullable) BPKDialogIconView *iconView;
 
 @property(nonatomic, strong) UIView *contentView;
 @property(nonatomic, strong) BPKLabel *titleLabel;
@@ -53,19 +54,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-          iconBackgroundColor:(UIColor *)iconBackgroundColor
-                    iconImage:(UIImage *)iconImage {
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     BPKAssertMainThread();
     self = [self initWithFrame:CGRectZero];
 
     if (self) {
         self.title = title;
         self.message = message;
-        self.iconBackgroundColor = iconBackgroundColor;
-        self.iconImage = iconImage;
+        self.iconDefinition = iconDefinition;
     }
 
     return self;
+}
+
+- (Boolean)hasIcon {
+    return self.iconDefinition != nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -103,8 +106,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView.backgroundColor = BPKColor.white;
     self.contentView.layer.cornerRadius = BPKBorderRadiusSm;
 
-    self.iconView = [BPKDialogIconView new];
-
     self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -125,7 +126,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addViews {
     [self addSubview:self.contentView];
-    [self addSubview:self.iconView];
 
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.descriptionLabel];
@@ -142,24 +142,19 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupConstraints {
-    CGSize iconViewSize = [[self.iconView class] viewSize];
+    // CGSize iconViewSize = [[self.iconView class] viewSize];
     [self setLayoutMargins];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
-        [self.iconView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
+        [self.contentView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
 
-        [self.contentView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
-                                                   constant:-(iconViewSize.height / 2.0)],
+        [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor
+                                                               constant:BPKSpacingBase],
+
         [self.contentView.superview.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
         [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor],
         [self.contentView.trailingAnchor constraintEqualToAnchor:self.contentView.superview.trailingAnchor],
 
-        // NOTE: The constant here is explicitly not BPKSpacingLg because the icon view has a white border which
-        // blends with the contentView background. Using BPKSpacingLg makes it look unaligned with the BPKSpacingLg
-        // below. The border is BPKSpacingMd wide which when added to BPKSpacingBase makes it BPKSpacingLg. This ligns
-        // up nicely with the BPKSpacingLg between descriptionLabel and buttonStackView
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor constant:BPKSpacingBase],
         [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.titleLabel.superview.centerXAnchor],
         [self.titleLabel.leadingAnchor
             constraintEqualToAnchor:self.titleLabel.superview.layoutMarginsGuide.leadingAnchor],
@@ -185,16 +180,52 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 }
 
+- (void)setupIconView {
+    if (self.hasIcon && self.iconView == nil) {
+        self.iconView = [BPKDialogIconView new];
+        [self addSubview:self.iconView];
+        self.iconView.iconDefinition = self.iconDefinition;
+
+        CGSize iconViewSize = [[self.iconView class] viewSize];
+        [NSLayoutConstraint activateConstraints:@[
+            [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
+            [self.iconView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
+
+            [self.contentView.topAnchor constraintGreaterThanOrEqualToAnchor:self.iconView.bottomAnchor
+                                                                    constant:-(iconViewSize.height / 2.0)],
+
+            // NOTE: The constant here is explicitly not BPKSpacingLg because the icon view has a white border which
+            // blends with the contentView background. Using BPKSpacingLg makes it look unaligned with the BPKSpacingLg
+            // below. The border is BPKSpacingMd wide which when added to BPKSpacingBase makes it BPKSpacingLg. This
+            // ligns up nicely with the BPKSpacingLg between descriptionLabel and buttonStackView
+            [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.iconView.bottomAnchor
+                                                                   constant:BPKSpacingBase]
+        ]];
+    }
+
+    if (!self.hasIcon && self.iconView != nil) {
+        [self.iconView removeFromSuperview];
+        _iconView = nil;
+    }
+
+    if (self.iconDefinition && self.iconView != nil) {
+        self.iconView.iconDefinition = self.iconDefinition;
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
 
     // Calculated path including circular icon view
     CGRect layerRect = self.contentView.layer.frame;
-    CGRect iconViewRect = self.iconView.layer.frame;
     CGMutablePathRef shadowPath = CGPathCreateMutable();
     CGPathAddRoundedRect(shadowPath, nil, layerRect, self.contentView.layer.cornerRadius,
                          self.contentView.layer.cornerRadius);
-    CGPathAddRoundedRect(shadowPath, nil, iconViewRect, iconViewRect.size.width / 2.0, iconViewRect.size.height / 2.0);
+    if (self.hasIcon) {
+        CGRect iconViewRect = self.iconView.layer.frame;
+        CGPathAddRoundedRect(shadowPath, nil, iconViewRect, iconViewRect.size.width / 2.0,
+                             iconViewRect.size.height / 2.0);
+    }
 
     [[BPKShadow shadowLg] applyToLayer:self.layer];
     CGPathRef finalPath = CGPathCreateCopy(shadowPath);
@@ -225,22 +256,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Property overrides
 
-- (void)setIconBackgroundColor:(UIColor *_Nullable)iconBackgroundColor {
+- (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     BPKAssertMainThread();
-    self.iconView.iconBackgroundColor = iconBackgroundColor;
-}
-
-- (UIColor *_Nullable)iconBackgroundColor {
-    return self.iconView.iconBackgroundColor;
-}
-
-- (void)setIconImage:(UIImage *_Nullable)iconImage {
-    BPKAssertMainThread();
-    self.iconView.iconImage = iconImage;
-}
-
-- (UIImage *_Nullable)iconImage {
-    return self.iconView.iconImage;
+    if (iconDefinition != _iconDefinition) {
+        _iconDefinition = iconDefinition;
+        [self setupIconView];
+    }
 }
 
 - (void)setTitle:(NSString *_Nullable)title {

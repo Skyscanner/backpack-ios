@@ -40,6 +40,9 @@ class DialogSelectorViewController: UITableViewController {
         case "ShowSuccess":
             destinationController.type = .confirmation
             destinationController.title = "Success"
+        case "ShowNoIcon":
+            destinationController.type = .noIcon
+            destinationController.title = "No icon"
         default:
             fatalError("Unrecognized segue \(segue.identifier.debugDescription)")
         }

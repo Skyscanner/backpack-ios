@@ -16,13 +16,19 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_DIALOG__
-#define __BACKPACK_DIALOG__
-
-#import "BPKDialogButtonAction.h"
-#import "BPKDialogController.h"
 #import "BPKDialogIconDefinition.h"
-#import "BPKDialogScrimAction.h"
-#import "BPKDialogView.h"
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKDialogIconDefinition
+
+- (instancetype)initWithIcon:(UIImage *)iconImage iconBackgroundColor:(UIColor *)iconBackgroundColor {
+    _iconImage = iconImage;
+    _iconBackgroundColor = iconBackgroundColor;
+
+    return self;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

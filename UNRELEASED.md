@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Breaking:**
+ - Backpack/Dialog
+   - Icon definition is now encapsulated in a separate object, and is optional.
 
 ## How to write a good changelog entry
 

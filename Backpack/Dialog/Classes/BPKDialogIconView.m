@@ -49,19 +49,16 @@ NS_ASSUME_NONNULL_BEGIN
     return [[self class] viewSize];
 }
 
-- (void)setIconBackgroundColor:(UIColor *_Nullable)iconBackgroundColor {
-    self.iconContainerView.backgroundColor = iconBackgroundColor;
+- (void)setIconDefinition:(BPKDialogIconDefinition *)iconDefinition {
+    self.iconContainerView.backgroundColor = iconDefinition.iconBackgroundColor;
+    self.iconImageView.image = iconDefinition.iconImage;
 }
 
-- (UIColor *_Nullable)iconBackgroundColor {
+- (UIColor *)iconBackgroundColor {
     return self.iconContainerView.backgroundColor;
 }
 
-- (void)setIconImage:(UIImage *_Nullable)iconImage {
-    self.iconImageView.image = iconImage;
-}
-
-- (UIImage *_Nullable)iconImage {
+- (UIImage *)iconImage {
     return self.iconImageView.image;
 }
 
