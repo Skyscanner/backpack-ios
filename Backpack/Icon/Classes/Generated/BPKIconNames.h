@@ -106,6 +106,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameGlobe;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameGridLayout;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHeadset;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHealthFitness;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameHeartOutline;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHeart;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHelpCircle;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHelp;

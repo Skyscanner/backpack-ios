@@ -104,6 +104,7 @@ BPKIconName const BPKIconNameGlobe = @"globe";
 BPKIconName const BPKIconNameGridLayout = @"grid-layout";
 BPKIconName const BPKIconNameHeadset = @"headset";
 BPKIconName const BPKIconNameHealthFitness = @"health-fitness";
+BPKIconName const BPKIconNameHeartOutline = @"heart--outline";
 BPKIconName const BPKIconNameHeart = @"heart";
 BPKIconName const BPKIconNameHelpCircle = @"help-circle";
 BPKIconName const BPKIconNameHelp = @"help";
