@@ -12,7 +12,7 @@
     "build": "npm run test && gulp && npm run spellcheck",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
     "gulp": "gulp",
-    "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md'",
+    "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md'",
     "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md'"
   },
   "husky": {
