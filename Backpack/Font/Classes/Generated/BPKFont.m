@@ -17,17 +17,15 @@
  * limitations under the License.
  */
 #import "BPKFont.h"
+#import "../BPKFontMapping.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/Theme.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFont()
 @property(nonatomic, strong, readonly) NSCache<NSString *, NSDictionary *> *attributesCache;
-
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style;
-+ (UIFont *)fontForStyle:(BPKFontStyle)style;
-+ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style;
 @end
 
 @implementation BPKFont
@@ -156,15 +154,20 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content {
-    NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content
+                                          fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    NSDictionary *attributes = [self attributesForFontStyle:fontStyle fontMapping:fontMapping];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
 
     return attributedString;
 }
 
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor {
-    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content
+                                            textColor:(UIColor *)textColor
+                                          fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle fontMapping:fontMapping] mutableCopy];
     [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
 
@@ -186,8 +189,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
-                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes
+                                                        fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontMapping:fontMapping] mutableCopy];
 
     for (NSAttributedStringKey key in customAttributes) {
         if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
@@ -202,16 +206,16 @@ NS_ASSUME_NONNULL_BEGIN
     return [attributes copy];
 }
 
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
-    NSString *cacheKey = [self cacheKeyForFontStyle:style];
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    NSString *cacheKey = [self cacheKeyForFontStyle:style andFontMapping:fontMapping];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
 
     if (potentialCacheHit) {
         return potentialCacheHit;
     }
 
-    UIFont *font = [self fontForStyle:style];
-    NSNumber *_Nullable tracking = [self trackingForStyle:style];
+    UIFont *font = [self fontWithName:fontMapping forStyle:style];
+    NSNumber *_Nullable tracking = [self trackingForStyle:style fontMapping:fontMapping];
     NSDictionary *result;
 
     if (tracking != nil) {
@@ -234,7 +238,11 @@ NS_ASSUME_NONNULL_BEGIN
     return result;
 }
 
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style andFontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    if (fontMapping != nil) {
+        return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontMapping.family];
+    }
+
     return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
@@ -284,7 +292,80 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style {
++ (UIFont *)fontWithName:(BPKFontMapping *)fontMapping forStyle:(BPKFontStyle)style {
+    if (fontMapping == nil) {
+        return [self fontWithStyle:style];
+    }
+
+    switch (style) {
+       
+           case BPKFontStyleTextBase:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:16];
+             
+           case BPKFontStyleTextBaseEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:16];
+             
+           case BPKFontStyleTextCaps:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:10];
+             
+           case BPKFontStyleTextCapsEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:10];
+             
+           case BPKFontStyleTextLg:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:20];
+             
+           case BPKFontStyleTextLgEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:20];
+             
+           case BPKFontStyleTextSm:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:14];
+             
+           case BPKFontStyleTextSmEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:14];
+             
+           case BPKFontStyleTextXl:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:24];
+             
+           case BPKFontStyleTextXlEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:24];
+             
+           case BPKFontStyleTextXlHeavy:
+             return [UIFont fontWithName:fontMapping.heavyFontFace size:24];
+             
+           case BPKFontStyleTextXs:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:12];
+             
+           case BPKFontStyleTextXsEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:12];
+             
+           case BPKFontStyleTextXxl:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:30];
+             
+           case BPKFontStyleTextXxlEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:30];
+             
+           case BPKFontStyleTextXxlHeavy:
+             return [UIFont fontWithName:fontMapping.heavyFontFace size:30];
+             
+           case BPKFontStyleTextXxxl:
+             return [UIFont fontWithName:fontMapping.regularFontFace size:36];
+             
+           case BPKFontStyleTextXxxlEmphasized:
+             return [UIFont fontWithName:fontMapping.semiboldFontFace size:36];
+             
+           case BPKFontStyleTextXxxlHeavy:
+             return [UIFont fontWithName:fontMapping.heavyFontFace size:36];
+             
+            default:
+              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    }
+}
+
++ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    if (fontMapping != nil) {
+        return nil;
+    }
+
     switch (style) {
         
             case BPKFontStyleTextBase:
