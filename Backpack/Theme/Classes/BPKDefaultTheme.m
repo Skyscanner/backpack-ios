@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -30,6 +31,10 @@
 
 - (NSString *)themeName {
     return @"Default";
+}
+
+- (BPKFontMapping *)fontMapping {
+    return nil;
 }
 
 - (UIColor *)chipPrimaryColor {

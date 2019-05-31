@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -34,6 +35,13 @@
 
 - (NSString *)themeName {
     return @"Hong Kong";
+}
+
+- (BPKFontMapping *)fontMapping {
+    return [[BPKFontMapping alloc] initWithFamily:@"ChalkboardSE"
+                                  regularFontFace:@"ChalkboardSE-Regular"
+                                 semiboldFontFace:@"ChalkboardSE-Bold"
+                                    heavyFontFace:@"ChalkboardSE-Bold"];
 }
 
 - (UIColor *)chipPrimaryColor {
