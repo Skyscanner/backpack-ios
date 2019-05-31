@@ -34,7 +34,7 @@
     return @"London";
 }
 
-- (BPKFontMapping *)fontName {
+- (BPKFontMapping *)fontMapping {
     return [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
                                    withBoldFamily:@"SnellRoundhand-Bold"
                                   withHeavyFamily:@"SnellRoundhand-Black"];

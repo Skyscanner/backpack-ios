@@ -34,7 +34,7 @@
     return @"Doha";
 }
 
-- (BPKFontMapping *)fontName {
+- (BPKFontMapping *)fontMapping {
     return [[BPKFontMapping alloc] initWithFamily:@"AmericanTypewriter-Light"
                                    withBoldFamily:@"AmericanTypewriter-Semibold"
                                   withHeavyFamily:@"AmericanTypewriter-Bold"];

@@ -57,9 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setFontName:(BPKFontMapping *_Nullable)fontName {
-    if (_fontName != fontName) {
-        _fontName = fontName;
+- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    if (_fontMapping != fontMapping) {
+        _fontMapping = fontMapping;
 
         [self updateContentColor];
     }

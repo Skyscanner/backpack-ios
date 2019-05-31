@@ -99,7 +99,7 @@ NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
  *
  * @return the themed `UIColor` value.
  */
-+ (BPKFontMapping *)fontNameFor:(UIView *)view;
++ (BPKFontMapping *)fontMappingFor:(UIView *)view;
 
 /**
  * Creates and returns an instance of the container view for the receiver's theme.

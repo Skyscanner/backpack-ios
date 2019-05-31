@@ -205,8 +205,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style forView:(UIView * _Nullable)view {
-    BPKFontMapping *themeFontName = [BPKTheme fontNameFor:view];
-    NSString *cacheKey = [self cacheKeyForFontStyle:style andFontName:themeFontName];
+    BPKFontMapping *themeFontMapping = [BPKTheme fontMappingFor:view];
+    NSString *cacheKey = [self cacheKeyForFontStyle:style andFontMapping:themeFontMapping];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
     
     if (potentialCacheHit) {
@@ -215,11 +215,11 @@ NS_ASSUME_NONNULL_BEGIN
     
     UIFont *font = nil;
     if(view != nil) {
-        font = [self fontForStyle:style withName:themeFontName];
+        font = [self fontForStyle:style withName:themeFontMapping];
     }else{
         font = [self fontForStyle:style];
     }
-    NSNumber *_Nullable tracking = [self trackingForStyle:style andFont:themeFontName];
+    NSNumber *_Nullable tracking = [self trackingForStyle:style andFont:themeFontMapping];
     NSDictionary *result;
     
     if (tracking != nil) {
@@ -242,20 +242,20 @@ NS_ASSUME_NONNULL_BEGIN
     return result;
 }
 
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style andFontName:(BPKFontMapping *)fontName {
-    if (fontName != nil) {
-        return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontName.baseFontFamily];
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style andFontMapping:(BPKFontMapping *)fontMapping {
+    if (fontMapping != nil) {
+        return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontMapping.baseFontFamily];
     }
     
     return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
-+ (UIFont *)fontForStyle:(BPKFontStyle)style withName:(BPKFontMapping *)fontName {
-    if(fontName == nil) {
++ (UIFont *)fontForStyle:(BPKFontStyle)style withName:(BPKFontMapping *)fontMapping {
+    if(fontMapping == nil) {
         return [self fontForStyle:style];
     }
     
-    return [self fontWithName:fontName forStyle:style];
+    return [self fontWithName:fontMapping forStyle:style];
 }
 
 + (UIFont *)fontWithName:(BPKFontMapping *)name forStyle:(BPKFontStyle)style {

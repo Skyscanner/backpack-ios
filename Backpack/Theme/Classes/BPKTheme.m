@@ -126,7 +126,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     return [self grayColor:BPKGrayColor900 for:view];
 }
 
-+ (BPKFontMapping *)fontNameFor:(UIView *)view {
++ (BPKFontMapping *)fontMappingFor:(UIView *)view {
     if (view == nil) {
         return nil;
     }
@@ -136,19 +136,19 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     Boolean viewIsButton = [view isKindOfClass:[BPKButton class]];
 
     NSAssert(viewIsLabel || viewIsTextView || viewIsButton,
-             @"fontNameFor: can only be used with a view that is an instance of BPKLabel, BPKTextView or BPKButton");
+             @"fontMappingFor: can only be used with a view that is an instance of BPKLabel, BPKTextView or BPKButton");
 
     if (viewIsLabel) {
         BPKLabel *label = (BPKLabel *)view;
-        return label.fontName;
+        return label.fontMapping;
     }
     if (viewIsTextView) {
         BPKTextView *textView = (BPKTextView *)view;
-        return textView.fontName;
+        return textView.fontMapping;
     }
     if (viewIsButton) {
         BPKButton *button = (BPKButton *)view;
-        return button.fontName;
+        return button.fontMapping;
     }
 
     return nil;
@@ -196,13 +196,13 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
 
     BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
-    labelViewAppearance.fontName = theme.fontName;
+    labelViewAppearance.fontMapping = theme.fontMapping;
 
     BPKTextView *textViewAppearance = [BPKTextView appearanceWhenContainedInInstancesOfClasses:@[class]];
-    textViewAppearance.fontName = theme.fontName;
+    textViewAppearance.fontMapping = theme.fontMapping;
 
     BPKButton *buttonViewAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
-    buttonViewAppearance.fontName = theme.fontName;
+    buttonViewAppearance.fontMapping = theme.fontMapping;
 }
 
 @end

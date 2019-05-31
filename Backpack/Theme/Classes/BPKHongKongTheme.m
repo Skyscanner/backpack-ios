@@ -37,7 +37,7 @@
     return @"Hong Kong";
 }
 
-- (BPKFontMapping *)fontName {
+- (BPKFontMapping *)fontMapping {
     return [[BPKFontMapping alloc] initWithFamily:@"ChalkboardSE-Regular"
                                    withBoldFamily:@"ChalkboardSE-Bold"
                                   withHeavyFamily:@"ChalkboardSE-Bold"];

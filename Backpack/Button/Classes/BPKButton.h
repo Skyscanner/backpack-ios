@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton : UIButton
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontName UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *featuredGradientStartColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *featuredGradientEndColor UI_APPEARANCE_SELECTOR;

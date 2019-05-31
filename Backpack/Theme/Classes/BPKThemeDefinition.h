@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *switchPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *chipPrimaryColor;
 @property(nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
-@property(nonatomic, readonly, strong) BPKFontMapping *fontName;
+@property(nonatomic, readonly, strong) BPKFontMapping *fontMapping;
 
 @property(nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
 @property(nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;

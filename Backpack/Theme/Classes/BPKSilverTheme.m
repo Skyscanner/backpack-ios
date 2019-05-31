@@ -33,7 +33,7 @@
     return @"Silver";
 }
 
-- (BPKFontMapping *)fontName {
+- (BPKFontMapping *)fontMapping {
     return [[BPKFontMapping alloc] initWithFamily:@"Charter-Roman"
                                    withBoldFamily:@"Charter-Bold"
                                   withHeavyFamily:@"Charter-Black"];

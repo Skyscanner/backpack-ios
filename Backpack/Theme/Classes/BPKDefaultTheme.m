@@ -33,7 +33,7 @@
     return @"Default";
 }
 
-- (BPKFontMapping *)fontName {
+- (BPKFontMapping *)fontMapping {
     return nil;
 }
 
