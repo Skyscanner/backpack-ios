@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
@@ -31,6 +32,13 @@
 
 - (NSString *)themeName {
     return @"London";
+}
+
+- (BPKFontMapping *)fontMapping {
+    return [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
+                                  regularFontFace:@"SnellRoundhand"
+                                 semiboldFontFace:@"SnellRoundhand-Bold"
+                                    heavyFontFace:@"SnellRoundhand-Black"];
 }
 
 - (UIColor *)chipPrimaryColor {

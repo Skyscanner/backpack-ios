@@ -68,9 +68,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAttributedString *attributedString = nil;
     if (self.textColor) {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                          content:text
+                                                        textColor:self.textColor
+                                                      fontMapping:nil];
     } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text fontMapping:nil];
     }
     self.attributedText = attributedString;
 }

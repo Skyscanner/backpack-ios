@@ -27,6 +27,7 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
@@ -163,6 +164,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
+
+    BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
+    labelViewAppearance.fontMapping = theme.fontMapping;
 }
 
 @end

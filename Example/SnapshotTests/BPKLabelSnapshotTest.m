@@ -17,6 +17,7 @@
  */
 
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
@@ -104,6 +105,33 @@ NS_ASSUME_NONNULL_BEGIN
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
+        label.text = @"Backpack Rocks";
+        [stackView addArrangedSubview:label];
+        [label setNeedsLayout];
+        [label sizeToFit];
+    }
+    UIView *parentView = [self buildParentView];
+    [parentView addSubview:stackView];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testViewSnapshotWithFontMapping {
+    BPKFontStyle styles[] = {
+        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
+        BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXxlEmphasized,  BPKFontStyleTextXxxlEmphasized,
+    };
+
+    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
+
+    UIStackView *stackView = [self buildStackView];
+
+    for (NSUInteger i = 0; i < length; i++) {
+        BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
+        label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
+                                                   regularFontFace:@"SnellRoundhand"
+                                                  semiboldFontFace:@"SnellRoundhand-Bold"
+                                                     heavyFontFace:@"SnellRoundhand-Black"];
         label.text = @"Backpack Rocks";
         [stackView addArrangedSubview:label];
         [label setNeedsLayout];
