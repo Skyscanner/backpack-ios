@@ -1,7 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-
 **Added:**
 - Backpack/Icon
   - Added `heart--outline` as `BPKIconNameHeartOutline`.
@@ -20,16 +19,16 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 **Breaking:**
 
-- `Backpack/Icon`:
+- Backpack/Icon:
   - Replaced `charmeleon` icon with new `charizard` icon. To upgrade, replace your references to `charmeleon` with `charizard`.
   - Upgraded `fire` dependency to `3.0.0`.
 
 **Added:**
 
-- `Backpack/Gauntlet`:
+- Backpack/Gauntlet:
   - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
 
 **Fixed:**
 
-- `Backpack/Horcrux`:
+- Backpack/Horcrux:
   - Fixed issue where `BpkHorcrux` would occasionally possess the living.
