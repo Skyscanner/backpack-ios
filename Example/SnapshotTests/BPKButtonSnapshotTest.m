@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonSnapshotTest : FBSnapshotTestCase
-- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style;
+- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme;
 @end
 
 @implementation BPKButtonSnapshotTest
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultPrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -50,7 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleDestructive];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -58,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -66,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleOutline];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleOutline applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -74,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDefaultLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleLink applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -82,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargePrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStylePrimary];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStylePrimary applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -90,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargeSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleSecondary];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleSecondary applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -98,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargeDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleDestructive];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleDestructive applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -106,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargeFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleFeatured];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleFeatured applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -114,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargeLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleLink];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleLink applyTheme:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -122,7 +124,43 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLargeOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleOutline];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleOutline applyTheme:NO];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testPrimaryWithTheme {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testSecondaryWithTheme {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testFeaturedWithTheme {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testDestructiveWithTheme {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -131,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
+- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme {
     UIImage *smallIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
 
     UIStackView *horizontalStackview = [[UIStackView alloc] initWithFrame:CGRectZero];
@@ -160,7 +198,31 @@ NS_ASSUME_NONNULL_BEGIN
     [iconOnly setImage:smallIcon];
     [horizontalStackview addArrangedSubview:iconOnly];
 
+    if (applyTheme) {
+        [self applyTheme:textOnly];
+        [self applyTheme:textAndIconTrailing];
+        [self applyTheme:textAndIconLeading];
+        [self applyTheme:iconOnly];
+    }
+
     return horizontalStackview;
+}
+
+- (void)applyTheme:(BPKButton *)button {
+    button.primaryGradientStartColor = UIColor.redColor;
+    button.primaryGradientEndColor = UIColor.blueColor;
+    button.primaryContentColor = UIColor.blackColor;
+    button.secondaryBorderColor = UIColor.purpleColor;
+    button.secondaryContentColor = UIColor.redColor;
+    button.secondaryBackgroundColor = UIColor.cyanColor;
+    button.featuredGradientStartColor = UIColor.brownColor;
+    button.featuredGradientEndColor = UIColor.magentaColor;
+    button.featuredContentColor = UIColor.yellowColor;
+    button.destructiveBorderColor = UIColor.greenColor;
+    button.destructiveContentColor = UIColor.blueColor;
+    button.destructiveBackgroundColor = UIColor.orangeColor;
+    button.linkContentColor = UIColor.purpleColor;
+    button.cornerRadius = @4.0;
 }
 
 @end
