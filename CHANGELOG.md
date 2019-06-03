@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.16.0
+
+**Changed:**
+
+- Backpack/Icon
+  - Updated `heart`, `family`
+
+**Added:**
+
+- Backpack/Icon
+  - Added `heart`, `heart--outline`, `trend--steady`, `trend--down`, `trend--will-rise`, `filter` `world--amer`, `world--apac` and `world--emea` icons.
+
 ### 8.15.1
 
 **Fixed:**

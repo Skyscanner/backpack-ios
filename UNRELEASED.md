@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Added:**
-- Backpack/Icon
-  - Added `heart--outline` as `BPKIconNameHeartOutline`.
 
 ## How to write a good changelog entry
 
