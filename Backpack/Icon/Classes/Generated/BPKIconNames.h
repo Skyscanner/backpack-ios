@@ -94,6 +94,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameExpand;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFamily;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFastTrack;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFastTrain;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFilter;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlag;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlask;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlight;
@@ -207,6 +208,9 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameTrain;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTransmissionAutomatic;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTransmissionManual;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTrash;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameTrendDown;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameTrendSteady;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameTrendWillRise;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTrend;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTrips;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUnlock;
@@ -218,5 +222,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameWeather;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWifi;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWindowReduce;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWindow;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldAmer;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldApac;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWorldEmea;
 
 // clang-format on

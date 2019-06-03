@@ -92,6 +92,7 @@ BPKIconName const BPKIconNameExpand = @"expand";
 BPKIconName const BPKIconNameFamily = @"family";
 BPKIconName const BPKIconNameFastTrack = @"fast-track";
 BPKIconName const BPKIconNameFastTrain = @"fast-train";
+BPKIconName const BPKIconNameFilter = @"filter";
 BPKIconName const BPKIconNameFlag = @"flag";
 BPKIconName const BPKIconNameFlask = @"flask";
 BPKIconName const BPKIconNameFlight = @"flight";
@@ -205,6 +206,9 @@ BPKIconName const BPKIconNameTrain = @"train";
 BPKIconName const BPKIconNameTransmissionAutomatic = @"transmission-automatic";
 BPKIconName const BPKIconNameTransmissionManual = @"transmission-manual";
 BPKIconName const BPKIconNameTrash = @"trash";
+BPKIconName const BPKIconNameTrendDown = @"trend--down";
+BPKIconName const BPKIconNameTrendSteady = @"trend--steady";
+BPKIconName const BPKIconNameTrendWillRise = @"trend--will-rise";
 BPKIconName const BPKIconNameTrend = @"trend";
 BPKIconName const BPKIconNameTrips = @"trips";
 BPKIconName const BPKIconNameUnlock = @"unlock";
@@ -216,5 +220,8 @@ BPKIconName const BPKIconNameWeather = @"weather";
 BPKIconName const BPKIconNameWifi = @"wifi";
 BPKIconName const BPKIconNameWindowReduce = @"window--reduce";
 BPKIconName const BPKIconNameWindow = @"window";
+BPKIconName const BPKIconNameWorldAmer = @"world--amer";
+BPKIconName const BPKIconNameWorldApac = @"world--apac";
+BPKIconName const BPKIconNameWorldEmea = @"world--emea";
 
 // clang-format on
