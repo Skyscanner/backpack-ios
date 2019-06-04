@@ -33,7 +33,17 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSpinners {
-    NSArray<BPKSpinner *> *views = [self createAllSpinnerVariants];
+    NSArray<BPKSpinner *> *views = [self createAllSpinnerVariantsWithTheming:NO];
+    UIView *view = [self embedViewsInStackView:views];
+
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testSpinnersWithTheme {
+    NSArray<BPKSpinner *> *views = [self createAllSpinnerVariantsWithTheming:YES];
     UIView *view = [self embedViewsInStackView:views];
 
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -44,19 +54,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (NSArray<BPKSpinner *> *)createAllSpinnerVariants {
+- (NSArray<BPKSpinner *> *)createAllSpinnerVariantsWithTheming:(BOOL)themed {
     return @[
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall]
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall themed:themed]
     ];
 }
 
-- (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
+- (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style
+                                                 size:(BPKSpinnerSize)size
+                                               themed:(BOOL)themed {
     BPKSpinner *spinner = [[BPKSpinner alloc] initWithStyle:style size:size];
+    if (themed) {
+        spinner.primaryColor = UIColor.yellowColor;
+    }
     [spinner setHidesWhenStopped:NO];
     return spinner;
 }

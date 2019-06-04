@@ -42,6 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkSwitch, nil);
 }
 
+- (void)testSwitchWhenOnWithTheme {
+    BPKSwitch *bpkSwitch = [[BPKSwitch alloc] initWithFrame:CGRectZero];
+    bpkSwitch.primaryColor = UIColor.orangeColor;
+    [bpkSwitch setOn:YES];
+    FBSnapshotVerifyView(bpkSwitch, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

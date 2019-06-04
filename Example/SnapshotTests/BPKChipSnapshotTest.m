@@ -64,6 +64,16 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testChipEnabledSelectedThemed {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.primaryColor = UIColor.greenColor;
+    bpkChip.title = @"Test";
+    bpkChip.selected = YES;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testChipEnabledUnselectedHighlighted {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
