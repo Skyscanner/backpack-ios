@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.16.1
+
+**Changed:**
+
+- Backpack/Icon
+  - Updated `heart--outline`
+
 ### 8.16.0
 
 **Changed:**
