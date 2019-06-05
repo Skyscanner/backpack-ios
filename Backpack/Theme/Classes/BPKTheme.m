@@ -167,6 +167,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
 
     BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     labelViewAppearance.fontMapping = theme.fontMapping;
+
+    BPKButton *buttonViewAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
+    buttonViewAppearance.fontMapping = theme.fontMapping;
 }
 
 @end

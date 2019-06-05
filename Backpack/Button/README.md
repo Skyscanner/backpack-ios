@@ -62,3 +62,5 @@ button.image = icon
 `(UIColor)secondaryContentColor`
 `(UIColor)secondaryBackgroundColor`
 `(UIColor)secondaryBorderColor`
+
+`(BPKFontMapping)fontMapping`
