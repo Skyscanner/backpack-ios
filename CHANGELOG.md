@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.17.1
+
+**Fixed:**
+
+- Backpack/Icon
+  - Updated stroke widths of `heart`, `heart--outline`, `world-amer`, `world-emea` and `world-apac` icons.
+
 ### 8.17.0
 
 **Added:**
