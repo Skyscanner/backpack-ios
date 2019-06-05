@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 8.17.0
+
+**Added:**
+
+- Backpack/Icon
+  - Added `face--blank`, `face--happy` and `face--sad` icons.
+
 ### 8.16.1
 
 **Changed:**
