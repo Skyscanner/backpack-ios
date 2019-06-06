@@ -17,6 +17,7 @@
  */
 
 #import <FSCalendar/FSCalendar.h>
+#import <Backpack/Font.h>
 
 typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeNone,
@@ -33,5 +34,7 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 
 @property(nonatomic) SelectionType selectionType;
 @property(nonatomic) RowType rowType;
+
+@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 @end

@@ -21,4 +21,7 @@
 #import "BPKCalendar.h"
 #import "BPKCalendarYearPill.h"
 #import "BPKSimpleDate.h"
+#import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarStickyHeader.h"
+#import "BPKCalendarCell.h"
 #endif

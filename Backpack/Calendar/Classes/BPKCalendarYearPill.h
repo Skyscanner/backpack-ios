@@ -17,9 +17,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Backpack/Font.h>
 
 @interface BPKCalendarYearPill : UIView
 
 @property(nonatomic, nonnull) NSNumber *year;
+@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 @end

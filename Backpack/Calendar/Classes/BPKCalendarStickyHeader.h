@@ -16,12 +16,15 @@
  * limitations under the License.
  */
 
+#import <Backpack/Font.h>
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarStickyHeader.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKCalendarStickyHeader : FSCalendarStickyHeader
+
+@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 @end
 

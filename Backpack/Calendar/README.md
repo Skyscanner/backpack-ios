@@ -20,3 +20,4 @@ and then run `pod install`.
 `(UIColor)dateSelectedContentColor`
 `(UIColor)dateSelectedBackgroundColor`
 
+`(BPKFontMapping)fontMapping`

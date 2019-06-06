@@ -17,6 +17,7 @@
  */
 
 #import "BPKCalendarYearPill.h"
+#import "BPKCalendar.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -60,13 +61,28 @@
     self.layer.cornerRadius = CGRectGetHeight(self.frame) / 2.0;
 }
 
+-(void)setFontMapping:(BPKFontMapping *)fontMapping {
+    if(_fontMapping != fontMapping) {
+        _fontMapping = fontMapping;
+
+        [self updateYearAppearance];
+    }
+}
+
+- (void)updateYearAppearance {
+    if(self.year != nil) {
+        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+                                                                   content:[self.year stringValue]
+                                                                 textColor:[BPKColor white]
+                                                               fontMapping:_fontMapping];
+        [self.label sizeToFit];
+    }
+}
+
 - (void)setYear:(nonnull NSNumber *)year {
     _year = year;
-    self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
-                                                               content:[year stringValue]
-                                                             textColor:[BPKColor white]
-                                                           fontMapping:nil];
-    [self.label sizeToFit];
+
+    [self updateYearAppearance];
 }
 
 @end
