@@ -71,9 +71,11 @@ NS_ASSUME_NONNULL_BEGIN
         attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
                                                           content:text
                                                         textColor:self.textColor
-                                                      fontMapping:nil];
+                                                      fontMapping:self.fontMapping];
     } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text fontMapping:nil];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                          content:text
+                                                      fontMapping:self.fontMapping];
     }
     self.attributedText = attributedString;
 }
@@ -81,6 +83,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     BPKAssertMainThread();
     _fontStyle = fontStyle;
+
+    [self setText:self.attributedText.string];
+}
+
+- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    BPKAssertMainThread();
+    _fontMapping = fontMapping;
+
     [self setText:self.attributedText.string];
 }
 
