@@ -25,3 +25,6 @@ let textView = Backpack.TextView(fontStyle: .base)
 ## Dynamic Text
 
 `BPKTextView`/`Backpack.TextView` doesn't currently support **Dynamic Text**, but this is planned for a later release.
+
+### Appearance attributes
+`(BPKFontMapping)fontMapping`
