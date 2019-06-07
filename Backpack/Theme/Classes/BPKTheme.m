@@ -161,6 +161,19 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
+    calendarAppearance.fontMapping = theme.fontMapping;
+
+    BPKCalendarYearPill *calendarYearPillAppearance = [BPKCalendarYearPill appearanceWhenContainedInInstancesOfClasses:@[class]];
+    calendarYearPillAppearance.fontMapping = theme.fontMapping;
+
+    BPKCalendarHeaderCell *calendarHeaderCellAppearance = [BPKCalendarHeaderCell appearanceWhenContainedInInstancesOfClasses:@[class]];
+    calendarHeaderCellAppearance.fontMapping = theme.fontMapping;
+
+    BPKCalendarStickyHeader *calendarStickyHeaderAppearance = [BPKCalendarStickyHeader appearanceWhenContainedInInstancesOfClasses:@[class]];
+    calendarStickyHeaderAppearance.fontMapping = theme.fontMapping;
+
+    BPKCalendarCell *calendarCellAppearance = [BPKCalendarCell appearanceWhenContainedInInstancesOfClasses:@[class]];
+    calendarCellAppearance.fontMapping = theme.fontMapping;
 
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];

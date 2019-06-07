@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+#import "BPKCalendar.h"
 #import "BPKCalendarCell.h"
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -156,21 +157,21 @@
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor
-                                                                        fontMapping:nil];
+                                                                        fontMapping:_fontMapping];
             break;
 
         case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor
-                                                                        fontMapping:nil];
+                                                                        fontMapping:_fontMapping];
             break;
 
         default:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
                                                                             content:self.titleLabel.text
                                                                           textColor:color
-                                                                        fontMapping:nil];
+                                                                        fontMapping:_fontMapping];
             break;
         }
     }
