@@ -110,9 +110,9 @@ task release: ['git:fetch', :all_checks] do
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
-  change = ask "What semver change do you wanna make? (major, minor, patch)" do |input|
+  change = ask "What semver change do you wanna make? (major, minor, patch, custom)" do |input|
     symbolized = input.downcase.to_sym
-    symbolized if [:major, :minor, :patch].include?(symbolized)
+    symbolized if [:major, :minor, :patch, :custom].include?(symbolized)
   end
 
   case change
@@ -125,6 +125,11 @@ task release: ['git:fetch', :all_checks] do
     version.patch = 0
   when :patch
     version.patch += 1
+  when :custom
+    new_version = ask "Enter custom semver version" do |input|
+      SemVer.parse(input) != nil
+    end
+    version = SemVer.parse(new_version)
   end
 
   puts "New version will be #{green(version)}"
