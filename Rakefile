@@ -127,7 +127,7 @@ task release: ['git:fetch', :all_checks] do
     version.patch += 1
   when :custom
     new_version = ask "Enter custom semver version" do |input|
-      SemVer.parse(input) != nil
+      !SemVer.parse(input.trim).nil?
     end
     version = SemVer.parse(new_version)
   end
