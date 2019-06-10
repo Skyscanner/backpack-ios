@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 9.0.0-beta
+
+**Breaking:**
+- Backpack/Theme
+  - Theme definitions now require a `fontMapping` object attribute of type `BPKFontMapping`.
+
+- Backpack/Font
+  - A number of `BPKFont` methods now require a `fontMapping` to provided. This can be `nil`.
+
+**Added:**
+- Backpack/Icon
+  - Added `heart--outline` as `BPKIconNameHeartOutline`.
+
 ### 8.17.1
 
 **Fixed:**
