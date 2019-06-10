@@ -153,11 +153,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
     _title = [title copy];
+    [self updateTitle];
+}
 
-    if (title) {
+- (void)updateTitle {
+    if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
-                                                                             content:title
-                                                                           textColor:self.currentContentColor];
+                                                                             content:self.title
+                                                                           textColor:self.currentContentColor
+                                                                         fontMapping:_fontMapping];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -174,6 +178,14 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateContentColor];
     [self updateFont];
     [self updateEdgeInsets];
+}
+
+- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    if (_fontMapping != fontMapping) {
+        _fontMapping = fontMapping;
+
+        [self updateTitle];
+    }
 }
 
 #pragma mark - State setters
@@ -414,7 +426,8 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:self.title
-                                                                           textColor:self.currentContentColor];
+                                                                           textColor:self.currentContentColor
+                                                                         fontMapping:_fontMapping];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -467,7 +480,8 @@ NS_ASSUME_NONNULL_BEGIN
             NSAttributedString *attributedHighlightedTitle =
                 [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                content:self.title
-                                             textColor:highlightedContentColor];
+                                             textColor:highlightedContentColor
+                                           fontMapping:_fontMapping];
 
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];

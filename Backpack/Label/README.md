@@ -25,3 +25,7 @@ let label = Backpack.Label(fontStyle: .base)
 ## Dynamic Text
 
 `BPKLabel` doesn't currently support **Dynamic Text**, but this is planned for a later release.
+
+### Appearance attributes
+`(BPKFontMapping)fontMapping`
+

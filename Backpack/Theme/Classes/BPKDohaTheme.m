@@ -22,6 +22,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
@@ -31,6 +32,13 @@
 
 - (NSString *)themeName {
     return @"Doha";
+}
+
+- (BPKFontMapping *)fontMapping {
+    return [[BPKFontMapping alloc] initWithFamily:@"AmericanTypewriter"
+                                  regularFontFace:@"AmericanTypewriter-Light"
+                                 semiboldFontFace:@"AmericanTypewriter-Semibold"
+                                    heavyFontFace:@"AmericanTypewriter-Bold"];
 }
 
 - (UIColor *)switchPrimaryColor {

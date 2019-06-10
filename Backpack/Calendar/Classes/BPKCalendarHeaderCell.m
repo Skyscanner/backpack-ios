@@ -18,6 +18,7 @@
 
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarAppearance.h"
+#import "BPKCalendar.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
@@ -35,16 +36,31 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)setFontMapping:(BPKFontMapping *)fontMapping {
+    if(_fontMapping != fontMapping) {
+        _fontMapping = fontMapping;
+
+        [self updateMonthTextAppearance];
+    }
+}
+
+- (void)updateMonthTextAppearance {
     FSCalendarAppearance *appearance = self.header.calendar.appearance;
     NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]],
              @"Return value is not of type BPKCalendarAppearance as expected.");
+
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                    content:self.titleLabel.text
-                                                                 textColor:appearance.headerTitleColor];
+                                                                 textColor:appearance.headerTitleColor
+                                                               fontMapping:self.fontMapping];
     self.titleLabel.attributedText = monthText;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    [self updateMonthTextAppearance];
 }
 
 @end

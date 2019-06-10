@@ -126,8 +126,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
 
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes =
-        [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm
+                                                                                         fontMapping:self.fontMapping];
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
@@ -150,6 +150,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
     [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class]
                                             forCellWithReuseIdentifier:CellReuseId];
+
+
     [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class]
                          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                 withReuseIdentifier:HeaderReuseId];
@@ -302,6 +304,19 @@ NSString *const HeaderDateFormat = @"MMMM";
         _dateSelectedContentColor = dateSelectedContentColor;
         self.appearance.titleSelectionColor = self.dateSelectedContentColor;
         [self.calendarView.collectionView reloadData];
+    }
+}
+
+- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
+    if (fontMapping != _fontMapping) {
+        _fontMapping = fontMapping;
+        NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm
+                                                                                             fontMapping:fontMapping];
+
+        self.appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
+        self.appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
+        [self.calendarView.collectionView reloadData];
+        [self.calendarWeekdayView configureAppearance];
     }
 }
 
