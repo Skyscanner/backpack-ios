@@ -34,13 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
                      rootViewController:(nonnull UIViewController *)rootViewController {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithContainerClass:themeDefinition.themeContainerClass rootViewController:rootViewController];
 
     if (self) {
-        _themeActive = YES;
         _themeDefinition = themeDefinition;
-        _themeContainer = [BPKTheme containerFor:_themeDefinition];
-        self.rootViewController = rootViewController;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receiveTheme:)
@@ -49,6 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return self;
+}
+
+- (instancetype)createIdenticalContainerControllerForRootController:(UIViewController *)rootController {
+    return [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition
+                                                     rootViewController:rootController];
 }
 
 - (void)receiveTheme:(NSNotification *)notification {
@@ -65,112 +67,13 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view addSubview:self.themeContainer];
-
-    [self addChildViewController:self.rootViewController];
-    self.themeContainer.frame = [self frameForContainerView];
-    self.rootViewController.view.frame = [self frameForRootController];
-    [self.themeContainer addSubview:self.rootViewController.view];
-    [self.rootViewController didMoveToParentViewController:self];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-
-    self.themeContainer.frame = [self frameForContainerView];
-    self.rootViewController.view.frame = [self frameForRootController];
-}
-
-- (void)setThemeActive:(BOOL)themeActive {
-    BPKAssertMainThread();
-
-    if (_themeActive != themeActive) {
-        // Theme was active is becoming inactive
-        if (_themeActive && !themeActive) {
-            [self.rootViewController.view removeFromSuperview];
-            [self.view addSubview:self.rootViewController.view];
-            self.themeContainer.hidden = YES;
-        } else { // Theme was inactive is becoming active
-            [self.rootViewController.view removeFromSuperview];
-            [self.themeContainer addSubview:self.rootViewController.view];
-            self.themeContainer.hidden = NO;
-        }
-
-        _themeActive = themeActive;
-        [self reloadViews];
-        [self.view setNeedsLayout];
-    }
-}
-
 - (void)setThemeDefinition:(id<BPKThemeDefinition>)themeDefinition {
     BPKAssertMainThread();
 
     if (_themeDefinition != themeDefinition) {
         _themeDefinition = themeDefinition;
-        [self.rootViewController.view removeFromSuperview];
-        [_themeContainer removeFromSuperview];
-        _themeContainer = [BPKTheme containerFor:themeDefinition];
-        [self.view addSubview:_themeContainer];
-        [_themeContainer addSubview:self.rootViewController.view];
 
-        [self reloadViews];
-        [self.view setNeedsLayout];
-    }
-}
-
-- (BPKThemeContainerController *)createIdenticalThemeContainerForRootController:(UIViewController *)rootController {
-    BPKThemeContainerController *themeContainerController =
-        [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition
-                                                  rootViewController:rootController];
-    return themeContainerController;
-}
-
-#pragma mark - UIViewController methods
-
-- (nullable UIViewController *)childViewControllerForStatusBarStyle {
-    return self.rootViewController;
-}
-
-- (nullable UIViewController *)childViewControllerForStatusBarHidden {
-    return self.rootViewController;
-}
-
-#pragma mark - NSObject methods
-
-- (id)forwardingTargetForSelector:(SEL)aSelector {
-    NSAssert(NO,
-             @"Forwarding unrecognized selector, %@, to `rootViewController` in `BPKThemeContainerController`. It is "
-             @"not recommended to rely on this behaviour",
-             NSStringFromSelector(aSelector));
-    return self.rootViewController;
-}
-
-#pragma mark - Private
-
-- (CGRect)frameForContainerView {
-    if (self.isThemeActive) {
-        return self.view.bounds;
-    } else {
-        return CGRectZero;
-    }
-}
-
-- (CGRect)frameForRootController {
-    if (self.isThemeActive) {
-        return self.themeContainer.bounds;
-    } else {
-        return self.view.bounds;
-    }
-}
-
-- (void)reloadViews {
-    UIWindow *window = self.view.window;
-
-    for (UIView *view in window.subviews) {
-        [view removeFromSuperview];
-        [window addSubview:view];
+        [super setContainerView:[BPKTheme containerFor:_themeDefinition]];
     }
 }
 
