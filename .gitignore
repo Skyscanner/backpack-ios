@@ -21,6 +21,11 @@ DerivedData
 docs/
 Example/Pods/
 vendor
+bin/
+cache/
+extensions/
+gems/
+specifications/
 
 # Bundler
 .bundle
