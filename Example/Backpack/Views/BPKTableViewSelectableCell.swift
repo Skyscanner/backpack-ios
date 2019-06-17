@@ -22,6 +22,13 @@ import Backpack.Icon
 import Backpack.Theme
 
 class BPKTableViewSelectableCell: UITableViewCell {
+
+    @objc dynamic var selectedColor: UIColor = Color.blue500 {
+        didSet {
+            tickIcon.tintColor = selectedColor
+        }
+    }
+
     let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,11 +45,6 @@ class BPKTableViewSelectableCell: UITableViewCell {
             tickIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase)
             ])
         tickIcon.isHidden = true
-    }
-
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        tickIcon.tintColor = Theme.primaryColor(for: self)
     }
 
     func setApplied(applied: Bool) {

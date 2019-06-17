@@ -17,7 +17,7 @@
  */
 
 import UIKit
-import  Backpack
+import Backpack
 
 class BPKBadgeContainer: UIView {
     var label: Label!
