@@ -19,38 +19,48 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKContainerController.h"
-#import "BPKThemeDefinition.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * A subclass of BPKContainerController which manages the application of a theme.
- *
+ * A view controller that manages wrapping a view hierarchy in a view.
  * The view controller hierarchy and thus view hierarchy contained in the controller is conditionally
  * rendered inside a container. By leveraging the container relationship consumers can use
  * `UIAppearance` to alter the look of all views rendered within the container.
  */
-NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : BPKContainerController
+NS_SWIFT_NAME(ContainerController) @interface BPKContainerController : UIViewController
 
 /**
- * Create an instance with a given theme and root view controller.
+ * Create an instance with a given container view and root view controller.
  *
- * @param themeDefinition The theme that we want to wrap the view hierarchy in.
+ * @param containerClass The class of the container to wrap the view hierarchy in.
  * @param rootViewController The root view controller to be used as a child view controller.
  * @return A configured instance than can further be contained or set to be the `rootViewController` of a `window`.
  */
-- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
-                     rootViewController:(UIViewController *)rootViewController;
+- (instancetype)initWithContainerClass:(Class)containerClass
+                    rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithContainerClass:(Class)containerClass rootViewController:(UIViewController *)rootViewController NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+    __attribute__((unavailable("use initWithContainerClass:rootViewController: instead")));
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
+                         bundle:(nullable NSBundle *)nibBundleOrNil
+    __attribute__((unavailable("use initWithContainerClass:rootViewController: instead")));
+
+- (instancetype)createIdenticalContainerControllerForRootController:(UIViewController *)rootController;
+
+- (void)setContainerView:(UIView *)container;
 
 /**
- * The theme container that is currently being used if the theme is active.
+ * Controls whether the specified container is currently being used. The default value is `YES`.
  * Changing the value of this property will immediately cause the view hierarchy to update to reflect the
  * new state. As such it should only be called on the main thread.
  */
-@property(nonatomic, strong) id<BPKThemeDefinition> themeDefinition;
+@property(nonatomic, assign, getter=isContainerActive) BOOL containerIsActive;
+
+/**
+ * The container that is currently being used.
+ */
+@property(readonly, nonatomic, strong) UIView *container;
+
 @end
 
 NS_ASSUME_NONNULL_END
