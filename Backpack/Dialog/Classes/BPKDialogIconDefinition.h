@@ -30,12 +30,12 @@ NS_SWIFT_NAME(DialogIconDefinition)
 /**
  * The background color behind the icon
  */
-@property(nonatomic, strong) UIColor *iconBackgroundColor;
+@property(readonly, nonatomic, strong) UIColor *iconBackgroundColor;
 
 /**
  * The icon to show at the top of the dialog
  */
-@property(nonatomic, strong) UIImage *iconImage;
+@property(readonly, nonatomic, strong) UIImage *iconImage;
 
 /**
  * Create an instance of `BPKDialogIconDefinition`.

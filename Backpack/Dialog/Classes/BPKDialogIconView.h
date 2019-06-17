@@ -21,7 +21,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogIconView : UIView
-@property(nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
+@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
