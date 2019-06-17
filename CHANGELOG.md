@@ -2,6 +2,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 10.0.0
+
+**Breaking:**
+ - Backpack/Theme:
+   - `BPKContainerController themeContainer` has been renamed `container`.
+   - `BPKContainerController isThemeActive` has been renamed `isContainerActive`.
+
+**Added:**
+ - Backpack/Theme:
+   - Added initialiser for creating a `BPKContainerController` with a `UIView Class`, instead of insisting on a complete theme definition.
+
 ### 9.0.0-beta
 
 **Breaking:**
