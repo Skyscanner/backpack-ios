@@ -16,29 +16,16 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+#import <Foundation/Foundation.h>
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "Dialog.h"
-#import "Icon.h"
-#import "Label.h"
-#import "Panel.h"
-#import "Spinner.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
-#endif
+@interface BPKTappableLinkDefinition : NSObject
+
+@property(readonly) NSRange range;
+@property(readonly, strong) NSURL *url;
+
+- (instancetype)initWithURL:(NSURL *)url range:(NSRange)range;
+
+@end
+NS_ASSUME_NONNULL_END

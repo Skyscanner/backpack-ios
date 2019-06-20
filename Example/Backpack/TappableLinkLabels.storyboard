@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TappableLinkLabels-->
+        <scene sceneID="CpR-b8-GZI">
+            <objects>
+                <tableViewController storyboardIdentifier="TappableLinkLabels" title="TappableLinkLabels" id="Gdg-nX-jAF" customClass="TappableLinkLabelsSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SZx-jL-Soc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="swP-hE-ddI">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="nHy-12-y3H" style="IBUITableViewCellStyleDefault" id="FJJ-LB-8nm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FJJ-LB-8nm" id="HZD-zw-5MQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text with single link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nHy-12-y3H" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UdU-rX-SFo" kind="show" identifier="SingleLink" id="AeK-39-ESP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="vmC-tF-dbO" style="IBUITableViewCellStyleDefault" id="2bi-60-OWg">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2bi-60-OWg" id="ovf-Z3-MCz">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text with multiple links" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vmC-tF-dbO" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UdU-rX-SFo" kind="show" identifier="MultipleLinks" id="0wG-eF-ooE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Gdg-nX-jAF" id="NWP-g0-tc1"/>
+                            <outlet property="delegate" destination="Gdg-nX-jAF" id="0vW-cZ-l9K"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CBN-Cd-Xj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="224"/>
+        </scene>
+        <!--Tappable Link Labels View Controller-->
+        <scene sceneID="wWW-Vj-bRt">
+            <objects>
+                <viewController id="UdU-rX-SFo" customClass="TappableLinkLabelsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rhl-Wd-ilk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZ0-LI-2VV">
+                                <rect key="frame" x="20" y="48" width="335" height="571"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-RU-235" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="71" y="20" width="154" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-E3-1oK" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="71" y="98" width="154" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBo-Bc-yxb" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="71" y="177" width="154" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADl-YG-byM" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="0.0" y="255" width="335" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-KR-98h" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="0.0" y="345" width="335" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-Ft-9ok" customClass="BPKTappableLinkLabel">
+                                        <rect key="frame" x="0.0" y="442" width="335" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mIT-RU-235" firstAttribute="top" secondItem="OZ0-LI-2VV" secondAttribute="top" constant="20" id="9Mt-dx-R7Y"/>
+                                    <constraint firstItem="JQp-Ft-9ok" firstAttribute="top" secondItem="Iec-KR-98h" secondAttribute="bottom" constant="20" id="EfZ-S4-BOt"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iec-KR-98h" secondAttribute="trailing" id="Fls-Uf-EQ6"/>
+                                    <constraint firstItem="mIT-RU-235" firstAttribute="centerX" secondItem="OZ0-LI-2VV" secondAttribute="centerX" id="QNv-Q4-G1v"/>
+                                    <constraint firstItem="ADl-YG-byM" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="SYF-gi-cEy"/>
+                                    <constraint firstItem="pCc-E3-1oK" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="Sfz-FS-ukO"/>
+                                    <constraint firstItem="RBo-Bc-yxb" firstAttribute="top" secondItem="pCc-E3-1oK" secondAttribute="bottom" constant="20" id="TiP-Jp-IIE"/>
+                                    <constraint firstAttribute="trailing" secondItem="RBo-Bc-yxb" secondAttribute="trailing" id="W4e-NK-jzW"/>
+                                    <constraint firstAttribute="trailing" secondItem="mIT-RU-235" secondAttribute="trailing" id="W8A-cR-9f1"/>
+                                    <constraint firstAttribute="trailing" secondItem="pCc-E3-1oK" secondAttribute="trailing" id="a0h-BF-Kyh"/>
+                                    <constraint firstItem="ADl-YG-byM" firstAttribute="top" secondItem="RBo-Bc-yxb" secondAttribute="bottom" constant="20" id="cI5-LS-lZS"/>
+                                    <constraint firstItem="pCc-E3-1oK" firstAttribute="top" secondItem="mIT-RU-235" secondAttribute="bottom" constant="20" id="dJc-LK-jU1"/>
+                                    <constraint firstItem="mIT-RU-235" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="eR3-0x-Ahc"/>
+                                    <constraint firstItem="JQp-Ft-9ok" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="knf-9i-FZR"/>
+                                    <constraint firstAttribute="bottom" secondItem="JQp-Ft-9ok" secondAttribute="bottom" constant="20" id="lk1-KT-rgO"/>
+                                    <constraint firstAttribute="trailing" secondItem="JQp-Ft-9ok" secondAttribute="trailing" id="qkn-vT-TPy"/>
+                                    <constraint firstAttribute="trailing" secondItem="ADl-YG-byM" secondAttribute="trailing" id="tJE-ac-Jge"/>
+                                    <constraint firstItem="RBo-Bc-yxb" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="ukV-1g-eoY"/>
+                                    <constraint firstItem="Iec-KR-98h" firstAttribute="top" secondItem="ADl-YG-byM" secondAttribute="bottom" constant="20" id="whl-ry-oXE"/>
+                                    <constraint firstItem="Iec-KR-98h" firstAttribute="leading" secondItem="OZ0-LI-2VV" secondAttribute="leading" id="xtl-Xb-mwU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OZ0-LI-2VV" firstAttribute="centerY" secondItem="rhl-Wd-ilk" secondAttribute="centerY" id="KM9-3P-j88"/>
+                            <constraint firstItem="OZ0-LI-2VV" firstAttribute="leading" secondItem="r4v-eE-vBN" secondAttribute="leading" constant="20" id="h6e-kg-7vR"/>
+                            <constraint firstItem="r4v-eE-vBN" firstAttribute="trailing" secondItem="OZ0-LI-2VV" secondAttribute="trailing" constant="20" id="mwD-qi-Vyo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r4v-eE-vBN"/>
+                    </view>
+                    <connections>
+                        <outletCollection property="tappableLinks" destination="mIT-RU-235" collectionClass="NSMutableArray" id="2em-Ig-ahP"/>
+                        <outletCollection property="tappableLinks" destination="pCc-E3-1oK" collectionClass="NSMutableArray" id="arZ-B3-vKn"/>
+                        <outletCollection property="tappableLinks" destination="RBo-Bc-yxb" collectionClass="NSMutableArray" id="Gu6-aZ-qBL"/>
+                        <outletCollection property="tappableLinks" destination="ADl-YG-byM" collectionClass="NSMutableArray" id="FIr-9V-sSV"/>
+                        <outletCollection property="tappableLinks" destination="Iec-KR-98h" collectionClass="NSMutableArray" id="2Cx-Kd-MZ2"/>
+                        <outletCollection property="tappableLinks" destination="JQp-Ft-9ok" collectionClass="NSMutableArray" id="AgW-Gu-j4j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zeo-NO-uMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="736.79999999999995" y="143.47826086956522"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="AeK-39-ESP"/>
+    </inferredMetricsTieBreakers>
+</document>
