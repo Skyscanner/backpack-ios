@@ -22,7 +22,7 @@ import Backpack
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
         ("primary color", { (view: UIView) -> UIColor in
-            return Theme.primaryColor(for: view)
+            return Color.blue500
         }),
         ("blue700", { (view: UIView) -> UIColor in
             return Color.blue700
@@ -44,22 +44,22 @@ class ColorsViewController: UICollectionViewController {
     ]
     fileprivate static var grayColors = [
         ("gray50", { (view: UIView) -> UIColor in
-            return Theme.gray50Color(for: view)
+            return Color.gray50
         }),
         ("gray100", { (view: UIView) -> UIColor in
-            return Theme.gray100Color(for: view)
+            return Color.gray100
         }),
         ("gray300", { (view: UIView) -> UIColor in
-            return Theme.gray300Color(for: view)
+            return Color.gray300
         }),
         ("gray500", { (view: UIView) -> UIColor in
-            return Theme.gray500Color(for: view)
+            return Color.gray500
         }),
         ("gray700", { (view: UIView) -> UIColor in
-            return Theme.gray700Color(for: view)
+            return Color.gray700
         }),
         ("gray900", { (view: UIView) -> UIColor in
-            return Theme.gray900Color(for: view)
+            return Color.gray900
         })
     ]
     fileprivate static var allColors = [
@@ -70,10 +70,6 @@ class ColorsViewController: UICollectionViewController {
 
     fileprivate static let cellIdentifier = "ColorPreviewCollectionViewCell"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
-
-    override func viewDidAppear(_ animated: Bool) {
-        collectionView?.reloadData()
-    }
 
     override func viewDidLoad() {
         collectionView?.register(

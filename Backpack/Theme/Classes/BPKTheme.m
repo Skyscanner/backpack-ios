@@ -58,6 +58,8 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
 }
 
 + (UIColor *)grayColor:(BPKGrayColor)gray for:(UIView *)view {
+    NSAssert(NO,
+             @"grayXColorFor: has been deprecated. Please add UI_APPEARANCE_ATTRIBUTES to theme custom components.");
     BPKThemeContainer *themeContainer = view.themeContainer;
 
     if (themeContainer != nil) {
@@ -163,13 +165,16 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
     calendarAppearance.fontMapping = theme.fontMapping;
 
-    BPKCalendarYearPill *calendarYearPillAppearance = [BPKCalendarYearPill appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKCalendarYearPill *calendarYearPillAppearance =
+        [BPKCalendarYearPill appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarYearPillAppearance.fontMapping = theme.fontMapping;
 
-    BPKCalendarHeaderCell *calendarHeaderCellAppearance = [BPKCalendarHeaderCell appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKCalendarHeaderCell *calendarHeaderCellAppearance =
+        [BPKCalendarHeaderCell appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarHeaderCellAppearance.fontMapping = theme.fontMapping;
 
-    BPKCalendarStickyHeader *calendarStickyHeaderAppearance = [BPKCalendarStickyHeader appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKCalendarStickyHeader *calendarStickyHeaderAppearance =
+        [BPKCalendarStickyHeader appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarStickyHeaderAppearance.fontMapping = theme.fontMapping;
 
     BPKCalendarCell *calendarCellAppearance = [BPKCalendarCell appearanceWhenContainedInInstancesOfClasses:@[class]];

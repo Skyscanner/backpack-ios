@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Breaking:**
+ - Backpack/Theme:
+   - We've deprecated `grayXXColorFor:` methods in favour of using `UI_APPEARANCE_SELECTOR`s.
 
 ## How to write a good changelog entry
 

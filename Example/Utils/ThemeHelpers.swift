@@ -28,11 +28,17 @@ class ThemeHelpers: NSObject {
 
     @objc
     class func applyAllThemes() {
-        Theme.apply(DefaultTheme())
-        Theme.apply(LondonTheme())
-        Theme.apply(HongKongTheme())
-        Theme.apply(DohaTheme())
-        Theme.apply(SilverTheme())
+        apply(theme: DefaultTheme())
+        apply(theme: LondonTheme())
+        apply(theme: HongKongTheme())
+        apply(theme: DohaTheme())
+        apply(theme: SilverTheme())
+    }
+
+    @objc
+    class func apply(theme: BPKThemeDefinition) {
+        Theme.apply(theme)
+        ThemeRegistry.register(theme: theme)
     }
 
     @objc

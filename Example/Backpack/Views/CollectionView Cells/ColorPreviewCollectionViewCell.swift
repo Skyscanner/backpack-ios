@@ -20,9 +20,51 @@ import UIKit
 import Backpack
 
 class ColorPreviewCollectionViewCell: UICollectionViewCell {
+    @objc dynamic var primaryColor: UIColor = Color.blue500 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray50: UIColor = Color.gray50 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray100: UIColor = Color.gray100 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray300: UIColor = Color.gray300 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray500: UIColor = Color.gray500 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray700: UIColor = Color.gray700 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
+    @objc dynamic var gray900: UIColor = Color.gray900 {
+        didSet {
+            updateBackgroundColor()
+        }
+    }
+
     var color: UIColor? {
         didSet {
-            colorView.backgroundColor = color
+            updateBackgroundColor()
         }
     }
     var name: String? {
@@ -45,6 +87,27 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
+    }
+
+    func updateBackgroundColor () {
+        switch color {
+        case Color.blue500:
+            colorView.backgroundColor = primaryColor
+        case Color.gray50:
+            colorView.backgroundColor = gray50
+        case Color.gray100:
+            colorView.backgroundColor = gray100
+        case Color.gray300:
+            colorView.backgroundColor = gray300
+        case Color.gray500:
+            colorView.backgroundColor = gray500
+        case Color.gray700:
+            colorView.backgroundColor = gray700
+        case Color.gray900:
+            colorView.backgroundColor = gray900
+        default:
+            colorView.backgroundColor = color
+        }
     }
 
     public static func estimatedSize() -> CGSize {
