@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 11.0.0
+
+**Breaking:**
+ - Backpack/Theme:
+   - We've deprecated `grayXXColorFor:` methods in favour of using `UI_APPEARANCE_SELECTOR`s.
+
 ### 10.0.0
 
 **Breaking:**
