@@ -714,7 +714,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLinkContentColor:(UIColor *_Nullable)linkContentColor {
     if (linkContentColor != _linkContentColor) {
         _linkContentColor = linkContentColor;
-        [self updateBackgroundAndStyle];
+        [self updateContentColor];
     }
 }
 

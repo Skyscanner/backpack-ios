@@ -1,6 +1,10 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+
+- Backpack/Button:
+  - Fixed issue where content color of `BPKButton` didn't change after changing its linkContentColor
 
 ## How to write a good changelog entry
 
