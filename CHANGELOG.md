@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 11.0.1
+
+**Fixed:**
+
+- Backpack/Button:
+  - Fixed issue where content color of `BPKButton` didn't change after changing its `linkContentColor`
+
 ### 11.0.0
 
 **Breaking:**
