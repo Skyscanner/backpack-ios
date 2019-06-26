@@ -52,6 +52,8 @@
 		D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
+		D27AB54222C3B9A20075172B /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */; };
+		D27AB54422C3B9BD0075172B /* TextFieldUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */; };
 		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
 		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
@@ -200,6 +202,8 @@
 		D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
+		D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
 		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */,
 				D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */,
 				D6517B43216DF5F800D85FF9 /* Info.plist */,
 				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
@@ -550,6 +555,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */,
 				D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
@@ -936,6 +942,7 @@
 				D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */,
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
+				D27AB54422C3B9BD0075172B /* TextFieldUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +951,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
+				D27AB54222C3B9A20075172B /* BPKTextFieldSnapshotTest.m in Sources */,
 				D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
