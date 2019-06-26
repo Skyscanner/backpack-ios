@@ -38,6 +38,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		C7A0577722C375B0006408B6 /* TextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A0577622C375B0006408B6 /* TextFieldsViewController.swift */; };
+		C7A0577A22C39DC5006408B6 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
@@ -183,6 +184,7 @@
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		C7A0577622C375B0006408B6 /* TextFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsViewController.swift; sourceTree = "<group>"; };
+		C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldTest.m; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* ExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
 				D696CA1F215CC09400682666 /* BPKIconTest.m */,
+				C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 			);
 			path = Tests;
@@ -910,6 +913,7 @@
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
+				C7A0577A22C39DC5006408B6 /* BPKTextFieldTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
