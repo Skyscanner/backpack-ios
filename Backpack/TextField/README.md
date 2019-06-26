@@ -16,9 +16,9 @@ BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:BPKFontStyleTe
 ### Swift
 
 ```swift
-#import <Backpack/TextField.h>
+import Backpack.TextField
 
-let textField = Backpack.TextField(fontStyle: .base)
+let textField = TextField(fontStyle: .textBase)
 // Position TextField with autolayout or other method
 ```
 
