@@ -31,6 +31,7 @@
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 #import <Backpack/TextView.h>
+#import <Backpack/TextField.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -192,6 +193,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
 
     BPKTextView *textViewAppearance = [BPKTextView appearanceWhenContainedInInstancesOfClasses:@[class]];
     textViewAppearance.fontMapping = theme.fontMapping;
+    
+    BPKTextField *textFieldAppearance = [BPKTextField appearanceWhenContainedInInstancesOfClasses:@[class]];
+    textFieldAppearance.fontMapping = theme.fontMapping;
 }
 
 @end
