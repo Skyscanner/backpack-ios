@@ -16,28 +16,16 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+import UIKit
+import Backpack.TextField
+import Backpack.Color
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+class TextFieldsViewController: UIViewController {
+    @IBOutlet weak var textField: TextField!
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "Dialog.h"
-#import "Icon.h"
-#import "Label.h"
-#import "Panel.h"
-#import "Spinner.h"
-#import "Switch.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
-#endif
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        textField.textColor = Color.red800
+    }
+}
