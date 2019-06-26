@@ -70,7 +70,6 @@ NS_ASSUME_NONNULL_BEGIN
         textView.text = @"Backpack Rocks";
         [stackView addArrangedSubview:textView];
         [self setupTextViewContraints:textView];
-//        [textView sizeToFit];
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
@@ -93,7 +92,6 @@ NS_ASSUME_NONNULL_BEGIN
         textView.text = @"Backpack Rocks";
         [stackView addArrangedSubview:textView];
         [self setupTextViewContraints:textView];
-        [textView sizeToFit];
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
@@ -116,7 +114,6 @@ NS_ASSUME_NONNULL_BEGIN
         textView.text = @"Backpack Rocks";
         [stackView addArrangedSubview:textView];
         [self setupTextViewContraints:textView];
-        [textView sizeToFit];
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
@@ -144,7 +141,6 @@ NS_ASSUME_NONNULL_BEGIN
         textView.textColor = UIColor.orangeColor;
         [stackView addArrangedSubview:textView];
         [self setupTextViewContraints:textView];
-        [textView sizeToFit];
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];

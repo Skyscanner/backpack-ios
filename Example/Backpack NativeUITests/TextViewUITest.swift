@@ -53,7 +53,7 @@ class TextViewUITest: XCTestCase {
         app.tables.staticTexts["Text views"].tap()
     }
 
-    func testTapTextViewToEdits() {
+    func testTapTextViewToEdit() {
         XCTContext.runActivity(named: "Navigate") { _ in
             navigateAndShow()
         }
@@ -62,17 +62,22 @@ class TextViewUITest: XCTestCase {
         XCTAssertFalse(textView.isSelected, "The text view should not be selected automatically")
         saveScreenshot(named: "Text view normal")
 
+        guard let textViewValueBefore = textView.value as? String else {
+            XCTAssertTrue(false, "Text view is not of expected type UITextView")
+            return
+        }
+
         XCTContext.runActivity(named: "Act") { _ in
             textView.tap()
             textView.typeText("Testing ")
         }
 
-        guard let textViewValue = textView.value as? String else {
+        guard let textViewValueAfter = textView.value as? String else {
             XCTAssertTrue(false, "Text view is not of expected type UITextView")
             return
         }
 
-        // swiftlint:disable:next line_length
-        XCTAssertTrue(textViewValue.elementsEqual("Testing Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."), "The text view should be updated after typing")
+        XCTAssertTrue(textViewValueAfter.elementsEqual("Testing " + textViewValueBefore),
+                      "The text view should be updated after typing")
     }
 }
