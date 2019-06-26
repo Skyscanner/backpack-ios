@@ -49,6 +49,7 @@
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
+		D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
 		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
@@ -63,6 +64,7 @@
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
+		D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -195,6 +197,7 @@
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
+		D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
+		D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */,
 				D6517B43216DF5F800D85FF9 /* Info.plist */,
 				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
 				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
@@ -545,6 +550,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
 				D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */,
@@ -927,6 +933,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */,
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
 			);
@@ -937,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
+				D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
