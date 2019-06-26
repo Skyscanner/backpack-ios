@@ -26,6 +26,6 @@ class TextFieldsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textField.textColor = Color.red800
+        textField.accessibilityIdentifier = "textField"
     }
 }
