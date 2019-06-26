@@ -18,6 +18,7 @@
 
 import UIKit
 import Backpack.TextField
+import Backpack.Color
 
 class TextFieldsViewController: UIViewController {
     @IBOutlet weak var textField: TextField!
@@ -25,5 +26,6 @@ class TextFieldsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        textField.textColor = Color.red800;
     }
 }
