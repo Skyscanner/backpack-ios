@@ -37,6 +37,7 @@
 #import "Panel.h"
 #import "Spinner.h"
 #import "Switch.h"
+#import "TextField.h"
 #import "TextView.h"
 #import "Theme.h"
 #endif

@@ -22,7 +22,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKTextView` is a subclass of `UITextView` which uses the Skyscanner style.
+ * `BPKTextField` is a subclass of `UITextField` which uses the Skyscanner style.
  */
 NS_SWIFT_NAME(TextField) IB_DESIGNABLE @interface BPKTextField : UITextField
 
