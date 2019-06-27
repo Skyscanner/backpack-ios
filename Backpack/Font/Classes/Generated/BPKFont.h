@@ -59,7 +59,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontMapping The desired font family names to use.
  * @return A dictionary of attributes describing the specified style.
  *
- * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle fontMapping:(BPKFontMapping *_Nullable)fontMapping NS_SWIFT_NAME(makeAttributes(fontStyle:fontMapping:));
 
@@ -73,7 +73,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontMapping The desired font family names to use.
  * @return A dictionary of attributes describing the specified style and custom attributes.
  *
- * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes fontMapping:(BPKFontMapping *_Nullable)fontMapping NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:fontMapping:));
@@ -87,7 +87,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontMapping The desired font family names to use.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content fontMapping:(BPKFontMapping *_Nullable)fontMapping NS_SWIFT_NAME(makeAttributedString(fontStyle:content:fontMapping:));
 
@@ -100,7 +100,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontMapping The desired font family names to use.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel` or `BPKTextView` for rendering text when possible.
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor fontMapping:(BPKFontMapping *_Nullable)fontMapping NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:fontMapping:));
 @end
