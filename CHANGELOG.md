@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 11.2.0
+
+**Added:**
+
+- Backpack/Icons:
+  - Updated `bpk-svgs` dependency to get new icons.
+
 ### 11.1.0
 
 **Added:**
