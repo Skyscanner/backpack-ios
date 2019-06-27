@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 11.1.0
+
+**Added:**
+
+- Backpack/TextField:
+  - Added a new class `BPKTextField`, a subclass of `UITextField` which uses the Skyscanner style.
+
+**Fixed:**
+
+- Backpack/TextView:
+  - Fixed issue where `BPKTextView` didn't set proper styling when user typed.
+
 ### 11.0.1
 
 **Fixed:**
