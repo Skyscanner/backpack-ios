@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKTappableLinkLabel`/`Backpack.TappableLinkLabel` is a subclass of BPKLabel with the ability to add Skyscanner style links. 
+`BPKTappableLinkLabel`/`Backpack.TappableLinkLabel` is a subclass of `BPKLabel` with the ability to add Skyscanner style links. 
 
 ### Objective-C
 

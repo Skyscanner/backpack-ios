@@ -68,6 +68,7 @@
 		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
+		D2B3775D22C4A31A009D880B /* BPKTappableLinkLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
 		D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */; };
@@ -222,6 +223,7 @@
 		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelTest.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
 		D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
 				D29349BE2199C7650099D2EC /* BPKChipTest.m */,
@@ -946,6 +949,7 @@
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
+				D2B3775D22C4A31A009D880B /* BPKTappableLinkLabelTest.m in Sources */,
 				6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
