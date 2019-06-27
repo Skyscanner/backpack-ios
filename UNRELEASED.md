@@ -7,6 +7,11 @@
 - Backpack/TextField:
   - Added a new class `BPKTextField`, a subclass of `UITextField` which uses the Skyscanner style.
 
+**Fixed:**
+
+- Backpack/TextView:
+  - Fixed issue where `BPKTextView` didn't set proper styling when user typed.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
