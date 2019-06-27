@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
     'Icon' => 'Backpack/Icon/Assets/*'
   }
   s.dependency 'FSCalendar', '~> 2.8'
+  s.dependency 'TTTAttributedLabel', '~> 1.13.4'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
 end
