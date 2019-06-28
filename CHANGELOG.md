@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+### 11.3.0
+
+**Added:**
+
+- Backpack/TappableLinkLabel:
+  - New `TappableLinkLabel` component.
+
 ### 11.2.0
 
 **Added:**
