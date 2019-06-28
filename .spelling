@@ -89,6 +89,7 @@ BpkInteractiveStar
 BpkInteractiveStarRating
 withInteractiveStarRatingState
 
+BPKTappableLinkLabel
 BpkThemeProvider
 
 BpkTicket
@@ -192,6 +193,7 @@ stylesheets
 submodule
 submodules
 tagName
+TappableLinkLabel
 textarea
 themeable
 uncompiled

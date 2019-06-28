@@ -1,6 +1,10 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+
+- Backpack/TappableLinkLabel:
+  - New `TappableLinkLabel` component.
 
 ## How to write a good changelog entry
 

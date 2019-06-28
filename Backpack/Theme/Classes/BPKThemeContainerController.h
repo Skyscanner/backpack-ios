@@ -43,7 +43,8 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
 - (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
                      rootViewController:(UIViewController *)rootViewController;
 
-- (instancetype)initWithContainerClass:(Class)containerClass rootViewController:(UIViewController *)rootViewController NS_UNAVAILABLE;
+- (instancetype)initWithContainerClass:(Class)containerClass
+                    rootViewController:(UIViewController *)rootViewController NS_UNAVAILABLE;
 
 /**
  * The theme container that is currently being used if the theme is active.

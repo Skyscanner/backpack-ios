@@ -15,30 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "BPKTappableLinkDefinition.h"
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+NS_ASSUME_NONNULL_BEGIN
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+@implementation BPKTappableLinkDefinition
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "Dialog.h"
-#import "Icon.h"
-#import "Label.h"
-#import "Panel.h"
-#import "Spinner.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
-#endif
+- (instancetype)initWithURL:(NSURL *)url range:(NSRange)range {
+    self = [super init];
+
+    if(self) {
+        _url = url;
+        _range = range;
+    }
+
+    return self;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END
