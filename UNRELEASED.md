@@ -3,7 +3,9 @@
 **Added:**
 
 - Backpack/TappableLinkLabel:
+  - Added method for adding a link with Transit Information (an `NSDictionary`) instead of creating with a URL.
   - New `style` property which can be used when placing the link label over a blue/dark background.
+  - Added `numberOfLines` property.
 
 > Place your changes below this line.
 

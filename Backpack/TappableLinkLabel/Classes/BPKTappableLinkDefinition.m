@@ -32,6 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithTransitInformation:(NSDictionary *)components range:(NSRange)range {
+    self = [super init];
+
+    if (self) {
+        _components = components;
+        _range = range;
+    }
+
+    return self;
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -121,7 +121,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKFontStyle)linkFontStyle {
-    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle] : self.fontStyle;
+    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle]
+                                                            : self.fontStyle;
 }
 
 - (NSDictionary *)customFontAttributes {
@@ -129,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)linkDisplayColor {
-    if(self.style == BPKTappableLinkLabelStyleAlternate) {
+    if (self.style == BPKTappableLinkLabelStyleAlternate) {
         return BPKColor.white;
     }
 
@@ -137,8 +138,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateTextColors {
-    NSDictionary *linkCustomAttributes =
-        @{NSForegroundColorAttributeName: self.linkDisplayColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    NSDictionary *linkCustomAttributes = @{
+        NSForegroundColorAttributeName: self.linkDisplayColor,
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
+    };
     self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
                                                  withCustomAttributes:linkCustomAttributes
                                                           fontMapping:self.fontMapping];
@@ -160,16 +163,22 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                                                            withCustomAttributes:self.customFontAttributes
-                                                                                     fontMapping:self.fontMapping];
+    NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
+        [BPKFont attributesForFontStyle:self.fontStyle
+                   withCustomAttributes:self.customFontAttributes
+                            fontMapping:self.fontMapping];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
+                                                                    attributes:newStringAttributes];
     self.contentView.text = newString;
 
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
-        [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
+        if (linkDefinition.url) {
+            [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
+        } else {
+            [self.contentView addLinkToTransitInformation:linkDefinition.components withRange:linkDefinition.range];
+        }
     }
 }
 
@@ -177,6 +186,13 @@ NS_ASSUME_NONNULL_BEGIN
     [_persistedLinks addObject:[[BPKTappableLinkDefinition alloc] initWithURL:url range:range]];
 
     [self.contentView addLinkToURL:url withRange:range];
+    return self;
+}
+
+- (instancetype)addLinkToTransitInformation:(NSDictionary *)components withRange:(NSRange)range {
+    [_persistedLinks addObject:[[BPKTappableLinkDefinition alloc] initWithTransitInformation:components range:range]];
+
+    [self.contentView addLinkToTransitInformation:components withRange:range];
     return self;
 }
 
@@ -228,7 +244,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines {
-    if(self.contentView.numberOfLines != numberOfLines) {
+    if (self.contentView.numberOfLines != numberOfLines) {
         self.contentView.numberOfLines = numberOfLines;
     }
 }
@@ -242,6 +258,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
     if (self.delegate != nil) {
         [self.delegate attributedLabel:label didSelectLinkWithURL:url];
+    }
+}
+
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
+    if (self.delegate != nil) {
+        [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
     }
 }
 

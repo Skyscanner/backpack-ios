@@ -25,6 +25,5 @@ class TextViewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.accessibilityIdentifier = "textView"
     }
 }

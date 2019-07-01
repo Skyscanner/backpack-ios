@@ -80,25 +80,18 @@ NS_ASSUME_NONNULL_BEGIN
     self.attributedText = attributedString;
 }
 
-- (void)setTextColor:(UIColor * _Nullable)textColor {
-    BPKAssertMainThread();
-    [super setTextColor:textColor];
-
-    [self updateStyle];
-}
-
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     BPKAssertMainThread();
     _fontStyle = fontStyle;
 
-    [self updateStyle];
+    [self setText:self.attributedText.string];
 }
 
 - (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
     BPKAssertMainThread();
     _fontMapping = fontMapping;
 
-    [self updateStyle];
+    [self setText:self.attributedText.string];
 }
 
 #pragma mark - Private
@@ -106,17 +99,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
     self.textColor = [BPKColor gray700];
-
-    [self updateStyle];
-}
-
-- (void)updateStyle {
-    NSDictionary *colorAttributes = self.textColor ? @{NSForegroundColorAttributeName: self.textColor} : @{};
-    self.typingAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                       withCustomAttributes:colorAttributes
-                                                fontMapping:self.fontMapping];
-
-    [self setText:self.attributedText.string];
 }
 
 @end
