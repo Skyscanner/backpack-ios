@@ -142,6 +142,23 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testViewSnapshotWithMultipleFontStyles {
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    label.numberOfLines = 5;
+
+    label.text = @"Original text";
+    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
+    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    [label insertText:@" More inserted text" atIndex:8 withFontStyle: BPKFontStyleTextXxlEmphasized];
+
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1200, 120)];
+    parentView.backgroundColor = BPKColor.white;
+    [label sizeToFit];
+    [parentView addSubview:label];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

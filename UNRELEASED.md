@@ -1,5 +1,9 @@
 # Unreleased
 
+**Added:**
+
+- Backpack/Label:
+  - New methods for appending text and inserting text, both of which support adding text with different `fontStyle`s to the base label `fontStyle`.
 
 > Place your changes below this line.
 

@@ -15,13 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKLabel.h"
+#import "BPKTextDefinition.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKLabel ()
+
 - (void)setupWithStyle:(BPKFontStyle)style;
+@property(strong) NSMutableArray<BPKTextDefinition *> *persistedText;
+
 @end
 
 @implementation BPKLabel
@@ -65,22 +70,35 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSAttributedString *_Nullable attributedString = nil;
-    if (self.textColor) {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:self.text
-                                                        textColor:self.textColor
-                                                      fontMapping:_fontMapping];
-    } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:self.text
-                                                      fontMapping:_fontMapping];
+    NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc]init];
+
+    // Recreate the attributed string from the persisted definitions
+    for (BPKTextDefinition *textDefinition in self.persistedText) {
+        NSAttributedString *attributedString = [self getAttributedStringWithFontStyle:textDefinition.fontStyle text:textDefinition.text];
+        [newAttributedString appendAttributedString:attributedString];
     }
-    super.attributedText = attributedString;
+
+    super.attributedText = newAttributedString;
+}
+
+- (NSAttributedString *)getAttributedStringWithFontStyle:(BPKFontStyle)fontStyle text:(NSString *)text {
+    if (self.textColor) {
+        return [BPKFont attributedStringWithFontStyle:fontStyle
+                                              content:text
+                                            textColor:self.textColor
+                                          fontMapping:self.fontMapping];
+    } else {
+        return [BPKFont attributedStringWithFontStyle:fontStyle
+                                              content:text
+                                          fontMapping:self.fontMapping];
+    }
 }
 
 - (void)setText:(NSString *_Nullable)text {
     BPKAssertMainThread();
+
+    [self.persistedText removeAllObjects];
+    [self.persistedText addObject:[[BPKTextDefinition alloc] initWithText:text fontStyle:self.fontStyle]];
 
     [super setText:text];
     [self updateTextStyle];
@@ -89,7 +107,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     BPKAssertMainThread();
     _fontStyle = fontStyle;
+
     self.text = self.attributedText.string;
+
+    [self.persistedText removeAllObjects];
+    [self.persistedText addObject:[[BPKTextDefinition alloc] initWithText:self.text fontStyle:fontStyle]];
 }
 
 - (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
@@ -100,9 +122,60 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)appendText:(NSString *)text withFontStyle:(BPKFontStyle)fontStyle {
+    [_persistedText addObject:[[BPKTextDefinition alloc] initWithText:text fontStyle:fontStyle]];
+
+    NSAttributedString *currentText = self.attributedText;
+    NSAttributedString *newText = [BPKFont attributedStringWithFontStyle:fontStyle content:text fontMapping:self.fontMapping];
+    NSMutableAttributedString *resultingString = [[NSMutableAttributedString alloc] init];
+    [resultingString appendAttributedString:currentText];
+    [resultingString appendAttributedString:newText];
+
+    [self setAttributedText:resultingString];
+}
+
+- (void)insertText:(NSString *)text atIndex:(int)index withFontStyle:(BPKFontStyle)fontStyle {
+    [self insertTextDefinition:[[BPKTextDefinition alloc] initWithText:text fontStyle:fontStyle] atIndex:index];
+
+    NSAttributedString *currentText = self.attributedText;
+    NSAttributedString *newText = [BPKFont attributedStringWithFontStyle:fontStyle content:text fontMapping:self.fontMapping];
+    NSMutableAttributedString *resultingString = [[NSMutableAttributedString alloc] init];
+    [resultingString appendAttributedString:currentText];
+    [resultingString insertAttributedString:newText atIndex:index];
+
+    [self setAttributedText:resultingString];
+}
+
+- (void)insertTextDefinition:(BPKTextDefinition *)newTextDefinition atIndex:(int)index {
+    NSMutableArray<BPKTextDefinition *> *newPersistedText = [[NSMutableArray alloc] init];
+
+    int cumulativeLength = 0;
+    Boolean inserted = NO;
+    for (BPKTextDefinition *textDefinition in self.persistedText) {
+        if(inserted) {
+            [newPersistedText addObject:textDefinition ];
+        }else if(cumulativeLength == index) {
+            [newPersistedText addObject:newTextDefinition ];
+            inserted = YES;
+            [newPersistedText addObject:textDefinition];
+        } else if (cumulativeLength + textDefinition.text.length <= index) {
+            [newPersistedText addObject:textDefinition ];
+        } else {
+            NSArray<BPKTextDefinition *> *splitTextDefinition = [textDefinition splitAtIndex:index-cumulativeLength];
+            [newPersistedText addObject:[splitTextDefinition objectAtIndex:0] ];
+            [newPersistedText addObject:newTextDefinition ];
+            inserted = YES;
+            [newPersistedText addObject:[splitTextDefinition objectAtIndex:1] ];
+        }
+        cumulativeLength += textDefinition.text.length;
+    }
+    self.persistedText = newPersistedText;
+}
+
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
+    self.persistedText = [[NSMutableArray alloc] init];
     self.fontStyle = style;
     self.textColor = BPKColor.gray700;
 }

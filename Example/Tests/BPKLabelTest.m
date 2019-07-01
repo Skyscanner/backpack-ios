@@ -85,6 +85,52 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void) testAppendingText {
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+
+    label.text = @"Original text";
+    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
+    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    XCTAssertEqualObjects(label.text, @"Original text Appended text More appended text");
+
+    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
+
+    XCTAssertEqualObjects(label.text, @"Original text Appended text More appended text");
+}
+
+- (void) testInsertingTextBetweenSections {
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+
+    label.text = @"Original text";
+    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
+    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    [label insertText:@" Inserted text" atIndex:27 withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    XCTAssertEqualObjects(label.text, @"Original text Appended text Inserted text More appended text");
+
+    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
+
+    XCTAssertEqualObjects(label.text, @"Original text Appended text Inserted text More appended text");
+}
+
+- (void) testInsertingTextWithinSection {
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+
+    label.text = @"Original text";
+    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
+    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    [label insertText:@" More inserted text" atIndex:8 withFontStyle: BPKFontStyleTextSmEmphasized];
+
+    XCTAssertEqualObjects(label.text, @"Original More inserted text text Appended text More appended text");
+
+    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
+
+    XCTAssertEqualObjects(label.text, @"Original More inserted text text Appended text More appended text");
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

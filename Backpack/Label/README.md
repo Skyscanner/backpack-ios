@@ -11,6 +11,13 @@
 
 BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 // Position label with autolayout or other method
+
+// Append text:
+[label appendText:@"Some text" withFontStyle:BPKFontStyleTextLg];
+
+// Insert text:
+[label insertText:@"Some text" atIndex:20 withFontStyle:BPKFontStyleTextLg];
+
 ```
 
 ### Swift
@@ -20,6 +27,13 @@ import Backpack
 
 let label = Backpack.Label(fontStyle: .base)
 // Position label with autolayout or other method
+
+// Append text:
+label.appendText("Some text", with: .textLg);
+
+// Insert text:
+label.insertText("Some text", at:20, with: .textLg);
+
 ```
 
 ## Dynamic Text

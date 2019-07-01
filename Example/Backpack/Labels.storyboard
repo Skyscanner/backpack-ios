@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,6 +119,31 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="B0d-Zn-OLQ" kind="show" identifier="ShowPerformance" id="sWN-9O-Dol"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="uPz-UG-irM" style="IBUITableViewCellStyleDefault" id="nGp-lS-Wp2">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nGp-lS-Wp2" id="AHV-N7-rtu">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Multiple font styles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uPz-UG-irM" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Xqm-hQ-Q2i" kind="show" identifier="MultipleFontStyles" id="Vn7-EA-h2W"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -258,6 +283,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJt-Wn-uNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="876" y="224"/>
+        </scene>
+        <!--Mutliple font styles-->
+        <scene sceneID="Bbe-CL-PQD">
+            <objects>
+                <viewController title="Mutliple font styles" id="Xqm-hQ-Q2i" customClass="LabelMultiFontStyleViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZYG-k3-NtA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZc-H7-0Iq" customClass="BPKLabel">
+                                <rect key="frame" x="167.5" y="324" width="40" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wa9-DZ-Mdw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qZc-H7-0Iq" secondAttribute="trailing" constant="20" id="1eA-OE-bmc"/>
+                            <constraint firstItem="qZc-H7-0Iq" firstAttribute="centerX" secondItem="ZYG-k3-NtA" secondAttribute="centerX" id="Mcc-SN-DHX"/>
+                            <constraint firstItem="qZc-H7-0Iq" firstAttribute="centerY" secondItem="ZYG-k3-NtA" secondAttribute="centerY" id="a4g-4N-aHs"/>
+                            <constraint firstItem="qZc-H7-0Iq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wa9-DZ-Mdw" secondAttribute="leading" constant="20" id="lIm-Vj-MIC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wa9-DZ-Mdw"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="qZc-H7-0Iq" id="auo-Ht-3Ry"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g72-Pp-WlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="166"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

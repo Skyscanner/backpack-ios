@@ -46,5 +46,22 @@ NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
  */
 @property(nonatomic) BPKFontStyle fontStyle;
 
+/**
+ * Append text to the label with a specified fontStyle.
+ *
+ * @param text The text to append.
+ * @param fontStyle The style of the text being appended.
+ */
+- (void)appendText:(NSString *)text withFontStyle:(BPKFontStyle)fontStyle;
+
+/**
+ * Insert text into the label with a specified fontStyle.
+ *
+ * @param text The text to insert.
+ * @param index The position at which to insert the text.
+ * @param fontStyle The style of the text being appended.
+ */
+- (void)insertText:(NSString *)text atIndex:(int)index withFontStyle:(BPKFontStyle)fontStyle;
+
 @end
 NS_ASSUME_NONNULL_END
