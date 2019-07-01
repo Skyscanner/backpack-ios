@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * These constants represent the different styles available for BPKTappableLinkLabels
  */
-typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle){
+typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle) {
 
     /**
      * Blue links within dark-gray labels
@@ -34,7 +34,7 @@ typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLin
     BPKTappableLinkLabelStyleDefault,
 
     /**
-     * White bold links within white labels
+     * White bold links within white labels. Suitable only for use on solid blue or dark backgrounds
      */
     BPKTappableLinkLabelStyleAlternate,
 };

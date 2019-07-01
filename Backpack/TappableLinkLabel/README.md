@@ -16,6 +16,9 @@ tappableLinkLabel.delegate = self;
 [tappableLinkLabel addLinkToURL:[NSURL URLWithString:@"http:..."] withRange:NSRange(location:24, length:16)];
 // Position label with autolayout or other method
 
+// Apply alternative style:
+tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
+
 ...
 
 #pragma BPKTappableLabelDelegate
@@ -36,6 +39,9 @@ tappableLinkLabel.delegate = self;
 
 tappableLinkLabel.addLinkToURL(url: "https:...", withRange: Range(location:24, length:16));
 // Position label with autolayout or other method
+
+// Apply alternative style:
+tappableLinkLabel.style = .alternative
 
 ...
 
