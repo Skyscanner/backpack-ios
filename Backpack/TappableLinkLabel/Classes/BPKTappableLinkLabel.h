@@ -23,19 +23,39 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BPKFontMapping;
 /**
  * `BPKTappableLinkLabel` is a subclass of `UIView` which uses the Skyscanner style for labels containing tappable text.
  */
-@class BPKFontMapping;
 NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 
 @property(nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
+/**
+ * The font style used to display the text.
+ * @see BPKFontStyle
+ */
 @property(nonatomic, readwrite) BPKFontStyle fontStyle;
+
+/**
+ * The text displayed by the receiver. Setting this clears all configured tappable links.
+ */
 @property(nonatomic, copy, nullable) NSString *text;
+
+/**
+ * The size required to draw the the view with the current configuration.
+ *
+ * This method may return fractional sizes. When setting the size of your view,
+ * use the [ceil](https://developer.apple.com/documentation/kernel/1557272-ceil?language=objc) function to fractional values up to the nearest whole number.
+ *
+ * This methods delegates to [size](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc) method of `NSattributedString`.
+ */
 @property(nonatomic, readonly) CGSize size;
 
+/**
+ * The receiver's delegate. Used to communicate interactions with the receiver.
+ */
 @property(nonatomic, weak) id<BPKTappableLinkLabelDelegate> delegate;
 
 /**
