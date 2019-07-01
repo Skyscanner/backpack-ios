@@ -71,6 +71,31 @@
                                             <segue destination="UdU-rX-SFo" kind="show" identifier="MultipleLinks" id="0wG-eF-ooE"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Ybi-g8-EKu" style="IBUITableViewCellStyleDefault" id="GlP-M1-cHF">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GlP-M1-cHF" id="Ofz-a1-Xuf">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Alternate style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ybi-g8-EKu" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="UdU-rX-SFo" kind="show" identifier="AlternateStyle" id="3W1-Hv-tYD"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -97,30 +122,23 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-RU-235" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="71" y="20" width="154" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pCc-E3-1oK" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="71" y="98" width="154" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBo-Bc-yxb" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="71" y="177" width="154" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADl-YG-byM" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="0.0" y="255" width="335" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-KR-98h" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="0.0" y="345" width="335" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-Ft-9ok" customClass="BPKTappableLinkLabel">
                                         <rect key="frame" x="0.0" y="442" width="335" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="mIT-RU-235" firstAttribute="top" secondItem="OZ0-LI-2VV" secondAttribute="top" constant="20" id="9Mt-dx-R7Y"/>
                                     <constraint firstItem="JQp-Ft-9ok" firstAttribute="top" secondItem="Iec-KR-98h" secondAttribute="bottom" constant="20" id="EfZ-S4-BOt"/>
@@ -154,6 +172,7 @@
                         <viewLayoutGuide key="safeArea" id="r4v-eE-vBN"/>
                     </view>
                     <connections>
+                        <outlet property="displayView" destination="rhl-Wd-ilk" id="8fL-Gk-zhI"/>
                         <outletCollection property="tappableLinks" destination="mIT-RU-235" collectionClass="NSMutableArray" id="2em-Ig-ahP"/>
                         <outletCollection property="tappableLinks" destination="pCc-E3-1oK" collectionClass="NSMutableArray" id="arZ-B3-vKn"/>
                         <outletCollection property="tappableLinks" destination="RBo-Bc-yxb" collectionClass="NSMutableArray" id="Gu6-aZ-qBL"/>
@@ -168,6 +187,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AeK-39-ESP"/>
+        <segue reference="3W1-Hv-tYD"/>
     </inferredMetricsTieBreakers>
 </document>

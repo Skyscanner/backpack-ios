@@ -26,16 +26,18 @@ enum LinkCount {
 
 class TappableLinkLabelsViewController: UIViewController {
     var linkCount: LinkCount = .single
+    var style: BPKTappableLinkLabelStyle = .default
     var fontStyles = [
         BPKFontStyle.textCaps,
         BPKFontStyle.textSm,
         BPKFontStyle.textBase,
-        BPKFontStyle.textLgEmphasized,
+        BPKFontStyle.textLg,
         BPKFontStyle.textXlEmphasized,
         BPKFontStyle.textXxlEmphasized
     ]
 
     @IBOutlet var tappableLinks: [TappableLinkLabel]!
+    @IBOutlet var displayView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,8 @@ class TappableLinkLabelsViewController: UIViewController {
         let firstLinkContent = "Backpack"
         let secondLinkContent = "Skyscanner's"
 
+        displayView.backgroundColor = style == .alternate ? Color.blue500 : Color.white
+
         let firstRange = NSRange(content.range(of: firstLinkContent)!, in: content)
         let secondRange = NSRange(content.range(of: secondLinkContent)!, in: content)
 
@@ -54,6 +58,7 @@ class TappableLinkLabelsViewController: UIViewController {
         for tappableLink in tappableLinks {
             tappableLink.text = content
             tappableLink.fontStyle = fontStyles[linkIndex]
+            tappableLink.style = style
             tappableLink.delegate = self
 
             tappableLink.addLink(to: URL(string: "https://backpack.github.io/")!, with: firstRange)

@@ -15,16 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKTappableLinkDefinition.h"
 #import "BPKTappableLinkLabel.h"
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import "BPKTappableLinkDefinition.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Font.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKTappableLinkLabel() <TTTAttributedLabelDelegate>
+@interface BPKTappableLinkLabel () <TTTAttributedLabelDelegate>
 
 @property(readonly, strong) NSMutableArray<BPKTappableLinkDefinition *> *persistedLinks;
 @property(readonly, strong) TTTAttributedLabel *contentView;
@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
     _fontStyle = style;
     _contentView = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _linkColor = BPKColor.blue500;
+    _style = BPKTappableLinkLabelStyleDefault;
     self.contentView.delegate = self;
 
     [self addSubview:self.contentView];
@@ -78,11 +79,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
-                                              ]];
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
+    ]];
 
     // This initial call to set up colours is needed in case there is no theme initially applied
     [self updateTextColors];
@@ -92,14 +93,56 @@ NS_ASSUME_NONNULL_BEGIN
     [self.persistedLinks removeAllObjects];
 }
 
-- (void)updateTextColors {
-    self.contentView.linkAttributes =
-    @{NSForegroundColorAttributeName: self.linkColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+- (BPKFontStyle)getEmphasizedFontStyleFor:(BPKFontStyle)fontStyle {
+    switch (fontStyle) {
+    case BPKFontStyleTextCaps:
+        return BPKFontStyleTextCapsEmphasized;
+    case BPKFontStyleTextXs:
+        return BPKFontStyleTextXsEmphasized;
+    case BPKFontStyleTextSm:
+        return BPKFontStyleTextSmEmphasized;
+    case BPKFontStyleTextBase:
+        return BPKFontStyleTextBaseEmphasized;
+    case BPKFontStyleTextLg:
+        return BPKFontStyleTextLgEmphasized;
+    case BPKFontStyleTextXl:
+        return BPKFontStyleTextXlEmphasized;
+    case BPKFontStyleTextXxl:
+        return BPKFontStyleTextXxlEmphasized;
+    case BPKFontStyleTextXxxl:
+        return BPKFontStyleTextXxxlEmphasized;
+    case BPKFontStyleTextXlEmphasized:
+        return BPKFontStyleTextXlHeavy;
+    case BPKFontStyleTextXxlEmphasized:
+        return BPKFontStyleTextXxlHeavy;
+    case BPKFontStyleTextXxxlEmphasized:
+        return BPKFontStyleTextXxxlHeavy;
+    default:
+        NSAssert(
+            NO, @"Alternate style BPKTappableLinkLabels must have a more emphasized alternative to the fontStyle set.");
+    }
+    return fontStyle;
+}
 
-    self.contentView.activeLinkAttributes = @{
-                                        NSForegroundColorAttributeName: [self.linkColor colorWithAlphaComponent:0.2],
-                                        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
-                                        };
+- (void)updateTextColors {
+    UIColor *linkColor = self.style == BPKTappableLinkLabelStyleAlternate ? BPKColor.white : self.linkColor;
+    BPKFontStyle fontStyle = self.style == BPKTappableLinkLabelStyleAlternate
+                                 ? [self getEmphasizedFontStyleFor:self.fontStyle]
+                                 : self.fontStyle;
+
+    NSDictionary *linkCustomAttributes =
+        @{NSForegroundColorAttributeName: linkColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:fontStyle
+                                                 withCustomAttributes:linkCustomAttributes
+                                                          fontMapping:self.fontMapping];
+
+    NSDictionary *activeLinkCustomAttributes = @{
+        NSForegroundColorAttributeName: [linkColor colorWithAlphaComponent:0.2],
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
+    };
+    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:fontStyle
+                                                       withCustomAttributes:activeLinkCustomAttributes
+                                                                fontMapping:self.fontMapping];
 
     [self updateTextDisplay];
 }
@@ -110,16 +153,17 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
+    NSDictionary *customAttributes =
+        self.style == BPKTappableLinkLabelStyleAlternate ? @{NSForegroundColorAttributeName: BPKColor.white} : @{};
     NSDictionary<NSAttributedStringKey, id> *defaultAttributes = [BPKFont attributesForFontStyle:self.fontStyle
+                                                                            withCustomAttributes:customAttributes
                                                                                      fontMapping:self.fontMapping];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
-                                                                    attributes:defaultAttributes];
-
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:defaultAttributes];
     self.contentView.text = newString;
 
     // Re-apply the links
-    for( BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
+    for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
         [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
     }
 }
@@ -161,6 +205,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLinkColor:(UIColor *)linkColor {
     if (_linkColor != linkColor) {
         _linkColor = linkColor;
+
+        [self updateTextColors];
+    }
+}
+
+- (void)setStyle:(BPKTappableLinkLabelStyle)style {
+    if (_style != style) {
+        _style = style;
 
         [self updateTextColors];
     }

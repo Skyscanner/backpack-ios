@@ -23,6 +23,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * These constants represent the different styles available for BPKTappableLinkLabels
+ */
+typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle){
+
+    /**
+     * Blue links within dark-gray labels
+     */
+    BPKTappableLinkLabelStyleDefault,
+
+    /**
+     * White bold links within white labels
+     */
+    BPKTappableLinkLabelStyleAlternate,
+};
+
 @class BPKFontMapping;
 /**
  * `BPKTappableLinkLabel` is a subclass of `UIView` which uses the Skyscanner style for labels containing tappable text.
@@ -39,6 +55,12 @@ NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel :
 @property(nonatomic, readwrite) BPKFontStyle fontStyle;
 
 /**
+ * The style of tappable label to use
+ * @see BPKTappableLabelStyle
+ */
+@property(nonatomic, readwrite) BPKTappableLinkLabelStyle style;
+
+/**
  * The text displayed by the receiver. Setting this clears all configured tappable links.
  */
 @property(nonatomic, copy, nullable) NSString *text;
@@ -47,9 +69,12 @@ NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel :
  * The size required to draw the the view with the current configuration.
  *
  * This method may return fractional sizes. When setting the size of your view,
- * use the [ceil](https://developer.apple.com/documentation/kernel/1557272-ceil?language=objc) function to fractional values up to the nearest whole number.
+ * use the [ceil](https://developer.apple.com/documentation/kernel/1557272-ceil?language=objc) function to fractional
+ * values up to the nearest whole number.
  *
- * This methods delegates to [size](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc) method of `NSattributedString`.
+ * This methods delegates to
+ * [size](https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc) method of
+ * `NSattributedString`.
  */
 @property(nonatomic, readonly) CGSize size;
 
