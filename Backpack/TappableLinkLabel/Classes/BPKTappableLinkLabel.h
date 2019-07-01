@@ -33,6 +33,13 @@ NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel :
 @property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 /**
+ * this determines the number of lines to draw and what to do when sizeToFit is called. default value is 1 (single
+ * line). A value of 0 means no limit if the height of the text reaches the # of lines or the height of the view is less
+ * than the # of lines allowed, the text will be truncated using the line break mode.
+ */
+@property(nonatomic) NSInteger numberOfLines;
+
+/**
  * The font style used to display the text.
  * @see BPKFontStyle
  */

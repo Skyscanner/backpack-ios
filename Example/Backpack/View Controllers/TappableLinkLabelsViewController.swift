@@ -55,6 +55,7 @@ class TappableLinkLabelsViewController: UIViewController {
             tappableLink.text = content
             tappableLink.fontStyle = fontStyles[linkIndex]
             tappableLink.delegate = self
+            tappableLink.numberOfLines = 2
 
             tappableLink.addLink(to: URL(string: "https://backpack.github.io/")!, with: firstRange)
 
