@@ -170,6 +170,16 @@ NS_ASSUME_NONNULL_BEGIN
     return _contentView.attributedText.size;
 }
 
+- (void)setNumberOfLines:(NSInteger)numberOfLines {
+    if(self.contentView.numberOfLines != numberOfLines) {
+        self.contentView.numberOfLines = numberOfLines;
+    }
+}
+
+- (NSInteger)numberOfLines {
+    return self.contentView.numberOfLines;
+}
+
 #pragma BPKTappableLinkLabelDelegate
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
