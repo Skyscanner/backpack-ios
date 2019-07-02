@@ -89,10 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateTextColors];
 }
 
-- (void)resetLinks {
-    [self.persistedLinks removeAllObjects];
-}
-
 - (BPKFontStyle)getEmphasizedFontStyleFor:(BPKFontStyle)fontStyle {
     switch (fontStyle) {
     case BPKFontStyleTextCaps:
@@ -124,23 +120,34 @@ NS_ASSUME_NONNULL_BEGIN
     return fontStyle;
 }
 
-- (void)updateTextColors {
-    UIColor *linkColor = self.style == BPKTappableLinkLabelStyleAlternate ? BPKColor.white : self.linkColor;
-    BPKFontStyle fontStyle = self.style == BPKTappableLinkLabelStyleAlternate
-                                 ? [self getEmphasizedFontStyleFor:self.fontStyle]
-                                 : self.fontStyle;
+- (BPKFontStyle)linkFontStyle {
+    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle] : self.fontStyle;
+}
 
+- (NSDictionary *)customFontAttributes {
+    return self.style == BPKTappableLinkLabelStyleAlternate ? @{NSForegroundColorAttributeName: BPKColor.white} : @{};
+}
+
+- (UIColor *)linkDisplayColor {
+    if(self.style == BPKTappableLinkLabelStyleAlternate) {
+        return BPKColor.white;
+    }
+
+    return _linkColor;
+}
+
+- (void)updateTextColors {
     NSDictionary *linkCustomAttributes =
-        @{NSForegroundColorAttributeName: linkColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
-    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:fontStyle
+        @{NSForegroundColorAttributeName: self.linkDisplayColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
                                                  withCustomAttributes:linkCustomAttributes
                                                           fontMapping:self.fontMapping];
 
     NSDictionary *activeLinkCustomAttributes = @{
-        NSForegroundColorAttributeName: [linkColor colorWithAlphaComponent:0.2],
+        NSForegroundColorAttributeName: [self.linkDisplayColor colorWithAlphaComponent:0.2],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
     };
-    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:fontStyle
+    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
                                                        withCustomAttributes:activeLinkCustomAttributes
                                                                 fontMapping:self.fontMapping];
 
@@ -153,13 +160,11 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSDictionary *customAttributes =
-        self.style == BPKTappableLinkLabelStyleAlternate ? @{NSForegroundColorAttributeName: BPKColor.white} : @{};
-    NSDictionary<NSAttributedStringKey, id> *defaultAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                                                            withCustomAttributes:customAttributes
+    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
+                                                                            withCustomAttributes:self.customFontAttributes
                                                                                      fontMapping:self.fontMapping];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:defaultAttributes];
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
     self.contentView.text = newString;
 
     // Re-apply the links
@@ -178,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setText:(NSString *_Nullable)text {
     BPKAssertMainThread();
     if (_text != text) {
-        [self resetLinks];
+        [self.persistedLinks removeAllObjects];
         _text = [text copy];
 
         [self updateTextDisplay];
