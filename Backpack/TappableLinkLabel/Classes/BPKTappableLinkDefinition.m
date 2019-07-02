@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithURL:(NSURL *)url range:(NSRange)range {
     self = [super init];
 
-    if(self) {
+    if (self) {
         _url = url;
         _range = range;
     }

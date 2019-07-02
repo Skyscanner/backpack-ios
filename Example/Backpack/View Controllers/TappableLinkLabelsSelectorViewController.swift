@@ -29,6 +29,10 @@ class TappableLinkLabelsSelectorViewController: UITableViewController {
         case "MultipleLinks":
             segue.destination.title = "Multiple links"
             maybeTappableLinkLabelsController?.linkCount = .double
+        case "AlternateStyle":
+            segue.destination.title = "Alternate style links"
+            maybeTappableLinkLabelsController?.linkCount = .double
+            maybeTappableLinkLabelsController?.style = .alternate
         default:
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
         }
