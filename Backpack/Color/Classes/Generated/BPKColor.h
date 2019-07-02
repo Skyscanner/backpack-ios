@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 */
 NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 
+/**
+ * The default color for Backpack text.
+*/
+@property(nonatomic, class, readonly) UIColor * label;
+
 ///-----------------------
 /// @name Colors
 ///-----------------------
@@ -318,6 +323,8 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * @param weight The relative weighting of the first color. Close to `1.0f` gives more weight to `firstColor`. Close to `0.0f` gives more weight to `secondColor`. 
  */
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
+
++ (UIColor *)colorForUserInterfaceStyleWithLightVariant:(UIColor *)lightColor darkVariant:(UIColor *)darkColor;
 
 @end
 NS_ASSUME_NONNULL_END

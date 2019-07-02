@@ -20,6 +20,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/DarkMode.h>
 
 #import "BPKTextDefinition.h"
 
@@ -132,12 +133,25 @@ NS_ASSUME_NONNULL_BEGIN
     [self setAttributedText:resultingString];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        UITraitCollection *traitCollection = [UITraitCollection currentTraitCollection];
+        if ([previousTraitCollection hasDifferentColorAppearanceComparedToTraitCollection:traitCollection]) {
+            [self updateTextStyle];
+        }
+    }
+#endif
+}
+
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.persistentStyleRanges = [[NSMutableArray alloc] init];
     self.fontStyle = style;
-    self.textColor = BPKColor.skyGray;
+    self.textColor = BPKColor.label;
 }
 
 @end

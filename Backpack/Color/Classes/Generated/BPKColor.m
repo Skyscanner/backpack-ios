@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 #import "BPKColor.h"
+#import <Backpack/DarkMode.h>
 
 @implementation BPKColor
 
@@ -178,6 +179,21 @@
 
 + (UIColor *)clear {
   return UIColor.clearColor;
+}
+
++ (UIColor *) label {
+    return [BPKColor colorForUserInterfaceStyleWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.white];
+}
+
++ (UIColor *)colorForUserInterfaceStyleWithLightVariant:(UIColor *)lightColor darkVariant:(UIColor*)darkColor {
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+            return darkColor;
+        }
+    }
+#endif
+    return lightColor;
 }
 
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {

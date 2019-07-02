@@ -29,4 +29,3 @@ import Backpack.DarkMode
   overrideUserInterfaceStyle = .light
 #endif
 ```
-
