@@ -1,5 +1,10 @@
 # Unreleased
 
+**Added:**
+
+- Backpack/TappableLinkLabel:
+  - New `style` property which can be used when placing the link label over a blue/dark background.
+
 > Place your changes below this line.
 
 ## How to write a good changelog entry
