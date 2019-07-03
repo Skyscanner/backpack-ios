@@ -172,6 +172,9 @@ NS_ASSUME_NONNULL_BEGIN
                                                                     attributes:newStringAttributes];
     self.contentView.text = newString;
 
+    // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.
+    self.contentView.font = newStringAttributes[NSFontAttributeName];
+
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
         if (linkDefinition.hasURLDefinition) {

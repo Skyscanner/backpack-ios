@@ -1,5 +1,10 @@
 # Unreleased
 
+**Fixed:**
+
+- Backpack/TappableLinkLabel:
+  - Prevent cutting off parts of text with larger fonts.
+
 **Added:**
 
 - Backpack/TappableLinkLabel:
