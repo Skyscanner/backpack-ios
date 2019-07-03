@@ -122,5 +122,13 @@ NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel :
  */
 - (instancetype)addLinkToURL:(NSURL *)url withRange:(NSRange)range;
 
+/**
+ * Add a tappable section to the label.
+ *
+ * @param components The Transit Information used to signify the event when the link is tapped.
+ * @param range The range of characters in the TappableLinkLabel to apply the link to.
+ */
+- (instancetype)addLinkToTransitInformation:(NSDictionary *)components withRange:(NSRange)range;
+
 @end
 NS_ASSUME_NONNULL_END

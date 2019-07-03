@@ -79,11 +79,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
-    ]];
+                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                              [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+                                              [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
+                                              ]];
 
     // This initial call to set up colours is needed in case there is no theme initially applied
     [self updateTextColors];
@@ -121,7 +121,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKFontStyle)linkFontStyle {
-    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle] : self.fontStyle;
+    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle]
+                                                            : self.fontStyle;
 }
 
 - (NSDictionary *)customFontAttributes {
@@ -129,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)linkDisplayColor {
-    if(self.style == BPKTappableLinkLabelStyleAlternate) {
+    if (self.style == BPKTappableLinkLabelStyleAlternate) {
         return BPKColor.white;
     }
 
@@ -137,8 +138,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateTextColors {
-    NSDictionary *linkCustomAttributes =
-        @{NSForegroundColorAttributeName: self.linkDisplayColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    NSDictionary *linkCustomAttributes = @{
+        NSForegroundColorAttributeName: self.linkDisplayColor,
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
+    };
     self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
                                                  withCustomAttributes:linkCustomAttributes
                                                           fontMapping:self.fontMapping];
@@ -160,16 +163,24 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                                                            withCustomAttributes:self.customFontAttributes
-                                                                                     fontMapping:self.fontMapping];
+    NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
+        [BPKFont attributesForFontStyle:self.fontStyle
+                   withCustomAttributes:self.customFontAttributes
+                            fontMapping:self.fontMapping];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
+                                                                    attributes:newStringAttributes];
     self.contentView.text = newString;
 
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
-        [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
+        if (linkDefinition.hasURLDefinition) {
+            [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
+        } else if (linkDefinition.hasTransitInformationDefinition) {
+            [self.contentView addLinkToTransitInformation:linkDefinition.components withRange:linkDefinition.range];
+        } else {
+            NSAssert(NO, @"A Tappable Link definition must either have a URL or have transit information.");
+        }
     }
 }
 
@@ -177,6 +188,13 @@ NS_ASSUME_NONNULL_BEGIN
     [_persistedLinks addObject:[[BPKTappableLinkDefinition alloc] initWithURL:url range:range]];
 
     [self.contentView addLinkToURL:url withRange:range];
+    return self;
+}
+
+- (instancetype)addLinkToTransitInformation:(NSDictionary *)components withRange:(NSRange)range {
+    [_persistedLinks addObject:[[BPKTappableLinkDefinition alloc] initWithTransitInformation:components range:range]];
+
+    [self.contentView addLinkToTransitInformation:components withRange:range];
     return self;
 }
 
@@ -228,7 +246,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines {
-    if(self.contentView.numberOfLines != numberOfLines) {
+    if (self.contentView.numberOfLines != numberOfLines) {
         self.contentView.numberOfLines = numberOfLines;
     }
 }
@@ -240,8 +258,14 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma BPKTappableLinkLabelDelegate
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    if (self.delegate != nil) {
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithURL:url];
+    }
+}
+
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
+        [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
     }
 }
 

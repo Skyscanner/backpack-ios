@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
     for (NSUInteger i = 0; i < length; i++) {
         BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFontStyle:styles[i]];
         label.text = @"Backpack Rocks";
-        [label addLinkToURL:[NSURL URLWithString:@"https://backpack.github.io/"] withRange:NSMakeRange(0, 8)];
+        [label addLinkToTransitInformation:@{} withRange:NSMakeRange(0, 8)];
         [stackView addArrangedSubview:label];
         [label sizeToFit];
     }

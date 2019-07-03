@@ -37,8 +37,6 @@
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
-		C7A0577722C375B0006408B6 /* TextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A0577622C375B0006408B6 /* TextFieldsViewController.swift */; };
-		C7A0577A22C39DC5006408B6 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
@@ -49,14 +47,11 @@
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
-		D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */; };
 		D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */; };
 		D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
-		D27AB54222C3B9A20075172B /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */; };
-		D27AB54422C3B9BD0075172B /* TextFieldUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */; };
 		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
 		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
@@ -68,10 +63,8 @@
 		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
-		D2B3775D22C4A31A009D880B /* BPKTappableLinkLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
-		D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -192,8 +185,6 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
-		C7A0577622C375B0006408B6 /* TextFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsViewController.swift; sourceTree = "<group>"; };
-		C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldTest.m; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* ExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -204,14 +195,11 @@
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
-		D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
 		D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TappableLinkLabels.storyboard; sourceTree = "<group>"; };
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
 		D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsSelectorViewController.swift; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
-		D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
-		D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
 		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
@@ -223,10 +211,8 @@
 		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelTest.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
-		D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
@@ -409,7 +395,6 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D2B3775C22C4A31A009D880B /* BPKTappableLinkLabelTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
 				D29349BE2199C7650099D2EC /* BPKChipTest.m */,
@@ -423,7 +408,6 @@
 				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
 				D696CA1F215CC09400682666 /* BPKIconTest.m */,
-				C7A0577822C39D75006408B6 /* BPKTextFieldTest.m */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 			);
 			path = Tests;
@@ -515,8 +499,6 @@
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D27AB54322C3B9BD0075172B /* TextFieldUITest.swift */,
-				D2BD856B22C3AF2000DA922A /* TextViewUITest.swift */,
 				D6517B43216DF5F800D85FF9 /* Info.plist */,
 				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
 				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
@@ -555,7 +537,6 @@
 				D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */,
 				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
 				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
-				C7A0577622C375B0006408B6 /* TextFieldsViewController.swift */,
 				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
 				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
@@ -569,8 +550,6 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-				D27AB54122C3B9A20075172B /* BPKTextFieldSnapshotTest.m */,
-				D2521A6F22C3A8DF00A05FDF /* BPKTextViewSnapshotTest.m */,
 				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
@@ -891,7 +870,6 @@
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
-				C7A0577722C375B0006408B6 /* TextFieldsViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
@@ -943,13 +921,11 @@
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
-				C7A0577A22C39DC5006408B6 /* BPKTextFieldTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
-				D2B3775D22C4A31A009D880B /* BPKTappableLinkLabelTest.m in Sources */,
 				6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,10 +934,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BD856C22C3AF2000DA922A /* TextViewUITest.swift in Sources */,
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
-				D27AB54422C3B9BD0075172B /* TextFieldUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,8 +944,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
-				D27AB54222C3B9A20075172B /* BPKTextFieldSnapshotTest.m in Sources */,
-				D2521A7122C3A8F000A05FDF /* BPKTextViewSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,

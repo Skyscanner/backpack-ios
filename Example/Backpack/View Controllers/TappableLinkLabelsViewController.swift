@@ -24,7 +24,13 @@ enum LinkCount {
     case double
 }
 
-class TappableLinkLabelsViewController: UIViewController {
+enum LinkType {
+    case web
+    case print
+}
+
+class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDelegate {
+    var linkType: LinkType = .web
     var linkCount: LinkCount = .single
     var style: BPKTappableLinkLabelStyle = .default
     var fontStyles = [
@@ -60,21 +66,32 @@ class TappableLinkLabelsViewController: UIViewController {
             tappableLink.fontStyle = fontStyles[linkIndex]
             tappableLink.style = style
             tappableLink.delegate = self
-            tappableLink.numberOfLines = 2
+            tappableLink.numberOfLines = 3
 
-            tappableLink.addLink(to: URL(string: "https://backpack.github.io/")!, with: firstRange)
+            if linkType == .web {
+                tappableLink.addLink(to: URL(string: "https://backpack.github.io/")!, with: firstRange)
 
-            if linkCount == .double {
-                tappableLink.addLink(to: URL(string: "https://www.skyscanner.net/")!, with: secondRange)
+                if linkCount == .double {
+                    tappableLink.addLink(to: URL(string: "https://www.skyscanner.net/")!, with: secondRange)
+                }
+            }
+            if linkType == .print {
+                tappableLink.addLink(toTransitInformation: ["link text": "Backpack"], with: firstRange)
+
+                if linkCount == .double {
+                    tappableLink.addLink(toTransitInformation: ["link text": "Skyscanner's"], with: secondRange)
+                }
             }
             linkIndex += 1
         }
     }
 
-}
-
-extension TappableLinkLabelsViewController: BPKTappableLinkLabelDelegate {
     func attributedLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    func attributedLabel(_ label: TappableLinkLabel,
+                         didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
+        print(components)
     }
 }
