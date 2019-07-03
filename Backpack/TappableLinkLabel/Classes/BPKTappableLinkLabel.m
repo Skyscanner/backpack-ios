@@ -261,11 +261,19 @@ NS_ASSUME_NONNULL_BEGIN
     if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithURL:url];
     }
+
+    if ([self.delegate respondsToSelector:@selector(tappableLabel:didSelectLinkWithURL:)]) {
+        [self.delegate tappableLabel:label didSelectLinkWithURL:url];
+    }
 }
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
     if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
+    }
+
+    if ([self.delegate respondsToSelector:@selector(tappableLabel:didSelectLinkWithTransitInformation:)]) {
+        [self.delegate tappableLabel:label didSelectLinkWithTransitInformation:components];
     }
 }
 

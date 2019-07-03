@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
 
 @end
 

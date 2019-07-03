@@ -24,11 +24,11 @@ tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
 
 #pragma mark - <BPKTappableLinkLabelDelegate>
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
     [_presenter urlTapped:url];
 }
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
     // do stuff
 }
 ```
@@ -52,11 +52,11 @@ tappableLinkLabel.style = .alternative
 ...
 
 extension MyClass: BPKTappableLinkLabelDelegate {
-  func attributedLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
+  func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
 
-  func attributedLabel(_ label: TappableLinkLabel,
+  func tappableLabel(_ label: TappableLinkLabel,
                        didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
       print(components)
   }
