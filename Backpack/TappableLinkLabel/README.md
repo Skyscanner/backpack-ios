@@ -11,7 +11,7 @@
 
 BPKTappableLinkLabel *tappableLinkLabel = [[BPKTappableLinkLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 tappableLinkLabel.text = @“Find out more about our terms of service.”
-[tappableLinkLabel setDelegate:self];
+tappableLinkLabel.delegate = self;
 
 [tappableLinkLabel addLinkToURL:[NSURL URLWithString:@"http:..."] withRange:NSRange(location:24, length:16)];
 [tappableLinkLabel addLinkToTransitInformation:@{} withRange:NSRange(location:24, length:16)];

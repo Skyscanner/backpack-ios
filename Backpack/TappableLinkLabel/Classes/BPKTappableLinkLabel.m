@@ -174,9 +174,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
-        if (linkDefinition.url) {
+        if (linkDefinition.hasURLDefinition) {
             [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
-        } else {
+        } else if (linkDefinition.hasTransitInformationDefinition) {
             [self.contentView addLinkToTransitInformation:linkDefinition.components withRange:linkDefinition.range];
         }
     }

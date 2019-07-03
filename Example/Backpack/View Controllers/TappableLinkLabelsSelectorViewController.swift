@@ -19,25 +19,34 @@
 import UIKit
 import Backpack
 
+enum SegueIdentifier: String {
+    case singleLink = "SingleLink"
+    case multipleLinks = "MultipleLinks"
+    case alternateStyle = "AlternateStyle"
+    case nonURLLinks = "NonURLLinks"
+}
+
 class TappableLinkLabelsSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeTappableLinkLabelsController = segue.destination as? TappableLinkLabelsViewController
 
-        switch segue.identifier {
-        case "SingleLink":
-            segue.destination.title = "Single link"
-        case "MultipleLinks":
-            segue.destination.title = "Multiple links"
-            maybeTappableLinkLabelsController?.linkCount = .double
-        case "AlternateStyle":
-            segue.destination.title = "Alternate style links"
-            maybeTappableLinkLabelsController?.linkCount = .double
-            maybeTappableLinkLabelsController?.style = .alternate
-        case "NonURLLinks":
-            segue.destination.title = "Non-URL links"
-            maybeTappableLinkLabelsController?.linkCount = .double
-            maybeTappableLinkLabelsController?.linkType = .print
-        default:
+        if let identifier = segue.identifier, let segueIdentifier = SegueIdentifier(rawValue: identifier) {
+            switch segueIdentifier {
+            case .singleLink:
+                segue.destination.title = "Single link"
+            case .multipleLinks:
+                segue.destination.title = "Multiple links"
+                maybeTappableLinkLabelsController?.linkCount = .double
+            case .alternateStyle:
+                segue.destination.title = "Alternate style links"
+                maybeTappableLinkLabelsController?.linkCount = .double
+                maybeTappableLinkLabelsController?.style = .alternate
+            case .nonURLLinks:
+                segue.destination.title = "Non-URL links"
+                maybeTappableLinkLabelsController?.linkCount = .double
+                maybeTappableLinkLabelsController?.linkType = .print
+            }
+        } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
         }
     }

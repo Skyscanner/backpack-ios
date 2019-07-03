@@ -23,8 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKTappableLinkDefinition : NSObject
 
 @property(readonly) NSRange range;
-@property(readonly, strong) NSURL *url;
-@property(readonly, strong) NSDictionary *components;
+@property(readonly, strong, nullable) NSURL *url;
+@property(readonly, strong, nullable) NSDictionary *components;
+@property(readonly) Boolean hasURLDefinition;
+@property(readonly) Boolean hasTransitInformationDefinition;
 
 - (instancetype)initWithURL:(NSURL *)url range:(NSRange)range;
 - (instancetype)initWithTransitInformation:(NSDictionary *)components range:(NSRange)range;
