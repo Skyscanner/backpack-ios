@@ -22,14 +22,14 @@ tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
 
 ...
 
-#pragma mark - <BPKTappableLabelDelegate>
+#pragma mark - <BPKTappableLinkLabelDelegate>
 
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url
 {
     [_presenter urlTapped:url];
 }
 
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components
 {
     // do stuff
 }
@@ -53,7 +53,7 @@ tappableLinkLabel.style = .alternative
 
 ...
 
-extension MyClass: TTTAttributedLabelDelegate {
+extension MyClass: BPKTappableLinkLabelDelegate {
   func attributedLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }

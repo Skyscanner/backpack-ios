@@ -20,8 +20,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKTappableLinkLabel;
-@protocol BPKTappableLinkLabelDelegate
+@protocol BPKTappableLinkLabelDelegate<NSObject>
 
+@optional
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
 
