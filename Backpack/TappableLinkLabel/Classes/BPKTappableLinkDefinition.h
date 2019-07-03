@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) NSRange range;
 @property(readonly, strong, nullable) NSURL *url;
 @property(readonly, strong, nullable) NSDictionary *components;
-@property(readonly) Boolean hasURLDefinition;
-@property(readonly) Boolean hasTransitInformationDefinition;
+@property(readonly) BOOL hasURLDefinition;
+@property(readonly) BOOL hasTransitInformationDefinition;
 
 - (instancetype)initWithURL:(NSURL *)url range:(NSRange)range;
 - (instancetype)initWithTransitInformation:(NSDictionary *)components range:(NSRange)range;

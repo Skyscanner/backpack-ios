@@ -24,13 +24,11 @@ tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
 
 #pragma mark - <BPKTappableLinkLabelDelegate>
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url
-{
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
     [_presenter urlTapped:url];
 }
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components
-{
+- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
     // do stuff
 }
 ```

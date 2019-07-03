@@ -43,11 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (Boolean)hasURLDefinition {
+- (BOOL)hasURLDefinition {
     return self.url != nil;
 }
 
-- (Boolean)hasTransitInformationDefinition {
+- (BOOL)hasTransitInformationDefinition {
     return self.components != nil;
 }
 

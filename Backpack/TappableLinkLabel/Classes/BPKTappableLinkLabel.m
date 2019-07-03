@@ -79,11 +79,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
-    ]];
+                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                              [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+                                              [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
+                                              ]];
 
     // This initial call to set up colours is needed in case there is no theme initially applied
     [self updateTextColors];
@@ -178,6 +178,8 @@ NS_ASSUME_NONNULL_BEGIN
             [self.contentView addLinkToURL:linkDefinition.url withRange:linkDefinition.range];
         } else if (linkDefinition.hasTransitInformationDefinition) {
             [self.contentView addLinkToTransitInformation:linkDefinition.components withRange:linkDefinition.range];
+        } else {
+            NSAssert(NO, @"A Tappable Link definition must either have a URL or have transit information.");
         }
     }
 }
@@ -262,7 +264,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
-        if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
+    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
     }
 }
