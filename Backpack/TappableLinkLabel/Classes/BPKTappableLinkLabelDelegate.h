@@ -23,9 +23,31 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BPKTappableLinkLabelDelegate<NSObject>
 
 @optional
+
+/*
+ * DEPRECATED
+ */
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
+
+/*
+ * DEPRECATED
+ */
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
+
+/*
+ * Tells the delegate that the user did select a link to a URL.
+ *
+ * @param label The label whose link was selected.
+ * @param url The URL for the selected link.
+ */
 - (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
+
+/*
+ * Tells the delegate that the user did select a link to transit information
+ *
+ * @param label The label whose link was selected.
+ * @param components A dictionary containing the transit components. The currently supported keys are `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
+ */
 - (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
 
 @end
