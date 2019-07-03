@@ -91,7 +91,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     }
 
     func tappableLabel(_ label: TappableLinkLabel,
-                         didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
+                       didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
         print(components)
     }
 }
