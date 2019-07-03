@@ -237,7 +237,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.gradientLayer.frame = self.layer.bounds;
 
     if (self.style != BPKButtonStyleLink) {
-        if (self.cornerRadius != nil) {
+        if (self.cornerRadius != nil && !self.iconOnly) {
             self.layer.cornerRadius = self.cornerRadius.doubleValue;
         } else {
             // Pill shape
