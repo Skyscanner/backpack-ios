@@ -24,11 +24,11 @@ tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
 
 #pragma mark - <BPKTappableLinkLabelDelegate>
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
     [_presenter urlTapped:url];
 }
 
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
+- (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
     // do stuff
 }
 ```
@@ -40,10 +40,10 @@ import Backpack
 
 let tappableLinkLabel = Backpack.TappableLinkLabel(fontStyle: .textBase)
 tappableLinkLabel.text = “Find out more about our terms of service.”
-tappableLinkLabel.delegate = self;
+tappableLinkLabel.delegate = self
 
-tappableLinkLabel.addLink(to: URL(string: "https:...")!, withRange: Range(location:24, length:16));
-tappableLinkLabel.addLink(toTransitInformation: ["identifier": "some link thing"], withRange: Range(location:24, length:16));
+tappableLinkLabel.addLink(to: URL(string: "https:...")!, withRange: Range(location:24, length:16))
+tappableLinkLabel.addLink(toTransitInformation: ["identifier": "some link thing"], withRange: Range(location:24, length:16))
 // Position label with autolayout or other method
 
 // Apply alternative style:
@@ -52,11 +52,11 @@ tappableLinkLabel.style = .alternative
 ...
 
 extension MyClass: BPKTappableLinkLabelDelegate {
-  func attributedLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
+  func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
 
-  func attributedLabel(_ label: TappableLinkLabel,
+  func tappableLabel(_ label: TappableLinkLabel,
                        didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
       print(components)
   }

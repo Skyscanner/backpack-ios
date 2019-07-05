@@ -86,12 +86,12 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         }
     }
 
-    func attributedLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
+    func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func attributedLabel(_ label: TappableLinkLabel,
-                         didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
+    func tappableLabel(_ label: TappableLinkLabel,
+                       didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
         print(components)
     }
 }

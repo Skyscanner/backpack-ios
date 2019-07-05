@@ -258,13 +258,17 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma BPKTappableLinkLabelDelegate
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:)]) {
+    if ([self.delegate respondsToSelector:@selector(tappableLabel:didSelectLinkWithURL:)]) {
+        [self.delegate tappableLabel:label didSelectLinkWithURL:url];
+    } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithURL:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithURL:url];
     }
 }
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
-    if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
+    if ([self.delegate respondsToSelector:@selector(tappableLabel:didSelectLinkWithTransitInformation:)]) {
+        [self.delegate tappableLabel:label didSelectLinkWithTransitInformation:components];
+    }else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
     }
 }
