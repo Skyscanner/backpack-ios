@@ -1,24 +1,7 @@
 # Unreleased
 
-**Fixed:**
-
-- Backpack/TappableLinkLabel:
-  - Prevent cutting off parts of text with larger fonts.
-
-**Added:**
-
-- Backpack/TappableLinkLabel:
-  - Added method for adding a link with Transit Information (an `NSDictionary`) instead of creating with a URL.
-  - New `style` property which can be used when placing the link label over a blue/dark background.
-  - Added `numberOfLines` property.
 
 > Place your changes below this line.
-
-**Fixed:**
-
-- Backpack/Button
-  - Icon-only buttons are now always circular regardless of the `cornerRadius` appearance setting.
-
 
 ## How to write a good changelog entry
 
