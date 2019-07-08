@@ -158,4 +158,8 @@
     return [BPKLondonThemeContainer class];
 }
 
+- (UIColor *)starFilledColor {
+    return BPKColor.yellow500;
+}
+
 @end

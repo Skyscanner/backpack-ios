@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Star ratings-->
+        <scene sceneID="R2N-kD-Ccq">
+            <objects>
+                <viewController storyboardIdentifier="StarRatings" title="Star ratings" id="EmK-I9-Wpo" customClass="StarRatingsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Eg-4N-VKy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Jn-XQ1">
+                                <rect key="frame" x="16" y="60" width="382" height="802"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-Ui-8pc">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="359.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dam-GI-g0h" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQZ-ax-SEu" customClass="BPKStarRating">
+                                                <rect key="frame" x="0.0" y="36.5" width="382" height="323"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-yt-5UV">
+                                        <rect key="frame" x="0.0" y="391.5" width="382" height="330.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Lb-boD" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHe-DR-aBx" customClass="BPKStarRating">
+                                                <rect key="frame" x="0.0" y="36.5" width="382" height="294"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-gw-wJX">
+                                        <rect key="frame" x="0.0" y="754" width="382" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to set rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGS-Oi-pKH" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="pk6-NL-36q">
+                                                <rect key="frame" x="-2" y="16" width="386" height="1"/>
+                                                <connections>
+                                                    <action selector="userDidChangeRating:" destination="EmK-I9-Wpo" eventType="valueChanged" id="Lq9-Dn-9G6"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="pk6-NL-36q" firstAttribute="leading" secondItem="V0W-gw-wJX" secondAttribute="leading" id="DZo-eo-2cE"/>
+                                            <constraint firstAttribute="trailing" secondItem="pk6-NL-36q" secondAttribute="trailing" id="ZJu-Np-qQr"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-oS-FSb">
+                                        <rect key="frame" x="0.0" y="802" width="240" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="V0W-gw-wJX" firstAttribute="leading" secondItem="CLl-Jn-XQ1" secondAttribute="leading" id="UCy-Is-kTB"/>
+                                    <constraint firstAttribute="trailing" secondItem="V0W-gw-wJX" secondAttribute="trailing" id="bOZ-EH-Db1"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ymM-2X-gpi" firstAttribute="trailing" secondItem="CLl-Jn-XQ1" secondAttribute="trailing" constant="16" id="9Dj-fQ-Ber"/>
+                            <constraint firstItem="ymM-2X-gpi" firstAttribute="bottom" secondItem="CLl-Jn-XQ1" secondAttribute="bottom" id="NfI-jZ-06V"/>
+                            <constraint firstItem="ymM-2X-gpi" firstAttribute="top" secondItem="CLl-Jn-XQ1" secondAttribute="top" constant="-16" id="rVj-Gm-K8c"/>
+                            <constraint firstItem="ymM-2X-gpi" firstAttribute="leading" secondItem="CLl-Jn-XQ1" secondAttribute="leading" constant="-16" id="sWK-mz-ACg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ymM-2X-gpi"/>
+                    </view>
+                    <connections>
+                        <outlet property="defaultSizeTitleLabel" destination="dam-GI-g0h" id="679-eN-Oak"/>
+                        <outlet property="largeSizeTitleLabel" destination="RC6-Lb-boD" id="ww8-HI-2Y5"/>
+                        <outlet property="largeStarRatingView" destination="FHe-DR-aBx" id="PsF-bW-d63"/>
+                        <outlet property="ratingSlider" destination="pk6-NL-36q" id="OaE-Jg-GGI"/>
+                        <outlet property="starRatingView" destination="uQZ-ax-SEu" id="nVh-C7-5RQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GaJ-Ac-WcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-117.39130434782609" y="73.660714285714278"/>
+        </scene>
+    </scenes>
+</document>

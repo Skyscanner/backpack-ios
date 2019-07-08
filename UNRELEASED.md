@@ -1,9 +1,17 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Dialog:
-   - Dialog now respects a user's preference for reduced motion and reduced transparency.
+**Added:**
+
+- Backpack/StarRating:
+  - New `StarRating` component to display a rating between 0.0 and 5.0. See [Star rating on Backpack docs site](https://backpack.github.io/components/star-rating/?platform=ios).
+- Backpack/Icon:
+  - New `size` prop on `BPKIconView` to control icon size.
+  - New `flipsForRightToLeft` prop on `BPKIconView` to support icons with a horizontal direction in a right to left environment.
+  
+  **Fixed:**
+  - Backpack/Dialog:
+  - Dialog now respects a user's preference for reduced motion and reduced transparency.
 
 ## How to write a good changelog entry
 

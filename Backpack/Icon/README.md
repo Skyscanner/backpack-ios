@@ -37,6 +37,15 @@ let iconView = Backpack.IconView(iconName: .accessibility, size: .small)
 iconView.tintColor = Backpack.Color.blue500
 ```
 
+##### Flip icons with a horizontal direction when layout direction is right to left
+
+```swift
+import Backpack
+
+let iconView = Backpack.IconView(iconName: .arrowLeft, size: .small)
+iconView.flipsForRightToLeft = true
+```
+
 #### Render icon to `UIImage`
 
 ```swift

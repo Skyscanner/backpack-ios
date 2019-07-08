@@ -33,6 +33,7 @@
 #import <Backpack/TappableLinkLabel.h>
 #import <Backpack/TextField.h>
 #import <Backpack/TextView.h>
+#import <Backpack/StarRating.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -202,6 +203,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
         [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     tappableLinkLabelViewAppearance.fontMapping = theme.fontMapping;
     tappableLinkLabelViewAppearance.linkColor = theme.primaryColor;
+    
+    BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    starAppearance.starFilledColor = theme.starFilledColor;
 }
 
 @end

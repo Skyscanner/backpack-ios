@@ -158,4 +158,8 @@
     return [BPKDohaThemeContainer class];
 }
 
+- (UIColor *)starFilledColor {
+    return BPKColor.yellow500;
+}
+
 @end
