@@ -21,24 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTextDefinition
 
-- (instancetype)initWithText:(NSString *)text fontStyle:(BPKFontStyle)fontStyle {
+- (instancetype)initWithFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {
     self = [super init];
 
     if(self) {
-        _text = text;
         _fontStyle = fontStyle;
+        _range = range;
     }
 
     return self;
-}
-
-- (NSArray<BPKTextDefinition *> *)splitAtIndex:(int) index {
-    NSMutableArray<BPKTextDefinition *> *result = [[NSMutableArray alloc] init];
-
-    [result addObject:[[BPKTextDefinition alloc] initWithText: [self.text substringToIndex:index] fontStyle:self.fontStyle]];
-    [result addObject:[[BPKTextDefinition alloc] initWithText: [self.text substringFromIndex:index] fontStyle:self.fontStyle]];
-
-    return result;
 }
 
 @end

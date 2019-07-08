@@ -27,11 +27,15 @@ class LabelMultiFontStyleViewController: UIViewController {
         super.viewDidLoad()
 
         label.numberOfLines = 15
-        label.fontStyle = .textCapsEmphasized
+        label.fontStyle = .textBase
 
-        label.text = "This is a BPKLabel which supports multiple "
-        label.appendText("different font styles. ", with: .textLg)
-        label.appendText("or just append text to what's already there.", with: .textSmEmphasized)
-        label.insertText("You can insert a string at any point, ", at: 66, with: .textXlHeavy)
+        label.text = "This is a BPKLabel which supports multiple different font styles. You can simply create" +
+        "a BPKLabel, and then set the FontStyle to use for any given range.\nALWAYS INK RESPONSIBLY."
+        label.setFontStyle(.textLg, range: NSRange(location: 10, length: 8))
+        label.setFontStyle(.textXlEmphasized, range: NSRange(location: 33, length: 32))
+        label.setFontStyle(.textCaps, range: NSRange(location: 97, length: 14))
+        label.setFontStyle(.textXlEmphasized, range: NSRange(location: 116, length: 9))
+        label.setFontStyle(.textXxxlHeavy, range: NSRange(location: 141, length: 12))
+        label.setFontStyle(.textCapsEmphasized, range: NSRange(location: 154, length: 23))
     }
 }

@@ -85,50 +85,36 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void) testAppendingText {
+- (void) testSettingFontStyleForRangeDoesntChangeText {
+    BPKFontMapping *fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
+
+    NSRange range1 = NSMakeRange(0, 5);
+    NSRange range2 = NSMakeRange(10, 5);
+    NSRange range3 = NSMakeRange(20, 5);
+
+    NSString *sampleText1 = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    NSString *sampleText2 = @"consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt...";
+
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 
-    label.text = @"Original text";
-    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
-    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
+    label.text = sampleText1;
+    [label setFontStyle:BPKFontStyleTextLg range:range1];
 
-    XCTAssertEqualObjects(label.text, @"Original text Appended text More appended text");
+    label.text = sampleText2;
+    [label setFontStyle:BPKFontStyleTextXxxlHeavy range:range2];
 
-    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
+    label.fontMapping = fontMapping;
 
-    XCTAssertEqualObjects(label.text, @"Original text Appended text More appended text");
-}
+    [label setFontStyle:BPKFontStyleTextXxlHeavy range:range3];
 
-- (void) testInsertingTextBetweenSections {
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    NSDictionary<NSAttributedStringKey, id> *range1Attributes = [label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1];
+    NSDictionary<NSAttributedStringKey, id> *range2Attributes = [label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2];
+    NSDictionary<NSAttributedStringKey, id> *range3Attributes = [label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3];
 
-    label.text = @"Original text";
-    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
-    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
-
-    [label insertText:@" Inserted text" atIndex:27 withFontStyle: BPKFontStyleTextSmEmphasized];
-
-    XCTAssertEqualObjects(label.text, @"Original text Appended text Inserted text More appended text");
-
-    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
-
-    XCTAssertEqualObjects(label.text, @"Original text Appended text Inserted text More appended text");
-}
-
-- (void) testInsertingTextWithinSection {
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-
-    label.text = @"Original text";
-    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
-    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
-
-    [label insertText:@" More inserted text" atIndex:8 withFontStyle: BPKFontStyleTextSmEmphasized];
-
-    XCTAssertEqualObjects(label.text, @"Original More inserted text text Appended text More appended text");
-
-    label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand" regularFontFace:@"SnellRoundhand" semiboldFontFace:@"SnellRoundhand" heavyFontFace:@"SnellRoundhand"];
-
-    XCTAssertEqualObjects(label.text, @"Original More inserted text text Appended text More appended text");
+    XCTAssertEqualObjects(label.text, sampleText2);
+    XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase fontMapping:fontMapping ]);
+    XCTAssertEqualObjects(range2Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxxlHeavy fontMapping:fontMapping ]);
+    XCTAssertEqualObjects(range3Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxlHeavy fontMapping:fontMapping ]);
 }
 
 @end

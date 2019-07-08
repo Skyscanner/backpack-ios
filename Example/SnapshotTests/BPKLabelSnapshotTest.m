@@ -146,11 +146,9 @@ NS_ASSUME_NONNULL_BEGIN
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     label.numberOfLines = 5;
 
-    label.text = @"Original text";
-    [label appendText:@" Appended text" withFontStyle:BPKFontStyleTextLg];
-    [label appendText:@" More appended text" withFontStyle: BPKFontStyleTextSmEmphasized];
-
-    [label insertText:@" More inserted text" atIndex:8 withFontStyle: BPKFontStyleTextXxlEmphasized];
+    label.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    [label setFontStyle:BPKFontStyleTextLgEmphasized range:NSMakeRange(12, 10)];
+    [label setFontStyle:BPKFontStyleTextXxxlHeavy range:NSMakeRange(25, 10)];
 
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1200, 120)];
     parentView.backgroundColor = BPKColor.white;

@@ -12,11 +12,8 @@
 BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 // Position label with autolayout or other method
 
-// Append text:
-[label appendText:@"Some text" withFontStyle:BPKFontStyleTextLg];
-
-// Insert text:
-[label insertText:@"Some text" atIndex:20 withFontStyle:BPKFontStyleTextLg];
+// Set font style for a specific range
+[label setFontStyle:BPKFontStyleTextLg range:NSMakeRange(12, 10)];
 
 ```
 
@@ -28,11 +25,8 @@ import Backpack
 let label = Backpack.Label(fontStyle: .base)
 // Position label with autolayout or other method
 
-// Append text:
-label.appendText("Some text", with: .textLg);
-
-// Insert text:
-label.insertText("Some text", at:20, with: .textLg);
+// Set font style for a specific range
+label.setFontStyle(.textLg, range: NSRange(location: 12, length: 10))
 
 ```
 

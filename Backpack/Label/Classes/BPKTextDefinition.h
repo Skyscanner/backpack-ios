@@ -24,11 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKTextDefinition : NSObject
 
 @property(readonly) BPKFontStyle fontStyle;
-@property(readonly, strong) NSString *text;
+@property(readonly) NSRange range;
 
-- (instancetype)initWithText:(NSString *)text fontStyle:(BPKFontStyle)fontStyle;
-
--(NSArray<BPKTextDefinition *> *)splitAtIndex:(int) index;
+- (instancetype)initWithFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range;
 
 @end
 NS_ASSUME_NONNULL_END

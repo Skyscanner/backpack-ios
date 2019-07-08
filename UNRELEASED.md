@@ -3,7 +3,7 @@
 **Added:**
 
 - Backpack/Label:
-  - New methods for appending text and inserting text, both of which support adding text with different `fontStyle`s to the base label `fontStyle`.
+  - New method for setting the label font style for a specified range.
 
 > Place your changes below this line.
 
