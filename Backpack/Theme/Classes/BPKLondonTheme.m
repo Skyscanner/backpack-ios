@@ -35,10 +35,10 @@
 }
 
 - (BPKFontMapping *)fontMapping {
-    return [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                  regularFontFace:@"SnellRoundhand"
-                                 semiboldFontFace:@"SnellRoundhand-Bold"
-                                    heavyFontFace:@"SnellRoundhand-Black"];
+    return [[BPKFontMapping alloc] initWithFamily:@"ChalkboardSE"
+                                  regularFontFace:@"ChalkboardSE-Regular"
+                                 semiboldFontFace:@"ChalkboardSE-Bold"
+                                    heavyFontFace:@"ChalkboardSE-Bold"];
 }
 
 - (UIColor *)chipPrimaryColor {
