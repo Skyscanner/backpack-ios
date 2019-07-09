@@ -22,7 +22,10 @@ import Backpack
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var enableThemeSwitch: Switch!
+    @IBOutlet weak var enableRTLSwitch: Switch!
     var showThemeList: Bool = false
+    var rtlEnabled: Bool = false
+    var activeTheme: ThemeHelpers.ThemeName = .none
     @IBOutlet var selectableCells: [BPKTableViewSelectableCell]!
 
     override func viewDidLoad() {
@@ -32,8 +35,9 @@ class SettingsViewController: UITableViewController {
         closeButton.target = self
         closeButton.action = #selector(SettingsViewController.btnAction)
 
-        let theme = Settings.sharedSettings.activeTheme
-        updateUI(theme: theme)
+        activeTheme = Settings.sharedSettings.activeTheme
+        rtlEnabled = Settings.sharedSettings.rtlEnabled
+        updateUI()
     }
 
     @objc
@@ -49,14 +53,18 @@ class SettingsViewController: UITableViewController {
         }
     }
 
-    func updateUI(theme: ThemeHelpers.ThemeName) {
+    @IBAction func didToggleRTL(_ sender: UISwitch) {
+        applyRTL(rtlOn: sender.isOn)
+    }
+
+    func updateUI() {
         showThemeList = true
 
         for cell in selectableCells {
             cell.setApplied(applied: false)
         }
 
-        switch theme {
+        switch activeTheme {
         case .london:
             selectableCells[0].setApplied(applied: true)
         case .hongKong:
@@ -70,12 +78,14 @@ class SettingsViewController: UITableViewController {
         }
 
         enableThemeSwitch.isOn = showThemeList
+        enableRTLSwitch.isOn = rtlEnabled
 
         tableView.reloadData()
     }
 
     func applyTheme(theme: ThemeHelpers.ThemeName) {
-        let themeDefinition = ThemeHelpers.themeDefinition(forTheme: theme)
+        activeTheme = theme
+        let themeDefinition = ThemeHelpers.themeDefinition(forTheme: activeTheme)
         Settings.sharedSettings.activeTheme = theme
 
         NotificationCenter.default.post(
@@ -83,7 +93,19 @@ class SettingsViewController: UITableViewController {
             object: themeDefinition
         )
 
-        updateUI(theme: theme)
+        updateUI()
+    }
+
+    func applyRTL(rtlOn: Bool) {
+        rtlEnabled = rtlOn
+        Settings.sharedSettings.rtlEnabled = rtlEnabled
+
+        NotificationCenter.default.post(
+            name: NSNotification.Name(rawValue: BPKRTLTestHelper.didChangeNotification as String),
+            object: rtlEnabled
+        )
+
+        updateUI()
     }
 
     // MARK: Table View
@@ -93,6 +115,6 @@ class SettingsViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return showThemeList ? 2 : 1
+        return showThemeList ? 3 : 2
     }
 }

@@ -16,10 +16,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
+                            <tableViewSection headerTitle="RTL" id="tpI-jw-lLV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lnP-eG-I17">
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lnP-eG-I17" id="6Uz-8p-lQ5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable RTL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDZ-3D-4Tp" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="11" width="113" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8If-0d-Vl1" customClass="BPKSwitch">
+                                                    <rect key="frame" x="319" y="6" width="49" height="31"/>
+                                                    <connections>
+                                                        <action selector="didToggleRTL:" destination="o4i-vD-fRl" eventType="valueChanged" id="bpI-c0-WZG"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8If-0d-Vl1" secondAttribute="trailing" constant="8" id="WHu-Vj-e2m"/>
+                                                <constraint firstItem="8If-0d-Vl1" firstAttribute="centerY" secondItem="6Uz-8p-lQ5" secondAttribute="centerY" id="WgL-T4-3kg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Component Themes" footerTitle="This will enable themes for compatible components." id="6DG-9L-o5S">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2bw-XW-006">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="162.66666666666669" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2bw-XW-006" id="xQ2-TJ-6KQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -35,7 +66,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="axS-EM-cj9" customClass="BPKSwitch">
                                                     <rect key="frame" x="319" y="6" width="49" height="31"/>
                                                     <connections>
-                                                        <action selector="didToggleTheming:" destination="o4i-vD-fRl" eventType="valueChanged" id="lcF-pR-lBv"/>
+                                                        <action selector="didToggleTheming:" destination="o4i-vD-fRl" eventType="valueChanged" id="4zZ-0d-N7Z"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -50,7 +81,7 @@
                             <tableViewSection headerTitle="Choose a theme" id="Cwf-ra-wOE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gWG-YG-ep4" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="167.33333333333334" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="274.66666666666669" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gWG-YG-ep4" id="LTz-aW-Zg8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -67,7 +98,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GrS-Qr-Qwy" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211.33333333333334" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="318.66666666666669" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GrS-Qr-Qwy" id="g4d-Re-tnD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -84,7 +115,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IYJ-hb-sKQ" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="255.33333333333337" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="362.66666666666669" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IYJ-hb-sKQ" id="KNx-Vf-G1H">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -101,7 +132,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Dex-Ur-CNM" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="299.33333333333337" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="406.66666666666669" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dex-Ur-CNM" id="yWV-3f-ddM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -130,7 +161,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="closeButton" destination="vtF-XU-ZNy" id="3pw-lO-IGZ"/>
-                        <outlet property="enableThemeSwitch" destination="axS-EM-cj9" id="hWl-vS-k4b"/>
+                        <outlet property="enableRTLSwitch" destination="8If-0d-Vl1" id="oDD-Fo-x4g"/>
+                        <outlet property="enableThemeSwitch" destination="axS-EM-cj9" id="DOx-V7-L1v"/>
                         <outletCollection property="selectableCells" destination="gWG-YG-ep4" collectionClass="NSMutableArray" id="eKG-wF-ltS"/>
                         <outletCollection property="selectableCells" destination="GrS-Qr-Qwy" collectionClass="NSMutableArray" id="cKL-7b-uVy"/>
                         <outletCollection property="selectableCells" destination="IYJ-hb-sKQ" collectionClass="NSMutableArray" id="Hjp-q9-ejZ"/>

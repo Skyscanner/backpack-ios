@@ -22,6 +22,10 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+@interface BPKAppDelegate ()
+@property(strong, nonatomic) BPKRTLTestHelper *rtlTestHelper;
+@end
+
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -35,6 +39,12 @@
     [ThemeHelpers applyAllThemes];
 
     id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
+
+    Boolean rtlEnabled = Settings.sharedSettings.rtlEnabled;
+
+    self.rtlTestHelper = [[BPKRTLTestHelper alloc] init];
+    [self.rtlTestHelper setRTLWithRtl:!!rtlEnabled];
+    [self.rtlTestHelper listen];
 
     BPKThemeContainerController *themeContainerController =
         [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme

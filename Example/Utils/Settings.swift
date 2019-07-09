@@ -19,6 +19,7 @@
 import Foundation
 
 let THEMEKEY = "theme"
+let RTLKEY = "rtl"
 
 class Settings: NSObject {
 
@@ -48,6 +49,19 @@ class Settings: NSObject {
             let themeDefinition = ThemeHelpers.themeDefinition(forTheme: newValue)
             let themeName = themeDefinition.themeName
             userDefaults.set(themeName, forKey: THEMEKEY)
+        }
+    }
+
+    @objc var rtlEnabled: Bool {
+        get {
+            guard let rtlEnabled = userDefaults.value(forKey: RTLKEY) as? Bool else {
+                return false
+            }
+
+            return rtlEnabled
+        }
+        set {
+            userDefaults.set(newValue, forKey: RTLKEY)
         }
     }
 
