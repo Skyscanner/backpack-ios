@@ -70,9 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:
-                                                      [BPKFont attributedStringWithFontStyle:self.fontStyle content:self.text textColor:self.textColor fontMapping:self.fontMapping]
-                                                      ];
+    NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc]
+        initWithAttributedString:[BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                                content:self.text
+                                                              textColor:self.textColor
+                                                            fontMapping:self.fontMapping]];
 
     // Recreate the attributed string from the persisted definitions
     for (BPKTextDefinition *styleRange in self.persistentStyleRanges) {
@@ -86,9 +88,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary<NSAttributedStringKey, id> *)getAttributesWithFontStyle:(BPKFontStyle)fontStyle {
     if (self.textColor) {
         NSDictionary<NSAttributedStringKey, id> *customAttributes = @{NSForegroundColorAttributeName: self.textColor};
-        return  [BPKFont attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontMapping:self.fontMapping];
+        return [BPKFont attributesForFontStyle:fontStyle
+                          withCustomAttributes:customAttributes
+                                   fontMapping:self.fontMapping];
     } else {
-        return  [BPKFont attributesForFontStyle:fontStyle fontMapping:self.fontMapping];
+        return [BPKFont attributesForFontStyle:fontStyle fontMapping:self.fontMapping];
     }
 }
 
@@ -119,7 +123,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {
     [_persistentStyleRanges addObject:[[BPKTextDefinition alloc] initWithFontStyle:fontStyle range:range]];
 
-    NSMutableAttributedString *resultingString = [[NSMutableAttributedString alloc ] initWithAttributedString:self.attributedText];
+    NSMutableAttributedString *resultingString =
+        [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     NSDictionary<NSAttributedStringKey, id> *newAttributes = [self getAttributesWithFontStyle:fontStyle];
     [resultingString setAttributes:newAttributes range:range];
 

@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {
     self = [super init];
 
-    if(self) {
+    if (self) {
         _fontStyle = fontStyle;
         _range = range;
     }
