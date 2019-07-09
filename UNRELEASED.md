@@ -1,10 +1,5 @@
 # Unreleased
 
-**Added:**
-
-- Backpack/Label:
-  - New method for setting the label font style for a specified range.
-
 > Place your changes below this line.
 
 ## How to write a good changelog entry

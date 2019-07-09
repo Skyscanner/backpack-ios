@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.5.0
+
+**Added:**
+
+- Backpack/Label:
+  - New method for setting the label font style for a specified range.
+
 ## 11.4.0
 
 **Fixed:**
