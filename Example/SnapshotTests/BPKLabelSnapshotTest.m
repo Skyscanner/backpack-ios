@@ -142,6 +142,21 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testViewSnapshotWithMultipleFontStyles {
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    label.numberOfLines = 5;
+
+    label.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    [label setFontStyle:BPKFontStyleTextLgEmphasized range:NSMakeRange(12, 10)];
+    [label setFontStyle:BPKFontStyleTextXxxlHeavy range:NSMakeRange(25, 10)];
+
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1200, 120)];
+    parentView.backgroundColor = BPKColor.white;
+    [label sizeToFit];
+    [parentView addSubview:label];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

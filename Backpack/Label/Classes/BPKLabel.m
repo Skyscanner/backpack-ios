@@ -15,13 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKLabel.h"
+#import "BPKTextDefinition.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKLabel ()
+
 - (void)setupWithStyle:(BPKFontStyle)style;
+@property(strong, nonatomic) NSMutableArray<BPKTextDefinition *> *persistentStyleRanges;
+
 @end
 
 @implementation BPKLabel
@@ -65,22 +70,36 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSAttributedString *_Nullable attributedString = nil;
-    if (self.textColor) {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:self.text
-                                                        textColor:self.textColor
-                                                      fontMapping:_fontMapping];
-    } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:self.text
-                                                      fontMapping:_fontMapping];
+    NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc]
+        initWithAttributedString:[BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                                content:self.text
+                                                              textColor:self.textColor
+                                                            fontMapping:self.fontMapping]];
+
+    // Recreate the attributed string from the persisted definitions
+    for (BPKTextDefinition *styleRange in self.persistentStyleRanges) {
+        NSDictionary<NSAttributedStringKey, id> *newAttributes = [self getAttributesWithFontStyle:styleRange.fontStyle];
+        [newAttributedString setAttributes:newAttributes range:styleRange.range];
     }
-    super.attributedText = attributedString;
+
+    super.attributedText = newAttributedString;
+}
+
+- (NSDictionary<NSAttributedStringKey, id> *)getAttributesWithFontStyle:(BPKFontStyle)fontStyle {
+    if (self.textColor) {
+        NSDictionary<NSAttributedStringKey, id> *customAttributes = @{NSForegroundColorAttributeName: self.textColor};
+        return [BPKFont attributesForFontStyle:fontStyle
+                          withCustomAttributes:customAttributes
+                                   fontMapping:self.fontMapping];
+    } else {
+        return [BPKFont attributesForFontStyle:fontStyle fontMapping:self.fontMapping];
+    }
 }
 
 - (void)setText:(NSString *_Nullable)text {
     BPKAssertMainThread();
+
+    [self.persistentStyleRanges removeAllObjects];
 
     [super setText:text];
     [self updateTextStyle];
@@ -89,6 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFontStyle:(BPKFontStyle)fontStyle {
     BPKAssertMainThread();
     _fontStyle = fontStyle;
+
     self.text = self.attributedText.string;
 }
 
@@ -100,9 +120,20 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {
+    [_persistentStyleRanges addObject:[[BPKTextDefinition alloc] initWithFontStyle:fontStyle range:range]];
+
+    NSMutableAttributedString *resultingString = [self.attributedText mutableCopy];
+    NSDictionary<NSAttributedStringKey, id> *newAttributes = [self getAttributesWithFontStyle:fontStyle];
+    [resultingString setAttributes:newAttributes range:range];
+
+    [self setAttributedText:resultingString];
+}
+
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
+    self.persistentStyleRanges = [[NSMutableArray alloc] init];
     self.fontStyle = style;
     self.textColor = BPKColor.gray700;
 }

@@ -11,6 +11,10 @@
 
 BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 // Position label with autolayout or other method
+
+// Set font style for a specific range
+[label setFontStyle:BPKFontStyleTextLg range:NSMakeRange(12, 10)];
+
 ```
 
 ### Swift
@@ -20,6 +24,10 @@ import Backpack
 
 let label = Backpack.Label(fontStyle: .base)
 // Position label with autolayout or other method
+
+// Set font style for a specific range
+label.setFontStyle(.textLg, range: NSRange(location: 12, length: 10))
+
 ```
 
 ## Dynamic Text

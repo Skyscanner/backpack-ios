@@ -34,6 +34,8 @@ class LabelsSelectorTableViewController: UITableViewController {
             maybeLabelsController?.type = .heavy
         case "ShowPerformance":
             segue.destination.title = "Performance"
+        case "MultipleFontStyles":
+            segue.destination.title = "Multiple font styles"
         default:
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
         }

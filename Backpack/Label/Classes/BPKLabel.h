@@ -46,5 +46,13 @@ NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
  */
 @property(nonatomic) BPKFontStyle fontStyle;
 
+/**
+ * Set the font style for a given range of the label.
+ *
+ * @param fontStyle The style of the text being appended.
+ * @param range The range to apply the font style to.
+ */
+- (void)setFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range;
+
 @end
 NS_ASSUME_NONNULL_END
