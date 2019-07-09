@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKLabel ()
 
 - (void)setupWithStyle:(BPKFontStyle)style;
-@property(strong) NSMutableArray<BPKTextDefinition *> *persistentStyleRanges;
+@property(strong, nonatomic) NSMutableArray<BPKTextDefinition *> *persistentStyleRanges;
 
 @end
 
@@ -123,8 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {
     [_persistentStyleRanges addObject:[[BPKTextDefinition alloc] initWithFontStyle:fontStyle range:range]];
 
-    NSMutableAttributedString *resultingString =
-        [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
+    NSMutableAttributedString *resultingString = [self.attributedText mutableCopy];
     NSDictionary<NSAttributedStringKey, id> *newAttributes = [self getAttributesWithFontStyle:fontStyle];
     [resultingString setAttributes:newAttributes range:range];
 
