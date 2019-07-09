@@ -2,7 +2,7 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
-## 11.5.1
+## 11.5.2
 
 Nothing of note!
 
