@@ -1,5 +1,10 @@
 # Unreleased
 
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed layout issues when using range selection in RTL.
+
 > Place your changes below this line.
 
 ## How to write a good changelog entry

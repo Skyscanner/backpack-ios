@@ -80,6 +80,8 @@
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
     [sameDayPath setLineWidth:3.0];
+
+    BOOL isRTL = [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute];
     self.samedayLayer.path = sameDayPath.CGPath;
 
     UIRectCorner corners = 0;
@@ -87,12 +89,20 @@
 
     switch (self.rowType) {
     case RowTypeStart:
-        corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
+        if (!isRTL) {
+            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
+        } else {
+            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+        }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
     case RowTypeEnd:
-        corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+        if (!isRTL) {
+            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+        } else {
+            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
+        }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
@@ -110,15 +120,25 @@
         selectionRect = CGRectMake(0, 0, bounds.size.width, height);
         break;
 
-    case SelectionTypeRightBorder:
-        selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
-        corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
+    case SelectionTypeTrailingBorder:
+        if (!isRTL) {
+            corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
+            selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
+        } else {
+            corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
+            selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
+        }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
-    case SelectionTypeLeftBorder:
-        selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
-        corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
+    case SelectionTypeLeadingBorder:
+        if (!isRTL) {
+            corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
+            selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
+        } else {
+            corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
+            selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
+        }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
@@ -151,8 +171,8 @@
     if (self.titleLabel.text) {
         switch (self.selectionType) {
         case SelectionTypeSingle:
-        case SelectionTypeLeftBorder:
-        case SelectionTypeRightBorder:
+        case SelectionTypeLeadingBorder:
+        case SelectionTypeTrailingBorder:
         case SelectionTypeSameDay:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
