@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.5.3
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed layout issues when using range selection in RTL.
+
 ## 11.5.2
 
 Nothing of note!
