@@ -502,9 +502,9 @@ NSString *const HeaderDateFormat = @"MMMM";
                 }
 
                 if (isMinDate) {
-                    selectionType = SelectionTypeLeftBorder;
+                    selectionType = SelectionTypeLeadingBorder;
                 } else if (isMaxDate) {
-                    selectionType = SelectionTypeRightBorder;
+                    selectionType = SelectionTypeTrailingBorder;
                 } else {
                     selectionType = SelectionTypeMiddle;
                 }
@@ -528,7 +528,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         }
 
         if (selectionType == SelectionTypeSingle || selectionType == SelectionTypeSameDay ||
-            selectionType == SelectionTypeLeftBorder || selectionType == SelectionTypeRightBorder) {
+            selectionType == SelectionTypeLeadingBorder || selectionType == SelectionTypeTrailingBorder) {
             calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitSelected;
         }
     }

@@ -22,9 +22,9 @@
 typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeNone,
     SelectionTypeSingle,
-    SelectionTypeLeftBorder,
+    SelectionTypeLeadingBorder,
     SelectionTypeMiddle,
-    SelectionTypeRightBorder,
+    SelectionTypeTrailingBorder,
     SelectionTypeSameDay
 };
 
