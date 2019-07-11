@@ -41,8 +41,10 @@ BpkFlatListHeader
 BpkFlatListItem
 BpkFlatListItemSeparator
 
-BpkHorizontalNav
-BpkHorizontalNavItem
+HorizontalNavigation
+HorizontalNavigationItem
+BPKHorizontalNavigation
+BPKHorizontalNavigationItem
 
 BpkIcons
 BpkIcon

@@ -158,4 +158,8 @@
     return [BPKDohaThemeContainer class];
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

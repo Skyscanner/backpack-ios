@@ -149,4 +149,8 @@
     return [BPKDefaultThemeContainer class];
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

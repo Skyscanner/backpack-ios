@@ -27,6 +27,7 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
@@ -202,6 +203,10 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
         [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     tappableLinkLabelViewAppearance.fontMapping = theme.fontMapping;
     tappableLinkLabelViewAppearance.linkColor = theme.primaryColor;
+
+    BPKHorizontalNavigation *horizontalNavigationAppearance =
+        [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
+    horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
 }
 
 @end

@@ -157,4 +157,8 @@
     return [BPKSilverThemeContainer class];
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

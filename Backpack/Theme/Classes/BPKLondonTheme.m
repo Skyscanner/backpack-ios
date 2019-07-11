@@ -158,4 +158,8 @@
     return [BPKLondonThemeContainer class];
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

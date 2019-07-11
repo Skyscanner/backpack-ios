@@ -165,4 +165,8 @@
     return [BPKHongKongThemeContainer class];
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end
