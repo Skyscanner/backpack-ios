@@ -161,4 +161,8 @@
     return BPKColor.red700;
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

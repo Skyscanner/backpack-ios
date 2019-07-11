@@ -19,7 +19,7 @@
 import UIKit
 import Backpack
 
-enum SegueIdentifier: String {
+enum TappableLinkLabelsSegueIdentifier: String {
     case singleLink = "SingleLink"
     case multipleLinks = "MultipleLinks"
     case alternateStyle = "AlternateStyle"
@@ -30,8 +30,9 @@ class TappableLinkLabelsSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeTappableLinkLabelsController = segue.destination as? TappableLinkLabelsViewController
 
-        if let identifier = segue.identifier, let segueIdentifier = SegueIdentifier(rawValue: identifier) {
-            switch segueIdentifier {
+        if let identifier = segue.identifier,
+            let tappableLinkLabelsSegueIdentifier = TappableLinkLabelsSegueIdentifier(rawValue: identifier) {
+            switch tappableLinkLabelsSegueIdentifier {
             case .singleLink:
                 segue.destination.title = "Single link"
             case .multipleLinks:

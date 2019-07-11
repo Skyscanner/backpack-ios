@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--TappableLinkLabels-->
+        <!--Tappable link labels-->
         <scene sceneID="CpR-b8-GZI">
             <objects>
-                <tableViewController storyboardIdentifier="TappableLinkLabels" title="TappableLinkLabels" id="Gdg-nX-jAF" customClass="TappableLinkLabelsSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TappableLinkLabels" title="Tappable link labels" id="Gdg-nX-jAF" customClass="TappableLinkLabelsSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SZx-jL-Soc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

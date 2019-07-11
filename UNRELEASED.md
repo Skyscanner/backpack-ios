@@ -2,6 +2,18 @@
 
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/StarRating
+  - `BPKStarRating` is now `IB_DESIGNABLE`.
+
+- Backpack/HorizontalNavigation:
+  - Added `HorizontalNavigation` component.
+
+**Breaking:**
+  - Backpack/Theme:
+    - Added `horiontalNavigationSelectedColor` property.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

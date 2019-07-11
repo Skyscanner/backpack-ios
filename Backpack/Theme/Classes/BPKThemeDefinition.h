@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, readonly, strong) UIColor* starFilledColor;
 
+@property(nonatomic, readonly, strong) UIColor *horiontalNavigationSelectedColor;
+
 @end
 
 NS_ASSUME_NONNULL_END
