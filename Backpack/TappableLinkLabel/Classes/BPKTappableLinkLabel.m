@@ -258,6 +258,26 @@ NS_ASSUME_NONNULL_BEGIN
     return self.contentView.numberOfLines;
 }
 
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    if (self.contentView.textAlignment != textAlignment) {
+        self.contentView.textAlignment = textAlignment;
+    }
+}
+
+- (NSTextAlignment)textAlignment {
+    return self.contentView.textAlignment;
+}
+
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+    if (self.contentView.lineBreakMode != lineBreakMode) {
+        self.contentView.lineBreakMode = lineBreakMode;
+    }
+}
+
+- (NSLineBreakMode)lineBreakMode {
+    return self.contentView.lineBreakMode;
+}
+
 #pragma BPKTappableLinkLabelDelegate
 
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url {

@@ -1,6 +1,10 @@
 # Unreleased
 
 > Place your changes below this line.
+- Backpack/BPKTappableLinkLabel:
+  - `textAlignment` similar to `UILabel`
+  - `lineBreakMode` similar to `UILabel`
+
 
 ## How to write a good changelog entry
 
