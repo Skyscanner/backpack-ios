@@ -2,6 +2,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.6.0
+
+**Added:**
+- Backpack/Icon
+  - New icons:
+    - Added `flight-landing` as `BPKIconNameFlightLanding`.
+    - Added `flight-takeoff` as `BPKIconNameFlightTakeoff`.
+    - Added `aircraft` as `BPKIconNameAircraft`.
+
 ## 11.5.3
 
 **Fixed:**
