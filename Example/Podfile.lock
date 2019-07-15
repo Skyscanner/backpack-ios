@@ -1,5 +1,5 @@
 PODS:
-  - Backpack (11.6.0):
+  - Backpack (11.7.0):
     - FSCalendar (~> 2.8)
     - TTTAttributedLabel (~> 1.13.4)
   - FSCalendar (2.8.0)
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 5dcf1289bd2b0b5e276f9df3660d1033b9f30c11
+  Backpack: b270131056529eb63b4c9d0084fc3c735c65693a
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3

@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.7.0
+
+- Backpack/BPKTappableLinkLabel:
+  - `textAlignment` similar to `UILabel`
+  - `lineBreakMode` similar to `UILabel`
+
 ## 11.6.0
 
 **Added:**
