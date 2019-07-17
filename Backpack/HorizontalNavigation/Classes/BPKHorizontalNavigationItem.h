@@ -39,7 +39,7 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 /**
  * Whether the item is currently selected or not.
  */
-@property(nonatomic) Boolean *active;
+@property(nonatomic) Boolean active;
 
 /**
  * Create a `BPKHorizontalNavigationItem` with a set of options and an optionaly selected option.
@@ -49,6 +49,8 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 - (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style NS_UNAVAILABLE;
 
 @end
 NS_ASSUME_NONNULL_END

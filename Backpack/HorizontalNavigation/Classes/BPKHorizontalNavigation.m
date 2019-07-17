@@ -17,8 +17,8 @@
  */
 
 #import "BPKHorizontalNavigation.h"
-#import "BPKHorizontalNavigationOption.h"
 #import "BPKHorizontalNavigationItem.h"
+#import "BPKHorizontalNavigationOption.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigation
 
-- (instancetype)initWithOptions:(NSArray<NSString *> *)options selected:(NSInteger *)selectedItem {
+- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItem {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
@@ -90,11 +90,12 @@ NS_ASSUME_NONNULL_BEGIN
     [self setSelectedItem:newIndex];
 
     if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
-        [self.delegate horizontalNavigation:self didSelectItem:newIndex];
+        [self.delegate horizontalNavigation:self didSelectItem:&newIndex];
     }
 }
 
-- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:(BPKHorizontalNavigationOption *)definition {
+- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:
+    (BPKHorizontalNavigationOption *)definition {
     return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
 }
 
@@ -117,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger *)selectedItem {
+- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItem {
     _options = options;
 
     self.stackView = [UIStackView new];

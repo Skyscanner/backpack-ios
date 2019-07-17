@@ -60,7 +60,7 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
  * @param selectedItem NSString the initially selected item
  */
 - (instancetype)initWithOptions:(NSArray<NSString *> *)options
-                       selected:(NSInteger *)selectedItem NS_DESIGNATED_INITIALIZER;
+                       selected:(NSInteger)selectedItem NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;

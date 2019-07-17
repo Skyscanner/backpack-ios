@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setActive:(Boolean *)active {
+- (void)setActive:(Boolean)active {
     if (_active != active) {
         _active = active;
 
