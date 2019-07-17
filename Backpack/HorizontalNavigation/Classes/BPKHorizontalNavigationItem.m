@@ -17,6 +17,7 @@
  */
 
 #import "BPKHorizontalNavigationItem.h"
+#import "BPKHorizontalNavigationOption.h"
 #import "BPKTextDefinition.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -25,12 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigationItem
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        [self setupWithName:name];
+        [self setupWithDefinition:definition];
     }
 
     return self;
@@ -41,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithName:nil];
+        [self setupWithDefinition:nil];
     }
 
     return self;
@@ -52,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithName:nil];
+        [self setupWithDefinition:nil];
     }
 
     return self;
@@ -90,11 +91,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setupWithName:(NSString *_Nullable)name {
+- (void)setupWithDefinition:(BPKHorizontalNavigationOption *_Nullable)definition {
     self.style = BPKButtonStyleLink;
-    _name = name;
+    _definition = definition;
 
-    self.title = name;
+    self.title = definition.name;
     self.translatesAutoresizingMaskIntoConstraints = NO;
     [self updateStyle];
 }

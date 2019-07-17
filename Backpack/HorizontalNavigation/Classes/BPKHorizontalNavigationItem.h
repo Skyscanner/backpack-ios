@@ -24,14 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKHorizontalNavigationItem` is a subclass of `UICollectionViewCell`.
  */
+@class BPKHorizontalNavigationOption;
 NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNavigationItem : BPKButton
 
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
 
 /**
- * The name of the option, which will be displayed as a button in the component.
+ * The definition of the option, which will be displayed as a button in the component.
+ *
+ * see BPKHorizontalNavigationOption
  */
-@property(nullable, nonatomic, strong) NSString *name;
+@property(nullable, nonatomic, strong) BPKHorizontalNavigationOption *definition;
 
 /**
  * Whether the item is currently selected or not.
@@ -41,9 +44,9 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 /**
  * Create a `BPKHorizontalNavigationItem` with a set of options and an optionaly selected option.
  *
- * @param name NSString the identifier for the cell
+ * @param definition BPKHorizontalNavigationOption the specification for the navigation item
  */
-- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 

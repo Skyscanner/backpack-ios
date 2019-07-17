@@ -29,14 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
  * By default it will just return a new instance of `BPKHorizontalNavigationItem`.
  */
 @class BPKHorizontalNavigationItem;
+@class BPKHorizontalNavigationOption;
 NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
 
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
 
 /**
  * The options to display within the navigation.
+ *
+ * see BPKHorizontalNavigationOption
  */
-@property(nonatomic, copy) NSArray<NSString *> *options;
+@property(nonatomic, copy) NSArray<BPKHorizontalNavigationOption *> *options;
 
 /**
  * The index of the currently selected item.
@@ -61,8 +64,6 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
-
-- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithName:(NSString *)name;
 
 @end
 NS_ASSUME_NONNULL_END

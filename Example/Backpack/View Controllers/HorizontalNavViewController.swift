@@ -25,7 +25,11 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        horizontalNav.options = ["Flights", "Hotels", "Car hire"]
+        horizontalNav.options = [
+            BPKHorizontalNavigationOption(name: "Flights"),
+            BPKHorizontalNavigationOption(name: "Hotels"),
+            BPKHorizontalNavigationOption(name: "Car hire")
+        ]
         horizontalNav.selectedItem = 0
     }
 }

@@ -17,6 +17,7 @@
  */
 
 #import "BPKHorizontalNavigation.h"
+#import "BPKHorizontalNavigationOption.h"
 #import "BPKHorizontalNavigationItem.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -46,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithOptions:@[] selected:0];
+        [self setupWithOptions:@[] selected:-1];
     }
 
     return self;
@@ -57,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithOptions:@[] selected:0];
+        [self setupWithOptions:@[] selected:-1];
     }
 
     return self;
@@ -93,8 +94,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithName:(NSString *)name {
-    return [[BPKHorizontalNavigationItem alloc] initWithName:name];
+- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:(BPKHorizontalNavigationOption *)definition {
+    return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
 }
 
 - (void)setSelectedColor:(UIColor *_Nullable)selectedColor {
@@ -116,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (void)setupWithOptions:(NSArray<NSString *> *)options selected:(NSInteger *)selectedItem {
+- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger *)selectedItem {
     _options = options;
 
     self.stackView = [UIStackView new];
@@ -148,16 +149,19 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     for (int i = 0; i < self.options.count; i += 1) {
-        BPKHorizontalNavigationItem *newCell = [self createHorizontalNavigationItemWithName:self.options[i]];
+        BPKHorizontalNavigationItem *newCell = [self createHorizontalNavigationItemWithDefinition:self.options[i]];
         [newCell addTarget:self action:@selector(updateSelection:) forControlEvents:UIControlEventTouchUpInside];
         [self.stackView addArrangedSubview:newCell];
     }
+
+    // Reset user selection:
+    self.selectedItem = 0;
 
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }
 
-- (void)setOptions:(NSArray<NSString *> *)options {
+- (void)setOptions:(NSArray<BPKHorizontalNavigationOption *> *)options {
     if (_options != options) {
         _options = options;
 

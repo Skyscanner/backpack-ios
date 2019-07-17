@@ -15,11 +15,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_HORIZONTAL_NAVIGATION__
-#define __BACKPACK_HORIZONTAL_NAVIGATION__
-
-#import "BPKHorizontalNavigation.h"
-#import "BPKHorizontalNavigationDelegate.h"
 #import "BPKHorizontalNavigationOption.h"
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKHorizontalNavigationOption
+
+- (instancetype)initWithName:(NSString *)name {
+    self = [super init];
+
+    if (self) {
+        _name = name;
+    }
+
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName _Nullable)iconName {
+    self = [super init];
+
+    if (self) {
+        _name = name;
+        _iconName = iconName;
+    }
+
+    return self;
+}
+
+- (BOOL)hasIcon {
+    return self.iconName != nil;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END
