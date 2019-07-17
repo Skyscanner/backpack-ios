@@ -42,6 +42,11 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 @property(nonatomic, copy) NSArray<BPKHorizontalNavigationOption *> *options;
 
 /**
+ * Whether to show a bar under the selected item
+ */
+@property(nonatomic) Boolean showSelectedBar;
+
+/**
  * The index of the currently selected item.
  * By default the first item is selected.
  * If the index is out of bounds for the options available (eg -1) then no item will be selected.

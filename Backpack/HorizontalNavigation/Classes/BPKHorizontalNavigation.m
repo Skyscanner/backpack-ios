@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKHorizontalNavigation ()
 @property(nonatomic, strong) UIStackView *stackView;
+@property(nonatomic, strong) UIView *barView;
+@property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *barConstraints;
 @end
 
 @implementation BPKHorizontalNavigation
@@ -64,6 +66,14 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (void)setShowSelectedBar:(Boolean)showSelectedBar {
+    if (_showSelectedBar != showSelectedBar) {
+        _showSelectedBar = showSelectedBar;
+
+        [self updateBarAppearance];
+    }
+}
+
 - (void)setSelectedItem:(NSInteger)selectedItem {
     if (_selectedItem != selectedItem) {
         _selectedItem = selectedItem;
@@ -82,7 +92,41 @@ NS_ASSUME_NONNULL_BEGIN
                 navigationCell.active = selectedItem == i;
             }
         }
+
+        [self updateBarAppearance];
     }
+}
+
+- (void) updateBarAppearance {
+    if(!self.showSelectedBar || self.selectedItem >= self.stackView.arrangedSubviews.count) {
+        self.barView.hidden = YES;
+    }else{
+        self.barView.hidden = NO;
+
+        UIView *selectedButton = self.stackView.arrangedSubviews[self.selectedItem];
+
+        double animationDuration = 0.2;
+        if(UIAccessibilityIsReduceMotionEnabled()) {
+            animationDuration = 0.0;
+        }
+
+        [UIView animateWithDuration:animationDuration animations:^{
+            [self adjustBarConstraintsForView:selectedButton];
+
+            [self layoutIfNeeded];
+        }];
+        }
+}
+
+-(void) adjustBarConstraintsForView:(UIView *)view {
+    if(self.barConstraints != nil) {
+        [NSLayoutConstraint deactivateConstraints:self.barConstraints];
+    }
+    self.barConstraints = @[
+                            [self.barView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:-BPKSpacingBase],
+                            [self.barView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor constant:BPKSpacingBase],
+                            ];
+    [NSLayoutConstraint activateConstraints:self.barConstraints];
 }
 
 - (void)updateSelection:(UIButton *)sender {
@@ -121,17 +165,35 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItem {
     _options = options;
 
+    self.barView = [UIView new];
+    self.barView.backgroundColor = BPKColor.blue500;
+    self.barView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.barView];
+
+    [NSLayoutConstraint activateConstraints:@[
+                                              [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm],
+                                              [self.barView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
+                                              [self.barView.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor],
+                                              [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm]
+                                              ]];
+
+    self.barConstraints = @[
+                            [self.barView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                            [self.barView.trailingAnchor constraintEqualToAnchor:self.leadingAnchor]
+                                              ];
+    [NSLayoutConstraint activateConstraints:self.barConstraints];
+
     self.stackView = [UIStackView new];
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.stackView];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
-        [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor constant:BPKSpacingBase],
-        [self.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor],
-        [self.heightAnchor constraintEqualToConstant:40.0f]
-    ]];
+                                              [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                              [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
+                                              [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor constant:BPKSpacingBase],
+                                              [self.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor],
+                                              [self.heightAnchor constraintEqualToConstant:40.0f]
+                                              ]];
 
     self.stackView.backgroundColor = UIColor.redColor;
     self.stackView.axis = UILayoutConstraintAxisHorizontal;
