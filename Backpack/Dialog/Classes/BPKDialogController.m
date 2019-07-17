@@ -207,7 +207,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)_setScrimAlpha:(double)scrimAlpha {
-    self.scrimView.alpha = 0.5 * fmax(fmin(scrimAlpha, 1.0), 0.0);
+    double multiplier = UIAccessibilityIsReduceTransparencyEnabled() ? 0.9 : 0.5;
+    self.scrimView.alpha = multiplier * fmax(fmin(scrimAlpha, 1.0), 0.0);
 }
 
 #pragma mark - BPKDialogViewDelegate
