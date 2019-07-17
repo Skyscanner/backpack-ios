@@ -51,7 +51,7 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
  * By default the first item is selected.
  * If the index is out of bounds for the options available (eg -1) then no item will be selected.
  */
-@property(nonatomic) NSInteger selectedItem;
+@property(nonatomic) NSInteger selectedItemIndex;
 
 /**
  * A delegate that can be informed of changes to the selection.
@@ -62,10 +62,10 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
  * Create a `BPKHorizontalNavigation` with a set of options and an optionaly selected option.
  *
  * @param options NSArray<NSString> the options available to the useR
- * @param selectedItem NSString the initially selected item
+ * @param selectedItemIndex NSString the initially selected item
  */
 - (instancetype)initWithOptions:(NSArray<NSString *> *)options
-                       selected:(NSInteger)selectedItem NS_DESIGNATED_INITIALIZER;
+                       selected:(NSInteger)selectedItemIndex NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;

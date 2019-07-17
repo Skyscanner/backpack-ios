@@ -33,12 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigation
 
-- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItem {
+- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        [self setupWithOptions:options selected:selectedItem];
+        [self setupWithOptions:options selected:selectedItemIndex];
     }
 
     return self;
@@ -74,9 +74,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setSelectedItem:(NSInteger)selectedItem {
-    if (_selectedItem != selectedItem) {
-        _selectedItem = selectedItem;
+- (void)setSelectedItemIndex:(NSInteger)selectedItemIndex {
+    if (_selectedItemIndex != selectedItemIndex) {
+        _selectedItemIndex = selectedItemIndex;
 
         for (int i = 0; i < self.stackView.arrangedSubviews.count; i += 1) {
             NSAssert([self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]],
@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
                 (BPKHorizontalNavigationItem *)self.stackView.arrangedSubviews[i];
 
             if (navigationCell != nil) {
-                navigationCell.active = selectedItem == i;
+                navigationCell.active = selectedItemIndex == i;
             }
         }
 
@@ -98,12 +98,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void) updateBarAppearance {
-    if(!self.showSelectedBar || self.selectedItem >= self.stackView.arrangedSubviews.count) {
+    if(!self.showSelectedBar || self.selectedItemIndex >= self.stackView.arrangedSubviews.count) {
         self.barView.hidden = YES;
     }else{
         self.barView.hidden = NO;
 
-        UIView *selectedButton = self.stackView.arrangedSubviews[self.selectedItem];
+        UIView *selectedButton = self.stackView.arrangedSubviews[self.selectedItemIndex];
 
         double animationDuration = 0.2;
         if(UIAccessibilityIsReduceMotionEnabled()) {
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSelection:(UIButton *)sender {
     NSInteger newIndex = [self.stackView.arrangedSubviews indexOfObject:sender];
-    [self setSelectedItem:newIndex];
+    [self setSelectedItemIndex:newIndex];
 
     if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
         [self.delegate horizontalNavigation:self didSelectItem:&newIndex];
@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItem {
+- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
     _options = options;
 
     self.barView = [UIView new];
@@ -202,7 +202,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self rePopulateStackview];
 
-    self.selectedItem = selectedItem;
+    self.selectedItemIndex = selectedItemIndex;
 }
 
 - (void)rePopulateStackview {
@@ -218,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     // Reset user selection:
-    self.selectedItem = 0;
+    self.selectedItemIndex = 0;
 
     [self setNeedsLayout];
     [self layoutIfNeeded];
