@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Dialog:
+   - Dialog now respects a user's preference for reduced motion and reduced transparency.
 
 ## How to write a good changelog entry
 
