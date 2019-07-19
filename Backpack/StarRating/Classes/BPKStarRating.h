@@ -21,6 +21,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * A component for displaying a star rating for example for reviews.
+ *
+ * The component uses a scale of 0 to 5 stars. It supports half stars and will round down to the nearest
+ * half star for display. When using the stars to show an average of many ratings
+ * it's advisable to display a text string adjecent to the star rating with the exact
+ * rating value.
+ */
 NS_SWIFT_NAME(StarRating) IB_DESIGNABLE @interface BPKStarRating : UIView
 
 /**
