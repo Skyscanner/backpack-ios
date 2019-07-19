@@ -21,7 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(StarRating) @interface BPKStarRating : UIView
+NS_SWIFT_NAME(StarRating) IB_DESIGNABLE @interface BPKStarRating : UIView
 
 /**
  * Rating value the star rating view will displaying by rounding the value to full and half stars between 0.0 and 5.0.
@@ -32,7 +32,7 @@ NS_SWIFT_NAME(StarRating) @interface BPKStarRating : UIView
  * Set this property to render new rating.
  * The default value is 0.0, in case of setting a value smaller than 0.0 or greater than 5.0 the view will show 0.0 or 5.0.
  */
-@property (nonatomic) float rating;
+@property (nonatomic) IBInspectable float rating;
 
 /**
  * Size of the stars, its default value is BPKStarSizeSmall. Setting updates

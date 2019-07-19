@@ -49,6 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.iconName) {
         super.image = [BPKIcon templateIconNamed:self.iconName size:self.size];
     }
+    [self setContentHuggingPriority:UILayoutPriorityRequired
+                            forAxis:UILayoutConstraintAxisHorizontal];
+    [self setContentHuggingPriority:UILayoutPriorityRequired
+                            forAxis:UILayoutConstraintAxisVertical];
     self.tintColor = BPKColor.gray900;
 }
 
