@@ -85,6 +85,7 @@ BpkSelect
 
 BpkStar
 BpkStarRating
+StarRating
 BpkInteractiveStar
 BpkInteractiveStarRating
 withInteractiveStarRatingState

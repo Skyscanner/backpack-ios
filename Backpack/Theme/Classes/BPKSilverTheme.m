@@ -157,4 +157,8 @@
     return [BPKSilverThemeContainer class];
 }
 
+- (UIColor *)starFilledColor {
+    return BPKColor.red700;
+}
+
 @end

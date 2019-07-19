@@ -23,7 +23,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKIconView ()
-@property(nonatomic, assign) BPKIconSize size;
 
 - (void)setUp;
 @end
@@ -59,11 +58,43 @@ NS_ASSUME_NONNULL_BEGIN
         _iconName = [iconName copy];
 
         if (iconName) {
-            super.image = [BPKIcon templateIconNamed:iconName size:self.size];
+            super.image = [self imageWithIconName:iconName size:self.size flipsForRightToLeft:self.flipsForRightToLeft];
         } else {
             super.image = nil;
         }
     }
+}
+
+- (void)setSize:(BPKIconSize)size {
+    BPKAssertMainThread();
+    if (size != _size) {
+        _size = size;
+        
+        if (self.iconName) {
+            super.image = [self imageWithIconName:self.iconName size:size flipsForRightToLeft:self.flipsForRightToLeft];
+        }
+    }
+}
+
+- (void)setFlipsForRightToLeft:(BOOL)flipsForRightToLeft {
+    BPKAssertMainThread();
+    if (flipsForRightToLeft != _flipsForRightToLeft) {
+        _flipsForRightToLeft = flipsForRightToLeft;
+        
+        if (self.iconName) {
+            super.image = [self imageWithIconName:self.iconName size:self.size flipsForRightToLeft:flipsForRightToLeft];
+        }
+    }
+}
+
+- (UIImage *)imageWithIconName:(BPKIconName)iconName size:(BPKIconSize)size flipsForRightToLeft:(BOOL)flipsForRightToLeft {
+    UIImage *image = [BPKIcon templateIconNamed:iconName size:size];
+    
+    if (flipsForRightToLeft) {
+        image = [image imageFlippedForRightToLeftLayoutDirection];
+    }
+    
+    return image;
 }
 
 - (CGSize)intrinsicContentSize {

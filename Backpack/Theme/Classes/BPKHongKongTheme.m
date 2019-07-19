@@ -165,4 +165,8 @@
     return [BPKHongKongThemeContainer class];
 }
 
+- (UIColor *)starFilledColor {
+    return BPKColor.yellow500;
+}
+
 @end
