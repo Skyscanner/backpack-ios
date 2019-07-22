@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <Backpack/Icon.h>
 #import <Foundation/Foundation.h>
+#import <Backpack/Icon.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) BOOL hasIcon;
 
 - (instancetype)initWithName:(NSString *)name;
-- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName _Nullable)iconName;
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName;
 
 @end
 NS_ASSUME_NONNULL_END

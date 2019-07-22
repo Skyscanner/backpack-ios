@@ -67,30 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setShowSelectedBar:(Boolean)showSelectedBar {
-    if (_showSelectedBar != showSelectedBar) {
-        _showSelectedBar = showSelectedBar;
+- (void)setShowsSelectedBar:(BOOL)showsSelectedBar {
+    if (_showsSelectedBar != showsSelectedBar) {
+        _showsSelectedBar = showsSelectedBar;
 
         [self updateBarAppearance];
     }
-}
-
-- (void)setItemSelectionStates {
-    for (int i = 0; i < self.stackView.arrangedSubviews.count; i += 1) {
-        NSAssert([self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]],
-                 @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
-        if (![self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]]) {
-            continue;
-        }
-
-        BPKHorizontalNavigationItem *navigationCell = (BPKHorizontalNavigationItem *)self.stackView.arrangedSubviews[i];
-
-        if (navigationCell != nil) {
-            navigationCell.selected = self.selectedItemIndex == i;
-        }
-    }
-
-    [self updateBarAppearance];
 }
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex {
@@ -102,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateBarAppearance {
-    if (!self.showSelectedBar || self.selectedItemIndex >= self.stackView.arrangedSubviews.count) {
+    if (!self.showsSelectedBar || self.selectedItemIndex >= self.stackView.arrangedSubviews.count) {
         self.barView.hidden = YES;
     } else {
         self.barView.hidden = NO;
@@ -139,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setSelectedItemIndex:newIndex];
 
     if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
-        [self.delegate horizontalNavigation:self didSelectItem:&newIndex];
+        [self.delegate horizontalNavigation:self didSelectItem:newIndex];
     }
 }
 
@@ -148,30 +130,27 @@ NS_ASSUME_NONNULL_BEGIN
     return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
 }
 
-- (void)updateSelectedItemsColor {
+- (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback; {
     for (UIView *subView in self.stackView.arrangedSubviews) {
         NSAssert([subView isKindOfClass:[BPKHorizontalNavigationItem class]],
                  @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
         if (![subView isKindOfClass:[BPKHorizontalNavigationItem class]]) {
             continue;
         }
-
-        BPKHorizontalNavigationItem *navigationCell = (BPKHorizontalNavigationItem *)subView;
-        navigationCell.selectedColor = self.selectedColor;
+        callback((BPKHorizontalNavigationItem *)subView);
     }
 }
 
-- (void)updateSelectedItemsFontMapping {
-    for (UIView *subView in self.stackView.arrangedSubviews) {
-        NSAssert([subView isKindOfClass:[BPKHorizontalNavigationItem class]],
-                 @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
-        if (![subView isKindOfClass:[BPKHorizontalNavigationItem class]]) {
-            continue;
-        }
+- (void)updateSelectedItemsColor {
+    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
+        navigationItem.selectedColor = self.selectedColor;
+    }];
+}
 
-        BPKHorizontalNavigationItem *navigationCell = (BPKHorizontalNavigationItem *)subView;
-        navigationCell.fontMapping = self.fontMapping;
-    }
+- (void)updateSelectedItemsFontMapping {
+    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
+        navigationItem.fontMapping = self.fontMapping;
+    }];
 }
 
 - (void)setSelectedColor:(UIColor *_Nullable)selectedColor {
@@ -209,10 +188,10 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.barView];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm/2],
+        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
         [self.barView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
         [self.barView.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor],
-        [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm/2]
+        [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm / 2]
     ]];
 
     self.barConstraints = @[
@@ -267,6 +246,22 @@ NS_ASSUME_NONNULL_BEGIN
 
         [self repopulateStackview];
     }
+}
+
+- (void)setItemSelectionStates {
+    for (int i = 0; i < self.stackView.arrangedSubviews.count; i += 1) {
+        NSAssert([self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]],
+                 @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
+        if (![self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]]) {
+            continue;
+        }
+
+        BPKHorizontalNavigationItem *navigationItem = (BPKHorizontalNavigationItem *)self.stackView.arrangedSubviews[i];
+
+        navigationItem.selected = self.selectedItemIndex == i;
+    }
+
+    [self updateBarAppearance];
 }
 
 @end

@@ -16,20 +16,20 @@
  * limitations under the License.
  */
 
-#import "BPKHorizontalNavigationDelegate.h"
-#import <Backpack/Font.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Backpack/Font.h>
+
+#import "BPKHorizontalNavigationDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * `BPKHorizontalNavigation` is a subclass of `UIControl`.
- * The `createHorizontalNavigationItem` method can be overridden to create cutom looking cells.
- * By default it will just return a new instance of `BPKHorizontalNavigationItem`.
- */
 @class BPKHorizontalNavigationItem;
 @class BPKHorizontalNavigationOption;
+
+/**
+ * A `BPKHorizontalNavigation` is a control comprising of multiple segments, where each acts as a discrete button.
+ */
 NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
 
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
@@ -45,7 +45,7 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 /**
  * Whether to show a bar under the selected item
  */
-@property(nonatomic) Boolean showSelectedBar;
+@property(nonatomic) BOOL showsSelectedBar;
 
 /**
  * The index of the currently selected item.

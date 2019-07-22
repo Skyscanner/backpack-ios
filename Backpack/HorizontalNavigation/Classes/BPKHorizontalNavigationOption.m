@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKHorizontalNavigationOption ()
 
-@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *namePrivate;
+@property(nonatomic, strong, nullable) BPKIconName iconNamePrivate;
 
 @end
 
@@ -31,25 +32,33 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super init];
 
     if (self) {
-        self.name = name;
+        self.namePrivate = name;
     }
 
     return self;
 }
 
-- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName _Nullable)iconName {
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
     self = [super init];
 
     if (self) {
-        self.name = name;
-        _iconName = iconName;
+        self.namePrivate = name;
+        self.iconNamePrivate = iconName;
     }
 
     return self;
 }
 
 - (BOOL)hasIcon {
-    return self.iconName != nil;
+    return self.iconNamePrivate != nil;
+}
+
+- (NSString *)name {
+    return self.namePrivate;
+}
+
+- (BPKIconName _Nullable)iconName {
+    return self.iconNamePrivate;
 }
 
 @end

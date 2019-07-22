@@ -16,15 +16,13 @@
  * limitations under the License.
  */
 
-#import "BPKHorizontalNavigation.h"
-#import <Backpack/Button.h>
 #import <Foundation/Foundation.h>
+#import <Backpack/Button.h>
+
+#import "BPKHorizontalNavigation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * `BPKHorizontalNavigationItem` is a subclass of `UICollectionViewCell`.
- */
 @class BPKHorizontalNavigationOption;
 NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNavigationItem : UIButton
 

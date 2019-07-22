@@ -30,7 +30,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
             BPKHorizontalNavigationOption(name: "Hotels"),
             BPKHorizontalNavigationOption(name: "Car hire")
         ]
-        horizontalNav.showSelectedBar = true
+        horizontalNav.showsSelectedBar = true
         horizontalNav.selectedItemIndex = 0
     }
 }

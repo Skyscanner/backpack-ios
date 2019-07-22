@@ -24,6 +24,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BPKHorizontalNavigationItem ()
+
+@property(readonly) UIColor *contentColor;
+
+@end
+
 @implementation BPKHorizontalNavigationItem
 
 - (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition {
@@ -89,18 +95,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                      content:self.definition.name
-                                                                   textColor:[self getContentColor]
+                                                                   textColor:[self contentColor]
                                                                  fontMapping:self.fontMapping];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
-
-    if (self.selected) {
-        self.accessibilityTraits = UIAccessibilityTraitButton | UIAccessibilityTraitSelected;
-    } else {
-        self.accessibilityTraits = UIAccessibilityTraitButton;
-    }
 }
 
-- (UIColor *)getContentColor {
+- (UIColor *)contentColor {
     if (self.selected) {
         if (self.selectedColor != nil) {
             return self.selectedColor;
