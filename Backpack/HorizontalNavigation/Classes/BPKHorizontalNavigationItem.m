@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                      content:self.definition.name
-                                                                   textColor:[self contentColor]
+                                                                   textColor:self.contentColor
                                                                  fontMapping:self.fontMapping];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
 }
