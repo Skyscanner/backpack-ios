@@ -191,11 +191,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
 
-    self.barView = [UIView new];
-    [self updateBarColor];
-    self.barView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.barView];
-
     [NSLayoutConstraint activateConstraints:@[
         [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
         [self.barView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
@@ -212,6 +207,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.stackView = [UIStackView new];
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.stackView];
+
+    self.barView = [UIView new];
+    [self updateBarColor];
+    self.barView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.barView];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:-BPKSpacingSm],
@@ -258,17 +258,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setItemSelectionStates {
-    for (int i = 0; i < self.stackView.arrangedSubviews.count; i += 1) {
-        NSAssert([self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]],
-                 @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
-        if (![self.stackView.arrangedSubviews[i] isKindOfClass:[BPKHorizontalNavigationItem class]]) {
-            continue;
-        }
-
-        BPKHorizontalNavigationItem *navigationItem = (BPKHorizontalNavigationItem *)self.stackView.arrangedSubviews[i];
-
-        navigationItem.selected = self.selectedItemIndex == i;
-    }
+    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
+      navigationItem.selected = self.selectedItemIndex == i;
+    }];
 
     [self updateBarAppearance];
 }

@@ -43,7 +43,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="NJV-6Z-4HK" kind="show" identifier="Def" id="DnZ-fX-n8b"/>
+                                            <segue destination="NJV-6Z-4HK" kind="show" identifier="Default" id="DnZ-fX-n8b"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

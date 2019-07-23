@@ -20,7 +20,7 @@ import UIKit
 import Backpack
 
 enum HorizontalNavSegueIdentifier: String {
-    case def = "Def"
+    case `default` = "Default"
 }
 
 class HorizontalNavSelectorViewController: UITableViewController {
@@ -30,7 +30,7 @@ class HorizontalNavSelectorViewController: UITableViewController {
         if let identifier = segue.identifier,
             let horizontalNavSegueIdentifier = HorizontalNavSegueIdentifier(rawValue: identifier) {
             switch horizontalNavSegueIdentifier {
-            case .def:
+            case .default:
                 segue.destination.title = "Default"
             }
         } else {
