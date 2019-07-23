@@ -16,12 +16,13 @@
  * limitations under the License.
  */
 
-#import "BPKHorizontalNavigation.h"
-#import "BPKHorizontalNavigationItem.h"
-#import "BPKHorizontalNavigationOption.h"
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKHorizontalNavigation.h"
+#import "BPKHorizontalNavigationItem.h"
+#import "BPKHorizontalNavigationOption.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -77,8 +78,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex {
     if (self.options.count > 0) {
-        NSString *assertionErrorMessage = [NSString stringWithFormat:@"selectedItemIndex must be within range of the number of options available. The number of options is %lu but the index selected was %ld", (unsigned long)self.options.count, (long)selectedItemIndex];
-        NSAssert(selectedItemIndex >=0 && selectedItemIndex < self.options.count, assertionErrorMessage);
+        NSString *assertionErrorMessage =
+            [NSString stringWithFormat:@"selectedItemIndex must be within range of the number of options available. "
+                                       @"The number of options is %lu but the index selected was %ld",
+                                       (unsigned long)self.options.count, (long)selectedItemIndex];
+        NSAssert(selectedItemIndex >= 0 && selectedItemIndex < self.options.count, assertionErrorMessage);
     }
 
     if (_selectedItemIndex != selectedItemIndex) {
@@ -135,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
 }
 
-- (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback; {
+- (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback {
     for (UIView *subView in self.stackView.arrangedSubviews) {
         NSAssert([subView isKindOfClass:[BPKHorizontalNavigationItem class]],
                  @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
@@ -148,13 +152,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSelectedItemsColor {
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-        navigationItem.selectedColor = self.selectedColor;
+      navigationItem.selectedColor = self.selectedColor;
     }];
 }
 
 - (void)updateSelectedItemsFontMapping {
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-        navigationItem.fontMapping = self.fontMapping;
+      navigationItem.fontMapping = self.fontMapping;
     }];
 }
 

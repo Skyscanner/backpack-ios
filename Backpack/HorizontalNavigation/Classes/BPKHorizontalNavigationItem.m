@@ -16,11 +16,12 @@
  * limitations under the License.
  */
 
+#import <Backpack/Color.h>
+#import <Backpack/Common.h>
+
 #import "BPKHorizontalNavigationItem.h"
 #import "BPKHorizontalNavigationOption.h"
 #import "BPKTextDefinition.h"
-#import <Backpack/Color.h>
-#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
