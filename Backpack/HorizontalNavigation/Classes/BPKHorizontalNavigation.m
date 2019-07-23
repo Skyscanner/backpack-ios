@@ -190,14 +190,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
-
-    [NSLayoutConstraint activateConstraints:@[
-        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
-        [self.barView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
-        [self.barView.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor],
-        [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm / 2]
-    ]];
-
     self.barConstraints = @[
         [self.barView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.barView.trailingAnchor constraintEqualToAnchor:self.leadingAnchor]
@@ -211,7 +203,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.barView = [UIView new];
     [self updateBarColor];
     self.barView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.barView.hidden = YES;
     [self addSubview:self.barView];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
+        [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm / 2]
+    ]];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:-BPKSpacingSm],
@@ -258,8 +256,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setItemSelectionStates {
+    __block int index = 0;
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-      navigationItem.selected = self.selectedItemIndex == i;
+      navigationItem.selected = self.selectedItemIndex == index;
+      index += 1;
     }];
 
     [self updateBarAppearance];
