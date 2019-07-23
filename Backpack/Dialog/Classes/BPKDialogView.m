@@ -18,8 +18,6 @@
 
 #import "BPKDialogView.h"
 
-#import "BPKDialogIconView.h"
-
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -27,6 +25,8 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKDialogIconView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject

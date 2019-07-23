@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 
-#import <FSCalendar/FSCalendar.h>
 #import <Backpack/Font.h>
+
+#import <FSCalendar/FSCalendar.h>
 
 typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeNone,

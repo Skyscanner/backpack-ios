@@ -17,10 +17,10 @@
  */
 #import "BPKPrimaryGradientView.h"
 
+#import <Backpack/Common.h>
+
 #import "BPKGradient.h"
 #import "BPKGradientLayer.h"
-
-#import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKPrimaryGradientView ()

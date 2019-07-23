@@ -17,9 +17,11 @@
  */
 
 #import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarAppearance.h"
+
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKCalendarAppearance.h"
 
 @interface FSCalendarStickyHeader (Private)
 
