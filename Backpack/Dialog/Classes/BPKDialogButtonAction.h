@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Button.h"
+#import <Backpack/Button.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKDialogButtonAction;

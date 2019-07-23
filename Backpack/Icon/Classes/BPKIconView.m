@@ -17,7 +17,7 @@
  */
 #import "BPKIconView.h"
 
-#import "BPKColor.h"
+#import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -49,10 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.iconName) {
         super.image = [BPKIcon templateIconNamed:self.iconName size:self.size];
     }
-    [self setContentHuggingPriority:UILayoutPriorityRequired
-                            forAxis:UILayoutConstraintAxisHorizontal];
-    [self setContentHuggingPriority:UILayoutPriorityRequired
-                            forAxis:UILayoutConstraintAxisVertical];
+    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     self.tintColor = BPKColor.gray900;
 }
 
@@ -73,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (size != _size) {
         _size = size;
-        
+
         if (self.iconName) {
             super.image = [self imageWithIconName:self.iconName size:size flipsForRightToLeft:self.flipsForRightToLeft];
         }
@@ -84,20 +82,22 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (flipsForRightToLeft != _flipsForRightToLeft) {
         _flipsForRightToLeft = flipsForRightToLeft;
-        
+
         if (self.iconName) {
             super.image = [self imageWithIconName:self.iconName size:self.size flipsForRightToLeft:flipsForRightToLeft];
         }
     }
 }
 
-- (UIImage *)imageWithIconName:(BPKIconName)iconName size:(BPKIconSize)size flipsForRightToLeft:(BOOL)flipsForRightToLeft {
+- (UIImage *)imageWithIconName:(BPKIconName)iconName
+                          size:(BPKIconSize)size
+           flipsForRightToLeft:(BOOL)flipsForRightToLeft {
     UIImage *image = [BPKIcon templateIconNamed:iconName size:size];
-    
+
     if (flipsForRightToLeft) {
         image = [image imageFlippedForRightToLeftLayoutDirection];
     }
-    
+
     return image;
 }
 

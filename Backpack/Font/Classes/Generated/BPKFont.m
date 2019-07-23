@@ -17,10 +17,11 @@
  * limitations under the License.
  */
 #import "BPKFont.h"
-#import "../BPKFontMapping.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
+
+#import "../BPKFontMapping.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

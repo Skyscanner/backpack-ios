@@ -18,13 +18,13 @@
 
 #import "BPKDialogController.h"
 
-#import "BPKDialogButtonAction.h"
-#import "BPKDialogControllerAnimator.h"
-#import "BPKDialogScrimAction.h"
-
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKDialogButtonAction.h"
+#import "BPKDialogControllerAnimator.h"
+#import "BPKDialogScrimAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
