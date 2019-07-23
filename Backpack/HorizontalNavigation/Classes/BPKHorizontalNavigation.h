@@ -60,10 +60,10 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 @property(nonatomic, weak) id<BPKHorizontalNavigationDelegate> delegate;
 
 /**
- * Create a `BPKHorizontalNavigation` with a set of options and an optionaly selected option.
+ * Create a `BPKHorizontalNavigation` with a set of options and an initally selected option.
  *
  * @param options NSArray<NSString> the options available to the useR
- * @param selectedItemIndex NSString the initially selected item
+ * @param selectedItemIndex NSInteger the initially selected item
  */
 - (instancetype)initWithOptions:(NSArray<NSString *> *)options
                        selected:(NSInteger)selectedItemIndex NS_DESIGNATED_INITIALIZER;
