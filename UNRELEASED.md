@@ -6,6 +6,10 @@
 
 - Backpack/StarRating
   - `BPKStarRating` is now `IB_DESIGNABLE`.
+  
+**Changed:**
+- Backpack/Icon
+  - Updated `BPKIconNameTrips` with a new design.
 
 ## How to write a good changelog entry
 
