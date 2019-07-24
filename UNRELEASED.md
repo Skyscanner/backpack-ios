@@ -2,6 +2,11 @@
 
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/StarRating
+  - `BPKStarRating` is now `IB_DESIGNABLE`.
+  
 **Changed:**
 - Backpack/Icon
   - Updated `BPKIconNameTrips` with a new design.

@@ -17,8 +17,9 @@
  */
 #import "BPKGradientView.h"
 
-#import "BPKGradientLayer.h"
 #import <Backpack/Common.h>
+
+#import "BPKGradientLayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradientView ()

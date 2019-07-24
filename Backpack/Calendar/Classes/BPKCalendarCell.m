@@ -16,13 +16,16 @@
  * limitations under the License.
  */
 
-#import "BPKCalendar.h"
 #import "BPKCalendarCell.h"
+
+#import <FSCalendar/FSCalendarDynamicHeader.h>
+#import <FSCalendar/FSCalendarExtensions.h>
+
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
-#import <FSCalendar/FSCalendarDynamicHeader.h>
-#import <FSCalendar/FSCalendarExtensions.h>
+
+#import "BPKCalendar.h"
 
 @interface BPKCalendarCell ()
 

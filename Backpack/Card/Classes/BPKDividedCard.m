@@ -17,12 +17,13 @@
  */
 
 #import "BPKDividedCard.h"
-#import "BPKCardDivider.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKCardDivider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKDividedCard ()

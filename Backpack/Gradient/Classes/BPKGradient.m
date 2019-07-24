@@ -18,7 +18,8 @@
 #import "BPKGradient.h"
 
 #import <Backpack/Color.h>
-#import <UIKit/UIKit.h>
+
+#import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradient ()

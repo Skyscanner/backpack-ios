@@ -44,6 +44,20 @@ NS_SWIFT_NAME(IconView) @interface BPKIconView : UIImageView
  */
 @property(nullable, nonatomic, copy) BPKIconName iconName;
 
+/**
+ * The size of the icon currently being displayed. Setting updates
+ * the displayed icon.
+ * @see BPKIconSize
+ */
+@property(nonatomic, assign) BPKIconSize size;
+
+/**
+ * If flipsForRightToLeft is set to YES then BPKIconView will render its icon
+ * horizontally flipped when its UIUserInterfaceLayoutDirection is right to left.
+ * Default value is NO.
+ */
+@property(nonatomic, assign) BOOL flipsForRightToLeft;
+
 - (instancetype)initWithImage:(nullable UIImage *)image
     __attribute__((unavailable("use `initWithIconName:size:` instead")));
 - (instancetype)initWithImage:(nullable UIImage *)image

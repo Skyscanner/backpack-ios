@@ -17,25 +17,27 @@
  */
 
 #import "BPKCalendar.h"
-#import "BPKCalendarAppearance.h"
-#import "BPKCalendarCell.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarYearPill.h"
-#import "BPKSimpleDate.h"
 
-#import <Backpack/Color.h>
-#import <Backpack/Common.h>
-#import <Backpack/Font.h>
-#import <Backpack/Spacing.h>
+#import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 #import <FSCalendar/FSCalendar.h>
 #import <FSCalendar/FSCalendarCollectionView.h>
 #import <FSCalendar/FSCalendarDynamicHeader.h>
 #import <FSCalendar/FSCalendarExtensions.h>
 #import <FSCalendar/FSCalendarWeekdayView.h>
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+
+#import <Backpack/Color.h>
+#import <Backpack/Common.h>
+#import <Backpack/Font.h>
+#import <Backpack/Spacing.h>
+
+#import "BPKCalendarAppearance.h"
+#import "BPKCalendarCell.h"
+#import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarStickyHeader.h"
+#import "BPKCalendarYearPill.h"
+#import "BPKSimpleDate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface FSCalendar ()
@@ -150,7 +152,6 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
     [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class]
                                             forCellWithReuseIdentifier:CellReuseId];
-
 
     [self.calendarView.collectionView registerClass:[BPKCalendarStickyHeader class]
                          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
@@ -310,8 +311,8 @@ NSString *const HeaderDateFormat = @"MMMM";
 - (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
     if (fontMapping != _fontMapping) {
         _fontMapping = fontMapping;
-        NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm
-                                                                                             fontMapping:fontMapping];
+        NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes =
+            [BPKFont attributesForFontStyle:BPKFontStyleTextSm fontMapping:fontMapping];
 
         self.appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
         self.appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;

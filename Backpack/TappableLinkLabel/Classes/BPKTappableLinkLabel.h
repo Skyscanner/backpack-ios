@@ -56,6 +56,18 @@ NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel :
 @property(nonatomic) NSInteger numberOfLines;
 
 /**
+ * The technique to use for aligning the text.
+ * Default is NSLineBreakByTruncatingTail used for single and multiple lines of text
+ */
+@property(nonatomic) NSTextAlignment textAlignment;
+
+/**
+ * The technique to use for wrapping and truncating the label’s text.
+ * Default is NSLineBreakByTruncatingTail used for single and multiple lines of text.
+ */
+@property(nonatomic) NSLineBreakMode lineBreakMode;
+
+/**
  * The font style used to display the text.
  * @see BPKFontStyle
  */

@@ -17,12 +17,13 @@
  */
 
 #import "BPKCalendarYearPill.h"
-#import "BPKCalendar.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKCalendar.h"
 
 @interface BPKCalendarYearPill ()
 
@@ -61,8 +62,8 @@
     self.layer.cornerRadius = CGRectGetHeight(self.frame) / 2.0;
 }
 
--(void)setFontMapping:(BPKFontMapping *)fontMapping {
-    if(_fontMapping != fontMapping) {
+- (void)setFontMapping:(BPKFontMapping *)fontMapping {
+    if (_fontMapping != fontMapping) {
         _fontMapping = fontMapping;
 
         [self updateYearAppearance];
@@ -70,7 +71,7 @@
 }
 
 - (void)updateYearAppearance {
-    if(self.year != nil) {
+    if (self.year != nil) {
         self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
                                                                    content:[self.year stringValue]
                                                                  textColor:[BPKColor white]

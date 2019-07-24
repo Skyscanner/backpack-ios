@@ -2,6 +2,27 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.8.0
+
+**Added:**
+
+- Backpack/StarRating:
+  - New `StarRating` component to display a rating between 0.0 and 5.0.
+- Backpack/Icon:
+  - New `size` prop on `BPKIconView` to control icon size.
+  - New `flipsForRightToLeft` prop on `BPKIconView` to support icons with a horizontal direction in a right to left environment.
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Dialog now respects a user's preference for reduced motion and reduced transparency.
+
+## 11.7.0
+
+- Backpack/BPKTappableLinkLabel:
+  - `textAlignment` similar to `UILabel`
+  - `lineBreakMode` similar to `UILabel`
+
 ## 11.6.0
 
 **Added:**
