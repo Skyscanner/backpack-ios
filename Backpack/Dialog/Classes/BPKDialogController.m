@@ -15,6 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// double multiplier = UIAccessibilityIsReduceTransparencyEnabled() ? 0.9 : 0.5;
+// self.scrimView.alpha = multiplier * fmax(fmin(scrimAlpha, 1.0), 0.0);
 
 #import "BPKDialogController.h"
 
@@ -207,8 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)_setScrimAlpha:(double)scrimAlpha {
-    double multiplier = UIAccessibilityIsReduceTransparencyEnabled() ? 0.9 : 0.5;
-    self.scrimView.alpha = multiplier * fmax(fmin(scrimAlpha, 1.0), 0.0);
+    self.scrimView.alpha = 0.5 * fmax(fmin(scrimAlpha, 1.0), 0.0);
 }
 
 #pragma mark - BPKDialogViewDelegate

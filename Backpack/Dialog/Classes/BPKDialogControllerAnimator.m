@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// return UIAccessibilityIsReduceMotionEnabled() ? 0.0 : 0.35;
 #import "BPKDialogControllerAnimator.h"
 
 #import "BPKDialogController.h"
@@ -100,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSTimeInterval)duration {
     // NOTE: Based on the duration of other transitions in UIKit.
-    return UIAccessibilityIsReduceMotionEnabled() ? 0.0 : 0.35;
+    return 0.35;
 }
 
 @end
