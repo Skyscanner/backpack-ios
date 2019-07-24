@@ -53,14 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self.iconName != nil;
 }
 
-- (NSString *)name {
-    return self.name;
-}
-
-- (BPKIconName _Nullable)iconName {
-    return self.iconName;
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -190,12 +190,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
-    self.barConstraints = @[
-        [self.barView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.barView.trailingAnchor constraintEqualToAnchor:self.leadingAnchor]
-    ];
-    [NSLayoutConstraint activateConstraints:self.barConstraints];
-
     self.stackView = [UIStackView new];
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.stackView];
@@ -205,6 +199,12 @@ NS_ASSUME_NONNULL_BEGIN
     self.barView.translatesAutoresizingMaskIntoConstraints = NO;
     self.barView.hidden = YES;
     [self addSubview:self.barView];
+
+    self.barConstraints = @[
+        [self.barView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.barView.trailingAnchor constraintEqualToAnchor:self.leadingAnchor]
+    ];
+    [NSLayoutConstraint activateConstraints:self.barConstraints];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
@@ -254,7 +254,6 @@ NS_ASSUME_NONNULL_BEGIN
         [self repopulateStackview];
     }
 }
-
 - (void)setItemSelectionStates {
     __block int index = 0;
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {

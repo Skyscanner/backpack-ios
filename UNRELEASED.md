@@ -3,10 +3,6 @@
 > Place your changes below this line.
 
 **Added:**
-
-- Backpack/StarRating
-  - `BPKStarRating` is now `IB_DESIGNABLE`.
-
 - Backpack/HorizontalNavigation:
   - Added `HorizontalNavigation` component.
 
