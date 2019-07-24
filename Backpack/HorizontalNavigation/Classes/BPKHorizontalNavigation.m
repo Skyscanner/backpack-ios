@@ -78,11 +78,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex {
     if (self.options.count > 0) {
-        NSString *assertionErrorMessage =
+#if DEBUG
+        NSString *errorMessage =
             [NSString stringWithFormat:@"selectedItemIndex must be within range of the number of options available. "
                                        @"The number of options is %lu but the index selected was %ld",
                                        (unsigned long)self.options.count, (long)selectedItemIndex];
-        NSAssert(selectedItemIndex >= 0 && selectedItemIndex < self.options.count, assertionErrorMessage);
+        NSAssert(selectedItemIndex >= 0 && selectedItemIndex < self.options.count, errorMessage);
+#endif
     }
 
     if (_selectedItemIndex != selectedItemIndex) {
