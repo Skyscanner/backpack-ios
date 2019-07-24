@@ -169,4 +169,8 @@
     return BPKColor.yellow500;
 }
 
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
+}
+
 @end

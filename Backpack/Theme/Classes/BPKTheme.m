@@ -27,13 +27,14 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
+#import <Backpack/StarRating.h>
 #import <Backpack/Switch.h>
 #import <Backpack/TappableLinkLabel.h>
 #import <Backpack/TextField.h>
 #import <Backpack/TextView.h>
-#import <Backpack/StarRating.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -203,9 +204,14 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
         [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     tappableLinkLabelViewAppearance.fontMapping = theme.fontMapping;
     tappableLinkLabelViewAppearance.linkColor = theme.primaryColor;
-    
+
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
+
+    BPKHorizontalNavigation *horizontalNavigationAppearance =
+        [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
+    horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
+    horizontalNavigationAppearance.fontMapping = theme.fontMapping;
 }
 
 @end
