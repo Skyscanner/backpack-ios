@@ -2,6 +2,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 11.9.0
+
+**Added:**
+
+- Backpack/StarRating
+  - `BPKStarRating` is now `IB_DESIGNABLE`.
+  
+**Changed:**
+- Backpack/Icon
+  - Updated `BPKIconNameTrips` with a new design.
+
 ## 11.8.0
 
 **Added:**
