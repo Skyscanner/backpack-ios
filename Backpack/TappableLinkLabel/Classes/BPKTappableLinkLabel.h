@@ -17,16 +17,18 @@
  */
 
 #import "BPKTappableLinkLabelDelegate.h"
-#import <Backpack/Font.h>
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#import <Backpack/Font.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * These constants represent the different styles available for BPKTappableLinkLabels
  */
-typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle) {
+typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle){
 
     /**
      * Blue links within dark-gray labels

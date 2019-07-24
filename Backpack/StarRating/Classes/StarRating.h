@@ -18,5 +18,7 @@
 
 #ifndef __BACKPACK_STAR_RATING__
 #define __BACKPACK_STAR_RATING__
+
 #import "BPKStarRating.h"
+
 #endif

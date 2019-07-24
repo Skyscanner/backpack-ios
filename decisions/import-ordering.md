@@ -2,7 +2,7 @@
 
 ## Decision
 Imports should be organised into the following groups:
- - Import of header in m files
+ - Import of header in `.m` files
  - System frameworks
  - Other third party frameworks
  - Backpack imports

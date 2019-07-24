@@ -17,7 +17,6 @@
  */
 
 #import "BPKDefaultTheme.h"
-#import "BPKDefaultThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
@@ -26,6 +25,8 @@
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+
+#import "BPKDefaultThemeContainer.h"
 
 @implementation BPKDefaultTheme
 

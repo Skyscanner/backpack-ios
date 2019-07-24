@@ -17,9 +17,10 @@
  */
 
 #import "BPKThemeContainerController.h"
-#import "BPKTheme.h"
 
 #import <Backpack/Common.h>
+
+#import "BPKTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKThemeContainerController ()

@@ -17,9 +17,11 @@
  */
 
 #import "BPKLabel.h"
-#import "BPKTextDefinition.h"
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+
+#import "BPKTextDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKLabel ()

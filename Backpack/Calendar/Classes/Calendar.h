@@ -19,9 +19,9 @@
 #ifndef __BACKPACK_CALENDAR__
 #define __BACKPACK_CALENDAR__
 #import "BPKCalendar.h"
-#import "BPKCalendarYearPill.h"
-#import "BPKSimpleDate.h"
+#import "BPKCalendarCell.h"
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarCell.h"
+#import "BPKCalendarYearPill.h"
+#import "BPKSimpleDate.h"
 #endif

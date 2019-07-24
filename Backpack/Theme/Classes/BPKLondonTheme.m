@@ -17,7 +17,6 @@
  */
 
 #import "BPKLondonTheme.h"
-#import "BPKLondonThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
@@ -27,6 +26,8 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+
+#import "BPKLondonThemeContainer.h"
 
 @implementation BPKLondonTheme
 

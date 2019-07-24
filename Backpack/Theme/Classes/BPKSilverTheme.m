@@ -17,7 +17,6 @@
  */
 
 #import "BPKSilverTheme.h"
-#import "BPKSilverThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
@@ -26,6 +25,8 @@
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+
+#import "BPKSilverThemeContainer.h"
 
 @implementation BPKSilverTheme
 

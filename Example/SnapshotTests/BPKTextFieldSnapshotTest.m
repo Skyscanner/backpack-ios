@@ -124,9 +124,9 @@ NS_ASSUME_NONNULL_BEGIN
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];
         textField.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                   regularFontFace:@"SnellRoundhand"
-                                                  semiboldFontFace:@"SnellRoundhand-Bold"
-                                                     heavyFontFace:@"SnellRoundhand-Black"];
+                                                       regularFontFace:@"SnellRoundhand"
+                                                      semiboldFontFace:@"SnellRoundhand-Bold"
+                                                         heavyFontFace:@"SnellRoundhand-Black"];
         textField.text = @"Backpack Rocks";
         textField.textColor = UIColor.orangeColor;
         [stackField addArrangedSubview:textField];

@@ -17,7 +17,6 @@
  */
 
 #import "BPKHongKongTheme.h"
-#import "BPKHongKongThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
@@ -26,6 +25,8 @@
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+
+#import "BPKHongKongThemeContainer.h"
 
 @interface BPKHongKongTheme ()
 @property(nonatomic, readonly, strong) UIColor *secondaryColor;

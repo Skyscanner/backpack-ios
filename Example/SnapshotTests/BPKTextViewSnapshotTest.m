@@ -50,11 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
     return stackView;
 }
 
-- (void)setupTextViewContraints:(BPKTextView *) textView {
+- (void)setupTextViewContraints:(BPKTextView *)textView {
     textView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-                                              [textView.heightAnchor constraintEqualToConstant:70.0f]
-                                              ]];
+    [NSLayoutConstraint activateConstraints:@[[textView.heightAnchor constraintEqualToConstant:70.0f]]];
 }
 
 - (void)testTextViewSnapshotWithFontStyle {
@@ -134,9 +132,9 @@ NS_ASSUME_NONNULL_BEGIN
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextView *textView = [[BPKTextView alloc] initWithFontStyle:styles[i]];
         textView.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                   regularFontFace:@"SnellRoundhand"
-                                                  semiboldFontFace:@"SnellRoundhand-Bold"
-                                                     heavyFontFace:@"SnellRoundhand-Black"];
+                                                      regularFontFace:@"SnellRoundhand"
+                                                     semiboldFontFace:@"SnellRoundhand-Bold"
+                                                        heavyFontFace:@"SnellRoundhand-Black"];
         textView.text = @"Backpack Rocks";
         textView.textColor = UIColor.orangeColor;
         [stackView addArrangedSubview:textView];

@@ -16,8 +16,10 @@
  * limitations under the License.
  */
 #import "BPKRTLSupport.h"
-#import "UIView+BPKRTL.h"
+
 #import <Backpack/Common.h>
+
+#import "UIView+BPKRTL.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @implementation UIView (BPKRTL)

@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 #import "BPKTextView.h"
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
@@ -80,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.attributedText = attributedString;
 }
 
-- (void)setTextColor:(UIColor * _Nullable)textColor {
+- (void)setTextColor:(UIColor *_Nullable)textColor {
     BPKAssertMainThread();
     [super setTextColor:textColor];
 

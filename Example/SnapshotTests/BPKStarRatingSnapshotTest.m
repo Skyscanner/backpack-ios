@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/StarRating.h>
@@ -234,10 +233,10 @@
 - (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:size];
     ratingView.rating = rating;
-    
+
     CGSize fittingSize = [ratingView systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     ratingView.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
-    
+
     FBSnapshotVerifyView(ratingView, nil);
 }
 

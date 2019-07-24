@@ -18,7 +18,6 @@
  */
 #import "BPKSpacing.h"
 
-
 CGFloat const BPKSpacingBase = 16;
 
 CGFloat const BPKSpacingLg = 24;

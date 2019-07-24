@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
 #import "BPKStar.h"
+
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,9 +39,10 @@ NS_SWIFT_NAME(StarRating) IB_DESIGNABLE @interface BPKStarRating : UIView
  * Example 2: setting 4.6 to rating will render 4.5 stars. 5 stars where the first 4 of them are filled with
  * BPKThemeDefinition.starFilledColor and the last star is half filled with the same color.
  * Set this property to render new rating.
- * The default value is 0.0, in case of setting a value smaller than 0.0 or greater than 5.0 the view will show 0.0 or 5.0.
+ * The default value is 0.0, in case of setting a value smaller than 0.0 or greater than 5.0 the view will show 0.0
+ * or 5.0.
  */
-@property (nonatomic) IBInspectable float rating;
+@property(nonatomic) IBInspectable float rating;
 
 /**
  * Size of the stars, its default value is BPKStarSizeSmall. Setting updates

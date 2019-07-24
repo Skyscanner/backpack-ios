@@ -17,7 +17,6 @@
  */
 
 #import "BPKDohaTheme.h"
-#import "BPKDohaThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Chip.h>
@@ -27,6 +26,8 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
+
+#import "BPKDohaThemeContainer.h"
 
 @implementation BPKDohaTheme
 

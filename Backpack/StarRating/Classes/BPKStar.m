@@ -17,23 +17,24 @@
  */
 
 #import "BPKStar.h"
+
+#import <Backpack/BPKRTLSupport.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Icon.h>
-#import <Backpack/BPKRTLSupport.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKStar ()
 
-@property (nonatomic) BPKIconView *starView;
-@property (nonatomic) BPKIconView *halfStarView;
+@property(nonatomic) BPKIconView *starView;
+@property(nonatomic) BPKIconView *halfStarView;
 
 /**
  * Base color of the star when it's empty, its default value is BPKColor.gray100. Setting updates
  * the displayed star.
  */
-@property (nullable, nonatomic, strong) UIColor* starColor;
+@property(nullable, nonatomic, strong) UIColor *starColor;
 
 @end
 
@@ -42,70 +43,72 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithSize:(BPKStarSize)size {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
-    
+
     if (self) {
         [self setupWithSize:size];
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         [self setupWithSize:BPKStarSizeSmall];
     }
-    
+
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
-    
+
     if (self) {
         [self setupWithSize:BPKStarSizeSmall];
     }
-    
+
     return self;
 }
 
 - (void)setupWithSize:(BPKStarSize)size {
-    
+
     self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStar size:BPKIconSizeSmall];
     self.starView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.starView];
-    
+
     self.halfStarView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarHalf size:BPKIconSizeSmall];
     self.halfStarView.flipsForRightToLeft = YES;
     self.halfStarView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.halfStarView];
-    
-    [NSLayoutConstraint activateConstraints:@[[self.leadingAnchor constraintEqualToAnchor:self.starView.leadingAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor],
-                                              [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.starView.bottomAnchor]
-                                              ]];
 
-    [NSLayoutConstraint activateConstraints:@[[self.leadingAnchor constraintEqualToAnchor:self.halfStarView.leadingAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.halfStarView.trailingAnchor],
-                                              [self.topAnchor constraintEqualToAnchor:self.halfStarView.topAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.halfStarView.bottomAnchor]
-                                              ]];
-    
+    [NSLayoutConstraint activateConstraints:@[
+        [self.leadingAnchor constraintEqualToAnchor:self.starView.leadingAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor],
+        [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.starView.bottomAnchor]
+    ]];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.leadingAnchor constraintEqualToAnchor:self.halfStarView.leadingAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.halfStarView.trailingAnchor],
+        [self.topAnchor constraintEqualToAnchor:self.halfStarView.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.halfStarView.bottomAnchor]
+    ]];
+
     self.starColor = [BPKColor gray100];
     self.starFilledColor = [BPKColor yellow500];
     _size = size;
     _state = BPKStarStateDefault;
-    
+
     [self updateSize];
 }
 
 #pragma mark - Layout
 
-- (CGSize)intrinsicContentSize {    
+- (CGSize)intrinsicContentSize {
     return [BPKIcon concreteSizeForIconSize:[self iconSizeForStarSize:self.size]];
 }
 
@@ -147,21 +150,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKIconSize)iconSizeForStarSize:(BPKStarSize)size {
     switch (size) {
-        case BPKStarSizeLarge:
-            return BPKIconSizeLarge;
-            break;
-            
-        default:
-        case BPKStarSizeSmall:
-            return BPKIconSizeSmall;
-            break;
+    case BPKStarSizeLarge:
+        return BPKIconSizeLarge;
+        break;
+
+    default:
+    case BPKStarSizeSmall:
+        return BPKIconSizeSmall;
+        break;
     }
 }
 
 - (void)updateSize {
     self.starView.size = [self iconSizeForStarSize:self.size];
     self.halfStarView.size = [self iconSizeForStarSize:self.size];
-    
+
     [self setNeedsLayout];
     [self updateStarAppearance];
 }
