@@ -1,8 +1,25 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "skyscanner-with-prettier"
   ],
+  "plugins": [],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".json",
+          ".android.js",
+          ".ios.js"
+        ]
+      }
+    }
+  },
   "rules": {
-    "no-console": "off"
   }
 }
