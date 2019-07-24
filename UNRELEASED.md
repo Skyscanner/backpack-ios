@@ -5,6 +5,9 @@
 **Added:**
 - Backpack/HorizontalNavigation:
   - Added `HorizontalNavigation` component.
+  - Added small variants.
+  - Added option to hide the selected item bar.
+  - Added option to specify an icon for each option.
 
 **Breaking:**
   - Backpack/Theme:

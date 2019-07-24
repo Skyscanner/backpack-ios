@@ -164,12 +164,26 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 }
 
+- (void)updateItemsSize {
+    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
+        navigationItem.size = self.size;
+    }];
+}
+
 - (void)setSelectedColor:(UIColor *_Nullable)selectedColor {
     if (_selectedColor != selectedColor) {
         _selectedColor = selectedColor;
 
         [self updateBarColor];
         [self updateSelectedItemsColor];
+    }
+}
+
+- (void)setSize:(BPKHorizontalNavigationSize)size {
+    if (_size != size) {
+        _size = size;
+
+        [self updateItemsSize];
     }
 }
 

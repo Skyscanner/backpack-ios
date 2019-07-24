@@ -30,6 +30,13 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
 
 /**
+ * The size of the horizontal navigation.
+ *
+ * see BPKHorizontalNavigationSize
+ */
+@property(nonatomic) BPKHorizontalNavigationSize size;
+
+/**
  * The font mapping of the horizontal navigation.
  *
  * see BPKFontMapping

@@ -27,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BPKHorizontalNavigationItem;
 @class BPKHorizontalNavigationOption;
+/**
+ * Enum values for specifying the navigation size
+ */
+typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
+    BPKHorizontalNavigationSizeDefault = 0,
+    BPKHorizontalNavigationSizeSmall = 1,
+};
 
 /**
  * A `BPKHorizontalNavigation` is a control comprising of multiple segments, where each acts as a discrete button.
@@ -42,6 +49,13 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
  * see BPKHorizontalNavigationOption
  */
 @property(nonatomic, copy) NSArray<BPKHorizontalNavigationOption *> *options;
+
+/**
+ * The size of the horizontal navigation.
+ *
+ * see BPKHorizontalNavigationSize
+ */
+@property(nonatomic) BPKHorizontalNavigationSize size;
 
 /**
  * Whether to show a bar under the selected item
@@ -66,7 +80,7 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
  * @param options NSArray<NSString> the options available to the useR
  * @param selectedItemIndex NSInteger the initially selected item
  */
-- (instancetype)initWithOptions:(NSArray<NSString *> *)options
+- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options
                        selected:(NSInteger)selectedItemIndex NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;

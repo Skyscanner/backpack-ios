@@ -32,6 +32,7 @@
 #import "Card.h"
 #import "Chip.h"
 #import "Dialog.h"
+#import "HorizontalNavigation.h"
 #import "Icon.h"
 #import "Label.h"
 #import "Panel.h"
