@@ -10,6 +10,7 @@ Remember to include the following changes:
 + [ ] `UNRELEASED.md`
 + [ ] `README.md`
 + [ ] Tests
++ [ ] Adding a component? Remember to expose it in the [main `Backpack.h` header file](https://github.com/Skyscanner/backpack-ios/tree/master/Backpack/Backpack.h)
 + [ ] Docs (either update [backpack-docs](https://github.com/Skyscanner/backpack-docs) now, or create a follow up ticket)
 
 
