@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationItem ()
 
 @property(readonly) UIColor *contentColor;
-@property(nonatomic) UIImage *iconImage;
 @property(nonatomic) double spacing;
 
 @end
@@ -132,9 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIconColor {
-    if (self.iconImage != nil) {
         [self updateIconStyle];
-    }
 }
 
 - (void)updateIconStyle {
@@ -143,16 +140,16 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.definition.iconName == nil) {
         [self setImage:nil forState:UIControlStateNormal];
     } else {
-        self.iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
-        [self setImage:self.iconImage forState:UIControlStateNormal];
-        [self setImage:self.iconImage forState:UIControlStateHighlighted];
+        UIImage *iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
+        [self setImage:iconImage forState:UIControlStateNormal];
+        self.adjustsImageWhenHighlighted = NO;
     }
 
     [self updateInsets];
 }
 
 - (void)updateInsets {
-    if (self.iconImage == nil) {
+    if (self.definition.iconName == nil) {
         self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, self.spacing, self.spacing, self.spacing);
         return;
     }
@@ -173,7 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)intrinsicContentSize {
     CGSize textButtonIntrinsicContentSize = [super intrinsicContentSize];
     if (self.definition.iconName) {
-        CGFloat iconWidth = self.iconImage.size.width;
+        CGFloat iconWidth = self.currentImage.size.width;
         CGFloat width = textButtonIntrinsicContentSize.width + iconWidth + 2 * self.spacing;
         CGFloat height = textButtonIntrinsicContentSize.height;
         return CGSizeMake(width, height);
