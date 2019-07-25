@@ -166,7 +166,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateItemsSize {
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-        navigationItem.size = self.size;
+      navigationItem.size = self.size;
     }];
 }
 

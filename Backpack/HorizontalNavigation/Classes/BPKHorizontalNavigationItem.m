@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     BPKFontStyle fontStyle = BPKFontStyleTextBase;
-    if(self.size == BPKHorizontalNavigationSizeSmall) {
+    if (self.size == BPKHorizontalNavigationSizeSmall) {
         fontStyle = BPKFontStyleTextSm;
     }
 
@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setIconColor {
     if (self.iconView != nil) {
-        self.iconView.tintColor = [self contentColor];
+        self.iconView.tintColor = self.contentColor;
     }
 }
 
