@@ -142,11 +142,10 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self.definition.iconName == nil) {
         [self setImage:nil forState:UIControlStateNormal];
-        return;
+    } else {
+        self.iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
+        [self setImage:self.iconImage forState:UIControlStateNormal];
     }
-
-    self.iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
-    [self setImage:self.iconImage forState:UIControlStateNormal];
 
     [self updateInsets];
 }
