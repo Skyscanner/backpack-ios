@@ -47,6 +47,9 @@
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
 		D211A90D22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
+		D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */; };
+		D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */; };
+		D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
 		D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */; };
 		D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */; };
@@ -207,6 +210,9 @@
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
 		D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavSelectorViewController.swift; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationSnapshotTest.m; sourceTree = "<group>"; };
+		D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationTest.m; sourceTree = "<group>"; };
+		D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationUITest.swift; sourceTree = "<group>"; };
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
 		D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKProgressBarSnapshotTest.m; sourceTree = "<group>"; };
 		D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsSelectorViewController.swift; sourceTree = "<group>"; };
@@ -423,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */,
+				D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
 				D29349BE2199C7650099D2EC /* BPKChipTest.m */,
@@ -528,6 +535,7 @@
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */,
 				D6517B43216DF5F800D85FF9 /* Info.plist */,
 				D6517B4A216DF63700D85FF9 /* DialogUITest.swift */,
 				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
@@ -584,7 +592,11 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */,
+=======
+				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */,
+>>>>>>> [BPK-2460] Add Horizontal Navigation tests
 				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
@@ -964,6 +976,7 @@
 				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
+				D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
 				D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
@@ -981,6 +994,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
+				D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -991,6 +1005,7 @@
 			files = (
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
+				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
