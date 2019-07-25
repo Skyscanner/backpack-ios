@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationItem ()
 
 @property(readonly) UIColor *contentColor;
-@property(nonatomic, strong) UIImage *iconImage;
+@property(nonatomic) UIImage *iconImage;
 @property(nonatomic) double spacing;
 
 @end
@@ -145,6 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         self.iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
         [self setImage:self.iconImage forState:UIControlStateNormal];
+        [self setImage:self.iconImage forState:UIControlStateHighlighted];
     }
 
     [self updateInsets];
