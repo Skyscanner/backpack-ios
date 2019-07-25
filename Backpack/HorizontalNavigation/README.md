@@ -34,3 +34,7 @@ horizontalNavigation.subview = myInnerView
 horizontalNavigation.showsSelectedBar = false
 ```
 
+### Appearance attributes
+`(BPKFontMapping)fontMapping`
+`(UIColor)contentColor`
+
