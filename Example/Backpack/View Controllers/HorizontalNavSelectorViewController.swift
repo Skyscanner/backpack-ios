@@ -21,17 +21,34 @@ import Backpack
 
 enum HorizontalNavSegueIdentifier: String {
     case `default` = "Default"
+    case noUnderline = "NoUnderline"
+    case small = "Small"
+    case icons = "Icons"
+    case smallIcons = "iconsSmall"
 }
 
 class HorizontalNavSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        let maybeHorizontalNavController = segue.destination as? HorizontalNavViewController
+        let maybeHorizontalNavController = segue.destination as? HorizontalNavViewController
 
         if let identifier = segue.identifier,
             let horizontalNavSegueIdentifier = HorizontalNavSegueIdentifier(rawValue: identifier) {
             switch horizontalNavSegueIdentifier {
             case .default:
                 segue.destination.title = "Default"
+            case .small:
+                segue.destination.title = "Small"
+                maybeHorizontalNavController?.size = .small
+            case .noUnderline:
+                segue.destination.title = "Without underline"
+                maybeHorizontalNavController?.showBar = false
+            case .icons:
+                segue.destination.title = "With icons"
+                maybeHorizontalNavController?.showIcons = true
+            case .smallIcons:
+                segue.destination.title = "Small with icons"
+                maybeHorizontalNavController?.size = .small
+                maybeHorizontalNavController?.showIcons = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

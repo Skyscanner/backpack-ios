@@ -22,15 +22,28 @@ import Backpack
 class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegate {
     @IBOutlet weak var horizontalNav: HorizontalNavigation!
 
+    var size: BPKHorizontalNavigationSize = .default
+    var showBar: Bool = true
+    var showIcons: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        horizontalNav.options = [
-            BPKHorizontalNavigationOption(name: "Flights"),
-            BPKHorizontalNavigationOption(name: "Hotels"),
-            BPKHorizontalNavigationOption(name: "Car hire")
-        ]
-        horizontalNav.showsSelectedBar = true
+        if showIcons {
+            horizontalNav.options = [
+                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight),
+                BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels),
+                BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars)
+            ]
+        } else {
+            horizontalNav.options = [
+                BPKHorizontalNavigationOption(name: "Flights"),
+                BPKHorizontalNavigationOption(name: "Hotels"),
+                BPKHorizontalNavigationOption(name: "Car hire")
+            ]
+        }
+        horizontalNav.showsSelectedBar = showBar
+        horizontalNav.size = size
         horizontalNav.selectedItemIndex = 0
     }
 }
