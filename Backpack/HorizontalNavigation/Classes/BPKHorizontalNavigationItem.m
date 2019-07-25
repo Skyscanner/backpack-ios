@@ -20,6 +20,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/RTLSupport.h>
 #import <Backpack/Spacing.h>
 
 #import "BPKHorizontalNavigationOption.h"
@@ -30,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationItem ()
 
 @property(readonly) UIColor *contentColor;
-@property(nonatomic, strong) BPKIconView *iconView;
+@property(nonatomic, strong) UIImage *iconImage;
+@property(nonatomic) double spacing;
 
 @end
 
@@ -114,6 +116,8 @@ NS_ASSUME_NONNULL_BEGIN
                                                                    textColor:self.contentColor
                                                                  fontMapping:self.fontMapping];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
+
+    [self updateInsets];
     [self setIconColor];
 }
 
@@ -128,54 +132,65 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIconColor {
-    if (self.iconView != nil) {
-        self.iconView.tintColor = self.contentColor;
+    if (self.iconImage != nil) {
+        [self updateIconStyle];
     }
 }
 
 - (void)updateIconStyle {
-    if (self.iconView != nil) {
-        [self.iconView removeFromSuperview];
-    }
+    BPKIconSize size = self.size == BPKHorizontalNavigationSizeDefault ? BPKIconSizeLarge : BPKIconSizeSmall;
 
     if (self.definition.iconName == nil) {
-        [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [self setImage:nil forState:UIControlStateNormal];
         return;
     }
 
-    BPKIconSize size = self.size == BPKHorizontalNavigationSizeDefault ? BPKIconSizeLarge : BPKIconSizeSmall;
-    self.iconView = [[BPKIconView alloc] initWithIconName:self.definition.iconName size:size];
+    self.iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
+    [self setImage:self.iconImage forState:UIControlStateNormal];
 
-    self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self updateInsets];
+}
 
-    [self addSubview:self.iconView];
+- (void)updateInsets {
+    if (self.iconImage == nil) {
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, self.spacing, self.spacing, self.spacing);
+        return;
+    }
 
-    [NSLayoutConstraint activateConstraints:@[
-        [self.iconView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.iconView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
-    ]];
+    CGFloat insetAmount = self.spacing / 2.0;
 
-    [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-
-    [self setIconColor];
+    if ([BPKRTLSupport viewIsRTL:self]) {
+        self.imageEdgeInsets = UIEdgeInsetsMake(self.spacing, insetAmount, self.spacing, 0);
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, 0, self.spacing, insetAmount);
+        self.contentEdgeInsets = UIEdgeInsetsMake(insetAmount, insetAmount, insetAmount, insetAmount);
+    } else {
+        self.imageEdgeInsets = UIEdgeInsetsMake(self.spacing, 0, self.spacing, insetAmount);
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, insetAmount, self.spacing, 0);
+        self.contentEdgeInsets = UIEdgeInsetsMake(insetAmount, insetAmount, insetAmount, insetAmount);
+    }
 }
 
 - (CGSize)intrinsicContentSize {
     CGSize textButtonIntrinsicContentSize = [super intrinsicContentSize];
     if (self.definition.iconName) {
-        CGFloat iconWidth = [self.iconView intrinsicContentSize].width;
-        CGFloat width = textButtonIntrinsicContentSize.width + iconWidth + BPKSpacingMd;
+        CGFloat iconWidth = self.iconImage.size.width;
+        CGFloat width = textButtonIntrinsicContentSize.width + iconWidth + 2 * self.spacing;
         CGFloat height = textButtonIntrinsicContentSize.height;
         return CGSizeMake(width, height);
     } else {
-        return textButtonIntrinsicContentSize;
+        CGFloat width = textButtonIntrinsicContentSize.width + 2 * self.spacing;
+        CGFloat height = textButtonIntrinsicContentSize.height;
+        return CGSizeMake(width, height);
     }
 }
 
 - (void)setupWithDefinition:(BPKHorizontalNavigationOption *_Nullable)definition {
     [self updateStyle];
     [self updateIconStyle];
+}
+
+- (double)spacing {
+    return self.size == BPKHorizontalNavigationSizeSmall ? BPKSpacingBase : BPKSpacingLg;
 }
 
 @end

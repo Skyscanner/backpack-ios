@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigation ()
 @property(nonatomic, strong) UIStackView *stackView;
 @property(nonatomic, strong) UIView *barView;
+@property(nonatomic) double barHeight;
 @property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *barConstraints;
 @end
 
@@ -121,8 +122,8 @@ NS_ASSUME_NONNULL_BEGIN
         [NSLayoutConstraint deactivateConstraints:self.barConstraints];
     }
     self.barConstraints = @[
-        [self.barView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:-BPKSpacingBase],
-        [self.barView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor constant:BPKSpacingBase],
+        [self.barView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
+        [self.barView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
     ];
     [NSLayoutConstraint activateConstraints:self.barConstraints];
 }
@@ -197,6 +198,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
+- (double)barHeight {
+    return BPKSpacingSm / 2;
+}
+
 - (UIColor *_Nonnull)updateBarColor {
     if (self.selectedColor != nil) {
         return self.barView.backgroundColor = self.selectedColor;
@@ -223,20 +228,19 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:self.barConstraints];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-BPKSpacingSm / 2],
-        [self.barView.heightAnchor constraintEqualToConstant:BPKSpacingSm / 2]
+        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-self.barHeight],
+        [self.barView.heightAnchor constraintEqualToConstant:self.barHeight]
     ]];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor constant:-BPKSpacingSm],
-        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
-        [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor constant:BPKSpacingBase],
-        [self.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:BPKSpacingSm]
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor]
     ]];
 
     self.stackView.axis = UILayoutConstraintAxisHorizontal;
     self.stackView.distribution = UIStackViewDistributionFillProportionally;
-    self.stackView.spacing = BPKSpacingXl;
 
     self.options = options;
     self.selectedItemIndex = selectedItemIndex;
