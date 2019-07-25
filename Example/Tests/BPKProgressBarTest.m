@@ -16,32 +16,29 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+#import <XCTest/XCTest.h>
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+#import <Backpack/Color.h>
+#import <Backpack/ProgressBar.h>
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "Dialog.h"
-#import "HorizontalNavigation.h"
-#import "Icon.h"
-#import "Label.h"
-#import "Panel.h"
-#import "ProgressBar.h"
-#import "Spinner.h"
-#import "StarRating.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
-#endif
+@interface BPKProgressBarTest : XCTestCase
+
+@end
+
+NS_ASSUME_NONNULL_BEGIN
+@implementation BPKProgressBarTest
+
+- (void)testInitWithFrame {
+    BPKProgressBar *pb1 = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
+    XCTAssertEqualWithAccuracy(pb1.progress, 0.0, 0.001);
+}
+
+- (void)testSetValue {
+    BPKProgressBar *pb1 = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
+    pb1.progress = 0.76;
+    XCTAssertEqualWithAccuracy(pb1.progress, 0.76, 0.001);
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

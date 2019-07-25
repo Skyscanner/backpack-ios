@@ -27,6 +27,7 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/ProgressBar.h>
 #import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spinner.h>
@@ -209,9 +210,13 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     starAppearance.starFilledColor = theme.starFilledColor;
 
     BPKHorizontalNavigation *horizontalNavigationAppearance =
-        [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
+    [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
     horizontalNavigationAppearance.fontMapping = theme.fontMapping;
+
+    BPKProgressBar *progressBarAppearance =
+    [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    progressBarAppearance.fillColor = theme.primaryColor;
 }
 
 @end

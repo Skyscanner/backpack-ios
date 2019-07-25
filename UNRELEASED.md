@@ -9,6 +9,9 @@
   - Added option to hide the selected item bar.
   - Added option to specify an icon for each option.
 
+- Backpack/ProgressBar:
+  - Added `ProgressBar` component.
+
 **Breaking:**
   - Backpack/Theme:
     - Added `horiontalNavigationSelectedColor` property.
