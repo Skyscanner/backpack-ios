@@ -16,11 +16,12 @@
  * limitations under the License.
  */
 
+#import "BPKHorizontalNavigation.h"
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKHorizontalNavigation.h"
 #import "BPKHorizontalNavigationItem.h"
 #import "BPKHorizontalNavigationOption.h"
 
