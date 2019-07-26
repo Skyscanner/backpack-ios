@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKDialogIconView
 
-- (instancetype)init {
+- (instancetype)initWithIconDefinition:(BPKDialogIconDefinition *)iconDefinition {
     CGSize size = [[self class] viewSize];
     self = [super initWithFrame:CGRectMake(0, 0, size.width, size.height)];
 

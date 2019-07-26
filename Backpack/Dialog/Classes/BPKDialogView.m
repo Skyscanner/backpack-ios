@@ -183,9 +183,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateIconView {
     if (self.hasIcon && self.iconView == nil) {
-        self.iconView = [BPKDialogIconView new];
+        self.iconView = [[BPKDialogIconView alloc] initWithIconDefinition:self.iconDefinition];
         [self addSubview:self.iconView];
-        self.iconView.iconDefinition = self.iconDefinition;
 
         CGSize iconViewSize = [[self.iconView class] viewSize];
         [NSLayoutConstraint activateConstraints:@[
