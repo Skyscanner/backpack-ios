@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
 @property(nonatomic, strong) BPKDialogButtonAction *action;
 @property(nonatomic, weak) BPKButton *button;
+@property(readonly, nonatomic) BOOL hasIcon;
 @end
 
 @implementation BPKActionButtonPair
@@ -67,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (Boolean)hasIcon {
+- (BOOL)hasIcon {
     return self.iconDefinition != nil;
 }
 
