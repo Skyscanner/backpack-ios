@@ -22,9 +22,6 @@
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKHorizontalNavigationItem.h"
-#import "BPKHorizontalNavigationOption.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKProgressBar
@@ -40,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype )initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
 
@@ -59,21 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-//- (void)setSize:(BPKHorizontalNavigationSize)size {
-//    if (_size != size) {
-//        _size = size;
-//
-//        [self updateItemsSize];
-//    }
-//}
-
 #pragma mark - Private
 
 - (double)barHeight {
     return BPKSpacingSm / 2;
 }
 
--(void) setup {
+- (void)setup {
     self.trackTintColor = BPKColor.gray100;
     self.progressTintColor = BPKColor.blue500;
 }

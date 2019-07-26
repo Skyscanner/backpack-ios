@@ -23,27 +23,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-///**
-// * Enum values for specifying the navigation size
-// */
-//typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
-//    BPKHorizontalNavigationSizeDefault = 0,
-//    BPKHorizontalNavigationSizeSmall = 1,
-//};
-
 /**
- * A `BPKHorizontalNavigation` is a control comprising of multiple segments, where each acts as a discrete button.
+ * `BPKProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
  */
 NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
 
+/**
+ * The colour to use in the progress track.
+ */
 @property(nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
-
-///**
-// * The size of the horizontal navigation.
-// *
-// * see BPKHorizontalNavigationSize
-// */
-//@property(nonatomic) BPKHorizontalNavigationSize size;
 
 @end
 NS_ASSUME_NONNULL_END
