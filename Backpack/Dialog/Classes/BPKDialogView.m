@@ -180,7 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 }
 
-- (void)setupIconView {
+- (void)updateIconView {
     if (self.hasIcon && self.iconView == nil) {
         self.iconView = [BPKDialogIconView new];
         [self addSubview:self.iconView];
@@ -260,7 +260,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (iconDefinition != _iconDefinition) {
         _iconDefinition = iconDefinition;
-        [self setupIconView];
+        [self updateIconView];
     }
 }
 
