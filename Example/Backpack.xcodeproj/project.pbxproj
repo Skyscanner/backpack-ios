@@ -592,11 +592,8 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */,
-=======
 				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */,
->>>>>>> [BPK-2460] Add Horizontal Navigation tests
 				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,

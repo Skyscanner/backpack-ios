@@ -30,7 +30,6 @@ let options = [
     BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars)
 ]
 let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selected:0)
-horizontalNavigation.subview = myInnerView
 horizontalNavigation.showsSelectedBar = false
 ```
 

@@ -58,7 +58,7 @@ class HorizontalNavigationUITest: XCTestCase {
         app.tables.staticTexts["Default"].tap()
     }
 
-    func testTapChipToSelect() {
+    func testTapToNavigate() {
         XCTContext.runActivity(named: "Navigate") { _ in
             navigateAndShow()
         }
