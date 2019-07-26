@@ -14,7 +14,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */#imageLiteral(resourceName: "2019-07-25 20.53.32.gif")
+ */
 
 import UIKit
 import Backpack
@@ -31,9 +31,9 @@ class ProgressBarViewController: UIViewController {
         resetButton.style = .secondary
         resetButton.isEnabled = false
 
-        increaseButton.addTarget(self, action: Selector(("increaseButtonTapped")), for: .touchUpInside)
+        increaseButton.addTarget(self, action: #selector(increaseButtonTapped), for: .touchUpInside)
 
-        resetButton.addTarget(self, action: Selector(("resetButtonTapped")), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
     }
 
     @objc
