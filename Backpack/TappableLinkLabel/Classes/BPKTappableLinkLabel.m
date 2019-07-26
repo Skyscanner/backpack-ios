@@ -16,11 +16,14 @@
  * limitations under the License.
  */
 #import "BPKTappableLinkLabel.h"
-#import "BPKTappableLinkDefinition.h"
+
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Font.h>
-#import <TTTAttributedLabel/TTTAttributedLabel.h>
+
+#import "BPKTappableLinkDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -79,11 +82,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
-                                              ]];
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor]
+    ]];
 
     // This initial call to set up colours is needed in case there is no theme initially applied
     [self updateTextColors];
@@ -291,7 +294,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components {
     if ([self.delegate respondsToSelector:@selector(tappableLabel:didSelectLinkWithTransitInformation:)]) {
         [self.delegate tappableLabel:label didSelectLinkWithTransitInformation:components];
-    }else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
+    } else if ([self.delegate respondsToSelector:@selector(attributedLabel:didSelectLinkWithTransitInformation:)]) {
         [self.delegate attributedLabel:label didSelectLinkWithTransitInformation:components];
     }
 }

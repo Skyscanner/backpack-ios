@@ -19,8 +19,6 @@
 
 #import <Backpack/Color.h>
 
-#import <Backpack/Color.h>
-
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKGradient ()
 @property(nonatomic, copy) NSArray<UIColor *> *colors;

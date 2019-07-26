@@ -17,10 +17,6 @@
  */
 
 #import "BPKTheme.h"
-#import "BPKDohaThemeContainer.h"
-#import "BPKThemeContainer.h"
-#import "BPKThemeContainerController.h"
-#import "UIView+BPKThemeContainer.h"
 
 #import <Backpack/Button.h>
 #import <Backpack/Calendar.h>
@@ -35,6 +31,11 @@
 #import <Backpack/TappableLinkLabel.h>
 #import <Backpack/TextField.h>
 #import <Backpack/TextView.h>
+
+#import "BPKDohaThemeContainer.h"
+#import "BPKThemeContainer.h"
+#import "BPKThemeContainerController.h"
+#import "UIView+BPKThemeContainer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

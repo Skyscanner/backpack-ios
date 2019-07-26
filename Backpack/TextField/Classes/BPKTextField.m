@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 #import "BPKTextField.h"
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
@@ -51,11 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         [self setupWithStyle:BPKFontStyleTextBase];
     }
-    
+
     return self;
 }
 
@@ -80,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.attributedText = attributedString;
 }
 
-- (void)setTextColor:(UIColor * _Nullable)textColor {
+- (void)setTextColor:(UIColor *_Nullable)textColor {
     BPKAssertMainThread();
     [super setTextColor:textColor];
 

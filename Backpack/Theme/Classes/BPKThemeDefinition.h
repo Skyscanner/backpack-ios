@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
 @property(nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
 
-@property (nullable, nonatomic, readonly, strong) UIColor* starFilledColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *starFilledColor;
 
 @property(nonatomic, readonly, strong) UIColor *horiontalNavigationSelectedColor;
 

@@ -20,4 +20,5 @@
 #define __BACKPACK_SHADOW__
 
 #import "BPKShadow.h"
+
 #endif

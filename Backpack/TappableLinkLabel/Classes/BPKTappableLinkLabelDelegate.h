@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKTappableLinkLabel;
-@protocol BPKTappableLinkLabelDelegate<NSObject>
+@protocol BPKTappableLinkLabelDelegate <NSObject>
 
 @optional
 
@@ -46,7 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
  * Tells the delegate that the user did select a link to transit information
  *
  * @param label The label whose link was selected.
- * @param components A dictionary containing the transit components. The currently supported keys are `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
+ * @param components A dictionary containing the transit components. The currently supported keys are
+ * `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
  */
 - (void)tappableLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
 

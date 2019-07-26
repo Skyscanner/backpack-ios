@@ -21,19 +21,12 @@
 /**
  * Enum values for specifying star state
  */
-typedef NS_ENUM(NSInteger, BPKStarState) {
-    BPKStarStateDefault,
-    BPKStarStateHalf,
-    BPKStarStateFull
-};
+typedef NS_ENUM(NSInteger, BPKStarState) { BPKStarStateDefault, BPKStarStateHalf, BPKStarStateFull };
 
 /**
  * Enum values for specifying star size
  */
-typedef NS_ENUM(NSUInteger, BPKStarSize) {
-    BPKStarSizeSmall,
-    BPKStarSizeLarge
-};
+typedef NS_ENUM(NSUInteger, BPKStarSize) { BPKStarSizeSmall, BPKStarSizeLarge };
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,7 +41,7 @@ NS_SWIFT_NAME(Star) @interface BPKStar : UIView
  *
  * @see BPKStarState
  */
-@property (nonatomic) BPKStarState state;
+@property(nonatomic) BPKStarState state;
 
 /**
  * Size of the star, its default value is BPKStarSizeSmall. Setting updates
@@ -62,7 +55,7 @@ NS_SWIFT_NAME(Star) @interface BPKStar : UIView
  * Color of the star when it's filled, its default value is BPKColor.yellow500. Setting updates
  * the displayed star.
  */
-@property (nullable, nonatomic, strong) UIColor* starFilledColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *starFilledColor UI_APPEARANCE_SELECTOR;
 
 /**
  * Creates a `BPKStar` with a given star size, CGRectZero frame and BPKStarStateDefault state.
@@ -75,7 +68,8 @@ NS_SWIFT_NAME(Star) @interface BPKStar : UIView
 - (instancetype)initWithSize:(BPKStarSize)size NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKStar` with a decoder (typically when creating from Storyboards), BPKStarSizeSmall star size and BPKStarStateDefault state.
+ * Creates a `BPKStar` with a decoder (typically when creating from Storyboards), BPKStarSizeSmall star size and
+ * BPKStarStateDefault state.
  *
  * @param aDecoder Decoder object to extract parameters from
  * @return `BPKStar` instance.

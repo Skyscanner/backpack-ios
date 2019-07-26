@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-
 #import <XCTest/XCTest.h>
 
 #import <Backpack/StarRating.h>
@@ -30,39 +29,42 @@
 
 - (void)test_whenInitialisedWithoutSize_thenSmallSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] init];
-    
-    XCTAssert(ratingView.size == BPKStarSizeSmall, "When initialised with small size then small size should be returned.");
+
+    XCTAssert(ratingView.size == BPKStarSizeSmall,
+              "When initialised with small size then small size should be returned.");
 }
 
 - (void)test_whenInitialisedWithSmallSize_thenSmallSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
-    
-    XCTAssert(ratingView.size == BPKStarSizeSmall, "When initialised with small size then small size should be returned.");
+
+    XCTAssert(ratingView.size == BPKStarSizeSmall,
+              "When initialised with small size then small size should be returned.");
 }
 
 - (void)test_whenInitialisedWithLargeSize_thenLargeSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeLarge];
-    
-    XCTAssert(ratingView.size == BPKStarSizeLarge, "When initialised with large size then large size should be returned.");
+
+    XCTAssert(ratingView.size == BPKStarSizeLarge,
+              "When initialised with large size then large size should be returned.");
 }
 
 - (void)test_whenSizeHasChanged_thenChangedSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
     ratingView.size = BPKStarSizeLarge;
-    
+
     XCTAssert(ratingView.size == BPKStarSizeLarge, "When size has changed then the changed size should be returned.");
 }
 
 - (void)test_whenRatingHasNotChanged_thenInitialRatingIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
-    
+
     XCTAssert(ratingView.rating == 0.0f, "When rating hasn't changed then the initial rating should be returned.");
 }
 
 - (void)test_whenRatingHasChanged_thenChangedRatingIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
     ratingView.rating = 4.3f;
-    
+
     XCTAssert(ratingView.rating == 4.3f, "When rating has changed then the changed rating should be returned.");
 }
 

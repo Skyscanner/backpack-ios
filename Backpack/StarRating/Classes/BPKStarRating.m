@@ -22,12 +22,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString * const STARRATING_SUBVIEW_ASSERTION_MESSAGE = @"Expected all arrangedSubviews in `BPKStarRating` to be of type `BPKStar`";
+static NSString *const STARRATING_SUBVIEW_ASSERTION_MESSAGE =
+    @"Expected all arrangedSubviews in `BPKStarRating` to be of type `BPKStar`";
 static NSUInteger const MAX_RATING = 5;
 
 @interface BPKStarRating ()
 
-@property (nonatomic) UIStackView *stackView;
+@property(nonatomic) UIStackView *stackView;
 
 @end
 
@@ -36,22 +37,22 @@ static NSUInteger const MAX_RATING = 5;
 - (instancetype)initWithSize:(BPKStarSize)size {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
-    
+
     if (self) {
         [self setupWithSize:size];
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         [self setupWithSize:BPKStarSizeSmall];
     }
-    
+
     return self;
 }
 
@@ -77,12 +78,13 @@ static NSUInteger const MAX_RATING = 5;
     _stackView = [[UIStackView alloc] initWithFrame:CGRectZero];
     _stackView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_stackView];
-    
-    [NSLayoutConstraint activateConstraints:@[[self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-                                              [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              ]];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.stackView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [self.stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+    ]];
 }
 
 - (void)setupStars {
@@ -114,11 +116,12 @@ static NSUInteger const MAX_RATING = 5;
 
 - (void)updateRating {
     for (NSInteger starIndex = 0; starIndex < self.stackView.arrangedSubviews.count; starIndex++) {
-        NSAssert([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]], STARRATING_SUBVIEW_ASSERTION_MESSAGE);
-        
+        NSAssert([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]],
+                 STARRATING_SUBVIEW_ASSERTION_MESSAGE);
+
         if ([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]]) {
             BPKStar *star = self.stackView.arrangedSubviews[starIndex];
-            
+
             float rest = self.rating - starIndex;
             if (starIndex + 1.0f <= self.rating) {
                 star.state = BPKStarStateFull;
@@ -134,12 +137,12 @@ static NSUInteger const MAX_RATING = 5;
 - (void)updateSize {
     for (UIView *star in self.stackView.arrangedSubviews) {
         NSAssert([star isKindOfClass:[BPKStar class]], STARRATING_SUBVIEW_ASSERTION_MESSAGE);
-        
+
         if ([star isKindOfClass:[BPKStar class]]) {
             ((BPKStar *)star).size = self.size;
         }
     }
-    
+
     [self setNeedsLayout];
 }
 
