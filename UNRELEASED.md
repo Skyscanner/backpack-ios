@@ -2,20 +2,6 @@
 
 > Place your changes below this line.
 
-**Added:**
-- Backpack/HorizontalNavigation:
-  - Added `HorizontalNavigation` component.
-  - Added small variants.
-  - Added option to hide the selected item bar.
-  - Added option to specify an icon for each option.
-
-- Backpack/ProgressBar:
-  - Added `ProgressBar` component.
-
-**Breaking:**
-  - Backpack/Theme:
-    - Added `horiontalNavigationSelectedColor` property.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

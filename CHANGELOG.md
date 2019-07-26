@@ -2,6 +2,22 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 12.0.0
+
+**Added:**
+- Backpack/HorizontalNavigation:
+  - Added `HorizontalNavigation` component.
+  - Added small variants.
+  - Added option to hide the selected item bar.
+  - Added option to specify an icon for each option.
+
+- Backpack/ProgressBar:
+  - Added `ProgressBar` component.
+
+**Breaking:**
+  - Backpack/Theme:
+    - Added `horiontalNavigationSelectedColor` property.
+
 ## 11.9.0
 
 **Added:**
