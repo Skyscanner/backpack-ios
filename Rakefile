@@ -93,6 +93,8 @@ task :test do
 end
 
 task :lint do
+  `clang-format -i **/*.h **/*.m`
+  abort red 'Running clang-format changed some files.' unless check_pristine
   sh "bundle exec pod lib lint"
 end
 

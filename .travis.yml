@@ -22,6 +22,7 @@ matrix:
       env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=10.3.1,platform=iOS Simulator,name=iPhone 7" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
+  - brew install clang-format
   - nvm install
   - nvm use
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
