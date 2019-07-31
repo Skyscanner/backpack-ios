@@ -102,6 +102,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (NSInteger)tag {
+    return self.definition.tag;
+}
+
 #pragma mark - Private
 
 - (void)updateStyle {
