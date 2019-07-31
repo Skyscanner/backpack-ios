@@ -31,15 +31,15 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
         if showIcons {
             horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight),
-                BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels),
-                BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars)
+                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
+                BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels, tag: 1),
+                BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag: 2)
             ]
         } else {
             horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights"),
-                BPKHorizontalNavigationOption(name: "Hotels"),
-                BPKHorizontalNavigationOption(name: "Car hire")
+                BPKHorizontalNavigationOption(name: "Flights", tag: 0),
+                BPKHorizontalNavigationOption(name: "Hotels", tag: 1),
+                BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
             ]
         }
         horizontalNav.showsSelectedBar = showBar
