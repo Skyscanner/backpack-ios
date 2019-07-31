@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Backpack/Button.h>
+#import <Backpack/Icon.h>
 
 #import "BPKHorizontalNavigation.h"
 
@@ -48,14 +49,15 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
  *
  * see BPKHorizontalNavigationOption
  */
-@property(readonly, nullable, nonatomic, strong) BPKHorizontalNavigationOption *definition;
+@property(nonatomic, strong, nullable) BPKIconName iconName;
+@property(nonatomic, copy) NSString *name;
 
 /**
  * Create a `BPKHorizontalNavigationItem` with a set of options and an optionaly selected option.
  *
  * @param definition BPKHorizontalNavigationOption the specification for the navigation item
  */
-- (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 

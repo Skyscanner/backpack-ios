@@ -140,7 +140,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:
     (BPKHorizontalNavigationOption *)definition {
-    return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
+    BPKHorizontalNavigationItem *newItem = [[BPKHorizontalNavigationItem alloc] initWithName:definition.name
+                                                                                    iconName:definition.iconName];
+    newItem.tag = definition.tag;
+    return newItem;
 }
 
 - (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback {

@@ -27,49 +27,49 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@implementation BPKHorizontalNavigationOption
+
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
-    
+
     if (self) {
         self.name = name;
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
     self = [super init];
-    
+
     if (self) {
         self.name = name;
         self.iconName = iconName;
     }
-    
+
     return self;
 }
 
-@implementation BPKHorizontalNavigationOption
-
 - (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag {
     self = [super init];
-    
+
     if (self) {
         self.tag = tag;
         self.name = name;
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag {
     self = [super init];
-    
+
     if (self) {
         self.tag = tag;
         self.name = name;
         self.iconName = iconName;
     }
-    
+
     return self;
 }
 
