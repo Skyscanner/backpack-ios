@@ -21,13 +21,17 @@ import Backpack
 
 class ProgressBarViewController: UIViewController {
     @IBOutlet weak var progressBar: ProgressBar!
+    @IBOutlet weak var progressBarSquare: ProgressBar!
     @IBOutlet weak var increaseButton: Button!
     @IBOutlet weak var resetButton: Button!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        progressBarSquare.style = .bar
+
         progressBar.progress = 0.0
+        progressBarSquare.progress = 0.0
         resetButton.style = .secondary
         resetButton.isEnabled = false
 
@@ -40,6 +44,7 @@ class ProgressBarViewController: UIViewController {
     func increaseButtonTapped() {
         let newProgress = progressBar.progress + 0.333
         progressBar.setProgress(newProgress, animated: true)
+        progressBarSquare.setProgress(newProgress, animated: true)
 
         resetButton.isEnabled = true
     }
@@ -47,6 +52,7 @@ class ProgressBarViewController: UIViewController {
     @objc
     func resetButtonTapped() {
         progressBar.setProgress(0.0, animated: true)
+        progressBarSquare.setProgress(0.0, animated: true)
 
         resetButton.isEnabled = false
     }

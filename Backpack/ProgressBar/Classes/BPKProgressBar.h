@@ -24,6 +24,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * Enum values for specifying the style of progress bar
+ */
+typedef NS_ENUM(NSUInteger, BPKProgressBarStyle) {
+    BPKProgressBarStyleRounded = 0,
+    BPKProgressBarStyleBar = 1,
+};
+
+/**
  * `BPKProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
  */
 NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
@@ -32,6 +40,8 @@ NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressV
  * The colour to use in the progress track.
  */
 @property(nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
+
+@property(nonatomic) BPKProgressBarStyle style;
 
 @end
 NS_ASSUME_NONNULL_END

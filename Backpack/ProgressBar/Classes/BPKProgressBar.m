@@ -56,15 +56,53 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setStyle:(BPKProgressBarStyle)style {
+    if (_style != style) {
+        _style = style;
+
+        [self updateLayerStyles];
+    }
+}
+
+#pragma mark - Overrides
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self updateLayerStyles];
+}
+
+- (void)setProgressTintColor:(UIColor *_Nullable)progressTintColor {
+    [super setProgressTintColor:progressTintColor];
+
+    // This gives a cleaner squared edge when the progress image would otherwise be stretched and deformed:
+    self.subviews[1].backgroundColor = progressTintColor;
+}
+
+- (void)setTrackTintColor:(UIColor *_Nullable)trackTintColor {
+    [super setTrackTintColor:trackTintColor];
+
+    // This gives a cleaner squared edge when the track image would otherwise be stretched and deformed:
+    self.backgroundColor = trackTintColor;
+}
+
 #pragma mark - Private
 
-- (double)barHeight {
-    return BPKSpacingSm / 2;
+- (void)updateLayerStyles {
+    if (self.style == BPKProgressBarStyleBar) {
+        self.layer.cornerRadius = 0.0;
+        self.subviews[1].layer.cornerRadius = 0.0;
+    } else {
+        self.layer.cornerRadius = self.bounds.size.height / 2;
+        self.subviews[1].layer.cornerRadius = self.bounds.size.height / 2;
+    }
 }
 
 - (void)setup {
     self.trackTintColor = BPKColor.gray100;
     self.progressTintColor = BPKColor.blue500;
+    self.clipsToBounds = YES;
+    self.subviews[1].clipsToBounds = YES;
+    [self updateLayerStyles];
 }
 
 @end

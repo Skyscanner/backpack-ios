@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SHl-Oi-FFr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SHl-Oi-FFr">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,24 +19,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kJp-TI-djG" customClass="BPKProgressBar">
-                                <rect key="frame" x="132" y="367" width="150" height="2"/>
+                                <rect key="frame" x="40" y="367" width="334" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="maR-e9-Udk"/>
+                                </constraints>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dq5-Bt-9G7" customClass="BPKButton">
-                                <rect key="frame" x="184" y="441" width="46" height="30"/>
+                                <rect key="frame" x="177.66666666666666" y="409" width="59" height="30"/>
                                 <state key="normal" title="Increase"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poS-qA-ZUS" customClass="BPKButton">
-                                <rect key="frame" x="184" y="514" width="46" height="30"/>
+                                <rect key="frame" x="187.66666666666666" y="459" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-oz-fu1" customClass="BPKProgressBar">
+                                <rect key="frame" x="40" y="345" width="334" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="mx0-fe-Vzu"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dq5-Bt-9G7" firstAttribute="top" secondItem="kJp-TI-djG" secondAttribute="bottom" constant="40" id="2wd-u6-PzX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xNW-oz-fu1" secondAttribute="trailing" constant="20" id="FRj-ae-NAX"/>
+                            <constraint firstItem="xNW-oz-fu1" firstAttribute="leading" secondItem="Kec-l1-3BA" secondAttribute="leadingMargin" constant="20" id="Po4-TP-2eR"/>
                             <constraint firstItem="kJp-TI-djG" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="VE2-B3-KFU"/>
+                            <constraint firstItem="kJp-TI-djG" firstAttribute="top" secondItem="xNW-oz-fu1" secondAttribute="bottom" constant="20" id="WPe-tZ-94H"/>
                             <constraint firstItem="kJp-TI-djG" firstAttribute="centerY" secondItem="Kec-l1-3BA" secondAttribute="centerY" id="WWb-Qh-LHf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kJp-TI-djG" secondAttribute="trailing" constant="20" id="Wn9-p2-Dix"/>
                             <constraint firstItem="poS-qA-ZUS" firstAttribute="top" secondItem="dq5-Bt-9G7" secondAttribute="bottom" constant="20" id="Wnq-jN-Q3v"/>
+                            <constraint firstItem="xNW-oz-fu1" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="iYi-WQ-nTz"/>
                             <constraint firstItem="dq5-Bt-9G7" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="kQK-qb-YcJ"/>
                             <constraint firstItem="kJp-TI-djG" firstAttribute="leading" secondItem="Kec-l1-3BA" secondAttribute="leadingMargin" constant="20" id="qCY-Tv-p7W"/>
                             <constraint firstItem="poS-qA-ZUS" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="vMO-eG-ok6"/>
@@ -46,6 +59,7 @@
                     <connections>
                         <outlet property="increaseButton" destination="dq5-Bt-9G7" id="I40-yx-End"/>
                         <outlet property="progressBar" destination="kJp-TI-djG" id="rE0-TH-f5i"/>
+                        <outlet property="progressBarSquare" destination="xNW-oz-fu1" id="ac7-Ci-zpq"/>
                         <outlet property="resetButton" destination="poS-qA-ZUS" id="OTg-yK-QkA"/>
                     </connections>
                 </viewController>
