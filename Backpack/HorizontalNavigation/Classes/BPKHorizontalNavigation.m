@@ -132,9 +132,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateSelection:(UIButton *)sender {
     NSInteger newIndex = [self.stackView.arrangedSubviews indexOfObject:sender];
     [self setSelectedItemIndex:newIndex];
+    BPKHorizontalNavigationItem *navItem = (BPKHorizontalNavigationItem *)sender;
 
-    if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
-        [self.delegate horizontalNavigation:self didSelectItem:newIndex];
+    if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:withTag:)]) {
+        [self.delegate horizontalNavigation:self didSelectItem:newIndex withTag:navItem.definition.tag];
     }
 }
 

@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param horizontalNavigation The `BPKHorizontalNavigation` which has been interacted with.
  * @param item The option selected by the user.
  */
-- (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation didSelectItem:(NSInteger)index;
+- (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation didSelectItem:(NSInteger)index withTag:(NSInteger)tag;
 
 @end
 NS_ASSUME_NONNULL_END

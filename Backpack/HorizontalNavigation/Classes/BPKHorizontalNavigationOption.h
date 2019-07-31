@@ -25,11 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationOption : NSObject
 
 @property(nonatomic, readonly, strong, nullable) BPKIconName iconName;
+@property(nonatomic, readonly) NSInteger tag;
 @property(nonatomic, readonly, copy) NSString *name;
 @property(nonatomic, readonly) BOOL hasIcon;
 
-- (instancetype)initWithName:(NSString *)name;
-- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName;
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag;
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
 
 @end
 NS_ASSUME_NONNULL_END
