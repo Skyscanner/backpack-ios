@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectMake(0, 0, size.width, size.height)];
 
     if (self) {
+        self.iconDefinition = iconDefinition;
         [self setupViews];
     }
 
@@ -77,7 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconContainerView =
         [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
     self.iconContainerView.layer.cornerRadius = iconContainerSize.width / 2.0;
-    self.iconContainerView.backgroundColor = BPKColor.gray300;
 
     self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.iconImageView.tintColor = BPKColor.white;
