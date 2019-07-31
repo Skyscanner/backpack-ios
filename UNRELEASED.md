@@ -2,10 +2,10 @@
 
 > Place your changes below this line.
 
-**Breaking:**
+**Added:**
 
 - Backpack/HorizontalNavigation:
-  - When creating a `BPKHorizontalNavigationItem`, a `tag` value must now be provided.
+  - When creating a `BPKHorizontalNavigationOption`, a `tag` value can now be provided.
 
 ## How to write a good changelog entry
 

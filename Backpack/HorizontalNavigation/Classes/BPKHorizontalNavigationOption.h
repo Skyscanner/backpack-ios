@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag;
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
+- (instancetype)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName;
 
 @end
 NS_ASSUME_NONNULL_END
