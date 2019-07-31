@@ -1,4 +1,8 @@
 # Unreleased
+**Fixed:**
+
+- Backpack/Dialog:
+  - Fixed bottom padding underneath CTAs.
 
 > Place your changes below this line.
 

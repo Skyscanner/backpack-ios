@@ -103,6 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dialogView = [[BPKDialogView alloc] initWithFrame:CGRectZero];
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
     self.dialogView.delegate = self;
+    self.dialogView.style = self.style;
     [self.dialogView setTitle:self.titleText];
     [self.dialogView setIconImage:self.iconImage];
     [self.dialogView setMessage:self.messageText];

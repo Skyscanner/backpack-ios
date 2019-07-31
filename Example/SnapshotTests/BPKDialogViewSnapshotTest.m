@@ -61,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
         iconBackgroundColor:BPKColor.green500
                   iconImage:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]];
 
+    view.style = BPKDialogControllerStyleAlert;
     [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
     view.translatesAutoresizingMaskIntoConstraints = NO;
     UIView *parent = [self wrapDialog:view];
@@ -91,6 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
     [view addButtonAction:continueAction];
     [view addButtonAction:skipAction];
 
+    view.style = BPKDialogControllerStyleAlert;
     [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
     view.translatesAutoresizingMaskIntoConstraints = NO;
     UIView *parent = [self wrapDialog:view];

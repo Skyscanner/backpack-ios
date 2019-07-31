@@ -55,7 +55,7 @@ class DialogViewController: UIViewController {
         let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
-        let skipAction = DialogButtonAction(title: "Skip", style: .link) {
+        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
             print("Skip was tapped, action: \($0)")
         }
 
@@ -107,7 +107,7 @@ class DialogViewController: UIViewController {
                                                iconBackgroundColor: Color.yellow500,
                                                iconImage: iconTemplate)
 
-        let mainAction = DialogButtonAction(title: "OK", style: .link) { _ in
+        let mainAction = DialogButtonAction(title: "OK", style: .primary) { _ in
             NSLog("Primary tapped")
         }
 
