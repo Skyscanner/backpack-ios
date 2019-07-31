@@ -45,17 +45,22 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 @property(nonatomic) BPKFontMapping *fontMapping;
 
 /**
- * The definition of the option, which will be displayed as a button in the component.
+ * The icon to display within the item.
  *
- * see BPKHorizontalNavigationOption
+ * see BPKIconName
  */
 @property(nonatomic, strong, nullable) BPKIconName iconName;
+
+/**
+ * The name to display within the item.
+ */
 @property(nonatomic, copy) NSString *name;
 
 /**
  * Create a `BPKHorizontalNavigationItem` with a set of options and an optionaly selected option.
  *
- * @param definition BPKHorizontalNavigationOption the specification for the navigation item
+ * @param name NSString the name for the navigation item
+ * @param iconName BPKIconName the icon for the navigation item
  */
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
