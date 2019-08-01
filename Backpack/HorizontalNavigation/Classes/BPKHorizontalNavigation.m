@@ -133,14 +133,19 @@ NS_ASSUME_NONNULL_BEGIN
     NSInteger newIndex = [self.stackView.arrangedSubviews indexOfObject:sender];
     [self setSelectedItemIndex:newIndex];
 
-    if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
+    if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:withTag:)]) {
+        [self.delegate horizontalNavigation:self didSelectItem:newIndex withTag:sender.tag];
+    } else if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
         [self.delegate horizontalNavigation:self didSelectItem:newIndex];
     }
 }
 
 - (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:
     (BPKHorizontalNavigationOption *)definition {
-    return [[BPKHorizontalNavigationItem alloc] initWithDefinition:definition];
+    BPKHorizontalNavigationItem *newItem = [[BPKHorizontalNavigationItem alloc] initWithName:definition.name
+                                                                                    iconName:definition.iconName];
+    newItem.tag = definition.tag;
+    return newItem;
 }
 
 - (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback {

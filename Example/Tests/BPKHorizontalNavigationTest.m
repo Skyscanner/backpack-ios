@@ -29,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire"]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
 
@@ -39,13 +39,16 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights");
     XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels");
     XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire");
+    XCTAssertEqual(horizontalNavigation.options[0].tag, 0);
+    XCTAssertEqual(horizontalNavigation.options[1].tag, 1);
+    XCTAssertEqual(horizontalNavigation.options[2].tag, 2);
 }
 
 - (void)testInitWithSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire"]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:2];
 
@@ -57,9 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire"]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
 
@@ -73,23 +76,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire"]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
 
     horizontalNavigation.selectedItemIndex = 1;
     horizontalNavigation.options = @[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights 2"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels 2"],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire 2"]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights 2" tag:3],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels 2" tag:4],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire 2" tag:5]
     ];
 
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 0);
     XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights 2");
     XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels 2");
     XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire 2");
+    XCTAssertEqual(horizontalNavigation.options[0].tag, 3);
+    XCTAssertEqual(horizontalNavigation.options[1].tag, 4);
+    XCTAssertEqual(horizontalNavigation.options[2].tag, 5);
 }
 
 @end

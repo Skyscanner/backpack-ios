@@ -10,9 +10,9 @@
 #import <Backpack/HorizontalNavigation.h>
 
 NSArray<BPKHorizontalNavigationOption *> *options = @[
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights"],
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels"],
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire"]
+                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
                                                       ];
 BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
 horizontalNavigation.showsSelectedBar = YES;
@@ -25,9 +25,9 @@ horizontalNavigation.size = BPKHorizontalNavigationSizeLarge;
 import Backpack
 
 let options = [
-    BPKHorizontalNavigationOption(name: "Flights", iconName: .flight),
-    BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels),
-    BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars)
+    BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag:0),
+    BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels, tag:1),
+    BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag:2)
 ]
 let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selected:0)
 horizontalNavigation.showsSelectedBar = false

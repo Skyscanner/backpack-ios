@@ -24,7 +24,6 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKHorizontalNavigationOption.h"
-#import "BPKTextDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,13 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigationItem
 
-- (instancetype)initWithDefinition:(BPKHorizontalNavigationOption *)definition {
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        _definition = definition;
-        [self setupWithDefinition:definition];
+        self.name = name;
+        self.iconName = iconName;
+        [self setup];
     }
 
     return self;
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithDefinition:nil];
+        [self setup];
     }
 
     return self;
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithDefinition:nil];
+        [self setup];
     }
 
     return self;
@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
-                                                                     content:self.definition.name
+                                                                     content:self.name
                                                                    textColor:self.contentColor
                                                                  fontMapping:self.fontMapping];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
@@ -131,16 +131,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIconColor {
-        [self updateIconStyle];
+    [self updateIconStyle];
 }
 
 - (void)updateIconStyle {
     BPKIconSize size = self.size == BPKHorizontalNavigationSizeDefault ? BPKIconSizeLarge : BPKIconSizeSmall;
 
-    if (self.definition.iconName == nil) {
+    if (self.iconName == nil) {
         [self setImage:nil forState:UIControlStateNormal];
     } else {
-        UIImage *iconImage = [BPKIcon iconNamed:self.definition.iconName color:self.contentColor size:size];
+        UIImage *iconImage = [BPKIcon iconNamed:self.iconName color:self.contentColor size:size];
         [self setImage:iconImage forState:UIControlStateNormal];
         self.adjustsImageWhenHighlighted = NO;
     }
@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateInsets {
-    if (self.definition.iconName == nil) {
+    if (self.iconName == nil) {
         self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, self.spacing, self.spacing, self.spacing);
         return;
     }
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGSize)intrinsicContentSize {
     CGSize textButtonIntrinsicContentSize = [super intrinsicContentSize];
-    if (self.definition.iconName) {
+    if (self.iconName) {
         CGFloat iconWidth = self.currentImage.size.width;
         CGFloat width = textButtonIntrinsicContentSize.width + iconWidth + 2 * self.spacing;
         CGFloat height = textButtonIntrinsicContentSize.height;
@@ -181,7 +181,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setupWithDefinition:(BPKHorizontalNavigationOption *_Nullable)definition {
+- (void)setup {
     [self updateStyle];
     [self updateIconStyle];
 }
