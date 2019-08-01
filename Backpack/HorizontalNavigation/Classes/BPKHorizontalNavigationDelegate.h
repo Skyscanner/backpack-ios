@@ -26,10 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /*
- * Tells the delegate that the user has selected one of the horizontal navigation options.
- *
- * @param horizontalNavigation The `BPKHorizontalNavigation` which has been interacted with.
- * @param index The index of the option selected by the user.
+ * DEPRECATED
  */
 - (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation didSelectItem:(NSInteger)index;
 
