@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 12.1.0
+
+**Added:**
+
+- Backpack/HorizontalNavigation:
+  - When creating a `BPKHorizontalNavigationOption`, a `tag` value can now be provided.
+
 ## 12.0.0
 
 **Added:**
