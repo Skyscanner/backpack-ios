@@ -77,15 +77,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSetOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag : 1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
 
     horizontalNavigation.selectedItemIndex = 1;
     horizontalNavigation.options = @[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights 2" tag : 3],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels 2" tag : 4],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights 2" tag:3],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels 2" tag:4],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire 2" tag:5]
     ];
 
