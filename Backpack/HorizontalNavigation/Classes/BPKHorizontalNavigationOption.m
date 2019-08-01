@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.name = name;
+        self.tag = 0;
     }
 
     return self;
@@ -45,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self) {
         self.name = name;
         self.iconName = iconName;
+        self.tag = 0;
     }
 
     return self;
