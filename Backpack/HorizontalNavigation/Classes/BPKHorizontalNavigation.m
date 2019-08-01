@@ -135,6 +135,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:withTag:)]) {
         [self.delegate horizontalNavigation:self didSelectItem:newIndex withTag:sender.tag];
+    } else if ([self.delegate respondsToSelector:@selector(horizontalNavigation:didSelectItem:)]) {
+        [self.delegate horizontalNavigation:self didSelectItem:newIndex];
     }
 }
 
