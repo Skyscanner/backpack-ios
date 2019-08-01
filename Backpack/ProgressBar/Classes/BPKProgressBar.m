@@ -24,6 +24,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BPKProgressBar ()
+@property(strong) NSLayoutConstraint *progressConstraint;
+@property(strong) UIView *progressView;
+@end
+
 @implementation BPKProgressBar
 
 - (instancetype _Nullable)initWithCoder:(NSCoder *)aDecoder {
@@ -52,8 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fillColor != fillColor) {
         _fillColor = fillColor;
 
-        self.progressTintColor = self.fillColor;
+        self.progressView.backgroundColor = fillColor;
     }
+}
+
+- (void)setTrackTintColor:(UIColor *)trackTintColor {
+    self.backgroundColor = trackTintColor;
 }
 
 - (void)setStyle:(BPKProgressBarStyle)style {
@@ -64,45 +73,84 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setProgress:(double)progress animated:(Boolean)animated {
+    double animationDuration = 0.4;
+    if (!animated || UIAccessibilityIsReduceMotionEnabled()) {
+        animationDuration = 0.0;
+    }
+
+    [UIView animateWithDuration:animationDuration
+                     animations:^{
+                       self.progress = progress;
+
+                       [self layoutIfNeeded];
+                     }];
+}
+
 #pragma mark - Overrides
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
     [self updateLayerStyles];
+    [self updateProgressConstraint];
 }
 
-- (void)setProgressTintColor:(UIColor *_Nullable)progressTintColor {
-    [super setProgressTintColor:progressTintColor];
-
-    // This gives a cleaner squared edge when the progress image would otherwise be stretched and deformed:
-    self.subviews[1].backgroundColor = progressTintColor;
+- (void)setProgressTintColor:(UIColor *)progressTintColor {
+    self.progressView.backgroundColor = progressTintColor;
 }
 
-- (void)setTrackTintColor:(UIColor *_Nullable)trackTintColor {
-    [super setTrackTintColor:trackTintColor];
+- (void)setProgress:(double)progress {
+    if (_progress != progress) {
+        _progress = progress;
 
-    // This gives a cleaner squared edge when the track image would otherwise be stretched and deformed:
-    self.backgroundColor = trackTintColor;
+        [self updateProgressConstraint];
+        self.accessibilityValue = [NSString stringWithFormat:@"%fpercent", progress];
+    }
 }
 
 #pragma mark - Private
 
 - (void)updateLayerStyles {
     if (self.style == BPKProgressBarStyleBar) {
+        self.progressView.layer.cornerRadius = 0.0;
         self.layer.cornerRadius = 0.0;
-        self.subviews[1].layer.cornerRadius = 0.0;
     } else {
+        self.progressView.layer.cornerRadius = self.bounds.size.height / 2;
         self.layer.cornerRadius = self.bounds.size.height / 2;
-        self.subviews[1].layer.cornerRadius = self.bounds.size.height / 2;
     }
 }
 
 - (void)setup {
-    self.trackTintColor = BPKColor.gray100;
-    self.progressTintColor = BPKColor.blue500;
+    self.progressView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.progressView];
+    self.accessibilityTraits = UIAccessibilityTraitUpdatesFrequently;
+    NSLayoutConstraint *heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKSpacingSm / 2];
+    [heightConstraint setPriority:UILayoutPriorityDefaultLow];
+    [NSLayoutConstraint activateConstraints:@[
+        heightConstraint, [self.progressView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.progressView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [self.progressView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor]
+    ]];
+
+    [self updateProgressConstraint];
+    self.backgroundColor = BPKColor.gray100;
+    self.progressView.backgroundColor = BPKColor.blue500;
     self.clipsToBounds = YES;
-    self.subviews[1].clipsToBounds = YES;
+    self.progressView.clipsToBounds = YES;
     [self updateLayerStyles];
+}
+
+- (void)updateProgressConstraint {
+    if (self.progressConstraint != nil) {
+        self.progressConstraint.active = NO;
+    }
+
+    CGFloat width = self.frame.size.width;
+
+    self.progressConstraint = [self.progressView.widthAnchor constraintEqualToConstant:width * self.progress];
+    self.progressConstraint.active = YES;
 }
 
 @end

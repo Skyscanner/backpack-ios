@@ -3,7 +3,7 @@ PODS:
     - FSCalendar (~> 2.8)
     - TTTAttributedLabel (~> 1.13.4)
   - FSCalendar (2.8.0)
-  - iOSSnapshotTestCase/Core (4.0.0)
+  - iOSSnapshotTestCase/Core (4.0.1)
   - SwiftLint (0.31.0)
   - TTTAttributedLabel (1.13.4)
 
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Backpack: 263a545a47533278646c62c4460ef849b72afa6a
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
-  iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
+  iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 

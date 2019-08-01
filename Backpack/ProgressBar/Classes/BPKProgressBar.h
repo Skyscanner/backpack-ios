@@ -32,16 +32,34 @@ typedef NS_ENUM(NSUInteger, BPKProgressBarStyle) {
 };
 
 /**
- * `BPKProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
+ * `BPKProgressBar` is a custom component based on `UIProgressView` with Skyscanner styling applied.
  */
-NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
+NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIView
 
 /**
  * The colour to use in the progress track.
  */
 @property(nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * The colour to use in the background track.
+ */
+@property(nonatomic, strong) UIColor *trackTintColor UI_APPEARANCE_SELECTOR;
+
+/**
+ * The progress value
+ */
+@property(nonatomic) double progress;
+
+/*
+ * TODO DOCS
+ */
 @property(nonatomic) BPKProgressBarStyle style;
+
+/*
+ * TODO DOCS
+ */
+- (void)setProgress:(double)progress animated:(Boolean)animated;
 
 @end
 NS_ASSUME_NONNULL_END
