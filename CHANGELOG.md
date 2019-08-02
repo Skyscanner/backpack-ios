@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 12.1.1
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Fixed bottom padding underneath buttons.
+
 ## 12.1.0
 
 **Added:**
