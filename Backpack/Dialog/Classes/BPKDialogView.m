@@ -133,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setLayoutMargins {
-    float bottomMargin = BPKSpacingMd;
+    CGFloat bottomMargin = BPKSpacingMd;
     if (self.style == BPKDialogControllerStyleAlert && self.registeredActions.count > 0) {
         bottomMargin += BPKSpacingMd + BPKSpacingSm;
     }
