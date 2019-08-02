@@ -19,6 +19,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKDialogButtonAction.h"
+#import "BPKDialogControllerStyle.h"
 
 @class BPKShadow;
 
@@ -45,6 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
  * The delegate of the view.
  */
 @property(nonatomic, weak) id<BPKDialogViewDelegate> delegate;
+
+/**
+ * The style of the dialog.
+ */
+@property(nonatomic, assign) BPKDialogControllerStyle style;
 
 /**
  * The background color of the icon view at the top

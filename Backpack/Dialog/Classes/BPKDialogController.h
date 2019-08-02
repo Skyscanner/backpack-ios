@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BPKDialogControllerStyle.h"
 #import "BPKDialogView.h"
 
 @class BPKDialogConfiguration;
@@ -27,25 +28,6 @@
 @class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- * The different styles of the Dialog.
- *
- */
-typedef NS_ENUM(NSInteger, BPKDialogControllerStyle) {
-    /**
-     * A bottom sheet displayed at the bottom of the screen.
-     * Suitable for confirming potential dangerous actions or
-     * making choices.
-     */
-    BPKDialogControllerStyleBottomSheet = 0,
-
-    /**
-     * An alert style Dialog displaying its content in
-     * the middle of the screen.
-     */
-    BPKDialogControllerStyleAlert
-};
 
 /**
  * A `UIViewController` subclass encapsulating the Backpack dialog component.

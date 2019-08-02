@@ -1,4 +1,8 @@
 # Unreleased
+**Fixed:**
+
+- Backpack/Dialog:
+  - Fixed bottom padding underneath buttons.
 
 > Place your changes below this line.
 

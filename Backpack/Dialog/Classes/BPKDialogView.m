@@ -132,10 +132,18 @@ NS_ASSUME_NONNULL_BEGIN
     [self.contentView addSubview:self.buttonStackView];
 }
 
+- (void)setLayoutMargins {
+    CGFloat bottomMargin = BPKSpacingMd;
+    if (self.style == BPKDialogControllerStyleAlert && self.registeredActions.count > 0) {
+        bottomMargin += BPKSpacingMd + BPKSpacingSm;
+    }
+    self.contentView.layoutMargins =
+        UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg, bottomMargin, BPKSpacingLg);
+}
+
 - (void)setupConstraints {
     CGSize iconViewSize = [[self.iconView class] viewSize];
-    self.contentView.layoutMargins = UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg,
-                                                      self.contentView.layoutMargins.bottom, BPKSpacingLg);
+    [self setLayoutMargins];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
@@ -253,6 +261,14 @@ NS_ASSUME_NONNULL_BEGIN
     return self.descriptionLabel.text;
 }
 
+- (void)setStyle:(BPKDialogControllerStyle)style {
+    if (_style != style) {
+        _style = style;
+
+        [self setLayoutMargins];
+    }
+}
+
 #pragma mark - Other public methods
 
 - (void)addButtonAction:(BPKDialogButtonAction *)action {
@@ -266,6 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
     pair.button = button;
     pair.action = action;
     [self.registeredActions addObject:pair];
+    [self setLayoutMargins];
 }
 
 @end
