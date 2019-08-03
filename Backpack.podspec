@@ -32,11 +32,12 @@ Pod::Spec.new do |s|
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '10.0'
-  s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m}'
+  s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
   s.ios.resource_bundle = {
     'Icon' => 'Backpack/Icon/Assets/*'
   }
+  s.dependency 'FloatingPanel', '~> 1.6'
   s.dependency 'FSCalendar', '~> 2.8'
   s.dependency 'TTTAttributedLabel', '~> 1.13.4'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
