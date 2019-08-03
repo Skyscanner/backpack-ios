@@ -21,6 +21,8 @@ import FloatingPanel
 final class BackpackFloatingPanelController: FloatingPanelController {
     var backpackBottomSheet: BottomSheet?
     
+    var onDismissed: (() -> Void)?
+    
     var bottomSectionViewController: UIViewController? {
         didSet {
             guard let bottomSection = bottomSectionViewController else { return }
@@ -37,6 +39,7 @@ final class BackpackFloatingPanelController: FloatingPanelController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if parent == nil {
+            onDismissed?()
             backpackBottomSheet = nil
         }
     }

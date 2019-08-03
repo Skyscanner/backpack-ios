@@ -23,7 +23,7 @@ import FloatingPanel
 public final class BottomSheet: NSObject {
     
     private struct Constants {
-        static let bottomSheetHeightInHalfPosition: CGFloat = 374.0
+        static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
     }
     
@@ -62,6 +62,17 @@ public final class BottomSheet: NSObject {
     public var bottomSectionViewController: UIViewController? {
         get {
             return floatingPanelController.bottomSectionViewController
+        }
+    }
+    
+    /// This closure will be executed once the bottom sheet has been
+    /// fully dismissed.
+    public var onDismissed: (() -> Void)? {
+        get {
+            return floatingPanelController.onDismissed
+        }
+        set {
+            floatingPanelController.onDismissed = newValue
         }
     }
     
