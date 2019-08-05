@@ -67,7 +67,7 @@ private extension BackpackFloatingPanelController {
         bottomSection.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bottomSection.view)
         
-        let safeAreaView = addSafeAreaView(to: bottomSection)
+        let outsideSafeAreaView = addOutsideSafeAreaView(to: bottomSection)
         
         let bottomContainerConstraint = bottomSection.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         bottomContainerConstraint.priority = .defaultLow
@@ -77,11 +77,11 @@ private extension BackpackFloatingPanelController {
             bottomSection.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomContainerConstraint,
             
-            safeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor, constant: layout.insetFor(position: .half) ?? 0),
+            outsideSafeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor, constant: layout.insetFor(position: .half) ?? 0),
         ])
     }
     
-    func addSafeAreaView(to bottomSection: UIViewController) -> UIView {
+    func addOutsideSafeAreaView(to bottomSection: UIViewController) -> UIView {
         let invisibleOutsideSafeAreaView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false

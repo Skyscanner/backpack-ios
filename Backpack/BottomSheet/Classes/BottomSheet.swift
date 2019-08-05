@@ -20,6 +20,7 @@ import UIKit
 import FloatingPanel
 
 @objcMembers
+@objc(BPKBottomSheet)
 public final class BottomSheet: NSObject {
     
     private struct Constants {
