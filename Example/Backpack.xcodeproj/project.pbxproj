@@ -60,6 +60,7 @@
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
 		D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
+		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
 		D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */; };
 		D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
@@ -223,6 +224,7 @@
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
 		D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKProgressBarTest.m; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
+		D24D602A22F84CEC002847D1 /* TextField.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextField.storyboard; sourceTree = "<group>"; };
 		D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TappableLinkLabels.storyboard; sourceTree = "<group>"; };
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
+				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				D278358C22EA2A81004C79CF /* ProgressBar.storyboard */,
 				D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */,
 				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
@@ -762,6 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
+				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */,
