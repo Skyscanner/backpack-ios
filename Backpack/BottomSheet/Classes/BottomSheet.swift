@@ -22,50 +22,44 @@ import FloatingPanel
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BottomSheet: NSObject {
-    
+
     private struct Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
     }
-    
+
     private lazy var floatingPanelController: BackpackFloatingPanelController = {
         let panel = BackpackFloatingPanelController(delegate: self)
         panel.surfaceView.cornerRadius = 24.0
         panel.isRemovalInteractionEnabled = true
-        
+
         // We do this to hold a strong reference to `BottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
         // it's dismissed, to avoid a reference cycle.
-        panel.backpackBottomSheet = self
-        
+        panel.bottomSheet = self
+
         return panel
     }()
-    
+
     /// View controller that will be presented when calling
     /// `present(in: _, animated: _, completion: _)`.
     /// It can also be presented using UIKit's native presentation API.
     public var viewControllerToPresent: UIViewController {
-        get {
-            return floatingPanelController
-        }
+        return floatingPanelController
     }
-    
+
     /// View controller contained in the bottom sheet.
     public var contentViewController: UIViewController? {
-        get {
-            return floatingPanelController.contentViewController
-        }
+        return floatingPanelController.contentViewController
     }
-    
+
     /// Fixed bottom section. Can only be passed when initializing
     /// the bottom sheet.
     public var bottomSectionViewController: UIViewController? {
-        get {
-            return floatingPanelController.bottomSectionViewController
-        }
+        return floatingPanelController.bottomSectionViewController
     }
-    
+
     /// This closure will be executed once the bottom sheet has been
     /// fully dismissed.
     public var onDismissed: (() -> Void)? {
@@ -76,7 +70,7 @@ public final class BottomSheet: NSObject {
             floatingPanelController.onDismissed = newValue
         }
     }
-    
+
     /// Instantiates a `BottomSheet`.
     ///
     /// - Parameters:
@@ -89,13 +83,15 @@ public final class BottomSheet: NSObject {
     ///     that should be accessible at all times. A top shadow is automatically added so that
     ///     it integrates better with the content of the bottom sheet.
     ///     Note: Safe Area should be taken into account in the bottom section's inner constraints.
-    public init(contentViewController: UIViewController, scrollViewToTrack: UIScrollView, bottomSectionViewController: UIViewController? = nil) {
+    public init(contentViewController: UIViewController,
+                scrollViewToTrack: UIScrollView,
+                bottomSectionViewController: UIViewController? = nil) {
         super.init()
         floatingPanelController.contentViewController = contentViewController
         floatingPanelController.track(scrollView: scrollViewToTrack)
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
     }
-    
+
     /// This presents the bottom sheet. It is just a wrapper of native API
     /// `UIViewController.present(_, animated: _, completion: _)`.
     ///
@@ -106,37 +102,38 @@ public final class BottomSheet: NSObject {
     public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
-    
+
 }
 
 extension BottomSheet: FloatingPanelControllerDelegate {
-    public func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        final class Layout: FloatingPanelLayout {
-            var initialPosition: FloatingPanelPosition {
-                return .half
-            }
-            
-            var supportedPositions: Set<FloatingPanelPosition> {
-                return [.full, .half]
-            }
-            
-            func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-                switch position {
-                case .half: return Constants.bottomSheetHeightInHalfPosition
-                default: return nil
-                }
-            }
-            
-            func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-                switch position{
-                case .full, .half:
-                    return Constants.backdropAlpha
-                default:
-                    return 0.0
-                }
+    final class Layout: FloatingPanelLayout {
+        var initialPosition: FloatingPanelPosition {
+            return .half
+        }
+
+        var supportedPositions: Set<FloatingPanelPosition> {
+            return [.full, .half]
+        }
+
+        func insetFor(position: FloatingPanelPosition) -> CGFloat? {
+            switch position {
+            case .half: return Constants.bottomSheetHeightInHalfPosition
+            default: return nil
             }
         }
-        
+
+        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+            switch position {
+            case .full, .half:
+                return Constants.backdropAlpha
+            default:
+                return 0.0
+            }
+        }
+    }
+
+    public func floatingPanel(_ viewController: FloatingPanelController,
+                              layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         return Layout()
     }
 }

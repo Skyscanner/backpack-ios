@@ -19,10 +19,10 @@
 import FloatingPanel
 
 final class BackpackFloatingPanelController: FloatingPanelController {
-    var backpackBottomSheet: BottomSheet?
-    
+    var bottomSheet: BottomSheet?
+
     var onDismissed: (() -> Void)?
-    
+
     var bottomSectionViewController: UIViewController? {
         didSet {
             guard let bottomSection = bottomSectionViewController else { return }
@@ -30,57 +30,58 @@ final class BackpackFloatingPanelController: FloatingPanelController {
             addTopShadow(to: bottomSection)
         }
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateScrollViewInsetsForBottomSection()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if parent == nil {
             onDismissed?()
-            backpackBottomSheet = nil
+            bottomSheet = nil
         }
     }
-    
+
 }
 
 // MARK: - Bottom Section
 private extension BackpackFloatingPanelController {
-    
+
     private struct ShadowConstants {
         static let radius: CGFloat = 3.0
         static let opacity: Float = 3.0
         static let offset: CGSize = .init(width: 0, height: -4)
     }
-    
+
     func add(_ bottomSection: UIViewController) {
         guard let content = contentViewController else { return }
-        
+
         #if swift(>=4.2)
         addChild(bottomSection)
         #else
         addChildViewController(bottomSection)
         #endif
-        
+
         bottomSection.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bottomSection.view)
-        
+
         let outsideSafeAreaView = addOutsideSafeAreaView(to: bottomSection)
-        
+
         let bottomContainerConstraint = bottomSection.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         bottomContainerConstraint.priority = .defaultLow
-        
+
         NSLayoutConstraint.activate([
             bottomSection.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomSection.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomContainerConstraint,
-            
-            outsideSafeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor, constant: layout.insetFor(position: .half) ?? 0),
+
+            outsideSafeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor,
+                                                     constant: layout.insetFor(position: .half) ?? 0)
         ])
     }
-    
+
     func addOutsideSafeAreaView(to bottomSection: UIViewController) -> UIView {
         let invisibleOutsideSafeAreaView: UIView = {
             let view = UIView()
@@ -95,7 +96,7 @@ private extension BackpackFloatingPanelController {
             ])
             return view
         }()
-        
+
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
@@ -105,11 +106,11 @@ private extension BackpackFloatingPanelController {
             view.trailingAnchor.constraint(equalTo: bottomSection.view.trailingAnchor),
             view.topAnchor.constraint(greaterThanOrEqualTo: bottomSection.view.topAnchor),
             view.bottomAnchor.constraint(equalTo: bottomSection.view.bottomAnchor),
-            view.heightAnchor.constraint(equalTo: invisibleOutsideSafeAreaView.heightAnchor),
+            view.heightAnchor.constraint(equalTo: invisibleOutsideSafeAreaView.heightAnchor)
         ])
         return view
     }
-    
+
     func addTopShadow(to bottomSection: UIViewController) {
         bottomSection.view.layer.shadowColor = bottomSection.view.backgroundColor?.cgColor
         bottomSection.view.layer.shadowRadius = ShadowConstants.radius
@@ -117,24 +118,22 @@ private extension BackpackFloatingPanelController {
         bottomSection.view.layer.shadowOffset = ShadowConstants.offset
         bottomSection.view.layer.masksToBounds = false
     }
-    
+
     func updateScrollViewInsetsForBottomSection() {
         guard let scrollView = scrollView, let bottomSection = bottomSectionViewController else { return }
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: bottomSection.view.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
-    
+
 }
 
 private extension BackpackFloatingPanelController {
     var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
-        get {
-            if #available(iOS 11.0, *) {
-                return view.safeAreaLayoutGuide.bottomAnchor
-            } else {
-                return view.bottomAnchor
-            }
+        if #available(iOS 11.0, *) {
+            return view.safeAreaLayoutGuide.bottomAnchor
+        } else {
+            return view.bottomAnchor
         }
     }
 }

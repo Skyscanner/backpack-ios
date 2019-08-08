@@ -42,4 +42,5 @@ Pod::Spec.new do |s|
   s.dependency 'TTTAttributedLabel', '~> 1.13.4'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
+  s.swift_version = '4.2'
 end
