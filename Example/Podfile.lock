@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 5bca706986f852567f4954edf56ed37cb55fadb8
+  Backpack: c2eae4d86c8d9ee30bfd54ca03111928fc54e652
   FloatingPanel: a318d2f98eeb44e09c336d920f0eabc7c7b1579d
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
