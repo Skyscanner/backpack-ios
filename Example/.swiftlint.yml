@@ -12,4 +12,5 @@ opt_in_rules:
 excluded:
   - Pods
 included:
-  - ../Backpack/
+  - ../Backpack
+  - ./
