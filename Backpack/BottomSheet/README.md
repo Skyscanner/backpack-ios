@@ -12,7 +12,7 @@ and then run `pod install`.
 
 ## Usage
 
-### Calendar
+### Bottom Sheet
 
 `Backpack/BottomSheet` contains the Backpack Bottom Sheet component in the class `BottomSheet`. The Bottom Sheet is a component for presenting a floating panel similar to the one used in Apple Maps, Stocks and other native Apple apps.
 
