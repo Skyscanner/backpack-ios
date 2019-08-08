@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+
+- Backpack:
+  - New `BottomSheet` component for presenting a floating panel similar to the one used in Apple Maps, Stocks and other native Apple apps.
 
 ## How to write a good changelog entry
 

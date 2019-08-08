@@ -99,6 +99,7 @@ public final class BottomSheet: NSObject {
     ///   - viewController: The view controller that should present this bottom sheet.
     ///   - animated: Animated or not.
     ///   - completion: Completion closure called after presentation animation.
+    @objc(presentInViewController:animated:completion:)
     public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
