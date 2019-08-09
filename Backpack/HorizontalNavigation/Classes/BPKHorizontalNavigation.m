@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigation ()
 @property(nonatomic, strong) UIStackView *stackView;
 @property(nonatomic, strong) UIView *barView;
-@property(nonatomic) double barHeight;
+@property(nonatomic) CGFloat barHeight;
 @property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *barConstraints;
 @end
 
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         UIView *selectedButton = self.stackView.arrangedSubviews[self.selectedItemIndex];
 
-        double animationDuration = 0.2;
+        CGFloat animationDuration = 0.2;
         if (UIAccessibilityIsReduceMotionEnabled()) {
             animationDuration = 0.0;
         }
@@ -204,7 +204,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (double)barHeight {
+- (CGFloat)barHeight {
     return BPKSpacingSm / 2;
 }
 

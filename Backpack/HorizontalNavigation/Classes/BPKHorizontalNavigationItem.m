@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationItem ()
 
 @property(readonly) UIColor *contentColor;
-@property(nonatomic) double horizontalSpacing;
-@property(nonatomic) double verticalSpacing;
+@property(nonatomic) CGFloat horizontalSpacing;
+@property(nonatomic) CGFloat verticalSpacing;
 
 @end
 
@@ -186,11 +186,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateIconStyle];
 }
 
-- (double)verticalSpacing {
+- (CGFloat)verticalSpacing {
     return self.size == BPKHorizontalNavigationSizeSmall ? BPKSpacingBase : BPKSpacingLg;
 }
 
-- (double)horizontalSpacing {
+- (CGFloat)horizontalSpacing {
     return BPKSpacingSm;
 }
 
