@@ -182,6 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setup {
+    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self updateStyle];
     [self updateIconStyle];
 }
