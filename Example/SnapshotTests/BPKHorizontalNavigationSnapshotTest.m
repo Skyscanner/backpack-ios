@@ -33,12 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
-- (UIView *)displayHorizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation width:(CGFloat) width {
+- (UIView *)displayHorizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation width:(CGFloat)width {
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.backgroundColor = UIColor.whiteColor;
 
     CGSize fittingSize = [horizontalNavigation systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
-    if(width > -1){
+    if (width > -1) {
         fittingSize.width = width;
     }
     horizontalNavigation.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -107,48 +107,48 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testWithTheming {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
-                                                          ];
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+    ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
     horizontalNavigation.showsSelectedBar = YES;
-    
+
     horizontalNavigation.selectedColor = UIColor.orangeColor;
     horizontalNavigation.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
                                                               regularFontFace:@"SnellRoundhand"
                                                              semiboldFontFace:@"SnellRoundhand-Bold"
                                                                 heavyFontFace:@"SnellRoundhand-Black"];
-    
+
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
     FBSnapshotVerifyView(view, nil);
 }
 
 - (void)testWide {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
-                                                          ];
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+    ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
     horizontalNavigation.showsSelectedBar = YES;
-    
+
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:550];
     FBSnapshotVerifyView(view, nil);
 }
 
 - (void)testNarrow {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-                                                          [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
-                                                          ];
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+    ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
     horizontalNavigation.showsSelectedBar = YES;
-    
+
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:200];
     FBSnapshotVerifyView(view, nil);
 }

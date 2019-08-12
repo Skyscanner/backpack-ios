@@ -17,7 +17,6 @@
  * limitations under the License.
  */
 
-
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/ProgressBar.h>
@@ -46,7 +45,7 @@
 - (void)testOverridingBackgroundColor {
     BPKProgressBar *progressBar = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
     progressBar.progress = 0.75;
-    
+
     progressBar.trackTintColor = UIColor.clearColor;
 
     CGSize fittingSize = [progressBar systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
