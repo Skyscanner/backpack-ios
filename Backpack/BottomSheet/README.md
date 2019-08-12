@@ -28,7 +28,7 @@ BPKBottomSheet *bottomSheet = [[BPKBottomSheet alloc] initWithContentViewControl
 [bottomSheet presentInViewController:self animated:YES completion:nil];
 ```
 
-With a fixed bottom section
+# With a fixed bottom section
 
 ```objective-c
 #import <Backpack/Backpack-Swift.h>
