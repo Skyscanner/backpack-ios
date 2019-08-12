@@ -14,7 +14,7 @@ and then run `pod install`.
 
 ### Bottom Sheet
 
-`Backpack/BottomSheet` contains the Backpack Bottom Sheet component in the class `BottomSheet`. The Bottom Sheet is a component for presenting a floating panel similar to the one used in Apple Maps, Stocks and other native Apple apps.
+`Backpack/BottomSheet` is a component for presenting a floating panel similar to the one used in Apple Maps, Stocks and other native Apple apps.
 
 ### Objective-C
 
