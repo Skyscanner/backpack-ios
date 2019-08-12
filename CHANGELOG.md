@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 12.1.2
+
+**Fixed:**
+
+- Backpack/HorizontalNavigation:
+  - Reduced horizontal spacing between items.
+
 ## 12.1.1
 
 **Fixed:**

@@ -1,9 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/HorizontalNavigation:
-  - Reduced horizontal spacing between items.
 
 ## How to write a good changelog entry
 
