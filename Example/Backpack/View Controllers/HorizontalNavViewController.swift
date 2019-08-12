@@ -25,6 +25,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     var size: BPKHorizontalNavigationSize = .default
     var showBar: Bool = true
     var showIcons: Bool = false
+    var wide: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,5 +46,9 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         horizontalNav.showsSelectedBar = showBar
         horizontalNav.size = size
         horizontalNav.selectedItemIndex = 0
+
+        if wide {
+            horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        }
     }
 }

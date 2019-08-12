@@ -30,7 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationItem ()
 
 @property(readonly) UIColor *contentColor;
-@property(nonatomic) double spacing;
+@property(nonatomic) CGFloat horizontalSpacing;
+@property(nonatomic) CGFloat verticalSpacing;
 
 @end
 
@@ -150,44 +151,48 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateInsets {
     if (self.iconName == nil) {
-        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, self.spacing, self.spacing, self.spacing);
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.verticalSpacing, self.horizontalSpacing, self.verticalSpacing,
+                                                self.horizontalSpacing);
         return;
     }
 
-    CGFloat insetAmount = self.spacing / 2.0;
+    CGFloat horizontalInset = self.horizontalSpacing / 2.0;
 
     if ([BPKRTLSupport viewIsRTL:self]) {
-        self.imageEdgeInsets = UIEdgeInsetsMake(self.spacing, insetAmount, self.spacing, 0);
-        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, 0, self.spacing, insetAmount);
-        self.contentEdgeInsets = UIEdgeInsetsMake(insetAmount, insetAmount, insetAmount, insetAmount);
+        self.imageEdgeInsets = UIEdgeInsetsMake(0, horizontalInset, 0, 0);
+        self.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, horizontalInset);
     } else {
-        self.imageEdgeInsets = UIEdgeInsetsMake(self.spacing, 0, self.spacing, insetAmount);
-        self.titleEdgeInsets = UIEdgeInsetsMake(self.spacing, insetAmount, self.spacing, 0);
-        self.contentEdgeInsets = UIEdgeInsetsMake(insetAmount, insetAmount, insetAmount, insetAmount);
+        self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, horizontalInset);
+        self.titleEdgeInsets = UIEdgeInsetsMake(0, horizontalInset, 0, 0);
     }
 }
 
 - (CGSize)intrinsicContentSize {
-    CGSize textButtonIntrinsicContentSize = [super intrinsicContentSize];
+    CGSize buttonIntrinsicContentSize = [super intrinsicContentSize];
     if (self.iconName) {
-        CGFloat iconWidth = self.currentImage.size.width;
-        CGFloat width = textButtonIntrinsicContentSize.width + iconWidth + 2 * self.spacing;
-        CGFloat height = textButtonIntrinsicContentSize.height;
+        CGFloat iconHeight = self.currentImage.size.height;
+        CGFloat width = buttonIntrinsicContentSize.width + 3 * self.horizontalSpacing;
+        CGFloat height = iconHeight + self.verticalSpacing / 2;
         return CGSizeMake(width, height);
     } else {
-        CGFloat width = textButtonIntrinsicContentSize.width + 2 * self.spacing;
-        CGFloat height = textButtonIntrinsicContentSize.height;
+        CGFloat width = buttonIntrinsicContentSize.width + 2 * self.horizontalSpacing;
+        CGFloat height = buttonIntrinsicContentSize.height;
         return CGSizeMake(width, height);
     }
 }
 
 - (void)setup {
+    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self updateStyle];
     [self updateIconStyle];
 }
 
-- (double)spacing {
+- (CGFloat)verticalSpacing {
     return self.size == BPKHorizontalNavigationSizeSmall ? BPKSpacingBase : BPKSpacingLg;
+}
+
+- (CGFloat)horizontalSpacing {
+    return BPKSpacingSm;
 }
 
 @end
