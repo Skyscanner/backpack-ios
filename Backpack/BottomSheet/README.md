@@ -52,7 +52,7 @@ let bottomSheet = BottomSheet(contentViewController: contentViewController,
 bottomSheet.present(in: self, animated: true, completion: nil)
 ```
 
-With a fixed bottom section
+# With a fixed bottom section
 
 ```swift
 import Backpack
