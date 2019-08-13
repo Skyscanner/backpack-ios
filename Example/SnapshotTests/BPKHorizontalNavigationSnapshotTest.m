@@ -94,8 +94,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithIcons {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
@@ -108,8 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithTheming {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
@@ -128,8 +128,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWide {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
@@ -142,8 +142,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testNarrow {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameCars tag:1],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameHotels tag:2]
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
                                                                                             selected:0];
