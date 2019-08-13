@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 13.0.0
+
+**Breaking:**
+- Backpack/Icon
+  - Added new icons
+  - `BPKIconNameSwap` renamed `BPKIconNameSwapHorizontal`
+
+**Added:**
+- Backpack/Icon
+  - Added new icons
+  - `BPKIconNameSwapVertical`
+
 ## 12.1.2
 
 **Fixed:**
