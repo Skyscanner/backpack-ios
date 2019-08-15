@@ -36,6 +36,9 @@ BpkDialingCodeList
 
 BpkFieldset
 
+FlareView
+BPKFlareView
+
 BpkFlatList
 BpkFlatListHeader
 BpkFlatListItem

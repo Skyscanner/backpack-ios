@@ -16,35 +16,22 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "Dialog.h"
-#import "FlareView.h"
-#import "HorizontalNavigation.h"
-#import "Icon.h"
-#import "Label.h"
-#import "NavigationBar.h"
-#import "Panel.h"
-#import "ProgressBar.h"
-#import "Spinner.h"
-#import "StarRating.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
+/**
+ * A `BPKFlareView` is a subclass of UIView
+ */
+NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
 
-#endif
+@property(nonatomic) UIView *contentView;
+
+@property(nonatomic) BOOL isFlareVisible;
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+@end
+NS_ASSUME_NONNULL_END

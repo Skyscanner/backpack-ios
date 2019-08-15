@@ -71,6 +71,9 @@
 		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
 		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
+		D28443E822FC41880066F88B /* FlareView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28443E722FC41880066F88B /* FlareView.storyboard */; };
+		D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443E922FC42A30066F88B /* FlareViewViewController.swift */; };
+		D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443EA22FC42A30066F88B /* FlareViewSelectorViewController.swift */; };
 		D28784922250FCBD00353E32 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784902250FCBD00353E32 /* Settings.swift */; };
 		D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784912250FCBD00353E32 /* ThemeHelpers.swift */; };
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
@@ -81,6 +84,7 @@
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
+		D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -242,6 +246,9 @@
 		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
+		D28443E722FC41880066F88B /* FlareView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlareView.storyboard; sourceTree = "<group>"; };
+		D28443E922FC42A30066F88B /* FlareViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewViewController.swift; sourceTree = "<group>"; };
+		D28443EA22FC42A30066F88B /* FlareViewSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewSelectorViewController.swift; sourceTree = "<group>"; };
 		D28784902250FCBD00353E32 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D28784912250FCBD00353E32 /* ThemeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelpers.swift; sourceTree = "<group>"; };
 		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
@@ -252,6 +259,7 @@
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
+		D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKFlareViewSnapshotTest.m; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
@@ -400,6 +408,7 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
+				D28443E722FC41880066F88B /* FlareView.storyboard */,
 				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				D278358C22EA2A81004C79CF /* ProgressBar.storyboard */,
 				D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */,
@@ -566,6 +575,8 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D28443EA22FC42A30066F88B /* FlareViewSelectorViewController.swift */,
+				D28443E922FC42A30066F88B /* FlareViewViewController.swift */,
 				D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */,
 				D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */,
 				D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */,
@@ -613,6 +624,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */,
 				D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */,
 				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */,
 				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
@@ -796,6 +808,7 @@
 				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				D28443E822FC41880066F88B /* FlareView.storyboard in Resources */,
 				D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */,
 				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -967,6 +980,7 @@
 				E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
+				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
@@ -993,6 +1007,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
+				D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
@@ -1042,6 +1057,7 @@
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
+				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
