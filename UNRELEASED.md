@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Label:
+   - Default text colour is now gray900 as this is a more suitable colour in the new palette.
 
 ## How to write a good changelog entry
 
