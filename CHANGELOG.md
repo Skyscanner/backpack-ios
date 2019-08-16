@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.0.0
+
+**Breaking:**
+ - Backpack/Dialog
+   - Icon definition is now encapsulated in a separate object, and is optional.
+
+**Added:**
+
+- Backpack/Color:
+  - Updated gray colours `gray50`, `gray100`, `gray200`, `gray300`, `gray400`, `gray500`, `gray700`, `gray900`
+  - Deprecated `gray600` and `gray800` please update as these will be removed in the future.
+
 ## 13.0.0
 
 **Breaking:**
