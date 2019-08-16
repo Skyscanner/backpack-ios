@@ -105,42 +105,42 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 /**
  * The `gray100` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #e6e4ebff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #dddde5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray100;
 
 /**
  * The `gray200` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #ccc9d4ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #cdcdd7ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray200;
 
 /**
  * The `gray300` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #b2aebdff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #b2b2bfff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray300;
 
 /**
  * The `gray400` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #9a95a7ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #8f90a0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray400;
 
 /**
  * The `gray50` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #f3f2f5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #f1f2f8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray50;
 
 /**
  * The `gray500` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #817b8fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #68697fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray500;
 
@@ -154,7 +154,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 /**
  * The `gray700` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #524c61ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #444560ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray700;
 
@@ -168,7 +168,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 /**
  * The `gray900` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * gray900;
 
@@ -469,35 +469,35 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 /**
  * The `shadowLgColor` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * shadowLgColor;
 
 /**
  * The `shadowSmColor` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * shadowSmColor;
 
 /**
  * The `shadowXlColor` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * shadowXlColor;
 
 /**
  * The `touchableOverlayColor` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * touchableOverlayColor;
 
 /**
  * The `underlayColor` color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #252033ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * underlayColor;
 
