@@ -37,7 +37,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: {{c.hex}}; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * {{c.name}};
+@property(nonatomic, class, readonly) UIColor * {{c.name}}{{" __deprecated" if c.deprecated}};
 {% endfor %}
 /**
  * The `clear` color from the Backpack palette.
