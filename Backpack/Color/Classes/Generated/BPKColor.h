@@ -149,7 +149,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #696179ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray600;
+@property(nonatomic, class, readonly) UIColor * gray600 __deprecated;
 
 /**
  * The `gray700` color from the Backpack palette.
@@ -163,7 +163,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #3b344bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray800;
+@property(nonatomic, class, readonly) UIColor * gray800 __deprecated;
 
 /**
  * The `gray900` color from the Backpack palette.
@@ -485,7 +485,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * shadowXlColor;
+@property(nonatomic, class, readonly) UIColor * shadowXlColor __deprecated;
 
 /**
  * The `touchableOverlayColor` color from the Backpack palette.
@@ -499,7 +499,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * underlayColor;
+@property(nonatomic, class, readonly) UIColor * underlayColor __deprecated;
 
 /**
  * The `clear` color from the Backpack palette.

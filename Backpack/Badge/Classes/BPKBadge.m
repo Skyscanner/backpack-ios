@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (type == BPKBadgeTypeOutline || type == BPKBadgeTypeDestructive) {
         self.label.textColor = [BPKColor white];
     } else {
-        self.label.textColor = [BPKColor gray700];
+        self.label.textColor = [BPKColor gray900];
     }
 }
 

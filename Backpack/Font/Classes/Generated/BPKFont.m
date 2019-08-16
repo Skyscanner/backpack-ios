@@ -222,13 +222,13 @@ NS_ASSUME_NONNULL_BEGIN
     if (tracking != nil) {
         result = @{
                    NSKernAttributeName: tracking,
-                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSForegroundColorAttributeName: BPKColor.gray900,
                    NSFontAttributeName: font,
                    };
 
     } else {
         result = @{
-                   NSForegroundColorAttributeName: BPKColor.gray700,
+                   NSForegroundColorAttributeName: BPKColor.gray900,
                    NSFontAttributeName: font,
                    };
    }
