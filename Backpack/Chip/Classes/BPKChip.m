@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     self.tintLayer = [CALayer layer];
-    self.tintLayer.backgroundColor = BPKColor.gray600.CGColor;
+    self.tintLayer.backgroundColor = BPKColor.gray500.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 
