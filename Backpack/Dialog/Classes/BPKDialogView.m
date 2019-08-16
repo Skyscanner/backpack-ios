@@ -143,7 +143,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupConstraints {
-    // CGSize iconViewSize = [[self.iconView class] viewSize];
     [self setLayoutMargins];
 
     [NSLayoutConstraint activateConstraints:@[

@@ -50,8 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [[self class] viewSize];
 }
 
-- (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
-    // TODO handle iconDefinition nil
+- (void)setIconDefinition:(BPKDialogIconDefinition *)iconDefinition {
     if (_iconDefinition != iconDefinition) {
         self.iconContainerView.backgroundColor = iconDefinition.iconBackgroundColor;
         self.iconImageView.image = iconDefinition.iconImage;
