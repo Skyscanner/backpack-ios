@@ -24,6 +24,7 @@ enum DialogType {
     case warning
     case delete
     case confirmation
+    case noIcon
 }
 
 class DialogViewController: UIViewController {
@@ -40,17 +41,40 @@ class DialogViewController: UIViewController {
             showDelete()
         case .confirmation:
             showConfirmation()
+        case .noIcon:
+            showNoIcon()
         }
+    }
+
+    func showNoIcon() {
+        let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
+        let dialogController  = DialogController(title: "Welcome!",
+                                                message: message,
+                                                style: .bottomSheet,
+                                                iconDefinition: nil)
+
+        let mainAction = DialogButtonAction(title: "Got it", style: .primary) {
+            print("Primary was tapped, action: \($0)")
+        }
+
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+            print("Scrim tap \(didDismiss ? "dimissing" : "")")
+        }, shouldDismiss: false)
+
+        dialogController.addButtonAction(mainAction)
+        dialogController.scrimAction = scrimAction
+
+        self.present(dialogController, animated: true, completion: nil)
     }
 
     func showNormal() {
         let message = "Your flight is all booked. Why not check out some hotels now?"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
         let dialogController  = DialogController(title: "You are going to Tokyo!",
                                                 message: message,
                                                 style: .alert,
-                                                iconBackgroundColor: Color.green500,
-                                                iconImage: iconTemplate)
+                                                iconDefinition: iconDefinition)
 
         let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
@@ -83,11 +107,11 @@ class DialogViewController: UIViewController {
         Safe travels!
         """
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
         let alertController = DialogController(title: "You're almost ready to pack your bags!",
                                                message: message,
                                                style: .bottomSheet,
-                                               iconBackgroundColor: Color.green500,
-                                               iconImage: iconTemplate)
+                                               iconDefinition: iconDefinition)
 
         let scrimAction = DialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
@@ -101,11 +125,11 @@ class DialogViewController: UIViewController {
     func showWarning() {
         let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .lightning, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.yellow500)
         let alertController = DialogController(title: "!#$Warning-0-1!#$#$?",
                                                message: message,
                                                style: .alert,
-                                               iconBackgroundColor: Color.yellow500,
-                                               iconImage: iconTemplate)
+                                               iconDefinition: iconDefinition)
 
         let mainAction = DialogButtonAction(title: "OK", style: .primary) { _ in
             NSLog("Primary tapped")
@@ -123,11 +147,11 @@ class DialogViewController: UIViewController {
 
     func showDelete() {
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .trash, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.red500)
         let alertController = DialogController(title: "Delete?",
                                                message: "Are you sure you would like to delete your avatar?",
                                                style: .bottomSheet,
-                                               iconBackgroundColor: Color.red500,
-                                               iconImage: iconTemplate)
+                                               iconDefinition: iconDefinition)
 
         let mainAction = DialogButtonAction(title: "Delete", style: .destructive) { _ in
             NSLog("Primary tapped")

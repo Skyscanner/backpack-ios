@@ -15,20 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKDialogIconDefinition.h"
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKDialogIconView : UIView
-@property(nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
+@interface BPKDialogIconDefinition()
+@property(nonatomic, strong) UIColor *iconBackgroundColor;
+@property(nonatomic, strong) UIImage *iconImage;
+@end
 
-- (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithIconDefinition:(BPKDialogIconDefinition *)iconDefinition NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+@implementation BPKDialogIconDefinition
 
-+ (CGSize)viewSize;
+- (instancetype)initWithIcon:(UIImage *)iconImage iconBackgroundColor:(UIColor *)iconBackgroundColor {
+    self = [super init];
+
+    if(self) {
+        self.iconImage = iconImage;
+        self.iconBackgroundColor = iconBackgroundColor;
+    }
+
+    return self;
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

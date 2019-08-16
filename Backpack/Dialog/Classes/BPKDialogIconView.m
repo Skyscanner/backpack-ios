@@ -34,11 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKDialogIconView
 
-- (instancetype)init {
+- (instancetype)initWithIconDefinition:(BPKDialogIconDefinition *)iconDefinition {
     CGSize size = [[self class] viewSize];
     self = [super initWithFrame:CGRectMake(0, 0, size.width, size.height)];
 
     if (self) {
+        self.iconDefinition = iconDefinition;
         [self setupViews];
     }
 
@@ -49,16 +50,15 @@ NS_ASSUME_NONNULL_BEGIN
     return [[self class] viewSize];
 }
 
-- (void)setIconBackgroundColor:(UIColor *_Nullable)iconBackgroundColor {
-    self.iconContainerView.backgroundColor = iconBackgroundColor;
+- (void)setIconDefinition:(BPKDialogIconDefinition *)iconDefinition {
+    if (_iconDefinition != iconDefinition) {
+        self.iconContainerView.backgroundColor = iconDefinition.iconBackgroundColor;
+        self.iconImageView.image = iconDefinition.iconImage;
+    }
 }
 
 - (UIColor *_Nullable)iconBackgroundColor {
     return self.iconContainerView.backgroundColor;
-}
-
-- (void)setIconImage:(UIImage *_Nullable)iconImage {
-    self.iconImageView.image = iconImage;
 }
 
 - (UIImage *_Nullable)iconImage {
@@ -77,7 +77,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconContainerView =
         [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
     self.iconContainerView.layer.cornerRadius = iconContainerSize.width / 2.0;
-    self.iconContainerView.backgroundColor = BPKColor.gray300;
 
     self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.iconImageView.tintColor = BPKColor.white;
