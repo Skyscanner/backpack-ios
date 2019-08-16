@@ -4,6 +4,12 @@
  - Backpack/Dialog
    - Icon definition is now encapsulated in a separate object, and is optional.
 
+**Added:**
+
+- Backpack/Color:
+  - Updated gray colours `gray50`, `gray100`, `gray200`, `gray300`, `gray400`, `gray500`, `gray700`, `gray900`
+  - Deprecated `gray600` and `gray800` please update as these will be removed in the future.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
