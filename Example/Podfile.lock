@@ -1,7 +1,9 @@
 PODS:
   - Backpack (14.0.1):
+    - FloatingPanel (~> 1.6)
     - FSCalendar (~> 2.8)
     - TTTAttributedLabel (~> 1.13.4)
+  - FloatingPanel (1.6.3)
   - FSCalendar (2.8.0)
   - iOSSnapshotTestCase/Core (4.0.0)
   - SwiftLint (0.31.0)
@@ -14,6 +16,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FloatingPanel
     - FSCalendar
     - iOSSnapshotTestCase
     - SwiftLint
@@ -24,7 +27,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 39b8c5c74b073415394fa084b58dbd2d62d92f16
+  Backpack: e5acd6735a4b84bcba9f7f70986a779d42047d11
+  FloatingPanel: a318d2f98eeb44e09c336d920f0eabc7c7b1579d
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: 711379b19f69a22c131527df862352c877c2773c
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3

@@ -7,3 +7,10 @@ opt_in_rules:
   - closure_spacing
   - collection_alignment
   - contains_over_first_not_nil
+
+# paths to ignore during linting. Takes precedence over `included`.
+excluded:
+  - Pods
+included:
+  - ../Backpack
+  - ./

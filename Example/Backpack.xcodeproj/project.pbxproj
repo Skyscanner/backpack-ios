@@ -126,6 +126,11 @@
 		D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */; };
 		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
+		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
+		E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */; };
+		E397BEA222F5F59000C8EC04 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */; };
+		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
+		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,6 +298,11 @@
 		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E38947D122F5CB3300A357DB /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomSheet.storyboard; sourceTree = "<group>"; };
+		E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
+		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
+		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		E9BCCEB5F97CE209BCB4B278 /* Pods-Backpack_SnapshotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -523,6 +533,7 @@
 				D28784902250FCBD00353E32 /* Settings.swift */,
 				D28784912250FCBD00353E32 /* ThemeHelpers.swift */,
 				D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */,
+				E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -588,6 +599,7 @@
 				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
 				58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */,
+				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -625,6 +637,17 @@
 				D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		E397BEA022F5F56100C8EC04 /* Bottom Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
+				E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */,
+				E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */,
+				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */,
+			);
+			path = "Bottom Sheet";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -772,6 +795,7 @@
 				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
+				E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */,
 				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */,
 				D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */,
@@ -927,10 +951,13 @@
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
+				E397BEA222F5F59000C8EC04 /* BottomSheetContentViewController.swift in Sources */,
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
 				D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */,
 				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
 				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
+				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,
+				E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
@@ -951,6 +978,7 @@
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
+				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */,
 				D6D6BB6621958D4400312C1C /* GradientSelectorTableViewController.swift in Sources */,
@@ -1121,7 +1149,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1168,7 +1196,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

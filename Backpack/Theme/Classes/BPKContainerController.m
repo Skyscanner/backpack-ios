@@ -46,12 +46,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.view addSubview:self.container];
+    self.container.frame = [self frameForContainerView];
 
     [self addChildViewController:self.rootViewController];
-    self.container.frame = [self frameForContainerView];
-    self.rootViewController.view.frame = [self frameForRootController];
+    self.rootViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self.container addSubview:self.rootViewController.view];
+    [self addConstraintsForRootViewController];
     [self.rootViewController didMoveToParentViewController:self];
 }
 
@@ -59,7 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewDidLayoutSubviews];
 
     self.container.frame = [self frameForContainerView];
-    self.rootViewController.view.frame = [self frameForRootController];
 }
 
 - (void)setContainerIsActive:(BOOL)active {
@@ -70,10 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
         if (_containerIsActive && !active) {
             [self.rootViewController.view removeFromSuperview];
             [self.view addSubview:self.rootViewController.view];
+            [self addConstraintsForRootViewController];
             self.container.hidden = YES;
         } else { // Container was inactive, is becoming active
             [self.rootViewController.view removeFromSuperview];
             [self.container addSubview:self.rootViewController.view];
+            [self addConstraintsForRootViewController];
             self.container.hidden = NO;
         }
 
@@ -93,6 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         [self.view addSubview:container];
         [container addSubview:self.rootViewController.view];
+        [self addConstraintsForRootViewController];
 
         _container = container;
 
@@ -136,12 +140,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (CGRect)frameForRootController {
-    if (self.isContainerActive) {
-        return self.container.bounds;
-    } else {
-        return self.view.bounds;
-    }
+- (void)addConstraintsForRootViewController {
+    [NSLayoutConstraint activateConstraints:@[[self.rootViewController.view.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+                                              [self.rootViewController.view.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+                                              [self.rootViewController.view.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+                                              [self.rootViewController.view.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]]];
 }
 
 - (void)reloadViews {
