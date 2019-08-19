@@ -30,6 +30,11 @@ final class BottomSheetViewController: UITableViewController {
 extension BottomSheetViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let rootViewController =  UIApplication.shared.keyWindow?.rootViewController as?
+            ThemeContainerController else {
+                return
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
 
         let cell = tableView.cellForRow(at: indexPath)
@@ -37,16 +42,24 @@ extension BottomSheetViewController {
         case scrollViewBottomSheet:
             guard let content = BottomSheetContentViewController.make() else { return }
 
-            let sheet = BottomSheet(contentViewController: content,
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+
+            let sheet = BottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView)
             sheet.present(in: self, animated: true, completion: nil)
         case bottomSectionBottomSheet:
             guard let content = BottomSheetContentViewController.make(),
                 let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
-            let sheet = BottomSheet(contentViewController: content,
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            let wrappedBottomSection = rootViewController.createIdenticalContainerController(
+                forRootController: bottomSection
+            )
+            wrappedBottomSection.view.backgroundColor = Color.white
+
+            let sheet = BottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
-                                    bottomSectionViewController: bottomSection)
+                                    bottomSectionViewController: wrappedBottomSection)
 
             bottomSection.dismissClosure = {
                 sheet.viewControllerToPresent.dismiss(animated: true, completion: nil)
