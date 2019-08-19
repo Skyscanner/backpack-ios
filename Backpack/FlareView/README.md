@@ -1,22 +1,22 @@
-# Backpack/HorizontalNavigation
+# Backpack/FlareView
 
 ## Usage
 
-`BPKHorizontalNavigation`/`Backpack.HorizontalNavigation` is a component similar to [Segmented Control](https://developer.apple.com/design/human-interface-guidelines/ios/controls/segmented-controls/). It shows two or more segments, each being a distinct option for travellers to switch between. Each option is defined with a string, and optionally a `BPKIcon` name too.
+`BPKFlareView`/`Backpack.FlareView` is a `UIView` with the Skyscanner flare style. The flare can be easily enabled and disabled with a `BOOL` property.
 
 ### Objective-C
 
 ```objective-c
-#import <Backpack/HorizontalNavigation.h>
+#import <Backpack/FlareView.h>
 
-NSArray<BPKHorizontalNavigationOption *> *options = @[
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
-                                                      [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
-                                                      ];
-BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
-horizontalNavigation.showsSelectedBar = YES;
-horizontalNavigation.size = BPKHorizontalNavigationSizeLarge;
+BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+flareView.isFlareVisible = YES;
+flareViewView.backgroundColor = BPKColor.blue500;
+
+UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+innerView.backgroundColor = [BPKColor red500];
+
+[flareView.contentView addSubview:innerView];
 ```
 
 ### Swift
@@ -24,16 +24,15 @@ horizontalNavigation.size = BPKHorizontalNavigationSizeLarge;
 ```swift
 import Backpack
 
-let options = [
-    BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag:0),
-    BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels, tag:1),
-    BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag:2)
-]
-let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selected:0)
-horizontalNavigation.showsSelectedBar = false
-```
+let flareView = FlareView(frame: .zero)
+flareView.isFlareVisible = showFlare
+flareView.backgroundColor = Color.blue500
 
-### Appearance attributes
-`(BPKFontMapping)fontMapping`
-`(UIColor)contentColor`
+let label = Label(fontStyle: .textXlEmphasized)
+label.text = "Much wow!"
+label.textColor = Color.white
+label.translatesAutoresizingMaskIntoConstraints = false
+
+flareView.contentView.addSubview(label)
+```
 
