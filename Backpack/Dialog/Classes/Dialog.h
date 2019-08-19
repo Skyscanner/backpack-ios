@@ -21,6 +21,7 @@
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogController.h"
+#import "BPKDialogIconDefinition.h"
 #import "BPKDialogScrimAction.h"
 #import "BPKDialogView.h"
 

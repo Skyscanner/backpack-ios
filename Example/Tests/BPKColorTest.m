@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqualObjects([BPKColor red500], [UIColor colorWithRed:1 green:0.329 blue:0.322 alpha:1]);
     XCTAssertEqualObjects([BPKColor yellow500], [UIColor colorWithRed:1 green:0.733 blue:0 alpha:1]);
     XCTAssertEqualObjects([BPKColor pink500], [UIColor colorWithRed:0.98 green:0.282 blue:0.541 alpha:1]);
-    XCTAssertEqualObjects([BPKColor gray500], [UIColor colorWithRed:0.506 green:0.482 blue:0.561 alpha:1]);
+    XCTAssertEqualObjects([BPKColor gray500], [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1]);
     XCTAssertEqualObjects([BPKColor white], [UIColor colorWithRed:1 green:1 blue:1 alpha:1]);
 }
 

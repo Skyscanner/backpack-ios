@@ -25,13 +25,13 @@
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerAnimator.h"
 #import "BPKDialogScrimAction.h"
+#import "BPKDialogIconDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogController ()
 
-@property(nonatomic, strong) UIColor *iconBackgroundColor;
-@property(nonatomic, strong) UIImage *iconImage;
+@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 @property(nonatomic, copy) NSString *titleText;
 @property(nonatomic, copy) NSString *messageText;
 
@@ -45,8 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
-          iconBackgroundColor:(UIColor *)iconBackgroundColor
-                    iconImage:(UIImage *)iconImage;
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 @end
 
 @implementation BPKDialogController
@@ -54,16 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
-          iconBackgroundColor:(UIColor *)iconBackgroundColor
-                    iconImage:(UIImage *)iconImage {
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     self = [super init];
 
     if (self) {
         self.titleText = title;
         self.messageText = message;
         self.style = style;
-        self.iconBackgroundColor = iconBackgroundColor;
-        self.iconImage = iconImage;
+        self.iconDefinition = iconDefinition;
         self.scrimActions = [NSMutableArray new];
         self.transitioningDelegate = self;
 
@@ -78,13 +75,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)dialogControllerWithTitle:(NSString *)title
                                   message:(NSString *)message
                                     style:(BPKDialogControllerStyle)style
-                      iconBackgroundColor:(UIColor *)iconBackgroundColor
-                                iconImage:(UIImage *)iconImage {
-    return [[self alloc] initWithTitle:title
-                               message:message
-                                 style:style
-                   iconBackgroundColor:iconBackgroundColor
-                             iconImage:iconImage];
+                           iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
+    return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition];
 }
 
 - (void)setupViews {
@@ -105,9 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.dialogView.delegate = self;
     self.dialogView.style = self.style;
     [self.dialogView setTitle:self.titleText];
-    [self.dialogView setIconImage:self.iconImage];
+    [self.dialogView setIconDefinition:self.iconDefinition];
     [self.dialogView setMessage:self.messageText];
-    [self.dialogView setIconBackgroundColor:self.iconBackgroundColor];
     self.dialogView.accessibilityIdentifier = @"dialogView";
 }
 

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = [BPKColor gray700];
+    UIColor *expectedColor = [BPKColor gray900];
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = [BPKColor gray700];
+    UIColor *expectedColor = [BPKColor gray900];
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];

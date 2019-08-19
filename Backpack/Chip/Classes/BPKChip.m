@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     self.tintLayer = [CALayer layer];
-    self.tintLayer.backgroundColor = BPKColor.gray600.CGColor;
+    self.tintLayer.backgroundColor = BPKColor.gray500.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 
@@ -172,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.textColor = BPKColor.white;
     } else {
         self.backgroundColor = BPKColor.white;
-        self.textColor = BPKColor.gray700;
+        self.textColor = BPKColor.gray900;
     }
 
     if (!self.enabled) {

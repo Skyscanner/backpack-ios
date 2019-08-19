@@ -25,6 +25,7 @@
 @class BPKDialogScrimAction;
 @class BPKDialogButtonAction;
 @class BPKDialogDoneButtonAction;
+@class BPKDialogIconDefinition;
 @class BPKShadow;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -75,15 +76,12 @@ NS_SWIFT_NAME(DialogController)
  * @param title The tile to display in the dialog.
  * @param message The message to display in the body of the dialog.
  * @param style The style of the dialog.
- * @param iconBackgroundColor The background color of the icon view.
- * @param iconImage The icon image to display in the icon view. Should
- *        be 24x24 points in size. Always prefer using `BPKIcon`.
+ * @param iconDefinition the icon specification to show at the top of the dialog.
  */
 + (instancetype)dialogControllerWithTitle:(NSString *)title
                                   message:(NSString *)message
                                     style:(BPKDialogControllerStyle)style
-                      iconBackgroundColor:(UIColor *)iconBackgroundColor
-                                iconImage:(UIImage *)iconImage;
+                           iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 
 // Protected
 

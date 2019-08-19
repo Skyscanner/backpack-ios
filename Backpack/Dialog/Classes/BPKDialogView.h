@@ -22,6 +22,7 @@
 #import "BPKDialogControllerStyle.h"
 
 @class BPKShadow;
+@class BPKDialogIconDefinition;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,15 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The background color of the icon view at the top
  */
-@property(nullable, nonatomic, strong) UIColor *iconBackgroundColor;
-
-/**
- * The icon to display in the icon view at the top.
- * Must be 24x24 points in size. Should preferably
- * be a template image, but can also be a regular
- * image with white content.
- */
-@property(nullable, nonatomic, strong) UIImage *iconImage;
+@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 
 /**
  * The title to display in the view.
@@ -80,14 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param title The title to use.
  * @param message The message to use.
- * @param iconBackgroundColor the background color of the icon view.
- * @param iconImage the icon to render in the icon view. Should preferably
- *                  be a template image otherwise. The image must be 24x24 points.
+ * @param iconDefinition the icon to show at the top of the dialog.
  */
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-          iconBackgroundColor:(UIColor *)iconBackgroundColor
-                    iconImage:(UIImage *)iconImage;
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;

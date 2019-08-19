@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.persistentStyleRanges = [[NSMutableArray alloc] init];
     self.fontStyle = style;
-    self.textColor = BPKColor.gray700;
+    self.textColor = BPKColor.gray900;
 }
 
 @end
