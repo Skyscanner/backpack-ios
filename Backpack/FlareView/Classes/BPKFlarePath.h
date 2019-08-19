@@ -37,11 +37,21 @@ extern CGFloat const BPKFlareHeight;
 extern CGFloat const BPKFlareWidth;
 
 /**
+ * The width of the original flare vector
+ */
+extern CGFloat const BPKFlareVectorWidth;
+
+/**
+ * The height of the original flare vector
+ */
+extern CGFloat const BPKFlareVectorHeight;
+
+/**
  * Creates and returns a UIBeizerPath of the flare mask for a given size.
  *
  * @param size CGSize of the path required.
  */
-+ (UIBezierPath *)flarePathForSize:(CGSize)size NS_SWIFT_NAME(makeFlarePath(size:));
++ (UIBezierPath *)flareViewPathForSize:(CGSize)size NS_SWIFT_NAME(makeFlarePath(size:));
 
 @end
 

@@ -27,8 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 // Original vector dimensions: 234.0x53.0
 CGFloat const BPKFlareHeight = 20;
 CGFloat const BPKFlareWidth = 88.301886792;
+CGFloat const BPKFlareVectorWidth = 234.0;
+CGFloat const BPKFlareVectorHeight = 53.0;
 
-+ (UIBezierPath *)flarePathForSize:(CGSize)size {
++ (UIBezierPath *)flareViewPathForSize:(CGSize)size {
     UIBezierPath *path = [[UIBezierPath alloc] init];
 
     CGFloat contentBottom = size.height - BPKFlareHeight;
@@ -39,72 +41,54 @@ CGFloat const BPKFlareWidth = 88.301886792;
     // bottom-left:
     [path addLineToPoint:CGPointMake(0.0, contentBottom)];
 
-    // Flare shape accross bottom:
-    [self addFlarePointsToPath:path
-                    startPoint:CGPointMake(0.0, contentBottom)
-                      endPoint:CGPointMake(size.width, contentBottom)];
-
     // bottom-right:
     [path addLineToPoint:CGPointMake(size.width, contentBottom)];
 
     // top-right:
     [path addLineToPoint:CGPointMake(size.width, 0.0)];
 
+    UIBezierPath *flarePath = [self flarePathForSize:size];
+    [path appendPath:flarePath];
+
     return path;
 }
 
 #pragma mark Private
 
-+ (CGPoint)mapPoint:(CGPoint)point withinSpace:(CGSize)space startPoint:(CGPoint)startPoint {
-    CGFloat vectorWidth = 234.0;
-    CGFloat vectorHeight = 53.0;
-    CGFloat scaledX = space.width * point.x / vectorWidth;
-    CGFloat scaledY = space.height * point.y / vectorHeight;
-
-    return CGPointMake(startPoint.x + scaledX, startPoint.y + scaledY);
++ (UIBezierPath *)flarePathForSize:(CGSize)size {
+    UIBezierPath *flarePath = [self flarePath];
+    CGAffineTransform translation = CGAffineTransformMakeTranslation((size.width - BPKFlareWidth)/2.0, size.height - BPKFlareHeight);
+    [flarePath applyTransform:translation];
+    return flarePath;
 }
 
-+ (void)addFlarePointsToPath:(UIBezierPath *)path startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
-    CGSize flareSize = CGSizeMake(BPKFlareWidth, BPKFlareHeight);
++ (UIBezierPath *)flarePath {
+    static dispatch_once_t onceToken;
+    static UIBezierPath *flarePath;
+    dispatch_once(&onceToken, ^{
+        flarePath = [self generateflarePath];
+    });
+    return [flarePath copy];
+}
 
-    CGPoint centerPoint = CGPointMake((startPoint.x + endPoint.x) / 2.0, startPoint.y);
-    CGPoint curveStartPoint = CGPointMake(centerPoint.x - (BPKFlareWidth / 2.0), startPoint.y);
-    CGPoint curveEndPoint = CGPointMake(centerPoint.x + (BPKFlareWidth / 2.0), startPoint.y);
++ (UIBezierPath *)generateflarePath {
+    UIBezierPath *path = [[UIBezierPath alloc]init];
 
-    // Line to the top-left of the flare
-    [path addLineToPoint:CGPointMake(curveStartPoint.x, curveStartPoint.y)];
+    [path moveToPoint:CGPointMake(136.264, 47.858)];
+    [path addCurveToPoint:CGPointMake(101.736, 47.858) controlPoint1:CGPointMake(125.632, 54.043) controlPoint2:CGPointMake(112.469, 54.043)];
+    [path addLineToPoint:CGPointMake(33.592, 8.518)];
+    [path addCurveToPoint:CGPointMake(4.276, 0) controlPoint1:CGPointMake(24.682, 3.345) controlPoint2:CGPointMake(14.604, 0.303)];
+    [path addLineToPoint:CGPointMake(0, 0)];
+    [path addLineToPoint:CGPointMake(238, 0)];
+    [path addLineToPoint:CGPointMake(233.671, 0)];
+    [path addCurveToPoint:CGPointMake(204.307, 8.517) controlPoint1:CGPointMake(223.336095, 0.409248008) controlPoint2:CGPointMake(213.256908, 3.33270635)];
+    [path addLineToPoint:CGPointMake(136.264, 47.858)];
 
-    // point 1:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(2.28, 0.0) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(2.28, 0.0) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(12.6, 0.3) withinSpace:flareSize startPoint:curveStartPoint]];
+    CGFloat scale = BPKFlareWidth / BPKFlareVectorWidth;
+    CGAffineTransform scaleTransformation = CGAffineTransformMakeScale(scale, scale);
+    [path applyTransform:scaleTransformation];
 
-    // point 2:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(31.59, 8.52) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(22.68, 3.35) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(31.59, 8.52) withinSpace:flareSize startPoint:curveStartPoint]];
-
-    // point 3:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(99.74, 47.86) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(99.74, 47.86) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(110.47, 54.04) withinSpace:flareSize startPoint:curveStartPoint]];
-
-    // point 4:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(134.26, 47.86) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(123.53, 54.04) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(134.26, 47.86) withinSpace:flareSize startPoint:curveStartPoint]];
-
-    // point 5:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(202.41, 8.52) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(202.41, 8.52) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(211.32, 3.35) withinSpace:flareSize startPoint:curveStartPoint]];
-
-    // point 6:
-    [path addCurveToPoint:[self mapPoint:CGPointMake(231.72, 0.0) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint1:[self mapPoint:CGPointMake(221.4, 0.3) withinSpace:flareSize startPoint:curveStartPoint]
-            controlPoint2:[self mapPoint:CGPointMake(231.72, 0.0) withinSpace:flareSize startPoint:curveStartPoint]];
-
-    [path addLineToPoint:CGPointMake(curveEndPoint.x, curveEndPoint.y)];
+    return path;
 }
 
 @end

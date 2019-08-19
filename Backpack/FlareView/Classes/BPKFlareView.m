@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGSize currentSize = self.bounds.size;
 
-    UIBezierPath *flarePath = [BPKFlarePath flarePathForSize:currentSize];
+    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize];
 
     flareView.path = flarePath.CGPath;
 
