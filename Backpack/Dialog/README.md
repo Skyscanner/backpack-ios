@@ -24,11 +24,12 @@ BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Ski
     //
 }];
 
+[[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]
+                          iconBackgroundColor:BPKColor.green500];
 BPKDialogController *dialogController = [BPKDialogController dialogControllerWithTitle:@"You are going to Tokyo!"
                                                                                message:@"Your flight is all booked. Why not check out some hotels now?"
                                                                                  style:BPKDialogControllerStyleAlert
-                                                                   iconBackgroundColor:BPKColor.green500
-                                                                             iconImage:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]];
+                                                                        iconDefinition:iconDefinition];
 
 dialogController.scrimAction = scrimAction;
 [dialogController addButtonAction:mainAction];
@@ -40,11 +41,12 @@ dialogController.scrimAction = scrimAction;
 ### Swift:
 
 ```swift
+let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, color: Color.white, size: .large)
+let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
 let dialogController  = DialogController(title: "You are going to Tokyo!",
                                         message: "Your flight is all booked. Why not check out some hotels now?",
                                         style: .alert,
-                                        iconBackgroundColor: Color.green500,
-                                        iconImage: Backpack.Icon.makeIcon(name: .tick, color: Color.white, size: .large))
+                                        iconDefinition: iconDefinition
 
 let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
     print("Primary was tapped, action: \($0)")
