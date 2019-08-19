@@ -41,6 +41,7 @@
                                                   rootViewController:self.window.rootViewController];
     self.window.rootViewController = themeContainerController;
     [self.window makeKeyAndVisible];
+    
 
     return YES;
 }
