@@ -20,7 +20,7 @@ import UIKit
 import Backpack
 
 class FlareViewViewController: UIViewController {
-    @IBOutlet weak var flareViewView: FlareView!
+    @IBOutlet weak var flareView: FlareView!
 
     var showFlare: Bool = true
     var backgroundImage: Bool = false
@@ -28,18 +28,18 @@ class FlareViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        flareViewView.isFlareVisible = showFlare
-        flareViewView.backgroundColor = Color.blue500
+        flareView.isFlareVisible = showFlare
+        flareView.backgroundColor = Color.blue500
 
         let label = Label(fontStyle: .textXlEmphasized)
         label.text = "Much wow!"
         label.textColor = Color.white
         label.translatesAutoresizingMaskIntoConstraints = false
-        flareViewView.contentView.addSubview(label)
+        flareView.contentView.addSubview(label)
 
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: flareViewView.contentView.topAnchor, constant: BPKSpacingBase),
-            label.leadingAnchor.constraint(equalTo: flareViewView.contentView.leadingAnchor, constant: BPKSpacingBase)
+            label.topAnchor.constraint(equalTo: flareView.contentView.topAnchor, constant: BPKSpacingBase),
+            label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase)
             ])
 
         if backgroundImage {
@@ -50,15 +50,15 @@ class FlareViewViewController: UIViewController {
                     imageView.contentMode = .scaleAspectFill
                     imageView.translatesAutoresizingMaskIntoConstraints = false
 
-                    flareViewView.addSubview(imageView)
+                    flareView.addSubview(imageView)
 
                     NSLayoutConstraint.activate([
-                        imageView.heightAnchor.constraint(equalTo: flareViewView.heightAnchor),
-                        imageView.widthAnchor.constraint(equalTo: flareViewView.widthAnchor),
-                        imageView.topAnchor.constraint(equalTo: flareViewView.topAnchor),
-                        imageView.leadingAnchor.constraint(equalTo: flareViewView.leadingAnchor),
-                        flareViewView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                        flareViewView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
+                        imageView.heightAnchor.constraint(equalTo: flareView.heightAnchor),
+                        imageView.widthAnchor.constraint(equalTo: flareView.widthAnchor),
+                        imageView.topAnchor.constraint(equalTo: flareView.topAnchor),
+                        imageView.leadingAnchor.constraint(equalTo: flareView.leadingAnchor),
+                        flareView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+                        flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
                         ])
                 }
             }

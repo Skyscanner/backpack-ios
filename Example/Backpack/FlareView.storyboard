@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbY-OE-N2D" customClass="BPKFlareView">
-                                <rect key="frame" x="20" y="269.5" width="335" height="128"/>
+                                <rect key="frame" x="20" y="208.5" width="335" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="LMy-JT-2cd"/>
@@ -135,7 +135,7 @@
                         <viewLayoutGuide key="safeArea" id="QGe-De-6CG"/>
                     </view>
                     <connections>
-                        <outlet property="flareViewView" destination="nbY-OE-N2D" id="r4s-aE-vWo"/>
+                        <outlet property="flareView" destination="nbY-OE-N2D" id="OGt-Ls-poI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSo-bH-YYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
