@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.1.0
+
+**Added:**
+
+- Backpack:
+  - New `BottomSheet` Swift component for presenting a floating panel similar to the one used in Apple Maps, Stocks and other native Apple apps.
+
 ## 14.0.1
 
 **Fixed:**
