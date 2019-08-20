@@ -55,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     [self createLayerMask];
 }
 
@@ -88,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateBottomConstraint {
-    [self.contentViewBottomConstraint setActive:NO];
+    self.contentViewBottomConstraint.active = NO;
 
     if (self.isFlareVisible) {
         self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
@@ -101,12 +103,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setup {
+    self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self addSubview:self.backgroundView];
+    self.backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+
     self.contentView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.contentView];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-
-    // ensure that the content view is shown above anything added to the main view:
-    self.contentView.layer.zPosition = 1.0;
 
     self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor];
 

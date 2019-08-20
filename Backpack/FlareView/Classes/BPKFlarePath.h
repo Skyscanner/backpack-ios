@@ -22,11 +22,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKFlarePath` is class that can provide the flare shape in the form of a BeizerPath
- */
-NS_SWIFT_NAME(FlarePath) IB_DESIGNABLE @interface BPKFlarePath : NSObject
-
-/**
  * The height at which the BPKFlare should be rendered
  */
 extern CGFloat const BPKFlareHeight;
@@ -45,6 +40,11 @@ extern CGFloat const BPKFlareVectorWidth;
  * The height of the original flare vector
  */
 extern CGFloat const BPKFlareVectorHeight;
+
+/**
+ * `BPKFlarePath` is class that can provide the flare shape in the form of a BeizerPath
+ */
+NS_SWIFT_NAME(FlarePath) IB_DESIGNABLE @interface BPKFlarePath : NSObject
 
 /**
  * Creates and returns a UIBeizerPath of the flare mask for a given size.

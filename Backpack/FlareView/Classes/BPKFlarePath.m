@@ -57,7 +57,8 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
 + (UIBezierPath *)flarePathForSize:(CGSize)size {
     UIBezierPath *flarePath = [self flarePath];
-    CGAffineTransform translation = CGAffineTransformMakeTranslation((size.width - BPKFlareWidth)/2.0, size.height - BPKFlareHeight);
+    CGAffineTransform translation =
+        CGAffineTransformMakeTranslation((size.width - BPKFlareWidth) / 2.0, size.height - BPKFlareHeight);
     [flarePath applyTransform:translation];
     return flarePath;
 }
@@ -66,22 +67,28 @@ CGFloat const BPKFlareVectorHeight = 53.0;
     static dispatch_once_t onceToken;
     static UIBezierPath *flarePath;
     dispatch_once(&onceToken, ^{
-        flarePath = [self generateflarePath];
+      flarePath = [self generateflarePath];
     });
     return [flarePath copy];
 }
 
 + (UIBezierPath *)generateflarePath {
-    UIBezierPath *path = [[UIBezierPath alloc]init];
+    UIBezierPath *path = [[UIBezierPath alloc] init];
 
     [path moveToPoint:CGPointMake(136.264, 47.858)];
-    [path addCurveToPoint:CGPointMake(101.736, 47.858) controlPoint1:CGPointMake(125.632, 54.043) controlPoint2:CGPointMake(112.469, 54.043)];
+    [path addCurveToPoint:CGPointMake(101.736, 47.858)
+            controlPoint1:CGPointMake(125.632, 54.043)
+            controlPoint2:CGPointMake(112.469, 54.043)];
     [path addLineToPoint:CGPointMake(33.592, 8.518)];
-    [path addCurveToPoint:CGPointMake(4.276, 0) controlPoint1:CGPointMake(24.682, 3.345) controlPoint2:CGPointMake(14.604, 0.303)];
+    [path addCurveToPoint:CGPointMake(4.276, 0)
+            controlPoint1:CGPointMake(24.682, 3.345)
+            controlPoint2:CGPointMake(14.604, 0.303)];
     [path addLineToPoint:CGPointMake(0, 0)];
     [path addLineToPoint:CGPointMake(238, 0)];
     [path addLineToPoint:CGPointMake(233.671, 0)];
-    [path addCurveToPoint:CGPointMake(204.307, 8.517) controlPoint1:CGPointMake(223.336095, 0.409248008) controlPoint2:CGPointMake(213.256908, 3.33270635)];
+    [path addCurveToPoint:CGPointMake(204.307, 8.517)
+            controlPoint1:CGPointMake(223.336095, 0.409248008)
+            controlPoint2:CGPointMake(213.256908, 3.33270635)];
     [path addLineToPoint:CGPointMake(136.264, 47.858)];
 
     CGFloat scale = BPKFlareWidth / BPKFlareVectorWidth;

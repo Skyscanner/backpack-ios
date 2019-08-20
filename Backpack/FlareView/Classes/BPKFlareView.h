@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
 
+@property(nonatomic) UIView *backgroundView;
+
 @property(nonatomic) UIView *contentView;
 
 @property(nonatomic) BOOL isFlareVisible;

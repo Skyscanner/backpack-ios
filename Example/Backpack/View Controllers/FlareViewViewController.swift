@@ -50,7 +50,7 @@ class FlareViewViewController: UIViewController {
                     imageView.contentMode = .scaleAspectFill
                     imageView.translatesAutoresizingMaskIntoConstraints = false
 
-                    flareView.addSubview(imageView)
+                    flareView.backgroundView.addSubview(imageView)
 
                     NSLayoutConstraint.activate([
                         imageView.heightAnchor.constraint(equalTo: flareView.heightAnchor),
