@@ -574,7 +574,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorOnTop
                                             gradientOnBottom:(UIColor *)normalColorOnBottom {
     if (self.isHighlighted) {
-        self.gradientLayer.gradient = [self gradientWithSingleColor:normalColorOnBottom];
+        self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:normalColorOnTop
+                                                                               with:BPKColor.gray900
+                                                                             weight:0.85f]];
     } else {
         self.gradientLayer.gradient = [self gradientWithTopColor:normalColorOnTop bottomColor:normalColorOnBottom];
     }
