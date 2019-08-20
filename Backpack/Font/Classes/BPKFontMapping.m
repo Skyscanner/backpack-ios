@@ -40,11 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSString *)familyForWeight:(UIFontWeight)weight {
-    if (abs(weight < UIFontWeightRegular) < 0.01) {
+    if (abs(weight - UIFontWeightRegular) < 0.01) {
         return _regularFontFace;
-    } else if (abs(weight < UIFontWeightSemibold) < 0.01) {
+    } else if (abs(weight - UIFontWeightSemibold) < 0.01) {
         return _semiboldFontFace;
-    } else if (abs(weight < UIFontWeightHeavy) < 0.01) {
+    } else if (abs(weight - UIFontWeightHeavy) < 0.01) {
         return _heavyFontFace;
     }
 
