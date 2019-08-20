@@ -39,7 +39,8 @@ class FlareViewViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: flareView.contentView.topAnchor, constant: BPKSpacingBase),
-            label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase)
+            label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase),
+            flareView.contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingBase)
             ])
 
         if backgroundImage {

@@ -55,7 +55,7 @@ NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
 /**
  * Create a `BPKFlareView` with a given frame.
  *
- * @param frame The initial frame of the button.
+ * @param frame The initial frame of the flareView.
  * @return `BPKFlareView` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
