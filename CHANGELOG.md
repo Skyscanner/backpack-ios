@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.1.1
+
+**Fixed:**
+
+- Backpack/Button:
+  - Fixed issue with Button pressed state being too subtle.
+
 ## 14.1.0
 
 **Added:**

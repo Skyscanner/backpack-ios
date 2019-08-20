@@ -1,9 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/Button:
-  - Fixed issue with Button pressed state being too subtle.
 
 ## How to write a good changelog entry
 
