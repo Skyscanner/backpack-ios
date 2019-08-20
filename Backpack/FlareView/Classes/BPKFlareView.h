@@ -26,13 +26,38 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
 
+/*
+ * A view that can be used to show content in the background.
+ * Note that some of this content may be clipped by the flare shape.
+ */
 @property(nonatomic) UIView *backgroundView;
 
+/*
+ * A view that can be used to show content in front of the background.
+ * The content view will never be clipped by the flare shape.
+ */
 @property(nonatomic) UIView *contentView;
 
+/*
+ * Whether the flare shape is used or not.
+ * By default this is false.
+ */
 @property(nonatomic) BOOL isFlareVisible;
 
+/**
+ * Creates a `BPKFlareView` with a decoder (typically when creating from Storyboards)
+ *
+ * @param aDecoder Decoder object to extract parameters from
+ * @return `BPKFlareView` instance.
+ */
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Create a `BPKFlareView` with a given frame.
+ *
+ * @param frame The initial frame of the button.
+ * @return `BPKFlareView` instance.
+ */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 @end

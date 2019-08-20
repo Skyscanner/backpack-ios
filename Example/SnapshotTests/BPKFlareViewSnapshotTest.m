@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configureFlareView:(BPKFlareView *)flareView withInnerView:(UIView *)innerView {
     flareView.translatesAutoresizingMaskIntoConstraints = NO;
     innerView.translatesAutoresizingMaskIntoConstraints = NO;
-    flareView.backgroundColor = BPKColor.blue500;
+    flareView.backgroundView.backgroundColor = BPKColor.blue500;
     [flareView.contentView addSubview:innerView];
     [NSLayoutConstraint activateConstraints:@[
         [innerView.widthAnchor constraintEqualToConstant:150.0],
