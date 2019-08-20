@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+
+- Backpack/Font:
+  - Fixed an issue that sometimes causes the wrong font to be selected.
 
 ## How to write a good changelog entry
 
