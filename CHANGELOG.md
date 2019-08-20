@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.1.2
+
+**Fixed:**
+
+- Backpack/Font:
+  - Fixed an issue that sometimes causes the wrong font to be selected.
+
 ## 14.1.1
 
 **Fixed:**
