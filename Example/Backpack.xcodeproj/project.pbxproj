@@ -408,6 +408,7 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
+				D22FB970230C0E950023DC72 /* Resources */,
 				D28443E722FC41880066F88B /* FlareView.storyboard */,
 				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				D278358C22EA2A81004C79CF /* ProgressBar.storyboard */,
@@ -539,6 +540,13 @@
 				6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */,
 			);
 			path = "CollectionView Cells";
+			sourceTree = "<group>";
+		};
+		D22FB970230C0E950023DC72 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D29F9C47221B1B3200773A6D /* Utils */ = {

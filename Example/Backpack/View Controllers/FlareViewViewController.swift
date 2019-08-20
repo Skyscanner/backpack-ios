@@ -43,25 +43,23 @@ class FlareViewViewController: UIViewController {
             ])
 
         if backgroundImage {
-            if let imageURL = URL(string: "https://live.staticflickr.com/65535/47591735142_10d889b77c_h.jpg") {
-                if let imageData = try? Data(contentsOf: imageURL) {
-                    let image = UIImage.init(data: imageData)
-                    let imageView = UIImageView.init(image: image)
-                    imageView.contentMode = .scaleAspectFill
-                    imageView.translatesAutoresizingMaskIntoConstraints = false
+            label.textColor = Color.gray900
 
-                    flareView.backgroundView.addSubview(imageView)
+            let image = UIImage(named: "pilanesburg-south-africa")
+            let imageView = UIImageView.init(image: image)
+            imageView.contentMode = .scaleAspectFill
+            imageView.translatesAutoresizingMaskIntoConstraints = false
 
-                    NSLayoutConstraint.activate([
-                        imageView.heightAnchor.constraint(equalTo: flareView.heightAnchor),
-                        imageView.widthAnchor.constraint(equalTo: flareView.widthAnchor),
-                        imageView.topAnchor.constraint(equalTo: flareView.topAnchor),
-                        imageView.leadingAnchor.constraint(equalTo: flareView.leadingAnchor),
-                        flareView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-                        flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
-                        ])
-                }
-            }
+            flareView.backgroundView.addSubview(imageView)
+
+            NSLayoutConstraint.activate([
+                imageView.heightAnchor.constraint(equalTo: flareView.heightAnchor),
+                imageView.widthAnchor.constraint(equalTo: flareView.widthAnchor),
+                imageView.topAnchor.constraint(equalTo: flareView.topAnchor),
+                imageView.leadingAnchor.constraint(equalTo: flareView.leadingAnchor),
+                flareView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+                flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
+                ])
         }
     }
 }
