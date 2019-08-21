@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param message The message to use.
  * @param iconDefinition the icon to show at the top of the dialog.
  */
-- (instancetype)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 

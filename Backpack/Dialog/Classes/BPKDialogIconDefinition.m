@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKDialogIconDefinition()
+@interface BPKDialogIconDefinition ()
 @property(nonatomic, strong) UIColor *iconBackgroundColor;
 @property(nonatomic, strong) UIImage *iconImage;
 @end
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithIcon:(UIImage *)iconImage iconBackgroundColor:(UIColor *)iconBackgroundColor {
     self = [super init];
 
-    if(self) {
+    if (self) {
         self.iconImage = iconImage;
         self.iconBackgroundColor = iconBackgroundColor;
     }

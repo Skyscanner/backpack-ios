@@ -78,7 +78,7 @@ NS_SWIFT_NAME(DialogController)
  * @param style The style of the dialog.
  * @param iconDefinition the icon specification to show at the top of the dialog.
  */
-+ (instancetype)dialogControllerWithTitle:(NSString *)title
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
                                     style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;

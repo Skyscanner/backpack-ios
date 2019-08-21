@@ -43,6 +43,12 @@ class DialogSelectorViewController: UITableViewController {
         case "ShowNoIcon":
             destinationController.type = .noIcon
             destinationController.title = "No icon"
+        case "ShowNoTitle":
+            destinationController.type = .noTitle
+            destinationController.title = "No title"
+        case "ShowNoIconNoTitle":
+            destinationController.type = .noIconNoTitle
+            destinationController.title = "No icon and no title"
         default:
             fatalError("Unrecognized segue \(segue.identifier.debugDescription)")
         }

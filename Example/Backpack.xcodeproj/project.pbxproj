@@ -40,6 +40,7 @@
 		60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */; };
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
 		BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -125,7 +126,6 @@
 		D6D81D54213FEE800013BB96 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		D6D81D55213FEE800013BB96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		D6D81D56213FEE800013BB96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		D6D81D57213FEE800013BB96 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */; };
 		D6D81D59213FEE800013BB96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
@@ -166,7 +166,6 @@
 /* Begin PBXFileReference section */
 		090E9C65F965012C0DF5C1E3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
 		3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonSelectorViewController.h; sourceTree = "<group>"; };
 		3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSelectorViewController.m; sourceTree = "<group>"; };
@@ -210,6 +209,7 @@
 		60D302CD201B77B9006DBC18 /* BPKSpacingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSpacingsViewController.h; sourceTree = "<group>"; };
 		60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingsViewController.m; sourceTree = "<group>"; };
 		699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_SnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		749A593BF4A88C859392AAF6 /* Pods-Backpack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -339,6 +339,7 @@
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
 				BB36C7EE82AEA4457426F7DE /* Pods_Backpack_Tests.framework in Frameworks */,
+				A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +357,6 @@
 				D6D81D54213FEE800013BB96 /* XCTest.framework in Frameworks */,
 				D6D81D55213FEE800013BB96 /* UIKit.framework in Frameworks */,
 				D6D81D56213FEE800013BB96 /* Foundation.framework in Frameworks */,
-				D6D81D57213FEE800013BB96 /* Pods_Backpack_Tests.framework in Frameworks */,
 				71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,9 +398,9 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */,
-				2D80769C0F339DD445D245DE /* Pods_Backpack_Tests.framework */,
 				EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */,
 				699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */,
+				732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
