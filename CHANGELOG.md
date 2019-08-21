@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.2.0
+
+**Added:**
+
+- Initial version of `BPKNavigationBar` with large titles.
+
 ## 14.1.2
 
 **Fixed:**
@@ -96,7 +102,7 @@
 
 - Backpack/StarRating
   - `BPKStarRating` is now `IB_DESIGNABLE`.
-  
+
 **Changed:**
 - Backpack/Icon
   - Updated `BPKIconNameTrips` with a new design.
