@@ -63,6 +63,8 @@ BpkListItem
 
 BpkModal
 
+BPKNavigationBar
+NavigationBar
 BpkNavigationBarButtonLink
 
 BpkPanel
@@ -129,6 +131,7 @@ react-svg-loader
 react-virtualized
 rvm
 travelpro
+UINavigationBar
 
 # Tech terms
 APLv2
@@ -179,6 +182,7 @@ h5
 h6
 href
 iff
+UIKit
 keystore
 linter
 linters
