@@ -1,6 +1,11 @@
 # Backpack iOS changelog
 
 [Unreleased changes](./UNRELEASED.md).
+## 14.3.0
+
+**Added:**
+- Backpack/FlareView:
+  - New `FlareView` component
 
 ## 14.2.1
 
