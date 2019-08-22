@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 14.2.1
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed an inconsistency in the gray colours used in the Calendar component.
+
 ## 14.2.0
 
 **Added:**
