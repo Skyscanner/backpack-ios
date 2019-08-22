@@ -70,6 +70,14 @@
     return BPKColor.gray700;
 }
 
+- (UIColor *)systemGreen {
+    return BPKColor.green500;
+}
+
+- (UIColor *)systemRed {
+    return BPKColor.red500;
+}
+
 - (UIColor *)gray900 {
     return BPKColor.gray900;
 }
@@ -156,6 +164,6 @@
 
 - (UIColor *)horiontalNavigationSelectedColor {
     return self.primaryColor;
-  }
+}
 
 @end

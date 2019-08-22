@@ -81,6 +81,14 @@
     return [UIColor colorWithRed:11.0f / 255.0f green:26.0f / 255.0f blue:34.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *)systemGreen {
+    return [UIColor colorWithRed:0.0f / 255.0f green:255.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)systemRed {
+    return [UIColor colorWithRed:255.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
+}
+
 - (BPKGradient *)primaryGradient {
     UIColor *startColor = [UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1];
     UIColor *endColor = [UIColor colorWithRed:0.235 green:0.235 blue:0.235 alpha:1];

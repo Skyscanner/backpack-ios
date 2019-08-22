@@ -77,6 +77,14 @@
     return BPKColor.blue500;
 }
 
+- (UIColor *)systemGreen {
+    return [UIColor colorWithRed:0.0f / 255.0f green:255.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
+}
+
+- (UIColor *)systemRed {
+    return [UIColor colorWithRed:255.0f / 255.0f green:0.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
+}
+
 - (BPKGradient *)primaryGradient {
     UIColor *startColor = BPKColor.gray200;
     UIColor *endColor = BPKColor.gray900;
