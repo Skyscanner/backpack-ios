@@ -111,14 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
-    CGFloat adjustedYOffset;
-
-    if (@available(iOS 11.0, *)) {
-        adjustedYOffset =
-            (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
-    } else {
-        adjustedYOffset = -[self findNearestViewController].topLayoutGuide.length + scrollView.contentOffset.y;
-    }
+    CGFloat adjustedYOffset = (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
 
     if (adjustedYOffset >= -BPKNavigationBarTitleHeight) {
         // Collapsed state
@@ -156,21 +149,9 @@ NS_ASSUME_NONNULL_BEGIN
     [super didMoveToWindow];
 
     if (self.window) {
-        if (@available(iOS 11.0, *)) {
-            // On iOS 11 on iPhones with a 20pt tall status bar the value of
-            // safeAreaInsets.top is `0` rather than 20.
-            self.backgroundViewTopConstraint.constant = -MAX(self.window.safeAreaInsets.top, 20);
-        } else {
-            // Handle in layoutSubviews
-        }
-    }
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    if (@available(iOS 11.0, *)) {
-    } else {
-        self.backgroundViewTopConstraint.constant = -[self findNearestViewController].topLayoutGuide.length;
+        // On iOS 11 on iPhones with a 20pt tall status bar the value of
+        // safeAreaInsets.top is `0` rather than 20.
+        self.backgroundViewTopConstraint.constant = -MAX(self.window.safeAreaInsets.top, 20);
     }
 }
 

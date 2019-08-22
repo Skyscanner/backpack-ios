@@ -14,12 +14,10 @@ cache:
     - node_modules
 matrix:
   include:
-    - osx_image: xcode10
-      env: BUILD_SDK=iphonesimulator12.0 DESTINATION="OS=12.0,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
+    - osx_image: xcode10.3
+      env: BUILD_SDK=iphonesimulator12.4 DESTINATION="OS=12.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
     - osx_image: xcode9.4
       env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=11.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
-    - osx_image: xcode9.4
-      env: BUILD_SDK=iphonesimulator11.4 DESTINATION="OS=10.3.1,platform=iOS Simulator,name=iPhone 7" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
   - brew install clang-format
