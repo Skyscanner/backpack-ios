@@ -136,8 +136,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     appearance.headerTitleColor = [BPKColor gray900];
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
-    appearance.weekdayTextColor = [BPKColor gray500];
-    appearance.todayColor = [BPKColor gray100];
+    appearance.weekdayTextColor = [BPKColor gray900];
+    appearance.todayColor = [BPKColor gray300];
     appearance.titleTodayColor = [BPKColor gray900];
     appearance.titleDefaultColor = [BPKColor gray900];
     appearance.selectionColor = self.dateSelectedBackgroundColor;
@@ -164,7 +164,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self addSubview:self.calendarWeekdayView];
 
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
-    self.bottomBorder.backgroundColor = [BPKColor gray100];
+    self.bottomBorder.backgroundColor = [BPKColor gray300];
     [self addSubview:self.bottomBorder];
 
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
