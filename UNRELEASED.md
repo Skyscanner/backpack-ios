@@ -1,5 +1,10 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+
+- Backpack/Dialogs:
+  - Now the title is optional maintaining all the subviews in the correct place
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

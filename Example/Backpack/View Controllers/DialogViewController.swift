@@ -25,6 +25,8 @@ enum DialogType {
     case delete
     case confirmation
     case noIcon
+    case noTitle
+    case noIconNoTitle
 }
 
 class DialogViewController: UIViewController {
@@ -43,7 +45,57 @@ class DialogViewController: UIViewController {
             showConfirmation()
         case .noIcon:
             showNoIcon()
+        case .noTitle:
+            showNoTitle()
+        case .noIconNoTitle:
+            showNoIconNoTitle()
         }
+    }
+    func showNoTitle() {
+        let message = """
+                        This is a floating style dialog, usually used for prompting users during the onboarding flow.
+                        Now you can use this variation with no title.
+                        """
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
+        let dialogController = DialogController(title: nil,
+                                                message: message,
+                                                style: .alert,
+                                                iconDefinition: iconDefinition)
+        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+            print("Primary was tapped, action: \($0)")
+        }
+        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+            print("Skip was tapped, action: \($0)")
+        }
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+            print("Scrim tap \(didDismiss ? "dimissing" : "")")
+        }, shouldDismiss: true)
+        dialogController.addButtonAction(mainAction)
+        dialogController.addButtonAction(skipAction)
+        dialogController.scrimAction = scrimAction
+        self.present(dialogController, animated: true, completion: nil)
+    }
+
+    func showNoIconNoTitle() {
+        let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
+        let dialogController  = DialogController(title: nil,
+                                                 message: message,
+                                                 style: .bottomSheet,
+                                                 iconDefinition: nil)
+
+        let mainAction = DialogButtonAction(title: "Got it", style: .primary) {
+            print("Primary was tapped, action: \($0)")
+        }
+
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+            print("Scrim tap \(didDismiss ? "dimissing" : "")")
+        }, shouldDismiss: false)
+
+        dialogController.addButtonAction(mainAction)
+        dialogController.scrimAction = scrimAction
+
+        self.present(dialogController, animated: true, completion: nil)
     }
 
     func showNoIcon() {

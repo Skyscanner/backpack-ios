@@ -26,8 +26,8 @@
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKDialogIconView.h"
 #import "BPKDialogIconDefinition.h"
+#import "BPKDialogIconView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
@@ -44,16 +44,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nullable) BPKDialogIconView *iconView;
 
 @property(nonatomic, strong) UIView *contentView;
-@property(nonatomic, strong) BPKLabel *titleLabel;
+@property(nonatomic, strong, nullable) BPKLabel *titleLabel;
 @property(nonatomic, strong) BPKLabel *descriptionLabel;
 @property(nonatomic, strong) UIStackView *buttonStackView;
 
 @property(nonatomic, strong) NSMutableArray<BPKActionButtonPair *> *registeredActions;
+@property(nonatomic, strong) NSLayoutConstraint *descriptionLabelTopConstraint;
 @end
 
 @implementation BPKDialogView
 
-- (instancetype)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     BPKAssertMainThread();
@@ -144,6 +145,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupConstraints {
     [self setLayoutMargins];
+    self.descriptionLabelTopConstraint =
+        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.contentView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
@@ -161,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.titleLabel.superview.layoutMarginsGuide.trailingAnchor
             constraintEqualToAnchor:self.titleLabel.trailingAnchor],
 
-        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+        self.descriptionLabelTopConstraint,
         [self.descriptionLabel.leadingAnchor
             constraintEqualToAnchor:self.descriptionLabel.superview.layoutMarginsGuide.leadingAnchor],
         [self.descriptionLabel.superview.layoutMarginsGuide.trailingAnchor
@@ -200,6 +203,8 @@ NS_ASSUME_NONNULL_BEGIN
             [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.iconView.bottomAnchor
                                                                    constant:BPKSpacingBase]
         ]];
+
+        [self updateTopAnchorConstraint];
     }
 
     if (!self.hasIcon && self.iconView != nil) {
@@ -266,6 +271,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
     self.titleLabel.text = title;
+    [self updateTopAnchorConstraint];
 }
 
 - (NSString *_Nullable)title {
@@ -303,6 +309,18 @@ NS_ASSUME_NONNULL_BEGIN
     pair.action = action;
     [self.registeredActions addObject:pair];
     [self setLayoutMargins];
+}
+
+#pragma mark - Private methods
+
+// This method helps us to set up the correct top anchor margin depending if we have a title or not
+- (void)updateTopAnchorConstraint {
+    self.descriptionLabelTopConstraint.constant = self.hasTitle || !self.hasIcon ? BPKSpacingMd : 0;
+    [self setNeedsLayout];
+}
+
+- (BOOL)hasTitle {
+    return (self.titleLabel.text != nil && ![self.titleLabel.text isEqualToString:@""]);
 }
 
 @end

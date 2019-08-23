@@ -24,15 +24,15 @@
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerAnimator.h"
-#import "BPKDialogScrimAction.h"
 #import "BPKDialogIconDefinition.h"
+#import "BPKDialogScrimAction.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogController ()
 
 @property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
-@property(nonatomic, copy) NSString *titleText;
+@property(nullable, nonatomic, copy) NSString *titleText;
 @property(nonatomic, copy) NSString *messageText;
 
 @property(nonatomic, strong) UIView *scrimView;
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSLayoutConstraint *bottomAnchorConstraint;
 
-- (instancetype)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKDialogController
 
-- (instancetype)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-+ (instancetype)dialogControllerWithTitle:(NSString *)title
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
                                     style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
