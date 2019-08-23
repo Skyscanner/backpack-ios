@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 15.1.0
+
+**Added:**
+
+- Backpack/Dialogs:
+  - Now the title is optional maintaining all the subviews in the correct place
+
 ## 15.0.1
 
 **Fixed:**

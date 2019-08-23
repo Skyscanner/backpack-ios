@@ -1,9 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Added:**
-
-- Backpack/Dialogs:
-  - Now the title is optional maintaining all the subviews in the correct place
 
 ## How to write a good changelog entry
 
