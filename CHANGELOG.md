@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 15.0.1
+
+**Fixed:**
+
+- Backpack/Theme:
+  - Updated theme `gray` colours.
+
 ## 15.0.0
 
 **Breaking:**
