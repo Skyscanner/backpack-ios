@@ -17,19 +17,18 @@
  */
 #import "BPKNavigationBar.h"
 
-#import <Backpack/Common.h>
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 #import <Backpack/Label.h>
 
 #import "BPKNavigationBarLargeTitleView.h"
 #import "BPKNavigationBarTitleView.h"
 
-
 const CGFloat BPKNavigationBarExpandedFullHeight = 96;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKNavigationBar()
+@interface BPKNavigationBar ()
 // Title views
 @property(nonatomic, strong, readonly) BPKNavigationBarLargeTitleView *largeTitleView;
 @property(nonatomic, strong, readonly) BPKNavigationBarTitleView *titleView;
@@ -51,11 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign, getter=isCollapsed) BOOL collapsed;
 @end
 
-
 @implementation BPKNavigationBar
-@synthesize largeTitleView = _largeTitleView,
-            titleView = _titleView,
-            backgroundView = _backgroundView,
+@synthesize largeTitleView = _largeTitleView, titleView = _titleView, backgroundView = _backgroundView,
             borderView = _borderView;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -118,7 +114,8 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat adjustedYOffset;
 
     if (@available(iOS 11.0, *)) {
-        adjustedYOffset =  (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
+        adjustedYOffset =
+            (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
     } else {
         adjustedYOffset = -[self findNearestViewController].topLayoutGuide.length + scrollView.contentOffset.y;
     }
@@ -131,14 +128,10 @@ NS_ASSUME_NONNULL_BEGIN
         // are only executed a single time per transition.
         if (!self.isCollapsed) {
             self.heightConstraint.constant = BPKNavigationBarTitleHeight;
-
-            scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarTitleHeight, 0, 0, 0);
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
-
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
             self.backgroundView.backgroundColor = UIColor.clearColor;
-
             self.collapsed = YES;
         }
     } else {
@@ -146,13 +139,10 @@ NS_ASSUME_NONNULL_BEGIN
         self.heightConstraint.constant = fabs(adjustedYOffset);
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(fabs(adjustedYOffset), 0, 0, 0);
 
-
         // Making modifications on each scroll is very expensive.
         // To prevent extra work the changes between collapsed and expanded
         // are only executed a single time per transition.
         if (self.isCollapsed) {
-            scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarExpandedFullHeight, 0, 0, 0);
-
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
             self.backgroundView.backgroundColor = UIColor.whiteColor;
@@ -227,7 +217,6 @@ NS_ASSUME_NONNULL_BEGIN
     return _borderView;
 }
 
-
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
@@ -239,40 +228,42 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKNavigationBarExpandedFullHeight];
 
-    NSLayoutConstraint *largeTitleViewHeightConstraint = [self.largeTitleView.heightAnchor constraintGreaterThanOrEqualToConstant:BPKNavigationBarLargeTitleViewHeight];
+    NSLayoutConstraint *largeTitleViewHeightConstraint =
+        [self.largeTitleView.heightAnchor constraintGreaterThanOrEqualToConstant:BPKNavigationBarLargeTitleViewHeight];
     largeTitleViewHeightConstraint.priority = UILayoutPriorityDefaultHigh;
 
-    self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor constant:0.0];
+    self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                                                     constant:0.0];
 
     [NSLayoutConstraint activateConstraints:@[
-                                              // Background view
-                                              self.backgroundViewTopConstraint,
-                                              [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.backgroundView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [self.backgroundView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        // Background view
+        self.backgroundViewTopConstraint,
+        [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.backgroundView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.backgroundView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
 
-                                              // Title View
-                                              [self.titleView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.titleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.titleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [self.titleView.bottomAnchor constraintLessThanOrEqualToAnchor:self.bottomAnchor],
-                                              [self.titleView.heightAnchor constraintEqualToConstant:BPKNavigationBarTitleHeight],
+        // Title View
+        [self.titleView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.titleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.titleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.titleView.bottomAnchor constraintLessThanOrEqualToAnchor:self.bottomAnchor],
+        [self.titleView.heightAnchor constraintEqualToConstant:BPKNavigationBarTitleHeight],
 
-                                              // Border
-                                              [self.borderView.topAnchor constraintEqualToAnchor:self.titleView.bottomAnchor],
-                                              [self.borderView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.borderView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [self.borderView.heightAnchor constraintEqualToConstant:(1 / self.contentScaleFactor)],
+        // Border
+        [self.borderView.topAnchor constraintEqualToAnchor:self.titleView.bottomAnchor],
+        [self.borderView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.borderView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.borderView.heightAnchor constraintEqualToConstant:(1 / self.contentScaleFactor)],
 
-                                              // Large Title View
-                                              [self.largeTitleView.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleView.bottomAnchor],
-                                              [self.largeTitleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.largeTitleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-                                              [self.largeTitleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-                                              largeTitleViewHeightConstraint,
+        // Large Title View
+        [self.largeTitleView.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleView.bottomAnchor],
+        [self.largeTitleView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.largeTitleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.largeTitleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        largeTitleViewHeightConstraint,
 
-                                              self.heightConstraint,
-                                              ]];
+        self.heightConstraint,
+    ]];
 }
 
 - (UIViewController *_Nullable)findNearestViewController {
@@ -286,6 +277,5 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
 
 NS_ASSUME_NONNULL_END
