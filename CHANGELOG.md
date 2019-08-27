@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 15.1.1
+
+**Fixed:**
+
+- Backpack/NavigationBar
+  - Fixed issue related to the scroll smoothness using the navigation bar
+
 ## 15.1.0
 
 **Added:**

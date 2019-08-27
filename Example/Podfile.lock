@@ -1,5 +1,5 @@
 PODS:
-  - Backpack (15.1.0):
+  - Backpack (15.1.1):
     - FloatingPanel (~> 1.6)
     - FSCalendar (~> 2.8)
     - TTTAttributedLabel (~> 1.13.4)
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: dc4dd08897795d2d5e4a26769617698e25df7cd0
+  Backpack: 6cefafdbaf83ae59103aa4d80a145a03d5973c40
   FloatingPanel: 062e0500e3b9848e3eb91595367fc6d579e428df
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
