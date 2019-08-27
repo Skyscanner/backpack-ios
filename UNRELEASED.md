@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+
+- Backpack/Panel:
+  - New `style` property which can be either `BPKPanelStyleDefault` or `BPKPanelStyleElevated`.
 
 ## How to write a good changelog entry
 

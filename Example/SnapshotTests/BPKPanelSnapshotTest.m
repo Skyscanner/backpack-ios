@@ -60,6 +60,30 @@ NS_ASSUME_NONNULL_BEGIN
                                                                     views:@{@"innerView": innerView}]];
 }
 
+- (void)testViewSnapshotElevatedWithoutPadded {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKPanel *panel = [[BPKPanel alloc] initWithPadded:NO];
+    panel.style = BPKPanelStyleElevated;
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor red500];
+
+    [self configurePanel:panel withInnerView:innerView];
+    [self configureParentView:parentView forPanel:panel];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testViewSnapshotElevated {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
+    panel.style = BPKPanelStyleElevated;
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor red500];
+
+    [self configurePanel:panel withInnerView:innerView];
+    [self configureParentView:parentView forPanel:panel];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testViewSnapshotWithoutPadded {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:NO];
