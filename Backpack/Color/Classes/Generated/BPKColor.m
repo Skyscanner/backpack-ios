@@ -280,6 +280,14 @@
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
 
++ (UIColor *)textPrimaryLightColor {
+  return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+}
+
++ (UIColor *)textSecondaryLightColor {
+  return [UIColor colorWithRed:0.267 green:0.271 blue:0.376 alpha:1];
+}
+
 + (UIColor *)touchableOverlayColor {
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }

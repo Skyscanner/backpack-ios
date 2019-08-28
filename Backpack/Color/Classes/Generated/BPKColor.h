@@ -488,6 +488,20 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * shadowXlColor __deprecated;
 
 /**
+ * The `textPrimaryLightColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textPrimaryLightColor;
+
+/**
+ * The `textSecondaryLightColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #444560ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textSecondaryLightColor;
+
+/**
  * The `touchableOverlayColor` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
