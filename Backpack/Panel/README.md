@@ -12,6 +12,7 @@
 BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
 [panel addSubview:myInnerView];
 panel.padded = NO;
+panel.style = BPKPanelStyleDefault;
 ```
 
 ### Swift
@@ -22,4 +23,5 @@ import Backpack
 let panel = Backpack.Panel(padded: true)
 panel.addSubview(myInnerView)
 panel.padded = false
+panel.style = .default
 ```

@@ -18,6 +18,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * Enum values for specifying panel style
+ */
+typedef NS_ENUM(NSUInteger, BPKPanelStyle) {
+    BPKPanelStyleDefault = 0,
+    BPKPanelStyleElevated = 1,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -31,6 +39,12 @@ NS_SWIFT_NAME(Panel) IB_DESIGNABLE @interface BPKPanel : UIView
  * Whether the panel should provide padding or not.
  */
 @property(nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
+
+/**
+ * The style of the panel to use.
+ * @see BPKButtonStyle
+ */
+@property(nonatomic) BPKPanelStyle style;
 
 - (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

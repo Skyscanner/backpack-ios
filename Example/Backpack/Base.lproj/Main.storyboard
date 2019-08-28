@@ -666,95 +666,6 @@
             </objects>
             <point key="canvasLocation" x="1697" y="-358"/>
         </scene>
-        <!--Panels-->
-        <scene sceneID="SOn-FW-qwd">
-            <objects>
-                <viewController title="Panels" id="xgG-iv-31l" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PrL-Ex-RV4"/>
-                        <viewControllerLayoutGuide type="bottom" id="fpd-mb-ZE1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qHE-l0-Inn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W0S-Si-jqY">
-                                <rect key="frame" x="16" y="115.5" width="568" height="369.5"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBu-dZ-2rZ" customClass="BPKPanel">
-                                        <rect key="frame" x="10" y="0.0" width="548" height="152.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDv-xQ-2n0" customClass="BPKLabel">
-                                                <rect key="frame" x="8" y="8.5" width="532" height="136"/>
-                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempus nec velit sit amet volutpat. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="RDv-xQ-2n0" firstAttribute="leading" secondItem="OBu-dZ-2rZ" secondAttribute="leadingMargin" id="NX0-PD-7dJ"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="RDv-xQ-2n0" secondAttribute="trailing" id="Td6-Mo-SPo"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="RDv-xQ-2n0" secondAttribute="bottom" id="eo0-BV-ZLb"/>
-                                            <constraint firstItem="RDv-xQ-2n0" firstAttribute="top" secondItem="OBu-dZ-2rZ" secondAttribute="topMargin" id="nzy-lJ-koa"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="padded" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-3B-Knl" customClass="BPKPanel">
-                                        <rect key="frame" x="10" y="168.5" width="548" height="201"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-Yx-jcE" customClass="BPKLabel">
-                                                <rect key="frame" x="8" y="8" width="532" height="185"/>
-                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempus nec velit sit amet volutpat. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="QzT-Yx-jcE" secondAttribute="bottom" id="0Xy-4d-hem"/>
-                                            <constraint firstItem="QzT-Yx-jcE" firstAttribute="leading" secondItem="ex8-3B-Knl" secondAttribute="leadingMargin" id="6EU-V7-fu5"/>
-                                            <constraint firstItem="QzT-Yx-jcE" firstAttribute="top" secondItem="ex8-3B-Knl" secondAttribute="topMargin" id="apV-A1-qyH"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="QzT-Yx-jcE" secondAttribute="trailing" id="xaE-Bg-RB0"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="padded" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="68y-nP-PNS"/>
-                                    <constraint firstItem="ex8-3B-Knl" firstAttribute="width" secondItem="OBu-dZ-2rZ" secondAttribute="width" id="SwX-ZJ-YLI"/>
-                                    <constraint firstItem="ex8-3B-Knl" firstAttribute="top" secondItem="OBu-dZ-2rZ" secondAttribute="bottom" constant="16" id="z3t-IJ-0Lo"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="W0S-Si-jqY" firstAttribute="leading" secondItem="qHE-l0-Inn" secondAttribute="leading" constant="16" id="5Jv-IX-03f"/>
-                            <constraint firstAttribute="trailing" secondItem="W0S-Si-jqY" secondAttribute="trailing" constant="16" id="f6g-gF-QzF"/>
-                            <constraint firstItem="W0S-Si-jqY" firstAttribute="centerY" secondItem="qHE-l0-Inn" secondAttribute="centerY" id="lYJ-IJ-W95"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B67-lr-OnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1697" y="-1010"/>
-        </scene>
         <!--Colors-->
         <scene sceneID="d4t-AN-NKR">
             <objects>
@@ -1332,6 +1243,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fch-RC-DuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1521" y="384"/>
+        </scene>
+        <!--Panel-->
+        <scene sceneID="APg-hM-GuZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Panel" id="oQx-Rw-4PO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uIX-p2-rrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="918" y="-202"/>
         </scene>
         <!--SettingsViewController-->
         <scene sceneID="Mlh-DX-y4X">

@@ -20,6 +20,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -55,6 +56,29 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     return self;
 }
 
+- (void)setStyle:(BPKPanelStyle)style {
+    if (_style != style) {
+        _style = style;
+
+        [self updatePanelAppearance];
+    }
+}
+
+- (void)updatePanelAppearance {
+    switch (self.style) {
+    case BPKPanelStyleDefault:
+        self.layer.borderColor = [BPKColor gray100].CGColor;
+        self.layer.borderWidth = 1.0;
+        self.layer.masksToBounds = YES;
+        break;
+    case BPKPanelStyleElevated:
+        self.layer.borderWidth = 0.0;
+        [BPKShadow.shadowSm applyToLayer:self.layer];
+        self.layer.masksToBounds = NO;
+        break;
+    }
+}
+
 - (void)setPadded:(BOOL)padded {
     BPKAssertMainThread();
     if (padded) {
@@ -86,11 +110,10 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 - (void)setupWithPadded:(BOOL)padded {
     self.originalLayoutMargins = self.layoutMargins;
     self.padded = padded;
+    self.style = BPKPanelStyleDefault;
     self.backgroundColor = [BPKColor white];
     self.layer.cornerRadius = BPKBorderRadiusSm;
-    self.layer.masksToBounds = YES;
-    self.layer.borderColor = [BPKColor gray100].CGColor;
-    self.layer.borderWidth = 1.0;
+    [self updatePanelAppearance];
 }
 
 @end
