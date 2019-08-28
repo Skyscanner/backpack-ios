@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 15.2.0
+
+**Added:**
+
+- Backpack/Panel:
+  - New `style` property which can be either `BPKPanelStyleDefault` or `BPKPanelStyleElevated`.
+
 ## 15.1.1
 
 **Fixed:**
