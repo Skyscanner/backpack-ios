@@ -44,7 +44,7 @@ NS_SWIFT_NAME(Panel) IB_DESIGNABLE @interface BPKPanel : UIView
  * The style of the panel to use.
  * @see BPKButtonStyle
  */
-@property(nonatomic, assign) BPKPanelStyle style;
+@property(nonatomic) BPKPanelStyle style;
 
 - (instancetype)initWithPadded:(BOOL)padded NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
