@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Fixed:**
+
+ - Backpack/NavigationBar:
+   - Fixed an issue that would cause the large title to jump when bouncing back from a scroll down. 
+
 **Changed:**
 
 - Dropped iOS 10 support.
