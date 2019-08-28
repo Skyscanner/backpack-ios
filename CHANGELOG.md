@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 15.3.0
+
+**Added:**
+
+- Backpack/Color
+  - Added new colours `textPrimaryLightColor` and `textSecondaryLightColor`
+
 ## 15.2.0
 
 **Added:**
