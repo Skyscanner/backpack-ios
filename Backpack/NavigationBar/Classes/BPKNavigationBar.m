@@ -150,9 +150,21 @@ NS_ASSUME_NONNULL_BEGIN
     [super didMoveToWindow];
 
     if (self.window) {
-      // On iOS 11 on iPhones with a 20pt tall status bar the value of
-      // safeAreaInsets.top is `0` rather than 20.
-      self.backgroundViewTopConstraint.constant = -MAX(self.safeAreaTopHeight, 20);
+        if (@available(iOS 11.0, *)) {
+            // On iOS 11 on iPhones with a 20pt tall status bar the value of
+            // safeAreaInsets.top is `0` rather than 20.
+            self.backgroundViewTopConstraint.constant = -MAX(self.safeAreaTopHeight, 20);
+        } else {
+            // Handle in layoutSubviews
+        }
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (@available(iOS 11.0, *)) {
+    } else {
+        self.backgroundViewTopConstraint.constant = self.safeAreaTopHeight;
     }
 }
 
@@ -208,8 +220,13 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.largeTitleView];
     [self addSubview:self.titleView];
 
-    UIWindow *window = UIApplication.sharedApplication.keyWindow;
-    self.safeAreaTopHeight = window.safeAreaInsets.top;
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        self.safeAreaTopHeight = window.safeAreaInsets.top;
+    } else {
+        self.safeAreaTopHeight = -[self findNearestViewController].topLayoutGuide.length;
+    }
+    printf("safeAreaTopHeight %f\n", self.safeAreaTopHeight);
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKNavigationBarExpandedFullHeight];
 

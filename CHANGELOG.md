@@ -2,17 +2,6 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
-## 16.0.0
-
-**Fixed:**
-
- - Backpack/NavigationBar:
-   - Fixed an issue that would cause the large title to jump when bouncing back from a scroll down.
-
-**Changed:**
-
-- Dropped iOS 10 support.
-
 ## 15.3.0
 
 **Added:**
