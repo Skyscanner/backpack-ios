@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The default values is `NO`.
  */
 @property(nonatomic, assign, getter=isCollapsed) BOOL collapsed;
+@property(nonatomic) CGFloat safeAreaTopHeight;
 @end
 
 @implementation BPKNavigationBar
@@ -111,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
-    CGFloat adjustedYOffset = (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
+    CGFloat adjustedYOffset = self.safeAreaTopHeight + scrollView.contentOffset.y;
 
     if (adjustedYOffset >= -BPKNavigationBarTitleHeight) {
         // Collapsed state
@@ -149,9 +150,9 @@ NS_ASSUME_NONNULL_BEGIN
     [super didMoveToWindow];
 
     if (self.window) {
-        // On iOS 11 on iPhones with a 20pt tall status bar the value of
-        // safeAreaInsets.top is `0` rather than 20.
-        self.backgroundViewTopConstraint.constant = -MAX(self.window.safeAreaInsets.top, 20);
+      // On iOS 11 on iPhones with a 20pt tall status bar the value of
+      // safeAreaInsets.top is `0` rather than 20.
+      self.backgroundViewTopConstraint.constant = -MAX(self.safeAreaTopHeight, 20);
     }
 }
 
@@ -206,6 +207,9 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.borderView];
     [self addSubview:self.largeTitleView];
     [self addSubview:self.titleView];
+
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    self.safeAreaTopHeight = window.safeAreaInsets.top;
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKNavigationBarExpandedFullHeight];
 
