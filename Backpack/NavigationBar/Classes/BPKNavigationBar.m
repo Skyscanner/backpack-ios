@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
  * The default values is `NO`.
  */
 @property(nonatomic, assign, getter=isCollapsed) BOOL collapsed;
+@property(nonatomic) CGFloat lastScrollOffset;
+@property(nonatomic) CGFloat largeTitleFontSize;
 @end
 
 @implementation BPKNavigationBar
@@ -81,6 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         self.largeTitleView.titleLabel.text = _title;
         self.titleView.titleLabel.text = _title;
+        self.largeTitleFontSize = self.largeTitleView.titleLabel.font.pointSize;
     }
 }
 
@@ -111,8 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
-    CGFloat adjustedYOffset =
-        (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
+    CGFloat adjustedYOffset = (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
+    CGFloat scrollOffsetY = fabs(scrollView.contentOffset.y);
+    CGFloat currentFontSize = self.largeTitleView.titleLabel.font.pointSize;
 
     if (adjustedYOffset >= -BPKNavigationBarTitleHeight) {
         // Collapsed state
@@ -143,6 +147,17 @@ NS_ASSUME_NONNULL_BEGIN
 
             self.collapsed = NO;
         }
+
+        if (self.lastScrollOffset < scrollOffsetY
+            && currentFontSize < self.largeTitleFontSize + 4) {
+            self.largeTitleView.titleLabel.font = [self.largeTitleView.titleLabel.font
+                                                   fontWithSize: currentFontSize + .1];
+        } else if (currentFontSize > self.largeTitleFontSize ) {
+            self.largeTitleView.titleLabel.font = [self.largeTitleView.titleLabel.font
+                                                   fontWithSize: currentFontSize - .2];
+        }
+
+        self.lastScrollOffset = scrollOffsetY;
     }
 }
 

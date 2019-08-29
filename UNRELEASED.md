@@ -3,8 +3,12 @@
 
 **Fixed:**
 
-- Backpack/TappableLinkLabel:
-  - Fixed issue that caused links to appear at base size when no theme is applied.
+ - Backpack/TappableLinkLabel:
+   - Fixed issue that caused links to appear at base size when no theme is applied.
+
+**Added:**
+ - Backpack/NavigationBar
+   - Some improvements in the `BPKNavigationBar` animations imitating the native behaviour
 
 ## How to write a good changelog entry
 

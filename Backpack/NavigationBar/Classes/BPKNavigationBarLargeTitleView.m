@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_titleLabel) {
         _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXxxlHeavy];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
     }
 
     return _titleLabel;
