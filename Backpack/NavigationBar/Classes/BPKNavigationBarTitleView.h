@@ -28,12 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) BOOL showsContent;
 
-
 - (instancetype)init __attribute__((unavailable("use initWithFrame: instead")));
-- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithFrame: instead")));;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithFrame: instead")));
+;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 @end
 
 NS_ASSUME_NONNULL_END
-

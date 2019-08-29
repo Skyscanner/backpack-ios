@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 16.0.1
+
+**Fixed:**
+
+ - Backpack/NavigationBar:
+   - Reverted the previous fix in [16.0.0](#16.0.0) as it had unintended side-effects
+
 ## 16.0.0
 
 **Fixed:**

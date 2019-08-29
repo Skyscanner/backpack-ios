@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 /**
  * A navigation bar component similar to `UINavigationBar` from UIKit implementing
@@ -36,7 +35,6 @@ NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
  * default color, BPKColor.gray900` will be used.
  */
 @property(nonatomic, strong, nullable) UIColor *largeTitleTextColor UI_APPEARANCE_SELECTOR;
-
 
 /**
  * The layout margins for the large title.
