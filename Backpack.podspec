@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "15.3.0"
+  s.version          = "16.0.0"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.source = {
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
   s.ios.resource_bundle = {
