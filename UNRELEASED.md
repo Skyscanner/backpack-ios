@@ -1,15 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
-
- - Backpack/NavigationBar:
-   - Fixed an issue that would cause the large title to jump when bouncing back from a scroll down. 
-
-**Changed:**
-
-- Dropped iOS 10 support.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
