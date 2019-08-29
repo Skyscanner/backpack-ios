@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 
 install! 'cocoapods', disable_input_output_paths: true
@@ -32,4 +32,3 @@ post_install do |installer|
       end
   end
 end
-
