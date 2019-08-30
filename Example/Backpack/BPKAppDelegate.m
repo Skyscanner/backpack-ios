@@ -32,16 +32,17 @@
         [UINavigationBar appearance].largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.gray900};
     }
 
-    [ThemeHelpers applyAllThemes];
+    if ([ThemeHelpers isThemingSupported]) {
+        [ThemeHelpers applyAllThemes];
 
-    id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
+        id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
 
-    BPKThemeContainerController *themeContainerController =
-        [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
+        BPKThemeContainerController *themeContainerController =
+            [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
                                                   rootViewController:self.window.rootViewController];
-    self.window.rootViewController = themeContainerController;
-    [self.window makeKeyAndVisible];
-    
+        self.window.rootViewController = themeContainerController;
+        [self.window makeKeyAndVisible];
+    }
 
     return YES;
 }

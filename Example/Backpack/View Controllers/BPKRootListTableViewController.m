@@ -30,12 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
-    self.settingsButton.image = largeSettingsIcon;
-    self.settingsButton.accessibilityLabel = @"Settings";
+    if(ThemeHelpers.isThemingSupported) {
+        UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
+        self.settingsButton.image = largeSettingsIcon;
+        self.settingsButton.accessibilityLabel = @"Settings";
 
-    self.settingsButton.target = self;
-    self.settingsButton.action = @selector(didTapSettingsButton);
+        self.settingsButton.target = self;
+        self.settingsButton.action = @selector(didTapSettingsButton);
+    }
 }
 
 - (void)didTapSettingsButton {

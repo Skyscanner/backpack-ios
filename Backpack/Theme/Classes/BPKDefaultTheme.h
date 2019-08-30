@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_SWIFT_NAME(DefaultTheme) @interface BPKDefaultTheme : NSObject<BPKThemeDefinition>
 
+extern NSString *const BPKDefaultThemeName;
+
 @end
 
 NS_ASSUME_NONNULL_END

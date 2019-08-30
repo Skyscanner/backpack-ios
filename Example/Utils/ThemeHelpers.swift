@@ -42,6 +42,11 @@ class ThemeHelpers: NSObject {
     }
 
     @objc
+    class func isThemingSupported() -> Bool {
+        return ProcessInfo.processInfo.environment["THEMING_ENABLED"] != "NO"
+    }
+
+    @objc
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:

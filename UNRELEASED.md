@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Fixed:**
+
+- Backpack/TappableLinkLabel:
+  - Fixed issue that caused links to appear at base size when no theme is applied.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
