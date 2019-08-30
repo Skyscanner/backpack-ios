@@ -7,7 +7,7 @@
 **Fixed:**
 
  - Backpack/NavigationBar:
-   - Reverted the previous fix in [16.0.0](#16.0.0) as it had unintended side-effects
+   - Reverted the previous fix in [16.0.0](#1600) as it had unintended side-effects
 
 ## 16.0.0
 
