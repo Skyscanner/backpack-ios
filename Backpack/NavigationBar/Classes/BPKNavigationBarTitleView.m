@@ -54,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-
 #pragma mark - Private
 
 - (BPKLabel *)titleLabel {
@@ -74,10 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.backgroundColor = UIColor.whiteColor;
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-                                              [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
-                                              [self.titleLabel.widthAnchor constraintEqualToAnchor:self.widthAnchor multiplier:0.4],
-                                              ]];
+        [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
+        [self.titleLabel.widthAnchor constraintEqualToAnchor:self.widthAnchor multiplier:0.4],
+    ]];
     _titleLabel.alpha = 0.0;
 }
 

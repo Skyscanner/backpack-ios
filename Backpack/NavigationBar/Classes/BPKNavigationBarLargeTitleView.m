@@ -51,11 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.titleLabel];
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.titleLabel.topAnchor constraintLessThanOrEqualToAnchor:self.topAnchor],
-                                              [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
-                                              [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
-                                              ]];
+        [self.titleLabel.topAnchor constraintLessThanOrEqualToAnchor:self.topAnchor],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
+        [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+    ]];
 }
 
 @end

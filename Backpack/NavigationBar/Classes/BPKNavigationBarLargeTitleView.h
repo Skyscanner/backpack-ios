@@ -26,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKNavigationBarLargeTitleView : UIView
 @property(nonatomic, readonly, strong) BPKLabel *titleLabel;
 
-
 - (instancetype)init __attribute__((unavailable("use initWithFrame: instead")));
 - (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithFrame: instead")));
 
