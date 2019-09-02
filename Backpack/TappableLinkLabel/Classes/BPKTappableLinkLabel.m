@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 
     // This initial call to set up colours is needed in case there is no theme initially applied
-    [self updateTextDisplay];
+    [self updateTextColors];
 }
 
 - (BPKFontStyle)getEmphasizedFontStyleFor:(BPKFontStyle)fontStyle {
@@ -156,6 +156,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
                                                        withCustomAttributes:activeLinkCustomAttributes
                                                                 fontMapping:self.fontMapping];
+
+    [self updateTextDisplay];
 }
 
 - (void)updateTextDisplay {
@@ -163,8 +165,6 @@ NS_ASSUME_NONNULL_BEGIN
         self.contentView.text = nil;
         return;
     }
-
-    [self updateTextColors];
 
     NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
         [BPKFont attributesForFontStyle:self.fontStyle
@@ -219,7 +219,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fontStyle != fontStyle) {
         _fontStyle = fontStyle;
 
-        [self updateTextDisplay];
+        [self updateTextColors];
     }
 }
 
@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_linkColor != linkColor) {
         _linkColor = linkColor;
 
-        [self updateTextDisplay];
+        [self updateTextColors];
     }
 }
 
@@ -243,7 +243,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_style != style) {
         _style = style;
 
-        [self updateTextDisplay];
+        [self updateTextColors];
     }
 }
 
