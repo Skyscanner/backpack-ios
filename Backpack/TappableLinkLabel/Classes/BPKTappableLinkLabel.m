@@ -219,7 +219,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fontStyle != fontStyle) {
         _fontStyle = fontStyle;
 
-        [self updateTextColors];
+        [self updateTextDisplay];
     }
 }
 
