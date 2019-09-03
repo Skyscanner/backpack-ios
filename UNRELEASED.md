@@ -1,14 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-
-**Added:**
- - Backpack/Icon:
-   - New `single-booking` icon.
-
-**Fixed:**
- - Backpack/NavigationBar:
-   - Fixed issue that caused starting offset value to be wrong in some circumstances.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

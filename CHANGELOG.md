@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 16.2.0
+
+**Added:**
+ - Backpack/Icon:
+   - New `single-booking` icon.
+
+**Fixed:**
+ - Backpack/NavigationBar:
+   - Fixed issue that caused starting offset value to be wrong in some circumstances.
+
 ## 16.1.0
 
 **Fixed:**
