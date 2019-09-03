@@ -1,15 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
- - Backpack/TappableLinkLabel:
-   - Fixed issue that caused links to appear at base size when no theme is applied.
-   - Prevent titles from appearing partially out of view if scrolled to the wrong place.
-
-**Added:**
- - Backpack/NavigationBar
-   - Some improvements in the `BPKNavigationBar` animations imitating the native behaviour
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
