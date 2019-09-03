@@ -78,5 +78,18 @@ NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
  * @param scrollView The scrollview to base updates on.
  */
 - (void)updateWithScrollView:(UIScrollView *)scrollView;
+
+/**
+ * Will adjust the `UIScrollView` if necessary in order to ensure
+ * that the title is fully visible.
+ * Users **should** call this method everytime the scrollview
+ * ends decelerating using `scrollViewDidEndDecelerating:`, and
+ * also everytime the scrollview ends dragging (unless it will decelerate)
+ * using `scrollViewDidEndDragging:willDecelerate`.
+ *
+ * @param scrollView The scrollview to base updates on.
+ */
+- (void)makeTitleVisibleWithScrollView:(UIScrollView *)scrollView;
+
 @end
 NS_ASSUME_NONNULL_END

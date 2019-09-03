@@ -88,4 +88,14 @@ extension NavigationBarViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navigationBar.update(with: scrollView)
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        navigationBar.makeTitleVisible(with: scrollView)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            navigationBar.makeTitleVisible(with: scrollView)
+        }
+    }
 }
