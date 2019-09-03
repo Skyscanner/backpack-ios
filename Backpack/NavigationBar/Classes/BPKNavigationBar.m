@@ -112,7 +112,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUpForScrollview:(UIScrollView *)scrollView {
     scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarExpandedFullHeight, 0, 0, 0);
     scrollView.scrollIndicatorInsets = scrollView.contentInset;
-    self.baseYOffset = [self calculateYOffset:scrollView];
 }
 
 - (CGFloat)calculateYOffset:(UIScrollView *)scrollView {
@@ -123,16 +122,16 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat adjustedYOffset = [self calculateYOffset:scrollView];
     CGFloat thresholdPoint = self.baseYOffset + (BPKNavigationBarLargeTitleViewHeight / 2.0);
 
-    if(adjustedYOffset <= self.baseYOffset) {
+    if (adjustedYOffset <= self.baseYOffset) {
         // There is no need to adjust as the large title is fully in view
         return;
-    } else if(adjustedYOffset >= self.baseYOffset + BPKNavigationBarLargeTitleViewHeight) {
+    } else if (adjustedYOffset >= self.baseYOffset + BPKNavigationBarLargeTitleViewHeight) {
         // There is no need to adjust as the small title is fully in view
         return;
     }
 
     CGFloat adjustmentRequired = 0.0;
-    if(adjustedYOffset < thresholdPoint) {
+    if (adjustedYOffset < thresholdPoint) {
         // A small adjustment is needed to bring the large title fully into view
         adjustmentRequired = adjustedYOffset - self.baseYOffset;
     } else {
@@ -140,7 +139,9 @@ NS_ASSUME_NONNULL_BEGIN
         adjustmentRequired = adjustedYOffset - (self.baseYOffset + BPKNavigationBarLargeTitleViewHeight);
     }
 
-    [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - adjustmentRequired) animated:YES];
+    [scrollView
+        setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - adjustmentRequired)
+                animated:YES];
 }
 
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
@@ -243,6 +244,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
+    self.baseYOffset = -BPKNavigationBarExpandedFullHeight;
     self.backgroundColor = BPKColor.clear;
     [self addSubview:self.backgroundView];
     [self addSubview:self.borderView];
