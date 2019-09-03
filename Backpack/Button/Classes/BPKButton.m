@@ -615,7 +615,7 @@ NS_ASSUME_NONNULL_BEGIN
         backgroundColor = BPKColor.white;
         break;
     case BPKButtonStyleLink:
-        backgroundColor = UIColor.clearColor;
+        backgroundColor = BPKColor.clear;
         break;
     default:
         backgroundColor = nil;

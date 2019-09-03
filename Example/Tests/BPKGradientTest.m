@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testCloneWithNewDirection {
     BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[UIColor.blackColor, UIColor.whiteColor]
+        [[BPKGradient alloc] initWithColors:@[UIColor.blackColor, BPKColor.white]
                                  startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
                                    endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
 

@@ -18,6 +18,7 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #import <Backpack/Button.h>
+#import <Backpack/Color.h>
 #import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
@@ -35,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)displayHorizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation width:(CGFloat)width {
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-    view.backgroundColor = UIColor.whiteColor;
+    view.backgroundColor = BPKColor.white;
 
     CGSize fittingSize = [horizontalNavigation systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     if (width > -1) {

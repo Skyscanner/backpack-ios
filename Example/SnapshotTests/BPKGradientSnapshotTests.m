@@ -18,6 +18,7 @@
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+#import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
 
 @interface BPKGradientSnapshotTests : FBSnapshotTestCase
@@ -40,7 +41,7 @@
 
 - (void)testBaselineScrimGradient {
     UIView *container = [UIView new];
-    container.backgroundColor = UIColor.whiteColor;
+    container.backgroundColor = BPKColor.white;
     container.translatesAutoresizingMaskIntoConstraints = NO;
 
     BPKGradientView *view = [[BPKGradientView alloc] initWithGradient:[BPKGradient baselineScrim]];

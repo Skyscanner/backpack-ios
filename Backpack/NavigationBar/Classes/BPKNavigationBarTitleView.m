@@ -17,6 +17,7 @@
  */
 #import "BPKNavigationBarTitleView.h"
 
+#import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Label.h>
 
@@ -46,10 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 
         if (_showsContent) {
             self.titleLabel.alpha = 1.0;
-            self.backgroundColor = UIColor.clearColor;
+            self.backgroundColor = BPKColor.clear;
         } else {
             self.titleLabel.alpha = 0.0;
-            self.backgroundColor = UIColor.whiteColor;
+            self.backgroundColor = BPKColor.white;
         }
     }
 }
@@ -70,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
     _showsContent = NO;
     [self addSubview:self.titleLabel];
 
-    self.backgroundColor = UIColor.whiteColor;
+    self.backgroundColor = BPKColor.white;
 
     [NSLayoutConstraint activateConstraints:@[
         [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],

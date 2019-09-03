@@ -19,6 +19,7 @@
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+#import <Backpack/Color.h>
 #import <Backpack/ProgressBar.h>
 
 @interface BPKProgressBarSnapshotTest : FBSnapshotTestCase
@@ -46,7 +47,7 @@
     BPKProgressBar *progressBar = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
     progressBar.progress = 0.75;
 
-    progressBar.trackTintColor = UIColor.clearColor;
+    progressBar.trackTintColor = BPKColor.clear;
 
     CGSize fittingSize = [progressBar systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     progressBar.frame = CGRectMake(0.0, 0.0, 200, fittingSize.height);
