@@ -85,7 +85,7 @@ NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
  * Users **should** call this method everytime the scrollview
  * ends decelerating using `scrollViewDidEndDecelerating:`, and
  * also everytime the scrollview ends dragging (unless it will decelerate)
- * using `scrollViewDidEndDragging`.
+ * using `scrollViewDidEndDragging:willDecelerate`.
  *
  * @param scrollView The scrollview to base updates on.
  */
