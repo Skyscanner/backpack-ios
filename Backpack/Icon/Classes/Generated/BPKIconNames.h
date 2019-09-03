@@ -197,6 +197,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameSettings;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameShareAndroid;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameShareiOS;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameShare;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSingleBooking;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSocialLike;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSort;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeaker;

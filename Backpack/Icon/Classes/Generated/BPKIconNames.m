@@ -195,6 +195,7 @@ BPKIconName const BPKIconNameSettings = @"settings";
 BPKIconName const BPKIconNameShareAndroid = @"share--android";
 BPKIconName const BPKIconNameShareiOS = @"share--ios";
 BPKIconName const BPKIconNameShare = @"share";
+BPKIconName const BPKIconNameSingleBooking = @"single-booking";
 BPKIconName const BPKIconNameSocialLike = @"social-like";
 BPKIconName const BPKIconNameSort = @"sort";
 BPKIconName const BPKIconNameSpeaker = @"speaker";
