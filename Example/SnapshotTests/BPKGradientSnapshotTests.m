@@ -40,7 +40,7 @@
 
 - (void)testBaselineScrimGradient {
     UIView *container = [UIView new];
-    container.backgroundColor = UIColor.whiteColor;
+    container.backgroundColor = BPKColor.white;
     container.translatesAutoresizingMaskIntoConstraints = NO;
 
     BPKGradientView *view = [[BPKGradientView alloc] initWithGradient:[BPKGradient baselineScrim]];

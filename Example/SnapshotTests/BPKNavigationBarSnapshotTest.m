@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupView {
     self.containerVC = [UIViewController new];
-    self.containerVC.view.backgroundColor = UIColor.whiteColor;
+    self.containerVC.view.backgroundColor = BPKColor.white;
 
     self.navigationBar = [[BPKNavigationBar alloc] initWithFrame:CGRectZero];
     self.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;

@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
-            self.backgroundView.backgroundColor = UIColor.clearColor;
+            self.backgroundView.backgroundColor = BPKColor.clear;
             self.collapsed = YES;
         }
     } else {
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.isCollapsed) {
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
-            self.backgroundView.backgroundColor = UIColor.whiteColor;
+            self.backgroundView.backgroundColor = BPKColor.white;
 
             self.collapsed = NO;
         }
@@ -182,7 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         _backgroundView = [[UIVisualEffectView alloc] initWithEffect:effect];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        _backgroundView.backgroundColor = UIColor.whiteColor;
+        _backgroundView.backgroundColor = BPKColor.white;
     }
 
     return _backgroundView;
@@ -202,7 +202,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
-    self.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = BPKColor.clear;
     [self addSubview:self.backgroundView];
     [self addSubview:self.borderView];
     [self addSubview:self.largeTitleView];
