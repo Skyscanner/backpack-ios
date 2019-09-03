@@ -29,13 +29,13 @@ class NavigationBarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.isHidden = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.isHidden = false
     }
 
     override func viewDidLoad() {

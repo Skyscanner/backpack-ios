@@ -19,6 +19,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/Color.h>
 #import <Backpack/Label.h>
 
 const CGFloat BPKNavigationBarTitleHeight = 44;
@@ -45,13 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (_showsContent != showsContent) {
         _showsContent = showsContent;
 
-        if (_showsContent) {
-            self.titleLabel.alpha = 1.0;
-            self.backgroundColor = BPKColor.clear;
-        } else {
-            self.titleLabel.alpha = 0.0;
-            self.backgroundColor = BPKColor.white;
-        }
+        [UIView animateWithDuration:.15 animations:^{
+            self.titleLabel.alpha = self.showsContent ? 1.0 : 0.0;
+            self.backgroundColor = self.showsContent ? BPKColor.clear : BPKColor.white;
+        }];
     }
 }
 
@@ -62,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
         _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
     }
 
     return _titleLabel;
