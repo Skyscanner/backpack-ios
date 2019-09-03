@@ -34,7 +34,7 @@ NS_SWIFT_NAME(ContainerController) @interface BPKContainerController : UIViewCon
  *
  * @param containerClass The class of the container to wrap the view hierarchy in.
  * @param rootViewController The root view controller to be used as a child view controller.
- * @return A configured instance than can further be contained or set to be the `rootViewController` of a `window`.
+ * @return A configured instance that can further be contained or set to be the `rootViewController` of a `window`.
  */
 - (instancetype)initWithContainerClass:(Class)containerClass
                     rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;

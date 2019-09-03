@@ -30,8 +30,10 @@
 
 @implementation BPKDefaultTheme
 
+NSString *const BPKDefaultThemeName = @"Default";
+
 - (NSString *)themeName {
-    return @"Default";
+    return BPKDefaultThemeName;
 }
 
 - (BPKFontMapping *)fontMapping {

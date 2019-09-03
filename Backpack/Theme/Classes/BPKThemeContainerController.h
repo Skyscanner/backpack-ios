@@ -38,7 +38,7 @@ NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController :
  *
  * @param themeDefinition The theme that we want to wrap the view hierarchy in.
  * @param rootViewController The root view controller to be used as a child view controller.
- * @return A configured instance than can further be contained or set to be the `rootViewController` of a `window`.
+ * @return A configured instance that can further be contained or set to be the `rootViewController` of a `window`.
  */
 - (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
                      rootViewController:(UIViewController *)rootViewController;
