@@ -23,6 +23,16 @@ BPKNavigationBar *navigationBar = [[BPKNavigationBar alloc] initWithFrame:CGRect
 // In scrollViewDidScroll:
 
 [navigationBar updateWithScrollView:scrollView];
+
+// In scrollViewDidEndDecelerating:
+
+[navigationBar makeTitleVisibleWithScrollView:scrollView];
+
+// In scrollViewDidEndDragging:
+
+if (!willDecelerate) {
+  [navigationBar makeTitleVisibleWithScrollView:scrollView];
+}
 ```
 
 ### Swift
@@ -39,6 +49,16 @@ navigationBar.setUp(for: myScrolView)
 // In scrollViewDidScroll:
 
 navigationBar.update(with: scrollView)
+
+// In scrollViewDidEndDecelerating:
+
+navigationBar.makeTitleVisible(with: scrollView)
+
+// In scrollViewDidEndDragging:
+
+if !decelerate {
+  navigationBar.makeTitleVisible(with: scrollView)
+}
 ```
 
 ### Appearance attributes

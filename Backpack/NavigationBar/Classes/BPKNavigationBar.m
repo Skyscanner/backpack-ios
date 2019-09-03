@@ -119,6 +119,30 @@ NS_ASSUME_NONNULL_BEGIN
     return (scrollView.adjustedContentInset.top - scrollView.contentInset.top) + scrollView.contentOffset.y;
 }
 
+- (void)makeTitleVisibleWithScrollView:(UIScrollView *)scrollView {
+    CGFloat adjustedYOffset = [self calculateYOffset:scrollView];
+    CGFloat thresholdPoint = self.baseYOffset + (BPKNavigationBarLargeTitleViewHeight / 2.0);
+
+    if(adjustedYOffset <= self.baseYOffset) {
+        // There is no need to adjust as the large title is fully in view
+        return;
+    } else if(adjustedYOffset >= self.baseYOffset + BPKNavigationBarLargeTitleViewHeight) {
+        // There is no need to adjust as the small title is fully in view
+        return;
+    }
+
+    CGFloat adjustmentRequired = 0.0;
+    if(adjustedYOffset < thresholdPoint) {
+        // A small adjustment is needed to bring the large title fully into view
+        adjustmentRequired = adjustedYOffset - self.baseYOffset;
+    } else {
+        // A small adjustment is needed to bring the small title fully into view
+        adjustmentRequired = adjustedYOffset - (self.baseYOffset + BPKNavigationBarLargeTitleViewHeight);
+    }
+
+    [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - adjustmentRequired) animated:YES];
+}
+
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
     CGFloat adjustedYOffset = [self calculateYOffset:scrollView];
 

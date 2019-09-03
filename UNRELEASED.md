@@ -2,9 +2,9 @@
 > Place your changes below this line.
 
 **Fixed:**
-
  - Backpack/TappableLinkLabel:
    - Fixed issue that caused links to appear at base size when no theme is applied.
+   - Prevent titles from appearing partially out of view if scrolled to the wrong place.
 
 **Added:**
  - Backpack/NavigationBar
