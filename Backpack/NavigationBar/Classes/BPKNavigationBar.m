@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Background
 @property(nonatomic, strong, readonly) UIVisualEffectView *backgroundView;
 @property(nonatomic, strong, readonly) UIView *borderView;
+@property(nonatomic, strong, readonly) UIBlurEffect *backgroundEffect;
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
@@ -160,6 +161,7 @@ NS_ASSUME_NONNULL_BEGIN
             self.borderView.alpha = 1.0;
             self.backgroundView.backgroundColor = BPKColor.clear;
             self.collapsed = YES;
+            self.backgroundView.effect = self.backgroundEffect;
         }
     } else {
         // Expanded state
@@ -172,7 +174,8 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.isCollapsed) {
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
-            self.backgroundView.backgroundColor = BPKColor.white;
+            self.backgroundView.backgroundColor = nil;
+            self.backgroundView.effect = nil;
 
             self.collapsed = NO;
         }
@@ -221,8 +224,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIVisualEffectView *)backgroundView {
     if (!_backgroundView) {
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
         _backgroundView.backgroundColor = BPKColor.white;
     }
@@ -244,6 +246,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
+    _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.baseYOffset = -BPKNavigationBarExpandedFullHeight;
     self.backgroundColor = BPKColor.clear;
     [self addSubview:self.backgroundView];
