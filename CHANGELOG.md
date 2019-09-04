@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 16.2.1
+
+**Fixed:**
+ - Backpack/NavigationBar:
+   - Made the blur effect lighter to increase text contrast.
+
 ## 16.2.0
 
 **Added:**
