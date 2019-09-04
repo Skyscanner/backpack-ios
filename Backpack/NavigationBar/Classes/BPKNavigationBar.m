@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKNavigationBar
 @synthesize largeTitleView = _largeTitleView, titleView = _titleView, backgroundView = _backgroundView,
-            borderView = _borderView;
+            borderView = _borderView, backgroundEffect = _backgroundEffect;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -213,6 +213,14 @@ NS_ASSUME_NONNULL_BEGIN
     return _largeTitleView;
 }
 
+- (UIBlurEffect *)backgroundEffect {
+    if (!_backgroundEffect) {
+        _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    }
+
+    return _backgroundEffect;
+}
+
 - (BPKNavigationBarTitleView *)titleView {
     if (!_titleView) {
         _titleView = [[BPKNavigationBarTitleView alloc] initWithFrame:CGRectZero];
@@ -246,7 +254,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
-    _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     self.baseYOffset = -BPKNavigationBarExpandedFullHeight;
     self.backgroundColor = BPKColor.clear;
     [self addSubview:self.backgroundView];
