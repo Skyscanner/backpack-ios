@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Background
 @property(nonatomic, strong, readonly) UIVisualEffectView *backgroundView;
 @property(nonatomic, strong, readonly) UIView *borderView;
+@property(nonatomic, strong, readonly) UIBlurEffect *backgroundEffect;
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
@@ -55,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKNavigationBar
 @synthesize largeTitleView = _largeTitleView, titleView = _titleView, backgroundView = _backgroundView,
-            borderView = _borderView;
+            borderView = _borderView, backgroundEffect = _backgroundEffect;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -160,6 +161,7 @@ NS_ASSUME_NONNULL_BEGIN
             self.borderView.alpha = 1.0;
             self.backgroundView.backgroundColor = BPKColor.clear;
             self.collapsed = YES;
+            self.backgroundView.effect = self.backgroundEffect;
         }
     } else {
         // Expanded state
@@ -172,7 +174,8 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.isCollapsed) {
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
-            self.backgroundView.backgroundColor = BPKColor.white;
+            self.backgroundView.backgroundColor = nil;
+            self.backgroundView.effect = nil;
 
             self.collapsed = NO;
         }
@@ -210,6 +213,14 @@ NS_ASSUME_NONNULL_BEGIN
     return _largeTitleView;
 }
 
+- (UIBlurEffect *)backgroundEffect {
+    if (!_backgroundEffect) {
+        _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    }
+
+    return _backgroundEffect;
+}
+
 - (BPKNavigationBarTitleView *)titleView {
     if (!_titleView) {
         _titleView = [[BPKNavigationBarTitleView alloc] initWithFrame:CGRectZero];
@@ -221,8 +232,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIVisualEffectView *)backgroundView {
     if (!_backgroundView) {
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:effect];
+        _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
         _backgroundView.backgroundColor = BPKColor.white;
     }
