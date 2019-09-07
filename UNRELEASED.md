@@ -1,5 +1,10 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+
+- Backpack/NavigationBar:
+  - Fixed issue that caused a partially obscured title to sometimes bounce to the collapsed state. It now always bounces to the expanded state, as per system behaviour.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
