@@ -22,6 +22,7 @@ class CardsViewController: UIViewController {
     @IBOutlet weak var card: Card!
     var padded: Bool = true
     var selected: Bool = false
+    var backgroundColor: UIColor?
     var cornerStyle: BPKCardCornerStyle = .small
 
     override func viewDidLoad() {
@@ -41,5 +42,8 @@ class CardsViewController: UIViewController {
         card.isPadded = padded
         card.cornerStyle = cornerStyle
         card.isSelected = selected
+        if backgroundColor != nil {
+            card.backgroundColor = backgroundColor
+        }
     }
 }

@@ -30,6 +30,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle;
 @property(nonatomic, strong) UIView *innerView;
+@property(nonatomic, strong) CALayer *tintLayer;
 @end
 
 @implementation BPKCard
@@ -108,7 +109,10 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     BPKAssertMainThread();
     [super setHighlighted:highlighted];
 
-    self.backgroundColor = highlighted ? BPKColor.gray100 : BPKColor.white;
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:highlighted ? .2 : 0];
+    self.tintLayer.opacity = highlighted ? 0.2 : 0;
+    [CATransaction commit];
 }
 
 - (void)setSubview:(UIView *_Nullable)view {
@@ -128,9 +132,18 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     ]];
 }
 
+- (void)layoutSubviews {
+    self.tintLayer.frame = self.bounds;
+}
+
 #pragma mark - Private
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
+    self.tintLayer = [CALayer layer];
+    self.tintLayer.backgroundColor = BPKColor.gray500.CGColor;
+    self.tintLayer.opacity = 0;
+    [self.layer addSublayer:self.tintLayer];
+
     self.layer.masksToBounds = NO;
     self.backgroundColor = BPKColor.white;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
@@ -167,6 +180,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     }
 
     self.layer.cornerRadius = cornerRadius;
+    self.tintLayer.cornerRadius = cornerRadius;
 
     if (self.isPadded) {
         self.innerView.layer.cornerRadius = 0;
