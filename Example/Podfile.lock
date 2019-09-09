@@ -2,10 +2,12 @@ PODS:
   - Backpack (16.3.0):
     - FloatingPanel (~> 1.6)
     - FSCalendar (~> 2.8)
+    - MBProgressHUD (~> 0.9.1)
     - TTTAttributedLabel (~> 1.13.4)
-  - FloatingPanel (1.6.4)
+  - FloatingPanel (1.6.5)
   - FSCalendar (2.8.0)
   - iOSSnapshotTestCase/Core (4.0.1)
+  - MBProgressHUD (0.9.2)
   - SwiftLint (0.31.0)
   - TTTAttributedLabel (1.13.4)
 
@@ -19,6 +21,7 @@ SPEC REPOS:
     - FloatingPanel
     - FSCalendar
     - iOSSnapshotTestCase
+    - MBProgressHUD
     - SwiftLint
     - TTTAttributedLabel
 
@@ -27,10 +30,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 841a2c017eaacd9be6b7462332346ac720bf1013
-  FloatingPanel: 062e0500e3b9848e3eb91595367fc6d579e428df
+  Backpack: 8069ca57b5af0ad443f2bec8864c43f5956aab53
+  FloatingPanel: f4a89a848e21415e2e2697ee8f61847178445aa7
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
