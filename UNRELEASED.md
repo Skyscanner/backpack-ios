@@ -6,6 +6,9 @@
   - New basic rating component. More functionality coming soon!
   - New `subtitle` prop which can be optionally set.
 
+- Backpack/Toast:
+  - New `BPKToast` component.
+
 **Breaking:**
 - Backpack/Theme
   - New properties `ratingLowColor`, `ratingMediumColor` and `ratingHighColor`.
