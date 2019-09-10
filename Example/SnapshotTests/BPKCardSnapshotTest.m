@@ -103,6 +103,18 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testViewSnapshotWithPaddedAndBackgroundColor {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor red500];
+    card.backgroundColor = BPKColor.green200;
+
+    [self configureCard:card withInnerView:innerView];
+    [self configureParentView:parentView forCard:card];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testViewSnapshotWithPaddedAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
