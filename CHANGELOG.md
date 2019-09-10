@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 16.2.2
+
+**Fixed:**
+
+- Backpack/Card:
+  - Fixed issue that caused `backgroundColor` to be wrongly reverted to white on press.
+
 ## 16.2.1
 
 **Fixed:**
