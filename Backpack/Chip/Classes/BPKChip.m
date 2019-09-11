@@ -77,6 +77,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
+    self.shadowEnabled = YES;
+
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.gray500.CGColor;
     self.tintLayer.opacity = 0;
@@ -94,11 +96,25 @@ NS_ASSUME_NONNULL_BEGIN
     [self addTarget:self action:@selector(handleSingleTap:) forControlEvents:UIControlEventTouchUpInside];
 
     [self setUpConstraints];
-
-    BPKShadow *shadow = [BPKShadow shadowSm];
-    [shadow applyToLayer:self.layer];
-
     [self updateStyle];
+}
+
+- (void)setShadowEnabled:(BOOL)shadowEnabled {
+    if (_shadowEnabled != shadowEnabled) {
+        _shadowEnabled = shadowEnabled;
+
+        [self updateShadowStyle];
+        [self updateStyle];
+    }
+}
+
+- (void)updateShadowStyle {
+    if (self.isShadowEnabled) {
+        BPKShadow *shadow = [BPKShadow shadowSm];
+        [shadow applyToLayer:self.layer];
+    } else {
+        self.layer.shadowColor = BPKColor.clear.CGColor;
+    }
 }
 
 #pragma mark - Layout overrides
@@ -171,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundColor = self.primaryColor;
         self.textColor = BPKColor.white;
     } else {
-        self.backgroundColor = BPKColor.white;
+        self.backgroundColor = self.shadowEnabled ? BPKColor.white : BPKColor.gray50;
         self.textColor = BPKColor.gray900;
     }
 

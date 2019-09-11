@@ -59,6 +59,7 @@ class ChipUITest: XCTestCase {
 
     func navigateAndShow() {
         app.tables.staticTexts["Chips"].tap()
+        app.tables.staticTexts["Default"].tap()
     }
 
     func testTapChipToSelect() {

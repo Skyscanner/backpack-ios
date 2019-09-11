@@ -20,6 +20,11 @@ import UIKit
 import Backpack
 
 class ChipPreviewCollectionViewCell: UICollectionViewCell {
+    var shadow: Bool? {
+        didSet {
+             chip.isShadowEnabled = shadow ?? true
+        }
+    }
     var enabled: Bool? {
         didSet {
             chip.isEnabled = enabled ?? true

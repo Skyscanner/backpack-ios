@@ -62,6 +62,11 @@ NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip : UIControl
  */
 @property(nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
+/**
+ * Whether the shadow should be shown or not. By default, chips have a shadow.
+ */
+@property(nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
+
 @end
 
 NS_ASSUME_NONNULL_END

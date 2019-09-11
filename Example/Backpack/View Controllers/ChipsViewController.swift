@@ -22,6 +22,7 @@ import Backpack
 class ChipsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    var shadow: Bool = true
     fileprivate static var chips = [
         (title: "Afghanistan", selected: false, enabled: false), (title: "Belgium", selected: false, enabled: true),
         (title: "Canada", selected: false, enabled: true), (title: "Denmark", selected: false, enabled: true),
@@ -105,6 +106,7 @@ extension ChipsViewController: UICollectionViewDelegate {
         cell.title = title
         cell.isSelected = selected
         cell.enabled = enabled
+        cell.shadow = shadow
 
         return cell
     }
