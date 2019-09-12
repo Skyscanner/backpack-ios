@@ -23,6 +23,8 @@ class ChipsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var shadow: Bool = true
+    var colorUnselectedState: Bool = false
+    var backgroundTint: UIColor?
     fileprivate static var chips = [
         (title: "Afghanistan", selected: false, enabled: false), (title: "Belgium", selected: false, enabled: true),
         (title: "Canada", selected: false, enabled: true), (title: "Denmark", selected: false, enabled: true),
@@ -107,6 +109,10 @@ extension ChipsViewController: UICollectionViewDelegate {
         cell.isSelected = selected
         cell.enabled = enabled
         cell.shadow = shadow
+        if backgroundTint != nil {
+            cell.backgroundTint = backgroundTint
+        }
+        cell.colorUnselectedState = colorUnselectedState
 
         return cell
     }

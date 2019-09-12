@@ -22,7 +22,19 @@ import Backpack
 class ChipPreviewCollectionViewCell: UICollectionViewCell {
     var shadow: Bool? {
         didSet {
-             chip.isShadowEnabled = shadow ?? true
+            chip.isShadowEnabled = shadow ?? true
+        }
+    }
+    var colorUnselectedState: Bool? {
+        didSet {
+            chip.colorUnselectedState = colorUnselectedState ?? true
+        }
+    }
+    var backgroundTint: UIColor? {
+        didSet {
+            if backgroundTint != nil {
+                chip.backgroundTint = backgroundTint
+            }
         }
     }
     var enabled: Bool? {

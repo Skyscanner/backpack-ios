@@ -67,6 +67,16 @@ NS_SWIFT_NAME(Chip) IB_DESIGNABLE @interface BPKChip : UIControl
  */
 @property(nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
 
+/**
+ * Whether the custom backgroundTint should apply when unselected.
+ */
+@property(nonatomic) BOOL colorUnselectedState;
+
+/**
+ * An optional custom background.
+ */
+@property(nullable, nonatomic) UIColor *backgroundTint;
+
 @end
 
 NS_ASSUME_NONNULL_END
