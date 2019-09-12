@@ -22,6 +22,9 @@ import Backpack
 enum ChipSegueIdentifier: String {
     case `default` = "Default"
     case withoutShadow = "WithoutShadow"
+    case withBackgroundColor = "WithBackgroundColor"
+    case backgroundColorNoShadow = "BackgroundColorNoShadow"
+    case backgroundColorUnselectedNoShadow = "BackgroundColorUnselectedNoShadow"
 }
 
 class ChipSelectorViewController: UITableViewController {
@@ -38,6 +41,18 @@ class ChipSelectorViewController: UITableViewController {
             case .withoutShadow:
                 target.title = "Without shadow"
                 target.shadow = false
+            case .withBackgroundColor:
+                target.title = "Background color"
+                target.backgroundTint = Color.red500
+            case .backgroundColorNoShadow:
+                target.title = "Background color"
+                target.shadow = false
+                target.backgroundTint = Color.red500
+            case .backgroundColorUnselectedNoShadow:
+                target.title = "Background color"
+                target.shadow = false
+                target.colorUnselectedState = true
+                target.backgroundTint = Color.red500
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

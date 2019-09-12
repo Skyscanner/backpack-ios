@@ -3,7 +3,9 @@
 **Added:**
 
 - Backpack/Chip:
-  - New `isShadowEnabled` prop to optionally disable chip's shadows.
+  - New `isShadowEnabled` property to optionally disable chip's shadows.
+  - New `backgroundTint` property to optionally change the chip background color.
+  - New `colorUnselectedState` property to decide whether the background color should be used in a lighter form for the background.
 
 ## How to write a good changelog entry
 

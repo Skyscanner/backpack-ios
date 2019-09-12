@@ -83,6 +83,71 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testChipWithCustomBackgroundColorWithoutShadowEnabledSelected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.selected = YES;
+    bpkChip.backgroundTint = UIColor.orangeColor;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledSelected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.selected = YES;
+    bpkChip.backgroundTint = UIColor.orangeColor;
+    bpkChip.colorUnselectedState = YES;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testChipUnselectedColorEnabledColorWithoutShadowEnabledSelected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.selected = YES;
+    bpkChip.colorUnselectedState = YES;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testChipWithCustomBackgroundColorWithoutShadowEnabledUnselected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.backgroundTint = UIColor.orangeColor;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.backgroundTint = UIColor.orangeColor;
+    bpkChip.colorUnselectedState = YES;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testChipUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.colorUnselectedState = YES;
+    bpkChip.shadowEnabled = false;
+    [self configureParentView:parentView forChip:bpkChip];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testChipEnabledSelectedThemed {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];

@@ -164,6 +164,22 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
+- (void)setColorUnselectedState:(BOOL)colorUnselectedState {
+    if(_colorUnselectedState != colorUnselectedState) {
+        _colorUnselectedState = colorUnselectedState;
+
+        [self updateStyle];
+    }
+}
+
+- (void)setBackgroundTint:(UIColor *_Nullable)backgroundTint {
+    if(_backgroundTint != backgroundTint) {
+        _backgroundTint = backgroundTint;
+
+        [self updateStyle];
+    }
+}
+
 #pragma mark - Layout
 
 - (void)setUpConstraints {
@@ -182,12 +198,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Updates
 
+- (UIColor *) selectedBackgroundColor {
+    if(self.backgroundTint != nil) {
+        return self.backgroundTint;
+    }
+
+    return self.primaryColor;
+}
+
+- (UIColor *) unselectedBackgroundColor {
+    if(self.colorUnselectedState) {
+        return [BPKColor blend:[self selectedBackgroundColor] with:BPKColor.white weight:0.2];
+    }
+
+   return self.shadowEnabled ? BPKColor.white : BPKColor.gray50;
+}
+
 - (void)updateStyle {
     if (self.selected) {
-        self.backgroundColor = self.primaryColor;
+        self.backgroundColor = [self selectedBackgroundColor];
         self.textColor = BPKColor.white;
     } else {
-        self.backgroundColor = self.shadowEnabled ? BPKColor.white : BPKColor.gray50;
+        self.backgroundColor = [self unselectedBackgroundColor];
         self.textColor = BPKColor.gray900;
     }
 
