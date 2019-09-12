@@ -2,6 +2,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 16.3.0
+
+**Added:**
+
+- Backpack/Chip:
+  - New `isShadowEnabled` property to optionally disable chip's shadows.
+  - New `backgroundTint` property to optionally change the chip background color.
+  - New `colorUnselectedState` property to decide whether the background color should be used in a lighter form for the background.
+
 ## 16.2.2
 
 **Fixed:**
