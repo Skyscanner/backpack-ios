@@ -22,53 +22,35 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKRating` is a subclass of `UIView` configured with Skyscanner style properties.
+ * `BPKRatingTextWrapper` is a subclass of `UIView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
+NS_SWIFT_NAME(RatingTextWrapper) IB_DESIGNABLE @interface BPKRatingTextWrapper : UIView
 
 /**
- * The title to display inside the rating.
+ * The title to display inside the ratingTextWrapper.
  */
 @property(nonatomic, copy, nullable) NSString *title;
 
 /**
- * The subtitle to display inside the rating.
+ * The subtitle to display inside the ratingTextWrapper.
  */
 @property(nonatomic, copy, nullable) NSString *subtitle;
 
 /**
- * The rating value
- */
-@property(nonatomic) double ratingValue;
-
-/**
- * Creates a `BPKRating` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKRatingTextWrapper` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKRating` instance.
+ * @return `BPKRatingTextWrapper` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Create a `BPKRating` with a given frame.
+ * Create a `BPKRatingTextWrapper` with a given frame.
  *
- * @param frame The initial frame of the rating.
- * @return `BPKRating` instance.
+ * @param frame The initial frame of the ratingTextWrapper.
+ * @return `BPKRatingTextWrapper` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
-
-/**
- * Create a `BPKRating` with a given rating value and title.
- *
- * @param ratingValue The value shown in the rating component
- * @param title The title of the rating
- * @return `BPKRating` instance.
- */
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title NS_DESIGNATED_INITIALIZER;
-
-@property(nonatomic, strong) UIColor *lowRatingColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) UIColor *mediumRatingColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) UIColor *highRatingColor UI_APPEARANCE_SELECTOR;
 
 @end
 
