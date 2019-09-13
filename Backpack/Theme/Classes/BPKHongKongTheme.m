@@ -182,4 +182,16 @@
     return self.primaryColor;
 }
 
+- (UIColor *)ratingLowColor {
+    return UIColor.redColor;
+}
+
+- (UIColor *)ratingMediumColor {
+    return UIColor.yellowColor;
+}
+
+- (UIColor *)ratingHighColor {
+    return UIColor.greenColor;
+}
+
 @end

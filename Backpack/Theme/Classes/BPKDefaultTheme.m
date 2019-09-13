@@ -168,4 +168,16 @@ NSString *const BPKDefaultThemeName = @"Default";
     return self.primaryColor;
 }
 
+- (UIColor *)ratingLowColor {
+    return BPKColor.red500;
+}
+
+- (UIColor *)ratingMediumColor {
+    return BPKColor.yellow500;
+}
+
+- (UIColor *)ratingHighColor {
+    return BPKColor.green500;
+}
+
 @end

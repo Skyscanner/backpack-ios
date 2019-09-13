@@ -72,6 +72,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, readonly, strong) UIColor *horiontalNavigationSelectedColor;
 
+@property(nonatomic, readonly, strong) UIColor *ratingLowColor;
+@property(nonatomic, readonly, strong) UIColor *ratingMediumColor;
+@property(nonatomic, readonly, strong) UIColor *ratingHighColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

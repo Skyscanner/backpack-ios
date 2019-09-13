@@ -174,4 +174,16 @@
     return self.primaryColor;
 }
 
+- (UIColor *)ratingLowColor {
+    return UIColor.purpleColor;
+}
+
+- (UIColor *)ratingMediumColor {
+    return UIColor.orangeColor;
+}
+
+- (UIColor *)ratingHighColor {
+    return UIColor.cyanColor;
+}
+
 @end

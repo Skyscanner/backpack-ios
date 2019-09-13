@@ -388,11 +388,11 @@
                                         <rect key="frame" x="0.0" y="903.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3hP-15-BRn" id="dkI-No-w0i">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Panels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p6x-St-J1F" customClass="BPKLabel">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -422,6 +422,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="IRp-nW-tCi" kind="show" id="10q-Yb-N8J"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Gcx-AM-M3Y" style="IBUITableViewCellStyleDefault" id="KW6-QO-mh1">
+                                        <rect key="frame" x="0.0" y="947.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KW6-QO-mh1" id="idF-Sl-rTx">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gcx-AM-M3Y" customClass="BPKLabel">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bf3-rr-ug5" kind="show" id="CSP-HF-3No"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qF6-Yq-9kq" style="IBUITableViewCellStyleDefault" id="2gS-rq-Ibz">
@@ -1150,6 +1170,14 @@
             </objects>
             <point key="canvasLocation" x="1209" y="543"/>
         </scene>
+        <!--Ratings-->
+        <scene sceneID="aIP-vy-Svz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Ratings" id="bf3-rr-ug5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xq-Ee-gtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410" y="36"/>
+        </scene>
         <!--BadgesViewController-->
         <scene sceneID="QNv-1X-EcR">
             <objects>
@@ -1164,7 +1192,7 @@
                 <viewControllerPlaceholder storyboardName="Chips" referencedIdentifier="ChipsViewController" id="n4V-kJ-hpy" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Imx-To-YVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="273"/>
+            <point key="canvasLocation" x="1417" y="201"/>
         </scene>
         <!--LabelsSelectorViewController-->
         <scene sceneID="iuQ-1u-M2T">
