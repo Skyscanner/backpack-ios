@@ -123,6 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setRatingValue:(CGFloat)ratingValue {
+    BPKAssertMainThread();
     if (_ratingValue != ratingValue) {
         _ratingValue = ratingValue;
 
@@ -179,8 +180,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLabels {
     self.titleLabel.text = self.title;
 }
-
-#pragma mark - Helpers
 
 @end
 

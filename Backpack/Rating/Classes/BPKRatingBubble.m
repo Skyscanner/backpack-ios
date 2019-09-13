@@ -52,9 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
-    _lowRatingColor = BPKColor.red500;
-    _mediumRatingColor = BPKColor.yellow500;
-    _highRatingColor = BPKColor.green500;
+    self.lowRatingColor = BPKColor.red500;
+    self.mediumRatingColor = BPKColor.yellow500;
+    self.highRatingColor = BPKColor.green500;
 
     self.backgroundColor = BPKColor.gray200;
 
@@ -95,8 +95,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setRatingValue:(CGFloat)ratingValue {
+    BPKAssertMainThread();
     if (_ratingValue != ratingValue) {
         _ratingValue = ratingValue;
+
+        double cappedRatingBubbleValue = MIN(10.0, MAX(0, self.ratingValue));
+        if (fabs(10.0 - cappedRatingBubbleValue) < 0.01 || fabs(0.0 - cappedRatingBubbleValue) < 0.01) {
+            self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.f", cappedRatingBubbleValue];
+        } else {
+            self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.1f", cappedRatingBubbleValue];
+        }
 
         [self updateStyle];
     }
@@ -119,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:@[
         [self.heightAnchor constraintEqualToAnchor:self.ratingBubbleLabel.heightAnchor
                                           constant:2 * ratingBubbleVerticalSpacing],
-        [self.heightAnchor constraintEqualToAnchor:self.widthAnchor],
+        [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
 
         [self.ratingBubbleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.ratingBubbleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
@@ -144,17 +152,6 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundColor = self.mediumRatingColor;
     } else {
         self.backgroundColor = self.highRatingColor;
-    }
-
-    [self updateLabels];
-}
-
-- (void)updateLabels {
-    double cappedRatingBubbleValue = MIN(10.0, MAX(0, self.ratingValue));
-    if (fabs(10.0 - cappedRatingBubbleValue) < 0.01 || fabs(0.0 - cappedRatingBubbleValue) < 0.01) {
-        self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.f", cappedRatingBubbleValue];
-    } else {
-        self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.1f", cappedRatingBubbleValue];
     }
 }
 

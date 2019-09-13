@@ -26,6 +26,7 @@
 #import <Backpack/ProgressBar.h>
 #import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Label.h>
+#import <Backpack/Rating.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/StarRating.h>
 #import <Backpack/Switch.h>
@@ -218,6 +219,12 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKProgressBar *progressBarAppearance =
     [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.primaryColor;
+
+    BPKRating *ratingAppearance =
+    [BPKRating appearanceWhenContainedInInstancesOfClasses:@[class]];
+    ratingAppearance.lowRatingColor = theme.ratingLowColor;
+    ratingAppearance.mediumRatingColor = theme.ratingMediumColor;
+    ratingAppearance.highRatingColor = theme.ratingHighColor;
 }
 
 @end
