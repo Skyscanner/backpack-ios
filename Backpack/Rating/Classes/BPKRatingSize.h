@@ -16,9 +16,22 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_RATING__
-#define __BACKPACK_RATING__
+#import <Foundation/Foundation.h>
 
-#import "BPKRating.h"
-#import "BPKRatingSize.h"
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * The different sizes of the Rating.
+ */
+typedef NS_ENUM(NSInteger, BPKRatingSize) {
+
+    BPKRatingSizeBase = 0,
+
+    BPKRatingSizeLarge,
+
+    BPKRatingSizeSmall,
+
+    BPKRatingSizeExtraSmall
+};
+
+NS_ASSUME_NONNULL_END

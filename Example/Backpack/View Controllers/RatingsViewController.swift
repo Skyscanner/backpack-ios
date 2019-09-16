@@ -21,20 +21,21 @@ import Backpack.Rating
 class RatingsViewController: UIViewController {
     @IBOutlet var ratings: [Rating]!
     var showSubtitle: Bool = false
+    var showDifferentSizes: Bool = false
 
     fileprivate static var ratingData = [
         (ratingValue: 3.0, title: "Low title", subtitle: "Low subtitle",
-         accessibilityLabel: "Rated 0 out of 10. Low title."),
+         accessibilityLabel: "Rated 0 out of 10. Low title.", size: BPKRatingSize.large),
         (ratingValue: 5.9, title: "Low title", subtitle: "Low subtitle",
-         accessibilityLabel: "Rated 2.1 out of 10. Low title."),
+         accessibilityLabel: "Rated 2.1 out of 10. Low title.", size: BPKRatingSize.large),
         (ratingValue: 6.0, title: "Medium title", subtitle: "Medium subtitle",
-         accessibilityLabel: "Rated 4.3 out of 10. Medium title."),
+         accessibilityLabel: "Rated 4.3 out of 10. Medium title.", size: BPKRatingSize.base),
         (ratingValue: 7.9, title: "Medium title", subtitle: "Medium subtitle",
-         accessibilityLabel: "Rated 6.4 out of 10. Medium title."),
+         accessibilityLabel: "Rated 6.4 out of 10. Medium title.", size: BPKRatingSize.small),
         (ratingValue: 8.0, title: "High title", subtitle: "High subtitle",
-         accessibilityLabel: "Rated 8.6 out of 10. High title."),
+         accessibilityLabel: "Rated 8.6 out of 10. High title.", size: BPKRatingSize.extraSmall),
         (ratingValue: 10.0, title: "High title", subtitle: "High subtitle",
-         accessibilityLabel: "Rated 10 out of 10. High title.")
+         accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall)
     ]
 
     override func viewDidLoad() {
@@ -52,6 +53,9 @@ class RatingsViewController: UIViewController {
             ratings[index].accessibilityLabel = RatingsViewController.ratingData[index].accessibilityLabel
             if showSubtitle {
                 ratings[index].subtitle = RatingsViewController.ratingData[index].subtitle
+            }
+            if showDifferentSizes {
+                ratings[index].size = RatingsViewController.ratingData[index].size
             }
         }
     }

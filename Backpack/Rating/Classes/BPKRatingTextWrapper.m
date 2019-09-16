@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKRatingTextWrapper ()
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) BPKLabel *subtitleLabel;
-@property(nonatomic) NSLayoutConstraint *spacingConstraint;
 @end
 
 @implementation BPKRatingTextWrapper
@@ -72,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - State setters
 
-- (void)setTitle:(NSString *_Nullable)title {
+- (void)setTitle:(NSString *)title {
     BPKAssertMainThread();
     _title = [title copy];
 
@@ -88,10 +87,30 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateConstraints];
 }
 
-- (void)updateConstraints {
-    [super updateConstraints];
+- (void)setSize:(BPKRatingSize)size {
+    BPKAssertMainThread();
+    if (_size != size) {
+        _size = size;
 
-    [self.spacingConstraint setActive:self.title != nil && self.subtitle != nil];
+        switch (size) {
+        case BPKRatingSizeLarge:
+            self.titleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+            self.subtitleLabel.fontStyle = BPKFontStyleTextBase;
+            break;
+        case BPKRatingSizeBase:
+            self.titleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+            self.subtitleLabel.fontStyle = BPKFontStyleTextSm;
+            break;
+        case BPKRatingSizeSmall:
+            self.titleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+            self.subtitleLabel.fontStyle = BPKFontStyleTextXs;
+            break;
+        case BPKRatingSizeExtraSmall:
+            self.titleLabel.fontStyle = BPKFontStyleTextXsEmphasized;
+            self.subtitleLabel.fontStyle = BPKFontStyleTextXs;
+            break;
+        }
+    }
 }
 
 #pragma mark - Layout
@@ -101,10 +120,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
-    self.spacingConstraint = [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor
-                                                                          constant:BPKSpacingSm];
-
     [NSLayoutConstraint activateConstraints:@[
+        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.subtitleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],

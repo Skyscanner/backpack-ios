@@ -22,6 +22,7 @@ BPKRating *rating = [[BPKRating alloc] init];
 rating.title = @"Some title";
 rating.subtitle = @"Some subtitle";
 rating.ratingValue = 9.7;
+rating.size = BPKRatingSizeSmall;
 ```
 
 ### Appearance attributes
