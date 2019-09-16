@@ -83,7 +83,7 @@ task :analyze do
 end
 
 task :erase_devices do
-  sh "xcrun simctl erase all"
+  sh "pkill Simulator && xcrun simctl erase all"
 end
 
 task :test do
@@ -95,7 +95,7 @@ end
 task :lint do
   `clang-format -i **/*.h **/*.m`
   abort red 'Running clang-format changed some files.' unless check_pristine
-  sh "bundle exec pod lib lint"
+  sh "bundle exec pod lib lint --allow-warnings"
 end
 
 task ci: [:erase_devices, :all_checks]
