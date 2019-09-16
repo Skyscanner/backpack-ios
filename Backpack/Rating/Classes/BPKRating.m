@@ -55,12 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title {
+- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title subtitle:(NSString *_Nullable)subtitle {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
         self.ratingValue = ratingValue;
         self.title = title;
+        self.subtitle = subtitle;
 
         [self setUp];
     }
@@ -114,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setTitle:(NSString *_Nullable)title {
+- (void)setTitle:(NSString *)title {
     BPKAssertMainThread();
     _title = [title copy];
 

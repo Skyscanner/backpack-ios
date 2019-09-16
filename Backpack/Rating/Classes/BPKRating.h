@@ -29,7 +29,7 @@ NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
 /**
  * The title to display inside the rating.
  */
-@property(nonatomic, copy, nullable) NSString *title;
+@property(nonatomic, copy) NSString *title;
 
 /**
  * The subtitle to display inside the rating.
@@ -64,7 +64,7 @@ NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
  * @param title The title of the rating
  * @return `BPKRating` instance.
  */
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title subtitle:(NSString *_Nullable)subtitle NS_DESIGNATED_INITIALIZER;
 
 @property(nonatomic, strong) UIColor *lowRatingColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *mediumRatingColor UI_APPEARANCE_SELECTOR;
