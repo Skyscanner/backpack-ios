@@ -79,11 +79,11 @@ namespace :git do
 end
 
 task :analyze do
-  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 task :erase_devices do
-  sh "xcrun simctl erase all"
+  sh "pkill Simulator && xcrun simctl erase all"
 end
 
 task :test do
@@ -95,7 +95,7 @@ end
 task :lint do
   `clang-format -i **/*.h **/*.m`
   abort red 'Running clang-format changed some files.' unless check_pristine
-  sh "bundle exec pod lib lint"
+  sh "bundle exec pod lib lint --allow-warnings"
 end
 
 task ci: [:erase_devices, :all_checks]
