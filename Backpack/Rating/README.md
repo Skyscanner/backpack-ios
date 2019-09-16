@@ -16,10 +16,11 @@ and then run `pod install`.
 
 
 ```objective-c
-#import <Backpack/Chip.h>
+#import <Backpack/Rating.h>
 
 BPKRating *rating = [[BPKRating alloc] init];
 rating.title = @"Some title";
+rating.subtitle = @"Some subtitle";
 rating.ratingValue = 9.7;
 ```
 

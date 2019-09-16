@@ -21,6 +21,7 @@ import Backpack
 
 enum RatingSegueIdentifier: String {
     case `default` = "Default"
+    case withSubtitle = "WithSubtitle"
 }
 
 class RatingSelectorViewController: UITableViewController {
@@ -34,6 +35,9 @@ class RatingSelectorViewController: UITableViewController {
             switch ratingSegueIdentifier {
             case .default:
                 target.title = "Default"
+            case .withSubtitle:
+                target.title = "Subtitles"
+                target.showSubtitle = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

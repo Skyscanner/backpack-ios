@@ -25,10 +25,11 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKRatingBubble.h"
+#import "BPKRatingTextWrapper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKRating ()
-@property(nonatomic) BPKLabel *titleLabel;
+@property(nonatomic) BPKRatingTextWrapper *textWrapper;
 @property(nonatomic) BPKRatingBubble *ratingBubble;
 @end
 
@@ -54,12 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title {
+- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title subtitle:(NSString *_Nullable)subtitle {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
         self.ratingValue = ratingValue;
         self.title = title;
+        self.subtitle = subtitle;
 
         [self setUp];
     }
@@ -70,20 +72,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
-    self.titleLabel.accessibilityElementsHidden = NO;
-
     self.ratingBubble = [BPKRatingBubble new];
     self.ratingBubble.accessibilityElementsHidden = YES;
     [self.ratingBubble setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh
                                                        forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:self.ratingBubble];
 
-    self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.accessibilityElementsHidden = YES;
-    [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
-                                                     forAxis:UILayoutConstraintAxisHorizontal];
-    self.titleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
-    [self addSubview:self.titleLabel];
+    self.textWrapper = [[BPKRatingTextWrapper alloc] initWithFrame:CGRectZero];
+    self.textWrapper.accessibilityElementsHidden = YES;
+    [self addSubview:self.textWrapper];
 
     [self setUpConstraints];
     [self updateStyle];
@@ -92,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - State setters
 
 - (void)setLowRatingColor:(UIColor *)lowRatingColor {
+    BPKAssertMainThread();
     if (_lowRatingColor != lowRatingColor) {
         _lowRatingColor = lowRatingColor;
 
@@ -100,6 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setMediumRatingColor:(UIColor *)mediumRatingColor {
+    BPKAssertMainThread();
     if (_mediumRatingColor != mediumRatingColor) {
         _mediumRatingColor = mediumRatingColor;
 
@@ -108,6 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setHighRatingColor:(UIColor *)highRatingColor {
+    BPKAssertMainThread();
     if (_highRatingColor != highRatingColor) {
         _highRatingColor = highRatingColor;
 
@@ -115,11 +115,18 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setTitle:(NSString *_Nullable)title {
+- (void)setTitle:(NSString *)title {
     BPKAssertMainThread();
     _title = [title copy];
 
-    [self updateLabels];
+    self.textWrapper.title = self.title;
+}
+
+- (void)setSubtitle:(NSString *_Nullable)subtitle {
+    BPKAssertMainThread();
+    _subtitle = [subtitle copy];
+
+    self.textWrapper.subtitle = self.subtitle;
 }
 
 - (void)setRatingValue:(CGFloat)ratingValue {
@@ -142,18 +149,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUpConstraints {
 
-    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.textWrapper.translatesAutoresizingMaskIntoConstraints = NO;
     self.ratingBubble.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
         [self.ratingBubble.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.ratingBubble.topAnchor constraintEqualToAnchor:self.topAnchor],
 
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.ratingBubble.trailingAnchor constant:BPKSpacingMd],
-        [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.ratingBubble.centerYAnchor],
-        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.trailingAnchor],
+        [self.textWrapper.leadingAnchor constraintEqualToAnchor:self.ratingBubble.trailingAnchor constant:BPKSpacingMd],
+        [self.textWrapper.centerYAnchor constraintEqualToAnchor:self.ratingBubble.centerYAnchor],
+        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.textWrapper.trailingAnchor],
 
-        [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
+        [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.textWrapper.bottomAnchor],
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.bottomAnchor]
     ]];
 }
@@ -161,10 +168,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
     [super systemLayoutSizeFittingSize:targetSize];
     CGSize ratingBubbleSize = [self.ratingBubble systemLayoutSizeFittingSize:targetSize];
-    CGSize titleLabelSize = [self.titleLabel systemLayoutSizeFittingSize:targetSize];
+    CGSize textWrapperSize = [self.textWrapper systemLayoutSizeFittingSize:targetSize];
 
-    CGFloat height = MIN(MAX(ratingBubbleSize.height, titleLabelSize.height), targetSize.height);
-    CGFloat width = MIN(ratingBubbleSize.width + BPKSpacingMd + titleLabelSize.width, targetSize.width);
+    CGFloat height = MIN(MAX(ratingBubbleSize.height, textWrapperSize.height), targetSize.height);
+    CGFloat width = MIN(ratingBubbleSize.width + BPKSpacingMd + textWrapperSize.width, targetSize.width);
 
     return CGSizeMake(width, height);
 }
@@ -173,12 +180,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     self.ratingBubble.ratingValue = self.ratingValue;
-
-    [self updateLabels];
-}
-
-- (void)updateLabels {
-    self.titleLabel.text = self.title;
 }
 
 @end
