@@ -2,6 +2,20 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 17.0.0
+
+**Added:**
+
+- Backpack/Rating:
+  - New rating component with title and subtitle. Size and layout options coming soon.
+
+- Backpack/Toast:
+  - New `BPKToast` component.
+
+**Breaking:**
+- Backpack/Theme
+  - New properties `ratingLowColor`, `ratingMediumColor` and `ratingHighColor`.
+
 ## 16.3.0
 
 **Added:**

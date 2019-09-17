@@ -1,5 +1,5 @@
 PODS:
-  - Backpack (16.3.0):
+  - Backpack (17.0.0):
     - FloatingPanel (~> 1.6)
     - FSCalendar (~> 2.8)
     - MBProgressHUD (~> 0.9.1)
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 8069ca57b5af0ad443f2bec8864c43f5956aab53
+  Backpack: 2ee21ab2e0845a5ba2737792a0b239bf68497021
   FloatingPanel: f4a89a848e21415e2e2697ee8f61847178445aa7
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
