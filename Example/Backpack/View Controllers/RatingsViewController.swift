@@ -22,6 +22,7 @@ class RatingsViewController: UIViewController {
     @IBOutlet var ratings: [Rating]!
     var showSubtitle: Bool = false
     var showDifferentSizes: Bool = false
+    var layout: BPKRatingLayout = .horizontal
 
     fileprivate static var ratingData = [
         (ratingValue: 3.0, title: "Low title", subtitle: "Low subtitle",
@@ -51,6 +52,7 @@ class RatingsViewController: UIViewController {
             ratings[index].ratingValue = RatingsViewController.ratingData[index].ratingValue
             ratings[index].title = RatingsViewController.ratingData[index].title
             ratings[index].accessibilityLabel = RatingsViewController.ratingData[index].accessibilityLabel
+            ratings[index].layout = layout
             if showSubtitle {
                 ratings[index].subtitle = RatingsViewController.ratingData[index].subtitle
             }

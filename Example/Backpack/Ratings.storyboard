@@ -52,7 +52,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="6Xo-vZ-ecX" firstAttribute="top" secondItem="EXc-XX-5bv" secondAttribute="bottom" constant="20" id="7nR-Cf-5dV"/>
-                                            <constraint firstAttribute="trailing" secondItem="xMV-m2-Moc" secondAttribute="trailing" constant="20" id="7om-Id-yIT"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xMV-m2-Moc" secondAttribute="trailing" constant="20" id="7om-Id-yIT"/>
                                             <constraint firstItem="C5y-4e-wea" firstAttribute="top" secondItem="Us1-EO-Hbc" secondAttribute="top" constant="20" id="8MU-cE-Qx5"/>
                                             <constraint firstItem="6Xo-vZ-ecX" firstAttribute="leading" secondItem="Us1-EO-Hbc" secondAttribute="leading" constant="20" id="9Sv-m8-l8E"/>
                                             <constraint firstItem="uWF-EK-Jvv" firstAttribute="leading" secondItem="Us1-EO-Hbc" secondAttribute="leading" constant="20" id="9qr-nU-KwN"/>
@@ -60,15 +60,15 @@
                                             <constraint firstItem="uWF-EK-Jvv" firstAttribute="top" secondItem="lWq-62-1nw" secondAttribute="bottom" constant="20" id="CJZ-ne-9aW"/>
                                             <constraint firstItem="xMV-m2-Moc" firstAttribute="leading" secondItem="Us1-EO-Hbc" secondAttribute="leading" constant="20" id="GKx-ne-wfi"/>
                                             <constraint firstAttribute="bottom" secondItem="uWF-EK-Jvv" secondAttribute="bottom" constant="20" id="MoS-yn-gDP"/>
-                                            <constraint firstAttribute="trailing" secondItem="6Xo-vZ-ecX" secondAttribute="trailing" constant="20" id="PdG-Hh-g1Y"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Xo-vZ-ecX" secondAttribute="trailing" constant="20" id="PdG-Hh-g1Y"/>
                                             <constraint firstItem="EXc-XX-5bv" firstAttribute="top" secondItem="C5y-4e-wea" secondAttribute="bottom" constant="20" id="Qo7-Kh-X3a"/>
-                                            <constraint firstAttribute="trailing" secondItem="uWF-EK-Jvv" secondAttribute="trailing" constant="20" id="QqM-xT-zqO"/>
-                                            <constraint firstAttribute="trailing" secondItem="lWq-62-1nw" secondAttribute="trailing" constant="20" id="SKo-dK-5Fl"/>
-                                            <constraint firstAttribute="trailing" secondItem="C5y-4e-wea" secondAttribute="trailing" constant="20" id="WbE-cE-ZIL"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uWF-EK-Jvv" secondAttribute="trailing" constant="20" id="QqM-xT-zqO"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lWq-62-1nw" secondAttribute="trailing" constant="20" id="SKo-dK-5Fl"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C5y-4e-wea" secondAttribute="trailing" constant="20" id="WbE-cE-ZIL"/>
                                             <constraint firstItem="lWq-62-1nw" firstAttribute="leading" secondItem="Us1-EO-Hbc" secondAttribute="leading" constant="20" id="XHs-Rh-41a"/>
                                             <constraint firstItem="xMV-m2-Moc" firstAttribute="top" secondItem="6Xo-vZ-ecX" secondAttribute="bottom" constant="20" id="cpx-2U-baP"/>
                                             <constraint firstItem="lWq-62-1nw" firstAttribute="top" secondItem="xMV-m2-Moc" secondAttribute="bottom" constant="20" id="gc8-AK-cmW"/>
-                                            <constraint firstAttribute="trailing" secondItem="EXc-XX-5bv" secondAttribute="trailing" constant="20" id="gnW-nI-LQk"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EXc-XX-5bv" secondAttribute="trailing" constant="20" id="gnW-nI-LQk"/>
                                             <constraint firstItem="EXc-XX-5bv" firstAttribute="leading" secondItem="Us1-EO-Hbc" secondAttribute="leading" constant="20" id="zc9-LJ-f8K"/>
                                         </constraints>
                                     </view>
@@ -155,7 +155,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="br0-23-d4X" style="IBUITableViewCellStyleDefault" id="OZq-gf-bTS">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OZq-gf-bTS" id="X0F-oR-cBn">
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
@@ -174,6 +174,26 @@
                                             <segue destination="SHl-Oi-FFr" kind="show" identifier="Sizes" id="hX7-IX-iMP"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZAY-M7-460" style="IBUITableViewCellStyleDefault" id="5Bw-WY-D1z">
+                                        <rect key="frame" x="0.0" y="132" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Bw-WY-D1z" id="d7f-Ru-I0t">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Vertical layout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZAY-M7-460" customClass="BPKLabel">
+                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="SHl-Oi-FFr" kind="show" identifier="VerticalLayout" id="g9d-8l-T5t"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -189,6 +209,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hX7-IX-iMP"/>
+        <segue reference="g9d-8l-T5t"/>
     </inferredMetricsTieBreakers>
 </document>

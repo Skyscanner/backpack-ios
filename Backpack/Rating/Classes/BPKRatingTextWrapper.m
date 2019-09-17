@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKRatingTextWrapper ()
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) BPKLabel *subtitleLabel;
+@property(nonatomic) NSArray<NSLayoutConstraint *> *horizontalLayoutConstraints;
+@property(nonatomic) NSArray<NSLayoutConstraint *> *verticalLayoutConstraints;
 @end
 
 @implementation BPKRatingTextWrapper
@@ -113,6 +115,30 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setLayout:(BPKRatingLayout)layout {
+    BPKAssertMainThread();
+    if (_layout != layout) {
+        _layout = layout;
+
+        [self updateConstraints];
+    }
+}
+
+- (void)updateConstraints {
+    [super updateConstraints];
+
+    switch (self.layout) {
+    case BPKRatingLayoutHorizontal:
+        [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
+        break;
+    case BPKRatingLayoutVertical:
+        [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
+        break;
+    }
+}
+
 #pragma mark - Layout
 
 - (void)setUpConstraints {
@@ -120,17 +146,28 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
+    self.horizontalLayoutConstraints = @[
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.subtitleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor]
+    ];
+
+    self.verticalLayoutConstraints = @[
+        [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.subtitleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor]
+    ];
+
     [NSLayoutConstraint activateConstraints:@[
         [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
+        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.subtitleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
-        [self.subtitleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.trailingAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.subtitleLabel.trailingAnchor],
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.subtitleLabel.bottomAnchor],
     ]];
+
+    [self updateConstraints];
 }
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
@@ -138,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize titleLabelSize = [self.titleLabel systemLayoutSizeFittingSize:targetSize];
     CGSize subtitleLabelSize = [self.subtitleLabel systemLayoutSizeFittingSize:targetSize];
 
-    CGFloat height = MIN(titleLabelSize.height + BPKSpacingMd + subtitleLabelSize.height, targetSize.height);
+    CGFloat height = MIN(titleLabelSize.height + subtitleLabelSize.height, targetSize.height);
     CGFloat width = MIN(MAX(titleLabelSize.width, subtitleLabelSize.width), targetSize.width);
 
     return CGSizeMake(width, height);
