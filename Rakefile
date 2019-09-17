@@ -154,7 +154,7 @@ task release: ['git:fetch', :all_checks] do
   sh "git push  --follow-tags"
 
   puts "Pushing to CocoaPods trunk."
-  sh "bundle exec pod trunk push #{PODSPEC}"
+  sh "bundle exec pod trunk push #{PODSPEC} --allow-warnings"
 
   puts green("🎉 All went well. Version #{version_string} published.")
 end
