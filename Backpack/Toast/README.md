@@ -1,27 +1,25 @@
-#Backpack / Toast
+# Backpack/Toast
 
-##Installation
+## Installation
 
-        In `Podfile` add
+In `Podfile` add
 
-	``` pod 'Backpack/Toast'
-	```
+```aspnet
+pod 'Backpack/Toast'
+```
+and then run `pod install`.
 
-            and then run `pod install`.
+## Usage
 
-    ##Usage
+`Backpack/Toast` contains a Backpack Toast component in the class `BPKToast`.It can display a toast view with a title and details text, it also contains a spinner view.
 
-	`Backpack /
-    Toast` contains a Backpack Toast component in the class `BPKToast`.It can display a toast view with a
-        title and details text,
-    it also contains a spinner view.
-
-
-	```objective - c
+```objective - c
 #import <Backpack/Toast.h>
 
-                     BPKToast *toast = [BPKToast showToastAddedTo:self.view animated:YES];
-toast.mode = BPKToastModeIndeterminate; // This is the default
+BPKToast *toast = [BPKToast showToastAddedTo:self.view animated:YES];
+toast.mode = BPKToastModeIndeterminate; // This is the default;
 toast.removeFromSuperViewOnHide = YES;
-toast.labelText = @"Title text" toast.detailsLabelText = @"Details text" [toast hide:YES afterDelay:1.5];
+toast.labelText = @"Title text"
+toast.detailsLabelText = @"Details text"
+[toast hide:YES afterDelay:1.5];
 ```
