@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKRatingSize.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -29,12 +31,19 @@ NS_SWIFT_NAME(RatingTextWrapper) IB_DESIGNABLE @interface BPKRatingTextWrapper :
 /**
  * The title to display inside the ratingTextWrapper.
  */
-@property(nonatomic, copy, nullable) NSString *title;
+@property(nonatomic, copy) NSString *title;
 
 /**
  * The subtitle to display inside the ratingTextWrapper.
  */
 @property(nonatomic, copy, nullable) NSString *subtitle;
+
+/**
+ * Size of the rating
+ *
+ * @see BPKRatingSize
+ */
+@property(nonatomic) BPKRatingSize size;
 
 /**
  * Creates a `BPKRatingTextWrapper` with a decoder (typically when creating from Storyboards)

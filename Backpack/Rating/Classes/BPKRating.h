@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKRatingSize.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -35,6 +37,13 @@ NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
  * The subtitle to display inside the rating.
  */
 @property(nonatomic, copy, nullable) NSString *subtitle;
+
+/**
+ * Size of the rating
+ *
+ * @see BPKRatingSize
+ */
+@property(nonatomic) BPKRatingSize size;
 
 /**
  * The rating value

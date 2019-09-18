@@ -217,6 +217,50 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
+- (void)testRatingExtraSmall {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Extra small";
+    bpkRating.subtitle = @"Extra small subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.size = BPKRatingSizeExtraSmall;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingSmall {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Small";
+    bpkRating.subtitle = @"Small subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.size = BPKRatingSizeSmall;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingExtraBase {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Base";
+    bpkRating.subtitle = @"Base subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.size = BPKRatingSizeBase;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingExtraLarge {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Large";
+    bpkRating.subtitle = @"Large subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.size = BPKRatingSizeLarge;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
 - (void)testRatingLowWithThemeWithSubtitle {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     bpkRating.title = @"This don't fit yo!";

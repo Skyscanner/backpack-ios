@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKRatingSize.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -46,6 +48,13 @@ NS_SWIFT_NAME(RatingBubble) IB_DESIGNABLE @interface BPKRatingBubble : UIView
  * @return `BPKRatingBubble` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Size of the rating
+ *
+ * @see BPKRatingSize
+ */
+@property(nonatomic) BPKRatingSize size;
 
 @property(nonatomic, strong) UIColor *lowRatingColor;
 @property(nonatomic, strong) UIColor *mediumRatingColor;

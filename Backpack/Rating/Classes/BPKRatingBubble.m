@@ -27,6 +27,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKRatingBubble ()
 @property(nonatomic) BPKLabel *ratingBubbleLabel;
+@property(nonatomic) NSLayoutConstraint *heightConstraint;
 @end
 
 @implementation BPKRatingBubble
@@ -59,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.backgroundColor = BPKColor.gray200;
 
     self.ratingBubbleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+    self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
     self.ratingBubbleLabel.textColor = BPKColor.white;
     self.ratingBubbleLabel.lineBreakMode = NSLineBreakByClipping;
     [self addSubview:self.ratingBubbleLabel];
@@ -110,6 +111,32 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setSize:(BPKRatingSize)size {
+    BPKAssertMainThread();
+    if (_size != size) {
+        _size = size;
+
+        switch (size) {
+        case BPKRatingSizeLarge:
+            self.heightConstraint.constant = 2 * BPKSpacingLg;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+            break;
+        case BPKRatingSizeBase:
+            self.heightConstraint.constant = BPKSpacingXxl;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+            break;
+        case BPKRatingSizeSmall:
+            self.heightConstraint.constant = 2 * BPKSpacingBase;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+            break;
+        case BPKRatingSizeExtraSmall:
+            self.heightConstraint.constant = BPKSpacingXl;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+            break;
+        }
+    }
+}
+
 #pragma mark - Layout
 
 - (void)layoutSubviews {
@@ -120,14 +147,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUpConstraints {
-    CGFloat ratingBubbleVerticalSpacing = [self ratingBubbleVerticalSpacing];
-
     self.ratingBubbleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
+    self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKSpacingXxl];
+
     [NSLayoutConstraint activateConstraints:@[
-        [self.heightAnchor constraintEqualToAnchor:self.ratingBubbleLabel.heightAnchor
-                                          constant:2 * ratingBubbleVerticalSpacing],
-        [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
+        self.heightConstraint, [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
 
         [self.ratingBubbleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.ratingBubbleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
@@ -136,9 +161,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
     [super systemLayoutSizeFittingSize:targetSize];
-    CGSize ratingLabelSize = [self.ratingBubbleLabel systemLayoutSizeFittingSize:targetSize];
-
-    CGFloat height = ratingLabelSize.height + 2 * [self ratingBubbleVerticalSpacing];
+    CGFloat height = self.heightConstraint.constant;
 
     return CGSizeMake(height, height);
 }
@@ -153,12 +176,6 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         self.backgroundColor = self.highRatingColor;
     }
-}
-
-#pragma mark - Helpers
-
-- (CGFloat)ratingBubbleVerticalSpacing {
-    return BPKSpacingBase;
 }
 
 @end
