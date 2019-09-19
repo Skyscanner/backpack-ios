@@ -41,6 +41,7 @@
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
 		760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */; };
 		760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E4232BD50700A0CE8D /* ToastUITest.swift */; };
+		760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */; };
 		7639E563232904D0004D7B09 /* Toasts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7639E562232904D0004D7B09 /* Toasts.storyboard */; };
 		7639E565232907B0004D7B09 /* ToastSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */; };
 		7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E566232909C7004D7B09 /* ToastViewController.swift */; };
@@ -228,6 +229,7 @@
 		749A593BF4A88C859392AAF6 /* Pods-Backpack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKToastSnapshotTest.m; sourceTree = "<group>"; };
 		760E41E4232BD50700A0CE8D /* ToastUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUITest.swift; sourceTree = "<group>"; };
+		760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsDocViewController.swift; sourceTree = "<group>"; };
 		7639E562232904D0004D7B09 /* Toasts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Toasts.storyboard; sourceTree = "<group>"; };
 		7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastSelectorViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 				D61ACE042306E238001C976E /* NavigationBarViewController.swift */,
 				7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */,
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
+				760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
+				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,

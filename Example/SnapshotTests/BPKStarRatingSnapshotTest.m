@@ -220,6 +220,100 @@
     [self verifyLargeRatingViewWithRating:6.0f];
 }
 
+#pragma mark - Extra Large star rating
+
+- (void)testExtraLargeStarRatingWithValue_minus {
+    [self verifyExtraLargeRatingViewWithRating:-1.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_0_0 {
+    [self verifyExtraLargeRatingViewWithRating:0.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_0_49 {
+    [self verifyExtraLargeRatingViewWithRating:0.49f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_0_5 {
+    [self verifyExtraLargeRatingViewWithRating:0.5f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_0_99 {
+    [self verifyExtraLargeRatingViewWithRating:0.99f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_1_0 {
+    [self verifyExtraLargeRatingViewWithRating:1.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_1_49 {
+    [self verifyExtraLargeRatingViewWithRating:1.49f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_1_5 {
+    [self verifyExtraLargeRatingViewWithRating:1.5f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_1_99 {
+    [self verifyExtraLargeRatingViewWithRating:1.99f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_2_0 {
+    [self verifyExtraLargeRatingViewWithRating:2.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_2_49 {
+    [self verifyExtraLargeRatingViewWithRating:2.49f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_2_5 {
+    [self verifyExtraLargeRatingViewWithRating:2.5f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_2_99 {
+    [self verifyExtraLargeRatingViewWithRating:2.99f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_3_0 {
+    [self verifyExtraLargeRatingViewWithRating:3.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_3_49 {
+    [self verifyExtraLargeRatingViewWithRating:3.49f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_3_5 {
+    [self verifyExtraLargeRatingViewWithRating:3.5f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_3_99 {
+    [self verifyExtraLargeRatingViewWithRating:3.99f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_4_0 {
+    [self verifyExtraLargeRatingViewWithRating:4.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_4_49 {
+    [self verifyExtraLargeRatingViewWithRating:4.49f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_4_5 {
+    [self verifyExtraLargeRatingViewWithRating:4.5f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_4_99 {
+    [self verifyExtraLargeRatingViewWithRating:4.99f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_5_0 {
+    [self verifyExtraLargeRatingViewWithRating:5.0f];
+}
+
+- (void)testExtraLargeStarRatingWithValue_largerThan_5_0 {
+    [self verifyExtraLargeRatingViewWithRating:6.0f];
+}
+
 #pragma mark - Helpers
 
 - (void)verifySmallRatingViewWithRating:(float)rating {
@@ -228,6 +322,10 @@
 
 - (void)verifyLargeRatingViewWithRating:(float)rating {
     [self verifyRatingViewWithRating:rating size:BPKStarSizeLarge];
+}
+
+- (void)verifyExtraLargeRatingViewWithRating:(float)rating {
+    [self verifyRatingViewWithRating:rating size:BPKStarSizeXLarge];
 }
 
 - (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size {

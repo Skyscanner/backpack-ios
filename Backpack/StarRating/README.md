@@ -2,7 +2,8 @@
 
 ## Usage
 
-`BPKStarRating`/`Backpack.StarRating` contains the Backpack Star rating component which is a view that's rendering star shaped items filled with color to indicate rating from 0.0 to 5.0. It supports two sizes considering the available `BPKIcon` sizes.
+`BPKStarRating`/`Backpack.StarRating` contains the Backpack Star rating component which is a view that's rendering star shaped items filled with color to indicate rating from 0.0 to 5.0. It supports three sizes considering the available `BPKIcon` sizes.
+By default `userInteractionEnabled` is set to `NO` but we can change this value to `YES` to allow the users to change the rating value by tapping the component
 
 ### Objective-C
 
@@ -11,7 +12,7 @@ Small stars
 #import <Backpack/StarRating.h>
 
 BPKStarRating *starRating = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
-[button setRating:2.5];
+starRating.rating = 2.5;
 // Position star rating with autolayout or other method
 ```
 
@@ -20,7 +21,17 @@ Large stars
 #import <Backpack/StarRating.h>
 
 BPKStarRating *starRating = [[BPKStarRating alloc] initWithSize:BPKStarSizeLarge];
-[button setRating:2.5];
+starRating.rating = 2.5;
+// Position star rating with autolayout or other method
+```
+
+Extra Large stars with user interaction
+```objective-c
+#import <Backpack/StarRating.h>
+
+BPKStarRating *starRating = [[BPKStarRating alloc] initWithSize:BPKStarSizeXLarge];
+starRating.rating = 2.5;
+starRating.userInteractionEnabled = YES;
 // Position star rating with autolayout or other method
 ```
 
@@ -41,6 +52,16 @@ import Backpack
 
 let starRating = Backpack.StarRating(size: .large)
 starRating.rating = 2.5
+// Position button with autolayout or other method
+```
+
+Extra Large stars with user interaction
+```swift
+import Backpack
+
+let starRating = Backpack.StarRating(size: .xLarge)
+starRating.rating = 2.5
+starRating.userInteractionEnabled = true
 // Position button with autolayout or other method
 ```
 

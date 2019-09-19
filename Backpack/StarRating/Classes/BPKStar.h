@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, BPKStarState) { BPKStarStateDefault, BPKStarStateHalf
 /**
  * Enum values for specifying star size
  */
-typedef NS_ENUM(NSUInteger, BPKStarSize) { BPKStarSizeSmall, BPKStarSizeLarge };
+typedef NS_ENUM(NSUInteger, BPKStarSize) { BPKStarSizeSmall, BPKStarSizeLarge, BPKStarSizeXLarge };
 
 NS_ASSUME_NONNULL_BEGIN
 

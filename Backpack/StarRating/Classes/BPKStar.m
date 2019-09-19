@@ -150,10 +150,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKIconSize)iconSizeForStarSize:(BPKStarSize)size {
     switch (size) {
+    case BPKStarSizeXLarge:
+        return BPKIconSizeXLarge;
+        break;
     case BPKStarSizeLarge:
         return BPKIconSizeLarge;
         break;
-
     default:
     case BPKStarSizeSmall:
         return BPKIconSizeSmall;
