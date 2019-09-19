@@ -19,7 +19,7 @@
 import UIKit
 import Backpack
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: DarkModeTableViewController {
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var enableThemeSwitch: Switch!
     var showThemeList: Bool = false

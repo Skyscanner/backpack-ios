@@ -25,7 +25,7 @@ enum RatingSegueIdentifier: String {
     case sizes = "Sizes"
 }
 
-class RatingSelectorViewController: UITableViewController {
+class RatingSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? RatingsViewController else {
             fatalError("Expected destination to be of type RatingViewController.")

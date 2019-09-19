@@ -19,7 +19,7 @@
 
 import Backpack
 
-final class BottomSheetViewController: UITableViewController {
+final class BottomSheetViewController: DarkModeTableViewController {
 
     @IBOutlet weak var scrollViewBottomSheet: UITableViewCell!
     @IBOutlet weak var bottomSectionBottomSheet: UITableViewCell!

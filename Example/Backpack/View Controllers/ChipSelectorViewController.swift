@@ -27,7 +27,7 @@ enum ChipSegueIdentifier: String {
     case backgroundColorUnselectedNoShadow = "BackgroundColorUnselectedNoShadow"
 }
 
-class ChipSelectorViewController: UITableViewController {
+class ChipSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? ChipsViewController else {
             fatalError("Expected destination to be of type ChipViewController.")

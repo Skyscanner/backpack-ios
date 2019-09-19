@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import Backpack.DarkMode
 import Backpack.Theme
 
 class ThemeHelpers: NSObject {
@@ -44,6 +45,14 @@ class ThemeHelpers: NSObject {
     @objc
     class func isThemingSupported() -> Bool {
         return ProcessInfo.processInfo.environment["THEMING_ENABLED"] != "NO"
+    }
+
+    @objc
+    class func isDarkModeSupported() -> Bool {
+#if __BPK_DARK_MODE_SUPPORTED
+        return ProcessInfo.processInfo.environment["DARK_MODE_ENABLED"] == "YES"
+#endif
+        return false
     }
 
     @objc

@@ -19,7 +19,7 @@
 import Backpack.Card
 import Backpack.Color
 
-class CardsSelectorViewController: UITableViewController {
+class CardsSelectorViewController: DarkModeTableViewController {
     func prepareDevided(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? DividedCardsViewController else {
             fatalError("Expected destination to be of type DividedCardsViewController.")

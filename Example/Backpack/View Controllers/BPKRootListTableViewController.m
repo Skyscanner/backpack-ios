@@ -17,6 +17,7 @@
  */
 
 #import "BPKRootListTableViewController.h"
+
 #import "Backpack_Native-Swift.h"
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
@@ -30,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if(ThemeHelpers.isThemingSupported) {
+    if (ThemeHelpers.isThemingSupported) {
         UIImage *largeSettingsIcon = [BPKIcon templateIconNamed:@"settings" size:BPKIconSizeLarge];
         self.settingsButton.image = largeSettingsIcon;
         self.settingsButton.accessibilityLabel = @"Settings";
