@@ -3,7 +3,7 @@
 **Added:**
 
 - Backpack/Rating:
-  - New `size` prop.
+  - New `layout` and `size` properties.
 
 ## How to write a good changelog entry
 

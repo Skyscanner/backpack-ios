@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKRatingTextWrapper *textWrapper;
 @property(nonatomic) BPKRatingBubble *ratingBubble;
 @property(nonatomic) NSLayoutConstraint *textSpacingConstraintHorizontal;
+@property(nonatomic) NSLayoutConstraint *textSpacingConstraintVertical;
+@property(nonatomic) NSArray<NSLayoutConstraint *> *horizontalLayoutConstraints;
+@property(nonatomic) NSArray<NSLayoutConstraint *> *verticalLayoutConstraints;
 @end
 
 @implementation BPKRating
@@ -56,7 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue title:(NSString *)title subtitle:(NSString *_Nullable)subtitle {
+- (instancetype)initWithRatingValue:(CGFloat)ratingValue
+                              title:(NSString *)title
+                           subtitle:(NSString *_Nullable)subtitle {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -145,6 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
         _size = size;
 
         self.textSpacingConstraintHorizontal.constant = [self spacingForCurrentSize];
+        self.textSpacingConstraintVertical.constant = [self spacingForCurrentSize];
 
         self.textWrapper.size = size;
         self.ratingBubble.size = size;
@@ -162,27 +168,64 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setLayout:(BPKRatingLayout)layout {
+    BPKAssertMainThread();
+    if (_layout != layout) {
+        _layout = layout;
+
+        self.textWrapper.layout = layout;
+        [self updateLayout];
+    }
+}
+
+- (void)updateLayout {
+    switch (self.layout) {
+    case BPKRatingLayoutHorizontal:
+        [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
+        break;
+    case BPKRatingLayoutVertical:
+        [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
+        break;
+    }
+}
+
 #pragma mark - Layout
 
 - (void)setUpConstraints {
-
     self.textWrapper.translatesAutoresizingMaskIntoConstraints = NO;
     self.ratingBubble.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.textSpacingConstraintHorizontal =
         [self.textWrapper.leadingAnchor constraintEqualToAnchor:self.ratingBubble.trailingAnchor constant:BPKSpacingMd];
 
-    [NSLayoutConstraint activateConstraints:@[
+    self.textSpacingConstraintVertical =
+        [self.textWrapper.topAnchor constraintEqualToAnchor:self.ratingBubble.bottomAnchor constant:BPKSpacingMd];
+
+    self.horizontalLayoutConstraints = @[
         [self.ratingBubble.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        self.textSpacingConstraintHorizontal,
+        [self.textWrapper.centerYAnchor constraintEqualToAnchor:self.ratingBubble.centerYAnchor]
+    ];
+
+    self.verticalLayoutConstraints = @[
+        self.textSpacingConstraintVertical,
+        [self.textWrapper.centerXAnchor constraintEqualToAnchor:self.ratingBubble.centerXAnchor],
+        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.trailingAnchor]
+    ];
+
+    [NSLayoutConstraint activateConstraints:@[
         [self.ratingBubble.topAnchor constraintEqualToAnchor:self.topAnchor],
 
-        self.textSpacingConstraintHorizontal,
-        [self.textWrapper.centerYAnchor constraintEqualToAnchor:self.ratingBubble.centerYAnchor],
+        [self.textWrapper.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.textWrapper.trailingAnchor],
 
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.textWrapper.bottomAnchor],
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.bottomAnchor]
     ]];
+
+    [self updateLayout];
 }
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
@@ -192,6 +235,10 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGFloat desiredHeight = MAX(ratingBubbleSize.height, textWrapperSize.height);
     CGFloat desiredWidth = ratingBubbleSize.width + self.spacingForCurrentSize + textWrapperSize.width;
+    if (self.layout == BPKRatingLayoutVertical) {
+        desiredHeight = ratingBubbleSize.height + self.spacingForCurrentSize + textWrapperSize.height;
+        desiredWidth = MAX(ratingBubbleSize.width, textWrapperSize.width);
+    }
 
     CGFloat height = MIN(desiredHeight, targetSize.height);
     CGFloat width = MIN(desiredWidth, targetSize.width);

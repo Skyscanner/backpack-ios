@@ -23,6 +23,7 @@ enum RatingSegueIdentifier: String {
     case `default` = "Default"
     case withSubtitle = "WithSubtitle"
     case sizes = "Sizes"
+    case verticalLayout = "VerticalLayout"
 }
 
 class RatingSelectorViewController: UITableViewController {
@@ -43,6 +44,11 @@ class RatingSelectorViewController: UITableViewController {
                 target.title = "Sizes"
                 target.showSubtitle = true
                 target.showDifferentSizes = true
+            case .verticalLayout:
+                target.title = "Vertical layout"
+                target.showSubtitle = true
+                target.showDifferentSizes = true
+                target.layout = .vertical
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

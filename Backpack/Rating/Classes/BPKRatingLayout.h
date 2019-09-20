@@ -16,10 +16,18 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_RATING__
-#define __BACKPACK_RATING__
+#import <Foundation/Foundation.h>
 
-#import "BPKRating.h"
-#import "BPKRatingLayout.h"
-#import "BPKRatingSize.h"
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * The different layouts of the Rating.
+ */
+typedef NS_ENUM(NSInteger, BPKRatingLayout) {
+
+    BPKRatingLayoutHorizontal = 0,
+
+    BPKRatingLayoutVertical
+};
+
+NS_ASSUME_NONNULL_END

@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKRatingLayout.h"
 #import "BPKRatingSize.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -44,6 +45,13 @@ NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
  * @see BPKRatingSize
  */
 @property(nonatomic) BPKRatingSize size;
+
+/**
+ * Layout of the rating
+ *
+ * @see BPKRatingLayout
+ */
+@property(nonatomic) BPKRatingLayout layout;
 
 /**
  * The rating value

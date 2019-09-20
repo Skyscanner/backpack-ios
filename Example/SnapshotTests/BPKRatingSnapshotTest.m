@@ -300,6 +300,262 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
+- (void)testRatingOutOfRangeLowVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Capped";
+    bpkRating.ratingValue = -1.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingOutOfRangeHighVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Capped";
+    bpkRating.ratingValue = 11.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowRangeLowVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Very low";
+    bpkRating.ratingValue = 0.1;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowRangeHighVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Low";
+    bpkRating.ratingValue = 5.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeLowVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Medium";
+    bpkRating.ratingValue = 6.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeHighVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Medium-high";
+    bpkRating.ratingValue = 7.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeLowVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"High";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeHighVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"High";
+    bpkRating.ratingValue = 9.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingOversizedVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Meh";
+    bpkRating.ratingValue = 4.7;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width * 3, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingUndersizedVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"This don't fit yo!";
+    bpkRating.ratingValue = 4.7;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowRangeLowWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Very low";
+    bpkRating.subtitle = @"Very low subtitle";
+    bpkRating.ratingValue = 0.1;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowRangeHighWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Low";
+    bpkRating.subtitle = @"Low subtitle";
+    bpkRating.ratingValue = 5.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeLowWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Medium";
+    bpkRating.subtitle = @"Medium subtitle";
+    bpkRating.ratingValue = 6.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeHighWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Medium-high";
+    bpkRating.subtitle = @"Medium-high subtitle";
+    bpkRating.ratingValue = 7.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeLowWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"High";
+    bpkRating.subtitle = @"High subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeHighWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"High";
+    bpkRating.subtitle = @"High subtitle";
+    bpkRating.ratingValue = 9.9;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingExtraSmallVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Extra small";
+    bpkRating.subtitle = @"Extra small subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.size = BPKRatingSizeExtraSmall;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingSmallVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Small";
+    bpkRating.subtitle = @"Small subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.size = BPKRatingSizeSmall;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingExtraBaseVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Base";
+    bpkRating.subtitle = @"Base subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.size = BPKRatingSizeBase;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingExtraLargeVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"Large";
+    bpkRating.subtitle = @"Large subtitle";
+    bpkRating.ratingValue = 8.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.size = BPKRatingSizeLarge;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowWithThemeWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"This don't fit yo!";
+    bpkRating.subtitle = @"This don't fit yo! subtitle";
+    bpkRating.ratingValue = 1.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.lowRatingColor = UIColor.purpleColor;
+    bpkRating.mediumRatingColor = UIColor.orangeColor;
+    bpkRating.highRatingColor = UIColor.cyanColor;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumWithThemeWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"This don't fit yo!";
+    bpkRating.subtitle = @"This don't fit yo! subtitle";
+    bpkRating.ratingValue = 7.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.lowRatingColor = UIColor.purpleColor;
+    bpkRating.mediumRatingColor = UIColor.orangeColor;
+    bpkRating.highRatingColor = UIColor.cyanColor;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighWithThemeWithSubtitleVertical {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.title = @"This don't fit yo!";
+    bpkRating.subtitle = @"This don't fit yo! subtitle";
+    bpkRating.ratingValue = 9.0;
+    bpkRating.layout = BPKRatingLayoutVertical;
+    bpkRating.lowRatingColor = UIColor.purpleColor;
+    bpkRating.mediumRatingColor = UIColor.orangeColor;
+    bpkRating.highRatingColor = UIColor.cyanColor;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
