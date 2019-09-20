@@ -18,9 +18,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BPKDarkModeTableViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKButtonSelectorViewController : UITableViewController
+@interface BPKButtonSelectorViewController : BPKDarkModeTableViewController
 
 @end
 

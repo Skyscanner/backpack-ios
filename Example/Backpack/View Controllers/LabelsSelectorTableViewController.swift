@@ -18,7 +18,7 @@
 
 import UIKit
 
-class LabelsSelectorTableViewController: UITableViewController {
+class LabelsSelectorTableViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeLabelsController = segue.destination as? LabelsViewController
 

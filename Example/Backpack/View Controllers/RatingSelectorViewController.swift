@@ -26,7 +26,7 @@ enum RatingSegueIdentifier: String {
     case verticalLayout = "VerticalLayout"
 }
 
-class RatingSelectorViewController: UITableViewController {
+class RatingSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? RatingsViewController else {
             fatalError("Expected destination to be of type RatingViewController.")

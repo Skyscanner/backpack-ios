@@ -18,7 +18,7 @@
 
 import UIKit
 
-class DialogSelectorViewController: UITableViewController {
+class DialogSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationController = segue.destination as? DialogViewController  else {
             fatalError("""

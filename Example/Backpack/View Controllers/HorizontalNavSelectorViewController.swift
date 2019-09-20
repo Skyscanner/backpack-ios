@@ -28,7 +28,7 @@ enum HorizontalNavSegueIdentifier: String {
     case wide = "Wide"
 }
 
-class HorizontalNavSelectorViewController: UITableViewController {
+class HorizontalNavSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeHorizontalNavController = segue.destination as? HorizontalNavViewController
 

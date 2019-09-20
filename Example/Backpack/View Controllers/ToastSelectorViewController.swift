@@ -19,7 +19,7 @@
 
 import UIKit
 
-class ToastSelectorViewController: UITableViewController {
+class ToastSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationController = segue.destination as? ToastViewController else {
             fatalError("""

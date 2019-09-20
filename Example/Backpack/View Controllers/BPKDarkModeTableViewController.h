@@ -16,38 +16,8 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK__
-#define __BACKPACK__
+#import <UIKit/UIKit.h>
 
-#import "Color.h"
-#import "Font.h"
-#import "Gradient.h"
-#import "Radii.h"
-#import "Shadow.h"
-#import "Spacing.h"
+NS_SWIFT_NAME(DarkModeTableViewController) @interface BPKDarkModeTableViewController : UITableViewController
 
-#import "Badge.h"
-#import "Button.h"
-#import "Calendar.h"
-#import "Card.h"
-#import "Chip.h"
-#import "DarkMode.h"
-#import "Dialog.h"
-#import "FlareView.h"
-#import "HorizontalNavigation.h"
-#import "Icon.h"
-#import "Label.h"
-#import "NavigationBar.h"
-#import "Panel.h"
-#import "ProgressBar.h"
-#import "Rating.h"
-#import "Spinner.h"
-#import "StarRating.h"
-#import "Switch.h"
-#import "TappableLinkLabel.h"
-#import "TextField.h"
-#import "TextView.h"
-#import "Theme.h"
-#import "Toast.h"
-
-#endif
+@end

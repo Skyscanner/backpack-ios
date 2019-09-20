@@ -26,7 +26,7 @@ enum TappableLinkLabelsSegueIdentifier: String {
     case nonURLLinks = "NonURLLinks"
 }
 
-class TappableLinkLabelsSelectorViewController: UITableViewController {
+class TappableLinkLabelsSelectorViewController: DarkModeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeTappableLinkLabelsController = segue.destination as? TappableLinkLabelsViewController
 
