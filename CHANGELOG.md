@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 17.1.0
+
+**Added:**
+
+- Backpack/Rating:
+  - New `layout` and `size` properties.
+
+- Backpack/StarRating
+  - New `BPKStarSizeXLarge` size and user interaction feature
+
 ## 17.0.0
 
 **Added:**
