@@ -20,7 +20,7 @@
 #import "BPKIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSUInteger, BPKIconSize) { BPKIconSizeSmall, BPKIconSizeLarge };
+typedef NS_ENUM(NSUInteger, BPKIconSize) { BPKIconSizeSmall, BPKIconSizeLarge, BPKIconSizeXLarge };
 
 @class UIImage;
 

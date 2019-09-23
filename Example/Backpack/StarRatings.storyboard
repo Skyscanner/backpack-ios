@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Jn-XQ1">
-                                <rect key="frame" x="16" y="60" width="382" height="802"/>
+                                <rect key="frame" x="20" y="60" width="374" height="802"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-Ui-8pc">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="359.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="359.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dam-GI-g0h" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
@@ -29,13 +29,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQZ-ax-SEu" customClass="BPKStarRating">
-                                                <rect key="frame" x="0.0" y="36.5" width="382" height="323"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="374" height="323"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-yt-5UV">
-                                        <rect key="frame" x="0.0" y="391.5" width="382" height="330.5"/>
+                                        <rect key="frame" x="0.0" y="391.5" width="374" height="234.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Lb-boD" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
@@ -44,13 +44,28 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHe-DR-aBx" customClass="BPKStarRating">
-                                                <rect key="frame" x="0.0" y="36.5" width="382" height="294"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="374" height="198"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8ZY-42-gBg">
+                                        <rect key="frame" x="0.0" y="706" width="374" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extra Large - User Interactive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0D-bX-jCa" customClass="BPKLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zv-Qs-vOV" customClass="BPKStarRating">
+                                                <rect key="frame" x="0.0" y="16" width="374" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V0W-gw-wJX">
-                                        <rect key="frame" x="0.0" y="754" width="382" height="16"/>
+                                        <rect key="frame" x="0.0" y="658" width="374" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to set rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGS-Oi-pKH" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="0.0"/>
@@ -59,7 +74,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="pk6-NL-36q">
-                                                <rect key="frame" x="-2" y="16" width="386" height="1"/>
+                                                <rect key="frame" x="-2" y="16" width="378" height="1"/>
                                                 <connections>
                                                     <action selector="userDidChangeRating:" destination="EmK-I9-Wpo" eventType="valueChanged" id="Lq9-Dn-9G6"/>
                                                 </connections>
@@ -92,6 +107,7 @@
                     </view>
                     <connections>
                         <outlet property="defaultSizeTitleLabel" destination="dam-GI-g0h" id="679-eN-Oak"/>
+                        <outlet property="extraLargeRatingView" destination="6Zv-Qs-vOV" id="a6O-rU-6NG"/>
                         <outlet property="largeSizeTitleLabel" destination="RC6-Lb-boD" id="ww8-HI-2Y5"/>
                         <outlet property="largeStarRatingView" destination="FHe-DR-aBx" id="PsF-bW-d63"/>
                         <outlet property="ratingSlider" destination="pk6-NL-36q" id="OaE-Jg-GGI"/>
@@ -179,13 +195,13 @@
         <!--Star Ratings-->
         <scene sceneID="SJO-Lv-Vac">
             <objects>
-                <viewController title="Star Ratings" id="Hso-HF-6Gq" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WgD-m1-qLm">
+                <viewController title="Star Ratings" id="Hso-HF-6Gq" customClass="StarRatingsDocViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="WgD-m1-qLm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-id-zlp">
-                                <rect key="frame" x="20" y="372" width="374" height="162.5"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-id-zlp">
+                                <rect key="frame" x="20" y="372" width="374" height="228"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F9v-lO-Zps">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -280,13 +296,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="4ui-iq-cwN" secondAttribute="bottom" id="1yh-gZ-J7X"/>
                                     <constraint firstItem="4ui-iq-cwN" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="7HS-2e-NEu"/>
                                     <constraint firstAttribute="trailing" secondItem="ZtZ-Bk-QvX" secondAttribute="trailing" id="7JW-cw-tvA"/>
                                     <constraint firstItem="ZtZ-Bk-QvX" firstAttribute="top" secondItem="F9v-lO-Zps" secondAttribute="bottom" constant="16" id="7LD-lb-j8y"/>
                                     <constraint firstItem="F9v-lO-Zps" firstAttribute="top" secondItem="UuO-id-zlp" secondAttribute="top" id="KCg-Es-p4K"/>
                                     <constraint firstItem="4ui-iq-cwN" firstAttribute="top" secondItem="ZtZ-Bk-QvX" secondAttribute="bottom" constant="16" id="Knw-fd-QZN"/>
                                     <constraint firstAttribute="trailing" secondItem="F9v-lO-Zps" secondAttribute="trailing" id="PYf-rm-bzR"/>
+                                    <constraint firstAttribute="bottom" secondItem="4ui-iq-cwN" secondAttribute="bottom" id="dVE-lG-onb"/>
                                     <constraint firstItem="ZtZ-Bk-QvX" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="fM0-NF-Glz"/>
                                     <constraint firstItem="F9v-lO-Zps" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="haQ-er-9Gu"/>
                                     <constraint firstAttribute="trailing" secondItem="4ui-iq-cwN" secondAttribute="trailing" id="odd-0D-8GC"/>
@@ -301,10 +317,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5uL-73-6cU"/>
                     </view>
+                    <connections>
+                        <outlet property="extraLargeRating" destination="LKC-sr-rLq" id="Nis-Zt-R3B"/>
+                        <outlet property="extraLargeRatingTitle" destination="YCV-VI-INa" id="NsY-WY-otJ"/>
+                        <outlet property="largeRating" destination="hWA-hQ-W5H" id="Hml-11-odf"/>
+                        <outlet property="largeRatingTitle" destination="7DR-5x-BUv" id="hq6-9r-nlW"/>
+                        <outlet property="smallRating" destination="nBo-kH-kYt" id="LlG-NH-4YF"/>
+                        <outlet property="smallRatingTitle" destination="Ng2-gk-wdz" id="efH-Yd-B9N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mHw-Au-sWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152" y="494"/>
+            <point key="canvasLocation" x="-152.17391304347828" y="493.52678571428567"/>
         </scene>
     </scenes>
 </document>

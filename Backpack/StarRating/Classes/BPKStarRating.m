@@ -72,6 +72,11 @@ static NSUInteger const MAX_RATING = 5;
     _rating = 0.0;
     [self setupStackView];
     [self setupStars];
+
+    UITapGestureRecognizer *tapRecognizer =
+        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    [self addGestureRecognizer:tapRecognizer];
+    self.userInteractionEnabled = NO;
 }
 
 - (void)setupStackView {
@@ -92,6 +97,13 @@ static NSUInteger const MAX_RATING = 5;
         BPKStar *starView = [[BPKStar alloc] initWithSize:self.size];
         [_stackView addArrangedSubview:starView];
     }
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
+    CGFloat starWidth = self.bounds.size.width / MAX_RATING;
+    CGFloat selectedItem = location.x / starWidth;
+    self.rating = (float)ceil(selectedItem);
 }
 
 #pragma mark - Properties

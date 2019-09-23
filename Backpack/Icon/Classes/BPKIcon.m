@@ -210,6 +210,9 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     case BPKIconSizeLarge:
         sizeName = @"lg";
         break;
+    case BPKIconSizeXLarge:
+        sizeName = @"xl";
+        break;
     default:
         NSAssert(NO, @"Unknown icon size");
         sizeName = @"unknown";
@@ -225,11 +228,17 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     switch (size) {
     case BPKIconSizeSmall:
         return CGSizeMake(16, 16);
+        break;
     case BPKIconSizeLarge:
         return CGSizeMake(24, 24);
+        break;
+    case BPKIconSizeXLarge:
+        return CGSizeMake(40, 40);
+        break;
     default:
         NSAssert(NO, @"Unsupported icon size");
         return CGSizeMake(16, 16);
+        break;
     }
 }
 
