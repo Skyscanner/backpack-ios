@@ -101,7 +101,7 @@ end
 task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
-task release: ['git:fetch', :all_checks] do
+task :release_no_checks do
   abort red 'Must be on master branch' unless current_branch == 'master'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
@@ -158,6 +158,8 @@ task release: ['git:fetch', :all_checks] do
 
   puts green("🎉 All went well. Version #{version_string} published.")
 end
+
+task release: ['git:fetch', :all_checks, :release_no_checks]
 
 task :docs, :outputDir do |t, args|
   args.with_defaults(:outputDir => "docs")
