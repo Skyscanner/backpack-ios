@@ -23,7 +23,7 @@ import Backpack.Theme
 
 class BPKTableViewSelectableCell: UITableViewCell {
 
-    @objc dynamic var selectedColor: UIColor = Color.blue500 {
+    @objc dynamic var selectedColor: UIColor = Color.skyBlue {
         didSet {
             tickIcon.tintColor = selectedColor
         }

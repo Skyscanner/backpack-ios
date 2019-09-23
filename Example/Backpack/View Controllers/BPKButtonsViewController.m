@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupButtons {
     if (self.style == BPKButtonStyleOutline) {
         for (UIView *contentView in self.contentViews) {
-            [contentView setBackgroundColor:BPKColor.blue400];
+            [contentView setBackgroundColor:BPKColor.skyBlueShade03];
         }
 
         for (UILabel *storyHeading in self.storyHeadings) {

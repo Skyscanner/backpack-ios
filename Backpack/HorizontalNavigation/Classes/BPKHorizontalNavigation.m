@@ -212,7 +212,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.selectedColor != nil) {
         return self.barView.backgroundColor = self.selectedColor;
     } else {
-        return self.barView.backgroundColor = BPKColor.blue500;
+        return self.barView.backgroundColor = BPKColor.skyBlue;
     }
 }
 

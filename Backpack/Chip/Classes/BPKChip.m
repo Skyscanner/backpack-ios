@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        _primaryColor = BPKColor.blue500;
+        _primaryColor = BPKColor.skyBlue;
 
         [self setUp];
     }
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        _primaryColor = BPKColor.blue500;
+        _primaryColor = BPKColor.skyBlue;
 
         [self setUp];
     }
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        _primaryColor = BPKColor.blue500;
+        _primaryColor = BPKColor.skyBlue;
 
         [self setUp];
     }
