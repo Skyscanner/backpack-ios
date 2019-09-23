@@ -27,9 +27,12 @@
 #import "BPKHongKongTheme.h"
 // Dummy `Doha` theme
 #import "BPKDohaTheme.h"
+// Skyscanner old default theme
+#import "BPKSpringCleanTheme.h"
 
 // Skyscanner default theme
 #import "BPKDefaultTheme.h"
+
 
 #import "BPKTheme.h"
 #import "BPKThemeContainer.h"

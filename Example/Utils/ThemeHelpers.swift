@@ -24,12 +24,13 @@ class ThemeHelpers: NSObject {
 
     @objc
     enum ThemeName: Int {
-        case none = 0, london, hongKong, doha, silver
+        case none = 0, springClean, london, hongKong, doha, silver
     }
 
     @objc
     class func applyAllThemes() {
         apply(theme: DefaultTheme())
+        apply(theme: SpringCleanTheme())
         apply(theme: LondonTheme())
         apply(theme: HongKongTheme())
         apply(theme: DohaTheme())
@@ -60,6 +61,8 @@ class ThemeHelpers: NSObject {
         switch forTheme {
         case .none:
             return DefaultTheme()
+        case .springClean:
+            return SpringCleanTheme()
         case .london:
             return LondonTheme()
         case .hongKong:

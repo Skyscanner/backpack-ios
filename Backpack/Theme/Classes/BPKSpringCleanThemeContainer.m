@@ -16,14 +16,17 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import "BPKSpringCleanThemeContainer.h"
 
-#import "BPKTheme.h"
-#import "BPKThemeDefinition.h"
+#import "BPKSpringCleanTheme.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(DefaultTheme) @interface BPKDefaultTheme : NSObject<BPKThemeDefinition>
+@implementation BPKSpringCleanThemeContainer
+
+- (id<BPKThemeDefinition>)themeDefinition {
+    return [BPKSpringCleanTheme new];
+}
 
 @end
 

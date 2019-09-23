@@ -65,6 +65,8 @@ class SettingsViewController: DarkModeTableViewController {
             selectableCells[2].setApplied(applied: true)
         case .silver:
             selectableCells[3].setApplied(applied: true)
+        case .springClean:
+            selectableCells[4].setApplied(applied: true)
         case .none:
             showThemeList = false
         }

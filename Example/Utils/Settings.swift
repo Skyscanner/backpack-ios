@@ -32,6 +32,8 @@ class Settings: NSObject {
             }
 
             switch currentTheme {
+            case "Spring clean":
+                return .springClean
             case "London":
                 return .london
             case "Hong Kong":
