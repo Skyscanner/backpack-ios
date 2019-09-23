@@ -57,7 +57,7 @@ class DialogViewController: UIViewController {
                         Now you can use this variation with no title.
                         """
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
         let dialogController = DialogController(title: nil,
                                                 message: message,
                                                 style: .alert,
@@ -122,7 +122,7 @@ class DialogViewController: UIViewController {
     func showNormal() {
         let message = "Your flight is all booked. Why not check out some hotels now?"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
         let dialogController  = DialogController(title: "You are going to Tokyo!",
                                                 message: message,
                                                 style: .alert,
@@ -159,7 +159,7 @@ class DialogViewController: UIViewController {
         Safe travels!
         """
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
         let alertController = DialogController(title: "You're almost ready to pack your bags!",
                                                message: message,
                                                style: .bottomSheet,
@@ -177,7 +177,7 @@ class DialogViewController: UIViewController {
     func showWarning() {
         let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .lightning, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.yellow500)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.kolkata)
         let alertController = DialogController(title: "!#$Warning-0-1!#$#$?",
                                                message: message,
                                                style: .alert,
@@ -199,7 +199,7 @@ class DialogViewController: UIViewController {
 
     func showDelete() {
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .trash, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.red500)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.panjin)
         let alertController = DialogController(title: "Delete?",
                                                message: "Are you sure you would like to delete your avatar?",
                                                style: .bottomSheet,

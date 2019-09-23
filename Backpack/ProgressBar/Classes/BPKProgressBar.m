@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setup {
     self.trackTintColor = BPKColor.gray100;
-    self.progressTintColor = BPKColor.blue500;
+    self.progressTintColor = BPKColor.skyBlue;
 }
 
 @end

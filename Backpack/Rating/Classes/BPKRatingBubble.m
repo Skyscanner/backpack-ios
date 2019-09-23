@@ -53,9 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
-    self.lowRatingColor = BPKColor.red500;
-    self.mediumRatingColor = BPKColor.yellow500;
-    self.highRatingColor = BPKColor.green500;
+    self.lowRatingColor = BPKColor.panjin;
+    self.mediumRatingColor = BPKColor.kolkata;
+    self.highRatingColor = BPKColor.monteverde;
 
     self.backgroundColor = BPKColor.gray200;
 

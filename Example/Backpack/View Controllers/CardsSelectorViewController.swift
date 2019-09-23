@@ -69,7 +69,7 @@ class CardsSelectorViewController: DarkModeTableViewController {
             target.cornerStyle = BPKCardCornerStyle.large
         case "background_color":
             target.navigationItem.title = "With background color"
-            target.backgroundColor = Color.blue100
+            target.backgroundColor = Color.skyBlueTint01
         default:
             fatalError("The identifier \(segue.identifier.debugDescription) does not " +
                 "match an example Card configuration.")

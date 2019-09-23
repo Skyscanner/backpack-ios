@@ -43,16 +43,16 @@ class ChipSelectorViewController: DarkModeTableViewController {
                 target.shadow = false
             case .withBackgroundColor:
                 target.title = "Background color"
-                target.backgroundTint = Color.red500
+                target.backgroundTint = Color.panjin
             case .backgroundColorNoShadow:
                 target.title = "Background color"
                 target.shadow = false
-                target.backgroundTint = Color.red500
+                target.backgroundTint = Color.panjin
             case .backgroundColorUnselectedNoShadow:
                 target.title = "Background color"
                 target.shadow = false
                 target.colorUnselectedState = true
-                target.backgroundTint = Color.red500
+                target.backgroundTint = Color.panjin
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

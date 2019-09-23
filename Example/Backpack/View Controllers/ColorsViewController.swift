@@ -22,7 +22,7 @@ import Backpack
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
         ("primary color", { (view: UIView) -> UIColor in
-            return Color.blue500
+            return Color.skyBlue
         }),
         ("blue700", { (view: UIView) -> UIColor in
             return Color.blue700
