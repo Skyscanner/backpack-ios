@@ -17,7 +17,7 @@ DEPENDENCIES:
   - SwiftLint (~> 0.31.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FloatingPanel
     - FSCalendar
     - iOSSnapshotTestCase
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Backpack: 45351698dcaecc74b08fa93442db58b6a73f9b5f
+  Backpack: 7bc254ea6a89e59288110849325f0b6592b1b1af
   FloatingPanel: f4a89a848e21415e2e2697ee8f61847178445aa7
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
@@ -40,4 +40,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1d9a248624a4b9134e3a041d593ff032a3a7b1eb
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.0
