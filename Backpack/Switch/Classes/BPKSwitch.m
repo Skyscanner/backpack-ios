@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
+        _primaryColor = BPKColor.blue500;
 
         [self setup];
     }
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
+        _primaryColor = BPKColor.blue500;
 
         [self setup];
     }

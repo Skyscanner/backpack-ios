@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
     // This is tradeoff, if we change the colorspace we can change these tests
     BPKGradient *gradient = [BPKGradient primary];
 
-    NSArray<UIColor *> *expectedColors = @[BPKColor.skyBlue, BPKColor.primaryGradientLight];
+    NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
     NSArray<NSNumber *> *expectedStops = @[@0, @1];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
     // This is tradeoff, if we change the colorspace we can change these tests
     BPKGradient *gradient = [BPKGradient primaryWithDirection:BPKGradientDirectionTopRight];
 
-    NSArray<UIColor *> *expectedColors = @[BPKColor.skyBlue, BPKColor.primaryGradientLight];
+    NSArray<UIColor *> *expectedColors = @[BPKColor.blue500, BPKColor.primaryGradientLight];
     NSArray<NSNumber *> *expectedStops = @[@0, @1];
 
     XCTAssertEqualObjects(gradient.colors, expectedColors);

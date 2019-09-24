@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 
     self.starColor = [BPKColor gray100];
-    self.starFilledColor = [BPKColor erfoud];
+    self.starFilledColor = [BPKColor yellow500];
     _size = size;
     _state = BPKStarStateDefault;
 

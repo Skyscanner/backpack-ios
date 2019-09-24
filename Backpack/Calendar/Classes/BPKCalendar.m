@@ -76,7 +76,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
+        _dateSelectedBackgroundColor = BPKColor.blue500;
         _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
@@ -92,7 +92,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
+        _dateSelectedBackgroundColor = BPKColor.blue500;
         _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
@@ -107,7 +107,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (self) {
         self.minDate = minDate;
         self.maxDate = maxDate;
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
+        _dateSelectedBackgroundColor = BPKColor.blue500;
         _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }

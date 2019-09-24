@@ -20,7 +20,7 @@ import UIKit
 import Backpack
 
 class ColorPreviewCollectionViewCell: UICollectionViewCell {
-    @objc dynamic var primaryColor: UIColor = Color.skyBlue {
+    @objc dynamic var primaryColor: UIColor = Color.blue500 {
         didSet {
             updateBackgroundColor()
         }

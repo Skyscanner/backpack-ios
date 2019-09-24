@@ -23,7 +23,6 @@
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spacing.h>
-#import <Backpack/Radii.h>
 #import <Backpack/UIView+BPKRTL.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -82,8 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     self.initializing = YES;
-
-    _cornerRadius = @(BPKBorderRadiusSm);
 
     self.layer.masksToBounds = YES;
     self.adjustsImageWhenHighlighted = NO;
@@ -350,8 +347,8 @@ NS_ASSUME_NONNULL_BEGIN
 
         switch (self.style) {
         case BPKButtonStylePrimary: {
-            UIColor *startColor = self.primaryGradientStartColor ? self.primaryGradientStartColor : BPKColor.monteverde;
-            UIColor *endColor = self.primaryGradientEndColor ? self.primaryGradientEndColor : BPKColor.monteverde;
+            UIColor *startColor = self.primaryGradientStartColor ? self.primaryGradientStartColor : BPKColor.green500;
+            UIColor *endColor = self.primaryGradientEndColor ? self.primaryGradientEndColor : BPKColor.green600;
 
             [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor gradientOnBottom:endColor];
             break;
@@ -391,14 +388,14 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleFeatured: {
-            UIColor *startColor = self.featuredGradientStartColor ? self.featuredGradientStartColor : BPKColor.skyBlue;
-            UIColor *endColor = self.featuredGradientEndColor ? self.featuredGradientEndColor : BPKColor.skyBlue;
+            UIColor *startColor = self.featuredGradientStartColor ? self.featuredGradientStartColor : BPKColor.pink500;
+            UIColor *endColor = self.featuredGradientEndColor ? self.featuredGradientEndColor : BPKColor.pink600;
 
             [self setFilledStyleWithNormalBackgroundColorGradientOnTop:startColor gradientOnBottom:endColor];
             break;
         }
         case BPKButtonStyleLink: {
-            UIColor *contentColor = self.linkContentColor ? self.linkContentColor : BPKColor.skyBlue;
+            UIColor *contentColor = self.linkContentColor ? self.linkContentColor : BPKColor.blue500;
 
             [self setLinkStyleWithColor:contentColor];
             break;
@@ -539,17 +536,17 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.secondaryContentColor != nil) {
             return self.secondaryContentColor;
         }
-        return BPKColor.skyBlue;
+        return BPKColor.blue500;
     case BPKButtonStyleLink:
         if (self.linkContentColor != nil) {
             return self.linkContentColor;
         }
-        return BPKColor.skyBlue;
+        return BPKColor.blue500;
     case BPKButtonStyleDestructive:
         if (self.destructiveContentColor != nil) {
             return self.destructiveContentColor;
         }
-        return BPKColor.systemRed;
+        return BPKColor.red500;
     case BPKButtonStyleOutline:
         return BPKColor.white;
     default:
@@ -732,11 +729,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedBlue {
-    return [BPKColor blend:BPKColor.skyBlue with:BPKColor.gray900 weight:0.85f];
+    return [BPKColor blend:BPKColor.blue500 with:BPKColor.gray900 weight:0.85f];
 }
 
 + (UIColor *)highlightedRed {
-    return [BPKColor blend:BPKColor.systemRed with:BPKColor.gray900 weight:0.85f];
+    return [BPKColor blend:BPKColor.red500 with:BPKColor.gray900 weight:0.85f];
 }
 
 + (CGFloat)buttonTitleIconSpacing {

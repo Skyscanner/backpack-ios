@@ -11,10 +11,10 @@
 
 BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
 flareView.isFlareVisible = YES;
-flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
+flareViewView.backgroundView.backgroundColor = BPKColor.blue500;
 
 UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-innerView.backgroundColor = [BPKColor systemRed];
+innerView.backgroundColor = [BPKColor red500];
 
 [flareView.contentView addSubview:innerView];
 ```
@@ -26,7 +26,7 @@ import Backpack
 
 let flareView = FlareView(frame: .zero)
 flareView.isFlareVisible = showFlare
-flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
+flareViewView.backgroundView.backgroundColor = BPKColor.blue500;
 
 let label = Label(fontStyle: .textXlEmphasized)
 label.text = "Much wow!"

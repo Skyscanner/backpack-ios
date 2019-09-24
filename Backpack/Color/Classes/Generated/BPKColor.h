@@ -33,6 +33,20 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 ///-----------------------
 
 /**
+ * The `abisko` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #5a489bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * abisko;
+
+/**
+ * The `bagan` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffebd0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bagan;
+
+/**
  * The `blue100` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #cbeef5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -101,6 +115,27 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * <div style="width: 100px; height: 100px; background: #005567ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * blue900;
+
+/**
+ * The `bunol` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ff7b59ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bunol;
+
+/**
+ * The `erfoud` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffb54dff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * erfoud;
+
+/**
+ * The `glencoe` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #73cec6ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * glencoe;
 
 /**
  * The `gray100` color from the Backpack palette.
@@ -241,6 +276,55 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * <div style="width: 100px; height: 100px; background: #006638ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * green900;
+
+/**
+ * The `harbour` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #f6dde1ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * harbour;
+
+/**
+ * The `hillier` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #e18b96ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * hillier;
+
+/**
+ * The `kolkata` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ff9400ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * kolkata;
+
+/**
+ * The `monteverde` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #00a698ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * monteverde;
+
+/**
+ * The `nara` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffe7e0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * nara;
+
+/**
+ * The `panjin` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #d1435bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * panjin;
+
+/**
+ * The `petra` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffab95ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * petra;
 
 /**
  * The `pink100` color from the Backpack palette.
@@ -388,6 +472,90 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * <div style="width: 100px; height: 100px; background: #a80300ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * red900;
+
+/**
+ * The `segano` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #d0eeecff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * segano;
+
+/**
+ * The `skyBlue` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #0770e3ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlue;
+
+/**
+ * The `skyBlueShade01` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #084eb2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueShade01;
+
+/**
+ * The `skyBlueShade02` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #042759ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueShade02;
+
+/**
+ * The `skyBlueShade03` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #02122cff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueShade03;
+
+/**
+ * The `skyBlueTint01` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #6d9febff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueTint01;
+
+/**
+ * The `skyBlueTint02` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #9dc0f2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueTint02;
+
+/**
+ * The `skyBlueTint03` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #cddff8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * skyBlueTint03;
+
+/**
+ * The `systemGreen` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #00a698ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * systemGreen;
+
+/**
+ * The `systemRed` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #d1435bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * systemRed;
+
+/**
+ * The `tochigi` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #e1ddecff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * tochigi;
+
+/**
+ * The `valensole` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #a59bc8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * valensole;
 
 /**
  * The `white` color from the Backpack palette.
