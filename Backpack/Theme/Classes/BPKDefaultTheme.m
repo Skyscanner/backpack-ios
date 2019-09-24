@@ -24,20 +24,227 @@
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Spinner.h>
+#import <Backpack/Radii.h>
 #import <Backpack/Switch.h>
 
 #import "BPKDefaultThemeContainer.h"
 
+@interface BPKDefaultTheme ()
+@property(nonatomic, readonly, strong) UIColor *skyBlue300;
+@property(nonatomic, readonly, strong) UIColor *skyBlue500;
+@property(nonatomic, readonly, strong) UIColor *skyBlue700;
+@property(nonatomic, readonly, strong) UIColor *skyBlue900;
+@property(nonatomic, readonly, strong) UIColor *montverde500;
+@property(nonatomic, readonly, strong) UIColor *montverde700;
+@property(nonatomic, readonly, strong) UIColor *montverde900;
+@property(nonatomic, readonly, strong) UIColor *abisko300;
+@property(nonatomic, readonly, strong) UIColor *abisko500;
+@property(nonatomic, readonly, strong) UIColor *abisko700;
+@property(nonatomic, readonly, strong) UIColor *abisko900;
+@property(nonatomic, readonly, strong) UIColor *kolkata500;
+@property(nonatomic, readonly, strong) UIColor *red500;
+@property(nonatomic, readonly, strong) UIColor *white;
+@property(nonatomic, strong, nullable) BPKFontMapping *fontMapping;
+@end
+
 @implementation BPKDefaultTheme
 
-NSString *const BPKDefaultThemeName = @"Default";
+NSString *const DefaultThemeName = @"Default";
 
-- (NSString *)themeName {
-    return BPKDefaultThemeName;
+- (instancetype)init {
+    self = [self initWithRelative:NO];
+    return self;
 }
 
-- (BPKFontMapping *)fontMapping {
-    return nil;
+- (instancetype)initWithRelative:(BOOL)relativeEnabled {
+    self = [super init];
+//    if (self) {
+//        if (relativeEnabled) {
+//            self.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SkyscannerRelativeiOS"
+//                                                      regularFontFace:@"SkyscannerRelativeiOS-Book"
+//                                                     semiboldFontFace:@"SkyscannerRelativeiOS-Bold"
+//                                                        heavyFontFace:@"SkyscannerRelativeiOS-Black"];
+//        }
+//    }
+    return self;
+}
+
+- (NSString *)themeName {
+    return DefaultThemeName;
+}
+
+/**
+ * SkyBlue300 colour, #3C81E5
+ */
+- (UIColor *)skyBlue300 {
+    return [UIColor colorWithRed:0.24f green:0.51f blue:0.9f alpha:1.0f];
+}
+
+/**
+ * SkyBlue500 colour, #0770E3
+ */
+- (UIColor *)skyBlue500 {
+    return [UIColor colorWithRed:0.03f green:0.44f blue:0.89f alpha:1.0f];
+}
+
+/**
+ * SkyBlue700 colour, #084EB2
+ */
+- (UIColor *)skyBlue700 {
+    return [UIColor colorWithRed:0.03f green:0.31f blue:0.7f alpha:1.0f];
+}
+
+/**
+ * SkyBlue900 colour, #042759
+ */
+- (UIColor *)skyBlue900 {
+    return [UIColor colorWithRed:0.02f green:0.15f blue:0.35f alpha:1.0f];
+}
+
+/**
+ * Gray50 colour, #F1F2F8
+ */
+- (UIColor *)gray50 {
+    return BPKColor.gray50;
+}
+
+/**
+ * Gray100 colour, #DDDDE5
+ */
+- (UIColor *)gray100 {
+    return BPKColor.gray100;
+}
+
+/**
+ * Gray300 colour, #B2B2BF
+ */
+- (UIColor *)gray300 {
+    return BPKColor.gray300;
+}
+
+/**
+ * Gray500 colour, #68697F
+ */
+- (UIColor *)gray500 {
+    return BPKColor.gray500;
+}
+
+/**
+ * Gray700, #444560
+ */
+- (UIColor *)gray700 {
+    return BPKColor.gray700;
+}
+
+/**
+ * Gray900 colour, #111236
+ */
+- (UIColor *)gray900 {
+    return BPKColor.gray900;
+}
+
+/**
+ * Red500 colour, Panjin500
+ */
+- (UIColor *)systemRed {
+    return [self panjin500];
+}
+
+/**
+ * Green500 colour, Monteverde500
+ */
+- (UIColor *)systemGreen {
+    return [self montverde500];
+}
+
+/**
+ * Panjin500, #d1435b
+ */
+- (UIColor *)panjin500 {
+    return [UIColor colorWithRed:209.0f / 255.0f green:67.0f / 255.0f blue:91.0f / 255.0f alpha:1.0f];
+}
+
+/**
+ * Monteverde500, #00A698
+ */
+- (UIColor *)montverde500 {
+    return [UIColor colorWithRed:0.0f green:0.65f blue:0.6f alpha:1];
+}
+
+/**
+ * Monteverde700, #006D6B
+ */
+- (UIColor *)montverde700 {
+    return [UIColor colorWithRed:0.0f green:0.43f blue:0.42f alpha:1];
+}
+
+/**
+ * Monteverde900, #004D4B
+ */
+- (UIColor *)montverde900 {
+    return [UIColor colorWithRed:0.0f green:0.3f blue:0.29f alpha:1];
+}
+
+/**
+ * Abisko300, #4D2BAB
+ */
+- (UIColor *)abisko300 {
+    return [UIColor colorWithRed:0.3f green:0.17f blue:0.67f alpha:1];
+}
+
+/**
+ * Abisko500, #5A489B
+ */
+- (UIColor *)abisko500 {
+    return [UIColor colorWithRed:0.35f green:0.28f blue:0.61f alpha:1];
+}
+
+/**
+ * Abisko700, #47397A
+ */
+- (UIColor *)abisko700 {
+    return [UIColor colorWithRed:0.28f green:0.22f blue:0.48f alpha:1];
+}
+
+/**
+ * Abisko900, #241D3F
+ */
+- (UIColor *)abisko900 {
+    return [UIColor colorWithRed:0.14f green:0.11f blue:0.25f alpha:1];
+}
+
+/**
+ * Kolkata500, #FF9400
+ */
+- (UIColor *)kolkata500 {
+    return [UIColor colorWithRed:1.0f green:0.58f blue:0.0f alpha:1];
+}
+
+/**
+ * System red, #EF4D22
+ */
+- (UIColor *)red500 {
+    return [UIColor colorWithRed:0.94f green:0.30f blue:0.13f alpha:1];
+}
+
+/**
+ * White, #FFFFFF
+ */
+- (UIColor *)white {
+    return BPKColor.white;
+}
+
+- (UIColor *)primaryColor {
+    return self.skyBlue500;
+}
+
+- (BPKGradient *)primaryGradient {
+    UIColor *startColor = self.primaryColor;
+    UIColor *endColor = self.primaryColor;
+    CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionUp];
+    CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionUp];
+
+    return [[BPKGradient alloc] initWithColors:@[startColor, endColor] startPoint:startPoint endPoint:endPoint];
 }
 
 - (UIColor *)chipPrimaryColor {
@@ -48,46 +255,6 @@ NSString *const BPKDefaultThemeName = @"Default";
     return self.primaryColor;
 }
 
-- (UIColor *)primaryColor {
-    return BPKColor.blue500;
-}
-
-- (UIColor *)gray50 {
-    return BPKColor.gray50;
-}
-
-- (UIColor *)gray100 {
-    return BPKColor.gray100;
-}
-
-- (UIColor *)gray300 {
-    return BPKColor.gray300;
-}
-
-- (UIColor *)gray500 {
-    return BPKColor.gray500;
-}
-
-- (UIColor *)gray700 {
-    return BPKColor.gray700;
-}
-
-- (UIColor *)systemGreen {
-    return BPKColor.green500;
-}
-
-- (UIColor *)systemRed {
-    return BPKColor.red500;
-}
-
-- (UIColor *)gray900 {
-    return BPKColor.gray900;
-}
-
-- (BPKGradient *)primaryGradient {
-    return BPKGradient.primary;
-}
-
 - (UIColor *)spinnerPrimaryColor {
     return self.primaryColor;
 }
@@ -96,60 +263,68 @@ NSString *const BPKDefaultThemeName = @"Default";
     return self.primaryColor;
 }
 
-- (UIColor *)buttonFeaturedContentColor {
-    return BPKColor.white;
-}
-
-- (UIColor *)buttonFeaturedGradientStartColor {
-    return BPKColor.pink500;
-}
-
-- (UIColor *)buttonFeaturedGradientEndColor {
-    return BPKColor.pink600;
-}
-
 - (UIColor *)buttonPrimaryContentColor {
-    return BPKColor.white;
+    return self.white;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
-    return BPKColor.green500;
+    return self.montverde500;
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return BPKColor.green600;
+    return self.montverde500;
+}
+
+- (UIColor *)buttonFeaturedContentColor {
+    return self.white;
+}
+
+- (UIColor *)buttonFeaturedGradientStartColor {
+    return self.skyBlue500;
+}
+
+- (UIColor *)buttonFeaturedGradientEndColor {
+    return self.skyBlue500;
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return self.primaryColor;
+    return self.skyBlue500;
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return BPKColor.white;
+    return self.white;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return BPKColor.gray100;
+    return self.gray100;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
-    return BPKColor.red500;
+    return self.red500;
 }
 
 - (UIColor *)buttonDestructiveBackgroundColor {
-    return BPKColor.white;
+    return self.white;
 }
 
 - (UIColor *)buttonDestructiveBorderColor {
-    return BPKColor.gray100;
+    return self.gray300;
 }
 
 - (NSNumber *)buttonCornerRadius {
-    return nil;
+    return @(BPKBorderRadiusSm);
+}
+
+- (UIColor *)starFilledColor {
+    return self.kolkata500;
+}
+
+- (UIColor *)horiontalNavigationSelectedColor {
+    return self.primaryColor;
 }
 
 - (UIColor *)calendarDateSelectedContentColor {
-    return BPKColor.white;
+    return self.white;
 }
 
 - (UIColor *)calendarDateSelectedBackgroundColor {
@@ -158,14 +333,6 @@ NSString *const BPKDefaultThemeName = @"Default";
 
 - (Class)themeContainerClass {
     return [BPKDefaultThemeContainer class];
-}
-
-- (UIColor *)starFilledColor {
-    return BPKColor.yellow500;
-}
-
-- (UIColor *)horiontalNavigationSelectedColor {
-    return self.primaryColor;
 }
 
 - (UIColor *)ratingLowColor {

@@ -16,15 +16,18 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import "BPKThemeContainer.h"
 
-#import "BPKTheme.h"
-#import "BPKThemeDefinition.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(DefaultTheme) @interface BPKDefaultTheme : NSObject<BPKThemeDefinition>
+/**
+ * `BPKSpringCleanThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKSpringClean theme to be applied to
+ * all its children.
+ */
+NS_SWIFT_NAME(SpringCleanThemeContainer) @interface BPKSpringCleanThemeContainer : BPKThemeContainer
 
 @end
-
 NS_ASSUME_NONNULL_END
