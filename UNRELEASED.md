@@ -1,5 +1,10 @@
 # Unreleased
 > Place your changes below this line.
+**Breaking:**
+
+- Backpack:
+  - Changed the appearance of every component to use our NEW BRAND 🎉
+
 **Added:**
 
 - Backpack/Color:
