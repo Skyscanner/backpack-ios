@@ -122,7 +122,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor systemRed] secondInnerView.backgroundColor = [BPKColor systemGreen];
+    firstInnerView.backgroundColor = BPKColor.systemRed;
+    secondInnerView.backgroundColor = BPKColor.systemGreen;
 
     [c setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 
