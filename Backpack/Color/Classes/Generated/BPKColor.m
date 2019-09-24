@@ -20,6 +20,14 @@
 
 @implementation BPKColor
 
++ (UIColor *)abisko {
+  return [UIColor colorWithRed:0.353 green:0.282 blue:0.608 alpha:1];
+}
+
++ (UIColor *)bagan {
+  return [UIColor colorWithRed:1.000 green:0.922 blue:0.816 alpha:1];
+}
+
 + (UIColor *)blue100 {
   return [UIColor colorWithRed:0.796 green:0.933 blue:0.961 alpha:1];
 }
@@ -58,6 +66,18 @@
 
 + (UIColor *)blue900 {
   return [UIColor colorWithRed:0.000 green:0.333 blue:0.404 alpha:1];
+}
+
++ (UIColor *)bunol {
+  return [UIColor colorWithRed:1.000 green:0.482 blue:0.349 alpha:1];
+}
+
++ (UIColor *)erfoud {
+  return [UIColor colorWithRed:1.000 green:0.710 blue:0.302 alpha:1];
+}
+
++ (UIColor *)glencoe {
+  return [UIColor colorWithRed:0.451 green:0.808 blue:0.776 alpha:1];
 }
 
 + (UIColor *)gray100 {
@@ -138,6 +158,34 @@
 
 + (UIColor *)green900 {
   return [UIColor colorWithRed:0.000 green:0.400 blue:0.220 alpha:1];
+}
+
++ (UIColor *)harbour {
+  return [UIColor colorWithRed:0.965 green:0.867 blue:0.882 alpha:1];
+}
+
++ (UIColor *)hillier {
+  return [UIColor colorWithRed:0.882 green:0.545 blue:0.588 alpha:1];
+}
+
++ (UIColor *)kolkata {
+  return [UIColor colorWithRed:1.000 green:0.580 blue:0.000 alpha:1];
+}
+
++ (UIColor *)monteverde {
+  return [UIColor colorWithRed:0.000 green:0.651 blue:0.596 alpha:1];
+}
+
++ (UIColor *)nara {
+  return [UIColor colorWithRed:1.000 green:0.906 blue:0.878 alpha:1];
+}
+
++ (UIColor *)panjin {
+  return [UIColor colorWithRed:0.820 green:0.263 blue:0.357 alpha:1];
+}
+
++ (UIColor *)petra {
+  return [UIColor colorWithRed:1.000 green:0.671 blue:0.584 alpha:1];
 }
 
 + (UIColor *)pink100 {
@@ -222,6 +270,54 @@
 
 + (UIColor *)red900 {
   return [UIColor colorWithRed:0.659 green:0.012 blue:0.000 alpha:1];
+}
+
++ (UIColor *)segano {
+  return [UIColor colorWithRed:0.816 green:0.933 blue:0.925 alpha:1];
+}
+
++ (UIColor *)skyBlue {
+  return [UIColor colorWithRed:0.027 green:0.439 blue:0.890 alpha:1];
+}
+
++ (UIColor *)skyBlueShade01 {
+  return [UIColor colorWithRed:0.031 green:0.306 blue:0.698 alpha:1];
+}
+
++ (UIColor *)skyBlueShade02 {
+  return [UIColor colorWithRed:0.016 green:0.153 blue:0.349 alpha:1];
+}
+
++ (UIColor *)skyBlueShade03 {
+  return [UIColor colorWithRed:0.008 green:0.071 blue:0.173 alpha:1];
+}
+
++ (UIColor *)skyBlueTint01 {
+  return [UIColor colorWithRed:0.427 green:0.624 blue:0.922 alpha:1];
+}
+
++ (UIColor *)skyBlueTint02 {
+  return [UIColor colorWithRed:0.616 green:0.753 blue:0.949 alpha:1];
+}
+
++ (UIColor *)skyBlueTint03 {
+  return [UIColor colorWithRed:0.804 green:0.875 blue:0.973 alpha:1];
+}
+
++ (UIColor *)systemGreen {
+  return [UIColor colorWithRed:0.000 green:0.651 blue:0.596 alpha:1];
+}
+
++ (UIColor *)systemRed {
+  return [UIColor colorWithRed:0.820 green:0.263 blue:0.357 alpha:1];
+}
+
++ (UIColor *)tochigi {
+  return [UIColor colorWithRed:0.882 green:0.867 blue:0.925 alpha:1];
+}
+
++ (UIColor *)valensole {
+  return [UIColor colorWithRed:0.647 green:0.608 blue:0.784 alpha:1];
 }
 
 + (UIColor *)white {

@@ -9,7 +9,7 @@
 ```objective-c
 #import <Backpack/Color.h>
 
-BPKColor.blue500;
+BPKColor.skyBlue;
 BPKColor.gray900;
 ```
 
