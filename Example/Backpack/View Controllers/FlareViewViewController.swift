@@ -29,7 +29,7 @@ class FlareViewViewController: UIViewController {
         super.viewDidLoad()
 
         flareView.isFlareVisible = showFlare
-        flareView.backgroundColor = Color.blue500
+        flareView.backgroundColor = Color.skyBlue
 
         let label = Label(fontStyle: .textXlEmphasized)
         label.text = "Much wow!"

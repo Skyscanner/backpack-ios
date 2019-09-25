@@ -28,7 +28,7 @@ class SettingsViewController: DarkModeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        closeButton.tintColor = Color.blue500
+        closeButton.tintColor = Color.skyBlue
         closeButton.target = self
         closeButton.action = #selector(SettingsViewController.btnAction)
 

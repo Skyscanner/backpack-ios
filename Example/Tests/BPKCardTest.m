@@ -71,8 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedInitWithPaddedAndWithSubviews {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor red500];
-    secondInnerView.backgroundColor = [BPKColor green500];
+    firstInnerView.backgroundColor = [BPKColor systemRed];
+    secondInnerView.backgroundColor = [BPKColor systemGreen];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
                                                       secondarySubview:secondInnerView
@@ -85,8 +85,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSetPadded {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor red500];
-    secondInnerView.backgroundColor = [BPKColor green500];
+    firstInnerView.backgroundColor = [BPKColor systemRed];
+    secondInnerView.backgroundColor = [BPKColor systemGreen];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
                                                       secondarySubview:secondInnerView
@@ -101,8 +101,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedInitWithoutPaddedAndWithSubviews {
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor red500];
-    secondInnerView.backgroundColor = [BPKColor green500];
+    firstInnerView.backgroundColor = [BPKColor systemRed];
+    secondInnerView.backgroundColor = [BPKColor systemGreen];
 
     BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
                                                       secondarySubview:secondInnerView
@@ -122,8 +122,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIView *firstInnerView = [[UIView alloc] initWithFrame:CGRectZero];
     UIView *secondInnerView = [[UIView alloc] initWithFrame:CGRectZero];
-    firstInnerView.backgroundColor = [BPKColor red500];
-    secondInnerView.backgroundColor = [BPKColor green500];
+    firstInnerView.backgroundColor = BPKColor.systemRed;
+    secondInnerView.backgroundColor = BPKColor.systemGreen;
 
     [c setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 

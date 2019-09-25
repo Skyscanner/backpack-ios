@@ -83,23 +83,23 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderWidth = 0.0;
     switch (type) {
     case BPKBadgeTypeSuccess:
-        self.backgroundColor = [BPKColor green500];
+        self.backgroundColor = BPKColor.monteverde;
         break;
     case BPKBadgeTypeWarning:
-        self.backgroundColor = [BPKColor yellow500];
+        self.backgroundColor = BPKColor.kolkata;
         break;
     case BPKBadgeTypeDestructive:
-        self.backgroundColor = [BPKColor red500];
+        self.backgroundColor = BPKColor.panjin;
         break;
     case BPKBadgeTypeLight:
-        self.backgroundColor = [BPKColor gray50];
+        self.backgroundColor = BPKColor.gray50;
         break;
     case BPKBadgeTypeInverse:
-        self.backgroundColor = [BPKColor white];
+        self.backgroundColor = BPKColor.white;
         break;
     case BPKBadgeTypeOutline:
-        self.backgroundColor = [[BPKColor white] colorWithAlphaComponent:0.2];
-        self.layer.borderColor = [BPKColor white].CGColor;
+        self.backgroundColor = [BPKColor.white colorWithAlphaComponent:0.2];
+        self.layer.borderColor = BPKColor.white.CGColor;
         self.layer.borderWidth = 1.0;
         break;
     default:

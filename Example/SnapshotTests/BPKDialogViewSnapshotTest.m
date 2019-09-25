@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDialogViewNoButtons {
     BPKDialogIconDefinition *iconDefinition =
         [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]
-                                  iconBackgroundColor:BPKColor.green500];
+                                  iconBackgroundColor:BPKColor.monteverde];
     BPKDialogView *view = [[BPKDialogView alloc]
          initWithTitle:@"Lorem Ipsum"
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
