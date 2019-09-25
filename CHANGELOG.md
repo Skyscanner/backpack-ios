@@ -1,6 +1,17 @@
 # Backpack iOS changelog
 
 [Unreleased changes](./UNRELEASED.md).
+## 18.0.0
+
+**Breaking:**
+
+- Backpack:
+  - Changed the appearance of every component to use our NEW BRAND 🎉
+
+**Added:**
+
+- Backpack/Color:
+  - NEW BRAND COLOURS 🎉
 
 ## 17.1.0
 
