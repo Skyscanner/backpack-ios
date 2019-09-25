@@ -16,11 +16,24 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_RATING__
-#define __BACKPACK_RATING__
-
-#import "BPKRating.h"
-#import "BPKRatingLayout.h"
-#import "BPKRatingSize.h"
 #import "BPKRatingTextDefinition.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+@implementation BPKRatingTextDefinition
+
+- (instancetype)initWithHighRatingText:(NSString *)highRatingText
+                      mediumRatingText:(NSString *)mediumRatingText
+                         lowRatingText:(NSString *)lowRatingText {
+    self = [super init];
+
+    if (self) {
+        self.highRatingText = highRatingText;
+        self.mediumRatingText = mediumRatingText;
+        self.lowRatingText = lowRatingText;
+    }
+
+    return self;
+}
+
+@end
+NS_ASSUME_NONNULL_END

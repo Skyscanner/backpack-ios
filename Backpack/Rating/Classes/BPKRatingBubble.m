@@ -53,12 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
-    self.lowRatingColor = BPKColor.panjin;
-    self.mediumRatingColor = BPKColor.kolkata;
-    self.highRatingColor = BPKColor.monteverde;
-
-    self.backgroundColor = BPKColor.gray200;
-
     self.ratingBubbleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
     self.ratingBubbleLabel.textColor = BPKColor.white;
@@ -66,35 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.ratingBubbleLabel];
 
     [self setUpConstraints];
-    [self updateStyle];
 }
 
 #pragma mark - State setters
-
-- (void)setLowRatingColor:(UIColor *)lowRatingColor {
-    if (_lowRatingColor != lowRatingColor) {
-        _lowRatingColor = lowRatingColor;
-
-        [self updateStyle];
-    }
-}
-
-- (void)setMediumRatingColor:(UIColor *)mediumRatingColor {
-    if (_mediumRatingColor != mediumRatingColor) {
-        _mediumRatingColor = mediumRatingColor;
-
-        [self updateStyle];
-    }
-}
-
-- (void)setHighRatingColor:(UIColor *)highRatingColor {
-    if (_highRatingColor != highRatingColor) {
-        _highRatingColor = highRatingColor;
-
-        [self updateStyle];
-    }
-}
-
 - (void)setRatingValue:(CGFloat)ratingValue {
     BPKAssertMainThread();
     if (_ratingValue != ratingValue) {
@@ -106,8 +74,6 @@ NS_ASSUME_NONNULL_BEGIN
         } else {
             self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.1f", cappedRatingBubbleValue];
         }
-
-        [self updateStyle];
     }
 }
 
@@ -165,19 +131,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     return CGSizeMake(height, height);
 }
-
-#pragma mark - Updates
-
-- (void)updateStyle {
-    if (self.ratingValue < 6.00) {
-        self.backgroundColor = self.lowRatingColor;
-    } else if (self.ratingValue < 8.00) {
-        self.backgroundColor = self.mediumRatingColor;
-    } else {
-        self.backgroundColor = self.highRatingColor;
-    }
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

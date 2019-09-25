@@ -19,8 +19,14 @@ and then run `pod install`.
 #import <Backpack/Rating.h>
 
 BPKRating *rating = [[BPKRating alloc] init];
-rating.title = @"Some title";
-rating.subtitle = @"Some subtitle";
+rating.title = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"Some title to display when the value is high"
+                                  mediumRatingText:@"Some title to display when the value is medium"
+                                  lowRatingText:@"Some title to display when the value is low"];
+
+// rating.subtitle property is nullable                            
+rating.subtitle = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"Some subtitle to display when the value is high"
+                                  mediumRatingText:@"Some subtitle to display when the value is medium"
+                                  lowRatingText:@"Some subtitle to display when the value is low"];
 rating.ratingValue = 9.7;
 rating.size = BPKRatingSizeSmall;
 ```

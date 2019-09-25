@@ -60,8 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithRatingValue:(CGFloat)ratingValue
-                              title:(NSString *)title
-                           subtitle:(NSString *_Nullable)subtitle {
+                              title:(BPKRatingTextDefinition *)title
+                           subtitle:(BPKRatingTextDefinition *_Nullable)subtitle {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_lowRatingColor != lowRatingColor) {
         _lowRatingColor = lowRatingColor;
 
-        self.ratingBubble.lowRatingColor = lowRatingColor;
+        [self updateStyle];
     }
 }
 
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_mediumRatingColor != mediumRatingColor) {
         _mediumRatingColor = mediumRatingColor;
 
-        self.ratingBubble.mediumRatingColor = mediumRatingColor;
+        [self updateStyle];
     }
 }
 
@@ -117,22 +117,22 @@ NS_ASSUME_NONNULL_BEGIN
     if (_highRatingColor != highRatingColor) {
         _highRatingColor = highRatingColor;
 
-        self.ratingBubble.highRatingColor = highRatingColor;
+        [self updateStyle];
     }
 }
 
-- (void)setTitle:(NSString *)title {
+- (void)setTitle:(BPKRatingTextDefinition *)title {
     BPKAssertMainThread();
-    _title = [title copy];
+    _title = title;
 
-    self.textWrapper.title = self.title;
+    [self updateStyle];
 }
 
-- (void)setSubtitle:(NSString *_Nullable)subtitle {
+- (void)setSubtitle:(BPKRatingTextDefinition *_Nullable)subtitle {
     BPKAssertMainThread();
-    _subtitle = [subtitle copy];
+    _subtitle = subtitle;
 
-    self.textWrapper.subtitle = self.subtitle;
+    [self updateStyle];
 }
 
 - (void)setRatingValue:(CGFloat)ratingValue {
@@ -140,7 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_ratingValue != ratingValue) {
         _ratingValue = ratingValue;
 
-        self.ratingBubble.ratingValue = ratingValue;
+        [self updateStyle];
     }
 }
 
@@ -250,6 +250,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     self.ratingBubble.ratingValue = self.ratingValue;
+    if (self.ratingValue < 6.00) {
+        self.ratingBubble.backgroundColor = self.lowRatingColor ?: BPKColor.panjin;
+        self.textWrapper.title = self.title.lowRatingText;
+        self.textWrapper.subtitle = self.subtitle.lowRatingText;
+    } else if (self.ratingValue < 8.00) {
+        self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.kolkata;
+        self.textWrapper.title = self.title.mediumRatingText;
+        self.textWrapper.subtitle = self.subtitle.mediumRatingText;
+    } else {
+        self.ratingBubble.backgroundColor = self.highRatingColor ?: BPKColor.monteverde;
+        self.textWrapper.title = self.title.highRatingText;
+        self.textWrapper.subtitle = self.subtitle.highRatingText;
+    }
 }
 
 @end
