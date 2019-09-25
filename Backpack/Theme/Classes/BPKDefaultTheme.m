@@ -336,15 +336,15 @@ NSString *const DefaultThemeName = @"Default";
 }
 
 - (UIColor *)ratingLowColor {
-    return BPKColor.red500;
+    return BPKColor.panjin;
 }
 
 - (UIColor *)ratingMediumColor {
-    return BPKColor.yellow500;
+    return BPKColor.kolkata;
 }
 
 - (UIColor *)ratingHighColor {
-    return BPKColor.green500;
+    return BPKColor.monteverde;
 }
 
 @end
