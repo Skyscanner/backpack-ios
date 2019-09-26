@@ -1,6 +1,14 @@
 # Backpack iOS changelog
 
 [Unreleased changes](./UNRELEASED.md).
+
+## 18.0.1
+
+**Fixed:**
+
+- Backpack:
+  - Some minor changes to be Xcode 11 compatible
+
 ## 18.0.0
 
 **Breaking:**
