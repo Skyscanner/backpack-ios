@@ -24,18 +24,26 @@ class RatingsViewController: UIViewController {
     var showDifferentSizes: Bool = false
     var layout: BPKRatingLayout = .horizontal
 
+    static let titleTextDefinition = RatingTextDefinition(highRatingText: "High title",
+                                               mediumRatingText: "Medium title",
+                                               lowRatingText: "Low title")
+
+    static let subtitleTextDefinition = RatingTextDefinition(highRatingText: "High subtitle",
+                                                  mediumRatingText: "Medium subtitle",
+                                                  lowRatingText: "Low subtitle")
+
     fileprivate static var ratingData = [
-        (ratingValue: 3.0, title: "Low title", subtitle: "Low subtitle",
+        (ratingValue: 3.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 0 out of 10. Low title.", size: BPKRatingSize.large),
-        (ratingValue: 5.9, title: "Low title", subtitle: "Low subtitle",
+        (ratingValue: 5.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 2.1 out of 10. Low title.", size: BPKRatingSize.large),
-        (ratingValue: 6.0, title: "Medium title", subtitle: "Medium subtitle",
+        (ratingValue: 6.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 4.3 out of 10. Medium title.", size: BPKRatingSize.base),
-        (ratingValue: 7.9, title: "Medium title", subtitle: "Medium subtitle",
+        (ratingValue: 7.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 6.4 out of 10. Medium title.", size: BPKRatingSize.small),
-        (ratingValue: 8.0, title: "High title", subtitle: "High subtitle",
+        (ratingValue: 8.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 8.6 out of 10. High title.", size: BPKRatingSize.extraSmall),
-        (ratingValue: 10.0, title: "High title", subtitle: "High subtitle",
+        (ratingValue: 10.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
          accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall)
     ]
 
@@ -50,11 +58,11 @@ class RatingsViewController: UIViewController {
     func setupRatings() {
         for index in 0...RatingsViewController.ratingData.count - 1 {
             ratings[index].ratingValue = RatingsViewController.ratingData[index].ratingValue
-            ratings[index].title = RatingsViewController.ratingData[index].title
+            ratings[index].title = RatingsViewController.ratingData[index].titleDefinition
             ratings[index].accessibilityLabel = RatingsViewController.ratingData[index].accessibilityLabel
             ratings[index].layout = layout
             if showSubtitle {
-                ratings[index].subtitle = RatingsViewController.ratingData[index].subtitle
+                ratings[index].subtitle = RatingsViewController.ratingData[index].subtitleDefinition
             }
             if showDifferentSizes {
                 ratings[index].size = RatingsViewController.ratingData[index].size

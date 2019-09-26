@@ -56,10 +56,6 @@ NS_SWIFT_NAME(RatingBubble) IB_DESIGNABLE @interface BPKRatingBubble : UIView
  */
 @property(nonatomic) BPKRatingSize size;
 
-@property(nonatomic, strong) UIColor *lowRatingColor;
-@property(nonatomic, strong) UIColor *mediumRatingColor;
-@property(nonatomic, strong) UIColor *highRatingColor;
-
 @end
 
 NS_ASSUME_NONNULL_END
