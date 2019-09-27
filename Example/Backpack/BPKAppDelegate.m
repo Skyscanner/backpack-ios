@@ -22,6 +22,11 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+@import AppCenter;
+@import AppCenterDistribute;
+@import AppCenterAnalytics;
+@import AppCenterCrashes;
+
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -39,10 +44,12 @@
 
         BPKThemeContainerController *themeContainerController =
             [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
-                                                  rootViewController:self.window.rootViewController];
+                                                      rootViewController:self.window.rootViewController];
         self.window.rootViewController = themeContainerController;
         [self.window makeKeyAndVisible];
     }
+
+    [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@ [MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
 
     return YES;
 }
