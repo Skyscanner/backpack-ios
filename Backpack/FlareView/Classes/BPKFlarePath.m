@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFlarePath
 
-// Original vector dimensions: 234.0x53.0
 CGFloat const BPKFlareHeight = 20;
 CGFloat const BPKFlareWidth = 88.301886792;
 CGFloat const BPKFlareVectorWidth = 234.0;
@@ -38,64 +37,42 @@ CGFloat const BPKFlareVectorHeight = 53.0;
     // top-left:
     [path moveToPoint:CGPointMake(0.0, 0.0)];
 
-    // bottom-left:
-    [path addLineToPoint:CGPointMake(0.0, contentBottom)];
+    // top-right:
+    [path addLineToPoint:CGPointMake(size.width, 0.0)];
 
     // bottom-right:
     [path addLineToPoint:CGPointMake(size.width, contentBottom)];
 
-    // top-right:
-    [path addLineToPoint:CGPointMake(size.width, 0.0)];
+    // flare shape
+    [self appendFlareToPath:path size:size];
 
-    UIBezierPath *flarePath = [self flarePathForSize:size];
-    [path appendPath:flarePath];
+    // bottom-left:
+    [path addLineToPoint:CGPointMake(0.0, contentBottom)];
 
     return path;
 }
 
 #pragma mark Private
 
-+ (UIBezierPath *)flarePathForSize:(CGSize)size {
-    UIBezierPath *flarePath = [self flarePath];
-    CGAffineTransform translation =
-        CGAffineTransformMakeTranslation((size.width - BPKFlareWidth) / 2.0, size.height - BPKFlareHeight);
-    [flarePath applyTransform:translation];
-    return flarePath;
-}
-
-+ (UIBezierPath *)flarePath {
-    static dispatch_once_t onceToken;
-    static UIBezierPath *flarePath;
-    dispatch_once(&onceToken, ^{
-      flarePath = [self generateflarePath];
-    });
-    return [flarePath copy];
-}
-
-+ (UIBezierPath *)generateflarePath {
-    UIBezierPath *path = [[UIBezierPath alloc] init];
-
-    [path moveToPoint:CGPointMake(136.264, 47.858)];
-    [path addCurveToPoint:CGPointMake(101.736, 47.858)
-            controlPoint1:CGPointMake(125.632, 54.043)
-            controlPoint2:CGPointMake(112.469, 54.043)];
-    [path addLineToPoint:CGPointMake(33.592, 8.518)];
-    [path addCurveToPoint:CGPointMake(4.276, 0)
-            controlPoint1:CGPointMake(24.682, 3.345)
-            controlPoint2:CGPointMake(14.604, 0.303)];
-    [path addLineToPoint:CGPointMake(0, 0)];
-    [path addLineToPoint:CGPointMake(238, 0)];
-    [path addLineToPoint:CGPointMake(233.671, 0)];
-    [path addCurveToPoint:CGPointMake(204.307, 8.517)
-            controlPoint1:CGPointMake(223.336095, 0.409248008)
-            controlPoint2:CGPointMake(213.256908, 3.33270635)];
-    [path addLineToPoint:CGPointMake(136.264, 47.858)];
-
++ (void)appendFlareToPath:(UIBezierPath *)path size:(CGSize)size {
+    CGPoint sp = CGPointMake((size.width - BPKFlareWidth) / 2.0, size.height - BPKFlareHeight);
     CGFloat scale = BPKFlareWidth / BPKFlareVectorWidth;
-    CGAffineTransform scaleTransformation = CGAffineTransformMakeScale(scale, scale);
-    [path applyTransform:scaleTransformation];
 
-    return path;
+    [path addLineToPoint:CGPointMake(sp.x + 238 * scale, sp.y + 0 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 233.671 * scale, sp.y + 0 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 204.307 * scale, sp.y + 8.517 * scale)
+            controlPoint1:CGPointMake(sp.x + 223.336095 * scale, sp.y + 0.409248008 * scale)
+            controlPoint2:CGPointMake(sp.x + 213.256908 * scale, sp.y + 3.33270635 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 101.736 * scale, sp.y + 47.858 * scale)
+            controlPoint1:CGPointMake(sp.x + 125.632 * scale, sp.y + 54.043 * scale)
+            controlPoint2:CGPointMake(sp.x + 112.469 * scale, sp.y + 54.043 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 33.592 * scale, sp.y + 8.518 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 4.276 * scale, sp.y + 0 * scale)
+            controlPoint1:CGPointMake(sp.x + 24.682 * scale, sp.y + 3.345 * scale)
+            controlPoint2:CGPointMake(sp.x + 14.604 * scale, sp.y + 0.303 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 0 * scale, sp.y + 0 * scale)];
 }
 
 @end

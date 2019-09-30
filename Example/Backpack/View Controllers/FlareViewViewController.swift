@@ -24,6 +24,7 @@ class FlareViewViewController: UIViewController {
 
     var showFlare: Bool = true
     var backgroundImage: Bool = false
+    var animated: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,17 @@ class FlareViewViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         flareView.contentView.addSubview(label)
 
+        let flareViewCenterYConstraint = flareView.centerYAnchor.constraint(
+            equalTo: self.view.centerYAnchor,
+            constant: 0
+        )
+
+        if animated {
+            flareViewCenterYConstraint.constant = -250.0
+        }
+
         NSLayoutConstraint.activate([
+            flareViewCenterYConstraint,
             label.topAnchor.constraint(equalTo: flareView.contentView.topAnchor, constant: BPKSpacingBase),
             label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase),
             flareView.contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingBase)
@@ -62,5 +73,13 @@ class FlareViewViewController: UIViewController {
                 flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
                 ])
         }
+
+        if animated {
+            UIView.animate(withDuration: 2.5) {
+                flareViewCenterYConstraint.constant = 0.0
+                self.view.layoutIfNeeded()
+            }
+        }
+
     }
 }
