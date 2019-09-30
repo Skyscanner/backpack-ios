@@ -48,7 +48,7 @@ const static NSInteger LabelTag = 72817;
         UIView *shadowView = self.shadowViews[i];
         BPKLabel *shadowLabel = [shadowView viewWithTag:LabelTag];
         shadowLabel.text = factoryMethods[i];
-        shadowLabel.textColor = [BPKColor gray700];
+        shadowLabel.textColor = [BPKColor skyGrayTint01];
 
         SEL selector = NSSelectorFromString(factoryMethods[i]);
         NSAssert([BPKShadow respondsToSelector:selector], @"Expected BPKShadow to have factory method called %@",

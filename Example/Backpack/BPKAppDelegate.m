@@ -31,10 +31,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [UINavigationBar appearance].tintColor = BPKColor.gray900;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.gray900};
+    [UINavigationBar appearance].tintColor = BPKColor.skyGray;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
     if (@available(iOS 11.0, *)) {
-        [UINavigationBar appearance].largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.gray900};
+        [UINavigationBar appearance].largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
     }
 
     if ([ThemeHelpers isThemingSupported]) {
@@ -49,7 +49,7 @@
         [self.window makeKeyAndVisible];
     }
 
-    [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@ [MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
+    [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
 
     return YES;
 }

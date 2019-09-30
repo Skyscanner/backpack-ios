@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
         if (_largeTitleTextColor) {
             self.largeTitleView.titleLabel.textColor = _largeTitleTextColor;
         } else {
-            self.largeTitleView.titleLabel.textColor = BPKColor.gray900;
+            self.largeTitleView.titleLabel.textColor = BPKColor.skyGray;
         }
     }
 }
@@ -244,7 +244,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_borderView) {
         _borderView = [[UIView alloc] initWithFrame:CGRectZero];
         _borderView.translatesAutoresizingMaskIntoConstraints = NO;
-        _borderView.backgroundColor = BPKColor.gray100;
+        _borderView.backgroundColor = BPKColor.skyGrayTint06;
         _borderView.alpha = 0.0;
     }
 

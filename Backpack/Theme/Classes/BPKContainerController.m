@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.view addSubview:self.container];
     self.container.frame = [self frameForContainerView];
 
@@ -141,10 +141,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)addConstraintsForRootViewController {
-    [NSLayoutConstraint activateConstraints:@[[self.rootViewController.view.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-                                              [self.rootViewController.view.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-                                              [self.rootViewController.view.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-                                              [self.rootViewController.view.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]]];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.rootViewController.view.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.rootViewController.view.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.rootViewController.view.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.rootViewController.view.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+    ]];
 }
 
 - (void)reloadViews {

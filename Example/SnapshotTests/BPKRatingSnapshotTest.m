@@ -20,8 +20,8 @@
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKRatingSnapshotTest : FBSnapshotTestCase
-@property (strong, nonatomic) BPKRatingTextDefinition *titleTextDefinition;
-@property (strong, nonatomic) BPKRatingTextDefinition *subTitleTextDefinition;
+@property(strong, nonatomic) BPKRatingTextDefinition *titleTextDefinition;
+@property(strong, nonatomic) BPKRatingTextDefinition *subTitleTextDefinition;
 @end
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,8 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     [super setUp];
-    self.titleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High" mediumRatingText:@"Medium" lowRatingText:@"Low"];
-    self.subTitleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High subtitle" mediumRatingText:@"Medium subtitle" lowRatingText:@"Low subtitle"];
+    self.titleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High"
+                                                                      mediumRatingText:@"Medium"
+                                                                         lowRatingText:@"Low"];
+    self.subTitleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High subtitle"
+                                                                         mediumRatingText:@"Medium subtitle"
+                                                                            lowRatingText:@"Low subtitle"];
     self.recordMode = NO;
 }
 

@@ -35,12 +35,12 @@ class func register(theme: BPKThemeDefinition) {
     let colorCellAppearance =
         ColorPreviewCollectionViewCell.appearance(whenContainedInInstancesOf: [themeContainerUIViewClass])
     colorCellAppearance.primaryColor = theme.primaryColor
-    colorCellAppearance.gray50 = theme.gray50
-    colorCellAppearance.gray100 = theme.gray100
-    colorCellAppearance.gray300 = theme.gray300
-    colorCellAppearance.gray500 = theme.gray500
-    colorCellAppearance.gray700 = theme.gray700
-    colorCellAppearance.gray900 = theme.gray900
+    colorCellAppearance.skyGrayTint07 = theme.gray50
+    colorCellAppearance.skyGrayTint06 = theme.gray100
+    colorCellAppearance.skyGrayTint04 = theme.gray300
+    colorCellAppearance.skyGrayTint02 = theme.gray500
+    colorCellAppearance.skyGrayTint01 = theme.gray700
+    colorCellAppearance.skyGray = theme.gray900
 }
 
 }

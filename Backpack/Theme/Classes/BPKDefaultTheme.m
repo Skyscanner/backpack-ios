@@ -23,8 +23,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
-#import <Backpack/Spinner.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Spinner.h>
 #import <Backpack/Switch.h>
 
 #import "BPKDefaultThemeContainer.h"
@@ -58,14 +58,14 @@ NSString *const DefaultThemeName = @"Default";
 
 - (instancetype)initWithRelative:(BOOL)relativeEnabled {
     self = [super init];
-//    if (self) {
-//        if (relativeEnabled) {
-//            self.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SkyscannerRelativeiOS"
-//                                                      regularFontFace:@"SkyscannerRelativeiOS-Book"
-//                                                     semiboldFontFace:@"SkyscannerRelativeiOS-Bold"
-//                                                        heavyFontFace:@"SkyscannerRelativeiOS-Black"];
-//        }
-//    }
+    //    if (self) {
+    //        if (relativeEnabled) {
+    //            self.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SkyscannerRelativeiOS"
+    //                                                      regularFontFace:@"SkyscannerRelativeiOS-Book"
+    //                                                     semiboldFontFace:@"SkyscannerRelativeiOS-Bold"
+    //                                                        heavyFontFace:@"SkyscannerRelativeiOS-Black"];
+    //        }
+    //    }
     return self;
 }
 
@@ -105,42 +105,42 @@ NSString *const DefaultThemeName = @"Default";
  * Gray50 colour, #F1F2F8
  */
 - (UIColor *)gray50 {
-    return BPKColor.gray50;
+    return BPKColor.skyGrayTint07;
 }
 
 /**
  * Gray100 colour, #DDDDE5
  */
 - (UIColor *)gray100 {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 /**
  * Gray300 colour, #B2B2BF
  */
 - (UIColor *)gray300 {
-    return BPKColor.gray300;
+    return BPKColor.skyGrayTint04;
 }
 
 /**
  * Gray500 colour, #68697F
  */
 - (UIColor *)gray500 {
-    return BPKColor.gray500;
+    return BPKColor.skyGrayTint02;
 }
 
 /**
  * Gray700, #444560
  */
 - (UIColor *)gray700 {
-    return BPKColor.gray700;
+    return BPKColor.skyGrayTint01;
 }
 
 /**
  * Gray900 colour, #111236
  */
 - (UIColor *)gray900 {
-    return BPKColor.gray900;
+    return BPKColor.skyGray;
 }
 
 /**

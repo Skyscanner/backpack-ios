@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupViews {
     self.dottedLine = [[CAShapeLayer alloc] initWithLayer:self];
-    self.dottedLine.strokeColor = [BPKColor gray100].CGColor;
+    self.dottedLine.strokeColor = [BPKColor skyGrayTint06].CGColor;
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
     self.dottedLine.lineDashPattern = @[@5, @3];

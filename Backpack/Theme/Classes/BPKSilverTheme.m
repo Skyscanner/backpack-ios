@@ -50,31 +50,49 @@
 }
 
 - (UIColor *)primaryColor {
-    return BPKColor.blue700;
+    return BPKColor.skyBlueTint03;
 }
 
+/**
+ * Gray50 colour, #F1F2F8
+ */
 - (UIColor *)gray50 {
-    return BPKColor.blue400;
+    return BPKColor.skyGrayTint07;
 }
 
+/**
+ * Gray100 colour, #DDDDE5
+ */
 - (UIColor *)gray100 {
-    return BPKColor.pink500;
+    return BPKColor.skyGrayTint06;
 }
 
+/**
+ * Gray300 colour, #B2B2BF
+ */
 - (UIColor *)gray300 {
-    return BPKColor.red400;
+    return BPKColor.skyGrayTint04;
 }
 
+/**
+ * Gray500 colour, #68697F
+ */
 - (UIColor *)gray500 {
-    return BPKColor.yellow700;
+    return BPKColor.skyGrayTint02;
 }
 
+/**
+ * Gray700, #444560
+ */
 - (UIColor *)gray700 {
-    return BPKColor.green400;
+    return BPKColor.skyGrayTint01;
 }
 
+/**
+ * Gray900 colour, #111236
+ */
 - (UIColor *)gray900 {
-    return BPKColor.blue500;
+    return BPKColor.skyGray;
 }
 
 - (UIColor *)systemGreen {
@@ -86,8 +104,8 @@
 }
 
 - (BPKGradient *)primaryGradient {
-    UIColor *startColor = BPKColor.gray200;
-    UIColor *endColor = BPKColor.gray900;
+    UIColor *startColor = BPKColor.skyGrayTint05;
+    UIColor *endColor = BPKColor.skyGray;
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionBottomLeft];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionBottomLeft];
 
@@ -99,35 +117,35 @@
 }
 
 - (UIColor *)buttonLinkContentColor {
-    return BPKColor.blue900;
+    return BPKColor.skyBlueShade02;
 }
 
 - (UIColor *)buttonFeaturedContentColor {
-    return BPKColor.gray200;
+    return BPKColor.skyGrayTint05;
 }
 
 - (UIColor *)buttonFeaturedGradientStartColor {
-    return BPKColor.blue900;
+    return BPKColor.skyBlueShade02;
 }
 
 - (UIColor *)buttonFeaturedGradientEndColor {
-    return BPKColor.blue700;
+    return BPKColor.skyBlueShade01;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
-    return BPKColor.red700;
+    return BPKColor.panjin;
 }
 
 - (UIColor *)buttonDestructiveBackgroundColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *)buttonDestructiveBorderColor {
-    return BPKColor.red900;
+    return BPKColor.panjin;
 }
 
 - (UIColor *)buttonPrimaryContentColor {
-    return BPKColor.blue700;
+    return BPKColor.skyBlueShade01;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
@@ -135,19 +153,19 @@
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return BPKColor.gray200;
+    return BPKColor.skyGrayTint05;
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return BPKColor.blue700;
+    return BPKColor.skyBlueShade01;
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return BPKColor.blue900;
+    return BPKColor.skyBlueShade02;
 }
 
 - (NSNumber *)buttonCornerRadius {
@@ -159,7 +177,7 @@
 }
 
 - (UIColor *)calendarDateSelectedBackgroundColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (Class)themeContainerClass {
@@ -167,7 +185,7 @@
 }
 
 - (UIColor *)starFilledColor {
-    return BPKColor.red700;
+    return BPKColor.panjin;
 }
 
 - (UIColor *)horiontalNavigationSelectedColor {

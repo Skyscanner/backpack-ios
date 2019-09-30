@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.shadowEnabled = YES;
 
     self.tintLayer = [CALayer layer];
-    self.tintLayer.backgroundColor = BPKColor.gray500.CGColor;
+    self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 
@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setColorUnselectedState:(BOOL)colorUnselectedState {
-    if(_colorUnselectedState != colorUnselectedState) {
+    if (_colorUnselectedState != colorUnselectedState) {
         _colorUnselectedState = colorUnselectedState;
 
         [self updateStyle];
@@ -173,7 +173,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setBackgroundTint:(UIColor *_Nullable)backgroundTint {
-    if(_backgroundTint != backgroundTint) {
+    if (_backgroundTint != backgroundTint) {
         _backgroundTint = backgroundTint;
 
         [self updateStyle];
@@ -198,20 +198,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Updates
 
-- (UIColor *) selectedBackgroundColor {
-    if(self.backgroundTint != nil) {
+- (UIColor *)selectedBackgroundColor {
+    if (self.backgroundTint != nil) {
         return self.backgroundTint;
     }
 
     return self.primaryColor;
 }
 
-- (UIColor *) unselectedBackgroundColor {
-    if(self.colorUnselectedState) {
+- (UIColor *)unselectedBackgroundColor {
+    if (self.colorUnselectedState) {
         return [BPKColor blend:[self selectedBackgroundColor] with:BPKColor.white weight:0.2];
     }
 
-   return self.shadowEnabled ? BPKColor.white : BPKColor.gray50;
+    return self.shadowEnabled ? BPKColor.white : BPKColor.skyGrayTint07;
 }
 
 - (void)updateStyle {
@@ -220,12 +220,12 @@ NS_ASSUME_NONNULL_BEGIN
         self.textColor = BPKColor.white;
     } else {
         self.backgroundColor = [self unselectedBackgroundColor];
-        self.textColor = BPKColor.gray900;
+        self.textColor = BPKColor.skyGray;
     }
 
     if (!self.enabled) {
         self.backgroundColor = BPKColor.white;
-        self.textColor = BPKColor.gray100;
+        self.textColor = BPKColor.skyGrayTint06;
     }
 
     uint64_t selectedTraitBits = self.selected ? UIAccessibilityTraitSelected : 0;

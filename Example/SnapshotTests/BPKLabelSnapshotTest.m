@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)buildParentView {
     UIView *parentView = [[UIView alloc] initWithFrame:[self class].deviceFrame];
-    parentView.backgroundColor = [BPKColor gray100];
+    parentView.backgroundColor = [BPKColor skyGrayTint06];
     return parentView;
 }
 

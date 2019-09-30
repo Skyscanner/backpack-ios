@@ -32,7 +32,7 @@ class SpinnersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        darkSpinnerBackgroundView.backgroundColor = Color.gray900
+        darkSpinnerBackgroundView.backgroundColor = Color.skyGray
 
         defaultPrimarySpinner.size = .default
         defaultPrimarySpinner.style = .primary

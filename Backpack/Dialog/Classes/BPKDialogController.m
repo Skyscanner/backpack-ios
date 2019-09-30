@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.scrimView = [[UIView alloc] initWithFrame:CGRectZero];
     self.scrimView.clipsToBounds = YES;
     self.scrimView.userInteractionEnabled = YES;
-    self.scrimView.backgroundColor = BPKColor.gray900;
+    self.scrimView.backgroundColor = BPKColor.skyGray;
     self.scrimView.alpha = 0.5;
     self.scrimView.translatesAutoresizingMaskIntoConstraints = NO;
     self.scrimView.accessibilityIdentifier = @"dialogScrimView";

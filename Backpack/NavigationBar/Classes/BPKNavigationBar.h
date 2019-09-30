@@ -32,7 +32,7 @@ NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
 
 /**
  * Set the color of the large title. When `nil` the
- * default color, BPKColor.gray900` will be used.
+ * default color, BPKColor.skyGray` will be used.
  */
 @property(nonatomic, strong, nullable) UIColor *largeTitleTextColor UI_APPEARANCE_SELECTOR;
 

@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setup {
-    self.tintColor = BPKColor.gray100;
+    self.tintColor = BPKColor.skyGrayTint06;
     self.onTintColor = _primaryColor;
     [self setNeedsDisplay];
 }

@@ -26,37 +26,37 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    @objc dynamic var gray50: UIColor = Color.gray50 {
+    @objc dynamic var skyGrayTint07: UIColor = Color.skyGrayTint07 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var gray100: UIColor = Color.gray100 {
+    @objc dynamic var skyGrayTint06: UIColor = Color.skyGrayTint06 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var gray300: UIColor = Color.gray300 {
+    @objc dynamic var skyGrayTint04: UIColor = Color.skyGrayTint04 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var gray500: UIColor = Color.gray500 {
+    @objc dynamic var skyGrayTint02: UIColor = Color.skyGrayTint02 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var gray700: UIColor = Color.gray700 {
+    @objc dynamic var skyGrayTint01: UIColor = Color.skyGrayTint01 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var gray900: UIColor = Color.gray900 {
+    @objc dynamic var skyGray: UIColor = Color.skyGray {
         didSet {
             updateBackgroundColor()
         }
@@ -91,20 +91,20 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     func updateBackgroundColor () {
         switch color {
-        case Color.blue500:
+        case Color.skyBlue:
             colorView.backgroundColor = primaryColor
-        case Color.gray50:
-            colorView.backgroundColor = gray50
-        case Color.gray100:
-            colorView.backgroundColor = gray100
-        case Color.gray300:
-            colorView.backgroundColor = gray300
-        case Color.gray500:
-            colorView.backgroundColor = gray500
-        case Color.gray700:
-            colorView.backgroundColor = gray700
-        case Color.gray900:
-            colorView.backgroundColor = gray900
+        case Color.skyGrayTint07:
+            colorView.backgroundColor = skyGrayTint07
+        case Color.skyGrayTint06:
+            colorView.backgroundColor = skyGrayTint06
+        case Color.skyGrayTint04:
+            colorView.backgroundColor = skyGrayTint04
+        case Color.skyGrayTint02:
+            colorView.backgroundColor = skyGrayTint02
+        case Color.skyGrayTint01:
+            colorView.backgroundColor = skyGrayTint01
+        case Color.skyGray:
+            colorView.backgroundColor = skyGray
         default:
             colorView.backgroundColor = color
         }

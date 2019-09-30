@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
         return BPKColor.skyBlue;
     }
-    return BPKColor.gray300;
+    return BPKColor.skyGrayTint04;
 }
 
 - (void)setIconColor {

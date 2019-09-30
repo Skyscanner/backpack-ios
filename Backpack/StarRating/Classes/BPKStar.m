@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKIconView *halfStarView;
 
 /**
- * Base color of the star when it's empty, its default value is BPKColor.gray100. Setting updates
+ * Base color of the star when it's empty, its default value is BPKColor.skyGrayTint06. Setting updates
  * the displayed star.
  */
 @property(nullable, nonatomic, strong) UIColor *starColor;
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.bottomAnchor constraintEqualToAnchor:self.halfStarView.bottomAnchor]
     ]];
 
-    self.starColor = [BPKColor gray100];
+    self.starColor = [BPKColor skyGrayTint06];
     self.starFilledColor = [BPKColor erfoud];
     _size = size;
     _state = BPKStarStateDefault;

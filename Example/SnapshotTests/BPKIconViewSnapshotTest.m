@@ -42,14 +42,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testLargeWithTint {
     BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
-    view.tintColor = BPKColor.red500;
+    view.tintColor = BPKColor.panjin;
 
     FBSnapshotVerifyView(view, nil);
 }
 
 - (void)testSmallWithTint {
     BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeSmall];
-    view.tintColor = BPKColor.red500;
+    view.tintColor = BPKColor.panjin;
 
     FBSnapshotVerifyView(view, nil);
 }

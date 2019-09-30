@@ -33,7 +33,7 @@
 }
 
 - (void)testSmallIcon {
-    UIImage *icon = [BPKIcon iconNamed:@"flight" color:[BPKColor blue500] size:BPKIconSizeSmall];
+    UIImage *icon = [BPKIcon iconNamed:@"flight" color:[BPKColor skyBlue] size:BPKIconSizeSmall];
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 
@@ -41,7 +41,7 @@
 }
 
 - (void)testLargeIcon {
-    UIImage *icon = [BPKIcon iconNamed:@"hotels" color:[BPKColor blue500] size:BPKIconSizeLarge];
+    UIImage *icon = [BPKIcon iconNamed:@"hotels" color:[BPKColor skyBlue] size:BPKIconSizeLarge];
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 

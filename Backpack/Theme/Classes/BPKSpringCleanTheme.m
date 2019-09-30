@@ -49,39 +49,39 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)primaryColor {
-    return BPKColor.blue500;
+    return [UIColor colorWithRed:0.0f / 255.0f green:178.0f / 255.0f blue:214.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)gray50 {
-    return BPKColor.gray50;
+    return BPKColor.skyGrayTint07;
 }
 
 - (UIColor *)gray100 {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *)gray300 {
-    return BPKColor.gray300;
+    return BPKColor.skyGrayTint05;
 }
 
 - (UIColor *)gray500 {
-    return BPKColor.gray500;
+    return BPKColor.skyGrayTint04;
 }
 
 - (UIColor *)gray700 {
-    return BPKColor.gray700;
+    return BPKColor.skyGrayTint03;
 }
 
 - (UIColor *)systemGreen {
-    return BPKColor.green500;
+    return [UIColor colorWithRed:0.0f / 255.0f green:215.0f / 255.0f blue:117.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)systemRed {
-    return BPKColor.red500;
+    return [UIColor colorWithRed:255.0f / 255.0f green:84.0f / 255.0f blue:82.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)gray900 {
-    return BPKColor.gray900;
+    return BPKColor.skyGray;
 }
 
 - (BPKGradient *)primaryGradient {
@@ -101,11 +101,11 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)buttonFeaturedGradientStartColor {
-    return BPKColor.pink500;
+    return [UIColor colorWithRed:250.0f / 255.0f green:72.0f / 255.0f blue:138.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)buttonFeaturedGradientEndColor {
-    return BPKColor.pink600;
+    return [UIColor colorWithRed:217.0f / 255.0f green:43.0f / 255.0f blue:107.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)buttonPrimaryContentColor {
@@ -113,11 +113,11 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
-    return BPKColor.green500;
+    return [self systemGreen];
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return BPKColor.green600;
+    return [UIColor colorWithRed:0.0f / 255.0f green:189.0f / 255.0f blue:104.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)buttonSecondaryContentColor {
@@ -129,11 +129,11 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
-    return BPKColor.red500;
+    return [self systemRed];
 }
 
 - (UIColor *)buttonDestructiveBackgroundColor {
@@ -141,7 +141,7 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)buttonDestructiveBorderColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (NSNumber *)buttonCornerRadius {
@@ -161,7 +161,7 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)starFilledColor {
-    return BPKColor.yellow500;
+    return [UIColor colorWithRed:255.0f / 255.0f green:187.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)horiontalNavigationSelectedColor {
@@ -169,15 +169,15 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)ratingLowColor {
-    return BPKColor.red500;
+    return [self systemRed];
 }
 
 - (UIColor *)ratingMediumColor {
-    return BPKColor.yellow500;
+    return [UIColor colorWithRed:255.0f / 255.0f green:187.0f / 255.0f blue:0.0f / 255.0f alpha:1.0f];
 }
 
 - (UIColor *)ratingHighColor {
-    return BPKColor.green500;
+    return [self systemGreen];
 }
 
 @end
