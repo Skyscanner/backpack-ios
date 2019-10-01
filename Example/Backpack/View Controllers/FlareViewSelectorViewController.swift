@@ -23,6 +23,7 @@ enum FlareViewSegueIdentifier: String {
     case `default` = "Default"
     case flareHidden = "FlareHidden"
     case backgroundImage = "BackgroundImage"
+    case backgroundImageAnimated = "BackgroundImageAnimated"
 }
 
 class FlareViewSelectorViewController: DarkModeTableViewController {
@@ -42,6 +43,10 @@ class FlareViewSelectorViewController: DarkModeTableViewController {
             case .backgroundImage:
                 target.title = "Background image"
                 target.backgroundImage = true
+            case .backgroundImageAnimated:
+                target.title = "Animated"
+                target.backgroundImage = true
+                target.animated = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
