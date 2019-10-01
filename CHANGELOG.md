@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 19.0.0
+
+**Breaking:**
+
+ - Backpack
+   - Removed old brand colours and components.
+
 ## 18.0.1
 
 **Fixed:**
