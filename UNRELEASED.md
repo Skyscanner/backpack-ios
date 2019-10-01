@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+
+- Backpack/Duration:
+  - New Duration class which exposes our animation duration constants.
 
 ## How to write a good changelog entry
 

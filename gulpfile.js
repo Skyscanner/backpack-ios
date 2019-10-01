@@ -34,7 +34,14 @@ const PATHS = {
   output: path.join(__dirname, 'Backpack'),
 };
 
-const TYPES = new Set(['color', 'font', 'spacing', 'radii', 'shadow']);
+const TYPES = new Set([
+  'color',
+  'font',
+  'spacing',
+  'radii',
+  'shadow',
+  'duration',
+]);
 const VALID_TEXT_STYLES = new Set([
   'caps',
   'xs',
@@ -131,6 +138,11 @@ const getLegibleName = name => {
   throw new Error(`No legible name found for ${name}`);
 };
 
+const parseDuration = duration => {
+  const ms = parseInt(duration.replace('ms', ''), 10);
+  return ms / 1000;
+};
+
 const parseColor = color => {
   const parsedColor = tinycolor(color);
 
@@ -174,6 +186,15 @@ const parseTokens = tokensData => {
         ...rest,
       };
     })
+    .value();
+
+  const durations = _.chain(tokensData.properties)
+    .filter(({ type }) => type === 'duration')
+    .map(({ value, name, ...rest }) => ({
+      value: parseDuration(value),
+      name,
+      ...rest,
+    }))
     .value();
 
   const emphazisedWeight = convertFontWeight(
@@ -364,7 +385,14 @@ const parseTokens = tokensData => {
     )
     .value();
 
-  return _.chain([...colors, ...fonts, ...spacings, ...radii, ...shadows])
+  return _.chain([
+    ...colors,
+    ...fonts,
+    ...spacings,
+    ...radii,
+    ...shadows,
+    ...durations,
+  ])
     .groupBy(({ type }) => type)
     .value();
 };
