@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundColor = BPKColor.panjin;
         break;
     case BPKBadgeTypeLight:
-        self.backgroundColor = BPKColor.gray50;
+        self.backgroundColor = BPKColor.skyGrayTint07;
         break;
     case BPKBadgeTypeInverse:
         self.backgroundColor = BPKColor.white;
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (type == BPKBadgeTypeOutline || type == BPKBadgeTypeDestructive) {
         self.label.textColor = [BPKColor white];
     } else {
-        self.label.textColor = [BPKColor gray900];
+        self.label.textColor = [BPKColor skyGray];
     }
 }
 

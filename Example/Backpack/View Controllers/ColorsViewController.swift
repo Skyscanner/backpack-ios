@@ -25,7 +25,7 @@ class ColorsViewController: UICollectionViewController {
             return Color.skyBlue
         }),
         ("blue700", { (view: UIView) -> UIColor in
-            return Color.blue700
+            return Color.skyBlueShade02
         }),
         ("white", { (view: UIView) -> UIColor in
             return Color.white
@@ -33,33 +33,33 @@ class ColorsViewController: UICollectionViewController {
     ]
     fileprivate static var secondaryColors = [
         ("green500", { (view: UIView) -> UIColor in
-            return Color.green500
+            return Color.monteverde
         }),
         ("yellow500", { (view: UIView) -> UIColor in
-            return Color.yellow500
+            return Color.kolkata
         }),
         ("red500", { (view: UIView) -> UIColor in
-            return Color.red500
+            return Color.panjin
         })
     ]
     fileprivate static var grayColors = [
-        ("gray50", { (view: UIView) -> UIColor in
-            return Color.gray50
+        ("skyGrayTint07", { (view: UIView) -> UIColor in
+            return Color.skyGrayTint07
         }),
-        ("gray100", { (view: UIView) -> UIColor in
-            return Color.gray100
+        ("skyGrayTint06", { (view: UIView) -> UIColor in
+            return Color.skyGrayTint06
         }),
-        ("gray300", { (view: UIView) -> UIColor in
-            return Color.gray300
+        ("skyGrayTint04", { (view: UIView) -> UIColor in
+            return Color.skyGrayTint04
         }),
-        ("gray500", { (view: UIView) -> UIColor in
-            return Color.gray500
+        ("skyGrayTint02", { (view: UIView) -> UIColor in
+            return Color.skyGrayTint02
         }),
-        ("gray700", { (view: UIView) -> UIColor in
-            return Color.gray700
+        ("skyGrayTint01", { (view: UIView) -> UIColor in
+            return Color.skyGrayTint01
         }),
-        ("gray900", { (view: UIView) -> UIColor in
-            return Color.gray900
+        ("skyGray", { (view: UIView) -> UIColor in
+            return Color.skyGray
         })
     ]
     fileprivate static var allColors = [

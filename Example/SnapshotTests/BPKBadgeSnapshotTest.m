@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
         [stackView addArrangedSubview:badge];
     }
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    parentView.backgroundColor = BPKColor.gray100;
+    parentView.backgroundColor = BPKColor.skyGrayTint06;
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [parentView addSubview:stackView];

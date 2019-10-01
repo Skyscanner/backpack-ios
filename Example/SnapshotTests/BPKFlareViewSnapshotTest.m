@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configureFlareView:(BPKFlareView *)flareView withInnerView:(UIView *)innerView {
     flareView.translatesAutoresizingMaskIntoConstraints = NO;
     innerView.translatesAutoresizingMaskIntoConstraints = NO;
-    flareView.backgroundView.backgroundColor = BPKColor.blue500;
+    flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
     [flareView.contentView addSubview:innerView];
     [NSLayoutConstraint activateConstraints:@[
         [innerView.widthAnchor constraintEqualToConstant:150.0],
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
     flareView.isFlareVisible = YES;
 
     [self configureFlareView:flareView withInnerView:innerView];
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
 
     [self configureFlareView:flareView withInnerView:innerView];
     [self configureParentView:parentView forFlareView:flareView];

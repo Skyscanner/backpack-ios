@@ -42,7 +42,7 @@
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.numberOfLines = 1;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        self.layer.backgroundColor = [BPKColor gray900].CGColor;
+        self.layer.backgroundColor = [BPKColor skyGray].CGColor;
 
         [[BPKShadow shadowLg] applyToLayer:self.layer];
         [self addSubview:self.label];

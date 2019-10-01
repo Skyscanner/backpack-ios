@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:NO];
     panel.style = BPKPanelStyleElevated;
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
 
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
     panel.style = BPKPanelStyleElevated;
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
 
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:NO];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
 
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKPanel *panel = [[BPKPanel alloc] initWithPadded:YES];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor red500];
+    innerView.backgroundColor = [BPKColor panjin];
 
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];

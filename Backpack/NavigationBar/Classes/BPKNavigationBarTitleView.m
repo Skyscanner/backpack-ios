@@ -44,9 +44,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (_showsContent != showsContent) {
         _showsContent = showsContent;
 
-        [UIView animateWithDuration:.15 animations:^{
-            self.titleLabel.alpha = self.showsContent ? 1.0 : 0.0;
-        }];
+        [UIView animateWithDuration:.15
+                         animations:^{
+                           self.titleLabel.alpha = self.showsContent ? 1.0 : 0.0;
+                         }];
     }
 }
 

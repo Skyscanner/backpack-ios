@@ -50,28 +50,46 @@
     return [UIColor colorWithRed:255.0f / 255.0f green:184.0f / 255.0f blue:2.0f / 255.0f alpha:1.0f];
 }
 
+/**
+ * Gray50 colour, #F1F2F8
+ */
 - (UIColor *)gray50 {
-    return BPKColor.gray50;
+    return BPKColor.skyGrayTint07;
 }
 
+/**
+ * Gray100 colour, #DDDDE5
+ */
 - (UIColor *)gray100 {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
+/**
+ * Gray300 colour, #B2B2BF
+ */
 - (UIColor *)gray300 {
-    return BPKColor.gray300;
+    return BPKColor.skyGrayTint04;
 }
 
+/**
+ * Gray500 colour, #68697F
+ */
 - (UIColor *)gray500 {
-    return BPKColor.gray500;
+    return BPKColor.skyGrayTint02;
 }
 
+/**
+ * Gray700, #444560
+ */
 - (UIColor *)gray700 {
-    return BPKColor.gray700;
+    return BPKColor.skyGrayTint01;
 }
 
+/**
+ * Gray900 colour, #111236
+ */
 - (UIColor *)gray900 {
-    return BPKColor.gray900;
+    return BPKColor.skyGray;
 }
 
 - (UIColor *)systemGreen {
@@ -136,7 +154,7 @@
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
@@ -148,7 +166,7 @@
 }
 
 - (UIColor *)buttonDestructiveBorderColor {
-    return BPKColor.gray100;
+    return BPKColor.skyGrayTint06;
 }
 
 - (NSNumber *)buttonCornerRadius {
@@ -168,7 +186,7 @@
 }
 
 - (UIColor *)starFilledColor {
-    return BPKColor.yellow500;
+    return BPKColor.kolkata;
 }
 
 - (UIColor *)horiontalNavigationSelectedColor {

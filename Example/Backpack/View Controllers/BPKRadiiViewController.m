@@ -47,7 +47,7 @@
     for (int i = 0; i < self.labels.count; i++) {
         BPKLabel *label = self.labels[i];
         label.text = [NSString stringWithFormat:@"%@ = %@", keys[i], values[i]];
-        label.backgroundColor = [BPKColor gray700];
+        label.backgroundColor = [BPKColor skyGrayTint01];
         label.textColor = [BPKColor white];
         label.layer.masksToBounds = YES;
         label.layer.cornerRadius = [values[i] floatValue];

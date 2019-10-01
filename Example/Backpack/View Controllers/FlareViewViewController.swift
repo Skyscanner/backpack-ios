@@ -44,7 +44,7 @@ class FlareViewViewController: UIViewController {
             ])
 
         if backgroundImage {
-            label.textColor = Color.gray900
+            label.textColor = Color.skyGray
 
             let image = UIImage(named: "pilanesburg-south-africa")
             let imageView = UIImageView.init(image: image)

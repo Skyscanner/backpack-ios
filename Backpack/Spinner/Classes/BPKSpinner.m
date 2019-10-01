@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKSpinnerStylePrimary:
         return BPKColor.skyBlue;
     case BPKSpinnerStyleDark:
-        return BPKColor.gray700;
+        return BPKColor.skyGrayTint01;
     case BPKSpinnerStyleLight:
         return BPKColor.white;
     default:

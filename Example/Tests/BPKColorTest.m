@@ -3,11 +3,11 @@
  *
  * Copyright 2018-2019 Skyscanner Ltd
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,24 +29,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testColorSubsetExists {
     // Test that a subset of critical color exists
-    XCTAssert([BPKColor respondsToSelector:@selector(blue500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(green500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(red500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(yellow500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(pink500)]);
-    XCTAssert([BPKColor respondsToSelector:@selector(gray500)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(skyBlue)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(monteverde)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(panjin)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(kolkata)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(bunol)]);
+    XCTAssert([BPKColor respondsToSelector:@selector(skyGrayTint02)]);
     XCTAssert([BPKColor respondsToSelector:@selector(white)]);
 }
 
 - (void)testColorSubsetHasCorrectValues {
     // NOTE: These comparison don't take colorspace into consideration and could fail for that reason.
     // This is tradeoff, if we change the colorspace we can change these tests
-    XCTAssertEqualObjects([BPKColor blue500], [UIColor colorWithRed:0 green:0.698 blue:0.839 alpha:1]);
-    XCTAssertEqualObjects([BPKColor green500], [UIColor colorWithRed:0 green:0.843 blue:0.459 alpha:1]);
-    XCTAssertEqualObjects([BPKColor red500], [UIColor colorWithRed:1 green:0.329 blue:0.322 alpha:1]);
-    XCTAssertEqualObjects([BPKColor yellow500], [UIColor colorWithRed:1 green:0.733 blue:0 alpha:1]);
-    XCTAssertEqualObjects([BPKColor pink500], [UIColor colorWithRed:0.98 green:0.282 blue:0.541 alpha:1]);
-    XCTAssertEqualObjects([BPKColor gray500], [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1]);
+    XCTAssertEqualObjects([BPKColor skyBlue], [UIColor colorWithRed:0.027 green:0.439 blue:0.89 alpha:1]);
+    XCTAssertEqualObjects([BPKColor monteverde], [UIColor colorWithRed:0 green:0.651 blue:0.596 alpha:1]);
+    XCTAssertEqualObjects([BPKColor panjin], [UIColor colorWithRed:0.82 green:0.263 blue:0.357 alpha:1]);
+    XCTAssertEqualObjects([BPKColor kolkata], [UIColor colorWithRed:1 green:0.58 blue:0 alpha:1]);
+    XCTAssertEqualObjects([BPKColor bunol], [UIColor colorWithRed:1 green:0.482 blue:0.349 alpha:1]);
+    XCTAssertEqualObjects([BPKColor skyGrayTint02], [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1]);
     XCTAssertEqualObjects([BPKColor white], [UIColor colorWithRed:1 green:1 blue:1 alpha:1]);
 }
 

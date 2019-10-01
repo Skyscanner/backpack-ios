@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initBaselineScrimWithDirection:(BPKGradientDirection)direction {
-    return [self initWithColors:@[[BPKColor.gray900 colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
+    return [self initWithColors:@[[BPKColor.skyGray colorWithAlphaComponent:0.6], [[self class] scrimBaselineEndColor]]
                      startPoint:[[self class] startPointForDirection:direction]
                        endPoint:[[self class] endPointForDirection:direction]];
 }

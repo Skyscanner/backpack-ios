@@ -114,17 +114,17 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor];
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.backgroundView.trailingAnchor],
-                                              [self.bottomAnchor constraintEqualToAnchor:self.backgroundView.bottomAnchor],
-                                              ]];
+        [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.backgroundView.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.backgroundView.bottomAnchor],
+    ]];
 
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-                                              [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                              [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor], self.contentViewBottomConstraint
-                                              ]];
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor], self.contentViewBottomConstraint
+    ]];
 
     [self createLayerMask];
 }

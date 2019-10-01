@@ -35,7 +35,7 @@ class BPKBadgeContainer: UIView {
             label.text = getLegibleName(badgeType: newValue)
             label.sizeToFit()
             if badgesRequiringDarkBackground.contains(badgeType) {
-                self.backgroundColor = Color.gray700
+                self.backgroundColor = Color.skyGrayTint01
                 self.label.textColor = Color.white
             }
         }

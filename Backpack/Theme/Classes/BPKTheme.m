@@ -23,9 +23,9 @@
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Gradient.h>
-#import <Backpack/ProgressBar.h>
 #import <Backpack/HorizontalNavigation.h>
 #import <Backpack/Label.h>
+#import <Backpack/ProgressBar.h>
 #import <Backpack/Rating.h>
 #import <Backpack/Spinner.h>
 #import <Backpack/StarRating.h>
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
         return themeContainer.themeDefinition.primaryColor;
     }
 
-    return BPKColor.blue500;
+    return BPKColor.skyBlue;
 }
 
 + (UIColor *)grayColor:(BPKGrayColor)gray for:(UIView *)view {
@@ -91,46 +91,46 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
 
     switch (gray) {
     case BPKGrayColor50:
-        return BPKColor.gray50;
+        return BPKColor.skyGrayTint07;
     case BPKGrayColor100:
-        return BPKColor.gray100;
+        return BPKColor.skyGrayTint06;
     case BPKGrayColor300:
-        return BPKColor.gray300;
+        return BPKColor.skyGrayTint04;
     case BPKGrayColor500:
-        return BPKColor.gray500;
+        return BPKColor.skyGrayTint02;
     case BPKGrayColor700:
-        return BPKColor.gray700;
+        return BPKColor.skyGrayTint01;
     case BPKGrayColor900:
-        return BPKColor.gray900;
+        return BPKColor.skyGray;
     default:
         NSAssert(false, @"Themed gray values must be a valid BPKGrayColor");
         break;
     }
 
-    return BPKColor.gray500;
+    return BPKColor.skyGrayTint02;
 }
 
-+ (UIColor *)gray50ColorFor:(UIView *)view {
++ (UIColor *)skyGrayTint07ColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor50 for:view];
 }
 
-+ (UIColor *)gray100ColorFor:(UIView *)view {
++ (UIColor *)skyGrayTint06ColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor100 for:view];
 }
 
-+ (UIColor *)gray300ColorFor:(UIView *)view {
++ (UIColor *)skyGrayTint04ColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor300 for:view];
 }
 
-+ (UIColor *)gray500ColorFor:(UIView *)view {
++ (UIColor *)skyGrayTint02ColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor500 for:view];
 }
 
-+ (UIColor *)gray700ColorFor:(UIView *)view {
++ (UIColor *)skyGrayTint01ColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor700 for:view];
 }
 
-+ (UIColor *)gray900ColorFor:(UIView *)view {
++ (UIColor *)skyGrayColorFor:(UIView *)view {
     return [self grayColor:BPKGrayColor900 for:view];
 }
 
@@ -212,16 +212,14 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     starAppearance.starFilledColor = theme.starFilledColor;
 
     BPKHorizontalNavigation *horizontalNavigationAppearance =
-    [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
+        [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
     horizontalNavigationAppearance.fontMapping = theme.fontMapping;
 
-    BPKProgressBar *progressBarAppearance =
-    [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.primaryColor;
 
-    BPKRating *ratingAppearance =
-    [BPKRating appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKRating *ratingAppearance = [BPKRating appearanceWhenContainedInInstancesOfClasses:@[class]];
     ratingAppearance.lowRatingColor = theme.ratingLowColor;
     ratingAppearance.mediumRatingColor = theme.ratingMediumColor;
     ratingAppearance.highRatingColor = theme.ratingHighColor;

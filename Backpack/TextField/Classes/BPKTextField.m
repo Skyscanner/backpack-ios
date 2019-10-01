@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
-    self.textColor = [BPKColor gray900];
+    self.textColor = [BPKColor skyGray];
     self.borderStyle = UITextBorderStyleRoundedRect;
     self.backgroundColor = BPKColor.white;
 
