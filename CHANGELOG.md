@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 19.0.1
+
+**Fixed:**
+
+- Backpack/FlareView:
+  - Fixed issue that caused a flickering line above the pointer when animated.
+
 ## 19.0.0
 
 **Breaking:**
