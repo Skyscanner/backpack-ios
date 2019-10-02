@@ -48,7 +48,7 @@
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
-		BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90522D8A4D700447B64 /* HorizontalNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */; };
@@ -85,6 +85,7 @@
 		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
 		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
+		D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D283842A234381BE00E33EAD /* BPKDurationTest.m */; };
 		D28443E822FC41880066F88B /* FlareView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28443E722FC41880066F88B /* FlareView.storyboard */; };
 		D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443E922FC42A30066F88B /* FlareViewViewController.swift */; };
 		D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443EA22FC42A30066F88B /* FlareViewSelectorViewController.swift */; };
@@ -276,6 +277,7 @@
 		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
+		D283842A234381BE00E33EAD /* BPKDurationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKDurationTest.m; sourceTree = "<group>"; };
 		D28443E722FC41880066F88B /* FlareView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlareView.storyboard; sourceTree = "<group>"; };
 		D28443E922FC42A30066F88B /* FlareViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewViewController.swift; sourceTree = "<group>"; };
 		D28443EA22FC42A30066F88B /* FlareViewSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewSelectorViewController.swift; sourceTree = "<group>"; };
@@ -371,7 +373,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */,
+				BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */,
 				A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +500,7 @@
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
 				D29349BE2199C7650099D2EC /* BPKChipTest.m */,
 				D613CE542006795400D60CC4 /* BPKColorTest.m */,
+				D283842A234381BE00E33EAD /* BPKDurationTest.m */,
 				D655C519200FA18100CB39AF /* BPKFontTest.m */,
 				60127A712021B6BC00703622 /* BPKSpacingTest.m */,
 				6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */,
@@ -1107,6 +1110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */,
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
 				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,

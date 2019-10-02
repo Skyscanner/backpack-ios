@@ -20,6 +20,7 @@
 #define __BACKPACK__
 
 #import "Color.h"
+#import "Duration.h"
 #import "Font.h"
 #import "Gradient.h"
 #import "Radii.h"
