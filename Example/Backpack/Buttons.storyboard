@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,10 +161,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEW-9A-aRv" userLabel="Content View">
-                                <rect key="frame" x="0.0" y="197" width="375" height="253"/>
+                                <rect key="frame" x="0.0" y="135.5" width="375" height="376"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqb-N5-Kfh" userLabel="Default Container">
-                                        <rect key="frame" x="8" y="8" width="367" height="112.5"/>
+                                        <rect key="frame" x="8" y="8" width="367" height="154.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-ZD-nKO" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
@@ -178,10 +178,22 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-jy-Zgv">
-                                                <rect key="frame" x="0.0" y="28.5" width="136" height="76"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="136" height="118"/>
                                                 <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-BF-945">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQd-cV-VBa" customClass="BPKButton">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
+                                                                <state key="normal" title="Loading"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-aE-VqH" customClass="BPKButton">
+                                                                <rect key="frame" x="73" y="0.0" width="30" height="34"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d5l-75-Ljk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="136" height="34"/>
+                                                        <rect key="frame" x="0.0" y="42" width="136" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWH-oz-ScW" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -197,7 +209,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="are-Uc-Slw">
-                                                        <rect key="frame" x="0.0" y="42" width="68" height="34"/>
+                                                        <rect key="frame" x="0.0" y="84" width="68" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAK-NX-IQ0" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -234,7 +246,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fez-oG-XpD" userLabel="Large Container">
-                                        <rect key="frame" x="8" y="140.5" width="359" height="112.5"/>
+                                        <rect key="frame" x="8" y="182.5" width="359" height="193.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6e-sa-mbj" customClass="BPKLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
@@ -248,10 +260,32 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KBU-NC-j3g">
-                                                <rect key="frame" x="0.0" y="28.5" width="147" height="76"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="174" height="157"/>
                                                 <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgv-kR-UpP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-p4-JoQ" customClass="BPKButton">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
+                                                                <state key="normal" title="Loading"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="size">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh8-UZ-7G5" customClass="BPKButton">
+                                                                <rect key="frame" x="73" y="2" width="30" height="30"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="size">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EpX-FB-1Xi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="34"/>
+                                                        <rect key="frame" x="0.0" y="42" width="147" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhi-lX-0z6" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -282,7 +316,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ej6-mJ-uGF">
-                                                        <rect key="frame" x="0.0" y="42" width="68" height="34"/>
+                                                        <rect key="frame" x="0.0" y="84" width="68" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htS-s3-5bd" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -308,6 +342,23 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CDs-kR-bb6">
+                                                        <rect key="frame" x="0.0" y="126" width="174" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9p-pp-ulS" customClass="BPKLabel">
+                                                                <rect key="frame" x="0.0" y="0.0" width="117" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1sV-cf-vRL" customClass="BPKSwitch">
+                                                                <rect key="frame" x="125" y="0.0" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="switchLoadingState:" destination="yaK-Q8-sWi" eventType="valueChanged" id="d9l-DM-Qan"/>
+                                                                </connections>
+                                                            </switch>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -349,11 +400,15 @@
                         <outlet property="defaultDisabledButton" destination="oeP-th-apx" id="wrz-cO-5kU"/>
                         <outlet property="defaultIconOnlyButton" destination="zzc-e4-W0P" id="swq-6z-cfu"/>
                         <outlet property="defaultLeadingIconButton" destination="WqP-4p-b67" id="Faa-Z9-YEv"/>
+                        <outlet property="defaultLoadingButton" destination="WQd-cV-VBa" id="GNa-10-aWc"/>
+                        <outlet property="defaultLoadingIconOnlyButton" destination="zyW-aE-VqH" id="Mua-Yl-FqG"/>
                         <outlet property="defaultTextButton" destination="zWH-oz-ScW" id="ar0-pF-Iw3"/>
                         <outlet property="defaultTrailingIconButton" destination="wAK-NX-IQ0" id="BYL-Gi-uyN"/>
                         <outlet property="largeDisabledButton" destination="zfX-pm-To4" id="mbC-AD-64n"/>
                         <outlet property="largeIconOnlyButton" destination="sGM-4s-9a0" id="0nr-cZ-0rG"/>
                         <outlet property="largeLeadingIconButton" destination="GJf-SN-OB4" id="z8F-1r-68A"/>
+                        <outlet property="largeLoadingButton" destination="gcH-p4-JoQ" id="qkK-nn-iEA"/>
+                        <outlet property="largeLoadingIconOnlyButton" destination="Fh8-UZ-7G5" id="uLh-EF-F7E"/>
                         <outlet property="largeTextButton" destination="yhi-lX-0z6" id="atc-NE-kM7"/>
                         <outlet property="largeTrailingIconButton" destination="htS-s3-5bd" id="Zcz-Yv-bOr"/>
                         <outletCollection property="contentViews" destination="FEW-9A-aRv" id="0Dy-nU-yML"/>
@@ -362,6 +417,7 @@
                         <outletCollection property="storyHeadings" destination="lPG-ZD-nKO" id="rJ8-dX-KI7"/>
                         <outletCollection property="storyHeadings" destination="s6e-sa-mbj" id="G77-6J-i9N"/>
                         <outletCollection property="contentViews" destination="S87-he-ZeP" id="fPy-Nd-w8k"/>
+                        <outletCollection property="storyHeadings" destination="L9p-pp-ulS" id="vjH-HI-lLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZY-Xj-Kae" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -3,6 +3,8 @@
 ## Usage
 
 `BPKButton`/`Backpack.Button` contains the Backpack Button component which is a subclass of `UIButton` with Skyscanner styles. It accepts a Backpack font style to set the desired size, style and positioning properties.
+There's an `isLoading` property that if we set to `YES` and the given `BPKButton` contains an image it will replace it by an `ActivityIndicator`, also it will automatically set the `enabled` property to `NO` blocking the user interaction and it will change the style to a disable look and feel.
+Setting the `isLoading` property to `NO` again will restore the predefined style.
 
 ### Objective-C
 ```objective-c

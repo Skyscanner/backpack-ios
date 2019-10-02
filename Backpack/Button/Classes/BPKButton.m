@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
 @property(nonatomic, class, readonly) CGFloat buttonTitleIconSpacing;
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @end
 
 @implementation BPKButton
@@ -289,6 +290,9 @@ NS_ASSUME_NONNULL_BEGIN
         self.imageEdgeInsets = UIEdgeInsetsZero;
         self.contentEdgeInsets = self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     }
+
+    self.spinner.center = self.imageView.center;
+    self.imageView.alpha = self.isLoading ? .0f : 1.f;
 }
 
 - (CGSize)intrinsicContentSize {
@@ -632,6 +636,36 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderWidth = 0;
 }
 
+- (void)setupSpinner {
+    self.spinner = [[UIActivityIndicatorView alloc] init];
+    switch (self.size) {
+        case BPKButtonSizeDefault:
+            self.spinner.transform = CGAffineTransformMakeScale(.75f, .75f);
+            break;
+
+        case BPKButtonSizeLarge:
+            self.spinner.transform = CGAffineTransformMakeScale(1.f, 1.f);
+            break;
+    }
+
+    [self addSubview:self.spinner];
+}
+
+- (void)updateLoadingState:(BOOL)loading {
+    self.enabled = !loading;
+    self.spinner.hidden = !self.isLoading;
+
+    if (!self.spinner && self.isLoading) {
+        [self setupSpinner];
+    }
+
+    if (loading) {
+        [self.spinner startAnimating];
+    } else {
+        [self.spinner stopAnimating];
+    }
+}
+
 - (void)setFeaturedContentColor:(UIColor *_Nullable)featuredContentColor {
     if (featuredContentColor != _featuredContentColor) {
         _featuredContentColor = featuredContentColor;
@@ -720,6 +754,13 @@ NS_ASSUME_NONNULL_BEGIN
     if (linkContentColor != _linkContentColor) {
         _linkContentColor = linkContentColor;
         [self updateContentColor];
+    }
+}
+
+- (void)setIsLoading:(BOOL)isLoading {
+    if (_isLoading != isLoading && self.currentImage) {
+        _isLoading = isLoading;
+        [self updateLoadingState: isLoading];
     }
 }
 
