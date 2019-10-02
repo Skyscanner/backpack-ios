@@ -2,6 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 19.1.0
+
+**Added:**
+
+- Backpack/Duration:
+  - New Duration class which exposes our animation duration constants.
+
 ## 19.0.1
 
 **Fixed:**
