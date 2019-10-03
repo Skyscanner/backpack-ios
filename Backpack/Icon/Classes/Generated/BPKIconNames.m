@@ -227,6 +227,7 @@ BPKIconName const BPKIconNameUnmute = @"unmute";
 BPKIconName const BPKIconNameUpgrade = @"upgrade";
 BPKIconName const BPKIconNameUseLocation = @"use-location";
 BPKIconName const BPKIconNameView = @"view";
+BPKIconName const BPKIconNameWallet = @"wallet";
 BPKIconName const BPKIconNameWeather = @"weather";
 BPKIconName const BPKIconNameWifi = @"wifi";
 BPKIconName const BPKIconNameWindowReduce = @"window--reduce";
