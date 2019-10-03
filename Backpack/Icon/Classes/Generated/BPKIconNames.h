@@ -229,6 +229,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameUnmute;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUpgrade;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUseLocation;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameView;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWallet;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWeather;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWifi;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWindowReduce;
