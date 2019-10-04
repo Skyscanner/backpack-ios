@@ -47,13 +47,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    if (self.style == BPKButtonStyleOutline) {
+        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
+        self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
+        self.navigationController.navigationBar.tintColor = BPKColor.white;
+    }
+
     [self setupButtons];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
+    self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
+    self.navigationController.navigationBar.tintColor = BPKColor.skyGray;
 }
 
 - (void)setupButtons {
     if (self.style == BPKButtonStyleOutline) {
         for (UIView *contentView in self.contentViews) {
-            [contentView setBackgroundColor:BPKColor.skyBlueShade01];
+            [contentView setBackgroundColor:BPKColor.skyBlueShade03];
         }
 
         for (UILabel *storyHeading in self.storyHeadings) {
