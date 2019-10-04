@@ -45,6 +45,26 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     @IBOutlet var tappableLinks: [TappableLinkLabel]!
     @IBOutlet var displayView: UIView!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if self.style == .alternate {
+            let titleAttributes = [NSAttributedString.Key.foregroundColor: Color.white]
+            self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+            self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
+            self.navigationController?.navigationBar.tintColor = Color.white
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+
+        let titleAttributes = [NSAttributedString.Key.foregroundColor: Color.skyGray]
+        self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
+        self.navigationController?.navigationBar.tintColor = Color.skyGray
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

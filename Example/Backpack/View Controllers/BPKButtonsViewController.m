@@ -48,8 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewWillAppear:animated];
 
     if (self.style == BPKButtonStyleOutline) {
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
-        self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
+        NSDictionary<NSAttributedStringKey, id> *titleAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
+        self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
+        self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
         self.navigationController.navigationBar.tintColor = BPKColor.white;
     }
 
@@ -57,8 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
-    self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
+    [super viewWillDisappear:animated];
+
+    NSDictionary<NSAttributedStringKey, id> *titleAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
+    self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
+    self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
     self.navigationController.navigationBar.tintColor = BPKColor.skyGray;
 }
 
