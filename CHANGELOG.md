@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 19.2.0
+
+**Added:**
+- Backpack/Button:
+  - New `isLoading` property which can be used to display a spinner inside the button.
+
 ## 19.1.0
 
 **Added:**
