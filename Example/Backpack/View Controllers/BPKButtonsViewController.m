@@ -32,12 +32,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingIconOnlyButton;
 
 @property(weak, nonatomic) IBOutlet BPKButton *largeTextButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
 @property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
@@ -81,9 +85,11 @@ NS_ASSUME_NONNULL_BEGIN
     UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall]
                                              : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
+    [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Loading"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
+    [self setupButton:self.defaultLoadingIconOnlyButton image:smallLongArrowIcon title:nil];
 
     UIImage *largeLongArrowIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeLarge];
 
@@ -91,18 +97,28 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];
     [self setupButton:self.largeLeadingIconButton image:largeLongArrowIcon title:@"With icon"];
     [self setupButton:self.largeIconOnlyButton image:largeLongArrowIcon title:nil];
+    [self setupButton:self.largeLoadingIconOnlyButton image:largeLongArrowIcon title:nil];
+    [self setupButton:self.largeLoadingButton image:largeLongArrowIcon title:@"Loading"];
 
     self.defaultTextButton.style = self.style;
     self.defaultDisabledButton.style = self.style;
     self.defaultIconOnlyButton.style = self.style;
     self.defaultTrailingIconButton.style = self.style;
     self.defaultLeadingIconButton.style = self.style;
+    self.defaultLoadingIconOnlyButton.style = self.style;
+    self.defaultLoadingButton.style = self.style;
+    self.defaultLoadingButton.isLoading = YES;
+    self.defaultLoadingIconOnlyButton.isLoading = YES;
 
     self.largeTextButton.style = self.style;
     self.largeDisabledButton.style = self.style;
     self.largeIconOnlyButton.style = self.style;
     self.largeTrailingIconButton.style = self.style;
     self.largeLeadingIconButton.style = self.style;
+    self.largeLoadingIconOnlyButton.style = self.style;
+    self.largeLoadingButton.style = self.style;
+    self.largeLoadingButton.isLoading = YES;
+    self.largeLoadingIconOnlyButton.isLoading = YES;
 }
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
@@ -113,6 +129,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isRTL {
     return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] ==
            UIUserInterfaceLayoutDirectionRightToLeft;
+}
+
+- (IBAction)switchLoadingState:(UISwitch *)sender {
+    self.defaultLoadingIconOnlyButton.isLoading = sender.on;
+    self.defaultLoadingButton.isLoading = sender.on;
+    self.largeLoadingIconOnlyButton.isLoading = sender.on;
+    self.largeLoadingButton.isLoading = sender.on;
 }
 
 @end
