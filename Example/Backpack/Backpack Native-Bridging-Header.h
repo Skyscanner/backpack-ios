@@ -3,3 +3,4 @@
 //
 #import "BPKDarkModeTableViewController.h"
 #import "BPKThemeContainerController.h"
+#import "BPKExampleAppTitleAttributes.h"

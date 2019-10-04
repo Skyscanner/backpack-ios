@@ -17,6 +17,7 @@
  */
 
 #import "BPKButtonsViewController.h"
+#import "BPKExampleAppTitleAttributes.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
@@ -48,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewWillAppear:animated];
 
     if (self.style == BPKButtonStyleOutline) {
-        NSDictionary<NSAttributedStringKey, id> *titleAttributes = @{NSForegroundColorAttributeName: BPKColor.white};
+        NSDictionary<NSAttributedStringKey, id> *titleAttributes = BPKExampleAppTitleAttributes.darkTitleAttributes;
         self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
         self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
         self.navigationController.navigationBar.tintColor = BPKColor.white;
@@ -60,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    NSDictionary<NSAttributedStringKey, id> *titleAttributes = @{NSForegroundColorAttributeName: BPKColor.skyGray};
+    NSDictionary<NSAttributedStringKey, id> *titleAttributes = BPKExampleAppTitleAttributes.lightTitleAttributes;
     self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
     self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
     self.navigationController.navigationBar.tintColor = BPKColor.skyGray;
