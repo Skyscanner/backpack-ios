@@ -229,7 +229,7 @@
 }
 
 + (UIColor *)primaryGradientLight {
-  return [UIColor colorWithRed:0.008 green:0.867 blue:0.847 alpha:1];
+  return [UIColor colorWithRed:0.027 green:0.439 blue:0.890 alpha:1];
 }
 
 + (UIColor *)red100 {
@@ -272,7 +272,7 @@
   return [UIColor colorWithRed:0.659 green:0.012 blue:0.000 alpha:1];
 }
 
-+ (UIColor *)segano {
++ (UIColor *)sagano {
   return [UIColor colorWithRed:0.816 green:0.933 blue:0.925 alpha:1];
 }
 
@@ -302,6 +302,38 @@
 
 + (UIColor *)skyBlueTint03 {
   return [UIColor colorWithRed:0.804 green:0.875 blue:0.973 alpha:1];
+}
+
++ (UIColor *)skyGray {
+  return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+}
+
++ (UIColor *)skyGrayTint01 {
+  return [UIColor colorWithRed:0.267 green:0.271 blue:0.376 alpha:1];
+}
+
++ (UIColor *)skyGrayTint02 {
+  return [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1];
+}
+
++ (UIColor *)skyGrayTint03 {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+}
+
++ (UIColor *)skyGrayTint04 {
+  return [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1];
+}
+
++ (UIColor *)skyGrayTint05 {
+  return [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1];
+}
+
++ (UIColor *)skyGrayTint06 {
+  return [UIColor colorWithRed:0.867 green:0.867 blue:0.898 alpha:1];
+}
+
++ (UIColor *)skyGrayTint07 {
+  return [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1];
 }
 
 + (UIColor *)systemGreen {

@@ -4,7 +4,7 @@ PODS:
     - FSCalendar (~> 2.8)
     - MBProgressHUD (~> 0.9.1)
     - TTTAttributedLabel (~> 1.13.4)
-  - FloatingPanel (1.6.5)
+  - FloatingPanel (1.7.0)
   - FSCalendar (2.8.0)
   - iOSSnapshotTestCase/Core (4.0.1)
   - MBProgressHUD (0.9.2)
@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Backpack: d317ed24b278955d4f360817b0c451dcc155e066
-  FloatingPanel: f4a89a848e21415e2e2697ee8f61847178445aa7
+  FloatingPanel: f686602da8eff56375e577f19be37348a95f4e24
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
