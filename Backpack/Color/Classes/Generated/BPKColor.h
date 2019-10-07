@@ -142,140 +142,140 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #dddde5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray100 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray100;
 
 /**
  * The `gray200` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #cdcdd7ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray200 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray200;
 
 /**
  * The `gray300` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #b2b2bfff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray300 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray300;
 
 /**
  * The `gray400` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #8f90a0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray400 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray400;
 
 /**
  * The `gray50` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #f1f2f8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray50 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray50;
 
 /**
  * The `gray500` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #68697fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray500 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray500;
 
 /**
  * The `gray600` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #696179ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray600 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray600;
 
 /**
  * The `gray700` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #444560ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray700 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray700;
 
 /**
  * The `gray800` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #3b344bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray800 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray800;
 
 /**
  * The `gray900` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * gray900 __deprecated;
+@property(nonatomic, class, readonly) UIColor * gray900;
 
 /**
  * The `green100` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #cbf5e2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green100 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green100;
 
 /**
  * The `green200` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #afedd1ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green200 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green200;
 
 /**
  * The `green300` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #80e8b9ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green300 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green300;
 
 /**
  * The `green400` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #40de97ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green400 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green400;
 
 /**
  * The `green50` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #dff7ecff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green50 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green50;
 
 /**
  * The `green500` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #00d775ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green500 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green500;
 
 /**
  * The `green600` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #00bd68ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green600 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green600;
 
 /**
  * The `green700` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #00a85dff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green700 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green700;
 
 /**
  * The `green800` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #008c4dff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green800 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green800;
 
 /**
  * The `green900` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #006638ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * green900 __deprecated;
+@property(nonatomic, class, readonly) UIColor * green900;
 
 /**
  * The `harbour` color from the Backpack palette.
@@ -331,70 +331,70 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #ffbfd7ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink100 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink100;
 
 /**
  * The `pink200` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff94bbff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink200 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink200;
 
 /**
  * The `pink300` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff73a6ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink300 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink300;
 
 /**
  * The `pink400` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff619bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink400 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink400;
 
 /**
  * The `pink50` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #fde4edff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink50 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink50;
 
 /**
  * The `pink500` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #fa488aff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink500 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink500;
 
 /**
  * The `pink600` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #d92b6bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink600 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink600;
 
 /**
  * The `pink700` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #c50f52ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink700 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink700;
 
 /**
  * The `pink800` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #b00c48ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink800 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink800;
 
 /**
  * The `pink900` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #94053aff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * pink900 __deprecated;
+@property(nonatomic, class, readonly) UIColor * pink900;
 
 /**
  * The `primaryGradientLight` color from the Backpack palette.
@@ -408,70 +408,70 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #ffd6d5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red100 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red100;
 
 /**
  * The `red200` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ffbbbaff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red200 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red200;
 
 /**
  * The `red300` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff9694ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red300 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red300;
 
 /**
  * The `red400` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #fe7471ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red400 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red400;
 
 /**
  * The `red50` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #fcf2f2ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red50 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red50;
 
 /**
  * The `red500` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff5452ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red500 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red500;
 
 /**
  * The `red600` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #eb423fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red600 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red600;
 
 /**
  * The `red700` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #de322fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red700 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red700;
 
 /**
  * The `red800` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #cc1f1dff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red800 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red800;
 
 /**
  * The `red900` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #a80300ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * red900 __deprecated;
+@property(nonatomic, class, readonly) UIColor * red900;
 
 /**
  * The `sagano` color from the Backpack palette.
@@ -625,70 +625,70 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #fff3cfff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow100 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow100;
 
 /**
  * The `yellow200` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ffecb8ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow200 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow200;
 
 /**
  * The `yellow300` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ffe18cff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow300 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow300;
 
 /**
  * The `yellow400` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ffcf4aff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow400 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow400;
 
 /**
  * The `yellow50` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #fff9e6ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow50 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow50;
 
 /**
  * The `yellow500` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ffbb00ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow500 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow500;
 
 /**
  * The `yellow600` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #f0b000ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow600 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow600;
 
 /**
  * The `yellow700` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #e1a500ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow700 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow700;
 
 /**
  * The `yellow800` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #c28e00ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow800 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow800;
 
 /**
  * The `yellow900` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #9c7200ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * yellow900 __deprecated;
+@property(nonatomic, class, readonly) UIColor * yellow900;
 
 /**
  * The `shadowLgColor` color from the Backpack palette.
@@ -709,7 +709,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * shadowXlColor __deprecated;
+@property(nonatomic, class, readonly) UIColor * shadowXlColor;
 
 /**
  * The `textPrimaryLightColor` color from the Backpack palette.
@@ -737,7 +737,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
-@property(nonatomic, class, readonly) UIColor * underlayColor __deprecated;
+@property(nonatomic, class, readonly) UIColor * underlayColor;
 
 /**
  * The `clear` color from the Backpack palette.
@@ -749,7 +749,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  *
  * @param firstColor The color you wish to modify.
  * @param secondColor The color to blend with the first color.
- * @param weight The relative weighting of the first color. Close to `1.0f` gives more weight to `firstColor`. Close to `0.0f` gives more weight to `secondColor`. 
+ * @param weight The relative weighting of the first color. Close to `1.0f` gives more weight to `firstColor`. Close to `0.0f` gives more weight to `secondColor`.
  */
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
 

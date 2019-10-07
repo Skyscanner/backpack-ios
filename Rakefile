@@ -102,7 +102,7 @@ task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
 task :release_no_checks do
-  version = SemVer.parse(last_version)
+  version = SemVer.parse("18.1.0")
   puts "Starting new release. Previous version was #{green(version)}"
   change = ask "What semver change do you wanna make? (major, minor, patch, custom)" do |input|
     symbolized = input.downcase.to_sym
@@ -133,7 +133,6 @@ task :release_no_checks do
   contents = File.read(PODSPEC)
   contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
   File.open(PODSPEC, 'w') { |file| file.puts contents }
-  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
 
   puts "Comitting, tagging, and pushing"
   message = "[Release] Version #{version_string}"
