@@ -102,14 +102,6 @@ task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
 task :release_no_checks do
-  abort red 'Must be on master branch' unless current_branch == 'master'
-  abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
-  abort red 'Git branch is not up to date please pull' unless branch_up_to_date
-
-  sh "npm ci"
-  sh "npx gulp"
-  abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
-
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
   change = ask "What semver change do you wanna make? (major, minor, patch, custom)" do |input|
@@ -142,10 +134,6 @@ task :release_no_checks do
   contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
   File.open(PODSPEC, 'w') { |file| file.puts contents }
   abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
-
-  has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
-  abort red "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry
-  abort red "Installing pods in the Example project failed" unless install_pods_in_example_project
 
   puts "Comitting, tagging, and pushing"
   message = "[Release] Version #{version_string}"
