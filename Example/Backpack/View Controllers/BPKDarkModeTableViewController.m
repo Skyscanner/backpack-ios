@@ -28,12 +28,16 @@
     [super viewDidLoad];
 
 #if __BPK_DARK_MODE_SUPPORTED
-    if (!ThemeHelpers.isDarkModeSupported) {
+    if (![self isDarkModeSupported]) {
         if (@available(iOS 13.0, *)) {
             self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
         }
     }
 #endif
+}
+
+- (BOOL)isDarkModeSupported {
+    return [NSProcessInfo.processInfo.environment[@"DARK_MODE_ENABLED"] isEqual: @"YES"];
 }
 
 @end

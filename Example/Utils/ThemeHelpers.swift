@@ -49,14 +49,6 @@ class ThemeHelpers: NSObject {
     }
 
     @objc
-    class func isDarkModeSupported() -> Bool {
-#if __BPK_DARK_MODE_SUPPORTED
-        return ProcessInfo.processInfo.environment["DARK_MODE_ENABLED"] == "YES"
-#endif
-        return false
-    }
-
-    @objc
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:

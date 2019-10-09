@@ -18,6 +18,8 @@
  */
 #import "BPKColor.h"
 
+#import <Backpack/DarkMode.h>
+
 @implementation BPKColor
 
 + (UIColor *)abisko {
@@ -178,6 +180,21 @@
 
 + (UIColor *)clear {
   return UIColor.clearColor;
+}
+
++ (UIColor *)label {
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return BPKColor.white;
+                } else {
+                    return BPKColor.skyGray;
+                }
+     }];
+    }
+#endif
+    return BPKColor.skyGray;
 }
 
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {
