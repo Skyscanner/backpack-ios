@@ -18,8 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BPKDarkModeTableViewController.h"
-
-@interface BPKRootListTableViewController : BPKDarkModeTableViewController
+@interface BPKRootListTableViewController : UITableViewController
 
 @end

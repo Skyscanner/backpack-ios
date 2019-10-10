@@ -18,7 +18,7 @@
 
 import UIKit
 
-class GradientSelectorTableViewController: DarkModeTableViewController {
+class GradientSelectorTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? GradientViewController {
             switch segue.identifier {
