@@ -93,6 +93,7 @@ task :test do
 end
 
 task :lint do
+  abort red 'Generated files have changed during setup.' unless check_pristine
   `clang-format -i **/*.h **/*.m`
   abort red 'Running clang-format changed some files.' unless check_pristine
   sh "bundle exec pod lib lint --allow-warnings"
