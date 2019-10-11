@@ -75,6 +75,7 @@ class ColorsViewController: UICollectionViewController {
         collectionView?.register(
             ColorPreviewCollectionViewCell.self, forCellWithReuseIdentifier: ColorsViewController.cellIdentifier
         )
+
         #if swift(>=4.2)
             collectionView?.register(
                 PreviewCollectionViewHeader.self,
@@ -88,6 +89,8 @@ class ColorsViewController: UICollectionViewController {
                 withReuseIdentifier: ColorsViewController.headerIdentifier
             )
         #endif
+
+        collectionView?.backgroundColor = Color.backgroundColor
 
         collectionView?.delegate = self
         collectionView?.dataSource = self
