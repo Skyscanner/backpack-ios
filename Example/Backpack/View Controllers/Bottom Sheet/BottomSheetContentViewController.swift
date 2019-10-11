@@ -19,7 +19,7 @@
 
 import Backpack
 
-final class BottomSheetContentViewController: DarkModeTableViewController {
+final class BottomSheetContentViewController: UITableViewController {
 
 }
 

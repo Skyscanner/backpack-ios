@@ -25,7 +25,7 @@ enum PanelSegueIdentifier: String {
     case elevated = "Elevated"
 }
 
-class PanelSelectorViewController: DarkModeTableViewController {
+class PanelSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? PanelViewController else {
             fatalError("Expected destination to be of type PanelViewController.")

@@ -26,7 +26,7 @@ enum FlareViewSegueIdentifier: String {
     case backgroundImageAnimated = "BackgroundImageAnimated"
 }
 
-class FlareViewSelectorViewController: DarkModeTableViewController {
+class FlareViewSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? FlareViewViewController else {
             fatalError("Expected destination to be of type FlareViewViewController.")
