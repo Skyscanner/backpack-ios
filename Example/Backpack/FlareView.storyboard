@@ -140,7 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbY-OE-N2D" customClass="BPKFlareView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbY-OE-N2D" customClass="BPKFlareView">
                                 <rect key="frame" x="20" y="198.5" width="335" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -148,7 +148,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nbY-OE-N2D" firstAttribute="leading" secondItem="QGe-De-6CG" secondAttribute="leading" constant="20" id="Oow-m4-ZJ5"/>
                             <constraint firstItem="QGe-De-6CG" firstAttribute="trailing" secondItem="nbY-OE-N2D" secondAttribute="trailing" constant="20" id="Ymx-gE-OoL"/>

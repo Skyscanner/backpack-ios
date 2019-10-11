@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
 @property (weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
 @property (weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
+@property (assign, nonatomic) BOOL isOutlineSectionWithLightStyle;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
 @property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
@@ -51,28 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if (self.style == BPKButtonStyleOutline) {
-        NSDictionary<NSAttributedStringKey, id> *titleAttributes = BPKExampleAppTitleAttributes.darkTitleAttributes;
-        self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
-        self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
-        self.navigationController.navigationBar.tintColor = BPKColor.white;
-    }
-
+    
     [self setupButtons];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-
-    NSDictionary<NSAttributedStringKey, id> *titleAttributes = BPKExampleAppTitleAttributes.lightTitleAttributes;
-    self.navigationController.navigationBar.titleTextAttributes = titleAttributes;
-    self.navigationController.navigationBar.largeTitleTextAttributes = titleAttributes;
-    self.navigationController.navigationBar.tintColor = BPKColor.skyGray;
-}
-
 - (void)setupButtons {
-    if (self.style == BPKButtonStyleOutline) {
+    if (self.isOutlineSectionWithLightStyle) {
         for (UIView *contentView in self.contentViews) {
             [contentView setBackgroundColor:BPKColor.skyBlueShade03];
         }
@@ -136,6 +121,16 @@ NS_ASSUME_NONNULL_BEGIN
     self.defaultLoadingButton.isLoading = sender.on;
     self.largeLoadingIconOnlyButton.isLoading = sender.on;
     self.largeLoadingButton.isLoading = sender.on;
+}
+
+- (BOOL)isOutlineSectionWithLightStyle {
+    #if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        return (self.style == BPKButtonStyleOutline && self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
+    }
+    #endif
+
+    return (self.style == BPKButtonStyleOutline);
 }
 
 @end
