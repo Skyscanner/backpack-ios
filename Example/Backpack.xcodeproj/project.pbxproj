@@ -270,6 +270,7 @@
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
 		D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsSelectorViewController.swift; sourceTree = "<group>"; };
+		D269975323526E57006138D2 /* BPKSnapshotTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotTest.h; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelMultiFontStyleViewController.swift; sourceTree = "<group>"; };
 		D278358C22EA2A81004C79CF /* ProgressBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProgressBar.storyboard; sourceTree = "<group>"; };
@@ -706,6 +707,7 @@
 				D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */,
 				589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */,
 				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
+				D269975323526E57006138D2 /* BPKSnapshotTest.h */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";

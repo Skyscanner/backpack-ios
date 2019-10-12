@@ -19,7 +19,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+
+#import "BPKSnapshotTest.h"
 
 @interface BPKLabelSnapshotTest : FBSnapshotTestCase
 @end
@@ -50,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
     return stackView;
 }
 
-- (void)testViewSnapshotWithFontStyle {
+- (UIView *)createStackWithFontStyle {
     BPKFontStyle styles[] = {BPKFontStyleTextCaps, BPKFontStyleTextXs, BPKFontStyleTextSm,  BPKFontStyleTextBase,
                              BPKFontStyleTextLg,   BPKFontStyleTextXl, BPKFontStyleTextXxl, BPKFontStyleTextXxxl};
 
@@ -66,10 +67,19 @@ NS_ASSUME_NONNULL_BEGIN
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
-    FBSnapshotVerifyView(parentView, nil);
+
+    return parentView;
 }
 
-- (void)testViewSnapshotWithFontStyleEmphasized {
+- (void)testViewSnapshotWithFontStyle {
+    UIView *lightView = [self createStackWithFontStyle];
+    UIView *darkView = [self createStackWithFontStyle];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createStackWithFontStyleEmphasized {
     BPKFontStyle styles[] = {
         BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
         BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
@@ -89,10 +99,18 @@ NS_ASSUME_NONNULL_BEGIN
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithFontStyleHeavy {
+- (void)testViewSnapshotWithFontStyleEmphasized {
+    UIView *lightView = [self createStackWithFontStyleEmphasized];
+    UIView *darkView = [self createStackWithFontStyleEmphasized];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createStackWithFontStyleHeavy {
     BPKFontStyle styles[] = {
         BPKFontStyleTextXlHeavy,
         BPKFontStyleTextXxlHeavy,
@@ -112,10 +130,18 @@ NS_ASSUME_NONNULL_BEGIN
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithFontMapping {
+- (void)testViewSnapshotWithFontStyleHeavy {
+    UIView *lightView = [self createStackWithFontStyleHeavy];
+    UIView *darkView = [self createStackWithFontStyleHeavy];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createStackWithFontMapping {
     BPKFontStyle styles[] = {
         BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
         BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
@@ -139,22 +165,15 @@ NS_ASSUME_NONNULL_BEGIN
     }
     UIView *parentView = [self buildParentView];
     [parentView addSubview:stackView];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithMultipleFontStyles {
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    label.numberOfLines = 5;
+- (void)testViewSnapshotWithFontMapping {
+    UIView *lightView = [self createStackWithFontMapping];
+    UIView *darkView = [self createStackWithFontMapping];
 
-    label.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-    [label setFontStyle:BPKFontStyleTextLgEmphasized range:NSMakeRange(12, 10)];
-    [label setFontStyle:BPKFontStyleTextXxxlHeavy range:NSMakeRange(25, 10)];
-
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1200, 120)];
-    parentView.backgroundColor = BPKColor.white;
-    [label sizeToFit];
-    [parentView addSubview:label];
-    FBSnapshotVerifyView(parentView, nil);
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
