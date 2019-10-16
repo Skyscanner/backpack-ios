@@ -42,6 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithDate:(NSDate *)date withLocale:(NSLocale *) locale {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.locale = locale;
+
+    NSDateComponents *components =
+           [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
+                                          fromDate:date];
+
+       return [[BPKSimpleDate alloc] initWithYear:components.year month:components.month day:components.day];
+}
+
 - (BOOL)isEqualToSimpleDate:(BPKSimpleDate *)other {
     return other.year == self.year && other.month == self.month && other.day == self.day;
 }
@@ -69,6 +80,29 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)description {
     return [NSString stringWithFormat:@"<BPKSimpleDate %lu-%lu-%lu>", (unsigned long)self.year,
                                       (unsigned long)self.month, (unsigned long)self.day];
+}
+
+- (NSDate *)dateWithLocale:(NSLocale *) locale {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.locale = locale;
+
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.timeZone = calendar.timeZone;
+    [components setDay:self.day];
+    [components setMonth:self.month];
+    [components setYear:self.year];
+
+    return [calendar dateFromComponents:components];
+}
+
++ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates  withLocale:(NSLocale *) locale {
+    NSMutableArray *simpleDates = [[NSMutableArray alloc] initWithCapacity:dates.count];
+
+    for (NSDate *date in dates) {
+        [simpleDates addObject:[[BPKSimpleDate alloc] initWithDate:date withLocale:locale]];
+    }
+
+    return [simpleDates copy];
 }
 
 @end

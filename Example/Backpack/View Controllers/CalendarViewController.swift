@@ -19,13 +19,14 @@
 
 import UIKit
 import Backpack.Calendar
+import Backpack.SimpleDate
 
 class CalendarViewController: UIViewController, CalendarDelegate {
     @IBOutlet weak var myView: Backpack.Calendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
-        myView.minDate = myView.simpleDate(from: Date())
+        myView.minDate = SimpleDate(date: Date(), with: myView.locale)
         myView.locale = Locale.current
         myView.delegate = self
     }
