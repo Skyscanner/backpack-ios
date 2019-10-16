@@ -13,6 +13,10 @@
 **Added:**
 - Backpack/Color:
   - Added `underlayColor` color which will be removed in the next release.
+  - Added dark mode compatible background color.
+
+ - Backpack/Icon:
+   - Added file and printer icons.
 
 ## 19.2.0
 
