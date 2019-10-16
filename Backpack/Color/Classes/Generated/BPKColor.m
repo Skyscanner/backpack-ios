@@ -182,10 +182,6 @@
   return UIColor.clearColor;
 }
 
-+ (UIColor *)underlayColor {
-  return BPKColor.skyBlueTint03;
-}
-
 + (UIColor *)label {
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 13.0, *)) {

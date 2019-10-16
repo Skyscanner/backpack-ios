@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 20.0.0
+
+**Breaking:**
+- Backpack/Color:
+  - Removed `underlayColor` color.
+
 ## 19.3.0
 
 **Added:**
