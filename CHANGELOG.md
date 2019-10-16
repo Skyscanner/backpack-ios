@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 19.3.0
+
+**Added:**
+- Backpack/Color:
+  - Added `underlayColor` color which will be removed in the next release.
+
 ## 19.2.0
 
 **Added:**

@@ -38,6 +38,11 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 */
 @property(nonatomic, class, readonly) UIColor * label;
 
+/**
+ * Some random colour that should be removed and replaced with `skyBlueTint03`.
+*/
+@property(nonatomic, class, readonly) UIColor * underlayColor;
+
 ///-----------------------
 /// @name Colors
 ///-----------------------
