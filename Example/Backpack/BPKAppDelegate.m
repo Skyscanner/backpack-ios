@@ -31,10 +31,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [UINavigationBar appearance].tintColor = BPKColor.label;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.label};
+    [UINavigationBar appearance].tintColor = BPKColor.textPrimaryColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
     if (@available(iOS 11.0, *)) {
-        [UINavigationBar appearance].largeTitleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.label};
+        [UINavigationBar appearance].largeTitleTextAttributes =
+            @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
     }
 
     if ([ThemeHelpers isThemingSupported]) {

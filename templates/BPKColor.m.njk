@@ -23,26 +23,27 @@
 @implementation BPKColor
 {% for c in color %}
 + (UIColor *){{c.name}} {
-  return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
+    return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
 }
 {% endfor %}
-+ (UIColor *)clear {
-  return UIColor.clearColor;
-}
-
-+ (UIColor *)label {
+{% for c in dynamicColor %}
++ (UIColor *){{c.name}} {
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 13.0, *)) {
         return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
                 if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return BPKColor.white;
+                    return [UIColor colorWithRed:{{c.darkValue.r}} green:{{c.darkValue.g}} blue:{{c.darkValue.b}} alpha:{{c.darkValue.a}}];
                 } else {
-                    return BPKColor.skyGray;
+                    return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
                 }
      }];
-    }
+}
 #endif
-    return BPKColor.skyGray;
+  return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
+}
+{% endfor %}
++ (UIColor *)clear {
+    return UIColor.clearColor;
 }
 
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {
