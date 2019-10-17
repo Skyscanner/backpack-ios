@@ -22,21 +22,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
-/**
- * BPKColor is the entry point for the Backpack color palette. It expose the whole palette
- * as static methods.
-*/
-NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
-
-/**
- * Use this color for standard table views and designs that have a white primary background in a light environment.
-*/
-@property(nonatomic, class, readonly) UIColor * backgroundColor;
-
-/**
- * The default color for Backpack text.
-*/
-@property(nonatomic, class, readonly) UIColor * label;
 
 ///-----------------------
 /// @name Colors
@@ -295,20 +280,6 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * shadowSmColor;
 
 /**
- * The `textPrimaryLightColor` color from the Backpack palette.
- *
- * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * textPrimaryLightColor;
-
-/**
- * The `textSecondaryLightColor` color from the Backpack palette.
- *
- * <div style="width: 100px; height: 100px; background: #444560ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * textSecondaryLightColor;
-
-/**
  * The `touchableOverlayColor` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -319,6 +290,39 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * The `clear` color from the Backpack palette.
 */
 @property(nonatomic, class, readonly) UIColor * clear;
+
+///-----------------------
+/// @name Dynamic colors
+///-----------------------
+
+/**
+ * The `textPrimaryColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textPrimaryColor;
+
+/**
+ * The `textPrimaryColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textPrimaryColor;
+
+/**
+ * The `textSecondaryColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textSecondaryColor;
+
+/**
+ * The `textSecondaryColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #444560ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * textSecondaryColor;
+
 
 /**
  * Combines two `UIColor` values with a specified weighting.

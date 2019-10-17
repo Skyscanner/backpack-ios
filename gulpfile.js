@@ -174,11 +174,40 @@ const generatePrefixedConst = ({ name, ...rest }) => {
   };
 };
 
+const isDynamicColor = entity => {
+  const { name } = entity;
+  let isDynamic = false;
+  if (name.includes('LightColor') || name.includes('DarkColor')) {
+    isDynamic = true;
+  }
+  return isDynamic;
+};
+
 const parseTokens = tokensData => {
+  const dynamicColors = _.chain(tokensData.properties)
+    .filter(entity => entity.type === 'color' && isDynamicColor(entity))
+    .map(({ value, name, type, ...rest }) => {
+      const newName = name
+        .split('LightColor')
+        .join('Color')
+        .split('DarkColor')
+        .join('Color');
+
+      return {
+        value: parseColor(value),
+        name: newName[0].toLowerCase() + newName.slice(1),
+        hex: value.toString(),
+        type: 'dynamicColor',
+        ...rest,
+      };
+    })
+    .value();
+
   const colors = _.chain(tokensData.properties)
-    .filter(({ type }) => type === 'color')
+    .filter(entity => entity.type === 'color' && !isDynamicColor(entity))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
+
       return {
         value: parseColor(value),
         name: newName[0].toLowerCase() + newName.slice(1),
@@ -386,6 +415,7 @@ const parseTokens = tokensData => {
     .value();
 
   return _.chain([
+    ...dynamicColors,
     ...colors,
     ...fonts,
     ...spacings,
