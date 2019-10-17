@@ -48,7 +48,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.style == .alternate {
+        if isAlternateStyleWithLightMode() {
             let titleAttributes = ExampleAppTitleAttributes.darkTitleAttributes()
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
@@ -59,10 +59,12 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     override func viewWillDisappear(_ animated: Bool) {
         super .viewWillDisappear(animated)
 
-        let titleAttributes = ExampleAppTitleAttributes.lightTitleAttributes()
-        self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
-        self.navigationController?.navigationBar.tintColor = Color.skyGray
+        if isAlternateStyleWithLightMode() {
+            let titleAttributes = ExampleAppTitleAttributes.lightTitleAttributes()
+            self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+            self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
+            self.navigationController?.navigationBar.tintColor = Color.skyGray
+        }
     }
 
     override func viewDidLoad() {
@@ -75,7 +77,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         let firstLinkContent = "Backpack"
         let secondLinkContent = "Skyscanner's"
 
-        displayView.backgroundColor = style == .alternate ? Color.skyBlueShade03 : Color.white
+        displayView.backgroundColor = style == .alternate ? Color.skyBlueShade03 : Color.backgroundColor
 
         let firstRange = NSRange(content.range(of: firstLinkContent)!, in: content)
         let secondRange = NSRange(content.range(of: secondLinkContent)!, in: content)
@@ -113,5 +115,15 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     func tappableLabel(_ label: TappableLinkLabel,
                        didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
         print(components)
+    }
+
+    func isAlternateStyleWithLightMode() -> Bool {
+        #if swift(>=4.2)
+        if #available(iOS 13.0, *) {
+            return style == .alternate && traitCollection.userInterfaceStyle == .light
+        }
+
+        #endif
+        return true
     }
 }

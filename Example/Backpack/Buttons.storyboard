@@ -16,6 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="nQM-XJ-Gzl">
                                 <cells>
@@ -191,6 +194,7 @@
                                                                 <rect key="frame" x="73" y="0.0" width="30" height="34"/>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d5l-75-Ljk">
                                                         <rect key="frame" x="0.0" y="42" width="136" height="34"/>
@@ -207,6 +211,7 @@
                                                                 <rect key="frame" x="106" y="0.0" width="30" height="34"/>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="are-Uc-Slw">
                                                         <rect key="frame" x="0.0" y="84" width="68" height="34"/>
@@ -230,11 +235,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                 </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="XrI-jy-Zgv" firstAttribute="leading" secondItem="lPG-ZD-nKO" secondAttribute="leading" id="06T-pG-tG6"/>
                                             <constraint firstAttribute="bottom" secondItem="XrI-jy-Zgv" secondAttribute="bottom" constant="8" id="32o-nv-aib"/>
@@ -283,6 +290,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EpX-FB-1Xi">
                                                         <rect key="frame" x="0.0" y="42" width="147" height="34"/>
@@ -314,6 +322,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ej6-mJ-uGF">
                                                         <rect key="frame" x="0.0" y="84" width="68" height="34"/>
@@ -343,6 +352,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CDs-kR-bb6">
                                                         <rect key="frame" x="0.0" y="126" width="174" height="31"/>
@@ -360,11 +370,13 @@
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </stackView>
                                                 </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="s6e-sa-mbj" firstAttribute="leading" secondItem="fez-oG-XpD" secondAttribute="leading" id="1cq-ql-J5U"/>
                                             <constraint firstAttribute="bottom" secondItem="KBU-NC-j3g" secondAttribute="bottom" constant="8" id="2pK-Qq-hHI"/>
@@ -376,7 +388,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="fez-oG-XpD" secondAttribute="trailing" id="570-kq-MPi"/>
                                     <constraint firstItem="fqb-N5-Kfh" firstAttribute="top" secondItem="FEW-9A-aRv" secondAttribute="topMargin" id="C3B-aR-RSk"/>
@@ -388,7 +400,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="centerY" secondItem="Kxe-Pd-Ob5" secondAttribute="centerY" id="Fi3-w8-XTO"/>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="leading" secondItem="Kxe-Pd-Ob5" secondAttribute="leading" id="aJX-e7-ig2"/>
