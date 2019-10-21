@@ -159,6 +159,7 @@ BPKIconName const BPKIconNameMileage = @"mileage";
 BPKIconName const BPKIconNameMinus = @"minus";
 BPKIconName const BPKIconNameMobile = @"mobile";
 BPKIconName const BPKIconNameMoney = @"money";
+BPKIconName const BPKIconNameMultipleBookings = @"multiple-bookings";
 BPKIconName const BPKIconNameMusic = @"music";
 BPKIconName const BPKIconNameMute = @"mute";
 BPKIconName const BPKIconNameNativeAndroidBack = @"native-android--back";

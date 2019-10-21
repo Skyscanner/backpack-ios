@@ -161,6 +161,7 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameMileage;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMinus;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMobile;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMoney;
+FOUNDATION_EXPORT BPKIconName const BPKIconNameMultipleBookings;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMusic;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMute;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidBack;
