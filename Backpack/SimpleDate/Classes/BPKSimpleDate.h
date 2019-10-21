@@ -27,7 +27,16 @@ NS_SWIFT_NAME(SimpleDate) @interface BPKSimpleDate : NSObject
 
 - (instancetype)initWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day;
 
-- (BOOL)isEqualToSimpleDate:(BPKSimpleDate *)other;
+/**
+ * Converts a Date to a SimpleDate based on the device's locale timezone
+ * @param date Date object in the device's local timezone
+ * @return SimpleDate representing a timezone independent date
+ */
+- (instancetype)initWithDate:(NSDate *)date withLocale:(NSLocale *) locale;
+
+- (NSDate *)dateWithLocale:(NSLocale *) locale;
+
++ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates  withLocale:(NSLocale *) locale;
 
 @end
 

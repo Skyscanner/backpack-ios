@@ -16,11 +16,7 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarCell.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarYearPill.h"
+#ifndef __BACKPACK_SIMPLEDATE__
+#define __BACKPACK_SIMPLEDATE__
+#import "BPKSimpleDate.h"
 #endif

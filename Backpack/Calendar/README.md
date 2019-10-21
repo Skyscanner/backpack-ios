@@ -18,6 +18,7 @@ and then run `pod install`.
 
 ```objective-c
 #import <Backpack/Calendar.h>
+#import <Backpack/SimpleDate.h>
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 

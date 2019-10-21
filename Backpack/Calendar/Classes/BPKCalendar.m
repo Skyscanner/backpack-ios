@@ -226,17 +226,17 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (self.sameDayRange) {
         NSArray<NSDate *> *dates =
             [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
-        return [self simpleDatesFromDates:dates];
+        return [BPKSimpleDate simpleDatesFromDates:dates withLocale:self.locale];
     }
 
-    return [self simpleDatesFromDates:self.calendarView.selectedDates];
+    return [BPKSimpleDate simpleDatesFromDates:self.calendarView.selectedDates withLocale:self.locale];
 }
 
 - (NSSet<BPKSimpleDate *> *)createDateSet:(NSArray<NSDate *> *)dates {
     NSMutableSet<BPKSimpleDate *> *set = [[NSMutableSet alloc] initWithCapacity:dates.count];
 
     for (NSDate *date in dates) {
-        BPKSimpleDate *simpleDate = [self simpleDateFromDate:date];
+        BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date withLocale:self.locale];
 
         [set addObject:simpleDate];
     }
@@ -251,7 +251,7 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     for (BPKSimpleDate *date in newSelectedDates) {
         if (![previouslySelectedDates containsObject:date]) {
-            [self.calendarView selectDate:[self dateFromSimpleDate:date]];
+            [self.calendarView selectDate:[date dateWithLocale:self.locale]];
         }
     }
 
@@ -259,10 +259,10 @@ NSString *const HeaderDateFormat = @"MMMM";
     [toDeselect minusSet:newSelectedDates];
 
     for (BPKSimpleDate *date in toDeselect) {
-        [self.calendarView deselectDate:[self dateFromSimpleDate:date]];
+        [self.calendarView deselectDate:[date dateWithLocale:self.locale]];
     }
 
-    if (selectedDates.count == 2 && [selectedDates.firstObject isEqualToSimpleDate:selectedDates.lastObject]) {
+    if (selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject]) {
         self.sameDayRange = YES;
     }
 }
@@ -285,11 +285,11 @@ NSString *const HeaderDateFormat = @"MMMM";
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
-    return [self dateFromSimpleDate:self.minDate];
+    return [self.minDate dateWithLocale:self.locale];
 }
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
-    return [self dateFromSimpleDate:self.maxDate];
+    return [self.maxDate dateWithLocale:self.locale];
 }
 
 - (void)setDateSelectedBackgroundColor:(UIColor *)dateSelectedBackgroundColor {
@@ -519,8 +519,8 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.accessibilityLabel = [self formattedDate:date];
 
         Boolean enabled = [BPKCalendar date:date
-                              isBetweenDate:[self dateFromSimpleDate:self.minDate]
-                                    andDate:[self dateFromSimpleDate:self.maxDate]];
+                              isBetweenDate:[self.minDate dateWithLocale:self.locale]
+                                    andDate:[self.maxDate dateWithLocale:self.locale]];
 
         calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
 
@@ -556,34 +556,6 @@ NSString *const HeaderDateFormat = @"MMMM";
         return NO;
 
     return YES;
-}
-
-- (BPKSimpleDate *)simpleDateFromDate:(NSDate *)date {
-    NSDateComponents *components =
-        [self.calendarView.gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                       fromDate:date];
-
-    return [[BPKSimpleDate alloc] initWithYear:components.year month:components.month day:components.day];
-}
-
-- (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates {
-    NSMutableArray *simpleDates = [[NSMutableArray alloc] initWithCapacity:dates.count];
-
-    for (NSDate *date in dates) {
-        [simpleDates addObject:[self simpleDateFromDate:date]];
-    }
-
-    return [simpleDates copy];
-}
-
-- (NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate {
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    components.timeZone = self.gregorian.timeZone;
-    [components setDay:simpleDate.day];
-    [components setMonth:simpleDate.month];
-    [components setYear:simpleDate.year];
-
-    return [self.calendarView.gregorian dateFromComponents:components];
 }
 
 #pragma mark -

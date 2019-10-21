@@ -139,19 +139,5 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
 - (void)reloadData;
 
-/**
- * Converts a Date to a SimpleDate based on the device's locale timezone
- * @param date Date object in the device's local timezone
- * @return SimpleDate representing a timezone independent date
- */
-- (BPKSimpleDate *)simpleDateFromDate:(NSDate *)date;
-
-/**
- * Converts a SimpleDate to a Date based on the device's locale timezone
- * @param simpleDate A SimpleDate representing a timezone independent date
- * @return Date object in the device's local timezone
- */
-- (NSDate *)dateFromSimpleDate:(BPKSimpleDate *)simpleDate;
-
 @end
 NS_ASSUME_NONNULL_END
