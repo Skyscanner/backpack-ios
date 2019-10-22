@@ -30,6 +30,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Font.h>
+#import <Backpack/SimpleDate.h>
 #import <Backpack/Spacing.h>
 
 #import "BPKCalendarAppearance.h"
@@ -37,7 +38,6 @@
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarYearPill.h"
-#import "BPKSimpleDate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface FSCalendar ()
