@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 21.0.0
+
+**Breaking:**
+ - Backpack/Calendar:
+   - `SimpleDate` must now be imported using `Backpack/SimpleDate` instead of `Backpack/Calendar`.
+
 ## 20.0.0
 
 **Breaking:**
