@@ -22,6 +22,14 @@
 
 @implementation BPKColor
 
++ (UIColor *)backgroundDarkColor {
+  return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
+}
+
++ (UIColor *)backgroundLightColor {
+  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 + (UIColor *)abisko {
   return [UIColor colorWithRed:0.353 green:0.282 blue:0.608 alpha:1];
 }
@@ -158,6 +166,14 @@
   return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
 }
 
++ (UIColor *)primaryLightColor {
+  return [UIColor colorWithRed:0.027 green:0.439 blue:0.890 alpha:1];
+}
+
++ (UIColor *)secondaryDarkColor {
+  return [UIColor colorWithRed:0.427 green:0.624 blue:0.922 alpha:1];
+}
+
 + (UIColor *)shadowLgColor {
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
@@ -166,16 +182,60 @@
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
 
++ (UIColor *)textPrimaryDarkColor {
+  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 + (UIColor *)textPrimaryLightColor {
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
 
++ (UIColor *)textQuaternaryDarkColor {
+  return [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1];
+}
+
++ (UIColor *)textQuaternaryLightColor {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+}
+
++ (UIColor *)textSecondaryDarkColor {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+}
+
 + (UIColor *)textSecondaryLightColor {
-  return [UIColor colorWithRed:0.267 green:0.271 blue:0.376 alpha:1];
+  return [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1];
+}
+
++ (UIColor *)textTertiaryDarkColor {
+  return [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1];
+}
+
++ (UIColor *)textTertiaryLightColor {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
 }
 
 + (UIColor *)touchableOverlayColor {
   return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+}
+
++ (UIColor *)backgroundColor {
+  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
++ (UIColor *)textPrimaryColor {
+  return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+}
+
++ (UIColor *)textQuaternaryColor {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+}
+
++ (UIColor *)textSecondaryColor {
+  return [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1];
+}
+
++ (UIColor *)textTertiaryColor {
+  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
 }
 
 + (UIColor *)clear {
@@ -195,15 +255,6 @@
     }
 #endif
     return BPKColor.skyGray;
-}
-
-+ (UIColor *)backgroundColor {
-#if __BPK_DARK_MODE_SUPPORTED
-  if (@available(iOS 13.0, *)) {
-    return UIColor.systemBackgroundColor;
-  }
-#endif
-    return UIColor.whiteColor;
 }
 
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {

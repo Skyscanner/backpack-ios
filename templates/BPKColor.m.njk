@@ -45,15 +45,6 @@
     return BPKColor.skyGray;
 }
 
-+ (UIColor *)backgroundColor {
-#if __BPK_DARK_MODE_SUPPORTED
-  if (@available(iOS 13.0, *)) {
-    return UIColor.systemBackgroundColor;
-  }
-#endif
-    return UIColor.whiteColor;
-}
-
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight {
     double secondColorWeight = 1.0f - weight;
 
