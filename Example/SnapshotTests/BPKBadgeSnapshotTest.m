@@ -23,6 +23,8 @@
 
 #import <Backpack/Badge.h>
 
+#import "BPKSnapshotTest.h"
+
 @interface BPKBadgeSnapshotTest : FBSnapshotTestCase
 
 @end
@@ -45,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
     return stackView;
 }
 
-- (void)testViewSnapshotWithTypes {
+- (UIView *)createViewWithTypes {
     BPKBadgeType types[] = {BPKBadgeTypeLight,   BPKBadgeTypeInverse, BPKBadgeTypeOutline,
                             BPKBadgeTypeSuccess, BPKBadgeTypeWarning, BPKBadgeTypeDestructive};
 
@@ -68,7 +70,15 @@ NS_ASSUME_NONNULL_BEGIN
         [parentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor],
     ]];
 
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
+}
+
+- (void)testViewSnapshotWithTypes {
+    UIView *lightView = [self createViewWithTypes];
+    UIView *darkView = [self createViewWithTypes];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
