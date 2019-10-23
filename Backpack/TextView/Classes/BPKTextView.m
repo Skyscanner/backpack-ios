@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
-    self.textColor = [BPKColor skyGray];
+    self.textColor = BPKColor.textPrimaryColor;
 
     [self updateStyle];
 }

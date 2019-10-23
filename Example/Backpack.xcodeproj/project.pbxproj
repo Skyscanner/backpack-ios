@@ -46,6 +46,8 @@
 		7639E565232907B0004D7B09 /* ToastSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */; };
 		7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E566232909C7004D7B09 /* ToastViewController.swift */; };
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
+		76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */; };
+		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
 		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -235,6 +237,8 @@
 		7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastSelectorViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
+		76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
+		76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -683,6 +687,8 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */,
+				76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */,
 				D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */,
 				76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */,
 				D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */,
@@ -1164,7 +1170,9 @@
 				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
+				76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
+				76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */,
 				760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
 				D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPill.m in Sources */,
