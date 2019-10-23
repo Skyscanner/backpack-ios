@@ -28,18 +28,9 @@
 {% endfor %}
 {% for c in dynamicColor %}
 + (UIColor *){{c.name}} {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:{{c.darkValue.r}} green:{{c.darkValue.g}} blue:{{c.darkValue.b}} alpha:{{c.darkValue.a}}];
-                } else {
-                    return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}]
+                                          darkVariant: [UIColor colorWithRed:{{c.darkValue.r}} green:{{c.darkValue.g}} blue:{{c.darkValue.b}} alpha:{{c.darkValue.a}}]
+    ];
 }
 {% endfor %}
 + (UIColor *)clear {
@@ -58,6 +49,21 @@
     double alpha = c1.alpha * weight + c2.alpha * secondColorWeight;
 
     return [[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
+}
+
++ (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant {
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return darkVariant;
+                } else {
+                    return lightVariant;
+                }
+     }];
+}
+#endif
+  return lightVariant;
 }
 
 @end

@@ -65,6 +65,14 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  */
 + (UIColor *)blend:(UIColor*)firstColor with:(UIColor*)secondColor weight:(double)weight;
 
+/**
+ * Generates a dynamic color given a light and dark variant.
+ *
+ * @param lightVariant The color used in light mode, or on systems that don't support dark-mode.
+ * @param darkVariant The color used in dark mode.
+ */
++ (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant;
+
 @end
 NS_ASSUME_NONNULL_END
 // clang-format on

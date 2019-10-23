@@ -220,78 +220,33 @@
 
 
 + (UIColor *)backgroundColor {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
-                } else {
-                    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1]
+    ];
 }
 
 + (UIColor *)textPrimaryColor {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
-                } else {
-                    return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+    ];
 }
 
 + (UIColor *)textQuaternaryColor {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1];
-                } else {
-                    return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1]
+    ];
 }
 
 + (UIColor *)textSecondaryColor {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
-                } else {
-                    return [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
+    ];
 }
 
 + (UIColor *)textTertiaryColor {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                    return [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1];
-                } else {
-                    return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
-                }
-     }];
-}
-#endif
-  return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1]
+    ];
 }
 
 + (UIColor *)clear {
@@ -310,6 +265,21 @@
     double alpha = c1.alpha * weight + c2.alpha * secondColorWeight;
 
     return [[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
+}
+
++ (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant {
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return darkVariant;
+                } else {
+                    return lightVariant;
+                }
+     }];
+}
+#endif
+  return lightVariant;
 }
 
 @end
