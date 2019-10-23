@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = BPKColor.label;
+    UIColor *expectedColor = BPKColor.textPrimaryColor;
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = BPKColor.label;
+    UIColor *expectedColor = BPKColor.textPrimaryColor;
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];

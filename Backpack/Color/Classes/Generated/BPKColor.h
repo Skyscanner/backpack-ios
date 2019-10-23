@@ -28,11 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 */
 NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 
-/**
- * The default color for Backpack text.
-*/
-@property(nonatomic, class, readonly) UIColor * label;
-
 ///-----------------------
 /// @name Colors
 ///-----------------------
@@ -381,44 +376,49 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * touchableOverlayColor;
 
 /**
- * The `backgroundColor` color from the Backpack palette.
+ * The `clear` color from the Backpack palette.
+*/
+@property(nonatomic, class, readonly) UIColor * clear;
+
+///-----------------------
+/// @name Dynamic colors
+///-----------------------
+
+/**
+ * The `backgroundColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #000000ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * backgroundColor;
 
 /**
- * The `textPrimaryColor` color from the Backpack palette.
+ * The `textPrimaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #111236ff; background: linear-gradient(0.375turn, #111236ff 49%, #ffffffff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textPrimaryColor;
 
 /**
- * The `textQuaternaryColor` color from the Backpack palette.
+ * The `textQuaternaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #8f90a0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #8f90a0ff; background: linear-gradient(0.375turn, #8f90a0ff 49%, #cdcdd7ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textQuaternaryColor;
 
 /**
- * The `textSecondaryColor` color from the Backpack palette.
+ * The `textSecondaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #68697fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #68697fff; background: linear-gradient(0.375turn, #68697fff 49%, #8f90a0ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textSecondaryColor;
 
 /**
- * The `textTertiaryColor` color from the Backpack palette.
+ * The `textTertiaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background: #8f90a0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #8f90a0ff; background: linear-gradient(0.375turn, #8f90a0ff 49%, #b2b2bfff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textTertiaryColor;
 
-/**
- * The `clear` color from the Backpack palette.
-*/
-@property(nonatomic, class, readonly) UIColor * clear;
 
 /**
  * Combines two `UIColor` values with a specified weighting.
