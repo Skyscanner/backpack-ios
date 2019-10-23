@@ -77,3 +77,47 @@
 }
 #endif
 
+#if __BPK_DARK_MODE_SUPPORTED
+#define BPKSnapshotVerifyViewLightWithOptions(view__, identifier__, suffixes__, tolerance__) \
+{ \
+  BPKVerifySnapshotOS(); \
+  NSString *identifier = @"light-mode"; \
+  if (identifier__ != nil) { \
+    identifier = [NSString stringWithFormat: @"%@_%@", identifier, identifier__]; \
+  } \
+ \
+  if (@available(iOS 13.0, *)) { \
+    view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight; \
+  } \
+  FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__); \
+}
+#else
+#define BPKSnapshotVerifyViewLightWithOptions(view__, identifier__, suffixes__, tolerance__) \
+{ \
+  BPKVerifySnapshotOS(); \
+  FBSnapshotVerifyViewWithOptions(view__, identifier__, suffixes__, tolerance__); \
+}
+#endif
+
+#if __BPK_DARK_MODE_SUPPORTED
+#define BPKSnapshotVerifyViewDarkWithOptions(view__, identifier__, suffixes__, tolerance__) \
+{ \
+  BPKVerifySnapshotOS(); \
+  NSString *identifier = @"dark-mode"; \
+  if (identifier__ != nil) { \
+    identifier = [NSString stringWithFormat: @"%@_%@", identifier, identifier__]; \
+  } \
+ \
+  if (@available(iOS 13.0, *)) { \
+    view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark; \
+  } \
+  FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__); \
+}
+#else
+#define BPKSnapshotVerifyViewDarkWithOptions(view__, identifier__, suffixes__, tolerance__) \
+{ \
+  BPKVerifySnapshotOS(); \
+  FBSnapshotVerifyViewWithOptions(view__, identifier__, suffixes__, tolerance__); \
+}
+#endif
+

@@ -21,6 +21,8 @@
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
 
+#import "BPKSnapshotTest.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonSnapshotTest : FBSnapshotTestCase
 //- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme;
@@ -33,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
-- (void)testDefaultPrimary {
+- (UIView *)createDefaultPrimary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStylePrimary
                                            applyTheme:NO
@@ -41,329 +43,569 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testDefaultPrimary {
+    UIView *lightView = [self createDefaultPrimary];
+    UIView *darkView = [self createDefaultPrimary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingPrimary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
 }
 
 - (void)testDefaultLoadingPrimary {
+    UIView *lightView = [self createDefaultLoadingPrimary];
+    UIView *darkView = [self createDefaultLoadingPrimary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultSecondary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStylePrimary
+                                                style:BPKButtonStyleSecondary
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultSecondary {
+    UIView *lightView = [self createDefaultSecondary];
+    UIView *darkView = [self createDefaultSecondary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingSecondary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleSecondary
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultLoadingSecondary {
+    UIView *lightView = [self createDefaultLoadingSecondary];
+    UIView *darkView = [self createDefaultLoadingSecondary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultDestructive {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleSecondary
+                                                style:BPKButtonStyleDestructive
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultDestructive {
+    UIView *lightView = [self createDefaultDestructive];
+    UIView *darkView = [self createDefaultDestructive];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingDestructive {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleDestructive
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultLoadingDestructive {
+    UIView *lightView = [self createDefaultLoadingDestructive];
+    UIView *darkView = [self createDefaultLoadingDestructive];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultFeatured {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleDestructive
+                                                style:BPKButtonStyleFeatured
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultFeatured {
+    UIView *lightView = [self createDefaultFeatured];
+    UIView *darkView = [self createDefaultFeatured];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingFeatured {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleFeatured
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultLoadingFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleFeatured
-                                           applyTheme:NO
-                                              loading:YES];
-    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    view.frame = CGRectMake(0, 0, size.width, size.height);
+    UIView *lightView = [self createDefaultLoadingFeatured];
+    UIView *darkView = [self createDefaultLoadingFeatured];
 
-    FBSnapshotVerifyView(view, nil);
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (void)testDefaultOutline {
+- (UIView *)createDefaultLink {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleOutline
+                                                style:BPKButtonStyleLink
                                            applyTheme:NO
                                               loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
-}
-
-- (void)testDefaultLoadingOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleOutline
-                                           applyTheme:NO
-                                              loading:YES];
-    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    view.frame = CGRectMake(0, 0, size.width, size.height);
-
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testDefaultLink {
+    UIView *lightView = [self createDefaultLink];
+    UIView *darkView = [self createDefaultLink];
+
+    BPKSnapshotVerifyViewLightWithOptions(lightView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    BPKSnapshotVerifyViewDarkWithOptions(darkView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+}
+
+- (UIView *)createDefaultLoadingLink {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleLink
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    return view;
 }
 
 - (void)testDefaultLoadingLink {
+    UIView *lightView = [self createDefaultLoadingLink];
+    UIView *darkView = [self createDefaultLoadingLink];
+
+    BPKSnapshotVerifyViewLightWithOptions(lightView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    BPKSnapshotVerifyViewDarkWithOptions(darkView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+}
+
+- (UIView *)createDefaultOutline {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleLink
+                                                style:BPKButtonStyleOutline
+                                           applyTheme:NO
+                                              loading:NO];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
+}
+
+- (void)testDefaultOutline {
+    UIView *lightView = [self createDefaultOutline];
+    UIView *darkView = [self createDefaultOutline];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingOutline {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleOutline
                                            applyTheme:NO
                                               loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    return view;
+}
+
+- (void)testDefaultLoadingOutline {
+    UIView *lightView = [self createDefaultLoadingOutline];
+    UIView *darkView = [self createDefaultLoadingOutline];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargePrimary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:NO];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
 }
 
 - (void)testLargePrimary {
+    UIView *lightView = [self createLargePrimary];
+    UIView *darkView = [self createLargePrimary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingPrimary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStylePrimary
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLoadingPrimary {
+    UIView *lightView = [self createLargeLoadingPrimary];
+    UIView *darkView = [self createLargeLoadingPrimary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeSecondary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStylePrimary
+                                                style:BPKButtonStyleSecondary
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeSecondary {
+    UIView *lightView = [self createLargeSecondary];
+    UIView *darkView = [self createLargeSecondary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingSecondary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStyleSecondary
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLoadingSecondary {
+    UIView *lightView = [self createLargeLoadingSecondary];
+    UIView *darkView = [self createLargeLoadingSecondary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeDestructive {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStyleSecondary
+                                                style:BPKButtonStyleDestructive
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeDestructive {
+    UIView *lightView = [self createLargeDestructive];
+    UIView *darkView = [self createLargeDestructive];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingDestructive {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStyleDestructive
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLoadingDestructive {
+    UIView *lightView = [self createLargeLoadingDestructive];
+    UIView *darkView = [self createLargeLoadingDestructive];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeFeatured {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStyleDestructive
+                                                style:BPKButtonStyleFeatured
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeFeatured {
+    UIView *lightView = [self createLargeFeatured];
+    UIView *darkView = [self createLargeFeatured];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingFeatured {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStyleFeatured
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLoadingFeatured {
+    UIView *lightView = [self createLargeLoadingFeatured];
+    UIView *darkView = [self createLargeLoadingFeatured];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLink {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStyleFeatured
+                                                style:BPKButtonStyleLink
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLink {
+    UIView *lightView = [self createLargeLink];
+    UIView *darkView = [self createLargeLink];
+
+    BPKSnapshotVerifyViewLightWithOptions(lightView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    BPKSnapshotVerifyViewDarkWithOptions(darkView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+}
+
+- (UIView *)createLargeLoadingLink {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStyleLink
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    return view;
 }
 
 - (void)testLargeLoadingLink {
+    UIView *lightView = [self createLargeLoadingLink];
+    UIView *darkView = [self createLargeLoadingLink];
+
+    BPKSnapshotVerifyViewLightWithOptions(lightView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    BPKSnapshotVerifyViewDarkWithOptions(darkView, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+}
+
+- (UIView *)createLargeOutline {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStyleLink
+                                                style:BPKButtonStyleOutline
                                            applyTheme:NO
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyViewWithOptions(view, nil, FBSnapshotTestCaseDefaultSuffixes(), 0.01);
+    return view;
 }
 
 - (void)testLargeOutline {
+    UIView *lightView = [self createLargeOutline];
+    UIView *darkView = [self createLargeOutline];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingOutline {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
                                                 style:BPKButtonStyleOutline
                                            applyTheme:NO
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testLargeLoadingOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
-                                                style:BPKButtonStyleOutline
-                                           applyTheme:NO
-                                              loading:YES];
+    UIView *lightView = [self createLargeLoadingOutline];
+    UIView *darkView = [self createLargeLoadingOutline];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createPrimaryWithTheme {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:YES
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testPrimaryWithTheme {
+    UIView *lightView = [self createPrimaryWithTheme];
+    UIView *darkView = [self createPrimaryWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createPrimaryLoadingWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStylePrimary
                                            applyTheme:YES
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testPrimaryLoadingWithTheme {
+    UIView *lightView = [self createPrimaryLoadingWithTheme];
+    UIView *darkView = [self createPrimaryLoadingWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createSecondaryWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStylePrimary
+                                                style:BPKButtonStyleSecondary
                                            applyTheme:YES
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testSecondaryWithTheme {
+    UIView *lightView = [self createSecondaryWithTheme];
+    UIView *darkView = [self createSecondaryWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createSecondaryLoadingWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleSecondary
                                            applyTheme:YES
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testSecondaryLoadingWithTheme {
+    UIView *lightView = [self createSecondaryLoadingWithTheme];
+    UIView *darkView = [self createSecondaryLoadingWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createFeaturedWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleSecondary
+                                                style:BPKButtonStyleFeatured
                                            applyTheme:YES
-                                              loading:YES];
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testFeaturedWithTheme {
+    UIView *lightView = [self createFeaturedWithTheme];
+    UIView *darkView = [self createFeaturedWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createFeaturedLoadingWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleFeatured
                                            applyTheme:YES
-                                              loading:NO];
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
 - (void)testFeaturedLoadingWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
-                                                style:BPKButtonStyleFeatured
-                                           applyTheme:YES
-                                              loading:YES];
-    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    view.frame = CGRectMake(0, 0, size.width, size.height);
+    UIView *lightView = [self createFeaturedLoadingWithTheme];
+    UIView *darkView = [self createFeaturedLoadingWithTheme];
 
-    FBSnapshotVerifyView(view, nil);
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (void)testDestructiveWithTheme {
+- (UIView *)createDestructiveWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleDestructive
                                            applyTheme:YES
@@ -371,10 +613,18 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testDestructiveLoadingWithTheme {
+- (void)testDestructiveWithTheme {
+    UIView *lightView = [self createDestructiveWithTheme];
+    UIView *darkView = [self createDestructiveWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDestructiveLoadingWithTheme {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
                                                 style:BPKButtonStyleDestructive
                                            applyTheme:YES
@@ -382,7 +632,15 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testDestructiveLoadingWithTheme {
+    UIView *lightView = [self createDestructiveLoadingWithTheme];
+    UIView *darkView = [self createDestructiveLoadingWithTheme];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 #pragma mark - Private
