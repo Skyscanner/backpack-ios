@@ -34,6 +34,22 @@
     return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
 }
 
++ (UIColor *)backgroundSecondaryDarkColor {
+    return [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1];
+}
+
++ (UIColor *)backgroundSecondaryLightColor {
+    return [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1];
+}
+
++ (UIColor *)backgroundTertiaryDarkColor {
+    return [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1];
+}
+
++ (UIColor *)backgroundTertiaryLightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 + (UIColor *)abisko {
     return [UIColor colorWithRed:0.353 green:0.282 blue:0.608 alpha:1];
 }
@@ -226,6 +242,18 @@
 + (UIColor *)backgroundColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
                                           darkVariant: [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundSecondaryColor {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundTertiaryColor {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1]
     ];
 }
 
