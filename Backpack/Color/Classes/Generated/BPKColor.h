@@ -89,6 +89,34 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * bagan;
 
 /**
+ * The `black` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #000000ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * black;
+
+/**
+ * The `blackTint01` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * blackTint01;
+
+/**
+ * The `blackTint02` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * blackTint02;
+
+/**
+ * The `blackTint03` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #636366ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * blackTint03;
+
+/**
  * The `bunol` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #ff7b59ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -313,6 +341,13 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * white;
 
 /**
+ * The `primaryDarkColor` color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background: #6d9febff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * primaryDarkColor;
+
+/**
  * The `primaryLightColor` color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background: #0770e3ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -432,6 +467,13 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * backgroundTertiaryColor;
+
+/**
+ * The `primaryColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #0770e3ff; background: linear-gradient(0.375turn, #0770e3ff 49%, #6d9febff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * primaryColor;
 
 /**
  * The `textPrimaryColor` dynamic color from the Backpack palette.
