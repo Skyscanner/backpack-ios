@@ -13,6 +13,9 @@
 - Backpack/TextView:
   - Fix to be dark mode compatible
 
+- Backpack/Calendar:
+  - Fix to be dark mode compatible
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
