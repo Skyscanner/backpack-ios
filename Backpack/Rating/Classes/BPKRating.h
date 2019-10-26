@@ -87,9 +87,9 @@ NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
                               title:(BPKRatingTextDefinition *)title
                            subtitle:(BPKRatingTextDefinition *_Nullable)subtitle NS_DESIGNATED_INITIALIZER;
 
-@property(nonatomic, strong) UIColor *lowRatingColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) UIColor *mediumRatingColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) UIColor *highRatingColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *lowRatingColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *mediumRatingColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *highRatingColor UI_APPEARANCE_SELECTOR;
 
 @end
 

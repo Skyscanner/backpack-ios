@@ -51,16 +51,21 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setPrimaryColor:(UIColor *)primaryColor {
+- (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
     if (_primaryColor != primaryColor) {
         _primaryColor = primaryColor;
-        self.onTintColor = primaryColor;
+
+        [self updateSwitchOnColor];
     }
+}
+
+-(void)updateSwitchOnColor {
+    self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.skyBlue;
 }
 
 - (void)setup {
     self.tintColor = BPKColor.skyGrayTint06;
-    self.onTintColor = _primaryColor;
+    [self updateSwitchOnColor];
     [self setNeedsDisplay];
 }
 

@@ -40,8 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
-
         [self setUp];
     }
 
@@ -53,8 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
-
         [self setUp];
     }
 
@@ -66,8 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
-
         [self setUp];
     }
 
@@ -128,7 +122,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - State setters
 
-- (void)setPrimaryColor:(UIColor *)primaryColor {
+- (void)setPrimaryColor:(UIColor *_Nullable)primaryColor {
     if (_primaryColor != primaryColor) {
         _primaryColor = primaryColor;
         [self updateStyle];
@@ -198,12 +192,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Updates
 
+- (UIColor *)currentPrimaryColor {
+    return self.primaryColor != nil ? self.primaryColor : BPKColor.skyBlue;
+}
+
 - (UIColor *)selectedBackgroundColor {
     if (self.backgroundTint != nil) {
         return self.backgroundTint;
     }
 
-    return self.primaryColor;
+    return self.currentPrimaryColor;
 }
 
 - (UIColor *)unselectedBackgroundColor {

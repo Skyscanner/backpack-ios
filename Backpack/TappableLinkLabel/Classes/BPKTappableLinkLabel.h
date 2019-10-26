@@ -47,7 +47,7 @@ typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLin
  */
 NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 
-@property(nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 /**
