@@ -52,6 +52,14 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
     return [UIColor colorWithRed:0.0f / 255.0f green:178.0f / 255.0f blue:214.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *_Nullable)progressBarPrimaryColor {
+    return self.primaryColor;
+}
+
+- (UIColor *_Nullable)linkPrimaryColor {
+    return self.primaryColor;
+}
+
 - (UIColor *)gray50 {
     return BPKColor.skyGrayTint07;
 }

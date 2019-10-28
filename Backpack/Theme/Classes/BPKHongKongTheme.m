@@ -57,6 +57,14 @@
     return [UIColor colorWithRed:76.0f / 255.0f green:76.0f / 255.0f blue:76.0f / 255.0f alpha:1.0f];
 }
 
+- (UIColor *_Nullable)progressBarPrimaryColor {
+    return self.primaryColor;
+}
+
+- (UIColor *_Nullable)linkPrimaryColor {
+    return self.primaryColor;
+}
+
 /**
  * Gray50 colour, #F1F2F8
  */

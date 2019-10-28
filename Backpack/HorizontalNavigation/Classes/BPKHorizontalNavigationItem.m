@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.selectedColor != nil) {
             return self.selectedColor;
         }
-        return BPKColor.skyBlue;
+        return BPKColor.primaryColor;
     }
     return BPKColor.skyGrayTint04;
 }

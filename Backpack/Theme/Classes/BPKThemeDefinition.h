@@ -65,6 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, strong) UIColor *primaryColor;
 @property(nullable, nonatomic, readonly, strong) BPKGradient *primaryGradient;
 
+@property(nullable, nonatomic, readonly, strong) UIColor *linkPrimaryColor;
+
+@property(nullable, nonatomic, readonly, strong) UIColor *progressBarPrimaryColor;
+
 @property(nullable, nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
 @property(nullable, nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
 

@@ -238,6 +238,14 @@ NSString *const DefaultThemeName = @"Default";
     return self.skyBlue500;
 }
 
+- (UIColor *_Nullable)progressBarPrimaryColor {
+    return nil;
+}
+
+- (UIColor *_Nullable)linkPrimaryColor {
+    return nil;
+}
+
 - (BPKGradient *)primaryGradient {
     UIColor *startColor = self.primaryColor;
     UIColor *endColor = self.primaryColor;

@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fillColor != fillColor) {
         _fillColor = fillColor;
 
-        self.progressTintColor = self.fillColor;
+        self.progressTintColor = self.fillColor != nil ? self.fillColor : BPKColor.skyBlue;
     }
 }
 

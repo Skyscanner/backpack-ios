@@ -73,7 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
     _persistedLinks = [[NSMutableArray alloc] init];
     _fontStyle = style;
     _contentView = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
-    _linkColor = BPKColor.skyBlue;
     _style = BPKTappableLinkLabelStyleDefault;
     self.contentView.delegate = self;
 
@@ -137,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.white;
     }
 
-    return _linkColor;
+    return _linkColor !=  nil ? _linkColor : BPKColor.primaryColor;
 }
 
 - (void)updateTextColors {
@@ -219,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fontStyle != fontStyle) {
         _fontStyle = fontStyle;
 
-        [self updateTextDisplay];
+        [self updateTextColors];
     }
 }
 
