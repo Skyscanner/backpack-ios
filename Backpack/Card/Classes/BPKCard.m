@@ -145,7 +145,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     [self.layer addSublayer:self.tintLayer];
 
     self.layer.masksToBounds = NO;
-    self.backgroundColor = BPKColor.white;
+    self.backgroundColor = BPKColor.backgroundTertiaryColor;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
 
     self.innerView = [[UIView alloc] initWithFrame:CGRectZero];
