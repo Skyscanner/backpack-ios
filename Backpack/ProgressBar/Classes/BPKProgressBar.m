@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (void)setFillColor:(UIColor *)fillColor {
+- (void)setFillColor:(UIColor *_Nullable)fillColor {
     if (_fillColor != fillColor) {
         _fillColor = fillColor;
 

@@ -248,67 +248,67 @@ NSString *const DefaultThemeName = @"Default";
 }
 
 - (UIColor *)chipPrimaryColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (UIColor *)switchPrimaryColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (UIColor *)spinnerPrimaryColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (UIColor *)buttonLinkContentColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (UIColor *)buttonPrimaryContentColor {
-    return self.white;
+    return nil;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
-    return self.montverde500;
+    return nil;
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return self.montverde500;
+    return nil;
 }
 
 - (UIColor *)buttonFeaturedContentColor {
-    return self.white;
+    return nil;
 }
 
 - (UIColor *)buttonFeaturedGradientStartColor {
-    return self.skyBlue500;
+    return nil;
 }
 
 - (UIColor *)buttonFeaturedGradientEndColor {
-    return self.skyBlue500;
+    return nil;
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return self.skyBlue500;
+    return nil;
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {
-    return self.white;
+    return nil;
 }
 
 - (UIColor *)buttonSecondaryBorderColor {
-    return self.gray100;
+    return nil;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
-    return self.red500;
+    return nil;
 }
 
 - (UIColor *)buttonDestructiveBackgroundColor {
-    return self.white;
+    return nil;
 }
 
 - (UIColor *)buttonDestructiveBorderColor {
-    return self.gray300;
+    return nil;
 }
 
 - (NSNumber *)buttonCornerRadius {
@@ -316,19 +316,19 @@ NSString *const DefaultThemeName = @"Default";
 }
 
 - (UIColor *)starFilledColor {
-    return self.kolkata500;
+    return nil;
 }
 
 - (UIColor *)horiontalNavigationSelectedColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (UIColor *)calendarDateSelectedContentColor {
-    return self.white;
+    return nil;
 }
 
 - (UIColor *)calendarDateSelectedBackgroundColor {
-    return self.primaryColor;
+    return nil;
 }
 
 - (Class)themeContainerClass {
@@ -336,15 +336,15 @@ NSString *const DefaultThemeName = @"Default";
 }
 
 - (UIColor *)ratingLowColor {
-    return BPKColor.panjin;
+    return nil;
 }
 
 - (UIColor *)ratingMediumColor {
-    return BPKColor.kolkata;
+    return nil;
 }
 
 - (UIColor *)ratingHighColor {
-    return BPKColor.monteverde;
+    return nil;
 }
 
 @end

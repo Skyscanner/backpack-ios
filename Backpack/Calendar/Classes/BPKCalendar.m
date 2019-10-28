@@ -76,8 +76,6 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
-        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -92,8 +90,6 @@ NSString *const HeaderDateFormat = @"MMMM";
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
-        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -107,8 +103,6 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (self) {
         self.minDate = minDate;
         self.maxDate = maxDate;
-        _dateSelectedBackgroundColor = BPKColor.skyBlue;
-        _dateSelectedContentColor = BPKColor.white;
         [self setup];
     }
 
@@ -140,8 +134,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     appearance.todayColor = BPKColor.textTertiaryDarkColor;
     appearance.titleTodayColor = BPKColor.textPrimaryColor;
     appearance.titleDefaultColor = BPKColor.textPrimaryColor;
-    appearance.selectionColor = self.dateSelectedBackgroundColor;
-    appearance.titleSelectionColor = self.dateSelectedContentColor;
+    appearance.selectionColor = self.currentDateSelectedBackgroundColor;
+    appearance.titleSelectionColor = self.currentDateSelectedContentColor;
     appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
 
     _appearance = appearance;
@@ -292,18 +286,18 @@ NSString *const HeaderDateFormat = @"MMMM";
     return [self.maxDate dateWithLocale:self.locale];
 }
 
-- (void)setDateSelectedBackgroundColor:(UIColor *)dateSelectedBackgroundColor {
+- (void)setDateSelectedBackgroundColor:(UIColor *_Nullable)dateSelectedBackgroundColor {
     if (dateSelectedBackgroundColor != _dateSelectedBackgroundColor) {
         _dateSelectedBackgroundColor = dateSelectedBackgroundColor;
-        self.appearance.selectionColor = self.dateSelectedBackgroundColor;
+        self.appearance.selectionColor = self.currentDateSelectedBackgroundColor;
         [self.calendarView.collectionView reloadData];
     }
 }
 
-- (void)setDateSelectedContentColor:(UIColor *)dateSelectedContentColor {
+- (void)setDateSelectedContentColor:(UIColor *_Nullable)dateSelectedContentColor {
     if (dateSelectedContentColor != _dateSelectedContentColor) {
         _dateSelectedContentColor = dateSelectedContentColor;
-        self.appearance.titleSelectionColor = self.dateSelectedContentColor;
+        self.appearance.titleSelectionColor = self.currentDateSelectedContentColor;
         [self.calendarView.collectionView reloadData];
     }
 }
@@ -569,6 +563,16 @@ NSString *const HeaderDateFormat = @"MMMM";
         return self.calendarView;
     }
     return [super forwardingTargetForSelector:selector];
+}
+
+#pragma mark - Getters
+
+-(UIColor *)currentDateSelectedBackgroundColor {
+    return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.skyBlue;
+}
+
+-(UIColor *)currentDateSelectedContentColor {
+    return self.dateSelectedContentColor != nil ? self.dateSelectedContentColor : BPKColor.white;
 }
 
 @end

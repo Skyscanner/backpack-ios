@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - State setters
 
-- (void)setLowRatingColor:(UIColor *)lowRatingColor {
+- (void)setLowRatingColor:(UIColor *_Nullable)lowRatingColor {
     BPKAssertMainThread();
     if (_lowRatingColor != lowRatingColor) {
         _lowRatingColor = lowRatingColor;
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setMediumRatingColor:(UIColor *)mediumRatingColor {
+- (void)setMediumRatingColor:(UIColor *_Nullable)mediumRatingColor {
     BPKAssertMainThread();
     if (_mediumRatingColor != mediumRatingColor) {
         _mediumRatingColor = mediumRatingColor;
@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setHighRatingColor:(UIColor *)highRatingColor {
+- (void)setHighRatingColor:(UIColor *_Nullable)highRatingColor {
     BPKAssertMainThread();
     if (_highRatingColor != highRatingColor) {
         _highRatingColor = highRatingColor;

@@ -231,7 +231,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setLinkColor:(UIColor *)linkColor {
+- (void)setLinkColor:(UIColor *_Nullable)linkColor {
     if (_linkColor != linkColor) {
         _linkColor = linkColor;
 

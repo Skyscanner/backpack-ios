@@ -28,24 +28,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) Class themeContainerClass;
 @property(nonatomic, readonly, strong) NSString *themeName;
 
-@property(nonatomic, readonly, strong) UIColor *switchPrimaryColor;
-@property(nonatomic, readonly, strong) UIColor *chipPrimaryColor;
-@property(nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *switchPrimaryColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *chipPrimaryColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
 @property(nullable, nonatomic, readonly, strong) BPKFontMapping *fontMapping;
 
-@property(nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
-@property(nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;
-@property(nonatomic, readonly, strong) UIColor *buttonSecondaryBackgroundColor;
-@property(nonatomic, readonly, strong) UIColor *buttonSecondaryBorderColor;
-@property(nonatomic, readonly, strong) UIColor *buttonDestructiveContentColor;
-@property(nonatomic, readonly, strong) UIColor *buttonDestructiveBackgroundColor;
-@property(nonatomic, readonly, strong) UIColor *buttonDestructiveBorderColor;
-@property(nonatomic, readonly, strong) UIColor *buttonPrimaryContentColor;
-@property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientStartColor;
-@property(nonatomic, readonly, strong) UIColor *buttonPrimaryGradientEndColor;
-@property(nonatomic, readonly, strong) UIColor *buttonFeaturedContentColor;
-@property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientStartColor;
-@property(nonatomic, readonly, strong) UIColor *buttonFeaturedGradientEndColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonSecondaryBackgroundColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonSecondaryBorderColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonDestructiveContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonDestructiveBackgroundColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonDestructiveBorderColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonPrimaryContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonPrimaryGradientStartColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonPrimaryGradientEndColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonFeaturedContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonFeaturedGradientStartColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *buttonFeaturedGradientEndColor;
 
 @property(nonatomic, readonly, strong) UIColor *gray50;
 @property(nonatomic, readonly, strong) UIColor *gray100;
@@ -63,18 +63,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, readonly, strong) NSNumber *buttonCornerRadius;
 
 @property(nonatomic, readonly, strong) UIColor *primaryColor;
-@property(nonatomic, readonly, strong) BPKGradient *primaryGradient;
+@property(nullable, nonatomic, readonly, strong) BPKGradient *primaryGradient;
 
-@property(nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
-@property(nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *calendarDateSelectedContentColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *calendarDateSelectedBackgroundColor;
 
 @property(nullable, nonatomic, readonly, strong) UIColor *starFilledColor;
 
-@property(nonatomic, readonly, strong) UIColor *horiontalNavigationSelectedColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *horiontalNavigationSelectedColor;
 
-@property(nonatomic, readonly, strong) UIColor *ratingLowColor;
-@property(nonatomic, readonly, strong) UIColor *ratingMediumColor;
-@property(nonatomic, readonly, strong) UIColor *ratingHighColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *ratingLowColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *ratingMediumColor;
+@property(nullable, nonatomic, readonly, strong) UIColor *ratingHighColor;
 
 @end
 

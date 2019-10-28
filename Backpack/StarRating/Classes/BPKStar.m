@@ -98,8 +98,6 @@ NS_ASSUME_NONNULL_BEGIN
         [self.bottomAnchor constraintEqualToAnchor:self.halfStarView.bottomAnchor]
     ]];
 
-    self.starColor = [BPKColor skyGrayTint06];
-    self.starFilledColor = [BPKColor erfoud];
     _size = size;
     _state = BPKStarStateDefault;
 
@@ -148,6 +146,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Helpers
 
+- (UIColor *)currentStarFilledColor {
+    return self.starFilledColor != nil ? self.starFilledColor : [BPKColor erfoud];
+}
+
+- (UIColor *)currentStarColor {
+    return self.starColor != nil ? self.starColor : [BPKColor skyGrayTint06];
+}
+
 - (BPKIconSize)iconSizeForStarSize:(BPKStarSize)size {
     switch (size) {
     case BPKStarSizeXLarge:
@@ -172,8 +178,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateStarAppearance {
-    self.starView.tintColor = self.state == BPKStarStateFull ? self.starFilledColor : self.starColor;
-    self.halfStarView.tintColor = self.starFilledColor;
+    self.starView.tintColor = self.state == BPKStarStateFull ? self.currentStarFilledColor : self.currentStarColor;
+    self.halfStarView.tintColor = self.currentStarFilledColor;
     self.halfStarView.hidden = self.state != BPKStarStateHalf;
 }
 

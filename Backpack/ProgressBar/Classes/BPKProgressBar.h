@@ -31,7 +31,7 @@ NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressV
 /**
  * The colour to use in the progress track.
  */
-@property(nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
+@property(nullable, nonatomic, strong) UIColor *fillColor UI_APPEARANCE_SELECTOR;
 
 @end
 NS_ASSUME_NONNULL_END
