@@ -13,6 +13,12 @@
 - Backpack/TextView:
   - Fix to be dark mode compatible
 
+- Backpack/Spinner:
+  - Fix to be dark mode compatible
+
+- Backpack/Switch:
+  - Fix to be dark mode compatible
+
 - Backpack/Calendar:
   - Fix to be dark mode compatible
 

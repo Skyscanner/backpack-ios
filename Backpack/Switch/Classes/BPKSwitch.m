@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)updateSwitchOnColor {
-    self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.skyBlue;
+    self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.primaryColor;
 }
 
 - (void)setup {
