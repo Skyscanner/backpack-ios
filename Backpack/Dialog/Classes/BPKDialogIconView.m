@@ -71,7 +71,6 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize viewSize = [[self class] viewSize];
 
     self.layer.cornerRadius = viewSize.height / 2.0;
-    self.backgroundColor = BPKColor.white;
 
     CGSize iconContainerSize = [[self class] iconContainerSize];
     self.iconContainerView =

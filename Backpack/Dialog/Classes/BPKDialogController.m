@@ -41,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSMutableArray<BPKDialogScrimAction *> *scrimActions;
 
 @property(nonatomic, strong) NSLayoutConstraint *bottomAnchorConstraint;
+@property(nonatomic, strong) UIColor *scrimViewBackgroundColor;
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
@@ -86,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.scrimView = [[UIView alloc] initWithFrame:CGRectZero];
     self.scrimView.clipsToBounds = YES;
     self.scrimView.userInteractionEnabled = YES;
-    self.scrimView.backgroundColor = BPKColor.skyGray;
+    self.scrimView.backgroundColor = self.scrimViewBackgroundColor;
     self.scrimView.alpha = 0.5;
     self.scrimView.translatesAutoresizingMaskIntoConstraints = NO;
     self.scrimView.accessibilityIdentifier = @"dialogScrimView";
@@ -231,6 +232,11 @@ NS_ASSUME_NONNULL_BEGIN
     return animator;
 }
 
+#pragma mark - Dynamic colors
+- (UIColor *)scrimViewBackgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray
+                                      darkVariant:BPKColor.backgroundDarkColor];
+}
 @end
 
 NS_ASSUME_NONNULL_END
