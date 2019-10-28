@@ -55,7 +55,9 @@ extension BottomSheetViewController {
             let wrappedBottomSection = rootViewController.createIdenticalContainerController(
                 forRootController: bottomSection
             )
-            wrappedBottomSection.view.backgroundColor = Color.white
+
+            bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
+            wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
             let sheet = BottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
