@@ -111,7 +111,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     self.originalLayoutMargins = self.layoutMargins;
     self.padded = padded;
     self.style = BPKPanelStyleDefault;
-    self.backgroundColor = [BPKColor white];
+    self.backgroundColor = BPKColor.backgroundTertiaryColor;
     self.layer.cornerRadius = BPKBorderRadiusSm;
     [self updatePanelAppearance];
 }

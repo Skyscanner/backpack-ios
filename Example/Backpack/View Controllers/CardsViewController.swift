@@ -44,6 +44,7 @@ class CardsViewController: UIViewController {
         card.isSelected = selected
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
+            label.textColor = Color.textPrimaryLightColor
         }
     }
 }
