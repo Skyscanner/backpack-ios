@@ -19,6 +19,9 @@
 - Backpack/Switch:
   - Fix to be dark mode compatible
 
+- Backpack/NavigationBar:
+  - Fix to be dark mode compatible
+
 - Backpack/Calendar:
   - Fix to be dark mode compatible
 
