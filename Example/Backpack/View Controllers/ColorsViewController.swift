@@ -22,7 +22,7 @@ import Backpack
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
         ("primary color", { (view: UIView) -> UIColor in
-            return Color.skyBlue
+            return Color.primaryColor
         }),
         ("blue700", { (view: UIView) -> UIColor in
             return Color.skyBlueShade02
@@ -62,10 +62,49 @@ class ColorsViewController: UICollectionViewController {
             return Color.skyGray
         })
     ]
+    fileprivate static var blackColors = [
+        ("black", { (view: UIView) -> UIColor in
+            return Color.black
+        }),
+        ("blackTint01", { (view: UIView) -> UIColor in
+            return Color.blackTint01
+        }),
+        ("blackTint02", { (view: UIView) -> UIColor in
+            return Color.blackTint02
+        }),
+        ("blackTint03", { (view: UIView) -> UIColor in
+            return Color.blackTint03
+        })
+    ]
+    fileprivate static var dynamicColors = [
+        ("backgroundColor", { (view: UIView) -> UIColor in
+            return Color.backgroundColor
+        }),
+        ("backgroundSecondaryColor", { (view: UIView) -> UIColor in
+            return Color.backgroundSecondaryColor
+        }),
+        ("backgroundTertiaryColor", { (view: UIView) -> UIColor in
+            return Color.backgroundTertiaryColor
+        }),
+        ("textPrimaryColor", { (view: UIView) -> UIColor in
+            return Color.textPrimaryColor
+        }),
+        ("textSecondaryColor", { (view: UIView) -> UIColor in
+            return Color.textSecondaryColor
+        }),
+        ("textTertiaryColor", { (view: UIView) -> UIColor in
+            return Color.textTertiaryColor
+        }),
+        ("textQuaternaryColor", { (view: UIView) -> UIColor in
+            return Color.textQuaternaryColor
+        })
+    ]
     fileprivate static var allColors = [
         ("Primary colors", ColorsViewController.primaryColors),
         ("Secondary colors", ColorsViewController.secondaryColors),
-        ("Grays", ColorsViewController.grayColors)
+        ("Grays", ColorsViewController.grayColors),
+        ("Blacks", ColorsViewController.blackColors),
+        ("Dynamic", ColorsViewController.dynamicColors)
     ]
 
     fileprivate static let cellIdentifier = "ColorPreviewCollectionViewCell"
