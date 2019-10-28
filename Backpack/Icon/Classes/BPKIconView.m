@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    self.tintColor = BPKColor.skyGray;
+    self.tintColor = BPKColor.textPrimaryColor;
 }
 
 - (void)setIconName:(nullable BPKIconName)iconName {
