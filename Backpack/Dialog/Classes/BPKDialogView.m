@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSMutableArray<BPKActionButtonPair *> *registeredActions;
 @property(nonatomic, strong) NSLayoutConstraint *descriptionLabelTopConstraint;
+@property(nonatomic, strong) UIColor *dialogContentViewBackgroundColor;
 @end
 
 @implementation BPKDialogView
@@ -105,11 +106,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupViews {
     self.contentView = [UIView new];
-    self.contentView.backgroundColor = BPKColor.white;
+    self.contentView.backgroundColor = self.dialogContentViewBackgroundColor;
     self.contentView.layer.cornerRadius = BPKBorderRadiusSm;
 
     self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXlEmphasized];
     self.titleLabel.numberOfLines = 0;
+    self.titleLabel.textColor = BPKColor.textPrimaryColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 
     self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
@@ -186,6 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateIconView {
     if (self.hasIcon && self.iconView == nil) {
         self.iconView = [[BPKDialogIconView alloc] initWithIconDefinition:self.iconDefinition];
+        self.iconView.backgroundColor = self.dialogContentViewBackgroundColor;
         [self addSubview:self.iconView];
 
         CGSize iconViewSize = [[self.iconView class] viewSize];
@@ -321,6 +324,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)hasTitle {
     return (self.titleLabel.text != nil && ![self.titleLabel.text isEqualToString:@""]);
+}
+
+#pragma mark - Dynamic colors
+- (UIColor *)dialogContentViewBackgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white
+                                      darkVariant:BPKColor.backgroundSecondaryDarkColor];
 }
 
 @end
