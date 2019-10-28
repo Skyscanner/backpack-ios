@@ -19,6 +19,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Label.h>
 
 #import "BPKNavigationBarLargeTitleView.h"
@@ -37,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) UIVisualEffectView *backgroundView;
 @property(nonatomic, strong, readonly) UIView *borderView;
 @property(nonatomic, strong, readonly) UIBlurEffect *backgroundEffect;
+@property(nonatomic, strong, readonly) UIColor *borderViewBackgroundColor;
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
@@ -97,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
         if (_largeTitleTextColor) {
             self.largeTitleView.titleLabel.textColor = _largeTitleTextColor;
         } else {
-            self.largeTitleView.titleLabel.textColor = BPKColor.skyGray;
+            self.largeTitleView.titleLabel.textColor = BPKColor.textPrimaryColor;
         }
     }
 }
@@ -215,6 +217,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIBlurEffect *)backgroundEffect {
     if (!_backgroundEffect) {
+#if __BPK_DARK_MODE_SUPPORTED
+        if (@available(iOS 13.0, *)) {
+            _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterial];
+            return _backgroundEffect;
+        }
+#endif
         _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     }
 
@@ -234,7 +242,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_backgroundView) {
         _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        _backgroundView.backgroundColor = BPKColor.white;
+        _backgroundView.backgroundColor = BPKColor.backgroundColor;
     }
 
     return _backgroundView;
@@ -244,7 +252,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_borderView) {
         _borderView = [[UIView alloc] initWithFrame:CGRectZero];
         _borderView.translatesAutoresizingMaskIntoConstraints = NO;
-        _borderView.backgroundColor = BPKColor.skyGrayTint06;
+        _borderView.backgroundColor = self.borderViewBackgroundColor;
         _borderView.alpha = 0.0;
     }
 
@@ -309,6 +317,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return (UIViewController *)responder;
+}
+
+-(UIColor *)borderViewBackgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint01];
 }
 
 @end
