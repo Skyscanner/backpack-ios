@@ -1,22 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Added:**
-
-- Backpack/Icon:
-  - New `multiple-bookings` icon.
-
-- Backpack/Color:
-  - New semantic colours.
-
-**Fixed:**
-
-- Backpack:
-  - Made components dark mode compatible.
-
-**Breaking:**
-
-- Backpack/Theme:
-  - Theme definitions must now implement `progressBarPrimaryColor` and `linkPrimaryColor`.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

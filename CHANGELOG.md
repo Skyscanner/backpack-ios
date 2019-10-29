@@ -2,6 +2,26 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 22.0.0
+
+**Added:**
+
+- Backpack/Icon:
+  - New `multiple-bookings` icon.
+
+- Backpack/Color:
+  - New semantic colours.
+
+**Fixed:**
+
+- Backpack:
+  - Made components dark mode compatible.
+
+**Breaking:**
+
+- Backpack/Theme:
+  - Theme definitions must now implement `progressBarPrimaryColor` and `linkPrimaryColor`.
+
 ## 21.0.0
 
 **Breaking:**
