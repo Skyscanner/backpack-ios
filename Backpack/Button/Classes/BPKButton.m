@@ -296,7 +296,11 @@ NS_ASSUME_NONNULL_BEGIN
         self.contentEdgeInsets = self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     }
 
-    self.spinner.center = self.imageView.center;
+    if (self.isIconOnly || self.isTextAndIcon) {
+        self.spinner.center = self.imageView.center;
+    } else {
+        self.spinner.center = self.center;
+    }
     self.imageView.alpha = self.isLoading ? .0f : 1.f;
 }
 
@@ -689,6 +693,10 @@ NS_ASSUME_NONNULL_BEGIN
         [self.spinner stopAnimating];
     }
 
+    if (!self.isTextAndIcon) {
+        self.titleLabel.layer.opacity = loading ? 0 : 1;
+    }
+
     [self updateContentColor];
 }
 
@@ -784,7 +792,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIsLoading:(BOOL)isLoading {
-    if (_isLoading != isLoading && self.currentImage) {
+    if (_isLoading != isLoading) {
         _isLoading = isLoading;
         [self updateLoadingState:isLoading];
     }

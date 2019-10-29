@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
 @property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingButton;
 @property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingIconOnlyButton;
+@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingTitleOnlyButton;
 
 @property(weak, nonatomic) IBOutlet BPKButton *largeTextButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
@@ -42,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
 @property (weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
 @property (weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
+@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingTitleOnlyButton;
 @property (assign, nonatomic) BOOL isOutlineSectionWithLightStyle;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
@@ -91,9 +93,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.defaultTrailingIconButton.style = self.style;
     self.defaultLeadingIconButton.style = self.style;
     self.defaultLoadingIconOnlyButton.style = self.style;
+    self.defaultLoadingTitleOnlyButton.style = self.style;
     self.defaultLoadingButton.style = self.style;
     self.defaultLoadingButton.isLoading = YES;
     self.defaultLoadingIconOnlyButton.isLoading = YES;
+    self.defaultLoadingTitleOnlyButton.isLoading = YES;
 
     self.largeTextButton.style = self.style;
     self.largeDisabledButton.style = self.style;
@@ -101,9 +105,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.largeTrailingIconButton.style = self.style;
     self.largeLeadingIconButton.style = self.style;
     self.largeLoadingIconOnlyButton.style = self.style;
+    self.largeLoadingTitleOnlyButton.style = self.style;
     self.largeLoadingButton.style = self.style;
     self.largeLoadingButton.isLoading = YES;
     self.largeLoadingIconOnlyButton.isLoading = YES;
+    self.largeLoadingTitleOnlyButton.isLoading = YES;
 }
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title {
@@ -117,9 +123,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (IBAction)switchLoadingState:(UISwitch *)sender {
+    self.defaultLoadingTitleOnlyButton.isLoading = sender.on;
     self.defaultLoadingIconOnlyButton.isLoading = sender.on;
     self.defaultLoadingButton.isLoading = sender.on;
     self.largeLoadingIconOnlyButton.isLoading = sender.on;
+    self.largeLoadingTitleOnlyButton.isLoading = sender.on;
     self.largeLoadingButton.isLoading = sender.on;
 }
 
