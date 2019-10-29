@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 22.0.1
+
+**Fixed:**
+- Backpack/Rating:
+  - Fix minor layout issues in `BPKRating`.
+
 ## 22.0.0
 
 **Added:**
