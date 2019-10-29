@@ -53,6 +53,14 @@
     return BPKColor.skyBlueTint03;
 }
 
+- (UIColor *_Nullable)progressBarPrimaryColor {
+    return self.primaryColor;
+}
+
+- (UIColor *_Nullable)linkPrimaryColor {
+    return self.primaryColor;
+}
+
 /**
  * Gray50 colour, #F1F2F8
  */

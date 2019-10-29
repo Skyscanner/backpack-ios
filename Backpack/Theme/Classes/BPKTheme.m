@@ -206,7 +206,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKTappableLinkLabel *tappableLinkLabelViewAppearance =
         [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     tappableLinkLabelViewAppearance.fontMapping = theme.fontMapping;
-    tappableLinkLabelViewAppearance.linkColor = theme.primaryColor;
+    tappableLinkLabelViewAppearance.linkColor = theme.linkPrimaryColor;
 
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
@@ -217,7 +217,7 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     horizontalNavigationAppearance.fontMapping = theme.fontMapping;
 
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
-    progressBarAppearance.fillColor = theme.primaryColor;
+    progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
     BPKRating *ratingAppearance = [BPKRating appearanceWhenContainedInInstancesOfClasses:@[class]];
     ratingAppearance.lowRatingColor = theme.ratingLowColor;
