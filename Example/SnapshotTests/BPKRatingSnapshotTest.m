@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.lowRatingText = @"Capped";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = -1.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.highRatingText = @"Capped";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 11.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.lowRatingText = @"Very low";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 0.1;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.lowRatingText = @"Low";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 5.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.mediumRatingText = @"Medium";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 6.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.mediumRatingText = @"Medium-high";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 7.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.highRatingText = @"High";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 8.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.highRatingText = @"High";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 9.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.lowRatingText = @"Meh";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 4.7;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width * 3, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -133,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 4.7;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -159,7 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -172,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -184,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 0.1;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -196,7 +196,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 5.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 6.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 7.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -232,7 +232,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -244,7 +244,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 9.9;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -257,7 +257,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeExtraSmall;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -270,7 +270,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeSmall;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -283,7 +283,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeBase;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -296,7 +296,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeLarge;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -311,7 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -326,7 +326,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -341,7 +341,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -352,7 +352,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = -1.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -363,7 +363,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 11.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -374,7 +374,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 0.1;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -385,7 +385,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 5.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -396,7 +396,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 6.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -407,7 +407,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 7.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -418,7 +418,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -429,7 +429,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 9.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -440,7 +440,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 4.7;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width * 3, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -451,7 +451,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.title = self.titleTextDefinition;
     bpkRating.ratingValue = 4.7;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -464,7 +464,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 0.1;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -477,7 +477,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 5.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -490,7 +490,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 6.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -503,7 +503,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 7.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -516,7 +516,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -529,7 +529,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.subtitle = self.subTitleTextDefinition;
     bpkRating.ratingValue = 9.9;
     bpkRating.layout = BPKRatingLayoutVertical;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -543,7 +543,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeExtraSmall;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -557,7 +557,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeSmall;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -571,7 +571,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeBase;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -585,7 +585,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeLarge;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -601,7 +601,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -617,7 +617,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }
@@ -633,7 +633,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
     bpkRating.highRatingColor = UIColor.cyanColor;
-    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
 }

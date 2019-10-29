@@ -212,7 +212,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.verticalLayoutConstraints = @[
         self.textSpacingConstraintVertical,
         [self.textWrapper.centerXAnchor constraintEqualToAnchor:self.ratingBubble.centerXAnchor],
-        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.trailingAnchor]
+        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.trailingAnchor],
+
+        // If the text is less wide than the bubble make sure the view in total
+        // is still large enough not to clip the bubble.
+        [self.widthAnchor constraintGreaterThanOrEqualToAnchor:self.ratingBubble.widthAnchor],
     ];
 
     [NSLayoutConstraint activateConstraints:@[
@@ -226,24 +230,6 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 
     [self updateLayout];
-}
-
-- (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
-    [super systemLayoutSizeFittingSize:targetSize];
-    CGSize ratingBubbleSize = [self.ratingBubble systemLayoutSizeFittingSize:targetSize];
-    CGSize textWrapperSize = [self.textWrapper systemLayoutSizeFittingSize:targetSize];
-
-    CGFloat desiredHeight = MAX(ratingBubbleSize.height, textWrapperSize.height);
-    CGFloat desiredWidth = ratingBubbleSize.width + self.spacingForCurrentSize + textWrapperSize.width;
-    if (self.layout == BPKRatingLayoutVertical) {
-        desiredHeight = ratingBubbleSize.height + self.spacingForCurrentSize + textWrapperSize.height;
-        desiredWidth = MAX(ratingBubbleSize.width, textWrapperSize.width);
-    }
-
-    CGFloat height = MIN(desiredHeight, targetSize.height);
-    CGFloat width = MIN(desiredWidth, targetSize.width);
-
-    return CGSizeMake(width, height);
 }
 
 #pragma mark - Updates

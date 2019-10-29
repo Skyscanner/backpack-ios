@@ -118,7 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKSpacingXxl];
 
     [NSLayoutConstraint activateConstraints:@[
-        self.heightConstraint, [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
+        self.heightConstraint,
+        [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
 
         [self.ratingBubbleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.ratingBubbleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
