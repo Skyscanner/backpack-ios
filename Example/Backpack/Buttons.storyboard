@@ -186,6 +186,10 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-BF-945">
                                                         <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
                                                         <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-Q3-JaF" customClass="BPKButton">
+                                                                <rect key="frame" x="19" y="0.0" width="65" height="34"/>
+                                                                <state key="normal" title="Loading"/>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQd-cV-VBa" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
                                                                 <state key="normal" title="Loading"/>
@@ -272,6 +276,15 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgv-kR-UpP">
                                                         <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
                                                         <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ler-Lw-jdv" customClass="BPKButton">
+                                                                <rect key="frame" x="19" y="-0.5" width="65" height="34"/>
+                                                                <state key="normal" title="Loading"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="size">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-p4-JoQ" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
                                                                 <state key="normal" title="Loading"/>
@@ -414,6 +427,7 @@
                         <outlet property="defaultLeadingIconButton" destination="WqP-4p-b67" id="Faa-Z9-YEv"/>
                         <outlet property="defaultLoadingButton" destination="WQd-cV-VBa" id="GNa-10-aWc"/>
                         <outlet property="defaultLoadingIconOnlyButton" destination="zyW-aE-VqH" id="Mua-Yl-FqG"/>
+                        <outlet property="defaultLoadingTitleOnlyButton" destination="tgD-Q3-JaF" id="Khr-mG-JHv"/>
                         <outlet property="defaultTextButton" destination="zWH-oz-ScW" id="ar0-pF-Iw3"/>
                         <outlet property="defaultTrailingIconButton" destination="wAK-NX-IQ0" id="BYL-Gi-uyN"/>
                         <outlet property="largeDisabledButton" destination="zfX-pm-To4" id="mbC-AD-64n"/>
@@ -421,6 +435,7 @@
                         <outlet property="largeLeadingIconButton" destination="GJf-SN-OB4" id="z8F-1r-68A"/>
                         <outlet property="largeLoadingButton" destination="gcH-p4-JoQ" id="qkK-nn-iEA"/>
                         <outlet property="largeLoadingIconOnlyButton" destination="Fh8-UZ-7G5" id="uLh-EF-F7E"/>
+                        <outlet property="largeLoadingTitleOnlyButton" destination="ler-Lw-jdv" id="CYS-X1-rzl"/>
                         <outlet property="largeTextButton" destination="yhi-lX-0z6" id="atc-NE-kM7"/>
                         <outlet property="largeTrailingIconButton" destination="htS-s3-5bd" id="Zcz-Yv-bOr"/>
                         <outletCollection property="contentViews" destination="FEW-9A-aRv" id="0Dy-nU-yML"/>
