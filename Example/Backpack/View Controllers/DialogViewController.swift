@@ -104,6 +104,7 @@ class DialogViewController: UIViewController {
                                                 message: message,
                                                 style: .bottomSheet,
                                                 iconDefinition: nil)
+        dialogController.cornerStyle = .large
 
         let mainAction = DialogButtonAction(title: "Got it", style: .primary) {
             print("Primary was tapped, action: \($0)")

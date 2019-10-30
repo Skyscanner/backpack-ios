@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 
 #import "BPKDialogControllerStyle.h"
+#import "BPKDialogCornerStyle.h"
 #import "BPKDialogView.h"
 
 @class BPKDialogConfiguration;
@@ -66,6 +67,13 @@ NS_SWIFT_NAME(DialogController)
  * @see BPKDialogScrimAction
  */
 @property(nonatomic, strong, nullable) BPKDialogScrimAction *scrimAction;
+
+/**
+ * The style of the corners of the Dialog.
+ *
+ * @see BPKDialogCornerStyle
+ */
+@property(nonatomic, assign) IB_DESIGNABLE BPKDialogCornerStyle cornerStyle;
 
 - (instancetype)init __attribute__((
     unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
