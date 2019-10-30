@@ -263,6 +263,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Property overrides
 
+- (void)setCornerStyle:(BPKDialogCornerStyle)cornerStyle {
+    if (_cornerStyle != cornerStyle) {
+        _cornerStyle = cornerStyle;
+
+        self.contentView.layer.cornerRadius = cornerStyle == BPKDialogCornerStyleLarge ? BPKBorderRadiusLg : BPKBorderRadiusSm;
+    }
+}
+
 - (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     BPKAssertMainThread();
     if (iconDefinition != _iconDefinition) {

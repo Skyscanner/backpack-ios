@@ -20,6 +20,7 @@
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerStyle.h"
+#import "BPKDialogCornerStyle.h"
 
 @class BPKShadow;
 @class BPKDialogIconDefinition;
@@ -52,6 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
  * The style of the dialog.
  */
 @property(nonatomic, assign) BPKDialogControllerStyle style;
+
+/**
+ * The style of the corners of the Dialog.
+ *
+ * @see BPKDialogCornerStyle
+ */
+@property(nonatomic, assign) IB_DESIGNABLE BPKDialogCornerStyle cornerStyle;
 
 /**
  * The background color of the icon view at the top

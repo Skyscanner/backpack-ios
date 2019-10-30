@@ -21,6 +21,7 @@
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Radii.h>
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerAnimator.h"
@@ -122,6 +123,14 @@ NS_ASSUME_NONNULL_BEGIN
         self.bottomAnchorConstraint.active = YES;
     } else if (self.style == BPKDialogControllerStyleAlert) {
         [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    }
+}
+
+- (void)setCornerStyle:(BPKDialogCornerStyle)cornerStyle {
+    if (_cornerStyle != cornerStyle) {
+        _cornerStyle = cornerStyle;
+
+        self.dialogView.cornerStyle = cornerStyle;
     }
 }
 
