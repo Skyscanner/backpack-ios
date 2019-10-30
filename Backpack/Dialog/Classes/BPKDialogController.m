@@ -20,8 +20,8 @@
 
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
-#import <Backpack/Spacing.h>
 #import <Backpack/Radii.h>
+#import <Backpack/Spacing.h>
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerAnimator.h"
@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) UIView *scrimView;
 @property(nonatomic, strong) BPKDialogView *dialogView;
+@property(nullable, nonatomic, strong) BPKFlareView *flareView;
 
 @property(nonatomic, strong) NSMutableArray<BPKDialogScrimAction *> *scrimActions;
 
@@ -56,6 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
+    return [self initWithTitle:title message:message style:style iconDefinition:iconDefinition flareView:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *_Nullable)title
+                      message:(NSString *)message
+                        style:(BPKDialogControllerStyle)style
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
+                    flareView:(BPKFlareView *_Nullable)flareView {
     self = [super init];
 
     if (self) {
@@ -63,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.messageText = message;
         self.style = style;
         self.iconDefinition = iconDefinition;
+        self.flareView = flareView;
         self.scrimActions = [NSMutableArray new];
         self.transitioningDelegate = self;
 
@@ -81,6 +91,18 @@ NS_ASSUME_NONNULL_BEGIN
     return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition];
 }
 
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
+                                  message:(NSString *)message
+                                    style:(BPKDialogControllerStyle)style
+                           iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
+                                flareView:(BPKFlareView *_Nullable)flareView {
+    return [[self alloc] initWithTitle:title
+                               message:message
+                                 style:style
+                        iconDefinition:iconDefinition
+                             flareView:flareView];
+}
+
 - (void)setupViews {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(scrimTapped:)];
@@ -94,13 +116,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.scrimView.accessibilityIdentifier = @"dialogScrimView";
     [self.scrimView addGestureRecognizer:tapGesture];
 
-    self.dialogView = [[BPKDialogView alloc] initWithFrame:CGRectZero];
+    self.dialogView = [[BPKDialogView alloc] initWithTitle:self.titleText
+                                                   message:self.messageText
+                                            iconDefinition:self.iconDefinition
+                                                 flareView:self.flareView];
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
     self.dialogView.delegate = self;
     self.dialogView.style = self.style;
-    [self.dialogView setTitle:self.titleText];
-    [self.dialogView setIconDefinition:self.iconDefinition];
-    [self.dialogView setMessage:self.messageText];
     self.dialogView.accessibilityIdentifier = @"dialogView";
 }
 
@@ -243,8 +265,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Dynamic colors
 - (UIColor *)scrimViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray
-                                      darkVariant:BPKColor.backgroundDarkColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.backgroundDarkColor];
 }
 @end
 

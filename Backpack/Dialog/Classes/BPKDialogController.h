@@ -91,6 +91,21 @@ NS_SWIFT_NAME(DialogController)
                                     style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 
+/**
+ * Create an instance of the controller.
+ *
+ * @param title The tile to display in the dialog.
+ * @param message The message to display in the body of the dialog.
+ * @param style The style of the dialog.
+ * @param iconDefinition the icon specification to show at the top of the dialog.
+ * @param flareView the BPKFlareView to show at the top of the dialog.
+ */
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
+                                  message:(NSString *)message
+                                    style:(BPKDialogControllerStyle)style
+                           iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
+                                flareView:(BPKFlareView *_Nullable)flareView;
+
 // Protected
 
 /**

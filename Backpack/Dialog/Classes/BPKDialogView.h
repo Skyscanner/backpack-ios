@@ -18,6 +18,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Backpack/FlareView.h>
+
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerStyle.h"
 #import "BPKDialogCornerStyle.h"
@@ -82,10 +84,12 @@ NS_ASSUME_NONNULL_BEGIN
  * @param title The title to use.
  * @param message The message to use.
  * @param iconDefinition the icon to show at the top of the dialog.
+ * @param flareView the BPKFlareView to show at the top of the dialog.
  */
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
-               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
+                    flareView:(BPKFlareView *_Nullable)flareView NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;

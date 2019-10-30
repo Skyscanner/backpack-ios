@@ -61,7 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
                        @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
                        @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition];
+        iconDefinition:iconDefinition
+                           flareView:nil];
 
     view.style = BPKDialogControllerStyleAlert;
     [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
@@ -81,7 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
                        @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
                        @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition];
+        iconDefinition:iconDefinition
+        flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -104,17 +106,51 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parent, nil);
 }
 
-- (void)testDialogViewWithLargeCornerStyleAndButtons {
-    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc]
-               initWithIcon:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]
-        iconBackgroundColor:BPKColor.kolkata];
-    BPKDialogView *view = [[BPKDialogView alloc]
+- (void)testDialogViewWithLargeCornerStyleAndFlareViewAndButtons {
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+         BPKDialogView *view = [[BPKDialogView alloc]
          initWithTitle:@"Lorem Ipsum"
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
                        @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
                        @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition];
+        iconDefinition:nil
+                                flareView:flareView];
     view.cornerStyle = BPKDialogCornerStyleLarge;
+    flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
+    flareView.isFlareVisible = YES;
+    BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
+                                                                             style:BPKButtonStylePrimary
+                                                                           handler:^(BPKDialogButtonAction *action){
+
+                                                                           }];
+    BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Skipz"
+                                                                         style:BPKButtonStyleLink
+                                                                       handler:^(BPKDialogButtonAction *action){
+
+                                                                       }];
+
+    [view addButtonAction:continueAction];
+    [view addButtonAction:skipAction];
+
+    [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    UIView *parent = [self wrapDialog:view];
+    [parent layoutIfNeeded];
+
+    FBSnapshotVerifyView(parent, nil);
+}
+
+- (void)testDialogViewWithLargeCornerStyleAndTallFlareViewAndButtons {
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    BPKDialogView *view = [[BPKDialogView alloc]
+         initWithTitle:@"Lorem Ipsum"
+               message:@"Lorem ipsum dolor sit amet."
+        iconDefinition:nil
+                           flareView:flareView];
+    view.cornerStyle = BPKDialogCornerStyleLarge;
+    flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
+    flareView.isFlareVisible = YES;
+    [flareView.heightAnchor constraintEqualToConstant:280].active = YES;
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -143,7 +179,8 @@ NS_ASSUME_NONNULL_BEGIN
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
                        @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
                        @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil];
+        iconDefinition:nil
+        flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -173,7 +210,8 @@ NS_ASSUME_NONNULL_BEGIN
                message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
                        @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
                        @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil];
+        iconDefinition:nil
+        flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
