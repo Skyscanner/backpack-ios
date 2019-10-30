@@ -220,17 +220,17 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (self.sameDayRange) {
         NSArray<NSDate *> *dates =
             [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
-        return [BPKSimpleDate simpleDatesFromDates:dates withLocale:self.locale];
+        return [BPKSimpleDate simpleDatesFromDates:dates forCalendar:self.gregorian];
     }
 
-    return [BPKSimpleDate simpleDatesFromDates:self.calendarView.selectedDates withLocale:self.locale];
+    return [BPKSimpleDate simpleDatesFromDates:self.calendarView.selectedDates forCalendar:self.gregorian];
 }
 
 - (NSSet<BPKSimpleDate *> *)createDateSet:(NSArray<NSDate *> *)dates {
     NSMutableSet<BPKSimpleDate *> *set = [[NSMutableSet alloc] initWithCapacity:dates.count];
 
     for (NSDate *date in dates) {
-        BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date withLocale:self.locale];
+        BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
 
         [set addObject:simpleDate];
     }
@@ -245,7 +245,7 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     for (BPKSimpleDate *date in newSelectedDates) {
         if (![previouslySelectedDates containsObject:date]) {
-            [self.calendarView selectDate:[date dateWithLocale:self.locale]];
+            [self.calendarView selectDate:[date dateForCalendar:self.gregorian]];
         }
     }
 
@@ -253,7 +253,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [toDeselect minusSet:newSelectedDates];
 
     for (BPKSimpleDate *date in toDeselect) {
-        [self.calendarView deselectDate:[date dateWithLocale:self.locale]];
+        [self.calendarView deselectDate:[date dateForCalendar:self.gregorian]];
     }
 
     if (selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject]) {
@@ -279,11 +279,11 @@ NSString *const HeaderDateFormat = @"MMMM";
 }
 
 - (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar {
-    return [self.minDate dateWithLocale:self.locale];
+    return [self.minDate dateForCalendar:self.gregorian];
 }
 
 - (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar {
-    return [self.maxDate dateWithLocale:self.locale];
+    return [self.maxDate dateForCalendar:self.gregorian];
 }
 
 - (void)setDateSelectedBackgroundColor:(UIColor *_Nullable)dateSelectedBackgroundColor {
@@ -513,8 +513,8 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.accessibilityLabel = [self formattedDate:date];
 
         Boolean enabled = [BPKCalendar date:date
-                              isBetweenDate:[self.minDate dateWithLocale:self.locale]
-                                    andDate:[self.maxDate dateWithLocale:self.locale]];
+                              isBetweenDate:[self.minDate dateForCalendar:self.gregorian]
+                                    andDate:[self.maxDate dateForCalendar:self.gregorian]];
 
         calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
 

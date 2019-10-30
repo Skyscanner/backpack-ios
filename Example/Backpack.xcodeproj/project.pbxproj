@@ -78,6 +78,7 @@
 		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
 		D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257C767236AE3FB006683F5 /* TextViewUITest.swift */; };
 		D257C76A236AE3FB006683F5 /* TextFieldUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257C768236AE3FB006683F5 /* TextFieldUITest.swift */; };
+				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C765236AE319006683F5 /* BPKSimpleDateTest.m */; };
 		D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */; };
 		D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
@@ -278,6 +279,7 @@
 		D257C768236AE3FB006683F5 /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
 		D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelTest.m; sourceTree = "<group>"; };
 		D257C76C236AE402006683F5 /* BPKTextFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldTest.m; sourceTree = "<group>"; };
+		D257C765236AE319006683F5 /* BPKSimpleDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSimpleDateTest.m; sourceTree = "<group>"; };
 		D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TappableLinkLabels.storyboard; sourceTree = "<group>"; };
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 			children = (
 				D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */,
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
+				D257C765236AE319006683F5 /* BPKSimpleDateTest.m */,
 				D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */,
 				D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -1145,6 +1148,7 @@
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */,
 				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
+				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
 				589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */,
