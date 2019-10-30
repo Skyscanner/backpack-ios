@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 22.1.0
+
+**Added:**:
+ - Backpack/Button:
+   - Buttons now support `loading` state even without an image present.
+
 ## 22.0.1
 
 **Fixed:**
