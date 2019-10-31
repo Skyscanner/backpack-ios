@@ -15,8 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import <Backpack/Color.h>
 #import <Backpack/TextField.h>
+
 #import <XCTest/XCTest.h>
 
 @interface BPKTextFieldTest : XCTestCase
@@ -33,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = [BPKColor gray900];
+    UIColor *expectedColor = BPKColor.textPrimaryColor;
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];
@@ -65,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = [BPKColor gray900];
+    UIColor *expectedColor = BPKColor.textPrimaryColor;
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];
