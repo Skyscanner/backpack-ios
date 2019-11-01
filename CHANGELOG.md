@@ -2,6 +2,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 22.2.0
+
+**Fixed:**
+
+- Backpack/Button
+  - Revert code to 19.3.0 version
+
+**Added:**
+
+- Backpack/Dialog:
+  - New `cornerStyle` property which allows a larger corner-radius to be applied.
+
 ## 22.1.0
 
 **Added:**:
