@@ -43,12 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
 @property(nonatomic, class, readonly) CGFloat buttonTitleIconSpacing;
-@property(nonatomic, readonly) UIColor *disabledLinkColor;
-@property(nonatomic, readonly) UIColor *disabledBackgroundColor;
-@property(nonatomic, readonly) UIColor *disabledContentColor;
-@property(nonatomic, readonly) UIColor *boxyBackgroundColor;
-@property(nonatomic, readonly) UIColor *boxyContentColor;
-@property(nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @end
 
 @implementation BPKButton
@@ -296,11 +291,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.contentEdgeInsets = self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     }
 
-    if (self.isIconOnly || self.isTextAndIcon) {
-        self.spinner.center = self.imageView.center;
-    } else {
-        self.spinner.center = self.center;
-    }
+    self.spinner.center = self.imageView.center;
     self.imageView.alpha = self.isLoading ? .0f : 1.f;
 }
 
@@ -320,7 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleLink:
         return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
 
-    // NOTE: Explicit fall-through
+        // NOTE: Explicit fall-through
     case BPKButtonStylePrimary:
     case BPKButtonStyleFeatured:
     case BPKButtonStyleSecondary:
@@ -360,7 +351,6 @@ NS_ASSUME_NONNULL_BEGIN
 
         // We need this here so that if the button was disabled, and is now enabled, opacity is reset.
         self.layer.opacity = 1;
-        self.gradientLayer.gradient = nil;
 
         switch (self.style) {
         case BPKButtonStylePrimary: {
@@ -371,9 +361,8 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleSecondary: {
-            UIColor *backgroundColor =
-                self.secondaryBackgroundColor ? self.secondaryBackgroundColor : [self class].boxyBackgroundColor;
-            UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : [self class].boxyBorderColor;
+            UIColor *backgroundColor = self.secondaryBackgroundColor ? self.secondaryBackgroundColor : BPKColor.white;
+            UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : BPKColor.skyGrayTint06;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
                 self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
@@ -385,9 +374,8 @@ NS_ASSUME_NONNULL_BEGIN
         }
         case BPKButtonStyleDestructive: {
             UIColor *backgroundColor =
-                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : [self class].boxyBackgroundColor;
-            UIColor *borderColor =
-                self.destructiveBorderColor ? self.destructiveBorderColor : [self class].boxyBorderColor;
+                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : BPKColor.white;
+            UIColor *borderColor = self.destructiveBorderColor ? self.destructiveBorderColor : BPKColor.skyGrayTint06;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
                 self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
@@ -414,7 +402,7 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleLink: {
-            UIColor *contentColor = self.linkContentColor ? self.linkContentColor : BPKColor.primaryColor;
+            UIColor *contentColor = self.linkContentColor ? self.linkContentColor : BPKColor.skyBlue;
 
             [self setLinkStyleWithColor:contentColor];
             break;
@@ -453,7 +441,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     self.imageView.tintColor = self.currentContentColor;
-    self.spinner.color = self.currentContentColor;
     UIColor *highlightedContentColor;
 
     switch (self.style) {
@@ -508,7 +495,6 @@ NS_ASSUME_NONNULL_BEGIN
         }
 
         self.imageView.tintColor = self.isHighlighted ? highlightedContentColor : self.currentContentColor;
-        self.spinner.color = self.isHighlighted ? highlightedContentColor : self.currentContentColor;
     }
 
     [self setNeedsDisplay];
@@ -540,21 +526,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIColor *)currentContentColor {
     if (!self.enabled) {
-        switch (self.style) {
-        // NOTE: Explicit fall-through
-        case BPKButtonStylePrimary:
-        case BPKButtonStyleFeatured:
-        case BPKButtonStyleSecondary:
-        case BPKButtonStyleDestructive:
-            return [self class].disabledContentColor;
-        case BPKButtonStyleLink:
-            return [self class].disabledLinkColor;
-        case BPKButtonStyleOutline:
-            return BPKColor.skyGrayTint04;
-        default:
-            NSAssert(NO, @"Unknown BPKButtonStyle %d", (int)self.style);
-            return BPKColor.white;
-        }
+        return BPKColor.skyGrayTint04;
     }
     switch (self.style) {
     case BPKButtonStylePrimary:
@@ -571,12 +543,12 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.secondaryContentColor != nil) {
             return self.secondaryContentColor;
         }
-        return BPKColor.primaryColor;
+        return BPKColor.skyBlue;
     case BPKButtonStyleLink:
         if (self.linkContentColor != nil) {
             return self.linkContentColor;
         }
-        return BPKColor.primaryColor;
+        return BPKColor.skyBlue;
     case BPKButtonStyleDestructive:
         if (self.destructiveContentColor != nil) {
             return self.destructiveContentColor;
@@ -639,12 +611,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setDisabledStyle {
     UIColor *backgroundColor = nil;
     switch (self.style) {
-    // NOTE: Explicit fall-through
+        // Explicit fall-through
     case BPKButtonStylePrimary:
     case BPKButtonStyleFeatured:
     case BPKButtonStyleSecondary:
     case BPKButtonStyleDestructive:
-        backgroundColor = [self class].disabledBackgroundColor;
+        backgroundColor = BPKColor.skyGrayTint06;
         break;
     case BPKButtonStyleOutline:
         backgroundColor = BPKColor.white;
@@ -667,13 +639,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupSpinner {
     self.spinner = [[UIActivityIndicatorView alloc] init];
     switch (self.size) {
-    case BPKButtonSizeDefault:
-        self.spinner.transform = CGAffineTransformMakeScale(.75f, .75f);
-        break;
+        case BPKButtonSizeDefault:
+            self.spinner.transform = CGAffineTransformMakeScale(.75f, .75f);
+            break;
 
-    case BPKButtonSizeLarge:
-        self.spinner.transform = CGAffineTransformMakeScale(1.f, 1.f);
-        break;
+        case BPKButtonSizeLarge:
+            self.spinner.transform = CGAffineTransformMakeScale(1.f, 1.f);
+            break;
     }
 
     [self addSubview:self.spinner];
@@ -692,12 +664,6 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         [self.spinner stopAnimating];
     }
-
-    if (!self.isTextAndIcon) {
-        self.titleLabel.layer.opacity = loading ? 0 : 1;
-    }
-
-    [self updateContentColor];
 }
 
 - (void)setFeaturedContentColor:(UIColor *_Nullable)featuredContentColor {
@@ -792,9 +758,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setIsLoading:(BOOL)isLoading {
-    if (_isLoading != isLoading) {
+    if (_isLoading != isLoading && self.currentImage) {
         _isLoading = isLoading;
-        [self updateLoadingState:isLoading];
+        [self updateLoadingState: isLoading];
     }
 }
 
@@ -807,49 +773,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedBlue {
-    return [BPKColor blend:BPKColor.primaryColor with:BPKColor.skyGray weight:0.85f];
+    return [BPKColor blend:BPKColor.skyBlue with:BPKColor.skyGray weight:0.85f];
 }
 
 + (UIColor *)highlightedRed {
     return [BPKColor blend:BPKColor.systemRed with:BPKColor.skyGray weight:0.85f];
-}
-
-// Note this is needed as the system does not correctly respond to the trait collection change to update the background
-// color.
-- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
-    [super traitCollectionDidChange:previousTraitCollection];
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 12.0, *)) {
-        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
-            [self updateBackgroundAndStyle];
-            [self updateContentColor];
-        }
-    }
-#endif
-}
-
-+ (UIColor *)disabledBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
-}
-
-+ (UIColor *)disabledContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint03];
-}
-
-+ (UIColor *)disabledLinkColor {
-    return BPKColor.skyGrayTint04;
-}
-
-+ (UIColor *)disabledBorderColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint03];
-}
-
-+ (UIColor *)boxyBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint02];
-}
-
-+ (UIColor *)boxyBorderColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.skyGrayTint02];
 }
 
 + (CGFloat)buttonTitleIconSpacing {
