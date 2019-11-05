@@ -1,21 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Breaking:**
-
-- Backpack/SimpleDate:
-  - SimpleDate now requires a calendar object for more reliable conversions of dates.
-
-**Breaking:**
-
-- Backpack/FlareView:
-  - The `isFlareVisible` property is no longer supported. Flare views will always have a flare.
-
-**Added:**
-
-- Backpack/Dialog:
-  - New `flareView` argument which allows a flare view to be configured above the content.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.

@@ -2,6 +2,23 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.0.0
+
+**Breaking:**
+
+- Backpack/SimpleDate:
+  - SimpleDate now requires a calendar object for more reliable conversions of dates.
+
+**Breaking:**
+
+- Backpack/FlareView:
+  - The `isFlareVisible` property is no longer supported. Flare views will always have a flare.
+
+**Added:**
+
+- Backpack/Dialog:
+  - New `flareView` argument which allows a flare view to be configured above the content.
+
 ## 22.2.0
 
 **Fixed:**
