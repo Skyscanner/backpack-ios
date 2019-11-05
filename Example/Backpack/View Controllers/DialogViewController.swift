@@ -27,6 +27,8 @@ enum DialogType {
     case noIcon
     case noTitle
     case noIconNoTitle
+    case extreme
+    case inAppMessaging
 }
 
 class DialogViewController: UIViewController {
@@ -49,6 +51,10 @@ class DialogViewController: UIViewController {
             showNoTitle()
         case .noIconNoTitle:
             showNoIconNoTitle()
+        case .extreme:
+            showExtreme()
+        case .inAppMessaging:
+            showInAppMessaging()
         }
     }
     func showNoTitle() {
@@ -125,14 +131,78 @@ class DialogViewController: UIViewController {
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
         let dialogController  = DialogController(title: "You are going to Tokyo!",
-                                                message: message,
-                                                style: .alert,
-                                                iconDefinition: iconDefinition)
+                                                 message: message,
+                                                 style: .alert,
+                                                 iconDefinition: iconDefinition)
 
         let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
         let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+            print("Skip was tapped, action: \($0)")
+        }
+
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+            print("Scrim tap \(didDismiss ? "dimissing" : "")")
+        }, shouldDismiss: true)
+
+        dialogController.addButtonAction(mainAction)
+        dialogController.addButtonAction(skipAction)
+        dialogController.scrimAction = scrimAction
+
+        self.present(dialogController, animated: true, completion: nil)
+    }
+
+    func showExtreme() {
+        let message = """
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+            est laborum.
+            """
+        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
+        let dialogController  = DialogController(title: "You are going to Tokyo!",
+                                                 message: message,
+                                                 style: .alert,
+                                                 iconDefinition: iconDefinition)
+
+        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+            print("Primary was tapped, action: \($0)")
+        }
+        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+            print("Skip was tapped, action: \($0)")
+        }
+
+        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+            print("Scrim tap \(didDismiss ? "dimissing" : "")")
+        }, shouldDismiss: true)
+
+        dialogController.addButtonAction(mainAction)
+        dialogController.addButtonAction(skipAction)
+        dialogController.scrimAction = scrimAction
+
+        self.present(dialogController, animated: true, completion: nil)
+    }
+
+    func showInAppMessaging() {
+        let message = "The design system provides a single source of truth for the design language used at Skyscanner."
+        let flareView = FlareView(frame: .zero)
+        let dialogController  = DialogController(title: "What is Backpack?",
+                                                 message: message,
+                                                 style: .alert,
+                                                 iconDefinition: nil,
+                                                 flareView: flareView)
+        dialogController.cornerStyle = .large
+        flareView.backgroundView.backgroundColor = Color.primaryColor
+
+        let mainAction = DialogButtonAction(title: "Got it!", style: .primary) {
+            print("Primary was tapped, action: \($0)")
+        }
+        let skipAction = DialogButtonAction(title: "Whatev's", style: .link) {
             print("Skip was tapped, action: \($0)")
         }
 

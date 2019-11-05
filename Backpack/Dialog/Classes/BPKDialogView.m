@@ -47,9 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nullable) BPKLabel *titleLabel;
 @property(nonatomic, strong) BPKLabel *descriptionLabel;
 @property(nonatomic, strong) UIStackView *buttonStackView;
+@property(nullable, nonatomic, strong) BPKFlareView *flareView;
 
 @property(nonatomic, strong) NSMutableArray<BPKActionButtonPair *> *registeredActions;
 @property(nonatomic, strong) NSLayoutConstraint *descriptionLabelTopConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *titleLabelTopConstraint;
 @property(nonatomic, strong) UIColor *dialogContentViewBackgroundColor;
 @end
 
@@ -57,11 +59,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
-               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
+               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
+                    flareView:(BPKFlareView *_Nullable)flareView {
     BPKAssertMainThread();
-    self = [self initWithFrame:CGRectZero];
+    self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        self.registeredActions = [NSMutableArray new];
+
+        self.flareView = flareView;
+
+        [self setupViews];
+        [self addViews];
+        [self setupConstraints];
+
         self.title = title;
         self.message = message;
         self.iconDefinition = iconDefinition;
@@ -126,10 +137,17 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    self.contentView.clipsToBounds = YES;
 }
 
 - (void)addViews {
     [self addSubview:self.contentView];
+
+    if (self.flareView != nil) {
+        self.flareView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.flareView];
+    }
 
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.descriptionLabel];
@@ -150,11 +168,22 @@ NS_ASSUME_NONNULL_BEGIN
     self.descriptionLabelTopConstraint =
         [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd];
 
-    [NSLayoutConstraint activateConstraints:@[
-        [self.contentView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
+    NSLayoutConstraint *titleLabelTopConstraint;
+    if (self.flareView != nil) {
+        [self setupFlareViewConstraints];
+        titleLabelTopConstraint =
+            [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.flareView.bottomAnchor
+                                                                   constant:BPKSpacingBase];
+    } else {
+        titleLabelTopConstraint =
+            [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor
+                                                                   constant:BPKSpacingBase];
+    }
 
-        [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor
-                                                               constant:BPKSpacingBase],
+    [NSLayoutConstraint activateConstraints:@[
+        titleLabelTopConstraint,
+
+        [self.contentView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
 
         [self.contentView.superview.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
         [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor],
@@ -267,14 +296,16 @@ NS_ASSUME_NONNULL_BEGIN
     if (_cornerStyle != cornerStyle) {
         _cornerStyle = cornerStyle;
 
-        self.contentView.layer.cornerRadius = cornerStyle == BPKDialogCornerStyleLarge ? BPKBorderRadiusLg : BPKBorderRadiusSm;
+        self.contentView.layer.cornerRadius =
+            cornerStyle == BPKDialogCornerStyleLarge ? BPKBorderRadiusLg : BPKBorderRadiusSm;
     }
 }
 
 - (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     BPKAssertMainThread();
     if (iconDefinition != _iconDefinition) {
-        _iconDefinition = iconDefinition;
+        // Can't show an icon and a flare view:
+        _iconDefinition = self.flareView == nil ? iconDefinition : nil;
         [self updateIconView];
     }
 }
@@ -330,14 +361,22 @@ NS_ASSUME_NONNULL_BEGIN
     [self setNeedsLayout];
 }
 
+- (void)setupFlareViewConstraints {
+    [NSLayoutConstraint activateConstraints:@[
+        [self.flareView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
+        [self.flareView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor],
+        [self.flareView.heightAnchor constraintGreaterThanOrEqualToConstant:150.0],
+        [self.flareView.heightAnchor constraintLessThanOrEqualToConstant:300.0],
+    ]];
+}
+
 - (BOOL)hasTitle {
     return (self.titleLabel.text != nil && ![self.titleLabel.text isEqualToString:@""]);
 }
 
 #pragma mark - Dynamic colors
 - (UIColor *)dialogContentViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white
-                                      darkVariant:BPKColor.backgroundSecondaryDarkColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.backgroundSecondaryDarkColor];
 }
 
 @end

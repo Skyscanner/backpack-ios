@@ -18,6 +18,7 @@
 
 import UIKit
 
+// swiftlint:disable cyclomatic_complexity
 class DialogSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationController = segue.destination as? DialogViewController  else {
@@ -49,6 +50,12 @@ class DialogSelectorViewController: UITableViewController {
         case "ShowNoIconNoTitle":
             destinationController.type = .noIconNoTitle
             destinationController.title = "No icon and no title"
+        case "Extreme":
+            destinationController.type = .extreme
+            destinationController.title = "Extreme"
+        case "InAppMessaging":
+            destinationController.type = .inAppMessaging
+            destinationController.title = "In-app messaging"
         default:
             fatalError("Unrecognized segue \(segue.identifier.debugDescription)")
         }
