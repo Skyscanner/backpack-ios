@@ -11,10 +11,10 @@
 #import <Backpack/SimpleDate.h>
 
 // Create a `BPKSimpleDate` from an `NSDate`:
-BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date withLocale:locale];
+BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:calendar];
 
 // Create an `NSDate` from a `BPKSimpleDate`:
-NSDate *date = [simpleDate dateWithLocale:locale];
+NSDate *date = [simpleDate dateForCalendar:calendar];
 ...
 ```
 
@@ -24,10 +24,10 @@ NSDate *date = [simpleDate dateWithLocale:locale];
 import Backpack
 
 // Create a `BPKSimpleDate` from an `NSDate`:
-let simpleDate = SimpleDate(date: date locale:locale);
+let simpleDate = SimpleDate(date: date, for: calendar);
 
 // Create an `NSDate` from a `BPKSimpleDate`:
-let date = [simpleDate date(locale:locale);
+let date = simpleDate date(calendar: calendar);
 ...
 ```
 

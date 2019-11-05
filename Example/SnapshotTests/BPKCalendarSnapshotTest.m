@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionSingle;
-    bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 withLocale:bpkCalendar.locale]];
+    bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
 
     FBSnapshotVerifyView(parentView, nil);
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates =
-        @[[[BPKSimpleDate alloc] initWithDate:self.date1  withLocale:bpkCalendar.locale], [[BPKSimpleDate alloc] initWithDate:self.date2  withLocale:bpkCalendar.locale]];
+        @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
 
     FBSnapshotVerifyView(parentView, nil);
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates =
-        @[[[BPKSimpleDate alloc] initWithDate:self.date1  withLocale:bpkCalendar.locale], [[BPKSimpleDate alloc] initWithDate:self.date2  withLocale:bpkCalendar.locale]];
+        @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
     bpkCalendar.dateSelectedContentColor = UIColor.orangeColor;
     bpkCalendar.dateSelectedBackgroundColor = UIColor.greenColor;
@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
     bpkCalendar.selectedDates =
-        @[[[BPKSimpleDate alloc] initWithDate:self.date1  withLocale:bpkCalendar.locale], [[BPKSimpleDate alloc] initWithDate:self.date2  withLocale:bpkCalendar.locale]];
+        @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
 
     FBSnapshotVerifyView(parentView, nil);

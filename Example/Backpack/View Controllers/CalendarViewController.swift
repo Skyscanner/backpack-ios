@@ -26,7 +26,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
-        myView.minDate = SimpleDate(date: Date(), with: myView.locale)
+        myView.minDate = SimpleDate(date: Date(), for: myView.gregorian)
         myView.locale = Locale.current
         myView.delegate = self
     }
