@@ -69,18 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
     innerView.backgroundColor = [BPKColor panjin];
-    flareView.isFlareVisible = YES;
-
-    [self configureFlareView:flareView withInnerView:innerView];
-    [self configureParentView:parentView forFlareView:flareView];
-    FBSnapshotVerifyView(parentView, nil);
-}
-
-- (void)testFlareHiddenSnapshot {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
-    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
-    innerView.backgroundColor = [BPKColor panjin];
 
     [self configureFlareView:flareView withInnerView:innerView];
     [self configureParentView:parentView forFlareView:flareView];
