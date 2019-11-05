@@ -22,14 +22,12 @@ import Backpack
 class FlareViewViewController: UIViewController {
     @IBOutlet weak var flareView: FlareView!
 
-    var showFlare: Bool = true
     var backgroundImage: Bool = false
     var animated: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        flareView.isFlareVisible = showFlare
         flareView.backgroundColor = Color.skyBlue
 
         let label = Label(fontStyle: .textXlEmphasized)

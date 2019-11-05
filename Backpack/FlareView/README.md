@@ -10,7 +10,6 @@
 #import <Backpack/FlareView.h>
 
 BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
-flareView.isFlareVisible = YES;
 flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
 
 UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -25,7 +24,6 @@ innerView.backgroundColor = [BPKColor systemRed];
 import Backpack
 
 let flareView = FlareView(frame: .zero)
-flareView.isFlareVisible = showFlare
 flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
 
 let label = Label(fontStyle: .textXlEmphasized)

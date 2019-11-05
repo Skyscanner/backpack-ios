@@ -38,12 +38,6 @@ NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
  */
 @property(nonatomic) UIView *contentView;
 
-/*
- * Whether the flare shape is used or not.
- * By default this is false.
- */
-@property(nonatomic) BOOL isFlareVisible;
-
 /**
  * Creates a `BPKFlareView` with a decoder (typically when creating from Storyboards)
  *

@@ -60,23 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
     [self createLayerMask];
 }
 
-- (void)setIsFlareVisible:(BOOL)isFlareVisible {
-    if (_isFlareVisible != isFlareVisible) {
-        _isFlareVisible = isFlareVisible;
-
-        [self createLayerMask];
-        [self updateBottomConstraint];
-    }
-}
-
 #pragma mark - Private
 
 - (void)createLayerMask {
-    if (!self.isFlareVisible) {
-        self.layer.mask = nil;
-        return;
-    }
-
     CAShapeLayer *flareView = [[CAShapeLayer alloc] init];
     flareView.fillRule = kCAFillRuleNonZero;
 
@@ -89,19 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.mask = flareView;
 }
 
-- (void)updateBottomConstraint {
-    self.contentViewBottomConstraint.active = NO;
-
-    if (self.isFlareVisible) {
-        self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                                             constant:BPKFlareHeight];
-    } else {
-        self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor];
-    }
-
-    [self.contentViewBottomConstraint setActive:YES];
-}
-
 - (void)setup {
     self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.backgroundView];
@@ -111,7 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.contentView];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor];
+    self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
+                                                                             constant:BPKFlareHeight];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
