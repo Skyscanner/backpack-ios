@@ -43,6 +43,7 @@
 #import "ProgressBar.h"
 #import "Rating.h"
 #import "SimpleDate.h"
+#import "Snackbar.h"
 #import "Spinner.h"
 #import "StarRating.h"
 #import "Switch.h"

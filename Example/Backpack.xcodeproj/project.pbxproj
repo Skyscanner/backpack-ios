@@ -45,6 +45,10 @@
 		7639E563232904D0004D7B09 /* Toasts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7639E562232904D0004D7B09 /* Toasts.storyboard */; };
 		7639E565232907B0004D7B09 /* ToastSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */; };
 		7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E566232909C7004D7B09 /* ToastViewController.swift */; };
+		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
+		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
+		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
+		764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */; };
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
 		76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */; };
 		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
@@ -243,6 +247,10 @@
 		7639E562232904D0004D7B09 /* Toasts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Toasts.storyboard; sourceTree = "<group>"; };
 		7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastSelectorViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
+		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
+		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
+		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
+		764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSnackbarSnapshotTest.m; sourceTree = "<group>"; };
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
 		76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
 		76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
@@ -494,6 +502,7 @@
 				D61ACE022306E1E7001C976E /* NavigationBar.storyboard */,
 				D2C4466F23158479009E58A5 /* Panel.storyboard */,
 				7639E562232904D0004D7B09 /* Toasts.storyboard */,
+				764D0037237DDD7600FE60AC /* Snackbar.storyboard */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -701,6 +710,8 @@
 				7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */,
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
 				760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */,
+				764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */,
+				764D003B237DE51000FE60AC /* SnackbarViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -735,6 +746,7 @@
 				589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */,
 				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
 				D269975323526E57006138D2 /* BPKSnapshotTest.h */,
+				764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -922,6 +934,7 @@
 				7639E563232904D0004D7B09 /* Toasts.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D61ACE032306E1E7001C976E /* NavigationBar.storyboard in Resources */,
+				764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,6 +1111,7 @@
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D225BBE2216218FF00FC8B17 /* CardsSelectorViewController.swift in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
+				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
@@ -1112,6 +1126,7 @@
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
+				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
@@ -1185,6 +1200,7 @@
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
+				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
