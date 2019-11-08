@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super init];
 
     if (self) {
+        self.buttonSize = BPKButtonSizeLarge;
         self.titleText = title;
         self.messageText = message;
         self.style = style;
@@ -153,6 +154,14 @@ NS_ASSUME_NONNULL_BEGIN
         _cornerStyle = cornerStyle;
 
         self.dialogView.cornerStyle = cornerStyle;
+    }
+}
+
+- (void)setButtonSize:(BPKButtonSize)buttonSize {
+    if (_buttonSize != buttonSize) {
+        _buttonSize = buttonSize;
+
+        self.dialogView.buttonSize = buttonSize;
     }
 }
 

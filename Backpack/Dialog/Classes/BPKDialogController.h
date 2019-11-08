@@ -75,6 +75,11 @@ NS_SWIFT_NAME(DialogController)
  */
 @property(nonatomic, assign) IB_DESIGNABLE BPKDialogCornerStyle cornerStyle;
 
+/**
+ * The size of the buttons. By default this is `BPKButtonSizeLarge`.
+ */
+@property(nonatomic, assign) BPKButtonSize buttonSize;
+
 - (instancetype)init __attribute__((
     unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
 

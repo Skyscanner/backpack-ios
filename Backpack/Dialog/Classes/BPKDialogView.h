@@ -57,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) BPKDialogControllerStyle style;
 
 /**
+ * The size of the buttons. By default this is `BPKButtonSizeLarge`.
+ */
+@property(nonatomic, assign) BPKButtonSize buttonSize;
+
+/**
  * The style of the corners of the Dialog.
  *
  * @see BPKDialogCornerStyle
