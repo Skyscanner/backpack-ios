@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKDialogButtonAction *action;
 @property(nonatomic, weak) BPKButton *button;
 @property(readonly, nonatomic) BOOL hasIcon;
+@property(readonly, nonatomic) BOOL hasFlareView;
 @end
 
 @implementation BPKActionButtonPair
@@ -83,6 +84,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)hasIcon {
     return self.iconDefinition != nil;
+}
+
+- (BOOL)hasFlareView {
+    return self.flareView != nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -144,7 +149,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addViews {
     [self addSubview:self.contentView];
 
-    if (self.flareView != nil) {
+    if (self.hasFlareView) {
         self.flareView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.flareView];
     }
@@ -157,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLayoutMargins {
     CGFloat bottomMargin = BPKSpacingMd;
     if (self.style == BPKDialogControllerStyleAlert && self.registeredActions.count > 0) {
-        bottomMargin += BPKSpacingMd + BPKSpacingSm;
+        bottomMargin = self.hasIcon || self.hasFlareView ? BPKSpacingLg : BPKSpacingBase;
     }
     self.contentView.layoutMargins =
         UIEdgeInsetsMake(self.contentView.layoutMargins.top, BPKSpacingLg, bottomMargin, BPKSpacingLg);
@@ -169,7 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd];
 
     NSLayoutConstraint *titleLabelTopConstraint;
-    if (self.flareView != nil) {
+    if (self.hasFlareView) {
         [self setupFlareViewConstraints];
         titleLabelTopConstraint =
             [self.titleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.flareView.bottomAnchor
@@ -307,6 +312,7 @@ NS_ASSUME_NONNULL_BEGIN
         // Can't show an icon and a flare view:
         _iconDefinition = self.flareView == nil ? iconDefinition : nil;
         [self updateIconView];
+        [self setLayoutMargins];
     }
 }
 
