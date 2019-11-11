@@ -1,12 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Added:**
- - Backpack/Dialog:
-   - Added `buttonSize` property so that small buttons can be used.
-
-**Fixed:**
- - Backpack/Dialog:
-   - Increased bottom padding to create a visually balanced appearance.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

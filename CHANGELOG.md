@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.1.0
+
+**Added:**
+ - Backpack/Dialog:
+   - Added `buttonSize` property so that small buttons can be used.
+
+**Fixed:**
+ - Backpack/Dialog:
+   - Increased bottom padding to create a visually balanced appearance.
+
 ## 23.0.0
 
 **Breaking:**
