@@ -106,6 +106,12 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
             }
             linkIndex += 1
         }
+
+        if ThemeHelpers.overrideUserInterfaceStyle() {
+            if #available(iOS 13.0, *) {
+                self.overrideUserInterfaceStyle = .light
+            }
+        }
     }
 
     func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {

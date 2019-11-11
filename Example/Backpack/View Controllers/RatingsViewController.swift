@@ -53,6 +53,12 @@ class RatingsViewController: UIViewController {
         assert(ratings.count == RatingsViewController.ratingData.count,
                "The number of rating components does not match the data")
         self.setupRatings()
+
+        if ThemeHelpers.overrideUserInterfaceStyle() {
+            if #available(iOS 13.0, *) {
+                self.overrideUserInterfaceStyle = .light
+            }
+        }
     }
 
     func setupRatings() {

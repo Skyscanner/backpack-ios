@@ -50,5 +50,11 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         if wide {
             horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         }
+
+        if ThemeHelpers.overrideUserInterfaceStyle() {
+            if #available(iOS 13.0, *) {
+                self.overrideUserInterfaceStyle = .light
+            }
+        }
     }
 }

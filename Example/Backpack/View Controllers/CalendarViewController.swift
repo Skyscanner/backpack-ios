@@ -19,6 +19,7 @@
 
 import UIKit
 import Backpack.Calendar
+import Backpack.DarkMode
 import Backpack.SimpleDate
 
 class CalendarViewController: UIViewController, CalendarDelegate {
@@ -29,6 +30,12 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         myView.minDate = SimpleDate(date: Date(), for: myView.gregorian)
         myView.locale = Locale.current
         myView.delegate = self
+
+        if ThemeHelpers.overrideUserInterfaceStyle() {
+            if #available(iOS 13.0, *) {
+                self.overrideUserInterfaceStyle = .light
+            }
+        }
     }
 
     @IBAction func valueChanged(_ sender: Any) {
