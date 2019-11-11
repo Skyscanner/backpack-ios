@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.1.1
+
+**Fixed:**
+ - Backpack/Button
+   - Fixed a bug that prevented button appearance updating when UI style changes.
+
 ## 23.1.0
 
 **Added:**
