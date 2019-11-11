@@ -137,10 +137,10 @@ NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton : UIButton
 @property(nonatomic) BPKButtonImagePosition imagePosition;
 
 /**
-* Setting this property to YES will change the button state.
-* Loading state will disable the button.
-*
-*/
+ * Setting this property to YES will change the button state.
+ * Loading state will disable the button.
+ *
+ */
 @property(nonatomic) BOOL isLoading;
 
 @end
