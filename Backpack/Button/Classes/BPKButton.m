@@ -21,6 +21,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Font.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
@@ -815,7 +816,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Note this is needed as the system does not correctly respond to the trait collection change to update the background
 // color.
-- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 12.0, *)) {
