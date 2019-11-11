@@ -77,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.title = title;
         self.message = message;
         self.iconDefinition = iconDefinition;
+        self.buttonSize = BPKButtonSizeLarge;
     }
 
     return self;
@@ -96,6 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.registeredActions = [NSMutableArray new];
+        self.buttonSize = BPKButtonSizeLarge;
 
         [self setupViews];
         [self addViews];
@@ -111,6 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.registeredActions = [NSMutableArray new];
+        self.buttonSize = BPKButtonSizeLarge;
 
         [self setupViews];
         [self addViews];
@@ -297,6 +300,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Property overrides
 
+- (void)setButtonSize:(BPKButtonSize)buttonSize {
+    if (_buttonSize != buttonSize) {
+        _buttonSize = buttonSize;
+
+        for (BPKActionButtonPair *buttonActionPair in self.registeredActions) {
+            buttonActionPair.button.size = buttonSize;
+        }
+    }
+}
+
 - (void)setCornerStyle:(BPKDialogCornerStyle)cornerStyle {
     if (_cornerStyle != cornerStyle) {
         _cornerStyle = cornerStyle;
@@ -347,7 +360,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addButtonAction:(BPKDialogButtonAction *)action {
     BPKAssertMainThread();
-    BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeLarge style:action.style];
+    BPKButton *button = [[BPKButton alloc] initWithSize:self.buttonSize style:action.style];
     [button setTitle:action.title];
     [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonStackView addArrangedSubview:button];

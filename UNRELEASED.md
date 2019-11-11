@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+ - Backpack/Dialog:
+   - Added `buttonSize` property so that small buttons can be used.
+
 **Fixed:**
  - Backpack/Dialog:
    - Increased bottom padding to create a visually balanced appearance.

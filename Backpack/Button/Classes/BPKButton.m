@@ -135,8 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_size != size || self.isInitializing) {
         _size = size;
 
-        [self updateFont];
-        [self updateEdgeInsets];
+        [self updateTitle];
     }
 }
 

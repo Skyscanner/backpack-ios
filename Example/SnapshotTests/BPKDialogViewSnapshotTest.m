@@ -139,6 +139,40 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parent, nil);
 }
 
+- (void)testDialogViewWithLargeCornerStyleAndFlareViewAndSmallButtons {
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    BPKDialogView *view = [[BPKDialogView alloc]
+         initWithTitle:@"Lorem Ipsum"
+               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                       @"venenatis vitae. Cras sollicitudin porttitor semper."
+        iconDefinition:nil
+             flareView:flareView];
+    view.cornerStyle = BPKDialogCornerStyleLarge;
+    flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
+    BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
+                                                                             style:BPKButtonStylePrimary
+                                                                           handler:^(BPKDialogButtonAction *action){
+
+                                                                           }];
+    BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Skipz"
+                                                                         style:BPKButtonStyleLink
+                                                                       handler:^(BPKDialogButtonAction *action){
+
+                                                                       }];
+
+    [view addButtonAction:continueAction];
+    view.buttonSize = BPKButtonSizeDefault;
+    [view addButtonAction:skipAction];
+
+    [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    UIView *parent = [self wrapDialog:view];
+    [parent layoutIfNeeded];
+
+    FBSnapshotVerifyView(parent, nil);
+}
+
 - (void)testDialogViewWithLargeCornerStyleAndTallFlareViewAndButtons {
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
     BPKDialogView *view = [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"

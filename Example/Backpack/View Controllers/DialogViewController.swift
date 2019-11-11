@@ -197,6 +197,7 @@ class DialogViewController: UIViewController {
                                                  iconDefinition: nil,
                                                  flareView: flareView)
         dialogController.cornerStyle = .large
+        dialogController.buttonSize = .default
         flareView.backgroundView.backgroundColor = Color.primaryColor
 
         let mainAction = DialogButtonAction(title: "Got it!", style: .primary) {
