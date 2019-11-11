@@ -49,6 +49,11 @@ class ThemeHelpers: NSObject {
     }
 
     @objc
+    class func overrideUserInterfaceStyle() -> Bool {
+        return ProcessInfo.processInfo.environment["OVERRIDE_INTERFACE_STLYE"] == "YES"
+    }
+
+    @objc
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:
