@@ -18,8 +18,10 @@
 
 #import "BPKButtonsViewController.h"
 #import "BPKExampleAppTitleAttributes.h"
+#import "Backpack_Native-Swift.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 
@@ -54,6 +56,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+#if __BPK_DARK_MODE_SUPPORTED
+    if (ThemeHelpers.overrideUserInterfaceStyle) {
+        if (@available(iOS 13.0, *)) {
+            self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+       }
+    }
+#endif
     
     [self setupButtons];
 }
