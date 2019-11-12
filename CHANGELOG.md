@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.1.2
+
+**Fixed:**
+ - Backpack/Button:
+   - Fixed an issue that caused buttons to resolve the wrong dynamic colours when the interface style has been overridden.
+
 ## 23.1.1
 
 **Fixed:**
