@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
        }
     }
 #endif
-    
+
     [self setupButtons];
 }
 

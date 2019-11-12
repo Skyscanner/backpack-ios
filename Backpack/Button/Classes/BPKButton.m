@@ -16,12 +16,21 @@
  * limitations under the License.
  */
 
+/*
+ * Note that in some places we are having to resolve the correct UIColors from dynamic values ourselves to ensure
+ * that we support overriding UIViewController interface styles. if we allow UIKit to resolve them for us,
+ * it may do so wrongly.
+ * This is because UIKit only sets the UIView's trait collection on a handful of lifecycle methods, and we
+ * are using dynamic colours outside of these. If we do not manually resolve colours using self.traitCollection,
+ * then UIKit will fall back to using [UITraitCollection currentTraitCollection] which does not reflect the override.
+ */
+
 #import "BPKButton.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
-#import <Backpack/Font.h>
 #import <Backpack/DarkMode.h>
+#import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
@@ -376,9 +385,7 @@ NS_ASSUME_NONNULL_BEGIN
             UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : [self class].boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
-                self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
-                                                                                       with:BPKColor.skyGray
-                                                                                     weight:0.85f]];
+                self.gradientLayer.gradient = [self gradientWithSingleColor:[self highlightedColor:backgroundColor]];
                 [self.gradientLayer setNeedsDisplay];
             }
             break;
@@ -390,9 +397,7 @@ NS_ASSUME_NONNULL_BEGIN
                 self.destructiveBorderColor ? self.destructiveBorderColor : [self class].boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
-                self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:backgroundColor
-                                                                                       with:BPKColor.skyGray
-                                                                                     weight:0.85f]];
+                self.gradientLayer.gradient = [self gradientWithSingleColor:[self highlightedColor:backgroundColor]];
                 [self.gradientLayer setNeedsDisplay];
             }
             break;
@@ -440,6 +445,16 @@ NS_ASSUME_NONNULL_BEGIN
     [self setNeedsDisplay];
 }
 
+- (UIColor *)highlightedColor:(UIColor *)originalColor {
+    UIColor *resolvedColor = originalColor;
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        resolvedColor = [originalColor resolvedColorWithTraitCollection:self.traitCollection];
+    }
+#endif
+    return [BPKColor blend:resolvedColor with:BPKColor.skyGray weight:0.85f];
+}
+
 - (void)updateContentColor {
     [self setTitleColor:self.currentContentColor forState:UIControlStateNormal];
     if (self.title) {
@@ -459,28 +474,28 @@ NS_ASSUME_NONNULL_BEGIN
     switch (self.style) {
     case BPKButtonStylePrimary:
         if (self.primaryContentColor != nil) {
-            highlightedContentColor = [BPKColor blend:self.primaryContentColor with:BPKColor.skyGray weight:0.85f];
+            highlightedContentColor = [self highlightedColor:self.primaryContentColor];
         } else {
             highlightedContentColor = [self class].highlightedWhite;
         }
         break;
     case BPKButtonStyleFeatured:
         if (self.featuredContentColor != nil) {
-            highlightedContentColor = [BPKColor blend:self.featuredContentColor with:BPKColor.skyGray weight:0.85f];
+            highlightedContentColor = [self highlightedColor:self.featuredContentColor];
         } else {
             highlightedContentColor = [self class].highlightedWhite;
         }
         break;
     case BPKButtonStyleSecondary:
         if (self.secondaryContentColor != nil) {
-            highlightedContentColor = [BPKColor blend:self.secondaryContentColor with:BPKColor.skyGray weight:0.85f];
+            highlightedContentColor = [self highlightedColor:self.secondaryContentColor];
         } else {
             highlightedContentColor = [self class].highlightedBlue;
         }
         break;
     case BPKButtonStyleDestructive:
         if (self.destructiveContentColor != nil) {
-            highlightedContentColor = [BPKColor blend:self.destructiveContentColor with:BPKColor.skyGray weight:0.85f];
+            highlightedContentColor = [self highlightedColor:self.destructiveContentColor];
         } else {
             highlightedContentColor = [self class].highlightedRed;
         }
@@ -600,8 +615,18 @@ NS_ASSUME_NONNULL_BEGIN
     NSParameterAssert(top);
     NSParameterAssert(bottom);
 
+    UIColor *resolvedTopColor = top;
+    UIColor *resolvedBottomColor = bottom;
+
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        resolvedTopColor = [top resolvedColorWithTraitCollection:self.traitCollection];
+        resolvedBottomColor = [bottom resolvedColorWithTraitCollection:self.traitCollection];
+    }
+#endif
+
     BPKGradientDirection direction = BPKGradientDirectionDown;
-    return [[BPKGradient alloc] initWithColors:@[top, bottom]
+    return [[BPKGradient alloc] initWithColors:@[resolvedTopColor, resolvedBottomColor]
                                     startPoint:[BPKGradient startPointForDirection:direction]
                                       endPoint:[BPKGradient endPointForDirection:direction]];
 }
@@ -625,6 +650,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.gradientLayer.gradient = [self gradientWithSingleColor:gradientColor];
 
     UIColor *borderColor = color;
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 13.0, *)) {
+        borderColor = [color resolvedColorWithTraitCollection:self.traitCollection];
+    }
+#endif
     [self.layer setBorderColor:borderColor.CGColor];
     self.layer.borderWidth = 2;
 }
