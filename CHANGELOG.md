@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.1.3
+
+**Fixed:**
+ - Backpack/Dialog:
+   - Fixed an issue that caused the flare-view to display off-center on iOS 11.
+
 ## 23.1.2
 
 **Fixed:**
