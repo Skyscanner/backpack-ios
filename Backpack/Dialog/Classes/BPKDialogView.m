@@ -384,6 +384,7 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:@[
         [self.flareView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.flareView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor],
+        [self.flareView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
         [self.flareView.heightAnchor constraintGreaterThanOrEqualToConstant:150.0],
         [self.flareView.heightAnchor constraintLessThanOrEqualToConstant:300.0],
     ]];
