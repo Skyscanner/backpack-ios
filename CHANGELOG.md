@@ -2,6 +2,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.2.0
+
+**Added:**
+ - Backpack/Color:
+   - Added a dynamic `lineColor` to our colour palette.
+
+**Fixed:**
+ - Backpack/Button:
+   - Fixed an issue with interactions when a title has be set, and then reverted to `nil`.
+
 ## 23.1.3
 
 **Fixed:**

@@ -1,14 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
- - Backpack/Button:
-   - Fixed an issue with interactions when a title has be set, and then reverted to `nil`.
-
-**Added:**
- - Backpack/Color:
-   - Added a dynamic `lineColor` to our colour palette.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
