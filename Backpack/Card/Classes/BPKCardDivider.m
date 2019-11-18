@@ -19,6 +19,7 @@
 #import "BPKCardDivider.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
@@ -43,14 +44,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupViews {
     self.dottedLine = [[CAShapeLayer alloc] initWithLayer:self];
-    self.dottedLine.strokeColor = [BPKColor skyGrayTint06].CGColor;
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
     self.dottedLine.lineDashPattern = @[@5, @3];
     [self.layer addSublayer:self.dottedLine];
+    [self updateLineColor];
 }
 
 #pragma mark - Private
+
+- (void)updateLineColor {
+    self.dottedLine.strokeColor = BPKColor.lineColor.CGColor;
+}
 
 - (void)layoutSubviews {
     CGMutablePathRef path = CGPathCreateMutable();
@@ -62,6 +67,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self.dottedLine setPath:path];
     CGPathRelease(path);
+}
+
+// Note this is needed to correctly update the `CGColor` used for the line .
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+            [self updateLineColor];
+        }
+    }
+#endif
 }
 
 @end
