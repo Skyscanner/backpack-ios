@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic) BPKGradientLayer *gradientLayer;
 
+@property(nonatomic, readonly) BOOL hasTitle;
 @property(nonatomic, readonly, getter=isIconOnly) BOOL iconOnly;
 @property(nonatomic, readonly, getter=isTextOnly) BOOL textOnly;
 @property(nonatomic, readonly, getter=isTextAndIcon) BOOL textAndIcon;
@@ -126,16 +127,20 @@ NS_ASSUME_NONNULL_BEGIN
     self.initializing = NO;
 }
 
+- (BOOL)hasTitle {
+    return self.titleLabel.text.length > 0 && self.currentAttributedTitle != nil;
+}
+
 - (BOOL)isIconOnly {
-    return self.currentImage && self.titleLabel.text.length == 0;
+    return self.currentImage && !self.hasTitle;
 }
 
 - (BOOL)isTextOnly {
-    return (self.currentImage == nil) && self.titleLabel.text.length > 0;
+    return (self.currentImage == nil) && self.hasTitle;
 }
 
 - (BOOL)isTextAndIcon {
-    return self.currentImage && self.titleLabel.text.length > 0;
+    return self.currentImage && self.hasTitle;
 }
 
 #pragma mark - Style setters
@@ -183,6 +188,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
+        [self setAttributedTitle:nil forState:UIControlStateHighlighted];
     }
 
     [self updateFont];
@@ -302,7 +308,7 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         self.titleEdgeInsets = UIEdgeInsetsZero;
         self.imageEdgeInsets = UIEdgeInsetsZero;
-        self.contentEdgeInsets = self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
+        self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     }
 
     if (self.isIconOnly || self.isTextAndIcon) {
@@ -465,6 +471,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
+        [self setAttributedTitle:nil forState:UIControlStateHighlighted];
     }
 
     self.imageView.tintColor = self.currentContentColor;
