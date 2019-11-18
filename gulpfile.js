@@ -149,6 +149,9 @@ const parseColor = color => {
   const { r, g, b, a } = parsedColor.toRgb();
 
   return {
+    r255: r,
+    g255: g,
+    b255: b,
     r: (r / 255.0).toFixed(3),
     g: (g / 255.0).toFixed(3),
     b: (b / 255.0).toFixed(3),

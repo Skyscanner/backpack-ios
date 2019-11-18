@@ -33,7 +33,7 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 ///-----------------------
 {% for c in color %}
 /**
- * The `{{c.name}}` color from the Backpack palette.
+ * The `{{c.name}}` color from the Backpack palette - rgb({{c.value.r255}}, {{c.value.g255}}, {{c.value.b255}}).
  *
  * <div style="width: 100px; height: 100px; background: {{c.hex}}; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
