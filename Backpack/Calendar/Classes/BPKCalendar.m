@@ -519,7 +519,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
 
         if (!enabled) {
-            calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitNotEnabled;
+            calendarCell.isAccessibilityElement = NO;
         }
 
         if (selectionType == SelectionTypeSingle || selectionType == SelectionTypeSameDay ||
@@ -567,11 +567,11 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 #pragma mark - Getters
 
--(UIColor *)currentDateSelectedBackgroundColor {
+- (UIColor *)currentDateSelectedBackgroundColor {
     return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.skyBlue;
 }
 
--(UIColor *)currentDateSelectedContentColor {
+- (UIColor *)currentDateSelectedContentColor {
     return self.dateSelectedContentColor != nil ? self.dateSelectedContentColor : BPKColor.white;
 }
 
