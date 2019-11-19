@@ -207,6 +207,14 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self.calendarWeekdayView configureAppearance];
 }
 
+- (void)setMaxEnabledDate:(BPKSimpleDate *)maxEnabledDate {
+    if (_maxEnabledDate != maxEnabledDate) {
+        _maxEnabledDate = maxEnabledDate;
+
+        // TODO Update cells
+    }
+}
+
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
     BPKAssertMainThread();
     _selectionType = selectionType;
@@ -512,9 +520,10 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.rowType = rowType;
         calendarCell.accessibilityLabel = [self formattedDate:date];
 
+        NSDate *lastEnabledDate = [BPKCalendar minOfDate:[self.maxEnabledDate dateForCalendar:self.gregorian] andDate:[self.maxDate dateForCalendar:self.gregorian]];
         Boolean enabled = [BPKCalendar date:date
                               isBetweenDate:[self.minDate dateForCalendar:self.gregorian]
-                                    andDate:[self.maxDate dateForCalendar:self.gregorian]];
+                                    andDate:lastEnabledDate];
 
         calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
 
@@ -552,6 +561,17 @@ NSString *const HeaderDateFormat = @"MMMM";
     return YES;
 }
 
++ (NSDate *)minOfDate:(NSDate *_Nullable)date1 andDate:(NSDate *)date2 {
+    if(date1  == nil){
+        return date2;
+    }
+
+    if ([date1 compare:date2] == NSOrderedDescending)
+        return date1;
+
+    return date2;
+}
+
 #pragma mark -
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
@@ -567,11 +587,11 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 #pragma mark - Getters
 
--(UIColor *)currentDateSelectedBackgroundColor {
+- (UIColor *)currentDateSelectedBackgroundColor {
     return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.skyBlue;
 }
 
--(UIColor *)currentDateSelectedContentColor {
+- (UIColor *)currentDateSelectedContentColor {
     return self.dateSelectedContentColor != nil ? self.dateSelectedContentColor : BPKColor.white;
 }
 

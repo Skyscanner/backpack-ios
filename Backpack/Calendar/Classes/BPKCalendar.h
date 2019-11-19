@@ -103,6 +103,12 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 @property(nonatomic) BPKSimpleDate *maxDate;
 
 /**
+ * The latest date that the user is able to select.
+ * Unlike `maxDate`, this is safe to modify on the fly.
+ */
+@property(nonatomic) BPKSimpleDate *maxEnabledDate;
+
+/**
  * The underlying scrollView's content offset
  */
 @property(readonly) CGPoint contentOffset;
