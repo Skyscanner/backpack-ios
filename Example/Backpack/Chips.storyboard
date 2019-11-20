@@ -40,6 +40,7 @@
                             <constraint firstItem="h4y-YC-Uzb" firstAttribute="trailing" secondItem="HBs-ET-Q43" secondAttribute="trailing" id="4oR-S8-fnE"/>
                             <constraint firstItem="HBs-ET-Q43" firstAttribute="leading" secondItem="h4y-YC-Uzb" secondAttribute="leading" id="CT7-Sb-uGK"/>
                             <constraint firstItem="HBs-ET-Q43" firstAttribute="centerX" secondItem="Kec-l1-3BA" secondAttribute="centerX" id="LxL-12-tVe"/>
+                            <constraint firstItem="HBs-ET-Q43" firstAttribute="top" relation="greaterThanOrEqual" secondItem="h4y-YC-Uzb" secondAttribute="top" id="ocY-fI-YTd"/>
                             <constraint firstItem="HBs-ET-Q43" firstAttribute="centerY" secondItem="Kec-l1-3BA" secondAttribute="centerY" id="tAt-Rp-gnl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
