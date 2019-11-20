@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="biG-sv-ldA">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Calendar-->
+        <scene sceneID="7fB-TL-UOZ">
+            <objects>
+                <tableViewController storyboardIdentifier="CalendarViewController" title="Calendar" id="biG-sv-ldA" customClass="CalendarSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="be7-GK-OWL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="cJp-Nd-rPk">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="UEj-MB-EF3" style="IBUITableViewCellStyleDefault" id="zuY-TN-P0y">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zuY-TN-P0y" id="H5q-bk-Pao">
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UEj-MB-EF3" customClass="BPKLabel">
+                                                    <rect key="frame" x="20" y="0.0" width="354.66666666666669" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Hs3-3r-XWM" kind="show" identifier="Default" id="kGj-MF-IN6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="biG-sv-ldA" id="Nog-j4-IzY"/>
+                            <outlet property="delegate" destination="biG-sv-ldA" id="Jmr-Z4-Y6e"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLz-kv-OwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-875" y="-542"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="AtO-fB-7hD">
+            <objects>
+                <viewController title="Calendar" id="Hs3-3r-XWM" customClass="CalendarViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Or-8d-yCd"/>
+                        <viewControllerLayoutGuide type="bottom" id="wK3-Q9-P0R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CmZ-QO-G9Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-Se-Vyq" customClass="BPKCalendar">
+                                <rect key="frame" x="0.0" y="47" width="414" height="669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2Eu-vd-4Ma">
+                                <rect key="frame" x="104" y="8" width="206" height="32"/>
+                                <segments>
+                                    <segment title="Single"/>
+                                    <segment title="Range"/>
+                                    <segment title="Multiple"/>
+                                </segments>
+                                <connections>
+                                    <action selector="valueChanged:" destination="Hs3-3r-XWM" eventType="valueChanged" id="g39-pb-CM7"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2Eu-vd-4Ma" firstAttribute="centerX" secondItem="CmZ-QO-G9Q" secondAttribute="centerX" id="1N9-eC-fuF"/>
+                            <constraint firstItem="2Eu-vd-4Ma" firstAttribute="top" secondItem="1Or-8d-yCd" secondAttribute="bottom" constant="8" id="2wj-z1-rcg"/>
+                            <constraint firstItem="nIn-Se-Vyq" firstAttribute="top" secondItem="2Eu-vd-4Ma" secondAttribute="bottom" constant="8" id="Drf-Kg-WB0"/>
+                            <constraint firstItem="nIn-Se-Vyq" firstAttribute="leading" secondItem="CmZ-QO-G9Q" secondAttribute="leading" id="GgG-Ff-bdk"/>
+                            <constraint firstItem="wK3-Q9-P0R" firstAttribute="top" secondItem="nIn-Se-Vyq" secondAttribute="bottom" id="dNB-d7-9Ni"/>
+                            <constraint firstAttribute="trailing" secondItem="nIn-Se-Vyq" secondAttribute="trailing" id="pO9-69-J52"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aSY-Lo-V5I"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5XK-MJ-4mR"/>
+                    <connections>
+                        <outlet property="myView" destination="nIn-Se-Vyq" id="gXz-Uk-yGA"/>
+                        <outlet property="segmentedControl" destination="2Eu-vd-4Ma" id="ArJ-dY-WH5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NEm-Lh-qy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="141"/>
+        </scene>
+    </scenes>
+</document>
