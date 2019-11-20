@@ -22,6 +22,8 @@ import Backpack.Calendar
 import Backpack.SimpleDate
 
 class CalendarViewController: UIViewController, CalendarDelegate {
+    var maxEnabledDate: Bool = false
+    var currentMaxEnabledDate: Date?
     @IBOutlet weak var myView: Backpack.Calendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -31,21 +33,50 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         myView.delegate = self
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: { _ in self.myView.reloadData() })
+    }
+
+// Pragma mark: SegmentedControlDelegate
+
     @IBAction func valueChanged(_ sender: Any) {
         myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
         myView.reloadData()
     }
 
+// Pragma mark: CalendarDelegate
+
     func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
+
+        if self.maxEnabledDate {
+            if dateList.count == 0 {
+                self.currentMaxEnabledDate = nil
+            } else {
+                let lastSelectedDate = dateList.first
+                let newMaxDate = SimpleDate(year: lastSelectedDate!.year,
+                                           month: lastSelectedDate!.month + 1,
+                                             day: lastSelectedDate!.day)
+                self.currentMaxEnabledDate = newMaxDate.date(for: calendar.gregorian)
+            }
+        }
     }
 
     func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
         print("calendar:", calendar, "didScroll:", contentOffset, "isTracking:", calendar.isTracking)
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil, completion: { _ in self.myView.reloadData() })
+    // Disables dates that are > 1 month ahead of the selected date.
+    func calendar(_ calendar: Backpack.Calendar, isDateEnabled: Date) -> Bool {
+        if self.currentMaxEnabledDate == nil {
+            return true
+        }
+
+        // If date > self.currentMaxEnabledDate, return false
+        if isDateEnabled.compare(self.currentMaxEnabledDate!) == .orderedDescending {
+            return false
+        }
+        return true
     }
 }

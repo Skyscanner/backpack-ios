@@ -21,6 +21,7 @@ import Backpack
 
 enum CalendarSegueIdentifier: String {
     case `default` = "Default"
+    case withMaxEnabledDate = "WithMaxEnabledDate"
 }
 
 class CalendarSelectorViewController: UITableViewController {
@@ -34,6 +35,9 @@ class CalendarSelectorViewController: UITableViewController {
             switch calendarSegueIdentifier {
             case .default:
                 target.title = "Default"
+            case .withMaxEnabledDate:
+                target.title = "Max enabled date"
+                target.maxEnabledDate = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

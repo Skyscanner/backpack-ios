@@ -320,6 +320,12 @@ NSString *const HeaderDateFormat = @"MMMM";
 - (BOOL)calendar:(FSCalendar *)calendar
     shouldSelectDate:(NSDate *)date
      atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    BOOL enabled = [self isDateEnabled:date];
+
+    if (!enabled) {
+        return NO;
+    }
+
     if (self.sameDayRange) {
         self.sameDayRange = NO;
     }
@@ -337,6 +343,7 @@ NSString *const HeaderDateFormat = @"MMMM";
             }
         }
     }
+
     return YES;
 }
 
@@ -363,6 +370,12 @@ NSString *const HeaderDateFormat = @"MMMM";
     atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
+
+    // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
+    // visually reflected.
+    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
+        [self invalidateVisibleCells];
+    }
 }
 
 - (void)calendar:(FSCalendar *)calendar
@@ -370,6 +383,12 @@ NSString *const HeaderDateFormat = @"MMMM";
     atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
+
+    // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
+    // visually reflected.
+    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
+        [self invalidateVisibleCells];
+    }
 }
 
 - (void)calendar:(FSCalendar *)calendar
@@ -402,6 +421,15 @@ NSString *const HeaderDateFormat = @"MMMM";
         return [UIColor clearColor];
     }
     return appearance.borderDefaultColor;
+}
+
+- (nullable UIColor *)calendar:(FSCalendar *)calendar
+                    appearance:(FSCalendarAppearance *)appearance
+      titleDefaultColorForDate:(nonnull NSDate *)date {
+    if ([self isDateEnabled:date]) {
+        return [self enabledTextColor];
+    }
+    return [self disabledTextColor];
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
@@ -512,16 +540,17 @@ NSString *const HeaderDateFormat = @"MMMM";
         calendarCell.rowType = rowType;
         calendarCell.accessibilityLabel = [self formattedDate:date];
 
-        Boolean enabled = [BPKCalendar date:date
-                              isBetweenDate:[self.minDate dateForCalendar:self.gregorian]
-                                    andDate:[self.maxDate dateForCalendar:self.gregorian]];
-
-        calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
-
-        if (!enabled) {
+        if ([self isDateEnabled:date]) {
+            calendarCell.isAccessibilityElement = YES;
+            calendarCell.accessibilityElementsHidden = NO;
+        } else {
+            // Hides the element from screen-readers to save swiping forever!
+            // Not this only takes effect after the cells have been invalidated.
             calendarCell.isAccessibilityElement = NO;
+            calendarCell.accessibilityElementsHidden = YES;
         }
 
+        calendarCell.accessibilityTraits = UIAccessibilityTraitButton;
         if (selectionType == SelectionTypeSingle || selectionType == SelectionTypeSameDay ||
             selectionType == SelectionTypeLeadingBorder || selectionType == SelectionTypeTrailingBorder) {
             calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitSelected;
@@ -530,6 +559,37 @@ NSString *const HeaderDateFormat = @"MMMM";
 }
 
 #pragma mark - helpers
+
+- (void)invalidateVisibleCells {
+    // This works, but it prevents the selection animation from working 😞
+    NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
+    [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
+}
+
+- (UIColor *)enabledTextColor {
+    return self.appearance.titleDefaultColor;
+}
+
+- (UIColor *)disabledTextColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
+}
+
+- (BOOL)isDateEnabled:(NSDate *)date {
+    NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
+    NSDate *maxDate = [self.maxDate dateForCalendar:self.gregorian];
+
+    BOOL dateFallsBetweenMinAndMaxDates = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
+
+    if(!dateFallsBetweenMinAndMaxDates) {
+        return false;
+    }
+
+    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
+        return [self.delegate calendar:self isDateEnabled:date];
+    }
+
+    return true;
+}
 
 - (NSString *)formattedDate:(NSDate *)date {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
