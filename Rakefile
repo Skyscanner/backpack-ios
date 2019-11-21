@@ -67,8 +67,12 @@ def install_pods_in_example_project()
   $?.exitstatus == 0
 end
 
+def get_changed_files()
+  `git status --porcelain | grep -Ev "CHANGELOG|UNRELEASED"`.lines
+end
+
 def check_pristine()
-  changes = `git status --porcelain | grep -Ev "CHANGELOG|UNRELEASED"`.lines
+  changes = get_changed_files
   changes.length == 0
 end
 
@@ -93,9 +97,9 @@ task :test do
 end
 
 task :lint do
-  abort red 'Generated files have changed during setup.' unless check_pristine
+  abort red "The following generated files have changed during setup:\n#{get_changed_files}" unless check_pristine
   `clang-format -i **/*.h **/*.m`
-  abort red 'Running clang-format changed some files.' unless check_pristine
+  abort red "clang-format has changed the following files:\n#{get_changed_files}" unless check_pristine
   sh "bundle exec pod lib lint --allow-warnings"
 end
 
