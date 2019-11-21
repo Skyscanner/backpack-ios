@@ -14,8 +14,8 @@ cache:
     - node_modules
 matrix:
   include:
-    - osx_image: xcode11
-      env: BUILD_SDK=iphonesimulator13.0 DESTINATION="OS=13.0,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
+    - osx_image: xcode11.2
+      env: BUILD_SDK=iphonesimulator13.2 DESTINATION="OS=13.2.2,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
     - osx_image: xcode10.3
       env: BUILD_SDK=iphonesimulator12.4 DESTINATION="OS=12.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
     - osx_image: xcode9.4

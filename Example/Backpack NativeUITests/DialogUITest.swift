@@ -70,7 +70,9 @@ class DialogUITest: XCTestCase {
         saveScreenshot(named: "Dialog Controller Normal")
 
         XCTContext.runActivity(named: "Act") { _ in
-            dialogScrimView.tap()
+            let dialogScrimViewCoordinate: XCUICoordinate =
+                dialogScrimView.coordinate(withNormalizedOffset: CGVector(dx: 10.0, dy: 10.0))
+            dialogScrimViewCoordinate.tap()
         }
 
         saveScreenshot(named: "Dialog Controller Normal after scrim tapped")
