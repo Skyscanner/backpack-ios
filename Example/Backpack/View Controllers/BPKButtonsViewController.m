@@ -34,19 +34,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *defaultTrailingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultLeadingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultDisabledButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingIconOnlyButton;
-@property (weak, nonatomic) IBOutlet BPKButton *defaultLoadingTitleOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKButton *defaultLoadingTitleOnlyButton;
 
 @property(weak, nonatomic) IBOutlet BPKButton *largeTextButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeIconOnlyButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeTrailingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeLeadingIconButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeDisabledButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
-@property (weak, nonatomic) IBOutlet BPKButton *largeLoadingTitleOnlyButton;
-@property (assign, nonatomic) BOOL isOutlineSectionWithLightStyle;
+@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
+@property(weak, nonatomic) IBOutlet BPKButton *largeLoadingTitleOnlyButton;
+@property(assign, nonatomic) BOOL isOutlineSectionWithLightStyle;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
 @property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (ThemeHelpers.overrideUserInterfaceStyle) {
         if (@available(iOS 13.0, *)) {
             self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-       }
+        }
     }
 #endif
 
@@ -142,11 +142,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)isOutlineSectionWithLightStyle {
-    #if __BPK_DARK_MODE_SUPPORTED
+#if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 13.0, *)) {
-        return (self.style == BPKButtonStyleOutline && self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
+        return (self.style == BPKButtonStyleOutline &&
+                self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
     }
-    #endif
+#endif
 
     return (self.style == BPKButtonStyleOutline);
 }

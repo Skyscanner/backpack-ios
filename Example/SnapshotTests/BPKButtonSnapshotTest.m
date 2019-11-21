@@ -645,7 +645,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme loading:(BOOL)loading {
+- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size
+                                   style:(BPKButtonStyle)style
+                              applyTheme:(BOOL)applyTheme
+                                 loading:(BOOL)loading {
     UIImage *smallIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
 
     UIStackView *horizontalStackview = [[UIStackView alloc] initWithFrame:CGRectZero];

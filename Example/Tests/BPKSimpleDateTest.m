@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setDay:day];
     [components setMonth:month];
-    [components setYear:    year];
+    [components setYear:year];
     NSDate *date = [calendar dateFromComponents:components];
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithDate:date forCalendar:calendar];
@@ -68,8 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
-    NSDate *date = [sd dateForCalendar: calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDate *date = [sd dateForCalendar:calendar];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -87,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setDay:day];
     [components setMonth:month];
-    [components setYear:    year];
+    [components setYear:year];
     NSDate *date = [calendar dateFromComponents:components];
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithDate:date forCalendar:calendar];
@@ -107,8 +108,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
-    NSDate *date = [sd dateForCalendar: calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDate *date = [sd dateForCalendar:calendar];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -126,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setDay:day];
     [components setMonth:month];
-    [components setYear:    year];
+    [components setYear:year];
     NSDate *date = [calendar dateFromComponents:components];
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithDate:date forCalendar:calendar];
@@ -146,8 +148,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
-    NSDate *date = [sd dateForCalendar: calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDate *date = [sd dateForCalendar:calendar];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -160,12 +163,12 @@ NS_ASSUME_NONNULL_BEGIN
     int year = 2018;
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"ja-JP"];
+    calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja-JP"];
 
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setDay:day];
     [components setMonth:month];
-    [components setYear:    year];
+    [components setYear:year];
     NSDate *date = [calendar dateFromComponents:components];
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithDate:date forCalendar:calendar];
@@ -181,12 +184,13 @@ NS_ASSUME_NONNULL_BEGIN
     int year = 2014;
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"ja-JP"];
+    calendar.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja-JP"];
 
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
-    NSDate *date = [sd dateForCalendar: calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDate *date = [sd dateForCalendar:calendar];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
