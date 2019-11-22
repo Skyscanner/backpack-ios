@@ -19,12 +19,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class BPKNavigationBarButton;
+
 NS_ASSUME_NONNULL_BEGIN
 /**
  * A navigation bar component similar to `UINavigationBar` from UIKit implementing
  * the iOS 11 style large title pattern.
  */
 NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
+/**
+ * A `BPKNavigationBarButton` to show on the left side inside the navigation
+ */
+@property(nonatomic, strong) BPKNavigationBarButton *leftButton;
+
+/**
+ * A `BPKNavigationBarButton` to show on the right side inside the navigation
+ */
+@property(nonatomic, strong) BPKNavigationBarButton *rightButton;
+
 /**
  * The title text to display in the navigation bar
  */

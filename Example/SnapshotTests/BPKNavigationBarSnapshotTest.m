@@ -100,5 +100,23 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(self.containerVC.view, nil);
 }
 
+- (void)testNavBarExpandedWithButtons {
+    self.navigationBar.leftButton.title = @"Back";
+    self.navigationBar.leftButton.hidden = NO;
+    self.navigationBar.rightButton.title = @"Done";
+    self.navigationBar.rightButton.hidden = NO;
+    FBSnapshotVerifyView(self.containerVC.view, nil);
+}
+
+- (void)testNavBarCollapseddWithButtons {
+    NSIndexPath *index = [NSIndexPath indexPathForRow:249 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    self.navigationBar.leftButton.title = @"Back";
+    self.navigationBar.leftButton.hidden = NO;
+    self.navigationBar.rightButton.title = @"Done";
+    self.navigationBar.rightButton.hidden = NO;
+    FBSnapshotVerifyView(self.containerVC.view, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END
