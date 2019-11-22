@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                                             constant:BPKFlareHeight];
+                                                                         constant:BPKFlareHeight];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],

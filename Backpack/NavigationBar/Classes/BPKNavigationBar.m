@@ -319,7 +319,7 @@ NS_ASSUME_NONNULL_BEGIN
     return (UIViewController *)responder;
 }
 
--(UIColor *)borderViewBackgroundColor {
+- (UIColor *)borderViewBackgroundColor {
     return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint01];
 }
 

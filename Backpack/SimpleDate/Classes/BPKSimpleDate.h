@@ -33,11 +33,11 @@ NS_SWIFT_NAME(SimpleDate) @interface BPKSimpleDate : NSObject
  * @param calendar The calendar object for the conversion
  * @return SimpleDate representing a timezone independent date
  */
-- (instancetype)initWithDate:(NSDate *)date forCalendar:(NSCalendar *) calendar;
+- (instancetype)initWithDate:(NSDate *)date forCalendar:(NSCalendar *)calendar;
 
-- (NSDate *)dateForCalendar:(NSCalendar *) calendar;
+- (NSDate *)dateForCalendar:(NSCalendar *)calendar;
 
-+ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates forCalendar:(NSCalendar *) calendar;
++ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates forCalendar:(NSCalendar *)calendar;
 
 @end
 
