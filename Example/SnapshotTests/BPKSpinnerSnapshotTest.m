@@ -17,8 +17,11 @@
  */
 
 #import <Backpack/Spacing.h>
+#import <Backpack/Color.h>
 #import <Backpack/Spinner.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+
+#import "BPKSnapshotTest.h"
 
 @interface BPKSpinnerSnapshotTest : FBSnapshotTestCase
 
@@ -32,24 +35,40 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
-- (void)testSpinners {
+- (UIView *)createSpinnersTestView {
     NSArray<BPKSpinner *> *views = [self createAllSpinnerVariantsWithTheming:NO];
     UIView *view = [self embedViewsInStackView:views];
 
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testSpinnersWithTheme {
+- (void)testSpinners {
+    UIView *lightView = [self createSpinnersTestView];
+    UIView *darkView = [self createSpinnersTestView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createSpinnersWithThemeTestView {
     NSArray<BPKSpinner *> *views = [self createAllSpinnerVariantsWithTheming:YES];
     UIView *view = [self embedViewsInStackView:views];
 
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testSpinnersWithTheme {
+    UIView *lightView = [self createSpinnersWithThemeTestView];
+    UIView *darkView = [self createSpinnersWithThemeTestView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 #pragma mark - Private
@@ -70,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                themed:(BOOL)themed {
     BPKSpinner *spinner = [[BPKSpinner alloc] initWithStyle:style size:size];
     if (themed) {
-        spinner.primaryColor = UIColor.yellowColor;
+        spinner.primaryColor = [BPKColor dynamicColorWithLightVariant:UIColor.purpleColor darkVariant:UIColor.yellowColor];
     }
     [spinner setHidesWhenStopped:NO];
     return spinner;
