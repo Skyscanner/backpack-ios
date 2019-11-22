@@ -135,9 +135,9 @@ NS_ASSUME_NONNULL_BEGIN
         [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
         [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor
-                                                      constant:(BPKSpacingMd + BPKSpacingSm)],
+                                                      constant:(0)],
         [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor
-                                                                    constant:(BPKSpacingMd + BPKSpacingSm)],
+                                                                    constant:(0)],
     ]];
 
     [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
@@ -145,7 +145,13 @@ NS_ASSUME_NONNULL_BEGIN
         self.bottomAnchorConstraint = [self.dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
         self.bottomAnchorConstraint.active = YES;
     } else if (self.style == BPKDialogControllerStyleAlert) {
-        [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        [NSLayoutConstraint activateConstraints:@[
+            [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+            [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
+                                                                   constant:BPKSpacingLg],
+            [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor
+                                                                                   constant:BPKSpacingLg]
+        ]];
     }
 }
 
