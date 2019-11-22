@@ -73,7 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
         for (UIView *contentView in self.contentViews) {
             [contentView setBackgroundColor:BPKColor.skyBlueShade03];
         }
-
         for (UILabel *storyHeading in self.storyHeadings) {
             [storyHeading setTextColor:BPKColor.white];
         }

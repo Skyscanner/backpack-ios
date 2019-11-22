@@ -6,6 +6,9 @@
 
 # Backpack components
 
+BPKSnackbar
+Snackbar
+
 BpkAutosuggest
 
 BpkBarChart
