@@ -128,16 +128,22 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupConstraints {
+    NSLayoutConstraint *lowerWidthConstraint = [self.dialogView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor multiplier:0.8];
+    lowerWidthConstraint.priority = UILayoutPriorityDefaultHigh;
+
+
     [NSLayoutConstraint activateConstraints:@[
         [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.scrimView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [self.scrimView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.scrimView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
-        [self.dialogView.leadingAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor
-                                                      constant:(0)],
-        [self.view.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.dialogView.trailingAnchor
-                                                                    constant:(0)],
+        [self.dialogView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.leadingAnchor],
+        [self.view.layoutMarginsGuide.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.trailingAnchor],
+
+        [self.dialogView.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 13],
+        lowerWidthConstraint,
+        [self.dialogView.heightAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 18],
     ]];
 
     [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
