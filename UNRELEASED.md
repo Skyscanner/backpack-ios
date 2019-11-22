@@ -1,10 +1,12 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-
-- Backpack/Calendar
-  - New feature to set different colours for specific dates.
+**Fixed:**
+- Backpack/Dialog:
+  - Significantly improved the behaviour of the dialog in extreme cases.
+  - `BPKDialogController` now appropriately constraints the dialog to not grow to a size too large for the viewport.
+  - `BPKDialogController` now limits how large the dialog grows in large view ports like iPad.
+  - `BPkDialogView` can now be constrained to stop growing and will handle small viewports by shrinking its content.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
