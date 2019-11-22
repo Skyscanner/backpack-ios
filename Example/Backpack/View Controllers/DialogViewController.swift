@@ -130,6 +130,7 @@ class DialogViewController: UIViewController {
         let message = "Your flight is all booked. Why not check out some hotels now?"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
+
         let dialogController  = DialogController(title: "You are going to Tokyo!",
                                                  message: message,
                                                  style: .alert,
@@ -163,9 +164,11 @@ class DialogViewController: UIViewController {
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
             est laborum.
             """
+        let title = "You are going to Tokyo! With a very long title " +
+                    "spanning multiple lines and eventually being trauncated"
         let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
-        let dialogController  = DialogController(title: "You are going to Tokyo!",
+        let dialogController  = DialogController(title: title,
                                                  message: message,
                                                  style: .alert,
                                                  iconDefinition: iconDefinition)
