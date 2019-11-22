@@ -1,13 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
- - Backpack/Calendar:
-   - Disabled dates are now hidden from accessibility tools so that users don't have to flick through dozens of disabled options.
-
- - Backpack/Spinner:
-   - The primary style spinner is now `white` in "Dark mode".
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.

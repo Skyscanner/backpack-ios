@@ -2,6 +2,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.2.1
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Disabled dates are now hidden from accessibility tools so that users don't have to flick through dozens of disabled options.
+
+ - Backpack/Spinner:
+   - The primary style spinner is now `white` in "Dark mode".
+
 ## 23.2.0
 
 **Added:**
