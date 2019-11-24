@@ -18,7 +18,8 @@
  */
 
 #import <Backpack/Calendar.h>
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+
+#import "BPKSnapshotTest.h"
 
 @interface BPKCalendarYearPillSnapshotTest : FBSnapshotTestCase
 
@@ -31,10 +32,18 @@
     self.recordMode = NO;
 }
 
-- (void)testYearPill {
+- (UIView *)createYearPill {
     BPKCalendarYearPill *yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
     yearPill.year = @2019;
-    FBSnapshotVerifyView(yearPill, nil);
+    return yearPill;
+}
+
+- (void)testYearPill {
+    UIView *lightView = [self createYearPill];
+    UIView *darkView = [self createYearPill];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
