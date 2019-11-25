@@ -1,21 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Calendar
-   - Fixed the year pill colours in dark mode.
-
- - Backpack/Progress
-   - Fixed the background colour in dark mode.
-
- - Backpack/StarRating
-   - Fixed the background colour in dark mode.
-
-**Added:**
- - Backpack/Snackbar:
-   - New Snackbar component added
-
- - Backpack/NavigationBar
-   - New left and right buttons
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

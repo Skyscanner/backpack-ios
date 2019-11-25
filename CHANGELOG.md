@@ -2,6 +2,25 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.3.0
+
+**Fixed:**
+ - Backpack/Calendar
+   - Fixed the year pill colours in dark mode.
+
+ - Backpack/Progress
+   - Fixed the background colour in dark mode.
+
+ - Backpack/StarRating
+   - Fixed the background colour in dark mode.
+
+**Added:**
+ - Backpack/Snackbar:
+   - New Snackbar component added
+
+ - Backpack/NavigationBar
+   - New left and right buttons
+
 ## 23.2.1
 
 **Fixed:**
