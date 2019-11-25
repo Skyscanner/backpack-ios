@@ -21,6 +21,7 @@ import UIKit
 import Backpack
 
 class NavigationBarViewController: UIViewController {
+    var showButtons: Bool = false
     private static let CellIdentifier = "CellIdentifier"
 
     @IBOutlet weak var navigationBar: NavigationBar!
@@ -42,16 +43,18 @@ class NavigationBarViewController: UIViewController {
         super.viewDidLoad()
         navigationBar.title = "Explore"
 
-        // Left button setup
-        navigationBar.leftButton.isHidden = false
-        navigationBar.leftButton.title = "Back"
-        navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+        if self.showButtons {
+            // Left button setup
+            navigationBar.leftButton.isHidden = false
+            navigationBar.leftButton.title = "Back"
+            navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
 
-        // Right button setup
-        navigationBar.rightButton.isHidden = false
-        navigationBar.rightButton.title = "Done"
-        navigationBar.rightButton.setImage(Icon.makeTemplateIcon(name: .tickCircle, size: .small))
-        navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
+            // Right button setup
+            navigationBar.rightButton.isHidden = false
+            navigationBar.rightButton.title = "Done"
+            navigationBar.rightButton.setImage(Icon.makeTemplateIcon(name: .tickCircle, size: .small))
+            navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
+        }
 
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: NavigationBarViewController.CellIdentifier)
