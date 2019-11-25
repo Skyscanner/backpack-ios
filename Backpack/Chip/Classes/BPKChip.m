@@ -20,6 +20,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <Backpack/Shadow.h>
@@ -206,10 +207,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIColor *)unselectedBackgroundColor {
     if (self.colorUnselectedState) {
-        return [BPKColor blend:[self selectedBackgroundColor] with:BPKColor.white weight:0.2];
+        return [BPKColor blend:[self selectedBackgroundColor] with:BPKColor.backgroundTertiaryColor weight:0.2];
     }
 
-    return self.shadowEnabled ? BPKColor.white : BPKColor.skyGrayTint07;
+    return [self defaultUnselectedBackgroundColor];
+}
+
+- (UIColor *)defaultUnselectedBackgroundColor {
+    if (self.shadowEnabled) {
+        return BPKColor.backgroundTertiaryColor;
+    }
+
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07
+                                      darkVariant:BPKColor.backgroundTertiaryDarkColor];
 }
 
 - (void)updateStyle {
@@ -218,12 +228,12 @@ NS_ASSUME_NONNULL_BEGIN
         self.textColor = BPKColor.white;
     } else {
         self.backgroundColor = [self unselectedBackgroundColor];
-        self.textColor = BPKColor.skyGray;
+        self.textColor = BPKColor.textPrimaryColor;
     }
 
     if (!self.enabled) {
-        self.backgroundColor = BPKColor.white;
-        self.textColor = BPKColor.skyGrayTint06;
+        self.backgroundColor = [self.class disabledBackgroundColor];
+        self.textColor = [self.class disabledContentColor];
     }
 
     uint64_t selectedTraitBits = self.selected ? UIAccessibilityTraitSelected : 0;
@@ -243,6 +253,18 @@ NS_ASSUME_NONNULL_BEGIN
     [self.titleLabel setTextColor:self.textColor];
 }
 
+// This is required as the colours that are blended will not be dynamic values
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+            [self updateStyle];
+        }
+    }
+#endif
+}
+
 #pragma mark - Actions
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
@@ -257,6 +279,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)chipVerticalSpacing {
     return BPKSpacingMd;
+}
+
++ (UIColor *)disabledBackgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint02];
+}
+
++ (UIColor *)disabledContentColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
 }
 
 @end
