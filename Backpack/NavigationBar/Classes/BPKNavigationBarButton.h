@@ -16,22 +16,15 @@
  * limitations under the License.
  */
 
+#import <Backpack/Button.h>
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-extern const CGFloat BPKNavigationBarTitleHeight;
 
 NS_ASSUME_NONNULL_BEGIN
-@class BPKLabel;
-@interface BPKNavigationBarTitleView : UIView
-@property(nonatomic, strong, readonly) BPKLabel *titleLabel;
 
-@property(nonatomic, assign) BOOL showsContent;
+@interface BPKNavigationBarButton : BPKButton
 
-- (instancetype)init __attribute__((unavailable("use initWithFrame: instead")));
-- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithFrame: instead")));
+@property(nonatomic, strong) UIColor *contentColor;
 
-- (instancetype)initWithFrame:(CGRect)frame;
 @end
 
 NS_ASSUME_NONNULL_END

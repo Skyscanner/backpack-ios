@@ -20,6 +20,15 @@ BPKNavigationBar *navigationBar = [[BPKNavigationBar alloc] initWithFrame:CGRect
 
 [navigationBar setUpForScrollview:myScrollView];
 
+// Optional setup of custom navigation buttons
+navigationBar.leftButton.hidden = NO;
+navigationBar.leftButton.title = @"Back";
+[navigationBar.leftButton addTarget:self action:@selector(leftButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
+navigationBar.rightButton.hidden = NO;
+navigationBar.rightButton.title = @"Done";
+[navigationBar.rightButton addTarget:self action:@selector(rightButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
 // In scrollViewDidScroll:
 
 [navigationBar updateWithScrollView:scrollView];
@@ -45,6 +54,15 @@ let navigationBar = Backpack.NavigationBar(frame: .zero)
 // In viewDidLoad
 
 navigationBar.setUp(for: myScrolView)
+
+// Optional setup of custom navigation buttons
+navigationBar.leftButton.isHidden = false
+navigationBar.leftButton.title = "Back"
+navigationBar.leftButton.addTarget(self, action: #selector(leftButtonPressed), for: .touchUpInside)
+
+navigationBar.rightButton.isHidden = false
+navigationBar.rightButton.title = "Done"
+navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
 
 // In scrollViewDidScroll:
 

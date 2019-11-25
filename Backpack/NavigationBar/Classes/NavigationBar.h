@@ -20,4 +20,5 @@
 #define __BACKPACK_NAVIGATION_BAR__
 
 #import "BPKNavigationBar.h"
+#import "BPKNavigationBarButton.h"
 #endif

@@ -21,7 +21,9 @@
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
 #import <Backpack/Label.h>
+#import <Backpack/Spacing.h>
 
+#import "BPKNavigationBarButton.h"
 #import "BPKNavigationBarLargeTitleView.h"
 #import "BPKNavigationBarTitleView.h"
 
@@ -259,6 +261,25 @@ NS_ASSUME_NONNULL_BEGIN
     return _borderView;
 }
 
+- (BPKNavigationBarButton *)leftButton {
+    if (!_leftButton) {
+        _leftButton = [[BPKNavigationBarButton alloc] init];
+        _leftButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _leftButton.imagePosition = BPKButtonImagePositionLeading;
+        _leftButton.hidden = YES;
+    }
+    return _leftButton;
+}
+
+- (BPKNavigationBarButton *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [[BPKNavigationBarButton alloc] init];
+        _rightButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _rightButton.hidden = YES;
+    }
+    return _rightButton;
+}
+
 - (void)setUp {
     _collapsed = NO;
     _largeTitleTextColor = nil;
@@ -268,6 +289,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.borderView];
     [self addSubview:self.largeTitleView];
     [self addSubview:self.titleView];
+    [self addSubview:self.leftButton];
+    [self addSubview:self.rightButton];
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKNavigationBarExpandedFullHeight];
 
@@ -291,6 +314,14 @@ NS_ASSUME_NONNULL_BEGIN
         [self.titleView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.titleView.bottomAnchor constraintLessThanOrEqualToAnchor:self.bottomAnchor],
         [self.titleView.heightAnchor constraintEqualToConstant:BPKNavigationBarTitleHeight],
+
+        // Left Button
+        [self.leftButton.leftAnchor constraintEqualToAnchor:self.titleView.leftAnchor constant:BPKSpacingBase],
+        [self.leftButton.centerYAnchor constraintEqualToAnchor:self.titleView.centerYAnchor],
+
+        // Right Button
+        [self.titleView.trailingAnchor constraintEqualToAnchor:self.rightButton.trailingAnchor constant:BPKSpacingBase],
+        [self.rightButton.centerYAnchor constraintEqualToAnchor:self.titleView.centerYAnchor],
 
         // Border
         [self.borderView.topAnchor constraintEqualToAnchor:self.titleView.bottomAnchor],

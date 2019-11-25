@@ -21,6 +21,7 @@ import UIKit
 import Backpack
 
 class NavigationBarViewController: UIViewController {
+    var showButtons: Bool = false
     private static let CellIdentifier = "CellIdentifier"
 
     @IBOutlet weak var navigationBar: NavigationBar!
@@ -42,6 +43,19 @@ class NavigationBarViewController: UIViewController {
         super.viewDidLoad()
         navigationBar.title = "Explore"
 
+        if self.showButtons {
+            // Left button setup
+            navigationBar.leftButton.isHidden = false
+            navigationBar.leftButton.title = "Back"
+            navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+
+            // Right button setup
+            navigationBar.rightButton.isHidden = false
+            navigationBar.rightButton.title = "Done"
+            navigationBar.rightButton.setImage(Icon.makeTemplateIcon(name: .tickCircle, size: .small))
+            navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
+        }
+
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: NavigationBarViewController.CellIdentifier)
         tableView.delegate = self
@@ -59,6 +73,16 @@ class NavigationBarViewController: UIViewController {
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         navigationBar.largeTitleLayoutMargins = tableView.layoutMargins
+    }
+
+    @objc
+    func backPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    @objc
+    func rightButtonPressed() {
+        print("Right button pressed")
     }
 }
 

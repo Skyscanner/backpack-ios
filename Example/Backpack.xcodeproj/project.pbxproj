@@ -55,6 +55,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
 		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -259,6 +260,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
+		D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarSelectorViewController.swift; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* ExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKExampleAppTitleAttributes.m; sourceTree = "<group>"; };
 		D20470422347878A00A1BE48 /* BPKExampleAppTitleAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKExampleAppTitleAttributes.h; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */,
 				D2C49DB423856949008D41FB /* CalendarSelectorViewController.swift */,
 				D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */,
 				D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */,
@@ -1141,6 +1144,7 @@
 				7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
+				D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */,
 				D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
