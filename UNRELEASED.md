@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Calendar
+   - Fixed the year pill colours in dark mode.
 
 **Added:**
  - Backpack/Snackbar:
