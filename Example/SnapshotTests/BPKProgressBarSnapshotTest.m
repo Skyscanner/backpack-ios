@@ -22,6 +22,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/ProgressBar.h>
 
+#import "BPKSnapshotTest.h"
+
 @interface BPKProgressBarSnapshotTest : FBSnapshotTestCase
 
 @end
@@ -33,17 +35,25 @@
     self.recordMode = NO;
 }
 
-- (void)testSettingValue {
+- (UIView *)createSettingValueView {
     BPKProgressBar *progressBar = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
     progressBar.progress = 0.75;
 
     CGSize fittingSize = [progressBar systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     progressBar.frame = CGRectMake(0.0, 0.0, 200, fittingSize.height);
 
-    FBSnapshotVerifyView(progressBar, nil);
+    return progressBar;
 }
 
-- (void)testOverridingBackgroundColor {
+- (void)testSettingValue {
+    UIView *lightView = [self createSettingValueView];
+    UIView *darkView = [self createSettingValueView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createOverridingBackgroundColorView {
     BPKProgressBar *progressBar = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
     progressBar.progress = 0.75;
 
@@ -52,10 +62,18 @@
     CGSize fittingSize = [progressBar systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     progressBar.frame = CGRectMake(0.0, 0.0, 200, fittingSize.height);
 
-    FBSnapshotVerifyView(progressBar, nil);
+    return progressBar;
 }
 
-- (void)testTheme {
+- (void)testOverridingBackgroundColor {
+    UIView *lightView = [self createOverridingBackgroundColorView];
+    UIView *darkView = [self createOverridingBackgroundColorView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createThemeView {
     BPKProgressBar *progressBar = [[BPKProgressBar alloc] initWithFrame:CGRectZero];
     progressBar.progress = 0.75;
 
@@ -64,7 +82,15 @@
     CGSize fittingSize = [progressBar systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     progressBar.frame = CGRectMake(0.0, 0.0, 200, fittingSize.height);
 
-    FBSnapshotVerifyView(progressBar, nil);
+    return progressBar;
+}
+
+- (void)testTheme {
+    UIView *lightView = [self createThemeView];
+    UIView *darkView = [self createThemeView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end

@@ -21,6 +21,8 @@
 
 #import <Backpack/StarRating.h>
 
+#import "BPKSnapshotTest.h"
+
 @interface BPKStarRatingSnapshotTest : FBSnapshotTestCase
 
 @end
@@ -328,14 +330,22 @@
     [self verifyRatingViewWithRating:rating size:BPKStarSizeXLarge];
 }
 
-- (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size {
+- (UIView *)createRatingViewWithRating:(float)rating size:(BPKStarSize)size {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:size];
     ratingView.rating = rating;
 
     CGSize fittingSize = [ratingView systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
     ratingView.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
 
-    FBSnapshotVerifyView(ratingView, nil);
+    return ratingView;
+}
+
+- (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size {
+    UIView *lightView = [self createRatingViewWithRating:rating size:size];
+    UIView *darkView = [self createRatingViewWithRating:rating size:size];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end

@@ -63,8 +63,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setup {
-    self.trackTintColor = BPKColor.skyGrayTint06;
+    self.trackTintColor = [self.class backgroundColor];
     self.progressTintColor = BPKColor.skyBlue;
+}
+
++ (UIColor *)backgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
 }
 
 @end

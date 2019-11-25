@@ -151,7 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)currentStarColor {
-    return self.starColor != nil ? self.starColor : [BPKColor skyGrayTint06];
+    return self.starColor != nil ? self.starColor : [self.class defaultStarColor];
 }
 
 - (BPKIconSize)iconSizeForStarSize:(BPKStarSize)size {
@@ -181,6 +181,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.starView.tintColor = self.state == BPKStarStateFull ? self.currentStarFilledColor : self.currentStarColor;
     self.halfStarView.tintColor = self.currentStarFilledColor;
     self.halfStarView.hidden = self.state != BPKStarStateHalf;
+}
+
++ (UIColor *)defaultStarColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
 }
 
 @end
