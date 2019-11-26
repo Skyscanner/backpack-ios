@@ -49,6 +49,13 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 - (void)calendar:(BPKCalendar *)calendar didScroll:(CGPoint)contentOffset;
 
+/**
+ * Called when the calendar renders each cell.
+ * @param calendar The backpack calendar.
+ * @param date The date to check for enabledness.
+ */
+- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date;
+
 @end
 
 /**
@@ -98,7 +105,7 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 @property(nonatomic) BPKSimpleDate *minDate;
 
 /**
- * The latest date that the user is allowed to select
+ * The latest date that the user is able to see
  */
 @property(nonatomic) BPKSimpleDate *maxDate;
 

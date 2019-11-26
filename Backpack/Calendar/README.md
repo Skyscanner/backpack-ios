@@ -37,6 +37,10 @@ bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 - (void)calendar:(BPKCalendar *)calendar didScroll:(CGPoint)contentOffset {
     // do stuff
 }
+
+- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date {
+    // do stuff
+}
 ```
 
 ### Swift
@@ -56,6 +60,10 @@ extension MyClass: CalendarDelegate {
   }
 
   func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
+      // do stuff
+  }
+
+  func calendar(_ calendar: Backpack.Calendar, isDateEnabled: Date) -> Bool {
       // do stuff
   }
 }
