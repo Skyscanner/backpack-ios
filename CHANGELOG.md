@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+##23.3.1
+
+**Fixed:**
+ - Backpack/NavigationBar
+   - Fixed button positions in RTL.
+
 ## 23.3.0
 
 **Fixed:**
