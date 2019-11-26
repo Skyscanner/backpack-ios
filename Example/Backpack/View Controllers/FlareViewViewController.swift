@@ -48,7 +48,7 @@ class FlareViewViewController: UIViewController {
         NSLayoutConstraint.activate([
             flareViewCenterYConstraint,
             label.topAnchor.constraint(equalTo: flareView.contentView.topAnchor, constant: BPKSpacingBase),
-            label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase),
+            label.leftAnchor.constraint(equalTo: flareView.contentView.leftAnchor, constant: BPKSpacingBase),
             flareView.contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingBase)
             ])
 
@@ -66,7 +66,7 @@ class FlareViewViewController: UIViewController {
                 imageView.heightAnchor.constraint(equalTo: flareView.heightAnchor),
                 imageView.widthAnchor.constraint(equalTo: flareView.widthAnchor),
                 imageView.topAnchor.constraint(equalTo: flareView.topAnchor),
-                imageView.leadingAnchor.constraint(equalTo: flareView.leadingAnchor),
+                imageView.leftAnchor.constraint(equalTo: flareView.leftAnchor),
                 flareView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
                 flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
                 ])
