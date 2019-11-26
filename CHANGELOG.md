@@ -2,7 +2,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
-##23.3.1
+## 23.4.0
+
+**Added:**
+ - Backpack/Calendar:
+   - It is now possible to implement a custom method to determine which dates should be enabled/disabled according to some custom criteria.
+
+## 23.3.1
 
 **Fixed:**
  - Backpack/NavigationBar

@@ -1,9 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
- - Backpack/Calendar:
-   - It is now possible to implement a custom method to determine which dates should be enabled/disabled according to some custom criteria.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
