@@ -371,11 +371,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
-    // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
-    // visually reflected.
-    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
-        [self invalidateVisibleCells];
-    }
+    [self invalidateVisibleCellsIfNeeded];
 }
 
 - (void)calendar:(FSCalendar *)calendar
@@ -384,11 +380,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
-    // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
-    // visually reflected.
-    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
-        [self invalidateVisibleCells];
-    }
+    [self invalidateVisibleCellsIfNeeded];
 }
 
 - (void)calendar:(FSCalendar *)calendar
@@ -427,9 +419,10 @@ NSString *const HeaderDateFormat = @"MMMM";
                     appearance:(FSCalendarAppearance *)appearance
       titleDefaultColorForDate:(nonnull NSDate *)date {
     if ([self isDateEnabled:date]) {
-        return [self enabledTextColor];
+        return self.appearance.titleDefaultColor;
     }
-    return [self disabledTextColor];
+
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
@@ -560,18 +553,14 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 #pragma mark - helpers
 
-- (void)invalidateVisibleCells {
-    // This works, but it prevents the selection animation from working 😞
-    NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
-    [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
-}
-
-- (UIColor *)enabledTextColor {
-    return self.appearance.titleDefaultColor;
-}
-
-- (UIColor *)disabledTextColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
+- (void)invalidateVisibleCellsIfNeeded {
+    // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
+    // visually reflected.
+    if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
+        // This works, but it prevents the selection animation from working 😞
+        NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
+        [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
+    }
 }
 
 - (BOOL)isDateEnabled:(NSDate *)date {
@@ -580,14 +569,17 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     BOOL dateFallsBetweenMinAndMaxDates = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
 
+    // If the date is outside min and max dates, then it should definitely be disabled.
     if(!dateFallsBetweenMinAndMaxDates) {
         return false;
     }
 
+    // If the consumer has implemented `isDateEnabled` then we should respect that
     if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
         return [self.delegate calendar:self isDateEnabled:date];
     }
 
+    // Gonna return true, because in the words of Sia, I'm still here...
     return true;
 }
 

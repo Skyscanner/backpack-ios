@@ -22,7 +22,7 @@
 #import <Backpack/SimpleDate.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
-@interface BPKCalendarSnapshotTest : FBSnapshotTestCase
+@interface BPKCalendarSnapshotTest : FBSnapshotTestCase<BPKCalendarDelegate>
 
 @property NSDate *date1;
 @property NSDate *date2;
@@ -95,6 +95,19 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testCalendarWithSingleSelectionAndCustomDisabledDates {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+
+    [self configureParentView:parentView forCalendar:bpkCalendar];
+    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
+    bpkCalendar.delegate = self;
+    [bpkCalendar reloadData];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 - (void)testCalendarWithRangeSelection {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
@@ -140,6 +153,20 @@ NS_ASSUME_NONNULL_BEGIN
     [bpkCalendar reloadData];
 
     FBSnapshotVerifyView(parentView, nil);
+}
+
+#pragma mark - <BPKCalendarDelegate>
+
+- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date {
+    if ([date compare:self.date2] == NSOrderedDescending) {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (void)calendar:(nonnull BPKCalendar *)calendar didChangeDateSelection:(nonnull NSArray<BPKSimpleDate *> *)dateList {
+    return;
 }
 
 @end
