@@ -34,6 +34,7 @@ install:
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
 script:
   - npm run build
+  - 'if [[ "$MAIN_STAGE" = true ]]; then danger; fi'
   - 'if [[ "$MAIN_STAGE" = true ]]; then ./scripts/check-pristine-state package-lock.json; fi'
   - 'if [[ "$MAIN_STAGE" = true ]]; then (cd Example && Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml); fi'
   - 'if [[ "$MAIN_STAGE" = true && ! -n "$TRAVIS_TAG" ]]; then ./scripts/build-docs-ci && rm -rf docs; fi'
