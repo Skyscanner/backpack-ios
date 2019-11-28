@@ -234,52 +234,6 @@ NS_ASSUME_NONNULL_BEGIN
     return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
-+ (UIFont *)fontForStyle:(BPKFontStyle)style {
-    switch (style) {
-        
-            case BPKFontStyleTextBase:
-                return [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
-            case BPKFontStyleTextBaseEmphasized:
-                return [UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextCaps:
-                return [UIFont systemFontOfSize:10 weight:UIFontWeightRegular];
-            case BPKFontStyleTextCapsEmphasized:
-                return [UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextLg:
-                return [UIFont systemFontOfSize:20 weight:UIFontWeightRegular];
-            case BPKFontStyleTextLgEmphasized:
-                return [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextSm:
-                return [UIFont systemFontOfSize:14 weight:UIFontWeightRegular];
-            case BPKFontStyleTextSmEmphasized:
-                return [UIFont systemFontOfSize:14 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextXl:
-                return [UIFont systemFontOfSize:24 weight:UIFontWeightRegular];
-            case BPKFontStyleTextXlEmphasized:
-                return [UIFont systemFontOfSize:24 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextXlHeavy:
-                return [UIFont systemFontOfSize:24 weight:UIFontWeightHeavy];
-            case BPKFontStyleTextXs:
-                return [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
-            case BPKFontStyleTextXsEmphasized:
-                return [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextXxl:
-                return [UIFont systemFontOfSize:30 weight:UIFontWeightRegular];
-            case BPKFontStyleTextXxlEmphasized:
-                return [UIFont systemFontOfSize:30 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextXxlHeavy:
-                return [UIFont systemFontOfSize:30 weight:UIFontWeightHeavy];
-            case BPKFontStyleTextXxxl:
-                return [UIFont systemFontOfSize:36 weight:UIFontWeightRegular];
-            case BPKFontStyleTextXxxlEmphasized:
-                return [UIFont systemFontOfSize:36 weight:UIFontWeightSemibold];
-            case BPKFontStyleTextXxxlHeavy:
-                return [UIFont systemFontOfSize:36 weight:UIFontWeightHeavy];
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
-    }
-}
-
 + (UIFont *)fontWithName:(BPKFontMapping *)fontMapping forStyle:(BPKFontStyle)style {
     if (fontMapping == nil) {
         return [self fontWithStyle:style];
