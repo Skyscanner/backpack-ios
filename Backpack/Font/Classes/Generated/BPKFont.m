@@ -216,23 +216,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     UIFont *font = [self fontWithName:fontMapping forStyle:style];
-    NSNumber *_Nullable tracking = [self trackingForStyle:style fontMapping:fontMapping];
-    NSDictionary *result;
-
-    if (tracking != nil) {
-        result = @{
-                   NSKernAttributeName: tracking,
+    NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
                    };
-
-    } else {
-        result = @{
-                   NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                   NSFontAttributeName: font,
-                   };
-   }
-
 
     [[self attributesCache] setObject:result forKey:cacheKey];
 
@@ -357,75 +344,6 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextXxxlHeavy:
              return [UIFont fontWithName:fontMapping.heavyFontFace size:36];
              
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
-    }
-}
-
-+ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (fontMapping != nil) {
-        return nil;
-    }
-
-    switch (style) {
-        
-            case BPKFontStyleTextBase:
-              return @(0.12);
-              
-            case BPKFontStyleTextBaseEmphasized:
-              return @(0.12);
-              
-            case BPKFontStyleTextCaps:
-              return @(0.28);
-              
-            case BPKFontStyleTextCapsEmphasized:
-              return @(0.28);
-              
-            case BPKFontStyleTextLg:
-              return  nil;
-              
-            case BPKFontStyleTextLgEmphasized:
-              return  nil;
-              
-            case BPKFontStyleTextSm:
-              return @(0.154);
-              
-            case BPKFontStyleTextSmEmphasized:
-              return @(0.154);
-              
-            case BPKFontStyleTextXl:
-              return  nil;
-              
-            case BPKFontStyleTextXlEmphasized:
-              return  nil;
-              
-            case BPKFontStyleTextXlHeavy:
-              return  nil;
-              
-            case BPKFontStyleTextXs:
-              return @(0);
-              
-            case BPKFontStyleTextXsEmphasized:
-              return @(0);
-              
-            case BPKFontStyleTextXxl:
-              return  nil;
-              
-            case BPKFontStyleTextXxlEmphasized:
-              return  nil;
-              
-            case BPKFontStyleTextXxlHeavy:
-              return  nil;
-              
-            case BPKFontStyleTextXxxl:
-              return  nil;
-              
-            case BPKFontStyleTextXxxlEmphasized:
-              return  nil;
-              
-            case BPKFontStyleTextXxxlHeavy:
-              return  nil;
-              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }

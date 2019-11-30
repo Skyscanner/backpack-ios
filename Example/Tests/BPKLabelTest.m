@@ -27,32 +27,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKLabelTest
 
-- (void)testInitWithFontStyleWithTracking {
-    BPKFontStyle styles[] = {
-        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized, BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
-        BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized, BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
-    };
-
-    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = BPKColor.textPrimaryColor;
-
-    for (NSUInteger i = 0; i < length; i++) {
-        BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
-        label.text = @"Hello world";
-
-        NSAttributedString *attributedString = label.attributedText;
-        NSRange range = NSMakeRange(0, label.text.length);
-        NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
-
-        XCTAssertNotNil(attributes[NSKernAttributeName]);
-        XCTAssertNotNil(attributes[NSFontAttributeName]);
-        XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
-        XCTAssertNil(attributes[NSParagraphStyleAttributeName],
-                     @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
-    }
-}
-
-- (void)testInitWithFontStyleWithoutTracking {
+- (void)testInitWithFontStyle {
     BPKFontStyle styles[] = {
         BPKFontStyleTextLg,
         BPKFontStyleTextLgEmphasized,

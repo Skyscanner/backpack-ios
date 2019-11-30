@@ -28,30 +28,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKTextFieldTest
 
-- (void)testInitWithFontStyleWithTracking {
-    BPKFontStyle styles[] = {
-        BPKFontStyleTextXs, BPKFontStyleTextXsEmphasized, BPKFontStyleTextCaps, BPKFontStyleTextCapsEmphasized,
-        BPKFontStyleTextSm, BPKFontStyleTextSmEmphasized, BPKFontStyleTextBase, BPKFontStyleTextBaseEmphasized,
-    };
-
-    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-    UIColor *expectedColor = BPKColor.textPrimaryColor;
-
-    for (NSUInteger i = 0; i < length; i++) {
-        BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:styles[i]];
-        textField.text = @"Hello world";
-
-        NSAttributedString *attributedString = textField.attributedText;
-        NSRange range = NSMakeRange(0, textField.text.length);
-        NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
-
-        XCTAssertNotNil(attributes[NSKernAttributeName]);
-        XCTAssertNotNil(attributes[NSFontAttributeName]);
-        XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
-    }
-}
-
-- (void)testInitWithFontStyleWithoutTracking {
+- (void)testInitWithFontStyle {
     BPKFontStyle styles[] = {
         BPKFontStyleTextLg,
         BPKFontStyleTextLgEmphasized,

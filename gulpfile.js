@@ -252,16 +252,8 @@ const parseTokens = tokensData => {
         properties,
         ({ category }) => category === 'font-weights',
       );
-      const trackingProp = _.filter(
-        properties,
-        ({ category }) => category === 'letter-spacings',
-      );
 
-      if (
-        sizeProp.length !== 1 ||
-        weightProp.length !== 1 ||
-        trackingProp.length !== 1
-      ) {
+      if (sizeProp.length !== 1 || weightProp.length !== 1) {
         throw new Error(
           `Expected all text sizes to have line height, letter spacing, weight, and font size. Not all were found for ${key}`,
         );
@@ -276,7 +268,6 @@ const parseTokens = tokensData => {
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
-        trackingAdjustment: Number.parseFloat(trackingProp[0].value),
       };
     })
     .flatMap(properties => {

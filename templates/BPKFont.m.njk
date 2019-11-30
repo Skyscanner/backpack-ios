@@ -108,23 +108,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     UIFont *font = [self fontWithName:fontMapping forStyle:style];
-    NSNumber *_Nullable tracking = [self trackingForStyle:style fontMapping:fontMapping];
-    NSDictionary *result;
-
-    if (tracking != nil) {
-        result = @{
-                   NSKernAttributeName: tracking,
+    NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
                    };
-
-    } else {
-        result = @{
-                   NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                   NSFontAttributeName: font,
-                   };
-   }
-
 
     [[self attributesCache] setObject:result forKey:cacheKey];
 
@@ -164,24 +151,6 @@ NS_ASSUME_NONNULL_BEGIN
              {% else -%}
                return [UIFont fontWithName:fontMapping.regularFontFace size:{{f.size}}];
              {% endif %}{% endfor %}
-            default:
-              NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
-    }
-}
-
-+ (NSNumber *_Nullable)trackingForStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (fontMapping != nil) {
-        return nil;
-    }
-
-    switch (style) {
-        {% for f in font %}
-            case {{f.enumName}}:
-              {% if f.trackingAdjustment or f.trackingAdjustment == 0 -%}
-                return @({{f.trackingAdjustment}});
-              {% else -%}
-                return  nil;
-              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
