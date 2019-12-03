@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+- Backpack/NavigationBar
+  - Added a property `largetTitleTextAlignment` to support overriding the text alignment of the large title.
 
 **Fixed:**
 

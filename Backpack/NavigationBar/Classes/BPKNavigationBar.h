@@ -54,6 +54,11 @@ NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
 @property(nonatomic, assign) UIEdgeInsets largeTitleLayoutMargins;
 
 /**
+ * The text alignment of the large title text.
+ */
+@property(nonatomic, assign) NSTextAlignment largeTitleTextAlignment;
+
+/**
  * Initializes and returns a newly allocated navigation bar by decoding a NSCoder
  *
  * @param aDecoder The decoder to deocde

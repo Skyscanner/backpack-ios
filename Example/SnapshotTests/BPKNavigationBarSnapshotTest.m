@@ -118,5 +118,10 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(self.containerVC.view, nil);
 }
 
+- (void)testNavBarLargeTitleAlignment {
+    self.navigationBar.largeTitleTextAlignment = NSTextAlignmentRight;
+    FBSnapshotVerifyView(self.containerVC.view, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END
