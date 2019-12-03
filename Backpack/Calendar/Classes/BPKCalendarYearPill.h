@@ -23,6 +23,5 @@
 @interface BPKCalendarYearPill : UIView
 
 @property(nonatomic, nonnull) NSNumber *year;
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 @end

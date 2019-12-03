@@ -36,6 +36,4 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 @property(nonatomic) SelectionType selectionType;
 @property(nonatomic) RowType rowType;
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
-
 @end

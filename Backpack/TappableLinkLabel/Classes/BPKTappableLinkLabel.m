@@ -145,16 +145,14 @@ NS_ASSUME_NONNULL_BEGIN
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
     };
     self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
-                                                 withCustomAttributes:linkCustomAttributes
-                                                          fontMapping:self.fontMapping];
+                                                 withCustomAttributes:linkCustomAttributes];
 
     NSDictionary *activeLinkCustomAttributes = @{
         NSForegroundColorAttributeName: [self.linkDisplayColor colorWithAlphaComponent:0.2],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
     };
     self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
-                                                       withCustomAttributes:activeLinkCustomAttributes
-                                                                fontMapping:self.fontMapping];
+                                                       withCustomAttributes:activeLinkCustomAttributes];
 
     [self updateTextDisplay];
 }
@@ -167,8 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
         [BPKFont attributesForFontStyle:self.fontStyle
-                   withCustomAttributes:self.customFontAttributes
-                            fontMapping:self.fontMapping];
+                   withCustomAttributes:self.customFontAttributes];
 
     NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
                                                                     attributes:newStringAttributes];
@@ -219,14 +216,6 @@ NS_ASSUME_NONNULL_BEGIN
         _fontStyle = fontStyle;
 
         [self updateTextColors];
-    }
-}
-
-- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateTextDisplay];
     }
 }
 

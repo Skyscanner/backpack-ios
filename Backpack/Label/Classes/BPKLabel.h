@@ -27,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Label) IB_DESIGNABLE @interface BPKLabel : UILabel
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
-
 /**
  * Create a `BPKLabel` with a specific BPKFont style.
  *

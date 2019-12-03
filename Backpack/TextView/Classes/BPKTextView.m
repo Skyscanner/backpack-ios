@@ -71,12 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.textColor) {
         attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
                                                           content:text
-                                                        textColor:self.textColor
-                                                      fontMapping:self.fontMapping];
+                                                        textColor:self.textColor];
     } else {
         attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:text
-                                                      fontMapping:self.fontMapping];
+                                                          content:text];
     }
     self.attributedText = attributedString;
 }
@@ -95,13 +93,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    BPKAssertMainThread();
-    _fontMapping = fontMapping;
-
-    [self updateStyle];
-}
-
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
@@ -114,8 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateStyle {
     NSDictionary *colorAttributes = self.textColor ? @{NSForegroundColorAttributeName: self.textColor} : @{};
     self.typingAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                       withCustomAttributes:colorAttributes
-                                                fontMapping:self.fontMapping];
+                                       withCustomAttributes:colorAttributes];
 
     [self setText:self.attributedText.string];
 }

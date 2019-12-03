@@ -25,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
  * view hierarchy containing Backpack components. This should be subclassed
  * to create concrete themes.
  */
-@class BPKFontMapping;
 @protocol BPKThemeDefinition;
 NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
 

@@ -26,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(TextView) IB_DESIGNABLE @interface BPKTextView : UITextView
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
-
 /**
  * Create a `BPKTextView` with a specific BPKFont style.
  *

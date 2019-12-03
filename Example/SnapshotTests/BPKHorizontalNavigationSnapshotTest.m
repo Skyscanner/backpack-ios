@@ -117,10 +117,6 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     horizontalNavigation.selectedColor = UIColor.orangeColor;
-    horizontalNavigation.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                              regularFontFace:@"SnellRoundhand"
-                                                             semiboldFontFace:@"SnellRoundhand-Bold"
-                                                                heavyFontFace:@"SnellRoundhand-Black"];
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
     FBSnapshotVerifyView(view, nil);

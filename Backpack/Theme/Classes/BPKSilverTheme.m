@@ -34,13 +34,6 @@
     return @"Silver";
 }
 
-- (BPKFontMapping *)fontMapping {
-    return [[BPKFontMapping alloc] initWithFamily:@"Charter"
-                                  regularFontFace:@"Charter-Roman"
-                                 semiboldFontFace:@"Charter-Bold"
-                                    heavyFontFace:@"Charter-Black"];
-}
-
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

@@ -36,10 +36,6 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
     return BPKSpringCleanThemeName;
 }
 
-- (BPKFontMapping *)fontMapping {
-    return nil;
-}
-
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

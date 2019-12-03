@@ -18,7 +18,6 @@
 
 @class BPKCalendar;
 @class BPKSimpleDate;
-@class BPKFontMapping;
 
 /**
  * Enum values for specifying calendar selection type
@@ -63,7 +62,6 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *dateSelectedContentColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *dateSelectedBackgroundColor UI_APPEARANCE_SELECTOR;
 

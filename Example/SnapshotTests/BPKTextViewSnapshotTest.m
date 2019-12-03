@@ -131,10 +131,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTextView *textView = [[BPKTextView alloc] initWithFontStyle:styles[i]];
-        textView.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                      regularFontFace:@"SnellRoundhand"
-                                                     semiboldFontFace:@"SnellRoundhand-Bold"
-                                                        heavyFontFace:@"SnellRoundhand-Black"];
         textView.text = @"Backpack Rocks";
         textView.textColor = UIColor.orangeColor;
         [stackView addArrangedSubview:textView];

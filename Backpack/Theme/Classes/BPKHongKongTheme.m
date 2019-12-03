@@ -38,13 +38,6 @@
     return @"Hong Kong";
 }
 
-- (BPKFontMapping *)fontMapping {
-    return [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                  regularFontFace:@"SnellRoundhand"
-                                 semiboldFontFace:@"SnellRoundhand-Bold"
-                                    heavyFontFace:@"SnellRoundhand-Black"];
-}
-
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

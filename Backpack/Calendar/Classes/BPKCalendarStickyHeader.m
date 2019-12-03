@@ -56,14 +56,6 @@
         CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
 }
 
-- (void)setFontMapping:(BPKFontMapping *)fontMapping {
-    if (fontMapping != _fontMapping) {
-        _fontMapping = fontMapping;
-        // Triger text update
-        [self setMonth:self.month];
-    }
-}
-
 - (void)setMonth:(NSDate *)month {
     [super setMonth:month];
     FSCalendarAppearance *appearance = self.calendar.appearance;
@@ -72,8 +64,7 @@
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                    content:self.titleLabel.text
-                                                                 textColor:appearance.headerTitleColor
-                                                               fontMapping:_fontMapping];
+                                                                 textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 }
 

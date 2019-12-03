@@ -1,5 +1,11 @@
 # Unreleased
 > Place your changes below this line.
+**Breaking:**
+
+ - Backpack/Font:
+   - Methods no longer accept a `fontMapping` argument.
+   - BPKFontMapping class has been removed.
+   - To enable the Relative typeface, a preprocessor directive must be specified. If not, system font will be used instead of Skyscanner Relative.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

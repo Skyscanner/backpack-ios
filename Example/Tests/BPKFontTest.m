@@ -56,8 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
                                               NSKernAttributeName: @1.5,
                                               NSFontAttributeName: font,
                                               NSForegroundColorAttributeName: UIColor.redColor,
-                                          }
-                                                   fontMapping:nil];
+                                          }];
 
     XCTAssertNotEqualObjects(attributes[NSKernAttributeName], @1.5,
                              @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSKernAttributeName`");
@@ -69,17 +68,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testAttributesForFontStyleWithCustomFontFacesAndCustomAttributes {
     UIFont *font = [UIFont systemFontOfSize:120.0];
 
-    BPKFontMapping *fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                         regularFontFace:@"SnellRoundhand"
-                                                        semiboldFontFace:@"SnellRoundhand-Bold"
-                                                           heavyFontFace:@"SnellRoundhand-Black"];
     NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg
                                           withCustomAttributes:@{
                                               NSKernAttributeName: @1.5,
                                               NSFontAttributeName: font,
                                               NSForegroundColorAttributeName: UIColor.redColor,
-                                          }
-                                                   fontMapping:fontMapping];
+                                          }];
 
     XCTAssertNotEqualObjects(attributes[NSKernAttributeName], @1.5,
                              @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSKernAttributeName`");
@@ -89,14 +83,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testAttributedStringWithCustomFontFaces {
-    BPKFontMapping *fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                         regularFontFace:@"SnellRoundhand"
-                                                        semiboldFontFace:@"SnellRoundhand-Bold"
-                                                           heavyFontFace:@"SnellRoundhand-Black"];
     NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextLg
                                                                           content:@"Test"
-                                                                        textColor:UIColor.purpleColor
-                                                                      fontMapping:fontMapping];
+                                                                        textColor:UIColor.purpleColor];
 
     NSDictionary<NSAttributedStringKey, id> *attributes =
         [attributedString attributesAtIndex:0
@@ -104,14 +93,10 @@ NS_ASSUME_NONNULL_BEGIN
                                     inRange:NSMakeRange(0, attributedString.length)];
     XCTAssertNotEqualObjects(
         attributes[NSKernAttributeName], @1.5,
-        @"`attributedStringWithFontStyle:content:textColor:fontMapping:` should ignore `NSKernAttributeName`");
-    UIFont *font = (UIFont *)attributes[NSFontAttributeName];
-    XCTAssertEqualObjects(
-        font.familyName, @"Snell Roundhand",
-        @"`attributedStringWithFontStyle:content:textColor:fontMapping:` should use provided `fontMapping`");
+        @"`attributedStringWithFontStyle:content:textColor:` should ignore `NSKernAttributeName`");
     XCTAssertEqualObjects(
         attributes[NSForegroundColorAttributeName], UIColor.purpleColor,
-        @"`attributedStringWithFontStyle:content:textColor:fontMapping:` should use provided `textColor`");
+        @"`attributedStringWithFontStyle:content:textColor:` should use provided `textColor`");
 }
 
 - (void)testFontWithStyle {

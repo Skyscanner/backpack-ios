@@ -35,13 +35,6 @@
     return @"London";
 }
 
-- (BPKFontMapping *)fontMapping {
-    return [[BPKFontMapping alloc] initWithFamily:@"ChalkboardSE"
-                                  regularFontFace:@"ChalkboardSE-Regular"
-                                 semiboldFontFace:@"ChalkboardSE-Bold"
-                                    heavyFontFace:@"ChalkboardSE-Bold"];
-}
-
 - (UIColor *)chipPrimaryColor {
     return self.primaryColor;
 }

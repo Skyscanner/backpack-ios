@@ -170,42 +170,13 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
-    calendarAppearance.fontMapping = theme.fontMapping;
-
-    BPKCalendarYearPill *calendarYearPillAppearance =
-        [BPKCalendarYearPill appearanceWhenContainedInInstancesOfClasses:@[class]];
-    calendarYearPillAppearance.fontMapping = theme.fontMapping;
-
-    BPKCalendarHeaderCell *calendarHeaderCellAppearance =
-        [BPKCalendarHeaderCell appearanceWhenContainedInInstancesOfClasses:@[class]];
-    calendarHeaderCellAppearance.fontMapping = theme.fontMapping;
-
-    BPKCalendarStickyHeader *calendarStickyHeaderAppearance =
-        [BPKCalendarStickyHeader appearanceWhenContainedInInstancesOfClasses:@[class]];
-    calendarStickyHeaderAppearance.fontMapping = theme.fontMapping;
-
-    BPKCalendarCell *calendarCellAppearance = [BPKCalendarCell appearanceWhenContainedInInstancesOfClasses:@[class]];
-    calendarCellAppearance.fontMapping = theme.fontMapping;
 
     BPKPrimaryGradientView *primaryGradientViewAppearance =
         [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
 
-    BPKLabel *labelViewAppearance = [BPKLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
-    labelViewAppearance.fontMapping = theme.fontMapping;
-
-    BPKButton *buttonViewAppearance = [BPKButton appearanceWhenContainedInInstancesOfClasses:@[class]];
-    buttonViewAppearance.fontMapping = theme.fontMapping;
-
-    BPKTextView *textViewAppearance = [BPKTextView appearanceWhenContainedInInstancesOfClasses:@[class]];
-    textViewAppearance.fontMapping = theme.fontMapping;
-
-    BPKTextField *textFieldAppearance = [BPKTextField appearanceWhenContainedInInstancesOfClasses:@[class]];
-    textFieldAppearance.fontMapping = theme.fontMapping;
-
     BPKTappableLinkLabel *tappableLinkLabelViewAppearance =
         [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
-    tappableLinkLabelViewAppearance.fontMapping = theme.fontMapping;
     tappableLinkLabelViewAppearance.linkColor = theme.linkPrimaryColor;
 
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
@@ -214,7 +185,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     BPKHorizontalNavigation *horizontalNavigationAppearance =
         [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
-    horizontalNavigationAppearance.fontMapping = theme.fontMapping;
 
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;

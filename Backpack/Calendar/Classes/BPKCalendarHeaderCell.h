@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKCalendarHeaderCell : FSCalendarHeaderCell
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
-
 @end
 
 NS_ASSUME_NONNULL_END

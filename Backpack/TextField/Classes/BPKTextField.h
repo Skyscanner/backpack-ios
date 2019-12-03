@@ -26,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(TextField) IB_DESIGNABLE @interface BPKTextField : UITextField
 
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
-
 /**
  * Create a `BPKTextField` with a specific BPKFont style.
  *

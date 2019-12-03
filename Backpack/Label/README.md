@@ -34,6 +34,3 @@ label.setFontStyle(.textLg, range: NSRange(location: 12, length: 10))
 
 `BPKLabel` doesn't currently support **Dynamic Text**, but this is planned for a later release.
 
-### Appearance attributes
-`(BPKFontMapping)fontMapping`
-

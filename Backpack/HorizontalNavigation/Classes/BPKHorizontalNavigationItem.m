@@ -78,14 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (void)setFontMapping:(BPKFontMapping *)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateStyle];
-    }
-}
-
 - (void)setSelectedColor:(UIColor *_Nullable)selectedColor {
     if (_selectedColor != selectedColor) {
         _selectedColor = selectedColor;
@@ -113,8 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                      content:self.name
-                                                                   textColor:self.contentColor
-                                                                 fontMapping:self.fontMapping];
+                                                                   textColor:self.contentColor];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
 
     [self updateInsets];

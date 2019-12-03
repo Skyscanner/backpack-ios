@@ -44,7 +44,6 @@
 @property(nonatomic, readonly, strong) UIColor *kolkata500;
 @property(nonatomic, readonly, strong) UIColor *red500;
 @property(nonatomic, readonly, strong) UIColor *white;
-@property(nonatomic, strong, nullable) BPKFontMapping *fontMapping;
 @end
 
 @implementation BPKDefaultTheme
@@ -58,14 +57,6 @@ NSString *const DefaultThemeName = @"Default";
 
 - (instancetype)initWithRelative:(BOOL)relativeEnabled {
     self = [super init];
-    //    if (self) {
-    //        if (relativeEnabled) {
-    //            self.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SkyscannerRelativeiOS"
-    //                                                      regularFontFace:@"SkyscannerRelativeiOS-Book"
-    //                                                     semiboldFontFace:@"SkyscannerRelativeiOS-Bold"
-    //                                                        heavyFontFace:@"SkyscannerRelativeiOS-Black"];
-    //        }
-    //    }
     return self;
 }
 
