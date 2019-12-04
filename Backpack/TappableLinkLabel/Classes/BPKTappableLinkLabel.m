@@ -164,8 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
-        [BPKFont attributesForFontStyle:self.fontStyle
-                   withCustomAttributes:self.customFontAttributes];
+        [BPKFont attributesForFontStyle:self.fontStyle withCustomAttributes:self.customFontAttributes];
 
     NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
                                                                     attributes:newStringAttributes];

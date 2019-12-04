@@ -91,12 +91,10 @@ NS_ASSUME_NONNULL_BEGIN
         [attributedString attributesAtIndex:0
                       longestEffectiveRange:nil
                                     inRange:NSMakeRange(0, attributedString.length)];
-    XCTAssertNotEqualObjects(
-        attributes[NSKernAttributeName], @1.5,
-        @"`attributedStringWithFontStyle:content:textColor:` should ignore `NSKernAttributeName`");
-    XCTAssertEqualObjects(
-        attributes[NSForegroundColorAttributeName], UIColor.purpleColor,
-        @"`attributedStringWithFontStyle:content:textColor:` should use provided `textColor`");
+    XCTAssertNotEqualObjects(attributes[NSKernAttributeName], @1.5,
+                             @"`attributedStringWithFontStyle:content:textColor:` should ignore `NSKernAttributeName`");
+    XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], UIColor.purpleColor,
+                          @"`attributedStringWithFontStyle:content:textColor:` should use provided `textColor`");
 }
 
 - (void)testFontWithStyle {

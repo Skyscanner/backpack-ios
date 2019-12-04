@@ -89,8 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary<NSAttributedStringKey, id> *)getAttributesWithFontStyle:(BPKFontStyle)fontStyle {
     if (self.textColor) {
         NSDictionary<NSAttributedStringKey, id> *customAttributes = @{NSForegroundColorAttributeName: self.textColor};
-        return [BPKFont attributesForFontStyle:fontStyle
-                          withCustomAttributes:customAttributes];
+        return [BPKFont attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
     } else {
         return [BPKFont attributesForFontStyle:fontStyle];
     }

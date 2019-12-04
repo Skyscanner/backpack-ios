@@ -69,12 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     NSAttributedString *attributedString = nil;
     if (self.textColor) {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:text
-                                                        textColor:self.textColor];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text textColor:self.textColor];
     } else {
-        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                          content:text];
+        attributedString = [BPKFont attributedStringWithFontStyle:self.fontStyle content:text];
     }
     self.attributedText = attributedString;
 }
@@ -106,8 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     NSDictionary *colorAttributes = self.textColor ? @{NSForegroundColorAttributeName: self.textColor} : @{};
-    self.defaultTextAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                            withCustomAttributes:colorAttributes];
+    self.defaultTextAttributes = [BPKFont attributesForFontStyle:self.fontStyle withCustomAttributes:colorAttributes];
 
     [self setText:self.attributedText.string];
 }

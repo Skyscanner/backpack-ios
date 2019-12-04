@@ -51,11 +51,6 @@
 NSString *const DefaultThemeName = @"Default";
 
 - (instancetype)init {
-    self = [self initWithRelative:NO];
-    return self;
-}
-
-- (instancetype)initWithRelative:(BOOL)relativeEnabled {
     self = [super init];
     return self;
 }

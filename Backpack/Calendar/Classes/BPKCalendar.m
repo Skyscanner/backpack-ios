@@ -122,7 +122,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
 
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes =
+        [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
@@ -544,7 +545,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     // visually reflected.
     if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
         // This works, but it prevents the selection animation from working 😞
-        NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
+        NSArray<NSIndexPath *> *indexPathsForVisibleItems =
+            [self.calendarView.collectionView indexPathsForVisibleItems];
         [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
     }
 }
@@ -556,7 +558,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     BOOL dateFallsBetweenMinAndMaxDates = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
 
     // If the date is outside min and max dates, then it should definitely be disabled.
-    if(!dateFallsBetweenMinAndMaxDates) {
+    if (!dateFallsBetweenMinAndMaxDates) {
         return false;
     }
 

@@ -64,10 +64,11 @@
 
 - (void)updateYearAppearance {
     if (self.year != nil) {
-        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
-                                                                   content:[self.year stringValue]
-                                                                 textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
-                                                                                             darkVariant:BPKColor.skyGray]];
+        self.label.attributedText =
+            [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+                                           content:[self.year stringValue]
+                                         textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
+                                                                              darkVariant:BPKColor.skyGray]];
         [self.label sizeToFit];
     }
 }
