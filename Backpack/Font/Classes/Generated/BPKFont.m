@@ -21,6 +21,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+#import "../BPKFontMapping.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFont()
@@ -153,12 +155,33 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
+    return [self.class attributesForFontStyle:style];
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+  return [self.class attributedStringWithFontStyle:fontStyle content:content];
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content
+                                            textColor:(UIColor *)textColor
+                                          fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+  return [self.class attributedStringWithFontStyle:fontStyle content:content textColor:textColor fontMapping:fontMapping];
+}
+
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
     NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
 
     return attributedString;
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes fontMapping:(BPKFontMapping * _Nullable)fontMapping {
+    return [self.class attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
@@ -226,74 +249,74 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
 #ifdef __USE_SKYSCANNER_RELATIVE_FONT__
-    UIFont *font = [self relativeFontForStyle:style];
+    UIFont *font = [self.class relativeFontForStyle:style];
     NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
     if(font != nil) {
         return font;
     }
 #endif
-    return [self systemFontWithStyle:style];
+    return [self.class systemFontWithStyle:style];
 }
 
 + (UIFont *_Nullable)relativeFontForStyle:(BPKFontStyle)style {
     switch (style) {
        
            case BPKFontStyleTextBase:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:16];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:16];
              
            case BPKFontStyleTextBaseEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:16];
              
            case BPKFontStyleTextCaps:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:10];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:10];
              
            case BPKFontStyleTextCapsEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:10];
              
            case BPKFontStyleTextLg:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:20];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:20];
              
            case BPKFontStyleTextLgEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:20];
              
            case BPKFontStyleTextSm:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:14];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:14];
              
            case BPKFontStyleTextSmEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:14];
              
            case BPKFontStyleTextXl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:24];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:24];
              
            case BPKFontStyleTextXlEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:24];
              
            case BPKFontStyleTextXlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:24];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:24];
              
            case BPKFontStyleTextXs:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:12];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:12];
              
            case BPKFontStyleTextXsEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:12];
              
            case BPKFontStyleTextXxl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:30];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:30];
              
            case BPKFontStyleTextXxlEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:30];
              
            case BPKFontStyleTextXxlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:30];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:30];
              
            case BPKFontStyleTextXxxl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:36];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:36];
              
            case BPKFontStyleTextXxxlEmphasized:
              return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:36];
              
            case BPKFontStyleTextXxxlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:36];
+             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:36];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

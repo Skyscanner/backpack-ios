@@ -21,6 +21,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+#import "../BPKFontMapping.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFont()
@@ -45,12 +47,33 @@ NS_ASSUME_NONNULL_BEGIN
 }
 {% endfor %}
 
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
+    return [self.class attributesForFontStyle:style];
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+  return [self.class attributedStringWithFontStyle:fontStyle content:content];
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
+                                              content:(NSString *)content
+                                            textColor:(UIColor *)textColor
+                                          fontMapping:(BPKFontMapping *_Nullable)fontMapping {
+  return [self.class attributedStringWithFontStyle:fontStyle content:content textColor:textColor fontMapping:fontMapping];
+}
+
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
     NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
 
     return attributedString;
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes fontMapping:(BPKFontMapping * _Nullable)fontMapping {
+    return [self.class attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
@@ -118,13 +141,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
 #ifdef __USE_SKYSCANNER_RELATIVE_FONT__
-    UIFont *font = [self relativeFontForStyle:style];
+    UIFont *font = [self.class relativeFontForStyle:style];
     NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
     if(font != nil) {
         return font;
     }
 #endif
-    return [self systemFontWithStyle:style];
+    return [self.class systemFontWithStyle:style];
 }
 
 + (UIFont *_Nullable)relativeFontForStyle:(BPKFontStyle)style {
@@ -132,11 +155,11 @@ NS_ASSUME_NONNULL_BEGIN
        {% for f in font %}
            case {{f.enumName}}:
              {% if f.enumName.includes("Heavy") -%}
-               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:{{f.size}}];
+               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:{{f.size}}];
              {% elif f.enumName.includes("Emphasized") -%}
                return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:{{f.size}}];
              {% else -%}
-               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:{{f.size}}];
+               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:{{f.size}}];
              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

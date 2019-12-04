@@ -2,8 +2,7 @@
 > Place your changes below this line.
 **Breaking:**
  - Backpack/Font:
-   - Methods no longer accept a `fontMapping` argument.
-   - BPKFontMapping class has been removed.
+   - The `fontMapping` argument is now unused and will be removed in the future.
    - To enable the Relative typeface, a preprocessor directive must be specified. If not, system font will be used instead of Skyscanner Relative.
 
 **Added:**

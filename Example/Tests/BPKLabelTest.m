@@ -117,31 +117,6 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(nativeLabelSize.height, bpkLabelSize.height);
 }
 
-- (void)testCompareBackpackLabelSizeWithNativeLabel {
-    UILabel *nativeLabel = [[UILabel alloc] init];
-    nativeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    nativeLabel.numberOfLines = 0;
-    nativeLabel.textAlignment = NSTextAlignmentCenter;
-    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                                content:@"SDIJSOIFSJFO"];
-    CGSize nativeLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(120, 120)
-                                        withHorizontalFittingPriority:UILayoutPriorityRequired
-                                              verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
-
-    BPKLabel *bpkLabel = [[BPKLabel alloc] init];
-    bpkLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    bpkLabel.numberOfLines = 0;
-    bpkLabel.textAlignment = NSTextAlignmentCenter;
-    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                             content:@"SDIJSOIFSJFO"];
-    CGSize bpkLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(120, 120)
-                                     withHorizontalFittingPriority:UILayoutPriorityRequired
-                                           verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
-
-    XCTAssertEqual(nativeLabelSize.width, bpkLabelSize.width);
-    XCTAssertEqual(nativeLabelSize.height, bpkLabelSize.height);
-}
-
 @end
 
 NS_ASSUME_NONNULL_END
