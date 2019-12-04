@@ -108,7 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
         if (UIAccessibilityIsReduceMotionEnabled()) {
             animationDuration = 0.0;
         }
-
+        
+        [self layoutIfNeeded];
         [UIView animateWithDuration:animationDuration
                          animations:^{
                            [self adjustBarConstraintsForView:selectedButton];
@@ -257,6 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
     // Remove all current arranged views:
     for (UIView *subView in self.stackView.arrangedSubviews) {
         [self.stackView removeArrangedSubview:subView];
+        [subView removeFromSuperview];
     }
 
     for (BPKHorizontalNavigationOption *option in self.options) {
@@ -274,7 +276,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setOptions:(NSArray<BPKHorizontalNavigationOption *> *)options {
-    if (_options != options) {
+    if (![_options isEqualToArray:options]) {
         _options = [options copy];
 
         [self repopulateStackview];

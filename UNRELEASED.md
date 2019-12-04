@@ -5,9 +5,11 @@
   - Added a property `largetTitleTextAlignment` to support overriding the text alignment of the large title.
 
 **Fixed:**
+- Backpack/Font:
+  - Removed old brand methods, leaving the API unchanged.
 
- - Backpack/Font:
-   - Removed old brand methods, leaving the API unchanged.
+- Backpack/HorizontalNavigation:
+  - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
