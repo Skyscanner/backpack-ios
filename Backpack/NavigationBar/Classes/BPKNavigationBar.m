@@ -114,6 +114,14 @@ NS_ASSUME_NONNULL_BEGIN
     self.largeTitleView.layoutMargins = largeTitleLayoutMargins;
 }
 
+- (NSTextAlignment)largeTitleTextAlignment {
+    return self.largeTitleView.titleLabel.textAlignment;
+}
+
+- (void)setLargeTitleTextAlignment:(NSTextAlignment)largeTitleTextAlignment {
+    self.largeTitleView.titleLabel.textAlignment = largeTitleTextAlignment;
+}
+
 - (void)setUpForScrollview:(UIScrollView *)scrollView {
     scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarExpandedFullHeight, 0, 0, 0);
     scrollView.scrollIndicatorInsets = scrollView.contentInset;
