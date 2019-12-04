@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 23.5.0
+
+**Added:**
+- Backpack/NavigationBar
+  - Added a property `largetTitleTextAlignment` to support overriding the text alignment of the large title.
+
+**Fixed:**
+- Backpack/Font:
+  - Removed old brand methods, leaving the API unchanged.
+
+- Backpack/HorizontalNavigation:
+  - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.
+
 ## 23.4.0
 
 **Added:**
