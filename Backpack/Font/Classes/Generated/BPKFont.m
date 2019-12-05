@@ -156,19 +156,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
-    return [self.class attributesForFontStyle:style];
+    return [self attributesForFontStyle:style];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-  return [self.class attributedStringWithFontStyle:fontStyle content:content];
+  return [self attributedStringWithFontStyle:fontStyle content:content];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor
                                           fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-  return [self.class attributedStringWithFontStyle:fontStyle content:content textColor:textColor fontMapping:fontMapping];
+  return [self attributedStringWithFontStyle:fontStyle content:content textColor:textColor fontMapping:fontMapping];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
@@ -181,7 +181,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes fontMapping:(BPKFontMapping * _Nullable)fontMapping {
-    return [self.class attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
+    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
@@ -249,13 +249,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
 #ifdef __USE_SKYSCANNER_RELATIVE_FONT__
-    UIFont *font = [self.class relativeFontForStyle:style];
+    UIFont *font = [self relativeFontForStyle:style];
     NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
     if(font != nil) {
         return font;
     }
 #endif
-    return [self.class systemFontWithStyle:style];
+    return [self systemFontWithStyle:style];
 }
 
 + (UIFont *_Nullable)relativeFontForStyle:(BPKFontStyle)style {
