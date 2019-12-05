@@ -248,7 +248,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {
-#ifdef __USE_SKYSCANNER_RELATIVE_FONT__
+#ifdef USE_SKYSCANNER_RELATIVE_FONT
     UIFont *font = [self relativeFontForStyle:style];
     NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
     if(font != nil) {

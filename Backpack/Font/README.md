@@ -2,6 +2,9 @@
 
 ## Usage
 
+### Skyscanner Relative
+To enable Skyscanner Relative font, ensure that the Relative font files are present in your app, and add `USE_SKYSCANNER_RELATIVE_FONT` to `GCC_PREPROCESSOR_DEFINITIONS` (either via `xcconfig` or CLI).
+
 All Backpack text rendering is done with `NSAttributedString` to correctly reflect our desired typography. For most cases you don't have care about this and can just use `BPKLabe`/`Backpack.Label` or `BPKTextView`/`Backpack.TextView`. If you do need more control `BPKFont`/`Backpack/Font` provide several methods for constructing `NSAttributedString`s.
 
 ### Objective-C
