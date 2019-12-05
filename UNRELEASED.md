@@ -17,6 +17,10 @@
 - Backpack/Button
   - Property `cornerRadius` is not longer available to customise.
 
+**Fixed:**
+ - Backpack/HorizontalNavigation
+   - Change spacing between items
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
