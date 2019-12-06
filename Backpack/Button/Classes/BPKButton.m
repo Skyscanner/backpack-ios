@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) UIColor *boxyBackgroundColor;
 @property(nonatomic, readonly) UIColor *boxyContentColor;
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
+@property(nonatomic, strong) NSNumber *cornerRadius;
 @end
 
 @implementation BPKButton
@@ -242,14 +243,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (changed) {
         [self updateBackgroundAndStyle];
         [self updateContentColor];
-    }
-}
-
-- (void)setCornerRadius:(nullable NSNumber *)cornerRadius {
-    if (_cornerRadius != cornerRadius) {
-        _cornerRadius = cornerRadius;
-
-        [self setNeedsLayout];
     }
 }
 
