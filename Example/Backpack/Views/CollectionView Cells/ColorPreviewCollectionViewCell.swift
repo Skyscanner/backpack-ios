@@ -78,7 +78,8 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         self.colorView = UIView(frame: CGRect.zero)
-        self.label = Backpack.Label(fontStyle: .textBase)
+        self.label = Backpack.Label(fontStyle: .textSm)
+        label.numberOfLines = 2
 
         super.init(frame: frame)
 
