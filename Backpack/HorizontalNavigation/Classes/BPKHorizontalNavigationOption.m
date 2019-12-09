@@ -80,9 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)isEqual:(BPKHorizontalNavigationOption *)other {
-    return self.tag == other.tag &&
-        [self.name isEqualToString:other.name] &&
-        [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
+    return self.tag == other.tag && [self.name isEqualToString:other.name] &&
+           [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
 }
 
 @end

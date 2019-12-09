@@ -47,6 +47,9 @@ BpkFlatListHeader
 BpkFlatListItem
 BpkFlatListItemSeparator
 
+BorderSize
+BPKBorderSize
+
 HorizontalNavigation
 HorizontalNavigationItem
 BPKHorizontalNavigation

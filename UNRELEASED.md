@@ -9,6 +9,9 @@
 - Backpack/NavigationBar
   - Added a property `largetTitleTextAlignment` to support overriding the text alignment of the large title.
 
+- Backpack/BorderSize
+  - Backpack border size constants are now available via `Backpack/BorderSize`.
+
 **Fixed:**
 - Backpack/HorizontalNavigation:
   - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.

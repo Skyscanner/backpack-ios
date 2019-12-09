@@ -39,6 +39,7 @@ const TYPES = new Set([
   'font',
   'spacing',
   'radii',
+  'borderSize',
   'shadow',
   'duration',
 ]);
@@ -395,12 +396,25 @@ const parseTokens = tokensData => {
     )
     .value();
 
+  const borderSizes = _.chain(tokensData.properties)
+    .filter(({ category }) => category === 'borders')
+    .map(({ name, value }) =>
+      generatePrefixedConst({
+        type: 'borders',
+        name,
+        value,
+        legibleName: getLegibleName(name),
+      }),
+    )
+    .value();
+
   return _.chain([
     ...dynamicColors,
     ...colors,
     ...fonts,
     ...spacings,
     ...radii,
+    ...borderSizes,
     ...shadows,
     ...durations,
   ])
