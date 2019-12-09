@@ -141,41 +141,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createStackWithFontMapping {
-    BPKFontStyle styles[] = {
-        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
-        BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
-        BPKFontStyleTextXxlEmphasized,  BPKFontStyleTextXxxlEmphasized,
-    };
-
-    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
-
-    UIStackView *stackView = [self buildStackView];
-
-    for (NSUInteger i = 0; i < length; i++) {
-        BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:styles[i]];
-        label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                   regularFontFace:@"SnellRoundhand"
-                                                  semiboldFontFace:@"SnellRoundhand-Bold"
-                                                     heavyFontFace:@"SnellRoundhand-Black"];
-        label.text = @"Backpack Rocks";
-        [stackView addArrangedSubview:label];
-        [label setNeedsLayout];
-        [label sizeToFit];
-    }
-    UIView *parentView = [self buildParentView];
-    [parentView addSubview:stackView];
-    return parentView;
-}
-
-- (void)testViewSnapshotWithFontMapping {
-    UIView *lightView = [self createStackWithFontMapping];
-    UIView *darkView = [self createStackWithFontMapping];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

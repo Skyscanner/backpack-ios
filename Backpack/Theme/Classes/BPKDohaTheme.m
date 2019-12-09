@@ -35,13 +35,6 @@
     return @"Doha";
 }
 
-- (BPKFontMapping *)fontMapping {
-    return [[BPKFontMapping alloc] initWithFamily:@"AmericanTypewriter"
-                                  regularFontFace:@"AmericanTypewriter-Light"
-                                 semiboldFontFace:@"AmericanTypewriter-Semibold"
-                                    heavyFontFace:@"AmericanTypewriter-Bold"];
-}
-
 - (UIColor *)switchPrimaryColor {
     return self.primaryColor;
 }

@@ -38,13 +38,6 @@ NS_SWIFT_NAME(HorizontalNavigationItem) IB_DESIGNABLE @interface BPKHorizontalNa
 @property(nonatomic) BPKHorizontalNavigationSize size;
 
 /**
- * The font mapping of the horizontal navigation.
- *
- * see BPKFontMapping
- */
-@property(nonatomic) BPKFontMapping *fontMapping;
-
-/**
  * The icon to display within the item.
  *
  * see BPKIconName

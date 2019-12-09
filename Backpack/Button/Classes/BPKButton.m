@@ -183,8 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:self.title
-                                                                           textColor:self.currentContentColor
-                                                                         fontMapping:_fontMapping];
+                                                                           textColor:self.currentContentColor];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -202,14 +201,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateContentColor];
     [self updateFont];
     [self updateEdgeInsets];
-}
-
-- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateTitle];
-    }
 }
 
 #pragma mark - State setters
@@ -466,8 +457,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.title) {
         NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                                              content:self.title
-                                                                           textColor:self.currentContentColor
-                                                                         fontMapping:_fontMapping];
+                                                                           textColor:self.currentContentColor];
         [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     } else {
         [self setAttributedTitle:nil forState:UIControlStateNormal];
@@ -522,8 +512,7 @@ NS_ASSUME_NONNULL_BEGIN
             NSAttributedString *attributedHighlightedTitle =
                 [BPKFont attributedStringWithFontStyle:self.currentFontStyle
                                                content:self.title
-                                             textColor:highlightedContentColor
-                                           fontMapping:_fontMapping];
+                                             textColor:highlightedContentColor];
 
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];

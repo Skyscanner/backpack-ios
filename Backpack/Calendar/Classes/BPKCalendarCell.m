@@ -179,22 +179,19 @@
         case SelectionTypeSameDay:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
-                                                                          textColor:selectedColor
-                                                                        fontMapping:_fontMapping];
+                                                                          textColor:selectedColor];
             break;
 
         case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
                                                                             content:self.titleLabel.text
-                                                                          textColor:selectedColor
-                                                                        fontMapping:_fontMapping];
+                                                                          textColor:selectedColor];
             break;
 
         default:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
                                                                             content:self.titleLabel.text
-                                                                          textColor:color
-                                                                        fontMapping:_fontMapping];
+                                                                          textColor:color];
             break;
         }
     }

@@ -73,4 +73,3 @@ extension MyClass: CalendarDelegate {
 `(UIColor)dateSelectedContentColor`
 `(UIColor)dateSelectedBackgroundColor`
 
-`(BPKFontMapping)fontMapping`

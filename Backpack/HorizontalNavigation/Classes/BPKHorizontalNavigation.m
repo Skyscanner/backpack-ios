@@ -166,12 +166,6 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 }
 
-- (void)updateSelectedItemsFontMapping {
-    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-      navigationItem.fontMapping = self.fontMapping;
-    }];
-}
-
 - (void)updateItemsSize {
     [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
       navigationItem.size = self.size;
@@ -192,14 +186,6 @@ NS_ASSUME_NONNULL_BEGIN
         _size = size;
 
         [self updateItemsSize];
-    }
-}
-
-- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateSelectedItemsFontMapping];
     }
 }
 

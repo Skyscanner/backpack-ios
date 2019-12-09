@@ -21,7 +21,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKGradient;
-@class BPKFontMapping;
 @protocol BPKThemeDefinition
 
 @required
@@ -31,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, readonly, strong) UIColor *switchPrimaryColor;
 @property(nullable, nonatomic, readonly, strong) UIColor *chipPrimaryColor;
 @property(nullable, nonatomic, readonly, strong) UIColor *spinnerPrimaryColor;
-@property(nullable, nonatomic, readonly, strong) BPKFontMapping *fontMapping;
 
 @property(nullable, nonatomic, readonly, strong) UIColor *buttonLinkContentColor;
 @property(nullable, nonatomic, readonly, strong) UIColor *buttonSecondaryContentColor;

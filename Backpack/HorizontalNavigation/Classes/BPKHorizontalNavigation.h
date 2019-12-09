@@ -41,7 +41,6 @@ typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
 NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
 
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 /**
  * The options to display within the navigation.

@@ -75,8 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc]
         initWithAttributedString:[BPKFont attributedStringWithFontStyle:self.fontStyle
                                                                 content:self.text
-                                                              textColor:self.textColor
-                                                            fontMapping:self.fontMapping]];
+                                                              textColor:self.textColor]];
 
     // Recreate the attributed string from the persisted definitions
     for (BPKTextDefinition *styleRange in self.persistentStyleRanges) {
@@ -90,11 +89,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary<NSAttributedStringKey, id> *)getAttributesWithFontStyle:(BPKFontStyle)fontStyle {
     if (self.textColor) {
         NSDictionary<NSAttributedStringKey, id> *customAttributes = @{NSForegroundColorAttributeName: self.textColor};
-        return [BPKFont attributesForFontStyle:fontStyle
-                          withCustomAttributes:customAttributes
-                                   fontMapping:self.fontMapping];
+        return [BPKFont attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
     } else {
-        return [BPKFont attributesForFontStyle:fontStyle fontMapping:self.fontMapping];
+        return [BPKFont attributesForFontStyle:fontStyle];
     }
 }
 
@@ -112,14 +109,6 @@ NS_ASSUME_NONNULL_BEGIN
     _fontStyle = fontStyle;
 
     self.text = self.attributedText.string;
-}
-
-- (void)setFontMapping:(BPKFontMapping *_Nullable)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateTextStyle];
-    }
 }
 
 - (void)setFontStyle:(BPKFontStyle)fontStyle range:(NSRange)range {

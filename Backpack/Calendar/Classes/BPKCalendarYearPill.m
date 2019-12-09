@@ -62,21 +62,13 @@
     self.layer.cornerRadius = CGRectGetHeight(self.frame) / 2.0;
 }
 
-- (void)setFontMapping:(BPKFontMapping *)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateYearAppearance];
-    }
-}
-
 - (void)updateYearAppearance {
     if (self.year != nil) {
-        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
-                                                                   content:[self.year stringValue]
-                                                                 textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
-                                                                                             darkVariant:BPKColor.skyGray]
-                                                               fontMapping:_fontMapping];
+        self.label.attributedText =
+            [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+                                           content:[self.year stringValue]
+                                         textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
+                                                                              darkVariant:BPKColor.skyGray]];
         [self.label sizeToFit];
     }
 }

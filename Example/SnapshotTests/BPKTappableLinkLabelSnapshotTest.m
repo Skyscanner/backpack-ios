@@ -151,10 +151,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     for (NSUInteger i = 0; i < length; i++) {
         BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFontStyle:styles[i]];
-        label.fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                   regularFontFace:@"SnellRoundhand"
-                                                  semiboldFontFace:@"SnellRoundhand-Bold"
-                                                     heavyFontFace:@"SnellRoundhand-Black"];
         label.linkColor = UIColor.orangeColor;
         label.text = @"Backpack Rocks";
         [label addLinkToURL:[NSURL URLWithString:@"https://backpack.github.io/"] withRange:NSMakeRange(0, 8)];

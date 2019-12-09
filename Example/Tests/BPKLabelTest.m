@@ -62,11 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSettingFontStyleForRangeDoesntChangeText {
-    BPKFontMapping *fontMapping = [[BPKFontMapping alloc] initWithFamily:@"SnellRoundhand"
-                                                         regularFontFace:@"SnellRoundhand"
-                                                        semiboldFontFace:@"SnellRoundhand"
-                                                           heavyFontFace:@"SnellRoundhand"];
-
     NSRange range1 = NSMakeRange(0, 5);
     NSRange range2 = NSMakeRange(10, 5);
     NSRange range3 = NSMakeRange(20, 5);
@@ -82,8 +77,6 @@ NS_ASSUME_NONNULL_BEGIN
     label.text = sampleText2;
     [label setFontStyle:BPKFontStyleTextXxxlHeavy range:range2];
 
-    label.fontMapping = fontMapping;
-
     [label setFontStyle:BPKFontStyleTextXxlHeavy range:range3];
 
     NSDictionary<NSAttributedStringKey, id> *range1Attributes =
@@ -94,12 +87,9 @@ NS_ASSUME_NONNULL_BEGIN
         [label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3];
 
     XCTAssertEqualObjects(label.text, sampleText2);
-    XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase
-                                                                fontMapping:fontMapping]);
-    XCTAssertEqualObjects(range2Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxxlHeavy
-                                                                fontMapping:fontMapping]);
-    XCTAssertEqualObjects(range3Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxlHeavy
-                                                                fontMapping:fontMapping]);
+    XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase]);
+    XCTAssertEqualObjects(range2Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxxlHeavy]);
+    XCTAssertEqualObjects(range3Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxlHeavy]);
 }
 
 - (void)testCompareBackpackLabelSizeWithNativeLabel {
@@ -107,10 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
     nativeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     nativeLabel.numberOfLines = 0;
     nativeLabel.textAlignment = NSTextAlignmentCenter;
-    BPKLondonTheme *londonTheme = [[BPKLondonTheme alloc] init];
     nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                                content:@"SDIJSOIFSJFO"
-                                                            fontMapping:londonTheme.fontMapping];
+                                                                content:@"SDIJSOIFSJFO"];
     CGSize nativeLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
                                         withHorizontalFittingPriority:UILayoutPriorityRequired
                                               verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
@@ -120,36 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
     bpkLabel.numberOfLines = 0;
     bpkLabel.textAlignment = NSTextAlignmentCenter;
     bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                             content:@"SDIJSOIFSJFO"
-                                                         fontMapping:londonTheme.fontMapping];
+                                                             content:@"SDIJSOIFSJFO"];
     CGSize bpkLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
-                                     withHorizontalFittingPriority:UILayoutPriorityRequired
-                                           verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
-
-    XCTAssertEqual(nativeLabelSize.width, bpkLabelSize.width);
-    XCTAssertEqual(nativeLabelSize.height, bpkLabelSize.height);
-}
-
-- (void)testCompareBackpackLabelSizeWithNativeLabelAndFontMappingNil {
-    UILabel *nativeLabel = [[UILabel alloc] init];
-    nativeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    nativeLabel.numberOfLines = 0;
-    nativeLabel.textAlignment = NSTextAlignmentCenter;
-    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                                content:@"SDIJSOIFSJFO"
-                                                            fontMapping:nil];
-    CGSize nativeLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(120, 120)
-                                        withHorizontalFittingPriority:UILayoutPriorityRequired
-                                              verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
-
-    BPKLabel *bpkLabel = [[BPKLabel alloc] init];
-    bpkLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    bpkLabel.numberOfLines = 0;
-    bpkLabel.textAlignment = NSTextAlignmentCenter;
-    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
-                                                             content:@"SDIJSOIFSJFO"
-                                                         fontMapping:nil];
-    CGSize bpkLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(120, 120)
                                      withHorizontalFittingPriority:UILayoutPriorityRequired
                                            verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
 

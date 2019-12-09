@@ -41,14 +41,12 @@ typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLin
     BPKTappableLinkLabelStyleAlternate,
 };
 
-@class BPKFontMapping;
 /**
  * `BPKTappableLinkLabel` is a subclass of `UIView` which uses the Skyscanner style for labels containing tappable text.
  */
 NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 
 @property(nullable, nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;
-@property(nullable, nonatomic, strong) BPKFontMapping *fontMapping UI_APPEARANCE_SELECTOR;
 
 /**
  * this determines the number of lines to draw and what to do when sizeToFit is called. default value is 1 (single

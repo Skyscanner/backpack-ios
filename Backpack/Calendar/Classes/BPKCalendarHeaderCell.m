@@ -37,14 +37,6 @@
     return self;
 }
 
-- (void)setFontMapping:(BPKFontMapping *)fontMapping {
-    if (_fontMapping != fontMapping) {
-        _fontMapping = fontMapping;
-
-        [self updateMonthTextAppearance];
-    }
-}
-
 - (void)updateMonthTextAppearance {
     FSCalendarAppearance *appearance = self.header.calendar.appearance;
     NSAssert([appearance isKindOfClass:[BPKCalendarAppearance class]],
@@ -53,8 +45,7 @@
     BPKFontStyle fontStyle = ((BPKCalendarAppearance *)appearance).headerTitleFontStyle;
     NSAttributedString *monthText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                    content:self.titleLabel.text
-                                                                 textColor:appearance.headerTitleColor
-                                                               fontMapping:self.fontMapping];
+                                                                 textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 }
 
