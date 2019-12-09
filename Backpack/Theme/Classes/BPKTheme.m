@@ -165,7 +165,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     buttonAppearance.destructiveContentColor = theme.buttonDestructiveContentColor;
     buttonAppearance.destructiveBackgroundColor = theme.buttonDestructiveBackgroundColor;
     buttonAppearance.destructiveBorderColor = theme.buttonDestructiveBorderColor;
-    buttonAppearance.cornerRadius = theme.buttonCornerRadius;
 
     BPKCalendar *calendarAppearance = [BPKCalendar appearanceWhenContainedInInstancesOfClasses:@[class]];
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
