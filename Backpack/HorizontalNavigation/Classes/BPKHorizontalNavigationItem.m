@@ -98,9 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Private
 
 - (void)updateStyle {
-    BPKFontStyle fontStyle = BPKFontStyleTextBase;
+    BPKFontStyle fontStyle = BPKFontStyleTextBaseEmphasized;
     if (self.size == BPKHorizontalNavigationSizeSmall) {
-        fontStyle = BPKFontStyleTextSm;
+        fontStyle = BPKFontStyleTextSmEmphasized;
     }
 
     NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
         return BPKColor.primaryColor;
     }
-    return BPKColor.skyGrayTint04;
+    return BPKColor.textPrimaryColor;
 }
 
 - (void)setIconColor {
@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGFloat)horizontalSpacing {
-    return BPKSpacingSm;
+    return BPKSpacingBase;
 }
 
 @end

@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIStackView *stackView;
 @property(nonatomic, strong) UIView *barView;
 @property(nonatomic) CGFloat barHeight;
+@property(nonatomic) CGFloat barSpacing;
+@property(nonatomic, strong) NSLayoutConstraint *barTopConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *barHeightConstraint;
 @property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *barConstraints;
 @end
 
@@ -99,8 +102,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateBarAppearance {
     if (!self.showsSelectedBar || self.selectedItemIndex >= self.stackView.arrangedSubviews.count) {
         self.barView.hidden = YES;
+        self.barTopConstraint.constant = 0;
+        self.barHeightConstraint.constant = 0;
     } else {
         self.barView.hidden = NO;
+        self.barTopConstraint.constant = self.barSpacing;
+        self.barHeightConstraint.constant = self.barHeight;
 
         UIView *selectedButton = self.stackView.arrangedSubviews[self.selectedItemIndex];
 
@@ -124,8 +131,8 @@ NS_ASSUME_NONNULL_BEGIN
         [NSLayoutConstraint deactivateConstraints:self.barConstraints];
     }
     self.barConstraints = @[
-        [self.barView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor],
-        [self.barView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
+        [self.barView.leadingAnchor constraintEqualToAnchor:view.leadingAnchor constant:self.barSpacing],
+        [self.barView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor constant:-self.barSpacing]
     ];
     [NSLayoutConstraint activateConstraints:self.barConstraints];
 }
@@ -191,8 +198,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
+// This should be replaced with BpkBorderSizeXl when it's available
 - (CGFloat)barHeight {
-    return BPKSpacingSm / 2;
+    return 3;
+}
+
+- (CGFloat)barSpacing {
+    return 3 * BPKSpacingSm;;
 }
 
 - (UIColor *_Nonnull)updateBarColor {
@@ -214,22 +226,19 @@ NS_ASSUME_NONNULL_BEGIN
     self.barView.hidden = YES;
     [self addSubview:self.barView];
 
-    self.barConstraints = @[
-        [self.barView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.barView.trailingAnchor constraintEqualToAnchor:self.leadingAnchor]
-    ];
-    [NSLayoutConstraint activateConstraints:self.barConstraints];
+    self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:self.barSpacing];
+    self.barHeightConstraint = [self.barView.heightAnchor constraintEqualToConstant:self.barHeight];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.barView.topAnchor constraintEqualToAnchor:self.bottomAnchor constant:-self.barHeight],
-        [self.barView.heightAnchor constraintEqualToConstant:self.barHeight]
+        self.barTopConstraint,
+        self.barHeightConstraint
     ]];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
         [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor]
+        [self.bottomAnchor constraintEqualToAnchor:self.barView.bottomAnchor]
     ]];
 
     self.stackView.axis = UILayoutConstraintAxisHorizontal;
