@@ -54,7 +54,7 @@
 		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
-		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
@@ -108,6 +108,7 @@
 		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
+		D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
 		D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */; };
@@ -318,6 +319,8 @@
 		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKTestFontDefinition.h; sourceTree = "<group>"; };
+		D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTestFontDefinition.m; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
 		D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKFlareViewSnapshotTest.m; sourceTree = "<group>"; };
@@ -404,7 +407,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */,
+				BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */,
 				A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +530,8 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */,
+				D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */,
 				D22EB156239EA75A0090C65E /* BPKBorderSizeTest.m */,
 				D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */,
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
@@ -808,6 +813,7 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				30FB0940CA92E2B9AD80DDBC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -988,6 +994,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		30FB0940CA92E2B9AD80DDBC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		782479CD323E255D5E06A104 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1166,6 +1187,7 @@
 				D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */,
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
 				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
+				D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
 				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,

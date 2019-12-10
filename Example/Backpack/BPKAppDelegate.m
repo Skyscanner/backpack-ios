@@ -20,6 +20,7 @@
 #import "Backpack_Native-Swift.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Theme.h>
 
 @import AppCenter;

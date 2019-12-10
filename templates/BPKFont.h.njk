@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 NS_ASSUME_NONNULL_BEGIN
 @class UIFont;
 @class BPKFontMapping;
+@class BPKFontManager;
+@protocol BPKFontDefinitionProtocol;
 /**
  * BPKFont is the entry point for the Backpack typography stack. It expose the
  * supported text styles as static methods.
@@ -43,6 +45,18 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
+
+/**
+ * Create a dictionary of attributes for a specific text styles. This is some times useful
+ * when building custom attributed strings is required.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param fontManager The fontManager instance to use. By default this is `[BPKFontManager sharedInstance]`.
+ * @return A dictionary of attributes describing the specified style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle fontManager:(BPKFontManager *)fontManager NS_SWIFT_NAME(makeAttributes(fontStyle:fontManager:));
 
 /**
  * Create a dictionary of attributes for a specific text styles. This is some times useful
@@ -131,9 +145,17 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontMapping Unused argument that will be soon removed.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor fontMapping:(BPKFontMapping *_Nullable)fontMapping NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:fontMapping:));
+
+/**
+ * Set the fontfaces to use globally.
+ *
+ * @param fontDefinition The new font definition to use when resolving fontface names.
+*/
++ (void)setFontDefinition:(id<BPKFontDefinitionProtocol>_Nullable)fontDefinition;
+
 @end
 
 NS_ASSUME_NONNULL_END

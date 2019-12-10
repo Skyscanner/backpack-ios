@@ -11,6 +11,7 @@ target 'Backpack Native' do
 
   target 'Backpack_Tests' do
     inherit! :search_paths
+    pod 'OCMock', '~> 3.5.0'
   end
 
   target 'Backpack_SnapshotTests' do

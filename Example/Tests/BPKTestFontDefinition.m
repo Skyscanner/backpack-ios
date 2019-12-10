@@ -1,5 +1,5 @@
 /*
- * Backpack - Skyscanner's Design System
+ * Backpack - Skyscanner's Design Test
  *
  * Copyright 2018-2019 Skyscanner Ltd
  *
@@ -16,12 +16,27 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_FONT__
-#define __BACKPACK_FONT__
+#import "BPKTestFontDefinition.h"
 
-#import "BPKFont.h"
-#import "BPKFontDefinitionProtocol.h"
-#import "BPKFontMapping.h"
-#import "BPKRelativeFontDefinition.h"
+@interface BPKTestFontDefinition ()
+@end
 
-#endif
+@implementation BPKTestFontDefinition
+
+- (NSString *)fontFamily {
+    return @"SnellRoundhand";
+}
+
+- (NSString *)regularFontFace {
+    return @"SnellRoundhand";
+}
+
+- (NSString *)semiboldFontFace {
+    return @"SnellRoundhand-Bold";
+}
+
+- (NSString *)heavyFontFace {
+    return @"SnellRoundhand-Black";
+}
+
+@end

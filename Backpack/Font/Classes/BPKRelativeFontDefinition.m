@@ -1,5 +1,5 @@
 /*
- * Backpack - Skyscanner's Design System
+ * Backpack - Skyscanner's Design Relative
  *
  * Copyright 2018-2019 Skyscanner Ltd
  *
@@ -16,12 +16,27 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_FONT__
-#define __BACKPACK_FONT__
-
-#import "BPKFont.h"
-#import "BPKFontDefinitionProtocol.h"
-#import "BPKFontMapping.h"
 #import "BPKRelativeFontDefinition.h"
 
-#endif
+@interface BPKRelativeFontDefinition ()
+@end
+
+@implementation BPKRelativeFontDefinition
+
+- (NSString *)fontFamily {
+    return @"SkyscannerRelativeiOS";
+}
+
+- (NSString *)regularFontFace {
+    return @"SkyscannerRelativeiOS-Book";
+}
+
+- (NSString *)semiboldFontFace {
+    return @"SkyscannerRelativeiOS-Bold";
+}
+
+- (NSString *)heavyFontFace {
+    return @"SkyscannerRelativeiOS-Black";
+}
+
+@end

@@ -21,7 +21,9 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+#import "../BPKFontManager.h"
 #import "../BPKFontMapping.h"
+#import "../BPKFontDefinitionProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,21 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFont
 
-+ (UIFont * _Nullable)systemFontWithStyle:(BPKFontStyle)style {
-    switch (style) {
-    {% for f in font %}
-        case {{f.enumName}}:
-            return [BPKFont {{f.name}}];{% endfor %}
-    }
-
-    return nil;
+// I have added this method to BPKFont so that we don't have to expose the full workings of BPKFontManager to consumers.
++ (void)setFontDefinition:(id<BPKFontDefinitionProtocol>_Nullable)fontDefinition {
+    [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
-
-{% for f in font %}
-+ (UIFont *){{f.name}} {
-    return [UIFont systemFontOfSize:{{f.size}} weight:{{f.weight}}];
-}
-{% endfor %}
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
     return [self attributesForFontStyle:style];
@@ -101,7 +92,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
+    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontManager:[BPKFontManager sharedInstance]];
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes
+                                                        fontManager:(BPKFontManager *)fontManager {
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:fontManager] mutableCopy];
 
     for (NSAttributedStringKey key in customAttributes) {
         if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
@@ -116,15 +113,20 @@ NS_ASSUME_NONNULL_BEGIN
     return [attributes copy];
 }
 
+
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
-    NSString *cacheKey = [self cacheKeyForFontStyle:style];
+    return [self attributesForFontStyle:style fontManager:[BPKFontManager sharedInstance]];
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    NSString *cacheKey = [self cacheKeyForFontStyle:style fontManager:fontManager];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
 
     if (potentialCacheHit) {
         return potentialCacheHit;
     }
 
-    UIFont *font = [self fontForStyle:style];
+    UIFont *font = [self fontForStyle:style fontManager:fontManager];
     NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
@@ -135,31 +137,20 @@ NS_ASSUME_NONNULL_BEGIN
     return result;
 }
 
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
-    return [NSString stringWithFormat:@"%ld", (unsigned long)style];
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontManager.cacheKey];
 }
 
-+ (UIFont *)fontForStyle:(BPKFontStyle)style {
-#ifdef USE_SKYSCANNER_RELATIVE_FONT
-    UIFont *font = [self relativeFontForStyle:style];
-    NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
-    if(font != nil) {
-        return font;
-    }
-#endif
-    return [self systemFontWithStyle:style];
-}
-
-+ (UIFont *_Nullable)relativeFontForStyle:(BPKFontStyle)style {
++ (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
     switch (style) {
        {% for f in font %}
            case {{f.enumName}}:
              {% if f.enumName.includes("Heavy") -%}
-               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:{{f.size}}];
+               return [fontManager heavyFontWithSize:{{f.size}}];
              {% elif f.enumName.includes("Emphasized") -%}
-               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:{{f.size}}];
+               return [fontManager semiboldFontWithSize:{{f.size}}];
              {% else -%}
-               return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:{{f.size}}];
+               return [fontManager regularFontWithSize:{{f.size}}];
              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

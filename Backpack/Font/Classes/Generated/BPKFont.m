@@ -21,7 +21,9 @@
 #import <Backpack/Color.h>
 #import <Backpack/Theme.h>
 
+#import "../BPKFontManager.h"
 #import "../BPKFontMapping.h"
+#import "../BPKFontDefinitionProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,129 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFont
 
-+ (UIFont * _Nullable)systemFontWithStyle:(BPKFontStyle)style {
-    switch (style) {
-    
-        case BPKFontStyleTextBase:
-            return [BPKFont textBase];
-        case BPKFontStyleTextBaseEmphasized:
-            return [BPKFont textBaseEmphasized];
-        case BPKFontStyleTextCaps:
-            return [BPKFont textCaps];
-        case BPKFontStyleTextCapsEmphasized:
-            return [BPKFont textCapsEmphasized];
-        case BPKFontStyleTextLg:
-            return [BPKFont textLg];
-        case BPKFontStyleTextLgEmphasized:
-            return [BPKFont textLgEmphasized];
-        case BPKFontStyleTextSm:
-            return [BPKFont textSm];
-        case BPKFontStyleTextSmEmphasized:
-            return [BPKFont textSmEmphasized];
-        case BPKFontStyleTextXl:
-            return [BPKFont textXl];
-        case BPKFontStyleTextXlEmphasized:
-            return [BPKFont textXlEmphasized];
-        case BPKFontStyleTextXlHeavy:
-            return [BPKFont textXlHeavy];
-        case BPKFontStyleTextXs:
-            return [BPKFont textXs];
-        case BPKFontStyleTextXsEmphasized:
-            return [BPKFont textXsEmphasized];
-        case BPKFontStyleTextXxl:
-            return [BPKFont textXxl];
-        case BPKFontStyleTextXxlEmphasized:
-            return [BPKFont textXxlEmphasized];
-        case BPKFontStyleTextXxlHeavy:
-            return [BPKFont textXxlHeavy];
-        case BPKFontStyleTextXxxl:
-            return [BPKFont textXxxl];
-        case BPKFontStyleTextXxxlEmphasized:
-            return [BPKFont textXxxlEmphasized];
-        case BPKFontStyleTextXxxlHeavy:
-            return [BPKFont textXxxlHeavy];
-    }
-
-    return nil;
+// I have added this method to BPKFont so that we don't have to expose the full workings of BPKFontManager to consumers.
++ (void)setFontDefinition:(id<BPKFontDefinitionProtocol>_Nullable)fontDefinition {
+    [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
-
-
-+ (UIFont *)textBase {
-    return [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textBaseEmphasized {
-    return [UIFont systemFontOfSize:16 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textCaps {
-    return [UIFont systemFontOfSize:10 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textCapsEmphasized {
-    return [UIFont systemFontOfSize:10 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textLg {
-    return [UIFont systemFontOfSize:20 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textLgEmphasized {
-    return [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textSm {
-    return [UIFont systemFontOfSize:14 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textSmEmphasized {
-    return [UIFont systemFontOfSize:14 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textXl {
-    return [UIFont systemFontOfSize:24 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textXlEmphasized {
-    return [UIFont systemFontOfSize:24 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textXlHeavy {
-    return [UIFont systemFontOfSize:24 weight:UIFontWeightHeavy];
-}
-
-+ (UIFont *)textXs {
-    return [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textXsEmphasized {
-    return [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textXxl {
-    return [UIFont systemFontOfSize:30 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textXxlEmphasized {
-    return [UIFont systemFontOfSize:30 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textXxlHeavy {
-    return [UIFont systemFontOfSize:30 weight:UIFontWeightHeavy];
-}
-
-+ (UIFont *)textXxxl {
-    return [UIFont systemFontOfSize:36 weight:UIFontWeightRegular];
-}
-
-+ (UIFont *)textXxxlEmphasized {
-    return [UIFont systemFontOfSize:36 weight:UIFontWeightSemibold];
-}
-
-+ (UIFont *)textXxxlHeavy {
-    return [UIFont systemFontOfSize:36 weight:UIFontWeightHeavy];
-}
-
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
     return [self attributesForFontStyle:style];
@@ -209,7 +92,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
+    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontManager:[BPKFontManager sharedInstance]];
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
+                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes
+                                                        fontManager:(BPKFontManager *)fontManager {
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:fontManager] mutableCopy];
 
     for (NSAttributedStringKey key in customAttributes) {
         if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
@@ -224,15 +113,20 @@ NS_ASSUME_NONNULL_BEGIN
     return [attributes copy];
 }
 
+
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
-    NSString *cacheKey = [self cacheKeyForFontStyle:style];
+    return [self attributesForFontStyle:style fontManager:[BPKFontManager sharedInstance]];
+}
+
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    NSString *cacheKey = [self cacheKeyForFontStyle:style fontManager:fontManager];
     NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
 
     if (potentialCacheHit) {
         return potentialCacheHit;
     }
 
-    UIFont *font = [self fontForStyle:style];
+    UIFont *font = [self fontForStyle:style fontManager:fontManager];
     NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
@@ -243,80 +137,69 @@ NS_ASSUME_NONNULL_BEGIN
     return result;
 }
 
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
-    return [NSString stringWithFormat:@"%ld", (unsigned long)style];
++ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontManager.cacheKey];
 }
 
-+ (UIFont *)fontForStyle:(BPKFontStyle)style {
-#ifdef USE_SKYSCANNER_RELATIVE_FONT
-    UIFont *font = [self relativeFontForStyle:style];
-    NSAssert(font != nil, @"Skyscanner Relative font is not available! Falling back to system fontface.");
-    if(font != nil) {
-        return font;
-    }
-#endif
-    return [self systemFontWithStyle:style];
-}
-
-+ (UIFont *_Nullable)relativeFontForStyle:(BPKFontStyle)style {
++ (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
     switch (style) {
        
            case BPKFontStyleTextBase:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:16];
+             return [fontManager regularFontWithSize:16];
              
            case BPKFontStyleTextBaseEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:16];
+             return [fontManager semiboldFontWithSize:16];
              
            case BPKFontStyleTextCaps:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:10];
+             return [fontManager regularFontWithSize:10];
              
            case BPKFontStyleTextCapsEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:10];
+             return [fontManager semiboldFontWithSize:10];
              
            case BPKFontStyleTextLg:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:20];
+             return [fontManager regularFontWithSize:20];
              
            case BPKFontStyleTextLgEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:20];
+             return [fontManager semiboldFontWithSize:20];
              
            case BPKFontStyleTextSm:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:14];
+             return [fontManager regularFontWithSize:14];
              
            case BPKFontStyleTextSmEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:14];
+             return [fontManager semiboldFontWithSize:14];
              
            case BPKFontStyleTextXl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:24];
+             return [fontManager regularFontWithSize:24];
              
            case BPKFontStyleTextXlEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:24];
+             return [fontManager semiboldFontWithSize:24];
              
            case BPKFontStyleTextXlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:24];
+             return [fontManager heavyFontWithSize:24];
              
            case BPKFontStyleTextXs:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:12];
+             return [fontManager regularFontWithSize:12];
              
            case BPKFontStyleTextXsEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:12];
+             return [fontManager semiboldFontWithSize:12];
              
            case BPKFontStyleTextXxl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:30];
+             return [fontManager regularFontWithSize:30];
              
            case BPKFontStyleTextXxlEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:30];
+             return [fontManager semiboldFontWithSize:30];
              
            case BPKFontStyleTextXxlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:30];
+             return [fontManager heavyFontWithSize:30];
              
            case BPKFontStyleTextXxxl:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Book" size:36];
+             return [fontManager regularFontWithSize:36];
              
            case BPKFontStyleTextXxxlEmphasized:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Bold" size:36];
+             return [fontManager semiboldFontWithSize:36];
              
            case BPKFontStyleTextXxxlHeavy:
-             return [UIFont fontWithName:@"SkyscannerRelativeiOS-Black" size:36];
+             return [fontManager heavyFontWithSize:36];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

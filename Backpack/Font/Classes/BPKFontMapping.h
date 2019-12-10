@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * `BPKFontMapping` is a subclass of `NSObject`which contains a mapping of font faces to use for different weights.
+ * Note that this class is now redundant and will have no effect on BPKFont. It will be removed soon.
  */
 NS_SWIFT_NAME(FontMapping) @interface BPKFontMapping : NSObject
 

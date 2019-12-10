@@ -18,6 +18,7 @@ PODS:
   - FSCalendar (2.8.1)
   - iOSSnapshotTestCase/Core (4.0.1)
   - MBProgressHUD (0.9.2)
+  - OCMock (3.5)
   - SwiftLint (0.31.0)
   - TTTAttributedLabel (1.13.4)
 
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - AppCenter/Distribute (~> 2.4.0)
   - Backpack (from `../`)
   - iOSSnapshotTestCase/Core (~> 4.0.0)
+  - OCMock (~> 3.5.0)
   - SwiftLint (~> 0.31.0)
 
 SPEC REPOS:
@@ -35,6 +37,7 @@ SPEC REPOS:
     - FSCalendar
     - iOSSnapshotTestCase
     - MBProgressHUD
+    - OCMock
     - SwiftLint
     - TTTAttributedLabel
 
@@ -49,9 +52,10 @@ SPEC CHECKSUMS:
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  OCMock: 4ab4577fc941af31f4a0398f6e7e230cf21fc72a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
-PODFILE CHECKSUM: cdc99ac34e26556645e19d76b3756f3c725f7c2d
+PODFILE CHECKSUM: b391838b1b1303f6cd5ecd28171abd7510573da5
 
 COCOAPODS: 1.8.4
