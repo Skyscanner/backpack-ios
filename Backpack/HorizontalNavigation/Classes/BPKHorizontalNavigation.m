@@ -18,6 +18,7 @@
 
 #import "BPKHorizontalNavigation.h"
 
+#import <Backpack/BorderSize.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>
@@ -115,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
         if (UIAccessibilityIsReduceMotionEnabled()) {
             animationDuration = 0.0;
         }
-        
+
         [self layoutIfNeeded];
         [UIView animateWithDuration:animationDuration
                          animations:^{
@@ -198,13 +199,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-// This should be replaced with BpkBorderSizeXl when it's available
 - (CGFloat)barHeight {
-    return 3;
+    return BPKBorderSizeXl;
 }
 
 - (CGFloat)barSpacing {
-    return 3 * BPKSpacingSm;;
+    return 3 * BPKSpacingSm;
 }
 
 - (UIColor *_Nonnull)updateBarColor {
@@ -226,13 +226,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.barView.hidden = YES;
     [self addSubview:self.barView];
 
-    self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:self.barSpacing];
+    self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor
+                                                                   constant:self.barSpacing];
     self.barHeightConstraint = [self.barView.heightAnchor constraintEqualToConstant:self.barHeight];
 
-    [NSLayoutConstraint activateConstraints:@[
-        self.barTopConstraint,
-        self.barHeightConstraint
-    ]];
+    [NSLayoutConstraint activateConstraints:@[self.barTopConstraint, self.barHeightConstraint]];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],

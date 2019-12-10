@@ -72,6 +72,7 @@
 		D2297C2A232A7F3F006E00E0 /* RatingSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */; };
 		D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */; };
 		D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */; };
+		D22EB158239EA78F0090C65E /* BPKBorderSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EB156239EA75A0090C65E /* BPKBorderSizeTest.m */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
@@ -278,6 +279,7 @@
 		D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingSelectorViewController.swift; sourceTree = "<group>"; };
 		D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
 		D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ratings.storyboard; sourceTree = "<group>"; };
+		D22EB156239EA75A0090C65E /* BPKBorderSizeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBorderSizeTest.m; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D22EB156239EA75A0090C65E /* BPKBorderSizeTest.m */,
 				D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */,
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
 				D257C765236AE319006683F5 /* BPKSimpleDateTest.m */,
@@ -1175,6 +1178,7 @@
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */,
 				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
+				D22EB158239EA78F0090C65E /* BPKBorderSizeTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,

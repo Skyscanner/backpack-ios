@@ -19,6 +19,7 @@
 #ifndef __BACKPACK__
 #define __BACKPACK__
 
+#import "BorderSize.h"
 #import "Color.h"
 #import "Duration.h"
 #import "Font.h"
