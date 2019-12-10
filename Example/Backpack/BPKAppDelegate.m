@@ -20,6 +20,7 @@
 #import "Backpack_Native-Swift.h"
 
 #import <Backpack/Color.h>
+#import <Backpack/Font.h>
 #import <Backpack/Theme.h>
 
 @import AppCenter;
@@ -37,6 +38,8 @@
         [UINavigationBar appearance].largeTitleTextAttributes =
             @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
     }
+
+//    [BPKFont setFontDefinition:[BPKRelativeFontDefinition new]];
 
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];

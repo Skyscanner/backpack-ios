@@ -29,6 +29,18 @@ Given that you have a compatible environment as stated above you can now setup t
 + `(cd Example && bundle exec pod install)` To setup the example project.
 + `open Example/Backpack.xcworkspace` to open the example project
 
+## Relative Font
+
+> Skyscanner employees only
+
+To use our `Skyscanner Relative` font-face in the example app, download the files first by executing the script below from the top-level of the repo. You will need SSH access to `github.skyscannertools.net` to do this.
+
+If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
+
+```
+./scripts/download-relative-fonts
+```
+
 ## Testing
 
 Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.2 to match what is used on CI.

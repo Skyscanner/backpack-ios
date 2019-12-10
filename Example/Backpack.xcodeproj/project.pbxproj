@@ -621,6 +621,14 @@
 		D22FB970230C0E950023DC72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D28F6B8123A1091D001A188F /* SkyscannerRelativeiOS-Black.ttf */,
+				D28F6B8323A1091D001A188F /* SkyscannerRelativeiOS-BlackItalic.ttf */,
+				D28F6B8523A1091D001A188F /* SkyscannerRelativeiOS-Bold.ttf */,
+				D28F6B8623A1091D001A188F /* SkyscannerRelativeiOS-BoldItalic.ttf */,
+				D28F6B8223A1091D001A188F /* SkyscannerRelativeiOS-Book.ttf */,
+				D28F6B8423A1091D001A188F /* SkyscannerRelativeiOS-Italic.ttf */,
+				D28F6B8723A1091D001A188F /* SkyscannerRelativeiOS-Medium.ttf */,
+				D28F6B8823A1091D001A188F /* SkyscannerRelativeiOS-MediumItalic.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -913,6 +921,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28F6B8D23A1091D001A188F /* SkyscannerRelativeiOS-Bold.ttf in Resources */,
+				D28F6B8A23A1091D001A188F /* SkyscannerRelativeiOS-Book.ttf in Resources */,
+				D28F6B8B23A1091D001A188F /* SkyscannerRelativeiOS-BlackItalic.ttf in Resources */,
+				D28F6B8F23A1091D001A188F /* SkyscannerRelativeiOS-Medium.ttf in Resources */,
+				D28F6B8C23A1091D001A188F /* SkyscannerRelativeiOS-Italic.ttf in Resources */,
+				D28F6B8E23A1091D001A188F /* SkyscannerRelativeiOS-BoldItalic.ttf in Resources */,
+				D28F6B8923A1091D001A188F /* SkyscannerRelativeiOS-Black.ttf in Resources */,
+				D28F6B9023A1091D001A188F /* SkyscannerRelativeiOS-MediumItalic.ttf in Resources */,
 				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
 				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,

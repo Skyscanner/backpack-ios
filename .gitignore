@@ -3,6 +3,8 @@
 
 # Xcode
 build/
+bpk-fonts-tmp/
+Example/Backpack/Resources/SkyscannerRelative*
 *.pbxuser
 !default.pbxuser
 *.mode1v3
