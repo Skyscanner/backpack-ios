@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -169,6 +169,31 @@
                                             <segue destination="NJV-6Z-4HK" kind="show" identifier="Wide" id="EHR-cT-uDW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="mka-rP-JjM" style="IBUITableViewCellStyleDefault" id="OPc-3M-ctr">
+                                        <rect key="frame" x="0.0" y="248" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OPc-3M-ctr" id="r7f-Zj-ycO">
+                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With Scroll" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mka-rP-JjM" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="NJV-6Z-4HK" kind="show" identifier="withScroll" id="LO7-TQ-c1N"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -198,11 +223,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nbY-OE-N2D" firstAttribute="centerY" secondItem="qDu-FC-qam" secondAttribute="centerY" id="1PN-OX-Z09"/>
-                            <constraint firstItem="nbY-OE-N2D" firstAttribute="leading" secondItem="QGe-De-6CG" secondAttribute="leading" constant="20" id="Oow-m4-ZJ5"/>
-                            <constraint firstItem="QGe-De-6CG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nbY-OE-N2D" secondAttribute="trailing" constant="20" id="Ymx-gE-OoL"/>
+                            <constraint firstItem="nbY-OE-N2D" firstAttribute="leading" secondItem="QGe-De-6CG" secondAttribute="leading" constant="24" id="Oow-m4-ZJ5"/>
+                            <constraint firstItem="QGe-De-6CG" firstAttribute="trailing" secondItem="nbY-OE-N2D" secondAttribute="trailing" constant="60" id="Ymx-gE-OoL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QGe-De-6CG"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PGi-sw-XWV"/>
                     <connections>
                         <outlet property="horizontalNav" destination="nbY-OE-N2D" id="Qrx-gE-UAh"/>
                     </connections>
@@ -213,6 +239,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EHR-cT-uDW"/>
+        <segue reference="LO7-TQ-c1N"/>
     </inferredMetricsTieBreakers>
 </document>

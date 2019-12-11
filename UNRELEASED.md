@@ -15,6 +15,9 @@
 - Backpack/BorderSize
   - Backpack border size constants are now available via `Backpack/BorderSize`.
 
+- Backpack/HorizontalNavigation
+  - Now the navigation scroll horizontally if the content exceed the max width
+
 **Fixed:**
 - Backpack/HorizontalNavigation:
   - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.

@@ -216,15 +216,22 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.bounces = NO;
+    scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:scrollView];
+
     self.stackView = [UIStackView new];
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.stackView];
+    [scrollView addSubview:self.stackView];
 
     self.barView = [UIView new];
     [self updateBarColor];
     self.barView.translatesAutoresizingMaskIntoConstraints = NO;
     self.barView.hidden = YES;
-    [self addSubview:self.barView];
+    [scrollView addSubview:self.barView];
 
     self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor
                                                                    constant:self.barSpacing];
@@ -233,9 +240,16 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:@[self.barTopConstraint, self.barHeightConstraint]];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.stackView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor],
+        [self.stackView.topAnchor constraintEqualToAnchor:scrollView.topAnchor],
+        [self.stackView.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor],
+        [self.stackView.trailingAnchor constraintEqualToAnchor:scrollView.trailingAnchor],
+        [self.stackView.bottomAnchor constraintEqualToAnchor:scrollView.bottomAnchor],
+        [self.stackView.widthAnchor constraintGreaterThanOrEqualToAnchor:scrollView.widthAnchor],
+        [scrollView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
+        [scrollView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [scrollView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [scrollView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.heightAnchor constraintEqualToAnchor:scrollView.heightAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.barView.bottomAnchor]
     ]];
 
