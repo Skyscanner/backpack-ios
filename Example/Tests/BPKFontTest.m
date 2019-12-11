@@ -18,7 +18,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import <Backpack/BPKFontManager.h>
 #import <Backpack/Font.h>
+#import <OCMock/OCMock.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKFontTest : XCTestCase
@@ -26,27 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @implementation BPKFontTest
-
-- (void)setUp {
-    self.expectedSelectors = @[
-        @"textXs", @"textXsEmphasized", @"textSm", @"textSmEmphasized", @"textBase", @"textBaseEmphasized", @"textLg",
-        @"textLgEmphasized", @"textXl", @"textXlEmphasized"
-    ];
-}
-
-- (void)testHasExpectedTextStyles {
-    for (NSString *selector in self.expectedSelectors) {
-        XCTAssert([BPKFont respondsToSelector:NSSelectorFromString(selector)],
-                  @"Expected BPKFont to have a textStyle called `%@`", selector);
-    }
-}
-
-- (void)testExpectedTextStylesAreDefined {
-    for (NSString *selector in self.expectedSelectors) {
-        XCTAssertNotNil([BPKFont performSelector:NSSelectorFromString(selector)],
-                        @"Expected BPKFont to have a textStyle called `%@` that returns a valid value", selector);
-    }
-}
 
 - (void)testAttributesForFontStyleWithCustomAttributes {
     UIFont *font = [UIFont systemFontOfSize:120.0];
@@ -80,6 +61,29 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertNotEqualObjects(attributes[NSFontAttributeName], font,
                              @"`attributesForFontStyle:withCustomAttributes:` should ignore `NSFontAttributeName`");
     XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], UIColor.redColor);
+}
+
+- (void)testAttributesForFontStyleWithCustomFontDefinitionInjected {
+    BPKFontManager *mockFontManager = OCMClassMock(BPKFontManager.class);
+    OCMStub([mockFontManager regularFontWithSize:20.0]).andReturn([UIFont fontWithName:@"SnellRoundhand" size:16.0]);
+    OCMStub([mockFontManager semiboldFontWithSize:20.0])
+        .andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
+    OCMStub([mockFontManager heavyFontWithSize:24.0])
+        .andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
+
+    NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg fontManager:mockFontManager];
+    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLgEmphasized
+                                                           fontManager:mockFontManager];
+    NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextXlHeavy
+                                                        fontManager:mockFontManager];
+
+    UIFont *resultingRegularFont = regularAttributes[NSFontAttributeName];
+    UIFont *resultingSemiboldFont = semiboldAttributes[NSFontAttributeName];
+    UIFont *resulingHeavyFont = heavyAttributes[NSFontAttributeName];
+
+    XCTAssertEqualObjects(resultingRegularFont.fontName, @"SnellRoundhand");
+    XCTAssertEqualObjects(resultingSemiboldFont.fontName, @"SnellRoundhand-Bold");
+    XCTAssertEqualObjects(resulingHeavyFont.fontName, @"SnellRoundhand-Black");
 }
 
 - (void)testAttributedStringWithCustomFontFaces {

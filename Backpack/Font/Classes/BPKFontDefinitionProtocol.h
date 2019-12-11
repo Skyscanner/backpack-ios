@@ -16,12 +16,17 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_FONT__
-#define __BACKPACK_FONT__
+#import <Foundation/Foundation.h>
 
-#import "BPKFont.h"
-#import "BPKFontDefinitionProtocol.h"
-#import "BPKFontMapping.h"
-#import "BPKRelativeFontDefinition.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#endif
+@protocol BPKFontDefinitionProtocol
+
+@required
+@property(nonatomic, readonly, strong) NSString *fontFamily;
+@property(nonatomic, readonly, strong) NSString *regularFontFace;
+@property(nonatomic, readonly, strong) NSString *semiboldFontFace;
+@property(nonatomic, readonly, strong) NSString *heavyFontFace;
+@end
+
+NS_ASSUME_NONNULL_END
