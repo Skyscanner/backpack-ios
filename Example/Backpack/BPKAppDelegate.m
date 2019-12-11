@@ -39,6 +39,8 @@
             @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
     }
 
+//    [BPKFont setFontDefinition:[BPKRelativeFontDefinition new]];
+
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];
 
