@@ -26,6 +26,7 @@ enum HorizontalNavSegueIdentifier: String {
     case icons = "Icons"
     case smallIcons = "iconsSmall"
     case wide = "Wide"
+    case showExtraContent = "withScroll"
 }
 
 class HorizontalNavSelectorViewController: UITableViewController {
@@ -55,6 +56,10 @@ class HorizontalNavSelectorViewController: UITableViewController {
                 maybeHorizontalNavController?.size = .small
                 maybeHorizontalNavController?.showIcons = true
                 maybeHorizontalNavController?.wide = true
+            case .showExtraContent:
+                segue.destination.title = "With scroll"
+                maybeHorizontalNavController?.showIcons = true
+                maybeHorizontalNavController?.showExtraContent = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
