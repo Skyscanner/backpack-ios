@@ -8,10 +8,6 @@
 - (instancetype)init {
     self = [super init];
 
-    if (self) {
-        [self generateCacheKey];
-    }
-
     return self;
 }
 
@@ -58,12 +54,7 @@
 - (void)setFontDefinition:(id<BPKFontDefinitionProtocol>)fontDefinition {
     if (_fontDefinition != fontDefinition) {
         _fontDefinition = fontDefinition;
-        [self generateCacheKey];
     }
-}
-
-- (void)generateCacheKey {
-    _cacheKey = [NSUUID UUID].UUIDString;
 }
 
 @end

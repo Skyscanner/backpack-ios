@@ -11,7 +11,6 @@ NS_SWIFT_NAME(BackpackFontManager)
 @interface BPKFontManager : NSObject
 
 @property(nullable, nonatomic) id<BPKFontDefinitionProtocol> fontDefinition;
-@property(nonatomic, readonly) NSString *cacheKey;
 
 + (instancetype)sharedInstance;
 

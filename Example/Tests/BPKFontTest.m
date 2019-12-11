@@ -70,7 +70,6 @@ NS_ASSUME_NONNULL_BEGIN
         .andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
     OCMStub([mockFontManager heavyFontWithSize:24.0])
         .andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
-    OCMStub([mockFontManager cacheKey]).andReturn(@"42CY87T");
 
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg fontManager:mockFontManager];
     NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLgEmphasized

@@ -28,7 +28,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFont()
-@property(nonatomic, strong, readonly) NSCache<NSString *, NSDictionary *> *attributesCache;
 @end
 
 @implementation BPKFont
@@ -80,16 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-+ (NSCache<NSString *, NSDictionary *> *)attributesCache {
-    static dispatch_once_t onceToken;
-    static NSCache *_attributesCache = nil;
-    dispatch_once(&onceToken, ^{
-        _attributesCache = [[NSCache alloc] init];
-    });
-
-    return _attributesCache;
-}
-
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
     return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontManager:[BPKFontManager sharedInstance]];
@@ -119,12 +108,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-    NSString *cacheKey = [self cacheKeyForFontStyle:style fontManager:fontManager];
-    NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
-
-    if (potentialCacheHit) {
-        return potentialCacheHit;
-    }
 
     UIFont *font = [self fontForStyle:style fontManager:fontManager];
     NSDictionary *result = @{
@@ -132,13 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
                    NSFontAttributeName: font,
                    };
 
-    [[self attributesCache] setObject:result forKey:cacheKey];
-
     return result;
-}
-
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-    return [NSString stringWithFormat:@"%ld_%@", (unsigned long)style, fontManager.cacheKey];
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
