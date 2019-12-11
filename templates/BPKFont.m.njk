@@ -26,7 +26,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFont()
-@property(nonatomic, strong, readonly) NSCache<NSString *, NSDictionary *> *attributesCache;
 @end
 
 @implementation BPKFont
@@ -89,16 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-+ (NSCache<NSString *, NSDictionary *> *)attributesCache {
-    static dispatch_once_t onceToken;
-    static NSCache *_attributesCache = nil;
-    dispatch_once(&onceToken, ^{
-        _attributesCache = [[NSCache alloc] init];
-    });
-
-    return _attributesCache;
-}
-
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
     NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
@@ -117,26 +106,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
-    NSString *cacheKey = [self cacheKeyForFontStyle:style];
-    NSDictionary *potentialCacheHit = [[self attributesCache] objectForKey:cacheKey];
-
-    if (potentialCacheHit) {
-        return potentialCacheHit;
-    }
-
     UIFont *font = [self fontForStyle:style];
     NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
                    };
 
-    [[self attributesCache] setObject:result forKey:cacheKey];
-
     return result;
-}
-
-+ (NSString *)cacheKeyForFontStyle:(BPKFontStyle)style {
-    return [NSString stringWithFormat:@"%ld", (unsigned long)style];
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style {

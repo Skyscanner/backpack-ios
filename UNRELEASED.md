@@ -1,9 +1,12 @@
 # Unreleased
 > Place your changes below this line.
 **Breaking:**
- - Backpack/Font:
-   - The `fontMapping` argument is now unused and will be removed in the future.
-   - To enable the Relative typeface, a preprocessor directive must be specified. If not, system font will be used instead of Skyscanner Relative.
+- Backpack/Font:
+  - The `fontMapping` argument is now unused and will be removed in the future.
+  - To enable the Relative typeface, a preprocessor directive must be specified. If not, system font will be used instead of Skyscanner Relative.
+
+- Backpack/Button
+  - Property `cornerRadius` is not longer available to customise.
 
 **Added:**
 - Backpack/NavigationBar
@@ -15,14 +18,10 @@
 **Fixed:**
 - Backpack/HorizontalNavigation:
   - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.
+  - Change spacing between items
 
-**Breaking:**
-- Backpack/Button
-  - Property `cornerRadius` is not longer available to customise.
-
-**Fixed:**
- - Backpack/HorizontalNavigation
-   - Change spacing between items
+- Backpack/Font:
+  - Removed caching as it seems to provide little/no performance benefits.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
