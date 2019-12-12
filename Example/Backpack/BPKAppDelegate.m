@@ -31,15 +31,21 @@
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [BPKFont setFontDefinition:[BPKRelativeFontDefinition new]];
+
     // Override point for customization after application launch.
     [UINavigationBar appearance].tintColor = BPKColor.textPrimaryColor;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+                                                         NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:17.0]};
+
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+                                                           NSFontAttributeName: [[BPKFontManager sharedInstance] regularFontWithSize:17.0]} forState:UIControlStateNormal];
+
     if (@available(iOS 11.0, *)) {
         [UINavigationBar appearance].largeTitleTextAttributes =
-            @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor};
+            @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+            NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]};
     }
-
-//    [BPKFont setFontDefinition:[BPKRelativeFontDefinition new]];
 
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];
