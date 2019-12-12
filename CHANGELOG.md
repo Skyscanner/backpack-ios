@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 24.0.1
+
+**Fixed:**
+ - Backpack/Font:
+   - Fixed an issue that caused an infinite loop in `BPKFont.`
+
 ## 24.0.0
 
 **Breaking:**
