@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor
                                           fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-  return [self attributedStringWithFontStyle:fontStyle content:content textColor:textColor fontMapping:fontMapping];
+  return [self attributedStringWithFontStyle:fontStyle content:content textColor:textColor];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle

@@ -5,12 +5,6 @@
 
 @implementation BPKFontManager
 
-- (instancetype)init {
-    self = [super init];
-
-    return self;
-}
-
 + (instancetype)sharedInstance {
     static BPKFontManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
