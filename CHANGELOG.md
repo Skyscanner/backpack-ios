@@ -2,6 +2,33 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 24.0.0
+
+**Breaking:**
+- Backpack/Font:
+  - The `fontMapping` argument is now unused and will be removed in the future.
+  - To enable the Relative typeface globally, a suitable `BPKFontDefinitionProtocol` must be registered with `BPKFont`.
+
+- Backpack/Button
+  - Property `cornerRadius` is not longer available to customise.
+
+**Added:**
+- Backpack/NavigationBar
+  - Added a property `largetTitleTextAlignment` to support overriding the text alignment of the large title.
+
+- Backpack/BorderSize
+  - Backpack border size constants are now available via `Backpack/BorderSize`.
+
+- Backpack/HorizontalNavigation
+  - Now the navigation scroll horizontally if the content exceed the max width
+
+**Fixed:**
+- Backpack/HorizontalNavigation:
+  - Fixed issue where `HorizontalNavigation` would have an animation glitch when updating its options.
+
+ - Backpack/HorizontalNavigation
+   - Change spacing between items
+
 ## 23.5.0
 
 **Added:**
