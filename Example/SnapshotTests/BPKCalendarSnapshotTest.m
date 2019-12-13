@@ -26,6 +26,7 @@
 
 @property NSDate *date1;
 @property NSDate *date2;
+@property BOOL isColoringDates;
 
 @end
 
@@ -42,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
     self.date1 = [NSDate dateWithTimeIntervalSince1970:2175785688];
     self.date2 = [NSDate dateWithTimeIntervalSince1970:2176044888];
+    self.isColoringDates = NO;
 }
 
 - (void)configureParentView:(UIView *)parentView forCalendar:(BPKCalendar *)calendar {
@@ -155,9 +157,29 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testCalendarWithCustomColorDates {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+
+    [self configureParentView:parentView forCalendar:bpkCalendar];
+    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+
+    bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
+    self.isColoringDates = YES;
+    bpkCalendar.delegate = self;
+    [bpkCalendar reloadData];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 #pragma mark - <BPKCalendarDelegate>
 
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date {
+
+    if (self.isColoringDates) {
+        return YES;
+    }
+
     if ([date compare:self.date2] == NSOrderedDescending) {
         return NO;
     }
@@ -167,6 +189,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)calendar:(nonnull BPKCalendar *)calendar didChangeDateSelection:(nonnull NSArray<BPKSimpleDate *> *)dateList {
     return;
+}
+
+- (UIColor *)fillColorForDate:(NSDate *)date {
+    if (!self.isColoringDates) {
+        return BPKColor.clear;
+    }
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *date1 = [calendar startOfDayForDate: self.date1];
+    NSDate *date2 = [calendar startOfDayForDate:date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay
+                                               fromDate:date1
+                                                 toDate:date2
+                                                options:0];
+
+    if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
+        return BPKColor.glencoe;
+    }
+
+    if (components.day == 4 || components.day == 10 || components.day == 15 || components.day == 24) {
+        return BPKColor.hillier;
+    }
+
+    if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
+        return BPKColor.erfoud;
+    }
+
+    return BPKColor.clear;
 }
 
 @end
