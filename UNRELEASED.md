@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+- Backpack/Rating:
+  - Made the outer container an accessibility element so that an accessibility label can be set.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
