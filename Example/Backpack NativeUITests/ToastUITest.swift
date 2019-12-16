@@ -45,7 +45,7 @@ class ToastUITest: XCTestCase {
 
     func navigateAndShow() {
         app.tables.staticTexts["Toasts"].tap()
-        app.tables.staticTexts["Default Toast"].tap()
+        app.tables.staticTexts["Default toast"].tap()
         app.buttons["Show Toast"].tap()
     }
 
