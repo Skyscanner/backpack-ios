@@ -103,6 +103,7 @@
 		D28784922250FCBD00353E32 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784902250FCBD00353E32 /* Settings.swift */; };
 		D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784912250FCBD00353E32 /* ThemeHelpers.swift */; };
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
+		D2912FAB23A7CD1A00CDF8BE /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2912FAA23A7CD1A00CDF8BE /* Screenshots.swift */; };
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
@@ -314,6 +315,7 @@
 		D28784902250FCBD00353E32 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D28784912250FCBD00353E32 /* ThemeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelpers.swift; sourceTree = "<group>"; };
 		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
+		D2912FAA23A7CD1A00CDF8BE /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				D2912FAA23A7CD1A00CDF8BE /* Screenshots.swift */,
 				D257C768236AE3FB006683F5 /* TextFieldUITest.swift */,
 				D257C767236AE3FB006683F5 /* TextViewUITest.swift */,
 				D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */,
@@ -1233,6 +1236,7 @@
 				760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */,
 				D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */,
 				D257C76A236AE3FB006683F5 /* TextFieldUITest.swift in Sources */,
+				D2912FAB23A7CD1A00CDF8BE /* Screenshots.swift in Sources */,
 				D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
 			);
