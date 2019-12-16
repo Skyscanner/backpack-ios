@@ -41,6 +41,14 @@ If you don't work for Skyscanner don't worry - the Example app will still work j
 ./scripts/download-relative-fonts
 ```
 
+## Regenerating screenshots
+First, ensure that Relative is installed by following the steps above.
+
+1. Run the `NativeUITest` called `testTakeScreenshots`.
+2. Run `./scripts/extract-screenshots.rb`. This will extract the screenshots taken by the previous step and place them in the correct locations.
+
+To capture dark-mode screenshots too, repeat step 1 with dark-mode enabled, and then run the script from step 2 with the additional argument `DarkMode`.
+
 ## Testing
 
 Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.2 to match what is used on CI.
