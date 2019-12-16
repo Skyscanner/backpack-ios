@@ -396,16 +396,28 @@ NSString *const HeaderDateFormat = @"MMMM";
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
                     appearance:(FSCalendarAppearance *)appearance
        fillDefaultColorForDate:(NSDate *)date {
+
+    if ([self isDateEnabled:date] &&
+        [self.delegate respondsToSelector:@selector(fillColorForDate:)]) {
+        return [self.delegate fillColorForDate:date];
+    }
+
     if ([self isDateInToday:date]) {
         return [UIColor clearColor];
     }
+
     return appearance.borderDefaultColor;
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
                     appearance:(FSCalendarAppearance *)appearance
       titleDefaultColorForDate:(nonnull NSDate *)date {
+
     if ([self isDateEnabled:date]) {
+        if ([self.delegate respondsToSelector:@selector(titleColorForDate:)]) {
+            return [self.delegate titleColorForDate:date];
+        }
+
         return self.appearance.titleDefaultColor;
     }
 

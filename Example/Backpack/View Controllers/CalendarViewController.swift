@@ -23,6 +23,7 @@ import Backpack.SimpleDate
 
 class CalendarViewController: UIViewController, CalendarDelegate {
     var maxEnabledDate: Bool = false
+    var customStylesForDates = false
     var currentMaxEnabledDate: Date?
     @IBOutlet weak var myView: Backpack.Calendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -78,5 +79,31 @@ class CalendarViewController: UIViewController, CalendarDelegate {
             return false
         }
         return true
+    }
+
+    func fillColor(for date: Date) -> UIColor {
+        if !customStylesForDates {
+            return Color.clear
+        }
+
+        let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: Date())
+        let date2 = calendar.startOfDay(for: date)
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        guard let daysCount = components.day else { return Color.clear }
+
+        if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 {
+            return Color.glencoe
+        }
+
+        if daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 {
+            return Color.hillier
+        }
+
+        if daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
+            return Color.erfoud
+        }
+
+        return Color.clear
     }
 }

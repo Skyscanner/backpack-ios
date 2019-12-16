@@ -55,6 +55,16 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date;
 
+/**
+ * Asks the delegate for a fill color for the specific date.
+*/
+- (UIColor *)fillColorForDate:(NSDate *)date;
+
+/**
+ * Asks the delegate for a title color for the specific date.
+*/
+- (UIColor *)titleColorForDate:(NSDate *)date;
+
 @end
 
 /**
