@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+- Backpack/Rating:
+  - Made the outer container an accessibility element so that an accessibility label can be set.
 
 **Breaking:**
 - Backpack/Font:

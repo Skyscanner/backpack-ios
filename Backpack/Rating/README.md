@@ -29,6 +29,7 @@ rating.subtitle = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"Some
                                   lowRatingText:@"Some subtitle to display when the value is low"];
 rating.ratingValue = 9.7;
 rating.size = BPKRatingSizeSmall;
+rating.accessibilityLabel = "Rated 5 out of 10. Exceptional hotel."
 ```
 
 ### Appearance attributes

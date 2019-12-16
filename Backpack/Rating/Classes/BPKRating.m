@@ -87,6 +87,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.textWrapper.accessibilityElementsHidden = YES;
     [self addSubview:self.textWrapper];
 
+    self.isAccessibilityElement = YES;
+
     [self setUpConstraints];
     [self updateConstraints];
     [self updateStyle];
