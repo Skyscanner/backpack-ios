@@ -37,7 +37,6 @@
     self = [super initWithFrame:frame];
 
     if (self) {
-        self.titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.weekdayView removeFromSuperview];
         [self.bottomBorder removeFromSuperview];
     }
@@ -47,7 +46,7 @@
 
 - (void)configureAppearance {
     [super configureAppearance];
-    [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    self.titleLabel.textAlignment = NSTextAlignmentNatural;
 }
 
 - (void)layoutSubviews {
