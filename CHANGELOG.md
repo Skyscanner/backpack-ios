@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.0.0
+
+**Breaking:**
+- Backpack/Font:
+  - `FontMapping` class removed. `fontMapping` argument is no longer accepted by `BPKFont`.
+
+**Fixed:**
+- Backpack/Rating:
+  - Made the outer container an accessibility element so that an accessibility label can be set.
+
+ - Backpack/Calendar:
+   - Fixed alignment of month headings in RTL languages.
+
 ## 24.0.1
 
 **Fixed:**
