@@ -3,8 +3,6 @@
 
 #import "BPKFontDefinitionProtocol.h"
 
-@class BPKFontMapping;
-
 NS_ASSUME_NONNULL_BEGIN
 
 NS_SWIFT_NAME(BackpackFontManager)

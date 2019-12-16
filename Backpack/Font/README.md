@@ -20,7 +20,7 @@ All Backpack text rendering is done with `NSAttributedString` to correctly refle
 
 BPKFontStyle sm = BPKFontStyleTextBase;
 
-[BPKFont attributedStringWithFontStyle:sm content:@"Hello travel" fontMapping:nil];
+[BPKFont attributedStringWithFontStyle:sm content:@"Hello travel"];
 ```
 
 ### Swift
@@ -30,5 +30,5 @@ import Backpack
 
 let style = BPKFontStyleTextBase;
 
-let attributedString = Backpack.Font.makeAttributedString(fontStyle: style, content: "Hello Travel" fontMapping:nil)
+let attributedString = Backpack.Font.makeAttributedString(fontStyle: style, content: "Hello Travel")
 ```
