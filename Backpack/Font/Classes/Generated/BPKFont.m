@@ -22,7 +22,6 @@
 #import <Backpack/Theme.h>
 
 #import "../BPKFontManager.h"
-#import "../BPKFontMapping.h"
 #import "../BPKFontDefinitionProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -37,33 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
     [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
 
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontMapping:(BPKFontMapping * _Nullable)fontMapping {
-    return [self attributesForFontStyle:style];
-}
-
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
-                                              content:(NSString *)content fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-  return [self attributedStringWithFontStyle:fontStyle content:content];
-}
-
-+ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
-                                              content:(NSString *)content
-                                            textColor:(UIColor *)textColor
-                                          fontMapping:(BPKFontMapping *_Nullable)fontMapping {
-  return [self attributedStringWithFontStyle:fontStyle content:content textColor:textColor];
-}
-
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
     NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
 
     return attributedString;
-}
-
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
-                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes fontMapping:(BPKFontMapping * _Nullable)fontMapping {
-    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
