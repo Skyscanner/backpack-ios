@@ -9,7 +9,6 @@ cd ..
 mkdir -p ./Example/Backpack/Resources/
 cp ./bpk-fonts-tmp/iOS/SkyscannerRelativeiOS* ./Example/Backpack/Resources/
 rm -rf bpk-fonts-tmp
-sed -i '' -e 's/\/\/    \[BPKFont/    [BPKFont/g' ./Example/Backpack/BPKAppDelegate.m
 sed -i '' -e '
 /Begin PBXBuildFile section/a\
        D28F6B8923A1091D001A188F \/* SkyscannerRelativeiOS-Black.ttf in Resources *\/ = {isa = PBXBuildFile; fileRef = D28F6B8123A1091D001A188F \/* SkyscannerRelativeiOS-Black.ttf *\/; };\
