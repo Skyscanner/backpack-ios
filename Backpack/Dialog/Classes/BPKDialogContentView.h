@@ -18,25 +18,18 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Backpack/FlareView.h>
-
 #import "BPKDialogButtonAction.h"
-#import "BPKDialogControllerStyle.h"
-#import "BPKDialogCornerStyle.h"
 #import "BPKDialogViewDelegate.h"
-
-@class BPKShadow;
-@class BPKDialogIconDefinition;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * A `UIView` subclass that renders the Backpack Dialog. Used by
- * `BPKDialogController`, but can also be used directly in rare cases.
+ * A `UIView` subclass that renders the content of a Backpack Dialog. Used by
+ * `BPKDialogView`.
  *
- * @see BPKDialogController
+ * @see BPKDialogView
  */
-@interface BPKDialogView : UIView <UIGestureRecognizerDelegate>
+@interface BPKDialogContentView : UIView <UIGestureRecognizerDelegate>
 
 /**
  * The delegate of the view.
@@ -44,26 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak) id<BPKDialogViewDelegate> delegate;
 
 /**
- * The style of the dialog.
- */
-@property(nonatomic, assign) BPKDialogControllerStyle style;
-
-/**
  * The size of the buttons. By default this is `BPKButtonSizeLarge`.
  */
 @property(nonatomic, assign) BPKButtonSize buttonSize;
 
-/**
- * The style of the corners of the Dialog.
- *
- * @see BPKDialogCornerStyle
- */
-@property(nonatomic, assign) IB_DESIGNABLE BPKDialogCornerStyle cornerStyle;
-
-/**
- * The background color of the icon view at the top
- */
-@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 
 /**
  * The title to display in the view.
@@ -76,17 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, copy) NSString *message;
 
 /**
- * Create an instance of `BPKDialogView`.
- *
- * @param title The title to use.
- * @param message The message to use.
- * @param iconDefinition the icon to show at the top of the dialog.
- * @param flareView the BPKFlareView to show at the top of the dialog.
+ * Whether the reiever has at least one button action configured.
  */
-- (instancetype)initWithTitle:(NSString *_Nullable)title
-                      message:(NSString *)message
-               iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                    flareView:(BPKFlareView *_Nullable)flareView NS_DESIGNATED_INITIALIZER;
+@property(nonatomic, readonly, assign) BOOL hasButtonActions;
+
+/**
+ * Whether the reiever has a non-empty title set.
+ */
+@property(nonatomic, readonly, assign) BOOL hasTitle;
 
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
