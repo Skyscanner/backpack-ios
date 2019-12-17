@@ -2,6 +2,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.0.1
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Significantly improved the behaviour of the dialog in extreme cases.
+  - `BPKDialogController` now appropriately constraints the dialog to not grow to a size too large for the viewport.
+  - `BPKDialogController` now limits how large the dialog grows in large view ports like iPad.
+  - `BPkDialogView` can now be constrained to stop growing and will handle small viewports by shrinking its content.
+
+- Backpack/Toast
+  - Fixed the toast's appearance in dark mode.
+
 ## 25.0.0
 
 **Breaking:**
