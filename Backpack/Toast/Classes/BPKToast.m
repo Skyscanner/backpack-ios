@@ -129,7 +129,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 }
 
 - (void)setupHUD {
-    self.hud.color = [BPKColor.skyGray colorWithAlphaComponent:0.85];
+    self.hud.color = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
     self.hud.delegate = self;
     self.hud.accessibilityIdentifier = ToastAccessibilityIdentifier;
 }
