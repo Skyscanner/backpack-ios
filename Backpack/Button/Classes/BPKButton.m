@@ -54,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
 @property(nonatomic, class, readonly) CGFloat buttonTitleIconSpacing;
-@property(nonatomic, readonly) UIColor *disabledLinkColor;
 @property(nonatomic, readonly) UIColor *disabledBackgroundColor;
 @property(nonatomic, readonly) UIColor *disabledContentColor;
 @property(nonatomic, readonly) UIColor *boxyBackgroundColor;
@@ -552,7 +551,7 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleDestructive:
             return [self class].disabledContentColor;
         case BPKButtonStyleLink:
-            return [self class].disabledLinkColor;
+            return [self class].disabledContentColor;
         case BPKButtonStyleOutline:
             return BPKColor.skyGrayTint04;
         default:
@@ -853,10 +852,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)disabledContentColor {
     return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint03];
-}
-
-+ (UIColor *)disabledLinkColor {
-    return BPKColor.skyGrayTint04;
 }
 
 + (UIColor *)disabledBorderColor {
