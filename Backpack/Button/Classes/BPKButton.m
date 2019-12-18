@@ -54,10 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor *highlightedBlue;
 @property(nonatomic, class, readonly) UIColor *highlightedRed;
 @property(nonatomic, class, readonly) CGFloat buttonTitleIconSpacing;
-@property(nonatomic, readonly) UIColor *disabledBackgroundColor;
-@property(nonatomic, readonly) UIColor *disabledContentColor;
-@property(nonatomic, readonly) UIColor *boxyBackgroundColor;
-@property(nonatomic, readonly) UIColor *boxyContentColor;
+@property(nonatomic, class, readonly) UIColor *disabledBackgroundColor;
+@property(nonatomic, class, readonly) UIColor *disabledContentColor;
+@property(nonatomic, class, readonly) UIColor *boxyBackgroundColor;
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @property(nonatomic, strong) NSNumber *cornerRadius;
 @end
@@ -370,8 +369,8 @@ NS_ASSUME_NONNULL_BEGIN
         }
         case BPKButtonStyleSecondary: {
             UIColor *backgroundColor =
-                self.secondaryBackgroundColor ? self.secondaryBackgroundColor : [self class].boxyBackgroundColor;
-            UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : [self class].boxyBorderColor;
+                self.secondaryBackgroundColor ? self.secondaryBackgroundColor : self.class.boxyBackgroundColor;
+            UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : self.class.boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
                 self.gradientLayer.gradient = [self gradientWithSingleColor:[self highlightedColor:backgroundColor]];
@@ -381,9 +380,9 @@ NS_ASSUME_NONNULL_BEGIN
         }
         case BPKButtonStyleDestructive: {
             UIColor *backgroundColor =
-                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : [self class].boxyBackgroundColor;
+                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : self.class.boxyBackgroundColor;
             UIColor *borderColor =
-                self.destructiveBorderColor ? self.destructiveBorderColor : [self class].boxyBorderColor;
+                self.destructiveBorderColor ? self.destructiveBorderColor : self.class.boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
                 self.gradientLayer.gradient = [self gradientWithSingleColor:[self highlightedColor:backgroundColor]];
@@ -394,7 +393,7 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleOutline: {
             [self setBorderedStyleWithColor:BPKColor.white withGradientColor:BPKColor.clear];
             if (self.isHighlighted) {
-                [self setBorderedStyleWithColor:[self class].highlightedOutline withGradientColor:BPKColor.clear];
+                [self setBorderedStyleWithColor:self.class.highlightedOutline withGradientColor:BPKColor.clear];
                 self.gradientLayer.gradient = [self gradientWithSingleColor:highlightedOutline];
                 [self.gradientLayer setNeedsDisplay];
             }
@@ -465,32 +464,32 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.primaryContentColor != nil) {
             highlightedContentColor = [self highlightedColor:self.primaryContentColor];
         } else {
-            highlightedContentColor = [self class].highlightedWhite;
+            highlightedContentColor = self.class.highlightedWhite;
         }
         break;
     case BPKButtonStyleFeatured:
         if (self.featuredContentColor != nil) {
             highlightedContentColor = [self highlightedColor:self.featuredContentColor];
         } else {
-            highlightedContentColor = [self class].highlightedWhite;
+            highlightedContentColor = self.class.highlightedWhite;
         }
         break;
     case BPKButtonStyleSecondary:
         if (self.secondaryContentColor != nil) {
             highlightedContentColor = [self highlightedColor:self.secondaryContentColor];
         } else {
-            highlightedContentColor = [self class].highlightedBlue;
+            highlightedContentColor = self.class.highlightedBlue;
         }
         break;
     case BPKButtonStyleDestructive:
         if (self.destructiveContentColor != nil) {
             highlightedContentColor = [self highlightedColor:self.destructiveContentColor];
         } else {
-            highlightedContentColor = [self class].highlightedRed;
+            highlightedContentColor = self.class.highlightedRed;
         }
         break;
     case BPKButtonStyleOutline:
-        highlightedContentColor = [self class].highlightedOutline;
+        highlightedContentColor = self.class.highlightedOutline;
         break;
     case BPKButtonStyleLink:
         highlightedContentColor = [self.currentContentColor colorWithAlphaComponent:0.2];
@@ -549,9 +548,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleFeatured:
         case BPKButtonStyleSecondary:
         case BPKButtonStyleDestructive:
-            return [self class].disabledContentColor;
+            return self.class.disabledContentColor;
         case BPKButtonStyleLink:
-            return [self class].disabledContentColor;
+            return self.class.disabledContentColor;
         case BPKButtonStyleOutline:
             return BPKColor.skyGrayTint04;
         default:
@@ -662,7 +661,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleFeatured:
     case BPKButtonStyleSecondary:
     case BPKButtonStyleDestructive:
-        backgroundColor = [self class].disabledBackgroundColor;
+        backgroundColor = self.class.disabledBackgroundColor;
         break;
     case BPKButtonStyleOutline:
         backgroundColor = BPKColor.white;
