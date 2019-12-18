@@ -2,6 +2,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.0.2
+
+**Fixed:**
+ - Backpack/Button:
+   - Fixed the disabled link colour in Dark Mode.
+
 ## 25.0.1
 
 **Fixed:**
