@@ -17,31 +17,9 @@ all of it, simply add the following line to your Podfile:
 pod 'Backpack'
 ```
 
-This will install all of Backpack. We use subspecs to subdivide the library so you might want to only install specific subspecs instead.
+## Documentation
 
-## Components
-
-* [Color](Backpack/Color/README.md)
-* [Font](Backpack/Font/README.md)
-* [Gradient](Backpack/Gradient/README.md)
-* [Radii](Backpack/Radii/README.md)
-* [Spacing](Backpack/Spacing/README.md)
-* [Shadow](Backpack/Shadow/README.md)
-
-* [Badge](Backpack/Badge/README.md)
-* [BottomSheet](Backpack/BottomSheet/README.md)
-* [Button](Backpack/Button/README.md)
-* [Card](Backpack/Card/README.md)
-* [Calendar](Backpack/Calendar/README.md)
-* [Dialog](Backpack/Dialog/README.md)
-* [Icon](Backpack/Icon/README.md)
-* [Label](Backpack/Label/README.md)
-* [Panel](Backpack/Panel/README.md)
-* [TappableLinkLabel](Backpack/TappableLinkLabel/README.md)
-* [TextField](Backpack/TextField/README.md)
-* [TextView](Backpack/TextView/README.md)
-* [Spinner](Backpack/Spinner/README.md)
-* [Switch](Backpack/Switch/README.md)
+To learn more about the available Backpack components on iOS head over the [Backpack documentation site](https://backpack.github.io/) or check out the [reference documentation](https://backpack.github.io/ios).
 
 ## Contributing to Backpack
 
