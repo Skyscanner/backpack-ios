@@ -31,7 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
  * Enum values for specifying the navigation size
  */
 typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
+    /**
+     * Large, default, size horizontal navigation.
+     */
     BPKHorizontalNavigationSizeDefault = 0,
+
+    /**
+     * Small size horizontal navigation.
+     */
     BPKHorizontalNavigationSizeSmall = 1,
 };
 
@@ -40,6 +47,7 @@ typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
  */
 NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
 
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
 
 /**
@@ -82,7 +90,10 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 - (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options
                        selected:(NSInteger)selectedItemIndex NS_DESIGNATED_INITIALIZER;
 
+/// :nodoc:
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
+/// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -22,6 +22,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class BPKDialogButtonAction;
+
+/**
+ * Handler function called when an action in a dialog is invoked.
+ */
 typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
 
 /**
@@ -60,6 +64,7 @@ NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject
                                    style:(BPKButtonStyle)style
                                  handler:(BPKDialogButtonActionHandler)handler;
 
+/// :nodoc:
 - (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));
 
 @end

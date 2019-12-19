@@ -58,11 +58,16 @@ NS_SWIFT_NAME(IconView) @interface BPKIconView : UIImageView
  */
 @property(nonatomic, assign) BOOL flipsForRightToLeft;
 
+/// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image
     __attribute__((unavailable("use `initWithIconName:size:` instead")));
+
+/// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image
              highlightedImage:(nullable UIImage *)highlightedImage
     __attribute__((unavailable("use a `UIImageView` and `BPKIcon`s `iconNamed:color:size:` instead.")));
+
+/// :nodoc:
 - (void)setImage:(nullable UIImage *)image
     __attribute__((unavailable("use `iconName` instead. If you need to set arbitrary images use `UIImageView`")));
 

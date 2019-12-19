@@ -20,7 +20,33 @@
 #import "BPKIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSUInteger, BPKIconSize) { BPKIconSizeSmall, BPKIconSizeLarge, BPKIconSizeXLarge };
+
+/**
+ * Available icon sizes.
+ *
+ * To find the concrete point size use `concreteSizeForIconSize:`
+ *
+ * @see concreteSizeForIconSize:
+ */
+typedef NS_ENUM(NSUInteger, BPKIconSize) {
+    /**
+     * Small icon size.
+     */
+    BPKIconSizeSmall,
+
+    /**
+     * Large icon size.
+     */
+    BPKIconSizeLarge,
+
+    /**
+     * Extra large icon size.
+     *
+     * **Note:** This should be used rarely as icons are not designed to be scaled this large
+     * please review usage of every icon used at this size carefully.
+     */
+    BPKIconSizeXLarge
+};
 
 @class UIImage;
 
@@ -32,6 +58,9 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) { BPKIconSizeSmall, BPKIconSizeLarge, B
  */
 NS_SWIFT_NAME(Icon) @interface BPKIcon : NSObject
 
+/**
+ * A dictionary mapping icon names to the unicode code point in the icon font of the icon.
+ */
 @property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
 
 /**

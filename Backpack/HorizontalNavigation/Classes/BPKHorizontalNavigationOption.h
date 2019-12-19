@@ -22,17 +22,69 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * A single option within a horizontal navigation.
+ *
+ * Can be configured to show an optional icon, always includes a name.
+ */
 @interface BPKHorizontalNavigationOption : NSObject
 
+/**
+ * Name of the optional icon used in the option.
+ */
 @property(nonatomic, readonly, strong, nullable) BPKIconName iconName;
+
+/**
+ * A tag representing the option, can be used to distinguish options from
+ * eachother.
+ */
 @property(nonatomic, readonly) NSInteger tag;
+
+/**
+ * Name of the option displayed in the horizontal nav.
+ */
 @property(nonatomic, readonly, copy) NSString *name;
+
+/**
+ * Whether the option has an icon. True if `iconName` is non-nil.
+ */
 @property(nonatomic, readonly) BOOL hasIcon;
 
-- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag;
-- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
+/**
+ * Intialize an option with a given name.
+ *
+ * @param name The name of the option.
+ * @return A named option.
+ */
 - (instancetype)initWithName:(NSString *)name;
+
+/**
+* Intialize an option with a given name and tag.
+*
+* @param name The name of the option.
+* @param tag The tag of the option.
+* @return A named option with a tag.
+*/
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag;
+
+/**
+* Intialize an option with a given name and icon.
+*
+* @param name The name of the option.
+* @param iconName The name of the icon to display.
+* @return A named option with an icon.
+*/
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName;
+
+/**
+* Intialize an option with a given name, tag, and icon.
+*
+* @param name The name of the option.
+* @param iconName The name of the icon to display.
+* @param tag The tag of the option.
+* @return A named option with an icon and a tag.
+*/
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -15,9 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#import <Backpack/Font.h>
-
 #import <FSCalendar/FSCalendar.h>
 
 typedef NS_ENUM(NSUInteger, SelectionType) {
@@ -33,7 +30,7 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 
 @interface BPKCalendarCell : FSCalendarCell
 
-@property(nonatomic) SelectionType selectionType;
-@property(nonatomic) RowType rowType;
+@property(nonatomic, assign) SelectionType selectionType;
+@property(nonatomic, assign) RowType rowType;
 
 @end

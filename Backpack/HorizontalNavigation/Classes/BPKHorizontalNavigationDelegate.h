@@ -21,14 +21,25 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKHorizontalNavigation;
+
+/**
+ * Delegate for responding to changes and actions in horizontal navigation.
+ */
 @protocol BPKHorizontalNavigationDelegate <NSObject>
 
 @optional
 
-/*
- * DEPRECATED
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation-deprecated-sync"
+
+/**
+ * This method has been depercated use `horizontalNavigation:didSelectItemwithTag:` instead.
+ *
+ * @deprecated
+ * @see horizontalNavigation:didSelectItemwithTag:
  */
 - (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation didSelectItem:(NSInteger)index;
+#pragma clang diagnostic pop
 
 /*
  * Tells the delegate that the user has selected one of the horizontal navigation options.
