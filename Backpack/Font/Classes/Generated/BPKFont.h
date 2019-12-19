@@ -20,24 +20,43 @@
 
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 
+    /// :nodoc:
     BPKFontStyleTextBase = 0,
+    /// :nodoc:
     BPKFontStyleTextBaseEmphasized = 1,
+    /// :nodoc:
     BPKFontStyleTextCaps = 11,
+    /// :nodoc:
     BPKFontStyleTextCapsEmphasized = 12,
+    /// :nodoc:
     BPKFontStyleTextLg = 2,
+    /// :nodoc:
     BPKFontStyleTextLgEmphasized = 3,
+    /// :nodoc:
     BPKFontStyleTextSm = 4,
+    /// :nodoc:
     BPKFontStyleTextSmEmphasized = 5,
+    /// :nodoc:
     BPKFontStyleTextXl = 6,
+    /// :nodoc:
     BPKFontStyleTextXlEmphasized = 7,
+    /// :nodoc:
     BPKFontStyleTextXlHeavy = 10,
+    /// :nodoc:
     BPKFontStyleTextXs = 8,
+    /// :nodoc:
     BPKFontStyleTextXsEmphasized = 9,
+    /// :nodoc:
     BPKFontStyleTextXxl = 13,
+    /// :nodoc:
     BPKFontStyleTextXxlEmphasized = 14,
+    /// :nodoc:
     BPKFontStyleTextXxlHeavy = 15,
+    /// :nodoc:
     BPKFontStyleTextXxxl = 16,
+    /// :nodoc:
     BPKFontStyleTextXxxlEmphasized = 17,
+    /// :nodoc:
     BPKFontStyleTextXxxlHeavy = 18,
 };
 
@@ -59,7 +78,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param fontStyle The desired fontStyle.
  * @return A dictionary of attributes describing the specified style.
  *
- * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeAttributes(fontStyle:));
 
@@ -84,7 +103,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  *  rendering are ignored.
  * @return A dictionary of attributes describing the specified style and custom attributes.
  *
- * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey, id> *)customAttributes NS_SWIFT_NAME(makeAttributes(fontStyle:customAttributes:));
@@ -97,7 +116,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param content The content of the attributedString.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content NS_SWIFT_NAME(makeAttributedString(fontStyle:content:));
 
@@ -109,7 +128,7 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
  * @param textColor The text color to use.
  * @return An attributed string with the specified styles.
  *
- * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible. 
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
 

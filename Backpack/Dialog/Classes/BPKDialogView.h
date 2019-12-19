@@ -88,7 +88,10 @@ NS_ASSUME_NONNULL_BEGIN
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                     flareView:(BPKFlareView *_Nullable)flareView NS_DESIGNATED_INITIALIZER;
 
+/// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+/// :nodoc:
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**

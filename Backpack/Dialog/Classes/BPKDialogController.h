@@ -80,6 +80,8 @@ NS_SWIFT_NAME(DialogController)
  */
 @property(nonatomic, assign) BPKButtonSize buttonSize;
 
+
+/// :nodoc:
 - (instancetype)init __attribute__((
     unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
 

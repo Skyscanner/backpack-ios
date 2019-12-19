@@ -67,6 +67,7 @@ NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard : UIControl
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
+/// :nodoc:
 - (void)addSubview:(UIView *)view __attribute__((unavailable(
                        "`addSubview` cannot be used on BPKCard. Use the `subview` property to set content instead")));
 

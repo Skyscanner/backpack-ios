@@ -26,13 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
 
-/*
+/**
  * A view that can be used to show content in the background.
  * Note that some of this content may be clipped by the flare shape.
  */
 @property(nonatomic) UIView *backgroundView;
 
-/*
+/**
  * A view that can be used to show content in front of the background.
  * The content view will never be clipped by the flare shape.
  */

@@ -23,12 +23,27 @@
  * Enum values for specifying calendar selection type
  */
 typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
+    /**
+     * Select a single date in the calendar.
+     */
     BPKCalendarSelectionSingle = 0,
+
+    /**
+     * Select a range in the calendar by selecting a start and then an end date.
+     */
     BPKCalendarSelectionRange = 1,
+
+    /**
+     * Select multiple individual dates.
+     */
     BPKCalendarSelectionMultiple = 2,
 };
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * Delegate for configuring and respodning to interactions in a calendar.
+ */
 NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 
 /**
@@ -72,7 +87,11 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *dateSelectedContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *dateSelectedBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /**
@@ -84,7 +103,10 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
  */
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate NS_DESIGNATED_INITIALIZER;
 
+/// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+
+/// :nodoc:
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
@@ -100,27 +122,27 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 /**
  * Type of selection allowed
  */
-@property(nonatomic) BPKCalendarSelection selectionType;
+@property(nonatomic, assign) BPKCalendarSelection selectionType;
 
 /**
  * List of selected dates
  */
-@property(nonatomic) NSArray<BPKSimpleDate *> *selectedDates;
+@property(nonatomic, copy) NSArray<BPKSimpleDate *> *selectedDates;
 
 /**
  * The earliest date that the user is allowed to select
  */
-@property(nonatomic) BPKSimpleDate *minDate;
+@property(nonatomic, strong) BPKSimpleDate *minDate;
 
 /**
  * The latest date that the user is able to see
  */
-@property(nonatomic) BPKSimpleDate *maxDate;
+@property(nonatomic, strong) BPKSimpleDate *maxDate;
 
 /**
  * The underlying scrollView's content offset
  */
-@property(readonly) CGPoint contentOffset;
+@property(readonly, assign) CGPoint contentOffset;
 
 /**
  * The underlying scrollView's content inset
@@ -150,8 +172,11 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 /**
  * The calendar's delegate
  */
-@property(nonatomic, nullable) id<BPKCalendarDelegate> delegate;
+@property(nonatomic, nullable, weak) id<BPKCalendarDelegate> delegate;
 
+/**
+ * Reloads all dates displayed in the receiver.
+ */
 - (void)reloadData;
 
 @end

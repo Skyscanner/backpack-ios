@@ -16,7 +16,11 @@
 * limitations under the License.
 */
 
+/**
+ * Delegate for dialog for managing dialog actions.
+ */
 @protocol BPKDialogViewDelegate <NSObject>
+
 @required
 /**
  * Called when a button action is invoked. At this point the handler has

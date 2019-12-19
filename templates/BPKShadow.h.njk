@@ -47,7 +47,10 @@ NS_SWIFT_NAME(Shadow) @interface BPKShadow: NSObject
  */
 @property(nonatomic, readonly) CGFloat radius;
 
+/// :nodoc
 - (instancetype)init __attribute__((unavailable("init not available, use factory methods")));
+
+/// :nodoc
 + (instancetype)new __attribute__((unavailable("new not available, use factory methods")));
 
 /**

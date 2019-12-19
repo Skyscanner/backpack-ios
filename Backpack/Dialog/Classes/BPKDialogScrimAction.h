@@ -20,6 +20,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+* Handler function called when the scrim action is invoked by the user tapping the scrim.
+*/
 typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
 
 /**
@@ -46,6 +49,7 @@ NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
  */
 + (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 
+/// :nodoc:
 - (instancetype _Nonnull)init
     __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 

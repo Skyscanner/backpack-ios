@@ -40,12 +40,19 @@ NS_SWIFT_NAME(CardDivider) IB_DESIGNABLE @interface BPKCardDivider : UIView
  */
 - (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation NS_DESIGNATED_INITIALIZER;
 
+/// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame
     __attribute__((unavailable("CardDivider cannot be initialised with frame. Use `initWithOrientation` instead")));
+
+/// :nodoc:
 - (instancetype)init
     __attribute__((unavailable("CardDivider cannot be initialised using `init`. Use `initWithOrientation` instead")));
+
+/// :nodoc:
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder
     __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
+
+/// :nodoc:
 + (instancetype)new
     __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
 

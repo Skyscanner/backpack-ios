@@ -113,6 +113,7 @@ NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard : BPKCard
  */
 - (void)setOrientation:(UILayoutConstraintAxis)orientation;
 
+/// :nodoc:
 - (void)addSubview:(UIView *)view
     __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
                                "`initWithPrimarySubview:secondarySubview:padded:`")));

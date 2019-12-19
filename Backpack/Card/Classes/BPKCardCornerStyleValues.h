@@ -20,7 +20,14 @@
  * Enum values for specifying corner style
  */
 typedef NS_ENUM(NSUInteger, BPKCardCornerStyle) {
+    /**
+     * Small corner radius style.
+     */
     BPKCardCornerStyleSmall = 0,
+
+    /**
+     * Large corner radius style.
+     */
     BPKCardCornerStyleLarge = 1,
 };
 

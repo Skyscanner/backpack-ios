@@ -23,7 +23,14 @@
  * Enum values for specifying button size
  */
 typedef NS_ENUM(NSUInteger, BPKButtonSize) {
+    /**
+     * Default, smaller, button size.
+     */
     BPKButtonSizeDefault = 0,
+
+    /**
+     * Larger button size.
+     */
     BPKButtonSizeLarge = 1,
 };
 
@@ -31,11 +38,36 @@ typedef NS_ENUM(NSUInteger, BPKButtonSize) {
  * Enum values for specifying button style
  */
 typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
+    /**
+     * Primary button style, suitable for use as the primary call to action
+     */
     BPKButtonStylePrimary = 0,
+
+    /**
+     * Secondary button style, suitable for secondary call to actions.
+     */
     BPKButtonStyleSecondary = 1,
+
+    /**
+     * Destructive button style, suitable for actions that are destructive.
+     * Should typically be paired with a confirmation.
+     */
     BPKButtonStyleDestructive = 2,
+
+    /**
+     * Featured button style, suitable for soem specific cases to differentiate from
+     * the primary style.
+     */
     BPKButtonStyleFeatured = 3,
+
+    /**
+     * Link button style, suitable for inline display and de-emphasized actions.
+     */
     BPKButtonStyleLink = 4,
+
+    /**
+     * Outline button style, suitable for use on coloured backgrounds.
+     */
     BPKButtonStyleOutline = 5,
 };
 
@@ -62,27 +94,65 @@ NS_ASSUME_NONNULL_BEGIN
  */
 NS_SWIFT_NAME(Button) IB_DESIGNABLE @interface BPKButton : UIButton
 
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredGradientStartColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredGradientEndColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *primaryContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *primaryGradientStartColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *primaryGradientEndColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *destructiveContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *destructiveBackgroundColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *destructiveBorderColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *secondaryContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *secondaryBackgroundColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *secondaryBorderColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *linkContentColor UI_APPEARANCE_SELECTOR;
 
+/// :nodoc:
 - (void)setTitle:(NSString *_Nullable)title
         forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
+
+/// :nodoc:
 - (void)setImage:(UIImage *_Nullable)image
         forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 
+/**
+ * The title displayed by the button.
+ */
 @property(nonatomic, copy, nullable) NSString *title;
+
+/**
+ * Sets the image displayed by the receiver.
+ *
+ * @param image The image to display. If `nil` the image is removed.
+ */
 - (void)setImage:(UIImage *_Nullable)image;
+
 /**
  * Creates a `BPKButton` with a specific size and style.
  *

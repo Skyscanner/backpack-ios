@@ -36,7 +36,10 @@ IB_DESIGNABLE NS_SWIFT_NAME(GradientView) @interface BPKGradientView : UIView
  */
 @property(nullable, nonatomic, strong) BPKGradient *gradient;
 
+/// :nodoc:
 - (instancetype)init __attribute__((unavailable("init not available, use initWithGradient")));
+
+/// :nodoc:
 + (instancetype)new __attribute__((unavailable("new not available, use initWithGradient:")));
 
 /**

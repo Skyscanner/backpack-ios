@@ -19,9 +19,13 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * The name of a known icon.
+ */
 typedef NSString * NS_SWIFT_NAME(IconName) BPKIconName NS_EXTENSIBLE_STRING_ENUM;
 
 {% for iconName, iconValue in icons -%}
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconName{{iconValue}};
 {% endfor %}
 // clang-format on
