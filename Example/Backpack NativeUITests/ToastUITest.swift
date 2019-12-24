@@ -62,7 +62,7 @@ class ToastUITest: XCTestCase {
             navigateAndShow()
         }
 
-        sleep(2)
+        sleep(6)
         XCTAssertFalse(toastView.exists, "The toast shoud not be visible")
     }
 }

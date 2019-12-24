@@ -54,7 +54,7 @@
 		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
-		BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */; };
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
@@ -106,6 +106,8 @@
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
+		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
+		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
 		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
 		D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */; };
@@ -179,6 +181,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = Backpack;
+		};
+		D297B8F823B90379008D094A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = "Backpack Native";
 		};
 		D6517B44216DF5F800D85FF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -314,9 +323,13 @@
 		D28784902250FCBD00353E32 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D28784912250FCBD00353E32 /* ThemeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeHelpers.swift; sourceTree = "<group>"; };
 		D28B3610219C209000E82A79 /* ChipUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipUITest.swift; sourceTree = "<group>"; };
+		D28D0E8123B2183D008B4C09 /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
+		D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "Backpack Screenshot/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
+		D297B8F323B90379008D094A /* Backpack Screenshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack Screenshot.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKTestFontDefinition.h; sourceTree = "<group>"; };
@@ -407,8 +420,15 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				BB36C7EE82AEA4457426F7DE /* BuildFile in Frameworks */,
+				BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */,
 				A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D297B8F023B90379008D094A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +462,7 @@
 				6003F593195388D20070C39A /* Example for Backpack */,
 				6003F5B5195388D20070C39A /* Tests */,
 				D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */,
+				D297B8F423B90379008D094A /* Backpack Screenshot */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				C92ADAF91733A08AB077E3E3 /* Pods */,
@@ -455,6 +476,7 @@
 				6003F5AE195388D20070C39A /* Backpack_Tests.xctest */,
 				D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */,
 				D6517B3F216DF5F800D85FF9 /* Backpack NativeUITests.xctest */,
+				D297B8F323B90379008D094A /* Backpack Screenshot.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -636,6 +658,16 @@
 				/* D28F6B8823A1091D001A188F SkyscannerRelativeiOS-MediumItalic.ttf, */
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D297B8F423B90379008D094A /* Backpack Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */,
+				D28D0E8123B2183D008B4C09 /* Screenshots.swift */,
+				D297B8F723B90379008D094A /* Info.plist */,
+			);
+			path = "Backpack Screenshot";
 			sourceTree = "<group>";
 		};
 		D29F9C47221B1B3200773A6D /* Utils */ = {
@@ -833,6 +865,24 @@
 			productReference = 6003F5AE195388D20070C39A /* Backpack_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D297B8F223B90379008D094A /* Backpack Screenshot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D297B8FC23B90379008D094A /* Build configuration list for PBXNativeTarget "Backpack Screenshot" */;
+			buildPhases = (
+				D297B8EF23B90379008D094A /* Sources */,
+				D297B8F023B90379008D094A /* Frameworks */,
+				D297B8F123B90379008D094A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D297B8F923B90379008D094A /* PBXTargetDependency */,
+			);
+			name = "Backpack Screenshot";
+			productName = "Backpack Screenshot";
+			productReference = D297B8F323B90379008D094A /* Backpack Screenshot.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D6517B3E216DF5F800D85FF9 /* Backpack NativeUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6517B48216DF5F800D85FF9 /* Build configuration list for PBXNativeTarget "Backpack NativeUITests" */;
@@ -878,7 +928,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BPK;
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
@@ -887,6 +937,11 @@
 					};
 					6003F5AD195388D20070C39A = {
 						LastSwiftMigration = 1000;
+						TestTargetID = 6003F589195388D20070C39A;
+					};
+					D297B8F223B90379008D094A = {
+						CreatedOnToolsVersion = 11.2;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 					D6517B3E216DF5F800D85FF9 = {
@@ -918,6 +973,7 @@
 				6003F5AD195388D20070C39A /* Backpack_Tests */,
 				D6D81D42213FEE800013BB96 /* Backpack_SnapshotTests */,
 				D6517B3E216DF5F800D85FF9 /* Backpack NativeUITests */,
+				D297B8F223B90379008D094A /* Backpack Screenshot */,
 			);
 		};
 /* End PBXProject section */
@@ -971,6 +1027,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D297B8F123B90379008D094A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1288,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D297B8EF23B90379008D094A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */,
+				D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6517B3B216DF5F800D85FF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1278,6 +1350,11 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* Backpack Native */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		D297B8F923B90379008D094A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6003F589195388D20070C39A /* Backpack Native */;
+			targetProxy = D297B8F823B90379008D094A /* PBXContainerItemProxy */;
 		};
 		D6517B45216DF5F800D85FF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1537,6 +1614,60 @@
 			};
 			name = Release;
 		};
+		D297B8FA23B90379008D094A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Backpack Screenshot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Skyscanner.Backpack-Screenshot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backpack Native";
+			};
+			name = Debug;
+		};
+		D297B8FB23B90379008D094A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Backpack Screenshot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Skyscanner.Backpack-Screenshot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backpack Native";
+			};
+			name = Release;
+		};
 		D6517B46216DF5F800D85FF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1677,6 +1808,15 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D297B8FC23B90379008D094A /* Build configuration list for PBXNativeTarget "Backpack Screenshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D297B8FA23B90379008D094A /* Debug */,
+				D297B8FB23B90379008D094A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

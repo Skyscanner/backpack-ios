@@ -28,6 +28,8 @@ cache/
 extensions/
 gems/
 specifications/
+screenshots/en-US
+screenshots/screenshots.html
 
 # Bundler
 .bundle

@@ -27,6 +27,15 @@
                                 <color key="sectionIndexColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sxb-9B-mBN">
+                                <rect key="frame" x="0.0" y="301" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="NavigateBack"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="NavigateBack">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -44,6 +53,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="navigationBar" destination="Mlg-Kh-jUI" id="rYQ-yp-NTX"/>
+                        <outlet property="navigationButton" destination="Sxb-9B-mBN" id="kU1-pn-J42"/>
                         <outlet property="tableView" destination="2W5-YS-q6h" id="wtY-FB-pXh"/>
                     </connections>
                 </viewController>

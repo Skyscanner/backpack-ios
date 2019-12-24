@@ -22,6 +22,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Theme.h>
+#import <Backpack/DarkMode.h>
 
 @import AppCenter;
 @import AppCenterDistribute;
@@ -61,6 +62,15 @@
                                                       rootViewController:self.window.rootViewController];
         self.window.rootViewController = themeContainerController;
         [self.window makeKeyAndVisible];
+    }
+
+    // If simctl gets the ability to handle this then we should switch to using it.
+    if ([ThemeHelpers forceDarkMode]) {
+#if __BPK_DARK_MODE_SUPPORTED
+        if (@available(iOS 13.0, *)) {
+            self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;
+        }
+#endif
     }
 
     [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
