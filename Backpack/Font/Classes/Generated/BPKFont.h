@@ -139,6 +139,17 @@ NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
 */
 + (void)setFontDefinition:(id<BPKFontDefinitionProtocol>_Nullable)fontDefinition;
 
+/**
+ * Create a `UIFont` instance for a specific text style.
+ *
+ *
+ * @param fontStyle The desired fontStyle.
+ * @return An instance of `UIFont` for the specificed style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
+
 @end
 
 NS_ASSUME_NONNULL_END

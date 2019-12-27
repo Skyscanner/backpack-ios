@@ -1,6 +1,13 @@
 # Unreleased
 > Place your changes below this line.
 
+
+**Added:**
+
+- Backpack/Font
+  - Reinstated `BPKFont`'s APIs for constructing `UIFont` instances. Back in version [2.0](#2200) we removed these `BPKFont` methods because the new type scale required us to render text only via attributed strings. With our new typeface, Relative, we have baked these rendering concerns into the typeface itself and we can again use `UIFont` instances directly. As always we recommend you prefer higher level components such as `BPKLabel` for you text rendering needs.
+
+
 **Fixed:**
 
 - Backpack
