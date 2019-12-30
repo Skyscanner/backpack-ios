@@ -28,7 +28,7 @@ before_install:
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
 install:
   - npm install
-  - gem install bundler --version 2.0.2
+  - gem install bundler --version 2.0.2 
   - bundle install
   - (cd Example && bundle exec pod install)
 before_script: 'if [[ "$MAIN_STAGE" = true ]]; then greenkeeper-lockfile-update; fi'
