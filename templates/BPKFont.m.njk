@@ -55,6 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
     return attributedString;
 }
 
++ (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle {
+    return [self fontForStyle:fontStyle fontManager:[BPKFontManager sharedInstance]];
+}
+
 #pragma mark - Private
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle

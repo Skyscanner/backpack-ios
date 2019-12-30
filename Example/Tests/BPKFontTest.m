@@ -102,26 +102,36 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testFontWithStyle {
-    /*
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXs], [BPKFont textXs]);
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXsEmphasized], [BPKFont textXsEmphasized]);
+    BPKFontStyle styles[] = {
+        BPKFontStyleTextBase,
+        BPKFontStyleTextBaseEmphasized,
+        BPKFontStyleTextCaps,
+        BPKFontStyleTextCapsEmphasized,
+        BPKFontStyleTextLg,
+        BPKFontStyleTextLgEmphasized,
+        BPKFontStyleTextSm,
+        BPKFontStyleTextSmEmphasized,
+        BPKFontStyleTextXl,
+        BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXlHeavy,
+        BPKFontStyleTextXs,
+        BPKFontStyleTextXsEmphasized,
+        BPKFontStyleTextXxl,
+        BPKFontStyleTextXxlEmphasized,
+        BPKFontStyleTextXxlHeavy,
+        BPKFontStyleTextXxxl,
+        BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextXxxlHeavy
+    };
 
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont textSm]);
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSmEmphasized], [BPKFont textSmEmphasized]);
+    for (NSUInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
+        BPKFontStyle style = styles[i];
+        UIFont *font = [BPKFont fontForFontStyle:style];
+        NSDictionary<NSAttributedStringKey, id> *attributes = [BPKFont attributesForFontStyle:style];
 
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextBase], [BPKFont textBase]);
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextBaseEmphasized], [BPKFont textBaseEmphasized]);
-
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextLg], [BPKFont textLg]);
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextLgEmphasized], [BPKFont textLgEmphasized]);
-
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont textXl]);
-    XCTAssertEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXlEmphasized], [BPKFont textXlEmphasized]);
-
-    // Small sanity checks
-    XCTAssertNotEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextXl], [BPKFont fontWithStyle:BPKFontStyleTextLg]);
-    XCTAssertNotEqualObjects([BPKFont fontWithStyle:BPKFontStyleTextSm], [BPKFont fontWithStyle:BPKFontStyleTextBase]);
-     */
+        XCTAssertNotNil([BPKFont fontForFontStyle:style]);
+        XCTAssertEqualObjects(font, attributes[NSFontAttributeName]);
+    }
 }
 
 - (void)testStableFontStyles {
