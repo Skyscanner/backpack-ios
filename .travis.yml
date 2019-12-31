@@ -27,6 +27,9 @@ before_install:
   - nvm use
   - 'if [[ "$MAIN_STAGE" = true ]]; then npm install -g greenkeeper-lockfile@1; fi'
 install:
+  # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
+  # This is hopefully somewhat more helpful:
+  - if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.0.2" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.0.2"; exit 64; fi
   - npm install
   - gem install bundler --version 2.0.2
   - bundle install
