@@ -1,7 +1,9 @@
+require 'fileutils'
 require 'semver'
 
 FULL_TESTS = ENV['FULL_TESTS'] != 'false'
 BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator13.2.2'
+TEST_DEVICE_NAME = ENV['TEST_DEVICE_NAME'] || 'iPhone 8'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
 EXAMPLE_SCHEMA = 'Backpack Native'
@@ -83,7 +85,7 @@ namespace :git do
 end
 
 task :analyze do
-  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"platform=iOS Simulator,name=iPhone 8\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 task :erase_devices do
@@ -101,6 +103,16 @@ task :lint do
   `clang-format -i **/*.h **/*.m`
   abort red "clang-format has changed the following files:\n#{get_changed_files}" unless check_pristine
   sh "bundle exec pod lib lint --allow-warnings"
+end
+
+task :take_screenshots do
+  # Remove existing screenshots
+  FileUtils.rm_rf('screenshots')
+
+  sh "xcrun simctl boot \"#{TEST_DEVICE_NAME}\""
+  sh "xcrun simctl status_bar \"#{TEST_DEVICE_NAME}\" override --time \"0941\" --wifiBars 3 --cellularBars 4 --batteryLevel 100"
+  sh "(cd Example && fastlane snapshot)"
+  FileUtils.mv(Dir.glob('screenshots/en-US/*'), 'screenshots/')
 end
 
 task ci: [:erase_devices, :all_checks]

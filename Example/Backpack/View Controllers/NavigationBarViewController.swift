@@ -24,6 +24,7 @@ class NavigationBarViewController: UIViewController {
     var showButtons: Bool = false
     private static let CellIdentifier = "CellIdentifier"
 
+    @IBOutlet weak var navigationButton: UIButton!
     @IBOutlet weak var navigationBar: NavigationBar!
     @IBOutlet weak var tableView: UITableView!
 
@@ -42,6 +43,8 @@ class NavigationBarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.title = "Explore"
+
+        navigationButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
 
         if self.showButtons {
             // Left button setup
