@@ -2,15 +2,15 @@
 
 > Backpack is a collection of design resources, reusable components and guidelines for creating Skyscanner's products.
 
-[![CI Status](http://img.shields.io/travis/Skyscanner/backpack-ios.svg?style=flat)](https://travis-ci.org/Skyscanner/backpack-ios)
-[![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
-[![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
-[![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](http://cocoapods.org/pods/Backpack)
+[![CI Status](https://img.shields.io/travis/Skyscanner/backpack-ios.svg?style=flat)](https://travis-ci.org/Skyscanner/backpack-ios)
+[![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
+[![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
+[![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Skyscanner/backpack-ios.svg)](https://greenkeeper.io/)
 
 ## Installation
 
-Backpack is available through [CocoaPods](http://cocoapods.org). To install
+Backpack is available through [CocoaPods](https://cocoapods.org). To install
 all of it, simply add the following line to your Podfile:
 
 ```ruby
