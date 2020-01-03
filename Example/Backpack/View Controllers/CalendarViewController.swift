@@ -39,14 +39,14 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         coordinator.animate(alongsideTransition: nil, completion: { _ in self.myView.reloadData() })
     }
 
-// Pragma mark: SegmentedControlDelegate
+    // Pragma mark: SegmentedControlDelegate
 
     @IBAction func valueChanged(_ sender: Any) {
         myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
         myView.reloadData()
     }
 
-// Pragma mark: CalendarDelegate
+    // Pragma mark: CalendarDelegate
 
     func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
@@ -57,8 +57,8 @@ class CalendarViewController: UIViewController, CalendarDelegate {
             } else {
                 let lastSelectedDate = dateList.first
                 let newMaxDate = SimpleDate(year: lastSelectedDate!.year,
-                                           month: lastSelectedDate!.month + 1,
-                                             day: lastSelectedDate!.day)
+                                            month: lastSelectedDate!.month + 1,
+                                            day: lastSelectedDate!.day)
                 self.currentMaxEnabledDate = newMaxDate.date(for: calendar.gregorian)
             }
         }
@@ -105,5 +105,25 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         }
 
         return Color.clear
+    }
+
+    func titleColor(for date: Date) -> UIColor {
+        if !customStylesForDates {
+            return Color.textPrimaryColor
+        }
+
+        let calendar = Calendar.current
+        let date1 = calendar.startOfDay(for: Date())
+        let date2 = calendar.startOfDay(for: date)
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        guard let daysCount = components.day else { return Color.textPrimaryColor }
+
+        if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 ||
+            daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 ||
+            daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
+            return Color.skyGray
+        }
+
+        return Color.textPrimaryColor
     }
 }
