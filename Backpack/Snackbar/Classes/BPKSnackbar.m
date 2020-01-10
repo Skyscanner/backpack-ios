@@ -201,8 +201,8 @@ static int const BPKSnackbarHeight = 60;
 
     if (self.superview) {
         [NSLayoutConstraint activateConstraints:@[
-            [self.leftAnchor constraintEqualToAnchor:self.superview.leftAnchor],
-            [self.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor]
+            [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
+            [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor]
         ]];
 
         NSLayoutYAxisAnchor *bottomAnchor = self.superview.safeAreaLayoutGuide.bottomAnchor;
@@ -335,13 +335,16 @@ static int const BPKSnackbarHeight = 60;
 
     while (current) {
         UIViewController *parent = current.parentViewController;
+        NSArray *subviews = [parent.view subviews];
 
-        if ([parent isKindOfClass:[UITabBarController class]]) {
-            return ((UITabBarController *)parent).tabBar;
+        for (UIView *subview in subviews) {
+            if ([subview isKindOfClass:[UITabBar class]]) {
+                return (UITabBar *)subview;
+            }
         }
-
         current = parent;
     }
+
     return nil;
 }
 
