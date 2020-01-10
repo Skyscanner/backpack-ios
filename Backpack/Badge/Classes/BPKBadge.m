@@ -83,10 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderWidth = 0.0;
     switch (type) {
     case BPKBadgeTypeSuccess:
-        self.backgroundColor = BPKColor.monteverde;
+        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
         break;
     case BPKBadgeTypeWarning:
-        self.backgroundColor = BPKColor.kolkata;
+        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
         break;
     case BPKBadgeTypeDestructive:
         self.backgroundColor = BPKColor.panjin;
@@ -107,9 +107,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (type == BPKBadgeTypeOutline || type == BPKBadgeTypeDestructive) {
-        self.label.textColor = [BPKColor white];
+        self.label.textColor = BPKColor.white;
     } else {
-        self.label.textColor = [BPKColor skyGray];
+        self.label.textColor = BPKColor.skyGray;
     }
 }
 
