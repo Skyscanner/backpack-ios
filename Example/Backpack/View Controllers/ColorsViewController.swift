@@ -86,6 +86,12 @@ class ColorsViewController: UICollectionViewController {
         ("backgroundTertiaryColor", { (view: UIView) -> UIColor in
             return Color.backgroundTertiaryColor
         }),
+        ("backgroundAlternativeColor", { (view: UIView) -> UIColor in
+            return Color.backgroundAlternativeColor
+        }),
+        ("backgroundAlternativeSecondaryColor", { (view: UIView) -> UIColor in
+            return Color.backgroundAlternativeSecondaryColor
+        }),
         ("textPrimaryColor", { (view: UIView) -> UIColor in
             return Color.textPrimaryColor
         }),
