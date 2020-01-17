@@ -8,6 +8,9 @@
 - Backpack/Snackbar:
   - The logic to search the Tab Bar has changed to support `UITabBar`.
 
+- Backpack/Tokens
+  - New `backgroundAlternativeColor` and `backgroundAlternativeSecondaryColor` colours.
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
