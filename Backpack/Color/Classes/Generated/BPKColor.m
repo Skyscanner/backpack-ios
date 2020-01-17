@@ -26,6 +26,22 @@
 
 @implementation BPKColor
 
++ (UIColor *)backgroundAlternativeDarkColor {
+    return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeLightColor {
+    return [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeSecondaryDarkColor {
+    return [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeSecondaryLightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 + (UIColor *)backgroundDarkColor {
     return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
 }
@@ -266,6 +282,18 @@
     return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
 
+
++ (UIColor *)backgroundAlternativeColor {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundAlternativeSecondaryColor {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1]
+    ];
+}
 
 + (UIColor *)backgroundColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
