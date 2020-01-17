@@ -2,6 +2,20 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.2.0
+
+**Added:**
+
+- Backpack/Tokens
+  - New `backgroundAlternativeColor` and `backgroundAlternativeSecondaryColor` colours.
+
+**Fixed:**
+- Backpack/Badge:
+  - Lightened the dark-mode colours used for `success` and `warning` badges to make them more visually appealing.
+
+- Backpack/Snackbar:
+  - The logic to search the Tab Bar has changed to support `UITabBar`.
+
 ## 25.1.0
 
 **Added:**

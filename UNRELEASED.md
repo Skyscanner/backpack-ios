@@ -1,16 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
-- Backpack/Badge:
-  - Lightened the dark-mode colours used for `success` and `warning` badges to make them more visually appealing.
-
-- Backpack/Snackbar:
-  - The logic to search the Tab Bar has changed to support `UITabBar`.
-
-- Backpack/Tokens
-  - New `backgroundAlternativeColor` and `backgroundAlternativeSecondaryColor` colours.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
