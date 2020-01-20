@@ -74,6 +74,15 @@ class ColorsViewController: UICollectionViewController {
         }),
         ("blackTint03", { (view: UIView) -> UIColor in
             return Color.blackTint03
+        }),
+        ("blackTint04", { (view: UIView) -> UIColor in
+            return Color.blackTint04
+        }),
+        ("blackTint05", { (view: UIView) -> UIColor in
+            return Color.blackTint05
+        }),
+        ("blackTint06", { (view: UIView) -> UIColor in
+            return Color.blackTint06
         })
     ]
     fileprivate static var dynamicColors = [

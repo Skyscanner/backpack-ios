@@ -850,11 +850,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)disabledContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint03];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
 }
 
 + (UIColor *)disabledBorderColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint03];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint05];
 }
 
 + (UIColor *)boxyBackgroundColor {

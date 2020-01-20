@@ -421,7 +421,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         return self.appearance.titleDefaultColor;
     }
 
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.textSecondaryDarkColor];
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
