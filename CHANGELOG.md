@@ -2,6 +2,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.2.1
+
+**Fixed:**
+ - Backpack/Button:
+ - Backpack/StarRating:
+ - Backpack/Color:
+   - Adopted latest dark mode colour specification.
+
 ## 25.2.0
 
 **Added:**
