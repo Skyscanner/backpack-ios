@@ -87,7 +87,19 @@
 }
 
 + (UIColor *)blackTint03 {
+    return [UIColor colorWithRed:0.227 green:0.227 blue:0.235 alpha:1];
+}
+
++ (UIColor *)blackTint04 {
+    return [UIColor colorWithRed:0.282 green:0.282 blue:0.290 alpha:1];
+}
+
++ (UIColor *)blackTint05 {
     return [UIColor colorWithRed:0.388 green:0.388 blue:0.400 alpha:1];
+}
+
++ (UIColor *)blackTint06 {
+    return [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1];
 }
 
 + (UIColor *)bunol {
@@ -219,7 +231,7 @@
 }
 
 + (UIColor *)lineDarkColor {
-    return [UIColor colorWithRed:0.267 green:0.271 blue:0.376 alpha:1];
+    return [UIColor colorWithRed:0.282 green:0.282 blue:0.290 alpha:1];
 }
 
 + (UIColor *)lineLightColor {
@@ -255,7 +267,7 @@
 }
 
 + (UIColor *)textQuaternaryDarkColor {
-    return [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1];
+    return [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1];
 }
 
 + (UIColor *)textQuaternaryLightColor {
@@ -263,7 +275,7 @@
 }
 
 + (UIColor *)textSecondaryDarkColor {
-    return [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1];
+    return [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1];
 }
 
 + (UIColor *)textSecondaryLightColor {
@@ -271,7 +283,7 @@
 }
 
 + (UIColor *)textTertiaryDarkColor {
-    return [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1];
+    return [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1];
 }
 
 + (UIColor *)textTertiaryLightColor {
@@ -315,7 +327,7 @@
 
 + (UIColor *)lineColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1]
-                                          darkVariant: [UIColor colorWithRed:0.267 green:0.271 blue:0.376 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.282 green:0.282 blue:0.290 alpha:1]
     ];
 }
 
@@ -333,19 +345,19 @@
 
 + (UIColor *)textQuaternaryColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
-                                          darkVariant: [UIColor colorWithRed:0.804 green:0.804 blue:0.843 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1]
     ];
 }
 
 + (UIColor *)textSecondaryColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.408 green:0.412 blue:0.498 alpha:1]
-                                          darkVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1]
     ];
 }
 
 + (UIColor *)textTertiaryColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:0.561 green:0.565 blue:0.627 alpha:1]
-                                          darkVariant: [UIColor colorWithRed:0.698 green:0.698 blue:0.749 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1]
     ];
 }
 

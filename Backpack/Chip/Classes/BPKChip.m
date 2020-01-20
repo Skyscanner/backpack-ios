@@ -286,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)disabledContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint03];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint05];
 }
 
 @end
