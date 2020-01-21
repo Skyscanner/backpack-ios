@@ -1,6 +1,12 @@
-# Backpack iOS changelog
 
 [Unreleased changes](./UNRELEASED.md).
+
+## 25.2.2
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - We've toned down the divider between the week-days and calendar grid so that it's less bright in dark-mode.
 
 ## 25.2.1
 
