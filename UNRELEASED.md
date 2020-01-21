@@ -2,8 +2,12 @@
 > Place your changes below this line.
 
 **Added:**
-- Backpack/Tokens
+ - Backpack/Color:
   - New elevation colours: `backgroundElevation01DarkColor`, `backgroundElevation01LightColor`, `backgroundElevation02DarkColor`, `backgroundElevation02LightColor`, `backgroundElevation03DarkColor`, `backgroundElevation03LightColor`, `backgroundElevation01Color`, `backgroundElevation02Color`, `backgroundElevation03Color`
+
+**Fixed:**
+ - Backpack/BottomSheet:
+   - Fixed an issue that caused the bottom section shadow to not update when a user changes their interface-style.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
