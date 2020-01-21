@@ -158,7 +158,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self addSubview:self.calendarWeekdayView];
 
     self.bottomBorder = [[UIView alloc] initWithFrame:CGRectZero];
-    self.bottomBorder.backgroundColor = [BPKColor skyGrayTint04];
+    self.bottomBorder.backgroundColor = BPKColor.lineColor;
     [self addSubview:self.bottomBorder];
 
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
