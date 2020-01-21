@@ -68,6 +68,48 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * backgroundDarkColor;
 
 /**
+ * The `backgroundElevation01DarkColor` color from the Backpack palette - rgb(29, 27, 32).
+ *
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation01DarkColor;
+
+/**
+ * The `backgroundElevation01LightColor` color from the Backpack palette - rgb(255, 255, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation01LightColor;
+
+/**
+ * The `backgroundElevation02DarkColor` color from the Backpack palette - rgb(44, 44, 46).
+ *
+ * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation02DarkColor;
+
+/**
+ * The `backgroundElevation02LightColor` color from the Backpack palette - rgb(255, 255, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation02LightColor;
+
+/**
+ * The `backgroundElevation03DarkColor` color from the Backpack palette - rgb(58, 58, 60).
+ *
+ * <div style="width: 100px; height: 100px; background: #3a3a3cff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation03DarkColor;
+
+/**
+ * The `backgroundElevation03LightColor` color from the Backpack palette - rgb(255, 255, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation03LightColor;
+
+/**
  * The `backgroundLightColor` color from the Backpack palette - rgb(255, 255, 255).
  *
  * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -530,6 +572,27 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #000000ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * backgroundColor;
+
+/**
+ * The `backgroundElevation01Color` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #1d1b20ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation01Color;
+
+/**
+ * The `backgroundElevation02Color` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation02Color;
+
+/**
+ * The `backgroundElevation03Color` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #3a3a3cff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * backgroundElevation03Color;
 
 /**
  * The `backgroundSecondaryColor` dynamic color from the Backpack palette.
