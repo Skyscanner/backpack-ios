@@ -45,14 +45,12 @@ final class BackpackFloatingPanelController: FloatingPanelController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        #if swift(>=4.2)
-        if #available(iOS 12.0, *) {
+        if #available(iOS 13.0, *) {
             if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
                 guard let bottomSection = bottomSectionViewController else { return }
                 addTopShadow(to: bottomSection)
             }
         }
-        #endif
     }
 }
 
