@@ -46,6 +46,30 @@
     return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
 }
 
++ (UIColor *)backgroundElevation01DarkColor {
+    return [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1];
+}
+
++ (UIColor *)backgroundElevation01LightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
++ (UIColor *)backgroundElevation02DarkColor {
+    return [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1];
+}
+
++ (UIColor *)backgroundElevation02LightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
++ (UIColor *)backgroundElevation03DarkColor {
+    return [UIColor colorWithRed:0.227 green:0.227 blue:0.235 alpha:1];
+}
+
++ (UIColor *)backgroundElevation03LightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
 + (UIColor *)backgroundLightColor {
     return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
 }
@@ -310,6 +334,24 @@
 + (UIColor *)backgroundColor {
     return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
                                           darkVariant: [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundElevation01Color {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundElevation02Color {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1]
+    ];
+}
+
++ (UIColor *)backgroundElevation03Color {
+    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1]
+                                          darkVariant: [UIColor colorWithRed:0.227 green:0.227 blue:0.235 alpha:1]
     ];
 }
 
