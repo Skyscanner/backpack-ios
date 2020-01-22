@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 25.3.0
+
+**Added:**
+ - Backpack/Color:
+  - New elevation colours: `backgroundElevation01DarkColor`, `backgroundElevation01LightColor`, `backgroundElevation02DarkColor`, `backgroundElevation02LightColor`, `backgroundElevation03DarkColor`, `backgroundElevation03LightColor`, `backgroundElevation01Color`, `backgroundElevation02Color`, `backgroundElevation03Color`
+
+**Fixed:**
+ - Backpack/BottomSheet:
+   - Fixed an issue that caused the bottom section shadow to not update when a user changes their interface-style.
+
 ## 25.2.2
 
 **Fixed:**
