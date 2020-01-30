@@ -23,6 +23,8 @@
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
 
+#import "BPKSnapshotTest.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationSnapshotTest : FBSnapshotTestCase
 @end
@@ -50,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     return view;
 }
 
-- (void)testDefault {
+- (UIView *)createDefault {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
@@ -61,10 +63,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testSelectedIndex {
+- (void)testDefault {
+    UIView *lightView = [self createDefault];
+    UIView *darkView = [self createDefault];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createSelectedIndex {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
@@ -75,10 +85,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testWithoutBar {
+- (void)testSelectedIndex {
+    UIView *lightView = [self createSelectedIndex];
+    UIView *darkView = [self createSelectedIndex];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createWithoutBar {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
@@ -89,10 +107,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = NO;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testWithIcons {
+- (void)testWithoutBar {
+    UIView *lightView = [self createWithoutBar];
+    UIView *darkView = [self createWithoutBar];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createWithIcons {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
@@ -103,10 +129,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testWithTheming {
+- (void)testWithIcons {
+    UIView *lightView = [self createWithIcons];
+    UIView *darkView = [self createWithIcons];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createWithTheming {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
@@ -119,10 +153,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.selectedColor = UIColor.orangeColor;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testWide {
+- (void)testWithTheming {
+    UIView *lightView = [self createWithTheming];
+    UIView *darkView = [self createWithTheming];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createWide {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
@@ -133,10 +175,18 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:550];
-    FBSnapshotVerifyView(view, nil);
+    return view;
 }
 
-- (void)testNarrow {
+- (void)testWide {
+    UIView *lightView = [self createWide];
+    UIView *darkView = [self createWide];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createNarrow {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
@@ -147,7 +197,15 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:200];
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testNarrow {
+    UIView *lightView = [self createNarrow];
+    UIView *darkView = [self createNarrow];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
