@@ -23,6 +23,8 @@
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 
+#import "BPKSnapshotTest.h"
+
 @interface BPKCardSnapshotTest : FBSnapshotTestCase
 
 @end
@@ -70,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
     [card setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 }
 
-- (void)testViewSnapshotWithoutPadded {
+- (UIView *)createViewSnapshotWithoutPadded {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:NO];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -78,10 +80,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithoutPaddedAndLargeCornerStyle {
+- (void)testViewSnapshotWithoutPadded {
+    UIView *lightView = [self createViewSnapshotWithoutPadded];
+    UIView *darkView = [self createViewSnapshotWithoutPadded];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createViewSnapshotWithoutPaddedAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:NO cornerStyle:BPKCardCornerStyleLarge];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -89,10 +99,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithPadded {
+- (void)testViewSnapshotWithoutPaddedAndLargeCornerStyle {
+    UIView *lightView = [self createViewSnapshotWithoutPaddedAndLargeCornerStyle];
+    UIView *darkView = [self createViewSnapshotWithoutPaddedAndLargeCornerStyle];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createViewSnapshotWithPadded {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -100,10 +118,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithPaddedAndBackgroundColor {
+- (void)testViewSnapshotWithPadded {
+    UIView *lightView = [self createViewSnapshotWithPadded];
+    UIView *darkView = [self createViewSnapshotWithPadded];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createViewSnapshotWithPaddedAndBackgroundColor {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -112,10 +138,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testViewSnapshotWithPaddedAndLargeCornerStyle {
+- (void)testViewSnapshotWithPaddedAndBackgroundColor {
+    UIView *lightView = [self createViewSnapshotWithPaddedAndBackgroundColor];
+    UIView *darkView = [self createViewSnapshotWithPaddedAndBackgroundColor];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createViewSnapshotWithPaddedAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES cornerStyle:BPKCardCornerStyleLarge];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -123,10 +157,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureCard:card withInnerView:innerView];
     [self configureParentView:parentView forCard:card];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithPaddedHorizontal {
+- (void)testViewSnapshotWithPaddedAndLargeCornerStyle {
+    UIView *lightView = [self createViewSnapshotWithPaddedAndLargeCornerStyle];
+    UIView *darkView = [self createViewSnapshotWithPaddedAndLargeCornerStyle];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
@@ -138,10 +180,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle {
+- (void)testDividedSnapshotWithPaddedHorizontal {
+    UIView *lightView = [self createDividedSnapshotWithPaddedHorizontal];
+    UIView *darkView = [self createDividedSnapshotWithPaddedHorizontal];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
@@ -154,10 +204,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithPaddedVertical {
+- (void)testDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle {
+    UIView *lightView = [self createDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle];
+    UIView *darkView = [self createDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
@@ -171,10 +229,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithoutPaddedHorizontal {
+- (void)testDividedSnapshotWithPaddedVertical {
+    UIView *lightView = [self createDividedSnapshotWithPaddedVertical];
+    UIView *darkView = [self createDividedSnapshotWithPaddedVertical];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithoutPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
@@ -186,10 +252,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle {
+- (void)testDividedSnapshotWithoutPaddedHorizontal {
+    UIView *lightView = [self createDividedSnapshotWithoutPaddedHorizontal];
+    UIView *darkView = [self createDividedSnapshotWithoutPaddedHorizontal];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2 * BPKSpacingLg] setActive:YES];
@@ -203,10 +277,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
 }
 
-- (void)testDividedSnapshotWithoutPaddedVertical {
+- (void)testDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle {
+    UIView *lightView = [self createDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle];
+    UIView *darkView = [self createDividedSnapshotWithoutPaddedHorizontalAndLargeCornerStyle];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithoutPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
@@ -220,7 +302,15 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
     [self configureParentView:parentView forCard:dividedCard];
-    FBSnapshotVerifyView(parentView, nil);
+    return parentView;
+}
+
+- (void)testDividedSnapshotWithoutPaddedVertical {
+    UIView *lightView = [self createDividedSnapshotWithoutPaddedVertical];
+    UIView *darkView = [self createDividedSnapshotWithoutPaddedVertical];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
