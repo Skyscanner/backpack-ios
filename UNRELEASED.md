@@ -2,6 +2,9 @@
 > Place your changes below this line.
 
 **Fixed:**
+ - Backpack/Badge:
+   - Aligned light mode badges to dark mode style.
+
  - Backpack/Calendar:
    - Range selection now uses a solid colour instead of a transparent one, which should lead to less unpredictable behaviour.
 
