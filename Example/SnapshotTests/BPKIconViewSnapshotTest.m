@@ -21,6 +21,8 @@
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 
+#import "BPKSnapshotTest.h"
+
 @interface BPKIconViewSnapshotTest : FBSnapshotTestCase
 
 @end
@@ -34,24 +36,48 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
-- (void)testLargeIconWithDefaultTint {
+- (UIView *)createLargeIconWithDefaultTint {
     BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testLargeIconWithDefaultTint {
+    UIView *lightView = [self createLargeIconWithDefaultTint];
+    UIView *darkView = [self createLargeIconWithDefaultTint];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeWithTint {
+    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+    view.tintColor = BPKColor.panjin;
+
+    return view;
 }
 
 - (void)testLargeWithTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
-    view.tintColor = BPKColor.panjin;
+    UIView *lightView = [self createLargeWithTint];
+    UIView *darkView = [self createLargeWithTint];
 
-    FBSnapshotVerifyView(view, nil);
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (void)testSmallWithTint {
+- (UIView *)createSmallWithTint {
     BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeSmall];
     view.tintColor = BPKColor.panjin;
 
-    FBSnapshotVerifyView(view, nil);
+    return view;
+}
+
+- (void)testSmallWithTint {
+    UIView *lightView = [self createSmallWithTint];
+    UIView *darkView = [self createSmallWithTint];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
 @end
