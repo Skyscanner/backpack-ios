@@ -83,10 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.borderWidth = 0.0;
     switch (type) {
     case BPKBadgeTypeSuccess:
-        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
+        self.backgroundColor = BPKColor.glencoe;
         break;
     case BPKBadgeTypeWarning:
-        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
+        self.backgroundColor = BPKColor.erfoud;
         break;
     case BPKBadgeTypeDestructive:
         self.backgroundColor = BPKColor.panjin;
