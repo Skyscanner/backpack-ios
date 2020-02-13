@@ -1,6 +1,10 @@
 # Unreleased
 > Place your changes below this line.
 
+**Fixed:**
+ - Backpack/Calendar:
+   - Range selection now uses a solid colour instead of a transparent one, which should lead to less unpredictable behaviour.
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.

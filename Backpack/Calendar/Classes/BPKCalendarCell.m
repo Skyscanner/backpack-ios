@@ -70,7 +70,7 @@
     self.selectionLayer.hidden = NO;
     self.selectionLayer.frame = CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds),
                                            CGRectGetHeight(self.shapeLayer.frame));
-    UIColor *rangeColor = [self.appearance.selectionColor colorWithAlphaComponent:0.5];
+    UIColor *rangeColor = [BPKColor blend:self.appearance.selectionColor with:BPKColor.backgroundColor weight:0.5];
     self.selectionLayer.fillColor = rangeColor.CGColor;
 
     self.samedayLayer.hidden = YES;
