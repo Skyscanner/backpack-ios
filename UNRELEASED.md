@@ -1,6 +1,10 @@
 # Unreleased
 > Place your changes below this line.
 
+**Breaking:**
+ - Backpack/Calendar:
+   - We've changed some of the Calendar delegate methods as we realised they are not exposing the calendar instance that's calling them.
+
 **Fixed:**
  - Backpack/Badge:
    - Aligned light mode badges to dark mode style.

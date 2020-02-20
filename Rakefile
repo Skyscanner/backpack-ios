@@ -70,7 +70,7 @@ def install_pods_in_example_project()
 end
 
 def get_changed_files()
-  `git status --porcelain | grep -Ev "CHANGELOG|UNRELEASED"`.lines
+  `git status --porcelain | grep -Ev "CHANGELOG|UNRELEASED|package-lock.json"`.lines
 end
 
 def check_pristine()

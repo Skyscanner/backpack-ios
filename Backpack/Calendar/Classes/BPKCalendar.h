@@ -72,13 +72,19 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 
 /**
  * Asks the delegate for a fill color for the specific date.
+ *
+ * @param calendar The backpack calendar.
+ * @param date The date to provide fill-color for.
 */
-- (UIColor *)fillColorForDate:(NSDate *)date;
+- (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date;
 
 /**
  * Asks the delegate for a title color for the specific date.
+ *
+ * @param calendar The backpack calendar.
+ * @param date The date to provide title-color for.
 */
-- (UIColor *)titleColorForDate:(NSDate *)date;
+- (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date;
 
 @end
 
