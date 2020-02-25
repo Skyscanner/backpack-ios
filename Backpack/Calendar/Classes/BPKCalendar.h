@@ -67,6 +67,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  * Called when the calendar renders each cell.
  * @param calendar The backpack calendar.
  * @param date The date to check for enabledness.
+ * @return Whether the cell for the given date is enabled.
  */
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date;
 
@@ -75,6 +76,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  *
  * @param calendar The backpack calendar.
  * @param date The date to provide fill-color for.
+ * @return The fill/background colour for the given date.
 */
 - (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date;
 
@@ -83,6 +85,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  *
  * @param calendar The backpack calendar.
  * @param date The date to provide title-color for.
+ * @return The title colour for the given date.
 */
 - (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date;
 
