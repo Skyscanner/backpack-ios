@@ -1,6 +1,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 26.0.0
+
+**Breaking:**
+ - Backpack/Calendar:
+   - We've changed some of the Calendar delegate methods as we realised they are not exposing the calendar instance that's calling them.
+
+**Fixed:**
+ - Backpack/Badge:
+   - Aligned light mode badges to dark mode style.
+
+ - Backpack/Calendar:
+   - Range selection now uses a solid colour instead of a transparent one, which should lead to less unpredictable behaviour.
+
 ## 25.3.0
 
 **Added:**

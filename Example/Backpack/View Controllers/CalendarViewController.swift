@@ -81,7 +81,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         return true
     }
 
-    func fillColor(for date: Date) -> UIColor {
+    func calendar(_ calendar: Backpack.Calendar, fillColorFor date: Date) -> UIColor {
         if !customStylesForDates {
             return Color.clear
         }
@@ -107,7 +107,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         return Color.clear
     }
 
-    func titleColor(for date: Date) -> UIColor {
+    func calendar(_ calendar: Backpack.Calendar, titleColorFor date: Date) -> UIColor {
         if !customStylesForDates {
             return Color.textPrimaryColor
         }
