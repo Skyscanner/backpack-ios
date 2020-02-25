@@ -8,6 +8,9 @@ opt_in_rules:
   - collection_alignment
   - contains_over_first_not_nil
 
+trailing_whitespace:
+  ignores_empty_lines: true
+
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:
   - Pods

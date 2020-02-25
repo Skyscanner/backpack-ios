@@ -22,25 +22,11 @@ import FloatingPanel
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BottomSheet: NSObject {
-
-    private struct Constants {
+    
+    private enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
     }
-
-    private lazy var floatingPanelController: BackpackFloatingPanelController = {
-        let panel = BackpackFloatingPanelController(delegate: self)
-        panel.surfaceView.cornerRadius = 24.0
-        panel.isRemovalInteractionEnabled = true
-
-        // We do this to hold a strong reference to `BottomSheet` and force it
-        // to exist as long as `floatingPanelController` exists.
-        // Reference will be cleaned up by `floatingPanelController` when
-        // it's dismissed, to avoid a reference cycle.
-        panel.bottomSheet = self
-
-        return panel
-    }()
 
     /// View controller that will be presented when calling
     /// `present(in: _, animated: _, completion: _)`.
@@ -70,7 +56,21 @@ public final class BottomSheet: NSObject {
             floatingPanelController.onDismissed = newValue
         }
     }
+    
+    private lazy var floatingPanelController: BackpackFloatingPanelController = {
+        let panel = BackpackFloatingPanelController(delegate: self)
+        panel.surfaceView.cornerRadius = 24.0
+        panel.isRemovalInteractionEnabled = true
 
+        // We do this to hold a strong reference to `BottomSheet` and force it
+        // to exist as long as `floatingPanelController` exists.
+        // Reference will be cleaned up by `floatingPanelController` when
+        // it's dismissed, to avoid a reference cycle.
+        panel.bottomSheet = self
+
+        return panel
+    }()
+    
     /// Instantiates a `BottomSheet`.
     ///
     /// - Parameters:
@@ -100,8 +100,21 @@ public final class BottomSheet: NSObject {
     ///   - animated: Animated or not.
     ///   - completion: Completion closure called after presentation animation.
     @objc(presentInViewController:animated:completion:)
-    public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+    public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
+    }
+    
+    public func present(_ bottomSheet: BottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
+        if let scrollView = floatingPanelController.scrollView {
+            scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: true)
+        }
+        
+        // It's important to set `backgroundColor` to clear instead of setting alpha to 0,
+        // in order for the view to keep receiving touch events
+        bottomSheet.floatingPanelController.backdropView.backgroundColor = .clear
+        
+        floatingPanelController.move(to: .half, animated: true)
+        bottomSheet.present(in: viewControllerToPresent, animated: animated, completion: completion)
     }
 
 }
