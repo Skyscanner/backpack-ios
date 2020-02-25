@@ -104,6 +104,14 @@ public final class BottomSheet: NSObject {
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
     
+    /// This method allows presenting a new bottom sheet on top of a previously existing one.
+    /// The previous bottom sheet is automatically moved to the initial position, its scroll view content
+    /// inset is reset, and the new bottom sheet won't add any more alpha to the backdrop view.
+    /// - Parameters:
+    ///   - bottomSheet: The new bottom sheet to present.
+    ///   - animated: Animated or not.
+    ///   - completion: Completion closure called after the presentation animation.
+    @objc(presentBottomSheet:animated:completion:)
     public func present(_ bottomSheet: BottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
         if let scrollView = floatingPanelController.scrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: true)
@@ -114,7 +122,7 @@ public final class BottomSheet: NSObject {
         bottomSheet.floatingPanelController.backdropView.backgroundColor = .clear
         
         floatingPanelController.move(to: .half, animated: true)
-        bottomSheet.present(in: viewControllerToPresent, animated: animated, completion: completion)
+        bottomSheet.present(in: floatingPanelController, animated: animated, completion: completion)
     }
 
 }

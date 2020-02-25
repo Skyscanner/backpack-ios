@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/BottomSheet:
+  - New API that allows presenting a bottom sheet on top of a previous one.
+
 **Fixed:**
  - Backpack/Badge:
    - Aligned light mode badges to dark mode style.
