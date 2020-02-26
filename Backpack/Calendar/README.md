@@ -14,7 +14,9 @@ and then run `pod install`.
 
 `Backpack/Calendar` contains the Backpack Calendar component in the class `BPKCalendar`. The calendar is a calendar view offering user interaction.
 
-### Objective-C
+### Simple calendar
+
+#### Objective-C
 
 ```objective-c
 #import <Backpack/Calendar.h>
@@ -26,7 +28,7 @@ bpkCalendar.selectionType = BPKCalendarSelectionSingle;
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
-...
+// ...
 
 #pragma mark - <BPKCalendarDelegate>
 
@@ -43,7 +45,7 @@ bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 }
 ```
 
-### Swift
+#### Swift
 
 ```swift
 import Backpack
@@ -52,18 +54,103 @@ let calendar = Backpack.Calendar(frame: .zero)
 calendar.minDate = calendar.simpleDate(from: Date())
 calendar.locale = Locale.current
 
-...
+// ...
 
 extension MyClass: CalendarDelegate {
+    func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
+        // do stuff
+    }
+
+    func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
+        // do stuff
+    }
+
+    func calendar(_ calendar: Backpack.Calendar, isDateEnabled: Date) -> Bool {
+        // do stuff
+    }
+}
+```
+
+### Priced calendar
+
+
+A colour coded calendar where dates are coloured based on how expensive/cheap they are.
+
+#### Objective-C
+
+```objective-c
+#import <Backpack/Calendar.h>
+#import <Backpack/SimpleDate.h>
+
+NSSet<BPKSimpleDate *> *lowPrices = /* .... */;
+NSSet<BPKSimpleDate *> *mediumPrices = /* .... */;
+NSSet<BPKSimpleDate *> *highPrices = /* .... */;
+
+BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+
+bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
+[bpkCalendar reloadData];
+
+// ...
+
+#pragma mark - <BPKCalendarDelegate>
+
+- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date {
+    if ([lowPrices containsObject:date) {
+        return BPKCalendarDateCellStylePositive;
+    }
+
+    if ([mediumPrices containsObject:date) {
+        return BPKCalendarDateCellStyleNeutral;
+    }
+
+    if ([highPrices containsObject:date) {
+        return BPKCalendarDateCellStyleNegative;
+    }
+
+    return BPKCalendarDateCellStyleNormal;
+}
+
+- (void)calendar:(BPKCalendar *)calendar didChangeDateSelection:(NSArray<BPKSimpleDate *> *)dateList {
+    // do stuff
+}
+```
+
+#### Swift
+
+```
+import Backpack
+
+let lowPrices: Set<SimpleDate> = ...
+let mediumPrices: Set<SimpleDate> = ...
+let highPrices: Set<SimpleDate> = ...
+
+let calendar = Backpack.Calendar(frame: .zero)
+calendar.minDate = calendar.simpleDate(from: Date())
+calendar.locale = Locale.current
+
+// ...
+
+extension MyClass: CalendarDelegate {
+  func calendar(_ calendar: Backpack.Calendar, cellStyleFor date: SimpleDate) -> BPKCalendarDateCellStyle {
+      if lowPrices.contains(date) {
+          return .positive
+      }
+
+      if mediumPrices.contains(date) {
+          return .neutral
+      }
+
+      if highPrices.contains(date) {
+          return .negative
+      }
+
+      return .normal
+  }
+
+  }
   func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
-      // do stuff
-  }
-
-  func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
-      // do stuff
-  }
-
-  func calendar(_ calendar: Backpack.Calendar, isDateEnabled: Date) -> Bool {
       // do stuff
   }
 }

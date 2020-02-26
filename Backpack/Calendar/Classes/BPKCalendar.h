@@ -39,6 +39,43 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
     BPKCalendarSelectionMultiple = 2,
 };
 
+/**
+ * Predefined cell styles for common use cases.
+ */
+typedef NS_ENUM(NSUInteger, BPKCalendarDateCellStyle) {
+    /**
+     * The normal cell style, this is the default style unless
+     * a different style is provided via the Calendar's delegate.
+     */
+    BPKCalendarDateCellStyleNormal = 0,
+
+    /**
+     * A positive cell style which is suitable to indicate for example
+     * a date which has a comparatively low price among the dates in
+     * the calendar.
+     */
+    BPKCalendarDateCellStylePositive = 1,
+
+    /**
+     * A neutral cell style which is suitable to indicate for example
+     * a date which has a comparatively average price among the dates in
+     * the calendar.
+     */
+    BPKCalendarDateCellStyleNeutral = 2,
+
+    /**
+     * A negative cell style which is suitable to indicate for example
+     * a date which has a comparatively high price among the dates in
+     * the calendar.
+     */
+    BPKCalendarDateCellStyleNegative = 3,
+
+    /**
+     * A custom cell style.
+     */
+    BPKCalendarDateCellStyleCustom = 4,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -65,6 +102,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 
 /**
  * Called when the calendar renders each cell.
+ *
  * @param calendar The backpack calendar.
  * @param date The date to check for enabledness.
  * @return Whether the cell for the given date is enabled.
@@ -72,13 +110,27 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date;
 
 /**
+ * Asks the delegate for a cell style for a specific date.
+ *
+ * @param calendar The backpack calendar requesting the style.
+ * @param date The date to provide the style for.
+ * @return The cell style to use for this date.
+ * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:` however
+ * if the receiver returns the custom cell type the calendar will call those methods in response.
+ */
+- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date;
+
+/**
  * Asks the delegate for a fill color for the specific date.
  *
  * @param calendar The backpack calendar.
  * @param date The date to provide fill-color for.
  * @return The fill/background colour for the given date.
+ * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
+ * the custom cell style for a date.
+ * @deprecated Use `calendar:cellStyleForDate:` instead.
 */
-- (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date;
+- (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
 
 /**
  * Asks the delegate for a title color for the specific date.
@@ -86,8 +138,11 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  * @param calendar The backpack calendar.
  * @param date The date to provide title-color for.
  * @return The title colour for the given date.
-*/
-- (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date;
+ * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
+ * the custom cell style for a date.
+ * @deprecated Use `calendar:cellStyleForDate:` instead.
+ */
+- (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
 
 @end
 

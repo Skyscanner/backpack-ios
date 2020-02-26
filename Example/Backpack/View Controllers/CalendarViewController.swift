@@ -81,49 +81,29 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         return true
     }
 
-    func calendar(_ calendar: Backpack.Calendar, fillColorFor date: Date) -> UIColor {
+    func calendar(_ calendar: Backpack.Calendar, cellStyleFor date: SimpleDate) -> BPKCalendarDateCellStyle {
         if !customStylesForDates {
-            return Color.clear
+            return .normal
         }
-
-        let calendar = Calendar.current
-        let date1 = calendar.startOfDay(for: Date())
-        let date2 = calendar.startOfDay(for: date)
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        guard let daysCount = components.day else { return Color.clear }
+        let gregorian = calendar.gregorian
+        let convertedDate = date.date(for: gregorian)
+        let date1 = gregorian.startOfDay(for: Date())
+        let date2 = gregorian.startOfDay(for: convertedDate)
+        let components = gregorian.dateComponents([.day], from: date1, to: date2)
+        guard let daysCount = components.day else { return .normal }
 
         if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 {
-            return Color.glencoe
+            return .positive
         }
 
         if daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 {
-            return Color.hillier
+            return .negative
         }
 
         if daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
-            return Color.erfoud
+            return .neutral
         }
 
-        return Color.clear
-    }
-
-    func calendar(_ calendar: Backpack.Calendar, titleColorFor date: Date) -> UIColor {
-        if !customStylesForDates {
-            return Color.textPrimaryColor
-        }
-
-        let calendar = Calendar.current
-        let date1 = calendar.startOfDay(for: Date())
-        let date2 = calendar.startOfDay(for: date)
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        guard let daysCount = components.day else { return Color.textPrimaryColor }
-
-        if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 ||
-            daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 ||
-            daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
-            return Color.skyGray
-        }
-
-        return Color.textPrimaryColor
+        return .normal
     }
 }

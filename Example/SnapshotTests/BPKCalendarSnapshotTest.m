@@ -191,33 +191,48 @@ NS_ASSUME_NONNULL_BEGIN
     return;
 }
 
-- (UIColor *)calendar:(nonnull BPKCalendar *)calendar fillColorForDate:(NSDate *)date {
+- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date {
     if (!self.isColoringDates) {
-        return BPKColor.clear;
+        return BPKCalendarDateCellStyleNormal;
     }
-
-    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSCalendar *cal = calendar.gregorian;
+    NSDate *convertedDate = [date dateForCalendar:calendar.gregorian];
     NSDate *date1 = [cal startOfDayForDate: self.date1];
-    NSDate *date2 = [cal startOfDayForDate:date];
+    NSDate *date2 = [cal startOfDayForDate:convertedDate];
     NSDateComponents *components = [cal components:NSCalendarUnitDay
                                                fromDate:date1
                                                  toDate:date2
                                                 options:0];
 
     if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
-        return BPKColor.glencoe;
+        return BPKCalendarDateCellStylePositive;
     }
 
     if (components.day == 4 || components.day == 10 || components.day == 15 || components.day == 24) {
-        return BPKColor.hillier;
+        return BPKCalendarDateCellStyleNegative;
     }
 
     if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
-        return BPKColor.erfoud;
+        return BPKCalendarDateCellStyleNeutral;
     }
 
-    return BPKColor.clear;
+    if (components.day == 13) {
+        return BPKCalendarDateCellStyleCustom;
+    }
+
+    return BPKCalendarDateCellStyleNormal;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+- (UIColor *)calendar:(nonnull BPKCalendar *)calendar fillColorForDate:(NSDate *)date {
+    if (!self.isColoringDates) {
+        return BPKColor.clear;
+    }
+
+    return BPKColor.abisko;
+}
+#pragma clang diagnostic pop
 
 @end
 
