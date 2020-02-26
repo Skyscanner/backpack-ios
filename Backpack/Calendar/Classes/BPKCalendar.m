@@ -704,11 +704,11 @@ NSString *const HeaderDateFormat = @"MMMM";
 #pragma mark - Getters
 
 - (UIColor *)currentDateSelectedBackgroundColor {
-    return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.skyBlue;
+    return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.primaryColor;
 }
 
 - (UIColor *)currentDateSelectedContentColor {
-    return self.dateSelectedContentColor != nil ? self.dateSelectedContentColor : BPKColor.white;
+    return self.dateSelectedContentColor != nil ? self.dateSelectedContentColor : [BPKColor dynamicColorWithLightVariant:BPKColor.textPrimaryDarkColor darkVariant:BPKColor.textPrimaryLightColor];
 }
 
 @end
