@@ -1,6 +1,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 26.1.0
+
+**Deprecated:**
+- Backpack/Calendar
+  - `calendar:titleColorForDate:` in `BPKCalendarDelegate` has been deprecated in favour of `calendar:cellStyleForDate:`.
+  - `calendar:fillColorForDate:` in `BPKCalendarDelegate` has been deprecated in favour of `calendar:cellStyleForDate:`.
+
+**Added:**
+
+- Backpack/Calendar
+  - Added a new preferred method for coloured dates in the calendar via `BPKCalendarDateCellStyle` and the new delegate method `calendar:cellStyleForDate:`. Code that previously used `calendar:fillColorForDate:` and `calendar:titleColorForDate:` to colour code the calender to show price information should switch to this new method instead. When implementing `calendar:cellStyleForDate:` it's possible to fall back to the old delegate methods by returning `BPKCalendarDateCellStyleCustom` in which case the calendar will call these methods on the delegate to style the cell.
+
 ## 26.0.0
 
 **Breaking:**
