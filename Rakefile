@@ -89,7 +89,7 @@ task :analyze do
 end
 
 task :erase_devices do
-  sh "pkill Simulator && xcrun simctl erase all"
+  sh "pkill Simulator || xcrun simctl erase all"
 end
 
 task :test do

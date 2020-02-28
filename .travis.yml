@@ -5,7 +5,7 @@
 # $MAIN_STAGE is used to selectively run only certain steps on the
 # latest iOS version. For example snapshot tests are only ran for the
 # latest version.
-osx_image: xcode11
+osx_image: xcode11.3
 language: objective-c
 cache:
   cocoapods: true
