@@ -23,7 +23,7 @@ final class BottomSheetViewController: UITableViewController {
 
     @IBOutlet var scrollViewBottomSheet: UITableViewCell!
     @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
-    @IBOutlet var internalNavigationBottomSheet: UITableViewCell!
+    @IBOutlet var sheetPresentingSheet: UITableViewCell!
     
 }
 
@@ -72,34 +72,32 @@ extension BottomSheetViewController {
             }
 
             sheet.present(in: self, animated: true, completion: nil)
-        case internalNavigationBottomSheet:
-            func makeBottomSheet() -> BottomSheet? {
-                guard let content = BottomSheetContentViewController.make(),
-                    let bottomSection = BottomSheetBottomSectionViewController.make() else { return nil }
+        case sheetPresentingSheet:
+            guard let content = BottomSheetContentViewController.make(),
+                let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            let wrappedBottomSection = rootViewController.createIdenticalContainerController(
+                forRootController: bottomSection
+            )
+
+            bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
+            wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
+
+            let sheet = BottomSheet(contentViewController: wrappedContent,
+                                    scrollViewToTrack: content.tableView,
+                                    bottomSectionViewController: wrappedBottomSection)
+            
+            bottomSection.buttonText = "Next step"
+
+            bottomSection.buttonClickedClosure = {
+                guard let content = BottomSheetContentViewController.make() else { return }
                 let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-                let wrappedBottomSection = rootViewController.createIdenticalContainerController(
-                    forRootController: bottomSection
-                )
-
-                bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
-                wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
-
-                let sheet = BottomSheet(contentViewController: wrappedContent,
-                                        scrollViewToTrack: content.tableView,
-                                        bottomSectionViewController: wrappedBottomSection)
-                
-                bottomSection.buttonText = "Next step"
-
-                bottomSection.buttonClickedClosure = {
-                    guard let nextSheet = makeBottomSheet() else { return }
-                    sheet.present(nextSheet, animated: true)
-                }
-                
-                return sheet
+                let nextSheet = BottomSheet(contentViewController: wrappedContent,
+                                        scrollViewToTrack: content.tableView)
+                sheet.present(nextSheet, animated: true)
             }
             
-            guard let sheet = makeBottomSheet() else { return }
             sheet.present(in: self, animated: true, completion: nil)
         default: break
         }

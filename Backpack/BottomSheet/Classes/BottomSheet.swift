@@ -59,7 +59,7 @@ public final class BottomSheet: NSObject {
     
     private lazy var floatingPanelController: BackpackFloatingPanelController = {
         let panel = BackpackFloatingPanelController(delegate: self)
-        panel.surfaceView.cornerRadius = 24.0
+        panel.surfaceView.cornerRadius = BPKBorderRadiusLg
         panel.isRemovalInteractionEnabled = true
 
         // We do this to hold a strong reference to `BottomSheet` and force it
@@ -114,7 +114,7 @@ public final class BottomSheet: NSObject {
     @objc(presentBottomSheet:animated:completion:)
     public func present(_ bottomSheet: BottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
         if let scrollView = floatingPanelController.scrollView {
-            scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: true)
+            scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
         
         // It's important to set `backgroundColor` to clear instead of setting alpha to 0,

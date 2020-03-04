@@ -60,7 +60,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bottom Sheet with internal navigation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3dW-Bc-Yg8" customClass="BPKLabel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bottom Sheet presenting Bottom Sheet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3dW-Bc-Yg8" customClass="BPKLabel">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -81,8 +81,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="bottomSectionBottomSheet" destination="HER-cm-gYJ" id="bYv-kT-cOO"/>
-                        <outlet property="internalNavigationBottomSheet" destination="cne-nF-KUb" id="9X8-dk-HDa"/>
                         <outlet property="scrollViewBottomSheet" destination="0Ol-zf-yKy" id="Bna-Fu-MLo"/>
+                        <outlet property="sheetPresentingSheet" destination="cne-nF-KUb" id="9X8-dk-HDa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNe-8k-ZDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
