@@ -398,8 +398,8 @@ NSString *const HeaderDateFormat = @"MMMM";
        fillDefaultColorForDate:(NSDate *)date {
 
     if ([self isDateEnabled:date] &&
-        [self.delegate respondsToSelector:@selector(fillColorForDate:)]) {
-        return [self.delegate fillColorForDate:date];
+        [self.delegate respondsToSelector:@selector(calendar:fillColorForDate:)]) {
+        return [self.delegate calendar:self fillColorForDate:date];
     }
 
     if ([self isDateInToday:date]) {
@@ -414,8 +414,8 @@ NSString *const HeaderDateFormat = @"MMMM";
       titleDefaultColorForDate:(nonnull NSDate *)date {
 
     if ([self isDateEnabled:date]) {
-        if ([self.delegate respondsToSelector:@selector(titleColorForDate:)]) {
-            return [self.delegate titleColorForDate:date];
+        if ([self.delegate respondsToSelector:@selector(calendar:titleColorForDate:)]) {
+            return [self.delegate calendar:self titleColorForDate:date];
         }
 
         return self.appearance.titleDefaultColor;

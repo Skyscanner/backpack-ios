@@ -191,15 +191,15 @@ NS_ASSUME_NONNULL_BEGIN
     return;
 }
 
-- (UIColor *)fillColorForDate:(NSDate *)date {
+- (UIColor *)calendar:(nonnull BPKCalendar *)calendar fillColorForDate:(NSDate *)date {
     if (!self.isColoringDates) {
         return BPKColor.clear;
     }
 
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *date1 = [calendar startOfDayForDate: self.date1];
-    NSDate *date2 = [calendar startOfDayForDate:date];
-    NSDateComponents *components = [calendar components:NSCalendarUnitDay
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *date1 = [cal startOfDayForDate: self.date1];
+    NSDate *date2 = [cal startOfDayForDate:date];
+    NSDateComponents *components = [cal components:NSCalendarUnitDay
                                                fromDate:date1
                                                  toDate:date2
                                                 options:0];

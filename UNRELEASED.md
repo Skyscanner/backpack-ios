@@ -6,13 +6,6 @@
 - Backpack/BottomSheet:
   - New API that allows presenting a bottom sheet on top of a previous one.
 
-**Fixed:**
- - Backpack/Badge:
-   - Aligned light mode badges to dark mode style.
-
- - Backpack/Calendar:
-   - Range selection now uses a solid colour instead of a transparent one, which should lead to less unpredictable behaviour.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
