@@ -92,6 +92,8 @@ extension BottomSheetViewController {
 
             bottomSection.buttonClickedClosure = {
                 guard let content = BottomSheetContentViewController.make() else { return }
+                content.tableView.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.tableView"
+                
                 let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
                 let nextSheet = BottomSheet(contentViewController: wrappedContent,
                                         scrollViewToTrack: content.tableView)

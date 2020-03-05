@@ -167,6 +167,7 @@
 		D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */; };
 		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
+		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
 		E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */; };
 		E397BEA222F5F59000C8EC04 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */; };
@@ -392,6 +393,7 @@
 		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E38947D122F5CB3300A357DB /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomSheet.storyboard; sourceTree = "<group>"; };
 		E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */,
 				D28B3610219C209000E82A79 /* ChipUITest.swift */,
 				760E41E4232BD50700A0CE8D /* ToastUITest.swift */,
+				E359366B240FFE680046FD4C /* BottomSheetUITest.swift */,
 			);
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
@@ -1302,6 +1305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */,
+				E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */,
 				760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */,
 				D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */,
 				D257C76A236AE3FB006683F5 /* TextFieldUITest.swift in Sources */,
