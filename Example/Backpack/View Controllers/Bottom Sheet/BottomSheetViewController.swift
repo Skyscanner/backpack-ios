@@ -21,14 +21,16 @@ import Backpack
 
 final class BottomSheetViewController: UITableViewController {
 
-    @IBOutlet weak var scrollViewBottomSheet: UITableViewCell!
-    @IBOutlet weak var bottomSectionBottomSheet: UITableViewCell!
-
+    @IBOutlet var scrollViewBottomSheet: UITableViewCell!
+    @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
+    @IBOutlet var sheetPresentingSheet: UITableViewCell!
+    
 }
 
 // MARK: - UITableViewDelegate
 extension BottomSheetViewController {
 
+    // swiftlint:disable:next function_body_length
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let rootViewController =  UIApplication.shared.keyWindow?.rootViewController as?
             ThemeContainerController else {
@@ -62,11 +64,42 @@ extension BottomSheetViewController {
             let sheet = BottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
                                     bottomSectionViewController: wrappedBottomSection)
+            
+            bottomSection.buttonText = "Dismiss"
 
-            bottomSection.dismissClosure = {
+            bottomSection.buttonClickedClosure = {
                 sheet.viewControllerToPresent.dismiss(animated: true, completion: nil)
             }
 
+            sheet.present(in: self, animated: true, completion: nil)
+        case sheetPresentingSheet:
+            guard let content = BottomSheetContentViewController.make(),
+                let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
+
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            let wrappedBottomSection = rootViewController.createIdenticalContainerController(
+                forRootController: bottomSection
+            )
+
+            bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
+            wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
+
+            let sheet = BottomSheet(contentViewController: wrappedContent,
+                                    scrollViewToTrack: content.tableView,
+                                    bottomSectionViewController: wrappedBottomSection)
+            
+            bottomSection.buttonText = "Next step"
+
+            bottomSection.buttonClickedClosure = {
+                guard let content = BottomSheetContentViewController.make() else { return }
+                content.tableView.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.tableView"
+                
+                let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+                let nextSheet = BottomSheet(contentViewController: wrappedContent,
+                                        scrollViewToTrack: content.tableView)
+                sheet.present(nextSheet, animated: true)
+            }
+            
             sheet.present(in: self, animated: true, completion: nil)
         default: break
         }

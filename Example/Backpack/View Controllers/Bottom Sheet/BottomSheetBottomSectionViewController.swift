@@ -21,10 +21,26 @@ import Backpack
 
 final class BottomSheetBottomSectionViewController: UIViewController {
 
-    var dismissClosure: (() -> Void)?
-
-    @IBAction func dismissButtonClicked(_ sender: Any) {
-        dismissClosure?()
+    var buttonText: String? {
+        didSet {
+            updateButtonText()
+        }
+    }
+    
+    var buttonClickedClosure: (() -> Void)?
+    
+    @IBOutlet private var button: Button? {
+        didSet {
+            updateButtonText()
+        }
+    }
+    
+    @IBAction func buttonClicked(_ sender: Any) {
+        buttonClickedClosure?()
+    }
+    
+    private func updateButtonText() {
+        button?.title = buttonText
     }
 
 }
