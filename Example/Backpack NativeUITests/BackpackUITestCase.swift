@@ -17,21 +17,25 @@
  * limitations under the License.
  */
 
+import Foundation
 import XCTest
 
-class BottomSheetUITest: BackpackUITestCase {
-    func testBottomSheetPresentingBottomSheet() {
-        XCTContext.runActivity(named: "Navigate") { _ in
-            let tablesQuery = app.tables
-            tablesQuery.staticTexts["Bottom Sheet"].tap()
-            tablesQuery.staticTexts["Bottom Sheet presenting Bottom Sheet"].tap()
-            app.buttons["Next step"].tap()
-        }
-        
-        XCTContext.runActivity(named: "Second Bottom Sheet") { _ in
-            let sheet = app.tables.matching(identifier: "SheetPresentingSheet.SecondSheet.tableView").firstMatch
-            _ = sheet.waitForExistence(timeout: 10)
-        }
+class BackpackUITestCase: XCTestCase {
+    lazy var app: XCUIApplication = {
+        return XCUIApplication()
+    }()
+
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        app.launchArguments.append("UITests")
+        app.launch()
     }
 
+    func saveScreenshot(named name: String) {
+        let screenshot = XCUIScreen.main.screenshot()
+        let attachment = XCTAttachment(screenshot: screenshot)
+        attachment.name = name
+        add(attachment)
+    }
 }

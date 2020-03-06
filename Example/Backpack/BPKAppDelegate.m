@@ -29,9 +29,15 @@
 @import AppCenterAnalytics;
 @import AppCenterCrashes;
 
+@interface BPKAppDelegate()
+@property(assign, nonatomic, getter=isUITestingEnabled) BOOL UITestingEnabled;
+@end
+
 @implementation BPKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.UITestingEnabled = [NSProcessInfo.processInfo.arguments containsObject:@"UITests"];
+
     id<BPKFontDefinitionProtocol> relativeFontDefinition = [BPKRelativeFontDefinition new];
     UIFont *relativeTestFont = [UIFont fontWithName:relativeFontDefinition.regularFontFace size:12];
     if (relativeTestFont != nil) {
@@ -74,6 +80,11 @@
     }
 
     [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
+
+    if (self.UITestingEnabled) {
+        self.window.layer.speed = 100;
+        [UIView setAnimationsEnabled:NO];
+    }
 
     return YES;
 }
