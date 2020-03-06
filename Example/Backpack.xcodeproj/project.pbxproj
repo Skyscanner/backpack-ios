@@ -136,6 +136,8 @@
 		D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */; };
 		D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6517B4A216DF63700D85FF9 /* DialogUITest.swift */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
+		D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */; };
+		D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */; };
 		D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
 		D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */; };
 		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
@@ -364,6 +366,8 @@
 		D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack NativeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D6517B4A216DF63700D85FF9 /* DialogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUITest.swift; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
+		D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackUITestCase.swift; sourceTree = "<group>"; };
+		D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UITesting.swift"; sourceTree = "<group>"; };
 		D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPrimaryGradientSnapshotTests.m; sourceTree = "<group>"; };
 		D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSnapshotTest.m; sourceTree = "<group>"; };
 		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
@@ -650,14 +654,6 @@
 		D22FB970230C0E950023DC72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				/* D28F6B8123A1091D001A188F SkyscannerRelativeiOS-Black.ttf, */
-				/* D28F6B8323A1091D001A188F SkyscannerRelativeiOS-BlackItalic.ttf, */
-				/* D28F6B8523A1091D001A188F SkyscannerRelativeiOS-Bold.ttf, */
-				/* D28F6B8623A1091D001A188F SkyscannerRelativeiOS-BoldItalic.ttf, */
-				/* D28F6B8223A1091D001A188F SkyscannerRelativeiOS-Book.ttf, */
-				/* D28F6B8423A1091D001A188F SkyscannerRelativeiOS-Italic.ttf, */
-				/* D28F6B8723A1091D001A188F SkyscannerRelativeiOS-Medium.ttf, */
-				/* D28F6B8823A1091D001A188F SkyscannerRelativeiOS-MediumItalic.ttf, */
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -681,6 +677,7 @@
 				D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */,
 				E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */,
 				D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */,
+				D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -705,6 +702,7 @@
 				D28B3610219C209000E82A79 /* ChipUITest.swift */,
 				760E41E4232BD50700A0CE8D /* ToastUITest.swift */,
 				E359366B240FFE680046FD4C /* BottomSheetUITest.swift */,
+				D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */,
 			);
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
@@ -986,14 +984,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				/* D28F6B8D23A1091D001A188F SkyscannerRelativeiOS-Bold.ttf in Resources, */
-				/* D28F6B8A23A1091D001A188F SkyscannerRelativeiOS-Book.ttf in Resources, */
-				/* D28F6B8B23A1091D001A188F SkyscannerRelativeiOS-BlackItalic.ttf in Resources, */
-				/* D28F6B8F23A1091D001A188F SkyscannerRelativeiOS-Medium.ttf in Resources, */
-				/* D28F6B8C23A1091D001A188F SkyscannerRelativeiOS-Italic.ttf in Resources, */
-				/* D28F6B8E23A1091D001A188F SkyscannerRelativeiOS-BoldItalic.ttf in Resources, */
-				/* D28F6B8923A1091D001A188F SkyscannerRelativeiOS-Black.ttf in Resources, */
-				/* D28F6B9023A1091D001A188F SkyscannerRelativeiOS-MediumItalic.ttf in Resources, */
 				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
 				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
@@ -1239,6 +1229,7 @@
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
+				D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */,
 				D2C49DB523856949008D41FB /* CalendarSelectorViewController.swift in Sources */,
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
@@ -1309,6 +1300,7 @@
 				760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */,
 				D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */,
 				D257C76A236AE3FB006683F5 /* TextFieldUITest.swift in Sources */,
+				D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */,
 				D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */,
 				D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */,
 			);

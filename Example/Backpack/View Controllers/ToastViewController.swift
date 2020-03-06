@@ -44,7 +44,7 @@ class ToastViewController: UIViewController {
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
-        toast.hide(true, afterDelay: 5)
+        toast.hide(true, afterDelay: isUITesting ? 0.1: 5)
     }
 
     func showToastOnlyLabels() {
@@ -52,6 +52,6 @@ class ToastViewController: UIViewController {
         toast.mode = .text
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
-        toast.hide(true, afterDelay: 5)
+        toast.hide(true, afterDelay: isUITesting ? 0.1: 6)
     }
 }

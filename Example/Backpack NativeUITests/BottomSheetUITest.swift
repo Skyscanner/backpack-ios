@@ -19,25 +19,7 @@
 
 import XCTest
 
-class BottomSheetUITest: XCTestCase {
-    
-    var app: XCUIApplication!
-
-    override func setUp() {
-        super.setUp()
-        
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launch()
-    }
-    
-    override func tearDown() {
-        app = nil
-        
-        super.tearDown()
-    }
-
+class BottomSheetUITest: BackpackUITestCase {
     func testBottomSheetPresentingBottomSheet() {
         XCTContext.runActivity(named: "Navigate") { _ in
             let tablesQuery = app.tables

@@ -19,29 +19,10 @@
 
 import XCTest
 
-class ToastUITest: XCTestCase {
-    lazy var app: XCUIApplication = {
-        return XCUIApplication()
-    }()
-
+class ToastUITest: BackpackUITestCase {
     lazy var toastView: XCUIElement = {
         return app.otherElements["toastView"]
     }()
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test.
-        // Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state -
-        //such as interface orientation - required for your tests before they run.
-        // The setUp method is a good place to do this.
-    }
 
     func navigateAndShow() {
         app.tables.staticTexts["Toasts"].tap()
@@ -62,7 +43,7 @@ class ToastUITest: XCTestCase {
             navigateAndShow()
         }
 
-        sleep(6)
+        sleep(1)
         XCTAssertFalse(toastView.exists, "The toast shoud not be visible")
     }
 }
