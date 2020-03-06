@@ -9,7 +9,7 @@ PODS:
     - AppCenter/Core
   - AppCenter/Distribute (2.4.0):
     - AppCenter/Core
-  - Backpack (26.1.0):
+  - Backpack (26.2.0):
     - FloatingPanel (= 1.6.6)
     - FSCalendar (~> 2.8)
     - MBProgressHUD (~> 0.9.1)
@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 49a9ffe114c00e2bf5374aeda816d47eabf1978a
-  Backpack: ee32b09c23aa6b6ee9761143a91efad5a4287049
+  Backpack: c2dc4aa6d813a427228468c1f9f5e835acf004af
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   iOSSnapshotTestCase: f3b2b7e606fe03fdbe49af84316bd235df32dc44

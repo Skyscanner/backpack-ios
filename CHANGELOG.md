@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 26.2.0
+
+**Added:**
+
+- Backpack/BottomSheet:
+  - New API that allows presenting a bottom sheet on top of a previous one.
+
 ## 26.1.0
 
 **Deprecated:**
