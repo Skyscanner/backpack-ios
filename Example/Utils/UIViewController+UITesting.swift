@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2020 Skyscanner Ltd
+ * Copyright © 2020 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +17,20 @@
  * limitations under the License.
  */
 
-@import UIKit;
+import Foundation
+import UIKit
 
-@interface BPKAppDelegate : UIResponder <UIApplicationDelegate>
-@property(strong, nonatomic) UIWindow *window;
-@property(assign, nonatomic, getter=isUITestingEnabled, readonly) BOOL UITestingEnabled;
-@end
+extension UIViewController {
+    var appDelegate: BPKAppDelegate? {
+        return UIApplication.shared.delegate as? BPKAppDelegate
+    }
+
+    var isUITesting: Bool {
+        guard let delegate = appDelegate else {
+            assertionFailure("The apps delegate should be of type `BPKAppDelegate`")
+            return false
+        }
+
+        return delegate.isUITestingEnabled
+    }
+}
