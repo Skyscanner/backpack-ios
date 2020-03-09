@@ -6,7 +6,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Skyscanner/backpack-ios.svg)](https://greenkeeper.io/)
+
 
 ## Installation
 
