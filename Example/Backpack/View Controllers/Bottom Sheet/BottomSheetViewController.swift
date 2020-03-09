@@ -24,13 +24,14 @@ final class BottomSheetViewController: UITableViewController {
     @IBOutlet var scrollViewBottomSheet: UITableViewCell!
     @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
     @IBOutlet var sheetPresentingSheet: UITableViewCell!
+    @IBOutlet var nonScrollableContentBottomSheet: UITableViewCell!
     
 }
 
 // MARK: - UITableViewDelegate
 extension BottomSheetViewController {
 
-    // swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let rootViewController =  UIApplication.shared.keyWindow?.rootViewController as?
             ThemeContainerController else {
@@ -42,7 +43,7 @@ extension BottomSheetViewController {
         let cell = tableView.cellForRow(at: indexPath)
         switch cell {
         case scrollViewBottomSheet:
-            guard let content = BottomSheetContentViewController.make() else { return }
+            guard let content = BottomSheetScrollableContentViewController.make() else { return }
 
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
 
@@ -50,7 +51,7 @@ extension BottomSheetViewController {
                                     scrollViewToTrack: content.tableView)
             sheet.present(in: self, animated: true, completion: nil)
         case bottomSectionBottomSheet:
-            guard let content = BottomSheetContentViewController.make(),
+            guard let content = BottomSheetScrollableContentViewController.make(),
                 let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
@@ -73,7 +74,7 @@ extension BottomSheetViewController {
 
             sheet.present(in: self, animated: true, completion: nil)
         case sheetPresentingSheet:
-            guard let content = BottomSheetContentViewController.make(),
+            guard let content = BottomSheetScrollableContentViewController.make(),
                 let bottomSection = BottomSheetBottomSectionViewController.make() else { return }
 
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
@@ -92,15 +93,21 @@ extension BottomSheetViewController {
 
             bottomSection.buttonClickedClosure = {
                 guard let content = BottomSheetContentViewController.make() else { return }
-                content.tableView.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.tableView"
+                content.view.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.view"
                 
                 let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-                let nextSheet = BottomSheet(contentViewController: wrappedContent,
-                                        scrollViewToTrack: content.tableView)
+                let nextSheet = BottomSheet(contentViewController: wrappedContent)
                 sheet.present(nextSheet, animated: true)
             }
             
             sheet.present(in: self, animated: true, completion: nil)
+        case nonScrollableContentBottomSheet:
+            guard let content = BottomSheetContentViewController.make() else { return }
+            
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            
+            let sheet = BottomSheet(contentViewController: wrappedContent)
+            sheet.present(in: self, animated: true)
         default: break
         }
     }

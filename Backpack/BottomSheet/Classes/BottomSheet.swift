@@ -71,7 +71,10 @@ public final class BottomSheet: NSObject {
         return panel
     }()
     
-    /// Instantiates a `BottomSheet`.
+    private var scrollView: UIScrollView?
+    
+    /// Instantiates a `BottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
+    /// Optionally, an always visible bottom section can be added.
     ///
     /// - Parameters:
     ///   - contentViewController: Content of the bottom sheet.
@@ -87,9 +90,21 @@ public final class BottomSheet: NSObject {
                 scrollViewToTrack: UIScrollView,
                 bottomSectionViewController: UIViewController? = nil) {
         super.init()
+        
+        self.scrollView = scrollViewToTrack
+        
         floatingPanelController.contentViewController = contentViewController
         floatingPanelController.track(scrollView: scrollViewToTrack)
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
+    }
+    
+    /// Instantiates a `BottomSheet` with a non-scrollable content. Height of the bottom sheet will be
+    /// calculated based on the content.
+    /// - Parameter contentViewController: Content of the bottom sheet.
+    public init(contentViewController: UIViewController) {
+        super.init()
+        floatingPanelController.contentViewController = contentViewController
+        floatingPanelController.surfaceView.backgroundColor = contentViewController.view.backgroundColor
     }
 
     /// This presents the bottom sheet. It is just a wrapper of native API
@@ -153,9 +168,15 @@ extension BottomSheet: FloatingPanelControllerDelegate {
             }
         }
     }
+    
+    final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
+        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+            return Constants.backdropAlpha
+        }
+    }
 
     public func floatingPanel(_ viewController: FloatingPanelController,
                               layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        return Layout()
+        return scrollView == nil ? IntrinsicLayout() : Layout()
     }
 }
