@@ -26,6 +26,7 @@ public final class BottomSheet: NSObject {
     private enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
+        static let grabberHandleWidth: CGFloat = 60.0
     }
 
     /// View controller that will be presented when calling
@@ -59,9 +60,15 @@ public final class BottomSheet: NSObject {
     
     private lazy var floatingPanelController: BackpackFloatingPanelController = {
         let panel = BackpackFloatingPanelController(delegate: self)
+        panel.surfaceView.backgroundColor = Color.backgroundTertiaryColor
         panel.surfaceView.cornerRadius = BPKBorderRadiusLg
+        panel.surfaceView.grabberTopPadding = BPKSpacingMd
+        panel.surfaceView.grabberHandleHeight = BPKSpacingSm
+        panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
+        panel.surfaceView.grabberHandle.barColor = Color.skyGrayTint06
+        
         panel.isRemovalInteractionEnabled = true
-
+        
         // We do this to hold a strong reference to `BottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
@@ -104,7 +111,6 @@ public final class BottomSheet: NSObject {
     public init(contentViewController: UIViewController) {
         super.init()
         floatingPanelController.contentViewController = contentViewController
-        floatingPanelController.surfaceView.backgroundColor = contentViewController.view.backgroundColor
     }
 
     /// This presents the bottom sheet. It is just a wrapper of native API
