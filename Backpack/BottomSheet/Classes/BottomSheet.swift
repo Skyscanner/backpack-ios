@@ -107,6 +107,8 @@ public final class BottomSheet: NSObject {
     
     /// Instantiates a `BottomSheet` with a non-scrollable content. Height of the bottom sheet will be
     /// calculated based on the content.
+    /// If the content height might not fit the screen, then `init(contentViewController: _, scrollViewToTrack: _)`
+    /// should be used instead.
     /// - Parameter contentViewController: Content of the bottom sheet.
     public init(contentViewController: UIViewController) {
         super.init()
