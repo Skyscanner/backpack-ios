@@ -24,7 +24,8 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKHorizontalNavigationItem.h"
-#import "BPKHorizontalNavigationOption.h"
+#import "BPKHorizontalNavigationItemDefault.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigation
 
-- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options
+- (instancetype)initWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options
                        selected:(NSInteger)selectedItemIndex {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
@@ -149,34 +150,36 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (BPKHorizontalNavigationItem *)createHorizontalNavigationItemWithDefinition:
-    (BPKHorizontalNavigationOption *)definition {
-    BPKHorizontalNavigationItem *newItem = [[BPKHorizontalNavigationItem alloc] initWithName:definition.name
-                                                                                    iconName:definition.iconName];
+- (UIControl<BPKHorizontalNavigationItem> *)createHorizontalNavigationItemWithDefinition:
+    (id<BPKHorizontalNavigationOptionType>)definition {
+    UIControl<BPKHorizontalNavigationItem> *newItem = [definition makeItem];
     newItem.tag = definition.tag;
+
     return newItem;
 }
 
-- (void)forEachNavigationItem:(void (^)(BPKHorizontalNavigationItem *))callback {
+- (void)forEachNavigationItem:(void (^)(UIControl<BPKHorizontalNavigationItem> *))callback {
     for (UIView *subView in self.stackView.arrangedSubviews) {
-        NSAssert([subView isKindOfClass:[BPKHorizontalNavigationItem class]],
-                 @"HorizontalNav subview is not of type BPKHorizontalNavigationItem as expected.");
-        if (![subView isKindOfClass:[BPKHorizontalNavigationItem class]]) {
+        NSAssert([subView isKindOfClass:[UIControl class]] &&
+                 [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)],
+                 @"HorizontalNav subview is not of type UIControl<BPKHorizontalNavigationItem> as expected.");
+        if (!([subView isKindOfClass:[UIControl class]] &&
+            [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)])) {
             continue;
         }
-        callback((BPKHorizontalNavigationItem *)subView);
+        callback((UIControl<BPKHorizontalNavigationItem> *)subView);
     }
 }
 
 - (void)updateSelectedItemsColor {
-    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-      navigationItem.selectedColor = self.selectedColor;
+    [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
+        navigationItem.selectedColor = self.selectedColor;
     }];
 }
 
 - (void)updateItemsSize {
-    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
-      navigationItem.size = self.size;
+    [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
+        navigationItem.size = self.size;
     }];
 }
 
@@ -215,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setupWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options selected:(NSInteger)selectedItemIndex {
+- (void)setupWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options selected:(NSInteger)selectedItemIndex {
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
@@ -268,10 +271,10 @@ NS_ASSUME_NONNULL_BEGIN
         [subView removeFromSuperview];
     }
 
-    for (BPKHorizontalNavigationOption *option in self.options) {
-        BPKHorizontalNavigationItem *newCell = [self createHorizontalNavigationItemWithDefinition:option];
-        [newCell addTarget:self action:@selector(updateSelection:) forControlEvents:UIControlEventTouchUpInside];
-        [self.stackView addArrangedSubview:newCell];
+    for (id<BPKHorizontalNavigationOptionType> option in self.options) {
+        UIControl<BPKHorizontalNavigationItem> *newItem = [self createHorizontalNavigationItemWithDefinition:option];
+        [newItem addTarget:self action:@selector(updateSelection:) forControlEvents:UIControlEventTouchUpInside];
+        [self.stackView addArrangedSubview:newItem];
     }
 
     // Reset user selection:
@@ -282,7 +285,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self layoutIfNeeded];
 }
 
-- (void)setOptions:(NSArray<BPKHorizontalNavigationOption *> *)options {
+- (void)setOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options {
     if (![_options isEqualToArray:options]) {
         _options = [options copy];
 
@@ -291,7 +294,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 - (void)setItemSelectionStates {
     __block int index = 0;
-    [self forEachNavigationItem:^(BPKHorizontalNavigationItem *navigationItem) {
+    [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
       navigationItem.selected = self.selectedItemIndex == index;
       index += 1;
     }];

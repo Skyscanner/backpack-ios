@@ -1,0 +1,51 @@
+/*
+* Backpack - Skyscanner's Design System
+*
+* Copyright 2018-2020 Skyscanner Ltd
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+#import <Foundation/Foundation.h>
+
+#import "BPKHorizontalNavigationItem.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * Represents a single navigation option in `BPKHorizontalNavigation`.
+ * For common use cases `BPKHorizontalNavigationOption` is provided but
+ * by implementing a custom type that conform to this protocol you can
+ * implement custom navigation items.
+ *
+ * @see BPKHorizontalNavigationItem
+ * @see BPKHorizontalNavigationOption
+ */
+@protocol BPKHorizontalNavigationOptionType <NSObject>
+@required
+
+/**
+ * A tag representing the option, can be used to distinguish options from
+ * eachother.
+ */
+@property(nonatomic, readonly) NSInteger tag;
+
+/**
+ * Creates a `UIControl` sublcass to use for rendering this item
+ * in a `BPKHorizontalNavigation`. In addition to being a `UIControl`
+ * subclass it should implement the `BPKHorizontalNavigationItem` protocol.
+ */
+- (UIControl<BPKHorizontalNavigationItem> *)makeItem;
+@end
+
+NS_ASSUME_NONNULL_END

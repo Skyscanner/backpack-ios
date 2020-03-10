@@ -33,6 +33,9 @@ let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selec
 horizontalNavigation.showsSelectedBar = false
 ```
 
+## Custom Horizontal Navigation Segments
+
+Horizontal Navigation can use custom segments. To achieve this, implement a custom type that conforms to `BPKHorizontalNavigationOptionType` and return your own view (a subclass of `UIControl` that implements the protocol `BPKHorizontalNavigationItem`) for `makeItem`. Ensure the height of your view is similar to that of those rendered when `BPKHorizontalNavigationOption` is used directly for all the sizes that the component supports.
+
 ### Appearance attributes
 `(UIColor)contentColor`
-

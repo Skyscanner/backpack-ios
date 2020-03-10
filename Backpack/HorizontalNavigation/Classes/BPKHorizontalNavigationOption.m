@@ -17,6 +17,8 @@
  */
 #import "BPKHorizontalNavigationOption.h"
 
+#import "BPKHorizontalNavigationItemDefault.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKHorizontalNavigationOption ()
@@ -82,6 +84,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isEqual:(BPKHorizontalNavigationOption *)other {
     return self.tag == other.tag && [self.name isEqualToString:other.name] &&
            [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
+}
+
+- (UIControl *)makeItem {
+    return [[BPKHorizontalNavigationItemDefault alloc] initWithName:self.name iconName:self.iconName];
 }
 
 @end

@@ -20,6 +20,8 @@
 
 #import <Backpack/Icon.h>
 
+#import "BPKHorizontalNavigationOptionType.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -27,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * Can be configured to show an optional icon, always includes a name.
  */
-@interface BPKHorizontalNavigationOption : NSObject
+@interface BPKHorizontalNavigationOption : NSObject<BPKHorizontalNavigationOptionType>
 
 /**
  * Name of the optional icon used in the option.
