@@ -19,10 +19,11 @@
 
 import Backpack
 
-final class BottomSheetContentViewController: UIViewController {
+// swiftlint:disable:next type_name
+final class BottomSheetScrollableContentViewController: UITableViewController {
 
 }
 
-extension BottomSheetContentViewController: StoryboardInstantiable {
+extension BottomSheetScrollableContentViewController: StoryboardInstantiable {
     static var storyboardType: Storyboard { return .bottomSheet }
 }

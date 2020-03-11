@@ -172,7 +172,8 @@
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
 		E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */; };
-		E397BEA222F5F59000C8EC04 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */; };
+		E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */; };
+		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
 /* End PBXBuildFile section */
@@ -400,7 +401,8 @@
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E38947D122F5CB3300A357DB /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomSheet.storyboard; sourceTree = "<group>"; };
 		E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
-		E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
+		E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentViewController.swift; sourceTree = "<group>"; };
+		E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetScrollableContentViewController.swift; sourceTree = "<group>"; };
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		E9BCCEB5F97CE209BCB4B278 /* Pods-Backpack_SnapshotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -816,7 +818,8 @@
 			children = (
 				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
 				E38947D322F5F0E900A357DB /* BottomSheetViewController.swift */,
-				E397BEA122F5F59000C8EC04 /* BottomSheetContentViewController.swift */,
+				E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */,
+				E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */,
 				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */,
 			);
 			path = "Bottom Sheet";
@@ -1194,7 +1197,7 @@
 				D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */,
 				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
-				E397BEA222F5F59000C8EC04 /* BottomSheetContentViewController.swift in Sources */,
+				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
 				D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */,
 				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
@@ -1245,6 +1248,7 @@
 				D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */,
 				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				D649E8EC212F0A2A00B25A9E /* BPKRootListTableViewController.m in Sources */,
+				E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
 				D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,

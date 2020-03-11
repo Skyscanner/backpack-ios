@@ -29,7 +29,7 @@ class BottomSheetUITest: BackpackUITestCase {
         }
         
         XCTContext.runActivity(named: "Second Bottom Sheet") { _ in
-            let sheet = app.tables.matching(identifier: "SheetPresentingSheet.SecondSheet.tableView").firstMatch
+            let sheet = app.otherElements.matching(identifier: "SheetPresentingSheet.SecondSheet.view").firstMatch
             _ = sheet.waitForExistence(timeout: 10)
         }
     }

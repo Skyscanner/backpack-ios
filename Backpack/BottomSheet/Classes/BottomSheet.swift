@@ -26,6 +26,7 @@ public final class BottomSheet: NSObject {
     private enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
+        static let grabberHandleWidth: CGFloat = 60.0
     }
 
     /// View controller that will be presented when calling
@@ -59,9 +60,15 @@ public final class BottomSheet: NSObject {
     
     private lazy var floatingPanelController: BackpackFloatingPanelController = {
         let panel = BackpackFloatingPanelController(delegate: self)
+        panel.surfaceView.backgroundColor = Color.backgroundTertiaryColor
         panel.surfaceView.cornerRadius = BPKBorderRadiusLg
+        panel.surfaceView.grabberTopPadding = BPKSpacingMd
+        panel.surfaceView.grabberHandleHeight = BPKSpacingSm
+        panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
+        panel.surfaceView.grabberHandle.barColor = Color.skyGrayTint06
+        
         panel.isRemovalInteractionEnabled = true
-
+        
         // We do this to hold a strong reference to `BottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
@@ -71,7 +78,10 @@ public final class BottomSheet: NSObject {
         return panel
     }()
     
-    /// Instantiates a `BottomSheet`.
+    private var scrollView: UIScrollView?
+    
+    /// Instantiates a `BottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
+    /// Optionally, an always visible bottom section can be added.
     ///
     /// - Parameters:
     ///   - contentViewController: Content of the bottom sheet.
@@ -87,9 +97,22 @@ public final class BottomSheet: NSObject {
                 scrollViewToTrack: UIScrollView,
                 bottomSectionViewController: UIViewController? = nil) {
         super.init()
+        
+        self.scrollView = scrollViewToTrack
+        
         floatingPanelController.contentViewController = contentViewController
         floatingPanelController.track(scrollView: scrollViewToTrack)
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
+    }
+    
+    /// Instantiates a `BottomSheet` with a non-scrollable content. Height of the bottom sheet will be
+    /// calculated based on the content.
+    /// If the content height might not fit the screen, then `init(contentViewController: _, scrollViewToTrack: _)`
+    /// should be used instead.
+    /// - Parameter contentViewController: Content of the bottom sheet.
+    public init(contentViewController: UIViewController) {
+        super.init()
+        floatingPanelController.contentViewController = contentViewController
     }
 
     /// This presents the bottom sheet. It is just a wrapper of native API
@@ -153,9 +176,15 @@ extension BottomSheet: FloatingPanelControllerDelegate {
             }
         }
     }
+    
+    final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
+        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+            return Constants.backdropAlpha
+        }
+    }
 
     public func floatingPanel(_ viewController: FloatingPanelController,
                               layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        return Layout()
+        return scrollView == nil ? IntrinsicLayout() : Layout()
     }
 }

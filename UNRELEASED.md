@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/BottomSheet:
+  - New API for presenting a Bottom Sheet without scrollable content. The height of the bottom sheet will be automatically calculated based on its intrinsic height.
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
