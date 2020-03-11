@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 26.3.0
+
+**Added:**
+
+- Backpack/BottomSheet:
+  - New API for presenting a Bottom Sheet without scrollable content. The height of the bottom sheet will be automatically calculated based on its intrinsic height.
+
 ## 26.2.0
 
 **Added:**
