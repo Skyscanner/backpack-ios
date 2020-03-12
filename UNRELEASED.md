@@ -11,6 +11,8 @@
 
 - Backpack/HorizontalNavigation
   - Via `makeItem` in `BPKHorizontalNavigationOptionType` it's possible to provide custom rendering for the items in the horizontal navigation.
+- Backpack/Calendar
+  - Via `contentOffset` in `BPKCalendar` it's possible to modify the underlying collection view's content offset.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
