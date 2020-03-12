@@ -178,6 +178,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     CGRect bounds = self.bounds;
     CGFloat width = CGRectGetWidth(bounds);
     CGFloat height = CGRectGetHeight(bounds);
+    CGFloat calendarWidth = CGRectGetWidth(self.calendarView.frame);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
 
     self.calendarView.frame =
@@ -192,7 +193,9 @@ NSString *const HeaderDateFormat = @"MMMM";
         CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg,
                    yearPillWidth, yearPillHeight);
 
-    [self.calendarView.collectionViewLayout invalidateLayout];
+    if (calendarWidth != CGRectGetWidth(self.calendarView.frame)) {
+        [self.calendarView.collectionViewLayout invalidateLayout];
+    }
 }
 
 #pragma mark - property getters/setters
