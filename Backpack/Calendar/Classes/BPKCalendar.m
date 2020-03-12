@@ -193,7 +193,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         CGRectMake(width / 2.0 - yearPillWidth / 2.0, CGRectGetHeight(self.calendarWeekdayView.frame) + BPKSpacingLg,
                    yearPillWidth, yearPillHeight);
 
-    if (calendarWidth != CGRectGetWidth(self.calendarView.frame)) {
+    if (fabs(calendarWidth - CGRectGetWidth(self.calendarView.frame)) > 0.1) {
         [self.calendarView.collectionViewLayout invalidateLayout];
     }
 }
