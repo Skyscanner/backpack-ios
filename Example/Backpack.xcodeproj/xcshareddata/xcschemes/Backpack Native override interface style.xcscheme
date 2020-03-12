@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "Backpack Native.app"
-               BlueprintName = "Backpack Native"
+               BuildableName = "Backpack-Native.app"
+               BlueprintName = "Backpack-Native"
                ReferencedContainer = "container:Backpack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -55,8 +55,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Backpack Native.app"
-            BlueprintName = "Backpack Native"
+            BuildableName = "Backpack-Native.app"
+            BlueprintName = "Backpack-Native"
             ReferencedContainer = "container:Backpack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -79,8 +79,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "Backpack Native.app"
-            BlueprintName = "Backpack Native"
+            BuildableName = "Backpack-Native.app"
+            BlueprintName = "Backpack-Native"
             ReferencedContainer = "container:Backpack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -24,6 +24,7 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKSnapshotTest.h"
+#import "BPKHorizontalNavigationOptionWithBackground.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationSnapshotTest : FBSnapshotTestCase
@@ -207,6 +208,31 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
+
+- (UIView *)createCustomItems {
+    NSArray<BPKHorizontalNavigationOptionWithBackground *> *options = @[
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Car hire" tag:2]
+    ];
+
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
+    horizontalNavigation.showsSelectedBar = NO;
+
+    UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
+    return view;
+}
+
+- (void)testCustomItems {
+    UIView *lightView = [self createCustomItems];
+    UIView *darkView = [self createCustomItems];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 
 @end
 NS_ASSUME_NONNULL_END

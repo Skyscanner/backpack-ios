@@ -81,7 +81,20 @@ NS_ASSUME_NONNULL_BEGIN
     return self.iconName != nil;
 }
 
-- (BOOL)isEqual:(BPKHorizontalNavigationOption *)other {
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    return [self isEqualToOption:object];
+}
+
+
+- (BOOL)isEqualToOption:(BPKHorizontalNavigationOption *)other {
     return self.tag == other.tag && [self.name isEqualToString:other.name] &&
            [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
 }
