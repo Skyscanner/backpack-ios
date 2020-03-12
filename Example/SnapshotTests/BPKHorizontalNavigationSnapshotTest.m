@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDefault {
     UIView *lightView = [self createDefault];
     UIView *darkView = [self createDefault];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -92,6 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSelectedIndex {
     UIView *lightView = [self createSelectedIndex];
     UIView *darkView = [self createSelectedIndex];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -114,6 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithoutBar {
     UIView *lightView = [self createWithoutBar];
     UIView *darkView = [self createWithoutBar];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -136,6 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithIcons {
     UIView *lightView = [self createWithIcons];
     UIView *darkView = [self createWithIcons];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -160,6 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithTheming {
     UIView *lightView = [self createWithTheming];
     UIView *darkView = [self createWithTheming];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -182,6 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWide {
     UIView *lightView = [self createWide];
     UIView *darkView = [self createWide];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -204,6 +210,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testNarrow {
     UIView *lightView = [self createNarrow];
     UIView *darkView = [self createNarrow];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
