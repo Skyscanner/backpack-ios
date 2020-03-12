@@ -206,7 +206,7 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 /**
  * The underlying scrollView's content offset
  */
-@property(readonly, assign) CGPoint contentOffset;
+@property(nonatomic, assign) CGPoint contentOffset;
 
 /**
  * The underlying scrollView's content inset
