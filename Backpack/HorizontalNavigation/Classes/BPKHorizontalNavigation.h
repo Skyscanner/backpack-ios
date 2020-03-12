@@ -21,26 +21,11 @@
 
 #import <Backpack/Font.h>
 
+#import "BPKHorizontalNavigationSize.h"
 #import "BPKHorizontalNavigationDelegate.h"
+#import "BPKHorizontalNavigationOptionType.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class BPKHorizontalNavigationItem;
-@class BPKHorizontalNavigationOption;
-/**
- * Enum values for specifying the navigation size
- */
-typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
-    /**
-     * Large, default, size horizontal navigation.
-     */
-    BPKHorizontalNavigationSizeDefault = 0,
-
-    /**
-     * Small size horizontal navigation.
-     */
-    BPKHorizontalNavigationSizeSmall = 1,
-};
 
 /**
  * A `BPKHorizontalNavigation` is a control comprising of multiple segments, where each acts as a discrete button.
@@ -53,9 +38,9 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 /**
  * The options to display within the navigation.
  *
- * see BPKHorizontalNavigationOption
+ * see BPKHorizontalNavigationOptionType
  */
-@property(nonatomic, copy) NSArray<BPKHorizontalNavigationOption *> *options;
+@property(nonatomic, copy) NSArray<id<BPKHorizontalNavigationOptionType>> *options;
 
 /**
  * The size of the horizontal navigation.
@@ -84,10 +69,10 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 /**
  * Create a `BPKHorizontalNavigation` with a set of options and an initally selected option.
  *
- * @param options NSArray<NSString> the options available to the useR
- * @param selectedItemIndex NSInteger the initially selected item
+ * @param options NSArray<id<BPKHorizontalNavigationOptionType>> the options displayed.
+ * @param selectedItemIndex NSInteger the initially selected item.
  */
-- (instancetype)initWithOptions:(NSArray<BPKHorizontalNavigationOption *> *)options
+- (instancetype)initWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options
                        selected:(NSInteger)selectedItemIndex NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:

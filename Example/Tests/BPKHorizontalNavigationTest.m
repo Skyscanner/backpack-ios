@@ -35,10 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
     ]
                                                                                             selected:0];
 
+    // This cast is safe because we know the underlying type
+    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 0);
-    XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights");
-    XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels");
-    XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire");
+    XCTAssertEqual(options[0].name, @"Flights");
+    XCTAssertEqual(options[1].name, @"Hotels");
+    XCTAssertEqual(options[2].name, @"Car hire");
     XCTAssertEqual(horizontalNavigation.options[0].tag, 0);
     XCTAssertEqual(horizontalNavigation.options[1].tag, 1);
     XCTAssertEqual(horizontalNavigation.options[2].tag, 2);
@@ -51,11 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:2];
-
+    // This cast is safe because we know the underlying type
+    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 2);
-    XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights");
-    XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels");
-    XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire");
+    XCTAssertEqual(options[0].name, @"Flights");
+    XCTAssertEqual(options[1].name, @"Hotels");
+    XCTAssertEqual(options[2].name, @"Car hire");
 }
 
 - (void)testSetSelectedIndex {
@@ -68,10 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     horizontalNavigation.selectedItemIndex = 1;
 
+    // This cast is safe because we know the underlying type
+    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 1);
-    XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights");
-    XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels");
-    XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire");
+    XCTAssertEqual(options[0].name, @"Flights");
+    XCTAssertEqual(options[1].name, @"Hotels");
+    XCTAssertEqual(options[2].name, @"Car hire");
 }
 
 - (void)testSetOptions {
@@ -89,10 +94,12 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire 2" tag:5]
     ];
 
+    // This cast is safe because we know the underlying type
+    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 0);
-    XCTAssertEqual(horizontalNavigation.options[0].name, @"Flights 2");
-    XCTAssertEqual(horizontalNavigation.options[1].name, @"Hotels 2");
-    XCTAssertEqual(horizontalNavigation.options[2].name, @"Car hire 2");
+    XCTAssertEqual(options[0].name, @"Flights 2");
+    XCTAssertEqual(options[1].name, @"Hotels 2");
+    XCTAssertEqual(options[2].name, @"Car hire 2");
     XCTAssertEqual(horizontalNavigation.options[0].tag, 3);
     XCTAssertEqual(horizontalNavigation.options[1].tag, 4);
     XCTAssertEqual(horizontalNavigation.options[2].tag, 5);

@@ -16,32 +16,22 @@
 * limitations under the License.
 */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "BPKHorizontalNavigationSize.h"
-
-
-NS_ASSUME_NONNULL_BEGIN
-
-@protocol BPKHorizontalNavigationItem
-@required
+#ifndef BPK_HORIZONTAL_NAVIGATION_SIZE_H
+#define BPK_HORIZONTAL_NAVIGATION_SIZE_H
 
 /**
- * The size of the horizontal navigation.
- *
- * see BPKHorizontalNavigationSize
+ * Enum values for specifying the navigation size
  */
-@property(nonatomic, assign) BPKHorizontalNavigationSize size;
+typedef NS_ENUM(NSUInteger, BPKHorizontalNavigationSize) {
+    /**
+     * Large, default, size horizontal navigation.
+     */
+    BPKHorizontalNavigationSizeDefault = 0,
 
-/**
- * The selected colour to use.
- *
- * This colour should be used to change the UI to make it clear
- * that the item is selected.
- */
-@property(nonatomic, nullable, strong) UIColor *selectedColor;
+    /**
+     * Small size horizontal navigation.
+     */
+    BPKHorizontalNavigationSizeSmall = 1,
+};
 
-@end
-
-NS_ASSUME_NONNULL_END
+#endif /* BPK_HORIZONTAL_NAVIGATION_SIZE_H */

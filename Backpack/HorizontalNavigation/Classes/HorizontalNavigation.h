@@ -21,5 +21,7 @@
 #import "BPKHorizontalNavigation.h"
 #import "BPKHorizontalNavigationDelegate.h"
 #import "BPKHorizontalNavigationOption.h"
+#import "BPKHorizontalNavigationOptionType.h"
+#import "BPKHorizontalNavigationSize.h"
 
 #endif

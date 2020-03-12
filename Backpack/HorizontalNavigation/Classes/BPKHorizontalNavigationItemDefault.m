@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKHorizontalNavigationItem.h"
+#import "BPKHorizontalNavigationItemDefault.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHorizontalNavigationItem ()
+@interface BPKHorizontalNavigationItemDefault ()
 
 @property(readonly) UIColor *contentColor;
 @property(nonatomic) CGFloat horizontalSpacing;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@implementation BPKHorizontalNavigationItem
+@implementation BPKHorizontalNavigationItemDefault
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
     BPKAssertMainThread();
