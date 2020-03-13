@@ -32,12 +32,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) UIColor *contentColor;
 @property(nonatomic) CGFloat horizontalSpacing;
 @property(nonatomic) CGFloat verticalSpacing;
+@property(nonatomic, readonly) UIView *notificationDot;
 
 @end
 
 @implementation BPKHorizontalNavigationItemDefault
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
+    self = [self initWithName:name iconName:iconName showNotificationDot:NO];
+
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName showNotificationDot:(BOOL)showDot {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
@@ -45,6 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
         self.name = name;
         self.iconName = iconName;
         [self setup];
+
+        if (showDot) {
+            [self setupNotificationDot];
+        }
     }
 
     return self;
@@ -184,6 +195,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)horizontalSpacing {
     return BPKSpacingBase;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    CGPoint cordinates;
+    if ([BPKRTLSupport viewIsRTL:self]) {
+        cordinates = CGPointMake(CGRectGetMinX(self.titleLabel.frame) - BPKSpacingMd, CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
+    } else {
+        cordinates = CGPointMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
+    }
+
+    self.notificationDot.frame = CGRectMake(cordinates.x, cordinates.y, BPKSpacingMd, BPKSpacingMd);
+}
+
+- (void)setupNotificationDot {
+    if (_notificationDot == nil) {
+        _notificationDot = [UIView new];
+        _notificationDot.translatesAutoresizingMaskIntoConstraints = NO;
+        _notificationDot.backgroundColor = BPKColor.systemRed;
+        _notificationDot.layer.cornerRadius = BPKSpacingMd / 2;
+
+        [self addSubview:_notificationDot];
+    }
 }
 
 @end

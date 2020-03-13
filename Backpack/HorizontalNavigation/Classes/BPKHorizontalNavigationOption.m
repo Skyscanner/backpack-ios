@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) NSInteger tag;
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, strong, nullable) BPKIconName iconName;
+@property(nonatomic) BOOL showDot;
 
 @end
 
@@ -43,36 +44,41 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName {
-    self = [super init];
-
-    if (self) {
-        self.name = name;
-        self.iconName = iconName;
-        self.tag = 0;
-    }
-
-    return self;
-}
-
-- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag {
-    self = [super init];
-
-    if (self) {
-        self.tag = tag;
-        self.name = name;
-    }
+    self = [self initWithName:name iconName:iconName tag:0];
 
     return self;
 }
 
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag {
-    self = [super init];
+    self = [self initWithName:name tag:tag iconName:iconName showNotificationDot:NO];
 
-    if (self) {
-        self.tag = tag;
-        self.name = name;
-        self.iconName = iconName;
-    }
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag {
+    self = [self initWithName:name tag:tag showNotificationDot:NO];
+
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name
+                         tag:(NSInteger)tag
+         showNotificationDot:(BOOL)showDot {
+
+    self = [self initWithName:name];
+    self.tag = tag;
+    self.showDot = showDot;
+
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name
+                         tag:(NSInteger)tag
+                    iconName:(BPKIconName)iconName
+         showNotificationDot:(BOOL)showDot {
+
+    self = [self initWithName:name tag:tag showNotificationDot:showDot];
+    self.iconName = iconName;
 
     return self;
 }
@@ -100,7 +106,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIControl *)makeItem {
-    return [[BPKHorizontalNavigationItemDefault alloc] initWithName:self.name iconName:self.iconName];
+    return [[BPKHorizontalNavigationItemDefault alloc] initWithName:self.name
+                                                           iconName:self.iconName
+                                                showNotificationDot:self.showDot];
 }
 
 @end

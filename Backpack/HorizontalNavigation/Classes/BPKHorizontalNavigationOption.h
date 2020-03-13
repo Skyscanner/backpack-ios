@@ -88,5 +88,30 @@ NS_ASSUME_NONNULL_BEGIN
 */
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
 
+/**
+* Intialize an option with a given name, tag, and icon.
+*
+* @param name The name of the option.
+* @param tag The tag of the option.
+* @param showDot send YES to show a red notification dot
+* @return A named option with a tag and a notification dot.
+*/
+- (instancetype)initWithName:(NSString *)name
+                         tag:(NSInteger)tag
+         showNotificationDot:(BOOL)showDot;
+
+/**
+* Intialize an option with a given name, tag, and icon.
+*
+* @param name The name of the option.
+* @param tag The tag of the option.
+* @param iconName The name of the icon to display.
+* @param showDot send YES to show a red notification dot
+* @return A named option with an icon, a tag and a notification dot.
+*/
+- (instancetype)initWithName:(NSString *)name
+                         tag:(NSInteger)tag
+                    iconName:(BPKIconName)iconName
+         showNotificationDot:(BOOL)showDot;
 @end
 NS_ASSUME_NONNULL_END

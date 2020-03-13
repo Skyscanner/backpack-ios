@@ -28,6 +28,7 @@ enum HorizontalNavSegueIdentifier: String {
     case wide = "Wide"
     case showExtraContent = "withScroll"
     case customItems = "customItems"
+    case notificationDot = "withNotification"
 }
 
 class HorizontalNavSelectorViewController: UITableViewController {
@@ -65,6 +66,10 @@ class HorizontalNavSelectorViewController: UITableViewController {
                 segue.destination.title = "Custom Items"
                 maybeHorizontalNavController?.useCustomItems = true
                 maybeHorizontalNavController?.showBar = false
+            case .notificationDot:
+                segue.destination.title = "With Notification Dot"
+                maybeHorizontalNavController?.showNotificationDot = true
+                maybeHorizontalNavController?.showIcons = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
