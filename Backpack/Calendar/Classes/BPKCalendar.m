@@ -223,6 +223,10 @@ NSString *const HeaderDateFormat = @"MMMM";
     }
 }
 
+- (void)setContentOffset:(CGPoint)contentOffset {
+    self.calendarView.collectionView.contentOffset = contentOffset;
+}
+
 - (NSArray<BPKSimpleDate *> *)selectedDates {
     if (self.sameDayRange) {
         NSArray<NSDate *> *dates =
