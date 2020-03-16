@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
  * by implementing a custom type that conform to this protocol you can
  * implement custom navigation items.
  *
+ * Make sure you implement `isEqual:` from `NSObject` too.
+ *
  * @see BPKHorizontalNavigationItem
  * @see BPKHorizontalNavigationOption
  */

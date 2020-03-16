@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -23,6 +22,7 @@ import Backpack
 @objc(BPKHorizontalNavigationItemWithBackground)
 public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavigationItem {
     // MARK: - BPKHorizontalNavigationItem
+
     public var size: BPKHorizontalNavigationSize = .default {
         didSet {
             updateTitle()
@@ -80,6 +80,7 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
     }
 
     // MARK: - Overrides
+
     override public var isSelected: Bool {
         didSet {
             updateStyle()
@@ -97,7 +98,18 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
         return CGSize(width: size.width + 2 * BPKSpacingBase, height: size.height)
     }
 
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+                updateStyle()
+            }
+        }
+    }
+
     // MARK: - Coder
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
