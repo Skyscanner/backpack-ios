@@ -84,20 +84,24 @@ namespace :git do
   end
 end
 
+desc "Check for build-time errors and warnings"
 task :analyze do
   sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=NO analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
+desc "Erase content and settings from all iPhone simulators"
 task :erase_devices do
   sh "pkill Simulator || xcrun simctl erase all"
 end
 
+desc "Run unit tests up to #{MAX_TEST_REPEATS} times until they pass"
 task :test do
   only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
   test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=NO | xcpretty"
   repeat_on_fail(test_command)
 end
 
+desc "Runs clang-format on all h and m files to ensure formatting is correct"
 task :lint do
   abort red "The following generated files have changed during setup:\n#{get_changed_files}" unless check_pristine
   `clang-format -i **/*.h **/*.m`
@@ -105,6 +109,7 @@ task :lint do
   sh "bundle exec pod lib lint --allow-warnings"
 end
 
+desc "Takes screenshots of all components in both light and dark mode"
 task :take_screenshots do
   # Remove existing screenshots
   FileUtils.rm_rf('screenshots')
@@ -176,8 +181,10 @@ task :release_no_checks do
   puts green("🎉 All went well. Version #{version_string} published.")
 end
 
+desc "Performs tests locally and then runs the release process"
 task release: ['git:fetch', :all_checks, :release_no_checks]
 
+desc "Build the static API docs"
 task :docs, :outputDir do |t, args|
   args.with_defaults(:outputDir => "docs")
   sh "bundle exec jazzy -o #{args.outputDir} --objc --author Backpack --umbrella-header Backpack/Backpack.h --framework-root Backpack --module Backpack --skip-undocumented --sdk iphonesimulator"
