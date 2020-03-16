@@ -28,6 +28,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     var wide: Bool = false
     var showExtraContent = false
     var useCustomItems = false
+    var showNotificationDot = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,9 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         if showIcons {
             horizontalNav.options = [
                 BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
-                BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels, tag: 1),
+                BPKHorizontalNavigationOption(name: "Hotels", tag: 1,
+                                              iconName: .hotels,
+                                              showNotificationDot: showNotificationDot),
                 BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag: 2)
             ]
         } else {

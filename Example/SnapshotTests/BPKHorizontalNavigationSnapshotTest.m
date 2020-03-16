@@ -231,6 +231,20 @@ NS_ASSUME_NONNULL_BEGIN
     return view;
 }
 
+- (UIView *)createWithNotificationDot {
+    NSArray<BPKHorizontalNavigationOption *> *options = @[
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0 showNotificationDot:YES],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1 showNotificationDot:YES],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2 showNotificationDot:YES]
+    ];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
+    horizontalNavigation.showsSelectedBar = YES;
+
+    UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
+    return view;
+}
+
 - (void)testCustomItems {
     UIView *lightView = [self createCustomItems];
     UIView *darkView = [self createCustomItems];
@@ -240,6 +254,13 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (void)testWithNotficationDot {
+    UIView *lightView = [self createWithNotificationDot];
+    UIView *darkView = [self createWithNotificationDot];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
 
 @end
 NS_ASSUME_NONNULL_END
