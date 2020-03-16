@@ -24,6 +24,7 @@
 #import <Backpack/Spacing.h>
 
 #import "BPKSnapshotTest.h"
+#import "BPKHorizontalNavigationOptionWithBackground.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKHorizontalNavigationSnapshotTest : FBSnapshotTestCase
@@ -69,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDefault {
     UIView *lightView = [self createDefault];
     UIView *darkView = [self createDefault];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -91,6 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSelectedIndex {
     UIView *lightView = [self createSelectedIndex];
     UIView *darkView = [self createSelectedIndex];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -113,6 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithoutBar {
     UIView *lightView = [self createWithoutBar];
     UIView *darkView = [self createWithoutBar];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -135,6 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithIcons {
     UIView *lightView = [self createWithIcons];
     UIView *darkView = [self createWithIcons];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -159,6 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWithTheming {
     UIView *lightView = [self createWithTheming];
     UIView *darkView = [self createWithTheming];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -181,6 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testWide {
     UIView *lightView = [self createWide];
     UIView *darkView = [self createWide];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
@@ -203,10 +210,36 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testNarrow {
     UIView *lightView = [self createNarrow];
     UIView *darkView = [self createNarrow];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
+
+- (UIView *)createCustomItems {
+    NSArray<BPKHorizontalNavigationOptionWithBackground *> *options = @[
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Car hire" tag:2]
+    ];
+
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
+    horizontalNavigation.showsSelectedBar = NO;
+
+    UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
+    return view;
+}
+
+- (void)testCustomItems {
+    UIView *lightView = [self createCustomItems];
+    UIView *darkView = [self createCustomItems];
+    darkView.backgroundColor = BPKColor.backgroundDarkColor;
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 
 @end
 NS_ASSUME_NONNULL_END

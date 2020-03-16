@@ -3,7 +3,7 @@ use_frameworks!
 
 install! 'cocoapods', disable_input_output_paths: true
 
-target 'Backpack Native' do
+target 'Backpack-Native' do
   pod 'Backpack', :path => '../'
   pod 'SwiftLint', '~> 0.31.0'
   pod 'AppCenter', '~> 2.4.0'

@@ -27,6 +27,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     var showIcons: Bool = false
     var wide: Bool = false
     var showExtraContent = false
+    var useCustomItems = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,14 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
                 BPKHorizontalNavigationOption(name: "Flights", tag: 0),
                 BPKHorizontalNavigationOption(name: "Hotels", tag: 1),
                 BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
+            ]
+        }
+
+        if useCustomItems {
+            horizontalNav.options = [
+                HorizontalNavigationOptionWithBackground(title: "Flights", tag: 0),
+                HorizontalNavigationOptionWithBackground(title: "Hotels", tag: 1),
+                HorizontalNavigationOptionWithBackground(title: "Car hire", tag: 2)
             ]
         }
 
