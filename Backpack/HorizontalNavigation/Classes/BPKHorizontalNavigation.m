@@ -274,6 +274,10 @@ NS_ASSUME_NONNULL_BEGIN
     for (id<BPKHorizontalNavigationOptionType> option in self.options) {
         UIControl<BPKHorizontalNavigationItem> *newItem = [self createHorizontalNavigationItemWithDefinition:option];
         [newItem addTarget:self action:@selector(updateSelection:) forControlEvents:UIControlEventTouchUpInside];
+        if (self.selectedColor != nil) {
+            newItem.selectedColor = self.selectedColor;
+        }
+        newItem.size = self.size;
         [self.stackView addArrangedSubview:newItem];
     }
 
