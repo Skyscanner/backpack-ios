@@ -1,25 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Breaking:**
-
-- Backpack/HorizontalNavigation
-  - `options` on `BPKHorizontalNavigation` is now an `NSArray<id<BPKHorizontalNavigationOptionType>> *` was previously `NSArray<BPKHorizontalNavigationOption *> *`.
-  - `initWithOptions:selected:` on `BPKHorizontalNavigation` now takes `NSArray<id<BPKHorizontalNavigationOptionType>> *` as its first argument rather than `NSArray<BPKHorizontalNavigationOption *> *`.
-
-**Added:**
-
-- Backpack/HorizontalNavigation
-  - Via `makeItem` in `BPKHorizontalNavigationOptionType` it's possible to provide custom rendering for the items in the horizontal navigation.
-  - New style with a red notification dot.
-- Backpack/Calendar
-  - Via `contentOffset` in `BPKCalendar` it's possible to modify the underlying collection view's content offset.
-
-**Fixed:**
-
-- Backpack/Calendar
-  - Calendar now doesn't snap to month name when its height changes.
-  - Calendar range selection colours have been aligned to other platforms.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
