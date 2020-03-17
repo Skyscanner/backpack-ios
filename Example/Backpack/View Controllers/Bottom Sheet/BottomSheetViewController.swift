@@ -25,6 +25,7 @@ final class BottomSheetViewController: UITableViewController {
     @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
     @IBOutlet var sheetPresentingSheet: UITableViewCell!
     @IBOutlet var nonScrollableContentBottomSheet: UITableViewCell!
+    @IBOutlet var resizableContentBottomSheet: UITableViewCell!
     
 }
 
@@ -103,10 +104,22 @@ extension BottomSheetViewController {
             sheet.present(in: self, animated: true, completion: nil)
         case nonScrollableContentBottomSheet:
             guard let content = BottomSheetContentViewController.make() else { return }
-            
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
             
             let sheet = BottomSheet(contentViewController: wrappedContent)
+            sheet.present(in: self, animated: true)
+        case resizableContentBottomSheet:
+            guard let content = BottomSheetResizableContentViewController.make() else { return }
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+            
+            let sheet = BottomSheet(contentViewController: wrappedContent)
+            
+            content.contentDidUpdateConstraints = {
+                UIView.animate(withDuration: 0.3) {
+                    sheet.updateLayout()
+                }
+            }
+            
             sheet.present(in: self, animated: true)
         default: break
         }

@@ -147,6 +147,13 @@ public final class BottomSheet: NSObject {
         floatingPanelController.move(to: .half, animated: true)
         bottomSheet.present(in: floatingPanelController, animated: animated, completion: completion)
     }
+    
+    /// Forces the bottom sheet layout to be updated.
+    /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
+    /// and bottom sheet needs to be resized to fit the content.
+    public func updateLayout() {
+        floatingPanelController.updateLayout()
+    }
 
 }
 
