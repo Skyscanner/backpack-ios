@@ -1,7 +1,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 27.0.1
+
+**Fixed:**
+
+- Backpack/HorizontalNavigation
+  - HorizontalNavigation now applies its color and size to changed options.
+
+- Backpack/Icon:
+  - Updated hotels icon.
+
 ## 27.0.0
+
 **Breaking:**
 
 - Backpack/HorizontalNavigation
