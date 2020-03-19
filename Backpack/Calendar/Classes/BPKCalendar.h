@@ -151,7 +151,6 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
  */
 NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
 
-
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *dateSelectedContentColor UI_APPEARANCE_SELECTOR;
 
@@ -242,6 +241,11 @@ NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
  * Reloads all dates displayed in the receiver.
  */
 - (void)reloadData;
+
+/**
+ * Refreshes the UI of every visible cell.
+ */
+- (void)refreshDateAppearance;
 
 @end
 NS_ASSUME_NONNULL_END
