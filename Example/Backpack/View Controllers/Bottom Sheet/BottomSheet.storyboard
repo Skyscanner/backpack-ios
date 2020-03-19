@@ -87,6 +87,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="fA3-FI-eQM" style="IBUITableViewCellStyleDefault" id="dsR-v5-hu5">
+                                        <rect key="frame" x="0.0" y="150" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dsR-v5-hu5" id="R7E-ou-BOM">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Bottom Sheet with a resizable content height" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fA3-FI-eQM" customClass="BPKLabel">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -99,6 +116,7 @@
                     <connections>
                         <outlet property="bottomSectionBottomSheet" destination="HER-cm-gYJ" id="bYv-kT-cOO"/>
                         <outlet property="nonScrollableContentBottomSheet" destination="EqG-Sx-odO" id="qZF-Wx-01Q"/>
+                        <outlet property="resizableContentBottomSheet" destination="dsR-v5-hu5" id="zBU-RR-r8w"/>
                         <outlet property="scrollViewBottomSheet" destination="0Ol-zf-yKy" id="Bna-Fu-MLo"/>
                         <outlet property="sheetPresentingSheet" destination="cne-nF-KUb" id="9X8-dk-HDa"/>
                     </connections>
@@ -116,10 +134,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lx-mt-Lpe" customClass="BPKLabel">
-                                <rect key="frame" x="16" y="60" width="382" height="786"/>
-                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id imperdiet nibh. Donec consequat dui justo, ac pharetra felis vehicula ac. Suspendisse finibus gravida scelerisque. Integer elementum massa id elit eleifend viverra. Sed sit amet tortor tellus. Curabitur a lectus risus. Cras eget aliquam tellus. Nam molestie eu quam a rhoncus. Nam aliquet felis non facilisis vestibulum.
+                                <rect key="frame" x="16" y="78" width="382" height="768"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id imperdiet nibh. Donec consequat dui justo, ac pharetra felis vehicula ac. Suspendisse finibus gravida scelerisque. Integer elementum massa id elit eleifend viverra. Sed sit amet tortor tellus. Curabitur a lectus risus. Cras eget aliquam tellus. Nam molestie eu quam a rhoncus. Nam aliquet felis non facilisis vestibulum.
 
-Mauris pharetra magna sit amet ipsum dictum imperdiet. Aenean vitae luctus est. Integer lectus tellus, tincidunt quis commodo eget, feugiat non leo. Fusce congue rhoncus ipsum in tristique. Etiam dolor dolor, accumsan a ex in, fermentum consequat lorem. Proin eu sodales neque. Phasellus sodales diam vel odio euismod, a lobortis sem ultricies. Praesent in mi ex. Ut eu enim vitae augue tempus mattis. Etiam lacus dui, laoreet sit amet pulvinar finibus, placerat nec odio. Nam a dictum diam. Cras sagittis elit ut lorem consectetur, sed tristique massa faucibus. Aliquam sed nisl id nisl consectetur congue ut id risus.</mutableString>
+Mauris pharetra magna sit amet ipsum dictum imperdiet. Aenean vitae luctus est. Integer lectus tellus, tincidunt quis commodo eget, feugiat non leo. Fusce congue rhoncus ipsum in tristique. Etiam dolor dolor, accumsan a ex in, fermentum consequat lorem. Proin eu sodales neque. Phasellus sodales diam vel odio euismod, a lobortis sem ultricies. Praesent in mi ex. Ut eu enim vitae augue tempus mattis. Etiam lacus dui, laoreet sit amet pulvinar finibus, placerat nec odio. Nam a dictum diam. Cras sagittis elit ut lorem consectetur, sed tristique massa faucibus. Aliquam sed nisl id nisl consectetur congue ut id risus.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -138,6 +156,51 @@ Mauris pharetra magna sit amet ipsum dictum imperdiet. Aenean vitae luctus est. 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tuu-ZL-aO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1099" y="252"/>
+        </scene>
+        <!--Bottom Sheet Resizable Content View Controller-->
+        <scene sceneID="Uz8-bU-0vF">
+            <objects>
+                <viewController storyboardIdentifier="BottomSheetResizableContentViewController" id="mZx-3T-w2y" customClass="BottomSheetResizableContentViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FOp-DV-xW7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZb-fi-o1d">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZF-1k-mJe" customClass="BPKButton">
+                                        <rect key="frame" x="184" y="394" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="didClickButton:" destination="mZx-3T-w2y" eventType="touchUpInside" id="myH-1X-46o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="818" id="5ve-1c-eig"/>
+                                    <constraint firstItem="mZF-1k-mJe" firstAttribute="centerX" secondItem="WZb-fi-o1d" secondAttribute="centerX" id="NyV-pG-ATf"/>
+                                    <constraint firstItem="mZF-1k-mJe" firstAttribute="centerY" secondItem="WZb-fi-o1d" secondAttribute="centerY" id="kb9-cf-PGN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WZb-fi-o1d" firstAttribute="top" secondItem="0me-wm-Tja" secondAttribute="top" id="BNy-Qe-1uj"/>
+                            <constraint firstItem="0me-wm-Tja" firstAttribute="bottom" secondItem="WZb-fi-o1d" secondAttribute="bottom" id="DGp-7g-WO2"/>
+                            <constraint firstItem="WZb-fi-o1d" firstAttribute="leading" secondItem="FOp-DV-xW7" secondAttribute="leadingMargin" constant="-20" id="ZaL-JK-L32"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WZb-fi-o1d" secondAttribute="trailing" constant="-20" id="sld-d4-Jvg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0me-wm-Tja"/>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="mZF-1k-mJe" id="cEQ-X4-Ujy"/>
+                        <outlet property="heightConstraint" destination="5ve-1c-eig" id="tw9-mg-JGh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfy-d9-N31" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098.5507246376812" y="930.80357142857133"/>
         </scene>
         <!--Bottom Sheet Scrollable Content View Controller-->
         <scene sceneID="jeq-fo-b4J">
