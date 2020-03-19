@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+- Backpack/Calendar
+  - Added method `refreshDateAppearance` for refreshing the appearance of every calendar cell.
 
 **Added:**
 

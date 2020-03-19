@@ -278,6 +278,10 @@ NSString *const HeaderDateFormat = @"MMMM";
     [self.calendarView reloadData];
 }
 
+- (void)refreshDateAppearance {
+    [self invalidateVisibleCellsIfNeeded];
+}
+
 #pragma mark - <FSCalendarDataSource>
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar
@@ -458,7 +462,6 @@ NSString *const HeaderDateFormat = @"MMMM";
             return [self.delegate calendar:self titleColorForDate:date];
 #pragma clang diagnoastic pop
         }
-
 
         return self.appearance.titleDefaultColor;
     }
