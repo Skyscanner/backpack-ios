@@ -7,8 +7,6 @@
 - Backpack/Calendar
   - Added method `refreshDateAppearance` for refreshing the appearance of every calendar cell.
 
-**Added:**
-
 - Backpack/BottomSheet:
   - New `updateLayout` API for forcing layout refresh on the bottom sheet. Useful, for example, to update bottom sheet size according to content size changes.
 
