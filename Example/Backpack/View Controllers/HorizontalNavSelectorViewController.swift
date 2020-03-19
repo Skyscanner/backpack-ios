@@ -29,9 +29,11 @@ enum HorizontalNavSegueIdentifier: String {
     case showExtraContent = "withScroll"
     case customItems = "customItems"
     case notificationDot = "withNotification"
+    case badge = "withBadge"
 }
 
 class HorizontalNavSelectorViewController: UITableViewController {
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let maybeHorizontalNavController = segue.destination as? HorizontalNavViewController
 
@@ -70,6 +72,9 @@ class HorizontalNavSelectorViewController: UITableViewController {
                 segue.destination.title = "With Notification Dot"
                 maybeHorizontalNavController?.showNotificationDot = true
                 maybeHorizontalNavController?.showIcons = true
+            case .badge:
+                segue.destination.title = "With Badge"
+                maybeHorizontalNavController?.useItemWithBadge = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

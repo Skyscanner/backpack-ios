@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2020 Skyscanner Ltd
+ * Copyright © 2020 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +16,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_HORIZONTAL_NAVIGATION__
-#define __BACKPACK_HORIZONTAL_NAVIGATION__
 
-#import "BPKHorizontalNavigation.h"
-#import "BPKHorizontalNavigationDelegate.h"
-#import "BPKHorizontalNavigationOption.h"
-#import "BPKHorizontalNavigationOptionType.h"
-#import "BPKHorizontalNavigationSize.h"
-#import "BPKHorizontalNavigationOptionWithBadge.h"
+#import <Foundation/Foundation.h>
+#import <Backpack/BPKHorizontalNavigationOptionType.h>
 
-#endif
+@class BPKBadge;
+
+NS_ASSUME_NONNULL_BEGIN
+
+NS_SWIFT_NAME(HorizontalNavigationOptionWithBadge)
+@interface BPKHorizontalNavigationOptionWithBadge : NSObject<BPKHorizontalNavigationOptionType>
+
+- (instancetype)initWithTitle:(NSString *)title badgeMessage:(NSString *)badgeMessage tag:(NSInteger)tag;
+
+@end
+
+NS_ASSUME_NONNULL_END

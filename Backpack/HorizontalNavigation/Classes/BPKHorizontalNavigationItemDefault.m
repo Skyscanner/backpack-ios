@@ -20,6 +20,7 @@
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/RTLSupport.h>
 #import <Backpack/Spacing.h>
 
@@ -219,6 +220,17 @@ NS_ASSUME_NONNULL_BEGIN
 
         [self addSubview:_notificationDot];
     }
+}
+
+- (void)traitCollectionDidChange:(nullable UITraitCollection*)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+            [self updateIconStyle];
+        }
+    }
+#endif
 }
 
 @end

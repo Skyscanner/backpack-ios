@@ -29,6 +29,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     var showExtraContent = false
     var useCustomItems = false
     var showNotificationDot = false
+    var useItemWithBadge = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,14 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
                 HorizontalNavigationOptionWithBackground(title: "Flights", tag: 0),
                 HorizontalNavigationOptionWithBackground(title: "Hotels", tag: 1),
                 HorizontalNavigationOptionWithBackground(title: "Car hire", tag: 2)
+            ]
+        }
+
+        if useItemWithBadge {
+            horizontalNav.options = [
+                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
+                HorizontalNavigationOptionWithBadge(title: "Hotels", badgeMessage: "NEW", tag: 1),
+                BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
             ]
         }
 
