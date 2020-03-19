@@ -160,6 +160,12 @@ const parseColor = color => {
   };
 };
 
+const parseToken = token => {
+  let tokenName = token.split('!')[1].split('}')[0];
+  tokenName = _.camelCase(tokenName);
+  return tokenName;
+};
+
 const convertFontWeight = weightString => {
   const weight = WEIGHT_MAP[weightString.trim()];
 
@@ -183,15 +189,25 @@ const isDynamicColor = entity => entity.value && entity.darkValue;
 const parseTokens = tokensData => {
   const dynamicColors = _.chain(tokensData.properties)
     .filter(entity => entity.type === 'color' && isDynamicColor(entity))
-    .map(({ value, darkValue, name, type, ...rest }) => ({
-      value: parseColor(value),
-      darkValue: parseColor(darkValue),
-      name: name[0].toLowerCase() + name.slice(1),
-      hex: value.toString(),
-      darkHex: darkValue.toString(),
-      type: 'dynamicColor',
-      ...rest,
-    }))
+    .map(
+      ({
+        value,
+        originalValue,
+        darkValue,
+        originalDarkValue,
+        name,
+        type,
+        ...rest
+      }) => ({
+        value: parseToken(originalValue),
+        darkValue: parseToken(originalDarkValue),
+        name: name[0].toLowerCase() + name.slice(1),
+        hex: value.toString(),
+        darkHex: darkValue.toString(),
+        type: 'dynamicColor',
+        ...rest,
+      }),
+    )
     .value();
 
   const colors = _.chain(tokensData.properties)

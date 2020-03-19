@@ -32,9 +32,7 @@
 {% endfor %}
 {% for c in dynamicColor %}
 + (UIColor *){{c.name}} {
-    return [[self class] dynamicColorWithLightVariant: [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}]
-                                          darkVariant: [UIColor colorWithRed:{{c.darkValue.r}} green:{{c.darkValue.g}} blue:{{c.darkValue.b}} alpha:{{c.darkValue.a}}]
-    ];
+    return [[self class] dynamicColorWithLightVariant:self.class.{{c.value}} darkVariant:self.class.{{c.darkValue}}];
 }
 {% endfor %}
 + (UIColor *)clear {
