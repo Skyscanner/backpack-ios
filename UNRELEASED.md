@@ -1,13 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Added:**
-- Backpack/Calendar
-  - Added method `refreshDateAppearance` for refreshing the appearance of every calendar cell.
-
-**Added:**
-
-- Backpack/BottomSheet:
-  - New `updateLayout` API for forcing layout refresh on the bottom sheet. Useful, for example, to update bottom sheet size according to content size changes.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

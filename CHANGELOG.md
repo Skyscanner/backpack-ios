@@ -1,6 +1,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+## 27.1.0
+
+**Added:**
+- Backpack/Calendar
+  - Added method `refreshDateAppearance` for refreshing the appearance of every calendar cell.
+
+**Added:**
+
+- Backpack/BottomSheet:
+  - New `updateLayout` API for forcing layout refresh on the bottom sheet. Useful, for example, to update bottom sheet size according to content size changes.
+
 ## 27.0.1
 
 **Fixed:**
