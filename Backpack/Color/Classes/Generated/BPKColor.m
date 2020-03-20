@@ -270,10 +270,6 @@
     return [UIColor colorWithRed:0.027 green:0.439 blue:0.890 alpha:1];
 }
 
-+ (UIColor *)secondaryDarkColor {
-    return [UIColor colorWithRed:0.427 green:0.624 blue:0.922 alpha:1];
-}
-
 + (UIColor *)shadowLgColor {
     return [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
 }
