@@ -460,13 +460,6 @@ NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
 @property(nonatomic, class, readonly) UIColor * primaryLightColor;
 
 /**
- * The `secondaryDarkColor` color from the Backpack palette - rgb(109, 159, 235).
- *
- * <div style="width: 100px; height: 100px; background: #6d9febff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * secondaryDarkColor;
-
-/**
  * The `shadowLgColor` color from the Backpack palette - rgb(17, 18, 54).
  *
  * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
