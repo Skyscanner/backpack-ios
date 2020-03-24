@@ -140,5 +140,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.masksToBounds = YES;
 }
 
+- (void)changeContentColor:(UIColor *)color {
+    if (self.type == BPKBadgeTypeOutline) {
+        self.backgroundColor = BPKColor.clear;
+        self.layer.borderColor = color.CGColor;
+        self.label.textColor = color;
+    }
+}
+
 @end
 NS_ASSUME_NONNULL_END

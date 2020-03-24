@@ -262,5 +262,27 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (UIView *)createWithBadge {
+    NSArray<id<BPKHorizontalNavigationOptionType>> *options = @[
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" iconName:BPKIconNameFlight tag:0],
+        [[BPKHorizontalNavigationOptionWithBadge alloc] initWithTitle:@"Hotels" badgeMessage:@"NEW" tag:1],
+        [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Car hire" tag:2]
+    ];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
+    horizontalNavigation.showsSelectedBar = YES;
+
+    UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
+    return view;
+}
+
+- (void)testWithBadge {
+    UIView *lightView = [self createWithBadge];
+    UIView *darkView = [self createWithBadge];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END
