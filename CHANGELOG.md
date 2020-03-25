@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 28.0.0
+
+**Breaking:**
+- Backpack/Color:
+  - Removed `secondaryDarkColor`.
+
+**Added:**
+- Backpack/HorizontalNavigation
+  - There's a new `BPKHorizontalNavigationOptionWithBadge` which it could be used to create a new section with a title and a badge.
+
 ## 27.1.0
 
 **Added:**
