@@ -25,7 +25,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
     var maxEnabledDate: Bool = false
     var customStylesForDates = false
     var currentMaxEnabledDate: Date?
-    @IBOutlet weak var myView: Backpack.Calendar!
+    @IBOutlet weak var myView: BPKCalendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
 
     // Pragma mark: CalendarDelegate
 
-    func calendar(_ calendar: Backpack.Calendar, didChangeDateSelection dateList: [SimpleDate]) {
+    func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [SimpleDate]) {
         print("calendar:", calendar, "didChangeDateSelection:", dateList)
 
         if self.maxEnabledDate {
@@ -64,12 +64,12 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         }
     }
 
-    func calendar(_ calendar: Backpack.Calendar, didScroll contentOffset: CGPoint) {
+    func calendar(_ calendar: BPKCalendar, didScroll contentOffset: CGPoint) {
         print("calendar:", calendar, "didScroll:", contentOffset, "isTracking:", calendar.isTracking)
     }
 
     // Disables dates that are > 1 month ahead of the selected date.
-    func calendar(_ calendar: Backpack.Calendar, isDateEnabled: Date) -> Bool {
+    func calendar(_ calendar: BPKCalendar, isDateEnabled: Date) -> Bool {
         if self.currentMaxEnabledDate == nil {
             return true
         }
@@ -81,7 +81,7 @@ class CalendarViewController: UIViewController, CalendarDelegate {
         return true
     }
 
-    func calendar(_ calendar: Backpack.Calendar, cellStyleFor date: SimpleDate) -> BPKCalendarDateCellStyle {
+    func calendar(_ calendar: BPKCalendar, cellStyleFor date: SimpleDate) -> BPKCalendarDateCellStyle {
         if !customStylesForDates {
             return .normal
         }

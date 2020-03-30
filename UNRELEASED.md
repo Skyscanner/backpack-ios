@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Breaking:**
+ - Backpack/Calendar:
+   - We've renamed `Calendar` to `BPKCalendar` in Swift to prevent ambiguous type name errors.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
