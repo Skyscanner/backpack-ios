@@ -20,43 +20,43 @@ import UIKit
 import Backpack
 
 class ColorPreviewCollectionViewCell: UICollectionViewCell {
-    @objc dynamic var primaryColor: UIColor = Color.skyBlue {
+    @objc dynamic var primaryColor: UIColor = BPKColor.skyBlue {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGrayTint07: UIColor = Color.skyGrayTint07 {
+    @objc dynamic var skyGrayTint07: UIColor = BPKColor.skyGrayTint07 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGrayTint06: UIColor = Color.skyGrayTint06 {
+    @objc dynamic var skyGrayTint06: UIColor = BPKColor.skyGrayTint06 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGrayTint04: UIColor = Color.skyGrayTint04 {
+    @objc dynamic var skyGrayTint04: UIColor = BPKColor.skyGrayTint04 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGrayTint02: UIColor = Color.skyGrayTint02 {
+    @objc dynamic var skyGrayTint02: UIColor = BPKColor.skyGrayTint02 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGrayTint01: UIColor = Color.skyGrayTint01 {
+    @objc dynamic var skyGrayTint01: UIColor = BPKColor.skyGrayTint01 {
         didSet {
             updateBackgroundColor()
         }
     }
 
-    @objc dynamic var skyGray: UIColor = Color.skyGray {
+    @objc dynamic var skyGray: UIColor = BPKColor.skyGray {
         didSet {
             updateBackgroundColor()
         }
@@ -74,11 +74,11 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     private let colorView: UIView
-    private let label: Backpack.Label
+    private let label: BPKLabel
 
     override init(frame: CGRect) {
         self.colorView = UIView(frame: CGRect.zero)
-        self.label = Backpack.Label(fontStyle: .textSm)
+        self.label = BPKLabel(fontStyle: .textSm)
         label.numberOfLines = 2
 
         super.init(frame: frame)
@@ -92,19 +92,19 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     func updateBackgroundColor () {
         switch color {
-        case Color.skyBlue:
+        case BPKColor.skyBlue:
             colorView.backgroundColor = primaryColor
-        case Color.skyGrayTint07:
+        case BPKColor.skyGrayTint07:
             colorView.backgroundColor = skyGrayTint07
-        case Color.skyGrayTint06:
+        case BPKColor.skyGrayTint06:
             colorView.backgroundColor = skyGrayTint06
-        case Color.skyGrayTint04:
+        case BPKColor.skyGrayTint04:
             colorView.backgroundColor = skyGrayTint04
-        case Color.skyGrayTint02:
+        case BPKColor.skyGrayTint02:
             colorView.backgroundColor = skyGrayTint02
-        case Color.skyGrayTint01:
+        case BPKColor.skyGrayTint01:
             colorView.backgroundColor = skyGrayTint01
-        case Color.skyGray:
+        case BPKColor.skyGray:
             colorView.backgroundColor = skyGray
         default:
             colorView.backgroundColor = color
@@ -112,7 +112,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     public static func estimatedSize() -> CGSize {
-        let mockLabel = Backpack.Label(fontStyle: BPKFontStyle.textBase)
+        let mockLabel = BPKLabel(fontStyle: BPKFontStyle.textBase)
         mockLabel.text = "color"
         mockLabel.sizeToFit()
 
@@ -144,7 +144,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
         ])
 
         colorView.layer.cornerRadius = BPKBorderRadiusSm
-        let shadow = Backpack.Shadow.shadowSm()
+        let shadow = BPKShadow.shadowSm()
         shadow.apply(to: colorView.layer)
     }
 }

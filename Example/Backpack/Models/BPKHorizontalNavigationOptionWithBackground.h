@@ -23,7 +23,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(HorizontalNavigationOptionWithBackground)
 @interface BPKHorizontalNavigationOptionWithBackground : NSObject<BPKHorizontalNavigationOptionType>
 - (instancetype)initWithTitle:(NSString *)title tag:(NSInteger)tag;
 

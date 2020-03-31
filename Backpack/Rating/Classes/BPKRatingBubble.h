@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKRatingBubble` is a subclass of `UIView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(RatingBubble) IB_DESIGNABLE @interface BPKRatingBubble : UIView
+IB_DESIGNABLE @interface BPKRatingBubble : UIView
 
 /**
  * The rating value

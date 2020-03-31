@@ -25,7 +25,7 @@ class NavigationBarViewController: UIViewController {
     private static let CellIdentifier = "CellIdentifier"
 
     @IBOutlet weak var navigationButton: UIButton!
-    @IBOutlet weak var navigationBar: NavigationBar!
+    @IBOutlet weak var navigationBar: BPKNavigationBar!
     @IBOutlet weak var tableView: UITableView!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +55,7 @@ class NavigationBarViewController: UIViewController {
             // Right button setup
             navigationBar.rightButton.isHidden = false
             navigationBar.rightButton.title = "Done"
-            navigationBar.rightButton.setImage(Icon.makeTemplateIcon(name: .tickCircle, size: .small))
+            navigationBar.rightButton.setImage(BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small))
             navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         }
 

@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDismissCause) {
     BPKSnackbarDismissCauseDuration
 };
 
-NS_SWIFT_NAME(SnackbarProtocol) @protocol BPKSnackbarProtocol
+@protocol BPKSnackbarProtocol
 
 - (void)snackbarDismissed:(BPKSnackbar *)snackbar cause:(BPKSnackbarDismissCause)cause;
 

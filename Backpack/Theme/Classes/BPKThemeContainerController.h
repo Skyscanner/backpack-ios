@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  * rendered inside a container. By leveraging the container relationship consumers can use
  * `UIAppearance` to alter the look of all views rendered within the container.
  */
-NS_SWIFT_NAME(ThemeContainerController) @interface BPKThemeContainerController : BPKContainerController
+@interface BPKThemeContainerController : BPKContainerController
 
 /**
  * Create an instance with a given theme and root view controller.

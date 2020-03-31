@@ -24,7 +24,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(HorizontalNavigationOptionWithBadge)
 @interface BPKHorizontalNavigationOptionWithBadge : NSObject<BPKHorizontalNavigationOptionType>
 
 - (instancetype)initWithTitle:(NSString *)title badgeMessage:(NSString *)badgeMessage tag:(NSInteger)tag;

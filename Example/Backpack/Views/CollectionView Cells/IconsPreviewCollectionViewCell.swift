@@ -21,16 +21,16 @@ import Backpack
 
 class IconsPreviewCollectionViewCell: UICollectionViewCell {
 
-    var icon: IconName? {
+    var icon: BPKIconName? {
         didSet {
             imageView.iconName = icon
         }
     }
 
-    private let imageView: Backpack.IconView
+    private let imageView: BPKIconView
 
     override init(frame: CGRect) {
-        self.imageView = Backpack.IconView(iconName: nil, size: .large)
+        self.imageView = BPKIconView(iconName: nil, size: .large)
 
         super.init(frame: frame)
 
@@ -42,7 +42,7 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     public static func estimatedSize() -> CGSize {
-        return Backpack.Icon.concreteSize(forSize: .large)
+        return BPKIcon.concreteSize(forSize: .large)
     }
 
     // MARK: private
@@ -52,7 +52,7 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: Backpack.Icon.concreteSize(forSize: .large).width),
+            imageView.widthAnchor.constraint(equalToConstant: BPKIcon.concreteSize(forSize: .large).width),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
             imageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: BPKSpacingSm),

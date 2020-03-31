@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKSpinner` is a subclass of `UIActivityIndicatorView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Spinner) IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
+IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
 
 /**
  * Style of the spinner

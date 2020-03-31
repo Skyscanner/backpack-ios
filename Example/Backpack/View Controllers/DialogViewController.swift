@@ -32,10 +32,10 @@ enum DialogType {
 }
 
 class DialogViewController: UIViewController {
-    @IBOutlet weak var showButton: Backpack.Button!
+    @IBOutlet weak var showButton: BPKButton!
     var type: DialogType = .normal
 
-    @IBAction func show(_ sender: Backpack.Button) {
+    @IBAction func show(_ sender: BPKButton) {
         switch type {
         case .normal:
             showNormal()
@@ -62,19 +62,19 @@ class DialogViewController: UIViewController {
                         This is a floating style dialog, usually used for prompting users during the onboarding flow.
                         Now you can use this variation with no title.
                         """
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
-        let dialogController = DialogController(title: nil,
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
+        let dialogController = BPKDialogController(title: nil,
                                                 message: message,
                                                 style: .alert,
                                                 iconDefinition: iconDefinition)
-        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
-        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+        let skipAction = BPKDialogButtonAction(title: "Skip", style: .secondary) {
             print("Skip was tapped, action: \($0)")
         }
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: true)
         dialogController.addButtonAction(mainAction)
@@ -85,16 +85,16 @@ class DialogViewController: UIViewController {
 
     func showNoIconNoTitle() {
         let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
-        let dialogController  = DialogController(title: nil,
+        let dialogController  = BPKDialogController(title: nil,
                                                  message: message,
                                                  style: .bottomSheet,
                                                  iconDefinition: nil)
 
-        let mainAction = DialogButtonAction(title: "Got it", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Got it", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: false)
 
@@ -106,17 +106,17 @@ class DialogViewController: UIViewController {
 
     func showNoIcon() {
         let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
-        let dialogController  = DialogController(title: "Welcome!",
+        let dialogController  = BPKDialogController(title: "Welcome!",
                                                 message: message,
                                                 style: .bottomSheet,
                                                 iconDefinition: nil)
         dialogController.cornerStyle = .large
 
-        let mainAction = DialogButtonAction(title: "Got it", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Got it", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: false)
 
@@ -128,22 +128,22 @@ class DialogViewController: UIViewController {
 
     func showNormal() {
         let message = "Your flight is all booked. Why not check out some hotels now?"
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
 
-        let dialogController  = DialogController(title: "You are going to Tokyo!",
+        let dialogController  = BPKDialogController(title: "You are going to Tokyo!",
                                                  message: message,
                                                  style: .alert,
                                                  iconDefinition: iconDefinition)
 
-        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
-        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+        let skipAction = BPKDialogButtonAction(title: "Skip", style: .secondary) {
             print("Skip was tapped, action: \($0)")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: true)
 
@@ -166,21 +166,21 @@ class DialogViewController: UIViewController {
             """
         let title = "You are going to Tokyo! With a very long title " +
                     "spanning multiple lines and eventually being trauncated"
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
-        let dialogController  = DialogController(title: title,
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
+        let dialogController  = BPKDialogController(title: title,
                                                  message: message,
                                                  style: .alert,
                                                  iconDefinition: iconDefinition)
 
-        let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
-        let skipAction = DialogButtonAction(title: "Skip", style: .secondary) {
+        let skipAction = BPKDialogButtonAction(title: "Skip", style: .secondary) {
             print("Skip was tapped, action: \($0)")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: true)
 
@@ -193,24 +193,24 @@ class DialogViewController: UIViewController {
 
     func showInAppMessaging() {
         let message = "The design system provides a single source of truth for the design language used at Skyscanner."
-        let flareView = FlareView(frame: .zero)
-        let dialogController  = DialogController(title: "What is Backpack?",
+        let flareView = BPKFlareView(frame: .zero)
+        let dialogController  = BPKDialogController(title: "What is Backpack?",
                                                  message: message,
                                                  style: .alert,
                                                  iconDefinition: nil,
                                                  flareView: flareView)
         dialogController.cornerStyle = .large
         dialogController.buttonSize = .default
-        flareView.backgroundView.backgroundColor = Color.primaryColor
+        flareView.backgroundView.backgroundColor = BPKColor.primaryColor
 
-        let mainAction = DialogButtonAction(title: "Got it!", style: .primary) {
+        let mainAction = BPKDialogButtonAction(title: "Got it!", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
-        let skipAction = DialogButtonAction(title: "Whatev's", style: .link) {
+        let skipAction = BPKDialogButtonAction(title: "Whatev's", style: .link) {
             print("Skip was tapped, action: \($0)")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             print("Scrim tap \(didDismiss ? "dimissing" : "")")
         }, shouldDismiss: true)
 
@@ -233,14 +233,14 @@ class DialogViewController: UIViewController {
 
         Safe travels!
         """
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.monteverde)
-        let alertController = DialogController(title: "You're almost ready to pack your bags!",
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
+        let alertController = BPKDialogController(title: "You're almost ready to pack your bags!",
                                                message: message,
                                                style: .bottomSheet,
                                                iconDefinition: iconDefinition)
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
 
@@ -251,18 +251,18 @@ class DialogViewController: UIViewController {
 
     func showWarning() {
         let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .lightning, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.kolkata)
-        let alertController = DialogController(title: "!#$Warning-0-1!#$#$?",
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .lightning, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.kolkata)
+        let alertController = BPKDialogController(title: "!#$Warning-0-1!#$#$?",
                                                message: message,
                                                style: .alert,
                                                iconDefinition: iconDefinition)
 
-        let mainAction = DialogButtonAction(title: "OK", style: .primary) { _ in
+        let mainAction = BPKDialogButtonAction(title: "OK", style: .primary) { _ in
             NSLog("Primary tapped")
         }
 
-        let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: true)
 
@@ -273,22 +273,22 @@ class DialogViewController: UIViewController {
     }
 
     func showDelete() {
-        let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .trash, size: .large)
-        let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.panjin)
-        let alertController = DialogController(title: "Delete?",
+        let iconTemplate = BPKIcon.makeTemplateIcon(name: .trash, size: .large)
+        let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.panjin)
+        let alertController = BPKDialogController(title: "Delete?",
                                                message: "Are you sure you would like to delete your avatar?",
                                                style: .bottomSheet,
                                                iconDefinition: iconDefinition)
 
-        let mainAction = DialogButtonAction(title: "Delete", style: .destructive) { _ in
+        let mainAction = BPKDialogButtonAction(title: "Delete", style: .destructive) { _ in
             NSLog("Primary tapped")
         }
 
-        let cancelAction = DialogButtonAction(title: "Cancel", style: .secondary) { _ in
+        let cancelAction = BPKDialogButtonAction(title: "Cancel", style: .secondary) { _ in
 
         }
 
-        let faderAction = DialogScrimAction(handler: { (didDismiss) in
+        let faderAction = BPKDialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
         }, shouldDismiss: false)
 

@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(SilverTheme) @interface BPKSilverTheme : NSObject<BPKThemeDefinition>
+@interface BPKSilverTheme : NSObject<BPKThemeDefinition>
 
 @end
 

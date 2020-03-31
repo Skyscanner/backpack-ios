@@ -24,7 +24,7 @@ enum GradientType {
 }
 
 class GradientViewController: UIViewController {
-    @IBOutlet weak var gradientView: Backpack.GradientView!
+    @IBOutlet weak var gradientView: BPKGradientView!
     var gradientType: GradientType = .baselineScrim
 
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class GradientViewController: UIViewController {
 
         switch gradientType {
         case .baselineScrim:
-            self.gradientView.gradient = Backpack.Gradient.baselineScrim()
+            self.gradientView.gradient = BPKGradient.baselineScrim()
         }
     }
 }

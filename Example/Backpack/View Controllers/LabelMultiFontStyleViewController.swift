@@ -21,7 +21,7 @@ import Backpack
 
 class LabelMultiFontStyleViewController: UIViewController {
 
-    @IBOutlet weak var label: Label!
+    @IBOutlet weak var label: BPKLabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

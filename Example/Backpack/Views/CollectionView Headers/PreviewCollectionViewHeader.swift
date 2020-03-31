@@ -26,10 +26,10 @@ class PreviewCollectionViewHeader: UICollectionReusableView {
         }
     }
 
-    private let label: Backpack.Label
+    private let label: BPKLabel
 
     override init(frame: CGRect) {
-        self.label = Backpack.Label(fontStyle: .textXlEmphasized)
+        self.label = BPKLabel(fontStyle: .textXlEmphasized)
 
         super.init(frame: frame)
 
@@ -41,7 +41,7 @@ class PreviewCollectionViewHeader: UICollectionReusableView {
     }
 
     public static func referenceSize(collectionView: UICollectionView, text: String) -> CGSize {
-        let mockLabel = Backpack.Label(fontStyle: .textLgEmphasized)
+        let mockLabel = BPKLabel(fontStyle: .textLgEmphasized)
         mockLabel.text = text
         mockLabel.sizeToFit()
 

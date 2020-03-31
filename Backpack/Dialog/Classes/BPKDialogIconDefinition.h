@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * An object that represents the icon displayed atop a dialog.
  */
-NS_SWIFT_NAME(DialogIconDefinition)
 @interface BPKDialogIconDefinition : NSObject
 
 /**

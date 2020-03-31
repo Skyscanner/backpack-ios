@@ -5,7 +5,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(BackpackFontManager)
 @interface BPKFontManager : NSObject
 
 @property(nullable, nonatomic) id<BPKFontDefinitionProtocol> fontDefinition;

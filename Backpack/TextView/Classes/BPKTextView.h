@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKTextView` is a subclass of `UITextView` which uses the Skyscanner style.
  */
-NS_SWIFT_NAME(TextView) IB_DESIGNABLE @interface BPKTextView : UITextView
+IB_DESIGNABLE @interface BPKTextView : UITextView
 
 /**
  * Create a `BPKTextView` with a specific BPKFont style.

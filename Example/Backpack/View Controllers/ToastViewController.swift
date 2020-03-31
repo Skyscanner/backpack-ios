@@ -27,10 +27,10 @@ enum ToastType {
 }
 
 class ToastViewController: UIViewController {
-    @IBOutlet weak var showButton: Backpack.Button!
+    @IBOutlet weak var showButton: BPKButton!
     var type: ToastType = .defaultToast
 
-    @IBAction func show(_ sender: Backpack.Button) {
+    @IBAction func show(_ sender: BPKButton) {
         switch type {
         case .defaultToast:
             showDefaultToast()
@@ -40,7 +40,7 @@ class ToastViewController: UIViewController {
     }
 
     func showDefaultToast() {
-        let toast = Toast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true)
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
@@ -48,7 +48,7 @@ class ToastViewController: UIViewController {
     }
 
     func showToastOnlyLabels() {
-        let toast = Toast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true)
         toast.mode = .text
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"

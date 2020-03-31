@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  * it's advisable to display a text string adjecent to the star rating with the exact
  * rating value.
  */
-NS_SWIFT_NAME(StarRating) IB_DESIGNABLE @interface BPKStarRating : UIView
+IB_DESIGNABLE @interface BPKStarRating : UIView
 
 /**
  * Rating value the star rating view will displaying by rounding the value to full and half stars between 0.0 and 5.0.

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  * It's backed by a layer that does the actual drawing, but using this view directly
  * is preferred.
  */
-IB_DESIGNABLE NS_SWIFT_NAME(PrimaryGradientView) @interface BPKPrimaryGradientView : UIView
+@interface BPKPrimaryGradientView : UIView
 
 /**
  * Override the direction in the configured primary gradient. If set this

@@ -44,7 +44,7 @@ class ExampleApp: UIApplication {
         let storyboardName = "Main"
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
-        guard let rvc = UIApplication.shared.keyWindow?.rootViewController as? ContainerController else {
+        guard let rvc = UIApplication.shared.keyWindow?.rootViewController as? BPKContainerController else {
             return
         }
 

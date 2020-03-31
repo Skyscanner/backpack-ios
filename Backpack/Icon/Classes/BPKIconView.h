@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * where a single icon is used and colour is controlled via `tintColor`. The icon is
  * always rendered using template rendering.
  */
-NS_SWIFT_NAME(IconView) @interface BPKIconView : UIImageView
+@interface BPKIconView : UIImageView
 
 /**
  * Initializes and returns a Backpack Icon View with the specific icon name and size.

@@ -20,7 +20,7 @@ import UIKit
 import Backpack.TextView
 
 class TextViewsViewController: UIViewController {
-    @IBOutlet weak var textView: TextView!
+    @IBOutlet weak var textView: BPKTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

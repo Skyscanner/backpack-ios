@@ -60,12 +60,12 @@ public final class BottomSheet: NSObject {
     
     private lazy var floatingPanelController: BackpackFloatingPanelController = {
         let panel = BackpackFloatingPanelController(delegate: self)
-        panel.surfaceView.backgroundColor = Color.backgroundTertiaryColor
+        panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
         panel.surfaceView.cornerRadius = BPKBorderRadiusLg
         panel.surfaceView.grabberTopPadding = BPKSpacingMd
         panel.surfaceView.grabberHandleHeight = BPKSpacingSm
         panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
-        panel.surfaceView.grabberHandle.barColor = Color.skyGrayTint06
+        panel.surfaceView.grabberHandle.barColor = BPKColor.skyGrayTint06
         
         panel.isRemovalInteractionEnabled = true
         

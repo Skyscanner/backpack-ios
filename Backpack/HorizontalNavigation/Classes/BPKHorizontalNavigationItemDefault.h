@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKHorizontalNavigationOption;
-NS_SWIFT_NAME(HorizontalNavigationItemDefault) IB_DESIGNABLE @interface BPKHorizontalNavigationItemDefault : UIButton<BPKHorizontalNavigationItem>
+IB_DESIGNABLE @interface BPKHorizontalNavigationItemDefault : UIButton<BPKHorizontalNavigationItem>
 
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
 

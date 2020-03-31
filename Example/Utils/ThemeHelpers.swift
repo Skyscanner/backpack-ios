@@ -29,17 +29,17 @@ class ThemeHelpers: NSObject {
 
     @objc
     class func applyAllThemes() {
-        apply(theme: DefaultTheme())
-        apply(theme: SpringCleanTheme())
-        apply(theme: LondonTheme())
-        apply(theme: HongKongTheme())
-        apply(theme: DohaTheme())
-        apply(theme: SilverTheme())
+        apply(theme: BPKDefaultTheme())
+        apply(theme: BPKSpringCleanTheme())
+        apply(theme: BPKLondonTheme())
+        apply(theme: BPKHongKongTheme())
+        apply(theme: BPKDohaTheme())
+        apply(theme: BPKSilverTheme())
     }
 
     @objc
     class func apply(theme: BPKThemeDefinition) {
-        Theme.apply(theme)
+        BPKTheme.apply(theme)
         ThemeRegistry.register(theme: theme)
     }
 
@@ -62,17 +62,17 @@ class ThemeHelpers: NSObject {
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:
-            return DefaultTheme()
+            return BPKDefaultTheme()
         case .springClean:
-            return SpringCleanTheme()
+            return BPKSpringCleanTheme()
         case .london:
-            return LondonTheme()
+            return BPKLondonTheme()
         case .hongKong:
-            return HongKongTheme()
+            return BPKHongKongTheme()
         case .doha:
-            return DohaTheme()
+            return BPKDohaTheme()
         case .silver:
-            return SilverTheme()
+            return BPKSilverTheme()
         }
     }
 }

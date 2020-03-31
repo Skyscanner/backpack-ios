@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKBadge` is a subclass of `UIView` which contains the Skyscanner badge style.
  */
-NS_SWIFT_NAME(Badge) IB_DESIGNABLE @interface BPKBadge : UIView
+IB_DESIGNABLE @interface BPKBadge : UIView
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;

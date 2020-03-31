@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, BPKStarSize) { BPKStarSizeSmall, BPKStarSizeLarge, B
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(Star) @interface BPKStar : UIView
+@interface BPKStar : UIView
 
 /**
  * State of the star, its default value is BPKStarStateDefault. Setting updates

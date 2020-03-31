@@ -44,7 +44,7 @@ extern CGFloat const BPKFlareVectorHeight;
 /**
  * `BPKFlarePath` is class that can provide the flare shape in the form of a BeizerPath
  */
-NS_SWIFT_NAME(FlarePath) IB_DESIGNABLE @interface BPKFlarePath : NSObject
+IB_DESIGNABLE @interface BPKFlarePath : NSObject
 
 /**
  * Creates and returns a UIBeizerPath of the flare mask for a given size.

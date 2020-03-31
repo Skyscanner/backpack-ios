@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKTextField` is a subclass of `UITextField` which uses the Skyscanner style.
  */
-NS_SWIFT_NAME(TextField) IB_DESIGNABLE @interface BPKTextField : UITextField
+IB_DESIGNABLE @interface BPKTextField : UITextField
 
 /**
  * Create a `BPKTextField` with a specific BPKFont style.
