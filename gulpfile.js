@@ -160,12 +160,6 @@ const parseColor = color => {
   };
 };
 
-const parseToken = token => {
-  let tokenName = token.split('!')[1].split('}')[0];
-  tokenName = _.camelCase(tokenName);
-  return tokenName;
-};
-
 const convertFontWeight = weightString => {
   const weight = WEIGHT_MAP[weightString.trim()];
 
@@ -199,8 +193,8 @@ const parseTokens = tokensData => {
         type,
         ...rest
       }) => ({
-        value: parseToken(originalValue),
-        darkValue: parseToken(originalDarkValue),
+        value: _.camelCase(originalValue),
+        darkValue: _.camelCase(originalDarkValue),
         name: name[0].toLowerCase() + name.slice(1),
         hex: value.toString(),
         darkHex: darkValue.toString(),
