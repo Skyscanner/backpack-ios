@@ -35,7 +35,7 @@ extension BottomSheetViewController {
     // swiftlint:disable:next function_body_length cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let rootViewController =  UIApplication.shared.keyWindow?.rootViewController as?
-            ThemeContainerController else {
+            BPKThemeContainerController else {
                 return
         }
 
@@ -60,7 +60,7 @@ extension BottomSheetViewController {
                 forRootController: bottomSection
             )
 
-            bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
+            bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
             let sheet = BottomSheet(contentViewController: wrappedContent,
@@ -83,7 +83,7 @@ extension BottomSheetViewController {
                 forRootController: bottomSection
             )
 
-            bottomSection.view.backgroundColor = Color.backgroundTertiaryColor
+            bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
             let sheet = BottomSheet(contentViewController: wrappedContent,

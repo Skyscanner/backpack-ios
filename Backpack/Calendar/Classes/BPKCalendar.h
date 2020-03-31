@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Delegate for configuring and respodning to interactions in a calendar.
  */
-NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
+@protocol BPKCalendarDelegate<NSObject>
 
 /**
  * Called when a date selection changed.
@@ -149,7 +149,7 @@ NS_SWIFT_NAME(CalendarDelegate) @protocol BPKCalendarDelegate<NSObject>
 /**
  * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Calendar) @interface BPKCalendar : UIView
+@interface BPKCalendar : UIView
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *dateSelectedContentColor UI_APPEARANCE_SELECTOR;

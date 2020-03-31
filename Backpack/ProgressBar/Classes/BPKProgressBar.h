@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKProgressBar` is a lightweight subclass of `UIProgressView` with Skyscanner styling applied.
  */
-NS_SWIFT_NAME(ProgressBar) IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
+IB_DESIGNABLE @interface BPKProgressBar : UIProgressView
 
 /**
  * The colour to use in the progress track.

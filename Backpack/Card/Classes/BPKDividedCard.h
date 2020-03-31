@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Divided cards are a lightweight containers with a subtle shadow and two subviews.
  * Divided cards, like Cards, can be configured to have padding or not.
  */
-NS_SWIFT_NAME(DividedCard) IB_DESIGNABLE @interface BPKDividedCard : BPKCard
+IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 
 /**
  * The orientation of the divided card.

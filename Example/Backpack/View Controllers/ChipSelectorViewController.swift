@@ -43,16 +43,16 @@ class ChipSelectorViewController: UITableViewController {
                 target.shadow = false
             case .withBackgroundColor:
                 target.title = "Background color"
-                target.backgroundTint = Color.panjin
+                target.backgroundTint = BPKColor.panjin
             case .backgroundColorNoShadow:
                 target.title = "Background color"
                 target.shadow = false
-                target.backgroundTint = Color.panjin
+                target.backgroundTint = BPKColor.panjin
             case .backgroundColorUnselectedNoShadow:
                 target.title = "Background color"
                 target.shadow = false
                 target.colorUnselectedState = true
-                target.backgroundTint = Color.panjin
+                target.backgroundTint = BPKColor.panjin
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

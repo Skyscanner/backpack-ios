@@ -29,7 +29,7 @@ typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
  * An object describing the action to take when the scrim
  * of a `BPKDialogController` is tapped by the user.
  */
-NS_SWIFT_NAME(DialogScrimAction) @interface BPKDialogScrimAction : NSObject
+@interface BPKDialogScrimAction : NSObject
 
 /**
  * A block to invoke when the user taps the scrim.

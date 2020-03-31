@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  * supported text styles as static methods.
  *
 */
-NS_SWIFT_NAME(Font) @interface BPKFont: NSObject
+@interface BPKFont: NSObject
 
 /**
  * Create a dictionary of attributes for a specific text styles. This is some times useful

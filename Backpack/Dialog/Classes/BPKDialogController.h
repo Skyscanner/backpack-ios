@@ -42,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
  * The controller is exclusively intended to be used with `presentViewController:`.
 
  */
-NS_SWIFT_NAME(DialogController)
 @interface BPKDialogController : UIViewController <BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
 
 /**

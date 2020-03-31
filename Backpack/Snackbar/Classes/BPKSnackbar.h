@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
     BPKSnackbarDurationLong
 };
 
-NS_SWIFT_NAME(Snackbar) @interface BPKSnackbar : UIView
+@interface BPKSnackbar : UIView
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen

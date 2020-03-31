@@ -21,14 +21,14 @@ import Backpack
 
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var closeButton: UIBarButtonItem!
-    @IBOutlet weak var enableThemeSwitch: Switch!
+    @IBOutlet weak var enableThemeSwitch: BPKSwitch!
     var showThemeList: Bool = false
     @IBOutlet var selectableCells: [BPKTableViewSelectableCell]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        closeButton.tintColor = Color.skyBlue
+        closeButton.tintColor = BPKColor.skyBlue
         closeButton.target = self
         closeButton.action = #selector(SettingsViewController.btnAction)
 
@@ -81,7 +81,7 @@ class SettingsViewController: UITableViewController {
         Settings.sharedSettings.activeTheme = theme
 
         NotificationCenter.default.post(
-            name: NSNotification.Name(rawValue: Theme.didChangeNotification as String),
+            name: NSNotification.Name(rawValue: BPKTheme.didChangeNotification as String),
             object: themeDefinition
         )
 

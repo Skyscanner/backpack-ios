@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * A navigation bar component similar to `UINavigationBar` from UIKit implementing
  * the iOS 11 style large title pattern.
  */
-NS_SWIFT_NAME(NavigationBar) @interface BPKNavigationBar : UIView
+@interface BPKNavigationBar : UIView
 /**
  * A `BPKNavigationBarButton` to show on the left side inside the navigation
  */

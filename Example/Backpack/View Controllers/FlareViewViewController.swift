@@ -20,7 +20,7 @@ import UIKit
 import Backpack
 
 class FlareViewViewController: UIViewController {
-    @IBOutlet weak var flareView: FlareView!
+    @IBOutlet weak var flareView: BPKFlareView!
 
     var backgroundImage: Bool = false
     var animated: Bool = false
@@ -28,11 +28,11 @@ class FlareViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        flareView.backgroundColor = Color.skyBlue
+        flareView.backgroundColor = BPKColor.skyBlue
 
-        let label = Label(fontStyle: .textXlEmphasized)
+        let label = BPKLabel(fontStyle: .textXlEmphasized)
         label.text = "Much wow!"
-        label.textColor = Color.white
+        label.textColor = BPKColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         flareView.contentView.addSubview(label)
 
@@ -53,7 +53,7 @@ class FlareViewViewController: UIViewController {
             ])
 
         if backgroundImage {
-            label.textColor = Color.skyGray
+            label.textColor = BPKColor.skyGray
 
             let image = UIImage(named: "pilanesburg-south-africa")
             let imageView = UIImageView.init(image: image)

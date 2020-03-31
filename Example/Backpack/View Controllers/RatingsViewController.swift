@@ -19,16 +19,16 @@
 import Backpack.Rating
 
 class RatingsViewController: UIViewController {
-    @IBOutlet var ratings: [Rating]!
+    @IBOutlet var ratings: [BPKRating]!
     var showSubtitle: Bool = false
     var showDifferentSizes: Bool = false
     var layout: BPKRatingLayout = .horizontal
 
-    static let titleTextDefinition = RatingTextDefinition(highRatingText: "High title",
+    static let titleTextDefinition = BPKRatingTextDefinition(highRatingText: "High title",
                                                mediumRatingText: "Medium title",
                                                lowRatingText: "Low title")
 
-    static let subtitleTextDefinition = RatingTextDefinition(highRatingText: "High subtitle",
+    static let subtitleTextDefinition = BPKRatingTextDefinition(highRatingText: "High subtitle",
                                                   mediumRatingText: "Medium subtitle",
                                                   lowRatingText: "Low subtitle")
 

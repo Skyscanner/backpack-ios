@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * An object that represents the text displayed inside the rating component.
  */
-NS_SWIFT_NAME(RatingTextDefinition)
 @interface BPKRatingTextDefinition : NSObject
 
 /**

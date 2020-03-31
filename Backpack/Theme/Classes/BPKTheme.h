@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * to create concrete themes.
  */
 @protocol BPKThemeDefinition;
-NS_SWIFT_NAME(Theme) @interface BPKTheme : NSObject
+@interface BPKTheme : NSObject
 
 @property(class, nonatomic, assign, readonly) NSString *didChangeNotification;
 

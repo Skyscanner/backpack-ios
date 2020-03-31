@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKCardDivider` is a subclass of `UIView` which contains the Skyscanner card divider style.
  */
-NS_SWIFT_NAME(CardDivider) IB_DESIGNABLE @interface BPKCardDivider : UIView
+IB_DESIGNABLE @interface BPKCardDivider : UIView
 
 /**
  * The orientation of the card divider.

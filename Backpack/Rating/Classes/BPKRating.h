@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKRating` is a subclass of `UIView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Rating) IB_DESIGNABLE @interface BPKRating : UIView
+IB_DESIGNABLE @interface BPKRating : UIView
 
 /**
  * The title to display inside the rating.

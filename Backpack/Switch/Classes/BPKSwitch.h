@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKSwitch` is a subclass of `UISwitch` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Switch) IB_DESIGNABLE @interface BPKSwitch : UISwitch
+IB_DESIGNABLE @interface BPKSwitch : UISwitch
 
 /**
  * Creates a `BPKSwitch` with a decoder (typically when creating from storyboards)

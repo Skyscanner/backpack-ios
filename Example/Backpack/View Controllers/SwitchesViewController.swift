@@ -21,7 +21,7 @@ import Backpack.Switch
 
 class SwitchesViewController: UIViewController {
 
-    @IBOutlet weak var defaultSwitch: Switch!
+    @IBOutlet weak var defaultSwitch: BPKSwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()

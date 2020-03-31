@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A `BPKFlareView` is a subclass of UIView
  */
-NS_SWIFT_NAME(FlareView) IB_DESIGNABLE @interface BPKFlareView : UIView
+IB_DESIGNABLE @interface BPKFlareView : UIView
 
 /**
  * A view that can be used to show content in the background.

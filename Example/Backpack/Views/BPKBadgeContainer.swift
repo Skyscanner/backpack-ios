@@ -20,8 +20,8 @@ import UIKit
 import Backpack
 
 class BPKBadgeContainer: UIView {
-    var label: Label!
-    var badges = [Badge]()
+    var label: BPKLabel!
+    var badges = [BPKBadge]()
     let badgeMessages = ["Apples", "Bananas", "Strawberries", "Pears"]
     var currentBadgeType = BPKBadgeType.success
     var badgesRequiringDarkBackground = [BPKBadgeType.light, BPKBadgeType.inverse, BPKBadgeType.outline]
@@ -35,8 +35,8 @@ class BPKBadgeContainer: UIView {
             label.text = getLegibleName(badgeType: newValue)
             label.sizeToFit()
             if badgesRequiringDarkBackground.contains(badgeType) {
-                self.backgroundColor = Color.skyGrayTint01
-                self.label.textColor = Color.white
+                self.backgroundColor = BPKColor.skyGrayTint01
+                self.label.textColor = BPKColor.white
             }
         }
         get { return currentBadgeType }
@@ -53,7 +53,7 @@ class BPKBadgeContainer: UIView {
     }
 
     func setUp() {
-        label = Label(fontStyle: .textBase)
+        label = BPKLabel(fontStyle: .textBase)
         label.text = getLegibleName(badgeType: currentBadgeType)
         label.sizeToFit()
         addSubview(label)
@@ -84,7 +84,7 @@ class BPKBadgeContainer: UIView {
 
     func populateBadges() {
         for message in badgeMessages {
-            let badge = Backpack.Badge(message: message)
+            let badge = BPKBadge(message: message)
             badge.type = currentBadgeType
             badges.append(badge)
         }

@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(SimpleDate) @interface BPKSimpleDate : NSObject
+@interface BPKSimpleDate : NSObject
 @property(nonatomic, readonly) NSUInteger day;
 @property(nonatomic, readonly) NSUInteger month;
 @property(nonatomic, readonly) NSUInteger year;

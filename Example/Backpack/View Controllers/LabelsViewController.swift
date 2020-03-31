@@ -26,7 +26,7 @@ enum LabelsDisplayType {
 }
 
 class LabelsViewController: UIViewController {
-    @IBOutlet var labels: [Backpack.Label]!
+    @IBOutlet var labels: [BPKLabel]!
     var type: LabelsDisplayType = .normal
 
     static let normalStyles: [BPKFontStyle] = [

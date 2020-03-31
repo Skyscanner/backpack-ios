@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKLondonThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKLondon theme to be applied to all
  * its children.
  */
-NS_SWIFT_NAME(LondonThemeContainer) @interface BPKLondonThemeContainer : BPKThemeContainer
+@interface BPKLondonThemeContainer : BPKThemeContainer
 @end
 
 NS_ASSUME_NONNULL_END
