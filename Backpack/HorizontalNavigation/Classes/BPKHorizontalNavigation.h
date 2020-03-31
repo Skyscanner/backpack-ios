@@ -24,6 +24,7 @@
 #import "BPKHorizontalNavigationSize.h"
 #import "BPKHorizontalNavigationDelegate.h"
 #import "BPKHorizontalNavigationOptionType.h"
+#import "BPKHorizontalNavigationAppearance.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,6 +35,8 @@ NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNaviga
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;
+
+@property(nonatomic) BPKHorizontalNavigationAppearance appearance;
 
 /**
  * The options to display within the navigation.
