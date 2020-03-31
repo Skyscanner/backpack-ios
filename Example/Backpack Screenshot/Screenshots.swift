@@ -356,6 +356,10 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "tappable-link-label", scenario: "alternate-style",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["Link with custom color"].tap()
+        saveScreenshot(component: "tappable-link-label", scenario: "custom-color",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Text fields"].tap()

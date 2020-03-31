@@ -4,6 +4,8 @@
 **Added:**
  - Backpack/TabBarController:
    - New component which inherits from `UITabBarController.`
+- Backpack/TappableLinkLabel:
+  - New `textColor` prop for changing the non-link text color.
 
 **Fixed:**
 - Backpack/Color:

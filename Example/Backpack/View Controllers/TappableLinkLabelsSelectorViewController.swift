@@ -21,6 +21,7 @@ import Backpack
 
 enum TappableLinkLabelsSegueIdentifier: String {
     case singleLink = "SingleLink"
+    case linkWithCustomColor = "CustomColorLink"
     case multipleLinks = "MultipleLinks"
     case alternateStyle = "AlternateStyle"
     case nonURLLinks = "NonURLLinks"
@@ -35,6 +36,9 @@ class TappableLinkLabelsSelectorViewController: UITableViewController {
             switch tappableLinkLabelsSegueIdentifier {
             case .singleLink:
                 segue.destination.title = "Single link"
+            case .linkWithCustomColor:
+                segue.destination.title = "Link with custom color"
+                maybeTappableLinkLabelsController?.textColor = Backpack.BPKColor.panjin
             case .multipleLinks:
                 segue.destination.title = "Multiple links"
                 maybeTappableLinkLabelsController?.linkCount = .double
