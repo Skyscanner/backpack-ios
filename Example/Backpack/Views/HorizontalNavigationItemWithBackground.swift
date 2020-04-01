@@ -30,6 +30,8 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
     }
 
     public var selectedColor: UIColor? = Backpack.Color.primaryColor
+    
+    public var textAppearance: BPKHorizontalNavigationAppearance = .normal
 
     // MARK: Implementaiton
 

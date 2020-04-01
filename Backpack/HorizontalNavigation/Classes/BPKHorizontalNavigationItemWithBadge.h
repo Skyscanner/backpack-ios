@@ -36,6 +36,8 @@ NS_SWIFT_NAME(HorizontalNavigationItemWithBadge)
  */
 @property(nonatomic) BPKHorizontalNavigationSize size;
 
+@property(nonatomic) BPKHorizontalNavigationAppearance appearance;
+
 /**
 * Create a `BPKHorizontalNavigationItemWithBadge` with a title  and a `BPKBadge`.
 *

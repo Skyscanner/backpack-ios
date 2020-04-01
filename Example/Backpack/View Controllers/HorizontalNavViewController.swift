@@ -77,6 +77,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         horizontalNav.showsSelectedBar = showBar
         horizontalNav.size = size
         horizontalNav.selectedItemIndex = 0
+        horizontalNav.appearance = .alternate
 
         if wide {
             horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true

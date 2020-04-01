@@ -24,5 +24,6 @@
 #import "BPKHorizontalNavigationOptionType.h"
 #import "BPKHorizontalNavigationSize.h"
 #import "BPKHorizontalNavigationOptionWithBadge.h"
+#import "BPKHorizontalNavigationAppearance.h"
 
 #endif

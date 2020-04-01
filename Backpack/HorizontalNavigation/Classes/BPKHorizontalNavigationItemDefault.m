@@ -107,6 +107,14 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setAppearance:(BPKHorizontalNavigationAppearance)appearance {
+    if (_appearance != appearance) {
+        _appearance = appearance;
+        
+        [self updateStyle];
+    }
+}
+
 #pragma mark - Private
 
 - (void)updateStyle {
@@ -130,8 +138,15 @@ NS_ASSUME_NONNULL_BEGIN
             return self.selectedColor;
         }
         return BPKColor.primaryColor;
+    } else {
+        switch (self.appearance) {
+            case BPKHorizontalNavigationAppearanceNormal:
+                return BPKColor.textPrimaryColor;
+                break;
+            case BPKHorizontalNavigationAppearanceAlternate:
+                return BPKColor.skyGrayTint07;
+        }
     }
-    return BPKColor.textPrimaryColor;
 }
 
 - (void)setIconColor {

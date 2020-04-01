@@ -37,6 +37,8 @@ NS_SWIFT_NAME(HorizontalNavigationItemDefault) IB_DESIGNABLE @interface BPKHoriz
  */
 @property(nonatomic) BPKHorizontalNavigationSize size;
 
+@property(nonatomic) BPKHorizontalNavigationAppearance appearance;
+
 /**
  * The icon to display within the item.
  *

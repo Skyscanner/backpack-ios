@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKHorizontalNavigationSize.h"
+#import "BPKHorizontalNavigationAppearance.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -41,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
  * that the item is selected.
  */
 @property(nonatomic, nullable, strong) UIColor *selectedColor;
+
+@property(nonatomic, assign) BPKHorizontalNavigationAppearance appearance;
 
 @end
 

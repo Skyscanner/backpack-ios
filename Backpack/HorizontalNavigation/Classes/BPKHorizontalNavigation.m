@@ -200,6 +200,14 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setAppearance:(BPKHorizontalNavigationAppearance)appearance {
+    if (_appearance != appearance) {
+        _appearance = appearance;
+        
+        [self updateItemsAppearance];
+    }
+}
+
 #pragma mark - Private
 
 - (CGFloat)barHeight {
@@ -216,6 +224,12 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         return self.barView.backgroundColor = BPKColor.primaryColor;
     }
+}
+
+- (void)updateItemsAppearance {
+    [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
+        navigationItem.appearance = self.appearance;
+    }];
 }
 
 - (void)setupWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options selected:(NSInteger)selectedItemIndex {
