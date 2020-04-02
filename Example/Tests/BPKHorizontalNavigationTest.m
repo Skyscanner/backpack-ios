@@ -105,6 +105,30 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(horizontalNavigation.options[2].tag, 5);
 }
 
+- (void)testDefaultAppearance {
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
+    ]
+                                                                                            selected:0];
+    
+    XCTAssertEqual(horizontalNavigation.appearance, BPKHorizontalNavigationAppearanceNormal);
+}
+
+- (void)testSetAppearance {
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
+    ]
+                                                                                            selected:0];
+    
+    horizontalNavigation.appearance = BPKHorizontalNavigationAppearanceAlternate;
+    
+    XCTAssertEqual(horizontalNavigation.appearance, BPKHorizontalNavigationAppearanceAlternate);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

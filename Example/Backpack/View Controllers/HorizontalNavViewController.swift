@@ -23,6 +23,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     @IBOutlet weak var horizontalNav: HorizontalNavigation!
 
     var size: BPKHorizontalNavigationSize = .default
+    var appearance: BPKHorizontalNavigationAppearance = .normal
     var showBar: Bool = true
     var showIcons: Bool = false
     var wide: Bool = false
@@ -77,10 +78,14 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         horizontalNav.showsSelectedBar = showBar
         horizontalNav.size = size
         horizontalNav.selectedItemIndex = 0
-        horizontalNav.appearance = .alternate
 
         if wide {
             horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        }
+        
+        horizontalNav.appearance = appearance
+        if case .alternate = appearance {
+            horizontalNav.backgroundColor = Color.skyGray
         }
     }
 }
