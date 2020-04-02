@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * BPKColor is the entry point for the Backpack color palette. It expose the whole palette
  * as static methods.
 */
-NS_SWIFT_NAME(Color) @interface BPKColor : NSObject
+@interface BPKColor : NSObject
 
 ///-----------------------
 /// @name Colors

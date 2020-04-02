@@ -23,13 +23,13 @@ import Backpack.Theme
 
 class BPKTableViewSelectableCell: UITableViewCell {
 
-    @objc dynamic var selectedColor: UIColor = Color.skyBlue {
+    @objc dynamic var selectedColor: UIColor = BPKColor.skyBlue {
         didSet {
             tickIcon.tintColor = selectedColor
         }
     }
 
-    let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
+    let tickIcon: BPKIconView = BPKIconView(iconName: .tick, size: BPKIconSize.small)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

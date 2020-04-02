@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(DohaTheme) @interface BPKDohaTheme : NSObject<BPKThemeDefinition>
+@interface BPKDohaTheme : NSObject<BPKThemeDefinition>
 
 @end
 

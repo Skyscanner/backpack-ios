@@ -21,12 +21,12 @@ import Foundation
 import Backpack
 
 class StarRatingsDocViewController: UIViewController {
-    @IBOutlet weak var smallRatingTitle: Label!
-    @IBOutlet weak var smallRating: StarRating!
-    @IBOutlet weak var largeRatingTitle: Label!
-    @IBOutlet weak var largeRating: StarRating!
-    @IBOutlet weak var extraLargeRatingTitle: Label!
-    @IBOutlet weak var extraLargeRating: StarRating!
+    @IBOutlet weak var smallRatingTitle: BPKLabel!
+    @IBOutlet weak var smallRating: BPKStarRating!
+    @IBOutlet weak var largeRatingTitle: BPKLabel!
+    @IBOutlet weak var largeRating: BPKStarRating!
+    @IBOutlet weak var extraLargeRatingTitle: BPKLabel!
+    @IBOutlet weak var extraLargeRating: BPKStarRating!
 
     override func viewDidLoad() {
         // Setup titles

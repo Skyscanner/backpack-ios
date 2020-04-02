@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(HongKongTheme) @interface BPKHongKongTheme : NSObject<BPKThemeDefinition>
+@interface BPKHongKongTheme : NSObject<BPKThemeDefinition>
 
 @end
 

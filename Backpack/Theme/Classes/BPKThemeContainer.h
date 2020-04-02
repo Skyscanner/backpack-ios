@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  * to create concrete themes.
  */
 @protocol BPKThemeDefinition;
-NS_SWIFT_NAME(ThemeContainer) @interface BPKThemeContainer : UIView
+@interface BPKThemeContainer : UIView
 
 @property(strong, readonly) id<BPKThemeDefinition> themeDefinition;
 

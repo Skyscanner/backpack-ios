@@ -17,7 +17,7 @@
  */
 
 import Backpack.Card
-import Backpack.Color
+import Backpack.BPKColor
 
 class CardsSelectorViewController: UITableViewController {
     func prepareDevided(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,7 +69,7 @@ class CardsSelectorViewController: UITableViewController {
             target.cornerStyle = BPKCardCornerStyle.large
         case "background_color":
             target.navigationItem.title = "With background color"
-            target.backgroundColor = Color.skyBlueTint01
+            target.backgroundColor = BPKColor.skyBlueTint01
         default:
             fatalError("The identifier \(segue.identifier.debugDescription) does not " +
                 "match an example Card configuration.")

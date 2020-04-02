@@ -29,7 +29,7 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
         }
     }
 
-    public var selectedColor: UIColor? = Backpack.Color.primaryColor
+    public var selectedColor: UIColor? = BPKColor.primaryColor
     
     public var appearance: BPKHorizontalNavigationAppearance = .normal
 
@@ -53,13 +53,13 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
 
     func updateTitle() {
         let fontStyle: BPKFontStyle = size == .default ? .textBaseEmphasized : .textSmEmphasized
-        var textColor = Backpack.Color.textPrimaryColor
+        var textColor = BPKColor.textPrimaryColor
 
         if isSelected || isHighlighted {
             textColor = .white
         }
 
-        let attributedString = Backpack.Font.makeAttributedString(
+        let attributedString = BPKFont.makeAttributedString(
             fontStyle: fontStyle, content: title, textColor: textColor
         )
 

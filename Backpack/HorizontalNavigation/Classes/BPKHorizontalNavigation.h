@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A `BPKHorizontalNavigation` is a control comprising of multiple segments, where each acts as a discrete button.
  */
-NS_SWIFT_NAME(HorizontalNavigation) IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
+IB_DESIGNABLE @interface BPKHorizontalNavigation : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *selectedColor UI_APPEARANCE_SELECTOR;

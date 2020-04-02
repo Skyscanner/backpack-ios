@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * times. Further the use of `NSCache` means that in low memory scenarios the cache will be cleared
  * to allow more important memory use.
  */
-NS_SWIFT_NAME(Icon) @interface BPKIcon : NSObject
+@interface BPKIcon : NSObject
 
 /**
  * A dictionary mapping icon names to the unicode code point in the icon font of the icon.

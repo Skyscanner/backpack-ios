@@ -19,7 +19,7 @@
 import Backpack.Card
 
 class CardsViewController: UIViewController {
-    @IBOutlet weak var card: Card!
+    @IBOutlet weak var card: BPKCard!
     var padded: Bool = true
     var selected: Bool = false
     var backgroundColor: UIColor?
@@ -32,7 +32,7 @@ class CardsViewController: UIViewController {
     }
 
     func setupCard() {
-        let label = Label(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBase)
         label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
             "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, " +
             "nascetur ridiculus mus."
@@ -44,7 +44,7 @@ class CardsViewController: UIViewController {
         card.isSelected = selected
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
-            label.textColor = Color.textPrimaryLightColor
+            label.textColor = BPKColor.textPrimaryLightColor
         }
     }
 }

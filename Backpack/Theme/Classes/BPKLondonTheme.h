@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(LondonTheme) @interface BPKLondonTheme : NSObject<BPKThemeDefinition>
+@interface BPKLondonTheme : NSObject<BPKThemeDefinition>
 
 @end
 

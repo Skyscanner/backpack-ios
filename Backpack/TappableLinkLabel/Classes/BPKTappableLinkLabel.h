@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * These constants represent the different styles available for BPKTappableLinkLabels
  */
-typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle){
+typedef NS_ENUM(NSUInteger, BPKTappableLinkLabelStyle) {
 
     /**
      * Blue links within dark-gray labels
@@ -44,7 +44,7 @@ typedef NS_SWIFT_NAME(TappableLinkLabelStyle) NS_ENUM(NSUInteger, BPKTappableLin
 /**
  * `BPKTappableLinkLabel` is a subclass of `UIView` which uses the Skyscanner style for labels containing tappable text.
  */
-NS_SWIFT_NAME(TappableLinkLabel) IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
+IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 
 @property(nullable, nonatomic, strong) UIColor *linkColor UI_APPEARANCE_SELECTOR;
 

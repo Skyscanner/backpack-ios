@@ -1,6 +1,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 29.0.0
+
+**Breaking:**
+
+- Backpack
+  - Backpack now consistently uses the `BPK` prefix in Swift.
+
+**Fixed:**
+ - Backpack/Button:
+   - Fixed an issue that caused the loading spinner to sometimes be rendered out of view for title-only buttons.
+
 # 28.0.0
 
 **Breaking:**

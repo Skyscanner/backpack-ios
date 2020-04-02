@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKSilverThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKSilver theme to be applied to all
  * its children.
  */
-NS_SWIFT_NAME(SilverThemeContainer) @interface BPKSilverThemeContainer : BPKThemeContainer
+@interface BPKSilverThemeContainer : BPKThemeContainer
 @end
 
 NS_ASSUME_NONNULL_END

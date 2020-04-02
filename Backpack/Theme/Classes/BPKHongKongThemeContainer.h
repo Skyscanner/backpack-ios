@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKHongKongThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKHongKong theme to be applied to
  * all its children.
  */
-NS_SWIFT_NAME(HongKongThemeContainer) @interface BPKHongKongThemeContainer : BPKThemeContainer
+@interface BPKHongKongThemeContainer : BPKThemeContainer
 
 @end
 NS_ASSUME_NONNULL_END

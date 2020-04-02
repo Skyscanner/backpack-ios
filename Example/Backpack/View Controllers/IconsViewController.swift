@@ -22,7 +22,7 @@ import Backpack
 class IconsViewController: UICollectionViewController {
 
     fileprivate static var headingText = "All icons"
-    fileprivate static var icons = Array(Backpack.Icon.iconMapping!.keys).sorted { $0.rawValue < $1.rawValue }
+    fileprivate static var icons = Array(BPKIcon.iconMapping!.keys).sorted { $0.rawValue < $1.rawValue }
 
     fileprivate static let cellIdentifier = "IconsPreviewCollectionViewCell"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"

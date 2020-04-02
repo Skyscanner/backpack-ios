@@ -296,7 +296,9 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.isIconOnly || self.isTextAndIcon) {
         self.spinner.center = self.imageView.center;
     } else {
-        self.spinner.center = self.center;
+        // Use `self.titleLabel.center` instead of `self.center` to avoid
+        // bug BPK-3770 where the spinner is not rendered in the correct position.
+        self.spinner.center = self.titleLabel.center;
     }
     self.imageView.alpha = self.isLoading ? .0f : 1.f;
 }

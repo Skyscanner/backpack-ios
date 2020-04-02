@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * BPKDuration is the entry point for the Backpack animation durations. It exposes all the durations as static methods.
 */
-NS_SWIFT_NAME(Duration) @interface BPKDuration : NSObject
+@interface BPKDuration : NSObject
 
 ///-----------------------
 /// @name Durations

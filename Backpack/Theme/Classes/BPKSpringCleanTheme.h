@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(SpringCleanTheme) @interface BPKSpringCleanTheme : NSObject<BPKThemeDefinition>
+@interface BPKSpringCleanTheme : NSObject<BPKThemeDefinition>
 
 extern NSString *const BPKSpringCleanThemeName;
 

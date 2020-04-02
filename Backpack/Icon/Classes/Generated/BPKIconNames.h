@@ -22,7 +22,7 @@
 /**
  * The name of a known icon.
  */
-typedef NSString * NS_SWIFT_NAME(IconName) BPKIconName NS_EXTENSIBLE_STRING_ENUM;
+typedef NSString * BPKIconName NS_EXTENSIBLE_STRING_ENUM;
 
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccessibility;

@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see BPKGradientView
  */
-NS_SWIFT_NAME(Gradient) @interface BPKGradient : NSObject
+@interface BPKGradient : NSObject
 
 /**
  * The colors that define the gradient.

@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Changing the bounds or updating the gradient property causes this view to redraw
  * on the next display pass.
  */
-IB_DESIGNABLE NS_SWIFT_NAME(GradientView) @interface BPKGradientView : UIView
+@interface BPKGradientView : UIView
 
 /**
  * The gradient currently being drawn. Setting this will cause the view to redraw

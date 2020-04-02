@@ -34,7 +34,7 @@ typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
  * has an associated handler to invoke when the button is
  * tapped or otherwise triggered.
  */
-NS_SWIFT_NAME(DialogButtonAction) @interface BPKDialogButtonAction : NSObject
+@interface BPKDialogButtonAction : NSObject
 
 /**
  * The style of the button.

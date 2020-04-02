@@ -42,7 +42,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         BPKFontStyle.textXxlEmphasized
     ]
 
-    @IBOutlet var tappableLinks: [TappableLinkLabel]!
+    @IBOutlet var tappableLinks: [BPKTappableLinkLabel]!
     @IBOutlet var displayView: UIView!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
             let titleAttributes = ExampleAppTitleAttributes.darkTitleAttributes()
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
-            self.navigationController?.navigationBar.tintColor = Color.white
+            self.navigationController?.navigationBar.tintColor = BPKColor.white
         }
     }
 
@@ -63,7 +63,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
             let titleAttributes = ExampleAppTitleAttributes.lightTitleAttributes()
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
-            self.navigationController?.navigationBar.tintColor = Color.skyGray
+            self.navigationController?.navigationBar.tintColor = BPKColor.skyGray
         }
     }
 
@@ -77,7 +77,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         let firstLinkContent = "Backpack"
         let secondLinkContent = "Skyscanner's"
 
-        displayView.backgroundColor = style == .alternate ? Color.skyBlueShade03 : Color.backgroundColor
+        displayView.backgroundColor = style == .alternate ? BPKColor.skyBlueShade03 : BPKColor.backgroundColor
 
         let firstRange = NSRange(content.range(of: firstLinkContent)!, in: content)
         let secondRange = NSRange(content.range(of: secondLinkContent)!, in: content)
@@ -108,11 +108,11 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         }
     }
 
-    func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
+    func tappableLabel(_ label: BPKTappableLinkLabel, didSelectLinkWith url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func tappableLabel(_ label: TappableLinkLabel,
+    func tappableLabel(_ label: BPKTappableLinkLabel,
                        didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
         print(components)
     }

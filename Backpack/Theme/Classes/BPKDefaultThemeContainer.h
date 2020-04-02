@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * `BPKDefaultThemeContainer` is a subclass of `BPKThemeContainer` which allows the BPKDefault theme to be applied to
  * all its children.
  */
-NS_SWIFT_NAME(DefaultThemeContainer) @interface BPKDefaultThemeContainer : BPKThemeContainer
+@interface BPKDefaultThemeContainer : BPKThemeContainer
 
 @end
 NS_ASSUME_NONNULL_END

@@ -23,7 +23,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(HorizontalNavigationItemWithBadge)
 @interface BPKHorizontalNavigationItemWithBadge : UIControl <BPKHorizontalNavigationItem>
 
 /// :nodoc:

@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKRatingTextWrapper` is a subclass of `UIView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(RatingTextWrapper) IB_DESIGNABLE @interface BPKRatingTextWrapper : UIView
+IB_DESIGNABLE @interface BPKRatingTextWrapper : UIView
 
 /**
  * The title to display inside the ratingTextWrapper.

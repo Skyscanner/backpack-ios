@@ -20,9 +20,9 @@ import UIKit
 import Backpack
 
 class ProgressBarViewController: UIViewController {
-    @IBOutlet weak var progressBar: ProgressBar!
-    @IBOutlet weak var increaseButton: Button!
-    @IBOutlet weak var resetButton: Button!
+    @IBOutlet weak var progressBar: BPKProgressBar!
+    @IBOutlet weak var increaseButton: BPKButton!
+    @IBOutlet weak var resetButton: BPKButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Cards are a lightweight control with a shadow.
  * Cards can be configured to have padding or not.
  */
-NS_SWIFT_NAME(Card) IB_DESIGNABLE @interface BPKCard : UIControl
+IB_DESIGNABLE @interface BPKCard : UIControl
 
 /**
  * Whether the card should provide padding or not.

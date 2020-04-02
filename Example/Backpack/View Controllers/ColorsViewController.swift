@@ -22,96 +22,96 @@ import Backpack
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
         ("primary color", { (view: UIView) -> UIColor in
-            return Color.primaryColor
+            return BPKColor.primaryColor
         }),
         ("blue700", { (view: UIView) -> UIColor in
-            return Color.skyBlueShade02
+            return BPKColor.skyBlueShade02
         }),
         ("white", { (view: UIView) -> UIColor in
-            return Color.white
+            return BPKColor.white
         })
     ]
     fileprivate static var secondaryColors = [
         ("green500", { (view: UIView) -> UIColor in
-            return Color.monteverde
+            return BPKColor.monteverde
         }),
         ("yellow500", { (view: UIView) -> UIColor in
-            return Color.kolkata
+            return BPKColor.kolkata
         }),
         ("red500", { (view: UIView) -> UIColor in
-            return Color.panjin
+            return BPKColor.panjin
         })
     ]
     fileprivate static var grayColors = [
         ("skyGrayTint07", { (view: UIView) -> UIColor in
-            return Color.skyGrayTint07
+            return BPKColor.skyGrayTint07
         }),
         ("skyGrayTint06", { (view: UIView) -> UIColor in
-            return Color.skyGrayTint06
+            return BPKColor.skyGrayTint06
         }),
         ("skyGrayTint04", { (view: UIView) -> UIColor in
-            return Color.skyGrayTint04
+            return BPKColor.skyGrayTint04
         }),
         ("skyGrayTint02", { (view: UIView) -> UIColor in
-            return Color.skyGrayTint02
+            return BPKColor.skyGrayTint02
         }),
         ("skyGrayTint01", { (view: UIView) -> UIColor in
-            return Color.skyGrayTint01
+            return BPKColor.skyGrayTint01
         }),
         ("skyGray", { (view: UIView) -> UIColor in
-            return Color.skyGray
+            return BPKColor.skyGray
         })
     ]
     fileprivate static var blackColors = [
         ("black", { (view: UIView) -> UIColor in
-            return Color.black
+            return BPKColor.black
         }),
         ("blackTint01", { (view: UIView) -> UIColor in
-            return Color.blackTint01
+            return BPKColor.blackTint01
         }),
         ("blackTint02", { (view: UIView) -> UIColor in
-            return Color.blackTint02
+            return BPKColor.blackTint02
         }),
         ("blackTint03", { (view: UIView) -> UIColor in
-            return Color.blackTint03
+            return BPKColor.blackTint03
         }),
         ("blackTint04", { (view: UIView) -> UIColor in
-            return Color.blackTint04
+            return BPKColor.blackTint04
         }),
         ("blackTint05", { (view: UIView) -> UIColor in
-            return Color.blackTint05
+            return BPKColor.blackTint05
         }),
         ("blackTint06", { (view: UIView) -> UIColor in
-            return Color.blackTint06
+            return BPKColor.blackTint06
         })
     ]
     fileprivate static var dynamicColors = [
         ("backgroundColor", { (view: UIView) -> UIColor in
-            return Color.backgroundColor
+            return BPKColor.backgroundColor
         }),
         ("backgroundSecondaryColor", { (view: UIView) -> UIColor in
-            return Color.backgroundSecondaryColor
+            return BPKColor.backgroundSecondaryColor
         }),
         ("backgroundTertiaryColor", { (view: UIView) -> UIColor in
-            return Color.backgroundTertiaryColor
+            return BPKColor.backgroundTertiaryColor
         }),
         ("backgroundAlternativeColor", { (view: UIView) -> UIColor in
-            return Color.backgroundAlternativeColor
+            return BPKColor.backgroundAlternativeColor
         }),
         ("backgroundAlternativeSecondaryColor", { (view: UIView) -> UIColor in
-            return Color.backgroundAlternativeSecondaryColor
+            return BPKColor.backgroundAlternativeSecondaryColor
         }),
         ("textPrimaryColor", { (view: UIView) -> UIColor in
-            return Color.textPrimaryColor
+            return BPKColor.textPrimaryColor
         }),
         ("textSecondaryColor", { (view: UIView) -> UIColor in
-            return Color.textSecondaryColor
+            return BPKColor.textSecondaryColor
         }),
         ("textTertiaryColor", { (view: UIView) -> UIColor in
-            return Color.textTertiaryColor
+            return BPKColor.textTertiaryColor
         }),
         ("textQuaternaryColor", { (view: UIView) -> UIColor in
-            return Color.textQuaternaryColor
+            return BPKColor.textQuaternaryColor
         })
     ]
     fileprivate static var allColors = [
@@ -144,7 +144,7 @@ class ColorsViewController: UICollectionViewController {
             )
         #endif
 
-        collectionView?.backgroundColor = Color.backgroundColor
+        collectionView?.backgroundColor = BPKColor.backgroundColor
 
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -204,7 +204,7 @@ extension ColorsViewController {
                 ofKind: kind,
                 withReuseIdentifier: ColorsViewController.headerIdentifier, for: indexPath
             ) as? PreviewCollectionViewHeader else {
-                fatalError("Color View Headers are expected to be of type ColorPreviewCollectionViewHeader")
+                fatalError("BPKColor View Headers are expected to be of type ColorPreviewCollectionViewHeader")
             }
             // Customize headerView here
             let (sectionName, _) = ColorsViewController.allColors[indexPath.section]

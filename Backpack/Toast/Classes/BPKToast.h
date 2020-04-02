@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, BPKToastMode) {
 /**
  * `BPKToast` is a subclass of `UIView` configured with Skyscanner style properties.
  */
-NS_SWIFT_NAME(Toast) IB_DESIGNABLE @interface BPKToast : UIView
+IB_DESIGNABLE @interface BPKToast : UIView
 
 /**
  * BPKToast operation mode. The default is BPKToastModeIndeterminate.

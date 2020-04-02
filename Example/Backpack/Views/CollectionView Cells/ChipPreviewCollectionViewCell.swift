@@ -53,7 +53,7 @@ class ChipPreviewCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private let chip: Backpack.Chip = Backpack.Chip(frame: CGRect.zero)
+    private let chip: BPKChip = BPKChip(frame: CGRect.zero)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
