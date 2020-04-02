@@ -45,6 +45,10 @@ If you don't work for Skyscanner don't worry - the Example app will still work j
 
 Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.2 to match what is used on CI.
 
+### Snapshot testing
+
+Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on an iPhone 8 running iOS 13.2. This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
+
 ## Git
 
 Please submit your requested changes as a pull request to the `master` branch. If your branch becomes out of date and conflicts need to be resolved with `master` use `git rebase`, do not merge `master` into your feature branch.
