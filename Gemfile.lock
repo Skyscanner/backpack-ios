@@ -193,7 +193,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
-    jazzy (0.13.1)
+    jazzy (0.13.2)
       cocoapods (~> 1.5)
       mustache (~> 1.1)
       open4
@@ -310,7 +310,7 @@ DEPENDENCIES
   cocoapods (~> 1.9.1)
   danger
   fastlane (~> 2.144.0)
-  jazzy (~> 0.13.0)
+  jazzy (~> 0.13.2)
   rake
   rubocop (~> 0.80.1)
   semver2
