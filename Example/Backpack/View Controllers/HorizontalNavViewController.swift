@@ -85,7 +85,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         
         horizontalNav.appearance = appearance
         if case .alternate = appearance {
-            horizontalNav.backgroundColor = Color.skyGray
+            horizontalNav.backgroundColor = BPKColor.skyGray
         }
     }
 }
