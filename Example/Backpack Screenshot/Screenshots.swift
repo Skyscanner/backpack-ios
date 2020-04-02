@@ -341,6 +341,10 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
 
+        app.tables.staticTexts["Tab bar controller"].tap()
+        saveScreenshot(component: "tab-bar-controller", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+
         app.tables.staticTexts["Tappable link labels"].tap()
         app.tables.staticTexts["Text with single link"].tap()
         saveScreenshot(component: "tappable-link-label", scenario: "single", userInterfaceStyle: userInterfaceStyle)

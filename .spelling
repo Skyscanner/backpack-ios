@@ -80,6 +80,9 @@ BpkPanel
 
 BpkPhoneNumberInput
 
+BpkTabBarController
+TabBarController
+
 BpkProgressBar
 ProgressBar
 

@@ -48,6 +48,7 @@
 #import "Spinner.h"
 #import "StarRating.h"
 #import "Switch.h"
+#import "TabBarController.h"
 #import "TappableLinkLabel.h"
 #import "TextField.h"
 #import "TextView.h"

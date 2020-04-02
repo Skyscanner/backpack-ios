@@ -1,6 +1,10 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+ - Backpack/TabBarController:
+   - New component which inherits from `UITabBarController.`
+
 **Fixed:**
 - Backpack/Color:
   - Dynamic colours are now defined using pre-defined Backpack colour properties.
