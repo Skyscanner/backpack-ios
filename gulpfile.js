@@ -183,15 +183,25 @@ const isDynamicColor = entity => entity.value && entity.darkValue;
 const parseTokens = tokensData => {
   const dynamicColors = _.chain(tokensData.properties)
     .filter(entity => entity.type === 'color' && isDynamicColor(entity))
-    .map(({ value, darkValue, name, type, ...rest }) => ({
-      value: parseColor(value),
-      darkValue: parseColor(darkValue),
-      name: name[0].toLowerCase() + name.slice(1),
-      hex: value.toString(),
-      darkHex: darkValue.toString(),
-      type: 'dynamicColor',
-      ...rest,
-    }))
+    .map(
+      ({
+        value,
+        originalValue,
+        darkValue,
+        originalDarkValue,
+        name,
+        type,
+        ...rest
+      }) => ({
+        value: _.camelCase(originalValue),
+        darkValue: _.camelCase(originalDarkValue),
+        name: name[0].toLowerCase() + name.slice(1),
+        hex: value.toString(),
+        darkHex: darkValue.toString(),
+        type: 'dynamicColor',
+        ...rest,
+      }),
+    )
     .value();
 
   const colors = _.chain(tokensData.properties)
