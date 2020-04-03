@@ -41,4 +41,3 @@ Horizontal Navigation can use custom segments. To achieve this, implement a cust
 
 ### Appearance attributes
 `(UIColor)contentColor`
-`(BPKHorizontalNavigationAppearance)appearance`
