@@ -1,6 +1,10 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added**
+- Backpack/HorizontalNavigation:
+  - Added alternate appearance option for using over dark backgrounds in light mode.
+
 **Fixed:**
 - Backpack/Color:
   - Dynamic colours are now defined using pre-defined Backpack colour properties.

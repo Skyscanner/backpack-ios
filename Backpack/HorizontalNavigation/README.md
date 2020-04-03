@@ -17,6 +17,7 @@ NSArray<BPKHorizontalNavigationOption *> *options = @[
 BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
 horizontalNavigation.showsSelectedBar = YES;
 horizontalNavigation.size = BPKHorizontalNavigationSizeLarge;
+horizontalNavigation.appearance = BPKHorizontalNavigationAppearanceNormal;
 ```
 
 ### Swift
@@ -31,6 +32,7 @@ let options = [
 ]
 let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selected:0)
 horizontalNavigation.showsSelectedBar = false
+horizontalNavigation.appearance = .normal
 ```
 
 ## Custom Horizontal Navigation Segments
@@ -39,3 +41,4 @@ Horizontal Navigation can use custom segments. To achieve this, implement a cust
 
 ### Appearance attributes
 `(UIColor)contentColor`
+`(BPKHorizontalNavigationAppearance)appearance`
