@@ -23,7 +23,7 @@ BPKChip *chip = [[BPKChip alloc] init];
 chip.title = @"Some title";
 chip.enabled = NO;
 chip.shadowEnabled = NO;
-chip.backgroundTint = Color.panjin;
+chip.backgroundTint = BPKColor.panjin;
 ```
 
 ### Appearance attributes
