@@ -17,6 +17,7 @@ NSArray<BPKHorizontalNavigationOption *> *options = @[
 BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
 horizontalNavigation.showsSelectedBar = YES;
 horizontalNavigation.size = BPKHorizontalNavigationSizeLarge;
+horizontalNavigation.appearance = BPKHorizontalNavigationAppearanceNormal;
 ```
 
 ### Swift
@@ -31,6 +32,7 @@ let options = [
 ]
 let horizontalNavigation = BPKHorizontalNavigation(options: options, selected:0)
 horizontalNavigation.showsSelectedBar = false
+horizontalNavigation.appearance = .normal
 ```
 
 ## Custom Horizontal Navigation Segments

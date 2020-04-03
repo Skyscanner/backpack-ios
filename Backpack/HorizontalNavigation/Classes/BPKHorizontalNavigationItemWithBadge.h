@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic) BPKHorizontalNavigationSize size;
 
+@property(nonatomic) BPKHorizontalNavigationAppearance appearance;
+
 /**
 * Create a `BPKHorizontalNavigationItemWithBadge` with a title  and a `BPKBadge`.
 *

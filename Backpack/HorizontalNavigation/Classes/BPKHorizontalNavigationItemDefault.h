@@ -37,6 +37,8 @@ IB_DESIGNABLE @interface BPKHorizontalNavigationItemDefault : UIButton<BPKHorizo
  */
 @property(nonatomic) BPKHorizontalNavigationSize size;
 
+@property(nonatomic) BPKHorizontalNavigationAppearance appearance;
+
 /**
  * The icon to display within the item.
  *

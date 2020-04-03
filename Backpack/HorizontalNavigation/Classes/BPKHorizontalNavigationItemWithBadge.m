@@ -93,14 +93,29 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setAppearance:(BPKHorizontalNavigationAppearance)appearance {
+    if (_appearance != appearance) {
+        _appearance = appearance;
+        
+        [self updateStyle];
+    }
+}
+
 - (UIColor *)contentColor {
     if (self.selected) {
         if (self.selectedColor != nil) {
             return self.selectedColor;
         }
         return BPKColor.primaryColor;
+    } else {
+        switch (self.appearance) {
+            case BPKHorizontalNavigationAppearanceNormal:
+                return BPKColor.textPrimaryColor;
+                break;
+            case BPKHorizontalNavigationAppearanceAlternate:
+                return BPKColor.skyGrayTint07;
+        }
     }
-    return BPKColor.textPrimaryColor;
 }
 
 - (BPKLabel *)titleLabel {
