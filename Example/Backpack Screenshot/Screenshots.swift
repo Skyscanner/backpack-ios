@@ -341,6 +341,10 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
 
+        app.tables.staticTexts["Tab bar controller"].tap()
+        saveScreenshot(component: "tab-bar-controller", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+
         app.tables.staticTexts["Tappable link labels"].tap()
         app.tables.staticTexts["Text with single link"].tap()
         saveScreenshot(component: "tappable-link-label", scenario: "single", userInterfaceStyle: userInterfaceStyle)
@@ -350,6 +354,10 @@ class Screenshots: XCTestCase {
         tapBackButton()
         app.tables.staticTexts["Alternate style"].tap()
         saveScreenshot(component: "tappable-link-label", scenario: "alternate-style",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+        app.tables.staticTexts["Link with custom color"].tap()
+        saveScreenshot(component: "tappable-link-label", scenario: "custom-color",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
         tapBackButton()

@@ -127,8 +127,18 @@ NS_ASSUME_NONNULL_BEGIN
                                                             : self.fontStyle;
 }
 
+- (void)setTextColor:(UIColor *)textColor {
+    _textColor = textColor;
+    [self updateTextColors];
+}
+
 - (NSDictionary *)customFontAttributes {
-    return self.style == BPKTappableLinkLabelStyleAlternate ? @{NSForegroundColorAttributeName: BPKColor.white} : @{};
+    if (self.style == BPKTappableLinkLabelStyleAlternate) {
+        return @{NSForegroundColorAttributeName: BPKColor.white};
+    } else if (_textColor) {
+        return @{NSForegroundColorAttributeName: _textColor};
+    }
+    return @{};
 }
 
 - (UIColor *)linkDisplayColor {

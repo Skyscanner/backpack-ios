@@ -68,6 +68,11 @@ IB_DESIGNABLE @interface BPKTappableLinkLabel : UIView
 @property(nonatomic) NSLineBreakMode lineBreakMode;
 
 /**
+ * The color of the label's non-link text. Setting this does not affect the color of alternate labels.
+ */
+@property(nonatomic) UIColor *textColor;
+
+/**
  * The font style used to display the text.
  * @see BPKFontStyle
  */

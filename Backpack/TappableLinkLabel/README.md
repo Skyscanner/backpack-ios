@@ -20,6 +20,9 @@ tappableLinkLabel.delegate = self;
 // Apply alternative style:
 tappableLinkLabel.style = BPKTappableLinkLabelStyleAlternative;
 
+// Apply custom text color:
+tappableLinkLabel.textColor = BPKColor.panjin;
+
 ...
 
 #pragma mark - <BPKTappableLinkLabelDelegate>
@@ -48,6 +51,9 @@ tappableLinkLabel.addLink(toTransitInformation: ["identifier": "some link thing"
 
 // Apply alternative style:
 tappableLinkLabel.style = .alternative
+
+// Apply custom text color:
+tappableLinkLabel.textColor = BPKColor.panjin
 
 ...
 

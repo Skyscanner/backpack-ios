@@ -162,6 +162,30 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testViewSnapshotWithColorApplied {
+    BPKFontStyle styles[] = {
+        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
+        BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXxlEmphasized,  BPKFontStyleTextXxxlEmphasized,
+    };
+
+    NSUInteger length = sizeof(styles) / sizeof(styles[0]);
+
+    UIStackView *stackView = [self buildStackView];
+
+    for (NSUInteger i = 0; i < length; i++) {
+        BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFontStyle:styles[i]];
+        label.textColor = BPKColor.panjin;
+        label.text = @"Backpack Rocks";
+        [label addLinkToURL:[NSURL URLWithString:@"https://backpack.github.io/"] withRange:NSMakeRange(0, 8)];
+        [stackView addArrangedSubview:label];
+        [label sizeToFit];
+    }
+    UIView *parentView = [self buildParentView];
+    [parentView addSubview:stackView];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
