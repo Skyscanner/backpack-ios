@@ -28,7 +28,7 @@ flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
 
 let label = Label(fontStyle: .textXlEmphasized)
 label.text = "Much wow!"
-label.textColor = Color.white
+label.textColor = BPKColor.white
 label.translatesAutoresizingMaskIntoConstraints = false
 
 flareView.contentView.addSubview(label)

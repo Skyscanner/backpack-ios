@@ -41,8 +41,8 @@ dialogController.scrimAction = scrimAction;
 ### Swift:
 
 ```swift
-let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, color: Color.white, size: .large)
-let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: Color.green500)
+let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, color: BPKColor.white, size: .large)
+let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.green500)
 let dialogController  = DialogController(title: "You are going to Tokyo!",
                                         message: "Your flight is all booked. Why not check out some hotels now?",
                                         style: .alert,

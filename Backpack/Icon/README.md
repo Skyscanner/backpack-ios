@@ -34,7 +34,7 @@ UIImage *renderedIcon = [BPKIcon iconNamed:@"flight" color:[BPKolor skyGray] siz
 import Backpack
 
 let iconView = Backpack.IconView(iconName: .accessibility, size: .small)
-iconView.tintColor = Backpack.Color.blue500
+iconView.tintColor = BPKColor.blue500
 ```
 
 ##### Flip icons with a horizontal direction when layout direction is right to left
@@ -51,6 +51,6 @@ iconView.flipsForRightToLeft = true
 ```swift
 import Backpack
 
-let renderedIcon = Backpack.Icon.makeIcon(name: .flight, color: Backpack.Color.skyGray, size:.small)
+let renderedIcon = Backpack.Icon.makeIcon(name: .flight, color: BPKColor.skyGray, size:.small)
 ``
 
