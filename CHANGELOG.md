@@ -1,6 +1,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 29.1.0
+
+**Added:**
+ - Backpack/TabBarController:
+   - New component which inherits from `UITabBarController.`
+
+- Backpack/TappableLinkLabel:
+  - New `textColor` prop for changing the non-link text color.
+
+**Fixed:**
+- Backpack/Color:
+  - Dynamic colours are now defined using pre-defined Backpack colour properties.
+
 # 29.0.0
 
 **Breaking:**
