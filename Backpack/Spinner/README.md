@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKSpinner`/`Backpack.Spinner` contains the Backpack Spinner component which is a subclass of `UIActivityIndicatorView` with Skyscanner styles.
+`BPKSpinner` contains the Backpack Spinner component which is a subclass of `UIActivityIndicatorView` with Skyscanner styles.
 
 ### Objective-C
 
@@ -18,7 +18,7 @@ BPKSpinner *spinner = [[BPKSpinner alloc] initWithSize:BPKSpinnerSizeDefault sty
 ```swift
 import Backpack
 
-let spinner = Backpack.Spinner(size: .`default`, style: .primary)
+let spinner = BPKSpinner(size: .`default`, style: .primary)
 // Position spinner with autolayout or other method
 ```
 

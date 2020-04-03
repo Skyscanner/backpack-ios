@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKFlareView`/`Backpack.FlareView` is a `UIView` with the Skyscanner flare style. The flare can be easily enabled and disabled with a `BOOL` property.
+`BPKFlareView` is a `UIView` with the Skyscanner flare style. The flare can be easily enabled and disabled with a `BOOL` property.
 
 ### Objective-C
 

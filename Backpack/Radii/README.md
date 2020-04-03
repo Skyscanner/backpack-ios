@@ -17,8 +17,8 @@ CGFloat myAppBorderRadiusLarge = BPKBorderRadiusLg;
 ```swift
 import Backpack
 
-let smallRadius = Backpack.BPKBorderRadiusSm
-let largeRadius = Backpack.BPKBorderRadiusLg
+let smallRadius = BPKBorderRadiusSm
+let largeRadius = BPKBorderRadiusLg
 ```
 
 

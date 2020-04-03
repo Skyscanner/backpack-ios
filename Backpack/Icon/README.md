@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKIcon`/`Backpack.Icon` contains the Backpack Icon component. It supports rendering any Backpack icon to `UIImage`s using a caching mechanism to reduce performance impact. A UI component `IconView`/`BPKIconView` is also available for simple icon case where an icon is to be displayed with a tint color.
+`BPKIcon` contains the Backpack Icon component. It supports rendering any Backpack icon to `UIImage`s using a caching mechanism to reduce performance impact. A UI component `IconView`/`BPKIconView` is also available for simple icon case where an icon is to be displayed with a tint color.
 
 ### Objective-C
 
@@ -33,7 +33,7 @@ UIImage *renderedIcon = [BPKIcon iconNamed:@"flight" color:[BPKolor skyGray] siz
 ```swift
 import Backpack
 
-let iconView = Backpack.IconView(iconName: .accessibility, size: .small)
+let iconView = BPKIconView(iconName: .accessibility, size: .small)
 iconView.tintColor = BPKColor.blue500
 ```
 
@@ -42,7 +42,7 @@ iconView.tintColor = BPKColor.blue500
 ```swift
 import Backpack
 
-let iconView = Backpack.IconView(iconName: .arrowLeft, size: .small)
+let iconView = BPKIconView(iconName: .arrowLeft, size: .small)
 iconView.flipsForRightToLeft = true
 ```
 
@@ -51,6 +51,6 @@ iconView.flipsForRightToLeft = true
 ```swift
 import Backpack
 
-let renderedIcon = Backpack.Icon.makeIcon(name: .flight, color: BPKColor.skyGray, size:.small)
+let renderedIcon = BPKIcon.makeIcon(name: .flight, color: BPKColor.skyGray, size:.small)
 ``
 

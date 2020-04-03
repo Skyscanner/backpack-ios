@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKNavigationBar`/`Backpack.NavigationBar` is an implementation of parts of UIKit's UINavigationBar, specifically the large
+`BPKNavigationBar` is an implementation of parts of UIKit's UINavigationBar, specifically the large
 title behaviour from iOS 11 and later. It is intended to be used when the main view of a view controller scrolls in which case
 the navigation bar tracks the state of the scroll view.
 
@@ -49,7 +49,7 @@ if (!willDecelerate) {
 ```swift
 import Backpack
 
-let navigationBar = Backpack.NavigationBar(frame: .zero)
+let navigationBar = BPKNavigationBar(frame: .zero)
 
 // In viewDidLoad
 

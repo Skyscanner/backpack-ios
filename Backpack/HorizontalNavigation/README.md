@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKHorizontalNavigation`/`Backpack.HorizontalNavigation` is a component similar to [Segmented Control](https://developer.apple.com/design/human-interface-guidelines/ios/controls/segmented-controls/). It shows two or more segments, each being a distinct option for travellers to switch between. Each option is defined with a string, and optionally a `BPKIcon` name too.
+`BPKHorizontalNavigation` is a component similar to [Segmented Control](https://developer.apple.com/design/human-interface-guidelines/ios/controls/segmented-controls/). It shows two or more segments, each being a distinct option for travellers to switch between. Each option is defined with a string, and optionally a `BPKIcon` name too.
 
 ### Objective-C
 
@@ -29,7 +29,7 @@ let options = [
     BPKHorizontalNavigationOption(name: "Hotels", iconName: .hotels, tag:1),
     BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag:2)
 ]
-let horizontalNavigation = Backpack.HorizontalNavigation(options: options, selected:0)
+let horizontalNavigation = BPKHorizontalNavigation(options: options, selected:0)
 horizontalNavigation.showsSelectedBar = false
 ```
 

@@ -2,14 +2,14 @@
 
 ## Usage
 
-`BPKGradient`/`Backpack.Gradient` contains the Backpack gradient definitions. Each instance has the four properties:
+`BPKGradient` contains the Backpack gradient definitions. Each instance has the four properties:
 
 + `colors`
 + `stops`
 + `startPoint`
 + `endPoint`
 
-To render gradients `BPKGradientView`/`Backpack.GradientView` or `BPKGradientLayer`/`Backpack.GradientLayer` can be used.
+To render gradients `BPKGradientView` or `BPKGradientLayer` can be used.
 
 
 ### Objective-C
@@ -26,6 +26,6 @@ BPKGradient *gradientTopRight =  [BPKGradient primaryWithDirection:BPKGradientDi
 ```swift
 import Backpack
 
-let gradientDefault = Backpack.Gradient.primary()
-let gradientTopRight = Backpack.Gradient.primary(direction: .topRight)
+let gradientDefault = BPKGradient.primary()
+let gradientTopRight = BPKGradient.primary(direction: .topRight)
 ```

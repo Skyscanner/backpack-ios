@@ -2,7 +2,7 @@
 
 ## Usage
 
-`Backpack/DarkMode`/`Backpack.DarkMode` contains utilities that help when developing applications which support dark mode.
+`Backpack/DarkMode`/`BPKDarkMode` contains utilities that help when developing applications which support dark mode.
 
 `__DARK_MODE_SUPPORTED` is a macro which determines if dark-mode specific compiler features are available. For example, `UIViewController` `overrideUserInterfaceStyle` property, which is only available in XCode 11.
 
@@ -23,7 +23,7 @@
 **`__DARK_MODE_SUPPORTED`**
 
 ```swift
-import Backpack.DarkMode
+import BPKDarkMode
 
 #if __BPK_DARK_MODE_SUPPORTED
   overrideUserInterfaceStyle = .light

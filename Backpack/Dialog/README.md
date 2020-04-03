@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKDialogController`/`Backpack.DialogController` contains the Backpack Dialog component.
+`BPKDialogController` contains the Backpack Dialog component.
 
 
 ### Objective-C
@@ -41,7 +41,7 @@ dialogController.scrimAction = scrimAction;
 ### Swift:
 
 ```swift
-let iconTemplate = Backpack.Icon.makeTemplateIcon(name: .tick, color: BPKColor.white, size: .large)
+let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, color: BPKColor.white, size: .large)
 let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.green500)
 let dialogController  = DialogController(title: "You are going to Tokyo!",
                                         message: "Your flight is all booked. Why not check out some hotels now?",

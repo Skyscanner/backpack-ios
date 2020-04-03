@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKSwitch`/`Backpack.Switch` contains the Backpack Switch component which is a subclass of `UISwitch` with Skyscanner styles.
+`BPKSwitch` contains the Backpack Switch component which is a subclass of `UISwitch` with Skyscanner styles.
 
 
 ### Objective-C
@@ -19,7 +19,7 @@ BPKSwitch *switch = [BPKSwitch new];
 ```swift
 import Backpack
 
-let `switch` = Backpack.Switch();
+let `switch` = BPKSwitch();
 // Position switch with autolayout or other method
 ```
 

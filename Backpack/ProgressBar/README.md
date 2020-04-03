@@ -16,7 +16,7 @@ progressBar.progress = 0.5;
 ```swift
 #import Backpack
 
-let progressBar = Backpack.ProgressBar()
+let progressBar = BPKProgressBar()
 progressBar.progress = 0.5
 progressBar.set(progress:0.75 animated:true)
 ```

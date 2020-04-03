@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKShadow`/`Backpack.Shadow` contains the Backpack shadow definitions.
+`BPKShadow` contains the Backpack shadow definitions.
 
 ### Objective-C
 
@@ -19,7 +19,7 @@ BPKShadow *shadowSm = [BPKShadow shadowSm];
 
 ```swift
 import Backpack
-let shadowSm = Backpack.Shadow.shadowSm()
+let shadowSm = BPKShadow.shadowSm()
 
 
 shadowSm.apply(to: myView.layer)

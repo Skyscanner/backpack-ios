@@ -16,12 +16,12 @@ BPKDuration.animationDurationBase;
 
 ### Swift
 
-`Backpack.Duration` contains our duration tokens for animations.
+`BPKDuration` contains our duration tokens for animations.
 
 ```swift
 import Backpack
 
-Backpack.Duration.animationDurationXs;
-Backpack.Duration.animationDurationSm;
-Backpack.Duration.animationDurationBase;
+BPKDuration.animationDurationXs;
+BPKDuration.animationDurationSm;
+BPKDuration.animationDurationBase;
 ```
