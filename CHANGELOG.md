@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 29.2.0
+
+**Added**
+- Backpack/HorizontalNavigation:
+  - Added alternate appearance option for using over dark backgrounds in light mode.
+
 # 29.1.0
 
 **Added:**
