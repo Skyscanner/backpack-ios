@@ -5,10 +5,6 @@
 - Backpack/HorizontalNavigation:
   - Added alternate appearance option for using over dark backgrounds in light mode.
 
-**Fixed:**
-- Backpack/Color:
-  - Dynamic colours are now defined using pre-defined Backpack colour properties.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.

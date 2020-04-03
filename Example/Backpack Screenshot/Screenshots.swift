@@ -242,6 +242,10 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "horizontal-navigation", scenario: "wide",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["Alternate"].tap()
+        saveScreenshot(component: "horizontal-navigation", scenario: "alternate",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Icons"].tap()
