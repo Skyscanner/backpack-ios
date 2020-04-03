@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKLabel`/`Backpack.Label` contains the Backpack Label component which is a subclass of `UILabel` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
+`BPKLabel` contains the Backpack Label component which is a subclass of `UILabel` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
 
 ### Objective-C
 
@@ -22,7 +22,7 @@ BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 ```swift
 import Backpack
 
-let label = Backpack.Label(fontStyle: .base)
+let label = BPKLabel(fontStyle: .base)
 // Position label with autolayout or other method
 
 // Set font style for a specific range

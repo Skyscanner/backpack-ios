@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKBadge`/`Backpack.Badge` contains the Backpack Badge component. It has 6 different styles defined in `BPKBadgeType` and can contain a message.
+`BPKBadge` contains the Backpack Badge component. It has 6 different styles defined in `BPKBadgeType` and can contain a message.
 
 
 ### Objective-C
@@ -19,5 +19,5 @@ BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"H
 ```swift
 import Backpack
 
-let badge = Backpack.Badge(type: .success, message: "Hello Travel")
+let badge = BPKBadge(type: .success, message: "Hello Travel")
 ```

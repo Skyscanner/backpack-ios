@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKTappableLinkLabel`/`Backpack.TappableLinkLabel` is a view that renders flowing text that can include tappable links as part of its content.
+`BPKTappableLinkLabel` is a view that renders flowing text that can include tappable links as part of its content.
 
 ### Objective-C
 
@@ -41,7 +41,7 @@ tappableLinkLabel.textColor = BPKColor.panjin;
 ```swift
 import Backpack
 
-let tappableLinkLabel = Backpack.TappableLinkLabel(fontStyle: .textBase)
+let tappableLinkLabel = BPKTappableLinkLabel(fontStyle: .textBase)
 tappableLinkLabel.text = “Find out more about our terms of service.”
 tappableLinkLabel.delegate = self
 

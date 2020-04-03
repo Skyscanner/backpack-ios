@@ -17,8 +17,8 @@ CGFloat myAppBorderBorderLarge = BPKBorderSizeLg;
 ```swift
 import Backpack
 
-let smallBorder = Backpack.BPKBorderSizeSm
-let largeBorder = Backpack.BPKBorderSizeLg
+let smallBorder = BPKBorderSizeSm
+let largeBorder = BPKBorderSizeLg
 ```
 
 

@@ -2,7 +2,7 @@
 
 ## Usage
 
-`BPKTextField`/`Backpack.TextField` contains the Backpack TextField component which is a subclass of `UITextField` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
+`BPKTextField` contains the Backpack TextField component which is a subclass of `UITextField` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
 
 ### Objective-C
 
@@ -16,7 +16,7 @@ BPKTextField *textField = [[BPKTextField alloc] initWithFontStyle:BPKFontStyleTe
 ### Swift
 
 ```swift
-import Backpack.TextField
+import BPKTextField
 
 let textField = TextField(fontStyle: .textBase)
 // Position TextField with autolayout or other method
@@ -24,4 +24,4 @@ let textField = TextField(fontStyle: .textBase)
 
 ## Dynamic Text
 
-`BPKTextField`/`Backpack.TextField` doesn't currently support **Dynamic Text**, but this is planned for a later release.
+`BPKTextField` doesn't currently support **Dynamic Text**, but this is planned for a later release.

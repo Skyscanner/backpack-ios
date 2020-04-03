@@ -16,6 +16,6 @@ CGFloat myAppSpacingLarge = BPKSpacingLg;
 ```swift
 import Backpack
 
-let myAppSpacingSmall = Backpack.BPKSpacingSm
-let myAppSpacingLarge = Backpack.BPKSpacingLg
+let myAppSpacingSmall = BPKSpacingSm
+let myAppSpacingLarge = BPKSpacingLg
 ```
