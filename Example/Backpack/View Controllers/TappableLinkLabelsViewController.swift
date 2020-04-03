@@ -33,6 +33,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     var linkType: LinkType = .web
     var linkCount: LinkCount = .single
     var style: BPKTappableLinkLabelStyle = .default
+    var textColor: UIColor?
     var fontStyles = [
         BPKFontStyle.textCaps,
         BPKFontStyle.textSm,
@@ -84,6 +85,9 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
 
         var linkIndex = 0
         for tappableLink in tappableLinks {
+            if let textColor = textColor {
+                tappableLink.textColor = textColor
+            }
             tappableLink.text = content
             tappableLink.fontStyle = fontStyles[linkIndex]
             tappableLink.style = style
