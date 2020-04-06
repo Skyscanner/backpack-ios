@@ -16,7 +16,7 @@ BPKTextView *textView = [[BPKTextView alloc] initWithFontStyle:BPKFontStyleTextB
 ### Swift
 
 ```swift
-#import <Backpack/TextView.h>
+import Backpack
 
 let textView = BPKTextView(fontStyle: .base)
 // Position TextView with autolayout or other method

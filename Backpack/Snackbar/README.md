@@ -29,10 +29,10 @@ BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
 ```swift
 import Backpack
 
-let snackbar = Snackbar.init(title: "Snackbar Title",
-                          duration: .long, 
-                    viewController: self,
-                          delegate: nil)
+let snackbar = BPKSnackbar.init(title: "Snackbar Title",
+                             duration: .long,
+                       viewController: self,
+                             delegate: nil)
 
 snackbar.show()
 ```

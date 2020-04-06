@@ -47,7 +47,7 @@ BPKBottomSheet *bottomSheet = [[BPKBottomSheet alloc] initWithContentViewControl
 import Backpack
 
 let contentViewController = ... // A view controller that contains any kind of scroll view
-let bottomSheet = BottomSheet(contentViewController: contentViewController,
+let bottomSheet = BPKBottomSheet(contentViewController: contentViewController,
                               scrollViewToTrack: contentViewController.scrollView)
 bottomSheet.present(in: self, animated: true, completion: nil)
 ```
@@ -59,7 +59,7 @@ import Backpack
 
 let contentViewController = ... // A view controller that contains any kind of scroll view
 let fixedBottomSectionViewController = ... // A view controller that will be fixed at the bottom (won't scroll)
-let bottomSheet = BottomSheet(contentViewController: contentViewController,
+let bottomSheet = BPKBottomSheet(contentViewController: contentViewController,
                               scrollViewToTrack: contentViewController.scrollView,
                               bottomSectionViewController: fixedBottomSectionViewController)
 bottomSheet.present(in: self, animated: true, completion: nil)
