@@ -82,6 +82,7 @@
 		D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
 		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
+		D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */; };
 		D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C765236AE319006683F5 /* BPKSimpleDateTest.m */; };
 		D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257C767236AE3FB006683F5 /* TextViewUITest.swift */; };
 		D257C76A236AE3FB006683F5 /* TextFieldUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257C768236AE3FB006683F5 /* TextFieldUITest.swift */; };
@@ -90,6 +91,8 @@
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
+		D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */; };
+		D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */; };
 		D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */; };
 		D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D278358C22EA2A81004C79CF /* ProgressBar.storyboard */; };
 		D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */; };
@@ -309,6 +312,7 @@
 		D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKProgressBarTest.m; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
 		D24D602A22F84CEC002847D1 /* TextField.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextField.storyboard; sourceTree = "<group>"; };
+		D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTabBarControllerTest.m; sourceTree = "<group>"; };
 		D257C765236AE319006683F5 /* BPKSimpleDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSimpleDateTest.m; sourceTree = "<group>"; };
 		D257C767236AE3FB006683F5 /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
 		D257C768236AE3FB006683F5 /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 		D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsSelectorViewController.swift; sourceTree = "<group>"; };
 		D269975323526E57006138D2 /* BPKSnapshotTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotTest.h; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTabBarControllerSnapshotTest.m; sourceTree = "<group>"; };
+		D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerStoryViewController.swift; sourceTree = "<group>"; };
 		D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelMultiFontStyleViewController.swift; sourceTree = "<group>"; };
 		D278358C22EA2A81004C79CF /* ProgressBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProgressBar.storyboard; sourceTree = "<group>"; };
 		D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipSelectorViewController.swift; sourceTree = "<group>"; };
@@ -576,6 +582,7 @@
 				D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */,
 				D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */,
 				D22EB156239EA75A0090C65E /* BPKBorderSizeTest.m */,
+				D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */,
 				D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */,
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
 				D257C765236AE319006683F5 /* BPKSimpleDateTest.m */,
@@ -728,6 +735,7 @@
 		D655C515200F9B9200CB39AF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */,
 				D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */,
 				D2C49DB423856949008D41FB /* CalendarSelectorViewController.swift */,
 				D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */,
@@ -789,6 +797,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
 				76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */,
 				76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */,
 				D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */,
@@ -1226,6 +1235,7 @@
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */,
 				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
+				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
@@ -1301,12 +1311,14 @@
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */,
+				D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
 				D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */,
+				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D22EB158239EA78F0090C65E /* BPKBorderSizeTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
@@ -1348,6 +1360,7 @@
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
+				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
 				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,

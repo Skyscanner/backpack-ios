@@ -16,20 +16,23 @@
  * limitations under the License.
  */
 
-/*
- * Note that in some places we are having to resolve the correct UIColors from dynamic values ourselves to ensure
- * that we support overriding UIViewController interface styles. if we allow UIKit to resolve them for us,
- * it may do so wrongly.
- * This is because UIKit only sets the UIView's trait collection on a handful of lifecycle methods, and we
- * are using dynamic colours outside of these. If we do not manually resolve colours using self.traitCollection,
- * then UIKit will fall back to using [UITraitCollection currentTraitCollection] which does not reflect the override.
- */
+#import <XCTest/XCTest.h>
 
-#import "BPKTabBarController.h"
+#import <Backpack/TabBarController.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKTabBarController
+@interface BPKTabBarControllerTest : XCTestCase
+
+@end
+
+@implementation BPKTabBarControllerTest
+
+- (void)testIsUITabBarController {
+    BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
+
+    XCTAssertTrue([tabBarController isKindOfClass:UITabBarController.class], "BPKTabBarController should be a subclass of UITabBarController");
+}
 
 @end
 
