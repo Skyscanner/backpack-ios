@@ -16,6 +16,7 @@ UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
 innerView.backgroundColor = [BPKColor systemRed];
 
 [flareView.contentView addSubview:innerView];
+flareView.flarePosition = BPKFlarePositionTop;
 ```
 
 ### Swift
@@ -32,5 +33,6 @@ label.textColor = BPKColor.white
 label.translatesAutoresizingMaskIntoConstraints = false
 
 flareView.contentView.addSubview(label)
+flareView.flarePosition = .top
 ```
 

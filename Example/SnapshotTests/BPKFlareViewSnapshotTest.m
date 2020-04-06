@@ -75,6 +75,18 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testFlareViewSnapshotTop {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor panjin];
+
+    [self configureFlareView:flareView withInnerView:innerView];
+    [self configureParentView:parentView forFlareView:flareView];
+    flareView.flarePosition = BPKFlarePositionTop;
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
