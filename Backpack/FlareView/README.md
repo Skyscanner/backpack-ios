@@ -23,10 +23,10 @@ innerView.backgroundColor = [BPKColor systemRed];
 ```swift
 import Backpack
 
-let flareView = FlareView(frame: .zero)
+let flareView = BPKFlareView(frame: .zero)
 flareViewView.backgroundView.backgroundColor = BPKColor.skyBlue;
 
-let label = Label(fontStyle: .textXlEmphasized)
+let label = BPKLabel(fontStyle: .textXlEmphasized)
 label.text = "Much wow!"
 label.textColor = BPKColor.white
 label.translatesAutoresizingMaskIntoConstraints = false

@@ -4,7 +4,7 @@
 
 There are four themes - `Default`, `Doha`, `HongKong`, and `London`.
 
-To apply a theme globally, call the theme's `apply` method in `didFinishLaunchingWithOption` in `AppDelegate.m` or `AppDelegate.swift`. 
+To apply a theme globally, call the theme's `apply` method in `didFinishLaunchingWithOption` in `AppDelegate.m` or `AppDelegate.swift`.
 This will apply the theme to any Backpack components that are contained inside the appropriate theme container.
 
 ### Objective-C
@@ -12,14 +12,14 @@ This will apply the theme to any Backpack components that are contained inside t
 
 #### Short example
 
-```
+```objective-c
 id<BPKThemeDefinition> londonTheme = [BPKLondonTheme new];
 [BPKTheme apply:londonTheme];
 ```
 
 #### Longer example
 
-```
+```objective-c
 #import <Backpack/Themes.h>
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -40,7 +40,7 @@ Methods `gray50ColorFor`, `gray100ColorFor`, `gray300ColorFor`, `gray500ColorFor
 
 Note that your view must be within the view-hierarchy for the correctly themed value to be returned.
 
-```
+```objective-c
 BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
 iconView.tintColor = [BPKTheme primaryColorFor:self];
 ```
@@ -49,19 +49,19 @@ iconView.tintColor = [BPKTheme primaryColorFor:self];
 
 #### Short example
 
-```
-Theme.apply(londonTheme)
+```swift
+BPKTheme.apply(londonTheme)
 ```
 
 #### Longer example
 
-```
+```swift
 import Backpack
 
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     // Override point for customization after application launch. Here you can out the code you want.
-    let londonTheme = LondonTheme()
+    let londonTheme = BPKLondonTheme()
     Theme.apply(londonTheme)
     return true
 }
@@ -77,8 +77,8 @@ Methods `gray50Color`, `gray100Color`, `gray300Color`, `gray500Color`, `gray700C
 Note that your view must be within the view-hierarchy for the correctly themed value to be returned.
 
 ```
-let tickIcon: IconView = IconView(iconName: IconName.tick, size: BPKIconSize.small)
-tickIcon.tintColor = Theme.primaryColor(for: self)
+let tickIcon: BPKIconView = IconView(iconName: .tick, size: .small)
+tickIcon.tintColor = BPKTheme.primaryColor(for: self)
 ```
 
 With this done, any components that are placed inside an instance of `BPKLondonThemeContainer` will have the theme applied!

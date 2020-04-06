@@ -13,7 +13,7 @@ and then run `pod install`.
 
 `Backpack/Toast` contains a Backpack Toast component in the class `BPKToast`.It can display a toast view with a title and details text, it also contains a spinner view.
 
-```objective - c
+```objective-c
 #import <Backpack/Toast.h>
 
 BPKToast *toast = [BPKToast showToastAddedTo:self.view animated:YES];

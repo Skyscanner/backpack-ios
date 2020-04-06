@@ -58,11 +58,11 @@ tappableLinkLabel.textColor = BPKColor.panjin
 ...
 
 extension MyClass: BPKTappableLinkLabelDelegate {
-  func tappableLabel(_ label: TappableLinkLabel, didSelectLinkWith url: URL) {
+  func tappableLabel(_ label: BPKTappableLinkLabel, didSelectLinkWith url: URL) {
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
 
-  func tappableLabel(_ label: TappableLinkLabel,
+  func tappableLabel(_ label: BPKTappableLinkLabel,
                        didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
       print(components)
   }

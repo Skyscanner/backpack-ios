@@ -24,7 +24,7 @@ NSDate *date = [simpleDate dateForCalendar:calendar];
 import Backpack
 
 // Create a `BPKSimpleDate` from an `NSDate`:
-let simpleDate = SimpleDate(date: date, for: calendar);
+let simpleDate = BPKSimpleDate(date: date, for: calendar);
 
 // Create an `NSDate` from a `BPKSimpleDate`:
 let date = simpleDate date(calendar: calendar);

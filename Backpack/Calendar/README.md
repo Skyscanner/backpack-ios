@@ -56,8 +56,8 @@ calendar.locale = Locale.current
 
 // ...
 
-extension MyClass: CalendarDelegate {
-    func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [SimpleDate]) {
+extension MyClass: BPKCalendarDelegate {
+    func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [BPKSimpleDate]) {
         // do stuff
     }
 
@@ -119,12 +119,12 @@ bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 
 #### Swift
 
-```
+```swift
 import Backpack
 
-let lowPrices: Set<SimpleDate> = ...
-let mediumPrices: Set<SimpleDate> = ...
-let highPrices: Set<SimpleDate> = ...
+let lowPrices: Set<BPKSimpleDate> = ...
+let mediumPrices: Set<BPKSimpleDate> = ...
+let highPrices: Set<BPKSimpleDate> = ...
 
 let calendar = BPKCalendar(frame: .zero)
 calendar.minDate = calendar.simpleDate(from: Date())
@@ -132,8 +132,8 @@ calendar.locale = Locale.current
 
 // ...
 
-extension MyClass: CalendarDelegate {
-  func calendar(_ calendar: BPKCalendar, cellStyleFor date: SimpleDate) -> BPKCalendarDateCellStyle {
+extension MyClass: BPKCalendarDelegate {
+  func calendar(_ calendar: BPKCalendar, cellStyleFor date: BPKSimpleDate) -> BPKCalendarDateCellStyle {
       if lowPrices.contains(date) {
           return .positive
       }
@@ -150,7 +150,7 @@ extension MyClass: CalendarDelegate {
   }
 
   }
-  func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [SimpleDate]) {
+  func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [BPKSimpleDate]) {
       // do stuff
   }
 }

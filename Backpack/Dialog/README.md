@@ -42,20 +42,20 @@ dialogController.scrimAction = scrimAction;
 
 ```swift
 let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, color: BPKColor.white, size: .large)
-let iconDefinition = DialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.green500)
-let dialogController  = DialogController(title: "You are going to Tokyo!",
-                                        message: "Your flight is all booked. Why not check out some hotels now?",
-                                        style: .alert,
-                                        iconDefinition: iconDefinition
+let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.green500)
+let dialogController  = BPKDialogController(title: "You are going to Tokyo!",
+                                          message: "Your flight is all booked. Why not check out some hotels now?",
+                                          style: .alert,
+                                          iconDefinition: iconDefinition
 
-let mainAction = DialogButtonAction(title: "Continue", style: .primary) {
+let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
     print("Primary was tapped, action: \($0)")
 }
-let skipAction = DialogButtonAction(title: "Skip", style: .link) {
+let skipAction = BPKDialogButtonAction(title: "Skip", style: .link) {
     print("Skip was tapped, action: \($0)")
 }
 
-let scrimAction = DialogScrimAction(handler: { (didDismiss) in
+let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
     print("Scrim tap \(didDismiss ? "dimissing" : "")")
 }, shouldDismiss: true)
 
