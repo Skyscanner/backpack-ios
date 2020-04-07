@@ -74,6 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, assign) IB_DESIGNABLE BPKDialogCornerStyle cornerStyle;
 
+@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
+
 /**
  * The size of the buttons. By default this is `BPKButtonSizeLarge`.
  */

@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKDialogController ()
 
-@property(nullable, nonatomic, strong) BPKDialogIconDefinition *iconDefinition;
 @property(nullable, nonatomic, copy) NSString *titleText;
 @property(nonatomic, copy) NSString *messageText;
 
@@ -174,6 +173,13 @@ NS_ASSUME_NONNULL_BEGIN
         _buttonSize = buttonSize;
 
         self.dialogView.buttonSize = buttonSize;
+    }
+}
+
+- (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
+    _iconDefinition = iconDefinition;
+    if(self.dialogView != nil){
+        self.dialogView.iconDefinition = iconDefinition;
     }
 }
 
