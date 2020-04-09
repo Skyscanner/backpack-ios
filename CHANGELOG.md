@@ -1,6 +1,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 29.2.1
+
+**Fixed**
+- Backpack/Dialog:
+  - A change to `iconDefinition` while the dialog is open will now be respected and the UI will update immediately.
+
+- Backpack/TabBarController:
+  - Fixed a typo in the component class name.
+
 # 29.2.0
 
 **Added**
