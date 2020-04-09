@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 }
 
-- (void)testFlareViewSnapshot {
+- (void)testFlareViewBottomSnapshot {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -72,6 +72,22 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureFlareView:flareView withInnerView:innerView];
     [self configureParentView:parentView forFlareView:flareView];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testFlareViewTopSnapshot {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor panjin];
+
+    [self configureFlareView:flareView withInnerView:innerView];
+    [self configureParentView:parentView forFlareView:flareView];
+
+    flareView.flarePosition = BPKFlarePositionTop;
+    [flareView setNeedsLayout];
+    [flareView layoutIfNeeded];
+
     FBSnapshotVerifyView(parentView, nil);
 }
 

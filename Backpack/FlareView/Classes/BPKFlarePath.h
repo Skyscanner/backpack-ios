@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKFlarePosition.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -51,7 +53,9 @@ IB_DESIGNABLE @interface BPKFlarePath : NSObject
  *
  * @param size CGSize of the path required.
  */
-+ (UIBezierPath *)flareViewPathForSize:(CGSize)size NS_SWIFT_NAME(makeFlarePath(size:));
++ (UIBezierPath *)flareViewPathForSize:(CGSize)size
+                         flarePosition:(BPKFlarePosition)flarePosition
+    NS_SWIFT_NAME(makeFlarePath(size:flarePosition:));
 
 @end
 

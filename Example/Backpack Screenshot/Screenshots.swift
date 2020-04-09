@@ -217,6 +217,9 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Background image"].tap()
         saveScreenshot(component: "flare-view", scenario: "background-image", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["Flare at top"].tap()
+        saveScreenshot(component: "flare-view", scenario: "flare-at-top", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Horizontal navigation"].tap()

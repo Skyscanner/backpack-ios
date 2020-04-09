@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Added:**
+- Backpack/FlareView
+  - Added option for displaying the pointer at the top of the view instead of the bottom.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

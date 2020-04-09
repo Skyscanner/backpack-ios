@@ -23,6 +23,7 @@ class FlareViewViewController: UIViewController {
     @IBOutlet weak var flareView: BPKFlareView!
 
     var backgroundImage: Bool = false
+    var flareAtTop: Bool = false
     var animated: Bool = false
 
     override func viewDidLoad() {
@@ -51,6 +52,10 @@ class FlareViewViewController: UIViewController {
             label.leadingAnchor.constraint(equalTo: flareView.contentView.leadingAnchor, constant: BPKSpacingBase),
             flareView.contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingBase)
             ])
+
+        if flareAtTop {
+            flareView.flarePosition = .top
+        }
 
         if backgroundImage {
             label.textColor = BPKColor.skyGray

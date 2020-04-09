@@ -19,12 +19,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "BPKFlarePosition.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * A `BPKFlareView` is a subclass of UIView
  */
 IB_DESIGNABLE @interface BPKFlareView : UIView
+
+/**
+ * Determines where the flare pointer will be displayed. By default it will point downwards at the bottom of the
+ * FlareView.
+ */
+@property(nonatomic) BPKFlarePosition flarePosition;
 
 /**
  * A view that can be used to show content in the background.

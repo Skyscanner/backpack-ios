@@ -27,7 +27,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKFlareView ()
-@property(nonatomic, strong) NSLayoutConstraint *contentViewBottomConstraint;
+@property(nonatomic, strong, nullable) NSArray<NSLayoutConstraint *> *contentViewConstraints;
 @end
 
 @implementation BPKFlareView
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGSize currentSize = self.bounds.size;
 
-    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize];
+    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize flarePosition:self.flarePosition];
 
     flareView.path = flarePath.CGPath;
 
@@ -84,9 +84,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.contentView];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    self.contentViewBottomConstraint = [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                                                         constant:BPKFlareHeight];
-
     [NSLayoutConstraint activateConstraints:@[
         [self.backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor],
@@ -94,13 +91,43 @@ NS_ASSUME_NONNULL_BEGIN
         [self.bottomAnchor constraintEqualToAnchor:self.backgroundView.bottomAnchor],
     ]];
 
-    [NSLayoutConstraint activateConstraints:@[
-        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor], self.contentViewBottomConstraint
-    ]];
-
+    [self updateContentViewConstraints];
     [self createLayerMask];
+}
+
+- (void)updateContentViewConstraints {
+    if (self.contentViewConstraints != nil) {
+        [NSLayoutConstraint deactivateConstraints:self.contentViewConstraints];
+    }
+
+    CGFloat topConstant = 0;
+    CGFloat bottomConstant = 0;
+    switch (self.flarePosition) {
+        case BPKFlarePositionBottom:
+            topConstant = 0;
+            bottomConstant = BPKFlareHeight;
+            break;
+        case BPKFlarePositionTop:
+            topConstant = BPKFlareHeight;
+            bottomConstant = 0;
+            break;
+    }
+
+    self.contentViewConstraints = @[
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor constant:topConstant],
+        [self.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:bottomConstant]
+    ];
+    [NSLayoutConstraint activateConstraints:self.contentViewConstraints];
+}
+
+- (void)setFlarePosition:(BPKFlarePosition)flarePosition {
+    if (_flarePosition != flarePosition) {
+        _flarePosition = flarePosition;
+        [self updateContentViewConstraints];
+        [self createLayerMask];
+    }
 }
 
 @end
