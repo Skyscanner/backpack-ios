@@ -127,9 +127,6 @@ NS_ASSUME_NONNULL_BEGIN
         _flarePosition = flarePosition;
         [self updateContentViewConstraints];
         [self createLayerMask];
-
-        [self setNeedsLayout];
-        [self layoutIfNeeded];
     }
 }
 
