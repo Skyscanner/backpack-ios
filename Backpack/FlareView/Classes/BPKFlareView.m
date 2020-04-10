@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFlareView
 
+CGFloat const BPKFlareWidth = 88.301886792;
+CGFloat const BPKFlareHeight = 20.0;
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
@@ -68,8 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGSize currentSize = self.bounds.size;
 
-    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize flarePosition:self.flarePosition];
-
+    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize flareSize:self.flareSize flarePosition:self.flarePosition];
     flareView.path = flarePath.CGPath;
 
     self.layer.mask = flareView;
@@ -128,6 +130,10 @@ NS_ASSUME_NONNULL_BEGIN
         [self updateContentViewConstraints];
         [self createLayerMask];
     }
+}
+
+- (CGSize)flareSize {
+    return CGSizeMake(BPKFlareWidth, BPKFlareHeight);
 }
 
 @end

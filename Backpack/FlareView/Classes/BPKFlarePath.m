@@ -24,15 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFlarePath
 
-CGFloat const BPKFlareHeight = 20;
-CGFloat const BPKFlareWidth = 88.301886792;
 CGFloat const BPKFlareVectorWidth = 234.0;
 CGFloat const BPKFlareVectorHeight = 53.0;
 
-+ (UIBezierPath *)flareViewPathForSize:(CGSize)size flarePosition:(BPKFlarePosition)flarePosition {
++ (UIBezierPath *)flareViewPathForSize:(CGSize)size flareSize:(CGSize)flareSize flarePosition:(BPKFlarePosition)flarePosition {
     UIBezierPath *path = [[UIBezierPath alloc] init];
 
-    CGFloat contentBottom = size.height - BPKFlareHeight;
+    CGFloat contentBottom = size.height - flareSize.height;
 
     CGPoint firstCorner = CGPointZero;
     CGPoint secondCorner = CGPointZero;
@@ -72,7 +70,7 @@ CGFloat const BPKFlareVectorHeight = 53.0;
     [path addLineToPoint:secondCorner];
 
     // flare shape
-    [self appendFlareToPath:path size:size flarePosition:flarePosition];
+    [self appendFlareToPath:path size:size flareSize:flareSize flarePosition:flarePosition];
 
     [path addLineToPoint:thirdCorner];
     [path addLineToPoint:fourthCorner];
@@ -83,12 +81,12 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
 #pragma mark Private
 
-+ (void)appendFlareToPath:(UIBezierPath *)path size:(CGSize)size flarePosition:(BPKFlarePosition)flarePosition {
-    CGFloat scaleX = BPKFlareWidth / BPKFlareVectorWidth;
++ (void)appendFlareToPath:(UIBezierPath *)path size:(CGSize)size flareSize:(CGSize)flareSize flarePosition:(BPKFlarePosition)flarePosition {
+    CGFloat scaleX = flareSize.width / BPKFlareVectorWidth;
     CGFloat scaleY = scaleX;
 
-    CGFloat startPointX = (size.width - BPKFlareWidth) / 2.0;
-    CGFloat startPointY = size.height - BPKFlareHeight;
+    CGFloat startPointX = (size.width - flareSize.width) / 2.0;
+    CGFloat startPointY = size.height - flareSize.height;
 
     if (flarePosition == BPKFlarePositionTop) {
         startPointY = BPKFlareHeight;

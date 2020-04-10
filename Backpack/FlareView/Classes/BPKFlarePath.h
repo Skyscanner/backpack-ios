@@ -52,11 +52,13 @@ IB_DESIGNABLE @interface BPKFlarePath : NSObject
  * Creates and returns a UIBeizerPath of the flare mask for a given size.
  *
  * @param size CGSize of the path required.
+ * @param flareSize CGSize of the path required.
+ * @param flarePosition BPKFlarePosition of the path required.
  */
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
+                             flareSize:(CGSize)flareSize
                          flarePosition:(BPKFlarePosition)flarePosition
-    NS_SWIFT_NAME(makeFlarePath(size:flarePosition:));
-
+    NS_SWIFT_NAME(makeFlarePath(size:flareSize:flarePosition:));
 @end
 
 NS_ASSUME_NONNULL_END
