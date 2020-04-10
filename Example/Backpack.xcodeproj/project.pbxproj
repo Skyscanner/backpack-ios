@@ -129,6 +129,7 @@
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */; };
 		D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624AA231586F600D8ED38 /* PanelViewController.swift */; };
+		D2F5CCF42449AF4400DED9A4 /* BPKBarChartCollectionViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F5CCF32449AF4400DED9A4 /* BPKBarChartCollectionViewSnapshotTest.m */; };
 		D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76C236AE402006683F5 /* BPKTextFieldTest.m */; };
 		D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -369,6 +370,7 @@
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelSelectorViewController.swift; sourceTree = "<group>"; };
 		D2D624AA231586F600D8ED38 /* PanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
+		D2F5CCF32449AF4400DED9A4 /* BPKBarChartCollectionViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBarChartCollectionViewSnapshotTest.m; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
 		D613CE542006795400D60CC4 /* BPKColorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKColorTest.m; sourceTree = "<group>"; };
 		D61ACE022306E1E7001C976E /* NavigationBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationBar.storyboard; sourceTree = "<group>"; };
@@ -808,6 +810,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2F5CCF32449AF4400DED9A4 /* BPKBarChartCollectionViewSnapshotTest.m */,
 				D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */,
 				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
 				76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */,
@@ -1179,7 +1182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --strict\n";
+			shellScript = "";
 		};
 		D6D81D45213FEE800013BB96 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1380,6 +1383,7 @@
 				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
+				D2F5CCF42449AF4400DED9A4 /* BPKBarChartCollectionViewSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
 				D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */,
 				589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */,

@@ -20,17 +20,48 @@ import UIKit
 import Backpack
 
 class BarChartsViewController: UIViewController {
-    @IBOutlet weak var barChartBar: BPKBarChartBar!
 
-    var selected: Bool = false
-    var fillValue: NSNumber?
-    var valueDescription: String?
+    @IBOutlet weak var barChartCollection: BPKBarChartCollectionView!
 
     override func viewDidLoad() {
-        self.barChartBar.isSelected = selected
-        self.barChartBar.fillValue = fillValue
-        self.barChartBar.valueDescription = valueDescription
-        self.barChartBar.title = "Fri"
-        self.barChartBar.subtitle = "4"
+        barChartCollection.barChartDataSource = self
+        barChartCollection.barChartDelegate = self
+    }
+}
+
+extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
+    func numberOfBarsInChart(barChartCollectionView: BPKBarChartCollectionView) -> Int {
+        return 10
+    }
+
+    func titleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
+        return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][atIndex]
+    }
+
+    func subtitleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
+        return "\(atIndex + 1)"
+    }
+
+    func fillValueForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> NSNumber? {
+        if atIndex == 0 {
+            return nil
+        }
+
+        return NSNumber(value: Float(exactly: atIndex)! * 0.1)
+    }
+
+    func valueDescriptionForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
+        if atIndex == 0 {
+            return "No price"
+        }
+
+        let value = (atIndex + 1) * 5
+        return "£\(value)"
+    }
+}
+
+extension BarChartsViewController: BPKBarChartCollectionViewDelegate {
+    func didSelect(barChart: BPKBarChartCollectionView, index: Int) {
+        print("Selected bar at index \(index)")
     }
 }
