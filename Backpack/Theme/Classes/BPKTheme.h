@@ -40,60 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)primaryColorFor:(UIView *)view;
 
 /**
- * Returns the themed skyGrayTint07 colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGrayTint07 color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayTint07ColorFor:(UIView *)view;
-
-/**
- * Returns the themed skyGrayTint06 colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGrayTint06 color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayTint06ColorFor:(UIView *)view;
-
-/**
- * Returns the themed skyGrayTint04 colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGrayTint04 color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayTint04ColorFor:(UIView *)view;
-
-/**
- * Returns the themed skyGrayTint02 colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGrayTint02 color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayTint02ColorFor:(UIView *)view;
-
-/**\
- * Returns the themed skyGrayTint01 colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGrayTint01 color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayTint01ColorFor:(UIView *)view;
-
-/**
- * Returns the themed skyGray colour for a given `UIView`.
- *
- * @param view The UIView within the view hierarchy for which the skyGray color is being selected.
- * @warning The view must be within the view-hierarchy for the correctly themed value to be returned.
- * @return the themed `UIColor` value.
- */
-+ (UIColor *)skyGrayColorFor:(UIView *)view;
-
-/**
  * Creates and returns an instance of the container view for the receiver's theme.
  *
  * @return An instance of the container to use with this theme.
