@@ -18,8 +18,8 @@
 
 import FloatingPanel
 
-final class BackpackFloatingPanelController: FloatingPanelController {
-    var bottomSheet: BottomSheet?
+final class BPKFloatingPanelController: FloatingPanelController {
+    var bottomSheet: BPKBottomSheet?
 
     var onDismissed: (() -> Void)?
 
@@ -55,7 +55,7 @@ final class BackpackFloatingPanelController: FloatingPanelController {
 }
 
 // MARK: - Bottom Section
-private extension BackpackFloatingPanelController {
+private extension BPKFloatingPanelController {
 
     private struct ShadowConstants {
         static let radius: CGFloat = 3.0
@@ -136,7 +136,7 @@ private extension BackpackFloatingPanelController {
 
 }
 
-private extension BackpackFloatingPanelController {
+private extension BPKFloatingPanelController {
     var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return view.safeAreaLayoutGuide.bottomAnchor

@@ -5,6 +5,10 @@
 - Backpack/Button:
   - The title only button no longer hides the title when in the loading state, instead it grows and adds the spinner next to the title like the text + icon variant.
 
+- Backpack/BottomSheet
+  - Renamed `BottomSheet` class to `BPKBottomSheet` in Swift to be consistent with other components.
+  - Renamed `BackpackFloatingPanelController` class to `BPKFloatingPanelController` in Swift to be consistent with other components.
+
 **Added:**
 - Backpack/FlareView
   - Added option for displaying the pointer at the top of the view instead of the bottom.

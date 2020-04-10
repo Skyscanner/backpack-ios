@@ -21,7 +21,7 @@ import FloatingPanel
 
 @objcMembers
 @objc(BPKBottomSheet)
-public final class BottomSheet: NSObject {
+public final class BPKBottomSheet: NSObject {
     
     private enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
@@ -58,8 +58,8 @@ public final class BottomSheet: NSObject {
         }
     }
     
-    private lazy var floatingPanelController: BackpackFloatingPanelController = {
-        let panel = BackpackFloatingPanelController(delegate: self)
+    private lazy var floatingPanelController: BPKFloatingPanelController = {
+        let panel = BPKFloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
         panel.surfaceView.cornerRadius = BPKBorderRadiusLg
         panel.surfaceView.grabberTopPadding = BPKSpacingMd
@@ -69,7 +69,7 @@ public final class BottomSheet: NSObject {
         
         panel.isRemovalInteractionEnabled = true
         
-        // We do this to hold a strong reference to `BottomSheet` and force it
+        // We do this to hold a strong reference to `BPKBottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
         // it's dismissed, to avoid a reference cycle.
@@ -80,7 +80,7 @@ public final class BottomSheet: NSObject {
     
     private var scrollView: UIScrollView?
     
-    /// Instantiates a `BottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
+    /// Instantiates a `BPKBottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
     /// Optionally, an always visible bottom section can be added.
     ///
     /// - Parameters:
@@ -105,7 +105,7 @@ public final class BottomSheet: NSObject {
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
     }
     
-    /// Instantiates a `BottomSheet` with a non-scrollable content. Height of the bottom sheet will be
+    /// Instantiates a `BPKBottomSheet` with a non-scrollable content. Height of the bottom sheet will be
     /// calculated based on the content.
     /// If the content height might not fit the screen, then `init(contentViewController: _, scrollViewToTrack: _)`
     /// should be used instead.
@@ -135,7 +135,7 @@ public final class BottomSheet: NSObject {
     ///   - animated: Animated or not.
     ///   - completion: Completion closure called after the presentation animation.
     @objc(presentBottomSheet:animated:completion:)
-    public func present(_ bottomSheet: BottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
+    public func present(_ bottomSheet: BPKBottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
         if let scrollView = floatingPanelController.scrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
@@ -157,7 +157,7 @@ public final class BottomSheet: NSObject {
 
 }
 
-extension BottomSheet: FloatingPanelControllerDelegate {
+extension BPKBottomSheet: FloatingPanelControllerDelegate {
     final class Layout: FloatingPanelLayout {
         var initialPosition: FloatingPanelPosition {
             return .half
