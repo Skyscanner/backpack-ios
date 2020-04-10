@@ -47,8 +47,7 @@ IB_DESIGNABLE @interface BPKFlarePath : NSObject
  */
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
                              flareSize:(CGSize)flareSize
-                         flarePosition:(BPKFlarePosition)flarePosition NS_SWIFT_NAME(makeFlarePath(size:flareSize:
-                                                                                                   flarePosition:));
+                         flarePosition:(BPKFlarePosition)flarePosition;
 @end
 
 NS_ASSUME_NONNULL_END
