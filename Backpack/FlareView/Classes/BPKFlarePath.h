@@ -24,16 +24,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * The height at which the BPKFlare should be rendered
- */
-extern CGFloat const BPKFlareHeight;
-
-/**
- * The width at which the BPKFlare should be rendered
- */
-extern CGFloat const BPKFlareWidth;
-
-/**
  * The width of the original flare vector
  */
 extern CGFloat const BPKFlareVectorWidth;
@@ -57,8 +47,8 @@ IB_DESIGNABLE @interface BPKFlarePath : NSObject
  */
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
                              flareSize:(CGSize)flareSize
-                         flarePosition:(BPKFlarePosition)flarePosition
-    NS_SWIFT_NAME(makeFlarePath(size:flareSize:flarePosition:));
+                         flarePosition:(BPKFlarePosition)flarePosition NS_SWIFT_NAME(makeFlarePath(size:flareSize:
+                                                                                                   flarePosition:));
 @end
 
 NS_ASSUME_NONNULL_END

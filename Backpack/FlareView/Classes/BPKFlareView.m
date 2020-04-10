@@ -71,7 +71,9 @@ CGFloat const BPKFlareHeight = 20.0;
 
     CGSize currentSize = self.bounds.size;
 
-    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize flareSize:self.flareSize flarePosition:self.flarePosition];
+    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize
+                                                       flareSize:self.flareSize
+                                                   flarePosition:self.flarePosition];
     flareView.path = flarePath.CGPath;
 
     self.layer.mask = flareView;
@@ -105,14 +107,14 @@ CGFloat const BPKFlareHeight = 20.0;
     CGFloat topConstant = 0;
     CGFloat bottomConstant = 0;
     switch (self.flarePosition) {
-        case BPKFlarePositionBottom:
-            topConstant = 0;
-            bottomConstant = BPKFlareHeight;
-            break;
-        case BPKFlarePositionTop:
-            topConstant = BPKFlareHeight;
-            bottomConstant = 0;
-            break;
+    case BPKFlarePositionBottom:
+        topConstant = 0;
+        bottomConstant = self.flareSize.height;
+        break;
+    case BPKFlarePositionTop:
+        topConstant = self.flareSize.height;
+        bottomConstant = 0;
+        break;
     }
 
     self.contentViewConstraints = @[
