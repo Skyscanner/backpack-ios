@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFlareView
 
-CGFloat const BPKFlareWidth = 88.301886792;
 CGFloat const BPKFlareHeight = 20.0;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -72,7 +71,7 @@ CGFloat const BPKFlareHeight = 20.0;
     CGSize currentSize = self.bounds.size;
 
     UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize
-                                                       flareSize:self.flareSize
+                                                       flareHeight:self.flareHeight
                                                    flarePosition:self.flarePosition];
     flareView.path = flarePath.CGPath;
 
@@ -109,10 +108,10 @@ CGFloat const BPKFlareHeight = 20.0;
     switch (self.flarePosition) {
     case BPKFlarePositionBottom:
         topConstant = 0;
-        bottomConstant = self.flareSize.height;
+        bottomConstant = self.flareHeight;
         break;
     case BPKFlarePositionTop:
-        topConstant = self.flareSize.height;
+        topConstant = self.flareHeight;
         bottomConstant = 0;
         break;
     }
@@ -134,8 +133,8 @@ CGFloat const BPKFlareHeight = 20.0;
     }
 }
 
-- (CGSize)flareSize {
-    return CGSizeMake(BPKFlareWidth, BPKFlareHeight);
+- (CGFloat)flareHeight {
+    return BPKFlareHeight;
 }
 
 @end

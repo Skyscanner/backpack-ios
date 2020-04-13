@@ -62,7 +62,7 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-- (CGSize)flareSize;
+- (CGFloat)flareHeight;
 
 @end
 NS_ASSUME_NONNULL_END

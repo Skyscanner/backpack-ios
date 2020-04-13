@@ -28,11 +28,11 @@ CGFloat const BPKFlareVectorWidth = 234.0;
 CGFloat const BPKFlareVectorHeight = 53.0;
 
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
-                             flareSize:(CGSize)flareSize
+                             flareHeight:(CGFloat)flareHeight
                          flarePosition:(BPKFlarePosition)flarePosition {
     UIBezierPath *path = [[UIBezierPath alloc] init];
 
-    CGFloat contentBottom = size.height - flareSize.height;
+    CGFloat contentBottom = size.height - flareHeight;
 
     CGPoint firstCorner = CGPointZero;
     CGPoint secondCorner = CGPointZero;
@@ -58,10 +58,10 @@ CGFloat const BPKFlareVectorHeight = 53.0;
         firstCorner = CGPointMake(0, size.height);
 
         // top-left:
-        secondCorner = CGPointMake(0.0, flareSize.height);
+        secondCorner = CGPointMake(0.0, flareHeight);
 
         // top-right:
-        thirdCorner = CGPointMake(size.width, flareSize.height);
+        thirdCorner = CGPointMake(size.width, flareHeight);
 
         // bottom-right:
         fourthCorner = CGPointMake(size.width, size.height);
@@ -72,7 +72,7 @@ CGFloat const BPKFlareVectorHeight = 53.0;
     [path addLineToPoint:secondCorner];
 
     // flare shape
-    [self appendFlareToPath:path size:size flareSize:flareSize flarePosition:flarePosition];
+    [self appendFlareToPath:path size:size flareHeight:flareHeight flarePosition:flarePosition];
 
     [path addLineToPoint:thirdCorner];
     [path addLineToPoint:fourthCorner];
@@ -85,16 +85,19 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
 + (void)appendFlareToPath:(UIBezierPath *)path
                      size:(CGSize)size
-                flareSize:(CGSize)flareSize
+                flareHeight:(CGFloat)flareHeight
             flarePosition:(BPKFlarePosition)flarePosition {
-    CGFloat scaleX = flareSize.width / BPKFlareVectorWidth;
-    CGFloat scaleY = scaleX;
+    CGFloat scale = flareHeight / BPKFlareVectorHeight;
+    CGFloat scaleX = scale;
+    CGFloat scaleY = scale;
 
-    CGFloat startPointX = (size.width - flareSize.width) / 2.0;
-    CGFloat startPointY = size.height - flareSize.height;
+    CGFloat flareWidth = scale * BPKFlareVectorWidth;
+
+    CGFloat startPointX = (size.width - flareWidth) / 2.0;
+    CGFloat startPointY = size.height - flareHeight;
 
     if (flarePosition == BPKFlarePositionTop) {
-        startPointY = flareSize.height;
+        startPointY = flareHeight;
         scaleY = -1 * scaleX;
     }
     CGPoint sp = CGPointMake(startPointX, startPointY);
