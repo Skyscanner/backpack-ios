@@ -25,16 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /*
- * DEPRECATED
- */
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithURL:(NSURL *)url;
-
-/*
- * DEPRECATED
- */
-- (void)attributedLabel:(BPKTappableLinkLabel *)label didSelectLinkWithTransitInformation:(NSDictionary *)components;
-
-/*
  * Tells the delegate that the user did select a link to a URL.
  *
  * @param label The label whose link was selected.

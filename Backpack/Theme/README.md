@@ -36,8 +36,6 @@ With this done, any components that are placed inside an instance of `BPKLondonT
 
 A primary color utility is provided by `BPKTheme` to give easy access to the relevant primary colour for your view.
 
-Methods `gray50ColorFor`, `gray100ColorFor`, `gray300ColorFor`, `gray500ColorFor`, `gray700ColorFor`, and `gray900ColorFor` are available too.
-
 Note that your view must be within the view-hierarchy for the correctly themed value to be returned.
 
 ```objective-c
@@ -71,8 +69,6 @@ With this done, any components that are placed inside an instance of `BPKLondonT
 
 
 A primary color utility is provided by `BPKTheme` to give easy access to the relevant primary colour for your view.
-
-Methods `gray50Color`, `gray100Color`, `gray300Color`, `gray500Color`, `gray700Color`, and `gray900Color` are available too.
 
 Note that your view must be within the view-hierarchy for the correctly themed value to be returned.
 

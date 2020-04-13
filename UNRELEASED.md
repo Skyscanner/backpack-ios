@@ -9,6 +9,10 @@
   - Renamed `BottomSheet` class to `BPKBottomSheet` in Swift to be consistent with other components.
   - Renamed `BackpackFloatingPanelController` class to `BPKFloatingPanelController` in Swift to be consistent with other components.
 
+- Backpack/Theme
+- Backpack/TappableLinkLabel
+  - Removed some long-deprecated methods.
+
 **Added:**
 - Backpack/FlareView
   - Added option for displaying the pointer at the top of the view instead of the bottom.
