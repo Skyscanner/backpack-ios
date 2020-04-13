@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKFlareView
 
+CGFloat const BPKFlareHeight = 20.0;
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
@@ -68,8 +70,9 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGSize currentSize = self.bounds.size;
 
-    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize flarePosition:self.flarePosition];
-
+    UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize
+                                                       flareHeight:self.flareHeight
+                                                   flarePosition:self.flarePosition];
     flareView.path = flarePath.CGPath;
 
     self.layer.mask = flareView;
@@ -103,14 +106,14 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat topConstant = 0;
     CGFloat bottomConstant = 0;
     switch (self.flarePosition) {
-        case BPKFlarePositionBottom:
-            topConstant = 0;
-            bottomConstant = BPKFlareHeight;
-            break;
-        case BPKFlarePositionTop:
-            topConstant = BPKFlareHeight;
-            bottomConstant = 0;
-            break;
+    case BPKFlarePositionBottom:
+        topConstant = 0;
+        bottomConstant = self.flareHeight;
+        break;
+    case BPKFlarePositionTop:
+        topConstant = self.flareHeight;
+        bottomConstant = 0;
+        break;
     }
 
     self.contentViewConstraints = @[
@@ -128,6 +131,10 @@ NS_ASSUME_NONNULL_BEGIN
         [self updateContentViewConstraints];
         [self createLayerMask];
     }
+}
+
+- (CGFloat)flareHeight {
+    return BPKFlareHeight;
 }
 
 @end
