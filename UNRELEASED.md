@@ -1,26 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Breaking:**
-- Backpack/Button:
-  - The title only button no longer hides the title when in the loading state, instead it grows and adds the spinner next to the title like the text + icon variant.
-
-- Backpack/BottomSheet
-  - Renamed `BottomSheet` class to `BPKBottomSheet` in Swift to be consistent with other components.
-  - Renamed `BackpackFloatingPanelController` class to `BPKFloatingPanelController` in Swift to be consistent with other components.
-
-- Backpack/Theme
-- Backpack/TappableLinkLabel
-  - Removed some long-deprecated methods.
-
-**Added:**
-- Backpack/FlareView
-  - Added option for displaying the pointer at the top of the view instead of the bottom.
-
-**Fixed**
-- Backpack/TabBarController:
-  - Fixed a typo in the component class name.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
