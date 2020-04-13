@@ -48,7 +48,7 @@ extension BottomSheetViewController {
 
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
 
-            let sheet = BottomSheet(contentViewController: wrappedContent,
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView)
             sheet.present(in: self, animated: true, completion: nil)
         case bottomSectionBottomSheet:
@@ -63,7 +63,7 @@ extension BottomSheetViewController {
             bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
-            let sheet = BottomSheet(contentViewController: wrappedContent,
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
                                     bottomSectionViewController: wrappedBottomSection)
             
@@ -86,7 +86,7 @@ extension BottomSheetViewController {
             bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
-            let sheet = BottomSheet(contentViewController: wrappedContent,
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
                                     bottomSectionViewController: wrappedBottomSection)
             
@@ -97,7 +97,7 @@ extension BottomSheetViewController {
                 content.view.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.view"
                 
                 let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-                let nextSheet = BottomSheet(contentViewController: wrappedContent)
+                let nextSheet = BPKBottomSheet(contentViewController: wrappedContent)
                 sheet.present(nextSheet, animated: true)
             }
             
@@ -106,13 +106,13 @@ extension BottomSheetViewController {
             guard let content = BottomSheetContentViewController.make() else { return }
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
             
-            let sheet = BottomSheet(contentViewController: wrappedContent)
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent)
             sheet.present(in: self, animated: true)
         case resizableContentBottomSheet:
             guard let content = BottomSheetResizableContentViewController.make() else { return }
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
             
-            let sheet = BottomSheet(contentViewController: wrappedContent)
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent)
             
             content.contentDidUpdateConstraints = {
                 UIView.animate(withDuration: 0.3) {
