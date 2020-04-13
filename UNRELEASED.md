@@ -1,12 +1,13 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-- Backpack/FlareView
-  - Added option for displaying the pointer at the top of the view instead of the bottom.
+**Breaking:**
 - Backpack/Button:
   - The title only button no longer hides the title when in the loading state, instead it grows and adds the spinner next to the title like the text + icon variant.
 
+**Added:**
+- Backpack/FlareView
+  - Added option for displaying the pointer at the top of the view instead of the bottom.
 
 **Fixed**
 - Backpack/TabBarController:
