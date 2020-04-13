@@ -32,6 +32,7 @@
 #import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
+#import <Backpack/Icon.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
@@ -43,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKGradientLayer *gradientLayer;
 
 @property(nonatomic, readonly) BOOL hasTitle;
+@property(nonatomic, readonly, getter=hasIcon) BOOL hasIcon;
 @property(nonatomic, readonly, getter=isIconOnly) BOOL iconOnly;
 @property(nonatomic, readonly, getter=isTextOnly) BOOL textOnly;
 @property(nonatomic, readonly, getter=isTextAndIcon) BOOL textAndIcon;
@@ -130,16 +132,26 @@ NS_ASSUME_NONNULL_BEGIN
     return self.titleLabel.text.length > 0 && self.currentAttributedTitle != nil;
 }
 
+- (BOOL)hasIcon {
+    // A button has an image if `currentImage` is set with the exception
+    // of when the image is one of the two dummy images used for the
+    // positoning hack for the text only button in the loading state
+
+    return self.currentImage != nil &&
+        self.currentImage != [[self class] defaultDummyImage] &&
+         self.currentImage != [[self class] largeDummyImage];
+}
+
 - (BOOL)isIconOnly {
     return self.currentImage && !self.hasTitle;
 }
 
 - (BOOL)isTextOnly {
-    return (self.currentImage == nil) && self.hasTitle;
+    return !self.hasIcon && self.hasTitle;
 }
 
 - (BOOL)isTextAndIcon {
-    return self.currentImage && self.hasTitle;
+    return self.hasIcon && self.hasTitle;
 }
 
 #pragma mark - Style setters
@@ -235,6 +247,15 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setIsLoading:(BOOL)isLoading {
+    BPKAssertMainThread();
+    if (_isLoading != isLoading) {
+        _isLoading = isLoading;
+        [self updateLoadingState:isLoading];
+    }
+}
+
+
 #pragma mark - Layout
 
 - (void)layoutSubviews {
@@ -255,7 +276,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     CGFloat buttonTitleIconSpacing = [[self class] buttonTitleIconSpacing];
 
-    if (self.isTextAndIcon) {
+    if (self.isTextAndIcon || (self.isLoading && self.isTextOnly)) {
         if (self.imagePosition == BPKButtonImagePositionTrailing) {
             UIEdgeInsets titleEdgeInsets =
                 [self bpk_makeRTLAwareEdgeInsetsWithTop:0
@@ -293,13 +314,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
     }
 
-    if (self.isIconOnly || self.isTextAndIcon) {
-        self.spinner.center = self.imageView.center;
-    } else {
-        // Use `self.titleLabel.center` instead of `self.center` to avoid
-        // bug BPK-3770 where the spinner is not rendered in the correct position.
-        self.spinner.center = self.titleLabel.center;
-    }
+    self.spinner.center = self.imageView.center;
     self.imageView.alpha = self.isLoading ? .0f : 1.f;
 }
 
@@ -712,8 +727,20 @@ NS_ASSUME_NONNULL_BEGIN
         [self.spinner stopAnimating];
     }
 
-    if (!self.isTextAndIcon) {
-        self.titleLabel.layer.opacity = loading ? 0 : 1;
+    // For text only buttons we piggy back on
+    // the icon implementation which shows the spinner
+    // in the same location as the icon by creating
+    // a dummy image. This dummy image is rendered
+    // with opacity 0.0 but it serves to create the
+    // required space in the layout to show the spinner.
+    if (self.isTextOnly) {
+        if (loading) {
+            [self setImage:[self dummyImage]];
+            self.imageView.layer.opacity = 0.0;
+        } else {
+            [self setImage:nil];
+            self.imageView.layer.opacity = 1.0;
+        }
     }
 
     [self updateContentColor];
@@ -810,13 +837,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setIsLoading:(BOOL)isLoading {
-    if (_isLoading != isLoading) {
-        _isLoading = isLoading;
-        [self updateLoadingState:isLoading];
-    }
-}
-
 + (UIColor *)highlightedWhite {
     return [BPKColor blend:BPKColor.white with:BPKColor.skyGray weight:0.85f];
 }
@@ -869,6 +889,53 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (CGFloat)buttonTitleIconSpacing {
     return BPKSpacingSm;
+}
+
+- (UIImage *)dummyImage {
+    switch(self.size) {
+    case BPKButtonSizeDefault:
+        return [[self class] defaultDummyImage];
+    case BPKButtonSizeLarge:
+        return [[self class] largeDummyImage];
+    default:
+        NSAssert(NO, @"Unknown size %lu", (unsigned long)self.size);
+    }
+}
+
++ (UIImage *)defaultDummyImage {
+    static dispatch_once_t onceToken;
+    static UIImage  *image;
+
+    dispatch_once(&onceToken, ^{
+        BPKAssertMainThread();
+        CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeSmall];
+
+        UIGraphicsBeginImageContextWithOptions(size, YES, 0);
+        [UIColor.blackColor setFill];
+        UIRectFill(CGRectMake(0, 0, size.width, size.height));
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    });
+
+    return image;
+}
+
++ (UIImage *)largeDummyImage {
+    static dispatch_once_t onceToken;
+    static UIImage  *image;
+
+    dispatch_once(&onceToken, ^{
+        BPKAssertMainThread();
+        CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeLarge];
+
+        UIGraphicsBeginImageContextWithOptions(size, YES, 0);
+        [UIColor.blackColor setFill];
+        UIRectFill(CGRectMake(0, 0, size.width, size.height));
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    });
+
+    return image;
 }
 
 @end
