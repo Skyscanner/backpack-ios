@@ -24,6 +24,18 @@ chip.title = @"Some title";
 chip.enabled = NO;
 chip.shadowEnabled = NO;
 chip.backgroundTint = BPKColor.panjin;
+chip.iconName = BPKIconNameMap;
+```
+
+```swift
+import Backpack
+
+let chip = BPKChip()
+chip.title = "Some title"
+chip.enabled = false
+chip.shadowEnabled = false
+chip.backgroundTint = BPKColor.panjin
+chip.iconName = .map
 ```
 
 ### Appearance attributes

@@ -20,6 +20,11 @@ import UIKit
 import Backpack
 
 class ChipPreviewCollectionViewCell: UICollectionViewCell {
+    var icon: BPKIconName? {
+        didSet {
+            chip.iconName = icon ?? nil
+        }
+    }
     var shadow: Bool? {
         didSet {
             chip.isShadowEnabled = shadow ?? true

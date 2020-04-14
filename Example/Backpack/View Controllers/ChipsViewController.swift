@@ -22,17 +22,24 @@ import Backpack
 class ChipsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    var icons: Bool = false
     var shadow: Bool = true
     var colorUnselectedState: Bool = false
     var backgroundTint: UIColor?
     fileprivate static var chips = [
-        (title: "Afghanistan", selected: false, enabled: false), (title: "Belgium", selected: false, enabled: true),
-        (title: "Canada", selected: false, enabled: true), (title: "Denmark", selected: false, enabled: true),
-        (title: "Ethiopia", selected: true, enabled: true), (title: "Fiji", selected: false, enabled: true),
-        (title: "Germany", selected: false, enabled: true), (title: "Honduras", selected: false, enabled: true),
-        (title: "India", selected: true, enabled: true), (title: "Jamaica", selected: false, enabled: true),
-        (title: "Kosovo", selected: false, enabled: false), (title: "Lesotho", selected: false, enabled: true),
-        (title: "Madagascar", selected: true, enabled: true)
+        (title: "Afghanistan", selected: false, enabled: false, iconName: BPKIconName.award),
+        (title: "Belgium", selected: false, enabled: true, iconName: BPKIconName.account),
+        (title: "Canada", selected: false, enabled: true, iconName: BPKIconName.adult),
+        (title: "Denmark", selected: false, enabled: true, iconName: BPKIconName.airline),
+        (title: "Ethiopia", selected: true, enabled: true, iconName: BPKIconName.arrowUp),
+        (title: "Fiji", selected: false, enabled: true, iconName: BPKIconName.alertAdd),
+        (title: "Germany", selected: false, enabled: true, iconName: BPKIconName.accountIdCard),
+        (title: "Honduras", selected: false, enabled: true, iconName: BPKIconName.alertActive),
+        (title: "India", selected: true, enabled: true, iconName: BPKIconName.baggageAdd),
+        (title: "Jamaica", selected: false, enabled: true, iconName: BPKIconName.calendar),
+        (title: "Kosovo", selected: false, enabled: false, iconName: BPKIconName.cafe),
+        (title: "Lesotho", selected: false, enabled: true, iconName: BPKIconName.close),
+        (title: "Madagascar", selected: true, enabled: true, iconName: BPKIconName.camera)
     ]
 
     fileprivate static let cellIdentifier = "ChipPreviewCollectionViewCell"
@@ -104,11 +111,14 @@ extension ChipsViewController: UICollectionViewDelegate {
                 fatalError("No cell registered for reuse with identifier \(ChipsViewController.cellIdentifier)")
         }
 
-        let (title, selected, enabled) = ChipsViewController.chips[indexPath.row]
+        let (title, selected, enabled, icon) = ChipsViewController.chips[indexPath.row]
         cell.title = title
         cell.isSelected = selected
         cell.enabled = enabled
         cell.shadow = shadow
+        if icons {
+            cell.icon = icon
+        }
         if backgroundTint != nil {
             cell.backgroundTint = backgroundTint
         }

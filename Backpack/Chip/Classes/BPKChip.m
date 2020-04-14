@@ -30,8 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKChip ()
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) CALayer *tintLayer;
-
-@property(nonatomic) UIColor *textColor;
+@property(nonatomic) UIColor *contentColor;
+@property(nullable, nonatomic) UIView *iconView;
+@property(nullable, nonatomic) NSArray<NSLayoutConstraint *> *iconConstraints;
 @end
 
 @implementation BPKChip
@@ -184,11 +185,12 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:chipVerticalSpacing],
         [self.trailingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor constant:chipHorizontalSpacing],
         [self.bottomAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:chipVerticalSpacing]
     ]];
+
+    [self updateIconConstraints];
 }
 
 #pragma mark - Updates
@@ -225,15 +227,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateStyle {
     if (self.selected) {
         self.backgroundColor = [self selectedBackgroundColor];
-        self.textColor = BPKColor.white;
+        self.contentColor = BPKColor.white;
     } else {
         self.backgroundColor = [self unselectedBackgroundColor];
-        self.textColor = BPKColor.textPrimaryColor;
+        self.contentColor = BPKColor.textPrimaryColor;
     }
 
     if (!self.enabled) {
         self.backgroundColor = [self.class disabledBackgroundColor];
-        self.textColor = [self.class disabledContentColor];
+        self.contentColor = [self.class disabledContentColor];
     }
 
     uint64_t selectedTraitBits = self.selected ? UIAccessibilityTraitSelected : 0;
@@ -241,6 +243,15 @@ NS_ASSUME_NONNULL_BEGIN
     self.accessibilityTraits = UIAccessibilityTraitButton | selectedTraitBits | enabledTraitBits;
 
     [self updateTitle];
+    [self updateIcon];
+}
+
+- (void)updateIcon {
+    if (self.iconView == nil) {
+        return;
+    }
+
+    self.iconView.tintColor = self.contentColor;
 }
 
 - (void)updateTitle {
@@ -250,7 +261,47 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.accessibilityLabel = self.title;
     self.titleLabel.text = self.title;
-    [self.titleLabel setTextColor:self.textColor];
+    [self.titleLabel setTextColor:self.contentColor];
+}
+
+- (void)setIconName:(BPKIconName _Nullable)iconName {
+    if (_iconName != iconName) {
+        _iconName = iconName;
+
+        if (iconName == nil && self.iconView != nil) {
+            [self.iconView removeFromSuperview];
+            self.iconView = nil;
+        } else {
+            self.iconView = [[BPKIconView alloc] initWithIconName:iconName size:BPKIconSizeLarge];
+            [self addSubview:self.iconView];
+            [self updateStyle];
+        }
+        [self updateIconConstraints];
+    }
+}
+
+- (void)updateIconConstraints {
+    CGFloat chipHorizontalSpacing = [self chipHorizontalSpacing];
+    CGFloat chipIconSpacing = [self chipIconSpacing];
+
+    if (self.iconConstraints != nil) {
+        [NSLayoutConstraint deactivateConstraints:self.iconConstraints];
+    }
+
+    if (self.iconView == nil) {
+        self.iconConstraints = @[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                                               constant:chipHorizontalSpacing]];
+    } else {
+        self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.iconConstraints = @[
+            [self.iconView.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor],
+            [self.iconView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
+            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconView.trailingAnchor
+                                                          constant:chipIconSpacing]
+        ];
+    }
+
+    [NSLayoutConstraint activateConstraints:self.iconConstraints];
 }
 
 // This is required as the colours that are blended will not be dynamic values
@@ -272,6 +323,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - Helpers
+
+- (CGFloat)chipIconSpacing {
+    return BPKSpacingSm;
+}
 
 - (CGFloat)chipHorizontalSpacing {
     return BPKSpacingBase;
