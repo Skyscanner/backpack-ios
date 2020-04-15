@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <Backpack/Icon.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -76,6 +78,11 @@ IB_DESIGNABLE @interface BPKChip : UIControl
  * An optional custom background.
  */
 @property(nullable, nonatomic) UIColor *backgroundTint;
+
+/**
+ * An optional icon
+ */
+@property(nullable, nonatomic, copy) BPKIconName iconName;
 
 @end
 

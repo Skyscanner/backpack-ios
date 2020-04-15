@@ -64,7 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
 - (UIView *)createChipEnabledSelected {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
@@ -308,6 +307,60 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testChipDisabled {
     UIView *lightView = [self createChipDisabled];
     UIView *darkView = [self createChipDisabled];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createChipEnabledUnselectedWithIcon {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.iconName = BPKIconNameMap;
+    [self configureParentView:parentView forChip:bpkChip];
+    return parentView;
+}
+
+- (void)testChipEnabledUnselectedWithIcon {
+    UIView *lightView = [self createChipEnabledUnselectedWithIcon];
+    UIView *darkView = [self createChipEnabledUnselectedWithIcon];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createChipDisabledUnselectedWithIcon {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.iconName = BPKIconNameMap;
+    bpkChip.enabled = NO;
+    [self configureParentView:parentView forChip:bpkChip];
+    return parentView;
+}
+
+- (void)testChipDisabledUnselectedWithIcon {
+    UIView *lightView = [self createChipDisabledUnselectedWithIcon];
+    UIView *darkView = [self createChipDisabledUnselectedWithIcon];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+
+- (UIView *)createChipEnabledSelectedWithIcon {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.iconName = BPKIconNameMap;
+    bpkChip.selected = YES;
+    [self configureParentView:parentView forChip:bpkChip];
+    return parentView;
+}
+
+- (void)testChipEnabledSelectedWithIcon {
+    UIView *lightView = [self createChipEnabledSelectedWithIcon];
+    UIView *darkView = [self createChipEnabledSelectedWithIcon];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);

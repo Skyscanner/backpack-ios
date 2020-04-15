@@ -21,6 +21,7 @@ import Backpack
 
 enum ChipSegueIdentifier: String {
     case `default` = "Default"
+    case withIcons = "WithIcons"
     case withoutShadow = "WithoutShadow"
     case withBackgroundColor = "WithBackgroundColor"
     case backgroundColorNoShadow = "BackgroundColorNoShadow"
@@ -38,6 +39,9 @@ class ChipSelectorViewController: UITableViewController {
             switch chipSegueIdentifier {
             case .default:
                 target.title = "Default"
+            case .withIcons:
+                target.title = "With icons"
+                target.icons = true
             case .withoutShadow:
                 target.title = "Without shadow"
                 target.shadow = false
