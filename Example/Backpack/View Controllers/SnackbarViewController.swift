@@ -22,6 +22,7 @@ import Backpack
 enum SnackBarType {
     case withTitle
     case withTitleAndButton
+    case withTitleTextAndButton
     case withTitleAndButtonIconOnly
     case withTitleButtonAndAccessoryIcon
     case indefiniteDuration
@@ -48,6 +49,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
             showWithTitle()
         case .withTitleAndButton:
             showWithTitleAndButton()
+        case .withTitleTextAndButton:
+            showWithTitleTextAndButton()
         case .withTitleAndButtonIconOnly:
             showWithTitleAndButtonIconOnly()
         case .withTitleButtonAndAccessoryIcon:
@@ -82,6 +85,19 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
                                      viewController: self,
                                      delegate: nil)
         snackbar.show()
+    }
+
+    func showWithTitleTextAndButton() {
+        let snackbar = BPKSnackbar.init(title: "Snackbar Titlte",
+                                        text: "Descriptive text",
+                                     buttonTitle: "Button Title",
+                                     buttonIcon: nil,
+                                     leftIcon: nil,
+                                     duration: .long,
+                                     viewController: self,
+                                     delegate: nil)
+        snackbar.show()
+
     }
 
     func showWithTitleAndButtonIconOnly() {
