@@ -57,8 +57,7 @@ static int const BPKSnackbarHeight = 60;
 
     return [self initWithTitle:title
                           text:text
-                   buttonTitle:nil
-                    buttonIcon:nil
+                        button:nil
                       leftIcon:nil
                       duration:duration
                 viewController:viewController
@@ -67,8 +66,7 @@ static int const BPKSnackbarHeight = 60;
 
 - (instancetype)initWithTitle:(NSString *)title
                          text:(NSString *_Nullable)text
-                  buttonTitle:(NSString *_Nullable)buttonTitle
-                   buttonIcon:(UIImage *_Nullable)buttonIcon
+                       button:(BPKSnackbarButton *)button
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
@@ -77,8 +75,7 @@ static int const BPKSnackbarHeight = 60;
     self = [self init];
     [self setUpSnackbarWithTitle:title
                             text:text
-                     buttonTitle:buttonTitle
-                      buttonIcon:buttonIcon
+                          button:button
                         leftIcon:leftIcon
                         duration:duration
                   viewController:viewController
@@ -179,8 +176,7 @@ static int const BPKSnackbarHeight = 60;
 
 - (void)setUpSnackbarWithTitle:(NSString *)title
                           text:(NSString *_Nullable)text
-                   buttonTitle:(NSString *_Nullable)buttonTitle
-                    buttonIcon:(UIImage *_Nullable)buttonIcon
+                        button:(BPKSnackbarButton *)button
                       leftIcon:(UIImage *_Nullable)leftIcon
                       duration:(BPKSnackbarDuration)duration
                 viewController:(UIViewController *)viewController
@@ -190,11 +186,11 @@ static int const BPKSnackbarHeight = 60;
     self.delegate = delegate;
     self.snackbarView.backgroundColor = BPKColor.skyBlueShade02;
     self.containerViewController = viewController;
-    self.actionButton.title = buttonTitle;
-    self.actionButton.image = buttonIcon;
+
+    [self configureActionButton:button];
     self.leftIconContainer.image = leftIcon;
 
-    self.actionButton.hidden = buttonTitle == nil && buttonIcon == nil;
+    self.actionButton.hidden = button == nil;
     self.leftIconContainer.hidden = leftIcon == nil;
 
     if (text) {
@@ -244,6 +240,23 @@ static int const BPKSnackbarHeight = 60;
         self.heightConstraint.active = YES;
 
         [self layoutIfNeeded];
+    }
+}
+
+- (void)configureActionButton:(BPKSnackbarButton *)button {
+    if (button && button.isIconOnly) {
+        self.actionButton.image = button.icon;
+        self.actionButton.accessibilityLabel = button.accessibilityLabel;
+    } else if (button) {
+        self.actionButton.title = button.title;
+
+        if (button.icon) {
+            self.actionButton.image = button.icon;
+        }
+
+        if (button.accessibilityLabel) {
+            self.actionButton.accessibilityLabel = button.accessibilityLabel;
+        }
     }
 }
 

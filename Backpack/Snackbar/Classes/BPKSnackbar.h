@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#import "BPKSnackbarDelegate.h"
 #import <UIKit/UIKit.h>
+
+#import "BPKSnackbarButton.h"
+#import "BPKSnackbarDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -64,8 +65,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  *
  *  @param title    The content that is displayed in the snackbar's title
  *  @param text The optional text displayed next to the title
- *  @param buttonTitle  Right button title
- *  @param buttonIcon   Right button icon
+ *  @param button The optional button
  *  @param leftIcon     Left icon displayed before the titleThe text content that is displayed inside the snackbar
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
@@ -73,8 +73,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  */
 - (instancetype)initWithTitle:(NSString *)title
                          text:(NSString *_Nullable)text
-                  buttonTitle:(NSString *_Nullable)buttonTitle
-                   buttonIcon:(UIImage *_Nullable)buttonIcon
+                       button:(BPKSnackbarButton *_Nullable)button
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
