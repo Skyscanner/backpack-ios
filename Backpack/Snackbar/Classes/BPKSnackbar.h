@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKSnackbarProtocol.h"
+#import "BPKSnackbarDelegate.h"
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
                          text:(NSString *_Nullable)text
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate;
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate;
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Show the snackbar

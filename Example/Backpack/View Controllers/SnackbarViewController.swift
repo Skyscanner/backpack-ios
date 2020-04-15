@@ -31,7 +31,7 @@ enum SnackBarType {
     case withDelegate
 }
 
-class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
+class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     @IBOutlet weak var textField: UITextField!
     var snackBarType: SnackBarType = .withTitle
 
@@ -179,7 +179,7 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         snackbar.show()
     }
 
-    func snackbarDismissed(_ snackbar: BPKSnackbar!, cause: BPKSnackbarDismissCause) {
+    func snackbar(_ snackbar: BPKSnackbar!, dismissedWith cause: BPKSnackbarDismissCause) {
         if cause == .actionButton {
             let title = String(Int(arc4random_uniform(100)))
             let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)

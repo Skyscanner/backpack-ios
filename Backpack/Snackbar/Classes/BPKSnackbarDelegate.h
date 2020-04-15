@@ -19,19 +19,37 @@
 @class BPKSnackbar;
 
 /**
- *  Dismiss cause.
- *  BPKSnackbarDismissCauseNone: when the snackbar was dismissed using dismissSnackbar method
- *  BPKSnackbarDismissCauseActionButton: when the snackbar was dismissed after tapping the button
- *  BPKSnackbarDismissCauseDuration: when the snackbar was dismissed because duration time expired
+ *  Cause for a snackbar being dismissed.
  */
 typedef NS_ENUM(NSInteger, BPKSnackbarDismissCause) {
+    /**
+     * The snackbar was dismissed using `dismiss` method on the snackbar.
+     */
     BPKSnackbarDismissCauseNone,
+
+    /**
+     * The user tapped the action button in the snackbar.
+     */
     BPKSnackbarDismissCauseActionButton,
+
+    /**
+     * The snackbar was displayed for the full duration and then dismissed automatically.
+     */
     BPKSnackbarDismissCauseDuration
 };
 
-@protocol BPKSnackbarProtocol
+/**
+ * Methods for being notified when the display of a snackbar changes
+ * for example when it is dimissed.
+ */
+@protocol BPKSnackbarDelegate
 
-- (void)snackbarDismissed:(BPKSnackbar *)snackbar cause:(BPKSnackbarDismissCause)cause;
+/**
+ * Called when the snackbar is dismissed for any reason.
+ *
+ * @param snackbar The snackbar that is being dismissed
+ * @param cause The reason snackbar is being dismissed.
+ */
+- (void)snackbar:(BPKSnackbar *)snackbar dismissedWithCause:(BPKSnackbarDismissCause)cause;
 
 @end

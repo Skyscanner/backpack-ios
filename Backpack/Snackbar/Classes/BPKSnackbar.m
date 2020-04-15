@@ -33,7 +33,7 @@ NSString *const SnackbarAccessibilityIdentifier = @"snackbarView";
 @property(strong, nonatomic) UIImageView *leftIconContainer;
 @property(strong, nonatomic) UIView *snackbarView;
 @property(strong, nonatomic) UIStackView *stackView;
-@property(weak, nonatomic) id<BPKSnackbarProtocol> delegate;
+@property(weak, nonatomic) id<BPKSnackbarDelegate> delegate;
 @property(nonatomic) BPKSnackbarDuration duration;
 @property(nonatomic, strong) NSTimer *timer;
 @property(nonatomic) long durationInMillis;
@@ -53,7 +53,7 @@ static int const BPKSnackbarHeight = 60;
                          text:(NSString *_Nullable)text
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate {
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
     return [self initWithTitle:title
                           text:text
@@ -72,7 +72,7 @@ static int const BPKSnackbarHeight = 60;
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate {
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
     self = [self init];
     [self setUpSnackbarWithTitle:title
@@ -184,7 +184,7 @@ static int const BPKSnackbarHeight = 60;
                       leftIcon:(UIImage *_Nullable)leftIcon
                       duration:(BPKSnackbarDuration)duration
                 viewController:(UIViewController *)viewController
-                      delegate:(id<BPKSnackbarProtocol> _Nullable)delegate {
+                      delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
     self.titleLabel.text = title;
     self.textLabel.text = text;
     self.delegate = delegate;
@@ -287,7 +287,7 @@ static int const BPKSnackbarHeight = 60;
         }
         completion:^(BOOL finished) {
           [self removeFromSuperview];
-          [self.delegate snackbarDismissed:self cause:cause];
+          [self.delegate snackbar:self dismissedWithCause:cause];
         }];
 }
 
