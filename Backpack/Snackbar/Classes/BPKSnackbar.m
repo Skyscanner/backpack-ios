@@ -262,7 +262,9 @@ static int const BPKSnackbarHeight = 60;
                        self.snackbarViewTopConstraint.constant = 0;
                        [self layoutIfNeeded];
                      }
-                     completion:nil];
+                     completion:^(BOOL finished){
+                        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
+                     }];
 }
 
 - (void)findAndRemoveSnackbars {
@@ -286,6 +288,7 @@ static int const BPKSnackbarHeight = 60;
           [self layoutIfNeeded];
         }
         completion:^(BOOL finished) {
+          UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
           [self removeFromSuperview];
           [self.delegate snackbar:self dismissedWithCause:cause];
         }];
@@ -399,4 +402,12 @@ static int const BPKSnackbarHeight = 60;
     NSTimeInterval animationDuration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [self updateBottomConstraintWithBottomInset:finalHeight withKeyboardAnimationDuration:animationDuration];
 }
+
+#pragma mark - UIAccessibility
+
+- (NSArray<id> *)accessibilityElements {
+    return @[self.titleLabel, self.textLabel, self.actionButton];
+}
+
+
 @end
