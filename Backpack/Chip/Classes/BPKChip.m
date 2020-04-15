@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) CALayer *tintLayer;
 @property(nonatomic) UIColor *contentColor;
-@property(nullable, nonatomic) UIView *iconView;
+@property(nullable, nonatomic) BPKIconView *iconView;
 @property(nullable, nonatomic) NSArray<NSLayoutConstraint *> *iconConstraints;
 @end
 

@@ -82,7 +82,7 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 /**
  * An optional icon
  */
-@property(nullable, nonatomic) BPKIconName iconName;
+@property(nullable, nonatomic, copy) BPKIconName iconName;
 
 @end
 
