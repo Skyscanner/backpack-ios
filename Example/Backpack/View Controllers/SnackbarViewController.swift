@@ -76,7 +76,7 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     }
 
     func showWithTitleAndButton() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Titlte",
+        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
                                         text: nil,
                                      buttonTitle: "Button Title",
                                      buttonIcon: nil,
@@ -88,7 +88,7 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     }
 
     func showWithTitleTextAndButton() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Titlte",
+        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
                                         text: "Descriptive text",
                                      buttonTitle: "Button Title",
                                      buttonIcon: nil,
