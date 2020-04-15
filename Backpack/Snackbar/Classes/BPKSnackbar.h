@@ -34,17 +34,27 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
     BPKSnackbarDurationLong
 };
 
+/**
+ * A snackbar is a piece of UI displayed at the bottom edge of the window
+ * which is useful to show notifications and other feedback on actions the
+ * user has just taken.
+ *
+ * Users can also take contextual actions for example undoing the change that caused
+ * the snackbar to be displayed.
+ */
 @interface BPKSnackbar : UIView
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen
  *
  *  @param title    The content that is displayed in the snackbar's title
+ *  @param text The optional text displayed next to the title
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithTitle:(NSString *)title
+                         text:(NSString *_Nullable)text
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
                      delegate:(id<BPKSnackbarProtocol> _Nullable)delegate;
@@ -53,6 +63,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  *  Creates a new Snackbar instance and shows it into the screen
  *
  *  @param title    The content that is displayed in the snackbar's title
+ *  @param text The optional text displayed next to the title
  *  @param buttonTitle  Right button title
  *  @param buttonIcon   Right button icon
  *  @param leftIcon     Left icon displayed before the titleThe text content that is displayed inside the snackbar
@@ -61,6 +72,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithTitle:(NSString *)title
+                         text:(NSString *_Nullable)text
                   buttonTitle:(NSString *_Nullable)buttonTitle
                    buttonIcon:(UIImage *_Nullable)buttonIcon
                      leftIcon:(UIImage *_Nullable)leftIcon

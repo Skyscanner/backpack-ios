@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSnackbarWithTitle {
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:nil
                                                       duration:BPKSnackbarDurationShort
                                                 viewController:self.parentViewController
                                                       delegate:nil];
@@ -43,9 +44,21 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
 
+- (void)testSnackbarWithTitleAndText {
+    BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:@"Descriptive text"
+                                                      duration:BPKSnackbarDurationShort
+                                                viewController:self.parentViewController
+                                                      delegate:nil];
+    [snackBar show];
+    FBSnapshotVerifyView(self.parentViewController.view, nil);
+}
+
+
 - (void)testSnackbarWithitleAndRightButton {
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:nil
                                                    buttonTitle:@"Button Title"
                                                     buttonIcon:closeIcon
                                                       leftIcon:nil
@@ -59,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSnackbarWithitleAndRightButtonIconOnly {
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:nil
                                                    buttonTitle:nil
                                                     buttonIcon:closeIcon
                                                       leftIcon:nil
@@ -73,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     UIImage *leftIcon = [BPKIcon templateIconNamed:@"tick-circle" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:nil
                                                    buttonTitle:@"Button Title"
                                                     buttonIcon:closeIcon
                                                       leftIcon:leftIcon
@@ -87,6 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar =
         [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
+                                      text:nil
                                buttonTitle:@"Button Title"
                                 buttonIcon:closeIcon
                                   leftIcon:nil
@@ -96,5 +112,21 @@ NS_ASSUME_NONNULL_BEGIN
     [snackBar show];
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
+
+- (void)testSnackbarWithLongTitleLongTextAndRightButton {
+    UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
+    BPKSnackbar *snackBar =
+        [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
+                                      text:@"Long text long text long text"
+                               buttonTitle:@"Button Title"
+                                buttonIcon:closeIcon
+                                  leftIcon:nil
+                                  duration:BPKSnackbarDurationShort
+                            viewController:self.parentViewController
+                                  delegate:nil];
+    [snackBar show];
+    FBSnapshotVerifyView(self.parentViewController.view, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END

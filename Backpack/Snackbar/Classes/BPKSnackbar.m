@@ -28,9 +28,11 @@ NSString *const SnackbarAccessibilityIdentifier = @"snackbarView";
 
 @interface BPKSnackbar ()
 @property(strong, nonatomic) BPKLabel *titleLabel;
+@property(strong, nonatomic) BPKLabel *textLabel;
 @property(strong, nonatomic) BPKButton *actionButton;
 @property(strong, nonatomic) UIImageView *leftIconContainer;
 @property(strong, nonatomic) UIView *snackbarView;
+@property(strong, nonatomic) UIStackView *stackView;
 @property(weak, nonatomic) id<BPKSnackbarProtocol> delegate;
 @property(nonatomic) BPKSnackbarDuration duration;
 @property(nonatomic, strong) NSTimer *timer;
@@ -39,9 +41,7 @@ NSString *const SnackbarAccessibilityIdentifier = @"snackbarView";
 @property(nonatomic, strong) NSLayoutConstraint *bottomConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *snackbarViewTopConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *labelButtonSpacing;
-@property(nonatomic, strong) NSLayoutConstraint *labelLeadingSpacing;
-@property(nonatomic, strong) UIViewController *containerViewController;
+@property(nonatomic, weak) UIViewController *containerViewController;
 
 @end
 
@@ -50,11 +50,13 @@ static int const BPKSnackbarHeight = 60;
 @implementation BPKSnackbar
 
 - (instancetype)initWithTitle:(NSString *)title
+                         text:(NSString *_Nullable)text
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
                      delegate:(id<BPKSnackbarProtocol> _Nullable)delegate {
 
     return [self initWithTitle:title
+                          text:text
                    buttonTitle:nil
                     buttonIcon:nil
                       leftIcon:nil
@@ -64,6 +66,7 @@ static int const BPKSnackbarHeight = 60;
 }
 
 - (instancetype)initWithTitle:(NSString *)title
+                         text:(NSString *_Nullable)text
                   buttonTitle:(NSString *_Nullable)buttonTitle
                    buttonIcon:(UIImage *_Nullable)buttonIcon
                      leftIcon:(UIImage *_Nullable)leftIcon
@@ -73,6 +76,7 @@ static int const BPKSnackbarHeight = 60;
 
     self = [self init];
     [self setUpSnackbarWithTitle:title
+                            text:text
                      buttonTitle:buttonTitle
                       buttonIcon:buttonIcon
                         leftIcon:leftIcon
@@ -87,18 +91,48 @@ static int const BPKSnackbarHeight = 60;
     self = [super init];
 
     if (self) {
-        self.snackbarView = [[UIView alloc] init];
+        self.snackbarView = [UIView new];
+        self.stackView = [UIStackView new];
         self.leftIconContainer = [[UIImageView alloc] init];
-        self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
+        self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSmEmphasized];
+        self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
         self.actionButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
 
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.snackbarView.translatesAutoresizingMaskIntoConstraints = NO;
-        self.actionButton.translatesAutoresizingMaskIntoConstraints = NO;
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        self.leftIconContainer.translatesAutoresizingMaskIntoConstraints = NO;
+        self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.stackView.alignment = UIStackViewAlignmentCenter;
+        self.stackView.axis = UILayoutConstraintAxisHorizontal;
+        self.stackView.layoutMargins = UIEdgeInsetsMake(0, BPKSpacingLg, 0, BPKSpacingLg);
+
+        // Don't grow the icon
+        [self.leftIconContainer setContentHuggingPriority:UILayoutPriorityDefaultHigh
+                                                  forAxis:UILayoutConstraintAxisHorizontal];
+        // Don't grow title
+        [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh
+                                           forAxis:UILayoutConstraintAxisHorizontal];
+
+        // Trunacte title if needed
+        [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                         forAxis:UILayoutConstraintAxisHorizontal];
+
+        // Truncate text before title if needed
+        [self.textLabel setContentCompressionResistancePriority:(UILayoutPriorityDefaultLow - 1)
+                                                        forAxis:UILayoutConstraintAxisHorizontal];
+
+        // Make the text label wider to distribute remaining space
+        [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow
+                                          forAxis:UILayoutConstraintAxisHorizontal];
+
+        // Don't compress the button
+        [self.actionButton setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh
+                                                           forAxis:UILayoutConstraintAxisHorizontal];
+        // Don't grow the button
+        [self.actionButton setContentHuggingPriority:UILayoutPriorityDefaultHigh
+                                             forAxis:UILayoutConstraintAxisHorizontal];
 
         self.titleLabel.textColor = BPKColor.white;
+        self.textLabel.textColor = BPKColor.white;
         self.leftIconContainer.tintColor = BPKColor.white;
         self.actionButton.linkContentColor = BPKColor.monteverde;
         [self.actionButton addTarget:self
@@ -106,34 +140,30 @@ static int const BPKSnackbarHeight = 60;
                     forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:self.snackbarView];
-        [self.snackbarView addSubview:self.actionButton];
-        [self.snackbarView addSubview:self.titleLabel];
-        [self.snackbarView addSubview:self.leftIconContainer];
+        [self.snackbarView addSubview:self.stackView];
+        [self.stackView addArrangedSubview:self.leftIconContainer];
+        [self.stackView addArrangedSubview:self.titleLabel];
+        [self.stackView addArrangedSubview:self.textLabel];
+        [self.stackView addArrangedSubview:self.actionButton];
+        [self.stackView addSubview:self.actionButton];
+
+        [self.stackView setCustomSpacing:BPKSpacingMd afterView:self.leftIconContainer];
+        [self.stackView setCustomSpacing:BPKSpacingSm afterView:self.titleLabel];
+        [self.stackView setCustomSpacing:BPKSpacingLg afterView:self.textLabel];
+
+        self.snackbarView.layoutMargins = UIEdgeInsetsMake(0, BPKSpacingLg, 0, BPKSpacingLg);
 
         [NSLayoutConstraint activateConstraints:@[
             [self.snackbarView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
             [self.snackbarView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
-            [self.leftIconContainer.leadingAnchor constraintEqualToAnchor:self.snackbarView.leadingAnchor
-                                                                 constant:BPKSpacingLg],
-            [self.leftIconContainer.centerYAnchor constraintEqualToAnchor:self.snackbarView.centerYAnchor],
-            [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.snackbarView.centerYAnchor],
-            [self.snackbarView.trailingAnchor constraintEqualToAnchor:self.actionButton.trailingAnchor
-                                                             constant:BPKSpacingLg],
-            [self.actionButton.centerYAnchor constraintEqualToAnchor:self.snackbarView.centerYAnchor]
+
+            [self.stackView.leadingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.leadingAnchor],
+            [self.stackView.trailingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.trailingAnchor],
+            [self.stackView.heightAnchor constraintEqualToAnchor:self.snackbarView.heightAnchor],
         ]];
 
         self.snackbarViewTopConstraint = [self.snackbarView.topAnchor constraintEqualToAnchor:self.topAnchor];
         self.snackbarViewTopConstraint.active = YES;
-
-        self.labelButtonSpacing =
-            [self.actionButton.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.trailingAnchor
-                                                                         constant:BPKSpacingBase];
-        self.labelButtonSpacing.active = YES;
-
-        self.labelLeadingSpacing =
-            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leftIconContainer.trailingAnchor
-                                                          constant:BPKSpacingMd];
-        self.labelLeadingSpacing.active = YES;
 
         self.snackbarView.accessibilityIdentifier = SnackbarAccessibilityIdentifier;
 
@@ -148,6 +178,7 @@ static int const BPKSnackbarHeight = 60;
 }
 
 - (void)setUpSnackbarWithTitle:(NSString *)title
+                          text:(NSString *_Nullable)text
                    buttonTitle:(NSString *_Nullable)buttonTitle
                     buttonIcon:(UIImage *_Nullable)buttonIcon
                       leftIcon:(UIImage *_Nullable)leftIcon
@@ -155,6 +186,7 @@ static int const BPKSnackbarHeight = 60;
                 viewController:(UIViewController *)viewController
                       delegate:(id<BPKSnackbarProtocol> _Nullable)delegate {
     self.titleLabel.text = title;
+    self.textLabel.text = text;
     self.delegate = delegate;
     self.snackbarView.backgroundColor = BPKColor.skyBlueShade02;
     self.containerViewController = viewController;
@@ -162,24 +194,20 @@ static int const BPKSnackbarHeight = 60;
     self.actionButton.image = buttonIcon;
     self.leftIconContainer.image = leftIcon;
 
-    if (buttonTitle != nil || buttonIcon != nil) {
-        self.actionButton.hidden = NO;
-        self.labelButtonSpacing.constant = BPKSpacingLg;
-        [self.actionButton setContentCompressionResistancePriority:751 forAxis:UILayoutConstraintAxisHorizontal];
+    self.actionButton.hidden = buttonTitle == nil && buttonIcon == nil;
+    self.leftIconContainer.hidden = leftIcon == nil;
+
+    if (text) {
+        // If we have some text let the text label grow as large as possible to create space between it
+        // and the button/edge of the stackview
+        [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     } else {
-        self.actionButton.hidden = YES;
-        self.labelButtonSpacing.constant = 0;
-        [self.actionButton setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh
-                                                           forAxis:UILayoutConstraintAxisHorizontal];
+        // If we don't have text we can't let it grow because its intrinsic content size will be 0
+        // instead we let `titleLabel` grow
+        [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     }
 
-    if (leftIcon != nil) {
-        self.leftIconContainer.hidden = NO;
-        self.labelLeadingSpacing.constant = BPKSpacingMd;
-    } else {
-        self.leftIconContainer.hidden = YES;
-        self.labelLeadingSpacing.constant = 0;
-    }
 
     if (duration != BPKSnackbarDurationIndefinite) {
         self.durationInMillis = [self durationInMilliseconds:duration];
