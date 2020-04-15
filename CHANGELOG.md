@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 30.1.0
+
+**Added:**
+-Backpack/Chip:
+  - Added support for passing an icon name to display next to the title text.
+
 # 30.0.0
 
 **Breaking:**
