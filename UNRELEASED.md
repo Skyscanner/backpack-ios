@@ -1,21 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Breaking:**
-
-- Backpack/Snackbar:
-  - Added `text` property which was previously missing.
-  - Renamed `BPKSnackbar`'s delegate from `BPKSnackbarProtocol` to `BPKSnackbarDelegate`.
-  - Renamed `snackbarDismissed:cause:` in `BPKSnackbarDelegate` to `snackbar:dismissedWithCause:`.
-  - Changed `BPKSnackbar` API to make it possible to supply an accessibility label for the button in icon only mode.
-  - Removed the ability to use a button with both an icon and text since this is not supported on Android.
-
-**Fixed:**
-
-- Backpack/Snackbar
-   - The Snackbar and its related symbols now show up on the doc site.
-   - Improved accessibility of Snackbar.
-
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
