@@ -18,6 +18,8 @@
 
 #import "BPKSnackbar.h"
 
+#import "BPKSnackbarButton.h"
+
 #import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Duration.h>

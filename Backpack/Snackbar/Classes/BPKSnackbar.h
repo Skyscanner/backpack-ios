@@ -17,7 +17,6 @@
  */
 #import <UIKit/UIKit.h>
 
-#import "BPKSnackbarButton.h"
 #import "BPKSnackbarDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,6 +34,7 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
     BPKSnackbarDurationLong
 };
 
+@class BPKSnackbarButton;
 /**
  * A snackbar is a piece of UI displayed at the bottom edge of the window
  * which is useful to show notifications and other feedback on actions the

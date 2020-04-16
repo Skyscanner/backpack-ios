@@ -19,5 +19,6 @@
 #ifndef __BACKPACK_SNACKBAR__
 #define __BACKPACK_SNACKBAR__
 #import "BPKSnackbar.h"
+#import "BPKSnackbarButton.h"
 #import "BPKSnackbarDelegate.h"
 #endif
