@@ -56,15 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)buttonWithTitle:(NSString *)title;
 
 /**
- * A button with an icon and visible text.
- *
- * @param title The title to use.
- * @param icon The icon to use.
- * @return An instance that will display a text + icon button.
- */
-+ (instancetype)buttonWithIcon:(UIImage *)icon title:(NSString *)title;
-
-/**
  * An icon only button with an accesssibility label for Voice Over.
  *
  * @param icon The icon to use.
@@ -75,20 +66,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- * A button with an icon and visible text with a specific
+ * A button with an visible text with a specific
  * `accessibilityLabel`. Normally the `accessibilityLabel` would be
  * derived from the title but in this it's set explicitly. This is useful
  * when you want to provide different text to sighted user and VoiceOver users.
  *
  * @param title The visual title to u.se
- * @param icon The icon to use.
  * @param accessibilityLabel The accessibility label read out by VoiceOver.
- * @return An instance that will display a text + icon button with a custom
+ * @return An instance that will display a text button with a custom
  *          label for VoiceOver.
  */
-+ (instancetype)buttonWithIcon:(UIImage *)icon
-                         title:(NSString *)title
-            accessibilityLabel:(NSString *)accessibilityLabel;
++ (instancetype)buttonWithTitle:(NSString *)title
+             accessibilityLabel:(NSString *)accessibilityLabel;
 
 @end
 NS_ASSUME_NONNULL_END

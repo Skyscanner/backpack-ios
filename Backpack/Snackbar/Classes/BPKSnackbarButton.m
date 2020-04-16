@@ -39,15 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
     return button;
 }
 
-+ (instancetype)buttonWithIcon:(UIImage *)icon title:(NSString *)title {
-    BPKSnackbarButton *button = [[BPKSnackbarButton alloc] init];
-
-    button.title = title;
-    button.icon = icon;
-
-    return button;
-}
-
 + (instancetype)buttonWithIcon:(UIImage *)icon accessibilityLabel:(NSString *)accessibilityLabel {
     BPKSnackbarButton *button = [[BPKSnackbarButton alloc] init];
 
@@ -57,12 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
     return button;
 }
 
-+ (instancetype)buttonWithIcon:(UIImage *)icon
-                         title:(NSString *)title
++ (instancetype)buttonWithTitle:(NSString *)title
             accessibilityLabel:(NSString *)accessibilityLabel {
     BPKSnackbarButton *button = [[BPKSnackbarButton alloc] init];
 
-    button.icon = icon;
     button.title = title;
     button.accessibilityLabel = accessibilityLabel;
 

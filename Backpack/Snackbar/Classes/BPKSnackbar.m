@@ -252,10 +252,6 @@ static int const BPKSnackbarHeight = 60;
     } else if (button) {
         self.actionButton.title = button.title;
 
-        if (button.icon) {
-            self.actionButton.image = button.icon;
-        }
-
         if (button.accessibilityLabel) {
             self.actionButton.accessibilityLabel = button.accessibilityLabel;
         }
