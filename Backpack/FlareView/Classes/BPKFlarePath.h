@@ -43,12 +43,14 @@ IB_DESIGNABLE @interface BPKFlarePath : NSObject
  *
  * @param size CGSize of the path required.
  * @param flareHeight CGFloat height of the flare required.
+ * @param cornerRadius CGFloat cornerRadius to apply to the four corners of the rectangle area.
  * @param flarePosition BPKFlarePosition of the path required.
  */
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
-                             flareHeight:(CGFloat)flareHeight
+                           flareHeight:(CGFloat)flareHeight
+                          cornerRadius:(CGFloat)cornerRadius
                          flarePosition:(BPKFlarePosition)flarePosition
-    NS_SWIFT_NAME(makeFlarePath(size:flareHeight:flarePosition:));
+NS_SWIFT_NAME(makeFlarePath(size:flareHeight:cornerRadius:flarePosition:));
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,6 +21,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/FlareView.h>
 #import <Backpack/Label.h>
+#import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 
 @interface BPKFlareViewSnapshotTest : FBSnapshotTestCase
@@ -85,6 +86,36 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forFlareView:flareView];
 
     flareView.flarePosition = BPKFlarePositionTop;
+    [flareView setNeedsLayout];
+    [flareView layoutIfNeeded];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testFlareViewBottomRoundedSnapshot {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor panjin];
+
+    flareView.cornerRadius = BPKBorderRadiusLg;
+
+    [self configureFlareView:flareView withInnerView:innerView];
+    [self configureParentView:parentView forFlareView:flareView];
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testFlareViewTopRoundedSnapshot {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor panjin];
+
+    [self configureFlareView:flareView withInnerView:innerView];
+    [self configureParentView:parentView forFlareView:flareView];
+
+    flareView.flarePosition = BPKFlarePositionTop;
+    flareView.cornerRadius = BPKBorderRadiusLg;
     [flareView setNeedsLayout];
     [flareView layoutIfNeeded];
 
