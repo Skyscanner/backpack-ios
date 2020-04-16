@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSnackbarWithTitle {
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:nil
                                                       duration:BPKSnackbarDurationShort
                                                 viewController:self.parentViewController
                                                       delegate:nil];
@@ -43,11 +44,22 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
 
+- (void)testSnackbarWithTitleAndText {
+    BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
+                                                          text:@"Descriptive text"
+                                                      duration:BPKSnackbarDurationShort
+                                                viewController:self.parentViewController
+                                                      delegate:nil];
+    [snackBar show];
+    FBSnapshotVerifyView(self.parentViewController.view, nil);
+}
+
+
 - (void)testSnackbarWithitleAndRightButton {
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
-                                                   buttonTitle:@"Button Title"
-                                                    buttonIcon:closeIcon
+                                                          text:nil
+                                                        button:[BPKSnackbarButton buttonWithIcon:closeIcon accessibilityLabel:@"Close"]
                                                       leftIcon:nil
                                                       duration:BPKSnackbarDurationShort
                                                 viewController:self.parentViewController
@@ -59,8 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSnackbarWithitleAndRightButtonIconOnly {
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
-                                                   buttonTitle:nil
-                                                    buttonIcon:closeIcon
+                                                          text:nil
+                                                        button:[BPKSnackbarButton buttonWithIcon:closeIcon accessibilityLabel:@"Close"]
                                                       leftIcon:nil
                                                       duration:BPKSnackbarDurationShort
                                                 viewController:self.parentViewController
@@ -73,8 +85,8 @@ NS_ASSUME_NONNULL_BEGIN
     UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     UIImage *leftIcon = [BPKIcon templateIconNamed:@"tick-circle" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title"
-                                                   buttonTitle:@"Button Title"
-                                                    buttonIcon:closeIcon
+                                                          text:nil
+                                                        button:[BPKSnackbarButton buttonWithIcon:closeIcon accessibilityLabel:@"Close"]
                                                       leftIcon:leftIcon
                                                       duration:BPKSnackbarDurationShort
                                                 viewController:self.parentViewController
@@ -84,11 +96,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSnackbarWithLongTitleAndRightButton {
-    UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
     BPKSnackbar *snackBar =
         [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
-                               buttonTitle:@"Button Title"
-                                buttonIcon:closeIcon
+                                      text:nil
+                                    button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
                                   leftIcon:nil
                                   duration:BPKSnackbarDurationShort
                             viewController:self.parentViewController
@@ -96,5 +107,19 @@ NS_ASSUME_NONNULL_BEGIN
     [snackBar show];
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
+
+- (void)testSnackbarWithLongTitleLongTextAndRightButton {
+    BPKSnackbar *snackBar =
+        [[BPKSnackbar alloc] initWithTitle:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
+                                      text:@"Long text long text long text"
+                                    button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
+                                  leftIcon:nil
+                                  duration:BPKSnackbarDurationShort
+                            viewController:self.parentViewController
+                                  delegate:nil];
+    [snackBar show];
+    FBSnapshotVerifyView(self.parentViewController.view, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END

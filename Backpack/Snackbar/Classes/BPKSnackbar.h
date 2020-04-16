@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#import "BPKSnackbarProtocol.h"
 #import <UIKit/UIKit.h>
+
+#import "BPKSnackbarDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,39 +34,50 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
     BPKSnackbarDurationLong
 };
 
+@class BPKSnackbarButton;
+/**
+ * A snackbar is a piece of UI displayed at the bottom edge of the window
+ * which is useful to show notifications and other feedback on actions the
+ * user has just taken.
+ *
+ * Users can also take contextual actions for example undoing the change that caused
+ * the snackbar to be displayed.
+ */
 @interface BPKSnackbar : UIView
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen
  *
  *  @param title    The content that is displayed in the snackbar's title
+ *  @param text The optional text displayed next to the title
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithTitle:(NSString *)title
+                         text:(NSString *_Nullable)text
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate;
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen
  *
  *  @param title    The content that is displayed in the snackbar's title
- *  @param buttonTitle  Right button title
- *  @param buttonIcon   Right button icon
+ *  @param text The optional text displayed next to the title
+ *  @param button The optional button
  *  @param leftIcon     Left icon displayed before the titleThe text content that is displayed inside the snackbar
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithTitle:(NSString *)title
-                  buttonTitle:(NSString *_Nullable)buttonTitle
-                   buttonIcon:(UIImage *_Nullable)buttonIcon
+                         text:(NSString *_Nullable)text
+                       button:(BPKSnackbarButton *_Nullable)button
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarProtocol> _Nullable)delegate;
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Show the snackbar

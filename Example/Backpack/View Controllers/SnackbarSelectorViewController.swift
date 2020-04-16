@@ -35,6 +35,9 @@ class SnackBarSelectorViewController: UITableViewController {
         setupDestinationController(destinationController: destinationController, segue: segue)
     }
 
+    // Cyclomatic complexity might be high in this function but it's actually really
+    // really straightforward. There's probably some opportunity to improve it.
+    // swiftlint:disable cyclomatic_complexity
     func setupDestinationController(destinationController: SnackBarViewController, segue: UIStoryboardSegue) {
         switch segue.identifier {
         case "showWithTitle":
@@ -43,6 +46,9 @@ class SnackBarSelectorViewController: UITableViewController {
         case "showWithTitleAndButton":
             destinationController.snackBarType = .withTitleAndButton
             destinationController.title = "With title and button"
+        case "showWithTitleTextAndButton":
+            destinationController.snackBarType = .withTitleTextAndButton
+            destinationController.title = "With title, text and button"
         case "showWithTitleAndButtonIconOnly":
             destinationController.snackBarType = .withTitleAndButtonIconOnly
             destinationController.title = "With title and button icon only"
@@ -68,4 +74,5 @@ class SnackBarSelectorViewController: UITableViewController {
             fatalError("Unrecognized segue \(segue.identifier.debugDescription)")
         }
     }
+    // swiftlint:enable cyclomatic_complexity
 }

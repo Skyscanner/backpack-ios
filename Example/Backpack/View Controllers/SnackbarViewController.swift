@@ -22,6 +22,7 @@ import Backpack
 enum SnackBarType {
     case withTitle
     case withTitleAndButton
+    case withTitleTextAndButton
     case withTitleAndButtonIconOnly
     case withTitleButtonAndAccessoryIcon
     case indefiniteDuration
@@ -31,7 +32,7 @@ enum SnackBarType {
     case withDelegate
 }
 
-class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
+class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     @IBOutlet weak var textField: UITextField!
     var snackBarType: SnackBarType = .withTitle
 
@@ -48,6 +49,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
             showWithTitle()
         case .withTitleAndButton:
             showWithTitleAndButton()
+        case .withTitleTextAndButton:
+            showWithTitleTextAndButton()
         case .withTitleAndButtonIconOnly:
             showWithTitleAndButtonIconOnly()
         case .withTitleButtonAndAccessoryIcon:
@@ -66,14 +69,16 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
     }
 
     func showWithTitle() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title", duration: .long, viewController: self, delegate: nil)
+        let snackbar = BPKSnackbar.init(
+            title: "Snackbar Title", text: nil, duration: .long, viewController: self, delegate: nil
+        )
         snackbar.show()
     }
 
     func showWithTitleAndButton() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Titlte",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: nil,
+        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
+                                        text: nil,
+                                        button: BPKSnackbarButton(title: "Button Title"),
                                      leftIcon: nil,
                                      duration: .long,
                                      viewController: self,
@@ -81,11 +86,23 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         snackbar.show()
     }
 
+    func showWithTitleTextAndButton() {
+        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
+                                        text: "Descriptive text",
+                                        button: BPKSnackbarButton(title: "Button Title"),
+                                     leftIcon: nil,
+                                     duration: .long,
+                                     viewController: self,
+                                     delegate: nil)
+        snackbar.show()
+
+    }
+
     func showWithTitleAndButtonIconOnly() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                     buttonTitle: nil,
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
                                      leftIcon: nil,
                                      duration: .long,
                                      viewController: self,
@@ -97,8 +114,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
                                      leftIcon: accessoryIcon,
                                      duration: .long,
                                      viewController: self,
@@ -109,8 +126,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
     func showIndefiniteDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar with indefinite duration",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                      leftIcon: nil,
                                      duration: .indefinite,
                                      viewController: self,
@@ -121,8 +138,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
     func showLongDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar with long duration",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                      leftIcon: nil,
                                      duration: .long,
                                      viewController: self,
@@ -133,8 +150,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
     func showShortDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar with long duration",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                      leftIcon: nil,
                                      duration: .short,
                                      viewController: self,
@@ -146,8 +163,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                      leftIcon: accessoryIcon,
                                      duration: .long,
                                      viewController: self,
@@ -160,8 +177,8 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
         let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                     buttonTitle: "Button Title",
-                                     buttonIcon: buttonIcon,
+                                        text: nil,
+                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                      leftIcon: accessoryIcon,
                                      duration: .long,
                                      viewController: self,
@@ -169,14 +186,14 @@ class SnackBarViewController: UIViewController, BPKSnackbarProtocol {
         snackbar.show()
     }
 
-    func snackbarDismissed(_ snackbar: BPKSnackbar!, cause: BPKSnackbarDismissCause) {
+    func snackbar(_ snackbar: BPKSnackbar!, dismissedWith cause: BPKSnackbarDismissCause) {
         if cause == .actionButton {
             let title = String(Int(arc4random_uniform(100)))
             let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
             let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
             let snackbar = BPKSnackbar.init(title: title,
-                                         buttonTitle: "Button Title",
-                                         buttonIcon: buttonIcon,
+                                            text: nil,
+                                            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
                                          leftIcon: accessoryIcon,
                                          duration: .long,
                                          viewController: self,
