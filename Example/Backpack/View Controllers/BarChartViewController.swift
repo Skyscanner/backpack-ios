@@ -20,12 +20,12 @@ import UIKit
 import Backpack
 
 class BarChartsViewController: UIViewController {
-
-    @IBOutlet weak var barChartCollection: BPKBarChartCollectionView!
-
+    @IBOutlet weak var barChart: BPKBarChart!
+    
     override func viewDidLoad() {
-        barChartCollection.barChartDataSource = self
-        barChartCollection.barChartDelegate = self
+        self.barChart.barChartDataSource = self
+        self.barChart.barChartDelegate = self
+        self.barChart.title = "Departure date"
     }
 }
 
