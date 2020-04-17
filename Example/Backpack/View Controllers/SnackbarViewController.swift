@@ -19,22 +19,24 @@
 import Foundation
 import Backpack
 
-enum SnackBarType {
-    case withTitle
-    case withTitleAndButton
-    case withTitleTextAndButton
-    case withTitleAndButtonIconOnly
-    case withTitleButtonAndAccessoryIcon
-    case indefiniteDuration
-    case longDuration
-    case shortDuration
-    case withKeyboard
-    case withDelegate
+// The string value is the segue identifier
+// that should use this style
+enum SnackBarType: String {
+    case withText = "showWithText"
+    case withTextAndButton = "showWithTextAndButton"
+    case withTextTitleAndButton = "showWithTextTitleAndButton"
+    case withTextAndIconOnlyButton = "showWithTextAndIconOnlyButton"
+    case withTextButtonAndAccessoryIcon = "showWithTextButtonAndAccessoryIcon"
+    case indefiniteDuration = "showWithIndefiniteDuration"
+    case longDuration = "showWithLongDuration"
+    case shortDuration = "showWithShortDuration"
+    case withKeyboard = "showWithKeyboard"
+    case withDelegate = "showWithDelegate"
 }
 
 class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     @IBOutlet weak var textField: UITextField!
-    var snackBarType: SnackBarType = .withTitle
+    var snackBarType: SnackBarType = .withText
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,16 +47,16 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
         super.viewDidAppear(animated)
 
         switch snackBarType {
-        case .withTitle:
-            showWithTitle()
-        case .withTitleAndButton:
-            showWithTitleAndButton()
-        case .withTitleTextAndButton:
-            showWithTitleTextAndButton()
-        case .withTitleAndButtonIconOnly:
-            showWithTitleAndButtonIconOnly()
-        case .withTitleButtonAndAccessoryIcon:
-            showWithTitleButtonAndAccessoryIcon()
+        case .withText:
+            showWithText()
+        case .withTextAndButton:
+            showWithTextAndButton()
+        case .withTextTitleAndButton:
+            showWithTextTitleAndButton()
+        case .withTextAndIconOnlyButton:
+            showWithTextAndIconOnlyButton()
+        case .withTextButtonAndAccessoryIcon:
+            showWithTextButtonAndAccessoryIcon()
         case .indefiniteDuration:
             showIndefiniteDuration()
         case .longDuration:
@@ -68,107 +70,128 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
         }
     }
 
-    func showWithTitle() {
-        let snackbar = BPKSnackbar.init(
-            title: "Snackbar Title", text: nil, duration: .long, viewController: self, delegate: nil
+    func showWithText() {
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text", title: nil, duration: .long, viewController: self, delegate: nil
         )
         snackbar.show()
     }
 
-    func showWithTitleAndButton() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: nil,
-                                        button: BPKSnackbarButton(title: "Button Title"),
-                                     leftIcon: nil,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+    func showWithTextAndButton() {
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: nil,
+            button: BPKSnackbarButton(title: "Button Title"),
+            leftIcon: nil,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
         snackbar.show()
     }
 
-    func showWithTitleTextAndButton() {
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: "Descriptive text",
-                                        button: BPKSnackbarButton(title: "Button Title"),
-                                     leftIcon: nil,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+    func showWithTextTitleAndButton() {
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: "Snackbar Title",
+            button: BPKSnackbarButton(title: "Button Title"),
+            leftIcon: nil,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
         snackbar.show()
 
     }
 
-    func showWithTitleAndButtonIconOnly() {
+    func showWithTextAndIconOnlyButton() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
-                                     leftIcon: nil,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
+            leftIcon: nil,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
+
         snackbar.show()
     }
 
-    func showWithTitleButtonAndAccessoryIcon() {
+    func showWithTextButtonAndAccessoryIcon() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
-                                     leftIcon: accessoryIcon,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Close"),
+            leftIcon: accessoryIcon,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
         snackbar.show()
     }
 
     func showIndefiniteDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar with indefinite duration",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                     leftIcon: nil,
-                                     duration: .indefinite,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Snackbar with indefinite duration",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+            leftIcon: nil,
+            duration: .indefinite,
+            viewController: self,
+            delegate: nil
+        )
+
         snackbar.show()
     }
 
     func showLongDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar with long duration",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                     leftIcon: nil,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Snackbar with long duration",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+            leftIcon: nil,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
+
         snackbar.show()
     }
 
     func showShortDuration() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar with long duration",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                     leftIcon: nil,
-                                     duration: .short,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Snackbar with long duration",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+            leftIcon: nil,
+            duration: .short,
+            viewController: self,
+            delegate: nil
+        )
+
         snackbar.show()
     }
 
     func showWithKeyboard() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                     leftIcon: accessoryIcon,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: nil)
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+            leftIcon: accessoryIcon,
+            duration: .long,
+            viewController: self,
+            delegate: nil
+        )
+
         snackbar.show()
         textField.becomeFirstResponder()
     }
@@ -176,13 +199,16 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
     func showWithDelegate() {
         let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
         let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
-        let snackbar = BPKSnackbar.init(title: "Snackbar Title",
-                                        text: nil,
-                                        button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                     leftIcon: accessoryIcon,
-                                     duration: .long,
-                                     viewController: self,
-                                     delegate: self)
+        let snackbar = BPKSnackbar(
+            text: "Descriptive text",
+            title: nil,
+            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+            leftIcon: accessoryIcon,
+            duration: .long,
+            viewController: self,
+            delegate: self
+        )
+
         snackbar.show()
     }
 
@@ -191,13 +217,16 @@ class SnackBarViewController: UIViewController, BPKSnackbarDelegate {
             let title = String(Int(arc4random_uniform(100)))
             let buttonIcon = BPKIcon.makeTemplateIcon(name: .close, size: .small)
             let accessoryIcon = BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small)
-            let snackbar = BPKSnackbar.init(title: title,
-                                            text: nil,
-                                            button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
-                                         leftIcon: accessoryIcon,
-                                         duration: .long,
-                                         viewController: self,
-                                         delegate: self)
+            let snackbar = BPKSnackbar(
+                text: "Descriptive text",
+                title: title,
+                button: BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "Icon"),
+                leftIcon: accessoryIcon,
+                duration: .long,
+                viewController: self,
+                delegate: self
+            )
+
             snackbar.show()
         }
     }

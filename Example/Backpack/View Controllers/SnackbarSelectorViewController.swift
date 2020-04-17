@@ -40,34 +40,34 @@ class SnackBarSelectorViewController: UITableViewController {
     // swiftlint:disable cyclomatic_complexity
     func setupDestinationController(destinationController: SnackBarViewController, segue: UIStoryboardSegue) {
         switch segue.identifier {
-        case "showWithTitle":
-            destinationController.snackBarType = .withTitle
+        case SnackBarType.withText.rawValue:
+            destinationController.snackBarType = .withText
             destinationController.title = "With Title"
-        case "showWithTitleAndButton":
-            destinationController.snackBarType = .withTitleAndButton
+        case SnackBarType.withTextAndButton.rawValue:
+            destinationController.snackBarType = .withTextAndButton
             destinationController.title = "With title and button"
-        case "showWithTitleTextAndButton":
-            destinationController.snackBarType = .withTitleTextAndButton
+        case SnackBarType.withTextTitleAndButton.rawValue:
+            destinationController.snackBarType = .withTextTitleAndButton
             destinationController.title = "With title, text and button"
-        case "showWithTitleAndButtonIconOnly":
-            destinationController.snackBarType = .withTitleAndButtonIconOnly
+        case SnackBarType.withTextAndIconOnlyButton.rawValue:
+            destinationController.snackBarType = .withTextAndIconOnlyButton
             destinationController.title = "With title and button icon only"
-        case "showWithTitleButtonAndAccessoryIcon":
-            destinationController.snackBarType = .withTitleButtonAndAccessoryIcon
+        case SnackBarType.withTextButtonAndAccessoryIcon.rawValue:
+            destinationController.snackBarType = .withTextButtonAndAccessoryIcon
             destinationController.title = "With title, button and accessory icon"
-        case "showWithIndefiniteDuration":
+        case SnackBarType.indefiniteDuration.rawValue:
             destinationController.snackBarType = .indefiniteDuration
             destinationController.title = "Indefinite duration"
-        case "showWithLongDuration":
+        case SnackBarType.longDuration.rawValue:
             destinationController.snackBarType = .longDuration
             destinationController.title = "Long duration"
-        case "showWithShortDuration":
+        case SnackBarType.shortDuration.rawValue:
             destinationController.snackBarType = .shortDuration
             destinationController.title = "Short duration"
-        case "showWithKeyboard":
+        case SnackBarType.withKeyboard.rawValue:
             destinationController.snackBarType = .withKeyboard
             destinationController.title = "With Keyboard"
-        case "showWithDelegate":
+        case SnackBarType.withDelegate.rawValue:
             destinationController.snackBarType = .withDelegate
             destinationController.title = "With delegate"
         default:
