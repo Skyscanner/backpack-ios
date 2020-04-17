@@ -1,6 +1,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.0.0
+
+**Breaking:**
+
+- Backpack/Snackbar
+  - Change to text being required and title being optional to align with Android.
+
+
 # 31.0.0
 
 **Breaking:**
