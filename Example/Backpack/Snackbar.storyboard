@@ -26,7 +26,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="frv-QU-5EM" customClass="BPKLabel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="frv-QU-5EM" customClass="BPKLabel">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -36,7 +36,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTitle" id="cf8-aa-u03"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithText" id="cf8-aa-u03"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="lpU-wF-n3R" style="IBUITableViewCellStyleDefault" id="TVa-uy-Umx">
@@ -46,7 +46,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With title and button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lpU-wF-n3R" customClass="BPKLabel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With text and button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lpU-wF-n3R" customClass="BPKLabel">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -56,7 +56,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTitleAndButton" id="02r-b0-d7k"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTextAndButton" id="02r-b0-d7k"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="bVg-nF-WMy" style="IBUITableViewCellStyleDefault" id="VQw-M5-GGI">
@@ -76,7 +76,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTitleTextAndButton" id="rXH-VG-uPM"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTextTitleAndButton" id="rXH-VG-uPM"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="kiy-Km-Fub" style="IBUITableViewCellStyleDefault" id="cn7-x7-cle">
@@ -86,7 +86,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With title and button icon only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kiy-Km-Fub" customClass="BPKLabel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With text and icon only button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kiy-Km-Fub" customClass="BPKLabel">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -96,7 +96,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTitleAndButtonIconOnly" id="HxB-aW-5oL"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTextAndIconOnlyButton" id="HxB-aW-5oL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="hUu-9G-bLo" style="IBUITableViewCellStyleDefault" id="6w2-dv-jvD">
@@ -106,7 +106,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With title, button and accesory icon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hUu-9G-bLo" customClass="BPKLabel">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With text, button and accesory icon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hUu-9G-bLo" customClass="BPKLabel">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -116,7 +116,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTitleButtonAndAccessoryIcon" id="LZW-md-Tj2"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithTextButtonAndAccessoryIcon" id="LZW-md-Tj2"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="qga-tm-04j" style="IBUITableViewCellStyleDefault" id="GXb-bz-75C">
@@ -216,7 +216,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithDelegate" id="Rvs-Yn-QLZ"/>
+                                            <segue destination="ZdW-bJ-iOC" kind="show" identifier="showWithDelegate" id="IpE-Ud-fFR"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -266,6 +266,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rXH-VG-uPM"/>
+        <segue reference="IpE-Ud-fFR"/>
     </inferredMetricsTieBreakers>
 </document>

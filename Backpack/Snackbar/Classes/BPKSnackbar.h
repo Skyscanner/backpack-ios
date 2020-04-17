@@ -48,14 +48,14 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
 /**
  *  Creates a new Snackbar instance and shows it into the screen
  *
- *  @param title    The content that is displayed in the snackbar's title
- *  @param text The optional text displayed next to the title
+ *  @param text The text displayed next to the title
+ *  @param title The optional content that is displayed in the snackbar's title
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
-- (instancetype)initWithTitle:(NSString *)title
-                         text:(NSString *_Nullable)text
+- (instancetype)initWithText:(NSString *)text
+                         title:(NSString *_Nullable)title
                      duration:(BPKSnackbarDuration)duration
                viewController:(UIViewController *)viewController
                      delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
@@ -63,16 +63,16 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
 /**
  *  Creates a new Snackbar instance and shows it into the screen
  *
- *  @param title    The content that is displayed in the snackbar's title
- *  @param text The optional text displayed next to the title
+ *  @param text The text displayed next to the title
+ *  @param title    The optional content that is displayed in the snackbar's title
  *  @param button The optional button
  *  @param leftIcon     Left icon displayed before the titleThe text content that is displayed inside the snackbar
  *  @param duration     time for the snackbar to disappear
  *  @param viewController   viewController where the snackbar will be presented
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
-- (instancetype)initWithTitle:(NSString *)title
-                         text:(NSString *_Nullable)text
+- (instancetype)initWithText:(NSString *_Nullable)text
+                         title:(NSString *_Nullable)title
                        button:(BPKSnackbarButton *_Nullable)button
                      leftIcon:(UIImage *_Nullable)leftIcon
                      duration:(BPKSnackbarDuration)duration

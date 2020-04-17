@@ -51,37 +51,37 @@ static int const BPKSnackbarHeight = 60;
 
 @implementation BPKSnackbar
 
-- (instancetype)initWithTitle:(NSString *)title
-                         text:(NSString *_Nullable)text
-                     duration:(BPKSnackbarDuration)duration
-               viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
+- (instancetype)initWithText:(NSString *)text
+                       title:(NSString *_Nullable)title
+                    duration:(BPKSnackbarDuration)duration
+              viewController:(UIViewController *)viewController
+                    delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
-    return [self initWithTitle:title
-                          text:text
-                        button:nil
-                      leftIcon:nil
-                      duration:duration
-                viewController:viewController
-                      delegate:delegate];
+    return [self initWithText:text
+                        title:title
+                       button:nil
+                     leftIcon:nil
+                     duration:duration
+               viewController:viewController
+                     delegate:delegate];
 }
 
-- (instancetype)initWithTitle:(NSString *)title
-                         text:(NSString *_Nullable)text
-                       button:(BPKSnackbarButton *)button
-                     leftIcon:(UIImage *_Nullable)leftIcon
-                     duration:(BPKSnackbarDuration)duration
-               viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
+- (instancetype)initWithText:(NSString *)text
+                       title:(NSString *_Nullable)title
+                      button:(BPKSnackbarButton *)button
+                    leftIcon:(UIImage *_Nullable)leftIcon
+                    duration:(BPKSnackbarDuration)duration
+              viewController:(UIViewController *)viewController
+                    delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
     self = [self init];
-    [self setUpSnackbarWithTitle:title
-                            text:text
-                          button:button
-                        leftIcon:leftIcon
-                        duration:duration
-                  viewController:viewController
-                        delegate:delegate];
+    [self setUpSnackbarWithText:text
+                          title:title
+                         button:button
+                       leftIcon:leftIcon
+                       duration:duration
+                 viewController:viewController
+                       delegate:delegate];
 
     return self;
 }
@@ -111,13 +111,13 @@ static int const BPKSnackbarHeight = 60;
         [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh
                                            forAxis:UILayoutConstraintAxisHorizontal];
 
-        // Trunacte title if needed
-        [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+        // Trunacte title before text if needed
+        [self.titleLabel setContentCompressionResistancePriority:(UILayoutPriorityDefaultLow - 1)
                                                          forAxis:UILayoutConstraintAxisHorizontal];
-
-        // Truncate text before title if needed
-        [self.textLabel setContentCompressionResistancePriority:(UILayoutPriorityDefaultLow - 1)
+        // Truncate text
+        [self.textLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
                                                         forAxis:UILayoutConstraintAxisHorizontal];
+
 
         // Make the text label wider to distribute remaining space
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow
@@ -176,8 +176,8 @@ static int const BPKSnackbarHeight = 60;
     return self;
 }
 
-- (void)setUpSnackbarWithTitle:(NSString *)title
-                          text:(NSString *_Nullable)text
+- (void)setUpSnackbarWithText:(NSString *)text
+                          title:(NSString *_Nullable)title
                         button:(BPKSnackbarButton *)button
                       leftIcon:(UIImage *_Nullable)leftIcon
                       duration:(BPKSnackbarDuration)duration
