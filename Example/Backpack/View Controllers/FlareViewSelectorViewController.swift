@@ -22,6 +22,7 @@ import Backpack
 enum FlareViewSegueIdentifier: String {
     case `default` = "Default"
     case flareAtTop = "FlareAtTop"
+    case rounded = "Rounded"
     case backgroundImage = "BackgroundImage"
     case backgroundImageAnimated = "BackgroundImageAnimated"
 }
@@ -40,6 +41,9 @@ class FlareViewSelectorViewController: UITableViewController {
             case .flareAtTop:
                 target.title = "Flare at top"
                 target.flareAtTop = true
+            case .rounded:
+                target.title = "Rounded"
+                target.rounded = true
             case .backgroundImage:
                 target.title = "Background image"
                 target.backgroundImage = true

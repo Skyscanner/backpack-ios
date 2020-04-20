@@ -27,56 +27,70 @@ NS_ASSUME_NONNULL_BEGIN
 CGFloat const BPKFlareVectorWidth = 234.0;
 CGFloat const BPKFlareVectorHeight = 53.0;
 
+// For information on how this path is calculated, see
+// https://github.com/Skyscanner/backpack-ios/blob/master/Backpack/FlareView/reference/FlarePath_calculation.png
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
-                             flareHeight:(CGFloat)flareHeight
+                           flareHeight:(CGFloat)flareHeight
+                          cornerRadius:(CGFloat)cornerRadius
                          flarePosition:(BPKFlarePosition)flarePosition {
+    BOOL hasCornerRadius = cornerRadius > 0.01;
+
     UIBezierPath *path = [[UIBezierPath alloc] init];
 
+    CGFloat contentTop = 0;
     CGFloat contentBottom = size.height - flareHeight;
-
-    CGPoint firstCorner = CGPointZero;
-    CGPoint secondCorner = CGPointZero;
-    CGPoint thirdCorner = CGPointZero;
-    CGPoint fourthCorner = CGPointZero;
-
-    switch (flarePosition) {
-    case BPKFlarePositionBottom:
-        // top-left:
-        firstCorner = CGPointMake(0, 0);
-
-        // bottom-left:
-        secondCorner = CGPointMake(0.0, contentBottom);
-
-        // bottom-right:
-        thirdCorner = CGPointMake(size.width, contentBottom);
-
-        // top-right:
-        fourthCorner = CGPointMake(size.width, 0.0);
-        break;
-    case BPKFlarePositionTop:
-        // bottom-left:
-        firstCorner = CGPointMake(0, size.height);
-
-        // top-left:
-        secondCorner = CGPointMake(0.0, flareHeight);
-
-        // top-right:
-        thirdCorner = CGPointMake(size.width, flareHeight);
-
-        // bottom-right:
-        fourthCorner = CGPointMake(size.width, size.height);
-        break;
+    if (flarePosition == BPKFlarePositionTop) {
+        contentTop = flareHeight;
+        contentBottom = size.height;
     }
 
-    [path moveToPoint:firstCorner];
-    [path addLineToPoint:secondCorner];
+    // top-left:
+    CGPoint firstCorner = CGPointMake(0, contentTop);
+    CGPoint firstCornerCurveStart = CGPointMake(firstCorner.x + cornerRadius, firstCorner.y);
+    CGPoint firstCornerCurveEnd = CGPointMake(firstCorner.x, firstCorner.y + cornerRadius);
 
-    // flare shape
-    [self appendFlareToPath:path size:size flareHeight:flareHeight flarePosition:flarePosition];
+    // bottom-left:
+    CGPoint secondCorner = CGPointMake(0.0, contentBottom);
+    CGPoint secondCornerCurveStart = CGPointMake(secondCorner.x, secondCorner.y - cornerRadius);
+    CGPoint secondCornerCurveEnd = CGPointMake(secondCorner.x + cornerRadius, secondCorner.y);
 
-    [path addLineToPoint:thirdCorner];
-    [path addLineToPoint:fourthCorner];
-    [path addLineToPoint:firstCorner];
+    // bottom-right:
+    CGPoint thirdCorner = CGPointMake(size.width, contentBottom);
+    CGPoint thirdCornerCurveStart = CGPointMake(thirdCorner.x - cornerRadius, thirdCorner.y);
+    CGPoint thirdCornerCurveEnd = CGPointMake(thirdCorner.x, thirdCorner.y - cornerRadius);
+
+    // top-right:
+    CGPoint fourthCorner = CGPointMake(size.width, contentTop);
+    CGPoint fourthCornerCurveStart = CGPointMake(fourthCorner.x, fourthCorner.y + cornerRadius);
+    CGPoint fourthCornerCurveEnd = CGPointMake(fourthCorner.x - cornerRadius, fourthCorner.y);
+
+    [path moveToPoint:firstCornerCurveStart];
+    if (hasCornerRadius) {
+        [path addQuadCurveToPoint:firstCornerCurveEnd controlPoint:firstCorner];
+    }
+    [path addLineToPoint:secondCornerCurveStart];
+    if (hasCornerRadius) {
+        [path addQuadCurveToPoint:secondCornerCurveEnd controlPoint:secondCorner];
+    }
+
+    if (flarePosition == BPKFlarePositionBottom) {
+        // add flare shape at bottom
+        [self appendFlareToPath:path size:size flareHeight:flareHeight flarePosition:flarePosition];
+    }
+
+    [path addLineToPoint:thirdCornerCurveStart];
+    if (hasCornerRadius) {
+        [path addQuadCurveToPoint:thirdCornerCurveEnd controlPoint:thirdCorner];
+    }
+    [path addLineToPoint:fourthCornerCurveStart];
+    if (hasCornerRadius) {
+        [path addQuadCurveToPoint:fourthCornerCurveEnd controlPoint:fourthCorner];
+    }
+
+    if (flarePosition == BPKFlarePositionTop) {
+        // add flare shape at top
+        [self appendFlareToPath:path size:size flareHeight:flareHeight flarePosition:flarePosition];
+    }
 
     return path;
 }
@@ -85,38 +99,38 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
 + (void)appendFlareToPath:(UIBezierPath *)path
                      size:(CGSize)size
-                flareHeight:(CGFloat)flareHeight
+              flareHeight:(CGFloat)flareHeight
             flarePosition:(BPKFlarePosition)flarePosition {
     CGFloat scale = flareHeight / BPKFlareVectorHeight;
-    CGFloat scaleX = scale;
-    CGFloat scaleY = scale;
+    if (flarePosition == BPKFlarePositionTop) {
+        scale = -1 * scale;
+    }
 
     CGFloat flareWidth = scale * BPKFlareVectorWidth;
 
     CGFloat startPointX = (size.width - flareWidth) / 2.0;
     CGFloat startPointY = size.height - flareHeight;
-
     if (flarePosition == BPKFlarePositionTop) {
         startPointY = flareHeight;
-        scaleY = -1 * scaleX;
     }
+
     CGPoint sp = CGPointMake(startPointX, startPointY);
 
-    [path addLineToPoint:CGPointMake(sp.x + 238 * scaleX, sp.y + 0 * scaleY)];
-    [path addLineToPoint:CGPointMake(sp.x + 233.671 * scaleX, sp.y + 0 * scaleY)];
-    [path addCurveToPoint:CGPointMake(sp.x + 204.307 * scaleX, sp.y + 8.517 * scaleY)
-            controlPoint1:CGPointMake(sp.x + 223.336095 * scaleX, sp.y + 0.409248008 * scaleY)
-            controlPoint2:CGPointMake(sp.x + 213.256908 * scaleX, sp.y + 3.33270635 * scaleY)];
-    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scaleX, sp.y + 47.858 * scaleY)];
-    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scaleX, sp.y + 47.858 * scaleY)];
-    [path addCurveToPoint:CGPointMake(sp.x + 101.736 * scaleX, sp.y + 47.858 * scaleY)
-            controlPoint1:CGPointMake(sp.x + 125.632 * scaleX, sp.y + 54.043 * scaleY)
-            controlPoint2:CGPointMake(sp.x + 112.469 * scaleX, sp.y + 54.043 * scaleY)];
-    [path addLineToPoint:CGPointMake(sp.x + 33.592 * scaleX, sp.y + 8.518 * scaleY)];
-    [path addCurveToPoint:CGPointMake(sp.x + 4.276 * scaleX, sp.y + 0 * scaleY)
-            controlPoint1:CGPointMake(sp.x + 24.682 * scaleX, sp.y + 3.345 * scaleY)
-            controlPoint2:CGPointMake(sp.x + 14.604 * scaleX, sp.y + 0.303 * scaleY)];
-    [path addLineToPoint:CGPointMake(sp.x + 0 * scaleX, sp.y + 0 * scaleY)];
+    [path addLineToPoint:CGPointMake(sp.x + 238 * scale, sp.y + 0 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 233.671 * scale, sp.y + 0 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 204.307 * scale, sp.y + 8.517 * scale)
+            controlPoint1:CGPointMake(sp.x + 223.336095 * scale, sp.y + 0.409248008 * scale)
+            controlPoint2:CGPointMake(sp.x + 213.256908 * scale, sp.y + 3.33270635 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 101.736 * scale, sp.y + 47.858 * scale)
+            controlPoint1:CGPointMake(sp.x + 125.632 * scale, sp.y + 54.043 * scale)
+            controlPoint2:CGPointMake(sp.x + 112.469 * scale, sp.y + 54.043 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 33.592 * scale, sp.y + 8.518 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 4.276 * scale, sp.y + 0 * scale)
+            controlPoint1:CGPointMake(sp.x + 24.682 * scale, sp.y + 3.345 * scale)
+            controlPoint2:CGPointMake(sp.x + 14.604 * scale, sp.y + 0.303 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 0 * scale, sp.y + 0 * scale)];
 }
 
 @end

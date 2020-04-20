@@ -47,6 +47,12 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
 @property(nonatomic) UIView *contentView;
 
 /**
+ * The corner radius to apply to the corners of the view.
+ * This does not affect the share of the flare itself.
+ */
+@property(nonatomic) CGFloat cornerRadius;
+
+/**
  * Creates a `BPKFlareView` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from

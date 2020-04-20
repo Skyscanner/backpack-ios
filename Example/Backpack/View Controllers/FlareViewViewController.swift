@@ -23,6 +23,7 @@ class FlareViewViewController: UIViewController {
     @IBOutlet weak var flareView: BPKFlareView!
 
     var backgroundImage: Bool = false
+    var rounded: Bool = false
     var flareAtTop: Bool = false
     var animated: Bool = false
 
@@ -75,6 +76,10 @@ class FlareViewViewController: UIViewController {
                 flareView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
                 flareView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor)
                 ])
+        }
+
+        if rounded {
+            flareView.cornerRadius = BPKBorderRadiusLg
         }
 
         if animated {

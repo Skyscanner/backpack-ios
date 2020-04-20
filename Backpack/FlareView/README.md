@@ -17,6 +17,7 @@ innerView.backgroundColor = [BPKColor systemRed];
 
 [flareView.contentView addSubview:innerView];
 flareView.flarePosition = BPKFlarePositionTop;
+flareView.cornerRadius = BPKBorderRadiusSm;
 ```
 
 ### Swift
@@ -34,5 +35,6 @@ label.translatesAutoresizingMaskIntoConstraints = false
 
 flareView.contentView.addSubview(label)
 flareView.flarePosition = .top
+flareView.cornerRadius = BPKBorderRadiusSm
 ```
 

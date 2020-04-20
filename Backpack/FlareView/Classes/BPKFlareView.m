@@ -71,7 +71,8 @@ CGFloat const BPKFlareHeight = 20.0;
     CGSize currentSize = self.bounds.size;
 
     UIBezierPath *flarePath = [BPKFlarePath flareViewPathForSize:currentSize
-                                                       flareHeight:self.flareHeight
+                                                     flareHeight:self.flareHeight
+                                                    cornerRadius:self.cornerRadius
                                                    flarePosition:self.flarePosition];
     flareView.path = flarePath.CGPath;
 
@@ -135,6 +136,13 @@ CGFloat const BPKFlareHeight = 20.0;
 
 - (CGFloat)flareHeight {
     return BPKFlareHeight;
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    if (_cornerRadius != cornerRadius) {
+        _cornerRadius = cornerRadius;
+        [self createLayerMask];
+    }
 }
 
 @end
