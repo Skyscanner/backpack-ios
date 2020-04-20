@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
-    view.fillValue = 0.7;
+    view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
 
     return view;
 }
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
-    view.fillValue = 0.7;
+    view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
     view.selected = true;
 
     return view;
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
-    view.fillValue = 0.7;
+    view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
     view.realValue = @"£200";
 
     return view;
@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
-    view.fillValue = 0.7;
+    view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
     view.realValue = @"£200";
     view.selected = true;
 

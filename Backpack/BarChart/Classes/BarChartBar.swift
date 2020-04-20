@@ -35,12 +35,8 @@ public final class BPKBarChartBar: UIControl {
     }
 
     /// The relative value of the bar between 0.0 and 1.0. This determines how "full" the bar will appear.
-    public var fillValue: CGFloat {
-        get {
-            return privateFillValue == nil ? -1 : 0
-        }
-        set {
-            privateFillValue = newValue > 0 ? newValue : nil
+    public var fillValue: NSNumber? {
+        didSet {
             updateBarHeight()
             updateBarColor()
         }
@@ -181,11 +177,11 @@ public final class BPKBarChartBar: UIControl {
             barViewHeightAnchor!.isActive = false
         }
 
-        if privateFillValue == nil {
+        if fillValue == nil {
             barViewHeightAnchor = barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
         } else {
             barViewHeightAnchor = barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
-                                                                  multiplier: privateFillValue!)
+                                                                  multiplier: CGFloat(exactly: fillValue!)!)
         }
 
         barViewHeightAnchor!.isActive = true
@@ -203,6 +199,4 @@ public final class BPKBarChartBar: UIControl {
 
         miniFlareView.isHidden = realValue == nil || !isSelected
     }
-
-    fileprivate var privateFillValue: CGFloat?
 }

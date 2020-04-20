@@ -23,12 +23,12 @@ class BarChartsViewController: UIViewController {
     @IBOutlet weak var barChartBar: BPKBarChartBar!
 
     var selected: Bool = false
-    var fillValue: CGFloat?
+    var fillValue: NSNumber?
     var realValue: String?
 
     override func viewDidLoad() {
         self.barChartBar.isSelected = selected
-        self.barChartBar.fillValue = fillValue != nil ? fillValue! : -1
+        self.barChartBar.fillValue = fillValue
         self.barChartBar.realValue = realValue
         self.barChartBar.title = "Fri"
         self.barChartBar.subtitle = "4"
