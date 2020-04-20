@@ -52,6 +52,8 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
  */
 @property(nonatomic) CGFloat cornerRadius;
 
+@property(readonly, nonatomic) CGFloat flareHeight;
+
 /**
  * Creates a `BPKFlareView` with a decoder (typically when creating from Storyboards)
  *
@@ -67,8 +69,6 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
  * @return `BPKFlareView` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
-
-- (CGFloat)flareHeight;
 
 @end
 NS_ASSUME_NONNULL_END

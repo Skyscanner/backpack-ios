@@ -65,7 +65,7 @@ public final class BPKMiniFlareView: BPKFlareView {
         return label
     }()
 
-    override public func flareHeight() -> CGFloat {
+    override public var flareHeight: CGFloat {
         return BPKSpacingMd
     }
 }
