@@ -127,7 +127,7 @@ public final class BPKBarChartBar: UIControl {
 
     lazy fileprivate var barView: UIView = {
         let view = UIView()
-        view.backgroundColor = noPriceColor
+        view.backgroundColor = BPKBarChartBar.noPriceColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = BPKSpacingMd
         return view
@@ -151,23 +151,18 @@ public final class BPKBarChartBar: UIControl {
         return view
     }()
 
-    lazy fileprivate var noPriceColor: UIColor = {
-        return BPKColor.skyGrayTint03
-    }()
+    static fileprivate var noPriceColor: UIColor = BPKColor.skyGrayTint03
 
-    lazy fileprivate var priceColor: UIColor = {
-        return BPKColor.primaryColor
-    }()
+    static fileprivate var priceColor: UIColor = BPKColor.primaryColor
 
-    lazy fileprivate var selectedColor: UIColor = {
-        return BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde, darkVariant: BPKColor.glencoe)
-    }()
+    static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde,
+                                                                          darkVariant: BPKColor.glencoe)
 
     fileprivate func updateBarColor() {
         if isSelected {
-            barView.backgroundColor = selectedColor
-            titleLabel.textColor = selectedColor
-            subtitleLabel.textColor = selectedColor
+            barView.backgroundColor = BPKBarChartBar.selectedColor
+            titleLabel.textColor = BPKBarChartBar.selectedColor
+            subtitleLabel.textColor = BPKBarChartBar.selectedColor
             return
         }
 
@@ -175,9 +170,9 @@ public final class BPKBarChartBar: UIControl {
         subtitleLabel.textColor = BPKColor.textPrimaryColor
 
         if privateFillValue == nil {
-            barView.backgroundColor = noPriceColor
+            barView.backgroundColor = BPKBarChartBar.noPriceColor
         } else {
-            barView.backgroundColor = priceColor
+            barView.backgroundColor = BPKBarChartBar.priceColor
         }
     }
 
@@ -190,7 +185,7 @@ public final class BPKBarChartBar: UIControl {
             barViewHeightAnchor = barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
         } else {
             barViewHeightAnchor = barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
-                                                                            multiplier: privateFillValue!)
+                                                                  multiplier: privateFillValue!)
         }
 
         barViewHeightAnchor!.isActive = true
@@ -202,7 +197,7 @@ public final class BPKBarChartBar: UIControl {
         }
 
         miniFlareViewPositionAnchor = miniFlareView.bottomAnchor.constraint(equalTo: barView.topAnchor,
-                                                                                      constant: -BPKSpacingSm)
+                                                                            constant: -BPKSpacingSm)
 
         miniFlareViewPositionAnchor!.isActive = true
 
