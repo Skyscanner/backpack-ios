@@ -127,7 +127,7 @@ public final class BPKBarChartBar: UIControl {
 
     lazy fileprivate var barView: UIView = {
         let view = UIView()
-        view.backgroundColor = BPKBarChartBar.noPriceColor
+        view.backgroundColor = BPKBarChartBar.noValueColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = BPKSpacingMd
         return view
@@ -151,9 +151,9 @@ public final class BPKBarChartBar: UIControl {
         return view
     }()
 
-    static fileprivate var noPriceColor: UIColor = BPKColor.skyGrayTint03
+    static fileprivate var noValueColor: UIColor = BPKColor.skyGrayTint03
 
-    static fileprivate var priceColor: UIColor = BPKColor.primaryColor
+    static fileprivate var valueColor: UIColor = BPKColor.primaryColor
 
     static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde,
                                                                           darkVariant: BPKColor.glencoe)
@@ -169,10 +169,10 @@ public final class BPKBarChartBar: UIControl {
         titleLabel.textColor = BPKColor.textPrimaryColor
         subtitleLabel.textColor = BPKColor.textPrimaryColor
 
-        if privateFillValue == nil {
-            barView.backgroundColor = BPKBarChartBar.noPriceColor
+        if fillValue == nil {
+            barView.backgroundColor = BPKBarChartBar.noValueColor
         } else {
-            barView.backgroundColor = BPKBarChartBar.priceColor
+            barView.backgroundColor = BPKBarChartBar.valueColor
         }
     }
 
