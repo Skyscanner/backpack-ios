@@ -22,160 +22,192 @@ import UIKit
 @objc(BPKBarChartBar)
 public final class BPKBarChartBar: UIControl {
 
-    let backgroundView: UIView = UIView()
-    let barView: UIView = UIView()
-    let miniFlareView: BPKMiniFlareView = BPKMiniFlareView()
-    let titleLabel: BPKLabel = BPKLabel(fontStyle: .textBaseEmphasized)
-    let subtitleLabel: BPKLabel = BPKLabel(fontStyle: .textSm)
-    var barViewHeightAnchor: NSLayoutConstraint?
-    var miniFlareViewPositionAnchor: NSLayoutConstraint?
-    let backgroundViewColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06,
-                                                    darkVariant: BPKColor.blackTint03)
-    let noPriceColor = BPKColor.skyGrayTint03
-    let priceColor = BPKColor.primaryColor
-    let selectedColor = BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde, darkVariant: BPKColor.glencoe)
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupViews()
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.setupViews()
-    }
-
-    func setupViews() {
-        self.backgroundView.backgroundColor = self.backgroundViewColor
-        self.barView.backgroundColor = noPriceColor
-
-        self.addSubview(self.backgroundView)
-        self.addSubview(self.barView)
-        self.addSubview(self.miniFlareView)
-        self.addSubview(self.titleLabel)
-        self.addSubview(self.subtitleLabel)
-
-        self.backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        self.barView.translatesAutoresizingMaskIntoConstraints = false
-        self.miniFlareView.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        self.backgroundView.layer.cornerRadius = BPKSpacingMd
-        self.barView.layer.cornerRadius = BPKSpacingMd
-
-        NSLayoutConstraint.activate([
-            self.backgroundView.widthAnchor.constraint(equalToConstant: BPKSpacingBase),
-            self.barView.widthAnchor.constraint(equalToConstant: BPKSpacingBase),
-            self.barView.bottomAnchor.constraint(equalTo: self.backgroundView.bottomAnchor),
-            self.barView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.backgroundView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.backgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.miniFlareView.centerXAnchor.constraint(equalTo: self.backgroundView.centerXAnchor),
-            self.titleLabel.centerXAnchor.constraint(equalTo: self.backgroundView.centerXAnchor),
-            self.subtitleLabel.centerXAnchor.constraint(equalTo: self.backgroundView.centerXAnchor),
-            self.titleLabel.topAnchor.constraint(equalTo: self.backgroundView.bottomAnchor, constant: BPKSpacingMd),
-            self.subtitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: BPKSpacingMd),
-            self.bottomAnchor.constraint(equalTo: self.subtitleLabel.bottomAnchor, constant: BPKSpacingMd)
-        ])
-        self.updateBarHeight()
-        self.updateminiFlareViewAppearance()
-    }
-
-    func updateBarColor() {
-        if self.isSelected {
-            barView.backgroundColor = self.selectedColor
-            titleLabel.textColor = self.selectedColor
-            subtitleLabel.textColor = self.selectedColor
-            return
-        }
-
-        titleLabel.textColor = BPKColor.textPrimaryColor
-        subtitleLabel.textColor = BPKColor.textPrimaryColor
-
-        if self.privateFillValue == nil {
-            barView.backgroundColor = self.noPriceColor
-        } else {
-            barView.backgroundColor = self.priceColor
-        }
-    }
-
-    func updateBarHeight() {
-        if self.barViewHeightAnchor != nil {
-            self.barViewHeightAnchor!.isActive = false
-        }
-
-        if self.privateFillValue == nil {
-            self.barViewHeightAnchor = self.barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
-        } else {
-            self.barViewHeightAnchor = self.barView.heightAnchor.constraint(equalTo: self.backgroundView.heightAnchor,
-                                                                            multiplier: self.privateFillValue!)
-        }
-
-        self.barViewHeightAnchor!.isActive = true
-    }
-
-    func updateminiFlareViewAppearance() {
-        if self.miniFlareViewPositionAnchor != nil {
-            self.miniFlareViewPositionAnchor!.isActive = false
-        }
-
-        self.miniFlareViewPositionAnchor = self.miniFlareView.bottomAnchor.constraint(equalTo: self.barView.topAnchor,
-                                                                                      constant: -BPKSpacingSm)
-
-        self.miniFlareViewPositionAnchor!.isActive = true
-
-        self.miniFlareView.isHidden = self.realValue == nil || !self.isSelected
-    }
-
+    /// Whether the bar is selected or not
     public override var isSelected: Bool {
         get {
             return super.isSelected
         }
         set {
             super.isSelected = newValue
-            self.updateBarColor()
-            self.updateminiFlareViewAppearance()
+            updateBarColor()
+            updateminiFlareViewAppearance()
         }
     }
 
-    private var privateFillValue: CGFloat?
+    /// The relative value of the bar between 0.0 and 1.0. This determines how "full" the bar will appear.
     public var fillValue: CGFloat {
         get {
             return privateFillValue == nil ? -1 : 0
         }
         set {
-            self.privateFillValue = newValue > 0 ? newValue : nil
-            self.updateBarHeight()
-            self.updateBarColor()
+            privateFillValue = newValue > 0 ? newValue : nil
+            updateBarHeight()
+            updateBarColor()
         }
     }
 
+    /// The actual value associated with the bar.
+    /// This is the value shown in the flare when the bar is selected.
     public var realValue: String? {
         get {
-            return self.miniFlareView.text
+            return miniFlareView.text
         }
         set {
-            self.miniFlareView.text = newValue
-            self.updateminiFlareViewAppearance()
+            miniFlareView.text = newValue
+            updateminiFlareViewAppearance()
         }
     }
 
+    /// The title to show below the bar
     public var title: String? {
         get {
-            return self.titleLabel.text
+            return titleLabel.text
         }
         set {
-            self.titleLabel.text = newValue
+            titleLabel.text = newValue
         }
     }
 
+    /// The subtitle to show below the title
     public var subtitle: String? {
         get {
-            return self.subtitleLabel.text
+            return subtitleLabel.text
         }
         set {
-            self.subtitleLabel.text = newValue
+            subtitleLabel.text = newValue
         }
     }
+
+    fileprivate var barViewHeightAnchor: NSLayoutConstraint?
+    fileprivate var miniFlareViewPositionAnchor: NSLayoutConstraint?
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+    }
+
+    fileprivate func setupViews() {
+        addSubview(backgroundView)
+        addSubview(barView)
+        addSubview(miniFlareView)
+        addSubview(titleLabel)
+        addSubview(subtitleLabel)
+
+        NSLayoutConstraint.activate([
+            backgroundView.widthAnchor.constraint(equalToConstant: BPKSpacingBase),
+            barView.widthAnchor.constraint(equalToConstant: BPKSpacingBase),
+            barView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            barView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            miniFlareView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            subtitleLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: BPKSpacingMd),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: BPKSpacingMd),
+            bottomAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: BPKSpacingMd)
+        ])
+        updateBarHeight()
+        updateminiFlareViewAppearance()
+    }
+
+    lazy fileprivate var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06,
+                                                     darkVariant: BPKColor.blackTint03)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = BPKSpacingMd
+        return view
+    }()
+
+    lazy fileprivate var barView: UIView = {
+        let view = UIView()
+        view.backgroundColor = noPriceColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = BPKSpacingMd
+        return view
+    }()
+
+    lazy fileprivate var miniFlareView: BPKMiniFlareView = {
+        let view = BPKMiniFlareView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy fileprivate var titleLabel: BPKLabel = {
+        let view = BPKLabel(fontStyle: .textBaseEmphasized)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy fileprivate var subtitleLabel: BPKLabel = {
+        let view = BPKLabel(fontStyle: .textSm)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    lazy fileprivate var noPriceColor: UIColor = {
+        return BPKColor.skyGrayTint03
+    }()
+
+    lazy fileprivate var priceColor: UIColor = {
+        return BPKColor.primaryColor
+    }()
+
+    lazy fileprivate var selectedColor: UIColor = {
+        return BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde, darkVariant: BPKColor.glencoe)
+    }()
+
+    fileprivate func updateBarColor() {
+        if isSelected {
+            barView.backgroundColor = selectedColor
+            titleLabel.textColor = selectedColor
+            subtitleLabel.textColor = selectedColor
+            return
+        }
+
+        titleLabel.textColor = BPKColor.textPrimaryColor
+        subtitleLabel.textColor = BPKColor.textPrimaryColor
+
+        if privateFillValue == nil {
+            barView.backgroundColor = noPriceColor
+        } else {
+            barView.backgroundColor = priceColor
+        }
+    }
+
+    fileprivate func updateBarHeight() {
+        if barViewHeightAnchor != nil {
+            barViewHeightAnchor!.isActive = false
+        }
+
+        if privateFillValue == nil {
+            barViewHeightAnchor = barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
+        } else {
+            barViewHeightAnchor = barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
+                                                                            multiplier: privateFillValue!)
+        }
+
+        barViewHeightAnchor!.isActive = true
+    }
+
+    fileprivate func updateminiFlareViewAppearance() {
+        if miniFlareViewPositionAnchor != nil {
+            miniFlareViewPositionAnchor!.isActive = false
+        }
+
+        miniFlareViewPositionAnchor = miniFlareView.bottomAnchor.constraint(equalTo: barView.topAnchor,
+                                                                                      constant: -BPKSpacingSm)
+
+        miniFlareViewPositionAnchor!.isActive = true
+
+        miniFlareView.isHidden = realValue == nil || !isSelected
+    }
+
+    fileprivate var privateFillValue: CGFloat?
 }

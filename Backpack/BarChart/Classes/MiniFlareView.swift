@@ -22,45 +22,48 @@ import UIKit
 @objc(BPKMiniFlareView)
 public final class BPKMiniFlareView: BPKFlareView {
 
-    let label: UILabel = BPKLabel()
+    /// The text to display within the the mini flare
+    public var text: String? {
+        get {
+            return label.text
+        }
+        set {
+            label.text = newValue
+        }
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupViews()
+        setupViews()
     }
 
     public required init(coder: NSCoder) {
         super.init(coder: coder)
-        self.setupViews()
+        setupViews()
     }
 
-    func setupViews() {
-        self.backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyBlueShade02,
+    fileprivate func setupViews() {
+        backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyBlueShade02,
                                                      darkVariant: BPKColor.blackTint06)
-        self.label.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
 
-        self.contentView.addSubview(self.label)
+        contentView.addSubview(label)
 
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-
-        self.cornerRadius = BPKSpacingSm
+        cornerRadius = BPKSpacingSm
 
         NSLayoutConstraint.activate([
-            self.contentView.widthAnchor.constraint(equalTo: self.label.widthAnchor, constant: 2*BPKSpacingMd),
-            self.contentView.heightAnchor.constraint(equalTo: self.label.heightAnchor, constant: 2*BPKSpacingMd),
-            self.label.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+            contentView.widthAnchor.constraint(equalTo: label.widthAnchor, constant: 2*BPKSpacingMd),
+            contentView.heightAnchor.constraint(equalTo: label.heightAnchor, constant: 2*BPKSpacingMd),
+            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 
-    public var text: String? {
-        get {
-            return self.label.text
-        }
-        set {
-            self.label.text = newValue
-        }
-    }
+    lazy fileprivate var label: BPKLabel = {
+        let label = BPKLabel(fontStyle: .textBase)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        return label
+    }()
 
     override public func flareHeight() -> CGFloat {
         return BPKSpacingMd
