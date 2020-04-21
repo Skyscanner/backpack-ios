@@ -23,7 +23,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKBarChartBarSnapshotTest : FBSnapshotTestCase
-//- (UIStackView *)createAllVariantsOfSize:(BPKBarChartBarSize)size style:(BPKBarChartBarStyle)style applyTheme:(BOOL)applyTheme;
 @end
 
 @implementation BPKBarChartBarSnapshotTest
@@ -101,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createBarDefaultWithvalueDescription {
+- (UIView *)createBarDefaultWithValueDescription {
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
@@ -111,15 +110,15 @@ NS_ASSUME_NONNULL_BEGIN
     return view;
 }
 
-- (void)testBarDefaultWithvalueDescription {
-    UIView *lightView = [self createBarDefaultWithvalueDescription];
-    UIView *darkView = [self createBarDefaultWithvalueDescription];
+- (void)testBarDefaultWithValueDescription {
+    UIView *lightView = [self createBarDefaultWithValueDescription];
+    UIView *darkView = [self createBarDefaultWithValueDescription];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createBarDefaultWithvalueDescriptionSelected {
+- (UIView *)createBarDefaultWithValueDescriptionSelected {
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
@@ -131,8 +130,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testBarDefaultWithValueRealSelected {
-    UIView *lightView = [self createBarDefaultWithvalueDescriptionSelected];
-    UIView *darkView = [self createBarDefaultWithvalueDescriptionSelected];
+    UIView *lightView = [self createBarDefaultWithValueDescriptionSelected];
+    UIView *darkView = [self createBarDefaultWithValueDescriptionSelected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
