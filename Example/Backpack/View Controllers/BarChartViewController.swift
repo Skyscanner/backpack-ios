@@ -24,12 +24,12 @@ class BarChartsViewController: UIViewController {
 
     var selected: Bool = false
     var fillValue: NSNumber?
-    var realValue: String?
+    var valueDescription: String?
 
     override func viewDidLoad() {
         self.barChartBar.isSelected = selected
         self.barChartBar.fillValue = fillValue
-        self.barChartBar.realValue = realValue
+        self.barChartBar.valueDescription = valueDescription
         self.barChartBar.title = "Fri"
         self.barChartBar.subtitle = "4"
     }

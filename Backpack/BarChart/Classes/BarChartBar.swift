@@ -24,11 +24,7 @@ public final class BPKBarChartBar: UIControl {
 
     /// Whether the bar is selected or not
     public override var isSelected: Bool {
-        get {
-            return super.isSelected
-        }
-        set {
-            super.isSelected = newValue
+        didSet {
             updateBarColor()
             updateminiFlareViewAppearance()
         }
@@ -44,7 +40,7 @@ public final class BPKBarChartBar: UIControl {
 
     /// The actual value associated with the bar.
     /// This is the value shown in the flare when the bar is selected.
-    public var realValue: String? {
+    public var valueDescription: String? {
         get {
             return miniFlareView.text
         }
@@ -148,9 +144,7 @@ public final class BPKBarChartBar: UIControl {
     }()
 
     static fileprivate var noValueColor: UIColor = BPKColor.skyGrayTint03
-
     static fileprivate var valueColor: UIColor = BPKColor.primaryColor
-
     static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde,
                                                                           darkVariant: BPKColor.glencoe)
 
@@ -164,12 +158,7 @@ public final class BPKBarChartBar: UIControl {
 
         titleLabel.textColor = BPKColor.textPrimaryColor
         subtitleLabel.textColor = BPKColor.textPrimaryColor
-
-        if fillValue == nil {
-            barView.backgroundColor = BPKBarChartBar.noValueColor
-        } else {
-            barView.backgroundColor = BPKBarChartBar.valueColor
-        }
+        barView.backgroundColor = fillValue.map { _ in BPKBarChartBar.valueColor } ?? BPKBarChartBar.noValueColor
     }
 
     fileprivate func updateBarHeight() {
@@ -177,26 +166,26 @@ public final class BPKBarChartBar: UIControl {
             barViewHeightAnchor!.isActive = false
         }
 
-        if fillValue == nil {
-            barViewHeightAnchor = barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
-        } else {
-            barViewHeightAnchor = barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
-                                                                  multiplier: CGFloat(exactly: fillValue!)!)
-        }
+        barViewHeightAnchor = fillValue.map { _ in
+            barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
+                                            multiplier: CGFloat(exactly: fillValue!)!)
+        } ?? barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
 
-        barViewHeightAnchor!.isActive = true
+        assert(barViewHeightAnchor != nil, "barViewHeightAnchor should not be nil")
+        barViewHeightAnchor?.isActive = true
     }
 
     fileprivate func updateminiFlareViewAppearance() {
         if miniFlareViewPositionAnchor != nil {
-            miniFlareViewPositionAnchor!.isActive = false
+            miniFlareViewPositionAnchor?.isActive = false
         }
 
         miniFlareViewPositionAnchor = miniFlareView.bottomAnchor.constraint(equalTo: barView.topAnchor,
                                                                             constant: -BPKSpacingSm)
 
-        miniFlareViewPositionAnchor!.isActive = true
+        assert(barViewHeightAnchor != nil, "miniFlareViewPositionAnchor should not be nil")
+        miniFlareViewPositionAnchor?.isActive = true
 
-        miniFlareView.isHidden = realValue == nil || !isSelected
+        miniFlareView.isHidden = valueDescription == nil || !isSelected
     }
 }

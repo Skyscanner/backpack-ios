@@ -101,38 +101,38 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createBarDefaultWithRealValue {
+- (UIView *)createBarDefaultWithvalueDescription {
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
     view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
-    view.realValue = @"£200";
+    view.valueDescription = @"£200";
 
     return view;
 }
 
-- (void)testBarDefaultWithRealValue {
-    UIView *lightView = [self createBarDefaultWithRealValue];
-    UIView *darkView = [self createBarDefaultWithRealValue];
+- (void)testBarDefaultWithvalueDescription {
+    UIView *lightView = [self createBarDefaultWithvalueDescription];
+    UIView *darkView = [self createBarDefaultWithvalueDescription];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createBarDefaultWithRealValueSelected {
+- (UIView *)createBarDefaultWithvalueDescriptionSelected {
     BPKBarChartBar *view = [[BPKBarChartBar alloc] initWithFrame:CGRectMake(0, 0, 60, 200)];
     view.title = @"Fri";
     view.subtitle = @"4";
     view.fillValue = [[NSNumber alloc] initWithFloat:0.7];
-    view.realValue = @"£200";
+    view.valueDescription = @"£200";
     view.selected = true;
 
     return view;
 }
 
 - (void)testBarDefaultWithValueRealSelected {
-    UIView *lightView = [self createBarDefaultWithRealValueSelected];
-    UIView *darkView = [self createBarDefaultWithRealValueSelected];
+    UIView *lightView = [self createBarDefaultWithvalueDescriptionSelected];
+    UIView *darkView = [self createBarDefaultWithvalueDescriptionSelected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);

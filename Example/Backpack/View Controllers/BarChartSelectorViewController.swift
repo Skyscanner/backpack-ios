@@ -38,7 +38,7 @@ class BarChartSelectorViewController: UITableViewController {
             case .withValue:
                 target.title = "With value"
                 target.fillValue = 0.65
-                target.realValue = "£200"
+                target.valueDescription = "£200"
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
