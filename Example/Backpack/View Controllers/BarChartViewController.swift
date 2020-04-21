@@ -35,7 +35,9 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
     }
 
     func titleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
-        return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][atIndex]
+        let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+                          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        return daysOfWeek[atIndex]
     }
 
     func subtitleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {

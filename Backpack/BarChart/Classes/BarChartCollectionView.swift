@@ -26,11 +26,11 @@ public final class BPKBarChartCollectionView: UICollectionView {
     public var barChartDataSource: BPKBarChartCollectionViewDataSource?
     
     /// The BPKBarChartDelegate which can be used to respond to interaction with the bar chart
-    public var barChartDelegate: BPKBarChartCollectionViewDelegate?
+    public weak var barChartDelegate: BPKBarChartCollectionViewDelegate?
 
     /// The selected indexPath
     var selectedIndexPath: IndexPath? {
-        didSet{
+        didSet {
             updateSelectedMarkerPosition()
         }
     }
@@ -49,17 +49,19 @@ public final class BPKBarChartCollectionView: UICollectionView {
     }
     
     func setupViews() {
+        backgroundView = UIView() // <-- This is a bit hacky!
         addSubview(selectedMarker)
         
         selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([
-            selectedMarker.leftAnchor.constraint(equalTo: leftAnchor),
-            selectedMarker.widthAnchor.constraint(equalTo: widthAnchor),
+            selectedMarker.leftAnchor.constraint(equalTo: backgroundView!.leftAnchor),
+            selectedMarker.trailingAnchor.constraint(equalTo: backgroundView!.trailingAnchor),
             selectedMarkerBottomConstraint!,
             selectedMarker.heightAnchor.constraint(equalToConstant: 1.0)
         ])
         
-        register(BPKBarChartCollectionViewCell.self, forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
+        register(BPKBarChartCollectionViewCell.self,
+                 forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
 
         collectionViewLayout = layout
         dataSource = self
@@ -88,16 +90,19 @@ public final class BPKBarChartCollectionView: UICollectionView {
             selectedMarkerBottomConstraint = nil
         }
         
-        if(selectedIndexPath == nil) {
+        if selectedIndexPath == nil {
             selectedMarker.isHidden = true
-        } else{
+        } else {
             selectedMarker.isHidden = false
 
-            guard let selectedCell: BPKBarChartCollectionViewCell = cellForItem(at: selectedIndexPath!) as? BPKBarChartCollectionViewCell else {
-                return;
+            guard let selectedCell: BPKBarChartCollectionViewCell =
+                cellForItem(at: selectedIndexPath!) as? BPKBarChartCollectionViewCell
+            else {
+                return
             }
             let selectedBarTopPosition: CGFloat = selectedCell.barChartBar.barTopPosition
-            selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: topAnchor, constant: selectedBarTopPosition)
+            selectedMarkerBottomConstraint =
+                selectedMarker.bottomAnchor.constraint(equalTo: topAnchor, constant: selectedBarTopPosition)
             selectedMarkerBottomConstraint?.isActive = true
         }
     }
@@ -121,10 +126,14 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
             else {
                 fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
         }
-        cell.barChartBar.title = barChartDataSource?.titleForBar(barChartCollectionView: self, atIndex: indexPath.item)
-        cell.barChartBar.subtitle = barChartDataSource?.subtitleForBar(barChartCollectionView: self, atIndex: indexPath.item)
-        cell.barChartBar.fillValue = barChartDataSource?.fillValueForBar(barChartCollectionView: self, atIndex: indexPath.item)
-        cell.barChartBar.valueDescription = barChartDataSource?.valueDescriptionForBar(barChartCollectionView: self, atIndex: indexPath.item)
+        cell.barChartBar.title = barChartDataSource?.titleForBar(barChartCollectionView: self,
+                                                                 atIndex: indexPath.item)
+        cell.barChartBar.subtitle = barChartDataSource?.subtitleForBar(barChartCollectionView: self,
+                                                                       atIndex: indexPath.item)
+        cell.barChartBar.fillValue = barChartDataSource?.fillValueForBar(barChartCollectionView: self,
+                                                                         atIndex: indexPath.item)
+        cell.barChartBar.valueDescription = barChartDataSource?.valueDescriptionForBar(barChartCollectionView: self,
+                                                                                       atIndex: indexPath.item)
         return cell
     }
 }
