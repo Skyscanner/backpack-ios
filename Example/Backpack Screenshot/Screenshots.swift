@@ -20,6 +20,7 @@ import XCTest
 
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
+// swiftlint:disable file_length
 @available(iOS 13.0, *)
 class Screenshots: XCTestCase {
 
@@ -255,6 +256,14 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "horizontal-navigation", scenario: "alternate",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["With notification"].tap()
+        saveScreenshot(component: "horizontal-navigation", scenario: "notification",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+        app.tables.staticTexts["With badge"].tap()
+        saveScreenshot(component: "horizontal-navigation", scenario: "badge",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Icons"].tap()
@@ -327,15 +336,15 @@ class Screenshots: XCTestCase {
         tapBackButton()
 
         app.tables.staticTexts["Snackbar"].tap()
-        app.tables.staticTexts["With title"].tap()
-        saveScreenshot(component: "snack-bar", scenario: "with-title", userInterfaceStyle: userInterfaceStyle)
+        app.tables.staticTexts["With text"].tap()
+        saveScreenshot(component: "snack-bar", scenario: "with-text", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
-        app.tables.staticTexts["With title and button"].tap()
-        saveScreenshot(component: "snack-bar", scenario: "with-title-and-button",
+        app.tables.staticTexts["With text and button"].tap()
+        saveScreenshot(component: "snack-bar", scenario: "with-text-and-button",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
-        app.tables.staticTexts["With title and button icon only"].tap()
-        saveScreenshot(component: "snack-bar", scenario: "with-title-and-button-icon-only",
+        app.tables.staticTexts["With text and icon only button"].tap()
+        saveScreenshot(component: "snack-bar", scenario: "with-text-and-icon-only-button",
                        userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
         tapBackButton()
