@@ -50,10 +50,10 @@ public final class BPKBarChartCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(barChartBar)
 
         NSLayoutConstraint.activate([
-        barChartBar.topAnchor.constraint(equalTo: contentView.topAnchor),
-        barChartBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-        contentView.trailingAnchor.constraint(equalTo: barChartBar.trailingAnchor),
-        contentView.bottomAnchor.constraint(equalTo: barChartBar.bottomAnchor)
+            barChartBar.topAnchor.constraint(equalTo: contentView.topAnchor),
+            barChartBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: barChartBar.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: barChartBar.bottomAnchor)
         ])
     }
 

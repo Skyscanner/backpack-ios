@@ -36,7 +36,7 @@ public final class BPKBarChartCollectionView: UICollectionView {
     }
     
     fileprivate static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
-    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint?
+    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
 
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -51,11 +51,11 @@ public final class BPKBarChartCollectionView: UICollectionView {
     func setupViews() {
         addSubview(selectedMarker)
         
-        selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: bottomAnchor)
+        selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: topAnchor)
         NSLayoutConstraint.activate([
             selectedMarker.leadingAnchor.constraint(equalTo: frameLayoutGuide.leadingAnchor),
             selectedMarker.trailingAnchor.constraint(equalTo: frameLayoutGuide.trailingAnchor),
-            selectedMarkerBottomConstraint!,
+            selectedMarkerBottomConstraint,
             selectedMarker.heightAnchor.constraint(equalToConstant: 1.0)
         ])
         
@@ -84,11 +84,6 @@ public final class BPKBarChartCollectionView: UICollectionView {
     }()
     
     fileprivate func updateSelectedMarkerPosition() {
-        if selectedMarkerBottomConstraint != nil {
-            selectedMarkerBottomConstraint?.isActive = false
-            selectedMarkerBottomConstraint = nil
-        }
-        
         if selectedIndexPath == nil {
             selectedMarker.isHidden = true
         } else {
@@ -96,13 +91,11 @@ public final class BPKBarChartCollectionView: UICollectionView {
 
             guard let selectedCell: BPKBarChartCollectionViewCell =
                 cellForItem(at: selectedIndexPath!) as? BPKBarChartCollectionViewCell
-            else {
-                return
+                else {
+                    return
             }
             let selectedBarTopPosition: CGFloat = selectedCell.barChartBar.barTopPosition
-            selectedMarkerBottomConstraint =
-                selectedMarker.bottomAnchor.constraint(equalTo: topAnchor, constant: selectedBarTopPosition)
-            selectedMarkerBottomConstraint?.isActive = true
+            selectedMarkerBottomConstraint.constant = selectedBarTopPosition
         }
     }
 }
@@ -141,9 +134,6 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
 extension BPKBarChartCollectionView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        
-        if barChartDelegate != nil {
-            barChartDelegate?.didSelect(barChart: self, index: indexPath.item)
-        }
+        barChartDelegate?.didSelect(barChart: self, index: indexPath.item)
     }
 }
