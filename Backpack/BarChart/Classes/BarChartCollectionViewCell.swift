@@ -31,11 +31,8 @@ public final class BPKBarChartCollectionViewCell: UICollectionViewCell {
     }()
 
     public override var isSelected: Bool {
-        get {
-            return barChartBar.isSelected
-        }
-        set {
-            barChartBar.isSelected = newValue
+        didSet {
+            barChartBar.isSelected = isSelected
         }
     }
 

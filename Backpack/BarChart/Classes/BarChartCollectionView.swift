@@ -49,13 +49,12 @@ public final class BPKBarChartCollectionView: UICollectionView {
     }
     
     func setupViews() {
-        backgroundView = UIView() // <-- This is a bit hacky!
         addSubview(selectedMarker)
         
         selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([
-            selectedMarker.leftAnchor.constraint(equalTo: backgroundView!.leftAnchor),
-            selectedMarker.trailingAnchor.constraint(equalTo: backgroundView!.trailingAnchor),
+            selectedMarker.leadingAnchor.constraint(equalTo: frameLayoutGuide.leadingAnchor),
+            selectedMarker.trailingAnchor.constraint(equalTo: frameLayoutGuide.trailingAnchor),
             selectedMarkerBottomConstraint!,
             selectedMarker.heightAnchor.constraint(equalToConstant: 1.0)
         ])
@@ -134,6 +133,7 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
                                                                          atIndex: indexPath.item)
         cell.barChartBar.valueDescription = barChartDataSource?.valueDescriptionForBar(barChartCollectionView: self,
                                                                                        atIndex: indexPath.item)
+        cell.isSelected = selectedIndexPath == indexPath
         return cell
     }
 }
