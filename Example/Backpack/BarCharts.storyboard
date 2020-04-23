@@ -19,12 +19,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jF-jW-c20">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-S4-ut9" customClass="BPKBarChartBar">
-                                        <rect key="frame" x="187" y="258" width="40" height="200"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-S4-ut9" customClass="BPKBarChartCollectionView">
+                                        <rect key="frame" x="57" y="258" width="300" height="200"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="1Cq-u5-086"/>
-                                            <constraint firstAttribute="width" constant="40" id="Gsq-Ev-8ox"/>
+                                            <constraint firstAttribute="width" constant="300" id="Gsq-Ev-8ox"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -46,7 +46,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kxX-K5-SjI"/>
                     <connections>
-                        <outlet property="barChartBar" destination="WbV-S4-ut9" id="bG4-jN-vrh"/>
+                        <outlet property="barChartCollection" destination="WbV-S4-ut9" id="PnL-MF-yyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhy-C9-82w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,26 +84,6 @@
                                             <segue destination="SHl-Oi-FFr" kind="show" identifier="Default" id="Je2-L0-BDF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="s69-Hq-Gk0" style="IBUITableViewCellStyleDefault" id="OjV-No-o2V">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OjV-No-o2V" id="aWf-L7-rqq">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s69-Hq-Gk0" customClass="BPKLabel">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="SHl-Oi-FFr" kind="show" identifier="WithValue" id="cfI-XS-drR"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -118,7 +98,4 @@
             <point key="canvasLocation" x="-875" y="-542"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="cfI-XS-drR"/>
-    </inferredMetricsTieBreakers>
 </document>

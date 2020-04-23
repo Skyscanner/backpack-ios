@@ -21,7 +21,6 @@ import Backpack
 
 enum BarChartSegueIdentifier: String {
     case `default` = "Default"
-    case withValue = "WithValue"
 }
 
 class BarChartSelectorViewController: UITableViewController {
@@ -35,10 +34,6 @@ class BarChartSelectorViewController: UITableViewController {
             switch barChartSegueIdentifier {
             case .default:
                 target.title = "Default"
-            case .withValue:
-                target.title = "With value"
-                target.fillValue = 0.65
-                target.valueDescription = "£200"
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
