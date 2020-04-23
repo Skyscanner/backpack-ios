@@ -25,5 +25,5 @@ public protocol BPKBarChartCollectionViewDelegate {
     ///
     /// - parameter barChart: The BPKBarChartCollectionView on which selection has been performed
     /// - parameter index: The index of the selected bar
-    func didSelect(barChart: BPKBarChartCollectionView, index: Int)
+    func didSelect(barChart: BPKBarChartCollectionView, index: IndexPath)
 }

@@ -30,40 +30,57 @@ class BarChartsViewController: UIViewController {
 }
 
 extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
-    func numberOfBarsInChart(barChartCollectionView: BPKBarChartCollectionView) -> Int {
+    func titleForSection(barChartCollectionView: BPKBarChartCollectionView, section: Int) -> String {
+        switch section {
+        case 0:
+            return "January"
+        case 1:
+            return "February"
+        case 2:
+            return "March"
+        default:
+            return "None"
+        }
+    }
+
+    func numberOfSectionsInChart(barChartCollectionView: BPKBarChartCollectionView) -> Int {
+        return 3
+    }
+
+    func numberOfBarsInSection(barChartCollectionView: BPKBarChartCollectionView, section: Int) -> Int {
         return 10
     }
 
-    func titleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
+    func titleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String {
         let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
                           "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        return daysOfWeek[atIndex]
+        return daysOfWeek[atIndex.item]
     }
 
-    func subtitleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
-        return "\(atIndex + 1)"
+    func subtitleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String {
+        return "\(atIndex.item + 1)"
     }
 
-    func fillValueForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> NSNumber? {
-        if atIndex == 0 {
+    func fillValueForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> NSNumber? {
+        if atIndex.item == 0 {
             return nil
         }
 
-        return NSNumber(value: Float(exactly: atIndex)! * 0.1)
+        return NSNumber(value: Float(exactly: atIndex.item)! * 0.1)
     }
 
-    func valueDescriptionForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: Int) -> String {
-        if atIndex == 0 {
+    func valueDescriptionForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String {
+        if atIndex.item == 0 {
             return "No price"
         }
 
-        let value = (atIndex + 1) * 5
+        let value = (atIndex.item + 1) * 5
         return "£\(value)"
     }
 }
 
 extension BarChartsViewController: BPKBarChartCollectionViewDelegate {
-    func didSelect(barChart: BPKBarChartCollectionView, index: Int) {
-        print("Selected bar at index \(index)")
+    func didSelect(barChart: BPKBarChartCollectionView, index: IndexPath) {
+        print("Selected bar at index \(index.item)")
     }
 }
