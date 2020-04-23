@@ -72,7 +72,7 @@ public final class BPKBarChartBar: UIControl {
 
     /// The absolute position of the top of the bar view
     public var barTopPosition: CGFloat {
-        return self.barView.frame.origin.y
+        return barView.frame.origin.y
     }
 
     fileprivate var barViewHeightAnchor: NSLayoutConstraint?
