@@ -48,3 +48,4 @@ Carthage
 node_modules
 npm-debug.*
 yarn.lock
+exportOptions.plist
