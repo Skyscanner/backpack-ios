@@ -68,12 +68,17 @@ public final class BPKBarChartCollectionView: UICollectionView {
         allowsSelection = true
     }
 
-    lazy fileprivate var layout: UICollectionViewLayout = {
+    lazy fileprivate var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: bounds.height)
         layout.scrollDirection = .horizontal
         return layout
     }()
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: bounds.height)
+    }
 
     lazy fileprivate var selectedMarker: UIView = {
         let view = UIView()
