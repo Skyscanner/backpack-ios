@@ -52,6 +52,7 @@ IB_DESIGNABLE @interface BPKFlareView : UIView
  */
 @property(nonatomic) CGFloat cornerRadius;
 
+/// :nodoc:
 @property(readonly, nonatomic) CGFloat flareHeight;
 
 /**
