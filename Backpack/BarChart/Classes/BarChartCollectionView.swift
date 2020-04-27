@@ -83,14 +83,18 @@ public final class BPKBarChartCollectionView: UICollectionView {
     lazy fileprivate var selectedMarker: UIView = {
         let view = UIView()
         view.backgroundColor = BPKColor.monteverde
+        view.layer.opacity = 0
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     fileprivate func updateSelectedMarkerPosition() {
+        var selectedBarTopPosition = selectedMarkerBottomConstraint.constant
+        var selectedBarOpacity: Float = 1.0
         if selectedIndexPath == nil {
             selectedMarker.isHidden = true
+            selectedBarTopPosition = 0
         } else {
             selectedMarker.isHidden = false
 
@@ -99,8 +103,25 @@ public final class BPKBarChartCollectionView: UICollectionView {
                 else {
                     return
             }
-            let selectedBarTopPosition: CGFloat = selectedCell.barChartBar.barTopPosition
+
+            if selectedCell.barChartBar.fillValue == nil {
+                selectedBarOpacity = 0
+            } else {
+                selectedBarTopPosition = selectedCell.barChartBar.barTopPosition
+                selectedBarOpacity = 1
+            }
+        }
+
+        // If the bar is currently not visible, then there is no need to animate its position
+        if selectedMarker.layer.opacity < 0.1 {
             selectedMarkerBottomConstraint.constant = selectedBarTopPosition
+            layoutIfNeeded()
+        }
+
+        UIView.animate(withDuration: BPKDuration.animationDurationSm) {
+            self.selectedMarkerBottomConstraint.constant = selectedBarTopPosition
+            self.selectedMarker.layer.opacity = selectedBarOpacity
+            self.layoutIfNeeded()
         }
     }
 }
