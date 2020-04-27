@@ -18,14 +18,11 @@
 
 import UIKit
 
-// The following rule is proving too disruptive
-// swiftlint:disable line_length
-
 @objcMembers
 @objc(BPKBarChartCollectionViewFlowLayout)
 public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    public var barChartDataSource: BPKBarChartCollectionViewDataSource?
+    public weak var barChartDataSource: BPKBarChartCollectionViewDataSource?
 
     override public init() {
         super.init()
@@ -42,6 +39,7 @@ public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayo
         }
 
         var copiedAttributes = [UICollectionViewLayoutAttributes]()
+        copiedAttributes.reserveCapacity(attributesToReturn.count)
 
         for attribute in attributesToReturn {
             // Must copy attributes to avoid runtime warning:
@@ -62,13 +60,16 @@ public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayo
                     var frame = attributes.frame
 
                     assert(collectionView != nil, "collectionView should not be nil")
-                    assert(collectionView!.isKind(of: BPKBarChartCollectionView.self), "collectionView should be of type BPKBarChartCollectionView")
+                    assert(collectionView!.isKind(of: BPKBarChartCollectionView.self),
+                           "collectionView should be of type BPKBarChartCollectionView")
 
                     if collectionView != nil && collectionView!.isKind(of: BPKBarChartCollectionView.self) {
                         guard let barChartCollectionView = collectionView as? BPKBarChartCollectionView else {
                             continue
                         }
-                        let sectionTitle = barChartDataSource?.barChartCollectionView(barChartCollectionView: barChartCollectionView, titleForSection: attributes.indexPath.section) ?? ""
+                        let sectionTitle =
+                            barChartDataSource?.barChartCollectionView(barChartCollectionView: barChartCollectionView,
+                                                                titleForSection: attributes.indexPath.section) ?? ""
                         let headerSizeForSection = BPKBarChartCollectionViewHeader.referenceSize(text: sectionTitle)
 
                         frame.size = headerSizeForSection

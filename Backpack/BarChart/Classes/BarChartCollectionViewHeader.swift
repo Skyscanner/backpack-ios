@@ -33,7 +33,7 @@ public final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
     }
 
     public static func referenceSize(text: String) -> CGSize {
-        let mockLabel = BPKLabel(fontStyle: .textLgEmphasized)
+        let mockLabel = BPKBarChartCollectionViewHeader.baseLabel()
         mockLabel.text = text
         mockLabel.sizeToFit()
 
@@ -64,9 +64,13 @@ public final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
     }
 
     fileprivate lazy var titleLabel: BPKLabel = {
-        let view: BPKLabel = BPKLabel(fontStyle: .textLgEmphasized)
+        let view = BPKBarChartCollectionViewHeader.baseLabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
         return view
     }()
+
+    static func baseLabel() -> BPKLabel {
+        return BPKLabel(fontStyle: .textLgEmphasized)
+    }
 }
