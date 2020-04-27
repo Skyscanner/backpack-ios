@@ -64,9 +64,16 @@ class Screenshots: XCTestCase {
         captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
-   func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
+    func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
         app.tables.staticTexts["Badges"].tap()
         saveScreenshot(component: "badge", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+
+        app.tables.staticTexts["Bar charts"].tap()
+        app.tables.staticTexts["Default"].tap()
+        saveScreenshot(component: "bar-chart", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        app.cells.element(boundBy: 3).tap()
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Bottom Sheet"].tap()
