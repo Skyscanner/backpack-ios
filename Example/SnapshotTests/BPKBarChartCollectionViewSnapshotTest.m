@@ -70,40 +70,40 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - <BPKBarChartCollectionViewDataSource>
 
-- (NSString * _Nonnull)valueDescriptionForBarWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView atIndex:(NSIndexPath *)atIndex {
+- (NSString * _Nonnull)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView valueDescriptionForBarAtIndex:(NSIndexPath *)atIndex {
     if (atIndex.item == 0) {
         return @"No price";
     }
     return [NSString stringWithFormat:@"£%ld", atIndex.item + 1];
 }
 
-- (NSNumber *_Nullable)fillValueForBarWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView atIndex:(NSIndexPath *)atIndex {
+- (NSNumber *_Nullable)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView fillValueForBarAtIndex:(NSIndexPath *)atIndex {
     if (atIndex.item == 0) {
         return nil;
     }
     return [[NSNumber alloc] initWithFloat:atIndex.item * 0.1];
 }
 
-- (NSString * _Nonnull)subtitleForBarWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView atIndex:(NSIndexPath *)atIndex {
+- (NSString * _Nonnull)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView subtitleForBarAtIndex:(NSIndexPath *)atIndex {
     return [NSString stringWithFormat:@"%ld", atIndex.item + 1];
 }
 
-- (NSString * _Nonnull)titleForBarWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView atIndex:(NSIndexPath *)atIndex {
+- (NSString * _Nonnull)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView titleForBarAtIndex:(NSIndexPath *)atIndex {
     NSString *weekdays[14] = {@"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun"};
     return weekdays[atIndex.item];
 }
 
-- (NSInteger)numberOfBarsInSectionWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView section:(NSInteger)section {
+- (NSInteger)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView numberOfBarsInSection:(NSInteger)section {
     return 10;
 }
 
 
-- (NSInteger)numberOfSectionsInChartWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView {
+- (NSInteger)numberOfSectionsInChartWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView {
     return 2;
 }
 
 
-- (NSString * _Nonnull)titleForSectionWithBarChartCollectionView:(BPKBarChartCollectionView * _Nonnull)barChartCollectionView section:(NSInteger)section {
+- (NSString * _Nonnull)barChartCollectionViewWithBarChartCollectionView:(BPKBarChartCollectionView *)barChartCollectionView titleForSection:(NSInteger)section {
     switch (section) {
         case 0:
             return @"January";

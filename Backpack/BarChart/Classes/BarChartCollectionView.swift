@@ -139,7 +139,8 @@ public final class BPKBarChartCollectionView: UICollectionView {
 
 extension BPKBarChartCollectionView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return barChartDataSource?.numberOfBarsInSection(barChartCollectionView: self, section: section) ?? 0
+        return barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                          numberOfBarsInSection: section) ?? 0
     }
 
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -155,14 +156,14 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
             else {
                 fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
         }
-        cell.barChartBar.title = barChartDataSource?.titleForBar(barChartCollectionView: self,
-                                                                 atIndex: indexPath)
-        cell.barChartBar.subtitle = barChartDataSource?.subtitleForBar(barChartCollectionView: self,
-                                                                       atIndex: indexPath)
-        cell.barChartBar.fillValue = barChartDataSource?.fillValueForBar(barChartCollectionView: self,
-                                                                         atIndex: indexPath)
-        cell.barChartBar.valueDescription = barChartDataSource?.valueDescriptionForBar(barChartCollectionView: self,
-                                                                                       atIndex: indexPath)
+        cell.barChartBar.title = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                            titleForBarAtIndex: indexPath)
+        cell.barChartBar.subtitle = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                               subtitleForBarAtIndex: indexPath)
+        cell.barChartBar.fillValue = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                                fillValueForBarAtIndex: indexPath)
+        cell.barChartBar.valueDescription = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                           valueDescriptionForBarAtIndex: indexPath)
         cell.isSelected = selectedIndexPath == indexPath
         return cell
     }
@@ -176,7 +177,8 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
             ) as? BPKBarChartCollectionViewHeader else {
                 fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.headerIdentifier)")
         }
-        headerView.text = barChartDataSource?.titleForSection(barChartCollectionView: self, section: indexPath.section)
+        headerView.text = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                     titleForSection: indexPath.section)
         return headerView
     }
 }
@@ -184,7 +186,7 @@ extension BPKBarChartCollectionView: UICollectionViewDataSource {
 extension BPKBarChartCollectionView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        barChartDelegate?.didSelect(barChart: self, index: indexPath)
+        barChartDelegate?.barChart(barChart: self, didSelectBarAt: indexPath)
     }
 }
 
@@ -192,7 +194,8 @@ extension BPKBarChartCollectionView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let sectionName = barChartDataSource?.titleForSection(barChartCollectionView: self, section: section) ?? ""
+        let sectionName = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
+                                                                     titleForSection: section) ?? ""
         let height = BPKBarChartCollectionViewHeader.referenceSize(text: sectionName).height
         // We use a width of 10 here instead of the actual header width as we do not want space between sections
         return CGSize(width: 10, height: height)

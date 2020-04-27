@@ -26,7 +26,8 @@ public protocol BPKBarChartCollectionViewDataSource {
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter section: The section in question
     /// - returns: The number of bars in the section of the bar chart
-    func numberOfBarsInSection(barChartCollectionView: BPKBarChartCollectionView, section: Int) -> Int
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                numberOfBarsInSection section: Int) -> Int
 
     /// The number of sections to display in the chart
     ///
@@ -39,33 +40,38 @@ public protocol BPKBarChartCollectionViewDataSource {
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter section: The section in question
     /// - returns: The title to display above the section of the bar chart
-    func titleForSection(barChartCollectionView: BPKBarChartCollectionView, section: Int) -> String
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                titleForSection section: Int) -> String
 
     /// The title to show underneath a specific bar
     ///
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter atIndex: The index of the bar in question
     /// - returns: The title to display underneath the bar
-    func titleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                titleForBarAtIndex atIndex: IndexPath) -> String
 
     /// The subtitle to show under the title of a specific bar
     ///
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter atIndex: The index of the bar in question
     /// - returns: The subtitle to display underneath the bar
-    func subtitleForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                subtitleForBarAtIndex atIndex: IndexPath) -> String
 
     /// A value between 0.0 and 1.0 which represents the proportion of the bar to fill
     ///
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter atIndex: The index of the bar in question
     /// - returns: The value between 0.0 and 1.0 which represents the proportion of the bar to fil
-    func fillValueForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> NSNumber?
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                fillValueForBarAtIndex atIndex: IndexPath) -> NSNumber?
 
     /// The descriptive value for each bar, which will be shown to a user when they select the bar
     ///
     /// - parameter barChartCollectionView: The BPKBarChartCollectionView in question
     /// - parameter atIndex: The index of the bar in question
     /// - returns: A user-friendly description of the value represented by the bar
-    func valueDescriptionForBar(barChartCollectionView: BPKBarChartCollectionView, atIndex: IndexPath) -> String
+    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
+                                valueDescriptionForBarAtIndex atIndex: IndexPath) -> String
 }

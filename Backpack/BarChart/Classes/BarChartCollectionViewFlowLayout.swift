@@ -68,8 +68,7 @@ public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayo
                         guard let barChartCollectionView = collectionView as? BPKBarChartCollectionView else {
                             continue
                         }
-                        let sectionTitle = barChartDataSource?.titleForSection(barChartCollectionView: barChartCollectionView,
-                                                                               section: attributes.indexPath.section) ?? ""
+                        let sectionTitle = barChartDataSource?.barChartCollectionView(barChartCollectionView: barChartCollectionView, titleForSection: attributes.indexPath.section) ?? ""
                         let headerSizeForSection = BPKBarChartCollectionViewHeader.referenceSize(text: sectionTitle)
 
                         frame.size = headerSizeForSection
