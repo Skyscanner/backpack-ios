@@ -22,6 +22,26 @@ import UIKit
 @objc(BPKBarChart)
 public final class BPKBarChart: UIView {
 
+    /// The label to display in the bar chart key for items with a value
+    public var dataKeyLabel: String? {
+        get {
+            return dataKeyItem.text
+        }
+        set {
+            dataKeyItem.text = newValue
+        }
+    }
+
+    /// The label to display in the bar chart key for items without a value
+    public var noDataKeyLabel: String? {
+        get {
+            return noDataKeyItem.text
+        }
+        set {
+            noDataKeyItem.text = newValue
+        }
+    }
+
     /// The title to display at the top of the bar chart
     public var title: String {
         didSet {
@@ -65,6 +85,8 @@ public final class BPKBarChart: UIView {
         clipsToBounds = true
 
         addSubview(titleLabel)
+        addSubview(dataKeyItem)
+        addSubview(noDataKeyItem)
         addSubview(barChartCollectionView)
 
         NSLayoutConstraint.activate([
@@ -73,7 +95,11 @@ public final class BPKBarChart: UIView {
             barChartCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             barChartCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             barChartCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: BPKSpacingMd),
-            bottomAnchor.constraint(equalTo: barChartCollectionView.bottomAnchor, constant: 2*BPKSpacingMd)
+            bottomAnchor.constraint(equalTo: barChartCollectionView.bottomAnchor, constant: 2*BPKSpacingMd),
+            noDataKeyItem.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            dataKeyItem.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            noDataKeyItem.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dataKeyItem.trailingAnchor.constraint(equalTo: noDataKeyItem.leadingAnchor, constant: -BPKSpacingMd)
         ])
     }
 
@@ -83,6 +109,22 @@ public final class BPKBarChart: UIView {
         titleLabel.textColor = BPKColor.textSecondaryColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
+    }()
+
+    lazy fileprivate var dataKeyItem: BPKBarChartKeyItem = {
+        let dataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem()
+        dataKeyItem.backgroundColor = BPKColor.primaryColor
+        dataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        dataKeyItem.translatesAutoresizingMaskIntoConstraints = false
+        return dataKeyItem
+    }()
+
+    lazy fileprivate var noDataKeyItem: BPKBarChartKeyItem = {
+        let noDataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem()
+        noDataKeyItem.backgroundColor = BPKColor.skyGrayTint03
+        noDataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        noDataKeyItem.translatesAutoresizingMaskIntoConstraints = false
+        return noDataKeyItem
     }()
 
     lazy fileprivate var barChartCollectionView: BPKBarChartCollectionView = {
