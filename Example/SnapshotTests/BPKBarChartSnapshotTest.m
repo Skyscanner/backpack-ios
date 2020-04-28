@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
     view.barChartDataSource = self;
     view.backgroundColor = BPKColor.hillier;
 
-    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:3];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     view.selectedIndexPath = indexPath;
 
     return view;
