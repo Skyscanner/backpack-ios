@@ -20,7 +20,7 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartCollectionViewHeader)
-public final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
+internal final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
 
     /// The text to diplay inside the header
     public var text: String? {

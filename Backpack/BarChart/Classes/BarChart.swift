@@ -30,14 +30,10 @@ public final class BPKBarChart: UIView {
     }
 
     /// The bar chart delegate which can be used to respond to interaction with the bar chart
-    public var barChartDelegate: BPKBarChartCollectionViewDelegate? {
-        didSet {
-            barChartCollectionView.reloadData()
-        }
-    }
+    public weak var barChartDelegate: BPKBarChartCollectionViewDelegate?
 
     /// The bar chart data source which will infom how the bar chart should be rendered
-    public var barChartDataSource: BPKBarChartCollectionViewDataSource? {
+    public weak var barChartDataSource: BPKBarChartCollectionViewDataSource? {
         didSet {
             barChartCollectionView.reloadData()
         }
@@ -46,32 +42,22 @@ public final class BPKBarChart: UIView {
     /// The selected indexPath
     public var selectedIndexPath: IndexPath? {
         didSet {
-            barChartCollectionView.reloadData()
-            barChartCollectionView.updateSelectedMarkerPosition()
+            barChartCollectionView.selectItem(at: selectedIndexPath, animated: false,
+                                              scrollPosition: .top)
         }
     }
 
-    /// The cell identifier string for creating instances of BarChartCollectionViewCell
-    public static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
-
-    /// The cell identifier string for creating instances of BarChartCollectionViewHeader
-    public static let headerIdentifier: String = "BPKBarChartCollectionView_HeaderIdentifier"
-
     /// Create a new instance of BPKBarChart
     ///
-    /// - parameter barChartDataSource: A data source to populate the bar chart with
-    /// - parameter barChartDelegate: A delegate to respond to bar chart interaction
     /// - parameter title: The title for the bar chart
-    public init(barChartDataSource: BPKBarChartCollectionViewDataSource,
-                barChartDelegate: BPKBarChartCollectionViewDelegate, title: String) {
-        self.barChartDataSource = barChartDataSource
-        self.barChartDelegate = barChartDelegate
+    public init(title: String) {
         self.title = title
         super.init(frame: CGRect.zero)
         setupViews()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -123,10 +109,10 @@ extension BPKBarChart: UICollectionViewDataSource {
         _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = barChartCollectionView.dequeueReusableCell(
-            withReuseIdentifier: BPKBarChart.cellIdentifier,
+            withReuseIdentifier: BPKBarChartCollectionView.cellIdentifier,
             for: indexPath) as? BPKBarChartCollectionViewCell
             else {
-                fatalError("No cell registered for reuse with identifier \(BPKBarChart.cellIdentifier)")
+                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
         }
         cell.barChartBar.title = barChartDataSource?.barChart(self, titleForBarAtIndex: indexPath)
         cell.barChartBar.subtitle = barChartDataSource?.barChart(self, subtitleForBarAtIndex: indexPath)
@@ -141,9 +127,9 @@ extension BPKBarChart: UICollectionViewDataSource {
                                at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: BPKBarChart.headerIdentifier, for: indexPath
+            withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier, for: indexPath
             ) as? BPKBarChartCollectionViewHeader else {
-                fatalError("No cell registered for reuse with identifier \(BPKBarChart.headerIdentifier)")
+                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.headerIdentifier)")
         }
         headerView.text = barChartDataSource?.barChart(self, titleForSection: indexPath.section)
         return headerView

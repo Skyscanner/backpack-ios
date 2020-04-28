@@ -20,7 +20,7 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartCollectionViewCell)
-public final class BPKBarChartCollectionViewCell: UICollectionViewCell {
+internal final class BPKBarChartCollectionViewCell: UICollectionViewCell {
 
     /// The BPKBarChartBar instance displayed inside the cell
     lazy public var barChartBar: BPKBarChartBar = {

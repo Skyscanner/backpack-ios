@@ -20,14 +20,16 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartCollectionView)
-public final class BPKBarChartCollectionView: UICollectionView {
+internal final class BPKBarChartCollectionView: UICollectionView {
 
     /// The BPKBarChart instance for the CollectionView
-    public var barChart: BPKBarChart {
-        didSet {
-            reloadData()
-        }
-    }
+    public private(set) unowned var barChart: BPKBarChart
+
+    /// The cell identifier string for creating instances of BarChartCollectionViewCell
+    internal static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
+
+    /// The cell identifier string for creating instances of BarChartCollectionViewHeader
+    internal static let headerIdentifier: String = "BPKBarChartCollectionView_HeaderIdentifier"
 
     /// Create a new instance of BPKBarChartCollectionView
     ///
@@ -38,7 +40,8 @@ public final class BPKBarChartCollectionView: UICollectionView {
         setupViews()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -54,11 +57,11 @@ public final class BPKBarChartCollectionView: UICollectionView {
         ])
 
         register(BPKBarChartCollectionViewCell.self,
-                 forCellWithReuseIdentifier: BPKBarChart.cellIdentifier)
+                 forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
 
         register(BPKBarChartCollectionViewHeader.self,
                  forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                 withReuseIdentifier: BPKBarChart.headerIdentifier)
+                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
 
         collectionViewLayout = layout
         allowsSelection = true
@@ -89,12 +92,24 @@ public final class BPKBarChartCollectionView: UICollectionView {
         return view
     }()
 
-    public func updateSelectedMarkerPosition() {
+    override public func reloadData() {
+        super.reloadData()
+        updateSelectedMarkerPosition()
+    }
+
+    override public func selectItem(at indexPath: IndexPath?, animated: Bool,
+                                    scrollPosition: UICollectionView.ScrollPosition) {
+        super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
+        updateSelectedMarkerPosition()
+    }
+
+    fileprivate func updateSelectedMarkerPosition() {
         var selectedBarTopPosition = selectedMarkerBottomConstraint.constant
         var selectedBarOpacity: Float = 1.0
         if barChart.selectedIndexPath == nil {
             selectedMarker.isHidden = true
             selectedBarTopPosition = 0
+            selectedBarOpacity = 0
         } else {
             selectedMarker.isHidden = false
 

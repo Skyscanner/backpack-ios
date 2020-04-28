@@ -24,7 +24,9 @@ class BarChartsViewController: UIViewController {
     var barChart: BPKBarChart?
 
     override func viewDidLoad() {
-        barChart = BPKBarChart(barChartDataSource: self, barChartDelegate: self, title: "Departure date")
+        barChart = BPKBarChart(title: "Departure date")
+        barChart?.barChartDataSource = self
+        barChart?.barChartDelegate = self
         barChart?.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(barChart!)
 

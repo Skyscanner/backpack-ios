@@ -23,7 +23,7 @@
 #import "BPKSnapshotTest.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKBarChartSnapshotTest : FBSnapshotTestCase<BPKBarChartCollectionViewDataSource, BPKBarChartCollectionViewDelegate>
+@interface BPKBarChartSnapshotTest : FBSnapshotTestCase<BPKBarChartCollectionViewDataSource>
 @end
 
 @implementation BPKBarChartSnapshotTest
@@ -34,7 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createBarChartDefault {
-    BPKBarChart *view = [[BPKBarChart alloc] initWithBarChartDataSource:self barChartDelegate:self title:@"Departure"];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure"];
+    view.barChartDataSource = self;
     view.frame = CGRectMake(0, 0, 500, 300);
     view.backgroundColor = BPKColor.hillier;
 
@@ -50,7 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createBarChartDefaultSelected {
-    BPKBarChart *view = [[BPKBarChart alloc] initWithBarChartDataSource:self barChartDelegate:self title:@"Departure"];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure"];
+    view.barChartDataSource = self;
     view.frame = CGRectMake(0, 0, 500, 300);
     view.barChartDataSource = self;
     view.backgroundColor = BPKColor.hillier;
@@ -113,10 +115,6 @@ NS_ASSUME_NONNULL_BEGIN
             return @"None";
             break;
     }
-}
-
-- (void)barChart:(BPKBarChart * _Nonnull)barChart didSelectBarAt:(NSIndexPath * _Nonnull)indexPath {
-    return;
 }
 
 @end

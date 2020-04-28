@@ -20,7 +20,7 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartCollectionViewFlowLayout)
-public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayout {
+internal final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     public weak var barChartCollectionView: BPKBarChartCollectionView?
 
