@@ -22,7 +22,7 @@ import UIKit
 @objc(BPKBarChartCollectionViewFlowLayout)
 public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    public weak var barChartDataSource: BPKBarChartCollectionViewDataSource?
+    public weak var barChartCollectionView: BPKBarChartCollectionView?
 
     override public init() {
         super.init()
@@ -68,9 +68,10 @@ public final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLayo
                             continue
                         }
                         let sectionTitle =
-                            barChartDataSource?.barChartCollectionView(barChartCollectionView: barChartCollectionView,
-                                                                titleForSection: attributes.indexPath.section) ?? ""
-                        let headerSizeForSection = BPKBarChartCollectionViewHeader.referenceSize(text: sectionTitle)
+                          barChartCollectionView.barChart.barChartDataSource?.barChart(barChartCollectionView.barChart,
+                                                                        titleForSection: attributes.indexPath.section)
+                        let headerSizeForSection =
+                            BPKBarChartCollectionViewHeader.referenceSize(text: sectionTitle ?? "")
 
                         frame.size = headerSizeForSection
                         frame.origin.y = 0

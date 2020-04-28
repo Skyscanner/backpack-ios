@@ -20,18 +20,25 @@ import UIKit
 import Backpack
 
 class BarChartsViewController: UIViewController {
-    @IBOutlet weak var barChart: BPKBarChart!
-    
+    @IBOutlet weak var contentView: UIView!
+    var barChart: BPKBarChart?
+
     override func viewDidLoad() {
-        self.barChart.barChartDataSource = self
-        self.barChart.barChartDelegate = self
-        self.barChart.title = "Departure date"
+        barChart = BPKBarChart(barChartDataSource: self, barChartDelegate: self, title: "Departure date")
+        barChart?.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(barChart!)
+
+        NSLayoutConstraint.activate([
+            (barChart?.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))!,
+            (barChart?.centerYAnchor.constraint(equalTo: contentView.centerYAnchor))!,
+            (barChart?.widthAnchor.constraint(equalToConstant: 280))!,
+            (barChart?.heightAnchor.constraint(equalToConstant: 300))!
+        ])
     }
 }
 
 extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                titleForSection section: Int) -> String {
+    func barChart(_ barChart: BPKBarChart, titleForSection section: Int) -> String {
         switch section {
         case 0:
             return "January"
@@ -44,29 +51,25 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
         }
     }
 
-    func numberOfSectionsInChart(barChartCollectionView: BPKBarChartCollectionView) -> Int {
+    func numberOfSections(in barChart: BPKBarChart) -> Int {
         return 3
     }
 
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                numberOfBarsInSection section: Int) -> Int {
+    func barChart(_ barChart: BPKBarChart, numberOfBarsInSection section: Int) -> Int {
         return 10
     }
 
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                titleForBarAtIndex atIndex: IndexPath) -> String {
+    func barChart(_ barChart: BPKBarChart, titleForBarAtIndex atIndex: IndexPath) -> String {
         let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
                           "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         return daysOfWeek[atIndex.item]
     }
 
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                subtitleForBarAtIndex atIndex: IndexPath) -> String {
+    func barChart(_ barChart: BPKBarChart, subtitleForBarAtIndex atIndex: IndexPath) -> String {
         return "\(atIndex.item + 1)"
     }
 
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                fillValueForBarAtIndex atIndex: IndexPath) -> NSNumber? {
+    func barChart(_ barChart: BPKBarChart, fillValueForBarAtIndex atIndex: IndexPath) -> NSNumber? {
         if atIndex.item == 0 {
             return nil
         }
@@ -74,8 +77,7 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
         return NSNumber(value: Float(exactly: atIndex.item)! * 0.1)
     }
 
-    func barChartCollectionView(barChartCollectionView: BPKBarChartCollectionView,
-                                valueDescriptionForBarAtIndex atIndex: IndexPath) -> String {
+    func barChart(_ barChart: BPKBarChart, valueDescriptionForBarAtIndex atIndex: IndexPath) -> String {
         if atIndex.item == 0 {
             return "No price"
         }
@@ -86,7 +88,7 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
 }
 
 extension BarChartsViewController: BPKBarChartCollectionViewDelegate {
-    func barChart(barChart: BPKBarChartCollectionView, didSelectBarAt indexPath: IndexPath) {
+    func barChart(_ barChart: BPKBarChart, didSelectBarAt indexPath: IndexPath) {
         print("Selected bar at index \(indexPath.item)")
     }
 }

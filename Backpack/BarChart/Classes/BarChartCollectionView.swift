@@ -22,35 +22,24 @@ import UIKit
 @objc(BPKBarChartCollectionView)
 public final class BPKBarChartCollectionView: UICollectionView {
 
-    /// The BPKBarChartDataSource which will infom how the bar chart should be rendered
-    public var barChartDataSource: BPKBarChartCollectionViewDataSource? {
+    /// The BPKBarChart instance for the CollectionView
+    public var barChart: BPKBarChart {
         didSet {
-            layout.barChartDataSource = barChartDataSource
+            reloadData()
         }
     }
 
-    /// The BPKBarChartDelegate which can be used to respond to interaction with the bar chart
-    public weak var barChartDelegate: BPKBarChartCollectionViewDelegate?
-
-    /// The selected indexPath
-    var selectedIndexPath: IndexPath? {
-        didSet {
-            updateSelectedMarkerPosition()
-        }
-    }
-
-    fileprivate static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
-    fileprivate static let headerIdentifier: String = "BPKBarChartCollectionView_HeaderIdentifier"
-    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
-
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+    /// Create a new instance of BPKBarChartCollectionView
+    ///
+    /// - parameter barChart: The BPKBarChart for which the BPKBarChartCollectionView is being created
+    public init(barChart: BPKBarChart) {
+        self.barChart = barChart
+        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
         setupViews()
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupViews()
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setupViews() {
@@ -65,23 +54,23 @@ public final class BPKBarChartCollectionView: UICollectionView {
         ])
 
         register(BPKBarChartCollectionViewCell.self,
-                 forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
+                 forCellWithReuseIdentifier: BPKBarChart.cellIdentifier)
 
         register(BPKBarChartCollectionViewHeader.self,
                  forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+                 withReuseIdentifier: BPKBarChart.headerIdentifier)
 
         collectionViewLayout = layout
-        dataSource = self
-        delegate = self
         allowsSelection = true
     }
+
+    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
 
     lazy fileprivate var layout: BPKBarChartCollectionViewFlowLayout = {
         let layout = BPKBarChartCollectionViewFlowLayout()
         layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: max(0, bounds.height - layout.sectionInset.top))
         layout.scrollDirection = .horizontal
-        layout.barChartDataSource = barChartDataSource
+        layout.barChartCollectionView = self
         //  We would ideally use layout.sectionHeadersPinToVisibleBounds, but it currently breaks our custom layout
         return layout
     }()
@@ -100,17 +89,17 @@ public final class BPKBarChartCollectionView: UICollectionView {
         return view
     }()
 
-    fileprivate func updateSelectedMarkerPosition() {
+    public func updateSelectedMarkerPosition() {
         var selectedBarTopPosition = selectedMarkerBottomConstraint.constant
         var selectedBarOpacity: Float = 1.0
-        if selectedIndexPath == nil {
+        if barChart.selectedIndexPath == nil {
             selectedMarker.isHidden = true
             selectedBarTopPosition = 0
         } else {
             selectedMarker.isHidden = false
 
             guard let selectedCell: BPKBarChartCollectionViewCell =
-                cellForItem(at: selectedIndexPath!) as? BPKBarChartCollectionViewCell
+                cellForItem(at: barChart.selectedIndexPath!) as? BPKBarChartCollectionViewCell
                 else {
                     return
             }
@@ -134,70 +123,5 @@ public final class BPKBarChartCollectionView: UICollectionView {
             self.selectedMarker.layer.opacity = selectedBarOpacity
             self.layoutIfNeeded()
         }
-    }
-}
-
-extension BPKBarChartCollectionView: UICollectionViewDataSource {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                          numberOfBarsInSection: section) ?? 0
-    }
-
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return barChartDataSource?.numberOfSectionsInChart(barChartCollectionView: self) ?? 0
-    }
-
-    public func collectionView(
-        _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        guard let cell = dequeueReusableCell(
-            withReuseIdentifier: BPKBarChartCollectionView.cellIdentifier,
-            for: indexPath) as? BPKBarChartCollectionViewCell
-            else {
-                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
-        }
-        cell.barChartBar.title = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                            titleForBarAtIndex: indexPath)
-        cell.barChartBar.subtitle = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                               subtitleForBarAtIndex: indexPath)
-        cell.barChartBar.fillValue = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                                fillValueForBarAtIndex: indexPath)
-        cell.barChartBar.valueDescription = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                           valueDescriptionForBarAtIndex: indexPath)
-        cell.isSelected = selectedIndexPath == indexPath
-        return cell
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier, for: indexPath
-            ) as? BPKBarChartCollectionViewHeader else {
-                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.headerIdentifier)")
-        }
-        headerView.text = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                     titleForSection: indexPath.section)
-        return headerView
-    }
-}
-
-extension BPKBarChartCollectionView: UICollectionViewDelegate {
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        barChartDelegate?.barChart(barChart: self, didSelectBarAt: indexPath)
-    }
-}
-
-extension BPKBarChartCollectionView: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let sectionName = barChartDataSource?.barChartCollectionView(barChartCollectionView: self,
-                                                                     titleForSection: section) ?? ""
-        let height = BPKBarChartCollectionViewHeader.referenceSize(text: sectionName).height
-        // We use a width of 10 here instead of the actual header width as we do not want space between sections
-        return CGSize(width: 10, height: height)
     }
 }
