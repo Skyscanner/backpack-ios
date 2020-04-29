@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.1.0
+
+**Added:**
+
+- Backpack/FlareView:
+  - Added property for setting `cornerRadius`.
+
+- Backpack/BarChart:
+  - New `BarChart` component
+
 # 32.0.0
 
 **Breaking:**
