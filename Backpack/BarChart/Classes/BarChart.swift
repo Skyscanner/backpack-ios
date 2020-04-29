@@ -23,43 +23,42 @@ import UIKit
 public final class BPKBarChart: UIView {
 
     /// The title to display at the top of the bar chart
-    public var title: String? {
-        get {
-            return titleLabel.text
-        }
-        set {
-            titleLabel.text = newValue
+    public var title: String {
+        didSet {
+            titleLabel.text = title
         }
     }
 
     /// The bar chart delegate which can be used to respond to interaction with the bar chart
-    public var barChartDelegate: BPKBarChartCollectionViewDelegate? {
-        get {
-            return barChartCollectionView.barChartDelegate
-        }
-        set {
-            barChartCollectionView.barChartDelegate = newValue
-        }
-    }
+    public weak var barChartDelegate: BPKBarChartCollectionViewDelegate?
 
     /// The bar chart data source which will infom how the bar chart should be rendered
-    public var barChartDataSource: BPKBarChartCollectionViewDataSource? {
-        get {
-            return barChartCollectionView.barChartDataSource
-        }
-        set {
-            barChartCollectionView.barChartDataSource = newValue
+    public weak var barChartDataSource: BPKBarChartCollectionViewDataSource? {
+        didSet {
+            barChartCollectionView.reloadData()
         }
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    /// The selected indexPath
+    public var selectedIndexPath: IndexPath? {
+        didSet {
+            barChartCollectionView.selectItem(at: selectedIndexPath, animated: false,
+                                              scrollPosition: .top)
+        }
+    }
+
+    /// Create a new instance of BPKBarChart
+    ///
+    /// - parameter title: The title for the bar chart
+    public init(title: String) {
+        self.title = title
+        super.init(frame: CGRect.zero)
         setupViews()
     }
 
-    required init?(coder: NSCoder) {
-        super .init(coder: coder)
-        setupViews()
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setupViews() {
@@ -80,18 +79,77 @@ public final class BPKBarChart: UIView {
 
     lazy fileprivate var titleLabel: BPKLabel = {
         let titleLabel: BPKLabel = BPKLabel(fontStyle: .textBaseEmphasized)
+        titleLabel.text = title
         titleLabel.textColor = BPKColor.textSecondaryColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }()
 
     lazy fileprivate var barChartCollectionView: BPKBarChartCollectionView = {
-
-        let barChartCollectionView: BPKBarChartCollectionView = BPKBarChartCollectionView(frame: CGRect.zero,
-                                                                collectionViewLayout: UICollectionViewLayout())
+        let barChartCollectionView: BPKBarChartCollectionView = BPKBarChartCollectionView(barChart: self)
         barChartCollectionView.translatesAutoresizingMaskIntoConstraints = false
         barChartCollectionView.backgroundColor = BPKColor.clear
         barChartCollectionView.clipsToBounds = false
+        barChartCollectionView.dataSource = self
+        barChartCollectionView.delegate = self
         return barChartCollectionView
     }()
+}
+
+extension BPKBarChart: UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return barChartDataSource?.barChart(self, numberOfBarsInSection: section) ?? 0
+    }
+
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return barChartDataSource?.numberOfSections(in: self) ?? 0
+    }
+
+    public func collectionView(
+        _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = barChartCollectionView.dequeueReusableCell(
+            withReuseIdentifier: BPKBarChartCollectionView.cellIdentifier,
+            for: indexPath) as? BPKBarChartCollectionViewCell
+            else {
+                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
+        }
+        cell.barChartBar.title = barChartDataSource?.barChart(self, titleForBarAtIndex: indexPath)
+        cell.barChartBar.subtitle = barChartDataSource?.barChart(self, subtitleForBarAtIndex: indexPath)
+        cell.barChartBar.fillValue = barChartDataSource?.barChart(self, fillValueForBarAtIndex: indexPath)
+        cell.barChartBar.valueDescription = barChartDataSource?.barChart(self, valueDescriptionForBarAtIndex: indexPath)
+        cell.isSelected = selectedIndexPath == indexPath
+        return cell
+    }
+
+    public func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier, for: indexPath
+            ) as? BPKBarChartCollectionViewHeader else {
+                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.headerIdentifier)")
+        }
+        headerView.text = barChartDataSource?.barChart(self, titleForSection: indexPath.section)
+        return headerView
+    }
+}
+
+extension BPKBarChart: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        barChartDelegate?.barChart(self, didSelectBarAt: indexPath)
+    }
+}
+
+extension BPKBarChart: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let sectionName = barChartDataSource?.barChart(self, titleForSection: section) ?? ""
+        let height = BPKBarChartCollectionViewHeader.referenceSize(text: sectionName).height
+        // We use a width of 10 here instead of the actual header width as we do not want space between sections
+        return CGSize(width: 10, height: height)
+    }
 }

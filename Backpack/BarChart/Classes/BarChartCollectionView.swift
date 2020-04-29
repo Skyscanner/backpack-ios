@@ -20,37 +20,34 @@ import UIKit
 
 @objcMembers
 @objc(BPKBarChartCollectionView)
-public final class BPKBarChartCollectionView: UICollectionView {
-    
-    /// The BPKBarChartDataSource which will infom how the bar chart should be rendered
-    public var barChartDataSource: BPKBarChartCollectionViewDataSource?
-    
-    /// The BPKBarChartDelegate which can be used to respond to interaction with the bar chart
-    public weak var barChartDelegate: BPKBarChartCollectionViewDelegate?
+internal final class BPKBarChartCollectionView: UICollectionView {
 
-    /// The selected indexPath
-    var selectedIndexPath: IndexPath? {
-        didSet {
-            updateSelectedMarkerPosition()
-        }
-    }
-    
-    fileprivate static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
-    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    /// The BPKBarChart instance for the CollectionView
+    public private(set) unowned var barChart: BPKBarChart
 
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+    /// The cell identifier string for creating instances of BarChartCollectionViewCell
+    internal static let cellIdentifier: String = "BPKBarChartCollectionView_CellIdentifier"
+
+    /// The cell identifier string for creating instances of BarChartCollectionViewHeader
+    internal static let headerIdentifier: String = "BPKBarChartCollectionView_HeaderIdentifier"
+
+    /// Create a new instance of BPKBarChartCollectionView
+    ///
+    /// - parameter barChart: The BPKBarChart for which the BPKBarChartCollectionView is being created
+    public init(barChart: BPKBarChart) {
+        self.barChart = barChart
+        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
         setupViews()
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupViews()
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupViews() {
         addSubview(selectedMarker)
-        
+
         selectedMarkerBottomConstraint = selectedMarker.bottomAnchor.constraint(equalTo: topAnchor)
         NSLayoutConstraint.activate([
             selectedMarker.leadingAnchor.constraint(equalTo: frameLayoutGuide.leadingAnchor),
@@ -58,26 +55,32 @@ public final class BPKBarChartCollectionView: UICollectionView {
             selectedMarkerBottomConstraint,
             selectedMarker.heightAnchor.constraint(equalToConstant: 1.0)
         ])
-        
+
         register(BPKBarChartCollectionViewCell.self,
                  forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
 
+        register(BPKBarChartCollectionViewHeader.self,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+
         collectionViewLayout = layout
-        dataSource = self
-        delegate = self
         allowsSelection = true
     }
 
-    lazy fileprivate var layout: UICollectionViewFlowLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: bounds.height)
+    fileprivate var selectedMarkerBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
+
+    lazy fileprivate var layout: BPKBarChartCollectionViewFlowLayout = {
+        let layout = BPKBarChartCollectionViewFlowLayout()
+        layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: max(0, bounds.height - layout.sectionInset.top))
         layout.scrollDirection = .horizontal
+        layout.barChartCollectionView = self
+        //  We would ideally use layout.sectionHeadersPinToVisibleBounds, but it currently breaks our custom layout
         return layout
     }()
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-        layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: bounds.height)
+        layout.estimatedItemSize = CGSize(width: BPKSpacingXxl, height: max(0, bounds.height - layout.sectionInset.top))
     }
 
     lazy fileprivate var selectedMarker: UIView = {
@@ -88,18 +91,30 @@ public final class BPKBarChartCollectionView: UICollectionView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
+    override public func reloadData() {
+        super.reloadData()
+        updateSelectedMarkerPosition()
+    }
+
+    override public func selectItem(at indexPath: IndexPath?, animated: Bool,
+                                    scrollPosition: UICollectionView.ScrollPosition) {
+        super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
+        updateSelectedMarkerPosition()
+    }
+
     fileprivate func updateSelectedMarkerPosition() {
         var selectedBarTopPosition = selectedMarkerBottomConstraint.constant
         var selectedBarOpacity: Float = 1.0
-        if selectedIndexPath == nil {
+        if barChart.selectedIndexPath == nil {
             selectedMarker.isHidden = true
             selectedBarTopPosition = 0
+            selectedBarOpacity = 0
         } else {
             selectedMarker.isHidden = false
 
             guard let selectedCell: BPKBarChartCollectionViewCell =
-                cellForItem(at: selectedIndexPath!) as? BPKBarChartCollectionViewCell
+                cellForItem(at: barChart.selectedIndexPath!) as? BPKBarChartCollectionViewCell
                 else {
                     return
             }
@@ -107,7 +122,7 @@ public final class BPKBarChartCollectionView: UICollectionView {
             if selectedCell.barChartBar.fillValue == nil {
                 selectedBarOpacity = 0
             } else {
-                selectedBarTopPosition = selectedCell.barChartBar.barTopPosition
+                selectedBarTopPosition = selectedCell.barChartBar.barTopPosition + layout.sectionInset.top
                 selectedBarOpacity = 1
             }
         }
@@ -123,43 +138,5 @@ public final class BPKBarChartCollectionView: UICollectionView {
             self.selectedMarker.layer.opacity = selectedBarOpacity
             self.layoutIfNeeded()
         }
-    }
-}
-
-extension BPKBarChartCollectionView: UICollectionViewDataSource {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return barChartDataSource?.numberOfBarsInChart(barChartCollectionView: self) ?? 0
-    }
-    
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    public func collectionView(
-        _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        guard let cell = dequeueReusableCell(
-            withReuseIdentifier: BPKBarChartCollectionView.cellIdentifier,
-            for: indexPath) as? BPKBarChartCollectionViewCell
-            else {
-                fatalError("No cell registered for reuse with identifier \(BPKBarChartCollectionView.cellIdentifier)")
-        }
-        cell.barChartBar.title = barChartDataSource?.titleForBar(barChartCollectionView: self,
-                                                                 atIndex: indexPath.item)
-        cell.barChartBar.subtitle = barChartDataSource?.subtitleForBar(barChartCollectionView: self,
-                                                                       atIndex: indexPath.item)
-        cell.barChartBar.fillValue = barChartDataSource?.fillValueForBar(barChartCollectionView: self,
-                                                                         atIndex: indexPath.item)
-        cell.barChartBar.valueDescription = barChartDataSource?.valueDescriptionForBar(barChartCollectionView: self,
-                                                                                       atIndex: indexPath.item)
-        cell.isSelected = selectedIndexPath == indexPath
-        return cell
-    }
-}
-
-extension BPKBarChartCollectionView: UICollectionViewDelegate {
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        barChartDelegate?.didSelect(barChart: self, index: indexPath.item)
     }
 }
