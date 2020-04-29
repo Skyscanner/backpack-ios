@@ -14,7 +14,7 @@ and then run `pod install`.
 
 ### Bar chart
 
-`Backpack/BarChart` is a component for presenting data to travellers.
+`Backpack/BarChart` is useful for displaying comparisons between categories of data. At Skyscanner, bar charts are commonly used for displaying fare prices within a given time period e.g. a year, month or week.
 
 ### Objective-C
 
@@ -30,7 +30,7 @@ view.barChartDataSource = self;
 #pragma mark - <BPKBarChartCollectionViewDelegate>
 
 - (void)barChart:(BPKBarChart * _Nonnull)barChart didSelectBarAt:(NSIndexPath * _Nonnull)indexPath {
-  // TODO
+  print("BPKBarChart bar selected");
 }
 
 #pragma mark - <BPKBarChartCollectionViewDataSource>
