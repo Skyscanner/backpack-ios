@@ -23,22 +23,16 @@ import UIKit
 public final class BPKBarChart: UIView {
 
     /// The label to display in the bar chart key for items with a value
-    public var dataKeyLabel: String? {
-        get {
-            return dataKeyItem.text
-        }
-        set {
-            dataKeyItem.text = newValue
+    public var dataKeyText: String {
+        didSet {
+            dataKeyItem.text = dataKeyText
         }
     }
 
     /// The label to display in the bar chart key for items without a value
-    public var noDataKeyLabel: String? {
-        get {
-            return noDataKeyItem.text
-        }
-        set {
-            noDataKeyItem.text = newValue
+    public var noDataKeyText: String {
+        didSet {
+            noDataKeyItem.text = noDataKeyText
         }
     }
 
@@ -70,8 +64,10 @@ public final class BPKBarChart: UIView {
     /// Create a new instance of BPKBarChart
     ///
     /// - parameter title: The title for the bar chart
-    public init(title: String) {
+    public init(title: String, dataKeyText: String, noDataKeyText: String) {
         self.title = title
+        self.dataKeyText = dataKeyText
+        self.noDataKeyText = noDataKeyText
         super.init(frame: CGRect.zero)
         setupViews()
     }
@@ -98,7 +94,7 @@ public final class BPKBarChart: UIView {
             bottomAnchor.constraint(equalTo: barChartCollectionView.bottomAnchor, constant: 2*BPKSpacingMd),
             noDataKeyItem.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             dataKeyItem.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            noDataKeyItem.trailingAnchor.constraint(equalTo: trailingAnchor),
+            noDataKeyItem.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingSm),
             dataKeyItem.trailingAnchor.constraint(equalTo: noDataKeyItem.leadingAnchor, constant: -BPKSpacingMd)
         ])
     }
@@ -112,7 +108,7 @@ public final class BPKBarChart: UIView {
     }()
 
     lazy fileprivate var dataKeyItem: BPKBarChartKeyItem = {
-        let dataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem()
+        let dataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem(text: dataKeyText)
         dataKeyItem.backgroundColor = BPKColor.primaryColor
         dataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
         dataKeyItem.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +116,7 @@ public final class BPKBarChart: UIView {
     }()
 
     lazy fileprivate var noDataKeyItem: BPKBarChartKeyItem = {
-        let noDataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem()
+        let noDataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem(text: noDataKeyText)
         noDataKeyItem.backgroundColor = BPKColor.skyGrayTint03
         noDataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
         noDataKeyItem.translatesAutoresizingMaskIntoConstraints = false

@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createBarChartDefault {
-    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure"];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure" dataKeyText:@"Price" noDataKeyText:@"No price"];
     view.barChartDataSource = self;
     view.frame = CGRectMake(0, 0, 500, 300);
     view.backgroundColor = BPKColor.hillier;
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createBarChartDefaultSelected {
-    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure"];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithTitle:@"Departure" dataKeyText:@"Price" noDataKeyText:@"No price"];
     view.barChartDataSource = self;
     view.frame = CGRectMake(0, 0, 500, 300);
     view.barChartDataSource = self;

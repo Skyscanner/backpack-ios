@@ -23,12 +23,9 @@ import UIKit
 public final class BPKBarChartKeyItem: UIView {
 
     /// The text to display inside the item
-    public var text: String? {
-        get {
-            return titleLabel.text
-        }
-        set {
-            titleLabel.text = newValue
+    public var text: String {
+        didSet {
+            titleLabel.text = text
         }
     }
 
@@ -42,33 +39,35 @@ public final class BPKBarChartKeyItem: UIView {
         }
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(text: String) {
+        self.text = text
+        super.init(frame: CGRect.zero)
         setupViews()
     }
 
-    required init?(coder: NSCoder) {
-        super .init(coder: coder)
-        setupViews()
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setupViews() {
         clipsToBounds = true
         addSubview(titleLabel)
         layer.cornerRadius = BPKSpacingSm
+        layoutMargins = UIEdgeInsets(top: BPKSpacingSm, left: BPKSpacingSm, bottom: BPKSpacingSm, right: BPKSpacingSm)
 
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingSm),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
-            trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: BPKSpacingSm),
-            bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: BPKSpacingSm)
-
+            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            layoutMarginsGuide.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            layoutMarginsGuide.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         ])
     }
 
     lazy fileprivate var titleLabel: BPKLabel = {
         let titleLabel: BPKLabel = BPKLabel(fontStyle: .textSm)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = text
         return titleLabel
     }()
 }
