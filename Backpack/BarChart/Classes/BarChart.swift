@@ -64,6 +64,8 @@ public final class BPKBarChart: UIView {
     /// Create a new instance of BPKBarChart
     ///
     /// - parameter title: The title for the bar chart
+    /// - parameter dataKeyText: The text to display in the key for items with data
+    /// - parameter noDataKeyText: The text to display in the key for items with no data
     public init(title: String, dataKeyText: String, noDataKeyText: String) {
         self.title = title
         self.dataKeyText = dataKeyText

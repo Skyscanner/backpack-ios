@@ -39,6 +39,8 @@ public final class BPKBarChartKeyItem: UIView {
         }
     }
 
+    /// Initialise a BPKBarChartKeyItem with text
+    /// - parameter text: The text to diplay inside the item
     public init(text: String) {
         self.text = text
         super.init(frame: CGRect.zero)
