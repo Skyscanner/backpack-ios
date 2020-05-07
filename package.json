@@ -13,7 +13,9 @@
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
     "gulp": "gulp",
     "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md' '!gems/**/*.md'",
-    "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!gems/**/*.md'"
+    "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!gems/**/*.md'",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -56,5 +58,9 @@
     "merge2": "^1.3.0",
     "through2": "^3.0.1",
     "tinycolor2": "^1.4.1"
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.319.1"
   }
 }
