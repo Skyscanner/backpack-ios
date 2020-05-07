@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.2.0
+
+**Added:**
+  - Backpack/Icon:
+    - Added new `account--name`, `ticket-flexible` and `hotel-flexible` icons.
+
 # 32.1.0
 
 **Added:**
