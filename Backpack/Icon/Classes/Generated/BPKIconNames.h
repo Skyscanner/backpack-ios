@@ -31,6 +31,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountAdd;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountIdCard;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountName;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountPermit;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountCircle;
@@ -223,6 +225,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameHelp;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHide;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameHotelFlexible;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHotelsDisabledFacilities;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameHotelsJacuzzi;
@@ -414,6 +418,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameThumbsUp;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTickCircle;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTick;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameTicketFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTicket;
 /// :nodoc:
