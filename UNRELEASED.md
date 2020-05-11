@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed an issue where setting an empty date selection after same day selection would crash the calendar.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
