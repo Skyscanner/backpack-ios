@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.2.1
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed an issue where setting an empty date selection after same day selection would crash the calendar.
+
 # 32.2.0
 
 **Added:**
