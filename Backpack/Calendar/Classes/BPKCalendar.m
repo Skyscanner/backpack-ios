@@ -267,9 +267,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         [self.calendarView deselectDate:[date dateForCalendar:self.gregorian]];
     }
 
-    if (selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject]) {
-        self.sameDayRange = YES;
-    }
+    self.sameDayRange = selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject];
 }
 
 #pragma mark - public methods
