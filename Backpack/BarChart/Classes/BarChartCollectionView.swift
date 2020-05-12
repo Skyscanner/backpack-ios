@@ -60,7 +60,7 @@ internal final class BPKBarChartCollectionView: UICollectionView {
                  forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
 
         register(BPKBarChartCollectionViewHeader.self,
-                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                  withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
 
         collectionViewLayout = layout
