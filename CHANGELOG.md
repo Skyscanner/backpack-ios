@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.2.2
+
+**Fixed:**
+ - Aligned swift version to that used in the app.
+
 # 32.2.1
 
 **Fixed:**
