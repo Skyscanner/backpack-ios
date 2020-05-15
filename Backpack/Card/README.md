@@ -21,7 +21,7 @@ card.padded = NO;
 **`BPKDividedCard`**
 
 ```objective-c
-#import <Backpack/DividedCard.h>
+#import <Backpack/Card.h>
 
 BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPrimarySubview:myFirstInnerView secondarySubview:mySecondInnerSubview padded:YES];
 // dividedCard.padded = NO;
