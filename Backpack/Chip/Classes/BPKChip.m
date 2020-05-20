@@ -73,6 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
+    self.style = BPKChipStyleFilled;
     self.shadowEnabled = YES;
 
     self.tintLayer = [CALayer layer];
@@ -105,11 +106,19 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateShadowStyle {
-    if (self.isShadowEnabled) {
-        BPKShadow *shadow = [BPKShadow shadowSm];
-        [shadow applyToLayer:self.layer];
-    } else {
-        self.layer.shadowColor = BPKColor.clear.CGColor;
+    switch (self.style) {
+        case BPKChipStyleFilled:
+            if (self.isShadowEnabled) {
+                BPKShadow *shadow = [BPKShadow shadowSm];
+                [shadow applyToLayer:self.layer];
+            } else {
+                self.layer.shadowColor = BPKColor.clear.CGColor;
+            }
+            break;
+
+        case BPKChipStyleOutline:
+            self.layer.shadowColor = BPKColor.clear.CGColor;
+            break;
     }
 }
 
@@ -176,6 +185,15 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setStyle:(BPKChipStyle)style {
+    if (_style != style) {
+        _style = style;
+
+        [self updateStyle];
+        [self updateShadowStyle];
+    }
+}
+
 #pragma mark - Layout
 
 - (void)setUpConstraints {
@@ -216,12 +234,21 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)defaultUnselectedBackgroundColor {
-    if (self.shadowEnabled) {
-        return BPKColor.backgroundTertiaryColor;
+    switch (self.style) {
+        case BPKChipStyleFilled:
+            if (self.shadowEnabled) {
+                return BPKColor.backgroundTertiaryColor;
+            }
+
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07
+                                              darkVariant:BPKColor.backgroundTertiaryDarkColor];
+            break;
+
+        case BPKChipStyleOutline:
+            return BPKColor.clear;
+            break;
     }
 
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07
-                                      darkVariant:BPKColor.backgroundTertiaryDarkColor];
 }
 
 - (void)updateStyle {
@@ -244,6 +271,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self updateTitle];
     [self updateIcon];
+    [self updateOutline];
 }
 
 - (void)updateIcon {
@@ -262,6 +290,20 @@ NS_ASSUME_NONNULL_BEGIN
     self.accessibilityLabel = self.title;
     self.titleLabel.text = self.title;
     [self.titleLabel setTextColor:self.contentColor];
+}
+
+- (void)updateOutline {
+    switch (self.style) {
+        case BPKChipStyleFilled:
+            self.layer.borderWidth = 0;
+            self.layer.borderColor = nil;
+            break;
+        case BPKChipStyleOutline:
+            self.layer.borderWidth = 1;
+            UIColor *borderColor = self.enabled ? [BPKChip outlineColor] : [BPKChip disabledOutlineColor];
+            self.layer.borderColor = borderColor.CGColor;
+            break;
+    }
 }
 
 - (void)setIconName:(BPKIconName _Nullable)iconName {
@@ -341,6 +383,14 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)disabledContentColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint05];
+}
+
++ (UIColor *)outlineColor {
+    return [BPKColor lineColor];
+}
+
++ (UIColor *)disabledOutlineColor {
     return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint05];
 }
 

@@ -24,6 +24,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * Enum values for specifying chip style
+ */
+typedef NS_ENUM(NSUInteger, BPKChipStyle) {
+    BPKChipStyleFilled = 0,
+    BPKChipStyleOutline = 1,
+};
+
+/**
  * `BPKChip` is a subclass of `UIControl` configured with Skyscanner style properties.
  */
 IB_DESIGNABLE @interface BPKChip : UIControl
@@ -65,7 +73,7 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
 /**
- * Whether the shadow should be shown or not. By default, chips have a shadow.
+ * Whether the shadow should be shown or not. By default, chips have a shadow. Ignored when style is set BPKChipStyleOutline.
  */
 @property(nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
 
@@ -83,6 +91,11 @@ IB_DESIGNABLE @interface BPKChip : UIControl
  * An optional icon
  */
 @property(nullable, nonatomic, copy) BPKIconName iconName;
+
+/**
+ * Style of the chip. Default is BPKChipStyleFilled.
+*/
+@property(nonatomic, assign) BPKChipStyle style;
 
 @end
 

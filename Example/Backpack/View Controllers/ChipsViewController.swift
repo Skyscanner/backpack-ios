@@ -26,6 +26,7 @@ class ChipsViewController: UIViewController {
     var shadow: Bool = true
     var colorUnselectedState: Bool = false
     var backgroundTint: UIColor?
+    var style: BPKChipStyle?
     fileprivate static var chips = [
         (title: "Afghanistan", selected: false, enabled: false, iconName: BPKIconName.award),
         (title: "Belgium", selected: false, enabled: true, iconName: BPKIconName.account),
@@ -121,6 +122,9 @@ extension ChipsViewController: UICollectionViewDelegate {
         }
         if backgroundTint != nil {
             cell.backgroundTint = backgroundTint
+        }
+        if style == style {
+            cell.style = style
         }
         cell.colorUnselectedState = colorUnselectedState
 

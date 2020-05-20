@@ -366,6 +366,42 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (UIView *)createChipOutlineUnselected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.style = BPKChipStyleOutline;
+    bpkChip.selected = NO;
+    [self configureParentView:parentView forChip:bpkChip];
+    return parentView;
+}
+
+- (void)testChipOutlineUnselected {
+    UIView *lightView = [self createChipOutlineUnselected];
+    UIView *darkView = [self createChipOutlineUnselected];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createChipOutlineSelected {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
+    bpkChip.title = @"Test";
+    bpkChip.style = BPKChipStyleOutline;
+    bpkChip.selected = YES;
+    [self configureParentView:parentView forChip:bpkChip];
+    return parentView;
+}
+
+- (void)testChipOutlineSelected {
+    UIView *lightView = [self createChipOutlineSelected];
+    UIView *darkView = [self createChipOutlineSelected];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

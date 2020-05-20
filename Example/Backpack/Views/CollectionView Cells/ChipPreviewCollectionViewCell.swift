@@ -57,6 +57,12 @@ class ChipPreviewCollectionViewCell: UICollectionViewCell {
             chip.title = title
         }
     }
+    var style: BPKChipStyle? {
+        didSet {
+            guard let style = style else { return }
+            chip.style = style
+        }
+    }
 
     private let chip: BPKChip = BPKChip(frame: CGRect.zero)
 
