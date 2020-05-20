@@ -22,6 +22,8 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 - Backpack/Gauntlet:
   - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
+- Backpack/BPKChip:
+  - New `style` prop in BPKChips with filled (default) and outline styles.
 
 **Fixed:**
 
