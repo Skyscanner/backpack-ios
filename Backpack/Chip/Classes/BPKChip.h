@@ -27,7 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
  * Enum values for specifying chip style
  */
 typedef NS_ENUM(NSUInteger, BPKChipStyle) {
+    /**
+     * Chip style with solid color background.
+    */
     BPKChipStyleFilled = 0,
+
+    /**
+     * Chip style with 1pt outline and clear color background.
+    */
     BPKChipStyleOutline = 1,
 };
 

@@ -123,7 +123,7 @@ extension ChipsViewController: UICollectionViewDelegate {
         if backgroundTint != nil {
             cell.backgroundTint = backgroundTint
         }
-        if style == style {
+        if let style = style {
             cell.style = style
         }
         cell.colorUnselectedState = colorUnselectedState
