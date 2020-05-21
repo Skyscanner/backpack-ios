@@ -26,6 +26,7 @@ enum ChipSegueIdentifier: String {
     case withBackgroundColor = "WithBackgroundColor"
     case backgroundColorNoShadow = "BackgroundColorNoShadow"
     case backgroundColorUnselectedNoShadow = "BackgroundColorUnselectedNoShadow"
+    case outline = "Outline"
 }
 
 class ChipSelectorViewController: UITableViewController {
@@ -57,6 +58,9 @@ class ChipSelectorViewController: UITableViewController {
                 target.shadow = false
                 target.colorUnselectedState = true
                 target.backgroundTint = BPKColor.panjin
+            case .outline:
+                target.title = "Outline"
+                target.style = .outline
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

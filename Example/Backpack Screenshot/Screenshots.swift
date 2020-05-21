@@ -176,6 +176,9 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Background color unselected no shadow"].tap()
         saveScreenshot(component: "chip", scenario: "background-color", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["Outline"].tap()
+        saveScreenshot(component: "chip", scenario: "outline", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Dialogs"].tap()
