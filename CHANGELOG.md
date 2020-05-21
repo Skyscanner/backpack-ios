@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.3.0
+
+**Added:**
+
+- Backpack/Chip:
+  - New `style` property to `BPKChip` which can be either filled (default) or outline.
+
 # 32.2.2
 
 **Fixed:**

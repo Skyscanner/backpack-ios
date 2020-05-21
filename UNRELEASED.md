@@ -16,16 +16,13 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 - Backpack/Icon:
   - Replaced `charmeleon` icon with new `charizard` icon. To upgrade, replace your references to `charmeleon` with `charizard`.
-  - Upgraded `fire` dependency to `3.0.0`.
 
 **Added:**
 
-- Backpack/Gauntlet:
+- Backpack/Calendar:
   - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
-- Backpack/BPKChip:
-  - New `style` prop in BPKChips with filled (default) and outline styles.
 
 **Fixed:**
 
-- Backpack/Horcrux:
-  - Fixed issue where `BpkHorcrux` would occasionally possess the living.
+- Backpack/Dialog:
+  - Fixed an issue that allowed a `Horcrux` to be contained in a `BPKDialog`.
