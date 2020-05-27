@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Fixed:**
+- Backpack/Color:
+  - Colours whose values are already defined now reference that colour, instead of redefining it.
+  - Dynamic colours are now defined using pre-defined Backpack colour properties.
+
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.

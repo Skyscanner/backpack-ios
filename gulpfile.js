@@ -218,6 +218,30 @@ const parseTokens = tokensData => {
     })
     .value();
 
+  colors.forEach(({ value, name, hex, type, ...rest }) => {
+    const matchingValueColors = colors.filter(
+      c => c.type === 'valueColor' && c.hex === hex && c.name !== name,
+    );
+    if (matchingValueColors.length > 0) {
+      colors.push({
+        value,
+        name,
+        hex,
+        reference: matchingValueColors[0].name,
+        type: 'referenceColor',
+        ...rest,
+      });
+    } else {
+      colors.push({
+        value,
+        name,
+        hex,
+        type: 'valueColor',
+        ...rest,
+      });
+    }
+  });
+
   const durations = _.chain(tokensData.properties)
     .filter(({ type }) => type === 'duration')
     .map(({ value, name, ...rest }) => ({
