@@ -115,7 +115,7 @@ task :take_screenshots do
   FileUtils.rm_rf('screenshots')
 
   sh "xcrun simctl boot \"#{TEST_DEVICE_NAME}\""
-  sh "xcrun simctl status_bar \"#{TEST_DEVICE_NAME}\" override --time \"0941\" --wifiBars 3 --cellularBars 4 --batteryLevel 100"
+  sh "xcrun simctl status_bar \"#{TEST_DEVICE_NAME}\" override --time \"09:41\" --wifiBars 3 --cellularBars 4 --batteryLevel 100 --operatorName Backpack"
   sh "(cd Example && fastlane snapshot)"
   FileUtils.mv(Dir.glob('screenshots/en-US/*'), 'screenshots/')
 end
