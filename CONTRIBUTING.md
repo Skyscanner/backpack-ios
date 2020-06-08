@@ -20,6 +20,8 @@ With `rbenv` use `rbenv install` to install the project's version of Ruby. For `
 
 Use the most recent stable version of Xcode, however the project should work with old versions of the same major.
 
+Open `Example/Backpack.xcworkspace` to view the development environment, which consists of the Backpack pod plus an example app that showcases each component.
+
 ## Setup
 
 Given that you have a compatible environment as stated above you can now setup the project.
