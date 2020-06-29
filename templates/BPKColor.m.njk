@@ -25,9 +25,14 @@
 @end
 
 @implementation BPKColor
-{% for c in color %}
+{% for c in valueColor %}
 + (UIColor *){{c.name}} {
     return [UIColor colorWithRed:{{c.value.r}} green:{{c.value.g}} blue:{{c.value.b}} alpha:{{c.value.a}}];
+}
+{% endfor %}
+{% for c in referenceColor %}
++ (UIColor *){{c.name}} {
+    return self.class.{{c.reference}};
 }
 {% endfor %}
 {% for c in dynamicColor %}
