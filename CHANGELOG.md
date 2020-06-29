@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 32.3.1
+
+**Fixed:**
+- Backpack/Color:
+  - Colours whose values are already defined now reference that colour, instead of redefining it.
+  - Dynamic colours are now defined using pre-defined Backpack colour properties.
+
 # 32.3.0
 
 **Added:**
