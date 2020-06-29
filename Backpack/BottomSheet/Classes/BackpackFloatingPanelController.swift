@@ -138,10 +138,6 @@ private extension BPKFloatingPanelController {
 
 private extension BPKFloatingPanelController {
     var safeAreaBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaLayoutGuide.bottomAnchor
-        } else {
-            return view.bottomAnchor
-        }
+        return view.safeAreaLayoutGuide.bottomAnchor
     }
 }
