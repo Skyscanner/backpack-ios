@@ -18,8 +18,6 @@ matrix:
       env: BUILD_SDK=iphonesimulator13.2 DESTINATION="OS=13.3,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
     - osx_image: xcode11.3
       env: BUILD_SDK=iphonesimulator13.2 DESTINATION="OS=12.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
-    - osx_image: xcode11.3
-      env: BUILD_SDK=iphonesimulator13.2 DESTINATION="OS=11.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
   - brew install clang-format
