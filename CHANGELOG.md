@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 33.0.0
+
+**Breaking:**
+  - The minimum deployment target is now iOS 12.0 (previously iOS 11.0).
+
 # 32.3.1
 
 **Fixed:**
