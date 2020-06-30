@@ -14,9 +14,9 @@ cache:
     - node_modules
 matrix:
   include:
-    - osx_image: xcode11.3
+    - osx_image: xcode11.5
       env: BUILD_SDK=iphonesimulator13.5 DESTINATION="OS=13.5,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
-    - osx_image: xcode11.3
+    - osx_image: xcode11.5
       env: BUILD_SDK=iphonesimulator13.5 DESTINATION="OS=12.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
