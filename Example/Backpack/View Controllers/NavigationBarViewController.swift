@@ -72,7 +72,6 @@ class NavigationBarViewController: UIViewController {
         #endif
     }
 
-    @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         navigationBar.largeTitleLayoutMargins = tableView.layoutMargins
