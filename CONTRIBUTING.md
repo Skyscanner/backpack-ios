@@ -43,7 +43,7 @@ If you don't work for Skyscanner don't worry - the Example app will still work j
 
 ## Testing
 
-Tests can be ran as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.5 to match what is used on CI.
+Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.5 to match what is used on CI.
 
 ### Snapshot testing
 
