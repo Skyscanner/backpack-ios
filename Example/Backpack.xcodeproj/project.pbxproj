@@ -983,7 +983,7 @@
 			attributes = {
 				CLASSPREFIX = BPK;
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
@@ -1012,10 +1012,9 @@
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "Backpack" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -1336,7 +1335,6 @@
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
 				D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */,
-				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D22EB158239EA78F0090C65E /* BPKBorderSizeTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
