@@ -18,45 +18,105 @@
  */
 #import <Foundation/Foundation.h>
 
+/**
+ * These constants represent the font style.
+ */
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 
-    /// :nodoc:
+
+    /**
+     * Represents font size 16 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextBase = 0,
-    /// :nodoc:
+
+    /**
+     * Represents font size 16 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextBaseEmphasized = 1,
-    /// :nodoc:
+
+    /**
+     * Represents font size 10 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextCaps = 11,
-    /// :nodoc:
+
+    /**
+     * Represents font size 10 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextCapsEmphasized = 12,
-    /// :nodoc:
+
+    /**
+     * Represents font size 20 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextLg = 2,
-    /// :nodoc:
+
+    /**
+     * Represents font size 20 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextLgEmphasized = 3,
-    /// :nodoc:
+
+    /**
+     * Represents font size 14 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextSm = 4,
-    /// :nodoc:
+
+    /**
+     * Represents font size 14 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextSmEmphasized = 5,
-    /// :nodoc:
+
+    /**
+     * Represents font size 24 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextXl = 6,
-    /// :nodoc:
+
+    /**
+     * Represents font size 24 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextXlEmphasized = 7,
-    /// :nodoc:
+
+    /**
+     * Represents font size 24 with weight UIFontWeightHeavy.
+     */
     BPKFontStyleTextXlHeavy = 10,
-    /// :nodoc:
+
+    /**
+     * Represents font size 12 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextXs = 8,
-    /// :nodoc:
+
+    /**
+     * Represents font size 12 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextXsEmphasized = 9,
-    /// :nodoc:
+
+    /**
+     * Represents font size 30 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextXxl = 13,
-    /// :nodoc:
+
+    /**
+     * Represents font size 30 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextXxlEmphasized = 14,
-    /// :nodoc:
+
+    /**
+     * Represents font size 30 with weight UIFontWeightHeavy.
+     */
     BPKFontStyleTextXxlHeavy = 15,
-    /// :nodoc:
+
+    /**
+     * Represents font size 36 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextXxxl = 16,
-    /// :nodoc:
+
+    /**
+     * Represents font size 36 with weight UIFontWeightBold.
+     */
     BPKFontStyleTextXxxlEmphasized = 17,
-    /// :nodoc:
+
+    /**
+     * Represents font size 36 with weight UIFontWeightHeavy.
+     */
     BPKFontStyleTextXxxlHeavy = 18,
 };
 

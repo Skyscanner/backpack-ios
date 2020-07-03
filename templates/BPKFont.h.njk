@@ -18,9 +18,15 @@
  */
 #import <Foundation/Foundation.h>
 
+/**
+ * These constants represent the font style.
+ */
 typedef NS_ENUM(NSUInteger, BPKFontStyle) {
 {% for f in font %}
-    /// :nodoc:
+
+    /**
+     * Represents font size {{f.size}} with weight {{f.weight}}.
+     */
     {{f.enumName}} = {{f.enumValue}},{% endfor %}
 };
 
