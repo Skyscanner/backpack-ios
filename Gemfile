@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem "danger"
 gem 'cocoapods', '~> 1.9.3'
 gem 'fastlane', '~> 2.149.1'
-gem 'jazzy', '~> 0.13.4'
+gem 'jazzy', '~> 0.13.5'
 gem 'rake'
 gem 'rubocop', '~> 0.86.0'
 gem 'semver2'
