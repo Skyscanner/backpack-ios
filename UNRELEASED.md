@@ -1,8 +1,14 @@
 # Unreleased
+
 > Place your changes below this line.
 
+**Breaking:**
+
+- Backpack/Icon:
+  - We've adopted our new icon set! Some icons are now only available at small or large size, whilst most are available at both. Check our [design docs](https://backpack.github.io/components/icon?platform=design) to see which are available.
 
 ## How to write a good changelog entry
+
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
 2. Add the package name.
 3. Detail the changes. Write with the consumer in mind, what do they need to know. If it's patch, tell them what's changed. If it's minor, tell them what you've added and what it does for them. If it's breaking, tell them what they need to change. Link to examples on the [Backpack docs site](backpack.github.io) where possible.

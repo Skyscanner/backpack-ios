@@ -4,6 +4,8 @@
 
 `BPKIcon` contains the Backpack Icon component. It supports rendering any Backpack icon to `UIImage`s using a caching mechanism to reduce performance impact. A UI component `IconView`/`BPKIconView` is also available for simple icon case where an icon is to be displayed with a tint color.
 
+\*\*Note: Some icons are only available in small or large, whilst others are available at both sizes. Check our [design docs](https://backpack.github.io/components/icon?platform=design) to see which are available.\*\*
+
 ### Objective-C
 
 #### Using `BPKIconView`

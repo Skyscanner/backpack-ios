@@ -460,6 +460,7 @@ gulp.task('generate-icon-names', done => {
   const content = JSON.parse(
     fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
   );
+  const entries = Object.entries(content).filter(x => !x[0].endsWith('-sm'));
   const codify = name =>
     name
       .replace('--', '-')
@@ -468,7 +469,7 @@ gulp.task('generate-icon-names', done => {
       .join('')
       .replace('Ios', 'iOS');
   const templateData = Object.assign(
-    ...Object.entries(content).map(([k]) => ({ [k]: codify(k) })),
+    ...entries.map(([k]) => ({ [k]: codify(k) })),
   );
 
   gulp
