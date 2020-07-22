@@ -29,6 +29,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameAccessibility;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountAdd;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountFemale;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountIdCard;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAccountName;
@@ -85,6 +87,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameBaggage;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBar;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameBeach;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBeer;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameBreakfastCross;
@@ -104,6 +108,10 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameCallBack;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCamera;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCamperVan;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCarWash;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCarsFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCars;
 /// :nodoc:
@@ -127,11 +135,19 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameCityCenter;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCity;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCleanPolicy;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameClean;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCleaningMedical;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCloakroom;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCloseCircle;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameClose;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCollapse;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameContentCopy;
 /// :nodoc:
@@ -165,19 +181,31 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameEcoLeaf;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameEdit;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameEducation;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameElectric;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameEndCall;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameEstimated;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameExclamationCircle;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameExclamation;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameExpand;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameExplore;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFaceBlank;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFaceHappy;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFaceSad;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFaceId;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFaceMask;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFamily;
 /// :nodoc:
@@ -187,9 +215,13 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameFastTrain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFilter;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFingerprint;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlag;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlask;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameFlightFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameFlightLanding;
 /// :nodoc:
@@ -275,6 +307,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameLocation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameLock;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameLogout;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameLongArrowDown;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameLongArrowLeft;
@@ -315,14 +349,6 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameMusic;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMute;
 /// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidBack;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidClose;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidForward;
-/// :nodoc:
-FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeiOSClose;
-/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNavigation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNewWindow;
@@ -343,6 +369,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameParking;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePassport;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNamePause;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePaymentCard;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePetrol;
@@ -355,11 +383,15 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNamePin;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePlaneSeat;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNamePlay;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePlus;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePolicy;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePowerplug;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNamePpe;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePriceAlerts;
 /// :nodoc:
@@ -391,7 +423,13 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameShare;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSingleBooking;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSocialDistancing;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSocialLike;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSortDown;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSortUp;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSort;
 /// :nodoc:
@@ -408,6 +446,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameStops;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSwapHorizontal;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSwapVertical;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSwap;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTaxi;
 /// :nodoc:
@@ -455,7 +495,27 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameUseLocation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameView;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameVirus;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWallet;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherClear;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherCloudy;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherFog;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherPartlyCloudy;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherRain;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherSnow;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherThunderstorm;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherTornado;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameWeatherWind;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameWeather;
 /// :nodoc:

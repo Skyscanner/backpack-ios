@@ -21,8 +21,14 @@ import Backpack
 
 class IconsViewController: UICollectionViewController {
 
-    fileprivate static var headingText = "All icons"
-    fileprivate static var icons = Array(BPKIcon.iconMapping!.keys).sorted { $0.rawValue < $1.rawValue }
+    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
+    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
+    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
+
+    fileprivate static var icons = [
+        (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
+        (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
+    ]
 
     fileprivate static let cellIdentifier = "IconsPreviewCollectionViewCell"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
@@ -62,11 +68,11 @@ class IconsViewController: UICollectionViewController {
 
 extension IconsViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return IconsViewController.icons.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return IconsViewController.icons.count
+        return IconsViewController.icons[section].icons.count
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -77,8 +83,20 @@ extension IconsViewController {
                 fatalError("No cell registered for reuse with identifier \(IconsViewController.cellIdentifier)")
         }
 
-        let icon = IconsViewController.icons[indexPath.row]
-        cell.icon = icon
+        let iconSet = IconsViewController.icons[indexPath.section]
+
+        // Whether we set `size` or `icon` first, we will potentially be trying to use an icon that doesn't exist.
+        // By setting the icon to `accessibility`, then setting the size, and then setting the iconName, we should
+        // never be trying to use an icon at an unavailable size.
+        cell.icon = BPKIconName.accessibility
+
+        cell.size = iconSet.size
+        var icon = iconSet.icons[indexPath.row]
+
+        if icon.hasSuffix("-sm") {
+            icon.removeLast(3)
+        }
+        cell.icon = BPKIconName(icon)
 
         return cell
     }
@@ -101,7 +119,7 @@ extension IconsViewController {
             ) as? PreviewCollectionViewHeader else {
                     fatalError("Icon View Headers are expected to be of type ColorPreviewCollectionViewHeader")
             }
-            headerView.name = IconsViewController.headingText
+            headerView.name = IconsViewController.icons[indexPath.section].heading
 
             return headerView
         }
@@ -114,7 +132,7 @@ extension IconsViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         return PreviewCollectionViewHeader.referenceSize(
-            collectionView: collectionView, text: IconsViewController.headingText
+            collectionView: collectionView, text: IconsViewController.icons[section].heading
         )
     }
 }

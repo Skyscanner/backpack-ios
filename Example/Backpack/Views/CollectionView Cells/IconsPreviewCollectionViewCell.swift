@@ -21,6 +21,12 @@ import Backpack
 
 class IconsPreviewCollectionViewCell: UICollectionViewCell {
 
+    var size: BPKIconSize? {
+        didSet {
+            imageView.size = size ?? BPKIconSize.large
+        }
+    }
+
     var icon: BPKIconName? {
         didSet {
             imageView.iconName = icon

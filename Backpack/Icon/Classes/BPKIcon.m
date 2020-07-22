@@ -98,10 +98,8 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     UIGraphicsBeginImageContextWithOptions(iconSize, NO, 0.0);
 
-    if (self.iconMapping) {
-        NSAssert([self.iconMapping objectForKey:name], @"Unknown icon `%@` does not correspond to a known icon", name);
-    }
-    NSString *iconCodepoint = [self stringForUnicodeCodepoint:[self.iconMapping objectForKey:name]];
+    NSString *codepoint = [self codepointForIcon:name size:size];
+    NSString *iconCodepoint = [self stringForUnicodeCodepoint:codepoint];
 
     UIFont *font = [UIFont fontWithName:BPKIconFontName size:iconSize.height];
     NSAssert(font, @"`BpkIcon` was not correctly registered.");
@@ -123,6 +121,19 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     [self.imageCache setObject:icon forKey:cacheKey];
 
     return icon;
+}
+
++(NSString *)codepointForIcon:(NSString *)name size:(BPKIconSize)size {
+    NSString *lookupKey = name;
+    if(size == BPKIconSizeSmall) {
+        lookupKey = [NSString stringWithFormat:@"%@%@", name, @"-sm"];
+    }
+
+    if (self.iconMapping) {
+        NSAssert([self.iconMapping objectForKey:lookupKey], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", name);
+    }
+
+    return [self.iconMapping objectForKey:lookupKey];
 }
 
 #pragma mark - Private
