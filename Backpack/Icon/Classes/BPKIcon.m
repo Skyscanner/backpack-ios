@@ -130,7 +130,7 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     }
 
     if (self.iconMapping) {
-        NSAssert([self.iconMapping objectForKey:lookupKey], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", lookupKey);
+        NSAssert([self.iconMapping objectForKey:lookupKey], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", name);
     }
 
     return [self.iconMapping objectForKey:lookupKey];
