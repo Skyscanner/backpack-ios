@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.0.0
+
+**Breaking:**
+
+- Backpack/Icon:
+  - We've adopted our new icon set! Some icons are now only available at small or large size, whilst most are available at both. Check our [design docs](https://backpack.github.io/components/icon?platform=design) to see which are available.
+
 # 33.0.0
 
 **Breaking:**
