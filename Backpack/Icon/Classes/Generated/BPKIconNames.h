@@ -349,6 +349,14 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameMusic;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameMute;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidBack;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidClose;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeAndroidForward;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameNativeiOSClose;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNavigation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameNewWindow;
@@ -435,9 +443,15 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameSort;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSpeaker;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalfXl;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarHalf;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutlineXl;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStarOutline;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameStarXl;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameStar;
 /// :nodoc:
