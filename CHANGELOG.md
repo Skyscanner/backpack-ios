@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.0.1
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Reinstated some icons that were accidentally removed.
+
 # 34.0.0
 
 **Breaking:**
