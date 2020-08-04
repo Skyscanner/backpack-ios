@@ -297,14 +297,14 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
     view.backgroundColor = BPKColor.skyGray;
-    
+
     return view;
 }
 
 - (void)testWithAlternateAppearance {
     UIView *lightView = [self createWithAlternateAppearance];
     UIView *darkView = [self createWithAlternateAppearance];
-    
+
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }

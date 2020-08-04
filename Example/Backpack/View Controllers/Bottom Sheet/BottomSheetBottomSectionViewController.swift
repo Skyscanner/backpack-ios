@@ -26,19 +26,19 @@ final class BottomSheetBottomSectionViewController: UIViewController {
             updateButtonText()
         }
     }
-    
+
     var buttonClickedClosure: (() -> Void)?
-    
+
     @IBOutlet private var button: BPKButton? {
         didSet {
             updateButtonText()
         }
     }
-    
+
     @IBAction func buttonClicked(_ sender: Any) {
         buttonClickedClosure?()
     }
-    
+
     private func updateButtonText() {
         button?.title = buttonText
     }

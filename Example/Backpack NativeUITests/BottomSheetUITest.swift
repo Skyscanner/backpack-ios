@@ -27,11 +27,10 @@ class BottomSheetUITest: BackpackUITestCase {
             tablesQuery.staticTexts["Bottom Sheet presenting Bottom Sheet"].tap()
             app.buttons["Next step"].tap()
         }
-        
+
         XCTContext.runActivity(named: "Second Bottom Sheet") { _ in
             let sheet = app.otherElements.matching(identifier: "SheetPresentingSheet.SecondSheet.view").firstMatch
             _ = sheet.waitForExistence(timeout: 10)
         }
     }
-
 }

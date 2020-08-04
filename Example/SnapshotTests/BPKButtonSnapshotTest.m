@@ -704,7 +704,7 @@ NS_ASSUME_NONNULL_BEGIN
     button.destructiveBorderColor = UIColor.greenColor;
     button.destructiveContentColor = UIColor.blueColor;
     button.destructiveBackgroundColor = UIColor.orangeColor;
-    button.linkContentColor = UIColor.purpleColor;    
+    button.linkContentColor = UIColor.purpleColor;
 }
 
 @end

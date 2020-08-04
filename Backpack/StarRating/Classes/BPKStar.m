@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKStar ()
 
 @property(nonatomic) BPKIconView *starView;
-@property(nonatomic) BPKIconView *halfStarView;
 
 /**
  * Base color of the star when it's empty, its default value is BPKColor.skyGrayTint06. Setting updates
@@ -75,27 +74,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithSize:(BPKStarSize)size {
 
-    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStar size:BPKIconSizeSmall];
+    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarOutline size:BPKIconSizeSmall];
     self.starView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.starView.flipsForRightToLeft = YES;
     [self addSubview:self.starView];
-
-    self.halfStarView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarHalf size:BPKIconSizeSmall];
-    self.halfStarView.flipsForRightToLeft = YES;
-    self.halfStarView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.halfStarView];
 
     [NSLayoutConstraint activateConstraints:@[
         [self.leadingAnchor constraintEqualToAnchor:self.starView.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor],
         [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.starView.bottomAnchor]
-    ]];
-
-    [NSLayoutConstraint activateConstraints:@[
-        [self.leadingAnchor constraintEqualToAnchor:self.halfStarView.leadingAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.halfStarView.trailingAnchor],
-        [self.topAnchor constraintEqualToAnchor:self.halfStarView.topAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.halfStarView.bottomAnchor]
     ]];
 
     _size = size;
@@ -171,16 +159,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSize {
     self.starView.size = [self iconSizeForStarSize:self.size];
-    self.halfStarView.size = [self iconSizeForStarSize:self.size];
 
     [self setNeedsLayout];
     [self updateStarAppearance];
 }
 
 - (void)updateStarAppearance {
-    self.starView.tintColor = self.state == BPKStarStateFull ? self.currentStarFilledColor : self.currentStarColor;
-    self.halfStarView.tintColor = self.currentStarFilledColor;
-    self.halfStarView.hidden = self.state != BPKStarStateHalf;
+    switch (self.state) {
+        case BPKStarStateDefault:
+            self.starView.iconName = BPKIconNameStarOutline;
+            break;
+        case BPKStarStateHalf:
+            self.starView.iconName = BPKIconNameStarHalf;
+            break;
+        case BPKStarStateFull:
+            self.starView.iconName = BPKIconNameStar;
+            break;
+    }
+
+    self.starView.tintColor = self.state == BPKStarStateDefault ? self.currentStarColor : self.currentStarFilledColor;
 }
 
 + (UIColor *)defaultStarColor {

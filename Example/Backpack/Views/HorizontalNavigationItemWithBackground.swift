@@ -30,7 +30,7 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
     }
 
     public var selectedColor: UIColor? = BPKColor.primaryColor
-    
+
     public var appearance: BPKHorizontalNavigationAppearance = .normal
 
     // MARK: Implementaiton
