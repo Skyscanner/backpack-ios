@@ -203,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setAppearance:(BPKHorizontalNavigationAppearance)appearance {
     if (_appearance != appearance) {
         _appearance = appearance;
-        
+
         [self updateItemsAppearance];
     }
 }

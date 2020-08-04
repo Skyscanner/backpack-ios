@@ -22,7 +22,7 @@ import FloatingPanel
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BPKBottomSheet: NSObject {
-    
+
     private enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
@@ -57,7 +57,7 @@ public final class BPKBottomSheet: NSObject {
             floatingPanelController.onDismissed = newValue
         }
     }
-    
+
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         let panel = BPKFloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
@@ -66,9 +66,9 @@ public final class BPKBottomSheet: NSObject {
         panel.surfaceView.grabberHandleHeight = BPKSpacingSm
         panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
         panel.surfaceView.grabberHandle.barColor = BPKColor.skyGrayTint06
-        
+
         panel.isRemovalInteractionEnabled = true
-        
+
         // We do this to hold a strong reference to `BPKBottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
@@ -77,9 +77,9 @@ public final class BPKBottomSheet: NSObject {
 
         return panel
     }()
-    
+
     private var scrollView: UIScrollView?
-    
+
     /// Instantiates a `BPKBottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
     /// Optionally, an always visible bottom section can be added.
     ///
@@ -97,14 +97,14 @@ public final class BPKBottomSheet: NSObject {
                 scrollViewToTrack: UIScrollView,
                 bottomSectionViewController: UIViewController? = nil) {
         super.init()
-        
+
         self.scrollView = scrollViewToTrack
-        
+
         floatingPanelController.contentViewController = contentViewController
         floatingPanelController.track(scrollView: scrollViewToTrack)
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
     }
-    
+
     /// Instantiates a `BPKBottomSheet` with a non-scrollable content. Height of the bottom sheet will be
     /// calculated based on the content.
     /// If the content height might not fit the screen, then `init(contentViewController: _, scrollViewToTrack: _)`
@@ -126,7 +126,7 @@ public final class BPKBottomSheet: NSObject {
     public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
-    
+
     /// This method allows presenting a new bottom sheet on top of a previously existing one.
     /// The previous bottom sheet is automatically moved to the initial position, its scroll view content
     /// inset is reset, and the new bottom sheet won't add any more alpha to the backdrop view.
@@ -139,15 +139,15 @@ public final class BPKBottomSheet: NSObject {
         if let scrollView = floatingPanelController.scrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
-        
+
         // It's important to set `backgroundColor` to clear instead of setting alpha to 0,
         // in order for the view to keep receiving touch events
         bottomSheet.floatingPanelController.backdropView.backgroundColor = .clear
-        
+
         floatingPanelController.move(to: .half, animated: true)
         bottomSheet.present(in: floatingPanelController, animated: animated, completion: completion)
     }
-    
+
     /// Forces the bottom sheet layout to be updated.
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
@@ -183,7 +183,7 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
             }
         }
     }
-    
+
     final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
         func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
             return Constants.backdropAlpha

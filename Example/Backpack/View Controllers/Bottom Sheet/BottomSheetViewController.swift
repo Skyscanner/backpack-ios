@@ -26,7 +26,7 @@ final class BottomSheetViewController: UITableViewController {
     @IBOutlet var sheetPresentingSheet: UITableViewCell!
     @IBOutlet var nonScrollableContentBottomSheet: UITableViewCell!
     @IBOutlet var resizableContentBottomSheet: UITableViewCell!
-    
+
 }
 
 // MARK: - UITableViewDelegate
@@ -66,7 +66,7 @@ extension BottomSheetViewController {
             let sheet = BPKBottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
                                     bottomSectionViewController: wrappedBottomSection)
-            
+
             bottomSection.buttonText = "Dismiss"
 
             bottomSection.buttonClickedClosure = {
@@ -89,37 +89,37 @@ extension BottomSheetViewController {
             let sheet = BPKBottomSheet(contentViewController: wrappedContent,
                                     scrollViewToTrack: content.tableView,
                                     bottomSectionViewController: wrappedBottomSection)
-            
+
             bottomSection.buttonText = "Next step"
 
             bottomSection.buttonClickedClosure = {
                 guard let content = BottomSheetContentViewController.make() else { return }
                 content.view.accessibilityIdentifier = "SheetPresentingSheet.SecondSheet.view"
-                
+
                 let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
                 let nextSheet = BPKBottomSheet(contentViewController: wrappedContent)
                 sheet.present(nextSheet, animated: true)
             }
-            
+
             sheet.present(in: self, animated: true, completion: nil)
         case nonScrollableContentBottomSheet:
             guard let content = BottomSheetContentViewController.make() else { return }
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-            
+
             let sheet = BPKBottomSheet(contentViewController: wrappedContent)
             sheet.present(in: self, animated: true)
         case resizableContentBottomSheet:
             guard let content = BottomSheetResizableContentViewController.make() else { return }
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-            
+
             let sheet = BPKBottomSheet(contentViewController: wrappedContent)
-            
+
             content.contentDidUpdateConstraints = {
                 UIView.animate(withDuration: 0.3) {
                     sheet.updateLayout()
                 }
             }
-            
+
             sheet.present(in: self, animated: true)
         default: break
         }

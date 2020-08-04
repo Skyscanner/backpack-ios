@@ -21,25 +21,25 @@ import Backpack
 
 // swiftlint:disable:next type_name
 final class BottomSheetResizableContentViewController: UIViewController {
-    
+
     var contentDidUpdateConstraints: (() -> Void)?
-    
+
     private var state: State = .collapsed {
         didSet {
             updateUI()
         }
     }
-    
+
     @IBOutlet private var heightConstraint: NSLayoutConstraint!
     @IBOutlet private var button: BPKButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         heightConstraint.priority = .defaultHigh - 1
         updateUI()
     }
-    
+
     private func updateUI() {
         switch state {
         case .collapsed:
@@ -49,10 +49,10 @@ final class BottomSheetResizableContentViewController: UIViewController {
             button.title = "Set content height to 200"
             heightConstraint.constant = 400
         }
-        
+
         contentDidUpdateConstraints?()
     }
-    
+
     @IBAction private func didClickButton(_ sender: Any) {
         switch state {
         case .collapsed:

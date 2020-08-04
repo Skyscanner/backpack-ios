@@ -82,7 +82,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         if wide {
             horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         }
-        
+
         horizontalNav.appearance = appearance
         if case .alternate = appearance {
             horizontalNav.backgroundColor = BPKColor.skyGray

@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
-    
+
     XCTAssertEqual(horizontalNavigation.appearance, BPKHorizontalNavigationAppearanceNormal);
 }
 
@@ -123,9 +123,9 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
-    
+
     horizontalNavigation.appearance = BPKHorizontalNavigationAppearanceAlternate;
-    
+
     XCTAssertEqual(horizontalNavigation.appearance, BPKHorizontalNavigationAppearanceAlternate);
 }
 
