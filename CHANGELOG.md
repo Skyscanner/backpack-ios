@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.0.2
+
+**Fixed:**
+
+- Backpack/StarRating:
+  - Adopted a new design that uses the latest icon set from Backpack.
+
 # 34.0.1
 
 **Fixed:**
