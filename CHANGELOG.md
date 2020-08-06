@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.0.3
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Fixed an issue with the display of the `filter` icon. 
+
 # 34.0.2
 
 **Fixed:**
