@@ -40,7 +40,7 @@ class FlareViewViewController: UIViewController {
 
         let flareViewCenterYConstraint = flareView.centerYAnchor.constraint(
             equalTo: self.view.centerYAnchor,
-            constant: 0
+            constant: BPKSpacingNone
         )
 
         if animated {

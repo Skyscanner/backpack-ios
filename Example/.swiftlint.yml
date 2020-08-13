@@ -17,3 +17,62 @@ excluded:
 included:
   - ../Backpack
   - ./
+
+custom_rules:
+  bpk_button:
+    name: "Prefer BPKButton to UIButton"
+    regex: "(UIButton)\\("
+    message: "Use BPKButton instead of UIButton."
+    severity: warning # default is warning
+    # Try it out at https://regex101.com/r/ZPASYH/1
+
+  bpk_label:
+    name: "Prefer BPKLabel to UILabel"
+    regex: "(UILabel)\\("
+    message: "Use BPKLabel instead of UILabel."
+    severity: warning # default is warning
+
+  bpk_progress:
+    name: "Prefer BPKProgressBar to UIProgressView"
+    regex: "(UIProgressView)\\("
+    message: "Use BPKProgressBar instead of UIProgressView."
+    severity: warning # default is warning
+
+  bpk_spinner:
+    name: "Prefer BPKSpinner to UIActivityIndicatorView"
+    regex: "(UIActivityIndicatorView)\\("
+    message: "Use BPKSpinner instead of UIActivityIndicatorView."
+    severity: warning # default is warning
+
+  bpk_switch:
+    name: "Prefer BPKSwitch to UISwitch"
+    regex: "(UISwitch)\\("
+    message: "Use BPKSwitch instead of UISwitch."
+    severity: warning # default is warning
+
+  bpk_text_field:
+    name: "Prefer BPKTextField to UITextField"
+    regex: "(UITextField)\\("
+    message: "Use BPKTextField instead of UITextField."
+    severity: warning # default is warning
+
+  bpk_text_view:
+    name: "Prefer BPKTextView to UITextView"
+    regex: "(UITextView)\\("
+    message: "Use BPKTextView instead of UITextView."
+    severity: warning # default is warning
+    # Try it out at https://regex101.com/r/F8sAgX/1
+
+  bpk_use_size_token:
+    name: "Prefer Backpack tokens to hard-coded numbers"
+    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*([0-9])+|constrain.*?constant\\s*:\\s*([0-9])+\\s*\\))"
+    message: "Use a size or radius token from Backpack instead of a hard-coded number."
+    severity: warning # default is warning
+    # Try it out at https://regex101.com/r/a2znCq/6
+
+  bpk_use_colour_token:
+    name: "Prefer Backpack colour tokens to UIColors"
+    regex: "(?:Color|color)\\s+=[A-Za-z\\(\\)\\ \\.\\:]+(UIColor)"
+    message: "Use a colour token from Backpack instead of a UIColor."
+    severity: warning # default is warning
+    # Try it out at https://regex101.com/r/3NOwYr/7
