@@ -35,7 +35,8 @@ class ToastUITest: BackpackUITestCase {
             navigateAndShow()
         }
 
-        XCTAssertTrue(toastView.exists, "The toast should have been shown")
+        let exists = toastView.waitForExistence(timeout: 5)
+        XCTAssertTrue(exists, "The toast should have been shown")
     }
 
     func testTapShowButtonAndWaitToHideToast() {

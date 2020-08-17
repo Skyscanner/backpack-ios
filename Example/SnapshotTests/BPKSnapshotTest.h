@@ -20,10 +20,10 @@
         NSString *deviceName = [[UIDevice currentDevice] name];                                                        \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];               \
         BOOL validDevice = [deviceName isEqual:@"iPhone 8"];                                                           \
-        if (deviceOSVersion.majorVersion != 13.0) {                                                                    \
+        if (deviceOSVersion.majorVersion != 14.0) {                                                                    \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
-        if (deviceOSVersion.minorVersion != 7.0) {                                                                     \
+        if (deviceOSVersion.minorVersion != 0.0) {                                                                     \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
                                                                                                                        \
