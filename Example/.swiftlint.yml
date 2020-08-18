@@ -19,60 +19,69 @@ included:
   - ./
 
 custom_rules:
+  # These custom rules came from ttps://github.com/Skyscanner/backpack-swiftlint-rules/blob/main/src/BackpackSwiftLintRules.yml
+  # They will need to be updated manually when changes are made.
+
+  # Component rules
+
   bpk_button:
-    name: "Prefer BPKButton to UIButton"
+    name: 'Prefer BPKButton to UIButton'
     regex: "(UIButton)\\("
-    message: "Use BPKButton instead of UIButton."
+    message: 'Use BPKButton instead of UIButton.'
     severity: warning # default is warning
-    # Try it out at https://regex101.com/r/ZPASYH/1
+    # Try it out at https://regex101.com/r/ZPASYH/2
 
   bpk_label:
-    name: "Prefer BPKLabel to UILabel"
+    name: 'Prefer BPKLabel to UILabel'
     regex: "(UILabel)\\("
-    message: "Use BPKLabel instead of UILabel."
+    message: 'Use BPKLabel instead of UILabel.'
     severity: warning # default is warning
 
   bpk_progress:
-    name: "Prefer BPKProgressBar to UIProgressView"
+    name: 'Prefer BPKProgressBar to UIProgressView'
     regex: "(UIProgressView)\\("
-    message: "Use BPKProgressBar instead of UIProgressView."
+    message: 'Use BPKProgressBar instead of UIProgressView.'
     severity: warning # default is warning
 
   bpk_spinner:
-    name: "Prefer BPKSpinner to UIActivityIndicatorView"
+    name: 'Prefer BPKSpinner to UIActivityIndicatorView'
     regex: "(UIActivityIndicatorView)\\("
-    message: "Use BPKSpinner instead of UIActivityIndicatorView."
+    message: 'Use BPKSpinner instead of UIActivityIndicatorView.'
     severity: warning # default is warning
 
   bpk_switch:
-    name: "Prefer BPKSwitch to UISwitch"
+    name: 'Prefer BPKSwitch to UISwitch'
     regex: "(UISwitch)\\("
-    message: "Use BPKSwitch instead of UISwitch."
+    message: 'Use BPKSwitch instead of UISwitch.'
     severity: warning # default is warning
 
   bpk_text_field:
-    name: "Prefer BPKTextField to UITextField"
+    name: 'Prefer BPKTextField to UITextField'
     regex: "(UITextField)\\("
-    message: "Use BPKTextField instead of UITextField."
+    message: 'Use BPKTextField instead of UITextField.'
     severity: warning # default is warning
 
   bpk_text_view:
-    name: "Prefer BPKTextView to UITextView"
+    name: 'Prefer BPKTextView to UITextView'
     regex: "(UITextView)\\("
-    message: "Use BPKTextView instead of UITextView."
+    message: 'Use BPKTextView instead of UITextView.'
     severity: warning # default is warning
     # Try it out at https://regex101.com/r/F8sAgX/1
 
+  # Size token rules
+
   bpk_use_size_token:
-    name: "Prefer Backpack tokens to hard-coded numbers"
-    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*([0-9])+|constrain.*?constant\\s*:\\s*([0-9])+\\s*\\))"
-    message: "Use a size or radius token from Backpack instead of a hard-coded number."
+    name: 'Prefer Backpack tokens to hard-coded numbers'
+    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)$|constrain.*?constant\\s*:\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)\\s*\\))"
+    message: 'Use a size or radius token from Backpack instead of a hard-coded number.'
     severity: warning # default is warning
-    # Try it out at https://regex101.com/r/a2znCq/6
+    # Try it out at https://regex101.com/r/a2znCq/17
+
+  # Colour token rules
 
   bpk_use_colour_token:
-    name: "Prefer Backpack colour tokens to UIColors"
-    regex: "(?:Color|color)\\s+=[A-Za-z\\(\\)\\ \\.\\:]+(UIColor)"
-    message: "Use a colour token from Backpack instead of a UIColor."
+    name: 'Prefer Backpack colour tokens to UIColors'
+    regex: "(?:(?:Color|color)\\s+=\\s+(UIColor)|Variant\\s*\\:\\s*(UIColor))"
+    message: 'Use a colour token from Backpack instead of a UIColor.'
     severity: warning # default is warning
-    # Try it out at https://regex101.com/r/3NOwYr/7
+    # Try it out at https://regex101.com/r/3NOwYr/13
