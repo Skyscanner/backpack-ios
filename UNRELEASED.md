@@ -1,10 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/Icon:
-  - Reverted `eco-leaf` icon to align better to existing campaigns.
 
 ## How to write a good changelog entry
 

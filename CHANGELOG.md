@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.0.4
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Reverted `eco-leaf` icon to align better to existing campaigns.
+
 # 34.0.3
 
 **Fixed:**
