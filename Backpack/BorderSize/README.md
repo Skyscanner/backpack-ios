@@ -7,18 +7,15 @@
 ```objective-c
 #import <Backpack/BorderSize>
 
-CGFloat myAppBorderBorderSmall = BPKBorderSizeSm;
-CGFloat myAppBorderBorderLarge = BPKBorderSizeLg;
+CGFloat myAppBorderBorderSmall = BPKBorderWidthSm;
+CGFloat myAppBorderBorderLarge = BPKBorderWidthLg;
 ```
-
 
 ### Swift
 
 ```swift
 import Backpack
 
-let smallBorder = BPKBorderSizeSm
-let largeBorder = BPKBorderSizeLg
+let smallBorder = BPKBorderWidthSm
+let largeBorder = BPKBorderWidthLg
 ```
-
-

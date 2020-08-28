@@ -28,8 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKRadiiTest
 
 - (void)testRadiiHaveCorrectValues {
-    XCTAssertEqual(BPKBorderRadiusSm, 4);
-    XCTAssertEqual(BPKBorderRadiusPill, 40);
+    XCTAssertEqual(BPKCornerRadiusSm, 4);
+    XCTAssertEqual(BPKCornerRadiusPill, 40);
 }
 
 @end

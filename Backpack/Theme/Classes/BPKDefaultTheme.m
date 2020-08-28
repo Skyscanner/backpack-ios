@@ -306,7 +306,7 @@ NSString *const DefaultThemeName = @"Default";
 }
 
 - (NSNumber *)buttonCornerRadius {
-    return @(BPKBorderRadiusSm);
+    return @(BPKCornerRadiusSm);
 }
 
 - (UIColor *)starFilledColor {

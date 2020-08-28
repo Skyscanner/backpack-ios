@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupViews {
     self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     self.backgroundView.backgroundColor = self.dialogContentViewBackgroundColor;
-    self.backgroundView.layer.cornerRadius = BPKBorderRadiusSm;
+    self.backgroundView.layer.cornerRadius = BPKCornerRadiusSm;
     self.backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     self.backgroundView.clipsToBounds = YES;
 
@@ -263,7 +263,7 @@ NS_ASSUME_NONNULL_BEGIN
         _cornerStyle = cornerStyle;
 
         self.backgroundView.layer.cornerRadius =
-            cornerStyle == BPKDialogCornerStyleLarge ? BPKBorderRadiusLg : BPKBorderRadiusSm;
+            cornerStyle == BPKDialogCornerStyleLarge ? BPKCornerRadiusLg : BPKCornerRadiusSm;
     }
 }
 

@@ -61,7 +61,7 @@ public final class BPKBottomSheet: NSObject {
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         let panel = BPKFloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
-        panel.surfaceView.cornerRadius = BPKBorderRadiusLg
+        panel.surfaceView.cornerRadius = BPKCornerRadiusLg
         panel.surfaceView.grabberTopPadding = BPKSpacingMd
         panel.surfaceView.grabberHandleHeight = BPKSpacingSm
         panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth

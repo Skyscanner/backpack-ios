@@ -24,4 +24,10 @@ CGFloat const BPKBorderRadiusPill = 40;
 
 CGFloat const BPKBorderRadiusSm = 4;
 
+CGFloat const BPKCornerRadiusLg = 24;
+
+CGFloat const BPKCornerRadiusPill = 40;
+
+CGFloat const BPKCornerRadiusSm = 4;
+
 // clang-format on

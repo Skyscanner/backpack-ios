@@ -79,7 +79,7 @@ class FlareViewViewController: UIViewController {
         }
 
         if rounded {
-            flareView.cornerRadius = BPKBorderRadiusLg
+            flareView.cornerRadius = BPKCornerRadiusLg
         }
 
         if animated {
