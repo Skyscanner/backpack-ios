@@ -28,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKBorderSizeTest
 
 - (void)testRadiiHaveCorrectValues {
-    XCTAssertEqual(BPKBorderSizeSm, 1);
-    XCTAssertEqual(BPKBorderSizeLg, 2);
-    XCTAssertEqual(BPKBorderSizeXl, 3);
+    XCTAssertEqual(BPKBorderWidthSm, 1);
+    XCTAssertEqual(BPKBorderWidthLg, 2);
+    XCTAssertEqual(BPKBorderWidthXl, 3);
 }
 
 @end

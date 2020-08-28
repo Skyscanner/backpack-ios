@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
     innerView.backgroundColor = [BPKColor panjin];
 
-    flareView.cornerRadius = BPKBorderRadiusLg;
+    flareView.cornerRadius = BPKCornerRadiusLg;
 
     [self configureFlareView:flareView withInnerView:innerView];
     [self configureParentView:parentView forFlareView:flareView];
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forFlareView:flareView];
 
     flareView.flarePosition = BPKFlarePositionTop;
-    flareView.cornerRadius = BPKBorderRadiusLg;
+    flareView.cornerRadius = BPKCornerRadiusLg;
     [flareView setNeedsLayout];
     [flareView layoutIfNeeded];
 

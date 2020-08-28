@@ -143,7 +143,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
 
-        colorView.layer.cornerRadius = BPKBorderRadiusSm
+        colorView.layer.cornerRadius = BPKCornerRadiusSm
         let shadow = BPKShadow.shadowSm()
         shadow.apply(to: colorView.layer)
     }

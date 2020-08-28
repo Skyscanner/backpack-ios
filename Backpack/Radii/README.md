@@ -7,18 +7,15 @@
 ```objective-c
 #import <Backpack/Radii.h>
 
-CGFloat myAppBorderRadiusSmall = BPKBorderRadiusSm;
-CGFloat myAppBorderRadiusLarge = BPKBorderRadiusLg;
+CGFloat myAppBorderRadiusSmall = BPKCornerRadiusSm;
+CGFloat myAppBorderRadiusLarge = BPKCornerRadiusLg;
 ```
-
 
 ### Swift
 
 ```swift
 import Backpack
 
-let smallRadius = BPKBorderRadiusSm
-let largeRadius = BPKBorderRadiusLg
+let smallRadius = BPKCornerRadiusSm
+let largeRadius = BPKCornerRadiusLg
 ```
-
-

@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Private
 
 - (CGFloat)barHeight {
-    return BPKBorderSizeXl;
+    return BPKBorderWidthXl;
 }
 
 - (CGFloat)barSpacing {

@@ -23,6 +23,7 @@
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <Backpack/Radii.h>
+#import <Backpack/BorderSize.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -100,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKBadgeTypeOutline:
         self.backgroundColor = [BPKColor.white colorWithAlphaComponent:0.2];
         self.layer.borderColor = BPKColor.white.CGColor;
-        self.layer.borderWidth = 1.0;
+        self.layer.borderWidth = BPKBorderWidthSm;
         break;
     default:
         break;
@@ -136,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.label = label;
 
     self.type = BPKBadgeTypeSuccess;
-    self.layer.cornerRadius = BPKBorderRadiusSm;
+    self.layer.cornerRadius = BPKCornerRadiusSm;
     self.layer.masksToBounds = YES;
 }
 

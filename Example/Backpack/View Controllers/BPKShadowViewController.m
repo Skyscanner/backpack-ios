@@ -56,7 +56,7 @@ const static NSInteger LabelTag = 72817;
 
         BPKShadow *shadow = [BPKShadow performSelector:selector];
         [shadow applyToLayer:shadowView.layer];
-        shadowView.layer.cornerRadius = BPKBorderRadiusSm;
+        shadowView.layer.cornerRadius = BPKCornerRadiusSm;
     }
 }
 

@@ -24,4 +24,10 @@ CGFloat const BPKBorderSizeSm = 1;
 
 CGFloat const BPKBorderSizeXl = 3;
 
+CGFloat const BPKBorderWidthLg = 2;
+
+CGFloat const BPKBorderWidthSm = 1;
+
+CGFloat const BPKBorderWidthXl = 3;
+
 // clang-format on
