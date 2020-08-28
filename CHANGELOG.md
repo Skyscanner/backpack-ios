@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 34.1.0
+
+**Added:**
+
+- Backpack/BorderSize:
+  - Added new `UIKit` aligned tokens, named `BPKBorderWidth...` instead of `BPKBorderSize...`.
+
+- Backpack/Radii:
+  - Added new `UIKit` aligned tokens, named `BPKCornerRadius...` instead of `BPKBorderRadius...`.
+
 # 34.0.4
 
 **Fixed:**
