@@ -24,21 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The Skyscanner large border width.
  */
-extern CGFloat const BPKBorderSizeLg;
-
-/**
- * The Skyscanner small border width.
- */
-extern CGFloat const BPKBorderSizeSm;
-
-/**
- * The Skyscanner extra large border width.
- */
-extern CGFloat const BPKBorderSizeXl;
-
-/**
- * The Skyscanner large border width.
- */
 extern CGFloat const BPKBorderWidthLg;
 
 /**

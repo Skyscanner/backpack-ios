@@ -24,21 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The Skyscanner large radius.
  */
-extern CGFloat const BPKBorderRadiusLg;
-
-/**
- * The Skyscanner pill radius.
- */
-extern CGFloat const BPKBorderRadiusPill;
-
-/**
- * The Skyscanner small radius.
- */
-extern CGFloat const BPKBorderRadiusSm;
-
-/**
- * The Skyscanner large radius.
- */
 extern CGFloat const BPKCornerRadiusLg;
 
 /**

@@ -18,7 +18,7 @@
 
 #import "BPKHorizontalNavigation.h"
 
-#import <Backpack/BorderSize.h>
+#import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Spacing.h>

@@ -39,7 +39,7 @@ const TYPES = new Set([
   'font',
   'spacing',
   'radii',
-  'borderSize',
+  'borderWidth',
   'shadow',
   'duration',
 ]);
@@ -430,7 +430,7 @@ const parseTokens = tokensData => {
     )
     .value();
 
-  const borderSizes = _.chain(tokensData.properties)
+  const borderWidths = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'borders')
     .map(({ name, value }) =>
       generatePrefixedConst({
@@ -448,7 +448,7 @@ const parseTokens = tokensData => {
     ...fonts,
     ...spacings,
     ...radii,
-    ...borderSizes,
+    ...borderWidths,
     ...shadows,
     ...durations,
   ])

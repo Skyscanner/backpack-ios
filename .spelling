@@ -50,6 +50,9 @@ BpkFlatListItemSeparator
 BorderSize
 BPKBorderSize
 
+BorderWidth
+BPKBorderWidth
+
 HorizontalNavigation
 HorizontalNavigationItem
 BPKHorizontalNavigation
@@ -270,7 +273,7 @@ animationDuration
 bannerStyle
 BarChart
 beforeClose
-borderRadius
+cornerRadius
 borderlessBackground
 centerLeading
 centerTrailing
