@@ -1,11 +1,11 @@
-# Backpack/BorderSize
+# Backpack/BorderWidth
 
 ## Usage
 
 ### Objective-C
 
 ```objective-c
-#import <Backpack/BorderSize>
+#import <Backpack/BorderWidth>
 
 CGFloat myAppBorderBorderSmall = BPKBorderWidthSm;
 CGFloat myAppBorderBorderLarge = BPKBorderWidthLg;

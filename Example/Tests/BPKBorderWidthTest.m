@@ -16,9 +16,23 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_BORDER_SIZE__
-#define __BACKPACK_BORDER_SIZE__
+#import <XCTest/XCTest.h>
 
-#import "BPKBorderSize.h"
+#import <Backpack/BorderWidth.h>
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+@interface BPKBorderWidthTest : XCTestCase
+
+@end
+
+@implementation BPKBorderWidthTest
+
+- (void)testRadiiHaveCorrectValues {
+    XCTAssertEqual(BPKBorderWidthSm, 1);
+    XCTAssertEqual(BPKBorderWidthLg, 2);
+    XCTAssertEqual(BPKBorderWidthXl, 3);
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

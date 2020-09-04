@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -15,24 +16,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "BPKBorderWidth.h"
 
-#import <XCTest/XCTest.h>
+CGFloat const BPKBorderWidthLg = 2;
 
-#import <Backpack/BorderSize.h>
+CGFloat const BPKBorderWidthSm = 1;
 
-NS_ASSUME_NONNULL_BEGIN
-@interface BPKBorderSizeTest : XCTestCase
+CGFloat const BPKBorderWidthXl = 3;
 
-@end
-
-@implementation BPKBorderSizeTest
-
-- (void)testRadiiHaveCorrectValues {
-    XCTAssertEqual(BPKBorderWidthSm, 1);
-    XCTAssertEqual(BPKBorderWidthLg, 2);
-    XCTAssertEqual(BPKBorderWidthXl, 3);
-}
-
-@end
-
-NS_ASSUME_NONNULL_END
+// clang-format on

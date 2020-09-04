@@ -1,4 +1,3 @@
-// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -16,18 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "BPKBorderSize.h"
 
-CGFloat const BPKBorderSizeLg = 2;
+#ifndef __BACKPACK_BORDER_SIZE__
+#define __BACKPACK_BORDER_SIZE__
 
-CGFloat const BPKBorderSizeSm = 1;
+#import "BPKBorderWidth.h"
 
-CGFloat const BPKBorderSizeXl = 3;
-
-CGFloat const BPKBorderWidthLg = 2;
-
-CGFloat const BPKBorderWidthSm = 1;
-
-CGFloat const BPKBorderWidthXl = 3;
-
-// clang-format on
+#endif

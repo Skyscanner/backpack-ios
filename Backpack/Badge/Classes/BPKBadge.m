@@ -23,7 +23,7 @@
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <Backpack/Radii.h>
-#import <Backpack/BorderSize.h>
+#import <Backpack/BorderWidth.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
