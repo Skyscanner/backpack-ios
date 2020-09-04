@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 35.0.0
+
+**BREAKING:**
+
+- Backpack/BorderSize:
+  - `BorderSize` has been renamed `BorderWidth`. To migrate, please update any references to `BPKBorderSize`.
+
+- Backpack/Radii:
+  - Non-UIKit aligned values have been removed. To migrate, replace any tokens starting `BorderRadius` with `CornerRadius`.
+
 # 34.1.0
 
 **Added:**

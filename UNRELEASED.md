@@ -2,14 +2,6 @@
 
 > Place your changes below this line.
 
-**BREAKING:**
-
-- Backpack/BorderSize:
-  - `BorderSize` has been renamed `BorderWidth`. To migrate, please update any references to `BPKBorderSize`.
-
-- Backpack/Radii:
-  - Non-UIKit aligned values have been removed. To migrate, replace any tokens starting `BorderRadius` with `CornerRadius`.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
