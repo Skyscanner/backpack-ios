@@ -34,6 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertTrue([tabBarController isKindOfClass:UITabBarController.class], "BPKTabBarController should be a subclass of UITabBarController");
 }
 
+- (void)testUITabBarControllerWithCustomUITabBar {
+    UITabBar *customTabBar = [[UITabBar alloc] init];
+    BPKTabBarController *tabBarController = [[BPKTabBarController alloc] initWithTabBar:customTabBar];
+
+    XCTAssertTrue(tabBarController.tabBar == customTabBar, "tabBarController.tabBar should be the same instance injected through the initializer");
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

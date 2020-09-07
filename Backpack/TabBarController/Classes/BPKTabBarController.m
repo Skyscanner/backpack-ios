@@ -29,8 +29,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface BPKTabBarController ()
+@property (nonatomic, strong) UITabBar *customTabBar;
+@end
+
 @implementation BPKTabBarController
+
+- (instancetype)initWithTabBar:(UITabBar *)tabBar {
+    if (self = [super init]) {
+        self.customTabBar = tabBar;
+    }
+
+    return self;
+}
+
+- (UITabBar *)tabBar {
+    if (!_customTabBar) {
+        _customTabBar = [[UITabBar alloc] init];
+    }
+
+    return _customTabBar;
+}
 
 @end
 
 NS_ASSUME_NONNULL_END
+

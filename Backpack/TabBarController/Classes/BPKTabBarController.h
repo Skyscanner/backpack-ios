@@ -26,6 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 IB_DESIGNABLE @interface BPKTabBarController : UITabBarController
 
+/**
+*  Creates a new BPKTabBarController instance with a custom UITabBar
+*
+*  @param tabBar Custom UITabBar instance to be used as the default tabBar
+*/
+- (instancetype)initWithTabBar:(UITabBar *)tabBar;
+
 @end
 
 NS_ASSUME_NONNULL_END
