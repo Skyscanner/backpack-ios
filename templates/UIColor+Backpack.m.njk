@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -15,10 +16,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#ifndef __BACKPACK_COLOR__
-#define __BACKPACK_COLOR__
+#import "UIColor+Backpack.h"
 
 #import "BPKColor.h"
-#import "UIColor+Backpack.h"
-#endif
+
+
+@implementation UIColor(Backpack)
+
+{% for c in valueColor %}
++ (UIColor *)bpk_{{c.name}} {
+    return BPKColor.{{c.name}};
+}
+{% endfor %}
+{% for c in referenceColor %}
++ (UIColor *)bpk_{{c.name}} {
+    return BPKColor.{{c.reference}};
+}
+{% endfor %}
+{% for c in dynamicColor %}
++ (UIColor *)bpk_{{c.name}} {
+    return BPKColor.{{c.name}};
+}
+{% endfor %}
++ (UIColor *)bpk_clear {
+    return UIColor.clearColor;
+}
+
+@end
+

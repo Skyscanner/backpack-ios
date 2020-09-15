@@ -517,6 +517,22 @@ gulp.task(
       );
     }
 
+    streams.push(
+      gulp
+        .src(path.join(PATHS.templates, 'UIColor+Backpack.h.njk'))
+        .pipe(data(() => templateData))
+        .pipe(nunjucks.compile())
+        .pipe(rename('Color/Classes/Generated/UIColor+Backpack.h')),
+    );
+
+    streams.push(
+      gulp
+        .src(path.join(PATHS.templates, 'UIColor+Backpack.m.njk'))
+        .pipe(data(() => templateData))
+        .pipe(nunjucks.compile())
+        .pipe(rename('Color/Classes/Generated/UIColor+Backpack.m')),
+    );
+
     return merge2(streams).pipe(gulp.dest(PATHS.output));
   }),
 );
