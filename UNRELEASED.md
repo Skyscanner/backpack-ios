@@ -1,11 +1,5 @@
 # Unreleased
 
-**Added:**
-
-- Backpack/Color:
-  - Added new class properties on `UIColor` for all Backpack's colours with the prefix `bpk`. For example `skyGray` is `UIColor.bpk_skyGray`. In Swift this change means Backpack's colours can be used contextually e.g. `myView.backgroundColor = .bpk_skyBlue`.
-
-
 > Place your changes below this line.
 
 ## How to write a good changelog entry

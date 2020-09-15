@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 35.1.0
+
+**Added:**
+
+- Backpack/Color:
+  - Added new class properties on `UIColor` for all Backpack's colours with the prefix `bpk`. For example `skyGray` is `UIColor.bpk_skyGray`. In Swift this change means Backpack's colours can be used contextually e.g. `myView.backgroundColor = .bpk_skyBlue`.
+
 # 35.0.0
 
 **BREAKING:**
@@ -33,7 +40,7 @@
 **Fixed:**
 
 - Backpack/Icon:
-  - Fixed an issue with the display of the `filter` icon. 
+  - Fixed an issue with the display of the `filter` icon.
 
 # 34.0.2
 
