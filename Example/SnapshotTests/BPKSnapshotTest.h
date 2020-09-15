@@ -23,11 +23,11 @@
         if (deviceOSVersion.majorVersion != 13.0) {                                                                    \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
-        if (deviceOSVersion.minorVersion != 5.0) {                                                                     \
+        if (deviceOSVersion.minorVersion != 7.0) {                                                                     \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
                                                                                                                        \
-        XCTAssertTrue(validDevice, @"Snapshot tests are only valid when testing on an iPhone 8 running iOS 13.5");     \
+        XCTAssertTrue(validDevice, @"Snapshot tests are only valid when testing on an iPhone 8 running iOS 13.7");     \
     }
 
 #if __BPK_DARK_MODE_SUPPORTED
