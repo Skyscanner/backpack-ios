@@ -44,7 +44,7 @@ class ToastUITest: BackpackUITestCase {
             navigateAndShow()
         }
 
-        sleep(1)
+        sleep(2)
         XCTAssertFalse(toastView.exists, "The toast shoud not be visible")
     }
 }
