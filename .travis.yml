@@ -5,7 +5,7 @@
 # $MAIN_STAGE is used to selectively run only certain steps on the
 # latest iOS version. For example snapshot tests are only ran for the
 # latest version.
-osx_image: xcode11.7
+osx_image: xcode12
 language: objective-c
 cache:
   cocoapods: true
@@ -14,10 +14,10 @@ cache:
     - node_modules
 matrix:
   include:
-    - osx_image: xcode11.7
-      env: BUILD_SDK=iphonesimulator13.7 DESTINATION="OS=13.7,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
-    - osx_image: xcode11.7
-      env: BUILD_SDK=iphonesimulator13.7 DESTINATION="OS=12.4,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
+    - osx_image: xcode12
+      env: BUILD_SDK=iphonesimulator14.0 DESTINATION="OS=14.0,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="true" MAIN_STAGE="true"
+    - osx_image: xcode12
+      env: BUILD_SDK=iphonesimulator14.0 DESTINATION="OS=13.5,platform=iOS Simulator,name=iPhone 8" FULL_TESTS="false" MAIN_STAGE="false"
 before_install:
   - sudo sntp -sS time.apple.com
   - brew install clang-format
