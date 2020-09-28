@@ -14,6 +14,7 @@ trailing_whitespace:
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:
   - Pods
+  - "Backpack\ Screenshot/"
 included:
   - ../Backpack
   - ./
