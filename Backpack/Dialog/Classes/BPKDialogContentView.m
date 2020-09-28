@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.textColor = BPKColor.textPrimaryColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 
-    self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLg];
+    self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     self.descriptionLabel.numberOfLines = 0;
     self.descriptionLabel.minimumScaleFactor = 0.7;
     self.descriptionLabel.textAlignment = NSTextAlignmentCenter;

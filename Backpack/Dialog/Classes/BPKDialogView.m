@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupViews {
     self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     self.backgroundView.backgroundColor = self.dialogContentViewBackgroundColor;
-    self.backgroundView.layer.cornerRadius = BPKCornerRadiusSm;
+    self.backgroundView.layer.cornerRadius = BPKCornerRadiusLg;
     self.backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     self.backgroundView.clipsToBounds = YES;
 
