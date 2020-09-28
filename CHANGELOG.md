@@ -1,6 +1,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.0.0
+
+**Breaking:**
+
+- Backpack/Calendar:
+  - Removed the method `- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date` in `BPKCalendarDelegate`, is now `- (BOOL)calendar:(BPKCalendar *) isDateEnabled:(BPKSimpleDate *)date`. If you need the `NSDate *` for your implementation use the `dateForCalendar:` method on `BPKSimpleDate`, passing `calendar.gregorian` for the argument.
+  - The two deprecated methods `- (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date` and `- (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date` have now been removed. Please use `calendar:cellStyleForDate:` instead.
+
 # 35.1.0
 
 **Added:**
