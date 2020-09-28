@@ -69,13 +69,14 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     }
 
     // Disables dates that are > 1 month ahead of the selected date.
-    func calendar(_ calendar: BPKCalendar, isDateEnabled: Date) -> Bool {
+    func calendar(_ calendar: BPKCalendar, isDateEnabled date: BPKSimpleDate) -> Bool {
+        let nativeDate = date.date(for: calendar.gregorian)
         if self.currentMaxEnabledDate == nil {
             return true
         }
 
         // If date > self.currentMaxEnabledDate, return false
-        if isDateEnabled.compare(self.currentMaxEnabledDate!) == .orderedDescending {
+        if nativeDate.compare(self.currentMaxEnabledDate!) == .orderedDescending {
             return false
         }
         return true

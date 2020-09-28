@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param date The date to check for enabledness.
  * @return Whether the cell for the given date is enabled.
  */
-- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date;
+- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date;
 
 /**
  * Asks the delegate for a cell style for a specific date.
@@ -119,30 +119,6 @@ NS_ASSUME_NONNULL_BEGIN
  * if the receiver returns the custom cell type the calendar will call those methods in response.
  */
 - (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date;
-
-/**
- * Asks the delegate for a fill color for the specific date.
- *
- * @param calendar The backpack calendar.
- * @param date The date to provide fill-color for.
- * @return The fill/background colour for the given date.
- * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
- * the custom cell style for a date.
- * @deprecated Use `calendar:cellStyleForDate:` instead.
-*/
-- (UIColor *)calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
-
-/**
- * Asks the delegate for a title color for the specific date.
- *
- * @param calendar The backpack calendar.
- * @param date The date to provide title-color for.
- * @return The title colour for the given date.
- * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
- * the custom cell style for a date.
- * @deprecated Use `calendar:cellStyleForDate:` instead.
- */
-- (UIColor *)calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
 
 @end
 

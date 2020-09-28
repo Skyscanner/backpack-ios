@@ -174,13 +174,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - <BPKCalendarDelegate>
 
-- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(NSDate *)date {
+- (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date {
 
     if (self.isColoringDates) {
         return YES;
     }
 
-    if ([date compare:self.date2] == NSOrderedDescending) {
+    NSDate *nativeDate = [date dateForCalendar:calendar.gregorian];
+    if ([nativeDate compare:self.date2] == NSOrderedDescending) {
         return NO;
     }
 
@@ -225,7 +226,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
-- (UIColor *)calendar:(nonnull BPKCalendar *)calendar fillColorForDate:(NSDate *)date {
+- (UIColor *)DONT_USE_calendar:(nonnull BPKCalendar *)calendar fillColorForDate:(NSDate *)date {
     if (!self.isColoringDates) {
         return BPKColor.clear;
     }
