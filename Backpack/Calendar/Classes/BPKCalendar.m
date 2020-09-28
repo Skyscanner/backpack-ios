@@ -39,7 +39,37 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarYearPill.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
+
+// This is kept around only to support the React Native calendar implementation
+@protocol BPKCalendarDelegateExtendedForRN <BPKCalendarDelegate>
+@optional
+/**
+ * Asks the delegate for a fill color for the specific date.
+ *
+ * @param calendar The backpack calendar.
+ * @param date The date to provide fill-color for.
+ * @return The fill/background colour for the given date.
+ * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
+ * the custom cell style for a date.
+ * @deprecated Use `calendar:cellStyleForDate:` instead.
+*/
+- (UIColor *)DONT_USE_calendar:(BPKCalendar *)calendar fillColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
+
+/**
+ * Asks the delegate for a title color for the specific date.
+ *
+ * @param calendar The backpack calendar.
+ * @param date The date to provide title-color for.
+ * @return The title colour for the given date.
+ * @note This method is not called if the delegate implements `calendar:cellStyleForDate:` unless it returns
+ * the custom cell style for a date.
+ * @deprecated Use `calendar:cellStyleForDate:` instead.
+ */
+- (UIColor *)DONT_USE_calendar:(BPKCalendar *)calendar titleColorForDate:(NSDate *)date __deprecated_msg("Use `calendar:cellStyleForDate:` instead.");
+@end
+
 
 #pragma mark - FSCalendar Extensions
 @interface FSCalendar ()
@@ -422,11 +452,11 @@ NSString *const HeaderDateFormat = @"MMMM";
             }
         }
 
-        if ([self.delegate respondsToSelector:@selector(calendar:fillColorForDate:)]) {
+        if ([self.delegate respondsToSelector:@selector(DONT_USE_calendar:fillColorForDate:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            return [self.delegate calendar:self fillColorForDate:date];
-#pragma clang diagnoastic pop
+            return [(id<BPKCalendarDelegateExtendedForRN>)self.delegate DONT_USE_calendar:self fillColorForDate:date];
+#pragma clang diagnostic pop
         }
     }
 
@@ -454,11 +484,11 @@ NSString *const HeaderDateFormat = @"MMMM";
             }
         }
 
-        if ([self.delegate respondsToSelector:@selector(calendar:titleColorForDate:)]) {
+        if ([self.delegate respondsToSelector:@selector(DONT_USE_calendar:titleColorForDate:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            return [self.delegate calendar:self titleColorForDate:date];
-#pragma clang diagnoastic pop
+            return [(id<BPKCalendarDelegateExtendedForRN>)self.delegate DONT_USE_calendar:self titleColorForDate:date];
+#pragma clang diagnostic pop
         }
 
         return self.appearance.titleDefaultColor;
@@ -661,7 +691,8 @@ NSString *const HeaderDateFormat = @"MMMM";
 
     // If the consumer has implemented `isDateEnabled` then we should respect that
     if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
-        return [self.delegate calendar:self isDateEnabled:date];
+        BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
+        return [self.delegate calendar:self isDateEnabled:simpleDate];
     }
 
     // Gonna return true, because in the words of Sia, I'm still here...
