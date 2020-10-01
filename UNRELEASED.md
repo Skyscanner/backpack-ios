@@ -2,6 +2,9 @@
 
 > Place your changes below this line.
 
+- Backpack/NavigationBar:
+  - Updated the default background color of `backgroundView` to clear.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
