@@ -252,7 +252,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_backgroundView) {
         _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        _backgroundView.backgroundColor = BPKColor.backgroundColor;
+        _backgroundView.backgroundColor = BPKColor.clear;
     }
 
     return _backgroundView;
