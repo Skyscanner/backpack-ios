@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.0.1
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Reduced body text size.
+
+- Backpack/NavigationBar:
+  - Updated the default background color of `backgroundView` to clear.
+
 # 36.0.0
 
 **Breaking:**
