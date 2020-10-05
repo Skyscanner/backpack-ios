@@ -43,5 +43,5 @@ Pod::Spec.new do |s|
   s.dependency 'MBProgressHUD', '~> 0.9.1'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
-  s.swift_version = '4.0'
+  s.swift_versions = ['5.0', '4.2', '4.0']
 end

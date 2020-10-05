@@ -59,9 +59,15 @@ internal final class BPKBarChartCollectionView: UICollectionView {
         register(BPKBarChartCollectionViewCell.self,
                  forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
 
+        #if swift(>=4.2)
+        register(BPKBarChartCollectionViewHeader.self,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+        #else
         register(BPKBarChartCollectionViewHeader.self,
                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                  withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+        #endif
 
         collectionViewLayout = layout
         allowsSelection = true

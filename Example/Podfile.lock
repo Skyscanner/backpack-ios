@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 513d32888854d67d8cfbd3a8db16aeb5fb2e2a75
-  Backpack: cb2338c2aeded656a88a64886c965b4e9bf81add
+  Backpack: 1237e2114e27ffab8329061f5522c1ae2ecba76a
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
