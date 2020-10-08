@@ -22,9 +22,11 @@ import Backpack.BPKColor
 
 class SpinnersViewController: UIViewController {
     @IBOutlet weak var defaultPrimarySpinner: BPKSpinner!
+    @IBOutlet weak var defaultSecondarySpinner: BPKSpinner!
     @IBOutlet weak var defaultDarkSpinner: BPKSpinner!
     @IBOutlet weak var defaultLightSpinner: BPKSpinner!
     @IBOutlet weak var smallPrimarySpinner: BPKSpinner!
+    @IBOutlet weak var smallSecondarySpinner: BPKSpinner!
     @IBOutlet weak var smallDarkSpinner: BPKSpinner!
     @IBOutlet weak var smallLightSpinner: BPKSpinner!
     @IBOutlet weak var darkSpinnerBackgroundView: UIView!
@@ -37,6 +39,9 @@ class SpinnersViewController: UIViewController {
         defaultPrimarySpinner.size = .default
         defaultPrimarySpinner.style = .primary
 
+        defaultSecondarySpinner.size = .default
+        defaultSecondarySpinner.style = .secondary
+
         defaultDarkSpinner.size = .default
         defaultDarkSpinner.style = .dark
 
@@ -45,6 +50,9 @@ class SpinnersViewController: UIViewController {
 
         smallPrimarySpinner.size = .small
         smallPrimarySpinner.style = .primary
+
+        smallSecondarySpinner.size = .small
+        smallSecondarySpinner.style = .secondary
 
         smallDarkSpinner.size = .small
         smallDarkSpinner.style = .dark

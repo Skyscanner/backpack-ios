@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOl-c9-qGU">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,9 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="separatorColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
+                        <color key="sectionIndexColor" systemColor="labelColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="nQM-XJ-Gzl">
                                 <cells>
@@ -26,11 +27,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="otf-B0-xSI" id="kBx-lC-TE2">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Primary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jnS-tD-xm2" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -46,11 +47,11 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eMu-br-1hn" id="EfA-8X-u3v">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Secondary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Llz-Zb-6O5" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -66,11 +67,11 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iid-cM-gpu" id="hCa-pa-aeO">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Destructive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bjc-tJ-nc3" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -86,11 +87,11 @@
                                         <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ubg-Ns-iUj" id="s64-nl-JLP">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Featured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pw7-ge-cm9" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -106,11 +107,11 @@
                                         <rect key="frame" x="0.0" y="204" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QA3-aC-2eQ" id="2gE-6L-T29">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bph-je-JIa" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -126,11 +127,11 @@
                                         <rect key="frame" x="0.0" y="248" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DST-AP-pZ6" id="7sl-Ed-MfQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Outline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXG-v9-ZAn" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -170,7 +171,7 @@
                                         <rect key="frame" x="8" y="8" width="367" height="154.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-ZD-nKO" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -181,24 +182,24 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-jy-Zgv">
-                                                <rect key="frame" x="0.0" y="28.5" width="136" height="118"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="174" height="118"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-BF-945">
-                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-Q3-JaF" customClass="BPKButton">
-                                                                <rect key="frame" x="19" y="0.0" width="65" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
                                                                 <state key="normal" title="Loading"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQd-cV-VBa" customClass="BPKButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
+                                                                <rect key="frame" x="72" y="0.0" width="64" height="34"/>
                                                                 <state key="normal" title="Loading"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-aE-VqH" customClass="BPKButton">
-                                                                <rect key="frame" x="73" y="0.0" width="30" height="34"/>
+                                                                <rect key="frame" x="144" y="0.0" width="30" height="34"/>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d5l-75-Ljk">
                                                         <rect key="frame" x="0.0" y="42" width="136" height="34"/>
@@ -207,7 +208,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
                                                                 <state key="normal" title="Go"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-th-apx" customClass="BPKButton">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-th-apx" customClass="BPKButton">
                                                                 <rect key="frame" x="38" y="2" width="60" height="30"/>
                                                                 <state key="normal" title="Disabled"/>
                                                             </button>
@@ -215,7 +216,7 @@
                                                                 <rect key="frame" x="106" y="0.0" width="30" height="34"/>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="are-Uc-Slw">
                                                         <rect key="frame" x="0.0" y="84" width="68" height="34"/>
@@ -239,13 +240,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="XrI-jy-Zgv" firstAttribute="leading" secondItem="lPG-ZD-nKO" secondAttribute="leading" id="06T-pG-tG6"/>
                                             <constraint firstAttribute="bottom" secondItem="XrI-jy-Zgv" secondAttribute="bottom" constant="8" id="32o-nv-aib"/>
@@ -274,10 +275,10 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="174" height="157"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgv-kR-UpP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ler-Lw-jdv" customClass="BPKButton">
-                                                                <rect key="frame" x="19" y="-0.5" width="65" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
                                                                 <state key="normal" title="Loading"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
@@ -286,7 +287,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-p4-JoQ" customClass="BPKButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="34"/>
+                                                                <rect key="frame" x="72" y="0.0" width="64" height="34"/>
                                                                 <state key="normal" title="Loading"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
@@ -294,8 +295,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh8-UZ-7G5" customClass="BPKButton">
-                                                                <rect key="frame" x="73" y="2" width="30" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh8-UZ-7G5" customClass="BPKButton">
+                                                                <rect key="frame" x="144" y="2" width="30" height="30"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
                                                                         <integer key="value" value="1"/>
@@ -303,10 +304,10 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EpX-FB-1Xi">
-                                                        <rect key="frame" x="0.0" y="42" width="147" height="34"/>
+                                                        <rect key="frame" x="0.0" y="42" width="146" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhi-lX-0z6" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="34"/>
@@ -318,7 +319,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfX-pm-To4" customClass="BPKButton">
-                                                                <rect key="frame" x="38" y="0.0" width="71" height="34"/>
+                                                                <rect key="frame" x="38" y="0.0" width="70" height="34"/>
                                                                 <state key="normal" title="Disabled"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
@@ -327,7 +328,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sGM-4s-9a0" customClass="BPKButton">
-                                                                <rect key="frame" x="117" y="0.0" width="30" height="34"/>
+                                                                <rect key="frame" x="116" y="0.0" width="30" height="34"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
                                                                         <integer key="value" value="1"/>
@@ -335,7 +336,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ej6-mJ-uGF">
                                                         <rect key="frame" x="0.0" y="84" width="68" height="34"/>
@@ -365,31 +366,31 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CDs-kR-bb6">
-                                                        <rect key="frame" x="0.0" y="126" width="174" height="31"/>
+                                                        <rect key="frame" x="0.0" y="126" width="173.5" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9p-pp-ulS" customClass="BPKLabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="117" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.5" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1sV-cf-vRL" customClass="BPKSwitch">
-                                                                <rect key="frame" x="125" y="0.0" width="51" height="31"/>
+                                                                <rect key="frame" x="124.5" y="0.0" width="51" height="31"/>
                                                                 <connections>
                                                                     <action selector="switchLoadingState:" destination="yaK-Q8-sWi" eventType="valueChanged" id="d9l-DM-Qan"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="s6e-sa-mbj" firstAttribute="leading" secondItem="fez-oG-XpD" secondAttribute="leading" id="1cq-ql-J5U"/>
                                             <constraint firstAttribute="bottom" secondItem="KBU-NC-j3g" secondAttribute="bottom" constant="8" id="2pK-Qq-hHI"/>
@@ -401,7 +402,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="fez-oG-XpD" secondAttribute="trailing" id="570-kq-MPi"/>
                                     <constraint firstItem="fqb-N5-Kfh" firstAttribute="top" secondItem="FEW-9A-aRv" secondAttribute="topMargin" id="C3B-aR-RSk"/>
@@ -413,13 +414,13 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Kxe-Pd-Ob5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="centerY" secondItem="Kxe-Pd-Ob5" secondAttribute="centerY" id="Fi3-w8-XTO"/>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="leading" secondItem="Kxe-Pd-Ob5" secondAttribute="leading" id="aJX-e7-ig2"/>
                             <constraint firstItem="Kxe-Pd-Ob5" firstAttribute="trailing" secondItem="FEW-9A-aRv" secondAttribute="trailing" id="hmP-ma-vSr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Kxe-Pd-Ob5"/>
                     </view>
                     <connections>
                         <outlet property="defaultDisabledButton" destination="oeP-th-apx" id="wrz-cO-5kU"/>
@@ -452,7 +453,98 @@
             <point key="canvasLocation" x="2321" y="2419"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1sV-cf-vRL">
+            <size key="intrinsicContentSize" width="49" height="31"/>
+        </designable>
+        <designable name="Bph-je-JIa">
+            <size key="intrinsicContentSize" width="31.5" height="20.5"/>
+        </designable>
+        <designable name="Fh8-UZ-7G5">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="GJf-SN-OB4">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="GXG-v9-ZAn">
+            <size key="intrinsicContentSize" width="54.5" height="20.5"/>
+        </designable>
+        <designable name="L9p-pp-ulS">
+            <size key="intrinsicContentSize" width="116.5" height="20.5"/>
+        </designable>
+        <designable name="Llz-Zb-6O5">
+            <size key="intrinsicContentSize" width="82" height="20.5"/>
+        </designable>
+        <designable name="Pw7-ge-cm9">
+            <size key="intrinsicContentSize" width="68" height="20.5"/>
+        </designable>
+        <designable name="WQd-cV-VBa">
+            <size key="intrinsicContentSize" width="64" height="34"/>
+        </designable>
+        <designable name="WqP-4p-b67">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="bjc-tJ-nc3">
+            <size key="intrinsicContentSize" width="87.5" height="20.5"/>
+        </designable>
+        <designable name="gcH-p4-JoQ">
+            <size key="intrinsicContentSize" width="64" height="34"/>
+        </designable>
+        <designable name="htS-s3-5bd">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="jnS-tD-xm2">
+            <size key="intrinsicContentSize" width="58.5" height="20.5"/>
+        </designable>
+        <designable name="lPG-ZD-nKO">
+            <size key="intrinsicContentSize" width="55" height="20.5"/>
+        </designable>
+        <designable name="ler-Lw-jdv">
+            <size key="intrinsicContentSize" width="64" height="34"/>
+        </designable>
+        <designable name="oeP-th-apx">
+            <size key="intrinsicContentSize" width="60" height="30"/>
+        </designable>
+        <designable name="s6e-sa-mbj">
+            <size key="intrinsicContentSize" width="43.5" height="20.5"/>
+        </designable>
+        <designable name="sGM-4s-9a0">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="tgD-Q3-JaF">
+            <size key="intrinsicContentSize" width="64" height="34"/>
+        </designable>
+        <designable name="wAK-NX-IQ0">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="yhi-lX-0z6">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="zWH-oz-ScW">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="zfX-pm-To4">
+            <size key="intrinsicContentSize" width="70" height="34"/>
+        </designable>
+        <designable name="zyW-aE-VqH">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+        <designable name="zzc-e4-W0P">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="TkA-nu-YHs"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

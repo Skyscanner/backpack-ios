@@ -76,9 +76,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<BPKSpinner *> *)createAllSpinnerVariantsWithTheming:(BOOL)themed {
     return @[
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleSecondary size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleSecondary size:BPKSpinnerSizeSmall themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall themed:themed]
     ];
