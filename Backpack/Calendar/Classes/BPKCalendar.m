@@ -91,6 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) BPKCalendarAppearance *appearance;
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
+@property(nonatomic, strong, nullable) NSArray<BPKSimpleDate *> *initiallySelectedDates;
 
 @property BOOL sameDayRange;
 
@@ -246,10 +247,36 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
     BPKAssertMainThread();
+    if (_selectionType == selectionType) {
+        return;
+    }
+
     _selectionType = selectionType;
     self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+
     for (NSDate *date in self.calendarView.selectedDates) {
         [self.calendarView deselectDate:date];
+    }
+
+    if (self.initiallySelectedDates == nil) {
+        return;
+    }
+
+    NSArray<BPKSimpleDate *> *datesToReselect = @[];
+
+    // if the number of dates selected is invalid for the selection type, then we shouldn't reselect them
+    if (selectionType == BPKCalendarSelectionSingle && self.initiallySelectedDates.count <= 1) {
+        datesToReselect = self.initiallySelectedDates;
+    }
+    if (selectionType == BPKCalendarSelectionRange && self.initiallySelectedDates.count <= 2) {
+        datesToReselect = self.initiallySelectedDates;
+    }
+    if (selectionType == BPKCalendarSelectionMultiple) {
+        datesToReselect = self.initiallySelectedDates;
+    }
+
+    for (BPKSimpleDate *date in datesToReselect) {
+        [self.calendarView selectDate:[date dateForCalendar:self.gregorian]];
     }
 }
 
@@ -281,6 +308,7 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (void)setSelectedDates:(NSArray<BPKSimpleDate *> *)selectedDates {
     BPKAssertMainThread();
+    self.initiallySelectedDates = selectedDates;
     NSSet<BPKSimpleDate *> *previouslySelectedDates = [self createDateSet:self.calendarView.selectedDates];
     NSSet<BPKSimpleDate *> *newSelectedDates = [NSSet setWithArray:selectedDates];
 

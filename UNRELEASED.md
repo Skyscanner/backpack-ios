@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Calendar:
+   - Selected dates will no longer be cleared when the selection type is changed (unless the number of current selections is incompatible with the new selection type).
 
 ## How to write a good changelog entry
 

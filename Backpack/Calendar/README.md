@@ -14,6 +14,8 @@ and then run `pod install`.
 
 `Backpack/Calendar` contains the Backpack Calendar component in the class `BPKCalendar`. The calendar is a calendar view offering user interaction.
 
+Note: When the selection type is changed, selected dates will be deselected unless the number of selections is compatible with the new selection type.
+
 ### Simple calendar
 
 #### Objective-C
