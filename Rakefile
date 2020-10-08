@@ -12,6 +12,7 @@ VERSION_FORMAT = '%M.%m.%p%s%d'
 PODSPEC = 'Backpack.podspec'
 MAX_TEST_REPEATS = 3
 ANALYZE_FAIL_MESSAGE = '⚠️'
+SWIFT = ENV['SWIFT'] || '5.0'
 
 def ask(question)
   valid_input = true
@@ -85,7 +86,7 @@ end
 
 desc "Check for build-time errors and warnings"
 task :analyze do
-  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 desc "Erase content and settings from all iPhone simulators"
@@ -96,7 +97,7 @@ end
 desc "Run unit tests up to #{MAX_TEST_REPEATS} times until they pass"
 task :test do
   only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
-  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=YES | xcpretty"
+  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=YES | xcpretty"
   repeat_on_fail(test_command)
 end
 

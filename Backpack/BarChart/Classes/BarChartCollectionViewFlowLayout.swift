@@ -54,7 +54,13 @@ internal final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLa
             if let kind = attributes.representedElementKind {
                 // Non nil : Supplementary View
 
-                if kind == UICollectionElementKindSectionHeader {
+                #if swift(>=4.2)
+                let sectionHeader = UICollectionView.elementKindSectionHeader
+                #else
+                let sectionHeader = UICollectionElementKindSectionHeader
+                #endif
+                
+                if kind == sectionHeader {
                     // [A] HEADER
 
                     var frame = attributes.frame
