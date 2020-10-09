@@ -17,17 +17,22 @@
 
 #define BPKVerifySnapshotOS()                                                                                          \
     {                                                                                                                  \
+        NSString *correctDeviceName = @"iPhone 8";                                                                     \
+        int correctMajorVersion = 14;                                                                                  \
+        int correctMinorVersion = 0;                                                                                   \
         NSString *deviceName = [[UIDevice currentDevice] name];                                                        \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];               \
-        BOOL validDevice = [deviceName isEqual:@"iPhone 8"];                                                           \
-        if (deviceOSVersion.majorVersion != 14.0) {                                                                    \
+        BOOL validDevice = [deviceName isEqual:correctDeviceName];                                                     \
+        if (deviceOSVersion.majorVersion != correctMajorVersion) {                                                     \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
-        if (deviceOSVersion.minorVersion != 0.0) {                                                                     \
+        if (deviceOSVersion.minorVersion != correctMinorVersion) {                                                     \
             validDevice = NO;                                                                                          \
         }                                                                                                              \
                                                                                                                        \
-        XCTAssertTrue(validDevice, @"Snapshot tests are only valid when testing on an iPhone 8 running iOS 13.7");     \
+        NSString *correctOSVersion = [NSString stringWithFormat:@"%d.%d", correctMajorVersion, correctMinorVersion]; \
+        NSString *actualOSVersion = [NSString stringWithFormat:@"%ld.%ld", deviceOSVersion.majorVersion, deviceOSVersion.minorVersion]; \
+        XCTAssertTrue(validDevice, @"Snapshot tests are only valid on an %@ running iOS %@. Device was %@ running iOS %@.", correctDeviceName, correctOSVersion, deviceName, actualOSVersion); \
     }
 
 #if __BPK_DARK_MODE_SUPPORTED
