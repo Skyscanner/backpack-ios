@@ -1,6 +1,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.1.0
+
+**Added:**
+ - Backpack/Spinner:
+   - New `secondary` style which is dark in light-mode and light in dark-mode.
+
+- Backpack:
+  - Upgrade from Swift 4.2 to 5.
+
 # 36.0.1
 
 **Fixed:**
