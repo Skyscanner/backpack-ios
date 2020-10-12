@@ -32,9 +32,9 @@ typedef NS_ENUM(NSUInteger, BPKSpinnerSize) {
  */
 typedef NS_ENUM(NSUInteger, BPKSpinnerStyle) {
     BPKSpinnerStylePrimary = 0,
-    BPKSpinnerStyleSecondary = 1,
-    BPKSpinnerStyleDark = 2,
-    BPKSpinnerStyleLight = 3,
+    BPKSpinnerStyleDark = 1,
+    BPKSpinnerStyleLight = 2,
+    BPKSpinnerStyleSecondary = 3,
 };
 
 NS_ASSUME_NONNULL_BEGIN
