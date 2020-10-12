@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+ - Backpack/Spinner:
+   - New `secondary` style which is dark in light-mode and light in dark-mode.
 
 **Added:**
 

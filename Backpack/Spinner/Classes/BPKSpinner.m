@@ -115,6 +115,8 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
     case BPKSpinnerStylePrimary:
         return [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.white];
+    case BPKSpinnerStyleSecondary:
+        return BPKColor.textPrimaryColor;
     case BPKSpinnerStyleDark:
         return BPKColor.skyGrayTint01;
     case BPKSpinnerStyleLight:
