@@ -4,6 +4,10 @@
 
 **Added:**
 
+- Backpack/Card:
+- Backpack/Panel:
+  - The corner radius has been increased from `BPKCornerRadiusSm` to `BPKCornerRadiusMd`.
+
 - Backpack/Radii:
   - New `BPKCornerRadiusXs` and `BPKCornerRadiusMd` tokens.
 

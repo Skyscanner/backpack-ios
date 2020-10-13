@@ -170,7 +170,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 
     switch (self.cornerStyle) {
     case BPKCardCornerStyleSmall:
-        cornerRadius = BPKCornerRadiusSm;
+        cornerRadius = BPKCornerRadiusMd;
         break;
     case BPKCardCornerStyleLarge:
         cornerRadius = BPKCornerRadiusLg;
