@@ -69,6 +69,7 @@ const WEIGHT_MAP = {
   900: 'UIFontWeightBlack',
 };
 const LEGIBLE_NAMES = [
+  { identifier: 'Xs', legibleName: 'extra small' },
   { identifier: 'Sm', legibleName: 'small' },
   { identifier: 'Md', legibleName: 'medium' },
   { identifier: 'Base', legibleName: 'base' },
