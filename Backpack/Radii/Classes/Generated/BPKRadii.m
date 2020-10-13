@@ -20,8 +20,12 @@
 
 CGFloat const BPKCornerRadiusLg = 24;
 
+CGFloat const BPKCornerRadiusMd = 12;
+
 CGFloat const BPKCornerRadiusPill = 40;
 
 CGFloat const BPKCornerRadiusSm = 4;
+
+CGFloat const BPKCornerRadiusXs = 4;
 
 // clang-format on
