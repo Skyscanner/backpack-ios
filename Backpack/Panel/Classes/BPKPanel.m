@@ -112,7 +112,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     self.padded = padded;
     self.style = BPKPanelStyleDefault;
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
-    self.layer.cornerRadius = BPKCornerRadiusSm;
+    self.layer.cornerRadius = BPKCornerRadiusMd;
     [self updatePanelAppearance];
 }
 
