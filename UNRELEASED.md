@@ -2,6 +2,11 @@
 
 > Place your changes below this line.
 
+**Fixed:**
+
+- Backpack/Calendar
+  - Fixed a bug where the calendar rendered incorrectly with pre-selected dates using range selection.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
