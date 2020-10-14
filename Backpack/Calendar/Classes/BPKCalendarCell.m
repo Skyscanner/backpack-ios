@@ -61,15 +61,16 @@
         padding = CGRectGetWidth(self.shapeLayer.bounds) / 8.0;
     }
 
+    self.shapeLayer.hidden = NO;
+    self.selectionLayer.hidden = NO;
+    self.selectionLayer.frame = CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds),
+                                           CGRectGetHeight(self.shapeLayer.frame));
+
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.selectionLayer.bounds;
     CGFloat height = self.shapeLayer.fs_height;
     CGFloat shapeLayerX = CGRectGetMinX(self.shapeLayer.frame);
 
-    self.shapeLayer.hidden = NO;
-    self.selectionLayer.hidden = NO;
-    self.selectionLayer.frame = CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds),
-                                           CGRectGetHeight(self.shapeLayer.frame));
     UIColor *rangeColor = self.appearance.selectionColor;
     self.selectionLayer.fillColor = rangeColor.CGColor;
 
