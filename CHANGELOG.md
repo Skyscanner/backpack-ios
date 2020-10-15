@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.2.1
+
+**Fixed:**
+
+- Backpack/Calendar
+  - Fixed a bug where the calendar rendered incorrectly with pre-selected dates using range selection.
+
 # 36.2.0
 
 **Added:**
