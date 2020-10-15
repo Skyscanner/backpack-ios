@@ -40,6 +40,7 @@
 #import "Icon.h"
 #import "Label.h"
 #import "NavigationBar.h"
+#import "OverlayView.h"
 #import "Panel.h"
 #import "ProgressBar.h"
 #import "Rating.h"

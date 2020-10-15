@@ -20,7 +20,7 @@ import Backpack.Card
 import Backpack.BPKColor
 
 class CardsSelectorViewController: UITableViewController {
-    func prepareDevided(for segue: UIStoryboardSegue, sender: Any?) {
+    func prepareDivided(for segue: UIStoryboardSegue, sender: Any?) {
         guard let target = segue.destination as? DividedCardsViewController else {
             fatalError("Expected destination to be of type DividedCardsViewController.")
         }
@@ -47,7 +47,7 @@ class CardsSelectorViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier?.contains("divided") ?? false {
-            prepareDevided(for: segue, sender: sender)
+            prepareDivided(for: segue, sender: sender)
             return
         }
 
