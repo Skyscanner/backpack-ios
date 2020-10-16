@@ -287,11 +287,11 @@
                                         <rect key="frame" x="0.0" y="683.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WGg-xQ-uru" id="hxM-n8-1t9">
-                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Flare views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="msX-e2-ztO" customClass="BPKLabel">
-                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -307,11 +307,11 @@
                                         <rect key="frame" x="0.0" y="727.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="26K-82-S6V" id="mb4-gQ-SVi">
-                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Dialogs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wSn-8E-6Xt" userLabel="Text views" customClass="BPKLabel">
-                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -327,11 +327,11 @@
                                         <rect key="frame" x="0.0" y="771.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0XQ-1V-Tse" id="J4S-ec-yb1">
-                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Horizontal navigation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nnz-Im-Xkf" customClass="BPKLabel">
-                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -567,11 +567,11 @@
                                         <rect key="frame" x="0.0" y="1299.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rei-Kk-L5r" id="IwH-Gk-fcS">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Tappable link labels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="esw-01-AEW" userLabel="Text views" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -587,11 +587,11 @@
                                         <rect key="frame" x="0.0" y="1343.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6n0-Yu-Z1l" id="Jpg-R6-0vc">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text fields" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SyY-EI-4jS" userLabel="Text views" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -607,11 +607,11 @@
                                         <rect key="frame" x="0.0" y="1387.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iup-vd-nzb" id="UVC-OL-A85">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vnM-G8-WEe" userLabel="Text views" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -627,11 +627,11 @@
                                         <rect key="frame" x="0.0" y="1431.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DEQ-G7-I8K" id="lLJ-7B-WS7">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Toasts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uef-61-C5x" userLabel="Text views" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -763,7 +763,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2iC-9W-foP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1697" y="-358"/>
+            <point key="canvasLocation" x="-569" y="1414"/>
         </scene>
         <!--Colors-->
         <scene sceneID="d4t-AN-NKR">
@@ -788,7 +788,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dea-xt-Ajk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="-789"/>
+            <point key="canvasLocation" x="-1316" y="1413"/>
         </scene>
         <!--LabelsSelectorViewController-->
         <scene sceneID="VmB-AG-iu2">
@@ -796,7 +796,7 @@
                 <viewControllerPlaceholder storyboardName="Labels" referencedIdentifier="LabelsSelectorViewController" id="Rnn-F9-fIe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMM-pB-BZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1524" y="495"/>
+            <point key="canvasLocation" x="1610" y="234"/>
         </scene>
         <!--NavigationBar-->
         <scene sceneID="5EB-kO-Pdf">
@@ -804,7 +804,7 @@
                 <viewControllerPlaceholder storyboardName="NavigationBar" id="Bdq-7s-ehe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPP-wK-beZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1564" y="533"/>
+            <point key="canvasLocation" x="1538" y="268"/>
         </scene>
         <!--FlareView-->
         <scene sceneID="GPI-55-L55">
@@ -812,7 +812,7 @@
                 <viewControllerPlaceholder storyboardName="FlareView" id="JeZ-9T-2zw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUi-nQ-tF0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1561" y="621"/>
+            <point key="canvasLocation" x="1514" y="138"/>
         </scene>
         <!--Text views-->
         <scene sceneID="Uxc-c4-MJK">
@@ -848,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0GB-qA-iZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274.4000000000001" y="1214.8425787106448"/>
+            <point key="canvasLocation" x="2348" y="1413"/>
         </scene>
         <!--Icons-->
         <scene sceneID="fda-EW-c2D">
@@ -873,7 +873,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuQ-kk-83J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="330" y="1223"/>
+            <point key="canvasLocation" x="1601" y="1413"/>
         </scene>
         <!--Radii-->
         <scene sceneID="gXs-vp-ZWD">
@@ -944,7 +944,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gO1-OY-nU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1697" y="1105"/>
+            <point key="canvasLocation" x="159" y="1413"/>
         </scene>
         <!--ButtonsViewController-->
         <scene sceneID="YkT-Tz-MUD">
@@ -952,7 +952,7 @@
                 <viewControllerPlaceholder storyboardName="Buttons" referencedIdentifier="ButtonsViewController" id="tX8-ZB-0uK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwe-BJ-bF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045" y="1648"/>
+            <point key="canvasLocation" x="1574" y="-11"/>
         </scene>
         <!--Shadows-->
         <scene sceneID="u7o-gK-EVJ">
@@ -1053,7 +1053,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dh9-DO-AKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696.8" y="1754.5727136431785"/>
+            <point key="canvasLocation" x="889" y="1413"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8hg-xW-f3B">
@@ -1077,7 +1077,7 @@
                 <viewControllerPlaceholder storyboardName="Cards" referencedIdentifier="CardsViewController" id="biy-s9-RjN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Xl-Er-KDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067" y="681"/>
+            <point key="canvasLocation" x="1566" y="59"/>
         </scene>
         <!--Spinners-->
         <scene sceneID="65b-gm-htQ">
@@ -1087,7 +1087,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QiI-Rf-v9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1312" y="762"/>
+            <point key="canvasLocation" x="1510" y="441"/>
         </scene>
         <!--TappableLinkLabels-->
         <scene sceneID="j1b-40-Ddc">
@@ -1095,7 +1095,7 @@
                 <viewControllerPlaceholder storyboardName="TappableLinkLabels" referencedIdentifier="TappableLinkLabels" id="V0X-4l-cuN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjH-6F-oAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096" y="802"/>
+            <point key="canvasLocation" x="1566" y="584"/>
         </scene>
         <!--HorizontalNavigation-->
         <scene sceneID="a86-Qs-hz4">
@@ -1103,7 +1103,7 @@
                 <viewControllerPlaceholder storyboardName="HorizontalNavigation" id="Qy1-Nz-reP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9J-nQ-zF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052" y="851"/>
+            <point key="canvasLocation" x="1570" y="202"/>
         </scene>
         <!--Snackbar-->
         <scene sceneID="Sqo-6j-PfH">
@@ -1113,7 +1113,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUF-6A-vjX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="904"/>
+            <point key="canvasLocation" x="1515" y="405"/>
         </scene>
         <!--DialogSelectorViewController-->
         <scene sceneID="NTd-2e-Ou6">
@@ -1121,7 +1121,7 @@
                 <viewControllerPlaceholder storyboardName="Dialogs" referencedIdentifier="DialogSelectorViewController" id="lPD-t1-9bP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmb-eH-gKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="543"/>
+            <point key="canvasLocation" x="1610" y="170"/>
         </scene>
         <!--Ratings-->
         <scene sceneID="aIP-vy-Svz">
@@ -1129,7 +1129,7 @@
                 <viewControllerPlaceholder storyboardName="Ratings" id="bf3-rr-ug5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xq-Ee-gtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1410" y="36"/>
+            <point key="canvasLocation" x="1507" y="370"/>
         </scene>
         <!--BadgesViewController-->
         <scene sceneID="QNv-1X-EcR">
@@ -1137,7 +1137,7 @@
                 <viewControllerPlaceholder storyboardName="Badges" referencedIdentifier="BadgesViewController" id="0Jf-dp-uZ9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DlN-a7-Jhn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="116"/>
+            <point key="canvasLocation" x="1574" y="-118"/>
         </scene>
         <!--ChipsViewController-->
         <scene sceneID="owk-E1-q0g">
@@ -1145,7 +1145,7 @@
                 <viewControllerPlaceholder storyboardName="Chips" referencedIdentifier="ChipsViewController" id="n4V-kJ-hpy" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Imx-To-YVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1417" y="201"/>
+            <point key="canvasLocation" x="1566" y="96"/>
         </scene>
         <!--LabelsSelectorViewController-->
         <scene sceneID="iuQ-1u-M2T">
@@ -1153,7 +1153,7 @@
                 <viewControllerPlaceholder storyboardName="Labels" referencedIdentifier="LabelsSelectorViewController" id="1xg-LJ-cSL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKh-Aj-AgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="452"/>
+            <point key="canvasLocation" x="1610" y="-154"/>
         </scene>
         <!--BottomSheet-->
         <scene sceneID="cXu-cq-Neb">
@@ -1161,7 +1161,7 @@
                 <viewControllerPlaceholder storyboardName="BottomSheet" id="ndM-E9-Fpc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APb-DG-xUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1259" y="589"/>
+            <point key="canvasLocation" x="1530" y="-46"/>
         </scene>
         <!--SwitchesViewController-->
         <scene sceneID="Zai-R8-4eN">
@@ -1169,7 +1169,7 @@
                 <viewControllerPlaceholder storyboardName="Switches" referencedIdentifier="SwitchesViewController" id="Wa5-Oe-HCy" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVK-7z-MAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1222" y="635"/>
+            <point key="canvasLocation" x="1586" y="510"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="Jva-x9-tE7">
@@ -1179,7 +1179,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb1-pU-7Wg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="254"/>
+            <point key="canvasLocation" x="1510" y="23"/>
         </scene>
         <!--Toasts-->
         <scene sceneID="AAf-qm-nEV">
@@ -1187,7 +1187,7 @@
                 <viewControllerPlaceholder storyboardName="Toasts" id="h2A-Yl-xpD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0k-Ti-W9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1565" y="336"/>
+            <point key="canvasLocation" x="1502" y="652"/>
         </scene>
         <!--GradientSelectorTableViewController-->
         <scene sceneID="ynX-2w-5sA">
@@ -1195,7 +1195,7 @@
                 <viewControllerPlaceholder storyboardName="Gradients" referencedIdentifier="GradientSelectorTableViewController" id="McZ-ms-fT7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fch-RC-DuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="384"/>
+            <point key="canvasLocation" x="1646" y="-189"/>
         </scene>
         <!--Panel-->
         <scene sceneID="APg-hM-GuZ">
@@ -1203,7 +1203,7 @@
                 <viewControllerPlaceholder storyboardName="Panel" id="oQx-Rw-4PO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIX-p2-rrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-202"/>
+            <point key="canvasLocation" x="1494" y="302"/>
         </scene>
         <!--SettingsViewController-->
         <scene sceneID="Mlh-DX-y4X">
@@ -1221,7 +1221,7 @@
                 <viewControllerPlaceholder storyboardName="StarRatings" id="eYN-so-nT5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFa-SK-eQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="1007"/>
+            <point key="canvasLocation" x="1526" y="477"/>
         </scene>
         <!--ProgressBar-->
         <scene sceneID="RjK-ju-eKJ">
@@ -1229,7 +1229,7 @@
                 <viewControllerPlaceholder storyboardName="ProgressBar" id="IRp-nW-tCi" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFo-xW-wbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955" y="941"/>
+            <point key="canvasLocation" x="1530" y="336"/>
         </scene>
         <!--TextField-->
         <scene sceneID="gbe-wC-JfS">
@@ -1237,7 +1237,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="TextFieldViewController" storyboardName="TextField" id="1IW-RZ-pvI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1X-RG-Asd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="1014"/>
+            <point key="canvasLocation" x="1514" y="617"/>
         </scene>
         <!--BarCharts-->
         <scene sceneID="crr-7z-d8h">
@@ -1247,7 +1247,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yA-rp-OtK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="1180"/>
+            <point key="canvasLocation" x="1518" y="-81"/>
         </scene>
         <!--TabBarControllers-->
         <scene sceneID="71s-sH-eYG">
@@ -1257,7 +1257,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlC-X5-y6h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="1293"/>
+            <point key="canvasLocation" x="1558" y="548"/>
         </scene>
     </scenes>
     <designables>
