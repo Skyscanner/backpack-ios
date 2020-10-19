@@ -1,0 +1,131 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
+#
+# We try to align the versions of tools with what is already available on the image to reduce the time it takes to run our CI.
+# At the time of writing(October 2020) these are:
+#
+# Node: 12.18.4 (Set via .nvmrc)
+# Bundler: 2.1.4 (Installed below)
+#
+jobs:
+  CI:
+    name: Build and Test
+    runs-on: macos-10.15
+
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v2
+
+      # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
+      # This is hopefully somewhat more helpful:
+      - name: Verify Bundler Version
+        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.1.4" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.1.4"; exit 64; fi
+
+      - name: Set GIT_TAG
+        id: extract_git_tag
+        run: echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
+
+      - name: Select Xcode 12
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+
+      - name: Install clang format
+        run: brew install clang-format
+
+      - name: nvm install
+        shell: bash -l {0}
+        run: nvm install
+
+      - name: nvm use
+        shell: bash -l {0}
+        run: nvm use
+
+      - name: Install bundler
+        run: gem install bundler --version 2.1.4
+
+      - name: Set Bundler Config
+        run: bundle config path vendor/bundle
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os}}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache Pods
+        uses: actions/cache@v2
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: NPM ci
+        run: npm ci
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Run NPM build
+        run: npm run build
+
+      - name: Check pristine
+        run: ./scripts/check-pristine-state package-lock.json
+
+      - name: Run Swiftlint
+        run: Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml
+        working-directory: Example
+
+      - name: Build and verify docs
+        if: steps.extract_git_tag.outputs.GIT_TAG == ''
+        run: ./scripts/build-docs-ci && rm -rf docs
+
+      - name: Build docs
+        if: steps.extract_git_tag.outputs.GIT_TAG != ''
+        run: ./scripts/build-docs-ci ${{ steps.extract_git_tag.outputs.GIT_TAG }}
+
+      - name: Build and Test
+        env:
+          FULL_TEST: TRUE
+          BUILD_SDK: iphonesimulator14.0
+          DESTINATION: "OS=14.0,platform=iOS Simulator,name=iPhone 8"
+        run: bundle exec rake ci
+        working-directory: Example
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/head/master' && steps.extract_git_tag.outputs.GIT_TAG != ''
+        with:
+          personal_token: ${{ secrets.IOS_DOCS_DEPLOY_TOKEN }}
+          publish_dir: docs/
+          keep_files: true
+          external_repository: backpack/ios
+          publish_branch: master
+
+  trigger_docs:
+    name: Trigger docs Travis CI build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Trigger docs Travis CI
+        env:
+          TRAVIS_API_KEY: ${{ secrets.TRAVIS_API_KEY }}
+        run: |
+          curl -s -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Travis-API-Version: 3' -H 'Authorization: token $TRAVIS_API_KEY' -d '{"request": {"branch":"master"}}' https://api.travis-ci.org/repo/Skyscanner%2Fbackpack-docs/requests
+
+
+
+
