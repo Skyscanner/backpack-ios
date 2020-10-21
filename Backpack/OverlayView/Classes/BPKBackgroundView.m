@@ -21,9 +21,6 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Duration.h>
-#import <Backpack/Radii.h>
-#import <Backpack/Shadow.h>
-#import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -69,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     self.tintLayer.frame = self.bounds;
 }
 

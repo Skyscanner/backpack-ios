@@ -73,6 +73,13 @@ NS_ASSUME_NONNULL_BEGIN
                 [backgroundContent.trailingAnchor constraintEqualToAnchor:overlayView.backgroundView.trailingAnchor],
                 [backgroundContent.bottomAnchor constraintEqualToAnchor:overlayView.backgroundView.bottomAnchor]
             ]];
+
+            // This is a hack used to reorder the layers before they are captured by the snapshot library.
+            // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
+            // See https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
+            CALayer *tintLayer = overlayView.backgroundView.layer.sublayers[0];
+            [overlayView.backgroundView.layer.sublayers[0] removeFromSuperlayer];
+            [overlayView.backgroundView.layer insertSublayer:tintLayer atIndex:1];
         }
         if (foreground) {
             UIView *foregroundContent = [self createForegroundView];
