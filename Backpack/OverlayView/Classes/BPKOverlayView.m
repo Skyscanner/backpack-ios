@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #import "BPKOverlayView.h"
 
 #import <Backpack/Color.h>
@@ -83,6 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithOverlayType:(BPKOverlayViewOverlayType)overlayType cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle {
     self.overlayType = overlayType;
     self.cornerStyle = cornerStyle;
+    self.layer.masksToBounds = YES;
 }
 
 #pragma mark - getters
@@ -111,17 +113,9 @@ NS_ASSUME_NONNULL_BEGIN
         return _backgroundView;
     }
 
-    self.tintLayer = [CALayer layer];
-    self.tintLayer.backgroundColor = BPKColor.skyBlueShade03.CGColor;
-    self.tintLayer.zPosition = 100;
-    self.layer.masksToBounds = YES;
-
-    _backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    _backgroundView = [[BPKBackgroundView alloc] initWithFrame:CGRectZero];
     _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     [self insertSubview:_backgroundView atIndex:0];
-
-    [_backgroundView.layer addSublayer:self.tintLayer];
-    [self updateTintAppearance];
 
     [NSLayoutConstraint activateConstraints:@[
         [_backgroundView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
@@ -133,9 +127,14 @@ NS_ASSUME_NONNULL_BEGIN
     return _backgroundView;
 }
 
+- (BPKOverlayViewOverlayType)overlayType {
+    return self.backgroundView.overlayType;
+}
+
 #pragma mark - setters
 
 - (void)setCornerStyle:(BPKOverlayViewCornerStyle)cornerStyle {
+    BPKAssertMainThread();
     if (_cornerStyle != cornerStyle) {
         _cornerStyle = cornerStyle;
         [self updateCorners];
@@ -144,32 +143,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setOverlayType:(BPKOverlayViewOverlayType)overlayType {
     BPKAssertMainThread();
-    if (_overlayType == overlayType) {
-        return;
-    }
-
-    _overlayType = overlayType;
-
-    [self updateTintAppearance];
+    self.backgroundView.overlayType = overlayType;
 }
 
 #pragma mark - helpers
-
-- (void)updateTintAppearance {
-    if (self.tintLayer == nil) {
-        return;
-    }
-
-    CGFloat newOpacity = 0;
-    if (self.overlayType == BPKOverlayViewOverlayTypeTint) {
-        newOpacity = 0.56;
-    }
-
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:BPKDuration.animationDurationSm];
-    self.tintLayer.opacity = newOpacity;
-    [CATransaction commit];
-}
 
 - (void)updateCorners {
     CGFloat cornerRadius = 0;
@@ -182,6 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
             cornerRadius = BPKCornerRadiusLg;
             break;
         default:
+            NSAssert(NO, @"Unknown BPKOverlayViewCornerStyle %d", (int)self.cornerStyle);
             break;
     }
 
