@@ -80,7 +80,9 @@ NS_ASSUME_NONNULL_BEGIN
             [NSLayoutConstraint activateConstraints:@[
                 [foregroundContent.widthAnchor constraintEqualToAnchor:overlayView.foregroundView.widthAnchor constant:-BPKSpacingLg],
                 [foregroundContent.centerXAnchor constraintEqualToAnchor:overlayView.foregroundView.centerXAnchor],
-                [foregroundContent.centerYAnchor constraintEqualToAnchor:overlayView.foregroundView.centerYAnchor]
+                [foregroundContent.centerYAnchor constraintEqualToAnchor:overlayView.foregroundView.centerYAnchor],
+                [overlayView.foregroundView.heightAnchor constraintGreaterThanOrEqualToConstant:100],
+                [overlayView.foregroundView.widthAnchor constraintGreaterThanOrEqualToConstant:100]
             ]];
         }
 

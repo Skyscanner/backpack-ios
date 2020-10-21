@@ -81,6 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.layer addSublayer:self.tintLayer];
 
     self.overlayType = overlayType;
+    [self updateTintAppearance];
 }
 
 #pragma mark - setters

@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
         return _backgroundView;
     }
 
-    _backgroundView = [[BPKBackgroundView alloc] initWithFrame:CGRectZero];
+    _backgroundView = [[BPKBackgroundView alloc] initWithOverlayType:self.overlayType];
     _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     [self insertSubview:_backgroundView atIndex:0];
 
@@ -125,10 +125,6 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 
     return _backgroundView;
-}
-
-- (BPKOverlayViewOverlayType)overlayType {
-    return self.backgroundView.overlayType;
 }
 
 #pragma mark - setters
@@ -143,7 +139,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setOverlayType:(BPKOverlayViewOverlayType)overlayType {
     BPKAssertMainThread();
-    self.backgroundView.overlayType = overlayType;
+    if (_overlayType == overlayType) {
+        return;
+    }
+
+    _overlayType = overlayType;
+
+    // We don't use the getter here as we don't want to create the background view
+    if(_backgroundView != nil) {
+        _backgroundView.overlayType = overlayType;
+    }
 }
 
 #pragma mark - helpers
