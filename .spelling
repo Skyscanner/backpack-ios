@@ -58,6 +58,9 @@ HorizontalNavigationItem
 BPKHorizontalNavigation
 BPKHorizontalNavigationItem
 
+OverlayView
+BPKOverlayView
+
 BpkIcons
 BpkIcon
 BpkIcons.icon
