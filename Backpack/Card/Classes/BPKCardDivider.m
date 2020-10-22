@@ -58,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
     double lineSize =
