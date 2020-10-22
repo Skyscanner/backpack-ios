@@ -81,8 +81,8 @@ async function buildDocs() {
           process.exit(1);
       }
     });
-    
-    await execAsync(`rake "docs['./docs/versions/${releaseTag}']"`, function(err) {
+
+    await execAsync(`bundle exec rake "docs['./docs/versions/${releaseTag}']"`, function(err) {
       if(err) {
           console.log(err);
           process.exit(1);
