@@ -55,6 +55,8 @@ const VALID_TEXT_STYLES = new Set([
 ]);
 const VALID_SHADOWS = new Set(['sm', 'lg']);
 const VALID_SPACINGS = new Set(['none', 'sm', 'md', 'base', 'lg', 'xl', 'xxl']);
+const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
+const VALID_BORDER_WIDTHS = new Set(['sm', 'lg', 'xl']);
 const WEIGHT_MAP = {
   normal: 'UIFontWeightRegular',
   bold: 'UIFontWeightBold',
@@ -421,6 +423,9 @@ const parseTokens = tokensData => {
 
   const radii = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'radii')
+    .filter(({ name }) =>
+      VALID_RADII.has(name.replace('cornerRadius', '').toLowerCase()),
+    )
     .map(({ name, value }) =>
       generatePrefixedConst({
         type: 'radii',
@@ -433,6 +438,9 @@ const parseTokens = tokensData => {
 
   const borderWidths = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'borders')
+    .filter(({ name }) =>
+      VALID_BORDER_WIDTHS.has(name.replace('borderWidth', '').toLowerCase()),
+    )
     .map(({ name, value }) =>
       generatePrefixedConst({
         type: 'borders',
