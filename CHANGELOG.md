@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.3.0
+
+**Added:**
+
+- Backpack/OverlayView
+  - Added `OverlayView` component for rendering background content with a tint.
+
 # 36.2.1
 
 **Fixed:**
