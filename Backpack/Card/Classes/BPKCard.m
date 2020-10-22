@@ -133,6 +133,8 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     self.tintLayer.frame = self.bounds;
 }
 

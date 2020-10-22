@@ -125,6 +125,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Layout overrides
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     self.tintLayer.frame = self.bounds;
     self.tintLayer.cornerRadius = CGRectGetHeight(self.bounds) / 2.0;
 
