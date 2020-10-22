@@ -24,9 +24,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKBackgroundView` is a subclass of `UIView` which allows you to apply Skyscanner style tints to its content.
+ * `BPKOverlayBackgroundView` is a subclass of `UIView` which allows you to apply Skyscanner style tints to its content.
  */
-IB_DESIGNABLE @interface BPKBackgroundView : UIView
+IB_DESIGNABLE @interface BPKOverlayBackgroundView : UIView
 
 /**
  * The kind of overlay to apply to the view. Default is Tint.
@@ -34,26 +34,26 @@ IB_DESIGNABLE @interface BPKBackgroundView : UIView
 @property(nonatomic, assign) IBInspectable BPKOverlayViewOverlayType overlayType;
 
 /**
- * Create a `BPKBackgroundView` with a given frame.
+ * Create a `BPKOverlayBackgroundView` with a given frame.
  *
  * @param frame The initial frame of the card.
- * @return `BPKBackgroundView` instance.
+ * @return `BPKOverlayBackgroundView` instance.
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKBackgroundView` with a decoder (typically when creating from Storyboards)
+ * Creates a `BPKOverlayBackgroundView` with a decoder (typically when creating from Storyboards)
  *
  * @param aDecoder Decoder object to extract parameters from
- * @return `BPKBackgroundView` instance.
+ * @return `BPKOverlayBackgroundView` instance.
  */
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
- * Creates a `BPKBackgroundView` with a corner style and overlay type.
+ * Creates a `BPKOverlayBackgroundView` with a corner style and overlay type.
  *
  * @param overlayType The overlay type to show in front of the background view.
- * @return `BPKBackgroundView` instance.
+ * @return `BPKOverlayBackgroundView` instance.
  */
 - (nullable instancetype)initWithOverlayType:(BPKOverlayViewOverlayType)overlayType NS_DESIGNATED_INITIALIZER;
 

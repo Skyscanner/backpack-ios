@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
         return _backgroundView;
     }
 
-    _backgroundView = [[BPKBackgroundView alloc] initWithOverlayType:self.overlayType];
+    _backgroundView = [[BPKOverlayBackgroundView alloc] initWithOverlayType:self.overlayType];
     _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     [self insertSubview:_backgroundView atIndex:0];
 

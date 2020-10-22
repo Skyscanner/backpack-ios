@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKBackgroundView.h"
+#import "BPKOverlayBackgroundView.h"
 #import "BPKOverlayViewCornerStyles.h"
 #import "BPKOverlayViewOverlayTypes.h"
 
@@ -48,7 +48,7 @@ IB_DESIGNABLE @interface BPKOverlayView : UIView
 /**
  * The view to display behind the tint.
  */
-@property(nonatomic, strong, readonly) BPKBackgroundView *backgroundView;
+@property(nonatomic, strong, readonly) BPKOverlayBackgroundView *backgroundView;
 
 /**
  * Create a `BPKOverlayView` with a given frame.

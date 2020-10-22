@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKBackgroundView.h"
+#import "BPKOverlayBackgroundView.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -24,13 +24,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKBackgroundView ()
+@interface BPKOverlayBackgroundView ()
 
 @property(nonatomic, strong) CALayer *tintLayer;
 
 @end
 
-@implementation BPKBackgroundView
+@implementation BPKOverlayBackgroundView
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
