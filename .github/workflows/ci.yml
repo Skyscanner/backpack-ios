@@ -35,7 +35,7 @@ jobs:
           then
             echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
           else
-            echo ::set-output name=GIT_TAG::""
+            echo ::set-output name=GIT_TAG::"SKIP"
           fi
 
       - name: Print tag
@@ -105,17 +105,17 @@ jobs:
         if: steps.extract_git_tag.outputs.GIT_TAG != ''
         run: ./scripts/build-docs-ci ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Build and Test
-        env:
-          FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator14.0
-          DESTINATION: 'OS=14.0,platform=iOS Simulator,name=iPhone 8'
-        run: bundle exec rake ci
-        working-directory: Example
+      # - name: Build and Test
+      #   env:
+      #     FULL_TEST: TRUE
+      #     BUILD_SDK: iphonesimulator14.0
+      #     DESTINATION: 'OS=14.0,platform=iOS Simulator,name=iPhone 8'
+      #   run: bundle exec rake ci
+      #   working-directory: Example
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/head/master' && steps.extract_git_tag.outputs.GIT_TAG != ''
+        if: steps.extract_git_tag.outputs.GIT_TAG != ''
         with:
           personal_token: ${{ secrets.IOS_DOCS_DEPLOY_TOKEN }}
           publish_dir: docs/
