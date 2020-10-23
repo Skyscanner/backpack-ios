@@ -39,8 +39,10 @@ jobs:
             echo ::set-output name=GIT_TAG::""
           fi
 
-      - name: Print tag
-        run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
+      - name: Print job details
+        run: |
+          echo Tag: ${{ steps.extract_git_tag.outputs.GIT_TAG }}
+          echo Ref: ${{ github.ref }}
 
       - name: Select Xcode 12
         run: sudo xcode-select --switch /Applications/Xcode_12.app
