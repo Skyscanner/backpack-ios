@@ -116,7 +116,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/head/master' && steps.extract_git_tag.outputs.GIT_TAG != ''
+        if: steps.extract_git_tag.outputs.GIT_TAG != ''
         with:
           personal_token: ${{ secrets.IOS_DOCS_DEPLOY_TOKEN }}
           publish_dir: docs/
