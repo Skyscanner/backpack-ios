@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 36.3.3
+
+**Fixed:**
+
+ - Nothing
+   - Just testing the release process
+
 # 36.3.2
 
 **Fixed:**
