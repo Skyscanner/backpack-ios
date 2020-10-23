@@ -124,8 +124,7 @@ jobs:
         env:
           TRAVIS_API_KEY: ${{ secrets.TRAVIS_API_KEY }}
         run: |
-          curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_API_KEY" -d '{"request": {"branch":"master"}}' https://api.travis-ci.org/repo/Skyscanner%2Fbackpack-docs/requests
-
+          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_API_KEY" -d '{"request": {"branch":"master"}}' https://api.travis-ci.org/repo/Skyscanner%2Fbackpack-docs/requests
 
 
 
