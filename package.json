@@ -11,6 +11,7 @@
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp && npm run spellcheck",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
+    "danger:ci": "danger ci",
     "gulp": "gulp",
     "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md' '!gems/**/*.md'",
     "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!gems/**/*.md'"
@@ -42,6 +43,7 @@
   "devDependencies": {
     "bpk-svgs": "^12.1.17",
     "bpk-tokens": "^36.0.0",
+    "danger": "^10.5.0",
     "del": "^5.1.0",
     "eslint-config-skyscanner-with-prettier": "^0.8.0",
     "eslint_d": "^7.3.0",
