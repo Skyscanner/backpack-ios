@@ -114,6 +114,13 @@ jobs:
         run: bundle exec rake ci
         working-directory: Example
 
+      - name: Save assets
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: FailureDiffs
+          path: Example/BackpackTests/FailureDiffs
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: steps.extract_git_tag.outputs.GIT_TAG != ''
