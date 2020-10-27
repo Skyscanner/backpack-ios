@@ -171,7 +171,7 @@
 }
 
 - (NSNumber *)buttonCornerRadius {
-    return @(BPKCornerRadiusSm);
+    return @(BPKCornerRadiusXs);
 }
 
 - (UIColor *)calendarDateSelectedContentColor {

@@ -38,10 +38,10 @@
 #pragma mark - Private
 
 - (void)setLabels {
-    NSArray<NSString *> *keys = @[@"BPKCornerRadiusSm", @"BPKCornerRadiusPill"];
+    NSArray<NSString *> *keys = @[@"BPKCornerRadiusXs", @"BPKCornerRadiusPill"];
 
     NSArray<NSNumber *> *values =
-        @[[NSNumber numberWithFloat:BPKCornerRadiusSm], [NSNumber numberWithFloat:BPKCornerRadiusPill]];
+        @[[NSNumber numberWithFloat:BPKCornerRadiusXs], [NSNumber numberWithFloat:BPKCornerRadiusPill]];
 
     NSAssert(self.labels.count == keys.count, @"The number of labels must match the number of keys above");
     for (int i = 0; i < self.labels.count; i++) {
