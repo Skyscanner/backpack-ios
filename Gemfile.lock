@@ -244,7 +244,7 @@ GEM
     retriable (3.1.2)
     rexml (3.2.4)
     rouge (2.0.7)
-    rubocop (0.93.1)
+    rubocop (1.0.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -253,7 +253,7 @@ GEM
       rubocop-ast (>= 0.6.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.8.0)
+    rubocop-ast (1.1.0)
       parser (>= 2.7.1.5)
     ruby-macho (1.4.0)
     ruby-progressbar (1.10.1)
@@ -316,7 +316,7 @@ DEPENDENCIES
   fastlane (~> 2.165.0)
   jazzy (~> 0.13.4)
   rake
-  rubocop (~> 0.93.1)
+  rubocop (~> 1.0.0)
   semver2
   xcpretty
 
