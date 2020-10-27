@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 37.0.0
+
+**Breaking:**
+
+- Backpack/Radii:
+  - `BPKCornerRadiusSm` is now `8` instead of `4`. To continue using `4`, replace `BPKCornerRadiusSm` with `BPKCornerRadiusXs`.
+
 # 36.3.3
 
 **Fixed:**

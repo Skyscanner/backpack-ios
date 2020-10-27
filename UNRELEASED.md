@@ -2,11 +2,6 @@
 
 > Place your changes below this line.
 
-**Breaking:**
-
-- Backpack/Radii:
-  - `BPKCornerRadiusSm` is now `8` instead of `4`. To continue using `4`, replace `BPKCornerRadiusSm` with `BPKCornerRadiusXs`.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
