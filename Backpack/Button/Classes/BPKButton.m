@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     self.initializing = YES;
 
-    _cornerRadius = @(BPKCornerRadiusSm);
+    _cornerRadius = @(BPKCornerRadiusXs);
 
     self.layer.masksToBounds = YES;
     self.adjustsImageWhenHighlighted = NO;

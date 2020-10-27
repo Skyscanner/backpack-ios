@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.label = label;
 
     self.type = BPKBadgeTypeSuccess;
-    self.layer.cornerRadius = BPKCornerRadiusSm;
+    self.layer.cornerRadius = BPKCornerRadiusXs;
     self.layer.masksToBounds = YES;
 }
 
