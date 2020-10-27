@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 37.0.1
+
+**Fixed:**
+
+- Backpack/Button:
+  - Changed the button corner radius from `BPKCornerRadiusXs` (`4`) to `BPKCornerRadiusSm` (`8`).
+
 # 37.0.0
 
 **Breaking:**
