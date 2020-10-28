@@ -132,13 +132,16 @@ jobs:
           publish_branch: master
 
   trigger_docs:
-    name: Trigger docs Travis CI build
+    name: Trigger docs build
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Trigger docs Travis CI
+      - name: Trigger docs build
         env:
-          TRAVIS_API_KEY: ${{ secrets.TRAVIS_API_KEY }}
+          BACKPACK_DOCS_DEPLOY_TOKEN: ${{ secrets.BACKPACK_DOCS_DEPLOY_TOKEN }}
         run: |
-          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_API_KEY" -d '{"request": {"branch":"master"}}' https://api.travis-ci.org/repo/Skyscanner%2Fbackpack-docs/requests
+          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"master","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
+
+
+
