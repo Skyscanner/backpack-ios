@@ -22,10 +22,10 @@
 
 // Globals provided by Danger
 /* global  schedule */
-const fs = require('fs');
+import fs from 'fs';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { danger, warn } = require('danger');
+import { danger, warn } from 'danger';
 
 const hasNonRTLAnchor = async filePath => {
   const stat = await fs.promises.stat(filePath);

@@ -12,6 +12,7 @@
     "build": "npm run test && gulp && npm run spellcheck",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
     "danger:ci": "danger ci",
+    "danger:local": "danger local",
     "gulp": "gulp",
     "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md' '!gems/**/*.md'",
     "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!gems/**/*.md'"
@@ -41,6 +42,8 @@
   },
   "homepage": "https://github.com/Skyscanner/backpack-ios#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
     "bpk-svgs": "^12.1.17",
     "bpk-tokens": "^36.0.0",
     "danger": "^10.5.0",

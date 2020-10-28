@@ -102,7 +102,6 @@ jobs:
         run: npm run danger:ci
         env:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          DANGER_DISABLE_TRANSPILATION: "true"
 
       - name: Build and verify docs
         if: steps.extract_git_tag.outputs.GIT_TAG == ''
