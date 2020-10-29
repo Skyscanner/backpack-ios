@@ -145,8 +145,6 @@ NS_ASSUME_NONNULL_BEGIN
     bpkChip.title = @"Test";
     bpkChip.selected = YES;
     bpkChip.backgroundTint = UIColor.orangeColor;
-    bpkChip.colorUnselectedState = YES;
-    bpkChip.shadowEnabled = false;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
@@ -165,8 +163,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
     bpkChip.selected = YES;
-    bpkChip.colorUnselectedState = YES;
-    bpkChip.shadowEnabled = false;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
@@ -204,8 +200,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
     bpkChip.backgroundTint = UIColor.orangeColor;
-    bpkChip.colorUnselectedState = YES;
-    bpkChip.shadowEnabled = false;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
@@ -223,8 +217,6 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.colorUnselectedState = YES;
-    bpkChip.shadowEnabled = false;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }

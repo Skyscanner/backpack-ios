@@ -23,8 +23,6 @@ class ChipsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var icons: Bool = false
-    var shadow: Bool = true
-    var colorUnselectedState: Bool = false
     var backgroundTint: UIColor?
     var style: BPKChipStyle?
     fileprivate static var chips = [
@@ -116,7 +114,6 @@ extension ChipsViewController: UICollectionViewDelegate {
         cell.title = title
         cell.isSelected = selected
         cell.enabled = enabled
-        cell.shadow = shadow
         if icons {
             cell.icon = icon
         }
@@ -126,7 +123,6 @@ extension ChipsViewController: UICollectionViewDelegate {
         if let style = style {
             cell.style = style
         }
-        cell.colorUnselectedState = colorUnselectedState
 
         return cell
     }

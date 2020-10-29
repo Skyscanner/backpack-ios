@@ -20,13 +20,11 @@ import UIKit
 import Backpack
 
 enum ChipSegueIdentifier: String {
-    case `default` = "Default"
-    case withIcons = "WithIcons"
-    case withoutShadow = "WithoutShadow"
-    case withBackgroundColor = "WithBackgroundColor"
-    case backgroundColorNoShadow = "BackgroundColorNoShadow"
-    case backgroundColorUnselectedNoShadow = "BackgroundColorUnselectedNoShadow"
     case outline = "Outline"
+    case filledWithIcons = "FilledWithIcons"
+    case withBackgroundColor = "WithBackgroundColor"
+    case filled = "Filled"
+    case filledWithBackgroundColor = "FilledWithBackgroundColor"
 }
 
 class ChipSelectorViewController: UITableViewController {
@@ -38,29 +36,21 @@ class ChipSelectorViewController: UITableViewController {
         if let identifier = segue.identifier,
             let chipSegueIdentifier = ChipSegueIdentifier(rawValue: identifier) {
             switch chipSegueIdentifier {
-            case .default:
+            case .outline:
                 target.title = "Default"
-            case .withIcons:
+            case .filledWithIcons:
                 target.title = "With icons"
                 target.icons = true
-            case .withoutShadow:
-                target.title = "Without shadow"
-                target.shadow = false
             case .withBackgroundColor:
                 target.title = "Background color"
-                target.backgroundTint = BPKColor.panjin
-            case .backgroundColorNoShadow:
-                target.title = "Background color"
-                target.shadow = false
-                target.backgroundTint = BPKColor.panjin
-            case .backgroundColorUnselectedNoShadow:
-                target.title = "Background color"
-                target.shadow = false
-                target.colorUnselectedState = true
-                target.backgroundTint = BPKColor.panjin
-            case .outline:
-                target.title = "Outline"
-                target.style = .outline
+                target.backgroundTint = BPKColor.abisko
+            case .filled:
+                target.title = "Filled"
+                target.style = .filled
+            case .filledWithBackgroundColor:
+                target.title = "Filled with background color"
+                target.style = .filled
+                target.backgroundTint = BPKColor.abisko
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

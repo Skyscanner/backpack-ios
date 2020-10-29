@@ -2,6 +2,12 @@
 
 > Place your changes below this line.
 
+**Breaking:**
+ - Backpack/Chip:
+   - Shadows are no longer supported. The `shaddowEnabled` property has been removed.
+   - We've removed the property `colorUnselectedState`. If a custom colour is provided, it will colour the unselected and disabled states too.
+   - The default chip style is now `outline` instead of `filled`.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
