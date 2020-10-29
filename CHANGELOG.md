@@ -1,6 +1,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 38.0.0
+
+**Breaking:**
+ - Backpack/Chip:
+   - Shadows are no longer supported. The `shaddowEnabled` property has been removed.
+   - We've removed the property `colorUnselectedState`. If a custom colour is provided, it will colour the unselected and disabled states too.
+   - The default chip style is now `outline` instead of `filled`.
+
 # 37.0.1
 
 **Fixed:**
