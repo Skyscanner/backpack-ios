@@ -81,65 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
-- (UIView *)createChipWithoutShadowEnabledUnselected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
-    bpkChip.shadowEnabled = false;
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipWithoutShadowEnabledUnselected {
-    UIView *lightView = [self createChipWithoutShadowEnabledUnselected];
-    UIView *darkView = [self createChipWithoutShadowEnabledUnselected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
-
-- (UIView *)createChipWithoutShadowEnabledSelected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
-    bpkChip.selected = YES;
-    bpkChip.shadowEnabled = false;
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipWithoutShadowEnabledSelected {
-    UIView *lightView = [self createChipWithoutShadowEnabledSelected];
-    UIView *darkView = [self createChipWithoutShadowEnabledSelected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
-
-- (UIView *)creteChipWithCustomBackgroundColorWithoutShadowEnabledSelected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
-    bpkChip.selected = YES;
-    bpkChip.backgroundTint = UIColor.orangeColor;
-    bpkChip.shadowEnabled = false;
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipWithCustomBackgroundColorWithoutShadowEnabledSelected {
-    UIView *lightView = [self creteChipWithCustomBackgroundColorWithoutShadowEnabledSelected];
-    UIView *darkView = [self creteChipWithCustomBackgroundColorWithoutShadowEnabledSelected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
-
-- (UIView *)createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledSelected {
+- (UIView *)createChipWithCustomBackgroundColorUnselected {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
@@ -149,86 +91,31 @@ NS_ASSUME_NONNULL_BEGIN
     return parentView;
 }
 
-- (void)testChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledSelected {
-    UIView *lightView = [self createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledSelected];
-    UIView *darkView = [self createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledSelected];
+- (void)testChipWithCustomBackgroundColorUnselected {
+    UIView *lightView = [self createChipWithCustomBackgroundColorUnselected];
+    UIView *darkView = [self createChipWithCustomBackgroundColorUnselected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
-- (UIView *)createChipUnselectedColorEnabledColorWithoutShadowEnabledSelected {
+- (UIView *)createChipWithCustomBackgroundColorSelected {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
     bpkChip.selected = YES;
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipUnselectedColorEnabledColorWithoutShadowEnabledSelected {
-    UIView *lightView = [self createChipUnselectedColorEnabledColorWithoutShadowEnabledSelected];
-    UIView *darkView = [self createChipUnselectedColorEnabledColorWithoutShadowEnabledSelected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
-
-- (UIView *)createChipWithCustomBackgroundColorWithoutShadowEnabledUnselected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
-    bpkChip.backgroundTint = UIColor.orangeColor;
-    bpkChip.shadowEnabled = false;
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipWithCustomBackgroundColorWithoutShadowEnabledUnselected {
-    UIView *lightView = [self createChipWithCustomBackgroundColorWithoutShadowEnabledUnselected];
-    UIView *darkView = [self createChipWithCustomBackgroundColorWithoutShadowEnabledUnselected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
-
-- (UIView *)createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
     bpkChip.backgroundTint = UIColor.orangeColor;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
 
-- (void)testChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
-    UIView *lightView = [self createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledUnselected];
-    UIView *darkView = [self createChipWithCustomBackgroundAndUnselectedColorEnabledColorWithoutShadowEnabledUnselected];
+- (void)testChipWithCustomBackgroundColorSelected {
+    UIView *lightView = [self createChipWithCustomBackgroundColorSelected];
+    UIView *darkView = [self createChipWithCustomBackgroundColorSelected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
-
-
-- (UIView *)createChipUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
-    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-    BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
-    bpkChip.title = @"Test";
-    [self configureParentView:parentView forChip:bpkChip];
-    return parentView;
-}
-
-- (void)testChipUnselectedColorEnabledColorWithoutShadowEnabledUnselected {
-    UIView *lightView = [self createChipUnselectedColorEnabledColorWithoutShadowEnabledUnselected];
-    UIView *darkView = [self createChipUnselectedColorEnabledColorWithoutShadowEnabledUnselected];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
 
 - (UIView *)createChipEnabledSelectedThemed {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -358,37 +245,37 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createChipOutlineUnselected {
+- (UIView *)createChipFilledUnselected {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.style = BPKChipStyleOutline;
+    bpkChip.style = BPKChipStyleFilled;
     bpkChip.selected = NO;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
 
-- (void)testChipOutlineUnselected {
-    UIView *lightView = [self createChipOutlineUnselected];
-    UIView *darkView = [self createChipOutlineUnselected];
+- (void)testChipFilledUnselected {
+    UIView *lightView = [self createChipFilledUnselected];
+    UIView *darkView = [self createChipFilledUnselected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createChipOutlineSelected {
+- (UIView *)createChipFilledSelected {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.style = BPKChipStyleOutline;
+    bpkChip.style = BPKChipStyleFilled;
     bpkChip.selected = YES;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
 
-- (void)testChipOutlineSelected {
-    UIView *lightView = [self createChipOutlineSelected];
-    UIView *darkView = [self createChipOutlineSelected];
+- (void)testChipFilledSelected {
+    UIView *lightView = [self createChipFilledSelected];
+    UIView *darkView = [self createChipFilledSelected];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
