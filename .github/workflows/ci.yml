@@ -98,6 +98,11 @@ jobs:
         run: Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml
         working-directory: Example
 
+      - name: Run danger
+        run: npm run danger:ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+
       - name: Build and verify docs
         if: steps.extract_git_tag.outputs.GIT_TAG == ''
         run: ./scripts/build-docs-ci && rm -rf docs
