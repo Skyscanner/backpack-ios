@@ -25,16 +25,6 @@ class ChipPreviewCollectionViewCell: UICollectionViewCell {
             chip.iconName = icon ?? nil
         }
     }
-    var shadow: Bool? {
-        didSet {
-            chip.isShadowEnabled = shadow ?? true
-        }
-    }
-    var colorUnselectedState: Bool? {
-        didSet {
-            chip.colorUnselectedState = colorUnselectedState ?? true
-        }
-    }
     var backgroundTint: UIColor? {
         didSet {
             if backgroundTint != nil {

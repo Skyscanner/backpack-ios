@@ -23,7 +23,6 @@
 #import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
-#import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -73,8 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
-    self.style = BPKChipStyleFilled;
-    self.shadowEnabled = YES;
+    self.style = BPKChipStyleOutline;
 
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
@@ -94,32 +92,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self setUpConstraints];
     [self updateStyle];
-}
-
-- (void)setShadowEnabled:(BOOL)shadowEnabled {
-    if (_shadowEnabled != shadowEnabled) {
-        _shadowEnabled = shadowEnabled;
-
-        [self updateShadowStyle];
-        [self updateStyle];
-    }
-}
-
-- (void)updateShadowStyle {
-    switch (self.style) {
-        case BPKChipStyleFilled:
-            if (self.isShadowEnabled) {
-                BPKShadow *shadow = [BPKShadow shadowSm];
-                [shadow applyToLayer:self.layer];
-            } else {
-                self.layer.shadowColor = BPKColor.clear.CGColor;
-            }
-            break;
-
-        case BPKChipStyleOutline:
-            self.layer.shadowColor = BPKColor.clear.CGColor;
-            break;
-    }
 }
 
 #pragma mark - Layout overrides
@@ -171,14 +143,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (void)setColorUnselectedState:(BOOL)colorUnselectedState {
-    if (_colorUnselectedState != colorUnselectedState) {
-        _colorUnselectedState = colorUnselectedState;
-
-        [self updateStyle];
-    }
-}
-
 - (void)setBackgroundTint:(UIColor *_Nullable)backgroundTint {
     if (_backgroundTint != backgroundTint) {
         _backgroundTint = backgroundTint;
@@ -192,7 +156,6 @@ NS_ASSUME_NONNULL_BEGIN
         _style = style;
 
         [self updateStyle];
-        [self updateShadowStyle];
     }
 }
 
@@ -228,29 +191,35 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)unselectedBackgroundColor {
-    if (self.colorUnselectedState) {
-        return [BPKColor blend:[self selectedBackgroundColor] with:BPKColor.backgroundTertiaryColor weight:0.2];
+    if(self.backgroundTint != nil) {
+        return [BPKColor blend:self.backgroundTint with:BPKColor.backgroundTertiaryColor weight:0.2];
     }
 
-    return [self defaultUnselectedBackgroundColor];
-}
-
-- (UIColor *)defaultUnselectedBackgroundColor {
     switch (self.style) {
         case BPKChipStyleFilled:
-            if (self.shadowEnabled) {
-                return BPKColor.backgroundTertiaryColor;
-            }
-
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07
-                                              darkVariant:BPKColor.backgroundTertiaryDarkColor];
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07 darkVariant:BPKColor.blackTint03];
             break;
+        case BPKChipStyleOutline:
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+            break;
+    }
+}
 
+- (UIColor *)disabledBackgroundColor {
+    switch (self.style) {
         case BPKChipStyleOutline:
             return BPKColor.clear;
             break;
+        case BPKChipStyleFilled: {
+            UIColor *lightColor = BPKColor.skyGrayTint07;
+            UIColor *darkColor = BPKColor.blackTint03;
+            if(self.backgroundTint != nil) {
+                lightColor = [BPKColor blend:self.backgroundTint with:BPKColor.backgroundTertiaryColor weight:0.2];
+            }
+            return [BPKColor dynamicColorWithLightVariant:lightColor darkVariant:darkColor];
+            break;
+        }
     }
-
 }
 
 - (void)updateStyle {
@@ -263,7 +232,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (!self.enabled) {
-        self.backgroundColor = [self.class disabledBackgroundColor];
+        self.backgroundColor = [self disabledBackgroundColor];
         self.contentColor = [self.class disabledContentColor];
     }
 
@@ -295,6 +264,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateOutline {
+    if(self.isSelected) {
+        self.layer.borderWidth = 0;
+        self.layer.borderColor = nil;
+        return;
+    }
+
     switch (self.style) {
         case BPKChipStyleFilled:
             self.layer.borderWidth = 0;
@@ -380,20 +355,16 @@ NS_ASSUME_NONNULL_BEGIN
     return BPKSpacingMd;
 }
 
-+ (UIColor *)disabledBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint02];
-}
-
 + (UIColor *)disabledContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint05];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
 }
 
 + (UIColor *)outlineColor {
-    return [BPKColor lineColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
 }
 
 + (UIColor *)disabledOutlineColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint05];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint05 darkVariant:BPKColor.blackTint06];
 }
 
 @end

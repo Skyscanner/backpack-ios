@@ -80,16 +80,6 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 @property(nullable, nonatomic, strong) UIColor *primaryColor UI_APPEARANCE_SELECTOR;
 
 /**
- * Whether the shadow should be shown or not. By default, chips have a shadow. Ignored when style is set BPKChipStyleOutline.
- */
-@property(nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
-
-/**
- * Whether the custom backgroundTint should apply when unselected.
- */
-@property(nonatomic) BOOL colorUnselectedState;
-
-/**
  * An optional custom background.
  */
 @property(nullable, nonatomic) UIColor *backgroundTint;
@@ -100,7 +90,7 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 @property(nullable, nonatomic, copy) BPKIconName iconName;
 
 /**
- * Style of the chip. Default is BPKChipStyleFilled.
+ * Style of the chip. Default is BPKChipStyleOutline.
 */
 @property(nonatomic, assign) BPKChipStyle style;
 
