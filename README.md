@@ -2,7 +2,7 @@
 
 > Backpack is a collection of design resources, reusable components and guidelines for creating Skyscanner's products.
 
-[![CI Status](https://img.shields.io/travis/Skyscanner/backpack-ios.svg?style=flat)](https://travis-ci.org/Skyscanner/backpack-ios)
+[![CI Status](https://github.com/Skyscanner/backpack-ios/workflows/CI/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions)
 [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
