@@ -1,6 +1,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 38.1.0
+
+**Added:**
+
+- Backpack/Calendar
+  - Added new `BPKCalendarDateCellStyleNoData` enum case to indicate a calendar cell style for which there is no price information available.
+
+**Fixed:**
+
+ - Backpack/Calendar
+   - Updated the calendar date cell styles to match the most up-to-date designs.
+   - Current day no longer has a special style.
+
 # 38.0.0
 
 **Breaking:**
