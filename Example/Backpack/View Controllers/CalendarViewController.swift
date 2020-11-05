@@ -105,6 +105,6 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             return .neutral
         }
 
-        return .normal
+        return .noData
     }
 }

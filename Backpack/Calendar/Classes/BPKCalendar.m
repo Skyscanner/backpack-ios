@@ -164,9 +164,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     appearance.headerTitleColor = BPKColor.textPrimaryColor;
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
-    appearance.weekdayTextColor = BPKColor.textPrimaryColor;
-    appearance.todayColor = BPKColor.textTertiaryDarkColor;
-    appearance.titleTodayColor = BPKColor.textPrimaryColor;
+    appearance.todayColor = BPKColor.clear;
+    appearance.weekdayTextColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint02 darkVariant:BPKColor.white];
     appearance.titleDefaultColor = BPKColor.textPrimaryColor;
     appearance.selectionColor = self.currentDateSelectedBackgroundColor;
     appearance.titleSelectionColor = self.currentDateSelectedContentColor;
@@ -494,7 +493,7 @@ NSString *const HeaderDateFormat = @"MMMM";
         return self.appearance.titleDefaultColor;
     }
 
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.textSecondaryDarkColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.skyGrayTint03];
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
@@ -629,11 +628,13 @@ NSString *const HeaderDateFormat = @"MMMM";
         case BPKCalendarDateCellStyleNormal:
             return appearance.borderDefaultColor;
         case BPKCalendarDateCellStylePositive:
-            return BPKColor.glencoe;
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
         case BPKCalendarDateCellStyleNeutral:
             return BPKColor.erfoud;
         case BPKCalendarDateCellStyleNegative:
-            return BPKColor.hillier;
+            return BPKColor.panjin;
+        case BPKCalendarDateCellStyleNoData:
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
         case BPKCalendarDateCellStyleCustom:
             NSAssert(NO, @"fillColorForDateStyle:appearance: should not be called with the custom cell style. For a custom cell style, we should call calendar:fillColorForDate: on the delegate instead.");
             return BPKColor.clear;
@@ -651,9 +652,12 @@ NSString *const HeaderDateFormat = @"MMMM";
 
         // HERE BE DRAGONS: Explicit fallthrough
         case BPKCalendarDateCellStylePositive:
-        case BPKCalendarDateCellStyleNeutral:
         case BPKCalendarDateCellStyleNegative:
-            return BPKColor.skyGray;
+        case BPKCalendarDateCellStyleNoData:
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
+            
+        case BPKCalendarDateCellStyleNeutral:
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
 
         case BPKCalendarDateCellStyleCustom:
             NSAssert(NO, @"fillColorForDateStyle:appearance: should not be called with the custom cell style. For a custom cell style, we should call calendar:titleColorForDate: on the delegate instead.");
