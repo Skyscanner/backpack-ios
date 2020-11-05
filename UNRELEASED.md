@@ -2,6 +2,17 @@
 
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/Calendar
+  - Added new `BPKCalendarDateCellStyleNoData` enum case to indicate a calendar cell style for which there is no price information available.
+
+**Fixed:**
+
+ - Backpack/Calendar
+   - Updated the calendar date cell styles to match the most up-to-date designs.
+   - Current day no longer has a special style.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

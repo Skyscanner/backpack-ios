@@ -178,19 +178,14 @@
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
         case SelectionTypeSameDay:
+        case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
             break;
 
-        case SelectionTypeMiddle:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
-            break;
-
         default:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSm
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:color];
             break;

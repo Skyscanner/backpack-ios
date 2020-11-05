@@ -74,6 +74,12 @@ typedef NS_ENUM(NSUInteger, BPKCalendarDateCellStyle) {
      * A custom cell style.
      */
     BPKCalendarDateCellStyleCustom = 4,
+    
+    /**
+     * A no data cell style which is suitable to indicate for example
+     * a date for which there is no price information available.
+     */
+    BPKCalendarDateCellStyleNoData = 5,
 };
 
 NS_ASSUME_NONNULL_BEGIN
