@@ -249,6 +249,30 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
+- (void)testRatingPillHighRangeHigh {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    self.titleTextDefinition.highRatingText = @"High";
+    bpkRating.title = self.titleTextDefinition;
+    bpkRating.layout = BPKRatingLayoutHorizontalPill;
+    bpkRating.ratingValue = 9.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingPillHighRangeHighWithSubtitle {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    self.titleTextDefinition.highRatingText = @"High";
+    self.subTitleTextDefinition.highRatingText = @"High subtitle";
+    bpkRating.title = self.titleTextDefinition;
+    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.layout = BPKRatingLayoutHorizontalPill;
+    bpkRating.ratingValue = 9.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
 - (void)testRatingExtraSmall {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Extra small";
@@ -562,7 +586,7 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
-- (void)testRatingExtraBaseVertical {
+- (void)testRatingBaseVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Base";
     self.subTitleTextDefinition.highRatingText = @"Base subtitle";
@@ -576,7 +600,7 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
-- (void)testRatingExtraLargeVertical {
+- (void)testRatingLargeVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Large";
     self.subTitleTextDefinition.highRatingText = @"Large subtitle";

@@ -24,6 +24,8 @@ enum RatingSegueIdentifier: String {
     case withSubtitle = "WithSubtitle"
     case sizes = "Sizes"
     case verticalLayout = "VerticalLayout"
+    case horizontalPillLayout = "HorizontalPillLayout"
+    case horizontalPillLayoutWithSubtitles = "HorizontalPillLayoutWithSubtitles"
 }
 
 class RatingSelectorViewController: UITableViewController {
@@ -49,6 +51,15 @@ class RatingSelectorViewController: UITableViewController {
                 target.showSubtitle = true
                 target.showDifferentSizes = true
                 target.layout = .vertical
+            case .horizontalPillLayout:
+                target.title = "Pill layout"
+                target.showDifferentSizes = true
+                target.layout = .horizontalPill
+            case .horizontalPillLayoutWithSubtitles:
+                target.title = "Pill layout with subtitles"
+                target.showSubtitle = true
+                target.showDifferentSizes = true
+                target.layout = .horizontalPill
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

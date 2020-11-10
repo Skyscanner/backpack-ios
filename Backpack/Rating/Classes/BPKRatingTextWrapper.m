@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) BPKLabel *subtitleLabel;
 @property(nonatomic) NSArray<NSLayoutConstraint *> *horizontalLayoutConstraints;
+@property(nonatomic) NSArray<NSLayoutConstraint *> *horizontalPillLayoutConstraints;
 @property(nonatomic) NSArray<NSLayoutConstraint *> *verticalLayoutConstraints;
 @end
 
@@ -80,7 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
     _title = [title copy];
 
     self.titleLabel.text = self.title;
-    [self updateConstraints];
 }
 
 - (void)setSubtitle:(NSString *_Nullable)subtitle {
@@ -88,7 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
     _subtitle = [subtitle copy];
 
     self.subtitleLabel.text = self.subtitle;
-    [self updateConstraints];
 }
 
 - (void)setSize:(BPKRatingSize)size {
@@ -100,48 +99,72 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)updateFontSizes {
-    switch (self.size) {
-        case BPKRatingSizeLarge:
-            self.titleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
-            self.subtitleLabel.fontStyle = BPKFontStyleTextBase;
-            break;
-        case BPKRatingSizeBase:
-            self.titleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
-            self.subtitleLabel.fontStyle = BPKFontStyleTextSm;
-            break;
-        case BPKRatingSizeSmall:
-            self.titleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
-            self.subtitleLabel.fontStyle = BPKFontStyleTextXs;
-            break;
-        case BPKRatingSizeExtraSmall:
-            self.titleLabel.fontStyle = BPKFontStyleTextXsEmphasized;
-            self.subtitleLabel.fontStyle = BPKFontStyleTextXs;
-            break;
-    }
-}
-
 - (void)setLayout:(BPKRatingLayout)layout {
     BPKAssertMainThread();
     if (_layout != layout) {
         _layout = layout;
 
+        [self updateFontSizes];
         [self updateConstraints];
     }
+}
+
+- (void)updateFontSizes {
+    CGFloat newTitleFontStyle = BPKFontStyleTextBase;
+    CGFloat newSubtitleFontStyle = BPKFontStyleTextBase;
+    CGFloat newPillSubtitleFontStyle = BPKFontStyleTextBase;
+
+    switch (self.size) {
+    case BPKRatingSizeLarge:
+        newTitleFontStyle = BPKFontStyleTextLgEmphasized;
+        newPillSubtitleFontStyle = BPKFontStyleTextLg;
+        newSubtitleFontStyle = BPKFontStyleTextBase;
+        break;
+    case BPKRatingSizeBase:
+        newTitleFontStyle = BPKFontStyleTextBaseEmphasized;
+        newPillSubtitleFontStyle = BPKFontStyleTextBase;
+        newSubtitleFontStyle = BPKFontStyleTextSm;
+        break;
+    case BPKRatingSizeSmall:
+        newTitleFontStyle = BPKFontStyleTextSmEmphasized;
+        newPillSubtitleFontStyle = BPKFontStyleTextSm;
+        newSubtitleFontStyle = BPKFontStyleTextXs;
+        break;
+    case BPKRatingSizeExtraSmall:
+        newTitleFontStyle = BPKFontStyleTextXsEmphasized;
+        newPillSubtitleFontStyle = BPKFontStyleTextXs;
+        newSubtitleFontStyle = BPKFontStyleTextXs;
+        break;
+    }
+
+    if (self.layout == BPKRatingLayoutHorizontalPill) {
+        // Use the same font style otherwise text on the same line will be a different size
+        newSubtitleFontStyle = newPillSubtitleFontStyle;
+    }
+
+    self.titleLabel.fontStyle = newTitleFontStyle;
+    self.subtitleLabel.fontStyle = newSubtitleFontStyle;
 }
 
 - (void)updateConstraints {
     [super updateConstraints];
 
     switch (self.layout) {
-        case BPKRatingLayoutHorizontal:
-            [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
-            [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
-            break;
-        case BPKRatingLayoutVertical:
-            [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
-            [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
-            break;
+    case BPKRatingLayoutHorizontal:
+        [NSLayoutConstraint deactivateConstraints:self.horizontalPillLayoutConstraints];
+        [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
+        break;
+    case BPKRatingLayoutHorizontalPill:
+        [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
+        [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.horizontalPillLayoutConstraints];
+        break;
+    case BPKRatingLayoutVertical:
+        [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
+        [NSLayoutConstraint deactivateConstraints:self.horizontalPillLayoutConstraints];
+        [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
+        break;
     }
 }
 
@@ -153,20 +176,27 @@ NS_ASSUME_NONNULL_BEGIN
     self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.horizontalLayoutConstraints = @[
+        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
+        [self.subtitleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.subtitleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor]
     ];
 
+    self.horizontalPillLayoutConstraints = @[
+        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.topAnchor],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.subtitleLabel.leadingAnchor constraintEqualToAnchor:self.titleLabel.trailingAnchor constant:BPKSpacingSm]
+    ];
+
     self.verticalLayoutConstraints = @[
+        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
+        [self.subtitleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.titleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.subtitleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor]
     ];
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
-        [self.subtitleLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.subtitleLabel.topAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.trailingAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.subtitleLabel.trailingAnchor],
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.titleLabel.bottomAnchor],

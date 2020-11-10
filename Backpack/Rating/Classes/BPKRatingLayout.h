@@ -27,7 +27,9 @@ typedef NS_ENUM(NSInteger, BPKRatingLayout) {
 
     BPKRatingLayoutHorizontal = 0,
 
-    BPKRatingLayoutVertical
+    BPKRatingLayoutVertical = 1,
+
+    BPKRatingLayoutHorizontalPill = 2
 };
 
 NS_ASSUME_NONNULL_END

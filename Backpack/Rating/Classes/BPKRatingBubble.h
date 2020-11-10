@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKRatingSize.h"
+#import "BPKRatingLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,6 +33,13 @@ IB_DESIGNABLE @interface BPKRatingBubble : UIView
  * The rating value
  */
 @property(nonatomic) double ratingValue;
+
+/**
+ * Layout of the rating
+ *
+ * @see BPKRatingLayout
+ */
+@property(nonatomic) BPKRatingLayout layout;
 
 /**
  * Creates a `BPKRatingBubble` with a decoder (typically when creating from Storyboards)
