@@ -15,6 +15,11 @@ on:
 # Node: 12.18.4 (Set via .nvmrc)
 # Bundler: 2.1.4 (Installed below)
 #
+
+defaults:
+  run:
+    shell: bash -l {0}
+
 jobs:
   CI:
     name: Build and Test
@@ -49,11 +54,9 @@ jobs:
         run: brew install clang-format
 
       - name: nvm install
-        shell: bash -l {0}
         run: nvm install
 
       - name: nvm use
-        shell: bash -l {0}
         run: nvm use
 
       - name: Install bundler
@@ -79,7 +82,9 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: NPM ci
-        run: npm ci
+        run: |
+          nvm use
+          npm ci
 
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
