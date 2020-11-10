@@ -2,6 +2,10 @@
 
 > Place your changes below this line.
 
+**Fixed:**
+
+- Backpack/Rating:
+  - Fixed an issue that caused the wrong font-size to be used unless rating size was explicitly set.
 
 ## How to write a good changelog entry
 
