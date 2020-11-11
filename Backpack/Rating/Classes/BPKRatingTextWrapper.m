@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.subtitleLabel];
 
     [self setUpConstraints];
+    [self updateFontSizes];
 }
 
 #pragma mark - State setters
@@ -95,7 +96,12 @@ NS_ASSUME_NONNULL_BEGIN
     if (_size != size) {
         _size = size;
 
-        switch (size) {
+        [self updateFontSizes];
+    }
+}
+
+- (void)updateFontSizes {
+    switch (self.size) {
         case BPKRatingSizeLarge:
             self.titleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
             self.subtitleLabel.fontStyle = BPKFontStyleTextBase;
@@ -112,7 +118,6 @@ NS_ASSUME_NONNULL_BEGIN
             self.titleLabel.fontStyle = BPKFontStyleTextXsEmphasized;
             self.subtitleLabel.fontStyle = BPKFontStyleTextXs;
             break;
-        }
     }
 }
 
@@ -129,14 +134,14 @@ NS_ASSUME_NONNULL_BEGIN
     [super updateConstraints];
 
     switch (self.layout) {
-    case BPKRatingLayoutHorizontal:
-        [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
-        [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
-        break;
-    case BPKRatingLayoutVertical:
-        [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
-        [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
-        break;
+        case BPKRatingLayoutHorizontal:
+            [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
+            [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
+            break;
+        case BPKRatingLayoutVertical:
+            [NSLayoutConstraint deactivateConstraints:self.horizontalLayoutConstraints];
+            [NSLayoutConstraint activateConstraints:self.verticalLayoutConstraints];
+            break;
     }
 }
 
