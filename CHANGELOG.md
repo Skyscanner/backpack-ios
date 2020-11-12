@@ -1,6 +1,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 38.2.0
+
+**Added:**
+
+- Backpack/Rating:
+  - New `horizontalPill` layout option, which gives a shorter rating with the title and subtitle next to each other instead of being stacked.
+
+**Fixed:**
+
+- Backpack/Rating:
+  - Fixed an issue that caused the wrong font-size to be used unless rating size was explicitly set.
+
 # 38.1.0
 
 **Added:**

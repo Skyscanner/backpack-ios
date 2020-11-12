@@ -1,15 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/Rating:
-  - Fixed an issue that caused the wrong font-size to be used unless rating size was explicitly set.
-
-**Added:**
-
-- Backpack/Rating:
-  - New `horizontalPill` layout option, which gives a shorter rating with the title and subtitle next to each other instead of being stacked.
 
 ## How to write a good changelog entry
 
