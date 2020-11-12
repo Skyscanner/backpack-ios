@@ -90,7 +90,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.isAccessibilityElement = YES;
 
     [self setUpConstraints];
-    [self updateConstraints];
     [self updateStyle];
 }
 
@@ -175,6 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_layout != layout) {
         _layout = layout;
 
+        self.ratingBubble.layout = layout;
         self.textWrapper.layout = layout;
         [self updateLayout];
     }
@@ -183,6 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLayout {
     switch (self.layout) {
     case BPKRatingLayoutHorizontal:
+    case BPKRatingLayoutHorizontalPill:
         [NSLayoutConstraint deactivateConstraints:self.verticalLayoutConstraints];
         [NSLayoutConstraint activateConstraints:self.horizontalLayoutConstraints];
         break;

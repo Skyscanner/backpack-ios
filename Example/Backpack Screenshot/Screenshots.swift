@@ -355,6 +355,9 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Vertical layout"].tap()
         saveScreenshot(component: "rating", scenario: "vertical", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["Pill layout with subtitles"].tap()
+        saveScreenshot(component: "rating", scenario: "pill", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Snackbar"].tap()

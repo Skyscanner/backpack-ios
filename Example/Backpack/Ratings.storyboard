@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="biG-sv-ldA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="biG-sv-ldA">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +14,7 @@
             <objects>
                 <viewController id="SHl-Oi-FFr" customClass="RatingsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kec-l1-3BA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9t-7z-xjv">
@@ -24,30 +25,30 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5y-4e-wea" customClass="BPKRating">
                                                 <rect key="frame" x="12" y="11" width="76" height="11"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EXc-XX-5bv" customClass="BPKRating">
                                                 <rect key="frame" x="44" y="46" width="137" height="27"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xo-vZ-ecX" customClass="BPKRating">
                                                 <rect key="frame" x="79" y="95" width="102" height="15"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lWq-62-1nw" customClass="BPKRating">
                                                 <rect key="frame" x="98" y="144" width="142" height="36"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWF-EK-Jvv" customClass="BPKRating">
                                                 <rect key="frame" x="184" y="246" width="96" height="10"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMV-m2-Moc" customClass="BPKRating">
                                                 <rect key="frame" x="165" y="118" width="115" height="11"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="6Xo-vZ-ecX" firstAttribute="top" secondItem="EXc-XX-5bv" secondAttribute="bottom" constant="20" id="7nR-Cf-5dV"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xMV-m2-Moc" secondAttribute="trailing" constant="20" id="7om-Id-yIT"/>
@@ -71,7 +72,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Us1-EO-Hbc" firstAttribute="top" secondItem="B9t-7z-xjv" secondAttribute="top" id="NHS-no-gCG"/>
                                     <constraint firstItem="Us1-EO-Hbc" firstAttribute="leading" secondItem="B9t-7z-xjv" secondAttribute="leading" id="Ozk-UT-bv1"/>
@@ -80,15 +81,16 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="B9t-7z-xjv" firstAttribute="bottom" secondItem="h4y-YC-Uzb" secondAttribute="bottom" id="6Kb-ZA-IEk"/>
                             <constraint firstItem="B9t-7z-xjv" firstAttribute="leading" secondItem="h4y-YC-Uzb" secondAttribute="leading" id="HVT-3q-1cG"/>
                             <constraint firstItem="B9t-7z-xjv" firstAttribute="trailing" secondItem="h4y-YC-Uzb" secondAttribute="trailing" id="mue-lH-ibZ"/>
                             <constraint firstItem="B9t-7z-xjv" firstAttribute="top" secondItem="h4y-YC-Uzb" secondAttribute="top" id="tn5-mf-Rvv"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
                     </view>
+                    <navigationItem key="navigationItem" id="p4C-bE-waM"/>
                     <connections>
                         <outletCollection property="ratings" destination="C5y-4e-wea" collectionClass="NSMutableArray" id="Qzm-Ba-hA2"/>
                         <outletCollection property="ratings" destination="EXc-XX-5bv" collectionClass="NSMutableArray" id="bRb-gn-tFm"/>
@@ -193,6 +195,46 @@
                                             <segue destination="SHl-Oi-FFr" kind="show" identifier="VerticalLayout" id="g9d-8l-T5t"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="P65-cI-RZP" style="IBUITableViewCellStyleDefault" id="oh3-Vg-grC">
+                                        <rect key="frame" x="0.0" y="204" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oh3-Vg-grC" id="mqt-UK-2P8">
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Pill layout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P65-cI-RZP" customClass="BPKLabel">
+                                                    <rect key="frame" x="20" y="0.0" width="354.66666666666669" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="SHl-Oi-FFr" kind="show" identifier="HorizontalPillLayout" id="6i6-De-iva"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Aqz-Vz-lvB" style="IBUITableViewCellStyleDefault" id="6TF-OR-0J0">
+                                        <rect key="frame" x="0.0" y="248" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6TF-OR-0J0" id="YRH-5G-oj8">
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Pill layout with subtitles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aqz-Vz-lvB" customClass="BPKLabel">
+                                                    <rect key="frame" x="20" y="0.0" width="354.66666666666669" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="SHl-Oi-FFr" kind="show" identifier="HorizontalPillLayoutWithSubtitles" id="ha6-WT-v8m"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -207,7 +249,32 @@
             <point key="canvasLocation" x="-875" y="-542"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Aqz-Vz-lvB">
+            <size key="intrinsicContentSize" width="177.66666666666666" height="20.333333333333332"/>
+        </designable>
+        <designable name="P65-cI-RZP">
+            <size key="intrinsicContentSize" width="72.333333333333329" height="20.333333333333332"/>
+        </designable>
+        <designable name="UEj-MB-EF3">
+            <size key="intrinsicContentSize" width="55" height="20.333333333333332"/>
+        </designable>
+        <designable name="ZAY-M7-460">
+            <size key="intrinsicContentSize" width="107.66666666666667" height="20.333333333333332"/>
+        </designable>
+        <designable name="br0-23-d4X">
+            <size key="intrinsicContentSize" width="40.666666666666664" height="20.333333333333332"/>
+        </designable>
+        <designable name="lJp-CZ-ZF6">
+            <size key="intrinsicContentSize" width="104.33333333333333" height="20.333333333333332"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="g9d-8l-T5t"/>
+        <segue reference="ha6-WT-v8m"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKRatingBubble ()
 @property(nonatomic) BPKLabel *ratingBubbleLabel;
 @property(nonatomic) NSLayoutConstraint *heightConstraint;
+@property(nonatomic) NSLayoutConstraint *widthConstraint;
 @end
 
 @implementation BPKRatingBubble
@@ -60,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.ratingBubbleLabel];
 
     [self setUpConstraints];
+    [self updateLayout];
 }
 
 #pragma mark - State setters
@@ -82,28 +84,53 @@ NS_ASSUME_NONNULL_BEGIN
     if (_size != size) {
         _size = size;
 
-        switch (size) {
-        case BPKRatingSizeLarge:
-            self.heightConstraint.constant = 2 * BPKSpacingLg;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
-            break;
-        case BPKRatingSizeBase:
-            self.heightConstraint.constant = BPKSpacingXxl;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
-            break;
-        case BPKRatingSizeSmall:
-            self.heightConstraint.constant = 2 * BPKSpacingBase;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
-            break;
-        case BPKRatingSizeExtraSmall:
-            self.heightConstraint.constant = BPKSpacingXl;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
-            break;
-        }
+        [self updateLayout];
+    }
+}
+
+- (void)setLayout:(BPKRatingLayout)layout {
+    BPKAssertMainThread();
+    if(_layout != layout) {
+        _layout = layout;
+
+        [self updateLayout];
     }
 }
 
 #pragma mark - Layout
+
+- (void) updateLayout {
+    CGFloat newWidth = 0;
+    CGFloat newHeight = 0;
+
+    switch (self.size) {
+        case BPKRatingSizeLarge:
+            newWidth = 2 * BPKSpacingLg;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+            break;
+        case BPKRatingSizeBase:
+            newWidth = BPKSpacingXxl;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+            break;
+        case BPKRatingSizeSmall:
+            newWidth = 2 * BPKSpacingBase;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+            break;
+        case BPKRatingSizeExtraSmall:
+            newWidth = BPKSpacingXl;
+            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+            break;
+    }
+
+    if (self.layout == BPKRatingLayoutHorizontalPill) {
+        newHeight = newWidth * 2.0/3.0;
+    } else {
+        newHeight = newWidth;
+    }
+
+    self.heightConstraint.constant = newHeight;
+    self.widthConstraint.constant = newWidth;
+}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -116,9 +143,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.ratingBubbleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKSpacingXxl];
+    self.widthConstraint = [self.widthAnchor constraintEqualToConstant:BPKSpacingXxl];
 
     [NSLayoutConstraint activateConstraints:@[
-        self.heightConstraint, [self.widthAnchor constraintEqualToAnchor:self.heightAnchor],
+        self.heightConstraint, self.widthConstraint,
 
         [self.ratingBubbleLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.ratingBubbleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
