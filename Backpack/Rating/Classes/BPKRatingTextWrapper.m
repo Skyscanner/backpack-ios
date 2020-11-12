@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
         _layout = layout;
 
         [self updateFontSizes];
-        [self updateConstraints];
+        [self setNeedsUpdateConstraints];
     }
 }
 
@@ -203,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.subtitleLabel.bottomAnchor],
     ]];
 
-    [self updateConstraints];
+    [self setNeedsUpdateConstraints];
 }
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
