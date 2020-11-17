@@ -469,7 +469,17 @@ gulp.task('generate-icon-names', done => {
   const content = JSON.parse(
     fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
   );
-  const entries = Object.entries(content).filter(x => !x[0].endsWith('-sm'));
+  const combinedEntries = Object.entries(content).filter(
+    x => !x[0].endsWith('-sm'),
+  );
+  const smallEntries = Object.entries(content).filter(x =>
+    x[0].endsWith('-sm'),
+  );
+  const largeEntries = Object.entries(content).filter(
+    x => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'),
+  );
+  const xlEntries = Object.entries(content).filter(x => x[0].endsWith('-xl'));
+
   const codify = name =>
     name
       .replace('--', '-')
@@ -477,13 +487,25 @@ gulp.task('generate-icon-names', done => {
       .map(format)
       .join('')
       .replace('Ios', 'iOS');
-  const templateData = Object.assign(
-    ...entries.map(([k]) => ({ [k]: codify(k) })),
-  );
+
+  const templateData = entries =>
+    Object.assign(...entries.map(([k]) => ({ [k]: codify(k) })));
 
   gulp
-    .src(path.join(PATHS.templates, `{BPKIconNames.h.njk,BPKIconNames.m.njk}`))
-    .pipe(data(() => ({ icons: templateData })))
+    .src(
+      path.join(
+        PATHS.templates,
+        `{BPKIconNames.h.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`,
+      ),
+    )
+    .pipe(
+      data(() => ({
+        icons: templateData(combinedEntries),
+        smallIcons: templateData(smallEntries),
+        largeIcons: templateData(largeEntries),
+        xlIcons: templateData(xlEntries),
+      })),
+    )
     .pipe(nunjucks.compile())
     .pipe(
       rename(file => {
