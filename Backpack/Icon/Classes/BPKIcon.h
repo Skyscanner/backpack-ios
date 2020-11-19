@@ -18,6 +18,9 @@
 #import <Foundation/Foundation.h>
 
 #import "BPKIconNames.h"
+#import "BPKSmallIconNames.h"
+#import "BPKLargeIconNames.h"
+#import "BPKXlIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -64,6 +67,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 @property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
 
 /**
+ * DEPRECATED. USE `smallTemplateIconNamed:...`, OR `largeTemplateIconNamed:...` INSTEAD
  * Render a given icon as a UIImage for use as a template, i.e. with
  * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
  *
@@ -74,6 +78,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 + (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
 
 /**
+ * DEPRECATED. USE `smallIconNamed:...`, OR `largeIconNamed:...` INSTEAD
  * Render a given icon as a UIImage.
  *
  * @param name The name of the icon e.g. "flight".
@@ -92,5 +97,63 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @return The concerete point size for the given size.
  */
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size NS_SWIFT_NAME(concreteSize(forSize:));
+
+/**
+ * Render a given small icon as a UIImage for use as a template, i.e. with
+ * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @return The rendered icon as a `UIImage` in template mode.
+ */
++ (UIImage *)smallTemplateIconNamed:(BPKSmallIconName)name NS_SWIFT_NAME(makeSmallTemplateIcon(name:));
+
+/**
+ * Render a given large icon as a UIImage for use as a template, i.e. with
+ * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @return The rendered icon as a `UIImage` in template mode.
+ */
++ (UIImage *)largeTemplateIconNamed:(BPKLargeIconName)name NS_SWIFT_NAME(makeLargeTemplateIcon(name:));
+
+/**
+ * Render a given extra-large icon as a UIImage for use as a template, i.e. with
+ * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @return The rendered icon as a `UIImage` in template mode.
+ */
++ (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name NS_SWIFT_NAME(makeXlTemplateIcon(name:));
+
+/**
+ * Render a given small icon as a UIImage.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @param color The color to render the icon in.
+ * @return The rendered icon as a `UIImage`.
+ */
++ (UIImage *)smallIconNamed:(BPKSmallIconName)name
+                 color:(UIColor *)color NS_SWIFT_NAME(makeSmallIcon(name:color:));
+
+/**
+ * Render a given large icon as a UIImage.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @param color The color to render the icon in.
+ * @return The rendered icon as a `UIImage`.
+ */
++ (UIImage *)largeIconNamed:(BPKLargeIconName)name
+                 color:(UIColor *)color NS_SWIFT_NAME(makeLargeIcon(name:color:));
+
+/**
+ * Render a given small icon as a UIImage.
+ *
+ * @param name The name of the icon e.g. "flight".
+ * @param color The color to render the icon in.
+ * @return The rendered icon as a `UIImage`.
+ */
++ (UIImage *)xlIconNamed:(BPKXlIconName)name
+                 color:(UIColor *)color NS_SWIFT_NAME(makeXlIcon(name:color:));
+
 @end
 NS_ASSUME_NONNULL_END

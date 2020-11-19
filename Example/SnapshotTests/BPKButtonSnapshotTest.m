@@ -649,7 +649,7 @@ NS_ASSUME_NONNULL_BEGIN
                                    style:(BPKButtonStyle)style
                               applyTheme:(BOOL)applyTheme
                                  loading:(BOOL)loading {
-    UIImage *smallIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+    UIImage *smallIcon = [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
 
     UIStackView *horizontalStackview = [[UIStackView alloc] initWithFrame:CGRectZero];
     horizontalStackview.axis = UILayoutConstraintAxisHorizontal;

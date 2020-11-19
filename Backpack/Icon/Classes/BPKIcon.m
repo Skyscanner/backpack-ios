@@ -271,5 +271,31 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     return BPKIconFallbackGlyph;
 }
 
+
+
++ (UIImage *)smallTemplateIconNamed:(BPKSmallIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeSmall];
+}
+
++ (UIImage *)largeTemplateIconNamed:(BPKLargeIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeLarge];
+}
+
++ (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeXLarge];
+}
+
++ (UIImage *)smallIconNamed:(BPKSmallIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeSmall];
+}
+
++ (UIImage *)largeIconNamed:(BPKLargeIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeLarge];
+}
+
++ (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeXLarge];
+}
+
 @end
 NS_ASSUME_NONNULL_END

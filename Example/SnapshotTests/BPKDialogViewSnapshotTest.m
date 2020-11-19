@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewNoButtons {
     BPKDialogIconDefinition *iconDefinition =
-        [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]
+        [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameTick]
                                   iconBackgroundColor:BPKColor.monteverde];
     BPKDialogView *view = [[BPKDialogView alloc]
          initWithTitle:@"Lorem Ipsum"
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewWithButtons {
     BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc]
-               initWithIcon:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]
+               initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
         iconBackgroundColor:BPKColor.kolkata];
     BPKDialogView *view = [[BPKDialogView alloc]
          initWithTitle:@"Lorem Ipsum"
@@ -268,7 +268,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testChangingIconDefinitionAfterPresenting {
     BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc]
-               initWithIcon:[BPKIcon templateIconNamed:BPKIconNameLightning size:BPKIconSizeLarge]
+               initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
         iconBackgroundColor:BPKColor.kolkata];
     BPKDialogView *view = [[BPKDialogView alloc]
          initWithTitle:@"Lorem Ipsum"
@@ -297,7 +297,7 @@ NS_ASSUME_NONNULL_BEGIN
     [parent layoutIfNeeded];
 
     BPKDialogIconDefinition *newIconDefinition = [[BPKDialogIconDefinition alloc]
-           initWithIcon:[BPKIcon templateIconNamed:BPKIconNameKey size:BPKIconSizeLarge]
+           initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameKey]
     iconBackgroundColor:BPKColor.panjin];
     view.iconDefinition = newIconDefinition;
 

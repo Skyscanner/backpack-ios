@@ -33,4 +33,22 @@
     XCTAssertNotNil(rendered);
 }
 
+- (void)testCreateSmallWithEnum {
+    UIImage *rendered = [BPKIcon smallIconNamed:BPKSmallIconNameFlag color:BPKColor.systemRed];
+
+    XCTAssertNotNil(rendered);
+}
+
+- (void)testCreateLargeWithEnum {
+    UIImage *rendered = [BPKIcon largeIconNamed:BPKLargeIconNameFlag color:BPKColor.systemRed];
+
+    XCTAssertNotNil(rendered);
+}
+
+- (void)testCreateXlWithEnum {
+    UIImage *rendered = [BPKIcon xlIconNamed:BPKXlIconNameStarHalf color:BPKColor.systemRed];
+
+    XCTAssertNotNil(rendered);
+}
+
 @end
