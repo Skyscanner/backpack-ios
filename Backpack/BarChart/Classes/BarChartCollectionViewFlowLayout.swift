@@ -59,7 +59,7 @@ internal final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLa
                 #else
                 let sectionHeader = UICollectionElementKindSectionHeader
                 #endif
-                
+
                 if kind == sectionHeader {
                     // [A] HEADER
 

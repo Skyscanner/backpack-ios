@@ -1,6 +1,10 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+
+- Backpack/Icon:
+  - New icon name classes `BPKXlIconName`, `BPKLargeIconName` and `BPKSmallIconName`. These are currently unused, but will be needed for new icon APIs that are coming soon.
 
 ## How to write a good changelog entry
 

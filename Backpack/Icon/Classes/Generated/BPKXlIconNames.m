@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -15,14 +16,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_ICON__
-#define __BACKPACK_ICON__
 
-#import "BPKIcon.h"
-#import "BPKIconNames.h"
-#import "BPKIconView.h"
-#import "BPKLargeIconNames.h"
-#import "BPKSmallIconNames.h"
 #import "BPKXlIconNames.h"
 
-#endif
+BPKXlIconName const BPKXlIconNameStarHalfXl = @"star-half-xl";
+BPKXlIconName const BPKXlIconNameStarOutlineXl = @"star-outline-xl";
+BPKXlIconName const BPKXlIconNameStarXl = @"star-xl";
+
+// clang-format on
