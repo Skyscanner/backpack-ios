@@ -22,13 +22,11 @@ import FloatingPanel
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BPKBottomSheet: NSObject {
-
-    private enum Constants {
-        static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
-        static let backdropAlpha: CGFloat = 0.3
-        static let grabberHandleWidth: CGFloat = 60.0
+    public enum PresentationStyle {
+        case modal
+        case persistent
     }
-
+    
     /// View controller that will be presented when calling
     /// `present(in: _, animated: _, completion: _)`.
     /// It can also be presented using UIKit's native presentation API.
@@ -58,8 +56,11 @@ public final class BPKBottomSheet: NSObject {
         }
     }
 
+    private let presentationStyle: PresentationStyle
+
     private lazy var floatingPanelController: BPKFloatingPanelController = {
-        let panel = BPKFloatingPanelController(delegate: self)
+        var panel = BPKFloatingPanelController(delegate: self)
+
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
         panel.surfaceView.cornerRadius = BPKCornerRadiusLg
         panel.surfaceView.grabberTopPadding = BPKSpacingMd
@@ -67,14 +68,19 @@ public final class BPKBottomSheet: NSObject {
         panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
         panel.surfaceView.grabberHandle.barColor = BPKColor.skyGrayTint06
 
-        panel.isRemovalInteractionEnabled = true
+        switch presentationStyle {
+        case .modal:
+            panel.isRemovalInteractionEnabled = true
+        case .persistent:
+            panel.isRemovalInteractionEnabled = false
+            panel.backdropView.backgroundColor = .clear
+        }
 
         // We do this to hold a strong reference to `BPKBottomSheet` and force it
         // to exist as long as `floatingPanelController` exists.
         // Reference will be cleaned up by `floatingPanelController` when
         // it's dismissed, to avoid a reference cycle.
         panel.bottomSheet = self
-
         return panel
     }()
 
@@ -93,13 +99,18 @@ public final class BPKBottomSheet: NSObject {
     ///     that should be accessible at all times. A top shadow is automatically added so that
     ///     it integrates better with the content of the bottom sheet.
     ///     Note: Safe Area should be taken into account in the bottom section's inner constraints.
+    ///   - presentationStyle: .modal if you nedd a modal interaction with the BottomSheet. .persistent if
+    ///     you need a persistent BottomSheet and being able to interact with what is behind the BottomSheet
+    
     public init(contentViewController: UIViewController,
                 scrollViewToTrack: UIScrollView,
-                bottomSectionViewController: UIViewController? = nil) {
+                bottomSectionViewController: UIViewController? = nil,
+                presentationStyle: PresentationStyle = .modal) {
+        self.presentationStyle = presentationStyle
         super.init()
 
         self.scrollView = scrollViewToTrack
-
+        
         floatingPanelController.contentViewController = contentViewController
         floatingPanelController.track(scrollView: scrollViewToTrack)
         floatingPanelController.bottomSectionViewController = bottomSectionViewController
@@ -111,6 +122,7 @@ public final class BPKBottomSheet: NSObject {
     /// should be used instead.
     /// - Parameter contentViewController: Content of the bottom sheet.
     public init(contentViewController: UIViewController) {
+        self.presentationStyle = .modal
         super.init()
         floatingPanelController.contentViewController = contentViewController
     }
@@ -124,6 +136,7 @@ public final class BPKBottomSheet: NSObject {
     ///   - completion: Completion closure called after presentation animation.
     @objc(presentInViewController:animated:completion:)
     public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+        assert(presentationStyle == .modal, "present(in:animated:completion:) not compatible with non modal presentation style")
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
 
@@ -136,6 +149,7 @@ public final class BPKBottomSheet: NSObject {
     ///   - completion: Completion closure called after the presentation animation.
     @objc(presentBottomSheet:animated:completion:)
     public func present(_ bottomSheet: BPKBottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
+        assert(presentationStyle == .modal, "present(_:animated:completion:) not compatible with non modal presentation style")
         if let scrollView = floatingPanelController.scrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
@@ -148,50 +162,70 @@ public final class BPKBottomSheet: NSObject {
         bottomSheet.present(in: floatingPanelController, animated: animated, completion: completion)
     }
 
+    /// This method should be used if you inted to show the BPKBottomSheet and keep tracking the backdrop view
+    /// user interactions. If you need your BPKBottomSheet have a modal behaviour you should use present method
+    /// should be used instead.
+    /// - Parameter parent: Parent view where the BPKBottomSheet will be placed.
+    public func addPanel(toParent parent: UIViewController) {
+        assert(presentationStyle == .persistent, "present(in:animated:completion:) not compatible with non modal presentation style")
+        floatingPanelController.addPanel(toParent: parent, belowView: nil, animated: true)
+    }
+    
+    /// This method removes the panel from the parent view
+    /// - Parameter animated: true if you need a animated dismissal
+    public func removePanel(animated: Bool) {
+        floatingPanelController.dismiss(animated: animated, completion: nil)
+    }
+    
     /// Forces the bottom sheet layout to be updated.
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
     public func updateLayout() {
         floatingPanelController.updateLayout()
     }
-
+    
+    /// This method allows change the presentation mode of the BPKBottomSheet.
+    /// - Parameters:
+    ///   - BPKFloatingPanelPosition: The new bottom sheet presentation position
+    public func move(to position: BPKFloatingPanelPosition) {
+        floatingPanelController.move(to: position.asFloatingPanelPosition, animated: true)
+    }
 }
 
 extension BPKBottomSheet: FloatingPanelControllerDelegate {
-    final class Layout: FloatingPanelLayout {
-        var initialPosition: FloatingPanelPosition {
-            return .half
-        }
-
-        var supportedPositions: Set<FloatingPanelPosition> {
-            return [.full, .half]
-        }
-
-        func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-            switch position {
-            case .half: return Constants.bottomSheetHeightInHalfPosition
-            default: return nil
-            }
-        }
-
-        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-            switch position {
-            case .full, .half:
-                return Constants.backdropAlpha
-            default:
-                return 0.0
-            }
-        }
-    }
-
     final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
         func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
             return Constants.backdropAlpha
         }
     }
-
+    
     public func floatingPanel(_ viewController: FloatingPanelController,
                               layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        return scrollView == nil ? IntrinsicLayout() : Layout()
+        switch self.presentationStyle {
+        case .modal:
+            return scrollView == nil ? IntrinsicLayout() : ModalBottomSheetLayout()
+        case .persistent:
+            return PersistentBottomSheetLayout()
+        }
+    }
+}
+
+private enum Constants {
+    static let backdropAlpha: CGFloat = 0.3
+    static let grabberHandleWidth: CGFloat = 60.0
+}
+
+extension FloatingPanelPosition {
+    var asBPKFloatingPanelPosition: BPKFloatingPanelPosition {
+        switch self {
+        case .full:
+            return .full
+        case .half:
+            return .half
+        case .tip:
+            return .tip
+        case .hidden:
+            return .hidden
+        }
     }
 }
