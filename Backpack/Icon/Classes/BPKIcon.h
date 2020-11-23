@@ -67,6 +67,21 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 @property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
 
 /**
+ * The concrete point size for a small icon.
+ */
+@property(class, readonly) CGSize concreteSizeForSmallIcon;
+
+/**
+ * The concrete point size for a large icon.
+ */
+@property(class, readonly) CGSize concreteSizeForLargeIcon;
+
+/**
+ * The concrete point size for a extra-large icon.
+ */
+@property(class, readonly) CGSize concreteSizeForXlIcon;
+
+/**
  * DEPRECATED. USE `smallTemplateIconNamed:...`, OR `largeTemplateIconNamed:...` INSTEAD
  * Render a given icon as a UIImage for use as a template, i.e. with
  * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.

@@ -238,19 +238,31 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
     switch (size) {
     case BPKIconSizeSmall:
-        return CGSizeMake(16, 16);
+        return self.concreteSizeForSmallIcon;
         break;
     case BPKIconSizeLarge:
-        return CGSizeMake(24, 24);
+            return self.concreteSizeForLargeIcon;
         break;
     case BPKIconSizeXLarge:
-        return CGSizeMake(40, 40);
+            return self.concreteSizeForXlIcon;
         break;
     default:
         NSAssert(NO, @"Unsupported icon size");
-        return CGSizeMake(16, 16);
+        return self.concreteSizeForSmallIcon;
         break;
     }
+}
+
++ (CGSize)concreteSizeForSmallIcon {
+    return CGSizeMake(16, 16);
+}
+
++ (CGSize)concreteSizeForLargeIcon {
+    return CGSizeMake(24, 24);
+}
+
++ (CGSize)concreteSizeForXlIcon {
+    return CGSizeMake(40, 40);
 }
 
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint {
