@@ -62,13 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1"
-                                                                image:[BPKIcon templateIconNamed:BPKIconNameKey
-                                                                                            size:BPKIconSizeSmall]
+                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameKey]
                                                                   tag:1];
     UIViewController *tabTwo = [[UIViewController alloc] init];
     UITabBarItem *tabTwoBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 2"
-                                                                image:[BPKIcon templateIconNamed:BPKIconNameBus
-                                                                                            size:BPKIconSizeSmall]
+                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameBus]
                                                                   tag:2];
 
     tabOne.tabBarItem = tabOneBarItem;

@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSnackbarWithTextAndRightButtonIconOnly {
-    UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
+    UIImage *closeIcon = [BPKIcon smallTemplateIconNamed:BPKSmallIconNameClose];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithText:@"Descriptive text"
                                                         title:nil
                                                        button:[BPKSnackbarButton buttonWithIcon:closeIcon accessibilityLabel:@"Close"]
@@ -81,8 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSnackbarWithTextAndRightButtonAndAccesoryIcon {
-    UIImage *closeIcon = [BPKIcon templateIconNamed:@"close" size:BPKIconSizeSmall];
-    UIImage *leftIcon = [BPKIcon templateIconNamed:@"tick-circle" size:BPKIconSizeSmall];
+    UIImage *closeIcon = [BPKIcon smallTemplateIconNamed:BPKSmallIconNameClose];
+    UIImage *leftIcon = [BPKIcon smallTemplateIconNamed:BPKSmallIconNameTickCircle];
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithText:@"Descriptive text"
                                                         title:nil
                                                        button:[BPKSnackbarButton buttonWithIcon:closeIcon accessibilityLabel:@"Close"]

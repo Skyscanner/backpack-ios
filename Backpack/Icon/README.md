@@ -25,7 +25,7 @@ iconView.tintColor = BPKColor.blue500;
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 
-UIImage *renderedIcon = [BPKIcon iconNamed:@"flight" color:[BPKolor skyGray] size:BPKIconSizeSmall];
+UIImage *renderedIcon = [BPKIcon smallIconNamed:BPKSmallIconNameFlight color:BPKColor.skyGray];
 ```
 
 ### Swift
@@ -53,6 +53,5 @@ iconView.flipsForRightToLeft = true
 ```swift
 import Backpack
 
-let renderedIcon = BPKIcon.makeIcon(name: .flight, color: BPKColor.skyGray, size:.small)
-``
-
+let renderedIcon = BPKIcon.makeSmallIcon(name: .flight, color: BPKColor.skyGray)
+```

@@ -488,8 +488,19 @@ gulp.task('generate-icon-names', done => {
       .join('')
       .replace('Ios', 'iOS');
 
-  const templateData = entries =>
-    Object.assign(...entries.map(([k]) => ({ [k]: codify(k) })));
+  // Once we drop support for the legacy API, we can leave the suffix in the string
+  // so that `BPKIcon.m` doesn't need to add it back in programmatically
+  const templateData = (entries, suffix = '') =>
+    Object.assign(
+      ...entries.map(([k]) => {
+        const key = k.endsWith(suffix)
+          ? k.substring(0, k.length - suffix.length)
+          : k;
+        return {
+          [key]: codify(key),
+        };
+      }),
+    );
 
   gulp
     .src(
@@ -501,9 +512,9 @@ gulp.task('generate-icon-names', done => {
     .pipe(
       data(() => ({
         icons: templateData(combinedEntries),
-        smallIcons: templateData(smallEntries),
+        smallIcons: templateData(smallEntries, '-sm'),
         largeIcons: templateData(largeEntries),
-        xlIcons: templateData(xlEntries),
+        xlIcons: templateData(xlEntries, '-xl'),
       })),
     )
     .pipe(nunjucks.compile())

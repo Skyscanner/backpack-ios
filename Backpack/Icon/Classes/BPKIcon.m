@@ -238,19 +238,31 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
     switch (size) {
     case BPKIconSizeSmall:
-        return CGSizeMake(16, 16);
+        return self.concreteSizeForSmallIcon;
         break;
     case BPKIconSizeLarge:
-        return CGSizeMake(24, 24);
+            return self.concreteSizeForLargeIcon;
         break;
     case BPKIconSizeXLarge:
-        return CGSizeMake(40, 40);
+            return self.concreteSizeForXlIcon;
         break;
     default:
         NSAssert(NO, @"Unsupported icon size");
-        return CGSizeMake(16, 16);
+        return self.concreteSizeForSmallIcon;
         break;
     }
+}
+
++ (CGSize)concreteSizeForSmallIcon {
+    return CGSizeMake(16, 16);
+}
+
++ (CGSize)concreteSizeForLargeIcon {
+    return CGSizeMake(24, 24);
+}
+
++ (CGSize)concreteSizeForXlIcon {
+    return CGSizeMake(40, 40);
 }
 
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint {
@@ -269,6 +281,32 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     }
 
     return BPKIconFallbackGlyph;
+}
+
+
+
++ (UIImage *)smallTemplateIconNamed:(BPKSmallIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeSmall];
+}
+
++ (UIImage *)largeTemplateIconNamed:(BPKLargeIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeLarge];
+}
+
++ (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name {
+    return [self templateIconNamed:name size:BPKIconSizeXLarge];
+}
+
++ (UIImage *)smallIconNamed:(BPKSmallIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeSmall];
+}
+
++ (UIImage *)largeIconNamed:(BPKLargeIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeLarge];
+}
+
++ (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color {
+    return [self iconNamed:name color:color size:BPKIconSizeXLarge];
 }
 
 @end

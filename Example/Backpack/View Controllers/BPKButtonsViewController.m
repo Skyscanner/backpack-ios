@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
         }
     }
 
-    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon templateIconNamed:@"long-arrow-left" size:BPKIconSizeSmall]
-                                             : [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeSmall];
+    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft]
+                                             : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Loading"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
     [self setupButton:self.defaultLoadingIconOnlyButton image:smallLongArrowIcon title:nil];
 
-    UIImage *largeLongArrowIcon = [BPKIcon templateIconNamed:@"long-arrow-right" size:BPKIconSizeLarge];
+    UIImage *largeLongArrowIcon = [BPKIcon largeTemplateIconNamed:BPKLargeIconNameLongArrowRight];
 
     [self setupButton:self.largeTextButton image:nil title:@"Button"];
     [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];

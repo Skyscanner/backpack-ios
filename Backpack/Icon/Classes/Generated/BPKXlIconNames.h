@@ -25,10 +25,10 @@
 typedef NSString * BPKXlIconName NS_EXTENSIBLE_STRING_ENUM;
 
 /// :nodoc:
-FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStarHalfXl;
+FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStarHalf;
 /// :nodoc:
-FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStarOutlineXl;
+FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStarOutline;
 /// :nodoc:
-FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStarXl;
+FOUNDATION_EXPORT BPKXlIconName const BPKXlIconNameStar;
 
 // clang-format on
