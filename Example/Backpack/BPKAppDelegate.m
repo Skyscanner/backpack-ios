@@ -23,6 +23,7 @@
 #import <Backpack/Font.h>
 #import <Backpack/Theme.h>
 #import <Backpack/DarkMode.h>
+#import <Backpack/TabBarController.h>
 
 @import AppCenter;
 @import AppCenterDistribute;
@@ -55,6 +56,8 @@
     [UINavigationBar appearance].largeTitleTextAttributes =
         @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
         NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]};
+
+    [BPKTabBarHelpers applyBrandTintColours];
 
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];

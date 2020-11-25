@@ -16,13 +16,26 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarController.h"
+#import "BPKTabBarHelpers.h"
 
 #import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKTabBarController
+@implementation BPKTabBarHelpers
+
++(UIColor*)tintColor {
+    return BPKColor.primaryColor;
+}
+
++(UIColor*)unselectedTintColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
+}
+
++(void)applyBrandTintColours {
+    [UITabBar appearance].tintColor = self.tintColor;
+    [UITabBar appearance].unselectedItemTintColor = self.unselectedTintColor;
+}
 
 @end
 

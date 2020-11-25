@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarController {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
+    tabBarController.tabBar.unselectedItemTintColor = BPKTabBarHelpers.unselectedTintColor;
+    tabBarController.tabBar.tintColor = BPKTabBarHelpers.tintColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     BPKTabBarItem *tabOneBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 1" image:nil tag:1];
@@ -60,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarControllerWithIcons {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
+    tabBarController.tabBar.unselectedItemTintColor = BPKTabBarHelpers.unselectedTintColor;
+    tabBarController.tabBar.tintColor = BPKTabBarHelpers.tintColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     BPKTabBarItem *tabOneBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 1"
