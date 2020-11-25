@@ -16,20 +16,36 @@
  * limitations under the License.
  */
 
-/*
- * Note that in some places we are having to resolve the correct UIColors from dynamic values ourselves to ensure
- * that we support overriding UIViewController interface styles. if we allow UIKit to resolve them for us,
- * it may do so wrongly.
- * This is because UIKit only sets the UIView's trait collection on a handful of lifecycle methods, and we
- * are using dynamic colours outside of these. If we do not manually resolve colours using self.traitCollection,
- * then UIKit will fall back to using [UITraitCollection currentTraitCollection] which does not reflect the override.
- */
-
 #import "BPKTabBarController.h"
+
+#import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (instancetype _Nullable)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+-(void)setup {
+    self.tabBar.tintColor = BPKColor.primaryColor;
+    self.tabBar.unselectedItemTintColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
+}
 
 @end
 

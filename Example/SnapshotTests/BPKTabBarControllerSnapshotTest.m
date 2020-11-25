@@ -17,6 +17,7 @@
  */
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+#import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 #import <Backpack/TabBarController.h>
 
@@ -37,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
 
     UIViewController *tabOne = [[UIViewController alloc] init];
-    UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:nil tag:1];
+    BPKTabBarItem *tabOneBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 1" image:nil tag:1];
     UIViewController *tabTwo = [[UIViewController alloc] init];
-    UITabBarItem *tabTwoBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 2" image:nil tag:2];
+    BPKTabBarItem *tabTwoBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 2" image:nil tag:2];
 
     tabOne.tabBarItem = tabOneBarItem;
     tabTwo.tabBarItem = tabTwoBarItem;
@@ -61,18 +62,33 @@ NS_ASSUME_NONNULL_BEGIN
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
 
     UIViewController *tabOne = [[UIViewController alloc] init];
-    UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1"
-                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameKey]
+    BPKTabBarItem *tabOneBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 1"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameKey]
                                                                   tag:1];
     UIViewController *tabTwo = [[UIViewController alloc] init];
-    UITabBarItem *tabTwoBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 2"
-                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameBus]
+    BPKTabBarItem *tabTwoBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 2"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameBus]
                                                                   tag:2];
+    UIViewController *tabThree = [[UIViewController alloc] init];
+    BPKTabBarItem *tabThreeBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 3"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameMap]
+                                                                  tag:3];
+    tabThreeBarItem.badgeColor = BPKColor.panjin;
+    tabThreeBarItem.badgeValue = @"42";
+
+    UIViewController *tabFour = [[UIViewController alloc] init];
+    BPKTabBarItem *tabFourBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 4"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameCars]
+                                                                  tag:4];
+    tabFourBarItem.badgeColor = BPKColor.primaryColor;
+    tabFourBarItem.badgeValue = @"";
 
     tabOne.tabBarItem = tabOneBarItem;
     tabTwo.tabBarItem = tabTwoBarItem;
+    tabThree.tabBarItem = tabThreeBarItem;
+    tabFour.tabBarItem = tabFourBarItem;
 
-    tabBarController.viewControllers = @[tabOne, tabTwo];
+    tabBarController.viewControllers = @[tabOne, tabTwo, tabThree, tabFour];
 
     return tabBarController.view;
 }

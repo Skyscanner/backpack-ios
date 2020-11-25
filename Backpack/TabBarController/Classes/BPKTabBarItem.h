@@ -16,8 +16,16 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_TAB_BAR_CONTROLLER__
-#define __BACKPACK_TAB_BAR_CONTROLLER__
-#import "BPKTabBarController.h"
-#import "BPKTabBarItem.h"
-#endif
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
+ */
+IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
+
+@end
+
+NS_ASSUME_NONNULL_END

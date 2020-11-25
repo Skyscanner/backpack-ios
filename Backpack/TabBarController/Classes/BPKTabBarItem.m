@@ -16,8 +16,36 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_TAB_BAR_CONTROLLER__
-#define __BACKPACK_TAB_BAR_CONTROLLER__
-#import "BPKTabBarController.h"
 #import "BPKTabBarItem.h"
-#endif
+
+#import <Backpack/Color.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKTabBarItem
+
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+-(instancetype _Nullable)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+-(void)setup {
+    self.badgeColor = BPKColor.panjin;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

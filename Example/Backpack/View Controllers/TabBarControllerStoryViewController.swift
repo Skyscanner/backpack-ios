@@ -23,7 +23,7 @@ class TabBarControllerStoryViewController: BPKTabBarController {
     override func viewDidLoad() {
         let tabOne = UIViewController()
         tabOne.view.backgroundColor = BPKColor.backgroundColor
-        let tabOneBarItem = UITabBarItem(
+        let tabOneBarItem = BPKTabBarItem(
             title: "Search",
             image: BPKIcon.makeTemplateIcon(name: .search, size: .large),
             tag: 1
@@ -32,13 +32,35 @@ class TabBarControllerStoryViewController: BPKTabBarController {
 
         let tabTwo = UIViewController()
         tabTwo.view.backgroundColor = BPKColor.backgroundColor
-        let tabTwoBarItem = UITabBarItem(
-            title: "Settings",
-            image: BPKIcon.makeTemplateIcon(name: .settings, size: .large),
+        let tabTwoBarItem = BPKTabBarItem(
+            title: "Explore",
+            image: BPKIcon.makeTemplateIcon(name: .explore, size: .large),
             tag: 2
         )
         tabTwo.tabBarItem = tabTwoBarItem
 
-        self.viewControllers = [tabOne, tabTwo]
+        let tabThree = UIViewController()
+        tabThree.view.backgroundColor = BPKColor.backgroundColor
+        let tabThreeBarItem = BPKTabBarItem(
+            title: "Trips",
+            image: BPKIcon.makeTemplateIcon(name: .trips, size: .large),
+            tag: 2
+        )
+        tabThreeBarItem.badgeColor = BPKColor.panjin
+        tabThreeBarItem.badgeValue = "42"
+        tabThree.tabBarItem = tabThreeBarItem
+
+        let tabFour = UIViewController()
+        tabFour.view.backgroundColor = BPKColor.backgroundColor
+        let tabFourBarItem = BPKTabBarItem(
+            title: "Profile",
+            image: BPKIcon.makeTemplateIcon(name: .accountCircle, size: .large),
+            tag: 2
+        )
+        tabFourBarItem.badgeColor = BPKColor.primaryColor
+        tabFourBarItem.badgeValue = ""
+        tabFour.tabBarItem = tabFourBarItem
+
+        self.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
     }
 }
