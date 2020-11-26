@@ -16,23 +16,7 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import <Backpack/Color.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- * `BPKTabBarHelpers` contains colors and helpers for applying default brand tint colours to the BPKTabBarController..
- */
-IB_DESIGNABLE @interface BPKTabBarHelpers : NSObject
-
-@property(class, readonly) UIColor *tintColor;
-@property(class, readonly) UIColor *unselectedTintColor;
-
-+(void)applyBrandTintColours;
-
-@end
-
-NS_ASSUME_NONNULL_END
+#ifndef __BACKPACK_APPEARANCE__
+#define __BACKPACK_APPEARANCE__
+#import "BPKAppearance.h"
+#endif

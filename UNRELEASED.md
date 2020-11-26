@@ -8,8 +8,11 @@
   - New icon name classes `BPKXlIconName`, `BPKLargeIconName` and `BPKSmallIconName`. These are currently unused, but will be needed for new icon APIs that are coming soon.
   - Added new methods to `BPKIcon` for creating an icon using the new icon name classes.
 
+- Backpack/Appearance:
+  - Added `BPKAppearance` which can be used to apply common brand colours to `UIAppearance` properties.
+
 - Backpack/TabBarController:
-  - Added `BPKTabBarItem`, a subclass of `UITabBarItem` which applies Skyscanner style out of the box.
+  - Added `UITabBarItem+Backpack`, a category of `UITabBarItem` which can be used to add and remove a small dot from a `UITabBarItem`.
   - Changed `BPKTabBarController` to automatically apply Skyscanner tint colours.
 
 ## How to write a good changelog entry

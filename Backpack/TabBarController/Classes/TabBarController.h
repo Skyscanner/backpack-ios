@@ -19,6 +19,5 @@
 #ifndef __BACKPACK_TAB_BAR_CONTROLLER__
 #define __BACKPACK_TAB_BAR_CONTROLLER__
 #import "BPKTabBarController.h"
-#import "BPKTabBarItem.h"
-#import "BPKTabBarHelpers.h"
+#import "UITabBarItem+Backpack.h"
 #endif

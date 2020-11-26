@@ -19,11 +19,11 @@
 #import "BPKAppDelegate.h"
 #import "Backpack_Native-Swift.h"
 
+#import <Backpack/Appearance.h>
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Theme.h>
 #import <Backpack/DarkMode.h>
-#import <Backpack/TabBarController.h>
 
 @import AppCenter;
 @import AppCenterDistribute;
@@ -57,7 +57,7 @@
         @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
         NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]};
 
-    [BPKTabBarHelpers applyBrandTintColours];
+    [BPKAppearance apply];
 
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];

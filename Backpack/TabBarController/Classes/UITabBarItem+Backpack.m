@@ -16,16 +16,20 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "UIView+BPKRTL.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
- */
-IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
+@implementation UITabBarItem (Backpack)
+
+- (void)bpk_addDotWithColor:(UIColor *)color {
+    self.badgeColor = color;
+    self.badgeValue = @"";
+}
+
+- (void)bpk_removeDot {
+    self.badgeValue = nil;
+}
 
 @end
-
 NS_ASSUME_NONNULL_END

@@ -28,6 +28,7 @@
 #import "Shadow.h"
 #import "Spacing.h"
 
+#import "Appearance.h"
 #import "Badge.h"
 #import "Button.h"
 #import "Calendar.h"

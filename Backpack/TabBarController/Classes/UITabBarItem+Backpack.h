@@ -15,37 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-#import "BPKTabBarItem.h"
-
-#import <Backpack/Color.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@interface UITabBarItem (Backpack)
 
-@implementation BPKTabBarItem
+/**
+ * Applies a small dot in the specified colour. Similar in appearance to an empty badge, but smaller.
+ *
+ * @param color The color to render the dot.
+ */
+- (void)bpk_addDotWithColor:(UIColor *)color;
 
--(instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
--(instancetype _Nullable)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
--(void)setup {
-    self.badgeColor = BPKColor.panjin;
-}
+/**
+ * Removes a dot if one is applied. If no dot has been applied, this will have no effect.
+ */
+- (void)bpk_removeDot;
 
 @end
-
 NS_ASSUME_NONNULL_END
