@@ -33,12 +33,33 @@ class TabBarControllerStoryViewController: BPKTabBarController {
         let tabTwo = UIViewController()
         tabTwo.view.backgroundColor = BPKColor.backgroundColor
         let tabTwoBarItem = UITabBarItem(
-            title: "Settings",
-            image: BPKIcon.makeTemplateIcon(name: .settings, size: .large),
+            title: "Explore",
+            image: BPKIcon.makeTemplateIcon(name: .explore, size: .large),
             tag: 2
         )
         tabTwo.tabBarItem = tabTwoBarItem
 
-        self.viewControllers = [tabOne, tabTwo]
+        let tabThree = UIViewController()
+        tabThree.view.backgroundColor = BPKColor.backgroundColor
+        let tabThreeBarItem = UITabBarItem(
+            title: "Trips",
+            image: BPKIcon.makeTemplateIcon(name: .trips, size: .large),
+            tag: 2
+        )
+        tabThreeBarItem.badgeColor = BPKColor.panjin
+        tabThreeBarItem.badgeValue = "42"
+        tabThree.tabBarItem = tabThreeBarItem
+
+        let tabFour = UIViewController()
+        tabFour.view.backgroundColor = BPKColor.backgroundColor
+        let tabFourBarItem = UITabBarItem(
+            title: "Profile",
+            image: BPKIcon.makeTemplateIcon(name: .accountCircle, size: .large),
+            tag: 2
+        )
+        tabFour.tabBarItem = tabFourBarItem
+        tabFour.tabBarItem.bpk_addDot(with: BPKColor.primaryColor)
+
+        self.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
     }
 }

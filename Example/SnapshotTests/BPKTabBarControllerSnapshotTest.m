@@ -17,6 +17,7 @@
  */
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+#import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 #import <Backpack/TabBarController.h>
 
@@ -35,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarController {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
+    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textQuaternaryColor;
+    tabBarController.tabBar.tintColor = BPKColor.primaryColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:nil tag:1];
@@ -59,20 +62,36 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarControllerWithIcons {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
+    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textQuaternaryColor;
+    tabBarController.tabBar.tintColor = BPKColor.primaryColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1"
-                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameKey]
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameKey]
                                                                   tag:1];
     UIViewController *tabTwo = [[UIViewController alloc] init];
     UITabBarItem *tabTwoBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 2"
-                                                                image:[BPKIcon smallTemplateIconNamed:BPKSmallIconNameBus]
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameBus]
                                                                   tag:2];
+    UIViewController *tabThree = [[UIViewController alloc] init];
+    UITabBarItem *tabThreeBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 3"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameMap]
+                                                                  tag:3];
+    tabThreeBarItem.badgeColor = BPKColor.panjin;
+    tabThreeBarItem.badgeValue = @"42";
+
+    UIViewController *tabFour = [[UIViewController alloc] init];
+    UITabBarItem *tabFourBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 4"
+                                                                image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameCars]
+                                                                  tag:4];
+    [tabFourBarItem bpk_addDotWithColor:BPKColor.primaryColor];
 
     tabOne.tabBarItem = tabOneBarItem;
     tabTwo.tabBarItem = tabTwoBarItem;
+    tabThree.tabBarItem = tabThreeBarItem;
+    tabFour.tabBarItem = tabFourBarItem;
 
-    tabBarController.viewControllers = @[tabOne, tabTwo];
+    tabBarController.viewControllers = @[tabOne, tabTwo, tabThree, tabFour];
 
     return tabBarController.view;
 }

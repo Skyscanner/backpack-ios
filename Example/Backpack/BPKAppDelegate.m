@@ -19,6 +19,7 @@
 #import "BPKAppDelegate.h"
 #import "Backpack_Native-Swift.h"
 
+#import <Backpack/Appearance.h>
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Theme.h>
@@ -55,6 +56,8 @@
     [UINavigationBar appearance].largeTitleTextAttributes =
         @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
         NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]};
+
+    [BPKAppearance apply];
 
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];

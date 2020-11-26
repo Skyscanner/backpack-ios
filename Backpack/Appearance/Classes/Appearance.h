@@ -16,12 +16,7 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarController.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@implementation BPKTabBarController
-
-@end
-
-NS_ASSUME_NONNULL_END
+#ifndef __BACKPACK_APPEARANCE__
+#define __BACKPACK_APPEARANCE__
+#import "BPKAppearance.h"
+#endif

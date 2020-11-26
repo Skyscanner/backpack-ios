@@ -16,11 +16,21 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarController.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKTabBarController
+/**
+ * `BPKAppearance` contains helpers for applying default brand appearance to UI components.
+ */
+IB_DESIGNABLE @interface BPKAppearance : NSObject
+
+/**
+ * Apply Backpack appearance values globally.
+ * This should be called once at app launch, as early as possible.
+ */
++(void)apply;
 
 @end
 

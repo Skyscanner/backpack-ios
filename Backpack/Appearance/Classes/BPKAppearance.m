@@ -16,11 +16,19 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarController.h"
+#import "BPKAppearance.h"
+
+#import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKTabBarController
+@implementation BPKAppearance
+
++(void)apply {
+    [UITabBar appearance].tintColor = BPKColor.primaryColor;
+    [UITabBar appearance].unselectedItemTintColor = BPKColor.textQuaternaryColor;
+    // TODO at a later stage: [UIView appearance].tintColor = BPKColor.primaryColor;
+}
 
 @end
 

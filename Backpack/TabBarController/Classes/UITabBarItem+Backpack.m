@@ -16,12 +16,20 @@
  * limitations under the License.
  */
 
-#import "BPKTabBarController.h"
+#import "UIView+BPKRTL.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKTabBarController
+@implementation UITabBarItem (Backpack)
+
+- (void)bpk_addDotWithColor:(UIColor *)color {
+    self.badgeColor = color;
+    self.badgeValue = @"";
+}
+
+- (void)bpk_removeDot {
+    self.badgeValue = nil;
+}
 
 @end
-
 NS_ASSUME_NONNULL_END
