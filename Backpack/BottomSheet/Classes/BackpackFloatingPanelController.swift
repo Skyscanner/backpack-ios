@@ -31,6 +31,10 @@ final class BPKFloatingPanelController: FloatingPanelController {
         }
     }
 
+    override func viewDidLoad() {
+        backdropView.dismissalTapGestureRecognizer.isEnabled = true
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateScrollViewInsetsForBottomSection()
@@ -85,8 +89,9 @@ private extension BPKFloatingPanelController {
             bottomSection.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomContainerConstraint,
 
+            // Ensure the bottomSection is pushed off the screen when the bottom-sheet is less than half-shown
             outsideSafeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor,
-                                                     constant: layout.insetFor(position: .half) ?? 0)
+                                                     constant: BPKBottomSheet.Constants.bottomSheetHeightInHalfPosition)
         ])
     }
 
@@ -128,7 +133,7 @@ private extension BPKFloatingPanelController {
     }
 
     func updateScrollViewInsetsForBottomSection() {
-        guard let scrollView = scrollView, let bottomSection = bottomSectionViewController else { return }
+        guard let scrollView = trackingScrollView, let bottomSection = bottomSectionViewController else { return }
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: bottomSection.view.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets

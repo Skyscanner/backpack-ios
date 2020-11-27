@@ -1,5 +1,10 @@
 # Unreleased
 
+**Fixed:**
+
+- Backpack/BottomSheet
+  - Updated the library that powers BottomSheet, [FloatingPanel](https://github.com/SCENEE/FloatingPanel), to the latest version(2.1.0) from 1.6.6.
+
 > Place your changes below this line.
 
 ## How to write a good changelog entry
