@@ -23,7 +23,7 @@ import FloatingPanel
 @objc(BPKBottomSheet)
 public final class BPKBottomSheet: NSObject {
 
-    private enum Constants {
+    public enum Constants {
         static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
         static let backdropAlpha: CGFloat = 0.3
         static let grabberHandleWidth: CGFloat = 60.0
@@ -60,11 +60,12 @@ public final class BPKBottomSheet: NSObject {
 
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         let panel = BPKFloatingPanelController(delegate: self)
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = BPKCornerRadiusLg
+        panel.surfaceView.appearance = appearance
+        panel.surfaceView.grabberHandlePadding = BPKSpacingMd
+        panel.surfaceView.grabberHandleSize = CGSize(width: Constants.grabberHandleWidth, height: BPKSpacingSm)
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
-        panel.surfaceView.cornerRadius = BPKCornerRadiusLg
-        panel.surfaceView.grabberTopPadding = BPKSpacingMd
-        panel.surfaceView.grabberHandleHeight = BPKSpacingSm
-        panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
         panel.surfaceView.grabberHandle.barColor = BPKColor.skyGrayTint06
 
         panel.isRemovalInteractionEnabled = true
@@ -136,7 +137,7 @@ public final class BPKBottomSheet: NSObject {
     ///   - completion: Completion closure called after the presentation animation.
     @objc(presentBottomSheet:animated:completion:)
     public func present(_ bottomSheet: BPKBottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
-        if let scrollView = floatingPanelController.scrollView {
+        if let scrollView = floatingPanelController.trackingScrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
 
@@ -152,30 +153,36 @@ public final class BPKBottomSheet: NSObject {
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
     public func updateLayout() {
-        floatingPanelController.updateLayout()
+        floatingPanelController.invalidateLayout()
     }
 
 }
 
 extension BPKBottomSheet: FloatingPanelControllerDelegate {
     final class Layout: FloatingPanelLayout {
-        var initialPosition: FloatingPanelPosition {
+        var position: FloatingPanelPosition {
+            return .bottom
+        }
+
+        var initialState: FloatingPanelState {
             return .half
         }
 
-        var supportedPositions: Set<FloatingPanelPosition> {
-            return [.full, .half]
+        var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+            return [
+                .full: FloatingPanelLayoutAnchor(absoluteInset: 0,
+                                                 edge: .top, referenceGuide: .safeArea),
+                // This should probably use
+                // FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea)
+                // instead of a hard coded constant. For this to work the logic around `addOutsideSafeAreaView`
+                // in `BackpackFloatingPanelController` needs to be adjusted
+                .half: FloatingPanelLayoutAnchor(absoluteInset: Constants.bottomSheetHeightInHalfPosition,
+                                                 edge: .bottom, referenceGuide: .safeArea)
+            ]
         }
 
-        func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-            switch position {
-            case .half: return Constants.bottomSheetHeightInHalfPosition
-            default: return nil
-            }
-        }
-
-        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-            switch position {
+        func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+            switch state {
             case .full, .half:
                 return Constants.backdropAlpha
             default:
@@ -184,14 +191,28 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
         }
     }
 
-    final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
-        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+    final class IntrinsicLayout: FloatingPanelLayout {
+        var position: FloatingPanelPosition {
+            return .bottom
+        }
+
+        var initialState: FloatingPanelState {
+            return .full
+        }
+
+        var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+            return [
+                .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .superview)
+            ]
+        }
+
+        private func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
             return Constants.backdropAlpha
         }
     }
 
     public func floatingPanel(_ viewController: FloatingPanelController,
-                              layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+                              layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
         return scrollView == nil ? IntrinsicLayout() : Layout()
     }
 }
