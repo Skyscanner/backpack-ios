@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var maxEnabledDate: Bool = false
     var customStylesForDates = false
     var currentMaxEnabledDate: Date?
+    var showPrices = false
     @IBOutlet weak var myView: BPKCalendar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -82,29 +83,29 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         return true
     }
 
-    func calendar(_ calendar: BPKCalendar, cellStyleFor date: BPKSimpleDate) -> BPKCalendarDateCellStyle {
+    func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> BPKCalendarCellData? {
         if !customStylesForDates {
-            return .normal
+            return BPKCalendarTrafficLightCellData.normal
         }
         let gregorian = calendar.gregorian
         let convertedDate = date.date(for: gregorian)
         let date1 = gregorian.startOfDay(for: Date())
         let date2 = gregorian.startOfDay(for: convertedDate)
         let components = gregorian.dateComponents([.day], from: date1, to: date2)
-        guard let daysCount = components.day else { return .normal }
+        guard let daysCount = components.day else { return BPKCalendarTrafficLightCellData.normal }
 
         if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 {
-            return .positive
+            return BPKCalendarTrafficLightCellData.positive
         }
 
         if daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 {
-            return .negative
+            return BPKCalendarTrafficLightCellData.negative
         }
 
         if daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
-            return .neutral
+            return BPKCalendarTrafficLightCellData.neutral
         }
 
-        return .noData
+        return BPKCalendarTrafficLightCellData.noData
     }
 }

@@ -16,16 +16,8 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarCell.h"
-#import "BPKCalendarCellData.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarYearPill.h"
-#import "BPKCalendarConfiguration.h"
-#import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarTrafficLightCell.h"
-#import "BPKCalendarTrafficLightCellData.h"
-#endif
+
+@implementation BPKCalendarTrafficLightCell
+
+@end

@@ -73,7 +73,6 @@ extension MyClass: BPKCalendarDelegate {
 
 ### Priced calendar
 
-
 A colour coded calendar where dates are coloured based on how expensive/cheap they are.
 
 #### Objective-C
@@ -96,20 +95,20 @@ bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 
 #pragma mark - <BPKCalendarDelegate>
 
-- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date {
+- (id<BPKCalendarCellData> _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
     if ([lowPrices containsObject:date) {
-        return BPKCalendarDateCellStylePositive;
+        return BPKCalendarTrafficLightCellData.positive;
     }
 
     if ([mediumPrices containsObject:date) {
-        return BPKCalendarDateCellStyleNeutral;
+        return BPKCalendarTrafficLightCellData.neutral;
     }
 
     if ([highPrices containsObject:date) {
-        return BPKCalendarDateCellStyleNegative;
+        return BPKCalendarTrafficLightCellData.negative;
     }
 
-    return BPKCalendarDateCellStyleNormal;
+    return BPKCalendarTrafficLightCellData.normal;
 }
 
 - (void)calendar:(BPKCalendar *)calendar didChangeDateSelection:(NSArray<BPKSimpleDate *> *)dateList {
@@ -133,20 +132,20 @@ calendar.locale = Locale.current
 // ...
 
 extension MyClass: BPKCalendarDelegate {
-  func calendar(_ calendar: BPKCalendar, cellStyleFor date: BPKSimpleDate) -> BPKCalendarDateCellStyle {
+  func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> BPKCalendarCellData? {
       if lowPrices.contains(date) {
-          return .positive
+          return BPKCalendarTrafficLightCellData.positive
       }
 
       if mediumPrices.contains(date) {
-          return .neutral
+          return BPKCalendarTrafficLightCellData..neutral
       }
 
       if highPrices.contains(date) {
-          return .negative
+          return BPKCalendarTrafficLightCellData..negative
       }
 
-      return .normal
+      return BPKCalendarTrafficLightCellData..normal
   }
 
   }
@@ -157,6 +156,6 @@ extension MyClass: BPKCalendarDelegate {
 ```
 
 ### Appearance attributes
+
 `(UIColor)dateSelectedContentColor`
 `(UIColor)dateSelectedBackgroundColor`
-

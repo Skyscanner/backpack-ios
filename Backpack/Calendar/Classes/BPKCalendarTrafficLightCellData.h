@@ -16,16 +16,21 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarCell.h"
 #import "BPKCalendarCellData.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarYearPill.h"
-#import "BPKCalendarConfiguration.h"
-#import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarTrafficLightCell.h"
-#import "BPKCalendarTrafficLightCellData.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BPKCalendarTrafficLightCellData : NSObject<BPKCalendarCellData>
+
+@property(class, readonly) BPKCalendarTrafficLightCellData *normal;
+@property(class, readonly) BPKCalendarTrafficLightCellData *positive;
+@property(class, readonly) BPKCalendarTrafficLightCellData *negative;
+@property(class, readonly) BPKCalendarTrafficLightCellData *noData NS_SWIFT_NAME(noData);
+@property(class, readonly) BPKCalendarTrafficLightCellData *neutral;
+
+@property(strong) UIColor *backgroundColor;
+@property(strong) UIColor *foregroundColor;
+
+@end
+
+NS_ASSUME_NONNULL_END
