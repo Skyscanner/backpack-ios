@@ -52,13 +52,14 @@ class TabBarControllerStoryViewController: BPKTabBarController {
 
         let tabFour = UIViewController()
         tabFour.view.backgroundColor = BPKColor.backgroundColor
-        let tabFourBarItem = UITabBarItem(
+        let tabFourBarItem = BPKTabBarItem(
             title: "Profile",
             image: BPKIcon.makeTemplateIcon(name: .accountCircle, size: .large),
-            tag: 2
+            tag: 2,
+            dotImage: UIImage(named: "tab_profile_with_dot")!
         )
         tabFour.tabBarItem = tabFourBarItem
-        tabFour.tabBarItem.bpk_addDot(with: BPKColor.primaryColor)
+        tabFourBarItem.addDot()
 
         self.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
     }

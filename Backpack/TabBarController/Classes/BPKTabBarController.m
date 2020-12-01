@@ -17,10 +17,35 @@
  */
 
 #import "BPKTabBarController.h"
+#import "BPKTabBarItem.h"
+
+#import <Backpack/DarkMode.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
+
+-(void)updateImages {
+    for (UITabBarItem *tabBarItem in self.tabBar.items) {
+        if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
+
+        BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
+            [bpkTabBarItem reapplyImage];
+    }
+    }
+}
+
+// Note this is needed to correctly update the `CGColor` used for the line .
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (@available(iOS 12.0, *)) {
+        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+            [self updateImages];
+        }
+    }
+#endif
+}
 
 @end
 

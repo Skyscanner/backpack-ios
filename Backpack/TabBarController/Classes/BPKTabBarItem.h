@@ -16,20 +16,30 @@
  * limitations under the License.
  */
 
-#import "UIView+BPKRTL.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation UITabBarItem (Backpack)
+/**
+ * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
+ */
+IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
 
-- (void)bpk_addDotWithColor:(UIColor *)color {
-    self.badgeColor = color;
-    self.badgeValue = @"";
-}
+@property(nullable, strong) UIImage *originalImage;
 
-- (void)bpk_removeDot {
-    self.badgeValue = nil;
-}
+@property(nullable, strong) UIImage *dotImage;
+
+@property BOOL dotShown;
+
+- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImage:(UIImage *)dotImage;
+
+-(void)reapplyImage;
+
+-(void)addDot;
+
+-(void)removeDot;
 
 @end
+
 NS_ASSUME_NONNULL_END
