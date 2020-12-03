@@ -24,113 +24,43 @@
 @implementation BPKCalendarColor
 
 + (UIColor *)normalColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = BPKColor.backgroundColor;
-    });
-
-    return color;
+    return BPKColor.backgroundColor;
 }
 
 + (UIColor *)normalTitleColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = BPKColor.textPrimaryColor;
-    });
-
-    return color;
+    return BPKColor.textPrimaryColor;
 }
 
 + (UIColor *)positiveColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
 }
 
 + (UIColor *)positiveTitleColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
 }
 
 + (UIColor *)negativeColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = BPKColor.panjin;
-    });
-
-    return color;
+    return BPKColor.panjin;
 }
 
 + (UIColor *)negativeTitleColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
 }
 
 + (UIColor *)noDataColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
 }
 
 + (UIColor *)noDataTitleColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
 }
 
 + (UIColor *)neutralColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = BPKColor.erfoud;
-    });
-
-    return color;
+    return BPKColor.erfoud;
 }
 
 + (UIColor *)neutralTitleColor {
-    static dispatch_once_t onceToken;
-    static UIColor  *color;
-
-    dispatch_once(&onceToken, ^{
-        color = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
-    });
-
-    return color;
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
 }
 
 @end

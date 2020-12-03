@@ -85,14 +85,14 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
 
     func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
         if !customStylesForDates {
-            return BPKCalendarTrafficLightCellData.normal
+            return nil
         }
         let gregorian = calendar.gregorian
         let convertedDate = date.date(for: gregorian)
         let date1 = gregorian.startOfDay(for: Date())
         let date2 = gregorian.startOfDay(for: convertedDate)
         let components = gregorian.dateComponents([.day], from: date1, to: date2)
-        guard let daysCount = components.day else { return BPKCalendarTrafficLightCellData.normal }
+        guard let daysCount = components.day else { return nil }
 
         if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 {
             return BPKCalendarTrafficLightCellData.positive
