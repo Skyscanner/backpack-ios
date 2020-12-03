@@ -18,17 +18,60 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+/**
+ * `BPKCalendarColor` contains a number of pre-defined colours commonly used when presenting a calendar.
+ */
 @interface BPKCalendarColor : NSObject
 
+/**
+ * The normal calendar background color.
+ */
 @property(class, readonly) UIColor *normalColor;
+
+/**
+ * The colour that should be used for calendar labels when shown on a normal colored background.
+ */
 @property(class, readonly) UIColor *normalTitleColor;
+
+/**
+ * The positve calendar color.
+ */
 @property(class, readonly) UIColor *positiveColor;
+
+/**
+ * The colour that should be used for calendar labels when shown on a positive colored background.
+ */
 @property(class, readonly) UIColor *positiveTitleColor;
+
+/**
+ * The negative calendar color.
+ */
 @property(class, readonly) UIColor *negativeColor;
+
+/**
+ * The colour that should be used for calendar labels when shown on a negative colored background.
+ */
 @property(class, readonly) UIColor *negativeTitleColor;
+
+/**
+ * The no-data calendar color.
+ */
 @property(class, readonly) UIColor *noDataColor;
+
+/**
+ * The colour that should be used for calendar labels when shown on a no-data colored background.
+ */
 @property(class, readonly) UIColor *noDataTitleColor;
+
+/**
+ * The neutral calendar color.
+ */
 @property(class, readonly) UIColor *neutralColor;
+
+/**
+ * The colour that should be used for calendar labels when shown on a neutral colored background.
+ */
 @property(class, readonly) UIColor *neutralTitleColor;
 
 @end

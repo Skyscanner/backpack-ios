@@ -74,13 +74,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date;
 
 /**
- * Asks the delegate for a cell style for a specific date.
+ * Asks the delegate for cell data for a specific date.
  *
- * @param calendar The backpack calendar requesting the style.
- * @param date The date to provide the style for.
- * @return The cell style to use for this date.
- * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:` however
- * if the receiver returns the custom cell type the calendar will call those methods in response.
+ * @param calendar The backpack calendar requesting the data.
+ * @param date The date to provide the data for.
+ * @return The cell data to use for this date.
+ * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:`. If you return nil in this method, the values from the other methods will be used if provided.
  */
 - (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 

@@ -20,6 +20,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * `BPKCalendarTrafficLightCell` is a subclass of `BPKCalendarCell`. It allows cusotmisation of the cell fill colour and title colour.
+ */
 @interface BPKCalendarTrafficLightCell : BPKCalendarCell
 
 @end

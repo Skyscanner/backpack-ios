@@ -208,6 +208,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     if (_configuration != configuration) {
         _configuration = configuration;
         [self.calendarView registerClass:configuration.cellClass forCellReuseIdentifier:CellReuseId];
+
+        [self reloadData];
     }
 }
 
