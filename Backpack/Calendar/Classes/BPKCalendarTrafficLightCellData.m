@@ -30,7 +30,6 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.normalColor foregroundColor:BPKCalendarColor.normalTitleColor];
     });
 
@@ -42,7 +41,6 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.positiveColor foregroundColor:BPKCalendarColor.positiveTitleColor];
     });
 
@@ -54,7 +52,6 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.negativeColor foregroundColor:BPKCalendarColor.negativeTitleColor];
     });
 
@@ -66,7 +63,6 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.noDataColor foregroundColor:BPKCalendarColor.noDataTitleColor];
     });
 
@@ -78,7 +74,6 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.neutralColor foregroundColor:BPKCalendarColor.neutralTitleColor];
     });
 

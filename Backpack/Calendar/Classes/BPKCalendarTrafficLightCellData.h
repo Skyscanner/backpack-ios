@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(class, readonly) BPKCalendarTrafficLightCellData *noData NS_SWIFT_NAME(noData);
 @property(class, readonly) BPKCalendarTrafficLightCellData *neutral;
 
-@property(strong) UIColor *backgroundColor;
-@property(strong) UIColor *foregroundColor;
+@property(readonly, nonatomic) UIColor *backgroundColor;
+@property(readonly, nonatomic) UIColor *foregroundColor;
 
 @end
 

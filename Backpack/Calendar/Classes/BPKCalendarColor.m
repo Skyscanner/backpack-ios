@@ -28,7 +28,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = BPKColor.backgroundColor;
     });
 
@@ -40,7 +39,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = BPKColor.textPrimaryColor;
     });
 
@@ -52,7 +50,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
     });
 
@@ -64,7 +61,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
     });
 
@@ -76,7 +72,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = BPKColor.panjin;
     });
 
@@ -88,7 +83,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
     });
 
@@ -100,7 +94,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
     });
 
@@ -112,7 +105,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
     });
 
@@ -124,7 +116,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = BPKColor.erfoud;
     });
 
@@ -136,7 +127,6 @@
     static UIColor  *color;
 
     dispatch_once(&onceToken, ^{
-        BPKAssertMainThread();
         color = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
     });
 

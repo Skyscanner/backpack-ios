@@ -71,7 +71,7 @@ extension MyClass: BPKCalendarDelegate {
 }
 ```
 
-### Priced calendar
+### Color-coded calendar
 
 A colour coded calendar where dates are coloured based on how expensive/cheap they are.
 
@@ -95,7 +95,7 @@ bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 
 #pragma mark - <BPKCalendarDelegate>
 
-- (id<BPKCalendarCellData> _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
+- (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
     if ([lowPrices containsObject:date) {
         return BPKCalendarTrafficLightCellData.positive;
     }
@@ -132,7 +132,7 @@ calendar.locale = Locale.current
 // ...
 
 extension MyClass: BPKCalendarDelegate {
-  func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> BPKCalendarCellData? {
+  func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
       if lowPrices.contains(date) {
           return BPKCalendarTrafficLightCellData.positive
       }
