@@ -128,6 +128,9 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Custom styles for specific dates"].tap()
         saveScreenshot(component: "calendar", scenario: "custom-style", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
+        app.tables.staticTexts["With prices"].tap()
+        saveScreenshot(component: "calendar", scenario: "with-prices", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Cards"].tap()

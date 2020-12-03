@@ -16,20 +16,15 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarCell.h"
-#import "BPKCalendarColor.h"
-#import "BPKCalendarConfiguration.h"
-#import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarPriceLabelConfiguration.h"
+
 #import "BPKCalendarPriceLabelCell.h"
 #import "BPKCalendarPriceLabelCellData.h"
-#import "BPKCalendarPriceLabelConfiguration.h"
-#import "BPKCalendarPriceLabelStyle.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarTrafficLightCell.h"
-#import "BPKCalendarTrafficLightCellData.h"
-#import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarYearPill.h"
-#endif
+
+@implementation BPKCalendarPriceLabelConfiguration
+
+- (instancetype)init {
+    return [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:58];
+}
+
+@end

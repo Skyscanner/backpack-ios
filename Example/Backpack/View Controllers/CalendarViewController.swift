@@ -26,25 +26,42 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var customStylesForDates = false
     var currentMaxEnabledDate: Date?
     var showPrices = false
-    @IBOutlet weak var myView: BPKCalendar!
+    var calendar = BPKCalendar()
+    @IBOutlet weak var myView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+    var lowPrice = BPKCalendarPriceLabelCellData(price: "£14", labelStyle: BPKCalendarPriceLabelStyle.positive)
+    var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
+    var highPrice = BPKCalendarPriceLabelCellData(price: "£5617341286", labelStyle: BPKCalendarPriceLabelStyle.negative)
+    var noPrice = BPKCalendarPriceLabelCellData(price: "-", labelStyle: BPKCalendarPriceLabelStyle.noData)
+
     override func viewDidLoad() {
-        myView.minDate = BPKSimpleDate(date: Date(), for: myView.gregorian)
-        myView.locale = Locale.current
-        myView.delegate = self
+        if showPrices {
+            calendar = BPKCalendar(configuration: BPKCalendarPriceLabelConfiguration())
+        }
+        myView.addSubview(calendar)
+        calendar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            calendar.leadingAnchor.constraint(equalTo: myView.leadingAnchor),
+            calendar.topAnchor.constraint(equalTo: myView.topAnchor),
+            myView.trailingAnchor.constraint(equalTo: calendar.trailingAnchor),
+            myView.bottomAnchor.constraint(equalTo: calendar.bottomAnchor)
+        ])
+        calendar.minDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
+        calendar.locale = Locale.current
+        calendar.delegate = self
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil, completion: { _ in self.myView.reloadData() })
+        coordinator.animate(alongsideTransition: nil, completion: { _ in self.calendar.reloadData() })
     }
 
     // Pragma mark: SegmentedControlDelegate
 
     @IBAction func valueChanged(_ sender: Any) {
-        myView.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
-        myView.reloadData()
+        calendar.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
+        calendar.reloadData()
     }
 
     // Pragma mark: CalendarDelegate
@@ -84,7 +101,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     }
 
     func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
-        if !customStylesForDates {
+        if !customStylesForDates && !showPrices {
             return nil
         }
         let gregorian = calendar.gregorian
@@ -95,17 +112,17 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         guard let daysCount = components.day else { return nil }
 
         if daysCount == 2 || daysCount == 8 || daysCount == 12 || daysCount == 20 {
-            return BPKCalendarTrafficLightCellData.positive
+            return showPrices ? lowPrice : BPKCalendarTrafficLightCellData.positive
         }
 
         if daysCount == 4 || daysCount == 10 || daysCount == 15 || daysCount == 24 {
-            return BPKCalendarTrafficLightCellData.negative
+            return showPrices ? highPrice : BPKCalendarTrafficLightCellData.negative
         }
 
         if daysCount == 1 || daysCount == 3 || daysCount == 11 || daysCount == 22 {
-            return BPKCalendarTrafficLightCellData.neutral
+            return showPrices ? mediumPrice : BPKCalendarTrafficLightCellData.neutral
         }
 
-        return BPKCalendarTrafficLightCellData.noData
+        return showPrices ? noPrice : BPKCalendarTrafficLightCellData.noData
     }
 }
