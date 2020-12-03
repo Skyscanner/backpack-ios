@@ -79,7 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
  * @param calendar The backpack calendar requesting the data.
  * @param date The date to provide the data for.
  * @return The cell data to use for this date.
- * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:`. If you return nil in this method, the values from the other methods will be used if provided.
  */
 - (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 
@@ -105,6 +104,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate NS_DESIGNATED_INITIALIZER;
 
+/**
+ * Create a calendar with given minimum date and maximum date.
+ *
+ * @param minDate The minimum date that can be selected in the calendar.
+ * @param maxDate The maximum date that can be selected in the calendar.
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @see BPKCalendarTrafficLightConfiguration
+ * @return A configured calendar.
+ */
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration;
+
+/**
+ * Create a calendar with given configuration
+ *
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @see BPKCalendarTrafficLightConfiguration
+ * @return A configured calendar.
+ */
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration;
+
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
@@ -114,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The calendar configuration.
  */
-@property(nonatomic, strong) BPKCalendarConfiguration *configuration;
+@property(nonatomic, strong, nonnull, readonly) BPKCalendarConfiguration *configuration;
 
 /**
  * The active calendar being used by the reciever.

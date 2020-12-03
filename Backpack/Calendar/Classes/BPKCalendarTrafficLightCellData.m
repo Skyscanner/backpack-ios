@@ -30,7 +30,9 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.normalColor foregroundColor:BPKCalendarColor.normalTitleColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc]
+                    initWithBackgroundColor:BPKCalendarColor.normalColor
+                    foregroundColor:BPKCalendarColor.normalTitleColor];
     });
 
     return cellData;
@@ -41,7 +43,9 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.positiveColor foregroundColor:BPKCalendarColor.positiveTitleColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc]
+                    initWithBackgroundColor:BPKCalendarColor.positiveColor
+                    foregroundColor:BPKCalendarColor.positiveTitleColor];
     });
 
     return cellData;
@@ -52,7 +56,9 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.negativeColor foregroundColor:BPKCalendarColor.negativeTitleColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc]
+                    initWithBackgroundColor:BPKCalendarColor.negativeColor
+                    foregroundColor:BPKCalendarColor.negativeTitleColor];
     });
 
     return cellData;
@@ -63,7 +69,9 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.noDataColor foregroundColor:BPKCalendarColor.noDataTitleColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc]
+                    initWithBackgroundColor:BPKCalendarColor.noDataColor
+                    foregroundColor:BPKCalendarColor.noDataTitleColor];
     });
 
     return cellData;
@@ -74,7 +82,9 @@
     static BPKCalendarTrafficLightCellData  *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.neutralColor foregroundColor:BPKCalendarColor.neutralTitleColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc]
+                    initWithBackgroundColor:BPKCalendarColor.neutralColor
+                    foregroundColor:BPKCalendarColor.neutralTitleColor];
     });
 
     return cellData;

@@ -106,13 +106,16 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithCoder:coder];
     if (self) {
         // FSCalendar does this internally, but we declare in or public interface that
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        self.configuration = [BPKCalendarTrafficLightConfiguration new];
         [self setup];
     }
 
@@ -121,31 +124,49 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithFrame:frame];
     if (self) {
         // FSCalendar does this internally, but we declare in or public interface that
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
-        self.configuration = [BPKCalendarTrafficLightConfiguration new];
         [self setup];
     }
 
     return self;
 }
 
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration {
+    _configuration = configuration;
+
+    return [self initWithMinDate:minDate maxDate:maxDate];
+}
+
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
         self.minDate = minDate;
         self.maxDate = maxDate;
-        self.configuration = [BPKCalendarTrafficLightConfiguration new];
         [self setup];
     }
 
     return self;
+}
+
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration {
+    _configuration = configuration;
+
+    return [self initWithFrame:CGRectZero];
 }
 
 - (void)setup {
@@ -202,15 +223,6 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.yearPill = [[BPKCalendarYearPill alloc] initWithFrame:CGRectZero];
     self.yearPill.hidden = YES;
     [self addSubview:self.yearPill];
-}
-
-- (void)setConfiguration:(BPKCalendarConfiguration *)configuration {
-    if (_configuration != configuration) {
-        _configuration = configuration;
-        [self.calendarView registerClass:configuration.cellClass forCellReuseIdentifier:CellReuseId];
-
-        [self reloadData];
-    }
 }
 
 - (void)layoutSubviews {
