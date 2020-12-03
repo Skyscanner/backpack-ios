@@ -21,6 +21,8 @@
 #import <Backpack/Common.h>
 #import <Backpack/Color.h>
 
+#import "BPKCalendarColor.h"
+
 @implementation BPKCalendarTrafficLightCellData
 
 + (BPKCalendarTrafficLightCellData *)normal {
@@ -29,7 +31,7 @@
 
     dispatch_once(&onceToken, ^{
         BPKAssertMainThread();
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKColor.backgroundColor foregroundColor:BPKColor.textPrimaryColor];
+        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.normalColor foregroundColor:BPKCalendarColor.normalTitleColor];
     });
 
     return cellData;
@@ -41,7 +43,7 @@
 
     dispatch_once(&onceToken, ^{
         BPKAssertMainThread();
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe] foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
+        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.positiveColor foregroundColor:BPKCalendarColor.positiveTitleColor];
     });
 
     return cellData;
@@ -53,7 +55,7 @@
 
     dispatch_once(&onceToken, ^{
         BPKAssertMainThread();
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKColor.panjin foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
+        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.negativeColor foregroundColor:BPKCalendarColor.negativeTitleColor];
     });
 
     return cellData;
@@ -65,7 +67,7 @@
 
     dispatch_once(&onceToken, ^{
         BPKAssertMainThread();
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06] foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
+        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.noDataColor foregroundColor:BPKCalendarColor.noDataTitleColor];
     });
 
     return cellData;
@@ -77,7 +79,7 @@
 
     dispatch_once(&onceToken, ^{
         BPKAssertMainThread();
-        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKColor.erfoud foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black]];
+        cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.neutralColor foregroundColor:BPKCalendarColor.neutralTitleColor];
     });
 
     return cellData;
