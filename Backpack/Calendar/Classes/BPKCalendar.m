@@ -39,7 +39,6 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarYearPill.h"
 #import "BPKCalendarConfiguration.h"
-#import "BPKCalendarCellData.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
 
 
@@ -542,11 +541,11 @@ NSString *const HeaderDateFormat = @"MMMM";
         if ([self.delegate respondsToSelector:@selector(calendar:cellDataForDate:)]) {
             BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
 
-            id<BPKCalendarCellData> cellData = [self.delegate calendar:self cellDataForDate:simpleDate];
+            id cellData = [self.delegate calendar:self cellDataForDate:simpleDate];
 
             if (cellData != nil) {
                 NSAssert([cell isKindOfClass:self.configuration.cellClass], @"Expected cell to have class %@ but instead had class %@", self.configuration.cellClass, cell.class);
-                NSAssert([cellData isKindOfClass:self.configuration.cellDataClass], @"Expected cell data to have class %@ but instead had class %@", self.configuration.cellDataClass, cellData.class);
+                NSAssert([cellData isKindOfClass:self.configuration.cellDataClass], @"Expected cell data to have class %@", self.configuration.cellDataClass);
                 if([cell isKindOfClass:self.configuration.cellClass] && [cellData isKindOfClass:self.configuration.cellDataClass]) {
                     [cell configureWithData:cellData];
                 }

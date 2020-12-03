@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
     return;
 }
 
-- (id<BPKCalendarCellData> _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
+- (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
     if (!self.isColoringDates) {
         return BPKCalendarTrafficLightCellData.normal;
     }

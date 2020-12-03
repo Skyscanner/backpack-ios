@@ -33,4 +33,6 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 @property(nonatomic, assign) SelectionType selectionType;
 @property(nonatomic, assign) RowType rowType;
 
+-(void)configureWithData:(id)data;
+
 @end

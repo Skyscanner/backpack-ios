@@ -212,4 +212,8 @@
     }
 }
 
+-(void)configureWithData:(id)data {
+    return;
+}
+
 @end

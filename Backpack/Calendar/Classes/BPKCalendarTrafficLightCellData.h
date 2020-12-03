@@ -16,11 +16,9 @@
  * limitations under the License.
  */
 
-#import "BPKCalendarCellData.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKCalendarTrafficLightCellData : NSObject<BPKCalendarCellData>
+@interface BPKCalendarTrafficLightCellData : NSObject
 
 @property(class, readonly) BPKCalendarTrafficLightCellData *normal;
 @property(class, readonly) BPKCalendarTrafficLightCellData *positive;

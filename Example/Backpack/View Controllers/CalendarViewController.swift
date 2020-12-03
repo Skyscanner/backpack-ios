@@ -83,7 +83,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         return true
     }
 
-    func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> BPKCalendarCellData? {
+    func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
         if !customStylesForDates {
             return BPKCalendarTrafficLightCellData.normal
         }

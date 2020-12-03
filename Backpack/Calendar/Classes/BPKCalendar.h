@@ -19,8 +19,6 @@
 @class BPKCalendar;
 @class BPKSimpleDate;
 @class BPKCalendarConfiguration;
-@class BPKCalendarCellData;
-@protocol BPKCalendarCellData;
 
 /**
  * Enum values for specifying calendar selection type
@@ -84,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:` however
  * if the receiver returns the custom cell type the calendar will call those methods in response.
  */
-- (id<BPKCalendarCellData> _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
+- (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 
 @end
 

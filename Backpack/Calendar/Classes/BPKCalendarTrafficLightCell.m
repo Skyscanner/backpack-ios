@@ -17,7 +17,14 @@
  */
 
 #import "BPKCalendarTrafficLightCell.h"
+#import "BPKCalendarTrafficLightCellData.h"
 
 @implementation BPKCalendarTrafficLightCell
+
+-(void)configureWithData:(id)data {
+    BPKCalendarTrafficLightCellData *trafficLightCellData = (BPKCalendarTrafficLightCellData *)data;
+    self.preferredFillDefaultColor = trafficLightCellData.backgroundColor;
+    self.preferredTitleDefaultColor = trafficLightCellData.foregroundColor;
+}
 
 @end
