@@ -38,6 +38,8 @@
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarYearPill.h"
+#import "BPKCalendarConfiguration.h"
+#import "BPKCalendarTrafficLightConfiguration.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -104,6 +106,10 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithCoder:coder];
     if (self) {
         // FSCalendar does this internally, but we declare in or public interface that
@@ -118,6 +124,10 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithFrame:frame];
     if (self) {
         // FSCalendar does this internally, but we declare in or public interface that
@@ -130,8 +140,18 @@ NSString *const HeaderDateFormat = @"MMMM";
     return self;
 }
 
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration {
+    _configuration = configuration;
+
+    return [self initWithMinDate:minDate maxDate:maxDate];
+}
+
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate {
     BPKAssertMainThread();
+    if (_configuration == nil) {
+        _configuration = [BPKCalendarTrafficLightConfiguration new];
+    }
+
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -141,6 +161,12 @@ NSString *const HeaderDateFormat = @"MMMM";
     }
 
     return self;
+}
+
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration {
+    _configuration = configuration;
+
+    return [self initWithFrame:CGRectZero];
 }
 
 - (void)setup {
@@ -176,7 +202,7 @@ NSString *const HeaderDateFormat = @"MMMM";
     Ivar ivar = class_getInstanceVariable(FSCalendar.class, "_appearance");
     object_setIvar(self.calendarView, ivar, self.appearance);
 
-    [self.calendarView registerClass:[BPKCalendarCell class] forCellReuseIdentifier:CellReuseId];
+    [self.calendarView registerClass:self.configuration.cellClass forCellReuseIdentifier:CellReuseId];
     [self.calendarView.calendarHeaderView.collectionView registerClass:[BPKCalendarHeaderCell class]
                                             forCellWithReuseIdentifier:CellReuseId];
 
@@ -439,50 +465,25 @@ NSString *const HeaderDateFormat = @"MMMM";
                     appearance:(FSCalendarAppearance *)appearance
        fillDefaultColorForDate:(NSDate *)date {
     if ([self isDateEnabled:date]) {
-        if ([self.delegate respondsToSelector:@selector(calendar:cellStyleForDate:)]) {
-            BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
-
-            BPKCalendarDateCellStyle style = [self.delegate calendar:self cellStyleForDate:simpleDate];
-
-            // For the custom style we fallback to calling
-            // `calendar:fillColorForDate:` below
-            if (style != BPKCalendarDateCellStyleCustom) {
-                return [[self class] fillColorForDateStyle:style appearance:appearance];
-            }
-        }
-
         if ([self.delegate respondsToSelector:@selector(DONT_USE_calendar:fillColorForDate:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
             return [(id<BPKCalendarDelegateExtendedForRN>)self.delegate DONT_USE_calendar:self fillColorForDate:date];
 #pragma clang diagnostic pop
         }
+
+        if ([self isDateInToday:date]) {
+            return [UIColor clearColor];
+        }
     }
 
-    if ([self isDateInToday:date]) {
-        return [UIColor clearColor];
-    }
-
-    return [[self class] fillColorForDateStyle:BPKCalendarDateCellStyleNormal appearance:appearance];
+    return appearance.borderDefaultColor;
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar
                     appearance:(FSCalendarAppearance *)appearance
       titleDefaultColorForDate:(nonnull NSDate *)date {
-
     if ([self isDateEnabled:date]) {
-        if ([self.delegate respondsToSelector:@selector(calendar:cellStyleForDate:)]) {
-            BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
-
-            BPKCalendarDateCellStyle style = [self.delegate calendar:self cellStyleForDate:simpleDate];
-
-            // For the custom style we fallback to calling
-            // `calendar:titleColorForDate:` below
-            if (style != BPKCalendarDateCellStyleCustom) {
-                return [[self class] titleColorForDateStyle:style appearance:appearance];
-            }
-        }
-
         if ([self.delegate respondsToSelector:@selector(DONT_USE_calendar:titleColorForDate:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -542,11 +543,29 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (void)configureVisibleCells {
     [self.calendarView.visibleCells
-        enumerateObjectsUsingBlock:^(__kindof FSCalendarCell *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-          NSDate *date = [self.calendarView dateForCell:obj];
-          FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
-          [self configureCell:obj forDate:date atMonthPosition:position];
-        }];
+     enumerateObjectsUsingBlock:^(__kindof FSCalendarCell *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        NSDate *date = [self.calendarView dateForCell:obj];
+        FSCalendarMonthPosition position = [self.calendarView monthPositionForCell:obj];
+        [self configureCell:obj forDate:date atMonthPosition:position];
+    }];
+}
+
+-(void)configureCellWithCellData:(BPKCalendarCell *)cell forDate:(NSDate *)date {
+    if ([self isDateEnabled:date]) {
+        if ([self.delegate respondsToSelector:@selector(calendar:cellDataForDate:)]) {
+            BPKSimpleDate *simpleDate = [[BPKSimpleDate alloc] initWithDate:date forCalendar:self.gregorian];
+
+            id cellData = [self.delegate calendar:self cellDataForDate:simpleDate];
+
+            if (cellData != nil) {
+                NSAssert([cell isKindOfClass:self.configuration.cellClass], @"Expected cell to have class %@ but instead had class %@", self.configuration.cellClass, cell.class);
+                NSAssert([cellData isKindOfClass:self.configuration.cellDataClass], @"Expected cell data to have class %@", self.configuration.cellDataClass);
+                if([cell isKindOfClass:self.configuration.cellClass] && [cellData isKindOfClass:self.configuration.cellDataClass]) {
+                    [cell configureWithData:cellData];
+                }
+            }
+        }
+    }
 }
 
 - (void)configureCell:(FSCalendarCell *)cell
@@ -557,6 +576,7 @@ NSString *const HeaderDateFormat = @"MMMM";
           return [a compare:b];
         }];
     BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
+    [self configureCellWithCellData:calendarCell forDate:date];
 
     // Configure selection layer
     if (monthPosition == FSCalendarMonthPositionCurrent) {
@@ -619,53 +639,6 @@ NSString *const HeaderDateFormat = @"MMMM";
             selectionType == SelectionTypeLeadingBorder || selectionType == SelectionTypeTrailingBorder) {
             calendarCell.accessibilityTraits = calendarCell.accessibilityTraits | UIAccessibilityTraitSelected;
         }
-    }
-}
-
-+ (UIColor *)fillColorForDateStyle:(BPKCalendarDateCellStyle)style
-                        appearance:(FSCalendarAppearance *)appearance {
-    switch (style) {
-        case BPKCalendarDateCellStyleNormal:
-            return appearance.borderDefaultColor;
-        case BPKCalendarDateCellStylePositive:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
-        case BPKCalendarDateCellStyleNeutral:
-            return BPKColor.erfoud;
-        case BPKCalendarDateCellStyleNegative:
-            return BPKColor.panjin;
-        case BPKCalendarDateCellStyleNoData:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
-        case BPKCalendarDateCellStyleCustom:
-            NSAssert(NO, @"fillColorForDateStyle:appearance: should not be called with the custom cell style. For a custom cell style, we should call calendar:fillColorForDate: on the delegate instead.");
-            return BPKColor.clear;
-        default:
-            NSAssert(NO, @"Unknown value for `BPKCalendarDateCellStyle`: %ld", style);
-            return BPKColor.clear;
-    }
-}
-
-+ (UIColor *)titleColorForDateStyle:(BPKCalendarDateCellStyle)style
-                         appearance:(FSCalendarAppearance *)appearance {
-    switch (style) {
-        case BPKCalendarDateCellStyleNormal:
-            return appearance.titleDefaultColor;
-
-        // HERE BE DRAGONS: Explicit fallthrough
-        case BPKCalendarDateCellStylePositive:
-        case BPKCalendarDateCellStyleNegative:
-        case BPKCalendarDateCellStyleNoData:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
-            
-        case BPKCalendarDateCellStyleNeutral:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
-
-        case BPKCalendarDateCellStyleCustom:
-            NSAssert(NO, @"fillColorForDateStyle:appearance: should not be called with the custom cell style. For a custom cell style, we should call calendar:titleColorForDate: on the delegate instead.");
-            return BPKColor.clear;
-
-        default:
-            NSAssert(NO, @"Unknown value for `BPKCalendarDateCellStyle`: %ld", style);
-            return BPKColor.textPrimaryColor;
     }
 }
 

@@ -18,6 +18,7 @@
 
 @class BPKCalendar;
 @class BPKSimpleDate;
+@class BPKCalendarConfiguration;
 
 /**
  * Enum values for specifying calendar selection type
@@ -37,49 +38,6 @@ typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
      * Select multiple individual dates.
      */
     BPKCalendarSelectionMultiple = 2,
-};
-
-/**
- * Predefined cell styles for common use cases.
- */
-typedef NS_ENUM(NSUInteger, BPKCalendarDateCellStyle) {
-    /**
-     * The normal cell style, this is the default style unless
-     * a different style is provided via the Calendar's delegate.
-     */
-    BPKCalendarDateCellStyleNormal = 0,
-
-    /**
-     * A positive cell style which is suitable to indicate for example
-     * a date which has a comparatively low price among the dates in
-     * the calendar.
-     */
-    BPKCalendarDateCellStylePositive = 1,
-
-    /**
-     * A neutral cell style which is suitable to indicate for example
-     * a date which has a comparatively average price among the dates in
-     * the calendar.
-     */
-    BPKCalendarDateCellStyleNeutral = 2,
-
-    /**
-     * A negative cell style which is suitable to indicate for example
-     * a date which has a comparatively high price among the dates in
-     * the calendar.
-     */
-    BPKCalendarDateCellStyleNegative = 3,
-
-    /**
-     * A custom cell style.
-     */
-    BPKCalendarDateCellStyleCustom = 4,
-    
-    /**
-     * A no data cell style which is suitable to indicate for example
-     * a date for which there is no price information available.
-     */
-    BPKCalendarDateCellStyleNoData = 5,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -116,15 +74,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date;
 
 /**
- * Asks the delegate for a cell style for a specific date.
+ * Asks the delegate for cell data for a specific date.
  *
- * @param calendar The backpack calendar requesting the style.
- * @param date The date to provide the style for.
- * @return The cell style to use for this date.
- * @note This method takes precedence over `calendar:fillColorFordate:` and `calendar:titleColorForDate:` however
- * if the receiver returns the custom cell type the calendar will call those methods in response.
+ * @param calendar The backpack calendar requesting the data.
+ * @param date The date to provide the data for.
+ * @return The cell data to use for this date.
  */
-- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date;
+- (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 
 @end
 
@@ -148,11 +104,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate NS_DESIGNATED_INITIALIZER;
 
+/**
+ * Create a calendar with given minimum date and maximum date.
+ *
+ * @param minDate The minimum date that can be selected in the calendar.
+ * @param maxDate The maximum date that can be selected in the calendar.
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @see BPKCalendarTrafficLightConfiguration
+ * @return A configured calendar.
+ */
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration;
+
+/**
+ * Create a calendar with given configuration
+ *
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @see BPKCalendarTrafficLightConfiguration
+ * @return A configured calendar.
+ */
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration;
+
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+
+/**
+ * The calendar configuration.
+ */
+@property(nonatomic, strong, nonnull, readonly) BPKCalendarConfiguration *configuration;
 
 /**
  * The active calendar being used by the reciever.

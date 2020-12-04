@@ -212,4 +212,8 @@
     }
 }
 
+-(void)configureWithData:(id)data {
+    NSAssert(false, @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
+}
+
 @end

@@ -194,9 +194,9 @@ NS_ASSUME_NONNULL_BEGIN
     return;
 }
 
-- (BPKCalendarDateCellStyle)calendar:(BPKCalendar *)calendar cellStyleForDate:(BPKSimpleDate *)date {
+- (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
     if (!self.isColoringDates) {
-        return BPKCalendarDateCellStyleNormal;
+        return BPKCalendarTrafficLightCellData.normal;
     }
     NSCalendar *cal = calendar.gregorian;
     NSDate *convertedDate = [date dateForCalendar:calendar.gregorian];
@@ -208,26 +208,26 @@ NS_ASSUME_NONNULL_BEGIN
                                                 options:0];
 
     if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
-        return BPKCalendarDateCellStylePositive;
+        return BPKCalendarTrafficLightCellData.positive;
     }
 
     if (components.day == 4 || components.day == 10 || components.day == 24) {
-        return BPKCalendarDateCellStyleNegative;
+        return BPKCalendarTrafficLightCellData.negative;
     }
 
     if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
-        return BPKCalendarDateCellStyleNeutral;
+        return BPKCalendarTrafficLightCellData.neutral;
     }
 
     if (components.day == 13) {
-        return BPKCalendarDateCellStyleCustom;
+        return nil;
     }
     
     if (components.day == 15) {
-        return BPKCalendarDateCellStyleNormal;
+        return BPKCalendarTrafficLightCellData.normal;
     }
 
-    return BPKCalendarDateCellStyleNoData;
+    return BPKCalendarTrafficLightCellData.noData;
 }
 
 #pragma clang diagnostic push

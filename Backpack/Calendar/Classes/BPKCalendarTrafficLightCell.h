@@ -15,29 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import <FSCalendar/FSCalendar.h>
 
-typedef NS_ENUM(NSUInteger, SelectionType) {
-    SelectionTypeNone,
-    SelectionTypeSingle,
-    SelectionTypeLeadingBorder,
-    SelectionTypeMiddle,
-    SelectionTypeTrailingBorder,
-    SelectionTypeSameDay
-};
+#import "BPKCalendarCell.h"
 
-typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, RowTypeBoth };
-
-@interface BPKCalendarCell : FSCalendarCell
-
-@property(nonatomic, assign) SelectionType selectionType;
-@property(nonatomic, assign) RowType rowType;
+NS_ASSUME_NONNULL_BEGIN
 
 /**
- * Applies the given data to the cell.
- *
- * @param data The additional data to be used in configuring the cell.
+ * `BPKCalendarTrafficLightCell` is a subclass of `BPKCalendarCell`. It allows cusotmisation of the cell fill colour and title colour.
  */
--(void)configureWithData:(id)data;
+@interface BPKCalendarTrafficLightCell : BPKCalendarCell
 
 @end
+
+NS_ASSUME_NONNULL_END
