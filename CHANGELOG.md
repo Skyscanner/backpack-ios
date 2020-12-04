@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 39.0.0
+
+**Breaking:**
+ - Backpack/Calendar:
+   - `cellStyleFor Date` has been renamed `cellDataForDate` and will require an instance of `BPKCalendarTrafficData` to be returned. To migrate easily, please replace `BPKCalendarDateCellStyleNormal` with `BPKCalendarTrafficData.normal` etc. Replace `BPKCalendarDateStyleNormal` with `nil`.
+
 # 38.3.0
 
 **Added:**
