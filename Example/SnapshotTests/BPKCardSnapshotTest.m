@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
@@ -185,7 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
@@ -209,7 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
@@ -234,7 +234,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
@@ -258,7 +258,7 @@ NS_ASSUME_NONNULL_BEGIN
     [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2 * BPKSpacingLg] setActive:YES];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
@@ -282,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    firstInnerView.text = @"Lorem ipse";
+    firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
     secondInnerView.backgroundColor = [BPKColor monteverde];
