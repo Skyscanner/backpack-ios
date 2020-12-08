@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Calendar:
+   - Small tweaks under the hood to make cell rendering more consistent in different size cells. The difference should be imperceivable.
 
 ## How to write a good changelog entry
 

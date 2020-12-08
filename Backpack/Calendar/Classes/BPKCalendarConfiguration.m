@@ -20,14 +20,19 @@
 
 @implementation BPKCalendarConfiguration
 
-- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
+- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass rowHeight:(CGFloat)rowHeight {
     self = [super init];
 
     if (self) {
         _cellClass = cellClass;
         _cellDataClass = cellDataClass;
+        _rowHeight = rowHeight;
     }
     return self;
+}
+
+- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
+    return [self initWithCellClass:cellClass cellDataClass:cellDataClass rowHeight:-1];
 }
 
 @end
