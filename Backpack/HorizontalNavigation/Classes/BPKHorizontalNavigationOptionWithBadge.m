@@ -22,7 +22,7 @@
 #import <Backpack/BPKBadge.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKHorizontalNavigationOptionWithBadge()
+@interface BPKHorizontalNavigationOptionWithBadge ()
 @property(nonatomic, assign) NSInteger tag;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *badgeMessage;

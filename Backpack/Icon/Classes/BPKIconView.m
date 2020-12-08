@@ -89,9 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (UIImage *)imageWithIconName:(BPKIconName)iconName
-                          size:(BPKIconSize)size
-           flipsForRightToLeft:(BOOL)flipsForRightToLeft {
+- (UIImage *)imageWithIconName:(BPKIconName)iconName size:(BPKIconSize)size flipsForRightToLeft:(BOOL)flipsForRightToLeft {
     UIImage *image = [BPKIcon templateIconNamed:iconName size:size];
 
     if (flipsForRightToLeft) {

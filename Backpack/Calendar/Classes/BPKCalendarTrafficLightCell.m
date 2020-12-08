@@ -21,7 +21,7 @@
 
 @implementation BPKCalendarTrafficLightCell
 
--(void)configureWithData:(id)data {
+- (void)configureWithData:(id)data {
     BPKCalendarTrafficLightCellData *trafficLightCellData = (BPKCalendarTrafficLightCellData *)data;
     self.preferredFillDefaultColor = trafficLightCellData.backgroundColor;
     self.preferredTitleDefaultColor = trafficLightCellData.foregroundColor;

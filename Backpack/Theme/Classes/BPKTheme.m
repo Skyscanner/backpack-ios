@@ -45,14 +45,7 @@ static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification
 
 @implementation BPKTheme
 
-typedef NS_ENUM(NSInteger, BPKGrayColor) {
-    BPKGrayColor50,
-    BPKGrayColor100,
-    BPKGrayColor300,
-    BPKGrayColor500,
-    BPKGrayColor700,
-    BPKGrayColor900
-};
+typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKGrayColor300, BPKGrayColor500, BPKGrayColor700, BPKGrayColor900 };
 
 + (UIColor *)primaryColorFor:(UIView *)view {
     BPKThemeContainer *themeContainer = view.themeContainer;
@@ -100,19 +93,16 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) {
     calendarAppearance.dateSelectedContentColor = theme.calendarDateSelectedContentColor;
     calendarAppearance.dateSelectedBackgroundColor = theme.calendarDateSelectedBackgroundColor;
 
-    BPKPrimaryGradientView *primaryGradientViewAppearance =
-        [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKPrimaryGradientView *primaryGradientViewAppearance = [BPKPrimaryGradientView appearanceWhenContainedInInstancesOfClasses:@[class]];
     primaryGradientViewAppearance.gradient = theme.primaryGradient;
 
-    BPKTappableLinkLabel *tappableLinkLabelViewAppearance =
-        [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKTappableLinkLabel *tappableLinkLabelViewAppearance = [BPKTappableLinkLabel appearanceWhenContainedInInstancesOfClasses:@[class]];
     tappableLinkLabelViewAppearance.linkColor = theme.linkPrimaryColor;
 
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
 
-    BPKHorizontalNavigation *horizontalNavigationAppearance =
-        [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
+    BPKHorizontalNavigation *horizontalNavigationAppearance = [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
 
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];

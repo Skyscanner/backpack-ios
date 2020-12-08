@@ -84,8 +84,7 @@ IB_DESIGNABLE @interface BPKSpinner : UIActivityIndicatorView
  */
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style
-    __attribute__((unavailable("use initWithStyle:size: instead")));
+- (instancetype)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style __attribute__((unavailable("use initWithStyle:size: instead")));
 
 @end
 

@@ -57,13 +57,7 @@ static int const BPKSnackbarHeight = 60;
               viewController:(UIViewController *)viewController
                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
-    return [self initWithText:text
-                        title:title
-                       button:nil
-                     leftIcon:nil
-                     duration:duration
-               viewController:viewController
-                     delegate:delegate];
+    return [self initWithText:text title:title button:nil leftIcon:nil duration:duration viewController:viewController delegate:delegate];
 }
 
 - (instancetype)initWithText:(NSString *)text
@@ -75,13 +69,7 @@ static int const BPKSnackbarHeight = 60;
                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
 
     self = [self init];
-    [self setUpSnackbarWithText:text
-                          title:title
-                         button:button
-                       leftIcon:leftIcon
-                       duration:duration
-                 viewController:viewController
-                       delegate:delegate];
+    [self setUpSnackbarWithText:text title:title button:button leftIcon:leftIcon duration:duration viewController:viewController delegate:delegate];
 
     return self;
 }
@@ -105,38 +93,28 @@ static int const BPKSnackbarHeight = 60;
         self.stackView.layoutMargins = UIEdgeInsetsMake(0, BPKSpacingLg, 0, BPKSpacingLg);
 
         // Don't grow the icon
-        [self.leftIconContainer setContentHuggingPriority:UILayoutPriorityDefaultHigh
-                                                  forAxis:UILayoutConstraintAxisHorizontal];
+        [self.leftIconContainer setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
         // Don't grow title
-        [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh
-                                           forAxis:UILayoutConstraintAxisHorizontal];
+        [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
 
         // Trunacte title before text if needed
-        [self.titleLabel setContentCompressionResistancePriority:(UILayoutPriorityDefaultLow - 1)
-                                                         forAxis:UILayoutConstraintAxisHorizontal];
+        [self.titleLabel setContentCompressionResistancePriority:(UILayoutPriorityDefaultLow - 1) forAxis:UILayoutConstraintAxisHorizontal];
         // Truncate text
-        [self.textLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
-                                                        forAxis:UILayoutConstraintAxisHorizontal];
-
+        [self.textLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
         // Make the text label wider to distribute remaining space
-        [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow
-                                          forAxis:UILayoutConstraintAxisHorizontal];
+        [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
         // Don't compress the button
-        [self.actionButton setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh
-                                                           forAxis:UILayoutConstraintAxisHorizontal];
+        [self.actionButton setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
         // Don't grow the button
-        [self.actionButton setContentHuggingPriority:UILayoutPriorityDefaultHigh
-                                             forAxis:UILayoutConstraintAxisHorizontal];
+        [self.actionButton setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
 
         self.titleLabel.textColor = BPKColor.white;
         self.textLabel.textColor = BPKColor.white;
         self.leftIconContainer.tintColor = BPKColor.white;
         self.actionButton.linkContentColor = BPKColor.monteverde;
-        [self.actionButton addTarget:self
-                              action:@selector(actionButtonDismissSnackbar)
-                    forControlEvents:UIControlEventTouchUpInside];
+        [self.actionButton addTarget:self action:@selector(actionButtonDismissSnackbar) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:self.snackbarView];
         [self.snackbarView addSubview:self.stackView];
@@ -177,12 +155,12 @@ static int const BPKSnackbarHeight = 60;
 }
 
 - (void)setUpSnackbarWithText:(NSString *)text
-                          title:(NSString *_Nullable)title
-                        button:(BPKSnackbarButton *)button
-                      leftIcon:(UIImage *_Nullable)leftIcon
-                      duration:(BPKSnackbarDuration)duration
-                viewController:(UIViewController *)viewController
-                      delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
+                        title:(NSString *_Nullable)title
+                       button:(BPKSnackbarButton *)button
+                     leftIcon:(UIImage *_Nullable)leftIcon
+                     duration:(BPKSnackbarDuration)duration
+               viewController:(UIViewController *)viewController
+                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate {
     self.titleLabel.text = title;
     self.textLabel.text = text;
     self.delegate = delegate;
@@ -205,7 +183,6 @@ static int const BPKSnackbarHeight = 60;
         // instead we let `titleLabel` grow
         [self.titleLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     }
-
 
     if (duration != BPKSnackbarDurationIndefinite) {
         self.durationInMillis = [self durationInMilliseconds:duration];
@@ -233,9 +210,8 @@ static int const BPKSnackbarHeight = 60;
 
         NSLayoutYAxisAnchor *bottomAnchor = self.superview.safeAreaLayoutGuide.bottomAnchor;
 
-        self.bottomConstraint =
-            [self.bottomAnchor constraintEqualToAnchor:bottomAnchor
-                                              constant:[self bottomInsetWithKeyboardHeight:self.keyboardHeight]];
+        self.bottomConstraint = [self.bottomAnchor constraintEqualToAnchor:bottomAnchor
+                                                                  constant:[self bottomInsetWithKeyboardHeight:self.keyboardHeight]];
         self.bottomConstraint.active = YES;
 
         self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKSnackbarHeight];
@@ -267,15 +243,15 @@ static int const BPKSnackbarHeight = 60;
     [self layoutIfNeeded];
 
     [UIView animateWithDuration:BPKDuration.animationDurationSm
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                       self.snackbarViewTopConstraint.constant = 0;
-                       [self layoutIfNeeded];
-                     }
-                     completion:^(BOOL finished){
-                        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
-                     }];
+        delay:0
+        options:UIViewAnimationOptionCurveEaseOut
+        animations:^{
+          self.snackbarViewTopConstraint.constant = 0;
+          [self layoutIfNeeded];
+        }
+        completion:^(BOOL finished) {
+          UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
+        }];
 }
 
 - (void)findAndRemoveSnackbars {
@@ -305,8 +281,7 @@ static int const BPKSnackbarHeight = 60;
         }];
 }
 
-- (void)updateBottomConstraintWithBottomInset:(CGFloat)inset
-                withKeyboardAnimationDuration:(NSTimeInterval)animationDuration {
+- (void)updateBottomConstraintWithBottomInset:(CGFloat)inset withKeyboardAnimationDuration:(NSTimeInterval)animationDuration {
     [UIView animateWithDuration:animationDuration
                      animations:^{
                        self.bottomConstraint.constant = inset;
@@ -419,6 +394,5 @@ static int const BPKSnackbarHeight = 60;
 - (NSArray<id> *)accessibilityElements {
     return @[self.titleLabel, self.textLabel, self.actionButton];
 }
-
 
 @end

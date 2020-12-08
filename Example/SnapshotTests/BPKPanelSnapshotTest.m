@@ -36,10 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:panel];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[panel]-16-|"
-                                                                       options:0
-                                                                       metrics:nil
-                                                                         views:@{@"panel": panel}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[panel]-16-|" options:0 metrics:nil views:@{@"panel": panel}]];
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[panel]-16-|"
                                                                        options:0
                                                                        metrics:nil
@@ -50,10 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configurePanel:(BPKPanel *)panel withInnerView:(UIView *)innerView {
     panel.translatesAutoresizingMaskIntoConstraints = NO;
     [panel addSubview:innerView];
-    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
-                                                                  options:0
-                                                                  metrics:nil
-                                                                    views:@{@"innerView": innerView}]];
+    [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
     [panel addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
                                                                   options:0
                                                                   metrics:nil

@@ -54,15 +54,14 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
 
-
 - (void)testSnackbarWithTextAndRightButton {
     BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithText:@"Descriptive text"
                                                         title:nil
                                                        button:[BPKSnackbarButton buttonWithTitle:@"Button title"]
-                                                      leftIcon:nil
-                                                      duration:BPKSnackbarDurationShort
-                                                viewController:self.parentViewController
-                                                      delegate:nil];
+                                                     leftIcon:nil
+                                                     duration:BPKSnackbarDurationShort
+                                               viewController:self.parentViewController
+                                                     delegate:nil];
     [snackBar show];
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
@@ -95,27 +94,25 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testSnackbarWithLongTextAndRightButton {
-    BPKSnackbar *snackBar =
-        [[BPKSnackbar alloc] initWithText:@"Descriptive text Descriptive text Descriptive text Descriptive text"
-                                    title:nil
-                                   button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
-                                 leftIcon:nil
-                                 duration:BPKSnackbarDurationShort
-                           viewController:self.parentViewController
-                                 delegate:nil];
+    BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithText:@"Descriptive text Descriptive text Descriptive text Descriptive text"
+                                                        title:nil
+                                                       button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
+                                                     leftIcon:nil
+                                                     duration:BPKSnackbarDurationShort
+                                               viewController:self.parentViewController
+                                                     delegate:nil];
     [snackBar show];
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }
 
 - (void)testSnackbarWithLongTextLongTitleAndRightButton {
-    BPKSnackbar *snackBar =
-        [[BPKSnackbar alloc] initWithText:@"Long text long text long text"
-                                    title:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
-                                   button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
-                                 leftIcon:nil
-                                 duration:BPKSnackbarDurationShort
-                           viewController:self.parentViewController
-                                 delegate:nil];
+    BPKSnackbar *snackBar = [[BPKSnackbar alloc] initWithText:@"Long text long text long text"
+                                                        title:@"Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
+                                                       button:[BPKSnackbarButton buttonWithTitle:@"Button Title"]
+                                                     leftIcon:nil
+                                                     duration:BPKSnackbarDurationShort
+                                               viewController:self.parentViewController
+                                                     delegate:nil];
     [snackBar show];
     FBSnapshotVerifyView(self.parentViewController.view, nil);
 }

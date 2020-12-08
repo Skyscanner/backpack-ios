@@ -76,7 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 
             // This is a hack used to reorder the layers before they are captured by the snapshot library.
             // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
-            // See https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
+            // See
+            // https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
             CALayer *tintLayer = overlayView.backgroundView.layer.sublayers[0];
             [overlayView.backgroundView.layer.sublayers[0] removeFromSuperlayer];
             [overlayView.backgroundView.layer insertSublayer:tintLayer atIndex:1];
@@ -103,19 +104,17 @@ NS_ASSUME_NONNULL_BEGIN
     return parentView;
 }
 
--(UIView *)createBackgroundView {
+- (UIView *)createBackgroundView {
     UIImage *image = [UIImage imageNamed:@"pilanesburg-south-africa"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [imageView.widthAnchor constraintEqualToConstant:200],
-        [imageView.heightAnchor constraintEqualToConstant:150]
-    ]];
+    [NSLayoutConstraint
+        activateConstraints:@[[imageView.widthAnchor constraintEqualToConstant:200], [imageView.heightAnchor constraintEqualToConstant:150]]];
     return imageView;
 }
 
--(UIView *)createForegroundView {
+- (UIView *)createForegroundView {
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     label.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
     label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -125,15 +124,15 @@ NS_ASSUME_NONNULL_BEGIN
     return label;
 }
 
--(UIView *)createOverlayViewsWithBackground {
+- (UIView *)createOverlayViewsWithBackground {
     return [self createStackWithBackground:YES foreground:NO];
 }
 
--(UIView *)createOverlayViewsWithForeground {
+- (UIView *)createOverlayViewsWithForeground {
     return [self createStackWithBackground:NO foreground:YES];
 }
 
--(UIView *)createOverlayViewsWithBackgroundAndForeground {
+- (UIView *)createOverlayViewsWithBackgroundAndForeground {
     return [self createStackWithBackground:YES foreground:YES];
 }
 

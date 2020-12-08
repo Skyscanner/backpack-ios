@@ -43,8 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithDate:(NSDate *)date forCalendar:(NSCalendar *)calendar {
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
-                                               fromDate:date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
 
     return [[BPKSimpleDate alloc] initWithYear:components.year month:components.month day:components.day];
 }
@@ -74,8 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<BPKSimpleDate %lu-%lu-%lu>", (unsigned long)self.year,
-                                      (unsigned long)self.month, (unsigned long)self.day];
+    return [NSString stringWithFormat:@"<BPKSimpleDate %lu-%lu-%lu>", (unsigned long)self.year, (unsigned long)self.month, (unsigned long)self.day];
 }
 
 - (NSDate *)dateForCalendar:(NSCalendar *)calendar {
@@ -88,8 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [calendar dateFromComponents:components];
 }
 
-+ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates
-                                       forCalendar:(nonnull NSCalendar *)calendar {
++ (NSArray<BPKSimpleDate *> *)simpleDatesFromDates:(NSArray<NSDate *> *)dates forCalendar:(nonnull NSCalendar *)calendar {
     NSMutableArray *simpleDates = [[NSMutableArray alloc] initWithCapacity:dates.count];
 
     for (NSDate *date in dates) {

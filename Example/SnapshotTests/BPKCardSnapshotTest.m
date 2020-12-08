@@ -41,33 +41,22 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.translatesAutoresizingMaskIntoConstraints = NO;
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:card];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[card]-16-|"
-                                                                       options:0
-                                                                       metrics:nil
-                                                                         views:@{@"card": card}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[card]-16-|"
-                                                                       options:0
-                                                                       metrics:nil
-                                                                         views:@{@"card": card}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[card]-16-|" options:0 metrics:nil views:@{@"card": card}]];
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[card]-16-|" options:0 metrics:nil views:@{@"card": card}]];
     [parentView layoutIfNeeded];
 }
 
 - (void)configureCard:(BPKCard *)card withInnerView:(UIView *)innerView {
     card.translatesAutoresizingMaskIntoConstraints = NO;
     [card setSubview:innerView];
-    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:@{@"innerView": innerView}]];
+    [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[innerView(90)]" options:0 metrics:nil views:@{@"innerView": innerView}]];
     [card addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[innerView(80)]"
                                                                  options:0
                                                                  metrics:nil
                                                                    views:@{@"innerView": innerView}]];
 }
 
-- (void)configureDividedCard:(BPKDividedCard *)card
-              firstInnerView:(UIView *)firstInnerView
-             secondInnerView:(UIView *)secondInnerView {
+- (void)configureDividedCard:(BPKDividedCard *)card firstInnerView:(UIView *)firstInnerView secondInnerView:(UIView *)secondInnerView {
     card.translatesAutoresizingMaskIntoConstraints = NO;
     [card setPrimarySubview:firstInnerView secondarySubview:secondInnerView];
 }

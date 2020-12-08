@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Color.h>
+#import <Backpack/Spacing.h>
 #import <Backpack/Spinner.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
@@ -86,9 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     ];
 }
 
-- (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style
-                                                 size:(BPKSpinnerSize)size
-                                               themed:(BOOL)themed {
+- (BPKSpinner *)createSpinnerForSnapshotTestWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size themed:(BOOL)themed {
     BPKSpinner *spinner = [[BPKSpinner alloc] initWithStyle:style size:size];
     if (themed) {
         spinner.primaryColor = [BPKColor dynamicColorWithLightVariant:UIColor.purpleColor darkVariant:UIColor.yellowColor];

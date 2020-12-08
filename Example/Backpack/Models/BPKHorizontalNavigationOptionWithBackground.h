@@ -16,14 +16,13 @@
  * limitations under the License.
  */
 
-
 #import <Foundation/Foundation.h>
 
 #import <Backpack/HorizontalNavigation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHorizontalNavigationOptionWithBackground : NSObject<BPKHorizontalNavigationOptionType>
+@interface BPKHorizontalNavigationOptionWithBackground : NSObject <BPKHorizontalNavigationOptionType>
 - (instancetype)initWithTitle:(NSString *)title tag:(NSInteger)tag;
 
 #pragma mark - BPKHorizontalNavigationOptionType

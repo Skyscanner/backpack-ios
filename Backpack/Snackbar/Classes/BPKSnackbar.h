@@ -28,11 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  * BPKSnackbarDurationShort  the snackbar will disappear after 2 seconds.
  * BPKSnackbarDurationLong  the snackbar will disappear after 3.5 seconds.
  */
-typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
-    BPKSnackbarDurationIndefinite,
-    BPKSnackbarDurationShort,
-    BPKSnackbarDurationLong
-};
+typedef NS_ENUM(NSInteger, BPKSnackbarDuration) { BPKSnackbarDurationIndefinite, BPKSnackbarDurationShort, BPKSnackbarDurationLong };
 
 @class BPKSnackbarButton;
 /**
@@ -55,10 +51,10 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithText:(NSString *)text
-                         title:(NSString *_Nullable)title
-                     duration:(BPKSnackbarDuration)duration
-               viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
+                       title:(NSString *_Nullable)title
+                    duration:(BPKSnackbarDuration)duration
+              viewController:(UIViewController *)viewController
+                    delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Creates a new Snackbar instance and shows it into the screen
@@ -72,12 +68,12 @@ typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
  *  @param delegate   class that conform the BPKSnackbarProtocol
  */
 - (instancetype)initWithText:(NSString *_Nullable)text
-                         title:(NSString *_Nullable)title
-                       button:(BPKSnackbarButton *_Nullable)button
-                     leftIcon:(UIImage *_Nullable)leftIcon
-                     duration:(BPKSnackbarDuration)duration
-               viewController:(UIViewController *)viewController
-                     delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
+                       title:(NSString *_Nullable)title
+                      button:(BPKSnackbarButton *_Nullable)button
+                    leftIcon:(UIImage *_Nullable)leftIcon
+                    duration:(BPKSnackbarDuration)duration
+              viewController:(UIViewController *)viewController
+                    delegate:(id<BPKSnackbarDelegate> _Nullable)delegate;
 
 /**
  *  Show the snackbar

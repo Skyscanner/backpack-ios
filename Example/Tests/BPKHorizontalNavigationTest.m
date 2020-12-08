@@ -29,8 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -48,8 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:2];
@@ -63,8 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -81,8 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -107,8 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDefaultAppearance {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -118,8 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetAppearance {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];

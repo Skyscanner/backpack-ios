@@ -30,8 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKContainerController
 
-- (instancetype)initWithContainerClass:(Class)containerClass
-                    rootViewController:(nonnull UIViewController *)rootViewController {
+- (instancetype)initWithContainerClass:(Class)containerClass rootViewController:(nonnull UIViewController *)rootViewController {
     self = [super initWithNibName:nil bundle:nil];
 
     if (self) {
@@ -106,8 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKContainerController *)createIdenticalContainerControllerForRootController:(UIViewController *)rootController {
-    return [[BPKContainerController alloc] initWithContainerClass:self.containerClass
-                                               rootViewController:rootController];
+    return [[BPKContainerController alloc] initWithContainerClass:self.containerClass rootViewController:rootController];
 }
 
 #pragma mark - UIViewController methods

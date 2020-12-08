@@ -19,7 +19,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCalendarTrafficLightCellData` contains the properties required to customise a calendar cell under a traffic-light system to colour cells according to data.
+ * `BPKCalendarTrafficLightCellData` contains the properties required to customise a calendar cell under a traffic-light
+ * system to colour cells according to data.
  */
 @interface BPKCalendarTrafficLightCellData : NSObject
 

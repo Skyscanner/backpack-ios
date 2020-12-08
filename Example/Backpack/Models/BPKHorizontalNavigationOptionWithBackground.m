@@ -17,14 +17,13 @@
  * limitations under the License.
  */
 
-
 #import "BPKHorizontalNavigationOptionWithBackground.h"
 
 #import "Backpack_Native-Swift.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHorizontalNavigationOptionWithBackground()
+@interface BPKHorizontalNavigationOptionWithBackground ()
 @property(nonatomic, assign) NSInteger tag;
 @property(nonatomic, copy) NSString *title;
 @end

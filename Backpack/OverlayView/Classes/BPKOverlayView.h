@@ -73,11 +73,12 @@ IB_DESIGNABLE @interface BPKOverlayView : UIView
  * @param cornerStyle The corner style to apply to the whole view.
  * @return `BPKOverlayView` instance.
  */
-- (nullable instancetype)initWithOverlayType:(BPKOverlayViewOverlayType)overlayType cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithOverlayType:(BPKOverlayViewOverlayType)overlayType
+                                 cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable(
-                       "`addSubview` cannot be used on BPKOverlayView. Use the `backgroundView` and `foregroundView` properties to set content instead")));
+- (void)addSubview:(UIView *)view __attribute__((unavailable("`addSubview` cannot be used on BPKOverlayView. Use the `backgroundView` and "
+                                                             "`foregroundView` properties to set content instead")));
 
 @end
 

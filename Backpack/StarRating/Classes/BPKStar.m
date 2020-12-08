@@ -81,8 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [NSLayoutConstraint activateConstraints:@[
         [self.leadingAnchor constraintEqualToAnchor:self.starView.leadingAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor],
-        [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor], [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.starView.bottomAnchor]
     ]];
 
@@ -166,15 +165,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStarAppearance {
     switch (self.state) {
-        case BPKStarStateDefault:
-            self.starView.iconName = BPKIconNameStarOutline;
-            break;
-        case BPKStarStateHalf:
-            self.starView.iconName = BPKIconNameStarHalf;
-            break;
-        case BPKStarStateFull:
-            self.starView.iconName = BPKIconNameStar;
-            break;
+    case BPKStarStateDefault:
+        self.starView.iconName = BPKIconNameStarOutline;
+        break;
+    case BPKStarStateHalf:
+        self.starView.iconName = BPKIconNameStarHalf;
+        break;
+    case BPKStarStateFull:
+        self.starView.iconName = BPKIconNameStar;
+        break;
     }
 
     self.starView.tintColor = self.state == BPKStarStateDefault ? self.currentStarColor : self.currentStarFilledColor;

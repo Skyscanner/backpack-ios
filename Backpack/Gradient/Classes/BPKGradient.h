@@ -192,11 +192,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGPoint)startPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(startPoint(for:));
 
 /**
-* Calculate the end point for a given direction in the 0.0 to 1.0 inclusive range.
-*
-* @param direction A gradient direction
-* @return End point for the given direction as a `CGPoint` with values in the inclusive range 0.0 to 1.0.
-*/
+ * Calculate the end point for a given direction in the 0.0 to 1.0 inclusive range.
+ *
+ * @param direction A gradient direction
+ * @return End point for the given direction as a `CGPoint` with values in the inclusive range 0.0 to 1.0.
+ */
 + (CGPoint)endPointForDirection:(BPKGradientDirection)direction NS_SWIFT_NAME(endPointFor(for:));
 @end
 NS_ASSUME_NONNULL_END

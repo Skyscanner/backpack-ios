@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKSpringCleanTheme : NSObject<BPKThemeDefinition>
+@interface BPKSpringCleanTheme : NSObject <BPKThemeDefinition>
 
 extern NSString *const BPKSpringCleanThemeName;
 

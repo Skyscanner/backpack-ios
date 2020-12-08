@@ -73,8 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.cornerRadius = viewSize.height / 2.0;
 
     CGSize iconContainerSize = [[self class] iconContainerSize];
-    self.iconContainerView =
-        [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
+    self.iconContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, iconContainerSize.width, iconContainerSize.height)];
     self.iconContainerView.layer.cornerRadius = iconContainerSize.width / 2.0;
 
     self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];

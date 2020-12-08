@@ -22,7 +22,7 @@
 #import <Backpack/SimpleDate.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
-@interface BPKCalendarSnapshotTest : FBSnapshotTestCase<BPKCalendarDelegate>
+@interface BPKCalendarSnapshotTest : FBSnapshotTestCase <BPKCalendarDelegate>
 
 @property NSDate *date1;
 @property NSDate *date2;
@@ -75,15 +75,15 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    
+
     bpkCalendar.selectionType = BPKCalendarSelectionSingle;
-    
+
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
-    
+
     bpkCalendar.selectedDates = @[];
     [bpkCalendar reloadData];
-    
+
     FBSnapshotVerifyView(parentView, nil);
 }
 
@@ -119,8 +119,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
-        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
+                                                                                                                   forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
 
@@ -134,8 +134,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
-        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
+                                                                                                                   forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
     bpkCalendar.dateSelectedContentColor = UIColor.orangeColor;
@@ -151,8 +151,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
-        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
+                                                                                                                   forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
 
@@ -200,12 +200,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
     NSCalendar *cal = calendar.gregorian;
     NSDate *convertedDate = [date dateForCalendar:calendar.gregorian];
-    NSDate *date1 = [cal startOfDayForDate: self.date1];
+    NSDate *date1 = [cal startOfDayForDate:self.date1];
     NSDate *date2 = [cal startOfDayForDate:convertedDate];
-    NSDateComponents *components = [cal components:NSCalendarUnitDay
-                                               fromDate:date1
-                                                 toDate:date2
-                                                options:0];
+    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:date1 toDate:date2 options:0];
 
     if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
         return BPKCalendarTrafficLightCellData.positive;
@@ -222,7 +219,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (components.day == 13) {
         return nil;
     }
-    
+
     if (components.day == 15) {
         return BPKCalendarTrafficLightCellData.normal;
     }

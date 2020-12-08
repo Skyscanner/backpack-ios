@@ -73,9 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     NSMutableAttributedString *newAttributedString = [[NSMutableAttributedString alloc]
-        initWithAttributedString:[BPKFont attributedStringWithFontStyle:self.fontStyle
-                                                                content:self.text
-                                                              textColor:self.textColor]];
+        initWithAttributedString:[BPKFont attributedStringWithFontStyle:self.fontStyle content:self.text textColor:self.textColor]];
 
     // Recreate the attributed string from the persisted definitions
     for (BPKTextDefinition *styleRange in self.persistentStyleRanges) {

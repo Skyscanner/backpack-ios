@@ -18,12 +18,12 @@
 
 #import "BPKBadge.h"
 
+#import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Font.h>
 #import <Backpack/Label.h>
 #import <Backpack/Radii.h>
-#import <Backpack/BorderWidth.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN

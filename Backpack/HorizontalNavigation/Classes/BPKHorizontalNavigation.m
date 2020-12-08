@@ -26,7 +26,6 @@
 #import "BPKHorizontalNavigationItem.h"
 #import "BPKHorizontalNavigationItemDefault.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKHorizontalNavigation ()
@@ -41,8 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKHorizontalNavigation
 
-- (instancetype)initWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options
-                       selected:(NSInteger)selectedItemIndex {
+- (instancetype)initWithOptions:(NSArray<id<BPKHorizontalNavigationOptionType>> *)options selected:(NSInteger)selectedItemIndex {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
@@ -86,10 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex {
     if (self.options.count > 0) {
 #if DEBUG
-        NSString *errorMessage =
-            [NSString stringWithFormat:@"selectedItemIndex must be within range of the number of options available. "
-                                       @"The number of options is %lu but the index selected was %ld",
-                                       (unsigned long)self.options.count, (long)selectedItemIndex];
+        NSString *errorMessage = [NSString stringWithFormat:@"selectedItemIndex must be within range of the number of options available. "
+                                                            @"The number of options is %lu but the index selected was %ld",
+                                                            (unsigned long)self.options.count, (long)selectedItemIndex];
         NSAssert(selectedItemIndex >= 0 && selectedItemIndex < self.options.count, errorMessage);
 #endif
     }
@@ -150,8 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (UIControl<BPKHorizontalNavigationItem> *)createHorizontalNavigationItemWithDefinition:
-    (id<BPKHorizontalNavigationOptionType>)definition {
+- (UIControl<BPKHorizontalNavigationItem> *)createHorizontalNavigationItemWithDefinition:(id<BPKHorizontalNavigationOptionType>)definition {
     UIControl<BPKHorizontalNavigationItem> *newItem = [definition makeItem];
     newItem.tag = definition.tag;
 
@@ -160,11 +156,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)forEachNavigationItem:(void (^)(UIControl<BPKHorizontalNavigationItem> *))callback {
     for (UIView *subView in self.stackView.arrangedSubviews) {
-        NSAssert([subView isKindOfClass:[UIControl class]] &&
-                 [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)],
+        NSAssert([subView isKindOfClass:[UIControl class]] && [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)],
                  @"HorizontalNav subview is not of type UIControl<BPKHorizontalNavigationItem> as expected.");
-        if (!([subView isKindOfClass:[UIControl class]] &&
-            [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)])) {
+        if (!([subView isKindOfClass:[UIControl class]] && [subView conformsToProtocol:@protocol(BPKHorizontalNavigationItem)])) {
             continue;
         }
         callback((UIControl<BPKHorizontalNavigationItem> *)subView);
@@ -173,13 +167,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateSelectedItemsColor {
     [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
-        navigationItem.selectedColor = self.selectedColor;
+      navigationItem.selectedColor = self.selectedColor;
     }];
 }
 
 - (void)updateItemsSize {
     [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
-        navigationItem.size = self.size;
+      navigationItem.size = self.size;
     }];
 }
 
@@ -228,7 +222,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateItemsAppearance {
     [self forEachNavigationItem:^(UIControl<BPKHorizontalNavigationItem> *navigationItem) {
-        navigationItem.appearance = self.appearance;
+      navigationItem.appearance = self.appearance;
     }];
 }
 
@@ -250,8 +244,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.barView.hidden = YES;
     [scrollView addSubview:self.barView];
 
-    self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor
-                                                                   constant:self.barSpacing];
+    self.barTopConstraint = [self.barView.topAnchor constraintEqualToAnchor:self.stackView.bottomAnchor constant:self.barSpacing];
     self.barHeightConstraint = [self.barView.heightAnchor constraintEqualToConstant:self.barHeight];
 
     [NSLayoutConstraint activateConstraints:@[self.barTopConstraint, self.barHeightConstraint]];
@@ -262,11 +255,9 @@ NS_ASSUME_NONNULL_BEGIN
         [self.stackView.trailingAnchor constraintEqualToAnchor:scrollView.trailingAnchor],
         [self.stackView.bottomAnchor constraintEqualToAnchor:scrollView.bottomAnchor],
         [self.stackView.widthAnchor constraintGreaterThanOrEqualToAnchor:scrollView.widthAnchor],
-        [scrollView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
-        [scrollView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [scrollView.widthAnchor constraintEqualToAnchor:self.widthAnchor], [scrollView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [scrollView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [scrollView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.heightAnchor constraintEqualToAnchor:scrollView.heightAnchor],
+        [scrollView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor], [self.heightAnchor constraintEqualToAnchor:scrollView.heightAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.barView.bottomAnchor]
     ]];
 

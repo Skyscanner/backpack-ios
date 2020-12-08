@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, BPKChipStyle) {
     /**
      * Chip style with solid color background.
-    */
+     */
     BPKChipStyleFilled = 0,
 
     /**
      * Chip style with 1pt outline and clear color background.
-    */
+     */
     BPKChipStyleOutline = 1,
 };
 
@@ -91,7 +91,7 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 
 /**
  * Style of the chip. Default is BPKChipStyleOutline.
-*/
+ */
 @property(nonatomic, assign) BPKChipStyle style;
 
 @end

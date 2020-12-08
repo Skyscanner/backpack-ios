@@ -21,16 +21,16 @@
 
 #import <Backpack/Appearance.h>
 #import <Backpack/Color.h>
+#import <Backpack/DarkMode.h>
 #import <Backpack/Font.h>
 #import <Backpack/Theme.h>
-#import <Backpack/DarkMode.h>
 
 @import AppCenter;
 @import AppCenterDistribute;
 @import AppCenterAnalytics;
 @import AppCenterCrashes;
 
-@interface BPKAppDelegate()
+@interface BPKAppDelegate ()
 @property(assign, nonatomic, getter=isUITestingEnabled) BOOL UITestingEnabled;
 @end
 
@@ -47,15 +47,21 @@
 
     // Override point for customization after application launch.
     [UINavigationBar appearance].tintColor = BPKColor.textPrimaryColor;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                                                         NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:17.0]};
+    [UINavigationBar appearance].titleTextAttributes = @{
+        NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+        NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:17.0]
+    };
 
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                                                           NSFontAttributeName: [[BPKFontManager sharedInstance] regularFontWithSize:17.0]} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{
+        NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+        NSFontAttributeName: [[BPKFontManager sharedInstance] regularFontWithSize:17.0]
+    }
+                                                forState:UIControlStateNormal];
 
-    [UINavigationBar appearance].largeTitleTextAttributes =
-        @{NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-        NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]};
+    [UINavigationBar appearance].largeTitleTextAttributes = @{
+        NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
+        NSFontAttributeName: [[BPKFontManager sharedInstance] semiboldFontWithSize:34.0]
+    };
 
     [BPKAppearance apply];
 
@@ -65,8 +71,7 @@
         id<BPKThemeDefinition> activeTheme = [ThemeHelpers themeDefinitionForTheme:Settings.sharedSettings.activeTheme];
 
         BPKThemeContainerController *themeContainerController =
-            [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme
-                                                      rootViewController:self.window.rootViewController];
+            [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme rootViewController:self.window.rootViewController];
         self.window.rootViewController = themeContainerController;
         [self.window makeKeyAndVisible];
     }

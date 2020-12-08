@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLayout:(BPKRatingLayout)layout {
     BPKAssertMainThread();
-    if(_layout != layout) {
+    if (_layout != layout) {
         _layout = layout;
 
         [self updateLayout];
@@ -99,31 +99,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Layout
 
-- (void) updateLayout {
+- (void)updateLayout {
     CGFloat newWidth = 0;
     CGFloat newHeight = 0;
 
     switch (self.size) {
-        case BPKRatingSizeLarge:
-            newWidth = 2 * BPKSpacingLg;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
-            break;
-        case BPKRatingSizeBase:
-            newWidth = BPKSpacingXxl;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
-            break;
-        case BPKRatingSizeSmall:
-            newWidth = 2 * BPKSpacingBase;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
-            break;
-        case BPKRatingSizeExtraSmall:
-            newWidth = BPKSpacingXl;
-            self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
-            break;
+    case BPKRatingSizeLarge:
+        newWidth = 2 * BPKSpacingLg;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+        break;
+    case BPKRatingSizeBase:
+        newWidth = BPKSpacingXxl;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+        break;
+    case BPKRatingSizeSmall:
+        newWidth = 2 * BPKSpacingBase;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+        break;
+    case BPKRatingSizeExtraSmall:
+        newWidth = BPKSpacingXl;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+        break;
     }
 
     if (self.layout == BPKRatingLayoutHorizontalPill) {
-        newHeight = newWidth * 2.0/3.0;
+        newHeight = newWidth * 2.0 / 3.0;
     } else {
         newHeight = newWidth;
     }

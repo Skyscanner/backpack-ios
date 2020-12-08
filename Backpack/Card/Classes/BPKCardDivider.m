@@ -62,8 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
-    double lineSize =
-        self.orientation == UILayoutConstraintAxisVertical ? CGRectGetWidth(self.bounds) : CGRectGetHeight(self.bounds);
+    double lineSize = self.orientation == UILayoutConstraintAxisVertical ? CGRectGetWidth(self.bounds) : CGRectGetHeight(self.bounds);
     CGPathAddLineToPoint(path, NULL, self.orientation == UILayoutConstraintAxisVertical ? lineSize : 0,
                          self.orientation == UILayoutConstraintAxisVertical ? 0 : lineSize);
 

@@ -74,9 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor systemRed];
     secondInnerView.backgroundColor = [BPKColor systemGreen];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
-                                                      secondarySubview:secondInnerView
-                                                                padded:YES];
+    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
     XCTAssertTrue(c.padded);
     XCTAssertTrue(c.primarySubview == firstInnerView);
     XCTAssertTrue(c.secondarySubview == secondInnerView);
@@ -88,9 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor systemRed];
     secondInnerView.backgroundColor = [BPKColor systemGreen];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
-                                                      secondarySubview:secondInnerView
-                                                                padded:YES];
+    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:YES];
 
     c.padded = false;
     XCTAssertFalse(c.padded);
@@ -104,9 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
     firstInnerView.backgroundColor = [BPKColor systemRed];
     secondInnerView.backgroundColor = [BPKColor systemGreen];
 
-    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView
-                                                      secondarySubview:secondInnerView
-                                                                padded:NO];
+    BPKDividedCard *c = [[BPKDividedCard alloc] initWithPrimarySubview:firstInnerView secondarySubview:secondInnerView padded:NO];
     XCTAssertFalse(c.padded);
     XCTAssertTrue(c.primarySubview == firstInnerView);
     XCTAssertTrue(c.secondarySubview == secondInnerView);

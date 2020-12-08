@@ -40,8 +40,7 @@
 - (void)setLabels {
     NSArray<NSString *> *keys = @[@"BPKCornerRadiusXs", @"BPKCornerRadiusPill"];
 
-    NSArray<NSNumber *> *values =
-        @[[NSNumber numberWithFloat:BPKCornerRadiusXs], [NSNumber numberWithFloat:BPKCornerRadiusPill]];
+    NSArray<NSNumber *> *values = @[[NSNumber numberWithFloat:BPKCornerRadiusXs], [NSNumber numberWithFloat:BPKCornerRadiusPill]];
 
     NSAssert(self.labels.count == keys.count, @"The number of labels must match the number of keys above");
     for (int i = 0; i < self.labels.count; i++) {
