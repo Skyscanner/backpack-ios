@@ -23,10 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @implementation UIView (BPKRTL)
-- (UIEdgeInsets)bpk_makeRTLAwareEdgeInsetsWithTop:(CGFloat)top
-                                          leading:(CGFloat)leading
-                                           bottom:(CGFloat)bottom
-                                         trailing:(CGFloat)trailing {
+- (UIEdgeInsets)bpk_makeRTLAwareEdgeInsetsWithTop:(CGFloat)top leading:(CGFloat)leading bottom:(CGFloat)bottom trailing:(CGFloat)trailing {
     BPKAssertMainThread();
     return [BPKRTLSupport makeRTLAwareEdgeInsetsForView:self top:top leading:leading bottom:bottom trailing:trailing];
 }

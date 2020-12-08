@@ -53,16 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDialogViewNoButtons {
-    BPKDialogIconDefinition *iconDefinition =
-        [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameTick]
-                                  iconBackgroundColor:BPKColor.monteverde];
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition
-             flareView:nil];
+    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameTick]
+                                                                        iconBackgroundColor:BPKColor.monteverde];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:iconDefinition
+                                   flareView:nil];
 
     view.style = BPKDialogControllerStyleAlert;
     [view.widthAnchor constraintLessThanOrEqualToConstant:320].active = YES;
@@ -74,16 +73,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDialogViewWithButtons {
-    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc]
-               initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
-        iconBackgroundColor:BPKColor.kolkata];
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition
-             flareView:nil];
+    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
+                                                                        iconBackgroundColor:BPKColor.kolkata];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:iconDefinition
+                                   flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -108,13 +106,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewWithLargeCornerStyleAndFlareViewAndButtons {
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil
-             flareView:flareView];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:nil
+                                   flareView:flareView];
     view.cornerStyle = BPKDialogCornerStyleLarge;
     flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
@@ -141,13 +139,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDialogViewWithLargeCornerStyleAndFlareViewAndSmallButtons {
     BPKFlareView *flareView = [[BPKFlareView alloc] initWithFrame:CGRectZero];
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil
-             flareView:flareView];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:nil
+                                   flareView:flareView];
     view.cornerStyle = BPKDialogCornerStyleLarge;
     flareView.backgroundView.backgroundColor = BPKColor.skyBlue;
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
@@ -205,13 +203,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDialogViewWithNoIcon {
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil
-             flareView:nil];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:nil
+                                   flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -236,13 +234,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testDialogViewWithNoIconAndNoTitle {
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:nil
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:nil
-             flareView:nil];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:nil
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:nil
+                                   flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -267,16 +265,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testChangingIconDefinitionAfterPresenting {
-    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc]
-               initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
-        iconBackgroundColor:BPKColor.kolkata];
-    BPKDialogView *view = [[BPKDialogView alloc]
-         initWithTitle:@"Lorem Ipsum"
-               message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
-                       @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
-                       @"venenatis vitae. Cras sollicitudin porttitor semper."
-        iconDefinition:iconDefinition
-             flareView:nil];
+    BPKDialogIconDefinition *iconDefinition = [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameLightning]
+                                                                        iconBackgroundColor:BPKColor.kolkata];
+    BPKDialogView *view =
+        [[BPKDialogView alloc] initWithTitle:@"Lorem Ipsum"
+                                     message:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor dapibus laoreet. "
+                                             @"Maecenas pharetra bibendum condimentum. Nulla malesuada euismod justo, vel commodo metus "
+                                             @"venenatis vitae. Cras sollicitudin porttitor semper."
+                              iconDefinition:iconDefinition
+                                   flareView:nil];
     BPKDialogButtonAction *continueAction = [BPKDialogButtonAction actionWithTitle:@"Continue"
                                                                              style:BPKButtonStylePrimary
                                                                            handler:^(BPKDialogButtonAction *action){
@@ -296,9 +293,8 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parent = [self wrapDialog:view];
     [parent layoutIfNeeded];
 
-    BPKDialogIconDefinition *newIconDefinition = [[BPKDialogIconDefinition alloc]
-           initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameKey]
-    iconBackgroundColor:BPKColor.panjin];
+    BPKDialogIconDefinition *newIconDefinition = [[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameKey]
+                                                                           iconBackgroundColor:BPKColor.panjin];
     view.iconDefinition = newIconDefinition;
 
     FBSnapshotVerifyView(parent, nil);

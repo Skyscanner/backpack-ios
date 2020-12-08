@@ -18,7 +18,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
 /**
  * `BPKCalendarColor` contains a number of pre-defined colours commonly used when presenting a calendar.
  */

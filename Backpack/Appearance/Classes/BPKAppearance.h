@@ -30,7 +30,7 @@ IB_DESIGNABLE @interface BPKAppearance : NSObject
  * Apply Backpack appearance values globally.
  * This should be called once at app launch, as early as possible.
  */
-+(void)apply;
++ (void)apply;
 
 @end
 

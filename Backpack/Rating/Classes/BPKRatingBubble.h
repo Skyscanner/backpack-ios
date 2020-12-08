@@ -19,8 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "BPKRatingSize.h"
 #import "BPKRatingLayout.h"
+#import "BPKRatingSize.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -144,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
     _overlayType = overlayType;
 
     // We don't use the getter here as we don't want to create the background view
-    if(_backgroundView != nil) {
+    if (_backgroundView != nil) {
         _backgroundView.overlayType = overlayType;
     }
 }
@@ -155,15 +155,15 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat cornerRadius = 0;
 
     switch (self.cornerStyle) {
-        case BPKOverlayViewCornerStyleSmall:
-            cornerRadius = BPKCornerRadiusMd;
-            break;
-        case BPKOverlayViewCornerStyleLarge:
-            cornerRadius = BPKCornerRadiusLg;
-            break;
-        default:
-            NSAssert(NO, @"Unknown BPKOverlayViewCornerStyle %d", (int)self.cornerStyle);
-            break;
+    case BPKOverlayViewCornerStyleSmall:
+        cornerRadius = BPKCornerRadiusMd;
+        break;
+    case BPKOverlayViewCornerStyleLarge:
+        cornerRadius = BPKCornerRadiusLg;
+        break;
+    default:
+        NSAssert(NO, @"Unknown BPKOverlayViewCornerStyle %d", (int)self.cornerStyle);
+        break;
     }
 
     self.layer.cornerRadius = cornerRadius;

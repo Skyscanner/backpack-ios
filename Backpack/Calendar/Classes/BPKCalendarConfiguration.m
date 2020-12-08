@@ -20,10 +20,10 @@
 
 @implementation BPKCalendarConfiguration
 
--(instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
+- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
     self = [super init];
 
-    if(self) {
+    if (self) {
         _cellClass = cellClass;
         _cellDataClass = cellDataClass;
     }

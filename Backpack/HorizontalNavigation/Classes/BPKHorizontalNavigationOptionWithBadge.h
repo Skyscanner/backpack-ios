@@ -17,14 +17,14 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <Backpack/BPKHorizontalNavigationOptionType.h>
+#import <Foundation/Foundation.h>
 
 @class BPKBadge;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKHorizontalNavigationOptionWithBadge : NSObject<BPKHorizontalNavigationOptionType>
+@interface BPKHorizontalNavigationOptionWithBadge : NSObject <BPKHorizontalNavigationOptionType>
 
 - (instancetype)initWithTitle:(NSString *)title badgeMessage:(NSString *)badgeMessage tag:(NSInteger)tag;
 

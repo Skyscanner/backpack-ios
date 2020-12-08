@@ -191,34 +191,34 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)unselectedBackgroundColor {
-    if(self.backgroundTint != nil) {
+    if (self.backgroundTint != nil) {
         return [BPKColor blend:self.backgroundTint with:BPKColor.backgroundTertiaryColor weight:0.2];
     }
 
     switch (self.style) {
-        case BPKChipStyleFilled:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07 darkVariant:BPKColor.blackTint03];
-            break;
-        case BPKChipStyleOutline:
-            return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
-            break;
+    case BPKChipStyleFilled:
+        return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint07 darkVariant:BPKColor.blackTint03];
+        break;
+    case BPKChipStyleOutline:
+        return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        break;
     }
 }
 
 - (UIColor *)disabledBackgroundColor {
     switch (self.style) {
-        case BPKChipStyleOutline:
-            return BPKColor.clear;
-            break;
-        case BPKChipStyleFilled: {
-            UIColor *lightColor = BPKColor.skyGrayTint07;
-            UIColor *darkColor = BPKColor.blackTint03;
-            if(self.backgroundTint != nil) {
-                lightColor = [BPKColor blend:self.backgroundTint with:BPKColor.backgroundTertiaryColor weight:0.2];
-            }
-            return [BPKColor dynamicColorWithLightVariant:lightColor darkVariant:darkColor];
-            break;
+    case BPKChipStyleOutline:
+        return BPKColor.clear;
+        break;
+    case BPKChipStyleFilled: {
+        UIColor *lightColor = BPKColor.skyGrayTint07;
+        UIColor *darkColor = BPKColor.blackTint03;
+        if (self.backgroundTint != nil) {
+            lightColor = [BPKColor blend:self.backgroundTint with:BPKColor.backgroundTertiaryColor weight:0.2];
         }
+        return [BPKColor dynamicColorWithLightVariant:lightColor darkVariant:darkColor];
+        break;
+    }
     }
 }
 
@@ -264,22 +264,22 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateOutline {
-    if(self.isSelected) {
+    if (self.isSelected) {
         self.layer.borderWidth = 0;
         self.layer.borderColor = nil;
         return;
     }
 
     switch (self.style) {
-        case BPKChipStyleFilled:
-            self.layer.borderWidth = 0;
-            self.layer.borderColor = nil;
-            break;
-        case BPKChipStyleOutline:
-            self.layer.borderWidth = 1;
-            UIColor *borderColor = self.enabled ? [BPKChip outlineColor] : [BPKChip disabledOutlineColor];
-            self.layer.borderColor = borderColor.CGColor;
-            break;
+    case BPKChipStyleFilled:
+        self.layer.borderWidth = 0;
+        self.layer.borderColor = nil;
+        break;
+    case BPKChipStyleOutline:
+        self.layer.borderWidth = 1;
+        UIColor *borderColor = self.enabled ? [BPKChip outlineColor] : [BPKChip disabledOutlineColor];
+        self.layer.borderColor = borderColor.CGColor;
+        break;
     }
 }
 
@@ -308,15 +308,13 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (self.iconView == nil) {
-        self.iconConstraints = @[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
-                                                                               constant:chipHorizontalSpacing]];
+        self.iconConstraints = @[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing]];
     } else {
         self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
         self.iconConstraints = @[
             [self.iconView.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor],
             [self.iconView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
-            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconView.trailingAnchor
-                                                          constant:chipIconSpacing]
+            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconView.trailingAnchor constant:chipIconSpacing]
         ];
     }
 

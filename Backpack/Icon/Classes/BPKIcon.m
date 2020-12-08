@@ -123,14 +123,17 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     return icon;
 }
 
-+(NSString *)codepointForIcon:(NSString *)name size:(BPKIconSize)size {
++ (NSString *)codepointForIcon:(NSString *)name size:(BPKIconSize)size {
     NSString *lookupKey = name;
-    if(size == BPKIconSizeSmall) {
+    if (size == BPKIconSizeSmall) {
         lookupKey = [NSString stringWithFormat:@"%@%@", name, @"-sm"];
     }
 
     if (self.iconMapping) {
-        NSAssert([self.iconMapping objectForKey:lookupKey], @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the size you are trying to use https://backpack.github.io/components/icon?platform=design", name);
+        NSAssert([self.iconMapping objectForKey:lookupKey],
+                 @"Unknown icon `%@` does not correspond to a known icon. Please check that the icon exists at the "
+                 @"size you are trying to use https://backpack.github.io/components/icon?platform=design",
+                 name);
     }
 
     return [self.iconMapping objectForKey:lookupKey];
@@ -231,8 +234,7 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     CGFloat const *components = CGColorGetComponents(color.CGColor);
 
-    return [NSString
-        stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
+    return [NSString stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
 }
 
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
@@ -241,10 +243,10 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
         return self.concreteSizeForSmallIcon;
         break;
     case BPKIconSizeLarge:
-            return self.concreteSizeForLargeIcon;
+        return self.concreteSizeForLargeIcon;
         break;
     case BPKIconSizeXLarge:
-            return self.concreteSizeForXlIcon;
+        return self.concreteSizeForXlIcon;
         break;
     default:
         NSAssert(NO, @"Unsupported icon size");
@@ -282,8 +284,6 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     return BPKIconFallbackGlyph;
 }
-
-
 
 + (UIImage *)smallTemplateIconNamed:(BPKSmallIconName)name {
     return [self templateIconNamed:name size:BPKIconSizeSmall];

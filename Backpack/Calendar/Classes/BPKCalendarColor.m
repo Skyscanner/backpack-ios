@@ -18,8 +18,8 @@
 
 #import "BPKCalendarColor.h"
 
-#import <Backpack/Common.h>
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 
 @implementation BPKCalendarColor
 

@@ -18,8 +18,8 @@
 #import <Foundation/Foundation.h>
 
 #import "BPKIconNames.h"
-#import "BPKSmallIconNames.h"
 #import "BPKLargeIconNames.h"
+#import "BPKSmallIconNames.h"
 #import "BPKXlIconNames.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -101,9 +101,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(BPKIconName)name
-                 color:(UIColor *)color
-                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
++ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
 
 /**
  * Calculates the concrete point size a given BPKIconSize.
@@ -147,8 +145,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @param color The color to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)smallIconNamed:(BPKSmallIconName)name
-                 color:(UIColor *)color NS_SWIFT_NAME(makeSmallIcon(name:color:));
++ (UIImage *)smallIconNamed:(BPKSmallIconName)name color:(UIColor *)color NS_SWIFT_NAME(makeSmallIcon(name:color:));
 
 /**
  * Render a given large icon as a UIImage.
@@ -157,8 +154,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @param color The color to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)largeIconNamed:(BPKLargeIconName)name
-                 color:(UIColor *)color NS_SWIFT_NAME(makeLargeIcon(name:color:));
++ (UIImage *)largeIconNamed:(BPKLargeIconName)name color:(UIColor *)color NS_SWIFT_NAME(makeLargeIcon(name:color:));
 
 /**
  * Render a given small icon as a UIImage.
@@ -167,8 +163,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @param color The color to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)xlIconNamed:(BPKXlIconName)name
-                 color:(UIColor *)color NS_SWIFT_NAME(makeXlIcon(name:color:));
++ (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color NS_SWIFT_NAME(makeXlIcon(name:color:));
 
 @end
 NS_ASSUME_NONNULL_END

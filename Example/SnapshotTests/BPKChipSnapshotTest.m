@@ -135,7 +135,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
 - (UIView *)createChipEnabledUnselectedHighlighted {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
@@ -154,7 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
 - (UIView *)createChipEnabledSelectedHighlighted {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
@@ -172,7 +170,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
-
 
 - (UIView *)createChipDisabled {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -225,7 +222,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
-
 
 - (UIView *)createChipEnabledSelectedWithIcon {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];

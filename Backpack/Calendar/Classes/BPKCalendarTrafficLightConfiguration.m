@@ -17,13 +17,12 @@
  */
 
 #import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarTrafficLightCellData.h"
 #import "BPKCalendarTrafficLightCell.h"
+#import "BPKCalendarTrafficLightCellData.h"
 
 @implementation BPKCalendarTrafficLightConfiguration
 
-- (instancetype)init
-{
+- (instancetype)init {
     return [super initWithCellClass:BPKCalendarTrafficLightCell.class cellDataClass:BPKCalendarTrafficLightCellData.class];
 }
 

@@ -61,13 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
     return [self initWithPrimarySubview:nil secondarySubview:nil padded:padded cornerStyle:cornerStyle];
 }
 
-- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
-                      secondarySubview:(UIView *_Nullable)secondarySubview
-                                padded:(BOOL)padded {
-    return [self initWithPrimarySubview:primarySubview
-                       secondarySubview:secondarySubview
-                                 padded:padded
-                            cornerStyle:BPKCardDefaultCornerStyle];
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded {
+    return [self initWithPrimarySubview:primarySubview secondarySubview:secondarySubview padded:padded cornerStyle:BPKCardDefaultCornerStyle];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview

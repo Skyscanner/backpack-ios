@@ -19,7 +19,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCalendarConfiguration` is a subclass of `NSObject` containing properties which the calendar will use when rendering.
+ * `BPKCalendarConfiguration` is a subclass of `NSObject` containing properties which the calendar will use when
+ * rendering.
  */
 @interface BPKCalendarConfiguration : NSObject
 
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param cellDataClass Class used to represent additional cell-data.
  * @return `BPKCalendarConfiguration` instance.
  */
--(instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass;
+- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass;
 
 @end
 

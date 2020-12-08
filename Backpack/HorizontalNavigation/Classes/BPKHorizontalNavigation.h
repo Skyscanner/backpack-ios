@@ -21,10 +21,10 @@
 
 #import <Backpack/Font.h>
 
-#import "BPKHorizontalNavigationSize.h"
+#import "BPKHorizontalNavigationAppearance.h"
 #import "BPKHorizontalNavigationDelegate.h"
 #import "BPKHorizontalNavigationOptionType.h"
-#import "BPKHorizontalNavigationAppearance.h"
+#import "BPKHorizontalNavigationSize.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

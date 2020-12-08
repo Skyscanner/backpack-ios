@@ -23,7 +23,7 @@
 #import "BPKSnapshotTest.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface BPKBarChartSnapshotTest : FBSnapshotTestCase<BPKBarChartCollectionViewDataSource>
+@interface BPKBarChartSnapshotTest : FBSnapshotTestCase <BPKBarChartCollectionViewDataSource>
 @end
 
 @implementation BPKBarChartSnapshotTest
@@ -73,47 +73,46 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - <BPKBarChartCollectionViewDataSource>
 
-- (NSString * _Nonnull)barChart:(BPKBarChart * _Nonnull)barChart valueDescriptionForBarAtIndex:(NSIndexPath * _Nonnull)atIndex {
+- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart valueDescriptionForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
     if (atIndex.item == 0) {
         return @"No price";
     }
     return [NSString stringWithFormat:@"£%ld", atIndex.item + 1];
 }
 
-- (NSNumber * _Nullable)barChart:(BPKBarChart * _Nonnull)barChart fillValueForBarAtIndex:(NSIndexPath * _Nonnull)atIndex {
+- (NSNumber *_Nullable)barChart:(BPKBarChart *_Nonnull)barChart fillValueForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
     if (atIndex.item == 0) {
         return nil;
     }
     return [[NSNumber alloc] initWithFloat:atIndex.item * 0.1];
 }
 
-- (NSString * _Nonnull)barChart:(BPKBarChart * _Nonnull)barChart subtitleForBarAtIndex:(NSIndexPath * _Nonnull)atIndex {
+- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart subtitleForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
     return [NSString stringWithFormat:@"%ld", atIndex.item + 1];
 }
 
-- (NSString * _Nonnull)barChart:(BPKBarChart * _Nonnull)barChart titleForBarAtIndex:(NSIndexPath * _Nonnull)atIndex {
+- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart titleForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
     NSString *weekdays[14] = {@"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun"};
     return weekdays[atIndex.item];
 }
 
-- (NSInteger)barChart:(BPKBarChart * _Nonnull)barChart numberOfBarsInSection:(NSInteger)section {
+- (NSInteger)barChart:(BPKBarChart *_Nonnull)barChart numberOfBarsInSection:(NSInteger)section {
     return 10;
 }
 
-
-- (NSInteger)numberOfSectionsIn:(BPKBarChart * _Nonnull)barChart {
+- (NSInteger)numberOfSectionsIn:(BPKBarChart *_Nonnull)barChart {
     return 2;
 }
 
-- (NSString * _Nonnull)barChart:(BPKBarChart * _Nonnull)barChart titleForSection:(NSInteger)section {
+- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart titleForSection:(NSInteger)section {
     switch (section) {
-        case 0:
-            return @"January";
-        case 1:
-            return @"February";
-        default:
-            return @"None";
-            break;
+    case 0:
+        return @"January";
+    case 1:
+        return @"February";
+    default:
+        return @"None";
+        break;
     }
 }
 

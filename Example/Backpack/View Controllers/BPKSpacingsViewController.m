@@ -38,8 +38,7 @@
 #pragma mark - Private
 
 - (void)setSpacings {
-    NSArray<NSString *> *spacingKeys =
-        @[@"BPKSpacingSm", @"BPKSpacingMd", @"BPKSpacingBase", @"BPKSpacingLg", @"BPKSpacingXl", @"BPKSpacingXxl"];
+    NSArray<NSString *> *spacingKeys = @[@"BPKSpacingSm", @"BPKSpacingMd", @"BPKSpacingBase", @"BPKSpacingLg", @"BPKSpacingXl", @"BPKSpacingXxl"];
     NSArray<NSNumber *> *spacingValues = @[
         [NSNumber numberWithFloat:BPKSpacingSm],
         [NSNumber numberWithFloat:BPKSpacingMd],

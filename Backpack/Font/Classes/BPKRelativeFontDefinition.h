@@ -22,7 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKRelativeFontDefinition : NSObject<BPKFontDefinitionProtocol>
+@interface BPKRelativeFontDefinition : NSObject <BPKFontDefinitionProtocol>
 
 @end
 

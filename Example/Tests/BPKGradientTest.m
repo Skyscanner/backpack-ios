@@ -27,11 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKGradientTest
 
 - (void)testInitWithColorsStopsStartPointEndPoint {
-    BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
-                                      stops:@[@0.0, @0.5, @1.0]
-                                 startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
-                                   endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
+                                                          stops:@[@0.0, @0.5, @1.0]
+                                                     startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
+                                                       endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
     NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
     NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
 
@@ -42,10 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testInitWithColorsStartPointEndPoint {
-    BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
-                                 startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
-                                   endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.redColor, UIColor.blueColor, UIColor.greenColor]
+                                                     startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
+                                                       endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
     NSArray<UIColor *> *expectedColors = @[UIColor.redColor, UIColor.blueColor, UIColor.greenColor];
     NSArray<NSNumber *> *expectedStops = @[@0.0, @0.5, @1.0];
 
@@ -98,10 +96,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testCloneWithNewDirection {
-    BPKGradient *gradient =
-        [[BPKGradient alloc] initWithColors:@[UIColor.blackColor, BPKColor.white]
-                                 startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
-                                   endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
+    BPKGradient *gradient = [[BPKGradient alloc] initWithColors:@[UIColor.blackColor, BPKColor.white]
+                                                     startPoint:[BPKGradient startPointForDirection:BPKGradientDirectionBottomRight]
+                                                       endPoint:[BPKGradient endPointForDirection:BPKGradientDirectionBottomRight]];
 
     BPKGradient *newGradient = [gradient cloneWithNewDirection:BPKGradientDirectionTopRight];
 

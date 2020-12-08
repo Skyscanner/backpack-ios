@@ -19,11 +19,11 @@
 #define __BACKPACK_HORIZONTAL_NAVIGATION__
 
 #import "BPKHorizontalNavigation.h"
+#import "BPKHorizontalNavigationAppearance.h"
 #import "BPKHorizontalNavigationDelegate.h"
 #import "BPKHorizontalNavigationOption.h"
 #import "BPKHorizontalNavigationOptionType.h"
-#import "BPKHorizontalNavigationSize.h"
 #import "BPKHorizontalNavigationOptionWithBadge.h"
-#import "BPKHorizontalNavigationAppearance.h"
+#import "BPKHorizontalNavigationSize.h"
 
 #endif

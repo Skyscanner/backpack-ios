@@ -96,16 +96,11 @@ NS_ASSUME_NONNULL_BEGIN
                                     style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView {
-    return [[self alloc] initWithTitle:title
-                               message:message
-                                 style:style
-                        iconDefinition:iconDefinition
-                             flareView:flareView];
+    return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition flareView:flareView];
 }
 
 - (void)setupViews {
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                 action:@selector(scrimTapped:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrimTapped:)];
 
     self.scrimView = [[UIView alloc] initWithFrame:CGRectZero];
     self.scrimView.clipsToBounds = YES;
@@ -127,9 +122,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupConstraints {
-    NSLayoutConstraint *lowerWidthConstraint = [self.dialogView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor multiplier:0.8];
+    NSLayoutConstraint *lowerWidthConstraint = [self.dialogView.widthAnchor constraintGreaterThanOrEqualToAnchor:self.view.widthAnchor
+                                                                                                      multiplier:0.8];
     lowerWidthConstraint.priority = UILayoutPriorityDefaultHigh;
-
 
     [NSLayoutConstraint activateConstraints:@[
         [self.scrimView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
@@ -152,10 +147,8 @@ NS_ASSUME_NONNULL_BEGIN
     } else if (self.style == BPKDialogControllerStyleAlert) {
         [NSLayoutConstraint activateConstraints:@[
             [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
-            [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor
-                                                                   constant:BPKSpacingLg],
-            [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor
-                                                                                   constant:BPKSpacingLg]
+            [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor constant:BPKSpacingLg],
+            [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor constant:BPKSpacingLg]
         ]];
     }
 }
@@ -178,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setIconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     _iconDefinition = iconDefinition;
-    if(self.dialogView != nil){
+    if (self.dialogView != nil) {
         self.dialogView.iconDefinition = iconDefinition;
     }
 }
@@ -218,8 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.dialogView addButtonAction:action];
 }
 
-- (void)_addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime
-                                                   relativeDuration:(double)duration {
+- (void)_addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
     if (self.style == BPKDialogControllerStyleBottomSheet) {
         CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bottomAnchorConstraint.constant = sheetSize.height;
@@ -241,8 +233,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)_addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime
-                                                   relativeDuration:(double)duration {
+- (void)_addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
     if (self.style == BPKDialogControllerStyleBottomSheet) {
         CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bottomAnchorConstraint.constant = 0;
@@ -275,15 +266,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
-- (nullable id<UIViewControllerAnimatedTransitioning>)
-    animationControllerForPresentedController:(UIViewController *)presented
-                         presentingController:(UIViewController *)presenting
-                             sourceController:(UIViewController *)source {
+- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                           presentingController:(UIViewController *)presenting
+                                                                               sourceController:(UIViewController *)source {
     return [BPKDialogControllerAnimator new];
 }
 
-- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:
-    (UIViewController *)dismissed {
+- (nullable id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     BPKDialogControllerAnimator *animator = [BPKDialogControllerAnimator new];
     animator.presenting = NO;
 

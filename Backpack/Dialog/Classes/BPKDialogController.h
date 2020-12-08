@@ -81,10 +81,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, assign) BPKButtonSize buttonSize;
 
-
 /// :nodoc:
-- (instancetype)init __attribute__((
-    unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
+- (instancetype)init
+    __attribute__((unavailable("init not available, use alertControllerWithTitle:message:style:shadow:headColor:iconImage: instead")));
 
 /**
  * Create an instance of the controller.

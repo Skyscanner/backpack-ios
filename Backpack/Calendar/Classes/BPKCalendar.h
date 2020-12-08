@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Delegate for configuring and respodning to interactions in a calendar.
  */
-@protocol BPKCalendarDelegate<NSObject>
+@protocol BPKCalendarDelegate <NSObject>
 
 /**
  * Called when a date selection changed.

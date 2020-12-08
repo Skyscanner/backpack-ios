@@ -83,8 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configureGradientLayer {
     if (self.directionOverride != nil) {
-        BPKGradient *newGradient =
-            [self.gradient cloneWithNewDirection:(BPKGradientDirection)self.directionOverride.unsignedIntegerValue];
+        BPKGradient *newGradient = [self.gradient cloneWithNewDirection:(BPKGradientDirection)self.directionOverride.unsignedIntegerValue];
         self.gradientLayer.gradient = newGradient;
     } else {
         self.gradientLayer.gradient = self.gradient;

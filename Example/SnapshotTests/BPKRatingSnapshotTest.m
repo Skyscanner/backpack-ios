@@ -29,9 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     [super setUp];
-    self.titleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High"
-                                                                      mediumRatingText:@"Medium"
-                                                                         lowRatingText:@"Low"];
+    self.titleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High" mediumRatingText:@"Medium" lowRatingText:@"Low"];
     self.subTitleTextDefinition = [[BPKRatingTextDefinition alloc] initWithHighRatingText:@"High subtitle"
                                                                          mediumRatingText:@"Medium subtitle"
                                                                             lowRatingText:@"Low subtitle"];

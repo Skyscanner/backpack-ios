@@ -59,8 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) BOOL flipsForRightToLeft;
 
 /// :nodoc:
-- (instancetype)initWithImage:(nullable UIImage *)image
-    __attribute__((unavailable("use `initWithIconName:size:` instead")));
+- (instancetype)initWithImage:(nullable UIImage *)image __attribute__((unavailable("use `initWithIconName:size:` instead")));
 
 /// :nodoc:
 - (instancetype)initWithImage:(nullable UIImage *)image

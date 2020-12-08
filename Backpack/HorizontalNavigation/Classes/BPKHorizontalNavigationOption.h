@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * Can be configured to show an optional icon, always includes a name.
  */
-@interface BPKHorizontalNavigationOption : NSObject<BPKHorizontalNavigationOptionType>
+@interface BPKHorizontalNavigationOption : NSObject <BPKHorizontalNavigationOptionType>
 
 /**
  * Name of the optional icon used in the option.
@@ -61,57 +61,52 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithName:(NSString *)name;
 
 /**
-* Intialize an option with a given name and tag.
-*
-* @param name The name of the option.
-* @param tag The tag of the option.
-* @return A named option with a tag.
-*/
+ * Intialize an option with a given name and tag.
+ *
+ * @param name The name of the option.
+ * @param tag The tag of the option.
+ * @return A named option with a tag.
+ */
 - (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag;
 
 /**
-* Intialize an option with a given name and icon.
-*
-* @param name The name of the option.
-* @param iconName The name of the icon to display.
-* @return A named option with an icon.
-*/
+ * Intialize an option with a given name and icon.
+ *
+ * @param name The name of the option.
+ * @param iconName The name of the icon to display.
+ * @return A named option with an icon.
+ */
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName;
 
 /**
-* Intialize an option with a given name, tag, and icon.
-*
-* @param name The name of the option.
-* @param iconName The name of the icon to display.
-* @param tag The tag of the option.
-* @return A named option with an icon and a tag.
-*/
+ * Intialize an option with a given name, tag, and icon.
+ *
+ * @param name The name of the option.
+ * @param iconName The name of the icon to display.
+ * @param tag The tag of the option.
+ * @return A named option with an icon and a tag.
+ */
 - (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName tag:(NSInteger)tag;
 
 /**
-* Intialize an option with a given name, tag, and icon.
-*
-* @param name The name of the option.
-* @param tag The tag of the option.
-* @param showDot send YES to show a red notification dot
-* @return A named option with a tag and a notification dot.
-*/
-- (instancetype)initWithName:(NSString *)name
-                         tag:(NSInteger)tag
-         showNotificationDot:(BOOL)showDot;
+ * Intialize an option with a given name, tag, and icon.
+ *
+ * @param name The name of the option.
+ * @param tag The tag of the option.
+ * @param showDot send YES to show a red notification dot
+ * @return A named option with a tag and a notification dot.
+ */
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag showNotificationDot:(BOOL)showDot;
 
 /**
-* Intialize an option with a given name, tag, and icon.
-*
-* @param name The name of the option.
-* @param tag The tag of the option.
-* @param iconName The name of the icon to display.
-* @param showDot send YES to show a red notification dot
-* @return A named option with an icon, a tag and a notification dot.
-*/
-- (instancetype)initWithName:(NSString *)name
-                         tag:(NSInteger)tag
-                    iconName:(BPKIconName)iconName
-         showNotificationDot:(BOOL)showDot;
+ * Intialize an option with a given name, tag, and icon.
+ *
+ * @param name The name of the option.
+ * @param tag The tag of the option.
+ * @param iconName The name of the icon to display.
+ * @param showDot send YES to show a red notification dot
+ * @return A named option with an icon, a tag and a notification dot.
+ */
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag iconName:(BPKIconName)iconName showNotificationDot:(BOOL)showDot;
 @end
 NS_ASSUME_NONNULL_END

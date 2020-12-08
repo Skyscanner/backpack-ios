@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKDefaultTheme : NSObject<BPKThemeDefinition>
+@interface BPKDefaultTheme : NSObject <BPKThemeDefinition>
 
 @end
 

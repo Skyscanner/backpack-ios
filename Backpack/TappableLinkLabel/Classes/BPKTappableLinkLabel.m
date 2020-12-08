@@ -116,15 +116,13 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKFontStyleTextXxxlEmphasized:
         return BPKFontStyleTextXxxlHeavy;
     default:
-        NSAssert(
-            NO, @"Alternate style BPKTappableLinkLabels must have a more emphasized alternative to the fontStyle set.");
+        NSAssert(NO, @"Alternate style BPKTappableLinkLabels must have a more emphasized alternative to the fontStyle set.");
     }
     return fontStyle;
 }
 
 - (BPKFontStyle)linkFontStyle {
-    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle]
-                                                            : self.fontStyle;
+    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle] : self.fontStyle;
 }
 
 - (void)setTextColor:(UIColor *)textColor {
@@ -150,19 +148,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateTextColors {
-    NSDictionary *linkCustomAttributes = @{
-        NSForegroundColorAttributeName: self.linkDisplayColor,
-        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
-    };
-    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
-                                                 withCustomAttributes:linkCustomAttributes];
+    NSDictionary *linkCustomAttributes =
+        @{NSForegroundColorAttributeName: self.linkDisplayColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle withCustomAttributes:linkCustomAttributes];
 
     NSDictionary *activeLinkCustomAttributes = @{
         NSForegroundColorAttributeName: [self.linkDisplayColor colorWithAlphaComponent:0.2],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
     };
-    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle
-                                                       withCustomAttributes:activeLinkCustomAttributes];
+    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle withCustomAttributes:activeLinkCustomAttributes];
 
     [self updateTextDisplay];
 }
@@ -173,11 +167,10 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSDictionary<NSAttributedStringKey, id> *newStringAttributes =
-        [BPKFont attributesForFontStyle:self.fontStyle withCustomAttributes:self.customFontAttributes];
+    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
+                                                                              withCustomAttributes:self.customFontAttributes];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text
-                                                                    attributes:newStringAttributes];
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
     self.contentView.text = newString;
 
     // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.

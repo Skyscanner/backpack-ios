@@ -61,9 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithName:(NSString *)name
-                         tag:(NSInteger)tag
-         showNotificationDot:(BOOL)showDot {
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag showNotificationDot:(BOOL)showDot {
 
     self = [self initWithName:name];
     self.tag = tag;
@@ -72,10 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithName:(NSString *)name
-                         tag:(NSInteger)tag
-                    iconName:(BPKIconName)iconName
-         showNotificationDot:(BOOL)showDot {
+- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag iconName:(BPKIconName)iconName showNotificationDot:(BOOL)showDot {
 
     self = [self initWithName:name tag:tag showNotificationDot:showDot];
     self.iconName = iconName;
@@ -99,16 +94,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self isEqualToOption:object];
 }
 
-
 - (BOOL)isEqualToOption:(BPKHorizontalNavigationOption *)other {
-    return self.tag == other.tag && [self.name isEqualToString:other.name] &&
-           [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
+    return self.tag == other.tag && [self.name isEqualToString:other.name] && [(self.iconName ?: @"") isEqualToString:(other.iconName ?: @"")];
 }
 
 - (UIControl *)makeItem {
-    return [[BPKHorizontalNavigationItemDefault alloc] initWithName:self.name
-                                                           iconName:self.iconName
-                                                showNotificationDot:self.showDot];
+    return [[BPKHorizontalNavigationItemDefault alloc] initWithName:self.name iconName:self.iconName showNotificationDot:self.showDot];
 }
 
 @end

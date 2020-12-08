@@ -123,9 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
         fontStyle = BPKFontStyleTextSmEmphasized;
     }
 
-    NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
-                                                                     content:self.name
-                                                                   textColor:self.contentColor];
+    NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle content:self.name textColor:self.contentColor];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
 
     [self updateInsets];
@@ -140,11 +138,11 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.primaryColor;
     } else {
         switch (self.appearance) {
-            case BPKHorizontalNavigationAppearanceNormal:
-                return BPKColor.textPrimaryColor;
-                break;
-            case BPKHorizontalNavigationAppearanceAlternate:
-                return BPKColor.skyGrayTint07;
+        case BPKHorizontalNavigationAppearanceNormal:
+            return BPKColor.textPrimaryColor;
+            break;
+        case BPKHorizontalNavigationAppearanceAlternate:
+            return BPKColor.skyGrayTint07;
         }
     }
 }
@@ -169,8 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateInsets {
     if (self.iconName == nil) {
-        self.titleEdgeInsets = UIEdgeInsetsMake(self.verticalSpacing, self.horizontalSpacing, self.verticalSpacing,
-                                                self.horizontalSpacing);
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.verticalSpacing, self.horizontalSpacing, self.verticalSpacing, self.horizontalSpacing);
         return;
     }
 
@@ -237,7 +234,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)traitCollectionDidChange:(nullable UITraitCollection*)previousTraitCollection {
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 12.0, *)) {

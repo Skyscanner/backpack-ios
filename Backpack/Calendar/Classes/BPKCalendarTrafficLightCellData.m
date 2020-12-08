@@ -18,8 +18,8 @@
 
 #import "BPKCalendarTrafficLightCellData.h"
 
-#import <Backpack/Common.h>
 #import <Backpack/Color.h>
+#import <Backpack/Common.h>
 
 #import "BPKCalendarColor.h"
 
@@ -27,12 +27,11 @@
 
 + (BPKCalendarTrafficLightCellData *)normal {
     static dispatch_once_t onceToken;
-    static BPKCalendarTrafficLightCellData  *cellData;
+    static BPKCalendarTrafficLightCellData *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc]
-                    initWithBackgroundColor:BPKCalendarColor.normalColor
-                    foregroundColor:BPKCalendarColor.normalTitleColor];
+      cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.normalColor
+                                                                  foregroundColor:BPKCalendarColor.normalTitleColor];
     });
 
     return cellData;
@@ -40,12 +39,11 @@
 
 + (BPKCalendarTrafficLightCellData *)positive {
     static dispatch_once_t onceToken;
-    static BPKCalendarTrafficLightCellData  *cellData;
+    static BPKCalendarTrafficLightCellData *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc]
-                    initWithBackgroundColor:BPKCalendarColor.positiveColor
-                    foregroundColor:BPKCalendarColor.positiveTitleColor];
+      cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.positiveColor
+                                                                  foregroundColor:BPKCalendarColor.positiveTitleColor];
     });
 
     return cellData;
@@ -53,12 +51,11 @@
 
 + (BPKCalendarTrafficLightCellData *)negative {
     static dispatch_once_t onceToken;
-    static BPKCalendarTrafficLightCellData  *cellData;
+    static BPKCalendarTrafficLightCellData *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc]
-                    initWithBackgroundColor:BPKCalendarColor.negativeColor
-                    foregroundColor:BPKCalendarColor.negativeTitleColor];
+      cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.negativeColor
+                                                                  foregroundColor:BPKCalendarColor.negativeTitleColor];
     });
 
     return cellData;
@@ -66,12 +63,11 @@
 
 + (BPKCalendarTrafficLightCellData *)noData {
     static dispatch_once_t onceToken;
-    static BPKCalendarTrafficLightCellData  *cellData;
+    static BPKCalendarTrafficLightCellData *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc]
-                    initWithBackgroundColor:BPKCalendarColor.noDataColor
-                    foregroundColor:BPKCalendarColor.noDataTitleColor];
+      cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.noDataColor
+                                                                  foregroundColor:BPKCalendarColor.noDataTitleColor];
     });
 
     return cellData;
@@ -79,19 +75,17 @@
 
 + (BPKCalendarTrafficLightCellData *)neutral {
     static dispatch_once_t onceToken;
-    static BPKCalendarTrafficLightCellData  *cellData;
+    static BPKCalendarTrafficLightCellData *cellData;
 
     dispatch_once(&onceToken, ^{
-        cellData = [[BPKCalendarTrafficLightCellData alloc]
-                    initWithBackgroundColor:BPKCalendarColor.neutralColor
-                    foregroundColor:BPKCalendarColor.neutralTitleColor];
+      cellData = [[BPKCalendarTrafficLightCellData alloc] initWithBackgroundColor:BPKCalendarColor.neutralColor
+                                                                  foregroundColor:BPKCalendarColor.neutralTitleColor];
     });
 
     return cellData;
 }
 
-- (instancetype)initWithBackgroundColor:(UIColor *)backgroundColor foregroundColor:(UIColor *)foregroundColor
-{
+- (instancetype)initWithBackgroundColor:(UIColor *)backgroundColor foregroundColor:(UIColor *)foregroundColor {
     self = [super init];
     if (self) {
         _backgroundColor = backgroundColor;

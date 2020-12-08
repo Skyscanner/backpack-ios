@@ -63,8 +63,8 @@
 
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
-    self.selectionLayer.frame = CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds),
-                                           CGRectGetHeight(self.shapeLayer.frame));
+    self.selectionLayer.frame =
+        CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds), CGRectGetHeight(self.shapeLayer.frame));
 
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.selectionLayer.bounds;
@@ -75,9 +75,8 @@
     self.selectionLayer.fillColor = rangeColor.CGColor;
 
     self.samedayLayer.hidden = YES;
-    self.samedayLayer.frame =
-        CGRectMake(CGRectGetMinX(self.shapeLayer.frame) - padding, CGRectGetMinY(self.selectionLayer.frame),
-                   CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.selectionLayer.frame));
+    self.samedayLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) - padding, CGRectGetMinY(self.selectionLayer.frame),
+                                         CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.selectionLayer.frame));
     self.samedayLayer.fillColor = [UIColor clearColor].CGColor;
     self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.samedayLayer.bounds
@@ -149,9 +148,8 @@
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-        self.shapeLayer.frame =
-            CGRectMake(self.shapeLayer.frame.origin.x + padding, self.shapeLayer.frame.origin.y,
-                       CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.shapeLayer.frame));
+        self.shapeLayer.frame = CGRectMake(self.shapeLayer.frame.origin.x + padding, self.shapeLayer.frame.origin.y,
+                                           CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.shapeLayer.frame));
         break;
 
     default:
@@ -159,18 +157,15 @@
         break;
     }
 
-    self.selectionLayer.path =
-        [UIBezierPath bezierPathWithRoundedRect:selectionRect byRoundingCorners:corners cornerRadii:cornerRadii].CGPath;
+    self.selectionLayer.path = [UIBezierPath bezierPathWithRoundedRect:selectionRect byRoundingCorners:corners cornerRadii:cornerRadii].CGPath;
     [self configureAppearance];
 }
 
 - (void)configureAppearance {
     [super configureAppearance];
 
-    UIColor *selectedColor =
-        self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
-    UIColor *color =
-        self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
+    UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
+    UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {
         switch (self.selectionType) {
@@ -212,7 +207,7 @@
     }
 }
 
--(void)configureWithData:(id)data {
+- (void)configureWithData:(id)data {
     NSAssert(false, @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
 }
 
