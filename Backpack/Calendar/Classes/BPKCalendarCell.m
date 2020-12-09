@@ -64,21 +64,14 @@
     self.selectionLayer.hidden = NO;
     self.selectionLayer.frame = CGRectMake(0.0, 0, circleHeight, circleHeight);
 
-    self.layer.borderColor = [BPKColor.panjin CGColor];
-    self.titleLabel.frame = CGRectMake(0, 0, self.titleLabel.frame.size.width, titleHeight);
-    self.titleLabel.layer.borderColor = [BPKColor.panjin CGColor];
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.titleLabel.frame), titleHeight);
 
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.bounds;
     CGFloat height = circleHeight;
 
-    UIColor *rangeColor = self.appearance.selectionColor;
-    self.selectionLayer.fillColor = rangeColor.CGColor;
-
     self.samedayLayer.hidden = YES;
     self.samedayLayer.frame = CGRectMake(paddingX - sameDayOffset, 0, circleHeight, circleHeight);
-    self.samedayLayer.fillColor = [UIColor clearColor].CGColor;
-    self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.samedayLayer.bounds
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
@@ -122,16 +115,16 @@
     switch (self.selectionType) {
     case SelectionTypeMiddle:
         self.shapeLayer.hidden = !self.dateIsToday;
-        selectionRect = CGRectMake(0, 0, bounds.size.width, height);
+        selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds), height);
         break;
 
     case SelectionTypeTrailingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, bounds.size.width - paddingX, height);
+            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
         } else {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(paddingX, 0, bounds.size.width - paddingX, height);
+            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
@@ -139,10 +132,10 @@
     case SelectionTypeLeadingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(paddingX, 0, bounds.size.width - paddingX, height);
+            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
         } else {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, bounds.size.width - paddingX, height);
+            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
@@ -150,8 +143,8 @@
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-        self.shapeLayer.frame = CGRectMake(self.shapeLayer.frame.origin.x + sameDayOffset, self.shapeLayer.frame.origin.y,
-                                           self.shapeLayer.frame.size.width, self.shapeLayer.frame.size.height);
+        self.shapeLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) + sameDayOffset, CGRectGetMinY(self.shapeLayer.frame),
+                                           CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.shapeLayer.frame));
         break;
 
     default:
@@ -166,8 +159,15 @@
 - (void)configureAppearance {
     [super configureAppearance];
 
+    UIColor *rangeColor = self.appearance.selectionColor;
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
+
+    self.selectionLayer.fillColor = rangeColor.CGColor;
+    self.samedayLayer.fillColor = BPKColor.clear.CGColor;
+    self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
+    self.layer.borderColor = BPKColor.panjin.CGColor;
+    self.titleLabel.layer.borderColor = BPKColor.panjin.CGColor;
 
     if (self.titleLabel.text) {
         switch (self.selectionType) {
