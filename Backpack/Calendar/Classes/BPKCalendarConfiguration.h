@@ -37,14 +37,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The height that cells should be rendered.
  */
-@property(readonly) CGFloat rowHeight;
+@property(readonly, nullable) NSNumber *rowHeight;
 
 /**
  * Creates a `BPKCalendarConfiguration` with the specific classes.
  *
  * @param cellClass Class to use for individual cells.
  * @param cellDataClass Class used to represent additional cell-data.
- * @param rowHeight The height that calendar rows should be rendered,.
+ * @param rowHeight Optionally specify height that calendar rows should be rendered.
  * @return `BPKCalendarConfiguration` instance.
  */
 - (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass rowHeight:(CGFloat)rowHeight;

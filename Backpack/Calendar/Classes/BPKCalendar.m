@@ -170,8 +170,8 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
     self.calendarView = [[FSCalendar alloc] initWithFrame:CGRectZero];
-    if (self.configuration.rowHeight > 0) {
-        self.calendarView.rowHeight = self.configuration.rowHeight;
+    if (self.configuration.rowHeight != nil) {
+        self.calendarView.rowHeight = [self.configuration.rowHeight floatValue];
     }
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.scrollEnabled = YES;

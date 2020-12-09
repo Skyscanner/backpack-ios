@@ -21,18 +21,18 @@
 @implementation BPKCalendarConfiguration
 
 - (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass rowHeight:(CGFloat)rowHeight {
+    _rowHeight = [NSNumber numberWithFloat:rowHeight];
+    return [self initWithCellClass:cellClass cellDataClass:cellDataClass];
+}
+
+- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
     self = [super init];
 
     if (self) {
         _cellClass = cellClass;
         _cellDataClass = cellDataClass;
-        _rowHeight = rowHeight;
     }
     return self;
-}
-
-- (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass {
-    return [self initWithCellClass:cellClass cellDataClass:cellDataClass rowHeight:-1];
 }
 
 @end
