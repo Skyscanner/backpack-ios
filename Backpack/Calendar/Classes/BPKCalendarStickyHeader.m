@@ -19,7 +19,6 @@
 #import "BPKCalendarStickyHeader.h"
 
 #import <Backpack/Font.h>
-#import <Backpack/Spacing.h>
 
 #import "BPKCalendarAppearance.h"
 

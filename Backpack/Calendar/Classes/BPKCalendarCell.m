@@ -25,7 +25,9 @@
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKCalendar.h"
+const CGFloat BPKCalendarCellTitleHeight = 31;
+const CGFloat BPKCalendarCellCircleHeight = 31.6;
+const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
 @interface BPKCalendarCell ()
 
@@ -56,29 +58,20 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    CGFloat padding = (CGRectGetWidth(self.bounds) - CGRectGetWidth(self.shapeLayer.bounds)) / 2.0 - 0.5;
-    if (padding > CGRectGetWidth(self.shapeLayer.bounds) / 8.0) {
-        padding = CGRectGetWidth(self.shapeLayer.bounds) / 8.0;
-    }
+    CGFloat paddingX = (CGRectGetWidth(self.bounds) - BPKCalendarCellCircleHeight) / 2.0;
 
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
-    self.selectionLayer.frame =
-        CGRectMake(0.0, CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.bounds), CGRectGetHeight(self.shapeLayer.frame));
+    self.selectionLayer.frame = CGRectMake(0.0, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
+
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.titleLabel.frame), BPKCalendarCellTitleHeight);
 
     CGRect selectionRect = CGRectZero;
-    CGRect bounds = self.selectionLayer.bounds;
-    CGFloat height = self.shapeLayer.fs_height;
-    CGFloat shapeLayerX = CGRectGetMinX(self.shapeLayer.frame);
-
-    UIColor *rangeColor = self.appearance.selectionColor;
-    self.selectionLayer.fillColor = rangeColor.CGColor;
+    CGRect bounds = self.bounds;
+    CGFloat height = BPKCalendarCellCircleHeight;
 
     self.samedayLayer.hidden = YES;
-    self.samedayLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) - padding, CGRectGetMinY(self.selectionLayer.frame),
-                                         CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.selectionLayer.frame));
-    self.samedayLayer.fillColor = [UIColor clearColor].CGColor;
-    self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
+    self.samedayLayer.frame = CGRectMake(paddingX - BPKCalendarCellSameDayXOffset, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.samedayLayer.bounds
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
@@ -89,6 +82,8 @@
 
     UIRectCorner corners = 0;
     CGSize cornerRadii = CGSizeZero;
+
+    self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
 
     switch (self.rowType) {
     case RowTypeStart:
@@ -120,16 +115,16 @@
     switch (self.selectionType) {
     case SelectionTypeMiddle:
         self.shapeLayer.hidden = !self.dateIsToday;
-        selectionRect = CGRectMake(0, 0, bounds.size.width, height);
+        selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds), height);
         break;
 
     case SelectionTypeTrailingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
+            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
         } else {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
+            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
@@ -137,10 +132,10 @@
     case SelectionTypeLeadingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(shapeLayerX, 0, bounds.size.width - shapeLayerX, height);
+            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
         } else {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, bounds.size.width - shapeLayerX, height);
+            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
@@ -148,7 +143,7 @@
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-        self.shapeLayer.frame = CGRectMake(self.shapeLayer.frame.origin.x + padding, self.shapeLayer.frame.origin.y,
+        self.shapeLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) + BPKCalendarCellSameDayXOffset, CGRectGetMinY(self.shapeLayer.frame),
                                            CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.shapeLayer.frame));
         break;
 
@@ -164,8 +159,15 @@
 - (void)configureAppearance {
     [super configureAppearance];
 
+    UIColor *rangeColor = self.appearance.selectionColor;
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
+
+    self.selectionLayer.fillColor = rangeColor.CGColor;
+    self.samedayLayer.fillColor = BPKColor.clear.CGColor;
+    self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
+    self.layer.borderColor = BPKColor.panjin.CGColor;
+    self.titleLabel.layer.borderColor = BPKColor.panjin.CGColor;
 
     if (self.titleLabel.text) {
         switch (self.selectionType) {

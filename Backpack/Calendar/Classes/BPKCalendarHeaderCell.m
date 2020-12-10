@@ -18,8 +18,6 @@
 
 #import "BPKCalendarHeaderCell.h"
 
-#import <Backpack/Color.h>
-#import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
 #import "BPKCalendar.h"

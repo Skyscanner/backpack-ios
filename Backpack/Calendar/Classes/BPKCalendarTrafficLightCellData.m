@@ -18,9 +18,6 @@
 
 #import "BPKCalendarTrafficLightCellData.h"
 
-#import <Backpack/Color.h>
-#import <Backpack/Common.h>
-
 #import "BPKCalendarColor.h"
 
 @implementation BPKCalendarTrafficLightCellData

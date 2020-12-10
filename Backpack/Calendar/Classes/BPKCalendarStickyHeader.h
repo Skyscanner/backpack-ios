@@ -17,9 +17,8 @@
  */
 
 #import <FSCalendar/FSCalendar.h>
-#import <FSCalendar/FSCalendarStickyHeader.h>
 
-#import <Backpack/Font.h>
+#import <FSCalendar/FSCalendarStickyHeader.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
