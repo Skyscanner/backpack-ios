@@ -38,6 +38,6 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
  *
  * @param data The additional data to be used in configuring the cell.
  */
-- (void)configureWithData:(id)data;
+- (void)configureWithData:(id _Nullable)data;
 
 @end

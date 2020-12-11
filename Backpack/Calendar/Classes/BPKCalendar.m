@@ -541,6 +541,8 @@ NSString *const HeaderDateFormat = @"MMMM";
                 }
             }
         }
+    } else {
+        [cell configureWithData:nil];
     }
 }
 

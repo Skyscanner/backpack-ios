@@ -22,7 +22,12 @@
 
 @implementation BPKCalendarTrafficLightCell
 
-- (void)configureWithData:(id)data {
+- (void)configureWithData:(id _Nullable)data {
+    if(data == nil) {
+        // Don't configure the preferred colours as the calendar will handle them for us
+        return;
+    }
+
     BPKCalendarTrafficLightCellData *trafficLightCellData = (BPKCalendarTrafficLightCellData *)data;
     self.preferredFillDefaultColor = trafficLightCellData.backgroundColor;
     self.preferredTitleDefaultColor = trafficLightCellData.foregroundColor;
