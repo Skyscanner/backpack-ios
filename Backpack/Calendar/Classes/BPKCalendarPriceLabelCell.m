@@ -26,8 +26,6 @@
 @implementation BPKCalendarPriceLabelCell
 
 - (instancetype)init {
-    _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
-
     self = [super init];
     if (self) {
         [self setup];
@@ -36,8 +34,6 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
-    _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
-
     self = [super initWithCoder:coder];
     if (self) {
         [self setup];
@@ -46,8 +42,6 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
-
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
@@ -56,6 +50,7 @@
 }
 
 - (void)setup {
+    _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
     [self.contentView addSubview:self.priceLabel];
     self.priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
@@ -66,7 +61,7 @@
     ]];
 }
 
-- (void)configureWithData:(id)data {
+- (void)configureWithData:(id _Nullable)data {
     if (data == nil) {
         self.priceLabel.text = nil;
         return;

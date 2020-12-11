@@ -209,7 +209,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     }
 }
 
-- (void)configureWithData:(id)data {
+- (void)configureWithData:(id _Nullable)data {
     NSAssert(false, @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
 }
 
