@@ -65,8 +65,9 @@
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
     [NSLayoutConstraint activateConstraints:@[
         [self.priceLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingSm / 2.0],
-        [self.priceLabel.centerXAnchor constraintEqualToAnchor:self.titleLabel.centerXAnchor],
-        [self.priceLabel.widthAnchor constraintLessThanOrEqualToAnchor:self.widthAnchor constant:-BPKSpacingMd]
+        [self.priceLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingSm],
+        [self.priceLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-BPKSpacingSm],
+        [self.priceLabel.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor]
     ]];
 }
 

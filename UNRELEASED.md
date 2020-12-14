@@ -5,6 +5,10 @@
  - Backpack/Calendar:
    - Small tweaks under the hood to make cell rendering more consistent in different size cells. The difference should be imperceivable.
 
+**Added:**
+ - Backpack/Calendar:
+   - Added price label configuration for showing price labels below calendar cells.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
