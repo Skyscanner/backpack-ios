@@ -95,7 +95,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.descriptionLabel.minimumScaleFactor = 0.7;
     self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
     self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    [self.descriptionLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+    [self.descriptionLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                           forAxis:UILayoutConstraintAxisVertical];
 
     self.buttonStackView = [[UIStackView alloc] initWithFrame:CGRectZero];
     self.buttonStackView.axis = UILayoutConstraintAxisVertical;
@@ -122,7 +123,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
 
-        [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor constant:BPKSpacingLg],
+        [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor
+                                                       constant:BPKSpacingLg],
         [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingMd],
         [self.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor constant:BPKSpacingMd],
         [self.bottomAnchor constraintEqualToAnchor:self.buttonStackView.bottomAnchor]

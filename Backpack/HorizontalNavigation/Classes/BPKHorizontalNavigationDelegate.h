@@ -48,7 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param index The index of the option selected by the user.
  * @param tag The tag of the option selected by the user.
  */
-- (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation didSelectItem:(NSInteger)index withTag:(NSInteger)tag;
+- (void)horizontalNavigation:(BPKHorizontalNavigation *)horizontalNavigation
+               didSelectItem:(NSInteger)index
+                     withTag:(NSInteger)tag;
 
 @end
 NS_ASSUME_NONNULL_END

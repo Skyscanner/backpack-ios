@@ -45,7 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param cellClass Class to use for individual cells.
  * @param cellDataClass Class used to represent additional cell-data.
- * @param rowHeight Specify height that calendar rows should be rendered. A sensible default rowHeight will be used if none is specified.
+ * @param rowHeight Specify height that calendar rows should be rendered. A sensible default rowHeight will be used if
+ * none is specified.
  * @return `BPKCalendarConfiguration` instance.
  */
 - (instancetype)initWithCellClass:(Class)cellClass cellDataClass:(Class)cellDataClass rowHeight:(CGFloat)rowHeight;

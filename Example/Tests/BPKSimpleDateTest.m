@@ -69,7 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
     NSDate *date = [sd dateForCalendar:calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -108,7 +109,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
     NSDate *date = [sd dateForCalendar:calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -147,7 +149,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
     NSDate *date = [sd dateForCalendar:calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);
@@ -186,7 +189,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSimpleDate *sd = [[BPKSimpleDate alloc] initWithYear:year month:month day:day];
 
     NSDate *date = [sd dateForCalendar:calendar];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
 
     XCTAssertEqual(dateComponents.year, year);
     XCTAssertEqual(dateComponents.month, month);

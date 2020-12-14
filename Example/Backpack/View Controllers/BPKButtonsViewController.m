@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
         }
     }
 
-    UIImage *smallLongArrowIcon =
-        self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
+    UIImage *smallLongArrowIcon = self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft]
+                                             : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Loading"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
@@ -143,7 +143,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isOutlineSectionWithLightStyle {
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 13.0, *)) {
-        return (self.style == BPKButtonStyleOutline && self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
+        return (self.style == BPKButtonStyleOutline &&
+                self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
     }
 #endif
 

@@ -73,7 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - <BPKBarChartCollectionViewDataSource>
 
-- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart valueDescriptionForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
+- (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart
+    valueDescriptionForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
     if (atIndex.item == 0) {
         return @"No price";
     }
@@ -92,7 +93,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSString *_Nonnull)barChart:(BPKBarChart *_Nonnull)barChart titleForBarAtIndex:(NSIndexPath *_Nonnull)atIndex {
-    NSString *weekdays[14] = {@"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun"};
+    NSString *weekdays[14] = {@"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun",
+                              @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat", @"Sun"};
     return weekdays[atIndex.item];
 }
 

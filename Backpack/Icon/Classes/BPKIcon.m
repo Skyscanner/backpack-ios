@@ -234,7 +234,8 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 
     CGFloat const *components = CGColorGetComponents(color.CGColor);
 
-    return [NSString stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
+    return [NSString
+        stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
 }
 
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {

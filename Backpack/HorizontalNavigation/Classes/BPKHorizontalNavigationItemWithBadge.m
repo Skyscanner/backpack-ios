@@ -61,8 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
         [self.containerView.trailingAnchor constraintEqualToAnchor:self.badge.trailingAnchor constant:0],
         [self.containerView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
         [self.containerView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-        [self.containerView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor constant:BPKSpacingBase],
-        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.containerView.trailingAnchor constant:BPKSpacingBase]
+        [self.containerView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor
+                                                                      constant:BPKSpacingBase],
+        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.containerView.trailingAnchor
+                                                         constant:BPKSpacingBase]
     ]];
 }
 

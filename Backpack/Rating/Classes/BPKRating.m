@@ -79,7 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.ratingBubble = [BPKRatingBubble new];
     self.ratingBubble.accessibilityElementsHidden = YES;
     self.size = BPKRatingSizeBase;
-    [self.ratingBubble setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [self.ratingBubble setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh
+                                                       forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:self.ratingBubble];
 
     self.textWrapper = [[BPKRatingTextWrapper alloc] initWithFrame:CGRectZero];
@@ -199,13 +200,15 @@ NS_ASSUME_NONNULL_BEGIN
     self.textWrapper.translatesAutoresizingMaskIntoConstraints = NO;
     self.ratingBubble.translatesAutoresizingMaskIntoConstraints = NO;
 
-    self.textSpacingConstraintHorizontal = [self.textWrapper.leadingAnchor constraintEqualToAnchor:self.ratingBubble.trailingAnchor
-                                                                                          constant:BPKSpacingMd];
+    self.textSpacingConstraintHorizontal =
+        [self.textWrapper.leadingAnchor constraintEqualToAnchor:self.ratingBubble.trailingAnchor constant:BPKSpacingMd];
 
-    self.textSpacingConstraintVertical = [self.textWrapper.topAnchor constraintEqualToAnchor:self.ratingBubble.bottomAnchor constant:BPKSpacingMd];
+    self.textSpacingConstraintVertical =
+        [self.textWrapper.topAnchor constraintEqualToAnchor:self.ratingBubble.bottomAnchor constant:BPKSpacingMd];
 
     self.horizontalLayoutConstraints = @[
-        [self.ratingBubble.leadingAnchor constraintEqualToAnchor:self.leadingAnchor], self.textSpacingConstraintHorizontal,
+        [self.ratingBubble.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        self.textSpacingConstraintHorizontal,
         [self.textWrapper.centerYAnchor constraintEqualToAnchor:self.ratingBubble.centerYAnchor]
     ];
 

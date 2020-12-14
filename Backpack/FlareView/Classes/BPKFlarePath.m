@@ -97,7 +97,10 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
 #pragma mark Private
 
-+ (void)appendFlareToPath:(UIBezierPath *)path size:(CGSize)size flareHeight:(CGFloat)flareHeight flarePosition:(BPKFlarePosition)flarePosition {
++ (void)appendFlareToPath:(UIBezierPath *)path
+                     size:(CGSize)size
+              flareHeight:(CGFloat)flareHeight
+            flarePosition:(BPKFlarePosition)flarePosition {
     CGFloat scale = flareHeight / BPKFlareVectorHeight;
     if (flarePosition == BPKFlarePositionTop) {
         scale = -1 * scale;

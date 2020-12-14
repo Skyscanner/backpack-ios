@@ -41,7 +41,8 @@ const static NSInteger LabelTag = 72817;
 - (void)setupViews {
     NSArray *factoryMethods = @[@"shadowSm", @"shadowLg"];
 
-    NSAssert(factoryMethods.count == self.shadowViews.count, @"Expected equal number of shadow views and factoryMethods");
+    NSAssert(factoryMethods.count == self.shadowViews.count,
+             @"Expected equal number of shadow views and factoryMethods");
 
     for (int i = 0; i < factoryMethods.count; i++) {
         UIView *shadowView = self.shadowViews[i];
@@ -50,7 +51,8 @@ const static NSInteger LabelTag = 72817;
         shadowLabel.textColor = [BPKColor skyGrayTint01];
 
         SEL selector = NSSelectorFromString(factoryMethods[i]);
-        NSAssert([BPKShadow respondsToSelector:selector], @"Expected BPKShadow to have factory method called %@", factoryMethods[i]);
+        NSAssert([BPKShadow respondsToSelector:selector], @"Expected BPKShadow to have factory method called %@",
+                 factoryMethods[i]);
 
         BPKShadow *shadow = [BPKShadow performSelector:selector];
         [shadow applyToLayer:shadowView.layer];

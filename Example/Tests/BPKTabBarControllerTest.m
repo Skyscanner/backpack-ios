@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testIsUITabBarController {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
 
-    XCTAssertTrue([tabBarController isKindOfClass:UITabBarController.class], "BPKTabBarController should be a subclass of UITabBarController");
+    XCTAssertTrue([tabBarController isKindOfClass:UITabBarController.class],
+                  "BPKTabBarController should be a subclass of UITabBarController");
 }
 
 @end

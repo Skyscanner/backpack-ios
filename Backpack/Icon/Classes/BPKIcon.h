@@ -101,7 +101,9 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @param size The size to render the icon in.
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
++ (UIImage *)iconNamed:(BPKIconName)name
+                 color:(UIColor *)color
+                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
 
 /**
  * Calculates the concrete point size a given BPKIconSize.

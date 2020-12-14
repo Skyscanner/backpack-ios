@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @implementation BPKNavigationBar
-@synthesize largeTitleView = _largeTitleView, titleView = _titleView, backgroundView = _backgroundView, borderView = _borderView,
-            backgroundEffect = _backgroundEffect;
+@synthesize largeTitleView = _largeTitleView, titleView = _titleView, backgroundView = _backgroundView,
+            borderView = _borderView, backgroundEffect = _backgroundEffect;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -152,7 +152,9 @@ NS_ASSUME_NONNULL_BEGIN
         adjustmentRequired = adjustedYOffset - (self.baseYOffset + BPKNavigationBarLargeTitleViewHeight);
     }
 
-    [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - adjustmentRequired) animated:YES];
+    [scrollView
+        setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - adjustmentRequired)
+                animated:YES];
 }
 
 - (void)updateWithScrollView:(UIScrollView *)scrollView {
@@ -190,7 +192,8 @@ NS_ASSUME_NONNULL_BEGIN
             self.collapsed = NO;
         }
 
-        self.largeTitleView.titleLabel.font = [self.largeTitleView.titleLabel.font fontWithSize:[self fontSizeForScrollOffset:adjustedYOffset]];
+        self.largeTitleView.titleLabel.font =
+            [self.largeTitleView.titleLabel.font fontWithSize:[self fontSizeForScrollOffset:adjustedYOffset]];
     }
 }
 
@@ -303,7 +306,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.largeTitleView.heightAnchor constraintGreaterThanOrEqualToConstant:BPKNavigationBarLargeTitleViewHeight];
     largeTitleViewHeightConstraint.priority = UILayoutPriorityDefaultHigh;
 
-    self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor constant:0.0];
+    self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor
+                                                                                     constant:0.0];
 
     [NSLayoutConstraint activateConstraints:@[
         // Background view

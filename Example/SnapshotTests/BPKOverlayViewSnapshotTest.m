@@ -57,10 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
     UIStackView *stackView = [self buildStackView];
 
     NSArray<BPKOverlayView *> *overlayViews = @[
-        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeNone cornerStyle:BPKOverlayViewCornerStyleNone],
-        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint cornerStyle:BPKOverlayViewCornerStyleNone],
-        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint cornerStyle:BPKOverlayViewCornerStyleSmall],
-        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint cornerStyle:BPKOverlayViewCornerStyleLarge]
+        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeNone
+                                        cornerStyle:BPKOverlayViewCornerStyleNone],
+        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint
+                                        cornerStyle:BPKOverlayViewCornerStyleNone],
+        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint
+                                        cornerStyle:BPKOverlayViewCornerStyleSmall],
+        [[BPKOverlayView alloc] initWithOverlayType:BPKOverlayViewOverlayTypeTint
+                                        cornerStyle:BPKOverlayViewCornerStyleLarge]
     ];
 
     for (BPKOverlayView *overlayView in overlayViews) {
@@ -86,7 +90,8 @@ NS_ASSUME_NONNULL_BEGIN
             UIView *foregroundContent = [self createForegroundView];
             [overlayView.foregroundView addSubview:foregroundContent];
             [NSLayoutConstraint activateConstraints:@[
-                [foregroundContent.widthAnchor constraintEqualToAnchor:overlayView.foregroundView.widthAnchor constant:-BPKSpacingLg],
+                [foregroundContent.widthAnchor constraintEqualToAnchor:overlayView.foregroundView.widthAnchor
+                                                              constant:-BPKSpacingLg],
                 [foregroundContent.centerXAnchor constraintEqualToAnchor:overlayView.foregroundView.centerXAnchor],
                 [foregroundContent.centerYAnchor constraintEqualToAnchor:overlayView.foregroundView.centerYAnchor],
                 [overlayView.foregroundView.heightAnchor constraintGreaterThanOrEqualToConstant:100],
@@ -109,8 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint
-        activateConstraints:@[[imageView.widthAnchor constraintEqualToConstant:200], [imageView.heightAnchor constraintEqualToConstant:150]]];
+    [NSLayoutConstraint activateConstraints:@[
+        [imageView.widthAnchor constraintEqualToConstant:200], [imageView.heightAnchor constraintEqualToConstant:150]
+    ]];
     return imageView;
 }
 

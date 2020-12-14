@@ -308,13 +308,15 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (self.iconView == nil) {
-        self.iconConstraints = @[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing]];
+        self.iconConstraints = @[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor
+                                                                               constant:chipHorizontalSpacing]];
     } else {
         self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
         self.iconConstraints = @[
             [self.iconView.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor],
             [self.iconView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:chipHorizontalSpacing],
-            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconView.trailingAnchor constant:chipIconSpacing]
+            [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconView.trailingAnchor
+                                                          constant:chipIconSpacing]
         ];
     }
 

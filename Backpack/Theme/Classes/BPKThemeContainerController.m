@@ -33,20 +33,25 @@ NS_ASSUME_NONNULL_BEGIN
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition rootViewController:(nonnull UIViewController *)rootViewController {
+- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
+                     rootViewController:(nonnull UIViewController *)rootViewController {
     self = [super initWithContainerClass:themeDefinition.themeContainerClass rootViewController:rootViewController];
 
     if (self) {
         _themeDefinition = themeDefinition;
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTheme:) name:BPKTheme.didChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveTheme:)
+                                                     name:BPKTheme.didChangeNotification
+                                                   object:nil];
     }
 
     return self;
 }
 
 - (instancetype)createIdenticalContainerControllerForRootController:(UIViewController *)rootController {
-    return [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition rootViewController:rootController];
+    return [[BPKThemeContainerController alloc] initWithThemeDefinition:_themeDefinition
+                                                     rootViewController:rootController];
 }
 
 - (void)receiveTheme:(NSNotification *)notification {

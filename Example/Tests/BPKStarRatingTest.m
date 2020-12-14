@@ -30,19 +30,22 @@
 - (void)test_whenInitialisedWithoutSize_thenSmallSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] init];
 
-    XCTAssert(ratingView.size == BPKStarSizeSmall, "When initialised with small size then small size should be returned.");
+    XCTAssert(ratingView.size == BPKStarSizeSmall,
+              "When initialised with small size then small size should be returned.");
 }
 
 - (void)test_whenInitialisedWithSmallSize_thenSmallSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeSmall];
 
-    XCTAssert(ratingView.size == BPKStarSizeSmall, "When initialised with small size then small size should be returned.");
+    XCTAssert(ratingView.size == BPKStarSizeSmall,
+              "When initialised with small size then small size should be returned.");
 }
 
 - (void)test_whenInitialisedWithLargeSize_thenLargeSizeIsReturned {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:BPKStarSizeLarge];
 
-    XCTAssert(ratingView.size == BPKStarSizeLarge, "When initialised with large size then large size should be returned.");
+    XCTAssert(ratingView.size == BPKStarSizeLarge,
+              "When initialised with large size then large size should be returned.");
 }
 
 - (void)test_whenSizeHasChanged_thenChangedSizeIsReturned {

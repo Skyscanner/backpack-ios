@@ -28,7 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
  * BPKSnackbarDurationShort  the snackbar will disappear after 2 seconds.
  * BPKSnackbarDurationLong  the snackbar will disappear after 3.5 seconds.
  */
-typedef NS_ENUM(NSInteger, BPKSnackbarDuration) { BPKSnackbarDurationIndefinite, BPKSnackbarDurationShort, BPKSnackbarDurationLong };
+typedef NS_ENUM(NSInteger, BPKSnackbarDuration) {
+    BPKSnackbarDurationIndefinite,
+    BPKSnackbarDurationShort,
+    BPKSnackbarDurationLong
+};
 
 @class BPKSnackbarButton;
 /**

@@ -59,12 +59,15 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
     [self addSubview:self.titleLabel];
-    [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                     forAxis:UILayoutConstraintAxisHorizontal];
 
     self.subtitleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.subtitleLabel.fontStyle = BPKFontStyleTextBase;
-    self.subtitleLabel.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint01 darkVariant:BPKColor.textSecondaryLightColor];
-    [self.subtitleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    self.subtitleLabel.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint01
+                                                              darkVariant:BPKColor.textSecondaryLightColor];
+    [self.subtitleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                        forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:self.subtitleLabel];
 
     [self setUpConstraints];

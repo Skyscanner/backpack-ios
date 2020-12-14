@@ -20,7 +20,8 @@
     }
 
     UIFont *font = [UIFont fontWithName:name size:size];
-    NSString *error = [NSString stringWithFormat:@"The fontface %@ is not available. Please make sure you have installed it correctly!", name];
+    NSString *error = [NSString
+        stringWithFormat:@"The fontface %@ is not available. Please make sure you have installed it correctly!", name];
     NSAssert(font != nil, error);
     if (font != nil) {
         return font;

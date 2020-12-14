@@ -119,8 +119,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
-                                                                                                                   forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
+        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
 
@@ -134,8 +134,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
-                                                                                                                   forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
+        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
     bpkCalendar.dateSelectedContentColor = UIColor.orangeColor;
@@ -151,8 +151,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
-                                                                                                                   forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
+        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
 

@@ -81,8 +81,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createStackWithFontStyleEmphasized {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized, BPKFontStyleTextSmEmphasized,  BPKFontStyleTextBaseEmphasized,
-        BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized,   BPKFontStyleTextSmEmphasized,
+        BPKFontStyleTextBaseEmphasized, BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized,
+        BPKFontStyleTextXxlEmphasized,  BPKFontStyleTextXxxlEmphasized,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);

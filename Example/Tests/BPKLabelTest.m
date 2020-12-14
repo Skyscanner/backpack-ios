@@ -79,9 +79,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     [label setFontStyle:BPKFontStyleTextXxlHeavy range:range3];
 
-    NSDictionary<NSAttributedStringKey, id> *range1Attributes = [label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1];
-    NSDictionary<NSAttributedStringKey, id> *range2Attributes = [label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2];
-    NSDictionary<NSAttributedStringKey, id> *range3Attributes = [label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3];
+    NSDictionary<NSAttributedStringKey, id> *range1Attributes =
+        [label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1];
+    NSDictionary<NSAttributedStringKey, id> *range2Attributes =
+        [label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2];
+    NSDictionary<NSAttributedStringKey, id> *range3Attributes =
+        [label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3];
 
     XCTAssertEqualObjects(label.text, sampleText2);
     XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase]);
@@ -94,7 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
     nativeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     nativeLabel.numberOfLines = 0;
     nativeLabel.textAlignment = NSTextAlignmentCenter;
-    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized content:@"SDIJSOIFSJFO"];
+    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
+                                                                content:@"SDIJSOIFSJFO"];
     CGSize nativeLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
                                         withHorizontalFittingPriority:UILayoutPriorityRequired
                                               verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
@@ -103,7 +107,8 @@ NS_ASSUME_NONNULL_BEGIN
     bpkLabel.lineBreakMode = NSLineBreakByWordWrapping;
     bpkLabel.numberOfLines = 0;
     bpkLabel.textAlignment = NSTextAlignmentCenter;
-    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized content:@"SDIJSOIFSJFO"];
+    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized
+                                                             content:@"SDIJSOIFSJFO"];
     CGSize bpkLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
                                      withHorizontalFittingPriority:UILayoutPriorityRequired
                                            verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
