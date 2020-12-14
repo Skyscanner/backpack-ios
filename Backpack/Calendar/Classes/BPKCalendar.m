@@ -334,6 +334,7 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
     BPKCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:CellReuseId forDate:date atMonthPosition:monthPosition];
+    [cell prepareForReuse];
     return cell;
 }
 
@@ -541,8 +542,6 @@ NSString *const HeaderDateFormat = @"MMMM";
                 }
             }
         }
-    } else {
-        [cell configureWithData:nil];
     }
 }
 
