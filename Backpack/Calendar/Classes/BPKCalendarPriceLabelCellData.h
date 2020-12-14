@@ -35,14 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithPrice:(NSString *)price labelStyle:(BPKCalendarPriceLabelStyle *)labelStyle;
 
 /**
- * The background colour to use on the cell.
+ * The price value to be shown below the cell.
  */
-@property(readonly, nonatomic) NSString *price;
+@property(nonatomic, readonly) NSString *price;
 
 /**
  * The style to apply to the price label.
  */
-@property(readonly, nonatomic) BPKCalendarPriceLabelStyle *labelStyle;
+@property(nonatomic, readonly) BPKCalendarPriceLabelStyle *labelStyle;
 
 @end
 

@@ -18,9 +18,9 @@
 
 #import "BPKCalendarCell.h"
 
-#import <Backpack/Label.h>
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class BPKLabel;
 
 /**
  * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows cusotmisation of the cell fill colour and

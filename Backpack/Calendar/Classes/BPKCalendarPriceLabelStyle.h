@@ -34,22 +34,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithColor:(UIColor *)color bold:(BOOL)bold;
 
 /**
- * The foreground colour to use on the cell.
+ * The foreground colour to use on the cell's price label.
  */
-@property(readonly, nonatomic) UIColor *color;
+@property(nonatomic, readonly) UIColor *color;
 
 /**
  * Whether the price should be emphasized or not.
  */
-@property(readonly, nonatomic) BOOL bold;
+@property(nonatomic, readonly) BOOL bold;
 
 /**
- * The label style for normal calendar cell price labels.
+ * The label style for negative calendar cell price labels.
  */
 @property(class, readonly) BPKCalendarPriceLabelStyle *negative;
 
 /**
- * The label style for normal calendar cell price labels.
+ * The label style for calendar cells with no data.
  */
 @property(class, readonly) BPKCalendarPriceLabelStyle *noData;
 

@@ -19,6 +19,7 @@
 #import "BPKCalendarPriceLabelCell.h"
 
 #import <Backpack/Spacing.h>
+#import <Backpack/Label.h>
 
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelStyle.h"
@@ -61,12 +62,13 @@
     ]];
 }
 
-- (void)configureWithData:(id _Nullable)data {
-    if (data == nil) {
-        self.priceLabel.text = nil;
-        return;
-    }
+- (void)prepareForReuse {
+    [super prepareForReuse];
 
+    self.priceLabel.text = nil;
+}
+
+- (void)configureWithData:(id)data {
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.color;

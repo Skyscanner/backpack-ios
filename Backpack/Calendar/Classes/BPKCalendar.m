@@ -461,7 +461,6 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance titleDefaultColorForDate:(nonnull NSDate *)date {
     if ([self isDateEnabled:date]) {
-
         if ([self.delegate respondsToSelector:@selector(DONT_USE_calendar:titleColorForDate:)]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -542,8 +541,6 @@ NSString *const HeaderDateFormat = @"MMMM";
                 }
             }
         }
-    } else {
-        [cell configureWithData:nil];
     }
 }
 
