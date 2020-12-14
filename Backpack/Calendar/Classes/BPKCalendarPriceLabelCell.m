@@ -52,6 +52,8 @@
 
 - (void)setup {
     _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
+    self.priceLabel.numberOfLines = 0;
+    self.priceLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.contentView addSubview:self.priceLabel];
     self.priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
