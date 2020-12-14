@@ -24,6 +24,12 @@
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelStyle.h"
 
+@interface BPKCalendarPriceLabelCell ()
+
+@property(nonatomic, strong, nonnull) BPKLabel *priceLabel;
+
+@end
+
 @implementation BPKCalendarPriceLabelCell
 
 - (instancetype)init {
@@ -51,9 +57,9 @@
 }
 
 - (void)setup {
-    _priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
-    self.priceLabel.numberOfLines = 0;
-    self.priceLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
+    self.priceLabel.numberOfLines = 2;
+    self.priceLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self.contentView addSubview:self.priceLabel];
     self.priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
@@ -74,7 +80,7 @@
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.color;
-    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.bold ? BPKFontStyleTextSmEmphasized : BPKFontStyleTextSm;
+    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextSmEmphasized : BPKFontStyleTextSm;
 }
 
 @end

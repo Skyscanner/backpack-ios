@@ -21,8 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class BPKCalendarPriceLabelStyle;
 
 /**
- * `BPKCalendarPriceLabelCellData` contains the properties required to customise a calendar cell under a traffic-light
- * system to colour cells according to data.
+ * `BPKCalendarPriceLabelCellData` contains the properties required to show a price label under a calendar cell.
  */
 @interface BPKCalendarPriceLabelCellData : NSObject
 

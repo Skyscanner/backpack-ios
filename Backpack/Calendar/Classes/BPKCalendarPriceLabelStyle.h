@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Whether the price should be emphasized or not.
  */
-@property(nonatomic, readonly) BOOL bold;
+@property(nonatomic, readonly, getter=isBold) BOOL bold;
 
 /**
  * The label style for negative calendar cell price labels.

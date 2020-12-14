@@ -23,8 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class BPKLabel;
 
 /**
- * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows cusotmisation of the cell fill colour and
- * title colour.
+ * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows a custom label containing auxillary price information to be shown below the cell.
  */
 @interface BPKCalendarPriceLabelCell : BPKCalendarCell
 
