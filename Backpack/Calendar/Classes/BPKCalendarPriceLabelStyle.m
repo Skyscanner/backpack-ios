@@ -18,6 +18,8 @@
 
 #import "BPKCalendarPriceLabelStyle.h"
 
+#import <Backpack/Color.h>
+
 #import "BPKCalendarColor.h"
 
 @implementation BPKCalendarPriceLabelStyle
@@ -27,7 +29,7 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKCalendarColor.noDataColor bold:NO];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKColor.textSecondaryColor bold:NO];
     });
 
     return style;
@@ -38,7 +40,7 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKCalendarColor.negativeColor bold:NO];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKColor.textSecondaryColor bold:NO];
     });
 
     return style;
