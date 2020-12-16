@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:calendar];
 
+    // Uses iPhone 6 screen dimensions (375pt x 667pt)
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[calendar]-16-|"
                                                                        options:0
                                                                        metrics:nil
@@ -60,11 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
                                                                        options:0
                                                                        metrics:nil
                                                                          views:@{@"calendar": calendar}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(320)]"
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(375)]"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:@{@"parentView": parentView}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[parentView(568)]"
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[parentView(667)]"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:@{@"parentView": parentView}]];
