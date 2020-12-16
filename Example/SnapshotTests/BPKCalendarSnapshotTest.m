@@ -218,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:date1 toDate:date2 options:0];
 
     if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
-        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"£14" labelStyle:BPKCalendarPriceLabelStyle.positive] : BPKCalendarTrafficLightCellData.positive;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"458.100₫" labelStyle:BPKCalendarPriceLabelStyle.positive] : BPKCalendarTrafficLightCellData.positive;
     }
 
     if (components.day == 4 || components.day == 10 || components.day == 24) {
@@ -226,7 +226,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
-        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"£28" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.neutral;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"984.400₫" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.neutral;
     }
 
     if (components.day == 13) {

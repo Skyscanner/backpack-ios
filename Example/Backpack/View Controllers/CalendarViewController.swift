@@ -32,7 +32,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
 
     var lowPrice = BPKCalendarPriceLabelCellData(price: "£14", labelStyle: BPKCalendarPriceLabelStyle.positive)
     var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
-    var highPrice = BPKCalendarPriceLabelCellData(price: "11.884.400₫", labelStyle: BPKCalendarPriceLabelStyle.negative)
+    var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
     var noPrice = BPKCalendarPriceLabelCellData(price: "-", labelStyle: BPKCalendarPriceLabelStyle.noData)
 
     override func viewDidLoad() {
@@ -75,8 +75,8 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             } else {
                 let lastSelectedDate = dateList.first
                 let newMaxDate = BPKSimpleDate(year: lastSelectedDate!.year,
-                                            month: lastSelectedDate!.month + 1,
-                                            day: lastSelectedDate!.day)
+                                               month: lastSelectedDate!.month + 1,
+                                               day: lastSelectedDate!.day)
                 self.currentMaxEnabledDate = newMaxDate.date(for: calendar.gregorian)
             }
         }
