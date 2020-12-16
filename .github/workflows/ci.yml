@@ -109,8 +109,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
 
       - name: Build and verify docs
-        if: steps.extract_git_tag.outputs.GIT_TAG == ''
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/master'
         run: ./scripts/build-docs-ci && rm -rf docs
+
+      - name: Build (pull request build)
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/master'
+        run: ./scripts/build-docs-ci $PR_NUMBER
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Build docs
         if: steps.extract_git_tag.outputs.GIT_TAG != ''
@@ -141,6 +147,16 @@ jobs:
           external_repository: backpack/ios
           publish_branch: master
 
+      - name: Deploy docs to backpack.github.io/ios-prs, if a pull request
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref != 'refs/heads/master'
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: docs/versions/
+          keep_files: true
+          external_repository: backpack/ios-prs
+          publish_branch: main
+
   trigger_docs:
     name: Trigger docs build
     if: github.ref == 'refs/heads/master'
@@ -153,5 +169,18 @@ jobs:
         run: |
           curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"master","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
 
+  comment_on_pr:
+    needs: CI
+    name: Comment on PR
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-20.04
 
-
+    steps:
+      - name: Link to the pull request build
+        uses: unsplash/comment-on-pr@master
+        if: github.ref != 'refs/heads/master'
+        with:
+          msg: 'Visit https://backpack.github.io/ios-prs/${{ env.PR_NUMBER }} to see the docs for this PR.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
