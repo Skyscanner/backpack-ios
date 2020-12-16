@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The label displayed at the bottom of the cell.
  */
-@property(nonatomic, strong, nonnull, readonly) BPKLabel *priceLabel;
+@property(nonatomic, strong, readonly) BPKLabel *priceLabel;
 
 @end
 

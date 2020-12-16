@@ -222,11 +222,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (components.day == 4 || components.day == 10 || components.day == 24) {
-        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"11.884.400₫" labelStyle:BPKCalendarPriceLabelStyle.negative] : BPKCalendarTrafficLightCellData.negative;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"This should truncate" labelStyle:BPKCalendarPriceLabelStyle.negative] : BPKCalendarTrafficLightCellData.negative;
     }
 
     if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
-        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"984.400₫" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.neutral;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"113.884.400₫" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.neutral;
     }
 
     if (components.day == 13) {

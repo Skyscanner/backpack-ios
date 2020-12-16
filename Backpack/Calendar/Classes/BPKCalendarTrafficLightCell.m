@@ -23,6 +23,7 @@
 @implementation BPKCalendarTrafficLightCell
 
 - (void)configureWithData:(id)data {
+    NSAssert([data isKindOfClass:BPKCalendarTrafficLightCellData.class], @"BPKCalendarTrafficLightCell can only be configured with data of type BPKCalendarTrafficLightCellData");
     BPKCalendarTrafficLightCellData *trafficLightCellData = (BPKCalendarTrafficLightCellData *)data;
     self.preferredFillDefaultColor = trafficLightCellData.backgroundColor;
     self.preferredTitleDefaultColor = trafficLightCellData.foregroundColor;

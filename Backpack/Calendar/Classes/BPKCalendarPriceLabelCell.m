@@ -78,9 +78,10 @@
 }
 
 - (void)configureWithData:(id)data {
+    NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class], @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
     self.priceLabel.text = priceLabelCellData.price;
-    self.priceLabel.textColor = priceLabelCellData.labelStyle.color;
+    self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
     self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
 }
 

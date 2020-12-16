@@ -29,7 +29,7 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKColor.textSecondaryColor bold:NO];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithTextColor:BPKColor.textSecondaryColor bold:NO];
     });
 
     return style;
@@ -40,7 +40,7 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKColor.textSecondaryColor bold:NO];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithTextColor:BPKColor.textSecondaryColor bold:NO];
     });
 
     return style;
@@ -51,16 +51,16 @@
     static BPKCalendarPriceLabelStyle *style;
 
     dispatch_once(&onceToken, ^{
-      style = [[BPKCalendarPriceLabelStyle alloc] initWithColor:BPKCalendarColor.positiveColor bold:YES];
+      style = [[BPKCalendarPriceLabelStyle alloc] initWithTextColor:BPKCalendarColor.positiveColor bold:YES];
     });
 
     return style;
 }
 
-- (instancetype)initWithColor:(UIColor *)color bold:(BOOL)bold {
+- (instancetype)initWithTextColor:(UIColor *)textColor bold:(BOOL)bold {
     self = [super init];
     if (self) {
-        _color = color;
+        _textColor = textColor;
         _bold = bold;
     }
     return self;

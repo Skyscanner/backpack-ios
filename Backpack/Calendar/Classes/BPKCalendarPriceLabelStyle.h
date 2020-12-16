@@ -27,16 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Creates a `BPKCalendarPriceLabelStyle` with the specific values.
  *
- * @param color The text color to apply.
+ * @param textColor The text color to apply.
  * @param bold Whether the font should be bold or not.
  * @return `BPKCalendarPriceLabelStyle` instance.
  */
-- (instancetype)initWithColor:(UIColor *)color bold:(BOOL)bold;
+- (instancetype)initWithTextColor:(UIColor *)textColor bold:(BOOL)bold;
 
 /**
  * The foreground colour to use on the cell's price label.
  */
-@property(nonatomic, readonly) UIColor *color;
+@property(nonatomic, readonly) UIColor *textColor;
 
 /**
  * Whether the price should be emphasized or not.
