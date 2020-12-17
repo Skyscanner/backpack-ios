@@ -52,23 +52,18 @@ NS_ASSUME_NONNULL_BEGIN
     parentView.backgroundColor = [BPKColor white];
     [parentView addSubview:calendar];
 
-    // Uses iPhone 6 screen dimensions (375pt x 667pt)
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-16-[calendar]-16-|"
+
+    CGSize screenSize = CGSizeMake(375, 667); // iPhone 6 screen dimensions
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[calendar]-0-|"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:@{@"calendar": calendar}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[calendar]-16-|"
+    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[calendar]-0-|"
                                                                        options:0
                                                                        metrics:nil
                                                                          views:@{@"calendar": calendar}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[parentView(375)]"
-                                                                       options:0
-                                                                       metrics:nil
-                                                                         views:@{@"parentView": parentView}]];
-    [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[parentView(667)]"
-                                                                       options:0
-                                                                       metrics:nil
-                                                                         views:@{@"parentView": parentView}]];
+    [parentView addConstraint:[parentView.widthAnchor constraintEqualToConstant:screenSize.width]];
+    [parentView addConstraint:[parentView.heightAnchor constraintEqualToConstant:screenSize.height]];
     [parentView layoutIfNeeded];
 }
 
