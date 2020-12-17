@@ -23,6 +23,7 @@ enum CalendarSegueIdentifier: String {
     case `default` = "Default"
     case withMaxEnabledDate = "WithMaxEnabledDate"
     case withCustomStyles = "WithCustomStyles"
+    case withPrices = "WithPrices"
 }
 
 class CalendarSelectorViewController: UITableViewController {
@@ -42,6 +43,9 @@ class CalendarSelectorViewController: UITableViewController {
             case .withCustomStyles:
                 target.title = "Custom Styles for specific dates"
                 target.customStylesForDates = true
+            case .withPrices:
+                target.title = "With prices"
+                target.showPrices = true
             }
         } else {
             fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")

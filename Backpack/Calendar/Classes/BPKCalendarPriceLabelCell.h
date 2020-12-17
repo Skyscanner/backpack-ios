@@ -16,20 +16,22 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
 #import "BPKCalendarCell.h"
-#import "BPKCalendarColor.h"
-#import "BPKCalendarConfiguration.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarPriceLabelCell.h"
-#import "BPKCalendarPriceLabelCellData.h"
-#import "BPKCalendarPriceLabelConfiguration.h"
-#import "BPKCalendarPriceLabelStyle.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarTrafficLightCell.h"
-#import "BPKCalendarTrafficLightCellData.h"
-#import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarYearPill.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class BPKLabel;
+
+/**
+ * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows a custom label containing auxillary price information to be shown below the cell.
+ */
+@interface BPKCalendarPriceLabelCell : BPKCalendarCell
+
+/**
+ * The label displayed at the bottom of the cell.
+ */
+@property(nonatomic, strong, readonly) BPKLabel *priceLabel;
+
+@end
+
+NS_ASSUME_NONNULL_END

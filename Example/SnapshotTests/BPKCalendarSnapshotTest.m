@@ -27,6 +27,7 @@
 @property NSDate *date1;
 @property NSDate *date2;
 @property BOOL isColoringDates;
+@property BOOL isShowingPrices;
 
 @end
 
@@ -44,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.date1 = [NSDate dateWithTimeIntervalSince1970:2175785688];
     self.date2 = [NSDate dateWithTimeIntervalSince1970:2176044888];
     self.isColoringDates = NO;
+    self.isShowingPrices = NO;
 }
 
 - (void)configureParentView:(UIView *)parentView forCalendar:(BPKCalendar *)calendar {
@@ -170,11 +172,26 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testCalendarWithPriceLabels {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithConfiguration:[BPKCalendarPriceLabelConfiguration new]];
+
+    [self configureParentView:parentView forCalendar:bpkCalendar];
+    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+
+    bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
+    self.isShowingPrices = YES;
+    bpkCalendar.delegate = self;
+    [bpkCalendar reloadData];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 #pragma mark - <BPKCalendarDelegate>
 
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date {
 
-    if (self.isColoringDates) {
+    if (self.isColoringDates || self.isShowingPrices) {
         return YES;
     }
 
@@ -191,8 +208,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date {
-    if (!self.isColoringDates) {
-        return BPKCalendarTrafficLightCellData.normal;
+    if (!self.isColoringDates && !self.isShowingPrices) {
+        return nil;
     }
     NSCalendar *cal = calendar.gregorian;
     NSDate *convertedDate = [date dateForCalendar:calendar.gregorian];
@@ -201,15 +218,15 @@ NS_ASSUME_NONNULL_BEGIN
     NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:date1 toDate:date2 options:0];
 
     if (components.day == 2 || components.day == 8 || components.day == 12 || components.day == 20) {
-        return BPKCalendarTrafficLightCellData.positive;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"458.100₫" labelStyle:BPKCalendarPriceLabelStyle.positive] : BPKCalendarTrafficLightCellData.positive;
     }
 
     if (components.day == 4 || components.day == 10 || components.day == 24) {
-        return BPKCalendarTrafficLightCellData.negative;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"This should truncate" labelStyle:BPKCalendarPriceLabelStyle.negative] : BPKCalendarTrafficLightCellData.negative;
     }
 
     if (components.day == 1 || components.day == 3 || components.day == 11 || components.day == 22) {
-        return BPKCalendarTrafficLightCellData.neutral;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"113.884.400₫" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.neutral;
     }
 
     if (components.day == 13) {
@@ -217,10 +234,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (components.day == 15) {
-        return BPKCalendarTrafficLightCellData.normal;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"-" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.normal;
     }
 
-    return BPKCalendarTrafficLightCellData.noData;
+    return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"-" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.noData;
 }
 
 #pragma clang diagnostic push
