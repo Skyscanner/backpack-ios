@@ -1,6 +1,8 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - The range-selection colour in the calendar has been toned down a bit.
 
 ## How to write a good changelog entry
 
