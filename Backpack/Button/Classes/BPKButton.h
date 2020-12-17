@@ -134,10 +134,12 @@ IB_DESIGNABLE @interface BPKButton : UIButton
 @property(nullable, nonatomic, strong) UIColor *linkContentColor UI_APPEARANCE_SELECTOR;
 
 /// :nodoc:
-- (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
+- (void)setTitle:(NSString *_Nullable)title
+        forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
 
 /// :nodoc:
-- (void)setImage:(UIImage *_Nullable)image forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
+- (void)setImage:(UIImage *_Nullable)image
+        forState:(UIControlState)state __attribute__((unavailable("use setImage: instead")));
 
 /**
  * The title displayed by the button.

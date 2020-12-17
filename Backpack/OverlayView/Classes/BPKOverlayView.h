@@ -77,8 +77,9 @@ IB_DESIGNABLE @interface BPKOverlayView : UIView
                                  cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable("`addSubview` cannot be used on BPKOverlayView. Use the `backgroundView` and "
-                                                             "`foregroundView` properties to set content instead")));
+- (void)addSubview:(UIView *)view
+    __attribute__((unavailable("`addSubview` cannot be used on BPKOverlayView. Use the `backgroundView` and "
+                               "`foregroundView` properties to set content instead")));
 
 @end
 

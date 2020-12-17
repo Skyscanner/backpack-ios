@@ -60,7 +60,9 @@ typedef void (^BPKDialogButtonActionHandler)(BPKDialogButtonAction *);
  * @param style The style of the `BPKButton` to use.
  * @param handler The handler to invoke when the button is tapped.
  */
-+ (instancetype _Nonnull)actionWithTitle:(NSString *)title style:(BPKButtonStyle)style handler:(BPKDialogButtonActionHandler)handler;
++ (instancetype _Nonnull)actionWithTitle:(NSString *)title
+                                   style:(BPKButtonStyle)style
+                                 handler:(BPKDialogButtonActionHandler)handler;
 
 /// :nodoc:
 - (instancetype _Nonnull)init __attribute__((unavailable("init not available, use actionWithTitle:")));

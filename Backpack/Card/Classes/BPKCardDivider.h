@@ -45,14 +45,16 @@ IB_DESIGNABLE @interface BPKCardDivider : UIView
     __attribute__((unavailable("CardDivider cannot be initialised with frame. Use `initWithOrientation` instead")));
 
 /// :nodoc:
-- (instancetype)init __attribute__((unavailable("CardDivider cannot be initialised using `init`. Use `initWithOrientation` instead")));
+- (instancetype)init
+    __attribute__((unavailable("CardDivider cannot be initialised using `init`. Use `initWithOrientation` instead")));
 
 /// :nodoc:
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder
     __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
 
 /// :nodoc:
-+ (instancetype)new __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
++ (instancetype)new
+    __attribute__((unavailable("CardDivider cannot be initialised with coder. Use `initWithOrientation` instead")));
 
 /**
  * Set the orientation for the card divider

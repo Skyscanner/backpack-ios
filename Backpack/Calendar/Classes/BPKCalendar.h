@@ -113,7 +113,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @see BPKCalendarTrafficLightConfiguration
  * @return A configured calendar.
  */
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration;
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration;
 
 /**
  * Create a calendar with given configuration

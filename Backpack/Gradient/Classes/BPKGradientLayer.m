@@ -79,7 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)cgColors, locations);
     free(locations);
     CGPoint start = self.gradient.startPoint, end = self.gradient.endPoint;
-    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(start.x * width, start.y * height), CGPointMake(end.x * width, end.y * height),
+    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(start.x * width, start.y * height),
+                                CGPointMake(end.x * width, end.y * height),
                                 kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);

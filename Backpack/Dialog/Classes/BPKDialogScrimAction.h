@@ -50,7 +50,8 @@ typedef void (^BPKDialogScrimActionHandler)(BOOL didDismiss);
 + (instancetype _Nonnull)actionWithHandler:(BPKDialogScrimActionHandler)handler shouldDismiss:(BOOL)shouldDismiss;
 
 /// :nodoc:
-- (instancetype _Nonnull)init __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
+- (instancetype _Nonnull)init
+    __attribute__((unavailable("use the static method configurationWithActionHandler: instead")));
 
 @end
 

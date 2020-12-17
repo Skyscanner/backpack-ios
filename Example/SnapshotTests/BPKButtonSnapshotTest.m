@@ -36,7 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultPrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -52,7 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingPrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -68,7 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -84,7 +93,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -100,7 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleDestructive applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -116,7 +131,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleDestructive applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -132,7 +150,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -148,7 +169,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -164,7 +188,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleLink applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleLink
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -180,7 +207,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleLink applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleLink
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -196,7 +226,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleOutline applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleOutline
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -212,7 +245,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDefaultLoadingOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleOutline applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleOutline
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -228,7 +264,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargePrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStylePrimary applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -244,7 +283,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingPrimary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStylePrimary applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -260,7 +302,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleSecondary applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -276,7 +321,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingSecondary {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleSecondary applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -292,7 +340,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleDestructive applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -308,7 +359,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingDestructive {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleDestructive applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -324,7 +378,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleFeatured applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -340,7 +397,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingFeatured {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleFeatured applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -356,7 +416,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleLink applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleLink
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -372,7 +435,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingLink {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleLink applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleLink
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -388,7 +454,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleOutline applyTheme:NO loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleOutline
+                                           applyTheme:NO
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -404,7 +473,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeLoadingOutline {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleOutline applyTheme:NO loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge
+                                                style:BPKButtonStyleOutline
+                                           applyTheme:NO
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -420,7 +492,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createPrimaryWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:YES loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:YES
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -436,7 +511,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createPrimaryLoadingWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStylePrimary applyTheme:YES loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStylePrimary
+                                           applyTheme:YES
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -452,7 +530,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createSecondaryWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary applyTheme:YES loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:YES
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -468,7 +549,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createSecondaryLoadingWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleSecondary applyTheme:YES loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleSecondary
+                                           applyTheme:YES
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -484,7 +568,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createFeaturedWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:YES loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:YES
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -500,7 +587,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createFeaturedLoadingWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleFeatured applyTheme:YES loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleFeatured
+                                           applyTheme:YES
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -516,7 +606,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDestructiveWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleDestructive applyTheme:YES loading:NO];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:YES
+                                              loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -532,7 +625,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createDestructiveLoadingWithTheme {
-    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleDestructive applyTheme:YES loading:YES];
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault
+                                                style:BPKButtonStyleDestructive
+                                           applyTheme:YES
+                                              loading:YES];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     view.frame = CGRectMake(0, 0, size.width, size.height);
 
@@ -549,7 +645,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private
 
-- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme loading:(BOOL)loading {
+- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size
+                                   style:(BPKButtonStyle)style
+                              applyTheme:(BOOL)applyTheme
+                                 loading:(BOOL)loading {
     UIImage *smallIcon = [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
 
     UIStackView *horizontalStackview = [[UIStackView alloc] initWithFrame:CGRectZero];

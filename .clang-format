@@ -1,4 +1,4 @@
-ColumnLimit: 150
+ColumnLimit: 120
 IndentWidth: 4
 SpacesInContainerLiterals: false
 UseTab: Never

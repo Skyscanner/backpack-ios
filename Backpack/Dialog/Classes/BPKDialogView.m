@@ -118,7 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView = [[BPKDialogContentView alloc] initWithFrame:CGRectZero];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.clipsToBounds = NO;
-    [self.contentView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+    [self.contentView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                      forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (void)addViews {
@@ -157,16 +158,19 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self.hasIcon) {
         CGSize iconViewSize = [[self.iconView class] viewSize];
-        self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
-                                                                                         constant:-(iconViewSize.height / 2.0)];
+        self.backgroundViewTopConstraint =
+            [self.backgroundView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
+                                                          constant:-(iconViewSize.height / 2.0)];
     } else {
         self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor];
     }
 
     if (self.hasFlareView) {
-        self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.flareView.bottomAnchor constant:BPKSpacingBase];
+        self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.flareView.bottomAnchor
+                                                                                   constant:BPKSpacingBase];
     } else {
-        self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.backgroundView.layoutMarginsGuide.topAnchor];
+        self.contentViewTopConstraint =
+            [self.contentView.topAnchor constraintEqualToAnchor:self.backgroundView.layoutMarginsGuide.topAnchor];
     }
 
     [NSLayoutConstraint activateConstraints:@[
@@ -193,8 +197,9 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundViewTopConstraint = nil;
 
         CGSize iconViewSize = [[self.iconView class] viewSize];
-        self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
-                                                                                         constant:-(iconViewSize.height / 2.0)];
+        self.backgroundViewTopConstraint =
+            [self.backgroundView.topAnchor constraintEqualToAnchor:self.iconView.bottomAnchor
+                                                          constant:-(iconViewSize.height / 2.0)];
         [NSLayoutConstraint activateConstraints:@[
             [self.iconView.topAnchor constraintEqualToAnchor:self.iconView.superview.topAnchor],
             [self.iconView.centerXAnchor constraintEqualToAnchor:self.backgroundView.centerXAnchor],
@@ -221,10 +226,12 @@ NS_ASSUME_NONNULL_BEGIN
     // Calculated path including circular icon view
     CGRect layerRect = self.contentView.layer.frame;
     CGMutablePathRef shadowPath = CGPathCreateMutable();
-    CGPathAddRoundedRect(shadowPath, nil, layerRect, self.contentView.layer.cornerRadius, self.contentView.layer.cornerRadius);
+    CGPathAddRoundedRect(shadowPath, nil, layerRect, self.contentView.layer.cornerRadius,
+                         self.contentView.layer.cornerRadius);
     if (self.hasIcon) {
         CGRect iconViewRect = self.iconView.layer.frame;
-        CGPathAddRoundedRect(shadowPath, nil, iconViewRect, iconViewRect.size.width / 2.0, iconViewRect.size.height / 2.0);
+        CGPathAddRoundedRect(shadowPath, nil, iconViewRect, iconViewRect.size.width / 2.0,
+                             iconViewRect.size.height / 2.0);
     }
 
     [[BPKShadow shadowLg] applyToLayer:self.layer];
@@ -255,7 +262,8 @@ NS_ASSUME_NONNULL_BEGIN
     if (_cornerStyle != cornerStyle) {
         _cornerStyle = cornerStyle;
 
-        self.backgroundView.layer.cornerRadius = cornerStyle == BPKDialogCornerStyleLarge ? BPKCornerRadiusLg : BPKCornerRadiusXs;
+        self.backgroundView.layer.cornerRadius =
+            cornerStyle == BPKDialogCornerStyleLarge ? BPKCornerRadiusLg : BPKCornerRadiusXs;
     }
 }
 

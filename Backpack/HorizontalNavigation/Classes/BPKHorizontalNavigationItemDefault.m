@@ -123,7 +123,9 @@ NS_ASSUME_NONNULL_BEGIN
         fontStyle = BPKFontStyleTextSmEmphasized;
     }
 
-    NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle content:self.name textColor:self.contentColor];
+    NSAttributedString *titleString = [BPKFont attributedStringWithFontStyle:fontStyle
+                                                                     content:self.name
+                                                                   textColor:self.contentColor];
     [self setAttributedTitle:titleString forState:UIControlStateNormal];
 
     [self updateInsets];
@@ -167,7 +169,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateInsets {
     if (self.iconName == nil) {
-        self.titleEdgeInsets = UIEdgeInsetsMake(self.verticalSpacing, self.horizontalSpacing, self.verticalSpacing, self.horizontalSpacing);
+        self.titleEdgeInsets = UIEdgeInsetsMake(self.verticalSpacing, self.horizontalSpacing, self.verticalSpacing,
+                                                self.horizontalSpacing);
         return;
     }
 
@@ -215,9 +218,11 @@ NS_ASSUME_NONNULL_BEGIN
 
     CGPoint cordinates;
     if ([BPKRTLSupport viewIsRTL:self]) {
-        cordinates = CGPointMake(CGRectGetMinX(self.titleLabel.frame) - BPKSpacingMd, CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
+        cordinates = CGPointMake(CGRectGetMinX(self.titleLabel.frame) - BPKSpacingMd,
+                                 CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
     } else {
-        cordinates = CGPointMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
+        cordinates =
+            CGPointMake(CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame) - BPKSpacingSm);
     }
 
     self.notificationDot.frame = CGRectMake(cordinates.x, cordinates.y, BPKSpacingMd, BPKSpacingMd);

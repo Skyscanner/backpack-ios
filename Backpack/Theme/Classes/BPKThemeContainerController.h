@@ -40,9 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @param rootViewController The root view controller to be used as a child view controller.
  * @return A configured instance that can further be contained or set to be the `rootViewController` of a `window`.
  */
-- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition rootViewController:(UIViewController *)rootViewController;
+- (instancetype)initWithThemeDefinition:(id<BPKThemeDefinition>)themeDefinition
+                     rootViewController:(UIViewController *)rootViewController;
 
-- (instancetype)initWithContainerClass:(Class)containerClass rootViewController:(UIViewController *)rootViewController NS_UNAVAILABLE;
+- (instancetype)initWithContainerClass:(Class)containerClass
+                    rootViewController:(UIViewController *)rootViewController NS_UNAVAILABLE;
 
 /**
  * The theme container that is currently being used if the theme is active.

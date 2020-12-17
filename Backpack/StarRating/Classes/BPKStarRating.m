@@ -22,7 +22,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *const STARRATING_SUBVIEW_ASSERTION_MESSAGE = @"Expected all arrangedSubviews in `BPKStarRating` to be of type `BPKStar`";
+static NSString *const STARRATING_SUBVIEW_ASSERTION_MESSAGE =
+    @"Expected all arrangedSubviews in `BPKStarRating` to be of type `BPKStar`";
 static NSUInteger const MAX_RATING = 5;
 
 @interface BPKStarRating ()
@@ -72,7 +73,8 @@ static NSUInteger const MAX_RATING = 5;
     [self setupStackView];
     [self setupStars];
 
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    UITapGestureRecognizer *tapRecognizer =
+        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapRecognizer];
     self.userInteractionEnabled = NO;
 }
@@ -126,7 +128,8 @@ static NSUInteger const MAX_RATING = 5;
 
 - (void)updateRating {
     for (NSInteger starIndex = 0; starIndex < self.stackView.arrangedSubviews.count; starIndex++) {
-        NSAssert([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]], STARRATING_SUBVIEW_ASSERTION_MESSAGE);
+        NSAssert([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]],
+                 STARRATING_SUBVIEW_ASSERTION_MESSAGE);
 
         if ([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]]) {
             BPKStar *star = self.stackView.arrangedSubviews[starIndex];

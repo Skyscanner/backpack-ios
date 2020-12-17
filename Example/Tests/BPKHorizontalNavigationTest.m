@@ -29,13 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
 
     // This cast is safe because we know the underlying type
-    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
+    NSArray<BPKHorizontalNavigationOption *> *options =
+        (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 0);
     XCTAssertEqual(options[0].name, @"Flights");
     XCTAssertEqual(options[1].name, @"Hotels");
@@ -47,12 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:2];
     // This cast is safe because we know the underlying type
-    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
+    NSArray<BPKHorizontalNavigationOption *> *options =
+        (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 2);
     XCTAssertEqual(options[0].name, @"Flights");
     XCTAssertEqual(options[1].name, @"Hotels");
@@ -61,7 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetSelectedIndex {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -69,7 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
     horizontalNavigation.selectedItemIndex = 1;
 
     // This cast is safe because we know the underlying type
-    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
+    NSArray<BPKHorizontalNavigationOption *> *options =
+        (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 1);
     XCTAssertEqual(options[0].name, @"Flights");
     XCTAssertEqual(options[1].name, @"Hotels");
@@ -78,7 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetOptions {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -91,7 +98,8 @@ NS_ASSUME_NONNULL_BEGIN
     ];
 
     // This cast is safe because we know the underlying type
-    NSArray<BPKHorizontalNavigationOption *> *options = (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
+    NSArray<BPKHorizontalNavigationOption *> *options =
+        (NSArray<BPKHorizontalNavigationOption *> *)horizontalNavigation.options;
     XCTAssertEqual(horizontalNavigation.selectedItemIndex, 0);
     XCTAssertEqual(options[0].name, @"Flights 2");
     XCTAssertEqual(options[1].name, @"Hotels 2");
@@ -103,7 +111,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testDefaultAppearance {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];
@@ -113,7 +122,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetAppearance {
     BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:@[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ]
                                                                                             selected:0];

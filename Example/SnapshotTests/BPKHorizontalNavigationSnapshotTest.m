@@ -55,10 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createDefault {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -76,10 +78,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createSelectedIndex {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:2];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:2];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -97,10 +101,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createWithoutBar {
     NSArray<BPKHorizontalNavigationOption *> *options = @[
-        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0], [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Flights" tag:0],
+        [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = NO;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -122,7 +128,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -144,7 +151,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     horizontalNavigation.selectedColor = UIColor.orangeColor;
@@ -168,7 +176,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:550];
@@ -190,7 +199,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" iconName:BPKIconNameHotels tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" iconName:BPKIconNameCars tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:200];
@@ -213,7 +223,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Car hire" tag:2]
     ];
 
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = NO;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -226,7 +237,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Hotels" tag:1 showNotificationDot:YES],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2 showNotificationDot:YES]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -256,7 +268,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOptionWithBadge alloc] initWithTitle:@"Hotels" badgeMessage:@"NEW" tag:1],
         [[BPKHorizontalNavigationOptionWithBackground alloc] initWithTitle:@"Car hire" tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
 
     UIView *view = [self displayHorizontalNavigation:horizontalNavigation width:-1.0];
@@ -277,7 +290,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[BPKHorizontalNavigationOptionWithBadge alloc] initWithTitle:@"Hotels" badgeMessage:@"NEW" tag:1],
         [[BPKHorizontalNavigationOption alloc] initWithName:@"Car hire" tag:2]
     ];
-    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options selected:0];
+    BPKHorizontalNavigation *horizontalNavigation = [[BPKHorizontalNavigation alloc] initWithOptions:options
+                                                                                            selected:0];
     horizontalNavigation.showsSelectedBar = YES;
     horizontalNavigation.appearance = BPKHorizontalNavigationAppearanceAlternate;
 

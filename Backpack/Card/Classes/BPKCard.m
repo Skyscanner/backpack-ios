@@ -125,7 +125,8 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     view.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor], [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
+        [view.leadingAnchor constraintEqualToAnchor:self.innerView.leadingAnchor],
+        [view.topAnchor constraintEqualToAnchor:self.innerView.topAnchor],
         [self.innerView.trailingAnchor constraintEqualToAnchor:view.trailingAnchor],
         [self.innerView.bottomAnchor constraintEqualToAnchor:view.bottomAnchor]
     ]];

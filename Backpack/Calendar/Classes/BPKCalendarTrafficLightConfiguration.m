@@ -24,7 +24,8 @@
 @implementation BPKCalendarTrafficLightConfiguration
 
 - (instancetype)init {
-    return [super initWithCellClass:BPKCalendarTrafficLightCell.class cellDataClass:BPKCalendarTrafficLightCellData.class];
+    return
+        [super initWithCellClass:BPKCalendarTrafficLightCell.class cellDataClass:BPKCalendarTrafficLightCellData.class];
 }
 
 @end

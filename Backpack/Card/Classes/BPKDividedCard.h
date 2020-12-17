@@ -64,7 +64,9 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
  * @param secondarySubview The secondary subview for the divided card.
  * @param padded Whether the card should have padding or not.
  */
-- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded;
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded;
 
 /**
  * Create a `BPKDividedCard` with two subviews.
@@ -112,8 +114,9 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 - (void)setOrientation:(UILayoutConstraintAxis)orientation;
 
 /// :nodoc:
-- (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
-                                                             "`initWithPrimarySubview:secondarySubview:padded:`")));
+- (void)addSubview:(UIView *)view
+    __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
+                               "`initWithPrimarySubview:secondarySubview:padded:`")));
 
 @end
 NS_ASSUME_NONNULL_END

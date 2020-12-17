@@ -137,7 +137,8 @@ NS_ASSUME_NONNULL_BEGIN
     // of when the image is one of the two dummy images used for the
     // positoning hack for the text only button in the loading state
 
-    return self.currentImage != nil && self.currentImage != [[self class] defaultDummyImage] && self.currentImage != [[self class] largeDummyImage];
+    return self.currentImage != nil && self.currentImage != [[self class] defaultDummyImage] &&
+           self.currentImage != [[self class] largeDummyImage];
 }
 
 - (BOOL)isIconOnly {
@@ -277,16 +278,20 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.imagePosition == BPKButtonImagePositionTrailing) {
             UIEdgeInsets titleEdgeInsets =
                 [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                leading:-(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)
+                                                leading:-(CGRectGetWidth(self.imageView.bounds) +
+                                                          buttonTitleIconSpacing / 2.0)
                                                  bottom:0
-                                               trailing:(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)];
+                                               trailing:(CGRectGetWidth(self.imageView.bounds) +
+                                                         buttonTitleIconSpacing / 2.0)];
             self.titleEdgeInsets = titleEdgeInsets;
 
             UIEdgeInsets imageEdgeInsets =
                 [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                leading:(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)
+                                                leading:(CGRectGetWidth(self.titleLabel.bounds) +
+                                                         buttonTitleIconSpacing / 2.0)
                                                  bottom:0
-                                               trailing:-(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)];
+                                               trailing:-(CGRectGetWidth(self.titleLabel.bounds) +
+                                                          buttonTitleIconSpacing / 2.0)];
             self.imageEdgeInsets = imageEdgeInsets;
         } else {
             UIEdgeInsets titleEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
@@ -378,7 +383,8 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleSecondary: {
-            UIColor *backgroundColor = self.secondaryBackgroundColor ? self.secondaryBackgroundColor : self.class.boxyBackgroundColor;
+            UIColor *backgroundColor =
+                self.secondaryBackgroundColor ? self.secondaryBackgroundColor : self.class.boxyBackgroundColor;
             UIColor *borderColor = self.secondaryBorderColor ? self.secondaryBorderColor : self.class.boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
@@ -388,8 +394,10 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         }
         case BPKButtonStyleDestructive: {
-            UIColor *backgroundColor = self.destructiveBackgroundColor ? self.destructiveBackgroundColor : self.class.boxyBackgroundColor;
-            UIColor *borderColor = self.destructiveBorderColor ? self.destructiveBorderColor : self.class.boxyBorderColor;
+            UIColor *backgroundColor =
+                self.destructiveBackgroundColor ? self.destructiveBackgroundColor : self.class.boxyBackgroundColor;
+            UIColor *borderColor =
+                self.destructiveBorderColor ? self.destructiveBorderColor : self.class.boxyBorderColor;
             [self setBorderedStyleWithColor:borderColor withGradientColor:backgroundColor];
             if (self.isHighlighted) {
                 self.gradientLayer.gradient = [self gradientWithSingleColor:[self highlightedColor:backgroundColor]];
@@ -507,9 +515,10 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (highlightedContentColor) {
         if (self.title) {
-            NSAttributedString *attributedHighlightedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
-                                                                                            content:self.title
-                                                                                          textColor:highlightedContentColor];
+            NSAttributedString *attributedHighlightedTitle =
+                [BPKFont attributedStringWithFontStyle:self.currentFontStyle
+                                               content:self.title
+                                             textColor:highlightedContentColor];
 
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateHighlighted];
             [self setAttributedTitle:attributedHighlightedTitle forState:UIControlStateSelected];
@@ -624,9 +633,12 @@ NS_ASSUME_NONNULL_BEGIN
                                       endPoint:[BPKGradient endPointForDirection:direction]];
 }
 
-- (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorOnTop gradientOnBottom:(UIColor *)normalColorOnBottom {
+- (void)setFilledStyleWithNormalBackgroundColorGradientOnTop:(UIColor *)normalColorOnTop
+                                            gradientOnBottom:(UIColor *)normalColorOnBottom {
     if (self.isHighlighted) {
-        self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:normalColorOnTop with:BPKColor.skyGray weight:0.85f]];
+        self.gradientLayer.gradient = [self gradientWithSingleColor:[BPKColor blend:normalColorOnTop
+                                                                               with:BPKColor.skyGray
+                                                                             weight:0.85f]];
     } else {
         self.gradientLayer.gradient = [self gradientWithTopColor:normalColorOnTop bottomColor:normalColorOnBottom];
     }

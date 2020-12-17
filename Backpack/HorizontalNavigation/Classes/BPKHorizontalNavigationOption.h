@@ -107,6 +107,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param showDot send YES to show a red notification dot
  * @return A named option with an icon, a tag and a notification dot.
  */
-- (instancetype)initWithName:(NSString *)name tag:(NSInteger)tag iconName:(BPKIconName)iconName showNotificationDot:(BOOL)showDot;
+- (instancetype)initWithName:(NSString *)name
+                         tag:(NSInteger)tag
+                    iconName:(BPKIconName)iconName
+         showNotificationDot:(BOOL)showDot;
 @end
 NS_ASSUME_NONNULL_END

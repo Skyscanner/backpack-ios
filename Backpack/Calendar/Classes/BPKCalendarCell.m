@@ -71,7 +71,8 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     CGFloat height = BPKCalendarCellCircleHeight;
 
     self.samedayLayer.hidden = YES;
-    self.samedayLayer.frame = CGRectMake(paddingX - BPKCalendarCellSameDayXOffset, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
+    self.samedayLayer.frame = CGRectMake(paddingX - BPKCalendarCellSameDayXOffset, 0, BPKCalendarCellCircleHeight,
+                                         BPKCalendarCellCircleHeight);
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.samedayLayer.bounds
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
@@ -143,8 +144,9 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-        self.shapeLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) + BPKCalendarCellSameDayXOffset, CGRectGetMinY(self.shapeLayer.frame),
-                                           CGRectGetWidth(self.shapeLayer.frame), CGRectGetHeight(self.shapeLayer.frame));
+        self.shapeLayer.frame = CGRectMake(CGRectGetMinX(self.shapeLayer.frame) + BPKCalendarCellSameDayXOffset,
+                                           CGRectGetMinY(self.shapeLayer.frame), CGRectGetWidth(self.shapeLayer.frame),
+                                           CGRectGetHeight(self.shapeLayer.frame));
         break;
 
     default:
@@ -152,7 +154,8 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         break;
     }
 
-    self.selectionLayer.path = [UIBezierPath bezierPathWithRoundedRect:selectionRect byRoundingCorners:corners cornerRadii:cornerRadii].CGPath;
+    self.selectionLayer.path =
+        [UIBezierPath bezierPathWithRoundedRect:selectionRect byRoundingCorners:corners cornerRadii:cornerRadii].CGPath;
     [self configureAppearance];
 }
 
@@ -160,8 +163,10 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     [super configureAppearance];
 
     UIColor *rangeColor = self.appearance.selectionColor;
-    UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
-    UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
+    UIColor *selectedColor =
+        self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
+    UIColor *color =
+        self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     self.selectionLayer.fillColor = rangeColor.CGColor;
     self.samedayLayer.fillColor = BPKColor.clear.CGColor;
@@ -210,7 +215,8 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 }
 
 - (void)configureWithData:(id)data {
-    NSAssert(false, @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
+    NSAssert(false,
+             @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
 }
 
 @end

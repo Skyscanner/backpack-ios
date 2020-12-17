@@ -36,9 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @param rootViewController The root view controller to be used as a child view controller.
  * @return A configured instance that can further be contained or set to be the `rootViewController` of a `window`.
  */
-- (instancetype)initWithContainerClass:(Class)containerClass rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithContainerClass:(Class)containerClass
+                    rootViewController:(UIViewController *)rootViewController NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((unavailable("use initWithContainerClass:rootViewController: instead")));
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+    __attribute__((unavailable("use initWithContainerClass:rootViewController: instead")));
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
                          bundle:(nullable NSBundle *)nibBundleOrNil
     __attribute__((unavailable("use initWithContainerClass:rootViewController: instead")));

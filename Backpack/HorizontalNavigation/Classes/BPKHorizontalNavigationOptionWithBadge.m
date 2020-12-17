@@ -59,7 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)isEqualToOption:(BPKHorizontalNavigationOptionWithBadge *)option {
-    return [self.title isEqual:option.title] && self.tag == option.tag && [self.badgeMessage isEqual:option.badgeMessage];
+    return
+        [self.title isEqual:option.title] && self.tag == option.tag && [self.badgeMessage isEqual:option.badgeMessage];
 }
 
 @end

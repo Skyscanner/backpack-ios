@@ -56,7 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (nullable instancetype)initWithOverlayType:(BPKOverlayViewOverlayType)overlayType cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle {
+- (nullable instancetype)initWithOverlayType:(BPKOverlayViewOverlayType)overlayType
+                                 cornerStyle:(BPKOverlayViewCornerStyle)cornerStyle {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 

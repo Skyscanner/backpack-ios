@@ -81,7 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     [NSLayoutConstraint activateConstraints:@[
         [self.leadingAnchor constraintEqualToAnchor:self.starView.leadingAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor], [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.starView.trailingAnchor],
+        [self.topAnchor constraintEqualToAnchor:self.starView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.starView.bottomAnchor]
     ]];
 

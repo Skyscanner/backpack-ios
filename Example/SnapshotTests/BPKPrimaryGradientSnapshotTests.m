@@ -44,7 +44,9 @@
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionBottomRight];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionBottomRight];
 
-    view.gradient = [[BPKGradient alloc] initWithColors:@[startColor, endColor] startPoint:startPoint endPoint:endPoint];
+    view.gradient = [[BPKGradient alloc] initWithColors:@[startColor, endColor]
+                                             startPoint:startPoint
+                                               endPoint:endPoint];
 
     FBSnapshotVerifyView(view, nil);
 }

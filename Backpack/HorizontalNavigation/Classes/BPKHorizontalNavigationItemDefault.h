@@ -66,7 +66,9 @@ IB_DESIGNABLE @interface BPKHorizontalNavigationItemDefault : UIButton<BPKHorizo
  * @param iconName BPKIconName the icon for the navigation item
  * @param showDot send YES to show a red notification dot
  */
-- (instancetype)initWithName:(NSString *)name iconName:(BPKIconName)iconName showNotificationDot:(BOOL)showDot NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString *)name
+                    iconName:(BPKIconName)iconName
+         showNotificationDot:(BOOL)showDot NS_DESIGNATED_INITIALIZER;
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
