@@ -1,6 +1,16 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 39.1.0
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Small tweaks under the hood to make cell rendering more consistent in different size cells. The difference should be imperceivable.
+
+**Added:**
+ - Backpack/Calendar:
+   - Added price label configuration for showing price labels below calendar cells.
+ 
 # 39.0.0
 
 **Breaking:**
