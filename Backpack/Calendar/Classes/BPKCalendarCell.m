@@ -159,7 +159,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 - (void)configureAppearance {
     [super configureAppearance];
 
-    UIColor *rangeColor = self.appearance.selectionColor;
+    UIColor *rangeColor = [BPKColor blend:self.appearance.selectionColor with:BPKColor.backgroundColor weight:0.3];
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
@@ -168,6 +168,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
     self.layer.borderColor = BPKColor.panjin.CGColor;
     self.titleLabel.layer.borderColor = BPKColor.panjin.CGColor;
+    UIColor *rangeTitleColor = [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {
         switch (self.selectionType) {
@@ -175,10 +176,14 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
         case SelectionTypeSameDay:
-        case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
+            break;
+        case SelectionTypeMiddle:
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+                                                                            content:self.titleLabel.text
+                                                                          textColor:rangeTitleColor];
             break;
 
         default:

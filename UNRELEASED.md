@@ -1,6 +1,8 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - The range track background colour is now less vibrant than the start/end dates background colour.
 
 ## How to write a good changelog entry
 
