@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var lowPrice = BPKCalendarPriceLabelCellData(price: "£14", labelStyle: BPKCalendarPriceLabelStyle.positive)
     var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
     var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
-    var noPrice = BPKCalendarPriceLabelCellData(price: "-", labelStyle: BPKCalendarPriceLabelStyle.noData)
+    var noPrice = BPKCalendarPriceLabelCellData(price: "–", labelStyle: BPKCalendarPriceLabelStyle.noData)
 
     override func viewDidLoad() {
         if showPrices {

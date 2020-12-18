@@ -234,10 +234,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (components.day == 15) {
-        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"-" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.normal;
+        return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"–" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.normal;
     }
 
-    return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"-" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.noData;
+    return self.isShowingPrices ? [[BPKCalendarPriceLabelCellData alloc] initWithPrice:@"–" labelStyle:BPKCalendarPriceLabelStyle.noData] : BPKCalendarTrafficLightCellData.noData;
 }
 
 #pragma clang diagnostic push
