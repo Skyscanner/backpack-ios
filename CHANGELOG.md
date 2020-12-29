@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 39.1.1
+
+**Fixed:**
+ - The range track background colour is now less vibrant than the start/end dates background colour.
+
 # 39.1.0
 
 **Fixed:**
