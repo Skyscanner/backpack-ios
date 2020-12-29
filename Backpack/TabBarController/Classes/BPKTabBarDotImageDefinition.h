@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2020 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,27 +21,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BPKTabBarDotImageDefinition;
 /**
- * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
+ * `BPKTabBarDotImageDefinition` contains a pair of UIImages to use in light mode and dark mode respectively.
  */
-IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
+IB_DESIGNABLE @interface BPKTabBarDotImageDefinition : NSObject
 
-@property(nullable, strong) UIImage *originalImage;
+@property(strong) UIImage *lightImage;
+@property(strong) UIImage *darkImage;
 
-@property (nonatomic) UIUserInterfaceStyle interfaceStyle;
-
-@property(nullable, strong) BPKTabBarDotImageDefinition *dotImageDefinition;
-
-@property BOOL dotShown;
-
-@property (nonatomic) BOOL selected;
-
-- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition;
-
--(void)addDot;
-
--(void)removeDot;
+- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 
 @end
 

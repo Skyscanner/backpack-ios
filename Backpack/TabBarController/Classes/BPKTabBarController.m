@@ -25,26 +25,49 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
 
--(void)updateImages {
+-(void)updateTabBarItems {
+    UIUserInterfaceStyle interfaceStyle = self.traitCollection.userInterfaceStyle;
+
+    int index = 0;
     for (UITabBarItem *tabBarItem in self.tabBar.items) {
         if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
-
-        BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
-            [bpkTabBarItem reapplyImage];
-    }
+            BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
+            bpkTabBarItem.interfaceStyle = interfaceStyle;
+            bpkTabBarItem.selected = self.selectedIndex == index;
+        }
+        index += 1;
     }
 }
 
-// Note this is needed to correctly update the `CGColor` used for the line .
+// This is used to inform each BPKTabBarItem of the userInterfaceStyle, as they cannot access this directly.
 - (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 #if __BPK_DARK_MODE_SUPPORTED
     if (@available(iOS 12.0, *)) {
         if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
-            [self updateImages];
+            [self updateTabBarItems];
         }
     }
 #endif
+}
+
+- (void)didMoveToParentViewController:(UIViewController *_Nullable)parent {
+    [self updateTabBarItems];
+}
+
+- (void)setToolbarItems:(NSArray<__kindof UIBarButtonItem *> *_Nullable)toolbarItems {
+    [super setToolbarItems:toolbarItems];
+    [self updateTabBarItems];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    [super setSelectedIndex:selectedIndex];
+    [self updateTabBarItems];
+}
+
+- (void)setSelectedViewController:(__kindof UIViewController *_Nullable)selectedViewController {
+    [super setSelectedViewController:selectedViewController];
+    [self updateTabBarItems];
 }
 
 @end

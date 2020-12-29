@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2020 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,23 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_TAB_BAR_CONTROLLER__
-#define __BACKPACK_TAB_BAR_CONTROLLER__
-#import "BPKTabBarController.h"
 #import "BPKTabBarDotImageDefinition.h"
-#import "BPKTabBarItem.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKTabBarDotImageDefinition
+
+- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
+    self = [super init];
+
+    if (self) {
+        self.lightImage = lightImage;
+        self.darkImage = darkImage;
+    }
+
+    return self;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

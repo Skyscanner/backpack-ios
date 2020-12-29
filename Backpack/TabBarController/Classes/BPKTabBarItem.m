@@ -19,42 +19,63 @@
 #import "BPKTabBarItem.h"
 
 #import <Backpack/DarkMode.h>
-#include <stdlib.h>
 
+#import "BPKTabBarDotImageDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarItem
 
-- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImage:(UIImage *)dotImage {
+- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition {
     self = [super initWithTitle:title image:image tag:tag];
 
     if (self) {
         self.originalImage = image;
-        self.dotImage = dotImage;
+        self.dotImageDefinition = dotImageDefinition;
     }
 
     return self;
 }
 
--(void)reapplyImage {
-    int r = arc4random_uniform(74);
+-(void)updateImage {
+    UIImageRenderingMode renderingMode = self.selected ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
 
-    if (r < 35 && self.dotShown) {
-        self.image = [self.dotImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if (self.dotShown) {
+        NSAssert(self.dotImageDefinition != nil, @"A dot can only be added to a BPKTabBarItem if a dotImageDefinition is provided, but dotImageDefintion was nil");
+        if (self.dotImageDefinition != nil) {
+            if (self.interfaceStyle == UIUserInterfaceStyleDark) {
+                self.image = [self.dotImageDefinition.darkImage imageWithRenderingMode:renderingMode];
+            } else {
+                self.image = [self.dotImageDefinition.lightImage imageWithRenderingMode:renderingMode];
+            }
+        }
     } else {
         self.image = [self.originalImage copy];
     }
 }
 
+-(void)setInterfaceStyle:(UIUserInterfaceStyle)interfaceStyle{
+    if (_interfaceStyle != interfaceStyle) {
+        _interfaceStyle = interfaceStyle;
+        [self updateImage];
+    }
+}
+
+- (void)setSelected:(BOOL)selected {
+    if (_selected != selected) {
+        _selected = selected;
+        [self updateImage];
+    }
+}
+
 - (void)addDot {
     self.dotShown = YES;
-    [self reapplyImage];
+    [self updateImage];
 }
 
 - (void)removeDot {
     self.dotShown = NO;
-    [self reapplyImage];
+    [self updateImage];
 }
 
 @end
