@@ -13,7 +13,7 @@ on:
 # At the time of writing(October 2020) these are:
 #
 # Node: 12.18.4 (Set via .nvmrc)
-# Bundler: 2.1.4 (Installed below)
+# Bundler: 2.2.3 (Installed below)
 #
 
 defaults:
@@ -32,7 +32,7 @@ jobs:
       # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
       # This is hopefully somewhat more helpful:
       - name: Verify Bundler Version
-        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.1.4" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.1.4"; exit 64; fi
+        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
 
       - name: Set GIT_TAG
         id: extract_git_tag
@@ -60,7 +60,7 @@ jobs:
         run: nvm use
 
       - name: Install bundler
-        run: gem install bundler --version 2.1.4
+        run: gem install bundler --version 2.2.3
 
       - name: Set Bundler Config
         run: bundle config path vendor/bundle
