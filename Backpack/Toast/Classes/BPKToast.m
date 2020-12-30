@@ -55,15 +55,15 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 
 #pragma mark - Public methods
 - (void)show:(BOOL)animated {
-    [self.hud show:animated];
+    [self.hud showAnimated:animated];
 }
 
 - (void)hide:(BOOL)animated {
-    [self.hud hide:animated];
+    [self.hud hideAnimated:animated];
 }
 
 - (void)hide:(BOOL)animated afterDelay:(NSTimeInterval)delay {
-    [self.hud hide:animated afterDelay:delay];
+    [self.hud hideAnimated:animated afterDelay:delay];
 }
 
 #pragma mark - Property overrides
@@ -82,14 +82,14 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 }
 
 - (void)setLabelText:(NSString *)labelText {
-    if (_hud.labelText != labelText) {
-        _hud.labelText = labelText;
+    if (_hud.label.text != labelText) {
+        _hud.label.text = labelText;
     }
 }
 
 - (void)setDetailsLabelText:(NSString *)detailsLabelText {
-    if (_hud.detailsLabelText != detailsLabelText) {
-        _hud.detailsLabelText = detailsLabelText;
+    if (_hud.detailsLabel.text != detailsLabelText) {
+        _hud.detailsLabel.text = detailsLabelText;
     }
 }
 
@@ -106,11 +106,11 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 }
 
 - (NSString *)labelText {
-    return self.hud.labelText;
+    return self.hud.label.text;
 }
 
 - (NSString *)detailsLabelText {
-    return self.hud.detailsLabelText;
+    return self.hud.detailsLabel.text;
 }
 
 - (BOOL)removeFromSuperViewOnHide {
@@ -129,7 +129,9 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 }
 
 - (void)setupHUD {
-    self.hud.color = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
+    self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    self.hud.bezelView.backgroundColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
+    self.hud.contentColor = BPKColor.white;
     self.hud.delegate = self;
     self.hud.accessibilityIdentifier = ToastAccessibilityIdentifier;
 }
