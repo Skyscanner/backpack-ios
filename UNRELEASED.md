@@ -2,6 +2,11 @@
 
 > Place your changes below this line.
 
+**Fixed:**
+
+- Backpack/Flare:
+  - Fixed an issue that could cause the flare to seem detached from a moving flare-view.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

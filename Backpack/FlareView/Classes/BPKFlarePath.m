@@ -113,21 +113,21 @@ CGFloat const BPKFlareVectorHeight = 53.0;
 
     CGPoint sp = CGPointMake(startPointX, startPointY);
 
-    [path addLineToPoint:CGPointMake(sp.x + 238 * scale, sp.y + 0 * scale)];
-    [path addLineToPoint:CGPointMake(sp.x + 233.671 * scale, sp.y + 0 * scale)];
-    [path addCurveToPoint:CGPointMake(sp.x + 204.307 * scale, sp.y + 8.517 * scale)
-            controlPoint1:CGPointMake(sp.x + 223.336095 * scale, sp.y + 0.409248008 * scale)
-            controlPoint2:CGPointMake(sp.x + 213.256908 * scale, sp.y + 3.33270635 * scale)];
-    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
-    [path addLineToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)];
-    [path addCurveToPoint:CGPointMake(sp.x + 101.736 * scale, sp.y + 47.858 * scale)
-            controlPoint1:CGPointMake(sp.x + 125.632 * scale, sp.y + 54.043 * scale)
-            controlPoint2:CGPointMake(sp.x + 112.469 * scale, sp.y + 54.043 * scale)];
-    [path addLineToPoint:CGPointMake(sp.x + 33.592 * scale, sp.y + 8.518 * scale)];
-    [path addCurveToPoint:CGPointMake(sp.x + 4.276 * scale, sp.y + 0 * scale)
-            controlPoint1:CGPointMake(sp.x + 24.682 * scale, sp.y + 3.345 * scale)
-            controlPoint2:CGPointMake(sp.x + 14.604 * scale, sp.y + 0.303 * scale)];
     [path addLineToPoint:CGPointMake(sp.x + 0 * scale, sp.y + 0 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 4.329 * scale, sp.y + 0 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 33.693 * scale, sp.y + 8.517 * scale)
+            controlPoint1:CGPointMake(sp.x + 14.663905 * scale, sp.y + 0.409248008 * scale)
+            controlPoint2:CGPointMake(sp.x + 24.743092 * scale, sp.y + 3.33270635 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 101.736 * scale, sp.y + 47.858 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 101.736 * scale, sp.y + 47.858 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 136.264 * scale, sp.y + 47.858 * scale)
+            controlPoint1:CGPointMake(sp.x + 112.368 * scale, sp.y + 54.043 * scale)
+            controlPoint2:CGPointMake(sp.x + 125.531 * scale, sp.y + 54.043 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 204.408 * scale, sp.y + 8.518 * scale)];
+    [path addCurveToPoint:CGPointMake(sp.x + 233.724 * scale, sp.y + 0 * scale)
+            controlPoint1:CGPointMake(sp.x + 213.318 * scale, sp.y + 3.345 * scale)
+            controlPoint2:CGPointMake(sp.x + 223.396 * scale, sp.y + 0.303 * scale)];
+    [path addLineToPoint:CGPointMake(sp.x + 238 * scale, sp.y + 0 * scale)];
 }
 
 @end
