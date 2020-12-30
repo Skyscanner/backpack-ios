@@ -399,6 +399,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNamePpe;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNamePriceAlerts;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNamePriceTag;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameRecentSearches;
