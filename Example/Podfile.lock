@@ -13,14 +13,14 @@ PODS:
     - FloatingPanel (= 1.6.6)
     - FSCalendar (~> 2.8)
     - MBProgressHUD (~> 0.9.1)
-    - TTTAttributedLabel (~> 1.13.4)
+    - TTTAttributedLabel (~> 2.0.0)
   - FloatingPanel (1.6.6)
   - FSCalendar (2.8.2)
   - iOSSnapshotTestCase/Core (6.2.0)
   - MBProgressHUD (0.9.2)
   - OCMock (3.6)
   - SwiftLint (0.39.2)
-  - TTTAttributedLabel (1.13.4)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - AppCenter (~> 3.1.0)
@@ -47,14 +47,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 513d32888854d67d8cfbd3a8db16aeb5fb2e2a75
-  Backpack: d52b11218c4f90179eb9e39b8e03d6f1117233b0
+  Backpack: 72ed045dd89aac296008e78438e0cb734b2ec101
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   OCMock: 5ea90566be239f179ba766fd9fbae5885040b992
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
-  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
 PODFILE CHECKSUM: 3fff67b1ae5698adbc33f478f7015cad485c54b9
 
