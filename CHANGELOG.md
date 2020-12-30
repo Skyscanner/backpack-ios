@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 39.1.2
+
+**Fixed:**
+
+- Backpack/Flare:
+  - Fixed an issue that could cause the flare to seem detached from a moving flare-view.
+
 # 39.1.1
 
 **Fixed:**
