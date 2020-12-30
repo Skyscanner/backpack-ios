@@ -403,6 +403,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePpe;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePriceAlerts;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePriceTag;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameRecentSearches;

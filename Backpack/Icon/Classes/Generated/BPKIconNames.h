@@ -403,6 +403,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNamePpe;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePriceAlerts;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNamePriceTag;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameRecentSearches;

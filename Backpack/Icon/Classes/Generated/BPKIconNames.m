@@ -208,6 +208,7 @@ BPKIconName const BPKIconNamePolicy = @"policy";
 BPKIconName const BPKIconNamePowerplug = @"powerplug";
 BPKIconName const BPKIconNamePpe = @"ppe";
 BPKIconName const BPKIconNamePriceAlerts = @"price-alerts";
+BPKIconName const BPKIconNamePriceTag = @"price-tag";
 BPKIconName const BPKIconNamePrint = @"print";
 BPKIconName const BPKIconNameRecentSearches = @"recent-searches";
 BPKIconName const BPKIconNameRefresh = @"refresh";

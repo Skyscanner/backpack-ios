@@ -208,6 +208,7 @@ BPKLargeIconName const BPKLargeIconNamePolicy = @"policy";
 BPKLargeIconName const BPKLargeIconNamePowerplug = @"powerplug";
 BPKLargeIconName const BPKLargeIconNamePpe = @"ppe";
 BPKLargeIconName const BPKLargeIconNamePriceAlerts = @"price-alerts";
+BPKLargeIconName const BPKLargeIconNamePriceTag = @"price-tag";
 BPKLargeIconName const BPKLargeIconNamePrint = @"print";
 BPKLargeIconName const BPKLargeIconNameRecentSearches = @"recent-searches";
 BPKLargeIconName const BPKLargeIconNameRefresh = @"refresh";
