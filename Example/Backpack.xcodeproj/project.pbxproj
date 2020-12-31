@@ -550,7 +550,7 @@
 				D22FB970230C0E950023DC72 /* Resources */,
 				D6FA3DB2224E21F800CFA094 /* Categories */,
 				D2161D4F2146B8910097D0B1 /* Views */,
-				D655C515200F9B9200CB39AF /* View Controllers */,
+				D655C515200F9B9200CB39AF /* ViewControllers */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				D205510722675DAE00BC5BCC /* LaunchScreen.xib */,
@@ -758,7 +758,7 @@
 			path = "Backpack NativeUITests";
 			sourceTree = "<group>";
 		};
-		D655C515200F9B9200CB39AF /* View Controllers */ = {
+		D655C515200F9B9200CB39AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
@@ -821,7 +821,7 @@
 				7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */,
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
 			);
-			path = "View Controllers";
+			path = "ViewControllers";
 			sourceTree = "<group>";
 		};
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
