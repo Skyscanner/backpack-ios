@@ -11,7 +11,7 @@
         <!--Backpack-->
         <scene sceneID="k3Z-12-bkv">
             <objects>
-                <tableViewController title="Backpack" id="iX5-lX-5Co" customClass="BPKRootListTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Backpack" id="iX5-lX-5Co" customClass="BPKRootListTableViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vQp-qg-Sc5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -675,7 +675,7 @@
                         <barButtonItem key="rightBarButtonItem" id="oJ6-zT-C2i"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="settingsButton" destination="oJ6-zT-C2i" id="QWm-4P-mcV"/>
+                        <outlet property="settingsButton" destination="oJ6-zT-C2i" id="7AP-Xe-foa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqv-Dk-doc" userLabel="First Responder" sceneMemberID="firstResponder"/>
