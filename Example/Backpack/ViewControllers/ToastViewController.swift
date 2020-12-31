@@ -19,7 +19,6 @@
 
 import UIKit
 import Backpack
-import MBProgressHUD
 
 enum ToastType {
     case defaultToast
