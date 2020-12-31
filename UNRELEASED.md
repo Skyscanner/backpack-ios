@@ -1,14 +1,6 @@
 # Unreleased
 
-**Added:**
-
-- Backpack/Icon:
-  - Added new icons for `price-tag`.
-
 > Place your changes below this line.
-
-**Fixed:**
- - Upgraded `MBProgressHUD` to the latest version (1.2.0).
 
 ## How to write a good changelog entry
 

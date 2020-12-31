@@ -1,6 +1,18 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.0.0
+
+**Breaking:**
+ 
+- Backpack/Toast:
+ - Upgraded `MBProgressHUD` to the latest version (1.2.0).
+
+**Added:**
+
+- Backpack/Icon:
+  - Added new icons for `price-tag`.
+
 # 39.1.2
 
 **Fixed:**
