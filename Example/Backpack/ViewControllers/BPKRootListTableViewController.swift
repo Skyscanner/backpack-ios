@@ -17,15 +17,25 @@
  */
 
 import UIKit
-import Backpack.TextField
-import Backpack.Color
+import Backpack
 
-class TextFieldsViewController: UIViewController {
-    @IBOutlet weak var textField: BPKTextField!
+class BPKRootListTableViewController: UITableViewController {
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textField.accessibilityIdentifier = "textField"
+        if ThemeHelpers.isThemingSupported() {
+            let largeSettingsIcon = BPKIcon.makeLargeTemplateIcon(name: .settings)
+            settingsButton.image = largeSettingsIcon
+            settingsButton.accessibilityLabel = "Settings"
+            settingsButton.target = self
+            settingsButton.action = #selector(self.didTapSettingsButton)
+        }
+    }
+
+    @objc
+    func didTapSettingsButton() {
+        ExampleApp.showSettingsView()
     }
 }
