@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="FgJ-Uf-4JG">
                                 <cells>
@@ -24,11 +25,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bGY-9F-q2d" id="qGo-rE-hdT">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SbA-5R-6Nn" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -44,11 +45,11 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4tx-Un-qIH" id="0TL-GU-j5h">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Without padding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z3H-98-XxR" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -64,11 +65,11 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ki8-Kh-fGM" id="I21-Ik-fB0">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6gO-bV-u5f" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -84,11 +85,11 @@
                                         <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NA7-bX-mUP" id="iUe-no-wD2">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Corner style large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gvh-0r-iVQ" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -104,11 +105,11 @@
                                         <rect key="frame" x="0.0" y="204" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ixx-lu-VzJ" id="LCi-46-OJg">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Background color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syh-67-Xlo" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -124,11 +125,11 @@
                                         <rect key="frame" x="0.0" y="248" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Dg-vc-hvI" id="kbB-8u-dPf">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vWi-ef-4S8" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -144,11 +145,11 @@
                                         <rect key="frame" x="0.0" y="292" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jFL-Uc-bqH" id="ayr-A0-dag">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider arranged vertically" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSN-tX-6Tt" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -164,11 +165,11 @@
                                         <rect key="frame" x="0.0" y="336" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ago-V1-e2e" id="PaM-o7-KtH">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider without padding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eQk-jR-Fio" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -184,11 +185,11 @@
                                         <rect key="frame" x="0.0" y="380" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="odK-P3-pmP" id="55J-H9-Vah">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With divider and corner style large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kw2-ci-lKN" customClass="BPKLabel">
-                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -218,7 +219,7 @@
             <objects>
                 <viewController title="Cards" id="UVm-Uc-6tJ" customClass="CardsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gKV-RN-Byx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkJ-QX-XUu" customClass="BPKCard">
@@ -226,14 +227,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bZj-oM-QOj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vkJ-QX-XUu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bZj-oM-QOj" secondAttribute="leading" constant="16" id="I9n-Nd-ndS"/>
                             <constraint firstItem="bZj-oM-QOj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vkJ-QX-XUu" secondAttribute="trailing" constant="16" id="TtH-oR-iSz"/>
                             <constraint firstItem="vkJ-QX-XUu" firstAttribute="centerX" secondItem="gKV-RN-Byx" secondAttribute="centerX" id="VVC-Kl-UhA"/>
                             <constraint firstItem="vkJ-QX-XUu" firstAttribute="centerY" secondItem="gKV-RN-Byx" secondAttribute="centerY" id="yu9-mF-zmb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bZj-oM-QOj"/>
                     </view>
                     <connections>
                         <outlet property="card" destination="vkJ-QX-XUu" id="yXg-wN-9D2"/>
@@ -248,7 +249,7 @@
             <objects>
                 <viewController title="Divided cards" id="msG-uW-dQe" customClass="DividedCardsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Oi-V5-nf8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jEZ-E3-2U1" customClass="BPKDividedCard">
@@ -256,14 +257,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cNN-VH-aJx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jEZ-E3-2U1" firstAttribute="centerX" secondItem="4Oi-V5-nf8" secondAttribute="centerX" id="9to-uf-uOe"/>
                             <constraint firstItem="jEZ-E3-2U1" firstAttribute="centerY" secondItem="4Oi-V5-nf8" secondAttribute="centerY" id="eKk-g5-6Cm"/>
                             <constraint firstItem="jEZ-E3-2U1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cNN-VH-aJx" secondAttribute="leading" constant="16" id="vbH-8n-Ajj"/>
                             <constraint firstItem="cNN-VH-aJx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jEZ-E3-2U1" secondAttribute="trailing" constant="16" id="zz7-KI-ZQu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cNN-VH-aJx"/>
                     </view>
                     <connections>
                         <outlet property="card" destination="jEZ-E3-2U1" id="3kN-6A-AEU"/>
@@ -275,8 +276,42 @@
             <point key="canvasLocation" x="2542" y="2859"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="6gO-bV-u5f">
+            <size key="intrinsicContentSize" width="67" height="20.5"/>
+        </designable>
+        <designable name="Kw2-ci-lKN">
+            <size key="intrinsicContentSize" width="261" height="20.5"/>
+        </designable>
+        <designable name="SbA-5R-6Nn">
+            <size key="intrinsicContentSize" width="55" height="20.5"/>
+        </designable>
+        <designable name="Z3H-98-XxR">
+            <size key="intrinsicContentSize" width="126.5" height="20.5"/>
+        </designable>
+        <designable name="eQk-jR-Fio">
+            <size key="intrinsicContentSize" width="219" height="20.5"/>
+        </designable>
+        <designable name="fSN-tX-6Tt">
+            <size key="intrinsicContentSize" width="237.5" height="20.5"/>
+        </designable>
+        <designable name="gvh-0r-iVQ">
+            <size key="intrinsicContentSize" width="135" height="20.5"/>
+        </designable>
+        <designable name="syh-67-Xlo">
+            <size key="intrinsicContentSize" width="134.5" height="20.5"/>
+        </designable>
+        <designable name="vWi-ef-4S8">
+            <size key="intrinsicContentSize" width="91.5" height="20.5"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="rHB-Xa-DKh"/>
         <segue reference="edZ-RG-oKd"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Labels-->
         <scene sceneID="CpR-b8-GZI">
             <objects>
-                <tableViewController storyboardIdentifier="LabelsSelectorViewController" title="Labels" id="Gdg-nX-jAF" customClass="LabelsSelectorTableViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LabelsViewController" title="Labels" id="Gdg-nX-jAF" customClass="LabelsSelectorTableViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SZx-jL-Soc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="separatorColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="swP-hE-ddI">
                                 <cells>
@@ -183,14 +184,14 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Jkk-St-UQH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SnF-iz-Qcg" firstAttribute="top" secondItem="Jkk-St-UQH" secondAttribute="top" id="Re4-GA-lIE"/>
                             <constraint firstItem="SnF-iz-Qcg" firstAttribute="leading" secondItem="Jkk-St-UQH" secondAttribute="leading" id="ZJU-dt-a1r"/>
                             <constraint firstItem="Jkk-St-UQH" firstAttribute="bottom" secondItem="SnF-iz-Qcg" secondAttribute="bottom" id="gn1-jB-MVq"/>
                             <constraint firstItem="Jkk-St-UQH" firstAttribute="trailing" secondItem="SnF-iz-Qcg" secondAttribute="trailing" id="hmP-A9-SGg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Jkk-St-UQH"/>
                     </view>
                     <connections>
                         <outlet property="verticalStackView" destination="eiy-Lw-ehx" id="nYj-mM-gnM"/>
@@ -209,52 +210,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PKZ-lM-BuN">
-                                <rect key="frame" x="166.5" y="213.5" width="42" height="220"/>
+                                <rect key="frame" x="167" y="213.5" width="41.5" height="220"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKC-qV-wgG" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmq-0z-umu" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="28.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5b-cz-jEV" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="57" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="57" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McG-aU-m0S" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="85.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="85.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFq-9m-UFQ" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="114" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="114" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezk-Vk-jZz" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="142.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="142.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PV1-fj-hQN" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="171" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="171" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9N-YJ-EcP" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="199.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="199.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -262,12 +263,12 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="p4p-AQ-Idj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PKZ-lM-BuN" firstAttribute="centerX" secondItem="p4p-AQ-Idj" secondAttribute="centerX" id="Jil-6l-Bhv"/>
                             <constraint firstItem="PKZ-lM-BuN" firstAttribute="centerY" secondItem="p4p-AQ-Idj" secondAttribute="centerY" id="rs9-9p-wg0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="p4p-AQ-Idj"/>
                     </view>
                     <connections>
                         <outletCollection property="labels" destination="pKC-qV-wgG" collectionClass="NSMutableArray" id="W7f-sq-p5m"/>
@@ -299,14 +300,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wa9-DZ-Mdw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wa9-DZ-Mdw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qZc-H7-0Iq" secondAttribute="trailing" constant="20" id="1eA-OE-bmc"/>
                             <constraint firstItem="qZc-H7-0Iq" firstAttribute="centerX" secondItem="ZYG-k3-NtA" secondAttribute="centerX" id="Mcc-SN-DHX"/>
                             <constraint firstItem="qZc-H7-0Iq" firstAttribute="centerY" secondItem="ZYG-k3-NtA" secondAttribute="centerY" id="a4g-4N-aHs"/>
                             <constraint firstItem="qZc-H7-0Iq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wa9-DZ-Mdw" secondAttribute="leading" constant="20" id="lIm-Vj-MIC"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wa9-DZ-Mdw"/>
                     </view>
                     <connections>
                         <outlet property="label" destination="qZc-H7-0Iq" id="auo-Ht-3Ry"/>
@@ -317,7 +318,59 @@
             <point key="canvasLocation" x="1567" y="166"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="AwJ-14-zhe">
+            <size key="intrinsicContentSize" width="48" height="20.5"/>
+        </designable>
+        <designable name="Ezk-Vk-jZz">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="LFq-9m-UFQ">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="M9N-YJ-EcP">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="McG-aU-m0S">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="PV1-fj-hQN">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="Pmq-0z-umu">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="iEC-HM-udy">
+            <size key="intrinsicContentSize" width="98.5" height="20.5"/>
+        </designable>
+        <designable name="nHy-12-y3H">
+            <size key="intrinsicContentSize" width="55" height="20.5"/>
+        </designable>
+        <designable name="pKC-qV-wgG">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="qZc-H7-0Iq">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="s5b-cz-jEV">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="uPz-UG-irM">
+            <size key="intrinsicContentSize" width="144" height="20.5"/>
+        </designable>
+        <designable name="vmC-tF-dbO">
+            <size key="intrinsicContentSize" width="93" height="20.5"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="Ict-OF-rhM"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

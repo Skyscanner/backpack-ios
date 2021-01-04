@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SHl-Oi-FFr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SHl-Oi-FFr">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,13 +24,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XWZ-pz-jIr" firstAttribute="centerY" secondItem="Kec-l1-3BA" secondAttribute="centerY" id="BWd-Yk-mAH"/>
                             <constraint firstItem="XWZ-pz-jIr" firstAttribute="leading" secondItem="h4y-YC-Uzb" secondAttribute="leading" constant="20" id="olu-VN-Tmn"/>
                             <constraint firstItem="h4y-YC-Uzb" firstAttribute="trailing" secondItem="XWZ-pz-jIr" secondAttribute="trailing" constant="20" id="sxA-ju-OWu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="h4y-YC-Uzb"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhy-C9-82w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,4 +38,14 @@
             <point key="canvasLocation" x="-55" y="-542"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="XWZ-pz-jIr">
+            <size key="intrinsicContentSize" width="168" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

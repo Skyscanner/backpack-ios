@@ -11,7 +11,7 @@
         <!--Spinners-->
         <scene sceneID="JED-xv-eDU">
             <objects>
-                <viewController title="Spinners" id="43g-uI-FxF" customClass="SpinnersViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpinnersViewController" title="Spinners" id="43g-uI-FxF" customClass="SpinnersViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FXT-xZ-cB5"/>
                         <viewControllerLayoutGuide type="bottom" id="7nr-dV-htR"/>

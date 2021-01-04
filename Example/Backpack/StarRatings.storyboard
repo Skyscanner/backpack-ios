@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SnM-BG-eES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SnM-BG-eES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,54 +14,54 @@
             <objects>
                 <viewController storyboardIdentifier="StarRatings" title="Star ratings" id="EmK-I9-Wpo" customClass="StarRatingsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Eg-4N-VKy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Jn-XQ1">
                                 <rect key="frame" x="20" y="16" width="374" height="792"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-Ui-8pc">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="359.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="339"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dam-GI-g0h" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQZ-ax-SEu" customClass="BPKStarRating">
-                                                <rect key="frame" x="0.0" y="36.5" width="374" height="323"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <rect key="frame" x="0.0" y="16" width="374" height="323"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-yt-5UV">
-                                        <rect key="frame" x="0.0" y="391.5" width="374" height="201.5"/>
+                                        <rect key="frame" x="0.0" y="371" width="374" height="181"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC6-Lb-boD" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHe-DR-aBx" customClass="BPKStarRating">
-                                                <rect key="frame" x="0.0" y="36.5" width="374" height="165"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <rect key="frame" x="0.0" y="16" width="374" height="165"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8ZY-42-gBg">
-                                        <rect key="frame" x="0.0" y="625" width="374" height="36.5"/>
+                                        <rect key="frame" x="0.0" y="584" width="374" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extra Large - User Interactive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0D-bX-jCa" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="224.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="223" height="11.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="top" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zv-Qs-vOV" customClass="BPKStarRating">
-                                                <rect key="frame" x="0.0" y="36.5" width="374" height="0.0"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <rect key="frame" x="0.0" y="27.5" width="374" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -68,7 +69,7 @@
                                         <rect key="frame" x="0.0" y="693.5" width="374" height="66.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move to set rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGS-Oi-pKH" customClass="BPKLabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="138" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -87,7 +88,7 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-oS-FSb">
                                         <rect key="frame" x="0.0" y="792" width="240" height="0.0"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -96,14 +97,14 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ymM-2X-gpi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CLl-Jn-XQ1" firstAttribute="leading" secondItem="2Eg-4N-VKy" secondAttribute="leadingMargin" id="Z0H-ge-OGR"/>
                             <constraint firstItem="CLl-Jn-XQ1" firstAttribute="top" secondItem="2Eg-4N-VKy" secondAttribute="topMargin" constant="16" id="cAS-D7-A43"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CLl-Jn-XQ1" secondAttribute="trailing" id="h31-il-leS"/>
                             <constraint firstItem="CLl-Jn-XQ1" firstAttribute="bottom" secondItem="ymM-2X-gpi" secondAttribute="bottom" id="ieM-SP-ESW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ymM-2X-gpi"/>
                     </view>
                     <connections>
                         <outlet property="defaultSizeTitleLabel" destination="dam-GI-g0h" id="679-eN-Oak"/>
@@ -121,11 +122,11 @@
         <!--Star Ratings-->
         <scene sceneID="LWM-vm-v7y">
             <objects>
-                <tableViewController title="Star Ratings" id="SnM-BG-eES" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StarRatingsViewController" title="Star Ratings" id="SnM-BG-eES" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="yRa-Zx-M8f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="ouW-wO-Hlb">
                                 <cells>
@@ -133,11 +134,11 @@
                                         <rect key="frame" x="0.0" y="18" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3aU-QL-5xd" id="iFG-Ic-Ada">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interactive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9g-ik-08N" customClass="BPKLabel">
-                                                    <rect key="frame" x="20" y="11" width="354.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="355" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -158,11 +159,11 @@
                                         <rect key="frame" x="0.0" y="62" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="crF-k3-r94" id="NLD-M8-bh7">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Docs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlL-nM-bD6" customClass="BPKLabel">
-                                                    <rect key="frame" x="20" y="11" width="354.5" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="355" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -197,7 +198,7 @@
             <objects>
                 <viewController title="Star Ratings" id="Hso-HF-6Gq" customClass="StarRatingsDocViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WgD-m1-qLm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-id-zlp">
@@ -214,7 +215,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBo-kH-kYt" customClass="BPKStarRating">
                                                 <rect key="frame" x="0.0" y="27.5" width="80" height="16"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                                         <real key="value" value="0.0"/>
@@ -222,7 +223,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="nBo-kH-kYt" firstAttribute="leading" secondItem="F9v-lO-Zps" secondAttribute="leading" id="3Vt-nf-slU"/>
                                             <constraint firstItem="Ng2-gk-wdz" firstAttribute="top" secondItem="F9v-lO-Zps" secondAttribute="top" id="5v6-GV-hiO"/>
@@ -244,7 +245,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWA-hQ-W5H" customClass="BPKStarRating">
                                                 <rect key="frame" x="0.0" y="27.5" width="80" height="16"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                                         <real key="value" value="2.5"/>
@@ -252,7 +253,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="7DR-5x-BUv" firstAttribute="leading" secondItem="ZtZ-Bk-QvX" secondAttribute="leading" id="4oL-gS-aPG"/>
                                             <constraint firstAttribute="trailing" secondItem="7DR-5x-BUv" secondAttribute="trailing" id="9ei-lV-0Lj"/>
@@ -274,7 +275,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKC-sr-rLq" customClass="BPKStarRating">
                                                 <rect key="frame" x="0.0" y="27.5" width="80" height="16"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                                         <real key="value" value="5"/>
@@ -282,7 +283,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="YCV-VI-INa" firstAttribute="leading" secondItem="4ui-iq-cwN" secondAttribute="leading" id="0He-vQ-OmU"/>
                                             <constraint firstAttribute="bottom" secondItem="LKC-sr-rLq" secondAttribute="bottom" id="153-Dh-ThE"/>
@@ -294,7 +295,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4ui-iq-cwN" firstAttribute="leading" secondItem="UuO-id-zlp" secondAttribute="leading" id="7HS-2e-NEu"/>
                                     <constraint firstAttribute="trailing" secondItem="ZtZ-Bk-QvX" secondAttribute="trailing" id="7JW-cw-tvA"/>
@@ -309,13 +310,13 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5uL-73-6cU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="UuO-id-zlp" secondAttribute="trailing" id="1bK-H7-qMS"/>
                             <constraint firstItem="UuO-id-zlp" firstAttribute="leading" secondItem="WgD-m1-qLm" secondAttribute="leadingMargin" id="3Q0-63-Ekf"/>
                             <constraint firstItem="UuO-id-zlp" firstAttribute="centerY" secondItem="5uL-73-6cU" secondAttribute="centerY" id="Z62-Lg-shm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5uL-73-6cU"/>
                     </view>
                     <connections>
                         <outlet property="extraLargeRating" destination="LKC-sr-rLq" id="Nis-Zt-R3B"/>
@@ -331,4 +332,41 @@
             <point key="canvasLocation" x="-152.17391304347828" y="493.52678571428567"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="7DR-5x-BUv">
+            <size key="intrinsicContentSize" width="87.5" height="20.5"/>
+        </designable>
+        <designable name="JlL-nM-bD6">
+            <size key="intrinsicContentSize" width="39.5" height="20.5"/>
+        </designable>
+        <designable name="Ng2-gk-wdz">
+            <size key="intrinsicContentSize" width="74" height="20.5"/>
+        </designable>
+        <designable name="RC6-Lb-boD">
+            <size key="intrinsicContentSize" width="43.5" height="20.5"/>
+        </designable>
+        <designable name="XGS-Oi-pKH">
+            <size key="intrinsicContentSize" width="137.5" height="20.5"/>
+        </designable>
+        <designable name="YCV-VI-INa">
+            <size key="intrinsicContentSize" width="73.5" height="20.5"/>
+        </designable>
+        <designable name="dam-GI-g0h">
+            <size key="intrinsicContentSize" width="55" height="20.5"/>
+        </designable>
+        <designable name="e0D-bX-jCa">
+            <size key="intrinsicContentSize" width="223" height="20.5"/>
+        </designable>
+        <designable name="l9g-ik-08N">
+            <size key="intrinsicContentSize" width="80" height="20.5"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

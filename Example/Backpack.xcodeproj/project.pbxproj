@@ -93,6 +93,7 @@
 		D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */; };
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */; };
+		D269EE6025A3B30B00DB6450 /* NavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269EE5F25A3B30A00DB6450 /* NavigationData.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
 		D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */; };
 		D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */; };
@@ -338,6 +339,7 @@
 		D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeRegistry.swift; sourceTree = "<group>"; };
 		D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsSelectorViewController.swift; sourceTree = "<group>"; };
 		D269975323526E57006138D2 /* BPKSnapshotTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotTest.h; sourceTree = "<group>"; };
+		D269EE5F25A3B30A00DB6450 /* NavigationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationData.swift; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTabBarControllerSnapshotTest.m; sourceTree = "<group>"; };
 		D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerStoryViewController.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
+				D269EE5F25A3B30A00DB6450 /* NavigationData.swift */,
 				D6ECFFFE241A8365004225E8 /* Models */,
 				D22FB970230C0E950023DC72 /* Resources */,
 				D6FA3DB2224E21F800CFA094 /* Categories */,
@@ -563,6 +566,7 @@
 				D2A350B522143F0700DEA01F /* Settings.storyboard */,
 				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
 				D2CCB827243F538400788DEC /* BarCharts.storyboard */,
+				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
 				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
 				D233F00E2162159E00A07D9B /* Cards.storyboard */,
 				D2C49DB623856A55008D41FB /* Calendar.storyboard */,
@@ -822,7 +826,7 @@
 				7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */,
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
 			);
-			path = "ViewControllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
@@ -884,7 +888,6 @@
 		E397BEA022F5F56100C8EC04 /* Bottom Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
 				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */,
 				E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */,
 				E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */,
@@ -1326,6 +1329,7 @@
 				7639E565232907B0004D7B09 /* ToastSelectorViewController.swift in Sources */,
 				7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
+				D269EE6025A3B30B00DB6450 /* NavigationData.swift in Sources */,
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */,
 				D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */,

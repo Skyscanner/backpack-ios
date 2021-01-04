@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gdg-nX-jAF">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Horizontal navigation-->
         <scene sceneID="CpR-b8-GZI">
             <objects>
-                <tableViewController storyboardIdentifier="HorizontalNavigation" title="Horizontal navigation" id="Gdg-nX-jAF" customClass="HorizontalNavSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HorizontalNavigationViewController" title="Horizontal navigation" id="Gdg-nX-jAF" customClass="HorizontalNavSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SZx-jL-Soc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,16 +318,16 @@
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbY-OE-N2D" customClass="BPKHorizontalNavigation">
                                 <rect key="frame" x="24" y="269" width="291" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QGe-De-6CG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nbY-OE-N2D" firstAttribute="centerY" secondItem="qDu-FC-qam" secondAttribute="centerY" id="1PN-OX-Z09"/>
                             <constraint firstItem="nbY-OE-N2D" firstAttribute="leading" secondItem="QGe-De-6CG" secondAttribute="leading" constant="24" id="Oow-m4-ZJ5"/>
                             <constraint firstItem="QGe-De-6CG" firstAttribute="trailing" secondItem="nbY-OE-N2D" secondAttribute="trailing" constant="60" id="Ymx-gE-OoL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QGe-De-6CG"/>
                     </view>
                     <navigationItem key="navigationItem" id="PGi-sw-XWV"/>
                     <connections>
@@ -338,7 +339,47 @@
             <point key="canvasLocation" x="795" y="225"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1oR-cs-Gs3">
+            <size key="intrinsicContentSize" width="135.5" height="20.5"/>
+        </designable>
+        <designable name="9l8-zO-4Ci">
+            <size key="intrinsicContentSize" width="105.5" height="20.5"/>
+        </designable>
+        <designable name="Blc-8b-zSF">
+            <size key="intrinsicContentSize" width="122.5" height="20.5"/>
+        </designable>
+        <designable name="Kdu-eP-5lF">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="P28-NJ-hMt">
+            <size key="intrinsicContentSize" width="88" height="20.5"/>
+        </designable>
+        <designable name="d7I-WN-DWl">
+            <size key="intrinsicContentSize" width="69.5" height="20.5"/>
+        </designable>
+        <designable name="kfH-5z-cJx">
+            <size key="intrinsicContentSize" width="39.5" height="20.5"/>
+        </designable>
+        <designable name="mka-rP-JjM">
+            <size key="intrinsicContentSize" width="80.5" height="20.5"/>
+        </designable>
+        <designable name="n9T-fE-6EF">
+            <size key="intrinsicContentSize" width="80" height="20.5"/>
+        </designable>
+        <designable name="nHy-12-y3H">
+            <size key="intrinsicContentSize" width="55" height="20.5"/>
+        </designable>
+        <designable name="oHE-OZ-4jl">
+            <size key="intrinsicContentSize" width="124.5" height="20.5"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="GGU-bO-ouZ"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
