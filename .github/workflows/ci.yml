@@ -172,13 +172,11 @@ jobs:
   comment_on_pr:
     needs: CI
     name: Comment on PR
-    if: github.ref != 'refs/heads/master'
+    if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/master'
     runs-on: ubuntu-20.04
-
     steps:
       - name: Link to the pull request build
         uses: unsplash/comment-on-pr@master
-        if: github.ref != 'refs/heads/master'
         with:
           msg: 'Visit https://backpack.github.io/ios-prs/${{ env.PR_NUMBER }} to see the docs for this PR.'
         env:
