@@ -29,9 +29,38 @@ protocol ItemConvertible {
     func asItems() -> [Item]
 }
 
-struct Item {
-    var name: String?
-    var result: ItemValue
+public struct Item {
+    var name: String
+    var value: ItemValue
+}
+
+extension Item {
+    func isGroup() -> Bool {
+        switch self.value {
+        case .group:
+            return true
+        default:
+            return false
+        }
+    }
+
+    func isStory() -> Bool {
+        switch self.value {
+        case .story:
+            return true
+        default:
+            return false
+        }
+    }
+
+    func subItems() -> [Item]? {
+        switch self.value {
+        case .group(let items):
+            return items
+        default:
+            return nil
+        }
+    }
 }
 
 extension Item: ItemConvertible {
@@ -40,7 +69,7 @@ extension Item: ItemConvertible {
     }
 }
 
-struct Group {
+public struct Group {
     var name: String
     var items: [Item]
 
@@ -52,7 +81,7 @@ struct Group {
 
 extension Group: ItemConvertible {
     func asItems() -> [Item] {
-        return [Item(name: name, result: .group(items))]
+        return [Item(name: name, value: .group(items))]
     }
 }
 
@@ -63,9 +92,9 @@ extension Array: ItemConvertible where Element == Item {
 }
 
 @_functionBuilder
-struct AppBuilder {
+public struct AppBuilder {
     // returns empty array of Items
-    static func buildBlock() -> [Item] { [] }
+    public static func buildBlock() -> [Item] { [] }
 }
 
 extension AppBuilder {
@@ -75,7 +104,7 @@ extension AppBuilder {
     }
 }
 
-func makeApp(@AppBuilder _ content: () -> [Item]) -> [Item] {
+public func makeApp(@AppBuilder _ content: () -> [Item]) -> [Item] {
     content()
 }
 
@@ -103,6 +132,36 @@ func loadStoryboard(name: String, identifier: String) -> Presentable {
     return loadStoryboard(name: name)(identifier)
 }
 
+public struct Section<T> {
+    let name: String?
+    let rows: [Row<T>]
+}
+
+public struct Row<T> {
+    let name: String
+    let value: T
+}
+
+public func sectionify(items: [Item]) -> [Section<Item>] {
+    let groups: [(String, [Item])] = items.compactMap({ group in
+            group.subItems().map({
+                (group.name, $0)
+            })
+    })
+
+    let ungroupedItems: [Item] = items.filter({ $0.isStory() })
+
+    var value = groups.map({group in
+        Section(name: group.0, rows: group.1.map({ Row(name: $0.name, value: $0) }))
+    })
+
+    if ungroupedItems.count > 0 {
+        value.append(Section(name: nil, rows: ungroupedItems.map({ Row(name: $0.name, value: $0) })))
+    }
+
+    return value
+}
+
 @objc
 class NavigationData: NSObject {
 
@@ -112,39 +171,39 @@ class NavigationData: NSObject {
 
     static var appStructure: [Item] = makeApp {
         Group(name: "Tokens") {
-            Item(name: "Colors", result: .story(mainStoryboard("ColorsViewController")))
-            Item(name: "Gradients", result: .story(loadStoryboard(name: "Gradients", identifier: "GradientsViewController")))
-            Item(name: "Spacings", result: .story(mainStoryboard("SpacingsViewController")))
-            Item(name: "Radii", result: .story(mainStoryboard("RadiiViewController")))
-            Item(name: "Shadows", result: .story(mainStoryboard("ShadowsViewController")))
+            Item(name: "Colors", value: .story(mainStoryboard("ColorsViewController")))
+            Item(name: "Gradients", value: .story(loadStoryboard(name: "Gradients", identifier: "GradientsViewController")))
+            Item(name: "Spacings", value: .story(mainStoryboard("SpacingsViewController")))
+            Item(name: "Radii", value: .story(mainStoryboard("RadiiViewController")))
+            Item(name: "Shadows", value: .story(mainStoryboard("ShadowsViewController")))
         }
         Group(name: "Components") {
-            Item(name: "Badges", result: .story(loadStoryboard(name: "Badges", identifier: "BadgesViewController")))
-            Item(name: "Bar charts", result: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
-            Item(name: "Bottom sheet", result: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
-            Item(name: "Buttons", result: .story(loadStoryboard(name: "Buttons", identifier: "ButtonsViewController")))
-            Item(name: "Calendar", result: .story(loadStoryboard(name: "Calendar", identifier: "CalendarViewController")))
-            Item(name: "Cards", result: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
-            Item(name: "Chips", result: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))
-            Item(name: "Flare views", result: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
-            Item(name: "Dialogs", result: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
-            Item(name: "Horizontal navigation", result: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
-            Item(name: "Icons", result: .story(mainStoryboard("IconsViewController")))
-            Item(name: "Labels", result: .story(loadStoryboard(name: "Labels", identifier: "LabelsViewController")))
-            Item(name: "Navigation bars", result: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
-            Item(name: "Overlay views", result: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
-            Item(name: "Panels", result: .story(loadStoryboard(name: "Panel", identifier: "PanelsViewController")))
-            Item(name: "Progress bar", result: .story(loadStoryboard(name: "ProgressBar", identifier: "ProgressBarViewController")))
-            Item(name: "Rating", result: .story(loadStoryboard(name: "Ratings", identifier: "RatingsViewController")))
-            Item(name: "Snackbar", result: .story(loadStoryboard(name: "Snackbar", identifier: "SnackbarViewController")))
-            Item(name: "Spinners", result: .story(loadStoryboard(name: "Spinners", identifier: "SpinnersViewController")))
-            Item(name: "Star ratings", result: .story(loadStoryboard(name: "StarRatings", identifier: "StarRatingsViewController")))
-            Item(name: "Switches", result: .story(loadStoryboard(name: "Switches", identifier: "SwitchesViewController")))
-            Item(name: "Tab bar controller", result: .story(loadStoryboard(name: "TabBarControllers", identifier: "TabBarControllersViewController")))
-            Item(name: "Tappable link labels", result: .story(loadStoryboard(name: "TappableLinkLabels", identifier: "TappableLinkLabelsViewController")))
-            Item(name: "Text fields", result: .story(loadStoryboard(name: "TextField", identifier: "TextFieldViewController")))
-            Item(name: "Text views", result: .story(mainStoryboard("TextViewsViewController")))
-            Item(name: "Toasts", result: .story(loadStoryboard(name: "Toasts", identifier: "ToastsViewController")))
+            Item(name: "Badges", value: .story(loadStoryboard(name: "Badges", identifier: "BadgesViewController")))
+            Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
+            Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
+            Item(name: "Buttons", value: .story(loadStoryboard(name: "Buttons", identifier: "ButtonsViewController")))
+            Item(name: "Calendar", value: .story(loadStoryboard(name: "Calendar", identifier: "CalendarViewController")))
+            Item(name: "Cards", value: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
+            Item(name: "Chips", value: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))
+            Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
+            Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
+            Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
+            Item(name: "Icons", value: .story(mainStoryboard("IconsViewController")))
+            Item(name: "Labels", value: .story(loadStoryboard(name: "Labels", identifier: "LabelsViewController")))
+            Item(name: "Navigation bars", value: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
+            Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
+            Item(name: "Panels", value: .story(loadStoryboard(name: "Panel", identifier: "PanelsViewController")))
+            Item(name: "Progress bar", value: .story(loadStoryboard(name: "ProgressBar", identifier: "ProgressBarViewController")))
+            Item(name: "Rating", value: .story(loadStoryboard(name: "Ratings", identifier: "RatingsViewController")))
+            Item(name: "Snackbar", value: .story(loadStoryboard(name: "Snackbar", identifier: "SnackbarViewController")))
+            Item(name: "Spinners", value: .story(loadStoryboard(name: "Spinners", identifier: "SpinnersViewController")))
+            Item(name: "Star ratings", value: .story(loadStoryboard(name: "StarRatings", identifier: "StarRatingsViewController")))
+            Item(name: "Switches", value: .story(loadStoryboard(name: "Switches", identifier: "SwitchesViewController")))
+            Item(name: "Tab bar controller", value: .story(loadStoryboard(name: "TabBarControllers", identifier: "TabBarControllersViewController")))
+            Item(name: "Tappable link labels", value: .story(loadStoryboard(name: "TappableLinkLabels", identifier: "TappableLinkLabelsViewController")))
+            Item(name: "Text fields", value: .story(loadStoryboard(name: "TextField", identifier: "TextFieldViewController")))
+            Item(name: "Text views", value: .story(mainStoryboard("TextViewsViewController")))
+            Item(name: "Toasts", value: .story(loadStoryboard(name: "Toasts", identifier: "ToastsViewController")))
         }
     }
 }

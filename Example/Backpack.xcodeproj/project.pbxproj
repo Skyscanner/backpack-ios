@@ -139,6 +139,7 @@
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */; };
 		D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624AA231586F600D8ED38 /* PanelViewController.swift */; };
+		D2DACAEE25A75F0C0004BE39 /* NavigationDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACAED25A75F0C0004BE39 /* NavigationDataTest.swift */; };
 		D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76C236AE402006683F5 /* BPKTextFieldTest.m */; };
 		D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
@@ -388,6 +389,7 @@
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelSelectorViewController.swift; sourceTree = "<group>"; };
 		D2D624AA231586F600D8ED38 /* PanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
+		D2DACAED25A75F0C0004BE39 /* NavigationDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDataTest.swift; sourceTree = "<group>"; };
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
 		D613CE542006795400D60CC4 /* BPKColorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKColorTest.m; sourceTree = "<group>"; };
 		D61ACE022306E1E7001C976E /* NavigationBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NavigationBar.storyboard; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D2DACAEC25A75EDF0004BE39 /* ExampleApp */,
 				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 				D22EB156239EA75A0090C65E /* BPKBorderWidthTest.m */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
@@ -744,6 +747,14 @@
 				D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */,
 			);
 			path = "CollectionView Headers";
+			sourceTree = "<group>";
+		};
+		D2DACAEC25A75EDF0004BE39 /* ExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				D2DACAED25A75F0C0004BE39 /* NavigationDataTest.swift */,
+			);
+			path = ExampleApp;
 			sourceTree = "<group>";
 		};
 		D6517B40216DF5F800D85FF9 /* Backpack NativeUITests */ = {
@@ -1371,6 +1382,7 @@
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
 				589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */,
 				6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */,
+				D2DACAEE25A75F0C0004BE39 /* NavigationDataTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,18 +21,18 @@ import Backpack
 
 class BPKRootListTableViewController: UITableViewController {
     @IBOutlet weak var settingsButton: UIBarButtonItem?
-    var appStructure = NavigationData.appStructure
+    var appStructure = sectionify(items: NavigationData.appStructure)
 
     public init(structure: [Item]) {
         super.init(style: .grouped)
 
-        appStructure = structure
+        appStructure = sectionify(items: structure)
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        appStructure = NavigationData.appStructure
+        appStructure = sectionify(items: NavigationData.appStructure)
     }
 
     override func viewDidLoad() {
@@ -69,67 +69,28 @@ class BPKRootListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = appStructure[section].result
-        var sectionItems: [Item]?
-
-        switch section {
-        case .group(let items):
-            sectionItems = items
-        default:
-            sectionItems = nil
-        }
-
-        return sectionItems?.count ?? 0
+        return appStructure[section].rows.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(frame: .zero)
-        let section = appStructure[indexPath.section].result
-        var sectionItems: [Item]?
-
-        switch section {
-        case .group(let items):
-            sectionItems = items
-        default:
-            sectionItems = nil
-        }
-
-        let item: Item? = sectionItems?[indexPath.row]
-
-        if item != nil {
-            let name = item!.name
-            cell.textLabel?.text = name
-        }
-
+        cell.textLabel?.text = appStructure[indexPath.section].rows[indexPath.row].name
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = appStructure[indexPath.section].result
-        var sectionItems: [Item]?
+        let item = appStructure[indexPath.section].rows[indexPath.row].value
+        let resultingVC: UIViewController?
 
-        switch section {
-        case .group(let items):
-            sectionItems = items
-        default:
-            sectionItems = nil
-        }
-
-        let item = sectionItems?[indexPath.row]
-        let result = item?.result
-        var resultingVC: UIViewController?
-
-        switch result {
-        case .story(let presentable):
-            resultingVC = presentable.makeViewController()
-        case .group(let items):
-            resultingVC = BPKRootListTableViewController(structure: items)
-        default:
-            resultingVC = nil
+        switch item.value {
+            case .story(let presentable):
+                resultingVC = presentable.makeViewController()
+            case .group(let items):
+                resultingVC = BPKRootListTableViewController(structure: items)
         }
 
         if resultingVC != nil {
-            resultingVC!.title = item?.name
+            resultingVC!.title = item.name
             show(resultingVC!, sender: self)
         }
     }
