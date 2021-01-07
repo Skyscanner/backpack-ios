@@ -53,13 +53,13 @@ extension Section: Equatable where T: Equatable {
     }
 }
 
-class NavigationDataTest: XCTestCase {
-
-    class MockStoryPresentable: Presentable {
-        func makeViewController() -> UIViewController {
-            return UIViewController()
-        }
+class MockStoryPresentable: Presentable {
+    func makeViewController() -> UIViewController {
+        return UIViewController()
     }
+}
+
+class NavigationDataTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -70,15 +70,13 @@ class NavigationDataTest: XCTestCase {
     }
 
     func testSectionifyingAppStructure() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         let appStructure = makeApp {
             Group(name: "Group 1") {
-                Item(name: "Item 1", value: .story(MockStoryPresentable()))
+                Item(name: "Item 1.1", value: .story(MockStoryPresentable()))
             }
             Group(name: "Group 2") {
-                Item(name: "Item 1", value: .story(MockStoryPresentable()))
-                Item(name: "Item 2", value: .story(MockStoryPresentable()))
+                Item(name: "Item 2.1", value: .story(MockStoryPresentable()))
+                Item(name: "Item 2.2", value: .story(MockStoryPresentable()))
             }
             Item(name: "Item X", value: .story(MockStoryPresentable()))
             Item(name: "Item Y", value: .story(MockStoryPresentable()))
@@ -86,17 +84,20 @@ class NavigationDataTest: XCTestCase {
 
         let result = sectionify(items: appStructure)
         print(result)
-        let expectedResult = [Section(name: "Group 1", rows: [Row(name: "Item 1", value: Item)])]
-        XCTAssertNotEqual(result, expectedResult, "Structure is not as expected")
+        let expectedResult: [Section<Item>] = [
+            Section(name: "Group 1", rows: [
+                Row(name: "Item 1.1", value: Item(name: "Item 1.1", value: .story(MockStoryPresentable())))
+            ]),
+            Section(name: "Group 2", rows: [
+                Row(name: "Item 2.1", value: Item(name: "Item 2.1", value: .story(MockStoryPresentable()))),
+                Row(name: "Item 2.2", value: Item(name: "Item 2.2", value: .story(MockStoryPresentable())))
+            ]),
+            Section(name: nil, rows: [
+                Row(name: "Item X", value: Item(name: "Item X", value: .story(MockStoryPresentable()))),
+                Row(name: "Item Y", value: Item(name: "Item Y", value: .story(MockStoryPresentable())))
+            ])
+        ]
+
         XCTAssertEqual(result, expectedResult, "Structure is not as expected")
-        // test row content
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

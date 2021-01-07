@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i7P-2f-H5J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,31 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Backpack-->
-        <scene sceneID="k3Z-12-bkv">
-            <objects>
-                <tableViewController title="Backpack" id="iX5-lX-5Co" customClass="BPKRootListTableViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vQp-qg-Sc5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="iX5-lX-5Co" id="gVd-C3-PGl"/>
-                            <outlet property="delegate" destination="iX5-lX-5Co" id="eZr-XW-agO"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Backpack" id="N7k-3Q-Qpj">
-                        <barButtonItem key="rightBarButtonItem" id="oJ6-zT-C2i"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="settingsButton" destination="oJ6-zT-C2i" id="7AP-Xe-foa"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xqv-Dk-doc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="516" y="385"/>
-        </scene>
         <!--Spacings-->
         <scene sceneID="F2s-ME-Yp8">
             <objects>
@@ -195,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0GB-qA-iZj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="1413"/>
+            <point key="canvasLocation" x="2308" y="1414"/>
         </scene>
         <!--Icons-->
         <scene sceneID="fda-EW-c2D">
@@ -394,22 +369,6 @@
             </objects>
             <point key="canvasLocation" x="889" y="1413"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8hg-xW-f3B">
-            <objects>
-                <navigationController id="i7P-2f-H5J" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="lNQ-uI-aCM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="iX5-lX-5Co" kind="relationship" relationship="rootViewController" id="yPT-4y-0Iq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G24-vx-vOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-436" y="385"/>
-        </scene>
         <!--SettingsViewController-->
         <scene sceneID="Mlh-DX-y4X">
             <objects>
@@ -418,7 +377,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJj-8e-vqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="23"/>
+            <point key="canvasLocation" x="516" y="1021"/>
         </scene>
     </scenes>
     <designables>
@@ -454,9 +413,6 @@
         </designable>
     </designables>
     <resources>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -19,8 +19,7 @@
 import UIKit
 import Backpack
 
-class BPKRootListTableViewController: UITableViewController {
-    @IBOutlet weak var settingsButton: UIBarButtonItem?
+class BPKNavigationViewController: UITableViewController {
     var appStructure = sectionify(items: NavigationData.appStructure)
 
     public init(structure: [Item]) {
@@ -29,30 +28,17 @@ class BPKRootListTableViewController: UITableViewController {
         appStructure = sectionify(items: structure)
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    convenience init() {
+        self.init(structure: NavigationData.appStructure)
+    }
 
-        appStructure = sectionify(items: NavigationData.appStructure)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if ThemeHelpers.isThemingSupported() && (settingsButton != nil) {
-            let largeSettingsIcon = BPKIcon.makeLargeTemplateIcon(name: .settings)
-            settingsButton!.image = largeSettingsIcon
-            settingsButton!.accessibilityLabel = "Settings"
-            settingsButton!.target = self
-            settingsButton!.action = #selector(self.didTapSettingsButton)
-        }
-
-        // Apply data and create navigation
         tableView.delegate = self
-    }
-
-    @objc
-    func didTapSettingsButton() {
-        ExampleApp.showSettingsView()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,10 +69,10 @@ class BPKRootListTableViewController: UITableViewController {
         let resultingVC: UIViewController?
 
         switch item.value {
-            case .story(let presentable):
-                resultingVC = presentable.makeViewController()
-            case .group(let items):
-                resultingVC = BPKRootListTableViewController(structure: items)
+        case .story(let presentable):
+            resultingVC = presentable.makeViewController()
+        case .group(let items):
+            resultingVC = BPKNavigationViewController(structure: items)
         }
 
         if resultingVC != nil {
