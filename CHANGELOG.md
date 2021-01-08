@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.0.1
+
+**Fixed:**
+ - Upgraded `FSCalendar` to the latest version (2.8.2).
+
 # 40.0.0
 
 **Breaking:**
