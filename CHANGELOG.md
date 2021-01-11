@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.0.2
+
+**Fixed:**
+ - Upgraded `TTTAttributedLabel` to the latest version (2.0.0).
+
 # 40.0.1
 
 **Fixed:**
