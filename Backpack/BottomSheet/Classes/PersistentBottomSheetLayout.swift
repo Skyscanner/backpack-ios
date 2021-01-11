@@ -18,27 +18,38 @@
 
 import FloatingPanel
 
+/// Layout implementation where the BPKBottomSheet will remain persistent in the parent
+/// ViewController. There is no overlay and the parent ViewController remains interactable
 public final class PersistentBottomSheetLayout: FloatingPanelLayout {
+    /// Initial position of BPKBottomSheet
     public var initialPosition: FloatingPanelPosition {
         return .half
     }
 
+    /// All supported positions of BPKBottomSheet
     public var supportedPositions: Set<FloatingPanelPosition> {
         return [.half, .full, .tip]
     }
 
+    /// Method to describe the height of BPKBottomSheet in each position
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
         case .half:
-            return 380
+            return Constants.bottomSheetHeightInHalfPosition
         case .tip:
-            return 120
+            return Constants.bottomSheetHeightInTipPosition
         default:
             return nil
         }
     }
 
+    /// Method to define the overlay in the parent view controller
     public func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
         return 0.0
     }
+}
+
+private enum Constants {
+    static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
+    static let bottomSheetHeightInTipPosition: CGFloat = 120.0
 }

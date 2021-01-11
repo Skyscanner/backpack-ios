@@ -22,6 +22,11 @@ import FloatingPanel
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BPKBottomSheet: NSObject {
+    /// Enum values for specifying BottomSheet Presentation Style
+    /// - modal: Dismissable BottomSheet. No interaction with parent ViewController. Creates an overlay in parent
+    /// parent ViewController
+    /// - persistent: Non-dismissable BottomSheet. Full interaction with parent ViewController. Does not create an
+    /// overlay in parent ViewController
     public enum PresentationStyle {
         case modal
         case persistent

@@ -18,6 +18,7 @@
 
 import FloatingPanel
 
+/// Enum values for specifying BottomSheet position
 public enum BPKFloatingPanelPosition {
     case full
     case half

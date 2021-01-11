@@ -18,15 +18,21 @@
 
 import FloatingPanel
 
+/// Layout implementation where the BPKBottomSheet will be presented modaly. The parent ViewController
+/// will not be interactable, there will be an overlay in the Parent ViewController,
+/// and the BPKBottomShet can be dismissed
 public final class ModalBottomSheetLayout: FloatingPanelLayout {
+    /// Initial position of BPKBottomSheet
     public var initialPosition: FloatingPanelPosition {
         return .half
     }
-
+    
+    /// All supported positions of BPKBottomSheet
     public var supportedPositions: Set<FloatingPanelPosition> {
         return [.full, .half]
     }
 
+    /// Method to describe the height of BPKBottomSheet in each position
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
         case .half: return Constants.bottomSheetHeightInHalfPosition
@@ -34,6 +40,7 @@ public final class ModalBottomSheetLayout: FloatingPanelLayout {
         }
     }
 
+    /// Method to define the overlay in the parent view controller
     public func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
         switch position {
         case .full, .half:
