@@ -59,18 +59,28 @@ class MockStoryPresentable: Presentable {
     }
 }
 
-class NavigationDataTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
+class TableNavigationDataTest: XCTestCase {
     func testSectionifyingAppStructure() throws {
         let appStructure = makeApp {
+            Item(name: "Item X", value: .story(MockStoryPresentable()))
+            Item(name: "Item Y", value: .story(MockStoryPresentable()))
+        }
+
+        let result = sectionify(items: appStructure)
+        print(result)
+        let expectedResult: [Section<Item>] = [
+            Section(name: nil, rows: [
+                Row(name: "Item X", value: Item(name: "Item X", value: .story(MockStoryPresentable()))),
+                Row(name: "Item Y", value: Item(name: "Item Y", value: .story(MockStoryPresentable())))
+            ])
+        ]
+
+        XCTAssertEqual(result, expectedResult, "Structure is not as expected")
+    }
+
+    func testSectionifyingAppStructureWithGroups() throws {
+        let appStructure = makeApp {
+            Item(name: "Item X", value: .story(MockStoryPresentable()))
             Group(name: "Group 1") {
                 Item(name: "Item 1.1", value: .story(MockStoryPresentable()))
             }
@@ -78,7 +88,6 @@ class NavigationDataTest: XCTestCase {
                 Item(name: "Item 2.1", value: .story(MockStoryPresentable()))
                 Item(name: "Item 2.2", value: .story(MockStoryPresentable()))
             }
-            Item(name: "Item X", value: .story(MockStoryPresentable()))
             Item(name: "Item Y", value: .story(MockStoryPresentable()))
         }
 
@@ -92,6 +101,28 @@ class NavigationDataTest: XCTestCase {
                 Row(name: "Item 2.1", value: Item(name: "Item 2.1", value: .story(MockStoryPresentable()))),
                 Row(name: "Item 2.2", value: Item(name: "Item 2.2", value: .story(MockStoryPresentable())))
             ]),
+            Section(name: nil, rows: [
+                Row(name: "Item X", value: Item(name: "Item X", value: .story(MockStoryPresentable()))),
+                Row(name: "Item Y", value: Item(name: "Item Y", value: .story(MockStoryPresentable())))
+            ])
+        ]
+
+        XCTAssertEqual(result, expectedResult, "Structure is not as expected")
+    }
+
+    func testSectionifyingAppStructureWithEmptyGroups() throws {
+        let appStructure = makeApp {
+            Group(name: "Group 1") { }
+            Group(name: "Group 2") { }
+            Item(name: "Item X", value: .story(MockStoryPresentable()))
+            Item(name: "Item Y", value: .story(MockStoryPresentable()))
+        }
+
+        let result = sectionify(items: appStructure)
+        print(result)
+        let expectedResult: [Section<Item>] = [
+            Section(name: "Group 1", rows: []),
+            Section(name: "Group 2", rows: []),
             Section(name: nil, rows: [
                 Row(name: "Item X", value: Item(name: "Item X", value: .story(MockStoryPresentable()))),
                 Row(name: "Item Y", value: Item(name: "Item Y", value: .story(MockStoryPresentable())))

@@ -17,9 +17,10 @@
  */
 
 import UIKit
-import Backpack
 
 class BPKNavigationViewController: UITableViewController {
+    fileprivate static let cellIdentifier = "BPKNavigationViewControllerTableViewCell"
+
     var appStructure = sectionify(items: NavigationData.appStructure)
 
     public init(structure: [Item]) {
@@ -38,28 +39,28 @@ class BPKNavigationViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView?.register(
+            UITableViewCell.self, forCellReuseIdentifier: BPKNavigationViewController.cellIdentifier
+        )
         tableView.delegate = self
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return appStructure.count
+        appStructure.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        // We won't show the heading if there is only one section
-        if appStructure.count > 1 {
-            return appStructure[section].name
-        }
-
-        return nil
+        appStructure[section].name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appStructure[section].rows.count
+        appStructure[section].rows.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(frame: .zero)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: BPKNavigationViewController.cellIdentifier, for: indexPath
+        )
         cell.textLabel?.text = appStructure[indexPath.section].rows[indexPath.row].name
         return cell
     }
@@ -75,9 +76,11 @@ class BPKNavigationViewController: UITableViewController {
             resultingVC = BPKNavigationViewController(structure: items)
         }
 
-        if resultingVC != nil {
-            resultingVC!.title = item.name
-            show(resultingVC!, sender: self)
+        guard let viewController = resultingVC else {
+            return
         }
+
+        viewController.title = item.name
+        show(viewController, sender: self)
     }
 }

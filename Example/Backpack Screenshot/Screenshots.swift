@@ -76,7 +76,7 @@ class Screenshots: XCTestCase {
         tapBackButton()
         tapBackButton()
 
-        app.tables.staticTexts["Bottom Sheet"].tap()
+        app.tables.staticTexts["Bottom sheet"].tap()
         app.tables.staticTexts["Bottom Sheet with a bottom section"].tap()
         saveScreenshot(component: "bottom-sheet", scenario: "with-bottom-section",
                        userInterfaceStyle: userInterfaceStyle)
