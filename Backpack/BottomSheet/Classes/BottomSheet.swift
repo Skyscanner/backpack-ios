@@ -141,7 +141,10 @@ public final class BPKBottomSheet: NSObject {
     ///   - completion: Completion closure called after presentation animation.
     @objc(presentInViewController:animated:completion:)
     public func present(in viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-        assert(presentationStyle == .modal, "present(in:animated:completion:) not compatible with non modal presentation style")
+        guard presentationStyle == .modal else {
+            assertionFailure("present(_:animated:completion:) not compatible with persistent presentation style")
+            return
+        }
         viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
 
@@ -154,7 +157,10 @@ public final class BPKBottomSheet: NSObject {
     ///   - completion: Completion closure called after the presentation animation.
     @objc(presentBottomSheet:animated:completion:)
     public func present(_ bottomSheet: BPKBottomSheet, animated: Bool, completion: (() -> Void)? = nil) {
-        assert(presentationStyle == .modal, "present(_:animated:completion:) not compatible with non modal presentation style")
+        guard presentationStyle == .modal else {
+            assertionFailure("present(_:animated:completion:) not compatible with persistent presentation style")
+            return
+        }
         if let scrollView = floatingPanelController.scrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
@@ -172,7 +178,10 @@ public final class BPKBottomSheet: NSObject {
     /// should be used instead.
     /// - Parameter parent: Parent view where the BPKBottomSheet will be placed.
     public func addPanel(toParent parent: UIViewController) {
-        assert(presentationStyle == .persistent, "present(in:animated:completion:) not compatible with non modal presentation style")
+        guard presentationStyle == .persistent else {
+            assertionFailure("present(in:animated:completion:) not compatible with modal presentation style")
+            return
+        }
         floatingPanelController.addPanel(toParent: parent, belowView: nil, animated: true)
     }
     
