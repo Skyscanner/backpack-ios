@@ -70,10 +70,8 @@ class Screenshots: XCTestCase {
         tapBackButton()
 
         app.tables.staticTexts["Bar charts"].tap()
-        app.tables.staticTexts["Default"].tap()
         saveScreenshot(component: "bar-chart", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         app.cells.element(boundBy: 3).tap()
-        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Bottom sheet"].tap()
