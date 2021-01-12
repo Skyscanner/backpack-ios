@@ -22,7 +22,7 @@
         int correctMinorVersion = 0;                                                                                                                 \
         NSString *deviceName = [[UIDevice currentDevice] name];                                                                                      \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];                                             \
-        BOOL validDevice = [deviceName isEqual:correctDeviceName];                                                                                   \
+        BOOL validDevice = [deviceName hasSuffix:correctDeviceName];                                                                                   \
         if (deviceOSVersion.majorVersion != correctMajorVersion) {                                                                                   \
             validDevice = NO;                                                                                                                        \
         }                                                                                                                                            \
