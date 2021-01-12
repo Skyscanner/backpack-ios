@@ -23,7 +23,7 @@ class BottomSheetUITest: BackpackUITestCase {
     func testBottomSheetPresentingBottomSheet() {
         XCTContext.runActivity(named: "Navigate") { _ in
             let tablesQuery = app.tables
-            tablesQuery.staticTexts["Bottom Sheet"].tap()
+            tablesQuery.staticTexts["Bottom sheet"].tap()
             tablesQuery.staticTexts["Bottom Sheet presenting Bottom Sheet"].tap()
             app.buttons["Next step"].tap()
         }

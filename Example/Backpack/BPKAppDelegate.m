@@ -65,6 +65,13 @@
 
     [BPKAppearance apply];
 
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    UINavigationController *navigationController = [UINavigationController new];
+
+    BPKRootTableViewController *rootTableViewController = [BPKRootTableViewController new];
+    navigationController.viewControllers = @[rootTableViewController];
+    self.window.rootViewController = navigationController;
+
     if ([ThemeHelpers isThemingSupported]) {
         [ThemeHelpers applyAllThemes];
 
@@ -73,8 +80,9 @@
         BPKThemeContainerController *themeContainerController =
             [[BPKThemeContainerController alloc] initWithThemeDefinition:activeTheme rootViewController:self.window.rootViewController];
         self.window.rootViewController = themeContainerController;
-        [self.window makeKeyAndVisible];
     }
+
+    [self.window makeKeyAndVisible];
 
     // If simctl gets the ability to handle this then we should switch to using it.
     if ([ThemeHelpers forceDarkMode]) {

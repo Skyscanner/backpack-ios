@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LD7-dZ-l4t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LD7-dZ-l4t">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Snack Bar Selector View Controller-->
         <scene sceneID="dif-rj-SYR">
             <objects>
-                <tableViewController id="LD7-dZ-l4t" customClass="SnackBarSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SnackbarViewController" id="LD7-dZ-l4t" customClass="SnackBarSelectorViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="heD-l6-02E">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="wzn-93-Y8L">
                                 <cells>
@@ -246,13 +247,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G5B-2b-FSV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kei-ax-E8f" firstAttribute="top" secondItem="G5B-2b-FSV" secondAttribute="top" constant="111" id="fFW-Zl-FBc"/>
                             <constraint firstItem="kei-ax-E8f" firstAttribute="leading" secondItem="G5B-2b-FSV" secondAttribute="leading" constant="20" id="tu0-DJ-55Q"/>
                             <constraint firstItem="G5B-2b-FSV" firstAttribute="trailing" secondItem="kei-ax-E8f" secondAttribute="trailing" constant="20" id="zNW-iB-Ma2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="G5B-2b-FSV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Gdm-HU-iy3"/>
                     <navigationItem key="navigationItem" id="0Hz-HS-sQc"/>
@@ -265,7 +266,44 @@
             <point key="canvasLocation" x="515.94202898550725" y="158.70535714285714"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="6ep-nu-TaD">
+            <size key="intrinsicContentSize" width="147" height="20.5"/>
+        </designable>
+        <designable name="GNl-Ht-Jdg">
+            <size key="intrinsicContentSize" width="140" height="20.5"/>
+        </designable>
+        <designable name="TaY-j6-jN4">
+            <size key="intrinsicContentSize" width="106" height="20.5"/>
+        </designable>
+        <designable name="bVg-nF-WMy">
+            <size key="intrinsicContentSize" width="193" height="20.5"/>
+        </designable>
+        <designable name="frv-QU-5EM">
+            <size key="intrinsicContentSize" width="68.5" height="20.5"/>
+        </designable>
+        <designable name="gpz-5l-YgJ">
+            <size key="intrinsicContentSize" width="110.5" height="20.5"/>
+        </designable>
+        <designable name="hUu-9G-bLo">
+            <size key="intrinsicContentSize" width="270" height="20.5"/>
+        </designable>
+        <designable name="kiy-Km-Fub">
+            <size key="intrinsicContentSize" width="228" height="20.5"/>
+        </designable>
+        <designable name="lpU-wF-n3R">
+            <size key="intrinsicContentSize" width="155.5" height="20.5"/>
+        </designable>
+        <designable name="qga-tm-04j">
+            <size key="intrinsicContentSize" width="177.5" height="20.5"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="IpE-Ud-fFR"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

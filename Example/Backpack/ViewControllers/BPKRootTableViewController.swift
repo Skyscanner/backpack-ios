@@ -19,18 +19,20 @@
 import UIKit
 import Backpack
 
-class BPKRootListTableViewController: UITableViewController {
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
-
+class BPKRootTableViewController: BPKNavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = "Backpack"
+
         if ThemeHelpers.isThemingSupported() {
             let largeSettingsIcon = BPKIcon.makeLargeTemplateIcon(name: .settings)
+            let settingsButton: UIBarButtonItem = UIBarButtonItem()
             settingsButton.image = largeSettingsIcon
             settingsButton.accessibilityLabel = "Settings"
             settingsButton.target = self
             settingsButton.action = #selector(self.didTapSettingsButton)
+            self.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
         }
     }
 
