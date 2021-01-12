@@ -20,6 +20,34 @@
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
 
+    static func enrich<R>(_ fun: @escaping () -> R, _ map: @escaping (R) -> Void) -> () -> R {
+        return {
+            let result: R = fun()
+            map(result)
+
+            return result
+        }
+    }
+
+    static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
+        return {storyboardVC in
+            guard let buttonsVC = storyboardVC as? BPKButtonsViewController else {
+                return
+            }
+
+            buttonsVC.style = style
+        }
+    }
+
+    static func buttonStoryboard(style: BPKButtonStyle) -> Presentable {
+        return CustomPresentable(generateViewController:
+            enrich(
+                loadStoryboard(name: "Buttons", identifier: "ButtonsViewController").makeViewController,
+                setButtonStyle(style: style)
+            )
+        )
+    }
+
     // swiftlint:disable line_length closure_body_length
 
     static var appStructure: [Item] = makeApp {
@@ -34,7 +62,14 @@ class NavigationData: NSObject {
             Item(name: "Badges", value: .story(loadStoryboard(name: "Badges", identifier: "BadgesViewController")))
             Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
             Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
-            Item(name: "Buttons", value: .story(loadStoryboard(name: "Buttons", identifier: "ButtonsViewController")))
+            Group(name: "Buttons") {
+                Item(name: "Primary", value: .story(buttonStoryboard(style: .primary)))
+                Item(name: "Secondary", value: .story(buttonStoryboard(style: .secondary)))
+                Item(name: "Destructive", value: .story(buttonStoryboard(style: .destructive)))
+                Item(name: "Featured", value: .story(buttonStoryboard(style: .featured)))
+                Item(name: "Link", value: .story(buttonStoryboard(style: .link)))
+                Item(name: "Outline", value: .story(buttonStoryboard(style: .outline)))
+            }
             Item(name: "Calendar", value: .story(loadStoryboard(name: "Calendar", identifier: "CalendarViewController")))
             Item(name: "Cards", value: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
             Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))

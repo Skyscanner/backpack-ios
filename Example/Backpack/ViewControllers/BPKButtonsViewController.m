@@ -46,7 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak, nonatomic) IBOutlet BPKButton *largeLoadingButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeLoadingIconOnlyButton;
 @property(weak, nonatomic) IBOutlet BPKButton *largeLoadingTitleOnlyButton;
-@property(assign, nonatomic) BOOL isOutlineSectionWithLightStyle;
 
 - (void)setupButton:(BPKButton *)button image:(UIImage *_Nullable)image title:(NSString *_Nullable)title;
 @property(nonatomic, getter=isRTL, readonly) BOOL isRTL;
@@ -69,9 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupButtons {
-    if (self.isOutlineSectionWithLightStyle) {
+    if (self.style == BPKButtonStyleOutline) {
         for (UIView *contentView in self.contentViews) {
-            [contentView setBackgroundColor:BPKColor.skyBlueShade03];
+            [contentView setBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade03 darkVariant:BPKColor.backgroundDarkColor]];
         }
         for (UILabel *storyHeading in self.storyHeadings) {
             [storyHeading setTextColor:BPKColor.white];
@@ -138,16 +137,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.largeLoadingIconOnlyButton.isLoading = sender.on;
     self.largeLoadingTitleOnlyButton.isLoading = sender.on;
     self.largeLoadingButton.isLoading = sender.on;
-}
-
-- (BOOL)isOutlineSectionWithLightStyle {
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        return (self.style == BPKButtonStyleOutline && self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight);
-    }
-#endif
-
-    return (self.style == BPKButtonStyleOutline);
 }
 
 @end
