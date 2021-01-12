@@ -356,6 +356,7 @@ const parseTokens = tokensData => {
         legibleName: getLegibleName(name),
       }),
     )
+    .sortBy(s => parseInt(s.value, 10))
     .value();
 
   const shadows = _.chain(tokensData.properties)

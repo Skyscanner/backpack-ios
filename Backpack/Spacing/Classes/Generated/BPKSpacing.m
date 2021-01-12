@@ -18,15 +18,15 @@
  */
 #import "BPKSpacing.h"
 
-CGFloat const BPKSpacingBase = 16;
-
-CGFloat const BPKSpacingLg = 24;
-
-CGFloat const BPKSpacingMd = 8;
-
 CGFloat const BPKSpacingNone = 0;
 
 CGFloat const BPKSpacingSm = 4;
+
+CGFloat const BPKSpacingMd = 8;
+
+CGFloat const BPKSpacingBase = 16;
+
+CGFloat const BPKSpacingLg = 24;
 
 CGFloat const BPKSpacingXl = 32;
 
