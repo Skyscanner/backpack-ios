@@ -21,37 +21,37 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * The Skyscanner base shadow.
- */
-extern CGFloat const BPKSpacingBase;
-
-/**
- * The Skyscanner large shadow.
- */
-extern CGFloat const BPKSpacingLg;
-
-/**
- * The Skyscanner medium shadow.
- */
-extern CGFloat const BPKSpacingMd;
-
-/**
- * The Skyscanner none shadow.
+ * The Skyscanner none spacing(0pt).
  */
 extern CGFloat const BPKSpacingNone;
 
 /**
- * The Skyscanner small shadow.
+ * The Skyscanner small spacing(4pt).
  */
 extern CGFloat const BPKSpacingSm;
 
 /**
- * The Skyscanner extra large shadow.
+ * The Skyscanner medium spacing(8pt).
+ */
+extern CGFloat const BPKSpacingMd;
+
+/**
+ * The Skyscanner base spacing(16pt).
+ */
+extern CGFloat const BPKSpacingBase;
+
+/**
+ * The Skyscanner large spacing(24pt).
+ */
+extern CGFloat const BPKSpacingLg;
+
+/**
+ * The Skyscanner extra large spacing(32pt).
  */
 extern CGFloat const BPKSpacingXl;
 
 /**
- * The Skyscanner extra extra large shadow.
+ * The Skyscanner extra extra large spacing(40pt).
  */
 extern CGFloat const BPKSpacingXxl;
 
