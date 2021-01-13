@@ -20,13 +20,12 @@
 import Backpack
 
 final class BottomSheetViewController: UITableViewController {
-
     @IBOutlet var scrollViewBottomSheet: UITableViewCell!
     @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
     @IBOutlet var sheetPresentingSheet: UITableViewCell!
     @IBOutlet var nonScrollableContentBottomSheet: UITableViewCell!
     @IBOutlet var resizableContentBottomSheet: UITableViewCell!
-
+    @IBOutlet var persistentBottomSheet: UITableViewCell!
 }
 
 // MARK: - UITableViewDelegate
@@ -121,6 +120,10 @@ extension BottomSheetViewController {
             }
 
             sheet.present(in: self, animated: true)
+        case persistentBottomSheet:
+            let viewController = BottomSheetPersistentViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true, completion: nil)
         default: break
         }
     }
