@@ -66,17 +66,20 @@ NS_ASSUME_NONNULL_BEGIN
     tabBarController.tabBar.tintColor = BPKColor.primaryColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
-    UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameKey] tag:1];
+    UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameKey] tag:1];
     UIViewController *tabTwo = [[UIViewController alloc] init];
-    UITabBarItem *tabTwoBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 2" image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameBus] tag:2];
+    BPKTabBarDotImageDefinition *exploreTabBarDotImage = [[BPKTabBarDotImageDefinition alloc] initWithLightImage:[UIImage imageNamed:@"tab_explore_with_dot_lm"] darkImage:[UIImage imageNamed:@"tab_explore_with_dot_dm"]];
+    BPKTabBarItem *tabTwoBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 2" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameExplore] tag:2 dotImageDefinition:exploreTabBarDotImage];
+    [tabTwoBarItem addDot];
     UIViewController *tabThree = [[UIViewController alloc] init];
-    UITabBarItem *tabThreeBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 3" image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameMap] tag:3];
+    UITabBarItem *tabThreeBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 3" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameMap] tag:3];
     tabThreeBarItem.badgeColor = BPKColor.panjin;
     tabThreeBarItem.badgeValue = @"42";
 
     UIViewController *tabFour = [[UIViewController alloc] init];
-    UITabBarItem *tabFourBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 4" image:[BPKIcon largeTemplateIconNamed:BPKSmallIconNameCars] tag:4];
-    [tabFourBarItem bpk_addDotWithColor:BPKColor.primaryColor];
+    BPKTabBarDotImageDefinition *profileTabBarDotImage = [[BPKTabBarDotImageDefinition alloc] initWithLightImage:[UIImage imageNamed:@"tab_profile_with_dot_lm"] darkImage:[UIImage imageNamed:@"tab_profile_with_dot_dm"]];
+    BPKTabBarItem *tabFourBarItem = [[BPKTabBarItem alloc] initWithTitle:@"Tab 4" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameCars] tag:4 dotImageDefinition:profileTabBarDotImage];
+    [tabFourBarItem addDot];
 
     tabOne.tabBarItem = tabOneBarItem;
     tabTwo.tabBarItem = tabTwoBarItem;
@@ -84,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     tabFour.tabBarItem = tabFourBarItem;
 
     tabBarController.viewControllers = @[tabOne, tabTwo, tabThree, tabFour];
+    tabBarController.selectedViewController = tabTwo;
 
     return tabBarController.view;
 }
