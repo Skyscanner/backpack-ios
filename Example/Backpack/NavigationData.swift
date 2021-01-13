@@ -43,6 +43,16 @@ class NavigationData: NSObject {
     static var appStructure: [Item] = makeApp {
         Group(name: "Tokens") {
             Item(name: "Colors", value: .story(mainStoryboard("ColorsViewController")))
+            Group(name: "Gradients") {
+                Item(
+                    name: "Primary",
+                    value: .story(loadStoryboard(name: "Gradients", identifier: "PrimaryGradientViewController"))
+                )
+                Item(
+                    name: "Baseline Scrim",
+                    value: .story(loadStoryboard(name: "Gradients", identifier: "GradientViewController"))
+                )
+            }
             Item(name: "Gradients", value: .story(loadStoryboard(name: "Gradients", identifier: "GradientsViewController")))
             Item(name: "Spacings", value: .story(mainStoryboard("SpacingsViewController")))
             Item(name: "Radii", value: .story(mainStoryboard("RadiiViewController")))
