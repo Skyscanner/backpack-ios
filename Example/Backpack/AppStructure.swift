@@ -53,6 +53,10 @@ extension Item {
         }
     }
 
+    /*
+     * Returns a list of sub items if the item is a group.
+     * Otherwise returns nil.
+     */
     func subItems() -> [Item]? {
         switch self.value {
         case .group(let items):
@@ -73,6 +77,11 @@ public struct Group {
     var name: String
     var items: [Item]
 
+    /*
+     * Construct a group with a given name and subitems
+     * Parameter name: The name of the group.
+     * Parameter content: The child items of the group.
+     */
     init(name: String, @AppBuilder builder: () -> [Item]) {
         self.name = name
         self.items = builder()
@@ -93,17 +102,19 @@ extension Array: ItemConvertible where Element == Item {
 
 @_functionBuilder
 public struct AppBuilder {
-    // returns empty array of Items
     public static func buildBlock() -> [Item] { [] }
 }
 
 extension AppBuilder {
-    // maps groups to list of Items
     static func buildBlock(_ groups: ItemConvertible...) -> [Item] {
         groups.flatMap { $0.asItems() }
     }
 }
 
+/*
+ * Construct a list of groups from a series of items.
+ * Parameter content: The items to construct into an app structure.
+ */
 public func makeApp(@AppBuilder _ content: () -> [Item]) -> [Item] {
     content()
 }

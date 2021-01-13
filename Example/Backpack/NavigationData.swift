@@ -16,18 +16,8 @@
  * limitations under the License.
  */
 
-@objc
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
-
-    static func enrich<R>(_ fun: @escaping () -> R, _ map: @escaping (R) -> Void) -> () -> R {
-        return {
-            let result: R = fun()
-            map(result)
-
-            return result
-        }
-    }
 
     static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
         return {storyboardVC in

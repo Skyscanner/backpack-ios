@@ -17,6 +17,9 @@
  * limitations under the License.
  */
 
+/*
+ * Makes a UIViewController based on the storyboard name and identifier.
+ */
 struct StoryboardPresentable: Presentable {
     func makeViewController() -> UIViewController {
         let viewController: UIViewController =
@@ -29,7 +32,12 @@ struct StoryboardPresentable: Presentable {
     var identifier: String
 }
 
-func loadStoryboard(name: String) -> (String) -> Presentable {
+/*
+ * Loads a story board and returns a function that can create
+ * a Presentable for a given view controller.
+ * Parameter name: The name of the storyboard.
+ */
+ func loadStoryboard(name: String) -> (String) -> Presentable {
     let storyboard = UIStoryboard(name: name, bundle: nil)
 
     return { viewControllerIdentier in
@@ -37,6 +45,38 @@ func loadStoryboard(name: String) -> (String) -> Presentable {
     }
 }
 
+/*
+ * Loads a view controller from a given story board and returns a Presentable
+ * that can instantiate this view controller.
+ * Parameter name: The name of the storyboard.
+ * Parameter identifier: The identifier of the scene.
+ */
 func loadStoryboard(name: String, identifier: String) -> Presentable {
     loadStoryboard(name: name)(identifier)
+}
+
+/*
+ * Makes a UIViewController by invoking a the supplied custom generator.
+ */
+struct CustomPresentable: Presentable {
+    func makeViewController() -> UIViewController {
+        return generateViewController()
+    }
+
+    var generateViewController: () -> UIViewController
+}
+
+/*
+ * Given two functions, returns a new function that, when invoked, will invoke the first function,
+ * apply the second function to it, and return the resulting value.
+ * Parameter fun: The function to apply to get the result.
+ * Parameter map: The function to apply to the result before returning.
+*/
+func enrich<R>(_ fun: @escaping () -> R, _ map: @escaping (R) -> Void) -> () -> R {
+    return {
+        let result: R = fun()
+        map(result)
+
+        return result
+    }
 }
