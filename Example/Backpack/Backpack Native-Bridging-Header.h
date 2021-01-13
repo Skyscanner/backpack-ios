@@ -5,3 +5,4 @@
 #import "BPKExampleAppTitleAttributes.h"
 #import "BPKHorizontalNavigationOptionWithBackground.h"
 #import "BPKThemeContainerController.h"
+#import "BPKButtonsViewController.h"

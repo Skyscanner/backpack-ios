@@ -26,8 +26,11 @@ public struct Row<T> {
     let value: T
 }
 
-/*
+/**
  * Converts a list of group items into a list of sections if they have subitems
+ *
+ * parameter items: The items to organise into one or more sections.
+ * returns: A list of sections.
  */
 public func sectionify(items: [Item]) -> [Section<Item>] {
     let groups: [(String, [Item])] = items.compactMap({ group in
