@@ -138,7 +138,6 @@
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CCB827243F538400788DEC /* BarCharts.storyboard */; };
 		D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB829243F544300788DEC /* BarChartViewController.swift */; };
-		D2CCB82C243F544300788DEC /* BarChartSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB82A243F544300788DEC /* BarChartSelectorViewController.swift */; };
 		D2CCB831243FB3AC00788DEC /* BPKBarChartBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
 		D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */; };
@@ -392,7 +391,6 @@
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CCB827243F538400788DEC /* BarCharts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BarCharts.storyboard; sourceTree = "<group>"; };
 		D2CCB829243F544300788DEC /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
-		D2CCB82A243F544300788DEC /* BarChartSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartSelectorViewController.swift; sourceTree = "<group>"; };
 		D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBarChartBarSnapshotTest.m; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelSelectorViewController.swift; sourceTree = "<group>"; };
@@ -792,7 +790,6 @@
 				D26E5A0925A787060064D9F1 /* BPKRootTableViewController.swift */,
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
-				D2CCB82A243F544300788DEC /* BarChartSelectorViewController.swift */,
 				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
 				3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */,
 				3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */,
@@ -1330,7 +1327,6 @@
 				D26E5A0B25A787060064D9F1 /* BPKRootTableViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
-				D2CCB82C243F544300788DEC /* BarChartSelectorViewController.swift in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
