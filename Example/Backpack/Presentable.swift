@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-/*
+/**
  * Makes a UIViewController based on the storyboard name and identifier.
  */
 struct StoryboardPresentable: Presentable {
@@ -32,30 +32,34 @@ struct StoryboardPresentable: Presentable {
     var identifier: String
 }
 
-/*
+/**
  * Loads a story board and returns a function that can create
  * a Presentable for a given view controller.
- * Parameter name: The name of the storyboard.
+ *
+ * parameter name: The name of the storyboard.
+ * returns: A function that accespts a scene identifier and returns the presentable
  */
  func loadStoryboard(name: String) -> (String) -> Presentable {
     let storyboard = UIStoryboard(name: name, bundle: nil)
 
-    return { viewControllerIdentier in
-         StoryboardPresentable(storyboard: storyboard, identifier: viewControllerIdentier)
+    return { sceneIdentier in
+         StoryboardPresentable(storyboard: storyboard, identifier: sceneIdentier)
     }
 }
 
-/*
+/**
  * Loads a view controller from a given story board and returns a Presentable
  * that can instantiate this view controller.
- * Parameter name: The name of the storyboard.
- * Parameter identifier: The identifier of the scene.
+ *
+ * parameter name: The name of the storyboard.
+ * parameter identifier: The identifier of the scene.
+ * returns: The Presentable which can display the storyboard view controller
  */
 func loadStoryboard(name: String, identifier: String) -> Presentable {
     loadStoryboard(name: name)(identifier)
 }
 
-/*
+/**
  * Makes a UIViewController by invoking a the supplied custom generator.
  */
 struct CustomPresentable: Presentable {
@@ -66,11 +70,13 @@ struct CustomPresentable: Presentable {
     var generateViewController: () -> UIViewController
 }
 
-/*
+/**
  * Given two functions, returns a new function that, when invoked, will invoke the first function,
  * apply the second function to it, and return the resulting value.
- * Parameter fun: The function to apply to get the result.
- * Parameter map: The function to apply to the result before returning.
+ *
+ * parameter fun: The function to apply to get the result.
+ * parameter map: The function to apply to the result before returning.
+ * returns: A function which, when invoked, applies the supplied functions and returns the result.
 */
 func enrich<R>(_ fun: @escaping () -> R, _ map: @escaping (R) -> Void) -> () -> R {
     return {
