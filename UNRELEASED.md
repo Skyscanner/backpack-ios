@@ -1,6 +1,16 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+
+- Backpack/BottomSheet:
+  - New style of presentation to BottomSheet. Now we are capable to present it modally or persistently by using the `init` parameter `presentationStyle` being `.persistent` or `.modal`
+  - Added an Example of usage in the Example App
+
+**Fixed:**
+
+- Upgrade `FloatingPanel` version to 1.7.5
+
 
 ## How to write a good changelog entry
 
