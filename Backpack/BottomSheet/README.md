@@ -64,3 +64,17 @@ let bottomSheet = BPKBottomSheet(contentViewController: contentViewController,
                               bottomSectionViewController: fixedBottomSectionViewController)
 bottomSheet.present(in: self, animated: true, completion: nil)
 ```
+
+# Persistent presentation style, similar to the one used in Apple Maps.
+
+```swift
+import Backpack
+
+let contentViewController = ... // A view controller that contains any kind of scroll view
+let fixedBottomSectionViewController = ... // A view controller that will be fixed at the bottom (won't scroll)
+let bottomSheet = BPKBottomSheet(contentViewController: contentViewController,
+                              scrollViewToTrack: contentViewController.scrollView,
+                              bottomSectionViewController: fixedBottomSectionViewController,
+                              presentationStyle: .persistent)
+bottomSheet.addPanel(toParent: self)
+```
