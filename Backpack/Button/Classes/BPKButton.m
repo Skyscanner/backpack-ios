@@ -844,11 +844,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 #if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 12.0, *)) {
-        if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
-            [self updateBackgroundAndStyle];
-            [self updateContentColor];
-        }
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self updateBackgroundAndStyle];
+        [self updateContentColor];
     }
 #endif
 }
