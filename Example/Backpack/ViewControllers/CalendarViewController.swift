@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var maxEnabledDate: Bool = false
     var customStylesForDates = false
     var showPrices = false
+    var alternativeBackgroundColor = false
     var currentMaxEnabledDate: Date?
     var calendar = BPKCalendar()
     @IBOutlet weak var myView: UIView!
@@ -50,6 +51,10 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         calendar.minDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
         calendar.locale = Locale.current
         calendar.delegate = self
+        if alternativeBackgroundColor {
+            view.backgroundColor = BPKColor.backgroundSecondaryColor
+            myView.backgroundColor = BPKColor.backgroundSecondaryColor
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

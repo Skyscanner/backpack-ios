@@ -45,6 +45,7 @@ class NavigationData: NSObject {
         case withMaxEnabledDate
         case withCustomStyles
         case withPrices
+        case alternativeBackgroundColor
     }
 
     static func setCalendarProperties(story: CalendarStory) -> (UIViewController) -> Void {
@@ -62,6 +63,8 @@ class NavigationData: NSObject {
                 calendarVC.customStylesForDates = true
             case .withPrices:
                 calendarVC.showPrices = true
+            case .alternativeBackgroundColor:
+                calendarVC.alternativeBackgroundColor = true
             }
         }
     }
@@ -112,6 +115,7 @@ class NavigationData: NSObject {
                 Item(name: "With max enabled date", value: .story(calendarStoryboard(story: .withMaxEnabledDate)))
                 Item(name: "Custom styles for specific dates", value: .story(calendarStoryboard(story: .withCustomStyles)))
                 Item(name: "With prices", value: .story(calendarStoryboard(story: .withPrices)))
+                Item(name: "With alternative background color", value: .story(calendarStoryboard(story: .alternativeBackgroundColor)))
             }
             Item(name: "Cards", value: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
             Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
