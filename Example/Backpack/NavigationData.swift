@@ -18,6 +18,8 @@
 
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
+    static var buttonsStoryboard = loadStoryboard(name: "Buttons")
+    static var calendarStoryboard = loadStoryboard(name: "Calendar")
 
     static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
         return {storyboardVC in
@@ -32,8 +34,43 @@ class NavigationData: NSObject {
     static func buttonStoryboard(style: BPKButtonStyle) -> Presentable {
         return CustomPresentable(generateViewController:
             enrich(
-                loadStoryboard(name: "Buttons", identifier: "ButtonsViewController").makeViewController,
+                buttonsStoryboard("ButtonsViewController").makeViewController,
                 setButtonStyle(style: style)
+            )
+        )
+    }
+
+    enum CalendarStory: String {
+        case `default`
+        case withMaxEnabledDate
+        case withCustomStyles
+        case withPrices
+    }
+
+    static func setCalendarProperties(story: CalendarStory) -> (UIViewController) -> Void {
+        return {storyboardVC in
+            guard let calendarVC = storyboardVC as? CalendarViewController else {
+                return
+            }
+
+            switch story {
+            case .default:
+                break
+            case .withMaxEnabledDate:
+                calendarVC.maxEnabledDate = true
+            case .withCustomStyles:
+                calendarVC.customStylesForDates = true
+            case .withPrices:
+                calendarVC.showPrices = true
+            }
+        }
+    }
+
+    static func calendarStoryboard(story: CalendarStory) -> Presentable {
+        return CustomPresentable(generateViewController:
+            enrich(
+                calendarStoryboard("CalendarViewController").makeViewController,
+                setCalendarProperties(story: story)
             )
         )
     }
@@ -70,7 +107,12 @@ class NavigationData: NSObject {
                 Item(name: "Link", value: .story(buttonStoryboard(style: .link)))
                 Item(name: "Outline", value: .story(buttonStoryboard(style: .outline)))
             }
-            Item(name: "Calendar", value: .story(loadStoryboard(name: "Calendar", identifier: "CalendarViewController")))
+            Group(name: "Calendar") {
+                Item(name: "Default", value: .story(calendarStoryboard(story: .default)))
+                Item(name: "With max enabled date", value: .story(calendarStoryboard(story: .withMaxEnabledDate)))
+                Item(name: "Custom styles for specific dates", value: .story(calendarStoryboard(story: .withCustomStyles)))
+                Item(name: "With prices", value: .story(calendarStoryboard(story: .withPrices)))
+            }
             Item(name: "Cards", value: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
             Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
             Item(name: "Chips", value: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))

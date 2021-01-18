@@ -24,8 +24,8 @@ import Backpack.SimpleDate
 class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var maxEnabledDate: Bool = false
     var customStylesForDates = false
-    var currentMaxEnabledDate: Date?
     var showPrices = false
+    var currentMaxEnabledDate: Date?
     var calendar = BPKCalendar()
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
