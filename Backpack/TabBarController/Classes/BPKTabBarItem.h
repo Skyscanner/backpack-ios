@@ -29,7 +29,7 @@ IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
 
 @property(nullable, strong) UIImage *originalImage;
 
-@property (nonatomic) UIUserInterfaceStyle interfaceStyle;
+@property(nonatomic) UIUserInterfaceStyle interfaceStyle;
 
 @property(nullable, strong) BPKTabBarDotImageDefinition *dotImageDefinition;
 
