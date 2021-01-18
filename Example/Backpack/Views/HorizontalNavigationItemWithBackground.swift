@@ -103,10 +103,8 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        if #available(iOS 12.0, *) {
-            if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
-                updateStyle()
-            }
+        if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            updateStyle()
         }
     }
 
