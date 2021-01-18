@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
 		2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */; };
-		3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
@@ -133,7 +132,6 @@
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
 		D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */; };
 		D2C4467023158479009E58A5 /* Panel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C4466F23158479009E58A5 /* Panel.storyboard */; };
-		D2C49DB523856949008D41FB /* CalendarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C49DB423856949008D41FB /* CalendarSelectorViewController.swift */; };
 		D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C49DB623856A55008D41FB /* Calendar.storyboard */; };
 		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CCB827243F538400788DEC /* BarCharts.storyboard */; };
@@ -238,8 +236,6 @@
 		0F386FFD6327F785FBB09093 /* Pods-Backpack-Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.debug.xcconfig"; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKGradientTest.m; sourceTree = "<group>"; };
-		3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonSelectorViewController.h; sourceTree = "<group>"; };
-		3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSelectorViewController.m; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
 		3AA018EE215BE26500838FBB /* SpinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnersViewController.swift; sourceTree = "<group>"; };
@@ -386,7 +382,6 @@
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
 		D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKFlareViewSnapshotTest.m; sourceTree = "<group>"; };
 		D2C4466F23158479009E58A5 /* Panel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Panel.storyboard; sourceTree = "<group>"; };
-		D2C49DB423856949008D41FB /* CalendarSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSelectorViewController.swift; sourceTree = "<group>"; };
 		D2C49DB623856A55008D41FB /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CCB827243F538400788DEC /* BarCharts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BarCharts.storyboard; sourceTree = "<group>"; };
@@ -791,8 +786,6 @@
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
 				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
-				3A335C08214BCC19009034A6 /* BPKButtonSelectorViewController.h */,
-				3A335C09214BCC19009034A6 /* BPKButtonSelectorViewController.m */,
 				3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */,
 				3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */,
 				6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */,
@@ -801,7 +794,6 @@
 				D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */,
 				60D302CD201B77B9006DBC18 /* BPKSpacingsViewController.h */,
 				60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */,
-				D2C49DB423856949008D41FB /* CalendarSelectorViewController.swift */,
 				D698E64E219C528100D03060 /* CalendarViewController.swift */,
 				D225BBE1216218FF00FC8B17 /* CardsSelectorViewController.swift */,
 				D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */,
@@ -1340,7 +1332,6 @@
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */,
-				D2C49DB523856949008D41FB /* CalendarSelectorViewController.swift in Sources */,
 				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				D217702425ACCC9700C0FD8C /* AppStructure.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
@@ -1356,7 +1347,6 @@
 				D217700C25ACCC0400C0FD8C /* TableNavigationData.swift in Sources */,
 				D202E168238C1771003E7B23 /* NavigationBarSelectorViewController.swift in Sources */,
 				D28443EC22FC42A30066F88B /* FlareViewSelectorViewController.swift in Sources */,
-				3A335C0A214BCC19009034A6 /* BPKButtonSelectorViewController.m in Sources */,
 				E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */,
 				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
 				D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */,
