@@ -22,25 +22,57 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BPKTabBarDotImageDefinition;
+
 /**
  * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
+IB_DESIGNABLE @interface BPKTabBarItem: UITabBarItem
 
+/**
+ * The base image to use when a dot is not shown
+ */
 @property(nullable, strong) UIImage *originalImage;
 
-@property(nonatomic) UIUserInterfaceStyle interfaceStyle;
-
+/**
+ * The images to show when a dot is applied.
+ */
 @property(nullable, strong) BPKTabBarDotImageDefinition *dotImageDefinition;
 
+/**
+ * The interface style to be used in determining which dot image to use.
+ * Has no effect when a dot is not shown.
+ */
+@property(nonatomic) UIUserInterfaceStyle interfaceStyle;
+
+/**
+ * Whether the dot should be shown on the tab bar item or not.
+ */
 @property BOOL dotShown;
 
+/**
+ * Whether the tab bar item is selected or not
+ */
 @property (nonatomic) BOOL selected;
 
+/**
+ * Create a `BPKTabBarItem`..
+ *
+ * @param title The title to show in the tab bar item.
+ * @param image The image to show in the tab bar item when there is no dot.
+ * @param tag The tag to assign to the tab bar item.
+ * @param dotImageDefinition The images to show in the tab bar item when a dot is shown.
+ * @return `BPKTabBarItem` instance.
+ */
 - (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition;
 
+/**
+ * Apply the dot by using the dotImageDefinition images
+ */
 -(void)addDot;
 
+/**
+ * Remove the dot if currently shown.
+ */
 -(void)removeDot;
 
 @end

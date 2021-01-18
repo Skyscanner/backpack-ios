@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKTabBarItem
 
 - (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition {
-    self = [super initWithTitle:title image:image tag:tag];
+    self = [self initWithTitle:title image:image tag:tag];
 
     if (self) {
         self.originalImage = image;
@@ -35,6 +35,42 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return self;
+}
+
+- (instancetype _Nullable)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+
+    if (self) {
+        [self setup];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString * _Nullable)title image:(UIImage * _Nullable)image tag:(NSInteger)tag {
+    self = [super initWithTitle:title image:image tag:tag];
+
+    if (self) {
+        [self setup];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithTabBarSystemItem:(UITabBarSystemItem)systemItem tag:(NSInteger)tag {
+    self = [super initWithTabBarSystemItem:systemItem tag:tag];
+
+    if (self) {
+        [self setup];
+    }
+
+    return self;
+}
+
+-(void)setup {
+    self.interfaceStyle = UIUserInterfaceStyleUnspecified;
+    self.dotShown = false;
+    self.selected = false;
 }
 
 -(void)updateImage {
