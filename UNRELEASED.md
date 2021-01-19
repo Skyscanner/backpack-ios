@@ -5,7 +5,7 @@
 **Fixed:**
 
 - Backpack/Calendar:
-  - Fixed the range background colour so that it is more visible on dark-mode backgrounds.
+  - Fixed the range background colour so that it is more visible on dark mode backgrounds.
 
 ## How to write a good changelog entry
 
