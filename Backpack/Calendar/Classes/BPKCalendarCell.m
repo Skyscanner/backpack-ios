@@ -159,7 +159,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 - (void)configureAppearance {
     [super configureAppearance];
 
-    UIColor *rangeColor = [BPKColor blend:self.appearance.selectionColor with:BPKColor.backgroundColor weight:0.3];
+    UIColor *rangeColor = [BPKColor blend:self.appearance.selectionColor with:BPKColor.backgroundAlternativeSecondaryColor weight:0.3];
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
