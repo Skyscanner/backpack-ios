@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.0.3
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Fixed the range background colour so that it is more visible on dark mode backgrounds.
+
 # 40.0.2
 
 **Fixed:**
