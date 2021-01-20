@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [self initWithTitle:title image:image tag:tag];
 
     if (self) {
+        [self setup];
         self.originalImage = image;
         self.dotImageDefinition = dotImageDefinition;
     }
@@ -52,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         [self setup];
+        self.originalImage = image;
     }
 
     return self;
@@ -111,6 +113,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)removeDot {
     self.dotShown = NO;
+    [self updateImage];
+}
+
+- (void)setImage:(UIImage *_Nullable)image {
+    self.originalImage = image;
     [self updateImage];
 }
 
