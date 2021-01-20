@@ -47,12 +47,12 @@ IB_DESIGNABLE @interface BPKTabBarItem: UITabBarItem
 /**
  * Whether the dot should be shown on the tab bar item or not.
  */
-@property BOOL dotShown;
+@property(nonatomic) BOOL dotShown;
 
 /**
  * Whether the tab bar item is selected or not
  */
-@property (nonatomic) BOOL selected;
+@property(nonatomic) BOOL selected;
 
 /**
  * Create a `BPKTabBarItem`..

@@ -26,9 +26,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 IB_DESIGNABLE @interface BPKTabBarDotImageDefinition : NSObject
 
+/**
+ * The dot image to display in light mode.
+ */
 @property(strong) UIImage *lightImage;
+
+/**
+ * The dot image to display in dark mode.
+ */
 @property(strong) UIImage *darkImage;
 
+/**
+ * Create a `BPKTabBarDotImageDefinition`.
+ *
+ * @param lightImage The dot image to display in light mode.
+ * @param darkImage The dot image to display in dark mode.
+ * @return `BPKTabBarDotImageDefinition` instance.
+ */
 - (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 
 @end

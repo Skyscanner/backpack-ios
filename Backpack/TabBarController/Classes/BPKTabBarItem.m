@@ -116,11 +116,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateImage];
 }
 
-- (void)setImage:(UIImage *_Nullable)image {
-    self.originalImage = image;
-    [self updateImage];
-}
-
 @end
 
 NS_ASSUME_NONNULL_END
