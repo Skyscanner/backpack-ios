@@ -15,22 +15,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface UITabBarItem (Backpack)
 
 /**
- * Applies a small dot in the specified colour. Similar in appearance to an empty badge, but smaller.
+ * `BPKTabBarDotImageDefinition` contains a pair of UIImages to use in light mode and dark mode respectively.
+ */
+IB_DESIGNABLE @interface BPKTabBarDotImageDefinition : NSObject
+
+/**
+ * The dot image to display in light mode.
+ */
+@property(nonatomic, strong) UIImage *lightImage;
+
+/**
+ * The dot image to display in dark mode.
+ */
+@property(nonatomic, strong) UIImage *darkImage;
+
+/**
+ * Create a `BPKTabBarDotImageDefinition`.
  *
- * @param color The color to render the dot.
+ * @param lightImage The dot image to display in light mode.
+ * @param darkImage The dot image to display in dark mode.
+ * @return `BPKTabBarDotImageDefinition` instance.
  */
-- (void)bpk_addDotWithColor:(UIColor *)color;
-
-/**
- * Removes a dot if one is applied. If no dot has been applied, this will have no effect.
- */
-- (void)bpk_removeDot;
+- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 
 @end
+
 NS_ASSUME_NONNULL_END

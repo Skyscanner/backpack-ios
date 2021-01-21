@@ -25,17 +25,21 @@ class TabBarControllerStoryViewController: BPKTabBarController {
         tabOne.view.backgroundColor = BPKColor.backgroundColor
         let tabOneBarItem = UITabBarItem(
             title: "Search",
-            image: BPKIcon.makeTemplateIcon(name: .search, size: .large),
+            image: BPKIcon.makeLargeTemplateIcon(name: .search),
             tag: 1
         )
         tabOne.tabBarItem = tabOneBarItem
 
         let tabTwo = UIViewController()
         tabTwo.view.backgroundColor = BPKColor.backgroundColor
-        let tabTwoBarItem = UITabBarItem(
+        let tabTwoBarItem = BPKTabBarItem(
             title: "Explore",
-            image: BPKIcon.makeTemplateIcon(name: .explore, size: .large),
-            tag: 2
+            image: BPKIcon.makeLargeTemplateIcon(name: .explore),
+            tag: 2,
+            dotImageDefinition: BPKTabBarDotImageDefinition(
+                lightImage: UIImage(named: "tab_explore_with_dot_lm")!,
+                darkImage: UIImage(named: "tab_explore_with_dot_dm")!
+            )
         )
         tabTwo.tabBarItem = tabTwoBarItem
 
@@ -43,8 +47,8 @@ class TabBarControllerStoryViewController: BPKTabBarController {
         tabThree.view.backgroundColor = BPKColor.backgroundColor
         let tabThreeBarItem = UITabBarItem(
             title: "Trips",
-            image: BPKIcon.makeTemplateIcon(name: .trips, size: .large),
-            tag: 2
+            image: BPKIcon.makeLargeTemplateIcon(name: .trips),
+            tag: 3
         )
         tabThreeBarItem.badgeColor = BPKColor.panjin
         tabThreeBarItem.badgeValue = "42"
@@ -52,13 +56,17 @@ class TabBarControllerStoryViewController: BPKTabBarController {
 
         let tabFour = UIViewController()
         tabFour.view.backgroundColor = BPKColor.backgroundColor
-        let tabFourBarItem = UITabBarItem(
+        let tabFourBarItem = BPKTabBarItem(
             title: "Profile",
-            image: BPKIcon.makeTemplateIcon(name: .accountCircle, size: .large),
-            tag: 2
+            image: BPKIcon.makeLargeTemplateIcon(name: .accountCircle),
+            tag: 4,
+            dotImageDefinition: BPKTabBarDotImageDefinition(
+                lightImage: UIImage(named: "tab_profile_with_dot_lm")!,
+                darkImage: UIImage(named: "tab_profile_with_dot_dm")!
+            )
         )
         tabFour.tabBarItem = tabFourBarItem
-        tabFour.tabBarItem.bpk_addDot(with: BPKColor.primaryColor)
+        tabFourBarItem.addDot()
 
         self.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
     }

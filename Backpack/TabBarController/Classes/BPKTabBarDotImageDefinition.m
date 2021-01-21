@@ -16,20 +16,23 @@
  * limitations under the License.
  */
 
-#import "UIView+BPKRTL.h"
+#import "BPKTabBarDotImageDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation UITabBarItem (Backpack)
+@implementation BPKTabBarDotImageDefinition
 
-- (void)bpk_addDotWithColor:(UIColor *)color {
-    self.badgeColor = color;
-    self.badgeValue = @"";
-}
+- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
+    self = [super init];
 
-- (void)bpk_removeDot {
-    self.badgeValue = nil;
+    if (self) {
+        self.lightImage = lightImage;
+        self.darkImage = darkImage;
+    }
+
+    return self;
 }
 
 @end
+
 NS_ASSUME_NONNULL_END

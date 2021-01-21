@@ -17,10 +17,51 @@
  */
 
 #import "BPKTabBarController.h"
+#import "BPKTabBarItem.h"
+
+#import <Backpack/DarkMode.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
+
+-(void)updateTabBarItems {
+    UIUserInterfaceStyle interfaceStyle = self.traitCollection.userInterfaceStyle;
+
+    NSUInteger index = 0;
+    for (UITabBarItem *tabBarItem in self.tabBar.items) {
+        if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
+            BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
+            bpkTabBarItem.interfaceStyle = interfaceStyle;
+            bpkTabBarItem.selected = self.selectedIndex == index;
+        }
+        index += 1;
+    }
+}
+
+// This is used to inform each BPKTabBarItem of the userInterfaceStyle, as they cannot access this directly.
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+#if __BPK_DARK_MODE_SUPPORTED
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self updateTabBarItems];
+    }
+#endif
+}
+
+- (void)didMoveToParentViewController:(UIViewController *_Nullable)parent {
+    [self updateTabBarItems];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    [super setSelectedIndex:selectedIndex];
+    [self updateTabBarItems];
+}
+
+- (void)setSelectedViewController:(__kindof UIViewController *_Nullable)selectedViewController {
+    [super setSelectedViewController:selectedViewController];
+    [self updateTabBarItems];
+}
 
 @end
 

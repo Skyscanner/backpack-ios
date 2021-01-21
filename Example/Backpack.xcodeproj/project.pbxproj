@@ -77,6 +77,7 @@
 		D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */; };
 		D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */; };
 		D22EB158239EA78F0090C65E /* BPKBorderWidthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D22EB156239EA75A0090C65E /* BPKBorderWidthTest.m */; };
+		D231E2B625AF312A0061E53E /* BPKTabBarItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D231E2B525AF312A0061E53E /* BPKTabBarItemTest.swift */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
 		D242176E252F6B5F00F449E4 /* Spinners.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D242176D252F6B5E00F449E4 /* Spinners.storyboard */; };
@@ -321,6 +322,7 @@
 		D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
 		D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ratings.storyboard; sourceTree = "<group>"; };
 		D22EB156239EA75A0090C65E /* BPKBorderWidthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBorderWidthTest.m; sourceTree = "<group>"; };
+		D231E2B525AF312A0061E53E /* BPKTabBarItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTabBarItemTest.swift; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
 		D242176D252F6B5E00F449E4 /* Spinners.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spinners.storyboard; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */,
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
+				D231E2B525AF312A0061E53E /* BPKTabBarItemTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -1368,6 +1371,7 @@
 				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
+				D231E2B625AF312A0061E53E /* BPKTabBarItemTest.swift in Sources */,
 				D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */,
 				D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,

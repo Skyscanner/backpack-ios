@@ -1,0 +1,13 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_profile_dot_deselected_lightmode.pdf",
+      "idiom" : "universal",
+      "scale" : "1x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
