@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)updateTabBarItems {
     UIUserInterfaceStyle interfaceStyle = self.traitCollection.userInterfaceStyle;
 
-    int index = 0;
+    NSUInteger index = 0;
     for (UITabBarItem *tabBarItem in self.tabBar.items) {
         if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
             BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;

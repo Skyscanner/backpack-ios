@@ -29,12 +29,12 @@ IB_DESIGNABLE @interface BPKTabBarDotImageDefinition : NSObject
 /**
  * The dot image to display in light mode.
  */
-@property(strong) UIImage *lightImage;
+@property(nonatomic, strong) UIImage *lightImage;
 
 /**
  * The dot image to display in dark mode.
  */
-@property(strong) UIImage *darkImage;
+@property(nonatomic, strong) UIImage *darkImage;
 
 /**
  * Create a `BPKTabBarDotImageDefinition`.

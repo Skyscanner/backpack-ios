@@ -29,14 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE @interface BPKTabBarItem: UITabBarItem
 
 /**
- * The base image to use when a dot is not shown
+ * The base image to use when a dot is not shown.
+ * This will be used as a template image and colored appropriately.
  */
-@property(nullable, strong) UIImage *originalImage;
+@property(nonatomic, nullable, strong) UIImage *originalImage;
 
 /**
  * The images to show when a dot is applied.
  */
-@property(nullable, strong) BPKTabBarDotImageDefinition *dotImageDefinition;
+@property(nonatomic, nullable, strong) BPKTabBarDotImageDefinition *dotImageDefinition;
 
 /**
  * The interface style to be used in determining which dot image to use.
