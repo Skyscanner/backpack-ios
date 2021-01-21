@@ -59,6 +59,9 @@ jobs:
       - name: nvm use
         run: nvm use
 
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
       - name: Install bundler
         run: gem install bundler --version 2.2.3
 
