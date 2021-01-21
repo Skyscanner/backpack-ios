@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.1.0
+
+**Added:**
+
+- Backpack/TabBarController:
+  - Added `BPKTabBarItem` with support for specific `dot` images.
+
 # 40.0.3
 
 **Fixed:**
