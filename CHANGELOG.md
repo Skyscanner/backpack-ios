@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.2.0
+
+**Added:**
+
+- Backpack/BottomSheet:
+  - New style of presentation to BottomSheet. Now we are capable to present it modally or persistently by using the `init` parameter `presentationStyle` being `.persistent` or `.modal`
+
 # 40.1.0
 
 **Added:**
