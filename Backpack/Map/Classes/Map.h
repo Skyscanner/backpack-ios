@@ -19,4 +19,7 @@
 #define __BACKPACK_MAP__
 
 #import "BPKMapView.h"
+#import "BPKMapAnnotation.h"
+#import "BPKMapAnnotationView.h"
+
 #endif

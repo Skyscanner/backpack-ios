@@ -15,10 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_MASK_LAYER__
-#define __BACKPACK_MASK_LAYER__
 
-#import "BPKFlareView.h"
-#import "BPKFlarePath.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKMapAnnotationView` is a subclass of `MKPinAnnotationView` which contains the Skyscanner map annotation style.
+ */
+IB_DESIGNABLE @interface BPKMapAnnotationView : MKPinAnnotationView
+
+@end
+NS_ASSUME_NONNULL_END

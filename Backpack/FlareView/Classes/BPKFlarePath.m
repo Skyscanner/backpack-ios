@@ -92,6 +92,8 @@ CGFloat const BPKFlareVectorHeight = 53.0;
         [self appendFlareToPath:path size:size flareHeight:flareHeight flarePosition:flarePosition];
     }
 
+    [path addLineToPoint:firstCornerCurveStart];
+
     return path;
 }
 
