@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.2.1
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Prevent crash when setting dates programmatically.
+
 # 40.2.0
 
 **Added:**

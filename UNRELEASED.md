@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Calendar:
-   - Prevent crash when setting dates programmatically.
 
 ## How to write a good changelog entry
 
