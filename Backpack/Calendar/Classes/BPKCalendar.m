@@ -280,6 +280,12 @@ NSString *const HeaderDateFormat = @"MMMM";
 
 - (NSArray<BPKSimpleDate *> *)selectedDates {
     if (self.sameDayRange) {
+        // Prevent crashing if we somehow get here and there are no selected dates
+        // We should fix this properly by ensuring that sameDayRange is never true when there are 0 selected dates.
+        // To fix in BPK-4370
+        if(self.calendarView.selectedDates.count == 0) {
+            return @[];
+        }
         NSArray<NSDate *> *dates = [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
         return [BPKSimpleDate simpleDatesFromDates:dates forCalendar:self.gregorian];
     }
