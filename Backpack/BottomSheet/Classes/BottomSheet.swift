@@ -62,6 +62,7 @@ public final class BPKBottomSheet: NSObject {
     }
 
     private let presentationStyle: PresentationStyle
+    private let insets: BottomSheetInsets
 
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         var panel = BPKFloatingPanelController(delegate: self)
@@ -91,7 +92,7 @@ public final class BPKBottomSheet: NSObject {
 
     private var scrollView: UIScrollView?
 
-    /// Instantiates a `BPKBottomSheet` with a scrollable content. Default initial height is 386pt and can't be changed.
+    /// Instantiates a `BPKBottomSheet` with a scrollable content. Default initial height is 386pt and can be changed with the insets parameter..
     /// Optionally, an always visible bottom section can be added.
     ///
     /// - Parameters:
@@ -104,14 +105,18 @@ public final class BPKBottomSheet: NSObject {
     ///     that should be accessible at all times. A top shadow is automatically added so that
     ///     it integrates better with the content of the bottom sheet.
     ///     Note: Safe Area should be taken into account in the bottom section's inner constraints.
-    ///   - presentationStyle: .modal if you nedd a modal interaction with the BottomSheet. .persistent if
+    ///   - presentationStyle: .modal if you need a modal interaction with the BottomSheet. .persistent if
     ///     you need a persistent BottomSheet and being able to interact with what is behind the BottomSheet
+    ///   - insets: The spacing used when the bottom sheet is presented at various heifghts.
+    ///     The .modal presentation style will only use `half` and ignore all other insets provided.
     
     public init(contentViewController: UIViewController,
                 scrollViewToTrack: UIScrollView,
                 bottomSectionViewController: UIViewController? = nil,
-                presentationStyle: PresentationStyle = .modal) {
+                presentationStyle: PresentationStyle = .modal,
+                insets: BottomSheetInsets = .init()) {
         self.presentationStyle = presentationStyle
+        self.insets = insets
         super.init()
 
         self.scrollView = scrollViewToTrack
@@ -128,6 +133,7 @@ public final class BPKBottomSheet: NSObject {
     /// - Parameter contentViewController: Content of the bottom sheet.
     public init(contentViewController: UIViewController) {
         self.presentationStyle = .modal
+        self.insets = .init()
         super.init()
         floatingPanelController.contentViewController = contentViewController
     }
@@ -217,9 +223,9 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
                               layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         switch self.presentationStyle {
         case .modal:
-            return scrollView == nil ? IntrinsicLayout() : ModalBottomSheetLayout()
+            return scrollView == nil ? IntrinsicLayout() : ModalBottomSheetLayout(insets: insets)
         case .persistent:
-            return PersistentBottomSheetLayout()
+            return PersistentBottomSheetLayout(insets: insets)
         }
     }
 }
