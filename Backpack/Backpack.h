@@ -40,6 +40,7 @@
 #import "HorizontalNavigation.h"
 #import "Icon.h"
 #import "Label.h"
+#import "Map.h"
 #import "NavigationBar.h"
 #import "OverlayView.h"
 #import "Panel.h"
