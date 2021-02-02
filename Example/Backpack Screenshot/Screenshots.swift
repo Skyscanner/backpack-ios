@@ -293,6 +293,10 @@ class Screenshots: XCTestCase {
         tapBackButton()
         tapBackButton()
 
+        app.tables.staticTexts["Map"].tap()
+        saveScreenshot(component: "map", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+
         app.tables.staticTexts["Navigation bars"].tap()
         app.tables.staticTexts["Default"].tap()
         saveScreenshot(component: "navigation-bar", scenario: "full-height",
