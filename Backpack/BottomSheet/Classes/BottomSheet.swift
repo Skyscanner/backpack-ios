@@ -107,7 +107,7 @@ public final class BPKBottomSheet: NSObject {
     ///     Note: Safe Area should be taken into account in the bottom section's inner constraints.
     ///   - presentationStyle: .modal if you need a modal interaction with the BottomSheet. .persistent if
     ///     you need a persistent BottomSheet and being able to interact with what is behind the BottomSheet
-    ///   - insets: The spacing used when the bottom sheet is presented at various heifghts.
+    ///   - insets: The spacing used when the bottom sheet is presented at various heights.
     ///     The .modal presentation style will only use `half` and ignore all other insets provided.
     
     public init(contentViewController: UIViewController,
