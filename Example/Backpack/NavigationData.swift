@@ -20,6 +20,7 @@ class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
     static var buttonsStoryboard = loadStoryboard(name: "Buttons")
     static var calendarStoryboard = loadStoryboard(name: "Calendar")
+    static var cardStoryboard = loadStoryboard(name: "Cards")
 
     static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
         return {storyboardVC in
@@ -78,6 +79,81 @@ class NavigationData: NSObject {
         )
     }
 
+    enum CardStory: String {
+        case `default`
+        case withoutPadding
+        case selected
+        case cornerStyleLarge
+        case alternativeBackgroundColor
+    }
+
+    static func setCardProperties(story: CardStory) -> (UIViewController) -> Void {
+        return {storyboardVC in
+            guard let cardVC = storyboardVC as? CardsViewController else {
+                return
+            }
+
+            switch story {
+            case .default:
+                break
+            case .withoutPadding:
+                cardVC.padded = false
+            case .selected:
+                cardVC.selected = true
+            case .cornerStyleLarge:
+                cardVC.cornerStyle = .large
+            case .alternativeBackgroundColor:
+                cardVC.backgroundColor = BPKColor.skyBlueTint01
+            }
+        }
+    }
+
+    static func cardStoryboard(story: CardStory) -> Presentable {
+        return CustomPresentable(generateViewController:
+            enrich(
+                cardStoryboard("CardsViewController").makeViewController,
+                setCardProperties(story: story)
+            )
+        )
+    }
+
+    enum DividedCardStory: String {
+        case dividedHorizontal
+        case dividedHorizontalCornerStyleLarge
+        case dividedVertical
+        case dividedVerticalNoPadding
+    }
+
+    static func setDividedCardProperties(story: DividedCardStory) -> (UIViewController) -> Void {
+        return {storyboardVC in
+            guard let cardVC = storyboardVC as? DividedCardsViewController else {
+                return
+            }
+
+            switch story {
+            case .dividedHorizontal:
+                cardVC.divisionDirection = .horizontal
+            case .dividedHorizontalCornerStyleLarge:
+                cardVC.divisionDirection = .horizontal
+                cardVC.cornerStyle = .large
+            case .dividedVertical:
+                cardVC.divisionDirection = .vertical
+            case .dividedVerticalNoPadding:
+                cardVC.divisionDirection = .vertical
+                cardVC.padded = false
+            }
+        }
+    }
+
+    static func dividedCardStoryboard(story: DividedCardStory) -> Presentable {
+        return CustomPresentable(generateViewController:
+            enrich(
+                cardStoryboard("DividedCardsViewController").makeViewController,
+                setDividedCardProperties(story: story)
+            )
+        )
+    }
+
     // swiftlint:disable line_length closure_body_length
 
     static var appStructure: [Item] = makeApp {
@@ -117,7 +193,17 @@ class NavigationData: NSObject {
                 Item(name: "With prices", value: .story(calendarStoryboard(story: .withPrices)))
                 Item(name: "With alternative background color", value: .story(calendarStoryboard(story: .alternativeBackgroundColor)))
             }
-            Item(name: "Cards", value: .story(loadStoryboard(name: "Cards", identifier: "CardsViewController")))
+            Group(name: "Cards") {
+                Item(name: "Default", value: .story(cardStoryboard(story: .default)))
+                Item(name: "Without padding", value: .story(cardStoryboard(story: .withoutPadding)))
+                Item(name: "Selected", value: .story(cardStoryboard(story: .selected)))
+                Item(name: "Corner style large", value: .story(cardStoryboard(story: .cornerStyleLarge)))
+                Item(name: "Background color", value: .story(cardStoryboard(story: .alternativeBackgroundColor)))
+                Item(name: "With divider", value: .story(dividedCardStoryboard(story: .dividedHorizontal)))
+                Item(name: "With divider arranged vertically", value: .story(dividedCardStoryboard(story: .dividedVertical)))
+                Item(name: "With divider without padding", value: .story(dividedCardStoryboard(story: .dividedVerticalNoPadding)))
+                Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
+            }
             Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
             Item(name: "Chips", value: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
