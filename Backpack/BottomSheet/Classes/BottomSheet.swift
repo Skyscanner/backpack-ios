@@ -92,7 +92,8 @@ public final class BPKBottomSheet: NSObject {
 
     private var scrollView: UIScrollView?
 
-    /// Instantiates a `BPKBottomSheet` with a scrollable content. Default initial height is 386pt and can be changed with the insets parameter..
+    /// Instantiates a `BPKBottomSheet` with a scrollable content.
+    /// Default initial height is 386pt and can be changed with the insets parameter..
     /// Optionally, an always visible bottom section can be added.
     ///
     /// - Parameters:
