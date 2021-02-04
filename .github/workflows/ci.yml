@@ -53,11 +53,11 @@ jobs:
       - name: Install clang format
         run: brew install clang-format
 
-      - name: nvm install
-        run: nvm install
+      # - name: nvm install
+      #   run: nvm install
 
-      - name: nvm use
-        run: nvm use
+      # - name: nvm use
+      #   run: nvm use
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
@@ -84,16 +84,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
-      - name: NPM ci
-        run: |
-          nvm use
-          npm ci
+      # - name: NPM ci
+      #   run: |
+      #     nvm use
+      #     npm ci
 
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
       - name: Pod Install
-        run: bundle exec pod install
+        run: |
+          ruby -v
+          bundle exec pod install
         working-directory: Example
 
       - name: Run NPM build
