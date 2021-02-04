@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.3.0
+
+**Added:**
+
+- Backpack/BottomSheet:
+  - Added optional insets argument so that custom inset values can be used. By default the existing insets will be used if none are specified.
+
 # 40.2.1
 
 **Fixed:**
