@@ -30,16 +30,22 @@ public final class PersistentBottomSheetLayout: FloatingPanelLayout {
     public var supportedPositions: Set<FloatingPanelPosition> {
         return [.half, .full, .tip]
     }
+    
+    private let insets: BottomSheetInsets
+    
+    public init(insets: BottomSheetInsets) {
+        self.insets = insets
+    }
 
     /// Method to describe the height of BPKBottomSheet in each position
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
         case .half:
-            return Constants.bottomSheetHeightInHalfPosition
+            return insets.half
         case .tip:
-            return Constants.bottomSheetHeightInTipPosition
+            return insets.tip
         default:
-            return nil
+            return insets.full
         }
     }
 

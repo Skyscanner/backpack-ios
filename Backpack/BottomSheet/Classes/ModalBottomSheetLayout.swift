@@ -31,11 +31,18 @@ public final class ModalBottomSheetLayout: FloatingPanelLayout {
     public var supportedPositions: Set<FloatingPanelPosition> {
         return [.full, .half]
     }
+    
+    /// Insets that will be used for the modal presentation
+    private let insets: BottomSheetInsets
+    
+    public init(insets: BottomSheetInsets) {
+        self.insets = insets
+    }
 
     /// Method to describe the height of BPKBottomSheet in each position
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
-        case .half: return Constants.bottomSheetHeightInHalfPosition
+        case .half: return insets.half
         default: return nil
         }
     }
@@ -52,6 +59,5 @@ public final class ModalBottomSheetLayout: FloatingPanelLayout {
 }
 
 private enum Constants {
-    static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
     static let backdropAlpha: CGFloat = 0.3
 }
