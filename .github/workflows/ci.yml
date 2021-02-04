@@ -44,6 +44,9 @@ jobs:
             echo ::set-output name=GIT_TAG::""
           fi
 
+      - name: Print architecture
+        run: sysctl -n machdep.cpu.brand_string
+
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
@@ -53,11 +56,11 @@ jobs:
       - name: Install clang format
         run: brew install clang-format
 
-      - name: nvm install
-        run: nvm install
+      # - name: nvm install
+      #   run: nvm install
 
-      - name: nvm use
-        run: nvm use
+      # - name: nvm use
+      #   run: nvm use
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
@@ -76,24 +79,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Cache Pods
-        uses: actions/cache@v2
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+      # - name: Cache Pods
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: Example/Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pods-
 
-      - name: NPM ci
-        run: |
-          nvm use
-          npm ci
+      # - name: NPM ci
+      #   run: |
+      #     nvm use
+      #     npm ci
 
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
       - name: Pod Install
-        run: bundle exec pod install
+        run: |
+          ruby -v
+          pod --version
+          gem install ffi -v '1.9.25'
+          gem update xcodeproj
+          brew upgrade libffi
+          bundle exec pod install
         working-directory: Example
 
       - name: Run NPM build
