@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+ - Backpack/Map:
+   - New map view component.
 
 ## How to write a good changelog entry
 
