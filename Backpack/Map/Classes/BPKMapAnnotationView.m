@@ -60,6 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if(![self.annotation isKindOfClass:BPKMapAnnotation.class]) {
+        NSAssert(false, @"BPKMapAnnotationView should be initialised with an instance of BPKMapAnnotation. Instead annotation class is %@", self.annotation.class);
         return nil;
     }
 
