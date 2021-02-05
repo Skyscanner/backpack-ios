@@ -18,6 +18,8 @@
 
 #import "BPKMapAnnotationViewCalloutView.h"
 
+#import "BPKMapAnnotationView.h"
+
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -35,13 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKMapAnnotationViewCalloutView
 
-- (instancetype)initWithText:(NSString *)text {
+- (instancetype)initWithAnnotationView:(BPKMapAnnotationView *)annotationView {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        self.annotationView = annotationView;
         [self setupAppearance];
-        self.text = text;
     }
 
     return self;
@@ -74,27 +76,10 @@ NS_ASSUME_NONNULL_BEGIN
     return 6;
 }
 
-- (void)setText:(NSString *)text {
-    BPKAssertMainThread();
-    self.label.text = text;
+- (void)update {
+    self.label.text = self.annotationView.annotation.title;
 
     [self updateStyle];
-}
-
-- (void)setEnabled:(BOOL)enabled {
-    if(_enabled != enabled) {
-        _enabled = enabled;
-
-        [self updateStyle];
-    }
-}
-
-- (void)setSelected:(BOOL)selected {
-    if(_selected != selected) {
-        _selected = selected;
-
-        [self updateStyle];
-    }
 }
 
 - (void)layoutSubviews {
@@ -104,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)updateStyle {
-    if(!self.enabled) {
+    if(!self.annotationView.enabled) {
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
         self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
         self.label.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
@@ -112,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    if(self.selected) {
+    if(self.annotationView.selected) {
         self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
         self.backgroundColor = BPKColor.white;
         self.label.textColor = BPKColor.skyBlue;
@@ -120,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    if (self.hasBeenSelected) {
+    if (self.annotationView.hasBeenSelected) {
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
         self.backgroundColor = BPKColor.skyBlueTint03;
         self.label.textColor = BPKColor.skyBlue;

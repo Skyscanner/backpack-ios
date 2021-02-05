@@ -27,10 +27,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKMapAnnotationView()
-@property(nonatomic, nullable) BPKMapAnnotation *bpk_annotation;
+@property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
 @property(nonatomic, nullable, strong) UIView *dotView;
 @property(nonatomic, nullable, strong) BPKMapAnnotationViewCalloutView *calloutView;
-@property(nonatomic, assign) BOOL hasBeenSelected;
 @end
 
 @implementation BPKMapAnnotationView
@@ -64,8 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
 
-    BPKMapAnnotation *annotation = (BPKMapAnnotation *)self.annotation;
-    return annotation;
+    return (BPKMapAnnotation *)self.annotation;
 }
 
 -(void)setupAppearance {
@@ -94,14 +92,12 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    self.calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithText:self.annotation.title];
-    self.calloutView.enabled = self.enabled;
-    self.calloutView.selected = self.selected;
+    self.calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
     [self addSubview:self.calloutView];
     self.calloutView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [self.calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
-        [self.calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:2]
+        [self.calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:BPKSpacingSm / 2]
     ]];
 }
 
@@ -145,9 +141,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self destroyCallout];
     }
 
-    self.calloutView.selected = self.selected;
-    self.calloutView.enabled = self.enabled;
-    self.calloutView.hasBeenSelected = self.hasBeenSelected ;
+    [self.calloutView update];
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {

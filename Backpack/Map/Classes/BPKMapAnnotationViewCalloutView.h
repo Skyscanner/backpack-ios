@@ -22,15 +22,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BPKMapAnnotationView;
+
 /**
  * `BPKMapAnnotationViewCalloutView` is a subclass of `BPKFlareView` which contains the Skyscanner map callout style.
  */
 IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : BPKFlareView
 
 /**
- * The text to show inside the callout.
+ * The `BPKMapAnnotationView` that created the callout.
  */
-@property(nonatomic, copy) IBInspectable NSString *text;
+@property(nonatomic, weak, nullable) BPKMapAnnotationView *annotationView;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
@@ -41,24 +43,11 @@ IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : BPKFlareView
 /**
  * Create a `BPKMapAnnotationViewCalloutView` with the given text.
  *
- * @param text The text to show in the callout.
+ * @param annotationView The annotation view of the callout.
  */
-- (instancetype)initWithText:(NSString *)text NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAnnotationView:(BPKMapAnnotationView *)annotationView NS_DESIGNATED_INITIALIZER;
 
-/**
- * Whether to use selected style.
- */
-@property(nonatomic, assign) BOOL selected;
-
-/**
- * Whether the annotation is enabled.
- */
-@property(nonatomic, assign) BOOL enabled;
-
-/**
- * Whether the annotation has been previously selected.
- */
-@property(nonatomic, assign) BOOL hasBeenSelected;
+-(void)update;
 
 @end
 NS_ASSUME_NONNULL_END

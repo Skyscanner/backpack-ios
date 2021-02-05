@@ -27,5 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 IB_DESIGNABLE @interface BPKMapAnnotationView : MKPinAnnotationView
 
+/**
+ * Whether the annotation view has previously been selected by the user.
+ */
+@property(nonatomic, assign) BOOL hasBeenSelected;
+
 @end
 NS_ASSUME_NONNULL_END
