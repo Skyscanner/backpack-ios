@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKMapAnnotationView()
 @property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
 @property(nonatomic, nullable, strong) UIView *dotView;
-@property(nonatomic, nullable, strong) BPKMapAnnotationViewCalloutView *calloutView;
+@property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
 @end
 
 @implementation BPKMapAnnotationView
@@ -87,23 +87,19 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateCallout];
 }
 
--(void)createCallout {
-    if (self.dotView == nil) {
-        return;
+- (BPKMapAnnotationViewCalloutView *)calloutView {
+    if(_calloutView == nil && self.dotView != nil) {
+        BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
+        [self addSubview:calloutView];
+        calloutView.translatesAutoresizingMaskIntoConstraints = NO;
+        [NSLayoutConstraint activateConstraints:@[
+            [calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
+            [calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:BPKSpacingSm / 2]
+        ]];
+        _calloutView = calloutView;
     }
 
-    self.calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
-    [self addSubview:self.calloutView];
-    self.calloutView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
-        [self.calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:BPKSpacingSm / 2]
-    ]];
-}
-
--(void)destroyCallout {
-    [self.calloutView removeFromSuperview];
-    self.calloutView = nil;
+    return _calloutView;
 }
 
 -(void)updateImage {
@@ -134,14 +130,19 @@ NS_ASSUME_NONNULL_BEGIN
     self.enabled = self.bpk_annotation.enabled;
 
     BOOL shouldShowCallout = self.selected || self.bpk_annotation.alwaysShowCallout;
-    if(shouldShowCallout && self.calloutView == nil) {
-        [self createCallout];
-    }
-    if(!shouldShowCallout && self.calloutView != nil) {
-        [self destroyCallout];
+    if (shouldShowCallout) {
+        self.calloutView.hidden = false;
     }
 
-    [self.calloutView update];
+    // Using `_calloutView` so that if it is not already created we don't access the lazy property
+    if (!shouldShowCallout && _calloutView != nil) {
+        self.calloutView.hidden = true;
+    }
+
+    // Using `_calloutView` so that if it is not already created we don't access the lazy property
+    if (_calloutView != nil) {
+        [self.calloutView update];
+    }
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {
