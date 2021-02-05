@@ -119,5 +119,39 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+-(UIView *)createLongTitleCalloutView {
+    UIView *annotationView = [self
+                              createMapAnnotationWithLabel:@"Callout with a super super super long title that goes on and on and on"
+                              alwaysShowCallout:YES
+                              previouslySelected:NO
+                              selected:NO
+                              enabled:YES
+                              ];
+
+    UIView *outerView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    [outerView addSubview:annotationView];
+
+    outerView.translatesAutoresizingMaskIntoConstraints = NO;
+    annotationView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint activateConstraints:@[
+        [annotationView.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor constant:65],
+        [annotationView.topAnchor constraintEqualToAnchor:outerView.topAnchor constant:35],
+
+        [outerView.trailingAnchor constraintEqualToAnchor:annotationView.trailingAnchor constant:55],
+        [outerView.bottomAnchor constraintEqualToAnchor:annotationView.bottomAnchor]
+    ]];
+    return outerView;
+}
+
+- (void)testLongTitleCalloutView {
+    UIView *lightView = [self createLongTitleCalloutView];
+    UIView *darkView = [self createLongTitleCalloutView];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 @end
 NS_ASSUME_NONNULL_END

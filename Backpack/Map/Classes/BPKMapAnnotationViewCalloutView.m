@@ -24,13 +24,13 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Label.h>
+#import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKMapAnnotationViewCalloutView ()
 @property(nonatomic, strong) BPKLabel *label;
-@property(nonatomic, strong) CAShapeLayer *borderLayer;
 
 - (void)setupAppearance;
 @end
@@ -82,55 +82,48 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-
-    [self updateBorderPath];
-}
-
 -(void)updateStyle {
     if(!self.annotationView.enabled) {
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        self.backgroundView.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        self.contentView.backgroundColor = BPKColor.clear;
         self.label.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
-        self.borderLayer.strokeColor = BPKColor.clear.CGColor;
+        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
         return;
     }
 
     if(self.annotationView.selected) {
         self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
-        self.backgroundColor = BPKColor.white;
+        self.backgroundView.backgroundColor = BPKColor.skyBlue;
+        self.contentView.backgroundColor = BPKColor.white;
         self.label.textColor = BPKColor.skyBlue;
-        self.borderLayer.strokeColor = BPKColor.skyBlue.CGColor;
+        self.contentView.layer.borderColor = BPKColor.skyBlue.CGColor;
         return;
     }
 
     if (self.annotationView.hasBeenSelected) {
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundColor = BPKColor.skyBlueTint03;
+        self.backgroundView.backgroundColor = BPKColor.skyBlueTint03;
+        self.contentView.backgroundColor = BPKColor.clear;
         self.label.textColor = BPKColor.skyBlue;
-        self.borderLayer.strokeColor = BPKColor.clear.CGColor;
+        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
         return;
     }
 
     self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-    self.backgroundColor = BPKColor.skyBlue;
+    self.backgroundView.backgroundColor = BPKColor.skyBlue;
+    self.contentView.backgroundColor = BPKColor.clear;
     self.label.textColor = BPKColor.white;
-    self.borderLayer.strokeColor = BPKColor.clear.CGColor;
-}
-
--(void)updateBorderPath {
-    UIBezierPath *linePath = [BPKFlarePath flareViewPathForSize:self.frame.size flareHeight:self.flareHeight cornerRadius:BPKSpacingSm flarePosition:BPKFlarePositionBottom];
-    self.borderLayer.lineWidth = BPKBorderWidthLg;
-    self.borderLayer.path = linePath.CGPath;
-    self.borderLayer.fillColor = BPKColor.clear.CGColor;
+    self.contentView.layer.borderColor = BPKColor.clear.CGColor;
 }
 
 - (void)setupAppearance {
-    self.borderLayer = [CAShapeLayer layer];
-    [self.backgroundView.layer addSublayer:self.borderLayer];
+    self.contentView.layer.borderWidth = BPKBorderWidthLg;
+    self.layer.masksToBounds = NO;
+    [BPKShadow.shadowSm applyToLayer:self.layer];
 
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
+    label.numberOfLines = 0;
     [self.contentView addSubview:label];
     label.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -138,7 +131,8 @@ NS_ASSUME_NONNULL_BEGIN
         [label.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingMd],
         [self.contentView.trailingAnchor constraintEqualToAnchor:label.trailingAnchor constant:BPKSpacingMd],
         [label.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:BPKSpacingSm],
-        [self.contentView.bottomAnchor constraintEqualToAnchor:label.bottomAnchor constant:BPKSpacingSm]
+        [self.contentView.bottomAnchor constraintEqualToAnchor:label.bottomAnchor constant:BPKSpacingSm],
+        [self.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 5]
     ]];
     self.label = label;
 
