@@ -25,8 +25,8 @@
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
-const CGFloat BPKCalendarCellTitleHeight = 31;
-const CGFloat BPKCalendarCellCircleHeight = 31.6;
+const CGFloat BPKCalendarCellTitleHeight = 36;
+const CGFloat BPKCalendarCellCircleHeight = 36;
 const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
 @interface BPKCalendarCell ()
@@ -176,18 +176,18 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
         case SelectionTypeSameDay:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
             break;
         case SelectionTypeMiddle:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
             break;
 
         default:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextSmEmphasized
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
                                                                             content:self.titleLabel.text
                                                                           textColor:color];
             break;
