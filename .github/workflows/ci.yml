@@ -26,6 +26,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      - name: Set build image var
+        run: echo "ImageVersion=$ImageVersion"  >> $GITHUB_ENV
+
       # Checkout the repo
       - uses: actions/checkout@v2
 
