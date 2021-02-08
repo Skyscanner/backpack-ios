@@ -73,9 +73,6 @@ jobs:
           export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
           gem install ffi
 
-      - name: Install bundler
-        run: gem install bundler --version 2.2.3
-
       - name: Set Bundler Config
         run: bundle config path vendor/bundle
 
