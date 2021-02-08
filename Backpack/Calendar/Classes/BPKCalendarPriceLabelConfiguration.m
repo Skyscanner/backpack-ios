@@ -24,12 +24,12 @@
 @implementation BPKCalendarPriceLabelConfiguration
 
 - (instancetype)init {
-    // 70 is calculated as the sum of the following:
-    // 31 is the height of the date title
+    // 74 is calculated as the sum of the following:
+    // 36 is the height of the date title
     // 2 is the spacing between the title and the price label
-    // 29 is the height of the price label when wrapped onto 2 lines
+    // 28 is the height of the price label when wrapped onto 2 lines
     // 8 is the spacing between the price label and the cell bottom
-    return [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:70];
+    return [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:74];
 }
 
 @end

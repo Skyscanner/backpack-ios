@@ -1,6 +1,10 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Calendar:
+   - Aligned calendar cells to current design. Calendar cells are now `36pt` tall with `16pt` emphasised date labels.
+
 **Added:**
  - Backpack/Map:
    - New map view component.

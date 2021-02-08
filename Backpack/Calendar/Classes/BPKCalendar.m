@@ -100,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 NSString *const CellReuseId = @"cell";
 NSString *const HeaderReuseId = @"header";
 NSString *const HeaderDateFormat = @"MMMM";
+CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
     BPKAssertMainThread();
@@ -170,7 +171,9 @@ NSString *const HeaderDateFormat = @"MMMM";
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
     self.calendarView = [[FSCalendar alloc] initWithFrame:CGRectZero];
-    if (self.configuration.rowHeight != nil) {
+    if (self.configuration.rowHeight == nil) {
+        self.calendarView.rowHeight = BPKCalendarDefaultCellHeight;
+    } else {
         self.calendarView.rowHeight = [self.configuration.rowHeight floatValue];
     }
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
