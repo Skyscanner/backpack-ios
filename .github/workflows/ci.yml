@@ -65,17 +65,6 @@ jobs:
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
 
-      - name: Check Ruby version
-        run: ruby --version
-
-      - name: Fix libffi
-        run: |
-          gem uninstall ffi
-          brew reinstall libffi
-          export LDFLAGS="-L/usr/local/opt/libffi/lib"
-          export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-          gem install ffi
-
       - name: Set Bundler Config
         run: bundle config path vendor/bundle
 
