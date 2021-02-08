@@ -65,6 +65,14 @@ jobs:
       - name: Check Ruby version
         run: ruby --version
 
+      - name: Fix libffi
+        run:
+          - gem uninstall ffi
+          - brew reinstall libffi
+          - export LDFLAGS="-L/usr/local/opt/libffi/lib"
+          - export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+          - gem install ffi
+
       - name: Install bundler
         run: gem install bundler --version 2.2.3
 
