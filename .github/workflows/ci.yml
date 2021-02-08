@@ -61,6 +61,10 @@ jobs:
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+        run: ruby --version
+
+      - name: Check Ruby version
+        run: ruby --version
 
       - name: Install bundler
         run: gem install bundler --version 2.2.3
