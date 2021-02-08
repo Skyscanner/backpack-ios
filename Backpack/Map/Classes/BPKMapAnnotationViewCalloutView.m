@@ -119,7 +119,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupAppearance {
     self.contentView.layer.borderWidth = BPKBorderWidthLg;
-    self.layer.masksToBounds = NO;
     [BPKShadow.shadowSm applyToLayer:self.layer];
 
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];

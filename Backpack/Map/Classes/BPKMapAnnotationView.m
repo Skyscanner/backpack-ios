@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)setupAppearance {
+    self.hasBeenSelected = false;
     [self updateImage];
 
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -108,10 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-
-    self.hasBeenSelected = self.hasBeenSelected || selected;
-    [self updateCallout];
+    [self setSelected:selected animated:NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
