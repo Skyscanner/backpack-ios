@@ -99,9 +99,7 @@ jobs:
         run: |
           ruby -v
           pod --version
-          gem install ffi -v '1.9.25'
-          gem update xcodeproj
-          brew upgrade libffi
+          ln -sf /usr/local/opt/ruby@2.7 /usr/local/opt/ruby
           bundle exec pod install
         working-directory: Example
 
