@@ -16,23 +16,26 @@
  * limitations under the License.
  */
 
-#import "BPKCalendarPriceLabelConfiguration.h"
-
-#import "BPKCalendarPriceLabelCell.h"
-#import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarCellSpacing.h"
 
-@implementation BPKCalendarPriceLabelConfiguration
+#import <Backpack/Spacing.h>
 
-const CGFloat CellVerticalSpacingAbovePrice = 2;
-const CGFloat PriceLabelHeightWhenWrapped = 28;
+@implementation BPKCalendarCellSpacing
 
--(CGFloat)priceCellHeight {
-    return BPKCalendarCellSpacing.cellCircleHeight + CellVerticalSpacingAbovePrice + PriceLabelHeightWhenWrapped + BPKCalendarCellSpacing.cellBottomSpacing;
++(CGFloat)cellCircleHeight {
+    return 9 * BPKSpacingSm;
 }
 
-- (instancetype)init {
-    return [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:[self priceCellHeight]];
++(CGFloat)cellBottomSpacing {
+    return BPKSpacingMd;
+}
+
++(CGFloat)cellTitleHeight {
+    return [self cellCircleHeight];
+}
+
++(CGFloat)defaultCellHeight {
+    return [self cellCircleHeight] + [self cellBottomSpacing];
 }
 
 @end

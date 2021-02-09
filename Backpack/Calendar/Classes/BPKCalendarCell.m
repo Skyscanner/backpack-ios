@@ -18,6 +18,8 @@
 
 #import "BPKCalendarCell.h"
 
+#import "BPKCalendarCellSpacing.h"
+
 #import <FSCalendar/FSCalendarDynamicHeader.h>
 #import <FSCalendar/FSCalendarExtensions.h>
 
@@ -25,8 +27,6 @@
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
-const CGFloat BPKCalendarCellTitleHeight = 36;
-const CGFloat BPKCalendarCellCircleHeight = 36;
 const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
 @interface BPKCalendarCell ()
@@ -58,20 +58,20 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    CGFloat paddingX = (CGRectGetWidth(self.bounds) - BPKCalendarCellCircleHeight) / 2.0;
+    CGFloat paddingX = (CGRectGetWidth(self.bounds) - BPKCalendarCellSpacing.cellCircleHeight) / 2.0;
 
     self.shapeLayer.hidden = NO;
     self.selectionLayer.hidden = NO;
-    self.selectionLayer.frame = CGRectMake(0.0, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
+    self.selectionLayer.frame = CGRectMake(0.0, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.titleLabel.frame), BPKCalendarCellTitleHeight);
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.titleLabel.frame), BPKCalendarCellSpacing.cellTitleHeight);
 
     CGRect selectionRect = CGRectZero;
     CGRect bounds = self.bounds;
-    CGFloat height = BPKCalendarCellCircleHeight;
+    CGFloat height = BPKCalendarCellSpacing.cellCircleHeight;
 
     self.samedayLayer.hidden = YES;
-    self.samedayLayer.frame = CGRectMake(paddingX - BPKCalendarCellSameDayXOffset, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
+    self.samedayLayer.frame = CGRectMake(paddingX - BPKCalendarCellSameDayXOffset, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
     UIBezierPath *sameDayPath = [UIBezierPath bezierPathWithRoundedRect:self.samedayLayer.bounds
                                                       byRoundingCorners:UIRectCornerAllCorners
                                                             cornerRadii:self.shapeLayer.frame.size];
@@ -83,7 +83,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     UIRectCorner corners = 0;
     CGSize cornerRadii = CGSizeZero;
 
-    self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellCircleHeight, BPKCalendarCellCircleHeight);
+    self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
     switch (self.rowType) {
     case RowTypeStart:
