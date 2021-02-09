@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm;
     self.dotView.layer.cornerRadius = BPKSpacingLg/2;
-    [self updateCallout];
+    [self updateAppearance];
 }
 
 - (BPKMapAnnotationViewCalloutView *)calloutView {
@@ -116,16 +116,23 @@ NS_ASSUME_NONNULL_BEGIN
     [super setSelected:selected animated:animated];
 
     self.hasBeenSelected = self.hasBeenSelected || selected;
-    [self updateCallout];
+    [self updateAppearance];
 }
 
 - (void)setAnnotation:(id<MKAnnotation> _Nullable)annotation {
     [super setAnnotation:annotation];
 
-    [self updateCallout];
+    [self updateAppearance];
 }
 
--(void)updateCallout {
+-(void)updateAccessibilityProperties {
+    self.accessibilityLabel = self.bpk_annotation.accessibilityLabel;
+    self.accessibilityValue = self.bpk_annotation.accessibilityValue;
+    self.accessibilityHint = self.bpk_annotation.accessibilityHint;
+}
+
+-(void)updateAppearance {
+    [self updateAccessibilityProperties];
     self.enabled = self.bpk_annotation.enabled;
 
     BOOL shouldShowCallout = self.selected || self.bpk_annotation.alwaysShowCallout;
