@@ -1,6 +1,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.0
+
+**Added:**
+ - Backpack/Map:
+   - New map view component.
+   - New map annotation component which can be rendered on a `BPKMapView`.
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Aligned calendar cells to current design. Calendar cells are now `36pt` tall with `16pt` emphasised date labels.
+
 # 40.3.0
 
 **Added:**
