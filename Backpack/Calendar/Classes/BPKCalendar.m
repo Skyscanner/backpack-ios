@@ -40,6 +40,7 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarYearPill.h"
+#import "BPKCalendarCellSpacing.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -172,7 +173,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
     self.calendarView = [[FSCalendar alloc] initWithFrame:CGRectZero];
     if (self.configuration.rowHeight == nil) {
-        self.calendarView.rowHeight = BPKCalendarDefaultCellHeight;
+        self.calendarView.rowHeight = BPKCalendarCellSpacing.defaultCellHeight;
     } else {
         self.calendarView.rowHeight = [self.configuration.rowHeight floatValue];
     }
