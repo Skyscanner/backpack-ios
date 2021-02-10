@@ -20,11 +20,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// If we encounter performance issues with the calendar we should switch these obj-C properties to C functions which the compiler can inline
 @interface BPKCalendarCellSpacing : NSObject
 
+/**
+ * The height of the circle surrounding the date label.
+ */
 @property(nonatomic, class, readonly) CGFloat cellCircleHeight;
+
+/**
+ * The vertical spacing between the cell content and the bottom edge of the cell.
+ */
 @property(nonatomic, class, readonly) CGFloat cellBottomSpacing;
+
+/**
+ * The height of the date label.
+ */
 @property(nonatomic, class, readonly) CGFloat cellTitleHeight;
+
+/**
+ * The total heigh of a normal cell.
+ */
 @property(nonatomic, class, readonly) CGFloat defaultCellHeight;
 
 @end
