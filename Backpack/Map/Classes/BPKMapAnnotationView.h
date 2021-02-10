@@ -15,11 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_MAP__
-#define __BACKPACK_MAP__
 
-#import "BPKMapView.h"
-#import "BPKMapAnnotation.h"
-#import "BPKMapAnnotationView.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKMapAnnotationView` is a subclass of `MKPinAnnotationView` which contains the Skyscanner map annotation style.
+ */
+IB_DESIGNABLE @interface BPKMapAnnotationView : MKPinAnnotationView
+
+/**
+ * Whether the annotation view has previously been selected by the user.
+ */
+@property(nonatomic, assign) BOOL hasBeenSelected;
+
+@end
+NS_ASSUME_NONNULL_END

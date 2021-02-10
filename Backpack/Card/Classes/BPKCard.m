@@ -145,7 +145,6 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 
-    self.layer.masksToBounds = NO;
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
     [[BPKShadow shadowSm] applyToLayer:self.layer];
 

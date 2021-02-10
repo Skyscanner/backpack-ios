@@ -15,11 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_MAP__
-#define __BACKPACK_MAP__
 
-#import "BPKMapView.h"
-#import "BPKMapAnnotation.h"
-#import "BPKMapAnnotationView.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKMapAnnotation` is a subclass of `MKPointAnnotation` which which can be used to represent a `BPKMapAnnotationView`.
+ */
+@interface BPKMapAnnotation : MKPointAnnotation
+
+/**
+ * Whether to always show the callout. If false, the callout will only be shown when the annotation is selected.
+ */
+@property(nonatomic, assign) BOOL alwaysShowCallout;
+
+/**
+ * Whether the annotation is enabled. If false, a user cannot interact with the annotation.
+ */
+@property(nonatomic, assign) BOOL enabled;
+
+@end
+NS_ASSUME_NONNULL_END

@@ -141,6 +141,11 @@ CGFloat const BPKFlareHeight = 20.0;
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     if (_cornerRadius != cornerRadius) {
         _cornerRadius = cornerRadius;
+
+        self.layer.cornerRadius = cornerRadius;
+        self.backgroundView.layer.cornerRadius = cornerRadius;
+        self.contentView.layer.cornerRadius = cornerRadius;
+
         [self createLayerMask];
     }
 }

@@ -8,6 +8,7 @@
 **Added:**
  - Backpack/Map:
    - New map view component.
+   - New map annotation component which can be used with an `MKMapView`.
 
 ## How to write a good changelog entry
 
