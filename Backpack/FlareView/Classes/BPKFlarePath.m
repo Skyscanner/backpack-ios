@@ -28,7 +28,7 @@ CGFloat const BPKFlareVectorWidth = 234.0;
 CGFloat const BPKFlareVectorHeight = 53.0;
 
 // For information on how this path is calculated, see
-// https://github.com/Skyscanner/backpack-ios/blob/master/Backpack/FlareView/reference/FlarePath_calculation.png
+// https://github.com/Skyscanner/backpack-ios/blob/main/Backpack/FlareView/reference/FlarePath_calculation.png
 + (UIBezierPath *)flareViewPathForSize:(CGSize)size
                            flareHeight:(CGFloat)flareHeight
                           cornerRadius:(CGFloat)cornerRadius

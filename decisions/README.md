@@ -2,7 +2,7 @@
 
 This directory is a collection of decisions that the squad has made on various topics.
 
-For decisions that apply to **all** Backpack repos, see [Backpack decisions](https://github.com/Skyscanner/backpack/tree/master/decisions).
+For decisions that apply to **all** Backpack repos, see [Backpack decisions](https://github.com/Skyscanner/backpack/tree/main/decisions).
 
 ## Decisions
 

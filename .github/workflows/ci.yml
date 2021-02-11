@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     tags: ['*.*.*']
   pull_request:
-    branches: [master]
+    branches: [main]
 
 # For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 #
@@ -112,11 +112,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
 
       - name: Build and verify docs
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/master'
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
         run: ./scripts/build-docs-ci && rm -rf docs
 
       - name: Build (pull request build)
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/master'
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
         run: ./scripts/build-docs-ci $PR_NUMBER
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -148,11 +148,11 @@ jobs:
           publish_dir: docs/
           keep_files: true
           external_repository: backpack/ios
-          publish_branch: master
+          publish_branch: main
 
       - name: Deploy docs to backpack.github.io/ios-prs, if a pull request
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref != 'refs/heads/master'
+        if: github.ref != 'refs/heads/main'
         with:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: docs/versions/
@@ -162,7 +162,7 @@ jobs:
 
   trigger_docs:
     name: Trigger docs build
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-20.04
 
     steps:
@@ -170,13 +170,13 @@ jobs:
         env:
           BACKPACK_DOCS_DEPLOY_TOKEN: ${{ secrets.BACKPACK_DOCS_DEPLOY_TOKEN }}
         run: |
-          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"master","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
+          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"main","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
 
   comment_on_pr:
     needs: CI
     name: Comment on PR
-    # Only run if there is no tag, and the commit is not on master
-    if: contains('refs/tags/', github.ref) && github.ref != 'refs/heads/master'
+    # Only run if there is no tag, and the commit is not on main
+    if: contains('refs/tags/', github.ref) && github.ref != 'refs/heads/main'
     runs-on: ubuntu-20.04
 
     steps:

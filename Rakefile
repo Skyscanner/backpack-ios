@@ -124,7 +124,7 @@ task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
 task :release_no_checks do
-  abort red 'Must be on master branch' unless current_branch == 'master'
+  abort red 'Must be on main branch' unless current_branch == 'main'
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 

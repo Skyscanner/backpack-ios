@@ -10,7 +10,7 @@ Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` bl
 
 ## How we review Backpack contributions
 
-Please see the [code review guidelines](https://github.com/Skyscanner/backpack/blob/master/CODE_REVIEW_GUIDELINES.md).
+Please see the [code review guidelines](https://github.com/Skyscanner/backpack/blob/main/CODE_REVIEW_GUIDELINES.md).
 
 ## Environment
 
@@ -51,7 +51,7 @@ Snapshot tests are used to capture images of components under different configur
 
 ## Git
 
-Please submit your requested changes as a pull request to the `master` branch. If your branch becomes out of date and conflicts need to be resolved with `master` use `git rebase`, do not merge `master` into your feature branch.
+Please submit your requested changes as a pull request to the `main` branch. If your branch becomes out of date and conflicts need to be resolved with `main` use `git rebase`, do not merge `main` into your feature branch.
 
 Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
 
