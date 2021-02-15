@@ -85,6 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UICollectionViewDelegate>
 
+@property(nonatomic, strong, nonnull) UIView *calendarWrapperView;
 @property(nonatomic, strong, nonnull) FSCalendar *calendarView;
 @property(nonatomic, strong, nonnull) FSCalendarWeekdayView *calendarWeekdayView;
 @property(nonatomic, strong, nonnull) BPKCalendarYearPill *yearPill;
@@ -171,7 +172,12 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
+    self.calendarWrapperView = [UIView new];
     self.calendarView = [[FSCalendar alloc] initWithFrame:CGRectZero];
+    self.calendarView.clipsToBounds = NO;
+    self.calendarView.subviews[0].clipsToBounds = NO;
+    self.calendarView.subviews[0].subviews[0].clipsToBounds = NO;
+    self.calendarView.collectionView.clipsToBounds = NO;
     if (self.configuration.rowHeight == nil) {
         self.calendarView.rowHeight = BPKCalendarCellSpacing.defaultCellHeight;
     } else {
@@ -212,7 +218,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                 withReuseIdentifier:HeaderReuseId];
 
-    [self addSubview:self.calendarView];
+    [self addSubview:self.calendarWrapperView];
+    [self.calendarWrapperView addSubview:self.calendarView];
 
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
     self.calendarWeekdayView.calendar = self.calendarView;
@@ -238,7 +245,16 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     CGFloat calendarWidth = CGRectGetWidth(self.calendarView.frame);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
 
-    self.calendarView.frame = CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
+    self.calendarView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.calendarView.leadingAnchor constraintEqualToAnchor:self.calendarWrapperView.leadingAnchor constant:BPKSpacingBase],
+        [self.calendarView.topAnchor constraintEqualToAnchor:self.calendarWrapperView.topAnchor],
+        [self.calendarWrapperView.trailingAnchor constraintEqualToAnchor:self.calendarView.trailingAnchor constant:BPKSpacingBase],
+        [self.calendarWrapperView.bottomAnchor constraintEqualToAnchor:self.calendarView.bottomAnchor]
+    ]];
+
+    self.calendarWrapperView.frame = CGRectMake(0, weekdayViewHeight, width, height - weekdayViewHeight);
+    self.calendarWrapperView.clipsToBounds = YES;
 
     self.calendarWeekdayView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, weekdayViewHeight);
     self.bottomBorder.frame = CGRectMake(0.0, weekdayViewHeight - 1, width, 1.0);
