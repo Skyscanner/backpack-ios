@@ -85,33 +85,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
-    switch (self.rowType) {
-    case RowTypeStart:
-        if (!isRTL) {
-            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
-        } else {
-            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-        }
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-        break;
-
-    case RowTypeEnd:
-        if (!isRTL) {
-            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-        } else {
-            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
-        }
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-        break;
-
-    case RowTypeBoth:
-        corners = UIRectCornerAllCorners;
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-
-    default:
-        break;
-    }
-
     switch (self.selectionType) {
     case SelectionTypeMiddle:
         self.shapeLayer.hidden = !self.dateIsToday;
