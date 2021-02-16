@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -378,6 +379,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJj-8e-vqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="1021"/>
+        </scene>
+        <!--Flare View View Controller-->
+        <scene sceneID="WA6-kF-5ss">
+            <objects>
+                <viewController storyboardIdentifier="FlareViewViewController" id="gSm-fQ-j8e" customClass="FlareViewViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kY3-SV-Qkc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iHg-aI-9q6" customClass="BPKFlareView">
+                                <rect key="frame" x="20" y="198.5" width="335" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="9Wc-uX-qc2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ANg-6u-x3e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ANg-6u-x3e" firstAttribute="trailing" secondItem="iHg-aI-9q6" secondAttribute="trailing" constant="20" id="FsO-j7-ISf"/>
+                            <constraint firstItem="iHg-aI-9q6" firstAttribute="leading" secondItem="ANg-6u-x3e" secondAttribute="leading" constant="20" id="gFU-CJ-jTF"/>
+                            <constraint firstItem="iHg-aI-9q6" firstAttribute="centerX" secondItem="kY3-SV-Qkc" secondAttribute="centerX" id="vDl-Y5-taQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZDa-yh-JyI"/>
+                    <connections>
+                        <outlet property="flareView" destination="iHg-aI-9q6" id="brw-d7-7Bh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USU-PH-3by" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3023" y="1414"/>
         </scene>
     </scenes>
     <designables>

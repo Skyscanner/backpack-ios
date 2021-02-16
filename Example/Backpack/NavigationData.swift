@@ -154,6 +154,35 @@ class NavigationData: NSObject {
         )
     }
 
+    enum FlareViewStory: String {
+        case `default`
+        case flareAtTop
+        case rounded
+        case backgroundImage
+        case animated
+    }
+
+    static func flareStory(story: FlareViewStory) -> Presentable {
+        return CustomPresentable(generateViewController:
+            enrich(mainStoryboard("FlareViewViewController").makeViewController) {
+                let target = $0 as? FlareViewViewController
+
+                switch story {
+                case .flareAtTop:
+                    target?.flareAtTop = true
+                case .rounded:
+                    target?.rounded = true
+                case .backgroundImage:
+                    target?.backgroundImage = true
+                case .animated:
+                    target?.backgroundImage = true
+                    target?.animated = true
+                default: break
+                }
+            }
+        )
+    }
+
     // swiftlint:disable line_length closure_body_length
 
     static var appStructure: [Item] = makeApp {
@@ -169,7 +198,6 @@ class NavigationData: NSObject {
                     value: .story(loadStoryboard(name: "Gradients", identifier: "GradientViewController"))
                 )
             }
-            Item(name: "Gradients", value: .story(loadStoryboard(name: "Gradients", identifier: "GradientsViewController")))
             Item(name: "Spacings", value: .story(mainStoryboard("SpacingsViewController")))
             Item(name: "Radii", value: .story(mainStoryboard("RadiiViewController")))
             Item(name: "Shadows", value: .story(mainStoryboard("ShadowsViewController")))
@@ -204,7 +232,13 @@ class NavigationData: NSObject {
                 Item(name: "With divider without padding", value: .story(dividedCardStoryboard(story: .dividedVerticalNoPadding)))
                 Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
             }
-            Item(name: "Flare views", value: .story(loadStoryboard(name: "FlareView", identifier: "FlareViewViewController")))
+            Group(name: "Flare views") {
+                Item(name: "Default", value: .story(flareStory(story: .default)))
+                Item(name: "Flare at Top", value: .story(flareStory(story: .flareAtTop)))
+                Item(name: "Rounded", value: .story(flareStory(story: .rounded)))
+                Item(name: "Background image", value: .story(flareStory(story: .backgroundImage)))
+                Item(name: "Animated", value: .story(flareStory(story: .animated)))
+            }
             Item(name: "Chips", value: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
             Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
