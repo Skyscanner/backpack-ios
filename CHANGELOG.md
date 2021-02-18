@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.1
+
+**Fixed:**
+ - Backpack/Map:
+   - Fixed an issue causing reused cells to appear as previously selected.
+   - Fixed an issue causing the map pin to be shown alongside the Backpack marker.
+
 # 40.4.0
 
 **Added:**
