@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKMapAnnotationView` is a subclass of `MKPinAnnotationView` which contains the Skyscanner map annotation style.
  */
-IB_DESIGNABLE @interface BPKMapAnnotationView : MKPinAnnotationView
+IB_DESIGNABLE @interface BPKMapAnnotationView : MKAnnotationView
 
 /**
  * Whether the annotation view has previously been selected by the user.
