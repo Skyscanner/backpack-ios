@@ -111,7 +111,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
             break;
     }
 
-    CGFloat overunderflow = overflow+underflow;
+    CGFloat overunderflow = overflow + underflow;
     if (underflow + overflow > 0.001) {
         self.clipsToBounds = NO;
     }

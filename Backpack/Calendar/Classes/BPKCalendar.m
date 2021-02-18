@@ -244,16 +244,10 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     CGFloat height = CGRectGetHeight(bounds);
     CGFloat calendarWidth = CGRectGetWidth(self.calendarView.frame);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
+    CGFloat calendarViewHeight = height - weekdayViewHeight;
 
-    self.calendarView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.calendarView.leadingAnchor constraintEqualToAnchor:self.calendarWrapperView.leadingAnchor constant:BPKSpacingBase],
-        [self.calendarView.topAnchor constraintEqualToAnchor:self.calendarWrapperView.topAnchor],
-        [self.calendarWrapperView.trailingAnchor constraintEqualToAnchor:self.calendarView.trailingAnchor constant:BPKSpacingBase],
-        [self.calendarWrapperView.bottomAnchor constraintEqualToAnchor:self.calendarView.bottomAnchor]
-    ]];
-
-    self.calendarWrapperView.frame = CGRectMake(0, weekdayViewHeight, width, height - weekdayViewHeight);
+    self.calendarWrapperView.frame = CGRectMake(0, weekdayViewHeight, width, calendarViewHeight);
+    self.calendarView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, calendarViewHeight);
     self.calendarWrapperView.clipsToBounds = YES;
 
     self.calendarWeekdayView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, weekdayViewHeight);
