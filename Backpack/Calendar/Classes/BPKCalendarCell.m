@@ -85,9 +85,12 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
+    // We use the screen width to ensure the overflowLength is always long enough
+    //even when we need to draw it from the first cell on a row to the edge of the opposite screen.
+    CGFloat overflowLength = [[UIScreen mainScreen] bounds].size.width;
     CGFloat underflow = 0;
     CGFloat overflow = 0;
-    CGFloat overflowLength = [[UIScreen mainScreen] bounds].size.width;
+
     switch (self.rowType) {
         case RowTypeStart:
             if (self.selectionType != SelectionTypeLeadingBorder) {
