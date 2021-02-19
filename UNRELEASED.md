@@ -2,6 +2,11 @@
 
 > Place your changes below this line.
 
+**Fixed:**
+ - Backpack/Calendar:
+   - Fixed an display bug when setting the calendar selection type to the same value.
+   - Calendar will now scroll to the first selected date when initially shown.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

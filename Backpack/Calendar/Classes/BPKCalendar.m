@@ -288,10 +288,12 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (void)setSelectionType:(BPKCalendarSelection)selectionType {
     BPKAssertMainThread();
-    _selectionType = selectionType;
-    self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
-    for (NSDate *date in self.calendarView.selectedDates) {
-        [self.calendarView deselectDate:date];
+    if (_selectionType != selectionType) {
+        _selectionType = selectionType;
+        self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+        for (NSDate *date in self.calendarView.selectedDates) {
+            [self.calendarView deselectDate:date];
+        }
     }
 }
 
@@ -348,6 +350,14 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 #pragma mark - public methods
+
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
+
+    if (self.selectedDates.count > 0) {
+        [self scrollDateIntoView:self.selectedDates.firstObject];
+    }
+}
 
 - (void)reloadData {
     [self.calendarView reloadData];
@@ -641,6 +651,15 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 #pragma mark - helpers
+
+-(void)scrollDateIntoView:(BPKSimpleDate *)date {
+    // Scrolling to date only works if this is enabled.
+    // See https://github.com/WenchaoD/FSCalendar/issues/875#issuecomment-360024984
+    self.calendarView.pagingEnabled = YES;
+    NSDate *dateToScrollIntoView = [date dateForCalendar:self.gregorian];
+    [self.calendarView selectDate:dateToScrollIntoView scrollToDate:dateToScrollIntoView];
+    self.calendarView.pagingEnabled = NO;
+}
 
 - (void)invalidateVisibleCellsIfNeeded {
     // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
