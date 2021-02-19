@@ -47,6 +47,7 @@ class NavigationData: NSObject {
         case withCustomStyles
         case withPrices
         case alternativeBackgroundColor
+        case preselectedDates
     }
 
     static func setCalendarProperties(story: CalendarStory) -> (UIViewController) -> Void {
@@ -66,6 +67,8 @@ class NavigationData: NSObject {
                 calendarVC.showPrices = true
             case .alternativeBackgroundColor:
                 calendarVC.alternativeBackgroundColor = true
+            case .preselectedDates:
+                calendarVC.preselectedDates = true
             }
         }
     }
@@ -220,6 +223,7 @@ class NavigationData: NSObject {
                 Item(name: "Custom styles for specific dates", value: .story(calendarStoryboard(story: .withCustomStyles)))
                 Item(name: "With prices", value: .story(calendarStoryboard(story: .withPrices)))
                 Item(name: "With alternative background color", value: .story(calendarStoryboard(story: .alternativeBackgroundColor)))
+                Item(name: "With preselected dates", value: .story(calendarStoryboard(story: .preselectedDates)))
             }
             Group(name: "Cards") {
                 Item(name: "Default", value: .story(cardStoryboard(story: .default)))

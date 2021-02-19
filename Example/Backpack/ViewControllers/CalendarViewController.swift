@@ -26,6 +26,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var customStylesForDates = false
     var showPrices = false
     var alternativeBackgroundColor = false
+    var preselectedDates = false
     var currentMaxEnabledDate: Date?
     var calendar = BPKCalendar()
     @IBOutlet weak var myView: UIView!
@@ -39,6 +40,15 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     override func viewDidLoad() {
         if showPrices {
             calendar = BPKCalendar(configuration: BPKCalendarPriceLabelConfiguration())
+        }
+        if preselectedDates {
+            segmentedControl.selectedSegmentIndex = 1
+            calendar.selectionType = .range
+
+            let currentDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
+            let selectedDate1 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 12)
+            let selectedDate2 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 20)
+            calendar.selectedDates = [selectedDate1, selectedDate2]
         }
         myView.addSubview(calendar)
         calendar.translatesAutoresizingMaskIntoConstraints = false
