@@ -85,46 +85,57 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
+    // We use the screen width to ensure the overflowLength is always long enough
+    //even when we need to draw it from the first cell on a row to the edge of the opposite screen.
+    CGFloat overflowLength = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat underflow = 0;
+    CGFloat overflow = 0;
+
     switch (self.rowType) {
-    case RowTypeStart:
-        if (!isRTL) {
-            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
-        } else {
-            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-        }
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-        break;
+        case RowTypeStart:
+            if (self.selectionType != SelectionTypeLeadingBorder) {
+                underflow = overflowLength;
+            }
+            break;
+        case RowTypeEnd:
+            if (self.selectionType != SelectionTypeTrailingBorder) {
+                overflow = overflowLength;
+            }
+            break;
+        case RowTypeBoth:
+            if (self.selectionType != SelectionTypeLeadingBorder) {
+                underflow = overflowLength;
+            }
+            if (self.selectionType != SelectionTypeTrailingBorder) {
+                overflow = overflowLength;
+            }
+            break;
+        default:
+            break;
+    }
 
-    case RowTypeEnd:
-        if (!isRTL) {
-            corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-        } else {
-            corners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
-        }
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-        break;
-
-    case RowTypeBoth:
-        corners = UIRectCornerAllCorners;
-        cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
-
-    default:
-        break;
+    CGFloat overunderflow = overflow + underflow;
+    if (underflow + overflow > 0.001) {
+        self.clipsToBounds = NO;
     }
 
     switch (self.selectionType) {
     case SelectionTypeMiddle:
         self.shapeLayer.hidden = !self.dateIsToday;
-        selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds), height);
+            if(!isRTL) {
+                selectionRect = CGRectMake(0 - underflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
+            }else {
+                selectionRect = CGRectMake(0 - overflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
+            }
         break;
 
     case SelectionTypeTrailingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
+            selectionRect = CGRectMake(0 - underflow, 0, CGRectGetWidth(bounds) - paddingX + overunderflow, height);
         } else {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
+            selectionRect = CGRectMake(paddingX - overflow, 0, CGRectGetWidth(bounds) - paddingX + overunderflow, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
@@ -132,10 +143,10 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     case SelectionTypeLeadingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            selectionRect = CGRectMake(paddingX, 0, CGRectGetWidth(bounds) - paddingX, height);
+            selectionRect = CGRectMake(paddingX - underflow, 0, CGRectGetWidth(bounds) - paddingX + overunderflow, height);
         } else {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
-            selectionRect = CGRectMake(0, 0, CGRectGetWidth(bounds) - paddingX, height);
+            selectionRect = CGRectMake(0 - overflow, 0, CGRectGetWidth(bounds) - paddingX + overunderflow, height);
         }
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;

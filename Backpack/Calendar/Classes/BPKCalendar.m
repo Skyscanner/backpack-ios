@@ -85,6 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKCalendar () <FSCalendarDelegate, FSCalendarDelegateAppearance, FSCalendarDataSource, UICollectionViewDelegate>
 
+@property(nonatomic, strong, nonnull) UIView *calendarWrapperView;
 @property(nonatomic, strong, nonnull) FSCalendar *calendarView;
 @property(nonatomic, strong, nonnull) FSCalendarWeekdayView *calendarWeekdayView;
 @property(nonatomic, strong, nonnull) BPKCalendarYearPill *yearPill;
@@ -168,10 +169,23 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return [self initWithFrame:CGRectZero];
 }
 
+-(void)applySubviewClipsToBoundsHack {
+    // FSCalendar has an internal hierarchy of views in which the collectionView is rendered.
+    // We need to ensure all of these have `clipsToBounds` set to `NO` to ensure the selection range can extend beyond the collectionView.
+    self.calendarView.subviews[0].clipsToBounds = NO;
+    self.calendarView.subviews[0].subviews[0].clipsToBounds = NO;
+}
+
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
+    // We use a wrapper view here to prevent the calendar cells being rendered over the week days
+    self.calendarWrapperView = [UIView new];
     self.calendarView = [[FSCalendar alloc] initWithFrame:CGRectZero];
+    self.calendarView.clipsToBounds = NO;
+    self.calendarView.collectionView.clipsToBounds = NO;
+    self.calendarWrapperView.clipsToBounds = YES;
+    [self applySubviewClipsToBoundsHack];
     if (self.configuration.rowHeight == nil) {
         self.calendarView.rowHeight = BPKCalendarCellSpacing.defaultCellHeight;
     } else {
@@ -212,7 +226,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                          forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                 withReuseIdentifier:HeaderReuseId];
 
-    [self addSubview:self.calendarView];
+    [self addSubview:self.calendarWrapperView];
+    [self.calendarWrapperView addSubview:self.calendarView];
 
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
     self.calendarWeekdayView.calendar = self.calendarView;
@@ -237,8 +252,10 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     CGFloat height = CGRectGetHeight(bounds);
     CGFloat calendarWidth = CGRectGetWidth(self.calendarView.frame);
     CGFloat weekdayViewHeight = 6 * BPKSpacingMd;
+    CGFloat calendarViewHeight = height - weekdayViewHeight;
 
-    self.calendarView.frame = CGRectMake(BPKSpacingBase, weekdayViewHeight, width - 2 * BPKSpacingBase, height - weekdayViewHeight);
+    self.calendarWrapperView.frame = CGRectMake(0, weekdayViewHeight, width, calendarViewHeight);
+    self.calendarView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, calendarViewHeight);
 
     self.calendarWeekdayView.frame = CGRectMake(BPKSpacingBase, 0, width - 2 * BPKSpacingBase, weekdayViewHeight);
     self.bottomBorder.frame = CGRectMake(0.0, weekdayViewHeight - 1, width, 1.0);
