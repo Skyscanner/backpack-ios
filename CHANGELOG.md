@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.2
+
+**Fixed:**
+ - Backpack/Calendar:
+   - The range selection background is now squared at the edges of the screen to match the design.
+
 # 40.4.1
 
 **Fixed:**

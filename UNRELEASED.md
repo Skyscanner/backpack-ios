@@ -2,10 +2,6 @@
 
 > Place your changes below this line.
 
-**Fixed:**
- - Backpack/Calendar:
-   - The range selection background is now squared at the edges of the screen to match the design.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
