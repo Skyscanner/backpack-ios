@@ -26,7 +26,8 @@ enum ChipStory: String, Story {
   case filledWithBackgroundColor = "Filled with background colour"
 
   var presentableStory: Presentable {
-    let viewController = NavigationData.chipStoryboard("ChipsViewController").makeViewController
+    let storyboard = loadStoryboard(name: "Chips")
+    let viewController = storyboard("ChipsViewController").makeViewController
     return CustomPresentable(generateViewController: enrich(viewController, {
       let target = $0 as? ChipsViewController
       let filledBackgroundColor: UIColor = .bpk_abisko

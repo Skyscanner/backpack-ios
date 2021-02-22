@@ -21,7 +21,6 @@ class NavigationData: NSObject {
     static var buttonsStoryboard = loadStoryboard(name: "Buttons")
     static var calendarStoryboard = loadStoryboard(name: "Calendar")
     static var cardStoryboard = loadStoryboard(name: "Cards")
-    static var chipStoryboard = loadStoryboard(name: "Chips")
 
     static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
         return {storyboardVC in
