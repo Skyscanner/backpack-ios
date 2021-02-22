@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.3
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Fixed an display bug when setting the calendar selection type to the same value.
+   - Calendar will now scroll to the first selected date when initially shown.
+
 # 40.4.2
 
 **Fixed:**
