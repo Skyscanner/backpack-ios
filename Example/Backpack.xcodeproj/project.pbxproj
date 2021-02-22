@@ -30,6 +30,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */; };
 		60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60127A712021B6BC00703622 /* BPKSpacingTest.m */; };
+		603658D025E3E15D00A94126 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603658CF25E3E15D00A94126 /* Story.swift */; };
+		603658D825E3E1CF00A94126 /* ChipStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603658D725E3E1CF00A94126 /* ChipStory.swift */; };
 		6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */; };
 		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
 		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
@@ -268,6 +270,8 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSwitchSnapshotTest.m; sourceTree = "<group>"; };
 		60127A712021B6BC00703622 /* BPKSpacingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingTest.m; sourceTree = "<group>"; };
+		603658CF25E3E15D00A94126 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		603658D725E3E1CF00A94126 /* ChipStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipStory.swift; sourceTree = "<group>"; };
 		6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiTest.m; sourceTree = "<group>"; };
 		6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKRadiiViewController.h; sourceTree = "<group>"; };
 		6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiViewController.m; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
+				603658D625E3E1BD00A94126 /* Stories */,
+				603658CF25E3E15D00A94126 /* Story.swift */,
 				D217702325ACCC9700C0FD8C /* AppStructure.swift */,
 				D217701725ACCC5E00C0FD8C /* Presentable.swift */,
 				D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */,
@@ -659,6 +665,14 @@
 				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		603658D625E3E1BD00A94126 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				603658D725E3E1CF00A94126 /* ChipStory.swift */,
+			);
+			path = Stories;
 			sourceTree = "<group>";
 		};
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
@@ -1284,6 +1298,7 @@
 				E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
+				603658D025E3E15D00A94126 /* Story.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
@@ -1358,6 +1373,7 @@
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,
 				D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */,
+				603658D825E3E1CF00A94126 /* ChipStory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
