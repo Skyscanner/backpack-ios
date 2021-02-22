@@ -170,7 +170,7 @@ class NavigationData: NSObject {
   static func chipStory(story: ChipStory) -> Presentable {
     return CustomPresentable(generateViewController: enrich(chipStoryboard("ChipsViewController").makeViewController, {
       let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_petra
+      let filledBackgroundColor: UIColor = .bpk_abisko
 
       switch story {
       case .withIcons:
