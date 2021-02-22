@@ -238,11 +238,7 @@ class NavigationData: NSObject {
                 Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
             }
             Group(name: "Chips") {
-              Item(name: "Default", value: .story(ChipStory.default.presentableStory))
-              Item(name: "With icons", value: .story(ChipStory.withIcons.presentableStory))
-              Item(name: "With background colour", value: .story(ChipStory.withBackgroundColor.presentableStory))
-              Item(name: "Filled", value: .story(ChipStory.filled.presentableStory))
-              Item(name: "Filled with background colour", value: .story(ChipStory.filledWithBackgroundColor.presentableStory))
+              ChipStory.storyStructure
             }
             Group(name: "Flare views") {
                 Item(name: "Default", value: .story(flareStory(story: .default)))

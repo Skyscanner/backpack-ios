@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -19,12 +18,12 @@
 
 import Foundation
 
-enum ChipStory: Story {
-  case `default`
-  case withIcons
-  case withBackgroundColor
-  case filled
-  case filledWithBackgroundColor
+enum ChipStory: String, Story {
+  case `default` = "Default"
+  case withIcons = "With icons"
+  case withBackgroundColor = "With background colour"
+  case filled = "Filled"
+  case filledWithBackgroundColor = "Filled with background colour"
 
   var presentableStory: Presentable {
     let viewController = NavigationData.chipStoryboard("ChipsViewController").makeViewController

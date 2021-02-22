@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -19,6 +18,14 @@
 
 import Foundation
 
-protocol Story {
+protocol Story: RawRepresentable, CaseIterable {
   var presentableStory: Presentable { get }
+}
+
+extension Story where Self.RawValue == String {
+  static var storyStructure: [Item] {
+    return self.allCases.map({ story in
+      return Item(name: story.rawValue, value: .story(story.presentableStory))
+    })
+  }
 }
