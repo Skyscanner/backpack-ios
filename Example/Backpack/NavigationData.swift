@@ -18,173 +18,6 @@
 
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
-    static var buttonsStoryboard = loadStoryboard(name: "Buttons")
-    static var calendarStoryboard = loadStoryboard(name: "Calendar")
-    static var cardStoryboard = loadStoryboard(name: "Cards")
-
-    static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
-        return {storyboardVC in
-            guard let buttonsVC = storyboardVC as? BPKButtonsViewController else {
-                return
-            }
-
-            buttonsVC.style = style
-        }
-    }
-
-    static func buttonStoryboard(style: BPKButtonStyle) -> Presentable {
-        return CustomPresentable(generateViewController:
-            enrich(
-                buttonsStoryboard("ButtonsViewController").makeViewController,
-                setButtonStyle(style: style)
-            )
-        )
-    }
-
-    enum CalendarStory: String {
-        case `default`
-        case withMaxEnabledDate
-        case withCustomStyles
-        case withPrices
-        case alternativeBackgroundColor
-        case preselectedDates
-    }
-
-    static func setCalendarProperties(story: CalendarStory) -> (UIViewController) -> Void {
-        return {storyboardVC in
-            guard let calendarVC = storyboardVC as? CalendarViewController else {
-                return
-            }
-
-            switch story {
-            case .default:
-                break
-            case .withMaxEnabledDate:
-                calendarVC.maxEnabledDate = true
-            case .withCustomStyles:
-                calendarVC.customStylesForDates = true
-            case .withPrices:
-                calendarVC.showPrices = true
-            case .alternativeBackgroundColor:
-                calendarVC.alternativeBackgroundColor = true
-            case .preselectedDates:
-                calendarVC.preselectedDates = true
-            }
-        }
-    }
-
-    static func calendarStoryboard(story: CalendarStory) -> Presentable {
-        return CustomPresentable(generateViewController:
-            enrich(
-                calendarStoryboard("CalendarViewController").makeViewController,
-                setCalendarProperties(story: story)
-            )
-        )
-    }
-
-    enum CardStory: String {
-        case `default`
-        case withoutPadding
-        case selected
-        case cornerStyleLarge
-        case alternativeBackgroundColor
-    }
-
-    static func setCardProperties(story: CardStory) -> (UIViewController) -> Void {
-        return {storyboardVC in
-            guard let cardVC = storyboardVC as? CardsViewController else {
-                return
-            }
-
-            switch story {
-            case .default:
-                break
-            case .withoutPadding:
-                cardVC.padded = false
-            case .selected:
-                cardVC.selected = true
-            case .cornerStyleLarge:
-                cardVC.cornerStyle = .large
-            case .alternativeBackgroundColor:
-                cardVC.backgroundColor = BPKColor.skyBlueTint01
-            }
-        }
-    }
-
-    static func cardStoryboard(story: CardStory) -> Presentable {
-        return CustomPresentable(generateViewController:
-            enrich(
-                cardStoryboard("CardsViewController").makeViewController,
-                setCardProperties(story: story)
-            )
-        )
-    }
-
-    enum DividedCardStory: String {
-        case dividedHorizontal
-        case dividedHorizontalCornerStyleLarge
-        case dividedVertical
-        case dividedVerticalNoPadding
-    }
-
-    static func setDividedCardProperties(story: DividedCardStory) -> (UIViewController) -> Void {
-        return {storyboardVC in
-            guard let cardVC = storyboardVC as? DividedCardsViewController else {
-                return
-            }
-
-            switch story {
-            case .dividedHorizontal:
-                cardVC.divisionDirection = .horizontal
-            case .dividedHorizontalCornerStyleLarge:
-                cardVC.divisionDirection = .horizontal
-                cardVC.cornerStyle = .large
-            case .dividedVertical:
-                cardVC.divisionDirection = .vertical
-            case .dividedVerticalNoPadding:
-                cardVC.divisionDirection = .vertical
-                cardVC.padded = false
-            }
-        }
-    }
-
-    static func dividedCardStoryboard(story: DividedCardStory) -> Presentable {
-        return CustomPresentable(generateViewController:
-            enrich(
-                cardStoryboard("DividedCardsViewController").makeViewController,
-                setDividedCardProperties(story: story)
-            )
-        )
-    }
-
-    enum FlareViewStory: String {
-        case `default`
-        case flareAtTop
-        case rounded
-        case backgroundImage
-        case animated
-    }
-
-    static func flareStory(story: FlareViewStory) -> Presentable {
-        return CustomPresentable(generateViewController:
-            enrich(mainStoryboard("FlareViewViewController").makeViewController) {
-                let target = $0 as? FlareViewViewController
-
-                switch story {
-                case .flareAtTop:
-                    target?.flareAtTop = true
-                case .rounded:
-                    target?.rounded = true
-                case .backgroundImage:
-                    target?.backgroundImage = true
-                case .animated:
-                    target?.backgroundImage = true
-                    target?.animated = true
-                default: break
-                }
-            }
-        )
-    }
 
     // swiftlint:disable line_length closure_body_length
 
@@ -210,41 +43,20 @@ class NavigationData: NSObject {
             Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
             Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
             Group(name: "Buttons") {
-                Item(name: "Primary", value: .story(buttonStoryboard(style: .primary)))
-                Item(name: "Secondary", value: .story(buttonStoryboard(style: .secondary)))
-                Item(name: "Destructive", value: .story(buttonStoryboard(style: .destructive)))
-                Item(name: "Featured", value: .story(buttonStoryboard(style: .featured)))
-                Item(name: "Link", value: .story(buttonStoryboard(style: .link)))
-                Item(name: "Outline", value: .story(buttonStoryboard(style: .outline)))
+              ButtonStory.storyStructure
             }
             Group(name: "Calendar") {
-                Item(name: "Default", value: .story(calendarStoryboard(story: .default)))
-                Item(name: "With max enabled date", value: .story(calendarStoryboard(story: .withMaxEnabledDate)))
-                Item(name: "Custom styles for specific dates", value: .story(calendarStoryboard(story: .withCustomStyles)))
-                Item(name: "With prices", value: .story(calendarStoryboard(story: .withPrices)))
-                Item(name: "With alternative background color", value: .story(calendarStoryboard(story: .alternativeBackgroundColor)))
-                Item(name: "With preselected dates", value: .story(calendarStoryboard(story: .preselectedDates)))
+              CalendarStory.storyStructure
             }
             Group(name: "Cards") {
-                Item(name: "Default", value: .story(cardStoryboard(story: .default)))
-                Item(name: "Without padding", value: .story(cardStoryboard(story: .withoutPadding)))
-                Item(name: "Selected", value: .story(cardStoryboard(story: .selected)))
-                Item(name: "Corner style large", value: .story(cardStoryboard(story: .cornerStyleLarge)))
-                Item(name: "Background color", value: .story(cardStoryboard(story: .alternativeBackgroundColor)))
-                Item(name: "With divider", value: .story(dividedCardStoryboard(story: .dividedHorizontal)))
-                Item(name: "With divider arranged vertically", value: .story(dividedCardStoryboard(story: .dividedVertical)))
-                Item(name: "With divider without padding", value: .story(dividedCardStoryboard(story: .dividedVerticalNoPadding)))
-                Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
+              CardStory.storyStructure
+              DividedCardStory.storyStructure
             }
             Group(name: "Chips") {
               ChipStory.storyStructure
             }
             Group(name: "Flare views") {
-                Item(name: "Default", value: .story(flareStory(story: .default)))
-                Item(name: "Flare at Top", value: .story(flareStory(story: .flareAtTop)))
-                Item(name: "Rounded", value: .story(flareStory(story: .rounded)))
-                Item(name: "Background image", value: .story(flareStory(story: .backgroundImage)))
-                Item(name: "Animated", value: .story(flareStory(story: .animated)))
+              FlareStory.storyStructure
             }
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
             Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
