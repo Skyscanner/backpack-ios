@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-// swiftlint:disable type_body_length
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
     static var buttonsStoryboard = loadStoryboard(name: "Buttons")
@@ -159,34 +158,6 @@ class NavigationData: NSObject {
         )
     }
 
-  enum ChipStory: String {
-    case `default`
-    case withIcons
-    case withBackgroundColor
-    case filled
-    case filledWithBackgroundColor
-  }
-
-  static func chipStory(story: ChipStory) -> Presentable {
-    return CustomPresentable(generateViewController: enrich(chipStoryboard("ChipsViewController").makeViewController, {
-      let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_abisko
-
-      switch story {
-      case .withIcons:
-        target?.icons = true
-      case .withBackgroundColor:
-        target?.backgroundTint = filledBackgroundColor
-      case .filled:
-        target?.style = .filled
-      case .filledWithBackgroundColor:
-        target?.style = .filled
-        target?.backgroundTint = filledBackgroundColor
-      default: break
-      }
-    }))
-  }
-
     enum FlareViewStory: String {
         case `default`
         case flareAtTop
@@ -267,11 +238,11 @@ class NavigationData: NSObject {
                 Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
             }
             Group(name: "Chips") {
-              Item(name: "Default", value: .story(chipStory(story: .default)))
-              Item(name: "With icons", value: .story(chipStory(story: .withIcons)))
-              Item(name: "With background colour", value: .story(chipStory(story: .withBackgroundColor)))
-              Item(name: "Filled", value: .story(chipStory(story: .filled)))
-              Item(name: "Filled with background colour", value: .story(chipStory(story: .filledWithBackgroundColor)))
+              Item(name: "Default", value: .story(ChipStory.default.presentableStory))
+              Item(name: "With icons", value: .story(ChipStory.withIcons.presentableStory))
+              Item(name: "With background colour", value: .story(ChipStory.withBackgroundColor.presentableStory))
+              Item(name: "Filled", value: .story(ChipStory.filled.presentableStory))
+              Item(name: "Filled with background colour", value: .story(ChipStory.filledWithBackgroundColor.presentableStory))
             }
             Group(name: "Flare views") {
                 Item(name: "Default", value: .story(flareStory(story: .default)))
