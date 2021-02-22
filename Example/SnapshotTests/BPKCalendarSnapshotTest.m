@@ -27,6 +27,7 @@
 @property NSDate *date1;
 @property NSDate *date2;
 @property NSDate *date3;
+@property NSDate *date4;
 @property BOOL isColoringDates;
 @property BOOL isShowingPrices;
 
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.date1 = [NSDate dateWithTimeIntervalSince1970:2175785688];
     self.date2 = [NSDate dateWithTimeIntervalSince1970:2176044888];
     self.date3 = [NSDate dateWithTimeIntervalSince1970:2177772888];
+    self.date4 = [NSDate dateWithTimeIntervalSince1970:2188140888];
     self.isColoringDates = NO;
     self.isShowingPrices = NO;
 }
@@ -134,8 +136,21 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date3
-                                                                                                                   forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
+        [[BPKSimpleDate alloc] initWithDate:self.date3 forCalendar:bpkCalendar.gregorian]
+    ];
+    [bpkCalendar reloadData];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
+- (void)testCalendarWithSelectedDateInFuture {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+
+    [self configureParentView:parentView forCalendar:bpkCalendar];
+    bpkCalendar.selectedDates = @[
+        [[BPKSimpleDate alloc] initWithDate:self.date4 forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
 
@@ -149,8 +164,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionType = BPKCalendarSelectionRange;
     bpkCalendar.selectedDates = @[
-        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
-                                                                                                                   forCalendar:bpkCalendar.gregorian]
+        [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
+        [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
     ];
     [bpkCalendar reloadData];
     bpkCalendar.dateSelectedContentColor = UIColor.orangeColor;
