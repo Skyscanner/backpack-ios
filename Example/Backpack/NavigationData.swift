@@ -16,11 +16,13 @@
  * limitations under the License.
  */
 
+// swiftlint:disable type_body_length
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
     static var buttonsStoryboard = loadStoryboard(name: "Buttons")
     static var calendarStoryboard = loadStoryboard(name: "Calendar")
     static var cardStoryboard = loadStoryboard(name: "Cards")
+    static var chipStoryboard = loadStoryboard(name: "Chips")
 
     static func setButtonStyle(style: BPKButtonStyle) -> (UIViewController) -> Void {
         return {storyboardVC in
@@ -157,6 +159,34 @@ class NavigationData: NSObject {
         )
     }
 
+  enum ChipStory: String {
+    case `default`
+    case withIcons
+    case withBackgroundColor
+    case filled
+    case filledWithBackgroundColor
+  }
+
+  static func chipStory(story: ChipStory) -> Presentable {
+    return CustomPresentable(generateViewController: enrich(chipStoryboard("ChipsViewController").makeViewController, {
+      let target = $0 as? ChipsViewController
+      let filledBackgroundColor: UIColor = .bpk_petra
+
+      switch story {
+      case .withIcons:
+        target?.icons = true
+      case .withBackgroundColor:
+        target?.backgroundTint = filledBackgroundColor
+      case .filled:
+        target?.style = .filled
+      case .filledWithBackgroundColor:
+        target?.style = .filled
+        target?.backgroundTint = filledBackgroundColor
+      default: break
+      }
+    }))
+  }
+
     enum FlareViewStory: String {
         case `default`
         case flareAtTop
@@ -236,6 +266,13 @@ class NavigationData: NSObject {
                 Item(name: "With divider without padding", value: .story(dividedCardStoryboard(story: .dividedVerticalNoPadding)))
                 Item(name: "With divider and corner style large", value: .story(dividedCardStoryboard(story: .dividedHorizontalCornerStyleLarge)))
             }
+            Group(name: "Chips") {
+              Item(name: "Default", value: .story(chipStory(story: .default)))
+              Item(name: "With icons", value: .story(chipStory(story: .withIcons)))
+              Item(name: "With background colour", value: .story(chipStory(story: .withBackgroundColor)))
+              Item(name: "Filled", value: .story(chipStory(story: .filled)))
+              Item(name: "Filled with background colour", value: .story(chipStory(story: .filledWithBackgroundColor)))
+            }
             Group(name: "Flare views") {
                 Item(name: "Default", value: .story(flareStory(story: .default)))
                 Item(name: "Flare at Top", value: .story(flareStory(story: .flareAtTop)))
@@ -243,7 +280,6 @@ class NavigationData: NSObject {
                 Item(name: "Background image", value: .story(flareStory(story: .backgroundImage)))
                 Item(name: "Animated", value: .story(flareStory(story: .animated)))
             }
-            Item(name: "Chips", value: .story(loadStoryboard(name: "Chips", identifier: "ChipsViewController")))
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
             Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
             Item(name: "Icons", value: .story(mainStoryboard("IconsViewController")))
