@@ -23,7 +23,7 @@ class NavigationData: NSObject {
 
     static var appStructure: [Item] = makeApp {
         Group(name: "Tokens") {
-            Item(name: "Colors", value: .story(mainStoryboard("ColorsViewController")))
+            ColorsStory().example
             Group(name: "Gradients") {
                 Item(
                     name: "Primary",
@@ -43,20 +43,20 @@ class NavigationData: NSObject {
             Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
             Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
             Group(name: "Buttons") {
-              ButtonStory.storyStructure
+              ButtonStory.allExamples
             }
             Group(name: "Calendar") {
-              CalendarStory.storyStructure
+              CalendarStory.allExamples
             }
             Group(name: "Cards") {
-              CardStory.storyStructure
-              DividedCardStory.storyStructure
+              CardStory.allExamples
+              DividedCardStory.allExamples
             }
             Group(name: "Chips") {
-              ChipStory.storyStructure
+              ChipStory.allExamples
             }
             Group(name: "Flare views") {
-              FlareStory.storyStructure
+              FlareStory.allExamples
             }
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
             Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))

@@ -41,6 +41,8 @@
 		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
 		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
 		6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */; };
+		60AF37BD25E549EC00825050 /* StoryGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF37BC25E549EC00825050 /* StoryGroup.swift */; };
+		60AF37C925E54B1000825050 /* ColorsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF37C825E54B1000825050 /* ColorsStory.swift */; };
 		60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CE0F982189F99200309211 /* SwitchesViewController.swift */; };
 		60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CE0F9A2189FC5000309211 /* Switches.storyboard */; };
 		60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */; };
@@ -288,6 +290,8 @@
 		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		60AF37BC25E549EC00825050 /* StoryGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGroup.swift; sourceTree = "<group>"; };
+		60AF37C825E54B1000825050 /* ColorsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsStory.swift; sourceTree = "<group>"; };
 		60CE0F982189F99200309211 /* SwitchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchesViewController.swift; sourceTree = "<group>"; };
 		60CE0F9A2189FC5000309211 /* Switches.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Switches.storyboard; sourceTree = "<group>"; };
 		60D302CD201B77B9006DBC18 /* BPKSpacingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSpacingsViewController.h; sourceTree = "<group>"; };
@@ -572,6 +576,7 @@
 			children = (
 				603658D625E3E1BD00A94126 /* Stories */,
 				603658CF25E3E15D00A94126 /* Story.swift */,
+				60AF37BC25E549EC00825050 /* StoryGroup.swift */,
 				D217702325ACCC9700C0FD8C /* AppStructure.swift */,
 				D217701725ACCC5E00C0FD8C /* Presentable.swift */,
 				D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */,
@@ -686,6 +691,7 @@
 				603658FB25E41EAA00A94126 /* FlareStory.swift */,
 				6036590225E41F4000A94126 /* CardStory.swift */,
 				6036590925E4200000A94126 /* DividedCardStory.swift */,
+				60AF37C825E54B1000825050 /* ColorsStory.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1336,11 +1342,13 @@
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
+				60AF37BD25E549EC00825050 /* StoryGroup.swift in Sources */,
 				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
+				60AF37C925E54B1000825050 /* ColorsStory.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,

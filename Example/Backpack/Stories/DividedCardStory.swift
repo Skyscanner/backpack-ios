@@ -18,11 +18,15 @@
 
 import Foundation
 
-enum DividedCardStory: String, Story {
+enum DividedCardStory: String, StoryGroup {
   case dividedHorizontal = "With divider"
   case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
   case dividedVertical = "With divider arranged vertically"
   case dividedVerticalNoPadding = "With divider without padding"
+
+  var title: String {
+    self.rawValue
+  }
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")

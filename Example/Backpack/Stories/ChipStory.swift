@@ -18,12 +18,16 @@
 
 import Foundation
 
-enum ChipStory: String, Story {
+enum ChipStory: String, StoryGroup {
   case `default` = "Default"
   case withIcons = "With icons"
   case withBackgroundColor = "With background color"
   case filled = "Filled"
   case filledWithBackgroundColor = "Filled with background color"
+
+  var title: String {
+    self.rawValue
+  }
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Chips")

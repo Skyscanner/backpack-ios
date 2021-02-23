@@ -18,13 +18,14 @@
 
 import Foundation
 
-protocol Story {
-  var presentableStory: Presentable { get }
-  var title: String { get }
-}
+struct ColorsStory: Story {
 
-extension Story {
-  var example: Item {
-    Item(name: self.title, value: .story(self.presentableStory))
+  var title: String {
+    "Colors"
+  }
+
+  var presentableStory: Presentable {
+    let mainStoryboard = loadStoryboard(name: "Main")
+    return mainStoryboard("ColorsViewController")
   }
 }
