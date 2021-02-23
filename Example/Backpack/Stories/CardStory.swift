@@ -18,31 +18,30 @@
 
 import Foundation
 
-enum ChipStory: String, Story {
+enum CardStory: String, Story {
   case `default` = "Default"
-  case withIcons = "With icons"
-  case withBackgroundColor = "With background color"
-  case filled = "Filled"
-  case filledWithBackgroundColor = "Filled with background color"
+  case withoutPadding = "Without padding"
+  case selected = "Selected"
+  case cornerStyleLarge = "Corner style large"
+  case alternativeBackgroundColor = "Background color"
 
   var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Chips")
-    let viewController = storyboard("ChipsViewController").makeViewController
+    let storyboard = loadStoryboard(name: "Cards")
+    let viewController = storyboard("CardsViewController").makeViewController
     return CustomPresentable(generateViewController: enrich(viewController, {
-      let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_abisko
+      let cardVC = $0 as? CardsViewController
 
       switch self {
-      case .withIcons:
-        target?.icons = true
-      case .withBackgroundColor:
-        target?.backgroundTint = filledBackgroundColor
-      case .filled:
-        target?.style = .filled
-      case .filledWithBackgroundColor:
-        target?.style = .filled
-        target?.backgroundTint = filledBackgroundColor
-      default: break
+      case .default:
+        break
+      case .withoutPadding:
+        cardVC?.padded = false
+      case .selected:
+        cardVC?.selected = true
+      case .cornerStyleLarge:
+        cardVC?.cornerStyle = .large
+      case .alternativeBackgroundColor:
+        cardVC?.backgroundColor = BPKColor.skyBlueTint01
       }
     }))
   }

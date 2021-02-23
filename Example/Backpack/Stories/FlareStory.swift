@@ -18,30 +18,29 @@
 
 import Foundation
 
-enum ChipStory: String, Story {
+enum FlareStory: String, Story {
   case `default` = "Default"
-  case withIcons = "With icons"
-  case withBackgroundColor = "With background color"
-  case filled = "Filled"
-  case filledWithBackgroundColor = "Filled with background color"
+  case flareAtTop = "Flare at top"
+  case rounded = "Rounded"
+  case backgroundImage = "Background image"
+  case animated = "Animated"
 
   var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Chips")
-    let viewController = storyboard("ChipsViewController").makeViewController
+    let storyboard = loadStoryboard(name: "Main")
+    let viewController = storyboard("FlareViewViewController").makeViewController
     return CustomPresentable(generateViewController: enrich(viewController, {
-      let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_abisko
+      let flareViewVC = $0 as? FlareViewViewController
 
       switch self {
-      case .withIcons:
-        target?.icons = true
-      case .withBackgroundColor:
-        target?.backgroundTint = filledBackgroundColor
-      case .filled:
-        target?.style = .filled
-      case .filledWithBackgroundColor:
-        target?.style = .filled
-        target?.backgroundTint = filledBackgroundColor
+      case .flareAtTop:
+        flareViewVC?.flareAtTop = true
+      case .rounded:
+        flareViewVC?.rounded = true
+      case .backgroundImage:
+        flareViewVC?.backgroundImage = true
+      case .animated:
+        flareViewVC?.backgroundImage = true
+        flareViewVC?.animated = true
       default: break
       }
     }))
