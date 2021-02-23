@@ -206,18 +206,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     }
 }
 
-- (void)setAccessibilityLabel:(NSString *)accessibilityLabel {
-    self.titleLabel.accessibilityLabel = accessibilityLabel;
-}
-
-- (void)setAccessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
-    self.titleLabel.accessibilityTraits = accessibilityTraits;
-}
-
-- (UIAccessibilityTraits)accessibilityTraits {
-    return self.titleLabel.accessibilityTraits;
-}
-
 - (void)setSelectionType:(SelectionType)selectionType {
     if (_selectionType != selectionType) {
         _selectionType = selectionType;
