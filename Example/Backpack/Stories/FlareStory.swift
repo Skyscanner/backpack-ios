@@ -18,12 +18,16 @@
 
 import Foundation
 
-enum FlareStory: String, Story {
+enum FlareStory: String, StoryGroup {
   case `default` = "Default"
   case flareAtTop = "Flare at top"
   case rounded = "Rounded"
   case backgroundImage = "Background image"
   case animated = "Animated"
+
+  var title: String {
+    self.rawValue
+  }
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Main")

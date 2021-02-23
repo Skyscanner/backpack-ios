@@ -18,13 +18,10 @@
 
 import Foundation
 
-protocol Story {
-  var presentableStory: Presentable { get }
-  var title: String { get }
-}
+protocol StoryGroup: CaseIterable, Story {}
 
-extension Story {
-  var example: Item {
-    Item(name: self.title, value: .story(self.presentableStory))
+extension StoryGroup {
+  static var allExamples: [Item] {
+    self.allCases.map({ $0.example })
   }
 }

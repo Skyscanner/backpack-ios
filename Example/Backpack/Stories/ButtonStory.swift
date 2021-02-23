@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum ButtonStory: String, Story {
+enum ButtonStory: String, StoryGroup {
   case primary = "Primary"
   case secondary = "Secondary"
   case destructive = "Destructive"
@@ -41,6 +41,10 @@ enum ButtonStory: String, Story {
     case .outline:
       return .outline
     }
+  }
+
+  var title: String {
+    self.rawValue
   }
 
   var presentableStory: Presentable {

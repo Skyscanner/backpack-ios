@@ -18,12 +18,16 @@
 
 import Foundation
 
-enum CardStory: String, Story {
+enum CardStory: String, StoryGroup {
   case `default` = "Default"
   case withoutPadding = "Without padding"
   case selected = "Selected"
   case cornerStyleLarge = "Corner style large"
   case alternativeBackgroundColor = "Background color"
+
+  var title: String {
+    self.rawValue
+  }
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")

@@ -18,13 +18,17 @@
 
 import Foundation
 
-enum CalendarStory: String, Story {
+enum CalendarStory: String, StoryGroup {
   case `default` = "Default"
   case withMaxEnabledDate = "With max enabled date"
   case withCustomStyles = "Custom styles for specific dates"
   case withPrices = "With prices"
   case alternativeBackgroundColor = "With alternate background color"
   case preselectedDates = "With preselected dates"
+
+  var title: String {
+    self.rawValue
+  }
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Calendar")
