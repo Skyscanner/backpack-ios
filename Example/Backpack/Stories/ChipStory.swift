@@ -21,9 +21,9 @@ import Foundation
 enum ChipStory: String, Story {
   case `default` = "Default"
   case withIcons = "With icons"
-  case withBackgroundColor = "With background colour"
+  case withBackgroundColor = "With background color"
   case filled = "Filled"
-  case filledWithBackgroundColor = "Filled with background colour"
+  case filledWithBackgroundColor = "Filled with background color"
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Chips")

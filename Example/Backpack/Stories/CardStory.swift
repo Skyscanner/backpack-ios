@@ -22,8 +22,8 @@ enum CardStory: String, Story {
   case `default` = "Default"
   case withoutPadding = "Without padding"
   case selected = "Selected"
-  case cornerStyleLarge = "Large corner style"
-  case alternativeBackgroundColor = "Background colour"
+  case cornerStyleLarge = "Corner style large"
+  case alternativeBackgroundColor = "Background color"
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")

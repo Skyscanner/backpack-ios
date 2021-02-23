@@ -21,10 +21,10 @@ import Foundation
 enum CalendarStory: String, Story {
   case `default` = "Default"
   case withMaxEnabledDate = "With max enabled date"
-  case withCustomStyles = "With custom styles"
+  case withCustomStyles = "Custom styles for specific dates"
   case withPrices = "With prices"
-  case alternativeBackgroundColor = "Alternate background colour"
-  case preselectedDates = "Preselected dates"
+  case alternativeBackgroundColor = "With alternate background color"
+  case preselectedDates = "With preselected dates"
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Calendar")

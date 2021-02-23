@@ -20,9 +20,9 @@ import Foundation
 
 enum DividedCardStory: String, Story {
   case dividedHorizontal = "With divider"
-  case dividedHorizontalCornerStyleLarge = "With divider and large corner style"
+  case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
   case dividedVertical = "With divider arranged vertically"
-  case dividedVerticalNoPadding = "With divider and no padding"
+  case dividedVerticalNoPadding = "With divider without padding"
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")
