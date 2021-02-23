@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.5
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Fixed an issue that prevented dates being available to assistive technology.
+
 # 40.4.4
 
 **Fixed:**
