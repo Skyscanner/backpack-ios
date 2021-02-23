@@ -44,8 +44,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "bpk-svgs": "^12.2.5",
-    "bpk-tokens": "^36.0.3",
+    "bpk-svgs": "^12.3.2",
+    "bpk-tokens": "^36.1.1",
     "danger": "^10.5.4",
     "del": "^6.0.0",
     "eslint-config-skyscanner-with-prettier": "0.8.0",
