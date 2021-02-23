@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.4
+
+**Fixed:**
+ - Backpack/Icon:
+   - Fixed issues in the small baggage icons.
+
 # 40.4.3
 
 **Fixed:**
