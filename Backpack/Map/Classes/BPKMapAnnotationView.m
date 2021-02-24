@@ -90,6 +90,14 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateAppearance];
 }
 
+- (MKMapView *_Nullable)mapView {
+    if ([self.superview.superview.superview isKindOfClass:MKMapView.class]) {
+        return (MKMapView *)self.superview.superview.superview;
+    }
+
+    return nil;
+}
+
 - (BPKMapAnnotationViewCalloutView *)calloutView {
     if(_calloutView == nil && self.dotView != nil) {
         BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
@@ -163,6 +171,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.hasBeenSelected = false;
+}
+
+- (UIView *_Nullable)hitTest:(CGPoint)point withEvent:(UIEvent *_Nullable)event {
+    if (self.calloutView.hidden) {
+        return [super hitTest:point withEvent:event];
+    }
+    
+    // Convert the point to the target view's coordinate system.
+    // The target view isn't necessarily the immediate subview
+    CGPoint pointForCalloutView = [self.calloutView convertPoint:point fromView:self];
+
+    if (CGRectContainsPoint(self.calloutView.bounds, pointForCalloutView)) {
+
+        // The target view may have its view hierarchy,
+        // so call its hitTest method to return the right hit-test view
+        return [self.calloutView hitTest:pointForCalloutView withEvent:event];
+    }
+
+    return [super hitTest:point withEvent:event];
 }
 
 @end

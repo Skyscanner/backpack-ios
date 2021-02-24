@@ -32,5 +32,7 @@ IB_DESIGNABLE @interface BPKMapAnnotationView : MKAnnotationView
  */
 @property(nonatomic, assign) BOOL hasBeenSelected;
 
+@property(nullable, readonly, weak) MKMapView *mapView;
+
 @end
 NS_ASSUME_NONNULL_END

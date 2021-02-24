@@ -118,6 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupAppearance {
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)]];
+
     self.contentView.layer.borderWidth = BPKBorderWidthLg;
     [BPKShadow.shadowSm applyToLayer:self.layer];
 
@@ -137,6 +139,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.cornerRadius = BPKSpacingSm;
     [self updateStyle];
+}
+
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    printf("onTap\n");
+    [self.annotationView.mapView selectAnnotation:self.annotationView.annotation animated:NO];
 }
 
 @end
