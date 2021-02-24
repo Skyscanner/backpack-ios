@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)setupAppearance {
+    self.translatesAutoresizingMaskIntoConstraints = NO;
     self.hasBeenSelected = false;
     [self updateImage];
 
@@ -75,10 +76,10 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.dotView];
     self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        // These constraints use magic numbers to ensure that the dot appears in the correct position on the map.
-        // The UIKit PinAnnotationView isn't centered by default.
-        [self.dotView.centerXAnchor constraintEqualToAnchor:self.leadingAnchor constant:8],
-        [self.dotView.centerYAnchor constraintEqualToAnchor:self.bottomAnchor constant:-2],
+        [self.dotView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.dotView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.dotView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.dotView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         [self.dotView.widthAnchor constraintEqualToConstant:BPKSpacingLg],
         [self.dotView.heightAnchor constraintEqualToConstant:BPKSpacingLg]
     ]];
