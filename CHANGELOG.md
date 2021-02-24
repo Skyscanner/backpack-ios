@@ -1,6 +1,15 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.6
+
+**Fixed:**
+ - Backpack/Map:
+   - Removed position hacks from map annotation constraints.
+
+ - Backpack/Icon:
+   - Fixed display of social-distancing and price-tag icons.
+
 # 40.4.5
 
 **Fixed:**
