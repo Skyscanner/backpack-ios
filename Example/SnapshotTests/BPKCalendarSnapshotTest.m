@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
     [self configureParentView:parentView forCalendar:bpkCalendar];
 
-    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     [bpkCalendar reloadData];
 
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     bpkCalendar.delegate = self;
     [bpkCalendar reloadData];
@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionRange;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc] init];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
                                                                                                                    forCalendar:bpkCalendar.gregorian]
@@ -134,7 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionRange;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc] init];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
         [[BPKSimpleDate alloc] initWithDate:self.date3 forCalendar:bpkCalendar.gregorian]
@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionRange;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc] init];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
         [[BPKSimpleDate alloc] initWithDate:self.date2 forCalendar:bpkCalendar.gregorian]
@@ -179,7 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionMultiple;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationMultiple alloc] init];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian], [[BPKSimpleDate alloc] initWithDate:self.date2
                                                                                                                    forCalendar:bpkCalendar.gregorian]
@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     self.isColoringDates = YES;
@@ -209,7 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithConfiguration:[BPKCalendarPriceLabelConfiguration new]];
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
-    bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 
     bpkCalendar.selectedDates = @[[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
     self.isShowingPrices = YES;

@@ -2,6 +2,11 @@
 
 > Place your changes below this line.
 
+**Breaking:**
+ - Backpack/Calendar:
+   - `selectionType` has been removed in favour of `selectionConfiguration`. This is an instance that tells the calendar how selection should behave. Use an instance of `BPKCalendarSelectionConfigurationSingle`, `BPKCalendarSelectionConfigurationMultiple` or `BPKCalendarSelectionConfigurationRange` in place of the old enum values.
+   - Future change: Range configuration requires several accessibility labels to be provided to help users of assistive technology interact with the calendar.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

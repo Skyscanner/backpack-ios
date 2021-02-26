@@ -43,7 +43,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         }
         if preselectedDates {
             segmentedControl.selectedSegmentIndex = 1
-            calendar.selectionType = .range
+            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationRange()
 
             let currentDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
             let selectedDate1 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 12)
@@ -75,7 +75,16 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     // Pragma mark: SegmentedControlDelegate
 
     @IBAction func valueChanged(_ sender: Any) {
-        calendar.selectionType = BPKCalendarSelection(rawValue: UInt(segmentedControl!.selectedSegmentIndex))!
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationSingle()
+        case 1:
+            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationRange()
+        case 2:
+            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationMultiple()
+        default:
+            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationSingle()
+        }
         calendar.reloadData()
     }
 
