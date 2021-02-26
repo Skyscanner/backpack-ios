@@ -24,7 +24,7 @@ and then run `pod install`.
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
-bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
@@ -87,7 +87,7 @@ NSSet<BPKSimpleDate *> *highPrices = /* .... */;
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
-bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
@@ -171,7 +171,7 @@ NSSet<BPKSimpleDate *> *highPrices = /* .... */;
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithConfiguration: [BPKCalendarPriceLabelConfiguration new]];
 
-bpkCalendar.selectionType = BPKCalendarSelectionSingle;
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 

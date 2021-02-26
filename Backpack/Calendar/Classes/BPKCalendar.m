@@ -39,6 +39,7 @@
 #import "BPKCalendarHeaderCell.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
+#import "BPKCalendarSelectionConfiguration.h"
 #import "BPKCalendarYearPill.h"
 #import "BPKCalendarCellSpacing.h"
 
@@ -198,7 +199,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.calendarView.scrollDirection = FSCalendarScrollDirectionVertical;
     self.calendarView.scrollEnabled = YES;
     self.calendarView.pagingEnabled = NO;
-    self.calendarView.allowsMultipleSelection = self.selectionType != BPKCalendarSelectionSingle;
+    self.calendarView.allowsMultipleSelection = self.selectionConfiguration.allowsMultipleSelection;
     self.calendarView.placeholderType = FSCalendarPlaceholderTypeNone;
     self.calendarView.delegate = self;
     self.calendarView.dataSource = self;
@@ -291,11 +292,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     [self.calendarWeekdayView configureAppearance];
 }
 
-- (void)setSelectionType:(BPKCalendarSelection)selectionType {
+- (void)setSelectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     BPKAssertMainThread();
-    if (_selectionType != selectionType) {
-        _selectionType = selectionType;
-        self.calendarView.allowsMultipleSelection = _selectionType != BPKCalendarSelectionSingle;
+    if (_selectionConfiguration != selectionConfiguration) {
+        _selectionConfiguration = selectionConfiguration;
+        self.calendarView.allowsMultipleSelection = selectionConfiguration.allowsMultipleSelection;
         for (NSDate *date in self.calendarView.selectedDates) {
             [self.calendarView deselectDate:date];
         }
@@ -416,17 +417,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         self.sameDayRange = NO;
     }
 
-    if (self.selectionType == BPKCalendarSelectionRange) {
-        if (calendar.selectedDates.count >= 2) {
-            for (NSDate *date in calendar.selectedDates) {
-                [calendar deselectDate:date];
-            }
-        }
+    BOOL shouldClearDates = [self.selectionConfiguration shouldClearSelectedDates:calendar.selectedDates whenSelectingDate:date];
 
-        for (NSDate *selectedDate in calendar.selectedDates) {
-            if ([date compare:selectedDate] == NSOrderedAscending) {
-                [calendar deselectDate:selectedDate];
-            }
+    if (shouldClearDates) {
+        for (NSDate *date in calendar.selectedDates) {
+            [calendar deselectDate:date];
         }
     }
 
@@ -434,7 +429,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    if (self.sameDayRange || self.selectionType != BPKCalendarSelectionRange) {
+  if (self.sameDayRange || !self.selectionConfiguration.isRangeStyleSelection) {
         self.sameDayRange = NO;
         return YES;
     } else {
@@ -598,7 +593,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
 
-        if (selectedDates.count > 1 && self.selectionType == BPKCalendarSelectionRange) {
+        if (selectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
             NSDate *minDate = [selectedDates firstObject];
             NSDate *maxDate = [selectedDates lastObject];
             BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
