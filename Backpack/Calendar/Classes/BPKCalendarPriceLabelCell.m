@@ -86,22 +86,20 @@
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
     self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
-    [self updateAccessibilityLabel];
 }
 
 - (void)setAccessibilityLabel:(NSString *)accessibilityLabel {
     self.consumerAccessibilityLabel = accessibilityLabel;
-    [self updateAccessibilityLabel];
 }
 
--(void)updateAccessibilityLabel {
+- (NSString *)accessibilityLabel {
     NSString *accessibilityLabel = self.consumerAccessibilityLabel;
 
     if (self.priceLabelCellData.price != nil) {
         accessibilityLabel = [NSString stringWithFormat:@"%@ %@", self.consumerAccessibilityLabel, self.priceLabelCellData.price];
     }
 
-    [super setAccessibilityLabel:accessibilityLabel];
+    return accessibilityLabel;
 }
 
 @end
