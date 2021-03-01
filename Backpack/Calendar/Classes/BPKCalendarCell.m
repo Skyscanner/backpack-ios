@@ -217,4 +217,15 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     NSAssert(false, @"BPKCalendarCell configureWithData: should be overridden. The base class method should never be called.");
 }
 
+- (NSString *)formattedDate:(NSDate *)date locale:(NSLocale *)locale {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.locale = locale;
+    dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    return [dateFormatter stringFromDate:date];
+}
+
+- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date locale:locale {
+    return [self formattedDate:date locale:locale];
+}
+
 @end

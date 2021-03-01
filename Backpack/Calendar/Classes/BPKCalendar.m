@@ -630,7 +630,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [self formattedDate:date];
+        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date locale:self.locale];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;
@@ -690,13 +690,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
     // Gonna return true, because in the words of Sia, I'm still here...
     return true;
-}
-
-- (NSString *)formattedDate:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.locale = self.locale;
-    dateFormatter.dateStyle = NSDateFormatterLongStyle;
-    return [dateFormatter stringFromDate:date];
 }
 
 - (BOOL)isDateInToday:(NSDate *)date {

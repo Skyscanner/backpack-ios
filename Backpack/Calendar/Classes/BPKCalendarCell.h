@@ -41,4 +41,6 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
  */
 - (void)configureWithData:(id)data;
 
+- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date locale:(NSLocale *)locale;
+
 @end

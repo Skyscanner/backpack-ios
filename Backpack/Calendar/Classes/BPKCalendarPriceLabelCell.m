@@ -27,7 +27,6 @@
 @interface BPKCalendarPriceLabelCell ()
 
 @property(nonatomic, strong, nonnull) BPKLabel *priceLabel;
-@property(nonatomic, strong, nonnull) NSString *consumerAccessibilityLabel;
 @property(nonatomic, strong, nonnull) BPKCalendarPriceLabelCellData *priceLabelCellData;
 
 @end
@@ -88,15 +87,11 @@
     self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
 }
 
-- (void)setAccessibilityLabel:(NSString *)accessibilityLabel {
-    self.consumerAccessibilityLabel = accessibilityLabel;
-}
-
-- (NSString *)accessibilityLabel {
-    NSString *accessibilityLabel = self.consumerAccessibilityLabel;
+- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date locale:(NSLocale *)locale {
+    NSString *accessibilityLabel = [super defaultAccessibilityLabelForDate:date locale:locale];
 
     if (self.priceLabelCellData.price != nil) {
-        accessibilityLabel = [NSString stringWithFormat:@"%@ %@", self.consumerAccessibilityLabel, self.priceLabelCellData.price];
+        accessibilityLabel = [NSString stringWithFormat:@"%@ %@", accessibilityLabel, self.priceLabelCellData.price];
     }
 
     return accessibilityLabel;
