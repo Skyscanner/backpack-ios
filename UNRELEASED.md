@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+ - Backpack/Map:
+   - Added support for an optional icon.
 
 **Added:**
  - Backpack/Calendar:
