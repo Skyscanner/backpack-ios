@@ -17,9 +17,9 @@
  */
 
 public struct BottomSheetInsets {
-    let full: CGFloat?
-    let half: CGFloat?
-    let tip: CGFloat?
+    public let full: CGFloat?
+    public let half: CGFloat?
+    public let tip: CGFloat?
     
     /// Default insets for the bottom sheet.
     public init() {
