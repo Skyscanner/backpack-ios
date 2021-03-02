@@ -27,6 +27,7 @@
 @interface BPKCalendarPriceLabelCell ()
 
 @property(nonatomic, strong, nonnull) BPKLabel *priceLabel;
+@property(nonatomic, strong, nonnull) BPKCalendarPriceLabelCellData *priceLabelCellData;
 
 @end
 
@@ -80,9 +81,20 @@
 - (void)configureWithData:(id)data {
     NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class], @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
+    self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
     self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
+}
+
+- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {
+    NSString *accessibilityLabel = [super defaultAccessibilityLabelForDate:date formatter:formatter];
+
+    if (self.priceLabelCellData.price != nil) {
+        accessibilityLabel = [NSString stringWithFormat:@"%@ %@", accessibilityLabel, self.priceLabelCellData.price];
+    }
+
+    return accessibilityLabel;
 }
 
 @end

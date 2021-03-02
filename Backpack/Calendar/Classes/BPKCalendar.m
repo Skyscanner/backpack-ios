@@ -92,6 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) BPKCalendarAppearance *appearance;
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
+@property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 
 @property BOOL sameDayRange;
 
@@ -178,6 +179,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    self.dateFormatter = [NSDateFormatter new];
+    self.dateFormatter.locale = self.locale;
+    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
 
     // We use a wrapper view here to prevent the calendar cells being rendered over the week days
     self.calendarWrapperView = [UIView new];
@@ -281,6 +285,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)setLocale:(NSLocale *)locale {
     BPKAssertMainThread();
     self.gregorian.locale = locale;
+    self.dateFormatter.locale = locale;
     self.calendarView.locale = locale;
     self.calendarView.firstWeekday = [[locale objectForKey:NSLocaleCalendar] firstWeekday];
     [self.calendarWeekdayView configureAppearance];
@@ -630,7 +635,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [self formattedDate:date];
+        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;
@@ -690,13 +695,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
     // Gonna return true, because in the words of Sia, I'm still here...
     return true;
-}
-
-- (NSString *)formattedDate:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.locale = self.locale;
-    dateFormatter.dateStyle = NSDateFormatterLongStyle;
-    return [dateFormatter stringFromDate:date];
 }
 
 - (BOOL)isDateInToday:(NSDate *)date {
