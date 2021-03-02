@@ -92,6 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) BPKCalendarAppearance *appearance;
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
+@property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 
 @property BOOL sameDayRange;
 
@@ -178,6 +179,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    self.dateFormatter = [NSDateFormatter new];
 
     // We use a wrapper view here to prevent the calendar cells being rendered over the week days
     self.calendarWrapperView = [UIView new];
@@ -630,7 +632,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date locale:self.locale];
+        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date locale:self.locale formatter:self.dateFormatter];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;
