@@ -180,6 +180,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.dateFormatter = [NSDateFormatter new];
+    self.dateFormatter.locale = locale;
+    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
 
     // We use a wrapper view here to prevent the calendar cells being rendered over the week days
     self.calendarWrapperView = [UIView new];
@@ -632,7 +634,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date locale:self.locale formatter:self.dateFormatter];
+        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;

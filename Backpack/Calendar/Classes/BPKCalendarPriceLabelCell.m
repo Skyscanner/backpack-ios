@@ -87,8 +87,8 @@
     self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
 }
 
-- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date locale:(NSLocale *)locale formatter:(NSDateFormatter *)formatter {
-    NSString *accessibilityLabel = [super defaultAccessibilityLabelForDate:date locale:locale formatter:formatter];
+- (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {
+    NSString *accessibilityLabel = [super defaultAccessibilityLabelForDate:date formatter:formatter];
 
     if (self.priceLabelCellData.price != nil) {
         accessibilityLabel = [NSString stringWithFormat:@"%@ %@", accessibilityLabel, self.priceLabelCellData.price];
