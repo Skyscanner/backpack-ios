@@ -180,7 +180,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)setup {
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.dateFormatter = [NSDateFormatter new];
-    self.dateFormatter.locale = locale;
+    self.dateFormatter.locale = self.locale;
     self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
 
     // We use a wrapper view here to prevent the calendar cells being rendered over the week days
@@ -285,6 +285,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)setLocale:(NSLocale *)locale {
     BPKAssertMainThread();
     self.gregorian.locale = locale;
+    self.dateFormatter.locale = locale;
     self.calendarView.locale = locale;
     self.calendarView.firstWeekday = [[locale objectForKey:NSLocaleCalendar] firstWeekday];
     [self.calendarWeekdayView configureAppearance];
