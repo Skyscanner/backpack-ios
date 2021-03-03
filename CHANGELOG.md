@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.4.7
+
+**Fixed:**
+ - Backpack/Calendar:
+   - Exposed price labels to assistive technology.
+
 # 40.4.6
 
 **Fixed:**

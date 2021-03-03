@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Calendar:
-   - Exposed price labels to assistive technology.
 
 ## How to write a good changelog entry
 
