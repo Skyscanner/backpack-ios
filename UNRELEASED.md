@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Added:**
- - Backpack/BottomSheet:
-   - New delegate for responding to changes in the bottom sheet position.
 
 ## How to write a good changelog entry
 

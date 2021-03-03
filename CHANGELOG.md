@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.5.0
+
+**Added:**
+ - Backpack/BottomSheet:
+   - New delegate for responding to changes in the bottom sheet position.
+
 # 40.4.7
 
 **Fixed:**
