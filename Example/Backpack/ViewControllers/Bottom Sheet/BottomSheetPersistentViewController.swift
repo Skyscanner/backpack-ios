@@ -35,12 +35,18 @@ final class BottomSheetPersistentViewController: UIViewController {
         closeButton.secondaryBorderColor = BPKColor.clear
         return closeButton
     }()
-    
-    override func loadView() {
-        super.loadView()
+
+    private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
+
+        return mapView
+    }()
+
+    override func loadView() {
+        super.loadView()
+
         view.addSubview(mapView)
         view.addSubview(closeButton)
         
@@ -71,12 +77,27 @@ final class BottomSheetPersistentViewController: UIViewController {
                                          bottomSectionViewController: nil,
                                          presentationStyle: .persistent)
         bottomSheet?.addPanel(toParent: self)
+        bottomSheet?.delegate = self
     }
 }
 
 extension BottomSheetPersistentViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         bottomSheet?.move(to: .tip)
+    }
+}
+
+extension BottomSheetPersistentViewController: BPKBottomSheetDelegate {
+    func bottomSheetDidChangePosition(_ position: BPKFloatingPanelPosition) {
+        let defaultInsets = BottomSheetInsets()
+        switch position {
+        case .half:
+            mapView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: defaultInsets.half ?? 0, right: 0)
+        case .tip:
+            mapView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: defaultInsets.tip ?? 0, right: 0)
+        default:
+            break
+        }
     }
 }
 

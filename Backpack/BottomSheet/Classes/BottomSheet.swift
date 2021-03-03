@@ -19,9 +19,18 @@
 import UIKit
 import FloatingPanel
 
+@objc(BPKBottomSheetDelegate)
+public protocol BPKBottomSheetDelegate: AnyObject {
+    func bottomSheetDidChangePosition(_ position: BPKFloatingPanelPosition)
+}
+
 @objcMembers
 @objc(BPKBottomSheet)
 public final class BPKBottomSheet: NSObject {
+
+    /// Receive calls when the bottom sheet changes position by assigning your view
+    public weak var delegate: BPKBottomSheetDelegate?
+
     /// Enum values for specifying BottomSheet Presentation Style
     /// - modal: Dismissable BottomSheet. No interaction with parent ViewController. Creates an overlay in parent
     /// parent ViewController
@@ -228,6 +237,10 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
         case .persistent:
             return PersistentBottomSheetLayout(insets: insets)
         }
+    }
+
+    public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
+        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.position))
     }
 }
 

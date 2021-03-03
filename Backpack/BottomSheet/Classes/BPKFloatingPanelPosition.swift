@@ -19,7 +19,8 @@
 import FloatingPanel
 
 /// Enum values for specifying BottomSheet position
-public enum BPKFloatingPanelPosition {
+@objc(BPKFloatingPanelPosition)
+public enum BPKFloatingPanelPosition: Int {
     case full
     case half
     case tip
@@ -27,6 +28,19 @@ public enum BPKFloatingPanelPosition {
 }
 
 extension BPKFloatingPanelPosition {
+    init(floatinPanelPosition: FloatingPanelPosition) {
+        switch floatinPanelPosition {
+        case .full:
+            self = .full
+        case .half:
+            self = .half
+        case .tip:
+            self = .tip
+        case .hidden:
+            self = .hidden
+        }
+    }
+
     var asFloatingPanelPosition: FloatingPanelPosition {
         switch self {
         case .full:
