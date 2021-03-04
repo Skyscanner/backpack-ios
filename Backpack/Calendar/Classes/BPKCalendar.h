@@ -210,5 +210,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)refreshDateAppearance;
 
+/**
+ * Scrolls the month of the given date into view.
+ * @param date The date to scroll into view
+ */
+-(void)scrollToDate:(BPKSimpleDate *)date;
+
 @end
 NS_ASSUME_NONNULL_END
