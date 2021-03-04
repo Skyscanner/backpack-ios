@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.6.0
+
+**Added:**
+ - Backpack/Calendar:
+   - Added public method for scrolling a given date into view.
+
 # 40.5.0
 
 **Added:**
