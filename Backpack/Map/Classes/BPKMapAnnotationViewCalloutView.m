@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIStackView *stackView;
 @property(nonatomic, strong) BPKIconView *iconView;
 @property(nonatomic, strong) BPKLabel *label;
+@property(nonatomic, strong) UIColor *contentColor;
 
 - (void)setupAppearance;
 @end
@@ -86,9 +87,13 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
--(void)setContentColor:(UIColor *)color {
-    self.label.textColor = color;
-    self.iconView.tintColor = color;
+- (void)setContentColor:(UIColor *)contentColor {
+    if (_contentColor != contentColor) {
+        _contentColor = contentColor;
+
+        self.label.textColor = contentColor;
+        self.iconView.tintColor = contentColor;
+    }
 }
 
 -(void)updateStyle {
@@ -96,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
         self.backgroundView.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
         self.contentView.backgroundColor = BPKColor.clear;
-        [self setContentColor: [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05]];
+        self.contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
         self.contentView.layer.borderColor = BPKColor.clear.CGColor;
         [self updateIcon];
         return;
@@ -106,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
         self.backgroundView.backgroundColor = BPKColor.skyBlue;
         self.contentView.backgroundColor = BPKColor.white;
-        [self setContentColor: BPKColor.skyBlue];
+        self.contentColor = BPKColor.skyBlue;
         self.contentView.layer.borderColor = BPKColor.skyBlue.CGColor;
         [self updateIcon];
         return;
@@ -116,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.label.fontStyle = BPKFontStyleTextSmEmphasized;
         self.backgroundView.backgroundColor = BPKColor.skyBlueTint03;
         self.contentView.backgroundColor = BPKColor.clear;
-        [self setContentColor: BPKColor.skyBlue];
+        self.contentColor = BPKColor.skyBlue;
         self.contentView.layer.borderColor = BPKColor.clear.CGColor;
         [self updateIcon];
         return;
@@ -125,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.label.fontStyle = BPKFontStyleTextSmEmphasized;
     self.backgroundView.backgroundColor = BPKColor.skyBlue;
     self.contentView.backgroundColor = BPKColor.clear;
-    [self setContentColor: BPKColor.white];
+    self.contentColor = BPKColor.white;
     self.contentView.layer.borderColor = BPKColor.clear.CGColor;
 
     [self updateIcon];
@@ -146,6 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupAppearance {
     self.contentView.layer.borderWidth = BPKBorderWidthLg;
+
     [BPKShadow.shadowSm applyToLayer:self.layer];
 
     UIStackView *stackView = [[UIStackView alloc] init];
@@ -153,7 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
     stackView.spacing = BPKSpacingSm;
     stackView.alignment = UIStackViewAlignmentCenter;
 
-    BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:BPKIconNameBar size:BPKIconSizeSmall];
+    BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
 
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
 
@@ -162,8 +168,8 @@ NS_ASSUME_NONNULL_BEGIN
     [stackView addArrangedSubview:label];
 
     [NSLayoutConstraint activateConstraints:@[
-        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingMd],
-        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:BPKSpacingMd],
+        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingSm],
+        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:BPKSpacingSm],
         [stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:BPKSpacingSm],
         [self.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:BPKSpacingSm],
         [self.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 5]

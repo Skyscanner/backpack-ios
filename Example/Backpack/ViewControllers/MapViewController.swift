@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         self.mapView.register(
             BPKMapAnnotationView.self,
-            forAnnotationViewWithReuseIdentifier: MapViewController.reuseIdentifier
+            forAnnotationViewWithReuseIdentifier: Self.reuseIdentifier
         )
         self.setupAnnotations()
     }
@@ -80,7 +80,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return mapView.dequeueReusableAnnotationView(withIdentifier: MapViewController.reuseIdentifier, for: annotation)
+        return mapView.dequeueReusableAnnotationView(withIdentifier: Self.reuseIdentifier, for: annotation)
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
