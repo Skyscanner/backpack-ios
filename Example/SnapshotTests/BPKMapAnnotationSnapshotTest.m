@@ -54,8 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
     [wrapper addSubview:annotationView];
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [annotationView.leadingAnchor constraintEqualToAnchor:wrapper.leadingAnchor constant:33],
-        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:26],
+        [annotationView.leadingAnchor constraintEqualToAnchor:wrapper.leadingAnchor constant:47],
+        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:40],
         [wrapper.widthAnchor constraintEqualToConstant:annotationWidth],
         [wrapper.heightAnchor constraintEqualToConstant:annotationHeight]
     ]];
