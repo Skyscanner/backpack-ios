@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <Backpack/Icon.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
  * Whether the annotation is enabled. If false, a user cannot interact with the annotation.
  */
 @property(nonatomic, assign) BOOL enabled;
+
+/**
+ * An optional icon
+ */
+@property(nullable, nonatomic, copy) BPKIconName iconName;
 
 @end
 NS_ASSUME_NONNULL_END

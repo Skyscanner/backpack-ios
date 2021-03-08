@@ -72,21 +72,27 @@ NS_ASSUME_NONNULL_BEGIN
     self.hasBeenSelected = false;
     [self updateImage];
 
+    CGFloat dotSize = BPKSpacingBase;
+    // This padding ensures that the tappable area of the annotation is large enough to use easily
+    CGFloat padding = (44 - dotSize) / 2;
+
+    self.layoutMargins = UIEdgeInsetsMake(padding, padding, padding, padding);
+
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
     self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [self.dotView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.dotView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.dotView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.dotView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-        [self.dotView.widthAnchor constraintEqualToConstant:BPKSpacingLg],
-        [self.dotView.heightAnchor constraintEqualToConstant:BPKSpacingLg]
+        [self.dotView.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
+        [self.dotView.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
+        [self.dotView.trailingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.trailingAnchor],
+        [self.dotView.bottomAnchor constraintEqualToAnchor:self.layoutMarginsGuide.bottomAnchor],
+        [self.dotView.widthAnchor constraintEqualToConstant:dotSize],
+        [self.dotView.heightAnchor constraintEqualToConstant:dotSize]
     ]];
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
-    self.dotView.layer.borderWidth = BPKSpacingSm;
-    self.dotView.layer.cornerRadius = BPKSpacingLg/2;
+    self.dotView.layer.borderWidth = BPKSpacingSm/2;
+    self.dotView.layer.cornerRadius = dotSize/2;
     [self updateAppearance];
 }
 

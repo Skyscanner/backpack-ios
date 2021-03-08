@@ -22,12 +22,16 @@ import Backpack
 
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
+    fileprivate static let reuseIdentifier = "ChipPreviewCollectionViewCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.delegate = self
-        self.mapView.register(BPKMapAnnotationView.self, forAnnotationViewWithReuseIdentifier: "Annotation")
+        self.mapView.register(
+            BPKMapAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: Self.reuseIdentifier
+        )
         self.setupAnnotations()
     }
 
@@ -43,6 +47,8 @@ class MapViewController: UIViewController {
 
         let manchester = BPKMapAnnotation()
         manchester.title = "Manchester"
+        manchester.iconName = .airports
+        manchester.accessibilityLabel = "Manchester airport"
         manchester.alwaysShowCallout = true
         manchester.coordinate = CLLocationCoordinate2D(latitude: 53.483835, longitude: -2.24067)
         mapView.addAnnotation(manchester)
@@ -74,7 +80,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return mapView.dequeueReusableAnnotationView(withIdentifier: "Annotation", for: annotation)
+        return mapView.dequeueReusableAnnotationView(withIdentifier: Self.reuseIdentifier, for: annotation)
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

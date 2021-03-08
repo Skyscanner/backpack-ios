@@ -24,7 +24,7 @@
 
 NSString *const ReuseIdentifier = @"Annotation";
 CGFloat const annotationHeight = 65;
-CGFloat const annotationWidth = 100;
+CGFloat const annotationWidth = 120;
 
 @interface BPKMapAnnotationSnapshotTest : FBSnapshotTestCase
 @end
@@ -37,11 +37,14 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
--(UIView *)createMapAnnotationWithLabel:(NSString *)label alwaysShowCallout:(BOOL)alwaysShowCallout previouslySelected:(BOOL)previouslySelected selected:(BOOL)selected enabled:(BOOL)enabled {
+-(UIView *)createMapAnnotationWithLabel:(NSString *)label alwaysShowCallout:(BOOL)alwaysShowCallout previouslySelected:(BOOL)previouslySelected selected:(BOOL)selected enabled:(BOOL)enabled icon:(BOOL)icon {
     BPKMapAnnotation *annotation =  [[BPKMapAnnotation alloc] init];
     annotation.title = label;
     annotation.alwaysShowCallout = alwaysShowCallout;
     annotation.enabled = enabled;
+    if (icon) {
+        annotation.iconName = BPKIconNameAirports;
+    }
 
     BPKMapAnnotationView *annotationView = [[BPKMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ReuseIdentifier];
     annotationView.selected = previouslySelected;
@@ -52,20 +55,20 @@ NS_ASSUME_NONNULL_BEGIN
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
         [annotationView.leadingAnchor constraintEqualToAnchor:wrapper.leadingAnchor constant:33],
-        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:36],
+        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:26],
         [wrapper.widthAnchor constraintEqualToConstant:annotationWidth],
         [wrapper.heightAnchor constraintEqualToConstant:annotationHeight]
     ]];
     return wrapper;
 }
 
--(UIView *)createMapAnnotations {
-    UIView *annotationView1 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:NO enabled:YES];
-    UIView *annotationView2 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:YES enabled:YES];
-    UIView *annotationView3 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:YES];
-    UIView *annotationView4 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:YES selected:NO enabled:YES];
-    UIView *annotationView5 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:YES enabled:YES];
-    UIView *annotationView6 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:NO];
+-(UIView *)createMapAnnotationsWithIcons:(BOOL)icon {
+    UIView *annotationView1 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:NO enabled:YES icon:icon];
+    UIView *annotationView2 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:YES enabled:YES icon:icon];
+    UIView *annotationView3 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:YES icon:icon];
+    UIView *annotationView4 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:YES selected:NO enabled:YES icon:icon];
+    UIView *annotationView5 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:YES enabled:YES icon:icon];
+    UIView *annotationView6 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:NO icon:icon];
 
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -110,20 +113,30 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testMapAnnotations {
-    UIView *lightView = [self createMapAnnotations];
-    UIView *darkView = [self createMapAnnotations];
+    UIView *lightView = [self createMapAnnotationsWithIcons:NO];
+    UIView *darkView = [self createMapAnnotationsWithIcons:NO];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
--(UIView *)createLongTitleCalloutView {
+
+- (void)testMapAnnotationsWithIcons {
+    UIView *lightView = [self createMapAnnotationsWithIcons:YES];
+    UIView *darkView = [self createMapAnnotationsWithIcons:YES];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+-(UIView *)createLongTitleCalloutViewWithIcon:(BOOL)icon {
     UIView *annotationView = [self
                               createMapAnnotationWithLabel:@"Callout with a super super super long title that goes on and on and on"
                               alwaysShowCallout:YES
                               previouslySelected:NO
                               selected:NO
                               enabled:YES
+                              icon:icon
                               ];
 
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -135,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     [NSLayoutConstraint activateConstraints:@[
         [annotationView.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor constant:65],
-        [annotationView.topAnchor constraintEqualToAnchor:outerView.topAnchor constant:35],
+        [annotationView.topAnchor constraintEqualToAnchor:outerView.topAnchor constant:10],
 
         [outerView.trailingAnchor constraintEqualToAnchor:annotationView.trailingAnchor constant:55],
         [outerView.bottomAnchor constraintEqualToAnchor:annotationView.bottomAnchor]
@@ -144,8 +157,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testLongTitleCalloutView {
-    UIView *lightView = [self createLongTitleCalloutView];
-    UIView *darkView = [self createLongTitleCalloutView];
+    UIView *lightView = [self createLongTitleCalloutViewWithIcon:NO];
+    UIView *darkView = [self createLongTitleCalloutViewWithIcon:NO];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (void)testLongTitleCalloutViewWithIcon {
+    UIView *lightView = [self createLongTitleCalloutViewWithIcon:YES];
+    UIView *darkView = [self createLongTitleCalloutViewWithIcon:YES];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
