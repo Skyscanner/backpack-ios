@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Added:**
- - Backpack/Map:
-   - Added support for an optional icon.
 
 ## How to write a good changelog entry
 

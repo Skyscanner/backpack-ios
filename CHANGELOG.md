@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 40.7.0
+
+**Added:**
+ - Backpack/Map:
+   - Added support for an optional icon.
+
 # 40.6.0
 
 **Added:**
