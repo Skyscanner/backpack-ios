@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
 @property(nonatomic, nullable, strong) UIView *dotView;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
+@property(nonatomic, readonly) CGFloat annotationHitAreaHeight;
+@property(nonatomic, readonly) CGFloat annotationDotHeight;
+
 @end
 
 @implementation BPKMapAnnotationView
@@ -72,27 +75,21 @@ NS_ASSUME_NONNULL_BEGIN
     self.hasBeenSelected = false;
     [self updateImage];
 
-    CGFloat dotSize = BPKSpacingBase;
-    // This padding ensures that the tappable area of the annotation is large enough to use easily
-    CGFloat padding = (44 - dotSize) / 2;
-
-    self.layoutMargins = UIEdgeInsetsMake(padding, padding, padding, padding);
-
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
     self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [self.dotView.leadingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.leadingAnchor],
-        [self.dotView.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor],
-        [self.dotView.trailingAnchor constraintEqualToAnchor:self.layoutMarginsGuide.trailingAnchor],
-        [self.dotView.bottomAnchor constraintEqualToAnchor:self.layoutMarginsGuide.bottomAnchor],
-        [self.dotView.widthAnchor constraintEqualToConstant:dotSize],
-        [self.dotView.heightAnchor constraintEqualToConstant:dotSize]
+        [self.dotView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.dotView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.dotView.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.dotView.bottomAnchor],
+        [self.dotView.widthAnchor constraintEqualToConstant:self.annotationDotHeight],
+        [self.dotView.heightAnchor constraintEqualToConstant:self.annotationDotHeight]
     ]];
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm/2;
-    self.dotView.layer.cornerRadius = dotSize/2;
+    self.dotView.layer.cornerRadius = self.annotationDotHeight/2;
     [self updateAppearance];
 }
 
@@ -169,6 +166,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.hasBeenSelected = false;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *_Nullable)event {
+    CGFloat insetBy = self.annotationHitAreaHeight - self.annotationDotHeight;
+    CGRect hitArea = CGRectInset(self.bounds, insetBy, insetBy);
+    return CGRectContainsPoint(hitArea, point);
+}
+
+#pragma mark - constants
+
+- (CGFloat)annotationDotHeight {
+    return BPKSpacingBase;
+}
+
+- (CGFloat)annotationHitAreaHeight {
+    return 44;
 }
 
 @end
