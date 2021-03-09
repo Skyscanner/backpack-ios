@@ -25,7 +25,7 @@
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
-    return NO;
+    return YES;
 }
 
 @end

@@ -426,7 +426,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         self.sameDayRange = NO;
     }
 
-    BOOL shouldClearDates = [self.selectionConfiguration shouldClearSelectedDates:calendar.selectedDates whenSelectingDate:date];
+    BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
+        [self.selectionConfiguration shouldClearSelectedDates:calendar.selectedDates whenSelectingDate:date];
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
