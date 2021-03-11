@@ -16,6 +16,26 @@
  * limitations under the License.
  */
 
+/**
+ * Enum values for specifying calendar selection style
+ */
+typedef NS_ENUM(NSUInteger, BPKCalendarSelectionStyle) {
+    /**
+     * Select a single date in the calendar.
+     */
+    BPKCalendarSelectionStyleSingle = 0,
+
+    /**
+     * Select a range in the calendar by selecting a start and then an end date.
+     */
+    BPKCalendarSelectionStyleRange = 1,
+
+    /**
+     * Select multiple individual dates.
+     */
+    BPKCalendarSelectionStyleMultiple = 2,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 /*
@@ -26,11 +46,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Creates a `BPKCalendarSelectionConfiguration` with the specific classes.
  *
- * @param rangeStyleSelection Whether the selection configuration is a range style.
- * @param allowsMultipleSelection Whether the selection configuration allows multiple simultaneous selections.
+ * @param selectionStyle The selection style of the config.
  * @return `BPKCalendarSelectionConfiguration` instance.
  */
-- (instancetype)initWithRangeStyleSelection:(BOOL)rangeStyleSelection allowMultipleSelection:(BOOL)allowsMultipleSelection;
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle;
+
+/**
+ * The pre-defined selection style of the calendar.
+ */
+@property(readonly)BPKCalendarSelectionStyle selectionStyle;
 
 /**
  * Whether the selection configuration is a range style (ie start date and end date with 0 or more dates between).

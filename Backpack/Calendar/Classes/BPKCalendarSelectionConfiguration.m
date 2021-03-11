@@ -18,21 +18,13 @@
 
 #import "BPKCalendarSelectionConfiguration.h"
 
-@interface BPKCalendarSelectionConfiguration ()
-
-@property(nonatomic)BOOL isRangeStyleSelection;
-@property(nonatomic)BOOL allowsMultipleSelection;
-
-@end
-
 @implementation BPKCalendarSelectionConfiguration
 
-- (instancetype)initWithRangeStyleSelection:(BOOL)rangeStyleSelection allowMultipleSelection:(BOOL)allowsMultipleSelection {
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle {
     self = [super init];
 
     if (self) {
-        _isRangeStyleSelection = rangeStyleSelection;
-        _allowsMultipleSelection = allowsMultipleSelection;
+        _selectionStyle = selectionStyle;
     }
 
     return self;
@@ -41,6 +33,14 @@
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
     NSAssert(false, @"BPKCalendarSelectionConfiguration shouldClearSelectedDates: should be overridden. The base class method should never be called.");
     return NO;
+}
+
+- (BOOL)isRangeStyleSelection {
+    return self.selectionStyle == BPKCalendarSelectionStyleRange;
+}
+
+- (BOOL)allowsMultipleSelection {
+    return self.selectionStyle == BPKCalendarSelectionStyleRange || self.selectionStyle == BPKCalendarSelectionStyleMultiple;
 }
 
 @end

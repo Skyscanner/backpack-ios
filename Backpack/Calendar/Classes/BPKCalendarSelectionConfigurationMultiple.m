@@ -21,7 +21,7 @@
 @implementation BPKCalendarSelectionConfigurationMultiple
 
 - (instancetype)init {
-    return [super initWithRangeStyleSelection:NO allowMultipleSelection:YES];
+    return [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
