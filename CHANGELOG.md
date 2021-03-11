@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 41.0.0
+
+**Breaking:**
+ - Backpack/Calendar:
+   - `selectionType` has been removed in favour of `selectionConfiguration`. This is an instance that tells the calendar how selection should behave. Use an instance of `BPKCalendarSelectionConfigurationSingle`, `BPKCalendarSelectionConfigurationMultiple` or `BPKCalendarSelectionConfigurationRange` in place of the old enum values.
+   - Future change: Range configuration requires several accessibility labels to be provided to help users of assistive technology interact with the calendar.
+
 # 40.7.0
 
 **Added:**
