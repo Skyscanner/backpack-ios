@@ -16,23 +16,16 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CALENDAR__
-#define __BACKPACK_CALENDAR__
-#import "BPKCalendar.h"
-#import "BPKCalendarCell.h"
-#import "BPKCalendarColor.h"
-#import "BPKCalendarConfiguration.h"
-#import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarPriceLabelCell.h"
-#import "BPKCalendarPriceLabelCellData.h"
-#import "BPKCalendarPriceLabelConfiguration.h"
-#import "BPKCalendarPriceLabelStyle.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarSelectionConfigurationSingle.h"
 #import "BPKCalendarSelectionConfigurationMultiple.h"
-#import "BPKCalendarSelectionConfigurationRange.h"
-#import "BPKCalendarTrafficLightCell.h"
-#import "BPKCalendarTrafficLightCellData.h"
-#import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarYearPill.h"
-#endif
+
+@implementation BPKCalendarSelectionConfigurationMultiple
+
+- (instancetype)init {
+    return [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
+}
+
+- (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
+    return NO;
+}
+
+@end

@@ -19,26 +19,7 @@
 @class BPKCalendar;
 @class BPKSimpleDate;
 @class BPKCalendarConfiguration;
-
-/**
- * Enum values for specifying calendar selection type
- */
-typedef NS_ENUM(NSUInteger, BPKCalendarSelection) {
-    /**
-     * Select a single date in the calendar.
-     */
-    BPKCalendarSelectionSingle = 0,
-
-    /**
-     * Select a range in the calendar by selecting a start and then an end date.
-     */
-    BPKCalendarSelectionRange = 1,
-
-    /**
-     * Select multiple individual dates.
-     */
-    BPKCalendarSelectionMultiple = 2,
-};
+@class BPKCalendarSelectionConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -148,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Type of selection allowed
  */
-@property(nonatomic, assign) BPKCalendarSelection selectionType;
+@property(nonatomic, strong) BPKCalendarSelectionConfiguration *selectionConfiguration;
 
 /**
  * List of selected dates
