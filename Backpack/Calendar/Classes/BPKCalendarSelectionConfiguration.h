@@ -68,6 +68,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date;
 
+/**
+ * Provides the accessibility hint that should be applied to a cell.
+ *
+ * @param date The date of the cell.
+ * @param selectedDates The dates that are already selected on the calendar.
+ * @returns The appropriate accessibility hint (or nil if no hint is required).
+ */
+- (NSString *_Nullable)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates;
+
+/**
+ * Provides the accessibility label that should be applied to a cell.
+ *
+ * @param date The date of the cell.
+ * @param selectedDates The dates that are already selected on the calendar.
+ * @param baseLabel The value of the cell, which should be included in the new accessibility label.
+ * @returns The appropriate accessibility label.
+ */
+- (NSString *_Nullable)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel;
+
+/**
+ * Provides the accessibility instruction that should be provided following selection of a date..
+ *
+ * @param selectedDates The dates that have been selected on the calendar.
+ * @returns The appropriate accessibility instruction to be announced (or nil if no instruction is required).
+ */
+- (NSString *_Nullable)accessibilityInstructionHavingSelectedDates:(NSArray<NSDate *> *)selectedDates;
+
 @end
 
 NS_ASSUME_NONNULL_END

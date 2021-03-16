@@ -20,12 +20,28 @@
 
 @implementation BPKCalendarSelectionConfigurationSingle
 
-- (instancetype)init {
-    return [super initWithSelectionStyle:BPKCalendarSelectionStyleSingle];
+- (instancetype)initWithSelectionHint:(NSString *)selectionHint {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleSingle];
+
+    if (self) {
+        _selectionHint = selectionHint;
+    }
+
+    return self;
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
     return YES;
+}
+
+- (NSString *_Nullable)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates {
+    for (NSDate *selectedDate in selectedDates) {
+        if ([date isEqual:selectedDate]) {
+            return nil;
+        }
+    }
+
+    return self.selectionHint;
 }
 
 @end

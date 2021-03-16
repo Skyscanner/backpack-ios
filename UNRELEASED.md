@@ -2,6 +2,10 @@
 
 > Place your changes below this line.
 
+**Breaking:**
+ - Backpack/Calendar:
+   - Selection Configuration instances now require accessibility strings to be passed in. The requirements vary between different configurations.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

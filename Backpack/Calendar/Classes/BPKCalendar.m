@@ -459,6 +459,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
     [self invalidateVisibleCellsIfNeeded];
+
+    NSString *accessibilityInstruction = [self.selectionConfiguration accessibilityInstructionHavingSelectedDates:self.calendarView.selectedDates];
+    if (accessibilityInstruction != nil) {
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityInstruction);
+    }
 }
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
@@ -591,10 +596,21 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
-- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+-(NSArray<NSDate *> *)sortedSelectedDates {
     NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
       return [a compare:b];
     }];
+
+    if (self.sameDayRange && selectedDates.count > 0) {
+        return @[selectedDates[0], selectedDates[0]];
+    }
+
+    return selectedDates;
+}
+
+- (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    NSArray<NSDate *> *sortedSelectedDates = [self sortedSelectedDates];
+
     BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
     [self configureCellWithCellData:calendarCell forDate:date];
 
@@ -603,9 +619,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
 
-        if (selectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
-            NSDate *minDate = [selectedDates firstObject];
-            NSDate *maxDate = [selectedDates lastObject];
+        if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
+            NSDate *minDate = [sortedSelectedDates firstObject];
+            NSDate *maxDate = [sortedSelectedDates lastObject];
             BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
             if (dateInsideRange) {
                 BOOL isMinDate = [date isEqualToDate:minDate];
@@ -634,13 +650,15 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                     selectionType = SelectionTypeMiddle;
                 }
             }
-        } else if ([selectedDates containsObject:date]) {
+        } else if ([sortedSelectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
+        NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
+        calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date selectedDates:sortedSelectedDates baseLabel:baseAccessibilityLabel];
+        calendarCell.accessibilityHint = [self.selectionConfiguration accessibilityHintForDate:date selectedDates:sortedSelectedDates];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;

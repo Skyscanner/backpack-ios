@@ -43,4 +43,16 @@
     return self.selectionStyle == BPKCalendarSelectionStyleRange || self.selectionStyle == BPKCalendarSelectionStyleMultiple;
 }
 
+- (NSString *_Nullable)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates {
+    return nil;
+}
+
+- (NSString *_Nullable)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel {
+        return baseLabel;
+}
+
+- (NSString *_Nullable)accessibilityInstructionHavingSelectedDates:(NSArray<NSDate *> *)selectedDates {
+    return nil;
+}
+
 @end
