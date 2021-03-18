@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly)NSString *selectionHint;
 @property(readonly)NSString *deselectionHint;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint` instead")));
+- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
 
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint deselectionHint:(NSString *)deselectionHint;
 

@@ -94,6 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
+@property(readonly) NSArray<NSDate *> *sortedSelectedDates;
 
 @property BOOL sameDayRange;
 
@@ -423,7 +424,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 
     BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
-        [self.selectionConfiguration shouldClearSelectedDates:[self sortedSelectedDates] whenSelectingDate:date];
+        [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date];
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
@@ -596,25 +597,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
-/*
- * This method returns the currently selected dates sorted from earliest to latest.
- * If the same day is selected twice, it will also populate the resulting list twice so that
- * it represents both selections.
- */
--(NSArray<NSDate *> *)sortedSelectedDates {
-    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
-      return [a compare:b];
-    }];
-
-    if (self.sameDayRange && selectedDates.count > 0) {
-        return @[selectedDates[0], selectedDates[0]];
-    }
-
-    return selectedDates;
-}
-
 - (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    NSArray<NSDate *> *sortedSelectedDates = [self sortedSelectedDates];
+    NSArray<NSDate *> *sortedSelectedDates = self.sortedSelectedDates;
 
     BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
     [self configureCellWithCellData:calendarCell forDate:date];
@@ -684,6 +668,23 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 #pragma mark - helpers
+
+/*
+ * This method returns the currently selected dates sorted from earliest to latest.
+ * If the same day is selected twice, it will also populate the resulting list twice so that
+ * it represents both selections.
+ */
+-(NSArray<NSDate *> *)sortedSelectedDates {
+    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
+      return [a compare:b];
+    }];
+
+    if (self.sameDayRange && selectedDates.count > 0) {
+        return @[selectedDates[0], selectedDates[0]];
+    }
+
+    return selectedDates;
+}
 
 - (void)invalidateVisibleCellsIfNeeded {
     // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is

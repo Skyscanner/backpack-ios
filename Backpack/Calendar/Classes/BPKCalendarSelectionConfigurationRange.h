@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly)NSString *firstAndSecondSelectionState;
 @property(readonly)NSString *returnDatePrompt;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithSelectionHint` instead")));
+- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithFirstSelectionHint:...:` instead")));
 
 - (instancetype)initWithFirstSelectionHint:(NSString *)firstSelectionHint secondSelectionHint:(NSString *)secondSelectionHint firstSelectionState:(NSString *)firstSelectionState secondSelectionState:(NSString *)secondSelectionState betweenSelectionState:(NSString *)betweenSelectionState firstAndSecondSelectionState:(NSString *)firstAndSecondSelectionState returnDatePrompt:(NSString *)returnDatePrompt;
 
