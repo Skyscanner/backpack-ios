@@ -422,17 +422,17 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         return NO;
     }
 
-    if (self.sameDayRange) {
-        self.sameDayRange = NO;
-    }
-
     BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
-        [self.selectionConfiguration shouldClearSelectedDates:calendar.selectedDates whenSelectingDate:date];
+        [self.selectionConfiguration shouldClearSelectedDates:[self sortedSelectedDates] whenSelectingDate:date];
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
             [calendar deselectDate:date];
         }
+    }
+
+    if (self.sameDayRange) {
+        self.sameDayRange = NO;
     }
 
     return YES;
@@ -596,6 +596,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
+/*
+ * This method returns the currently selected dates sorted from earliest to latest.
+ * If the same day is selected twice, it will also populate the resulting list twice so that
+ * it represents both selections.
+ */
 -(NSArray<NSDate *> *)sortedSelectedDates {
     NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
       return [a compare:b];
