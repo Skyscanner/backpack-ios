@@ -143,13 +143,13 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
-    return [self initWithMinDate:minDate maxDate:maxDate];
+    return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     BPKAssertMainThread();
     if (_configuration == nil) {
         _configuration = [BPKCalendarTrafficLightConfiguration new];
@@ -158,6 +158,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        self.selectionConfiguration = selectionConfiguration;
         self.minDate = minDate;
         self.maxDate = maxDate;
         [self setup];
@@ -166,10 +167,17 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration {
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
-    return [self initWithFrame:CGRectZero];
+    self = [super initWithFrame:CGRectZero];
+
+    if (self) {
+        self.selectionConfiguration = selectionConfiguration;
+        [self setup];
+    }
+
+    return self;
 }
 
 -(void)applySubviewClipsToBoundsHack {

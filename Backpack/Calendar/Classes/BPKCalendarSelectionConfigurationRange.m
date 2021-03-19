@@ -25,13 +25,13 @@
     self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
 
     if (self) {
-        _firstSelectionHint = firstSelectionHint;
-        _secondSelectionHint = secondSelectionHint;
-        _firstSelectionState = firstSelectionState;
-        _secondSelectionState = secondSelectionState;
-        _betweenSelectionState = betweenSelectionState;
-        _firstAndSecondSelectionState = firstAndSecondSelectionState;
-        _returnDatePrompt = returnDatePrompt;
+        _firstSelectionHint = [firstSelectionHint copy];
+        _secondSelectionHint = [secondSelectionHint copy];
+        _firstSelectionState = [firstSelectionState copy];
+        _secondSelectionState = [secondSelectionState copy];
+        _betweenSelectionState = [betweenSelectionState copy];
+        _firstAndSecondSelectionState = [firstAndSecondSelectionState copy];
+        _returnDatePrompt = [returnDatePrompt copy];
     }
 
     return self;

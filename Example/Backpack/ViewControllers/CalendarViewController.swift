@@ -59,7 +59,10 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         calendar.selectionConfiguration = singleSelectionConfiguration
 
         if showPrices {
-            calendar = BPKCalendar(configuration: BPKCalendarPriceLabelConfiguration())
+            calendar = BPKCalendar(
+                configuration: BPKCalendarPriceLabelConfiguration(),
+                selectionConfiguration: singleSelectionConfiguration
+            )
         }
         if preselectedDates {
             segmentedControl.selectedSegmentIndex = 1

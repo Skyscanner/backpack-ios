@@ -20,13 +20,32 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * `BPKCalendarSelectionConfigurationMultiple` is a subclass of `BPKCalendarSelectionConfiguration` designed to enable a user to select any number of individual dates.
+ */
 @interface BPKCalendarSelectionConfigurationMultiple : BPKCalendarSelectionConfiguration
 
-@property(readonly)NSString *selectionHint;
-@property(readonly)NSString *deselectionHint;
+/**
+ * The hint provided to assistive technologies informing a user how to select a date.
+ * This hint will be provided on any cell that is not selected.
+ */
+@property(readonly, nonatomic, copy)NSString *selectionHint;
+
+/**
+ * The hint provided to assistive technologies informing a user how to deselect a date.
+ * This hint will be provided on any cell that is already selected.
+ */
+@property(readonly, nonatomic, copy)NSString *deselectionHint;
 
 - (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
 
+/**
+ * Create a multi-selection configuration with given accessibility strings.
+ *
+ * @param selectionHint The hint provided to assistive technologies informing a user how to select a date.
+ * @param deselectionHint The hint provided to assistive technologies informing a user how to deselect a date.
+ * @return A selection configuration.
+ */
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint deselectionHint:(NSString *)deselectionHint;
 
 @end

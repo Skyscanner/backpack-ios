@@ -24,8 +24,8 @@
     self = [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
 
     if (self) {
-        _selectionHint = selectionHint;
-        _deselectionHint = deselectionHint;
+        _selectionHint = [selectionHint copy];
+        _deselectionHint = [deselectionHint copy];
     }
 
     return self;
