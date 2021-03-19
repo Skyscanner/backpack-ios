@@ -29,15 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
  * The hint provided to assistive technologies informing a user how to select a date.
  * This hint will be provided on any cell that is not selected.
  */
-@property(readonly, nonatomic, copy)NSString *selectionHint;
+@property(readonly, nonatomic, copy) NSString *selectionHint;
 
 /**
  * The hint provided to assistive technologies informing a user how to deselect a date.
  * This hint will be provided on any cell that is already selected.
  */
-@property(readonly, nonatomic, copy)NSString *deselectionHint;
+@property(readonly, nonatomic, copy) NSString *deselectionHint;
 
 - (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
+
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
 
 /**
  * Create a multi-selection configuration with given accessibility strings.

@@ -21,7 +21,13 @@
 @implementation BPKCalendarSelectionConfigurationRange
 
 
-- (instancetype)initWithFirstSelectionHint:(NSString *)firstSelectionHint secondSelectionHint:(NSString *)secondSelectionHint firstSelectionState:(NSString *)firstSelectionState secondSelectionState:(NSString *)secondSelectionState betweenSelectionState:(NSString *)betweenSelectionState firstAndSecondSelectionState:(NSString *)firstAndSecondSelectionState returnDatePrompt:(NSString *)returnDatePrompt {
+- (instancetype)initWithFirstSelectionHint:(NSString *)firstSelectionHint
+                       secondSelectionHint:(NSString *)secondSelectionHint
+                       firstSelectionState:(NSString *)firstSelectionState
+                      secondSelectionState:(NSString *)secondSelectionState
+                     betweenSelectionState:(NSString *)betweenSelectionState
+              firstAndSecondSelectionState:(NSString *)firstAndSecondSelectionState
+                          returnDatePrompt:(NSString *)returnDatePrompt {
     self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
 
     if (self) {
@@ -67,7 +73,7 @@
         if ([selectedDates[0] isEqualToDate:date] && [selectedDates[1] isEqualToDate:date]) {
             state = self.firstAndSecondSelectionState;
         } else if ([selectedDates[0] isEqualToDate:date]) {
-                state = self.firstSelectionState;
+            state = self.firstSelectionState;
         } else if ([selectedDates[1] isEqualToDate:date]) {
             state = self.secondSelectionState;
         } else if ([selectedDates[0] compare:date] == NSOrderedAscending && [selectedDates[1] compare:date] == NSOrderedDescending) {

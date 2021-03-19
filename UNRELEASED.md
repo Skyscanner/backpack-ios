@@ -5,7 +5,7 @@
 **Breaking:**
  - Backpack/Calendar:
    - Selection Configuration instances now require accessibility strings to be passed in. The requirements vary between different configurations.
-   - BPKCalendar constructors now require a selection configuration to be provided.
+   - Constructors now require a selection configuration to be provided.
 
 ## How to write a good changelog entry
 

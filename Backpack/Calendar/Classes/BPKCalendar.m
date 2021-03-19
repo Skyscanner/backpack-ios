@@ -170,7 +170,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
-    self = [super initWithFrame:CGRectZero];
+    self = [self initWithFrame:CGRectZero];
 
     if (self) {
         self.selectionConfiguration = selectionConfiguration;
@@ -469,7 +469,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
     [self invalidateVisibleCellsIfNeeded];
 
-    NSString *accessibilityInstruction = [self.selectionConfiguration accessibilityInstructionHavingSelectedDates:self.calendarView.selectedDates];
+    NSString *accessibilityInstruction = [self.selectionConfiguration accessibilityInstructionHavingSelectedDates:self.sortedSelectedDates];
     if (accessibilityInstruction != nil) {
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityInstruction);
     }
