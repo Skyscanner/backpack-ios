@@ -8,6 +8,10 @@
    - Selection Configuration instances now require accessibility strings to be passed in. The requirements vary between different configurations.
    - Constructors now require a selection configuration to be provided.
 
+**Fixed:**
+ - Backpack/Calendar:
+   - Fixed bug that would cause selecting the same day in range mode to reselect end date instead of new start date.
+
 # 41.0.0
 
 **Breaking:**
