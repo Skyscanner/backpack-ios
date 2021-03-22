@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.0.0
+
+**Breaking:**
+ - Backpack/Calendar:
+   - Selection Configuration instances now require accessibility strings to be passed in. The requirements vary between different configurations.
+   - Constructors now require a selection configuration to be provided.
+
 # 41.0.0
 
 **Breaking:**
