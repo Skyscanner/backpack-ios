@@ -37,13 +37,36 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
     var noPrice = BPKCalendarPriceLabelCellData(price: "–", labelStyle: BPKCalendarPriceLabelStyle.noData)
 
+    var singleSelectionConfiguration = BPKCalendarSelectionConfigurationSingle(
+        selectionHint: "Double tap to select date"
+    )
+    var multipleSelectionConfiguration = BPKCalendarSelectionConfigurationMultiple(
+        selectionHint: "Double tap to select date",
+        deselectionHint: "Double tap to deselect date"
+    )
+    var rangeSelectionConfiguration = BPKCalendarSelectionConfigurationRange(
+        startSelectionHint: "Double tap to select departure date",
+        endSelectionHint: "Double tap to select return date",
+        startSelectionState: "Selected as departure date",
+        endSelectionState: "Selected as return date",
+        betweenSelectionState: "Between departure and return date",
+        startAndEndSelectionState: "Selected as both departure and return date",
+        returnDatePrompt: "Now please select a return date"
+    )
+
     override func viewDidLoad() {
+        // I guess it shouldn't be possible to create a calendar without a selection config 🤔
+        calendar.selectionConfiguration = singleSelectionConfiguration
+
         if showPrices {
-            calendar = BPKCalendar(configuration: BPKCalendarPriceLabelConfiguration())
+            calendar = BPKCalendar(
+                configuration: BPKCalendarPriceLabelConfiguration(),
+                selectionConfiguration: singleSelectionConfiguration
+            )
         }
         if preselectedDates {
             segmentedControl.selectedSegmentIndex = 1
-            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationRange()
+            calendar.selectionConfiguration = rangeSelectionConfiguration
 
             let currentDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
             let selectedDate1 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 12)
@@ -77,13 +100,13 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     @IBAction func valueChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationSingle()
+            calendar.selectionConfiguration = singleSelectionConfiguration
         case 1:
-            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationRange()
+            calendar.selectionConfiguration = rangeSelectionConfiguration
         case 2:
-            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationMultiple()
+            calendar.selectionConfiguration = multipleSelectionConfiguration
         default:
-            calendar.selectionConfiguration = BPKCalendarSelectionConfigurationSingle()
+            calendar.selectionConfiguration = singleSelectionConfiguration
         }
         calendar.reloadData()
     }

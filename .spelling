@@ -21,6 +21,7 @@ BpkBoilerplate
 BpkButton
 BpkButtonLink
 
+BPKCalendar
 BpkCalendar
 BpkCalendarDate
 BpkCalendarDatePropTypes

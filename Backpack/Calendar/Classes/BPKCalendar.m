@@ -94,6 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
+@property(readonly) NSArray<NSDate *> *sortedSelectedDates;
 
 @property BOOL sameDayRange;
 
@@ -142,13 +143,13 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
-    return [self initWithMinDate:minDate maxDate:maxDate];
+    return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     BPKAssertMainThread();
     if (_configuration == nil) {
         _configuration = [BPKCalendarTrafficLightConfiguration new];
@@ -157,6 +158,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
+        self.selectionConfiguration = selectionConfiguration;
         self.minDate = minDate;
         self.maxDate = maxDate;
         [self setup];
@@ -165,10 +167,17 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration {
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
-    return [self initWithFrame:CGRectZero];
+    self = [self initWithFrame:CGRectZero];
+
+    if (self) {
+        self.selectionConfiguration = selectionConfiguration;
+        [self setup];
+    }
+
+    return self;
 }
 
 -(void)applySubviewClipsToBoundsHack {
@@ -422,17 +431,17 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         return NO;
     }
 
-    if (self.sameDayRange) {
-        self.sameDayRange = NO;
-    }
-
     BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
-        [self.selectionConfiguration shouldClearSelectedDates:calendar.selectedDates whenSelectingDate:date];
+        [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date];
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
             [calendar deselectDate:date];
         }
+    }
+
+    if (self.sameDayRange) {
+        self.sameDayRange = NO;
     }
 
     return YES;
@@ -459,6 +468,11 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
     [self invalidateVisibleCellsIfNeeded];
+
+    NSString *accessibilityInstruction = [self.selectionConfiguration accessibilityInstructionHavingSelectedDates:self.sortedSelectedDates];
+    if (accessibilityInstruction != nil) {
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, accessibilityInstruction);
+    }
 }
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
@@ -592,9 +606,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)configureCell:(FSCalendarCell *)cell forDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
-      return [a compare:b];
-    }];
+    NSArray<NSDate *> *sortedSelectedDates = self.sortedSelectedDates;
+
     BPKCalendarCell *calendarCell = (BPKCalendarCell *)cell;
     [self configureCellWithCellData:calendarCell forDate:date];
 
@@ -603,9 +616,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
 
-        if (selectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
-            NSDate *minDate = [selectedDates firstObject];
-            NSDate *maxDate = [selectedDates lastObject];
+        if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
+            NSDate *minDate = [sortedSelectedDates firstObject];
+            NSDate *maxDate = [sortedSelectedDates lastObject];
             BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
             if (dateInsideRange) {
                 BOOL isMinDate = [date isEqualToDate:minDate];
@@ -634,13 +647,15 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                     selectionType = SelectionTypeMiddle;
                 }
             }
-        } else if ([selectedDates containsObject:date]) {
+        } else if ([sortedSelectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.accessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
+        NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
+        calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date selectedDates:sortedSelectedDates baseLabel:baseAccessibilityLabel];
+        calendarCell.accessibilityHint = [self.selectionConfiguration accessibilityHintForDate:date selectedDates:sortedSelectedDates];
 
         if ([self isDateEnabled:date]) {
             calendarCell.isAccessibilityElement = YES;
@@ -661,6 +676,23 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 #pragma mark - helpers
+
+/*
+ * This method returns the currently selected dates sorted from earliest to latest.
+ * If the same day is selected twice, it will also populate the resulting list twice so that
+ * it represents both selections.
+ */
+-(NSArray<NSDate *> *)sortedSelectedDates {
+    NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
+      return [a compare:b];
+    }];
+
+    if (self.sameDayRange && selectedDates.count > 0) {
+        return @[selectedDates[0], selectedDates[0]];
+    }
+
+    return selectedDates;
+}
 
 - (void)invalidateVisibleCellsIfNeeded {
     // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is

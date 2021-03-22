@@ -20,8 +20,27 @@
 
 @implementation BPKCalendarSelectionConfigurationRange
 
-- (instancetype)init {
-    return [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
+
+- (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
+                          endSelectionHint:(NSString *)endSelectionHint
+                       startSelectionState:(NSString *)startSelectionState
+                         endSelectionState:(NSString *)endSelectionState
+                     betweenSelectionState:(NSString *)betweenSelectionState
+                 startAndEndSelectionState:(NSString *)startAndEndSelectionState
+                          returnDatePrompt:(NSString *)returnDatePrompt {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
+
+    if (self) {
+        _startSelectionHint = [startSelectionHint copy];
+        _endSelectionHint = [endSelectionHint copy];
+        _startSelectionState = [startSelectionState copy];
+        _endSelectionState = [endSelectionState copy];
+        _betweenSelectionState = [betweenSelectionState copy];
+        _startAndEndSelectionState = [startAndEndSelectionState copy];
+        _returnDatePrompt = [returnDatePrompt copy];
+    }
+
+    return self;
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
@@ -38,6 +57,47 @@
     }
 
     return shouldClearDates;
+}
+
+- (NSString *)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates {
+    if (selectedDates.count == 0 || [self shouldClearSelectedDates:selectedDates whenSelectingDate:date]) {
+        return self.startSelectionHint;
+    }
+
+    return self.endSelectionHint;
+}
+
+- (NSString *)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel {
+    NSString *state = nil;
+    if (selectedDates.count >= 2) {
+        if ([selectedDates[0] isEqualToDate:date] && [selectedDates[1] isEqualToDate:date]) {
+            state = self.startAndEndSelectionState;
+        } else if ([selectedDates[0] isEqualToDate:date]) {
+            state = self.startSelectionState;
+        } else if ([selectedDates[1] isEqualToDate:date]) {
+            state = self.endSelectionState;
+        } else if ([selectedDates[0] compare:date] == NSOrderedAscending && [selectedDates[1] compare:date] == NSOrderedDescending) {
+            state = self.betweenSelectionState;
+        }
+    } else if (selectedDates.count >= 1) {
+        if ([selectedDates[0] isEqualToDate:date]) {
+            state = self.startSelectionState;
+        }
+    }
+
+    if (state != nil) {
+        return [NSString stringWithFormat:@"%@, %@", baseLabel, state];
+    }
+
+    return baseLabel;
+}
+
+- (NSString *)accessibilityInstructionHavingSelectedDates:(NSArray<NSDate *> *)selectedDates {
+    if (selectedDates.count == 1) {
+        return self.returnDatePrompt;
+    }
+
+    return nil;
 }
 
 @end

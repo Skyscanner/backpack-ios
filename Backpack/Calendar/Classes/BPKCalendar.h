@@ -81,9 +81,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param minDate The minimum date that can be selected in the calendar.
  * @param maxDate The maximum date that can be selected in the calendar.
+ * @param selectionConfiguration The configuration to use to handle selection logic.
  * @return A configured calendar.
  */
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a calendar with given minimum date and maximum date.
@@ -91,19 +92,21 @@ NS_ASSUME_NONNULL_BEGIN
  * @param minDate The minimum date that can be selected in the calendar.
  * @param maxDate The maximum date that can be selected in the calendar.
  * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @param selectionConfiguration The configuration to use to handle selection logic.
  * @see BPKCalendarTrafficLightConfiguration
  * @return A configured calendar.
  */
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration;
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
 
 /**
  * Create a calendar with given configuration
  *
  * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @param selectionConfiguration The configuration to use to handle selection logic.
  * @see BPKCalendarTrafficLightConfiguration
  * @return A configured calendar.
  */
-- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration;
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;

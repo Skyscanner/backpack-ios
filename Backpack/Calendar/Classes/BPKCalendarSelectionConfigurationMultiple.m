@@ -20,12 +20,29 @@
 
 @implementation BPKCalendarSelectionConfigurationMultiple
 
-- (instancetype)init {
-    return [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
+- (instancetype)initWithSelectionHint:(NSString *)selectionHint deselectionHint:(NSString *)deselectionHint {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple];
+
+    if (self) {
+        _selectionHint = [selectionHint copy];
+        _deselectionHint = [deselectionHint copy];
+    }
+
+    return self;
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
     return NO;
+}
+
+- (NSString *_Nullable)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates {
+    for (NSDate *selectedDate in selectedDates) {
+        if ([date isEqual:selectedDate]) {
+            return self.deselectionHint;
+        }
+    }
+
+    return self.selectionHint;
 }
 
 @end

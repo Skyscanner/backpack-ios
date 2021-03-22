@@ -24,7 +24,7 @@ and then run `pod install`.
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
-bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"Double tap to select date"];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
@@ -87,7 +87,7 @@ NSSet<BPKSimpleDate *> *highPrices = /* .... */;
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
 
-bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"Double tap to select date"];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
@@ -171,7 +171,7 @@ NSSet<BPKSimpleDate *> *highPrices = /* .... */;
 
 BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithConfiguration: [BPKCalendarPriceLabelConfiguration new]];
 
-bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] init];
+bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"Double tap to select date"];
 bpkCalendar.selectedDates = @[[bpkCalendar simpleDateFromDate:self.date1]];
 [bpkCalendar reloadData];
 
