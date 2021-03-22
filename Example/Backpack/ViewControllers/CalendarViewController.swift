@@ -45,12 +45,12 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
         deselectionHint: "Double tap to deselect date"
     )
     var rangeSelectionConfiguration = BPKCalendarSelectionConfigurationRange(
-        firstSelectionHint: "Double tap to select departure date",
-        secondSelectionHint: "Double tap to select return date",
-        firstSelectionState: "Selected as departure date",
-        secondSelectionState: "Selected as return date",
+        startSelectionHint: "Double tap to select departure date",
+        endSelectionHint: "Double tap to select return date",
+        startSelectionState: "Selected as departure date",
+        endSelectionState: "Selected as return date",
         betweenSelectionState: "Between departure and return date",
-        firstAndSecondSelectionState: "Selected as both departure and return date",
+        startAndEndSelectionState: "Selected as both departure and return date",
         returnDatePrompt: "Now please select a return date"
     )
 

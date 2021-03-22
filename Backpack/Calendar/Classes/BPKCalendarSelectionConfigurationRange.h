@@ -29,23 +29,23 @@ NS_ASSUME_NONNULL_BEGIN
  * The hint provided to assistive technologies informing a user how to select the first date in the range.
  * This hint will be provided on any cell that can be selected as the first date.
  */
-@property(readonly, nonatomic, copy) NSString *firstSelectionHint;
+@property(readonly, nonatomic, copy) NSString *startSelectionHint;
 
 /**
  * The hint provided to assistive technologies informing a user how to select the second date in the range.
  * This hint will be provided on any cell that can be selected as the second date.
  */
-@property(readonly, nonatomic, copy) NSString *secondSelectionHint;
+@property(readonly, nonatomic, copy) NSString *endSelectionHint;
 
 /**
  * The label provided to assistive technologies informing a user that a date is selected as the first date in the range.
  */
-@property(readonly, nonatomic, copy) NSString *firstSelectionState;
+@property(readonly, nonatomic, copy) NSString *startSelectionState;
 
 /**
  * The label provided to assistive technologies informing a user that a date is selected as the second date in the range.
  */
-@property(readonly, nonatomic, copy) NSString *secondSelectionState;
+@property(readonly, nonatomic, copy) NSString *endSelectionState;
 
 /**
  * The label provided to assistive technologies informing a user that a date lies between the first and second selected dates.
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The label provided to assistive technologies informing a user that a date is selected as both the first and second date in the range.
  */
-@property(readonly, nonatomic, copy) NSString *firstAndSecondSelectionState;
+@property(readonly, nonatomic, copy) NSString *startAndEndSelectionState;
 
 /**
  * The prompt provided to assistive technologies informing a user that they should now select a second date.
@@ -63,28 +63,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(readonly, nonatomic, copy) NSString *returnDatePrompt;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithFirstSelectionHint:...:` instead")));
+- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithFirstSelectionHint:...:` instead")));
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
 
 /**
  * Create a multi-selection configuration with given accessibility strings.
  *
- * @param firstSelectionHint The hint provided to assistive technologies informing a user how to select the first date in the range.
- * @param secondSelectionHint The hint provided to assistive technologies informing a user how to select the second date in the range.
- * @param firstSelectionState The label provided to assistive technologies informing a user that a date is selected as the first date in the range.
- * @param secondSelectionState The label provided to assistive technologies informing a user that a date is selected as the second date in the range.
+ * @param startSelectionHint The hint provided to assistive technologies informing a user how to select the first date in the range.
+ * @param endSelectionHint The hint provided to assistive technologies informing a user how to select the second date in the range.
+ * @param startSelectionState The label provided to assistive technologies informing a user that a date is selected as the first date in the range.
+ * @param endSelectionState The label provided to assistive technologies informing a user that a date is selected as the second date in the range.
  * @param betweenSelectionState The label provided to assistive technologies informing a user that a date lies between the first and second selected dates.
- * @param firstAndSecondSelectionState The label provided to assistive technologies informing a user that a date is selected as both the first and second date in the range.
+ * @param startAndEndSelectionState The label provided to assistive technologies informing a user that a date is selected as both the first and second date in the range.
  * @param returnDatePrompt The prompt provided to assistive technologies informing a user that they should now select a second date.
  * @return A selection configuration.
  */
-- (instancetype)initWithFirstSelectionHint:(NSString *)firstSelectionHint
-                       secondSelectionHint:(NSString *)secondSelectionHint
-                       firstSelectionState:(NSString *)firstSelectionState
-                      secondSelectionState:(NSString *)secondSelectionState
+- (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
+                       endSelectionHint:(NSString *)endSelectionHint
+                       startSelectionState:(NSString *)startSelectionState
+                      endSelectionState:(NSString *)endSelectionState
                      betweenSelectionState:(NSString *)betweenSelectionState
-              firstAndSecondSelectionState:(NSString *)firstAndSecondSelectionState
+              startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt;
 
 @end

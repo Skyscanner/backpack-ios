@@ -21,22 +21,22 @@
 @implementation BPKCalendarSelectionConfigurationRange
 
 
-- (instancetype)initWithFirstSelectionHint:(NSString *)firstSelectionHint
-                       secondSelectionHint:(NSString *)secondSelectionHint
-                       firstSelectionState:(NSString *)firstSelectionState
-                      secondSelectionState:(NSString *)secondSelectionState
+- (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
+                          endSelectionHint:(NSString *)endSelectionHint
+                       startSelectionState:(NSString *)startSelectionState
+                         endSelectionState:(NSString *)endSelectionState
                      betweenSelectionState:(NSString *)betweenSelectionState
-              firstAndSecondSelectionState:(NSString *)firstAndSecondSelectionState
+                 startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt {
     self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
 
     if (self) {
-        _firstSelectionHint = [firstSelectionHint copy];
-        _secondSelectionHint = [secondSelectionHint copy];
-        _firstSelectionState = [firstSelectionState copy];
-        _secondSelectionState = [secondSelectionState copy];
+        _startSelectionHint = [startSelectionHint copy];
+        _endSelectionHint = [endSelectionHint copy];
+        _startSelectionState = [startSelectionState copy];
+        _endSelectionState = [endSelectionState copy];
         _betweenSelectionState = [betweenSelectionState copy];
-        _firstAndSecondSelectionState = [firstAndSecondSelectionState copy];
+        _startAndEndSelectionState = [startAndEndSelectionState copy];
         _returnDatePrompt = [returnDatePrompt copy];
     }
 
@@ -61,27 +61,27 @@
 
 - (NSString *)accessibilityHintForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates {
     if (selectedDates.count == 0 || [self shouldClearSelectedDates:selectedDates whenSelectingDate:date]) {
-        return self.firstSelectionHint;
+        return self.startSelectionHint;
     }
 
-    return self.secondSelectionHint;
+    return self.endSelectionHint;
 }
 
 - (NSString *)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel {
     NSString *state = nil;
     if (selectedDates.count >= 2) {
         if ([selectedDates[0] isEqualToDate:date] && [selectedDates[1] isEqualToDate:date]) {
-            state = self.firstAndSecondSelectionState;
+            state = self.startAndEndSelectionState;
         } else if ([selectedDates[0] isEqualToDate:date]) {
-            state = self.firstSelectionState;
+            state = self.startSelectionState;
         } else if ([selectedDates[1] isEqualToDate:date]) {
-            state = self.secondSelectionState;
+            state = self.endSelectionState;
         } else if ([selectedDates[0] compare:date] == NSOrderedAscending && [selectedDates[1] compare:date] == NSOrderedDescending) {
             state = self.betweenSelectionState;
         }
     } else if (selectedDates.count >= 1) {
         if ([selectedDates[0] isEqualToDate:date]) {
-            state = self.firstSelectionState;
+            state = self.startSelectionState;
         }
     }
 

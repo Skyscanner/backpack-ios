@@ -120,12 +120,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc]
-                                          initWithFirstSelectionHint:@""
-                                          secondSelectionHint:@""
-                                          firstSelectionState:@""
-                                          secondSelectionState:@""
+                                          initWithStartSelectionHint:@""
+                                          endSelectionHint:@""
+                                          startSelectionState:@""
+                                          endSelectionState:@""
                                           betweenSelectionState:@""
-                                          firstAndSecondSelectionState:@""
+                                          startAndEndSelectionState:@""
                                           returnDatePrompt:@""
                                           ];
     bpkCalendar.selectedDates = @[
@@ -143,12 +143,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc]
-                                          initWithFirstSelectionHint:@""
-                                          secondSelectionHint:@""
-                                          firstSelectionState:@""
-                                          secondSelectionState:@""
+                                          initWithStartSelectionHint:@""
+                                          endSelectionHint:@""
+                                          startSelectionState:@""
+                                          endSelectionState:@""
                                           betweenSelectionState:@""
-                                          firstAndSecondSelectionState:@""
+                                          startAndEndSelectionState:@""
                                           returnDatePrompt:@""];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
@@ -178,12 +178,12 @@ NS_ASSUME_NONNULL_BEGIN
 
     [self configureParentView:parentView forCalendar:bpkCalendar];
     bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc]
-                                          initWithFirstSelectionHint:@""
-                                          secondSelectionHint:@""
-                                          firstSelectionState:@""
-                                          secondSelectionState:@""
+                                          initWithStartSelectionHint:@""
+                                          endSelectionHint:@""
+                                          startSelectionState:@""
+                                          endSelectionState:@""
                                           betweenSelectionState:@""
-                                          firstAndSecondSelectionState:@""
+                                          startAndEndSelectionState:@""
                                           returnDatePrompt:@""];
     bpkCalendar.selectedDates = @[
         [[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian],
