@@ -115,6 +115,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCarsFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCars;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCenterLocation;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameChauffeur;
@@ -409,6 +411,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameRecentSearches;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameRedo;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameRefresh;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameReturn;
@@ -494,6 +498,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameTrendWillRise;
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameTrend;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameTrips;
+/// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUndo;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameUnlock;
 /// :nodoc:

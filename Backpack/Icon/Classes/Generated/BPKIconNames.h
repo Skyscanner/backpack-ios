@@ -115,6 +115,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameCarsFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCars;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCenterLocation;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChauffeur;
@@ -409,6 +411,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameRecentSearches;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameRedo;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameRefresh;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameReturn;
@@ -500,6 +504,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameTrendWillRise;
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTrend;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameTrips;
+/// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameUndo;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUnlock;
 /// :nodoc:

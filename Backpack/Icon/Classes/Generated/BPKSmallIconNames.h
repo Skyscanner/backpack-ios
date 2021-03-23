@@ -405,6 +405,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNamePrint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameRecentSearches;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameRedo;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameRefresh;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameReturn;
@@ -490,6 +492,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameTrendWillRise;
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameTrend;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameTrips;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameUndo;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameUnlock;
 /// :nodoc:
