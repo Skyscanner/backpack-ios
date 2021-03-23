@@ -71,7 +71,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 - (void)testAllLargeIcons {
-    NSArray<BPKSmallIconName> *allLargeIcons = [[self class] allSmallIconNames];
+    NSArray<BPKSmallIconName> *allLargeIcons = [[self class] allLargeIconNames];
 
     UIView *view = [[self class] generateLargeIconGridWithIcons:allLargeIcons makeIconView:^UIImageView *(BPKLargeIconName name) {
         UIImage *icon = [BPKIcon largeTemplateIconNamed:name];
