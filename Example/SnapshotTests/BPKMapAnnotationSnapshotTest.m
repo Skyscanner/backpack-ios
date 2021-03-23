@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+#import <Backpack/Spacing.h>
 #import <Backpack/Map.h>
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
@@ -54,8 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
     [wrapper addSubview:annotationView];
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [annotationView.leadingAnchor constraintEqualToAnchor:wrapper.leadingAnchor constant:47],
-        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:40],
+        [annotationView.centerXAnchor constraintEqualToAnchor:wrapper.centerXAnchor],
+        [wrapper.bottomAnchor constraintEqualToAnchor:annotationView.bottomAnchor constant:BPKSpacingMd],
         [wrapper.widthAnchor constraintEqualToConstant:annotationWidth],
         [wrapper.heightAnchor constraintEqualToConstant:annotationHeight]
     ]];
@@ -147,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [annotationView.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor constant:65],
+        [annotationView.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor constant:55],
         [annotationView.topAnchor constraintEqualToAnchor:outerView.topAnchor constant:10],
 
         [outerView.trailingAnchor constraintEqualToAnchor:annotationView.trailingAnchor constant:55],

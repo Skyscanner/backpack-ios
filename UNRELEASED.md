@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Map:
+   - Map markers can now be selected by tapping on the callout view. 
 
 ## How to write a good changelog entry
 
