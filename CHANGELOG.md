@@ -1,6 +1,11 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.1.0
+
+**Added:**
+ - Added `undo`, `redo` and `center-location` icons.
+
 # 42.0.0
 
 **Breaking:**
