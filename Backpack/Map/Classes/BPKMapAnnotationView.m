@@ -83,7 +83,6 @@ NS_ASSUME_NONNULL_BEGIN
         [self.dotView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
         [self.dotView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
         [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.dotView.trailingAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.dotView.bottomAnchor],
         [self.dotView.widthAnchor constraintEqualToConstant:self.annotationDotHeight],
         [self.dotView.heightAnchor constraintEqualToConstant:self.annotationDotHeight]
     ]];

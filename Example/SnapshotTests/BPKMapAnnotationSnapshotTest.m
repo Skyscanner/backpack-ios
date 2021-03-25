@@ -121,7 +121,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-
 - (void)testMapAnnotationsWithIcons {
     UIView *lightView = [self createMapAnnotationsWithIcons:YES];
     UIView *darkView = [self createMapAnnotationsWithIcons:YES];
