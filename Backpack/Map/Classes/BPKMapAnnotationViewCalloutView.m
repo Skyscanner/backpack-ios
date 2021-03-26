@@ -155,8 +155,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.userInteractionEnabled = NO;
     self.contentView.layer.borderWidth = BPKBorderWidthLg;
 
-    [BPKShadow.shadowSm applyToLayer:self.layer];
-
     UIStackView *stackView = [[UIStackView alloc] init];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.spacing = self.paddingSize;

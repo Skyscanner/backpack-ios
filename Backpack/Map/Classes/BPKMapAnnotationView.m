@@ -88,6 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
     if(_calloutView == nil && self.dotView != nil) {
         BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
         [self addSubview:calloutView];
+        calloutView.translatesAutoresizingMaskIntoConstraints = NO;
         _calloutView = calloutView;
     }
 
@@ -147,12 +148,9 @@ NS_ASSUME_NONNULL_BEGIN
     // Using `_calloutView` so that if it is not already created we don't access the lazy property
     if (_calloutView == nil || self.calloutView.hidden) {
         self.bounds = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
-        self.centerOffset = CGPointMake(0, 0);
     } else {
         CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bounds = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height + self.annotationDotHeight - self.calloutViewOverlap);
-        CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
-        self.centerOffset = CGPointMake(0, offset);
     }
 
     [self setNeedsLayout];
@@ -164,6 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
     // Using `_calloutView` so that if it is not already created we don't access the lazy property
     if (_calloutView == nil || self.calloutView.hidden) {
         self.dotView.frame = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
+        self.centerOffset = CGPointMake(0, 0);
     } else {
         CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.calloutView.frame = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height);
@@ -171,6 +170,9 @@ NS_ASSUME_NONNULL_BEGIN
         CGFloat dotLeft = (calloutViewSize.width - self.annotationDotHeight) / 2;
         CGFloat dotTop = calloutViewSize.height - self.calloutViewOverlap;
         self.dotView.frame = CGRectMake(dotLeft, dotTop, self.annotationDotHeight, self.annotationDotHeight);
+
+        CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
+        self.centerOffset = CGPointMake(0, offset);
     }
 }
 
