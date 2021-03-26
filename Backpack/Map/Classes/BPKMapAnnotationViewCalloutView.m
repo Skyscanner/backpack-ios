@@ -188,19 +188,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (CGSize)intrinsicContentSize {
-    CGSize size = self.label.intrinsicContentSize;
-    if (!self.iconView.hidden) {
-        size.width += self.iconView.intrinsicContentSize.width + self.paddingSize;
-    }
-    size.height += self.paddingSize * 2 + self.flareHeight;
-    size.width += self.paddingSize * 2;
-    if (size.width > self.maximumWidth) {
-        size.width = self.maximumWidth;
-    }
-    return size;
-}
-
 - (CGFloat)paddingSize {
     return BPKSpacingSm;
 }

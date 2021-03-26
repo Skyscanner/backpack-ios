@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.bounds = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
         self.centerOffset = CGPointMake(0, 0);
     } else {
-        CGSize calloutViewSize = self.calloutView.intrinsicContentSize;
+        CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bounds = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height + self.annotationDotHeight - self.calloutViewOverlap);
         CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
         self.centerOffset = CGPointMake(0, offset);
@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_calloutView == nil || self.calloutView.hidden) {
         self.dotView.frame = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
     } else {
-        CGSize calloutViewSize = self.calloutView.intrinsicContentSize;
+        CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.calloutView.frame = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height);
 
         CGFloat dotLeft = (calloutViewSize.width - self.annotationDotHeight) / 2;
