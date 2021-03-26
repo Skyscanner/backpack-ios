@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
 @property(nonatomic, readonly) CGFloat annotationDotHeight;
 @property(nonatomic, readonly) CGFloat calloutViewOverlap;
-@property(strong, nonatomic) NSArray<NSLayoutConstraint *> *calloutViewVisibleConstraints;
 
 @end
 
@@ -77,15 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
-    self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [NSLayoutConstraint activateConstraints:@[
-        [self.dotView.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.leadingAnchor],
-        [self.dotView.topAnchor constraintGreaterThanOrEqualToAnchor:self.topAnchor],
-        [self.trailingAnchor constraintGreaterThanOrEqualToAnchor:self.dotView.trailingAnchor],
-        [self.dotView.widthAnchor constraintEqualToConstant:self.annotationDotHeight],
-        [self.dotView.heightAnchor constraintEqualToConstant:self.annotationDotHeight]
-    ]];
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm/2;
@@ -97,16 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
     if(_calloutView == nil && self.dotView != nil) {
         BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
         [self addSubview:calloutView];
-        calloutView.translatesAutoresizingMaskIntoConstraints = NO;
-        [NSLayoutConstraint activateConstraints:@[
-            [calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
-            [calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:self.calloutViewOverlap]
-        ]];
-        self.calloutViewVisibleConstraints = @[
-            [calloutView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-            [calloutView.topAnchor constraintEqualToAnchor:self.topAnchor],
-            [self.trailingAnchor constraintEqualToAnchor:calloutView.trailingAnchor]
-        ];
         _calloutView = calloutView;
     }
 
@@ -147,13 +128,11 @@ NS_ASSUME_NONNULL_BEGIN
     BOOL shouldShowCallout = self.selected || self.bpk_annotation.alwaysShowCallout;
     if (shouldShowCallout) {
         self.calloutView.hidden = false;
-        [NSLayoutConstraint activateConstraints:self.calloutViewVisibleConstraints];
     }
 
     // Using `_calloutView` so that if it is not already created we don't access the lazy property
     if (!shouldShowCallout && _calloutView != nil) {
         self.calloutView.hidden = true;
-        [NSLayoutConstraint deactivateConstraints:self.calloutViewVisibleConstraints];
     }
 
     // Using `_calloutView` so that if it is not already created we don't access the lazy property
@@ -174,6 +153,24 @@ NS_ASSUME_NONNULL_BEGIN
         self.bounds = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height + self.annotationDotHeight - self.calloutViewOverlap);
         CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
         self.centerOffset = CGPointMake(0, offset);
+    }
+
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    // Using `_calloutView` so that if it is not already created we don't access the lazy property
+    if (_calloutView == nil || self.calloutView.hidden) {
+        self.dotView.frame = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
+    } else {
+        CGSize calloutViewSize = self.calloutView.intrinsicContentSize;
+        self.calloutView.frame = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height);
+
+        CGFloat dotLeft = (calloutViewSize.width - self.annotationDotHeight) / 2;
+        CGFloat dotTop = calloutViewSize.height - self.calloutViewOverlap;
+        self.dotView.frame = CGRectMake(dotLeft, dotTop, self.annotationDotHeight, self.annotationDotHeight);
     }
 }
 
