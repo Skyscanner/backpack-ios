@@ -134,7 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Helpers
 
 - (UIColor *)currentStarFilledColor {
-    return self.starFilledColor != nil ? self.starFilledColor : [BPKColor erfoud];
+    return self.starFilledColor != nil ? self.starFilledColor : [self.class defaultStarFilledColor];
 }
 
 - (UIColor *)currentStarColor {
@@ -179,8 +179,12 @@ NS_ASSUME_NONNULL_BEGIN
     self.starView.tintColor = self.state == BPKStarStateDefault ? self.currentStarColor : self.currentStarFilledColor;
 }
 
++ (UIColor *)defaultStarFilledColor {
+  return [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
+}
+
 + (UIColor *)defaultStarColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint04];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint04];
 }
 
 @end

@@ -41,6 +41,14 @@
 		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
 		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
 		6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */; };
+		606BBA5F260DE0C700683FBA /* SkyscannerRelativeiOS-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA57260DE0C700683FBA /* SkyscannerRelativeiOS-BoldItalic.ttf */; };
+		606BBA60260DE0C700683FBA /* SkyscannerRelativeiOS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA58260DE0C700683FBA /* SkyscannerRelativeiOS-Italic.ttf */; };
+		606BBA61260DE0C700683FBA /* SkyscannerRelativeiOS-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA59260DE0C700683FBA /* SkyscannerRelativeiOS-Black.ttf */; };
+		606BBA62260DE0C700683FBA /* SkyscannerRelativeiOS-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA5A260DE0C700683FBA /* SkyscannerRelativeiOS-MediumItalic.ttf */; };
+		606BBA63260DE0C700683FBA /* SkyscannerRelativeiOS-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA5B260DE0C700683FBA /* SkyscannerRelativeiOS-BlackItalic.ttf */; };
+		606BBA64260DE0C700683FBA /* SkyscannerRelativeiOS-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA5C260DE0C700683FBA /* SkyscannerRelativeiOS-Medium.ttf */; };
+		606BBA65260DE0C700683FBA /* SkyscannerRelativeiOS-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA5D260DE0C700683FBA /* SkyscannerRelativeiOS-Book.ttf */; };
+		606BBA66260DE0C700683FBA /* SkyscannerRelativeiOS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 606BBA5E260DE0C700683FBA /* SkyscannerRelativeiOS-Bold.ttf */; };
 		60AF37BD25E549EC00825050 /* StoryGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF37BC25E549EC00825050 /* StoryGroup.swift */; };
 		60AF37C925E54B1000825050 /* ColorsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF37C825E54B1000825050 /* ColorsStory.swift */; };
 		60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CE0F982189F99200309211 /* SwitchesViewController.swift */; };
@@ -290,6 +298,14 @@
 		6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiViewController.m; sourceTree = "<group>"; };
 		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		606BBA57260DE0C700683FBA /* SkyscannerRelativeiOS-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-BoldItalic.ttf"; sourceTree = "<group>"; };
+		606BBA58260DE0C700683FBA /* SkyscannerRelativeiOS-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-Italic.ttf"; sourceTree = "<group>"; };
+		606BBA59260DE0C700683FBA /* SkyscannerRelativeiOS-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-Black.ttf"; sourceTree = "<group>"; };
+		606BBA5A260DE0C700683FBA /* SkyscannerRelativeiOS-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-MediumItalic.ttf"; sourceTree = "<group>"; };
+		606BBA5B260DE0C700683FBA /* SkyscannerRelativeiOS-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-BlackItalic.ttf"; sourceTree = "<group>"; };
+		606BBA5C260DE0C700683FBA /* SkyscannerRelativeiOS-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-Medium.ttf"; sourceTree = "<group>"; };
+		606BBA5D260DE0C700683FBA /* SkyscannerRelativeiOS-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-Book.ttf"; sourceTree = "<group>"; };
+		606BBA5E260DE0C700683FBA /* SkyscannerRelativeiOS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SkyscannerRelativeiOS-Bold.ttf"; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		60AF37BC25E549EC00825050 /* StoryGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGroup.swift; sourceTree = "<group>"; };
 		60AF37C825E54B1000825050 /* ColorsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsStory.swift; sourceTree = "<group>"; };
@@ -760,6 +776,14 @@
 		D22FB970230C0E950023DC72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				606BBA59260DE0C700683FBA /* SkyscannerRelativeiOS-Black.ttf */,
+				606BBA5B260DE0C700683FBA /* SkyscannerRelativeiOS-BlackItalic.ttf */,
+				606BBA5E260DE0C700683FBA /* SkyscannerRelativeiOS-Bold.ttf */,
+				606BBA57260DE0C700683FBA /* SkyscannerRelativeiOS-BoldItalic.ttf */,
+				606BBA5D260DE0C700683FBA /* SkyscannerRelativeiOS-Book.ttf */,
+				606BBA58260DE0C700683FBA /* SkyscannerRelativeiOS-Italic.ttf */,
+				606BBA5C260DE0C700683FBA /* SkyscannerRelativeiOS-Medium.ttf */,
+				606BBA5A260DE0C700683FBA /* SkyscannerRelativeiOS-MediumItalic.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1115,6 +1139,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				606BBA64260DE0C700683FBA /* SkyscannerRelativeiOS-Medium.ttf in Resources */,
+				606BBA60260DE0C700683FBA /* SkyscannerRelativeiOS-Italic.ttf in Resources */,
 				D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */,
 				D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */,
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
@@ -1123,12 +1149,14 @@
 				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				D2C4467023158479009E58A5 /* Panel.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				606BBA63260DE0C700683FBA /* SkyscannerRelativeiOS-BlackItalic.ttf in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
 				D2B4FC3F2538A87600070BEC /* OverlayView.storyboard in Resources */,
 				E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */,
 				D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */,
 				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */,
+				606BBA5F260DE0C700683FBA /* SkyscannerRelativeiOS-BoldItalic.ttf in Resources */,
 				D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */,
 				D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */,
 				D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */,
@@ -1136,16 +1164,20 @@
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
 				D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */,
 				D211A90522D8A4D700447B64 /* HorizontalNavigation.storyboard in Resources */,
+				606BBA65260DE0C700683FBA /* SkyscannerRelativeiOS-Book.ttf in Resources */,
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
+				606BBA61260DE0C700683FBA /* SkyscannerRelativeiOS-Black.ttf in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
 				D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */,
 				D242176E252F6B5F00F449E4 /* Spinners.storyboard in Resources */,
+				606BBA66260DE0C700683FBA /* SkyscannerRelativeiOS-Bold.ttf in Resources */,
 				7639E563232904D0004D7B09 /* Toasts.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
 				D61ACE032306E1E7001C976E /* NavigationBar.storyboard in Resources */,
 				D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */,
+				606BBA62260DE0C700683FBA /* SkyscannerRelativeiOS-MediumItalic.ttf in Resources */,
 				764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

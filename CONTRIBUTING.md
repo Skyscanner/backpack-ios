@@ -33,7 +33,7 @@ Given that you have a compatible environment as stated above you can now setup t
 
 > Skyscanner employees only
 
-To use our `Skyscanner Relative` font-face in the example app, download the files first by executing the script below from the top-level of the repo. You will need SSH access to `github.skyscannertools.net` to do this.
+To use our `Skyscanner Relative` font-face in the example app, download the files first by executing the script below from the top level of the repo. You will need SSH access to `github.skyscannertools.net` to do this.
 
 If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
 
@@ -41,9 +41,21 @@ If you don't work for Skyscanner don't worry - the Example app will still work j
 ./scripts/download-relative-fonts
 ```
 
+Once the fonts are downloaded, ensure they're visible in Xcode at _Example for Backpack/Resources_. If they aren't, right click on _Resources_, press _Add files to Backpack_ and add them.
+
 ## Testing
 
 Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.5 to match what is used on CI.
+
+## Taking screenshots
+
+The _screenshots_ folder stores all of the screenshots we use on the [documentation site](https://backpack.github.io). If you change the appearance of a component you must update the screenshots accordingly. To do this, run:
+
+```
+bundle exec rake take_screenshots
+```
+
+The script takes 10-15 minutes. It also requires that the iPhone Simulator is not already running.
 
 ### Snapshot testing
 
