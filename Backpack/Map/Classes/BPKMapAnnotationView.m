@@ -152,8 +152,6 @@ NS_ASSUME_NONNULL_BEGIN
         CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         self.bounds = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height + self.annotationDotHeight - self.calloutViewOverlap);
     }
-
-    [self setNeedsLayout];
 }
 
 - (void)layoutSubviews {
