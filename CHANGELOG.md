@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.1.1
+
+**Fixed:**
+- Backpack/StarRating
+  - Updated the star colours to increase contrast.
+
 # 42.1.0
 
 **Added:**
