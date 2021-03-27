@@ -294,10 +294,12 @@ class Screenshots: XCTestCase {
         tapBackButton()
 
         app.tables.staticTexts["Map"].tap()
+        app.tables.staticTexts["Default"].tap()
         app.maps.element.otherElements["Manchester"].tap()
         app.maps.element.otherElements["London"].tap()
         app.maps.element.otherElements["London"].tap()
         saveScreenshot(component: "map", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
         tapBackButton()
 
         app.tables.staticTexts["Navigation bars"].tap()

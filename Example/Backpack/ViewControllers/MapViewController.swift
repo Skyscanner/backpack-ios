@@ -24,6 +24,8 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     fileprivate static let reuseIdentifier = "ChipPreviewCollectionViewCell"
 
+    var testPerformance: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +45,6 @@ class MapViewController: UIViewController {
         edinburgh.title = "Edinburgh"
         edinburgh.alwaysShowCallout = true
         edinburgh.coordinate = CLLocationCoordinate2D(latitude: 55.95338, longitude: -3.189977)
-        mapView.addAnnotation(edinburgh)
 
         let manchester = BPKMapAnnotation()
         manchester.title = "Manchester"
@@ -51,30 +52,43 @@ class MapViewController: UIViewController {
         manchester.accessibilityLabel = "Manchester airport"
         manchester.alwaysShowCallout = true
         manchester.coordinate = CLLocationCoordinate2D(latitude: 53.483835, longitude: -2.24067)
-        mapView.addAnnotation(manchester)
 
         let newcastle = BPKMapAnnotation()
         newcastle.title = "Newcastle"
         newcastle.alwaysShowCallout = true
         newcastle.enabled = false
         newcastle.coordinate = CLLocationCoordinate2D(latitude: 54.973042, longitude: -1.61699)
-        mapView.addAnnotation(newcastle)
 
         let bristol = BPKMapAnnotation()
         bristol.title = "Bristol"
         bristol.coordinate = CLLocationCoordinate2D(latitude: 51.45705, longitude: -2.58719)
-        mapView.addAnnotation(bristol)
 
         let soton = BPKMapAnnotation()
         soton.title = "Southampton"
         soton.coordinate = CLLocationCoordinate2D(latitude: 50.90382, longitude: -1.40638)
-        mapView.addAnnotation(soton)
 
         let london = BPKMapAnnotation()
         london.title = "London"
         london.alwaysShowCallout = true
         london.coordinate = CLLocationCoordinate2D(latitude: 51.5122, longitude: -0.12355)
-        mapView.addAnnotation(london)
+
+        if !testPerformance {
+            mapView.addAnnotations([edinburgh, manchester, newcastle, bristol, soton, london])
+        }
+
+        if testPerformance {
+            let columns = 18
+            for ind in 0...179 {
+                let annotation = BPKMapAnnotation()
+                annotation.title = "£\(ind)"
+                annotation.alwaysShowCallout = true
+                annotation.coordinate = CLLocationCoordinate2D(
+                    latitude: 58 - (Double(ind) / Double(columns)).rounded(.down) * 0.8,
+                    longitude: (Double(ind % columns) * 0.4) - 6.0
+                )
+                mapView.addAnnotation(annotation)
+            }
+        }
     }
 }
 

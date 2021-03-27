@@ -94,6 +94,7 @@
 		D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F3216643B8001CB366 /* BPKCardTest.m */; };
 		D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
 		D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */; };
+		D248159D260F79B100BCE6AD /* MapStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248159C260F79B100BCE6AD /* MapStory.swift */; };
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
 		D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
@@ -350,6 +351,7 @@
 		D246C1F3216643B8001CB366 /* BPKCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardTest.m; sourceTree = "<group>"; };
 		D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKCardSnapshotTest.m; sourceTree = "<group>"; };
 		D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKRatingSnapshotTest.m; sourceTree = "<group>"; };
+		D248159C260F79B100BCE6AD /* MapStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapStory.swift; sourceTree = "<group>"; };
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
 		D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKProgressBarTest.m; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
@@ -688,13 +690,14 @@
 		603658D625E3E1BD00A94126 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
-				603658D725E3E1CF00A94126 /* ChipStory.swift */,
 				603658ED25E416D600A94126 /* ButtonStory.swift */,
 				603658F425E419AD00A94126 /* CalendarStory.swift */,
-				603658FB25E41EAA00A94126 /* FlareStory.swift */,
 				6036590225E41F4000A94126 /* CardStory.swift */,
-				6036590925E4200000A94126 /* DividedCardStory.swift */,
+				603658D725E3E1CF00A94126 /* ChipStory.swift */,
 				60AF37C825E54B1000825050 /* ColorsStory.swift */,
+				6036590925E4200000A94126 /* DividedCardStory.swift */,
+				603658FB25E41EAA00A94126 /* FlareStory.swift */,
+				D248159C260F79B100BCE6AD /* MapStory.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
+				D248159D260F79B100BCE6AD /* MapStory.swift in Sources */,
 				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* BPKNavigationViewController.swift in Sources */,
