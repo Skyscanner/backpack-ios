@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -17,14 +16,13 @@
  * limitations under the License.
  */
 
+#import <Backpack/Spacing.h>
 #import <Backpack/Map.h>
 
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import "BPKSnapshotTest.h"
 
 NSString *const ReuseIdentifier = @"Annotation";
-CGFloat const annotationHeight = 65;
-CGFloat const annotationWidth = 120;
 
 @interface BPKMapAnnotationSnapshotTest : FBSnapshotTestCase
 @end
@@ -54,10 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
     [wrapper addSubview:annotationView];
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [annotationView.leadingAnchor constraintEqualToAnchor:wrapper.leadingAnchor constant:47],
-        [annotationView.topAnchor constraintEqualToAnchor:wrapper.topAnchor constant:40],
-        [wrapper.widthAnchor constraintEqualToConstant:annotationWidth],
-        [wrapper.heightAnchor constraintEqualToConstant:annotationHeight]
+        [annotationView.widthAnchor constraintEqualToConstant:annotationView.bounds.size.width],
+        [annotationView.heightAnchor constraintEqualToConstant:annotationView.bounds.size.height],
+        [annotationView.centerXAnchor constraintEqualToAnchor:wrapper.centerXAnchor],
+        [annotationView.centerYAnchor constraintEqualToAnchor:wrapper.centerYAnchor],
+        [wrapper.widthAnchor constraintEqualToAnchor:annotationView.widthAnchor],
+        [wrapper.heightAnchor constraintEqualToAnchor:annotationView.heightAnchor]
     ]];
     return wrapper;
 }
@@ -90,24 +90,29 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:@[
         [annotationView1.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor],
         [annotationView1.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView1.bottomAnchor],
 
         [annotationView2.leadingAnchor constraintEqualToAnchor:annotationView1.trailingAnchor],
         [annotationView2.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView2.bottomAnchor],
 
         [annotationView3.leadingAnchor constraintEqualToAnchor:annotationView2.trailingAnchor],
         [annotationView3.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView3.bottomAnchor],
 
         [annotationView4.leadingAnchor constraintEqualToAnchor:annotationView3.trailingAnchor],
         [annotationView4.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView4.bottomAnchor],
 
         [annotationView5.leadingAnchor constraintEqualToAnchor:annotationView4.trailingAnchor],
         [annotationView5.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView5.bottomAnchor],
 
         [annotationView6.leadingAnchor constraintEqualToAnchor:annotationView5.trailingAnchor],
         [annotationView6.topAnchor constraintEqualToAnchor:outerView.topAnchor],
+        [outerView.bottomAnchor constraintGreaterThanOrEqualToAnchor:annotationView6.bottomAnchor],
 
-        [outerView.trailingAnchor constraintEqualToAnchor:annotationView6.trailingAnchor],
-        [outerView.bottomAnchor constraintEqualToAnchor:annotationView1.bottomAnchor]
+        [outerView.trailingAnchor constraintEqualToAnchor:annotationView6.trailingAnchor]
     ]];
     return outerView;
 }
@@ -119,7 +124,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
-
 
 - (void)testMapAnnotationsWithIcons {
     UIView *lightView = [self createMapAnnotationsWithIcons:YES];
@@ -138,22 +142,8 @@ NS_ASSUME_NONNULL_BEGIN
                               enabled:YES
                               icon:icon
                               ];
-
-    UIView *outerView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    [outerView addSubview:annotationView];
-
-    outerView.translatesAutoresizingMaskIntoConstraints = NO;
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [NSLayoutConstraint activateConstraints:@[
-        [annotationView.leadingAnchor constraintEqualToAnchor:outerView.leadingAnchor constant:65],
-        [annotationView.topAnchor constraintEqualToAnchor:outerView.topAnchor constant:10],
-
-        [outerView.trailingAnchor constraintEqualToAnchor:annotationView.trailingAnchor constant:55],
-        [outerView.bottomAnchor constraintEqualToAnchor:annotationView.bottomAnchor]
-    ]];
-    return outerView;
+    return annotationView;
 }
 
 - (void)testLongTitleCalloutView {

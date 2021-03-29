@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKIconView *iconView;
 @property(nonatomic, strong) BPKLabel *label;
 @property(nonatomic, strong) UIColor *contentColor;
+@property(nonatomic, readonly) CGFloat paddingSize;
+@property(nonatomic, readonly) CGFloat maximumWidth;
 
 - (void)setupAppearance;
 @end
@@ -150,29 +152,31 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupAppearance {
+    self.userInteractionEnabled = NO;
     self.contentView.layer.borderWidth = BPKBorderWidthLg;
-
-    [BPKShadow.shadowSm applyToLayer:self.layer];
 
     UIStackView *stackView = [[UIStackView alloc] init];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.spacing = BPKSpacingSm;
+    stackView.spacing = self.paddingSize;
     stackView.alignment = UIStackViewAlignmentCenter;
 
     BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
 
     BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
 
+    // Ensures that the icon will remain visible even if the label has to shrink
+    [label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+
     [self.contentView addSubview:stackView];
     [stackView addArrangedSubview:iconView];
     [stackView addArrangedSubview:label];
 
     [NSLayoutConstraint activateConstraints:@[
-        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingSm],
-        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:BPKSpacingSm],
-        [stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:BPKSpacingSm],
-        [self.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:BPKSpacingSm],
-        [self.widthAnchor constraintLessThanOrEqualToConstant:BPKSpacingXxl * 5]
+        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:self.paddingSize],
+        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.paddingSize],
+        [stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:self.paddingSize],
+        [self.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.paddingSize],
+        [self.widthAnchor constraintLessThanOrEqualToConstant:self.maximumWidth]
     ]];
     self.stackView = stackView;
     self.label = label;
@@ -180,6 +184,14 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.cornerRadius = BPKSpacingSm;
     [self updateStyle];
+}
+
+- (CGFloat)paddingSize {
+    return BPKSpacingSm;
+}
+
+- (CGFloat)maximumWidth {
+    return BPKSpacingXxl * 5;
 }
 
 @end

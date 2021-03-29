@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
 @property(nonatomic, nullable, strong) UIView *dotView;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
-@property(nonatomic, readonly) CGFloat annotationHitAreaHeight;
 @property(nonatomic, readonly) CGFloat annotationDotHeight;
+@property(nonatomic, readonly) CGFloat calloutViewOverlap;
 
 @end
 
@@ -71,21 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)setupAppearance {
-    self.translatesAutoresizingMaskIntoConstraints = NO;
     self.hasBeenSelected = false;
     [self updateImage];
 
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
-    self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint activateConstraints:@[
-        [self.dotView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.dotView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.dotView.trailingAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.dotView.bottomAnchor],
-        [self.dotView.widthAnchor constraintEqualToConstant:self.annotationDotHeight],
-        [self.dotView.heightAnchor constraintEqualToConstant:self.annotationDotHeight]
-    ]];
+
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm/2;
@@ -98,10 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
         BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
         [self addSubview:calloutView];
         calloutView.translatesAutoresizingMaskIntoConstraints = NO;
-        [NSLayoutConstraint activateConstraints:@[
-            [calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
-            [calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:BPKSpacingSm / 2]
-        ]];
         _calloutView = calloutView;
     }
 
@@ -153,6 +140,38 @@ NS_ASSUME_NONNULL_BEGIN
     if (_calloutView != nil) {
         [self.calloutView update];
     }
+
+    [self updateBounds];
+}
+
+- (void)updateBounds {
+    // Using `_calloutView` so that if it is not already created we don't access the lazy property
+    if (_calloutView == nil || self.calloutView.hidden) {
+        self.bounds = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
+    } else {
+        CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        self.bounds = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height + self.annotationDotHeight - self.calloutViewOverlap);
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    // Using `_calloutView` so that if it is not already created we don't access the lazy property
+    if (_calloutView == nil || self.calloutView.hidden) {
+        self.dotView.frame = CGRectMake(0, 0, self.annotationDotHeight, self.annotationDotHeight);
+        self.centerOffset = CGPointMake(0, 0);
+    } else {
+        CGSize calloutViewSize = [self.calloutView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        self.calloutView.frame = CGRectMake(0, 0, calloutViewSize.width, calloutViewSize.height);
+
+        CGFloat dotLeft = (calloutViewSize.width - self.annotationDotHeight) / 2;
+        CGFloat dotTop = calloutViewSize.height - self.calloutViewOverlap;
+        self.dotView.frame = CGRectMake(dotLeft, dotTop, self.annotationDotHeight, self.annotationDotHeight);
+
+        CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
+        self.centerOffset = CGPointMake(0, offset);
+    }
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {
@@ -168,20 +187,18 @@ NS_ASSUME_NONNULL_BEGIN
     self.hasBeenSelected = false;
 }
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *_Nullable)event {
-    CGFloat insetBy = self.annotationHitAreaHeight - self.annotationDotHeight;
-    CGRect hitArea = CGRectInset(self.bounds, insetBy, insetBy);
-    return CGRectContainsPoint(hitArea, point);
-}
-
 #pragma mark - constants
 
+/*
+ * The height of the annotation dot.
+ * It does not matter that this is too small a hit target, as the MKAnnotationContainerView handles hit-test logic.
+ */
 - (CGFloat)annotationDotHeight {
     return BPKSpacingBase;
 }
 
-- (CGFloat)annotationHitAreaHeight {
-    return 44;
+- (CGFloat)calloutViewOverlap {
+    return BPKSpacingSm / 2;
 }
 
 @end
