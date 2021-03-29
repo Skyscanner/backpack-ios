@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.1.2
+
+**Fixed:**
+ - Backpack/Map:
+   - Map markers can now be selected by tapping on the callout view.
+
 # 42.1.1
 
 **Fixed:**
