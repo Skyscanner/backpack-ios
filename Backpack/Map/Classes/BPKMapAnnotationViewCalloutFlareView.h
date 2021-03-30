@@ -15,10 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_MASK_LAYER__
-#define __BACKPACK_MASK_LAYER__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import "BPKFlareView.h"
-#import "BPKFlarePath.h"
+#import <Backpack/FlareView.h>
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKMapAnnotationViewCalloutFlareView` is a subclass of `BPKFlareView` which contains the Skyscanner map callout style.
+ */
+IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutFlareView : BPKFlareView
+
+@end
+NS_ASSUME_NONNULL_END
