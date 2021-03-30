@@ -99,41 +99,43 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)updateStyle {
+    BPKFontStyle fontStyle = BPKFontStyleTextBase;
+    UIColor *backgroundColor = nil;
+    UIColor *contentBackgroundColor = nil;
+    UIColor *contentColor = nil;
+    UIColor *borderColor = nil;
+
     if(!self.annotationView.enabled) {
-        self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundView.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
-        self.contentView.backgroundColor = BPKColor.clear;
-        self.contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
-        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
-        [self updateIcon];
-        return;
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
+        borderColor = BPKColor.clear;
+    } else if(self.annotationView.selected) {
+        fontStyle = BPKFontStyleTextBaseEmphasized;
+        backgroundColor = BPKColor.skyBlue;
+        contentBackgroundColor = BPKColor.white;
+        contentColor = BPKColor.skyBlue;
+        borderColor = BPKColor.skyBlue;
+    } else if (self.annotationView.hasBeenSelected) {
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = BPKColor.skyBlueTint03;
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = BPKColor.skyBlue;
+        borderColor = BPKColor.clear;
+    } else {
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = BPKColor.skyBlue;
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = BPKColor.white;
+        borderColor = BPKColor.clear;
     }
 
-    if(self.annotationView.selected) {
-        self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
-        self.backgroundView.backgroundColor = BPKColor.skyBlue;
-        self.contentView.backgroundColor = BPKColor.white;
-        self.contentColor = BPKColor.skyBlue;
-        self.contentView.layer.borderColor = BPKColor.skyBlue.CGColor;
-        [self updateIcon];
-        return;
-    }
-
-    if (self.annotationView.hasBeenSelected) {
-        self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundView.backgroundColor = BPKColor.skyBlueTint03;
-        self.contentView.backgroundColor = BPKColor.clear;
-        self.contentColor = BPKColor.skyBlue;
-        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
-        [self updateIcon];
-        return;
-    }
-
-    self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-    self.backgroundView.backgroundColor = BPKColor.skyBlue;
-    self.contentView.backgroundColor = BPKColor.clear;
-    self.contentColor = BPKColor.white;
-    self.contentView.layer.borderColor = BPKColor.clear.CGColor;
+    self.label.fontStyle = fontStyle;
+    self.backgroundView.backgroundColor = backgroundColor;
+    self.contentView.backgroundColor = contentBackgroundColor;
+    self.contentColor = contentColor;
+    self.contentView.layer.borderColor = borderColor.CGColor;
 
     [self updateIcon];
 }
