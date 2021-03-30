@@ -56,8 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
         [annotationView.heightAnchor constraintEqualToConstant:annotationView.bounds.size.height],
         [annotationView.centerXAnchor constraintEqualToAnchor:wrapper.centerXAnchor],
         [annotationView.centerYAnchor constraintEqualToAnchor:wrapper.centerYAnchor],
-        [wrapper.widthAnchor constraintEqualToAnchor:annotationView.widthAnchor],
-        [wrapper.heightAnchor constraintEqualToAnchor:annotationView.heightAnchor]
+        [wrapper.widthAnchor constraintEqualToAnchor:annotationView.widthAnchor constant:BPKSpacingSm * 2],
+        [wrapper.heightAnchor constraintEqualToAnchor:annotationView.heightAnchor constant:BPKSpacingSm * 2]
     ]];
     return wrapper;
 }
