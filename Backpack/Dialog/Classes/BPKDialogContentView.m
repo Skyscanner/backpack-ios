@@ -89,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.textColor = BPKColor.textPrimaryColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 
     self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     self.descriptionLabel.numberOfLines = 0;
