@@ -18,16 +18,18 @@
 
 #import "BPKMapAnnotationViewCalloutView.h"
 
-#import "BPKMapAnnotationView.h"
-#import "BPKMapAnnotation.h"
-
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/FlareView.h>
 #import <Backpack/Label.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKMapAnnotationViewCalloutFlareView.h"
+#import "BPKMapAnnotationView.h"
+#import "BPKMapAnnotation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKIconView *iconView;
 @property(nonatomic, strong) BPKLabel *label;
 @property(nonatomic, strong) UIColor *contentColor;
+@property(nonatomic, strong) BPKMapAnnotationViewCalloutFlareView *flareView;
 @property(nonatomic, readonly) CGFloat paddingSize;
 @property(nonatomic, readonly) CGFloat maximumWidth;
 
@@ -76,11 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return self;
-}
-
-- (CGFloat)flareHeight {
-    // Design uses non-standard backpack spacing
-    return 6;
 }
 
 - (void)update {
@@ -132,12 +130,13 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     self.label.fontStyle = fontStyle;
-    self.backgroundView.backgroundColor = backgroundColor;
-    self.contentView.backgroundColor = contentBackgroundColor;
+    self.flareView.backgroundView.backgroundColor = backgroundColor;
+    self.flareView.contentView.backgroundColor = contentBackgroundColor;
     self.contentColor = contentColor;
-    self.contentView.layer.borderColor = borderColor.CGColor;
+    self.flareView.contentView.layer.borderColor = borderColor.CGColor;
 
     [self updateIcon];
+    [self updateShadowPath];
 }
 
 -(void)updateIcon {
@@ -153,9 +152,20 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+-(void)updateShadowPath {
+    UIBezierPath *shadowPath = [BPKFlarePath flareViewPathForSize:self.bounds.size flareHeight:self.flareView.flareHeight cornerRadius:self.flareView.cornerRadius flarePosition:self.flareView.flarePosition];
+
+    CGPathRef finalPath = shadowPath.CGPath;
+    self.layer.shadowPath = finalPath;
+}
+
 - (void)setupAppearance {
     self.userInteractionEnabled = NO;
-    self.contentView.layer.borderWidth = BPKBorderWidthLg;
+    [[BPKShadow shadowSm] applyToLayer:self.layer];
+
+    BPKMapAnnotationViewCalloutFlareView *flareView = [BPKMapAnnotationViewCalloutFlareView new];
+    flareView.translatesAutoresizingMaskIntoConstraints = NO;
+    flareView.contentView.layer.borderWidth = BPKBorderWidthLg;
 
     UIStackView *stackView = [[UIStackView alloc] init];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -169,22 +179,28 @@ NS_ASSUME_NONNULL_BEGIN
     // Ensures that the icon will remain visible even if the label has to shrink
     [label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
-    [self.contentView addSubview:stackView];
+    [self addSubview:flareView];
+    [flareView.contentView addSubview:stackView];
     [stackView addArrangedSubview:iconView];
     [stackView addArrangedSubview:label];
 
     [NSLayoutConstraint activateConstraints:@[
-        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:self.paddingSize],
-        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.paddingSize],
-        [stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:self.paddingSize],
-        [self.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.paddingSize],
+        [flareView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [flareView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [flareView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
+        [flareView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
+        [stackView.leadingAnchor constraintEqualToAnchor:flareView.contentView.leadingAnchor constant:self.paddingSize],
+        [flareView.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.paddingSize],
+        [stackView.topAnchor constraintEqualToAnchor:flareView.contentView.topAnchor constant:self.paddingSize],
+        [flareView.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.paddingSize],
         [self.widthAnchor constraintLessThanOrEqualToConstant:self.maximumWidth]
     ]];
+    self.flareView = flareView;
     self.stackView = stackView;
     self.label = label;
     self.iconView = iconView;
 
-    self.cornerRadius = BPKSpacingSm;
+    flareView.cornerRadius = BPKSpacingSm;
     [self updateStyle];
 }
 

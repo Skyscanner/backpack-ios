@@ -15,10 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_MASK_LAYER__
-#define __BACKPACK_MASK_LAYER__
 
-#import "BPKFlareView.h"
-#import "BPKFlarePath.h"
+#import "BPKMapAnnotationViewCalloutFlareView.h"
 
-#endif
+#import <Backpack/Common.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKMapAnnotationViewCalloutFlareView
+
+- (CGFloat)flareHeight {
+    // Design uses non-standard backpack spacing
+    return 6;
+}
+
+@end
+NS_ASSUME_NONNULL_END

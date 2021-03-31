@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+ - Backpack/Map:
+   - Added shadows to callout views so that they are more distinguishable.
 
 **Fixed:**
 
