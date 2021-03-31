@@ -1,6 +1,17 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.2.0
+
+**Added:**
+ - Backpack/Map:
+   - Added shadows to callout views so that they are more distinguishable.
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Added the header trait to the title label within the dialog.
+
 # 42.1.2
 
 **Fixed:**

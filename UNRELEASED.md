@@ -1,14 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Added:**
- - Backpack/Map:
-   - Added shadows to callout views so that they are more distinguishable.
-
-**Fixed:**
-
-- Backpack/Dialog:
-  - Added the header trait to the title label within the dialog.
 
 ## How to write a good changelog entry
 
