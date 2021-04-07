@@ -50,12 +50,6 @@ jobs:
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Select Xcode 12
-        run: sudo xcode-select --switch /Applications/Xcode_12.4.app
-
-      - name: Install clang format
-        run: brew install clang-format
-
       - name: nvm install
         run: nvm install
 
@@ -89,76 +83,11 @@ jobs:
           nvm use
           npm ci
 
-      - name: Bundle Install
-        run: bundle install --jobs 4 --retry 3
-
-      - name: Pod Install
-        run: bundle exec pod install
-        working-directory: Example
-
-      - name: Run NPM build
-        run: npm run build
-
-      - name: Check pristine
-        run: ./scripts/check-pristine-state package-lock.json
-
-      - name: Run Swiftlint
-        run: Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml
-        working-directory: Example
-
       - name: Run danger
         run: npm run danger:ci
         env:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
 
-      - name: Build and verify docs
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
-        run: ./scripts/build-docs-ci && rm -rf docs
-
-      - name: Build (pull request build)
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
-        run: ./scripts/build-docs-ci $PR_NUMBER
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-
-      - name: Build docs
-        if: steps.extract_git_tag.outputs.GIT_TAG != ''
-        run: ./scripts/build-docs-ci ${{ steps.extract_git_tag.outputs.GIT_TAG }}
-
-      - name: Build and Test
-        env:
-          FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator14.4
-          DESTINATION: 'OS=14.4,platform=iOS Simulator,name=iPhone 8'
-        run: bundle exec rake ci
-        working-directory: Example
-
-      - name: Save assets
-        uses: actions/upload-artifact@v2
-        if: ${{ failure() }}
-        with:
-          name: FailureDiffs
-          path: Example/BackpackTests/FailureDiffs
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: steps.extract_git_tag.outputs.GIT_TAG != ''
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_dir: docs/
-          keep_files: true
-          external_repository: backpack/ios
-          publish_branch: main
-
-      - name: Deploy docs to backpack.github.io/ios-prs, if a pull request
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref != 'refs/heads/main'
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_dir: docs/versions/
-          keep_files: true
-          external_repository: backpack/ios-prs
-          publish_branch: main
 
   trigger_docs:
     name: Trigger docs build

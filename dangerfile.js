@@ -25,16 +25,19 @@
 import fs from 'fs';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { danger, warn } from 'danger';
+import { danger, warn, fail } from 'danger';
+
+const pbxprojFilePath = 'Example/Backpack.xcodeproj/project.pbxproj';
 
 const projectFileMentionsRelative = async () => {
-  const filePath = 'Example/Backpack.xcodeproj/project.pbxproj';
-  const stat = await fs.promises.stat(filePath);
+  const stat = await fs.promises.stat(pbxprojFilePath);
   if (!stat.isFile()) {
     return false;
   }
 
-  const content = await fs.promises.readFile(filePath, { encoding: 'utf-8' });
+  const content = await fs.promises.readFile(pbxprojFilePath, {
+    encoding: 'utf-8',
+  });
   return content.includes('SkyscannerRelative');
 };
 
@@ -65,8 +68,8 @@ schedule(async () => {
   }
 
   if (await projectFileMentionsRelative()) {
-    error(
-      'Project file references "SkyscannerRelative". This change should not be checked in.',
+    fail(
+      `Project file "${pbxprojFilePath}" references "SkyscannerRelative". This change should not be checked in.`,
     );
   }
 });
