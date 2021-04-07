@@ -25,7 +25,21 @@
 import fs from 'fs';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { danger, warn } from 'danger';
+import { danger, warn, fail } from 'danger';
+
+const pbxprojFilePath = 'Example/Backpack.xcodeproj/project.pbxproj';
+
+const projectFileMentionsRelative = async () => {
+  const stat = await fs.promises.stat(pbxprojFilePath);
+  if (!stat.isFile()) {
+    return false;
+  }
+
+  const content = await fs.promises.readFile(pbxprojFilePath, {
+    encoding: 'utf-8',
+  });
+  return content.includes('SkyscannerRelative');
+};
 
 const hasNonRTLAnchor = async filePath => {
   const stat = await fs.promises.stat(filePath);
@@ -50,6 +64,12 @@ schedule(async () => {
   if (usesNonRTLAnchor) {
     warn(
       'You have used `leftAnchor` or `rightAnchor`. These should generally be avoided to ensure that RTL is supported.',
+    );
+  }
+
+  if (await projectFileMentionsRelative()) {
+    fail(
+      `Project file "${pbxprojFilePath}" references "SkyscannerRelative". This change should not be checked in.`,
     );
   }
 });
