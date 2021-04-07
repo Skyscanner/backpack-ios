@@ -41,7 +41,7 @@ If you don't work for Skyscanner don't worry - the Example app will still work j
 ./scripts/download-relative-fonts
 ```
 
-Once the fonts are downloaded, ensure they're visible in Xcode at _Example for Backpack/Resources_. If they aren't, right click on _Resources_, press _Add files to Backpack_ and add them.
+Once the fonts are downloaded, add them to the Xcode project under _Example for Backpack/Resources_. To do this, right click on _Resources_, press _Add files to "Backpack"_ and add them.
 
 ## Testing
 
@@ -74,7 +74,6 @@ Write your commit messages using imperative mood and in general follow the rules
 To issue a new release make sure you've set the project up as above, that you have push access to the Backpack CocoaPod and that you're logged in to [CocoaPods trunk](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#getting-started). `bundle exec pod trunk me` should print **your info** and include the **Backpack pod** in the output.
 
 Move all the entries from the `UNRELEASED.md` file to the `CHANGELOG.md` and add them under the header with the new version you're about to publish. **Do not commit these changes** (leave them unstaged) and run `bundle exec rake release`.
-
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
