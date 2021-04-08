@@ -34,12 +34,12 @@ enum LabelStory: String, StoryGroup {
 
         switch self {
         case .default, .emphasized, .heavy:
-            let makeViewController = storyboard("LabelsViewController").makeViewController
+            let presentable = storyboard("LabelsViewController")
 
-            return CustomPresentable(generateViewController: enrich(makeViewController) {
+            return presentable.enrich {
                 let labelsVc = $0 as? LabelsViewController
                 labelsVc?.type = type
-            })
+            }
         case .performance:
             return storyboard("LabelsPerformanceViewController")
         case .multipleFontStyle:

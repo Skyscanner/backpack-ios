@@ -49,16 +49,16 @@ enum ButtonStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Buttons")
-    let viewController = storyboard("ButtonsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, setButtonStyle()))
+    let viewController = storyboard("ButtonsViewController")
+
+    return viewController.enrich(setButtonStyle)
   }
 
-  func setButtonStyle() -> (UIViewController) -> Void {
-    return { storyboardVC in
-      guard let buttonsVC = storyboardVC as? BPKButtonsViewController else {
+  func setButtonStyle(storyBoardViewController: UIViewController) {
+    guard let buttonsVC = storyBoardViewController as? BPKButtonsViewController else {
         return
-      }
-      buttonsVC.style = self.buttonStyle
     }
+
+    buttonsVC.style = self.buttonStyle
   }
 }

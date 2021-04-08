@@ -28,15 +28,16 @@ enum MapStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Map")
-    let viewController = storyboard("MapsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let mapViewController = $0 as? MapViewController
+    let presentable = storyboard("MapsViewController")
 
-      switch self {
-      case .performance:
-        mapViewController?.testPerformance = true
-      default: break
-      }
-    }))
+    return presentable.enrich {
+        let mapViewController = $0 as? MapViewController
+
+        switch self {
+        case .performance:
+          mapViewController?.testPerformance = true
+        default: break
+        }
+    }
   }
 }

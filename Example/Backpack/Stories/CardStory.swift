@@ -31,22 +31,23 @@ enum CardStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")
-    let viewController = storyboard("CardsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let cardVC = $0 as? CardsViewController
+    let presentable = storyboard("CardsViewController")
 
-      switch self {
-      case .default:
-        break
-      case .withoutPadding:
-        cardVC?.padded = false
-      case .selected:
-        cardVC?.selected = true
-      case .cornerStyleLarge:
-        cardVC?.cornerStyle = .large
-      case .alternativeBackgroundColor:
-        cardVC?.backgroundColor = BPKColor.skyBlueTint01
-      }
-    }))
+    return presentable.enrich {
+        let cardVC = $0 as? CardsViewController
+
+        switch self {
+        case .default:
+          break
+        case .withoutPadding:
+          cardVC?.padded = false
+        case .selected:
+          cardVC?.selected = true
+        case .cornerStyleLarge:
+          cardVC?.cornerStyle = .large
+        case .alternativeBackgroundColor:
+          cardVC?.backgroundColor = BPKColor.skyBlueTint01
+        }
+    }
   }
 }
