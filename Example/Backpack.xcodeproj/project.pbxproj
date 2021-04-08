@@ -172,7 +172,6 @@
 		D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
 		D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */; };
 		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
-		D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */; };
 		D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */; };
 		D696CA20215CC09400682666 /* BPKIconTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D696CA1F215CC09400682666 /* BPKIconTest.m */; };
 		D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696CA21215CC1BD00682666 /* IconSwiftTest.swift */; };
@@ -202,6 +201,7 @@
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */; };
 		D6FC4CD7261F0BE7000BA351 /* DialogStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */; };
+		D6FC4CF6261F11F5000BA351 /* LabelStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CF5261F11F5000BA351 /* LabelStory.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
@@ -437,7 +437,6 @@
 		D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPrimaryGradientSnapshotTests.m; sourceTree = "<group>"; };
 		D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSnapshotTest.m; sourceTree = "<group>"; };
 		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
-		D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsPerformanceViewController.swift; sourceTree = "<group>"; };
 		D696CA1F215CC09400682666 /* BPKIconTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconTest.m; sourceTree = "<group>"; };
 		D696CA21215CC1BD00682666 /* IconSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSwiftTest.swift; sourceTree = "<group>"; };
@@ -465,6 +464,7 @@
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationStory.swift; sourceTree = "<group>"; };
 		D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogStory.swift; sourceTree = "<group>"; };
+		D6FC4CF5261F11F5000BA351 /* LabelStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStory.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
@@ -697,6 +697,7 @@
 				D248159C260F79B100BCE6AD /* MapStory.swift */,
 				D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */,
 				D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */,
+				D6FC4CF5261F11F5000BA351 /* LabelStory.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -852,7 +853,6 @@
 				6055821621523A1300BF9F3E /* IconsViewController.swift */,
 				D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */,
 				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
-				D690703D215A3DF50088C97B /* LabelsSelectorTableViewController.swift */,
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
 				D2EB964B25C05DF600988978 /* MapViewController.swift */,
 				D202E167238C1770003E7B23 /* NavigationBarSelectorViewController.swift */,
@@ -1352,6 +1352,7 @@
 				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
 				60AF37C925E54B1000825050 /* ColorsStory.swift in Sources */,
+				D6FC4CF6261F11F5000BA351 /* LabelStory.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,
@@ -1382,7 +1383,6 @@
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */,
-				D690703E215A3DF50088C97B /* LabelsSelectorTableViewController.swift in Sources */,
 				D217702425ACCC9700C0FD8C /* AppStructure.swift in Sources */,
 				603658F525E419AD00A94126 /* CalendarStory.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,

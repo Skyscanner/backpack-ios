@@ -282,7 +282,7 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Default"].tap()
         saveScreenshot(component: "label", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
-        app.tables.staticTexts["Emphasized"].tap()
+        app.tables.staticTexts["Emphasised"].tap()
         saveScreenshot(component: "label", scenario: "emphasized", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
         app.tables.staticTexts["Heavy"].tap()
