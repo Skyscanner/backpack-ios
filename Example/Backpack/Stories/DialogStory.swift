@@ -35,12 +35,12 @@ struct DialogStory {
         }
 
         var presentableStory: Presentable {
-            let makeViewController = loadDialogController().makeViewController
+            let presentable = loadDialogController()
 
-            return CustomPresentable(generateViewController: enrich(makeViewController) {
+            return presentable.enrich {
                 let dialogVC = $0 as? DialogViewController
                 dialogVC?.type = type
-            })
+            }
         }
 
         var type: DialogType {
@@ -68,12 +68,12 @@ struct DialogStory {
         }
 
         var presentableStory: Presentable {
-            let makeViewController = loadDialogController().makeViewController
+            let presentable = loadDialogController()
 
-            return CustomPresentable(generateViewController: enrich(makeViewController) {
+            return presentable.enrich {
                 let dialogVC = $0 as? DialogViewController
                 dialogVC?.type = type
-            })
+            }
         }
 
         var type: DialogType {
@@ -98,12 +98,12 @@ struct DialogStory {
         }
 
         var presentableStory: Presentable {
-            let makeViewController = loadDialogController().makeViewController
+            let presentable = loadDialogController()
 
-            return CustomPresentable(generateViewController: enrich(makeViewController) {
+            return presentable.enrich {
                 let dialogVC = $0 as? DialogViewController
                 dialogVC?.type = type
-            })
+            }
         }
 
         var type: DialogType {

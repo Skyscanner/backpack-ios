@@ -37,9 +37,9 @@ enum HorizontalNavigationStory: String, StoryGroup {
 
     var presentableStory: Presentable {
         let storyboard = loadStoryboard(name: "Main")
-        let viewController = storyboard("HorizontalNavViewController").makeViewController
+        let presentable = storyboard("HorizontalNavViewController")
 
-        return CustomPresentable(generateViewController: enrich(viewController, self.configureStory))
+        return presentable.enrich(self.configureStory)
     }
 
     // This isn't actually complex, it's just a large switch

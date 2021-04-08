@@ -32,24 +32,25 @@ enum CalendarStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Calendar")
-    let viewController = storyboard("CalendarViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let calendarVC = $0 as? CalendarViewController
+    let presentable = storyboard("CalendarViewController")
 
-      switch self {
-      case .default:
-        break
-      case .withMaxEnabledDate:
-        calendarVC?.maxEnabledDate = true
-      case .withCustomStyles:
-        calendarVC?.customStylesForDates = true
-      case .withPrices:
-        calendarVC?.showPrices = true
-      case .alternativeBackgroundColor:
-        calendarVC?.alternativeBackgroundColor = true
-      case .preselectedDates:
-        calendarVC?.preselectedDates = true
-      }
-    }))
+    return presentable.enrich {
+        let calendarVC = $0 as? CalendarViewController
+
+        switch self {
+        case .default:
+          break
+        case .withMaxEnabledDate:
+          calendarVC?.maxEnabledDate = true
+        case .withCustomStyles:
+          calendarVC?.customStylesForDates = true
+        case .withPrices:
+          calendarVC?.showPrices = true
+        case .alternativeBackgroundColor:
+          calendarVC?.alternativeBackgroundColor = true
+        case .preselectedDates:
+          calendarVC?.preselectedDates = true
+        }
+    }
   }
 }

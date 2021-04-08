@@ -30,22 +30,23 @@ enum DividedCardStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Cards")
-    let viewController = storyboard("DividedCardsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let cardVC = $0 as? DividedCardsViewController
+    let presentable = storyboard("DividedCardsViewController")
 
-      switch self {
-      case .dividedHorizontal:
-        cardVC?.divisionDirection = .horizontal
-      case .dividedHorizontalCornerStyleLarge:
-        cardVC?.divisionDirection = .horizontal
-        cardVC?.cornerStyle = .large
-      case .dividedVertical:
-        cardVC?.divisionDirection = .vertical
-      case .dividedVerticalNoPadding:
-        cardVC?.divisionDirection = .vertical
-        cardVC?.padded = false
-      }
-    }))
+    return presentable.enrich {
+        let cardVC = $0 as? DividedCardsViewController
+
+        switch self {
+        case .dividedHorizontal:
+          cardVC?.divisionDirection = .horizontal
+        case .dividedHorizontalCornerStyleLarge:
+          cardVC?.divisionDirection = .horizontal
+          cardVC?.cornerStyle = .large
+        case .dividedVertical:
+          cardVC?.divisionDirection = .vertical
+        case .dividedVerticalNoPadding:
+          cardVC?.divisionDirection = .vertical
+          cardVC?.padded = false
+        }
+    }
   }
 }

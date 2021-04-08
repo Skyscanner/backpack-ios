@@ -31,23 +31,24 @@ enum ChipStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Chips")
-    let viewController = storyboard("ChipsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_abisko
+    let presentable = storyboard("ChipsViewController")
 
-      switch self {
-      case .withIcons:
-        target?.icons = true
-      case .withBackgroundColor:
-        target?.backgroundTint = filledBackgroundColor
-      case .filled:
-        target?.style = .filled
-      case .filledWithBackgroundColor:
-        target?.style = .filled
-        target?.backgroundTint = filledBackgroundColor
-      default: break
-      }
-    }))
+    return presentable.enrich {
+        let target = $0 as? ChipsViewController
+        let filledBackgroundColor: UIColor = .bpk_abisko
+
+        switch self {
+        case .withIcons:
+          target?.icons = true
+        case .withBackgroundColor:
+          target?.backgroundTint = filledBackgroundColor
+        case .filled:
+          target?.style = .filled
+        case .filledWithBackgroundColor:
+          target?.style = .filled
+          target?.backgroundTint = filledBackgroundColor
+        default: break
+        }
+    }
   }
 }

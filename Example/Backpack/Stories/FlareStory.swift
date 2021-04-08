@@ -31,22 +31,23 @@ enum FlareStory: String, StoryGroup {
 
   var presentableStory: Presentable {
     let storyboard = loadStoryboard(name: "Main")
-    let viewController = storyboard("FlareViewViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let flareViewVC = $0 as? FlareViewViewController
+    let presentable = storyboard("FlareViewViewController")
 
-      switch self {
-      case .flareAtTop:
-        flareViewVC?.flareAtTop = true
-      case .rounded:
-        flareViewVC?.rounded = true
-      case .backgroundImage:
-        flareViewVC?.backgroundImage = true
-      case .animated:
-        flareViewVC?.backgroundImage = true
-        flareViewVC?.animated = true
-      default: break
-      }
-    }))
+    return presentable.enrich {
+        let flareViewVC = $0 as? FlareViewViewController
+
+        switch self {
+        case .flareAtTop:
+          flareViewVC?.flareAtTop = true
+        case .rounded:
+          flareViewVC?.rounded = true
+        case .backgroundImage:
+          flareViewVC?.backgroundImage = true
+        case .animated:
+          flareViewVC?.backgroundImage = true
+          flareViewVC?.animated = true
+        default: break
+        }
+    }
   }
 }
