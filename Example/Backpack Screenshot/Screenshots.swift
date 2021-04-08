@@ -24,11 +24,17 @@ import XCTest
 @available(iOS 13.0, *)
 class Screenshots: XCTestCase {
 
-    var app: XCUIApplication = XCUIApplication()
+    var app: XCUIApplication!
+
+    func createApp() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments.append("UITests")
+
+        return app
+    }
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
+        super.setUp()
         continueAfterFailure = true
     }
 
@@ -40,7 +46,7 @@ class Screenshots: XCTestCase {
     }
 
     func tapBackButton() {
-        XCUIApplication().navigationBars.buttons.element(boundBy: 0).tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
     func tapDialogScrimView () {
@@ -50,14 +56,14 @@ class Screenshots: XCTestCase {
     }
 
     func testLightModeScreenshots() {
-        app = XCUIApplication()
+        app = createApp()
         setupSnapshot(app)
         app.launch()
         captureAllScreenshots()
     }
 
     func testDarkModeScreenshots() {
-        app = XCUIApplication()
+        app = createApp()
         app.launchArguments.append("FORCE_DARK_MODE")
         setupSnapshot(app)
         app.launch()
@@ -215,7 +221,7 @@ class Screenshots: XCTestCase {
         saveScreenshot(component: "dialog", scenario: "no-title-no-icon", userInterfaceStyle: userInterfaceStyle)
         app.buttons["Got it"].tap()
         tapBackButton()
-        app.tables.staticTexts["In-app messaging"].tap()
+        app.tables.cells.staticTexts["In-app messaging"].tap()
         app.buttons["Show"].tap()
         saveScreenshot(component: "dialog", scenario: "in-app-messaging", userInterfaceStyle: userInterfaceStyle)
         tapDialogScrimView()
@@ -282,7 +288,7 @@ class Screenshots: XCTestCase {
         app.tables.staticTexts["Default"].tap()
         saveScreenshot(component: "label", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
-        app.tables.staticTexts["Emphasized"].tap()
+        app.tables.staticTexts["Emphasised"].tap()
         saveScreenshot(component: "label", scenario: "emphasized", userInterfaceStyle: userInterfaceStyle)
         tapBackButton()
         app.tables.staticTexts["Heavy"].tap()

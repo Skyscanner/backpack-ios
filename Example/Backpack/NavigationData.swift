@@ -58,10 +58,24 @@ class NavigationData: NSObject {
             Group(name: "Flare views") {
               FlareStory.allExamples
             }
-            Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
-            Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
+            Group(name: "Dialogs") {
+                Group(name: "Alert") {
+                    DialogStory.Alert.allExamples
+                }
+                Group(name: "Bottom sheet") {
+                    DialogStory.BottomSheet.allExamples
+                }
+                Group(name: "In-app messaging") {
+                    DialogStory.InAppMessaging.allExamples
+                }
+            }
+            Group(name: "Horizontal navigation") {
+                HorizontalNavigationStory.allExamples
+            }
             Item(name: "Icons", value: .story(mainStoryboard("IconsViewController")))
-            Item(name: "Labels", value: .story(loadStoryboard(name: "Labels", identifier: "LabelsViewController")))
+            Group(name: "Labels") {
+                LabelStory.allExamples
+            }
             Item(name: "Navigation bars", value: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
             Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
             Group(name: "Map") {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -413,39 +413,69 @@
             </objects>
             <point key="canvasLocation" x="3023" y="1414"/>
         </scene>
+        <!--Horizontal Nav View Controller-->
+        <scene sceneID="kcZ-x7-6FL">
+            <objects>
+                <viewController storyboardIdentifier="HorizontalNavViewController" id="ram-ca-VsF" customClass="HorizontalNavViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oW5-gn-iiy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Rv-ay-yCd" customClass="BPKHorizontalNavigation">
+                                <rect key="frame" x="24" y="269" width="291" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4Rb-uB-TqS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Rb-uB-TqS" firstAttribute="trailing" secondItem="1Rv-ay-yCd" secondAttribute="trailing" constant="60" id="0J9-Ux-Acw"/>
+                            <constraint firstItem="1Rv-ay-yCd" firstAttribute="leading" secondItem="4Rb-uB-TqS" secondAttribute="leading" constant="24" id="h7X-r4-5yw"/>
+                            <constraint firstItem="1Rv-ay-yCd" firstAttribute="centerY" secondItem="oW5-gn-iiy" secondAttribute="centerY" id="ofQ-3a-A1J"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YBo-50-1oE"/>
+                    <connections>
+                        <outlet property="horizontalNav" destination="1Rv-ay-yCd" id="FHY-bg-9Vb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ino-5U-fLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3665" y="1414"/>
+        </scene>
+        <!--Dialog View Controller-->
+        <scene sceneID="Mml-ne-oQG">
+            <objects>
+                <viewController storyboardIdentifier="DialogViewController" id="EUz-oJ-CcD" customClass="DialogViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mtd-Ag-8Ys">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu3-eU-M3o" customClass="BPKButton">
+                                <rect key="frame" x="168.5" y="318.5" width="38" height="30"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="show:" destination="EUz-oJ-CcD" eventType="touchUpInside" id="z8i-ex-Vhs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ENb-Le-dY0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pu3-eU-M3o" firstAttribute="centerY" secondItem="ENb-Le-dY0" secondAttribute="centerY" id="Lvq-B0-KFw"/>
+                            <constraint firstItem="pu3-eU-M3o" firstAttribute="centerX" secondItem="ENb-Le-dY0" secondAttribute="centerX" id="iJh-MT-1Ce"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Xj-Tz-DdA"/>
+                    <connections>
+                        <outlet property="showButton" destination="pu3-eU-M3o" id="MFu-KW-Jol"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n4H-BB-SmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4346" y="1413"/>
+        </scene>
     </scenes>
-    <designables>
-        <designable name="0Mu-hl-qyW">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="0ya-ea-mAD">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="0zq-Nk-d5B">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="2Gj-mt-RB8">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="JEY-EC-ThN">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="LR5-bY-D8T">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="Msm-ko-uwP">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="cO9-RB-r7U">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="nv4-Qs-8EY">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="onU-Xq-RBS">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
