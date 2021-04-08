@@ -69,7 +69,6 @@
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
-		D211A90D22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
 		D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */; };
 		D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */; };
@@ -197,12 +196,12 @@
 		D6D81D59213FEE800013BB96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
-		D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */; };
 		D6EC0001241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC0000241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m */; };
 		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */; };
+		D6FC4CD7261F0BE7000BA351 /* DialogStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
@@ -326,7 +325,6 @@
 		D20470422347878A00A1BE48 /* BPKExampleAppTitleAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKExampleAppTitleAttributes.h; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
-		D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavSelectorViewController.swift; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationSnapshotTest.m; sourceTree = "<group>"; };
 		D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationTest.m; sourceTree = "<group>"; };
@@ -460,13 +458,13 @@
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
 		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
-		D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogSelectorViewController.swift; sourceTree = "<group>"; };
 		D6EC0000241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationOptionWithBackground.m; sourceTree = "<group>"; };
 		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationItemWithBackground.swift; sourceTree = "<group>"; };
 		D6ECFFFF241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKHorizontalNavigationOptionWithBackground.h; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationStory.swift; sourceTree = "<group>"; };
+		D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogStory.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
@@ -698,6 +696,7 @@
 				603658FB25E41EAA00A94126 /* FlareStory.swift */,
 				D248159C260F79B100BCE6AD /* MapStory.swift */,
 				D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */,
+				D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -845,12 +844,10 @@
 				D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */,
 				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
 				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
-				D6DC0AF7216BBB2C0003AC5D /* DialogSelectorViewController.swift */,
 				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
 				D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */,
 				D28443E922FC42A30066F88B /* FlareViewViewController.swift */,
 				D643B6DD2142C36C008AB669 /* GradientViewController.swift */,
-				D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */,
 				D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */,
 				6055821621523A1300BF9F3E /* IconsViewController.swift */,
 				D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */,
@@ -1365,14 +1362,13 @@
 				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* BPKNavigationViewController.swift in Sources */,
-				D211A90D22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift in Sources */,
 				6036590A25E4200000A94126 /* DividedCardStory.swift in Sources */,
+				D6FC4CD7261F0BE7000BA351 /* DialogStory.swift in Sources */,
 				D26E5A0B25A787060064D9F1 /* BPKRootTableViewController.swift in Sources */,
 				603658EE25E416D600A94126 /* ButtonStory.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
-				D6DC0AF9216BBB2D0003AC5D /* DialogSelectorViewController.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,

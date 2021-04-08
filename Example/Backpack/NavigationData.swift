@@ -58,7 +58,17 @@ class NavigationData: NSObject {
             Group(name: "Flare views") {
               FlareStory.allExamples
             }
-            Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
+            Group(name: "Dialogs") {
+                Group(name: "Alert") {
+                    DialogStory.Alert.allExamples
+                }
+                Group(name: "Bottom sheet") {
+                    DialogStory.BottomSheet.allExamples
+                }
+                Group(name: "In-app messaging") {
+                    DialogStory.InAppMessaging.allExamples
+                }
+            }
             Group(name: "Horizontal navigation") {
                 HorizontalNavigationStory.allExamples
             }
