@@ -68,7 +68,6 @@
 		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
-		D211A90522D8A4D700447B64 /* HorizontalNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
 		D211A90D22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
@@ -203,6 +202,7 @@
 		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
+		D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
@@ -325,7 +325,6 @@
 		D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKExampleAppTitleAttributes.m; sourceTree = "<group>"; };
 		D20470422347878A00A1BE48 /* BPKExampleAppTitleAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKExampleAppTitleAttributes.h; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HorizontalNavigation.storyboard; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
 		D211A90B22D8B42B00447B64 /* HorizontalNavSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavSelectorViewController.swift; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -467,6 +466,7 @@
 		D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationItemWithBackground.swift; sourceTree = "<group>"; };
 		D6ECFFFF241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKHorizontalNavigationOptionWithBackground.h; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
+		D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationStory.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
@@ -608,7 +608,6 @@
 				D27EE9292193159C00C877EA /* Chips.storyboard */,
 				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
 				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
-				D211A90422D8A4D700447B64 /* HorizontalNavigation.storyboard */,
 				D6907039215A39D30088C97B /* Labels.storyboard */,
 				D2EB965225C05E0800988978 /* Map.storyboard */,
 				D61ACE022306E1E7001C976E /* NavigationBar.storyboard */,
@@ -698,6 +697,7 @@
 				6036590925E4200000A94126 /* DividedCardStory.swift */,
 				603658FB25E41EAA00A94126 /* FlareStory.swift */,
 				D248159C260F79B100BCE6AD /* MapStory.swift */,
+				D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1138,7 +1138,6 @@
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D6B8D3B721417FFD00B0BFAB /* SnapshotTests-Info.plist in Resources */,
 				D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */,
-				D211A90522D8A4D700447B64 /* HorizontalNavigation.storyboard in Resources */,
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
@@ -1328,6 +1327,7 @@
 				603658D025E3E15D00A94126 /* Story.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
+				D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				D6EC0001241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,

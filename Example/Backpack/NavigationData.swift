@@ -59,7 +59,9 @@ class NavigationData: NSObject {
               FlareStory.allExamples
             }
             Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
-            Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
+            Group(name: "Horizontal navigation") {
+                HorizontalNavigationStory.allExamples
+            }
             Item(name: "Icons", value: .story(mainStoryboard("IconsViewController")))
             Item(name: "Labels", value: .story(loadStoryboard(name: "Labels", identifier: "LabelsViewController")))
             Item(name: "Navigation bars", value: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
