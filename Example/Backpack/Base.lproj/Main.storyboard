@@ -475,8 +475,102 @@
             </objects>
             <point key="canvasLocation" x="4346" y="1413"/>
         </scene>
+        <!--Navigation Bar View Controller-->
+        <scene sceneID="LUZ-Gj-dAV">
+            <objects>
+                <viewController storyboardIdentifier="NavigationBarViewController" id="Pyu-IH-hKU" customClass="NavigationBarViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zWH-rr-N3c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nzr-oO-G9Z" customClass="BPKNavigationBar">
+                                <rect key="frame" x="0.0" y="311" width="375" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cXM-Mz-ztO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="sectionIndexColor" systemColor="labelColor"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="CMg-M6-kbH">
+                                <rect key="frame" x="0.0" y="301" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="NavigateBack"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="NavigateBack">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LXx-GJ-pdM"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LXx-GJ-pdM" firstAttribute="bottom" secondItem="cXM-Mz-ztO" secondAttribute="bottom" id="1NA-xi-sPt"/>
+                            <constraint firstItem="Nzr-oO-G9Z" firstAttribute="leading" secondItem="zWH-rr-N3c" secondAttribute="leading" id="AdR-73-IfP"/>
+                            <constraint firstItem="cXM-Mz-ztO" firstAttribute="top" secondItem="zWH-rr-N3c" secondAttribute="top" id="Jem-1K-Zxm"/>
+                            <constraint firstItem="LXx-GJ-pdM" firstAttribute="trailing" secondItem="cXM-Mz-ztO" secondAttribute="trailing" id="V9Y-gL-R62"/>
+                            <constraint firstItem="cXM-Mz-ztO" firstAttribute="leading" secondItem="LXx-GJ-pdM" secondAttribute="leading" id="ZdB-T2-SzH"/>
+                            <constraint firstItem="Nzr-oO-G9Z" firstAttribute="top" secondItem="LXx-GJ-pdM" secondAttribute="top" id="grF-hq-Vtd"/>
+                            <constraint firstItem="Nzr-oO-G9Z" firstAttribute="trailing" secondItem="zWH-rr-N3c" secondAttribute="trailing" id="sVR-9B-Hbg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="OwF-J5-tOY"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="Nzr-oO-G9Z" id="HCl-eq-uxW"/>
+                        <outlet property="navigationButton" destination="CMg-M6-kbH" id="YHy-2Y-eGu"/>
+                        <outlet property="tableView" destination="cXM-Mz-ztO" id="pni-7e-t3w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BhE-tu-QFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5014" y="1413"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="0Mu-hl-qyW">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="0ya-ea-mAD">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="0zq-Nk-d5B">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="2Gj-mt-RB8">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="JEY-EC-ThN">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="LR5-bY-D8T">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="Msm-ko-uwP">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="cO9-RB-r7U">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="nv4-Qs-8EY">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="onU-Xq-RBS">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="pu3-eU-M3o">
+            <size key="intrinsicContentSize" width="38" height="30"/>
+        </designable>
+    </designables>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

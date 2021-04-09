@@ -76,7 +76,9 @@ class NavigationData: NSObject {
             Group(name: "Labels") {
                 LabelStory.allExamples
             }
-            Item(name: "Navigation bars", value: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
+            Group(name: "Navigation bars") {
+                NavigationBarStory.allExamples
+            }
             Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
             Group(name: "Map") {
               MapStory.allExamples
