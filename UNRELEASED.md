@@ -1,9 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Calendar:
-   - `reloadData` will now reload all visible cells without causing random cells to blink.
 
 ## How to write a good changelog entry
 

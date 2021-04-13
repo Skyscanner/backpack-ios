@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.2.1
+
+**Fixed:**
+ - Backpack/Calendar:
+   - `reloadData` will now reload all visible cells without causing random cells to blink.
+
 # 42.2.0
 
 **Added:**
