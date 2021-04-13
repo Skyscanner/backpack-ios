@@ -374,6 +374,10 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
+- (void)reloadCalendarData {
+    [self.calendarView reloadData];
+}
+
 - (void)reloadData {
     [self invalidateVisibleCells];
 }
