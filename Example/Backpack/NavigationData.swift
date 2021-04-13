@@ -79,6 +79,9 @@ class NavigationData: NSObject {
             Group(name: "Navigation bars") {
                 NavigationBarStory.allExamples
             }
+            Item(name: "Nudger", value: .story(CustomPresentable(generateViewController: {
+                return NudgerViewController()
+            })))
             Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
             Group(name: "Map") {
               MapStory.allExamples

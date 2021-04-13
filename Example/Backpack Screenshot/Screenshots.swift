@@ -325,6 +325,11 @@ class Screenshots: XCTestCase {
         app.buttons["NavigateBack"].tap()
         tapBackButton()
 
+        app.tables.staticTexts["Nudger"].tap()
+        saveScreenshot(component: "nudger", scenario: "default",
+                       userInterfaceStyle: userInterfaceStyle)
+        tapBackButton()
+
         app.tables.staticTexts["Overlay views"].tap()
         app.tables.staticTexts["Default"].tap()
         saveScreenshot(component: "overlay-view", scenario: "default", userInterfaceStyle: userInterfaceStyle)
