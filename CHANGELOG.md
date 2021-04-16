@@ -1,6 +1,12 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.3.0
+
+**Added:**
+- Backpack/Nudger:
+  - New nudger component - a control for specifying a numerical value that can be adjusted up and down.
+
 # 42.2.1
 
 **Fixed:**
