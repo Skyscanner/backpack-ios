@@ -141,7 +141,7 @@ const double BPKNudgerDefaultStepValue = 1;
         return _label;
     }
 
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
     label.textAlignment = NSTextAlignmentCenter;
 
     _label = label;
