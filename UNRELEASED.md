@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+- Backpack/Nudger:
+  - New nudger component - a control for specifying a numerical value that can be adjusted up and down.
 
 ## How to write a good changelog entry
 

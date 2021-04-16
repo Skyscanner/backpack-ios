@@ -75,6 +75,8 @@
 		D217700C25ACCC0400C0FD8C /* TableNavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */; };
 		D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217701725ACCC5E00C0FD8C /* Presentable.swift */; };
 		D217702425ACCC9700C0FD8C /* AppStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217702325ACCC9700C0FD8C /* AppStructure.swift */; };
+		D217FE5C262710A90095F1B3 /* BPKNudgerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D217FE5B262710A90095F1B3 /* BPKNudgerTest.m */; };
+		D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D217FE6C26281FA40095F1B3 /* BPKNudgerSnapshotTest.m */; };
 		D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */; };
 		D21AF43C2539E7CE00C8ED04 /* BPKOverlayViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21AF43B2539E7CE00C8ED04 /* BPKOverlayViewTest.m */; };
 		D21AF45D2539EB2C00C8ED04 /* BPKOverlayViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21AF44C2539EA8600C8ED04 /* BPKOverlayViewSnapshotTest.m */; };
@@ -201,6 +203,7 @@
 		D6FC4CD7261F0BE7000BA351 /* DialogStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */; };
 		D6FC4CF6261F11F5000BA351 /* LabelStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CF5261F11F5000BA351 /* LabelStory.swift */; };
 		D6FC4DDC2620A826000BA351 /* NavigationBarStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4DDB2620A826000BA351 /* NavigationBarStory.swift */; };
+		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
 		E359366C240FFE680046FD4C /* BottomSheetUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359366B240FFE680046FD4C /* BottomSheetUITest.swift */; };
 		E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */; };
 		E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E38947D122F5CB3300A357DB /* BottomSheet.storyboard */; };
@@ -330,6 +333,8 @@
 		D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableNavigationData.swift; sourceTree = "<group>"; };
 		D217701725ACCC5E00C0FD8C /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		D217702325ACCC9700C0FD8C /* AppStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStructure.swift; sourceTree = "<group>"; };
+		D217FE5B262710A90095F1B3 /* BPKNudgerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNudgerTest.m; sourceTree = "<group>"; };
+		D217FE6C26281FA40095F1B3 /* BPKNudgerSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNudgerSnapshotTest.m; sourceTree = "<group>"; };
 		D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividedCardsViewController.swift; sourceTree = "<group>"; };
 		D21AF43B2539E7CE00C8ED04 /* BPKOverlayViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKOverlayViewTest.m; sourceTree = "<group>"; };
 		D21AF44C2539EA8600C8ED04 /* BPKOverlayViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKOverlayViewSnapshotTest.m; sourceTree = "<group>"; };
@@ -463,6 +468,7 @@
 		D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogStory.swift; sourceTree = "<group>"; };
 		D6FC4CF5261F11F5000BA351 /* LabelStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStory.swift; sourceTree = "<group>"; };
 		D6FC4DDB2620A826000BA351 /* NavigationBarStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarStory.swift; sourceTree = "<group>"; };
+		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
 		D71748A6B9AA3B05B9A0CDEB /* Pods_Backpack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E359366B240FFE680046FD4C /* BottomSheetUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetUITest.swift; sourceTree = "<group>"; };
 		E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetResizableContentViewController.swift; sourceTree = "<group>"; };
@@ -651,6 +657,7 @@
 				D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */,
 				D696CA1F215CC09400682666 /* BPKIconTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
+				D217FE5B262710A90095F1B3 /* BPKNudgerTest.m */,
 				D21AF43B2539E7CE00C8ED04 /* BPKOverlayViewTest.m */,
 				D6CE74F12124230000154D92 /* BPKPanelTest.m */,
 				D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */,
@@ -875,6 +882,7 @@
 				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
 				7639E564232907B0004D7B09 /* ToastSelectorViewController.swift */,
 				7639E566232909C7004D7B09 /* ToastViewController.swift */,
+				D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -897,9 +905,10 @@
 				D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */,
 				D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */,
 				D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */,
-				D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */,
 				D26017DD25C83A8800FAB768 /* BPKMapAnnotationSnapshotTest.m */,
+				D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */,
 				76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */,
+				D217FE6C26281FA40095F1B3 /* BPKNudgerSnapshotTest.m */,
 				D21AF44C2539EA8600C8ED04 /* BPKOverlayViewSnapshotTest.m */,
 				D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */,
 				D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */,
@@ -1330,6 +1339,7 @@
 				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
+				D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
 				D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */,
@@ -1420,6 +1430,7 @@
 				D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */,
 				D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
+				D217FE5C262710A90095F1B3 /* BPKNudgerTest.m in Sources */,
 				D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */,
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
@@ -1471,6 +1482,7 @@
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
+				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
 				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
