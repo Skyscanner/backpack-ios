@@ -1,10 +1,5 @@
 # Unreleased
 
-**Fixed:**
-
-- Backpack/Nudger
-  - Fix label weight. It's now bold. 
-
 > Place your changes below this line.
 
 ## How to write a good changelog entry

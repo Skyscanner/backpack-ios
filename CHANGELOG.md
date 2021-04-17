@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 42.3.1
+
+**Fixed:**
+
+- Backpack/Nudger:
+  - Make label bold to align with design.
+
 # 42.3.0
 
 **Added:**
