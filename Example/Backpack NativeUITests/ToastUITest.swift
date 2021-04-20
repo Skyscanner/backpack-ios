@@ -26,7 +26,7 @@ class ToastUITest: BackpackUITestCase {
 
     func navigateAndShow() {
         app.tables.staticTexts["Toasts"].tap()
-        app.tables.staticTexts["Default toast"].tap()
+        app.tables.staticTexts["Default"].tap()
         app.buttons["Show Toast"].tap()
     }
 

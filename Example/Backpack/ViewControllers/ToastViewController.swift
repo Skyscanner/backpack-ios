@@ -21,6 +21,7 @@ import UIKit
 import Backpack
 
 enum ToastType {
+    case docs
     case defaultToast
     case onlyLabels
 }
@@ -31,11 +32,20 @@ class ToastViewController: UIViewController {
 
     @IBAction func show(_ sender: BPKButton) {
         switch type {
+        case .docs:
+            showPersistentToast()
         case .defaultToast:
             showDefaultToast()
         case .onlyLabels:
             showToastOnlyLabels()
         }
+    }
+
+    func showPersistentToast() {
+        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        toast.mode = .indeterminate
+        toast.labelText = "This is the title"
+        toast.detailsLabelText = "Details label text"
     }
 
     func showDefaultToast() {
