@@ -460,7 +460,7 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Toasts") {
-            app.tables.staticTexts["Default toast"].tap()
+            app.tables.staticTexts["Docs"].tap()
             app.buttons["Show Toast"].tap()
             saveScreenshot(component: "toast", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()

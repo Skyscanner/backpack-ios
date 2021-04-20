@@ -97,7 +97,9 @@ class NavigationData: NSObject {
             Item(name: "Tappable link labels", value: .story(loadStoryboard(name: "TappableLinkLabels", identifier: "TappableLinkLabelsViewController")))
             Item(name: "Text fields", value: .story(loadStoryboard(name: "TextField", identifier: "TextFieldViewController")))
             Item(name: "Text views", value: .story(mainStoryboard("TextViewsViewController")))
-            Item(name: "Toasts", value: .story(loadStoryboard(name: "Toasts", identifier: "ToastsViewController")))
+            Group(name: "Toasts") {
+                ToastStory.allExamples
+            }
         }
     }
 
