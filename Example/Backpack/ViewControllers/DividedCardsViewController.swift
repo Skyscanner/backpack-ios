@@ -29,7 +29,7 @@ class DividedCardsViewController: CardsViewController {
     override func setupCard() {
         let label1 = BPKLabel(fontStyle: .textBase)
         label1.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                        "Aenean commodo ligula eget dolor. Aenean massa."
+            "Aenean commodo ligula eget dolor. Aenean massa."
         label1.lineBreakMode = NSLineBreakMode.byWordWrapping
         label1.numberOfLines = 0
         let label2 = BPKLabel(fontStyle: .textBase)

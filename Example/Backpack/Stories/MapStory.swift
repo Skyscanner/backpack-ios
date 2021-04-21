@@ -19,25 +19,25 @@
 import Foundation
 
 enum MapStory: String, StoryGroup {
-  case `default` = "Default"
-  case performance = "Performance"
+    case `default` = "Default"
+    case performance = "Performance"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Map")
-    let presentable = storyboard("MapsViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Map")
+        let presentable = storyboard("MapsViewController")
 
-    return presentable.enrich {
-        let mapViewController = $0 as? MapViewController
+        return presentable.enrich {
+            let mapViewController = $0 as? MapViewController
 
-        switch self {
-        case .performance:
-          mapViewController?.testPerformance = true
-        default: break
+            switch self {
+            case .performance:
+                mapViewController?.testPerformance = true
+            default: break
+            }
         }
     }
-  }
 }

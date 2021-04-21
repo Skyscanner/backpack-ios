@@ -43,20 +43,20 @@ class NavigationData: NSObject {
             Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
             Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
             Group(name: "Buttons") {
-              ButtonStory.allExamples
+                ButtonStory.allExamples
             }
             Group(name: "Calendar") {
-              CalendarStory.allExamples
+                CalendarStory.allExamples
             }
             Group(name: "Cards") {
-              CardStory.allExamples
-              DividedCardStory.allExamples
+                CardStory.allExamples
+                DividedCardStory.allExamples
             }
             Group(name: "Chips") {
-              ChipStory.allExamples
+                ChipStory.allExamples
             }
             Group(name: "Flare views") {
-              FlareStory.allExamples
+                FlareStory.allExamples
             }
             Group(name: "Dialogs") {
                 Group(name: "Alert") {
@@ -84,7 +84,7 @@ class NavigationData: NSObject {
             })))
             Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
             Group(name: "Map") {
-              MapStory.allExamples
+                MapStory.allExamples
             }
             Item(name: "Panels", value: .story(loadStoryboard(name: "Panel", identifier: "PanelsViewController")))
             Item(name: "Progress bar", value: .story(loadStoryboard(name: "ProgressBar", identifier: "ProgressBarViewController")))

@@ -41,8 +41,10 @@ class HorizontalNavigationUITest: BackpackUITestCase {
             hotelsOption.tap()
         }
 
-        XCTAssertFalse(flightsOption.isSelected,
-                       "The 'Flights' option should have been deselected when another option was tapped")
+        XCTAssertFalse(
+            flightsOption.isSelected,
+            "The 'Flights' option should have been deselected when another option was tapped"
+        )
         XCTAssertTrue(hotelsOption.isSelected, "The 'Hotels' option should have been selected when tapped")
         saveScreenshot(named: "Hotels selected")
     }

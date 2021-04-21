@@ -66,16 +66,20 @@ internal final class BPKBarChartCollectionViewFlowLayout: UICollectionViewFlowLa
                     var frame = attributes.frame
 
                     assert(collectionView != nil, "collectionView should not be nil")
-                    assert(collectionView!.isKind(of: BPKBarChartCollectionView.self),
-                           "collectionView should be of type BPKBarChartCollectionView")
+                    assert(
+                        collectionView!.isKind(of: BPKBarChartCollectionView.self),
+                        "collectionView should be of type BPKBarChartCollectionView"
+                    )
 
                     if collectionView != nil && collectionView!.isKind(of: BPKBarChartCollectionView.self) {
                         guard let barChartCollectionView = collectionView as? BPKBarChartCollectionView else {
                             continue
                         }
-                        let sectionTitle =
-                          barChartCollectionView.barChart.barChartDataSource?.barChart(barChartCollectionView.barChart,
-                                                                        titleForSection: attributes.indexPath.section)
+                        let sectionTitle = barChartCollectionView.barChart.barChartDataSource?.barChart(
+                            barChartCollectionView.barChart,
+                            titleForSection: attributes.indexPath.section
+                        )
+
                         let headerSizeForSection =
                             BPKBarChartCollectionViewHeader.referenceSize(text: sectionTitle ?? "")
 

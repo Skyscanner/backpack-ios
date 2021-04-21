@@ -19,35 +19,35 @@
 import Foundation
 
 enum FlareStory: String, StoryGroup {
-  case `default` = "Default"
-  case flareAtTop = "Flare at top"
-  case rounded = "Rounded"
-  case backgroundImage = "Background image"
-  case animated = "Animated"
+    case `default` = "Default"
+    case flareAtTop = "Flare at top"
+    case rounded = "Rounded"
+    case backgroundImage = "Background image"
+    case animated = "Animated"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Main")
-    let presentable = storyboard("FlareViewViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Main")
+        let presentable = storyboard("FlareViewViewController")
 
-    return presentable.enrich {
-        let flareViewVC = $0 as? FlareViewViewController
+        return presentable.enrich {
+            let flareViewVC = $0 as? FlareViewViewController
 
-        switch self {
-        case .flareAtTop:
-          flareViewVC?.flareAtTop = true
-        case .rounded:
-          flareViewVC?.rounded = true
-        case .backgroundImage:
-          flareViewVC?.backgroundImage = true
-        case .animated:
-          flareViewVC?.backgroundImage = true
-          flareViewVC?.animated = true
-        default: break
+            switch self {
+            case .flareAtTop:
+                flareViewVC?.flareAtTop = true
+            case .rounded:
+                flareViewVC?.rounded = true
+            case .backgroundImage:
+                flareViewVC?.backgroundImage = true
+            case .animated:
+                flareViewVC?.backgroundImage = true
+                flareViewVC?.animated = true
+            default: break
+            }
         }
     }
-  }
 }

@@ -19,12 +19,12 @@
 import Foundation
 
 protocol Story {
-  var presentableStory: Presentable { get }
-  var title: String { get }
+    var presentableStory: Presentable { get }
+    var title: String { get }
 }
 
 extension Story {
-  var example: Item {
-    Item(name: self.title, value: .story(self.presentableStory))
-  }
+    var example: Item {
+        Item(name: self.title, value: .story(self.presentableStory))
+    }
 }

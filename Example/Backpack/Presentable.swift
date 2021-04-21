@@ -39,11 +39,11 @@ struct StoryboardPresentable: Presentable {
  * parameter name: The name of the storyboard.
  * returns: A function that accespts a scene identifier and returns the presentable
  */
- func loadStoryboard(name: String) -> (String) -> Presentable {
+func loadStoryboard(name: String) -> (String) -> Presentable {
     let storyboard = UIStoryboard(name: name, bundle: nil)
 
     return { sceneIdentier in
-         StoryboardPresentable(storyboard: storyboard, identifier: sceneIdentier)
+        StoryboardPresentable(storyboard: storyboard, identifier: sceneIdentier)
     }
 }
 

@@ -19,36 +19,36 @@
 import Foundation
 
 enum ChipStory: String, StoryGroup {
-  case `default` = "Default"
-  case withIcons = "With icons"
-  case withBackgroundColor = "With background color"
-  case filled = "Filled"
-  case filledWithBackgroundColor = "Filled with background color"
+    case `default` = "Default"
+    case withIcons = "With icons"
+    case withBackgroundColor = "With background color"
+    case filled = "Filled"
+    case filledWithBackgroundColor = "Filled with background color"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Chips")
-    let presentable = storyboard("ChipsViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Chips")
+        let presentable = storyboard("ChipsViewController")
 
-    return presentable.enrich {
-        let target = $0 as? ChipsViewController
-        let filledBackgroundColor: UIColor = .bpk_abisko
+        return presentable.enrich {
+            let target = $0 as? ChipsViewController
+            let filledBackgroundColor: UIColor = .bpk_abisko
 
-        switch self {
-        case .withIcons:
-          target?.icons = true
-        case .withBackgroundColor:
-          target?.backgroundTint = filledBackgroundColor
-        case .filled:
-          target?.style = .filled
-        case .filledWithBackgroundColor:
-          target?.style = .filled
-          target?.backgroundTint = filledBackgroundColor
-        default: break
+            switch self {
+            case .withIcons:
+                target?.icons = true
+            case .withBackgroundColor:
+                target?.backgroundTint = filledBackgroundColor
+            case .filled:
+                target?.style = .filled
+            case .filledWithBackgroundColor:
+                target?.style = .filled
+                target?.backgroundTint = filledBackgroundColor
+            default: break
+            }
         }
     }
-  }
 }

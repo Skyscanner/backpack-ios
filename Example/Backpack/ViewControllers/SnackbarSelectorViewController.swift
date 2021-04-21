@@ -20,17 +20,17 @@ import Foundation
 
 class SnackBarSelectorViewController: UITableViewController {
     override func viewDidLoad() {
-          super.viewDidLoad()
-          navigationController?.navigationBar.prefersLargeTitles = false
-      }
+        super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           guard let destinationController = segue.destination as? SnackBarViewController  else {
-               fatalError("""
-                   The destination of all segues in `SnackbarSelectorViewController`
-                   should be `SnackBarViewController`
-               """)
-           }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationController = segue.destination as? SnackBarViewController  else {
+            fatalError("""
+                The destination of all segues in `SnackbarSelectorViewController`
+                should be `SnackBarViewController`
+            """)
+        }
 
         setupDestinationController(destinationController: destinationController, segue: segue)
     }

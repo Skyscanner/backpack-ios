@@ -19,46 +19,46 @@
 import Foundation
 
 enum ButtonStory: String, StoryGroup {
-  case primary = "Primary"
-  case secondary = "Secondary"
-  case destructive = "Destructive"
-  case featured = "Featured"
-  case link = "Link"
-  case outline = "Outline"
+    case primary = "Primary"
+    case secondary = "Secondary"
+    case destructive = "Destructive"
+    case featured = "Featured"
+    case link = "Link"
+    case outline = "Outline"
 
-  var buttonStyle: BPKButtonStyle {
-    switch self {
-    case .primary:
-      return .primary
-    case .secondary:
-      return .secondary
-    case .destructive:
-      return .destructive
-    case .featured:
-      return .featured
-    case .link:
-      return .link
-    case .outline:
-      return .outline
-    }
-  }
-
-  var title: String {
-    self.rawValue
-  }
-
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Buttons")
-    let viewController = storyboard("ButtonsViewController")
-
-    return viewController.enrich(setButtonStyle)
-  }
-
-  func setButtonStyle(storyBoardViewController: UIViewController) {
-    guard let buttonsVC = storyBoardViewController as? BPKButtonsViewController else {
-        return
+    var buttonStyle: BPKButtonStyle {
+        switch self {
+        case .primary:
+            return .primary
+        case .secondary:
+            return .secondary
+        case .destructive:
+            return .destructive
+        case .featured:
+            return .featured
+        case .link:
+            return .link
+        case .outline:
+            return .outline
+        }
     }
 
-    buttonsVC.style = self.buttonStyle
-  }
+    var title: String {
+        self.rawValue
+    }
+
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Buttons")
+        let viewController = storyboard("ButtonsViewController")
+
+        return viewController.enrich(setButtonStyle)
+    }
+
+    func setButtonStyle(storyBoardViewController: UIViewController) {
+        guard let buttonsVC = storyBoardViewController as? BPKButtonsViewController else {
+            return
+        }
+
+        buttonsVC.style = self.buttonStyle
+    }
 }

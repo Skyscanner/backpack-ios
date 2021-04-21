@@ -7,9 +7,13 @@ opt_in_rules:
   - closure_spacing
   - collection_alignment
   - contains_over_first_not_nil
+  - indentation_width 
 
 trailing_whitespace:
   ignores_empty_lines: true
+  
+indentation_width:
+  include_comments: false
 
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:
