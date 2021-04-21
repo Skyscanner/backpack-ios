@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeIconWithDefaultTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+    BPKIconView *view = [[BPKLargeIconView alloc] initWithIconName:BPKIconNameAccessibility];
 
     return view;
 }
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeWithTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+    BPKIconView *view = [[BPKLargeIconView alloc] initWithIconName:BPKIconNameAccessibility];
     view.tintColor = BPKColor.panjin;
 
     return view;
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createSmallWithTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeSmall];
+    BPKSmallIconView *view = [[BPKSmallIconView alloc] initWithIconName:BPKIconNameAccessibility];
     view.tintColor = BPKColor.panjin;
 
     return view;

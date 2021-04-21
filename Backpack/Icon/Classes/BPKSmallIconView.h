@@ -15,17 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_ICON__
-#define __BACKPACK_ICON__
+#import <UIKit/UIKit.h>
 
-#import "BPKIcon.h"
-#import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
+#import "BPKIconView.h"
 #import "BPKSmallIconNames.h"
-#import "BPKLargeIconNames.h"
-#import "BPKXlIconNames.h"
-#import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
-#import "BPKSmallIconView.h"
-#import "BPKLargeIconView.h"
-#import "BPKXlIconView.h"
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * A `UIImageView` subclass that renders a Backpack small icon.
+ * Convenient for setting the icon `tintColor` as the icon is
+ * always rendered using template rendering.
+ */
+@interface BPKSmallIconView : BPKIconView
+
+/**
+ * Initializes and returns a small Backpack Icon View with the specific icon name.
+ *
+ * @param iconName The name of the small Backpack icon to display in the view.
+ * @return An initialized Backpack icon view
+ */
+- (instancetype)initWithIconName:(nullable BPKSmallIconName)iconName;
+
+@end
+
+NS_ASSUME_NONNULL_END
