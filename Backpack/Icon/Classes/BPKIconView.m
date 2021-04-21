@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.contentMode = UIViewContentModeScaleAspectFit;
-        self.size = size;
+        _size = size;
         _iconName = [iconName copy];
         [self setUp];
     }

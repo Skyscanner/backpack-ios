@@ -15,17 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_ICON__
-#define __BACKPACK_ICON__
-
-#import "BPKIcon.h"
-#import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import "BPKSmallIconNames.h"
-#import "BPKLargeIconNames.h"
-#import "BPKXlIconNames.h"
-#import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
-#import "BPKSmallIconView.h"
 #import "BPKLargeIconView.h"
-#import "BPKXlIconView.h"
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKLargeIconView
+
+- (instancetype)initWithIconName:(nullable BPKLargeIconName)iconName {
+    return [super initWithIconName:iconName size:BPKIconSizeLarge];
+}
+
+- (void)setSize:(BPKIconSize)size {
+    NSAssert(NO, @"Cannot set size on BPKLargeIconView. Use BPKSmallIconView or BPKXlIconView for other sizes.");
+    [super setSize:size];
+}
+
+@end
+
+NS_ASSUME_NONNULL_END

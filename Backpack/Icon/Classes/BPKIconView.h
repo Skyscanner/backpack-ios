@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, copy) BPKIconName iconName;
 
 /**
+ * DEPRECATED. THIS WILL BE REMOVED SOON AS SETTING SIZE DURING LIFECYCLE WILL BE UNSUPORTED.
  * The size of the icon currently being displayed. Setting updates
  * the displayed icon.
  * @see BPKIconSize

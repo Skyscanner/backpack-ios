@@ -35,7 +35,7 @@ UIImage *renderedIcon = [BPKIcon smallIconNamed:BPKSmallIconNameFlight color:BPK
 ```swift
 import Backpack
 
-let iconView = BPKIconView(iconName: .accessibility, size: .small)
+let iconView = BPKSmallIconView(iconName: .accessibility)
 iconView.tintColor = BPKColor.blue500
 ```
 
@@ -44,7 +44,7 @@ iconView.tintColor = BPKColor.blue500
 ```swift
 import Backpack
 
-let iconView = BPKIconView(iconName: .arrowLeft, size: .small)
+let iconView = BPKSmallIconView(iconName: .arrowLeft)
 iconView.flipsForRightToLeft = true
 ```
 
