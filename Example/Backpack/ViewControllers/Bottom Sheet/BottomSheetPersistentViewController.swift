@@ -28,10 +28,14 @@ final class BottomSheetPersistentViewController: UIViewController {
         let closeButton = BPKButton(size: .default, style: .secondary)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setImage(BPKIcon.makeTemplateIcon(name: .close, size: .large))
-        closeButton.secondaryBackgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white,
-                                                                     darkVariant: BPKColor.blackTint06)
-        closeButton.secondaryContentColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyGray,
-                                                                  darkVariant: BPKColor.blackTint01)
+        closeButton.secondaryBackgroundColor = BPKColor.dynamicColor(
+            withLightVariant: BPKColor.white,
+            darkVariant: BPKColor.blackTint06
+        )
+        closeButton.secondaryContentColor = BPKColor.dynamicColor(
+            withLightVariant: BPKColor.skyGray,
+            darkVariant: BPKColor.blackTint01
+        )
         closeButton.secondaryBorderColor = BPKColor.clear
         return closeButton
     }()
@@ -72,10 +76,12 @@ final class BottomSheetPersistentViewController: UIViewController {
         view.backgroundColor = .blue
         let viewController =  PersistentBottomListViewController.make()!
 
-        bottomSheet = BPKBottomSheet(contentViewController: viewController,
-                                         scrollViewToTrack: viewController.tableView,
-                                         bottomSectionViewController: nil,
-                                         presentationStyle: .persistent)
+        bottomSheet = BPKBottomSheet(
+            contentViewController: viewController,
+            scrollViewToTrack: viewController.tableView,
+            bottomSectionViewController: nil,
+            presentationStyle: .persistent
+        )
         bottomSheet?.addPanel(toParent: self)
         bottomSheet?.delegate = self
     }

@@ -51,7 +51,9 @@ class TextFieldUITest: BackpackUITestCase {
             return
         }
 
-        XCTAssertTrue(textFieldValueAfter.elementsEqual(textFieldValueBefore + " Testing"),
-                      "The text field should be updated after typing")
+        XCTAssertTrue(
+            textFieldValueAfter.elementsEqual(textFieldValueBefore + " Testing"),
+            "The text field should be updated after typing"
+        )
     }
 }

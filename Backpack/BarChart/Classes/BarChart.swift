@@ -56,8 +56,9 @@ public final class BPKBarChart: UIView {
     /// The selected indexPath
     public var selectedIndexPath: IndexPath? {
         didSet {
-            barChartCollectionView.selectItem(at: selectedIndexPath, animated: false,
-                                              scrollPosition: .top)
+            barChartCollectionView.selectItem(
+                at: selectedIndexPath, animated: false, scrollPosition: .top
+            )
         }
     }
 
@@ -162,9 +163,11 @@ extension BPKBarChart: UICollectionViewDataSource {
         return cell
     }
 
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier, for: indexPath
@@ -184,9 +187,11 @@ extension BPKBarChart: UICollectionViewDelegate {
 }
 
 extension BPKBarChart: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout,
-                               referenceSizeForHeaderInSection section: Int) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
         let sectionName = barChartDataSource?.barChart(self, titleForSection: section) ?? ""
         let height = BPKBarChartCollectionViewHeader.referenceSize(text: sectionName).height
         // We use a width of 10 here instead of the actual header width as we do not want space between sections

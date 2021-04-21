@@ -31,6 +31,8 @@ enum DialogType {
     case inAppMessaging
 }
 
+// Improve the structure of this class
+// swiftlint:disable type_body_length
 class DialogViewController: UIViewController {
     @IBOutlet weak var showButton: BPKButton!
     var type: DialogType = .normal
@@ -59,15 +61,17 @@ class DialogViewController: UIViewController {
     }
     func showNoTitle() {
         let message = """
-                        This is a floating style dialog, usually used for prompting users during the onboarding flow.
-                        Now you can use this variation with no title.
-                        """
+            This is a floating style dialog, usually used for prompting users during the onboarding flow.
+            Now you can use this variation with no title.
+        """
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
-        let dialogController = BPKDialogController(title: nil,
-                                                message: message,
-                                                style: .alert,
-                                                iconDefinition: iconDefinition)
+        let dialogController = BPKDialogController(
+            title: nil,
+            message: message,
+            style: .alert,
+            iconDefinition: iconDefinition
+        )
         let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
         }
@@ -85,10 +89,12 @@ class DialogViewController: UIViewController {
 
     func showNoIconNoTitle() {
         let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
-        let dialogController  = BPKDialogController(title: nil,
-                                                 message: message,
-                                                 style: .bottomSheet,
-                                                 iconDefinition: nil)
+        let dialogController  = BPKDialogController(
+            title: nil,
+            message: message,
+            style: .bottomSheet,
+            iconDefinition: nil
+        )
 
         let mainAction = BPKDialogButtonAction(title: "Got it", style: .primary) {
             print("Primary was tapped, action: \($0)")
@@ -106,10 +112,12 @@ class DialogViewController: UIViewController {
 
     func showNoIcon() {
         let message = "This is a floating style dialog, usually used for prompting users during the onboarding flow."
-        let dialogController  = BPKDialogController(title: "Welcome!",
-                                                message: message,
-                                                style: .bottomSheet,
-                                                iconDefinition: nil)
+        let dialogController  = BPKDialogController(
+            title: "Welcome!",
+            message: message,
+            style: .bottomSheet,
+            iconDefinition: nil
+        )
         dialogController.cornerStyle = .large
 
         let mainAction = BPKDialogButtonAction(title: "Got it", style: .primary) {
@@ -131,10 +139,12 @@ class DialogViewController: UIViewController {
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
 
-        let dialogController  = BPKDialogController(title: "You are going to Tokyo!",
-                                                 message: message,
-                                                 style: .alert,
-                                                 iconDefinition: iconDefinition)
+        let dialogController  = BPKDialogController(
+            title: "You are going to Tokyo!",
+            message: message,
+            style: .alert,
+            iconDefinition: iconDefinition
+        )
 
         let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
@@ -165,13 +175,15 @@ class DialogViewController: UIViewController {
             est laborum.
             """
         let title = "You are going to Tokyo! With a very long title " +
-                    "spanning multiple lines and eventually being trauncated"
+            "spanning multiple lines and eventually being trauncated"
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
-        let dialogController  = BPKDialogController(title: title,
-                                                 message: message,
-                                                 style: .alert,
-                                                 iconDefinition: iconDefinition)
+        let dialogController  = BPKDialogController(
+            title: title,
+            message: message,
+            style: .alert,
+            iconDefinition: iconDefinition
+        )
 
         let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
             print("Primary was tapped, action: \($0)")
@@ -194,11 +206,13 @@ class DialogViewController: UIViewController {
     func showInAppMessaging() {
         let message = "The design system provides a single source of truth for the design language used at Skyscanner."
         let flareView = BPKFlareView(frame: .zero)
-        let dialogController  = BPKDialogController(title: "What is Backpack?",
-                                                 message: message,
-                                                 style: .alert,
-                                                 iconDefinition: nil,
-                                                 flareView: flareView)
+        let dialogController  = BPKDialogController(
+            title: "What is Backpack?",
+            message: message,
+            style: .alert,
+            iconDefinition: nil,
+            flareView: flareView
+        )
         dialogController.cornerStyle = .large
         dialogController.buttonSize = .default
         flareView.backgroundView.backgroundColor = BPKColor.primaryColor
@@ -235,10 +249,12 @@ class DialogViewController: UIViewController {
         """
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
-        let alertController = BPKDialogController(title: "You're almost ready to pack your bags!",
-                                               message: message,
-                                               style: .bottomSheet,
-                                               iconDefinition: iconDefinition)
+        let alertController = BPKDialogController(
+            title: "You're almost ready to pack your bags!",
+            message: message,
+            style: .bottomSheet,
+            iconDefinition: iconDefinition
+        )
 
         let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
             NSLog(didDismiss ? "dismissed" : "tapped without dismiss")
@@ -253,10 +269,12 @@ class DialogViewController: UIViewController {
         let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .lightning, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.kolkata)
-        let alertController = BPKDialogController(title: "!#$Warning-0-1!#$#$?",
-                                               message: message,
-                                               style: .alert,
-                                               iconDefinition: iconDefinition)
+        let alertController = BPKDialogController(
+            title: "!#$Warning-0-1!#$#$?",
+            message: message,
+            style: .alert,
+            iconDefinition: iconDefinition
+        )
 
         let mainAction = BPKDialogButtonAction(title: "OK", style: .primary) { _ in
             NSLog("Primary tapped")
@@ -275,10 +293,12 @@ class DialogViewController: UIViewController {
     func showDelete() {
         let iconTemplate = BPKIcon.makeTemplateIcon(name: .trash, size: .large)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.panjin)
-        let alertController = BPKDialogController(title: "Delete?",
-                                               message: "Are you sure you would like to delete your avatar?",
-                                               style: .bottomSheet,
-                                               iconDefinition: iconDefinition)
+        let alertController = BPKDialogController(
+            title: "Delete?",
+            message: "Are you sure you would like to delete your avatar?",
+            style: .bottomSheet,
+            iconDefinition: iconDefinition
+        )
 
         let mainAction = BPKDialogButtonAction(title: "Delete", style: .destructive) { _ in
             NSLog("Primary tapped")

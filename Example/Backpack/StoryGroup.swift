@@ -21,7 +21,7 @@ import Foundation
 protocol StoryGroup: CaseIterable, Story {}
 
 extension StoryGroup {
-  static var allExamples: [Item] {
-    self.allCases.map({ $0.example })
-  }
+    static var allExamples: [Item] {
+        self.allCases.map({ $0.example })
+    }
 }

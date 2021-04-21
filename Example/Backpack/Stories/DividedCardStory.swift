@@ -19,34 +19,34 @@
 import Foundation
 
 enum DividedCardStory: String, StoryGroup {
-  case dividedHorizontal = "With divider"
-  case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
-  case dividedVertical = "With divider arranged vertically"
-  case dividedVerticalNoPadding = "With divider without padding"
+    case dividedHorizontal = "With divider"
+    case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
+    case dividedVertical = "With divider arranged vertically"
+    case dividedVerticalNoPadding = "With divider without padding"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Cards")
-    let presentable = storyboard("DividedCardsViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Cards")
+        let presentable = storyboard("DividedCardsViewController")
 
-    return presentable.enrich {
-        let cardVC = $0 as? DividedCardsViewController
+        return presentable.enrich {
+            let cardVC = $0 as? DividedCardsViewController
 
-        switch self {
-        case .dividedHorizontal:
-          cardVC?.divisionDirection = .horizontal
-        case .dividedHorizontalCornerStyleLarge:
-          cardVC?.divisionDirection = .horizontal
-          cardVC?.cornerStyle = .large
-        case .dividedVertical:
-          cardVC?.divisionDirection = .vertical
-        case .dividedVerticalNoPadding:
-          cardVC?.divisionDirection = .vertical
-          cardVC?.padded = false
+            switch self {
+            case .dividedHorizontal:
+                cardVC?.divisionDirection = .horizontal
+            case .dividedHorizontalCornerStyleLarge:
+                cardVC?.divisionDirection = .horizontal
+                cardVC?.cornerStyle = .large
+            case .dividedVertical:
+                cardVC?.divisionDirection = .vertical
+            case .dividedVerticalNoPadding:
+                cardVC?.divisionDirection = .vertical
+                cardVC?.padded = false
+            }
         }
     }
-  }
 }

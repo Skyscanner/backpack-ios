@@ -34,9 +34,9 @@ public struct Row<T> {
  */
 public func sectionify(items: [Item]) -> [Section<Item>] {
     let groups: [(String, [Item])] = items.compactMap({ group in
-            group.subItems().map({
-                (group.name, $0)
-            })
+        group.subItems().map({
+            (group.name, $0)
+        })
     })
 
     let ungroupedItems: [Item] = items.filter({ $0.isStory() })

@@ -19,35 +19,35 @@
 import Foundation
 
 enum CardStory: String, StoryGroup {
-  case `default` = "Default"
-  case withoutPadding = "Without padding"
-  case selected = "Selected"
-  case cornerStyleLarge = "Corner style large"
-  case alternativeBackgroundColor = "Background color"
+    case `default` = "Default"
+    case withoutPadding = "Without padding"
+    case selected = "Selected"
+    case cornerStyleLarge = "Corner style large"
+    case alternativeBackgroundColor = "Background color"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Cards")
-    let presentable = storyboard("CardsViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Cards")
+        let presentable = storyboard("CardsViewController")
 
-    return presentable.enrich {
-        let cardVC = $0 as? CardsViewController
+        return presentable.enrich {
+            let cardVC = $0 as? CardsViewController
 
-        switch self {
-        case .default:
-          break
-        case .withoutPadding:
-          cardVC?.padded = false
-        case .selected:
-          cardVC?.selected = true
-        case .cornerStyleLarge:
-          cardVC?.cornerStyle = .large
-        case .alternativeBackgroundColor:
-          cardVC?.backgroundColor = BPKColor.skyBlueTint01
+            switch self {
+            case .default:
+                break
+            case .withoutPadding:
+                cardVC?.padded = false
+            case .selected:
+                cardVC?.selected = true
+            case .cornerStyleLarge:
+                cardVC?.cornerStyle = .large
+            case .alternativeBackgroundColor:
+                cardVC?.backgroundColor = BPKColor.skyBlueTint01
+            }
         }
     }
-  }
 }

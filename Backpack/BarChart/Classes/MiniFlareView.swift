@@ -43,8 +43,10 @@ internal final class BPKMiniFlareView: BPKFlareView {
     }
 
     fileprivate func setupViews() {
-        backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyBlueShade02,
-                                                     darkVariant: BPKColor.blackTint06)
+        backgroundColor = BPKColor.dynamicColor(
+            withLightVariant: BPKColor.skyBlueShade02,
+            darkVariant: BPKColor.blackTint06
+        )
 
         contentView.addSubview(label)
 

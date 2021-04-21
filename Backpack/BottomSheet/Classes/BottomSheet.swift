@@ -120,11 +120,13 @@ public final class BPKBottomSheet: NSObject {
     ///   - insets: The spacing used when the bottom sheet is presented at various heights.
     ///     The .modal presentation style will only use `half` and ignore all other insets provided.
     
-    public init(contentViewController: UIViewController,
-                scrollViewToTrack: UIScrollView,
-                bottomSectionViewController: UIViewController? = nil,
-                presentationStyle: PresentationStyle = .modal,
-                insets: BottomSheetInsets = .init()) {
+    public init(
+        contentViewController: UIViewController,
+        scrollViewToTrack: UIScrollView,
+        bottomSectionViewController: UIViewController? = nil,
+        presentationStyle: PresentationStyle = .modal,
+        insets: BottomSheetInsets = .init()
+    ) {
         self.presentationStyle = presentationStyle
         self.insets = insets
         super.init()
@@ -229,8 +231,10 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
         }
     }
     
-    public func floatingPanel(_ viewController: FloatingPanelController,
-                              layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+    public func floatingPanel(
+        _ viewController: FloatingPanelController,
+        layoutFor newCollection: UITraitCollection
+    ) -> FloatingPanelLayout? {
         switch self.presentationStyle {
         case .modal:
             return scrollView == nil ? IntrinsicLayout() : ModalBottomSheetLayout(insets: insets)

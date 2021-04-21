@@ -75,10 +75,14 @@ extension IconsViewController {
         return IconsViewController.icons[section].icons.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconsViewController.cellIdentifier,
-                                                            for: indexPath) as? IconsPreviewCollectionViewCell
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: IconsViewController.cellIdentifier,
+            for: indexPath
+        ) as? IconsPreviewCollectionViewCell
             else {
                 fatalError("No cell registered for reuse with identifier \(IconsViewController.cellIdentifier)")
         }
@@ -117,7 +121,7 @@ extension IconsViewController {
                 withReuseIdentifier: IconsViewController.headerIdentifier,
                 for: indexPath
             ) as? PreviewCollectionViewHeader else {
-                    fatalError("Icon View Headers are expected to be of type ColorPreviewCollectionViewHeader")
+                fatalError("Icon View Headers are expected to be of type ColorPreviewCollectionViewHeader")
             }
             headerView.name = IconsViewController.icons[indexPath.section].heading
 
@@ -128,9 +132,11 @@ extension IconsViewController {
 }
 
 extension IconsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
         return PreviewCollectionViewHeader.referenceSize(
             collectionView: collectionView, text: IconsViewController.icons[section].heading
         )

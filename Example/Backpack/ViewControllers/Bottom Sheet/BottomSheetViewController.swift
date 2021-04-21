@@ -47,8 +47,10 @@ extension BottomSheetViewController {
 
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
 
-            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
-                                    scrollViewToTrack: content.tableView)
+            let sheet = BPKBottomSheet(
+                contentViewController: wrappedContent,
+                scrollViewToTrack: content.tableView
+            )
             sheet.present(in: self, animated: true, completion: nil)
         case bottomSectionBottomSheet:
             guard let content = BottomSheetScrollableContentViewController.make(),
@@ -62,9 +64,11 @@ extension BottomSheetViewController {
             bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
-            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
-                                    scrollViewToTrack: content.tableView,
-                                    bottomSectionViewController: wrappedBottomSection)
+            let sheet = BPKBottomSheet(
+                contentViewController: wrappedContent,
+                scrollViewToTrack: content.tableView,
+                bottomSectionViewController: wrappedBottomSection
+            )
 
             bottomSection.buttonText = "Dismiss"
 
@@ -85,9 +89,11 @@ extension BottomSheetViewController {
             bottomSection.view.backgroundColor = BPKColor.backgroundTertiaryColor
             wrappedBottomSection.view.backgroundColor = bottomSection.view.backgroundColor
 
-            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
-                                    scrollViewToTrack: content.tableView,
-                                    bottomSectionViewController: wrappedBottomSection)
+            let sheet = BPKBottomSheet(
+                contentViewController: wrappedContent,
+                scrollViewToTrack: content.tableView,
+                bottomSectionViewController: wrappedBottomSection
+            )
 
             bottomSection.buttonText = "Next step"
 

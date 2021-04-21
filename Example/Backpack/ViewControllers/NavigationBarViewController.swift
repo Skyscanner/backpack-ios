@@ -59,8 +59,10 @@ class NavigationBarViewController: UIViewController {
             navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         }
 
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: NavigationBarViewController.CellIdentifier)
+        tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: NavigationBarViewController.CellIdentifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
 

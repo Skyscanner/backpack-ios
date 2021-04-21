@@ -19,38 +19,38 @@
 import Foundation
 
 enum CalendarStory: String, StoryGroup {
-  case `default` = "Default"
-  case withMaxEnabledDate = "With max enabled date"
-  case withCustomStyles = "Custom styles for specific dates"
-  case withPrices = "With prices"
-  case alternativeBackgroundColor = "With alternate background color"
-  case preselectedDates = "With preselected dates"
+    case `default` = "Default"
+    case withMaxEnabledDate = "With max enabled date"
+    case withCustomStyles = "Custom styles for specific dates"
+    case withPrices = "With prices"
+    case alternativeBackgroundColor = "With alternate background color"
+    case preselectedDates = "With preselected dates"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Calendar")
-    let presentable = storyboard("CalendarViewController")
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Calendar")
+        let presentable = storyboard("CalendarViewController")
 
-    return presentable.enrich {
-        let calendarVC = $0 as? CalendarViewController
+        return presentable.enrich {
+            let calendarVC = $0 as? CalendarViewController
 
-        switch self {
-        case .default:
-          break
-        case .withMaxEnabledDate:
-          calendarVC?.maxEnabledDate = true
-        case .withCustomStyles:
-          calendarVC?.customStylesForDates = true
-        case .withPrices:
-          calendarVC?.showPrices = true
-        case .alternativeBackgroundColor:
-          calendarVC?.alternativeBackgroundColor = true
-        case .preselectedDates:
-          calendarVC?.preselectedDates = true
+            switch self {
+            case .default:
+                break
+            case .withMaxEnabledDate:
+                calendarVC?.maxEnabledDate = true
+            case .withCustomStyles:
+                calendarVC?.customStylesForDates = true
+            case .withPrices:
+                calendarVC?.showPrices = true
+            case .alternativeBackgroundColor:
+                calendarVC?.alternativeBackgroundColor = true
+            case .preselectedDates:
+                calendarVC?.preselectedDates = true
+            }
         }
     }
-  }
 }

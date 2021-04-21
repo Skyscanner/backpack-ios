@@ -38,9 +38,11 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         if showIcons {
             horizontalNav.options = [
                 BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
-                BPKHorizontalNavigationOption(name: "Hotels", tag: 1,
-                                              iconName: .hotels,
-                                              showNotificationDot: showNotificationDot),
+                BPKHorizontalNavigationOption(
+                    name: "Hotels", tag: 1,
+                    iconName: .hotels,
+                    showNotificationDot: showNotificationDot
+                ),
                 BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag: 2)
             ]
         } else {

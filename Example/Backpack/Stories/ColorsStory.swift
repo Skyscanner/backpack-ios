@@ -20,12 +20,12 @@ import Foundation
 
 struct ColorsStory: Story {
 
-  var title: String {
-    "Colors"
-  }
+    var title: String {
+        "Colors"
+    }
 
-  var presentableStory: Presentable {
-    let mainStoryboard = loadStoryboard(name: "Main")
-    return mainStoryboard("ColorsViewController")
-  }
+    var presentableStory: Presentable {
+        let mainStoryboard = loadStoryboard(name: "Main")
+        return mainStoryboard("ColorsViewController")
+    }
 }

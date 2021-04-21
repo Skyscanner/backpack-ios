@@ -21,9 +21,11 @@ import Backpack
 
 class BadgesViewController: UIViewController {
     @IBOutlet var badgeCollections: [BPKBadgeContainer]!
-    fileprivate static var badgeTypes = [BPKBadgeType.success, BPKBadgeType.warning,
-                                         BPKBadgeType.destructive, BPKBadgeType.light,
-                                         BPKBadgeType.inverse, BPKBadgeType.outline]
+    fileprivate static var badgeTypes = [
+        BPKBadgeType.success, BPKBadgeType.warning,
+        BPKBadgeType.destructive, BPKBadgeType.light,
+        BPKBadgeType.inverse, BPKBadgeType.outline
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()

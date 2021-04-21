@@ -24,34 +24,52 @@ class RatingsViewController: UIViewController {
     var showDifferentSizes: Bool = false
     var layout: BPKRatingLayout = .horizontal
 
-    static let titleTextDefinition = BPKRatingTextDefinition(highRatingText: "High title",
-                                               mediumRatingText: "Medium title",
-                                               lowRatingText: "Low title")
+    static let titleTextDefinition = BPKRatingTextDefinition(
+        highRatingText: "High title",
+        mediumRatingText: "Medium title",
+        lowRatingText: "Low title"
+    )
 
-    static let subtitleTextDefinition = BPKRatingTextDefinition(highRatingText: "High subtitle",
-                                                  mediumRatingText: "Medium subtitle",
-                                                  lowRatingText: "Low subtitle")
+    static let subtitleTextDefinition = BPKRatingTextDefinition(
+        highRatingText: "High subtitle",
+        mediumRatingText: "Medium subtitle",
+        lowRatingText: "Low subtitle"
+    )
 
     fileprivate static var ratingData = [
-        (ratingValue: 3.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 3 out of 10. Low title.", size: BPKRatingSize.large),
-        (ratingValue: 5.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 5.9 out of 10. Low title.", size: BPKRatingSize.large),
-        (ratingValue: 6.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 6.0 out of 10. Medium title.", size: BPKRatingSize.base),
-        (ratingValue: 7.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 7.9 out of 10. Medium title.", size: BPKRatingSize.small),
-        (ratingValue: 8.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 8 out of 10. High title.", size: BPKRatingSize.extraSmall),
-        (ratingValue: 10.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-         accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall)
+        (
+            ratingValue: 3.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 3 out of 10. Low title.", size: BPKRatingSize.large
+        ),
+        (
+            ratingValue: 5.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 5.9 out of 10. Low title.", size: BPKRatingSize.large
+        ),
+        (
+            ratingValue: 6.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 6.0 out of 10. Medium title.", size: BPKRatingSize.base
+        ),
+        (
+            ratingValue: 7.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 7.9 out of 10. Medium title.", size: BPKRatingSize.small
+        ),
+        (
+            ratingValue: 8.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 8 out of 10. High title.", size: BPKRatingSize.extraSmall
+        ),
+        (
+            ratingValue: 10.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
+            accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall
+        )
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assert(ratings.count == RatingsViewController.ratingData.count,
-               "The number of rating components does not match the data")
+        assert(
+            ratings.count == RatingsViewController.ratingData.count,
+            "The number of rating components does not match the data"
+        )
         self.setupRatings()
     }
 
