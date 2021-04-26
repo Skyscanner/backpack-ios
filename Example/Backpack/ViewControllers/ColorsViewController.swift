@@ -21,96 +21,96 @@ import Backpack
 
 class ColorsViewController: UICollectionViewController {
     fileprivate static var primaryColors = [
-        ("primary color", { (view: UIView) -> UIColor in
+        ("primary color", { (_: UIView) -> UIColor in
             return BPKColor.primaryColor
         }),
-        ("blue700", { (view: UIView) -> UIColor in
+        ("blue700", { (_: UIView) -> UIColor in
             return BPKColor.skyBlueShade02
         }),
-        ("white", { (view: UIView) -> UIColor in
+        ("white", { (_: UIView) -> UIColor in
             return BPKColor.white
         })
     ]
     fileprivate static var secondaryColors = [
-        ("green500", { (view: UIView) -> UIColor in
+        ("green500", { (_: UIView) -> UIColor in
             return BPKColor.monteverde
         }),
-        ("yellow500", { (view: UIView) -> UIColor in
+        ("yellow500", { (_: UIView) -> UIColor in
             return BPKColor.kolkata
         }),
-        ("red500", { (view: UIView) -> UIColor in
+        ("red500", { (_: UIView) -> UIColor in
             return BPKColor.panjin
         })
     ]
     fileprivate static var grayColors = [
-        ("skyGrayTint07", { (view: UIView) -> UIColor in
+        ("skyGrayTint07", { (_: UIView) -> UIColor in
             return BPKColor.skyGrayTint07
         }),
-        ("skyGrayTint06", { (view: UIView) -> UIColor in
+        ("skyGrayTint06", { (_: UIView) -> UIColor in
             return BPKColor.skyGrayTint06
         }),
-        ("skyGrayTint04", { (view: UIView) -> UIColor in
+        ("skyGrayTint04", { (_: UIView) -> UIColor in
             return BPKColor.skyGrayTint04
         }),
-        ("skyGrayTint02", { (view: UIView) -> UIColor in
+        ("skyGrayTint02", { (_: UIView) -> UIColor in
             return BPKColor.skyGrayTint02
         }),
-        ("skyGrayTint01", { (view: UIView) -> UIColor in
+        ("skyGrayTint01", { (_: UIView) -> UIColor in
             return BPKColor.skyGrayTint01
         }),
-        ("skyGray", { (view: UIView) -> UIColor in
+        ("skyGray", { (_: UIView) -> UIColor in
             return BPKColor.skyGray
         })
     ]
     fileprivate static var blackColors = [
-        ("black", { (view: UIView) -> UIColor in
+        ("black", { (_: UIView) -> UIColor in
             return BPKColor.black
         }),
-        ("blackTint01", { (view: UIView) -> UIColor in
+        ("blackTint01", { (_: UIView) -> UIColor in
             return BPKColor.blackTint01
         }),
-        ("blackTint02", { (view: UIView) -> UIColor in
+        ("blackTint02", { (_: UIView) -> UIColor in
             return BPKColor.blackTint02
         }),
-        ("blackTint03", { (view: UIView) -> UIColor in
+        ("blackTint03", { (_: UIView) -> UIColor in
             return BPKColor.blackTint03
         }),
-        ("blackTint04", { (view: UIView) -> UIColor in
+        ("blackTint04", { (_: UIView) -> UIColor in
             return BPKColor.blackTint04
         }),
-        ("blackTint05", { (view: UIView) -> UIColor in
+        ("blackTint05", { (_: UIView) -> UIColor in
             return BPKColor.blackTint05
         }),
-        ("blackTint06", { (view: UIView) -> UIColor in
+        ("blackTint06", { (_: UIView) -> UIColor in
             return BPKColor.blackTint06
         })
     ]
     fileprivate static var dynamicColors = [
-        ("backgroundColor", { (view: UIView) -> UIColor in
+        ("backgroundColor", { (_: UIView) -> UIColor in
             return BPKColor.backgroundColor
         }),
-        ("backgroundSecondaryColor", { (view: UIView) -> UIColor in
+        ("backgroundSecondaryColor", { (_: UIView) -> UIColor in
             return BPKColor.backgroundSecondaryColor
         }),
-        ("backgroundTertiaryColor", { (view: UIView) -> UIColor in
+        ("backgroundTertiaryColor", { (_: UIView) -> UIColor in
             return BPKColor.backgroundTertiaryColor
         }),
-        ("backgroundAlternativeColor", { (view: UIView) -> UIColor in
+        ("backgroundAlternativeColor", { (_: UIView) -> UIColor in
             return BPKColor.backgroundAlternativeColor
         }),
-        ("backgroundAlternativeSecondaryColor", { (view: UIView) -> UIColor in
+        ("backgroundAlternativeSecondaryColor", { (_: UIView) -> UIColor in
             return BPKColor.backgroundAlternativeSecondaryColor
         }),
-        ("textPrimaryColor", { (view: UIView) -> UIColor in
+        ("textPrimaryColor", { (_: UIView) -> UIColor in
             return BPKColor.textPrimaryColor
         }),
-        ("textSecondaryColor", { (view: UIView) -> UIColor in
+        ("textSecondaryColor", { (_: UIView) -> UIColor in
             return BPKColor.textSecondaryColor
         }),
-        ("textTertiaryColor", { (view: UIView) -> UIColor in
+        ("textTertiaryColor", { (_: UIView) -> UIColor in
             return BPKColor.textTertiaryColor
         }),
-        ("textQuaternaryColor", { (view: UIView) -> UIColor in
+        ("textQuaternaryColor", { (_: UIView) -> UIColor in
             return BPKColor.textQuaternaryColor
         })
     ]

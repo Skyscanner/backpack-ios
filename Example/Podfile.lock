@@ -1,13 +1,13 @@
 PODS:
-  - AppCenter (3.1.1):
-    - AppCenter/Analytics (= 3.1.1)
-    - AppCenter/Crashes (= 3.1.1)
-  - AppCenter/Analytics (3.1.1):
+  - AppCenter (4.1.1):
+    - AppCenter/Analytics (= 4.1.1)
+    - AppCenter/Crashes (= 4.1.1)
+  - AppCenter/Analytics (4.1.1):
     - AppCenter/Core
-  - AppCenter/Core (3.1.1)
-  - AppCenter/Crashes (3.1.1):
+  - AppCenter/Core (4.1.1)
+  - AppCenter/Crashes (4.1.1):
     - AppCenter/Core
-  - AppCenter/Distribute (3.1.1):
+  - AppCenter/Distribute (4.1.1):
     - AppCenter/Core
   - Backpack (42.3.1):
     - FloatingPanel (= 1.6.6)
@@ -18,17 +18,17 @@ PODS:
   - FSCalendar (2.8.2)
   - iOSSnapshotTestCase/Core (6.2.0)
   - MBProgressHUD (1.2.0)
-  - OCMock (3.6)
-  - SwiftLint (0.39.2)
+  - OCMock (3.8.1)
+  - SwiftLint (0.43.1)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - AppCenter (~> 3.1.0)
-  - AppCenter/Distribute (~> 3.1.0)
+  - AppCenter (~> 4.1.1)
+  - AppCenter/Distribute (~> 4.1.1)
   - Backpack (from `../`)
   - iOSSnapshotTestCase/Core (~> 6.2.0)
-  - OCMock (~> 3.6.0)
-  - SwiftLint (~> 0.39.2)
+  - OCMock (~> 3.8.1)
+  - SwiftLint (~> 0.43.1)
 
 SPEC REPOS:
   trunk:
@@ -46,16 +46,16 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AppCenter: 513d32888854d67d8cfbd3a8db16aeb5fb2e2a75
+  AppCenter: cd53e3ed3563cc720bcb806c9731a12389b40d44
   Backpack: dc1571a806eb7966f97d371fa2d5ca9efe45050e
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  OCMock: 5ea90566be239f179ba766fd9fbae5885040b992
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 3fff67b1ae5698adbc33f478f7015cad485c54b9
+PODFILE CHECKSUM: ea6d411a878c7481068b41712b06c4f04a4e0c5c
 
 COCOAPODS: 1.10.1
