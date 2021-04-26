@@ -93,7 +93,7 @@
 #endif
     }
 
-    [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
+    [MSACAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSACAnalytics.class, MSACCrashes.class, MSACDistribute.class]];
 
     if (self.UITestingEnabled) {
         self.window.layer.speed = 100;

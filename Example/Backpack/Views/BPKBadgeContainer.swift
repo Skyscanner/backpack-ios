@@ -27,6 +27,7 @@ class BPKBadgeContainer: UIView {
     var badgesRequiringDarkBackground = [BPKBadgeType.light, BPKBadgeType.inverse, BPKBadgeType.outline]
 
     var badgeType: BPKBadgeType {
+        get { return currentBadgeType }
         set {
             currentBadgeType = newValue
             for badge in badges {
@@ -39,7 +40,6 @@ class BPKBadgeContainer: UIView {
                 self.label.textColor = BPKColor.white
             }
         }
-        get { return currentBadgeType }
     }
 
     required init(coder aDecoder: NSCoder) {
