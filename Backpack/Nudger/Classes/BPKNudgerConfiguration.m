@@ -22,13 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKNudgerConfiguration
 
-- (instancetype)initWithLabelFormatter:(BPKNudgerLabelFormatter)labelFormatter
-                 accessibilityLabelFormatter:(BPKNudgerAccessibilityLabelFormatter)accessibilityLabelFormatter {
+- (instancetype)initWithLabel:(NSString *)label valueFormatter:(BPKNudgerValueFormatter)valueFormatter {
     self = [super init];
 
     if (self) {
-        _labelFormatter = labelFormatter;
-        _accessibilityLabelFormatter = accessibilityLabelFormatter;
+        _label = label;
+        _valueFormatter = valueFormatter;
     }
 
     return self;

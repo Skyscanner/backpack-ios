@@ -30,11 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(BPKNudgerConfiguration *)nudgerConfiguration {
     BPKNudgerConfiguration *nudgerConfiguration = [[BPKNudgerConfiguration alloc]
-        initWithLabelFormatter:^(double value) {
+                                                   initWithLabel:@"Passengers"
+                                                   valueFormatter:^(double value) {
             return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
-        }
-        accessibilityLabelFormatter:^(double value) {
-            return [NSString stringWithFormat:@"%@ passengers", @(value)];
         }
     ];
     return nudgerConfiguration;
@@ -46,7 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     UILabel *label = [nudger performSelector:@selector(label)];
     XCTAssertTrue([label.text isEqualToString:@"0"]);
-    XCTAssertEqualObjects(nudger.accessibilityLabel, @"0 passengers");
+    XCTAssertEqualObjects(nudger.accessibilityValue, @"0");
+    XCTAssertEqualObjects(nudger.accessibilityLabel, @"Passengers");
 }
 
 - (void)testHasAdjustableAccessibilityTrait {

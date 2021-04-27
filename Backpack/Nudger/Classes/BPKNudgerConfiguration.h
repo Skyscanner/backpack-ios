@@ -18,29 +18,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * _Nonnull(^BPKNudgerLabelFormatter)(double value);
-typedef NSString * _Nonnull(^BPKNudgerAccessibilityLabelFormatter)(double value);
+typedef NSString * _Nonnull(^BPKNudgerValueFormatter)(double value);
 
 @interface BPKNudgerConfiguration : NSObject
 
 /**
- * The formatter used for the visible label.
+ * The label describing the value controlled by the nudger.
  */
-@property(nonatomic, strong, readonly) BPKNudgerLabelFormatter labelFormatter;
+@property(nonatomic, strong, readonly) NSString *label;
 
 /**
- * The formatter used for the label exposed to assistive technology.
+ * The formatter used for the visible label.
  */
-@property(nonatomic, strong, readonly) BPKNudgerAccessibilityLabelFormatter accessibilityLabelFormatter;
+@property(nonatomic, strong, readonly) BPKNudgerValueFormatter valueFormatter;
 
 /**
  * Create a `BPKNudgerConfiguration` with the given formatters.
  *
- * @param labelFormatter The formatter used for the visible label.
- * @param accessibilityLabelFormatter The formatter used for the label exposed to assistive technology.
+ * @param label The label describing the value controlled by the nudger.
+ * @param valueFormatter The formatter used for the visible label.
  */
-- (instancetype)initWithLabelFormatter:(BPKNudgerLabelFormatter)labelFormatter
-                 accessibilityLabelFormatter:(BPKNudgerAccessibilityLabelFormatter)accessibilityLabelFormatter;
+- (instancetype)initWithLabel:(NSString *)label valueFormatter:(BPKNudgerValueFormatter)valueFormatter;
 
 /// :nodoc:
 - (instancetype)init NS_UNAVAILABLE;

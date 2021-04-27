@@ -12,7 +12,8 @@ It uses the iOS accessibility adjustable trait so that users of Assistive Techno
 #import <Backpack/Nudger.h>
 
 BPKNudgerConfiguration *nudgerConfiguration = [[BPKNudgerConfiguration alloc]
-    initWithLabelFormatter:^(double value) {
+    initWithLabel:@"Passengers"
+    valueFormatter:^(double value) {
         return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
     }
     accessibilityLabelFormatter:^(double value) {
@@ -33,12 +34,9 @@ nudger.value = 4;
 import Backpack
 
 let nudgerConfiguration = BPKNudgerConfiguration(
-    labelFormatter: { (value) -> String in
+    label:"Passengers",
+    valueFormatter: { (value) -> String in
         NumberFormatter.localizedString(from: NSNumber(value: value), number: .decimal)
-    },
-    accessibilityLabelFormatter: { (value) -> String in
-        let number = NumberFormatter.localizedString(from: NSNumber(value: value), number: .decimal)
-        return "\(number) passengers"
     }
 )
 
