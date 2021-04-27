@@ -1,6 +1,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 43.0.0
+
+**Breaking:**
+
+- Backpack/Nudger:
+  - Removed `accessibilityLabelFormatter` from `BPKNudgerConfiguration`.
+  - Added required `label` to `BPKNudgerConfiguration`.
+
 # 42.3.1
 
 **Fixed:**

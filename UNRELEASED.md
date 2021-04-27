@@ -1,11 +1,6 @@
 # Unreleased
 
 > Place your changes below this line.
-**Breaking:**
-
-- Backpack/Nudger:
-  - Removed `accessibilityLabelFormatter` from `BPKNudgerConfiguration`.
-  - Added required `label` to `BPKNudgerConfiguration`.
 
 ## How to write a good changelog entry
 
