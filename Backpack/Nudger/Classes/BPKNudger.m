@@ -252,9 +252,10 @@ const double BPKNudgerDefaultStepValue = 1;
 
 
 - (void)updateDisplay {
-    self.label.text = self.configuration.labelFormatter(self.value);
-    NSString *newLabel = self.configuration.accessibilityLabelFormatter(self.value);
-    self.accessibilityLabel = newLabel;
+    NSString *newValue = self.configuration.valueFormatter(self.value);
+    self.label.text = newValue;
+    self.accessibilityValue = newValue;
+    self.accessibilityLabel = self.configuration.label;
     self.decrementButton.enabled = self.canDecrement;
     self.incrementButton.enabled = self.canIncrement;
 }
@@ -264,7 +265,7 @@ const double BPKNudgerDefaultStepValue = 1;
 }
 
 - (void)announceCurrentValue {
-    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.accessibilityLabel);
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.accessibilityValue);
 }
 
 #pragma mark - UIAccessibilityAdjustable

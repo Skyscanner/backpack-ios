@@ -34,12 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createNudgerWithValue:(double)value {
     BPKNudgerConfiguration *nudgerConfiguration = [[BPKNudgerConfiguration alloc]
-        initWithLabelFormatter:^(double value) {
+               initWithLabel:@"Passengers"
+               valueFormatter:^(double value) {
             return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
-        }
-        accessibilityLabelFormatter:^(double value) {
-            // Snapshot test doesn't care about accessibilityLabel
-            return @"";
         }
     ];
 

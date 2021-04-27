@@ -30,15 +30,9 @@ class NudgerViewController: UIViewController {
     lazy var configuration: BPKNudgerConfiguration = {
         let numberFormatter = self.numberFormatter
         return BPKNudgerConfiguration(
-            labelFormatter: { (value) -> String in
+            label: "Passengers",
+            valueFormatter: { (value) -> String in
                 numberFormatter.string(from: NSNumber(value: value)) ?? ""
-            },
-            accessibilityLabelFormatter: { (value) -> String in
-                guard let number = numberFormatter.string(from: NSNumber(value: value)) else {
-                    return ""
-                }
-
-                return "\(number) passengers"
             })
 
     }()
