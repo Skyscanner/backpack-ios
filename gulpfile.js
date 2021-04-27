@@ -184,6 +184,7 @@ const generatePrefixedConst = ({ name, ...rest }) => {
 const isDynamicColor = entity => entity.value && entity.darkValue;
 
 const parseTokens = tokensData => {
+  /* eslint-disable no-unused-vars */
   const dynamicColors = _.chain(tokensData.properties)
     .filter(entity => entity.type === 'color' && isDynamicColor(entity))
     .map(
@@ -206,6 +207,7 @@ const parseTokens = tokensData => {
       }),
     )
     .value();
+  /* eslint-enable no-unused-vars */
 
   const colors = _.chain(tokensData.properties)
     .filter(entity => entity.type === 'color' && !isDynamicColor(entity))
@@ -221,6 +223,7 @@ const parseTokens = tokensData => {
     })
     .value();
 
+  // eslint-disable-next-line no-unused-vars
   colors.forEach(({ value, name, hex, type, ...rest }) => {
     const matchingValueColors = colors.filter(
       c => c.type === 'valueColor' && c.hex === hex && c.name !== name,
