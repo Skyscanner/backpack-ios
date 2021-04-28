@@ -51,6 +51,8 @@ const hasNonRTLAnchor = async filePath => {
   return content.includes('leftAnchor') || content.includes('rightAnchor');
 };
 
+console.log(`danger.git.created_files`, danger.git.created_files);
+console.log(`danger.git.created_files.concat`, danger.git.created_files.concat);
 const listOfFiles = danger.git.created_files.concat(danger.git.modified_files);
 const listOfFilesExcludingThisOne = listOfFiles.filter(
   path => path !== 'dangerfile.js',
