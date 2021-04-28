@@ -24,7 +24,6 @@
 /* global  schedule */
 import fs from 'fs';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { danger, warn, fail } from 'danger';
 
 const pbxprojFilePath = 'Example/Backpack.xcodeproj/project.pbxproj';
