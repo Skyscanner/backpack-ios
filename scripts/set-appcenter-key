@@ -1,0 +1,6 @@
+#!/bin/bash
+
+key="$1"
+
+sed -i -e "s/\$(APP_CENTER_SECRET)/${key}/g" ./Example/Backpack/BPKAppDelegate.m
+sed -i -e "s/{APP_CENTER_SECRET}/${key}/g" ./Example/Backpack/Backpack-Info.plist
