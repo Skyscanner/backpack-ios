@@ -27,6 +27,9 @@ output_directory("../screenshots")
 # remove the '#' to clear all previously generated screenshots before creating new ones
 clear_previous_screenshots(true)
 
+# Although we override the status bar ourselves we still need this. Otherwise fastlane resets the changes we make.
+override_status_bar(true)
+
 # Arguments to pass to the app on launch. See https://docs.fastlane.tools/actions/snapshot/#launch-arguments
 # launch_arguments(["-favColor red"])
 
