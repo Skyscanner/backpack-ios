@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# This script clones the internal Backpack Fonts repo and adds the fonts to the project resources folder.
+# Once this is done, the fonts must be added to XCode by right-clicking on "Example for Backpack > Resources" and selecting "Add files..."
+
 mkdir -p bpk-fonts-tmp
 cd bpk-fonts-tmp
 git init

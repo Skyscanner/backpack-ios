@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# This script does the equivalent of making the following changes in XCode UI:
+#   - Set project version to the value in the podspec
+#   - Set marketing version to the value in the podspec
+#   - Uncheck "Automatically manage signing"
+#   - Set provisioning profile to "Backpack Example-2021"
+#
+# Running this script will convert the pbxproj file to XML. This is ok as the change is only temporary and should not be checked in.
+# To convert the file back to the original format, simply edit it with XCode.
+
+# Read the current version from the podspec
+currentBackpackVersion="$(cat Backpack.podspec | grep s.version | tr "\"" "\n" | sed -n 2p)"
+
+/usr/libexec/PlistBuddy -c "add :objects:6003F582195388D10070C39A:attributes:TargetAttributes:6003F589195388D20070C39A:ProvisioningStyle string Manual" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F582195388D10070C39A:attributes:TargetAttributes:6003F589195388D20070C39A:DevelopmentTeam string U9XKRL39B6" Example/Backpack.xcodeproj/project.pbxproj
+
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C0195388D20070C39A:buildSettings:CURRENT_PROJECT_VERSION ${currentBackpackVersion}" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C0195388D20070C39A:buildSettings:DEVELOPMENT_TEAM U9XKRL39B6" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C0195388D20070C39A:buildSettings:CODE_SIGN_IDENTITY string iPhone\ Distribution" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C0195388D20070C39A:buildSettings:CODE_SIGN_STYLE string Manual" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C0195388D20070C39A:buildSettings:MARKETING_VERSION ${currentBackpackVersion}" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C0195388D20070C39A:buildSettings:PROVISIONING_PROFILE_SPECIFIER string Backpack\ Example-2021" Example/Backpack.xcodeproj/project.pbxproj
+
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C1195388D20070C39A:buildSettings:CURRENT_PROJECT_VERSION ${currentBackpackVersion}" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C1195388D20070C39A:buildSettings:DEVELOPMENT_TEAM U9XKRL39B6" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C1195388D20070C39A:buildSettings:CODE_SIGN_IDENTITY string iPhone\ Distribution" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C1195388D20070C39A:buildSettings:CODE_SIGN_STYLE string Manual" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "set :objects:6003F5C1195388D20070C39A:buildSettings:MARKETING_VERSION ${currentBackpackVersion}" Example/Backpack.xcodeproj/project.pbxproj
+/usr/libexec/PlistBuddy -c "add :objects:6003F5C1195388D20070C39A:buildSettings:PROVISIONING_PROFILE_SPECIFIER string Backpack\ Example-2021" Example/Backpack.xcodeproj/project.pbxproj
