@@ -115,9 +115,9 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextXxxlHeavy: 18,
 };
 
-const format = s => s[0].toUpperCase() + _.camelCase(s.substring(1));
+const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
-const enumValueForName = name => {
+const enumValueForName = (name) => {
   const enumValue = FONT_ENUM_VALUES[name];
 
   if (typeof enumValue !== 'number') {
@@ -129,9 +129,9 @@ const enumValueForName = name => {
   return enumValue;
 };
 
-const getLegibleName = name => {
+const getLegibleName = (name) => {
   let result = null;
-  LEGIBLE_NAMES.forEach(t => {
+  LEGIBLE_NAMES.forEach((t) => {
     if (name.includes(t.identifier)) {
       result = t.legibleName;
     }
@@ -142,12 +142,12 @@ const getLegibleName = name => {
   throw new Error(`No legible name found for ${name}`);
 };
 
-const parseDuration = duration => {
+const parseDuration = (duration) => {
   const ms = parseInt(duration.replace('ms', ''), 10);
   return ms / 1000;
 };
 
-const parseColor = color => {
+const parseColor = (color) => {
   const parsedColor = tinycolor(color);
 
   const { r, g, b, a } = parsedColor.toRgb();
@@ -163,7 +163,7 @@ const parseColor = color => {
   };
 };
 
-const convertFontWeight = weightString => {
+const convertFontWeight = (weightString) => {
   const weight = WEIGHT_MAP[weightString.trim()];
 
   if (!weight) {
@@ -174,19 +174,19 @@ const convertFontWeight = weightString => {
 };
 
 const generatePrefixedConst = ({ name, ...rest }) => {
-  const capitalize = input => input.charAt(0).toUpperCase() + input.slice(1);
+  const capitalize = (input) => input.charAt(0).toUpperCase() + input.slice(1);
   return {
     name: `BPK${capitalize(name)}`,
     ...rest,
   };
 };
 
-const isDynamicColor = entity => entity.value && entity.darkValue;
+const isDynamicColor = (entity) => entity.value && entity.darkValue;
 
-const parseTokens = tokensData => {
+const parseTokens = (tokensData) => {
   /* eslint-disable no-unused-vars */
   const dynamicColors = _.chain(tokensData.properties)
-    .filter(entity => entity.type === 'color' && isDynamicColor(entity))
+    .filter((entity) => entity.type === 'color' && isDynamicColor(entity))
     .map(
       ({
         value,
@@ -210,7 +210,7 @@ const parseTokens = tokensData => {
   /* eslint-enable no-unused-vars */
 
   const colors = _.chain(tokensData.properties)
-    .filter(entity => entity.type === 'color' && !isDynamicColor(entity))
+    .filter((entity) => entity.type === 'color' && !isDynamicColor(entity))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
 
@@ -226,7 +226,7 @@ const parseTokens = tokensData => {
   // eslint-disable-next-line no-unused-vars
   colors.forEach(({ value, name, hex, type, ...rest }) => {
     const matchingValueColors = colors.filter(
-      c => c.type === 'valueColor' && c.hex === hex && c.name !== name,
+      (c) => c.type === 'valueColor' && c.hex === hex && c.name !== name,
     );
     if (matchingValueColors.length > 0) {
       colors.push({
@@ -278,10 +278,10 @@ const parseTokens = tokensData => {
         .replace('LetterSpacing', ''),
     )
     .map((values, key) => [values, key])
-    .filter(token =>
+    .filter((token) =>
       VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase()),
     )
-    .map(token => {
+    .map((token) => {
       const properties = token[0];
       const key = token[1];
 
@@ -311,7 +311,7 @@ const parseTokens = tokensData => {
         type: 'font',
       };
     })
-    .flatMap(properties => {
+    .flatMap((properties) => {
       const emphasizedEnumName = `${properties.enumName}Emphasized`;
       const emphasizedEnumValue = enumValueForName(emphasizedEnumName);
 
@@ -341,7 +341,7 @@ const parseTokens = tokensData => {
           enumName: heavyEnumName,
           enumValue: heavyEnumValue,
         },
-      ].filter(x => !!x);
+      ].filter((x) => !!x);
     })
     .sortBy(['name'])
     .value();
@@ -359,7 +359,7 @@ const parseTokens = tokensData => {
         legibleName: getLegibleName(name),
       }),
     )
-    .sortBy(s => parseInt(s.value, 10))
+    .sortBy((s) => parseInt(s.value, 10))
     .value();
 
   const shadows = _.chain(tokensData.properties)
@@ -384,7 +384,7 @@ const parseTokens = tokensData => {
     )
     .map((values, key) => [values, key])
     .map(([properties, key]) => {
-      const findByName = name => ({ name: packageName }) =>
+      const findByName = (name) => ({ name: packageName }) =>
         packageName === name;
       const offsetHeightProp = _.filter(
         properties,
@@ -469,22 +469,22 @@ const parseTokens = tokensData => {
     .value();
 };
 
-gulp.task('generate-icon-names', done => {
+gulp.task('generate-icon-names', (done) => {
   const content = JSON.parse(
     fs.readFileSync('node_modules/bpk-svgs/dist/font/iconMapping.json'),
   );
   const combinedEntries = Object.entries(content).filter(
-    x => !x[0].endsWith('-sm'),
+    (x) => !x[0].endsWith('-sm'),
   );
-  const smallEntries = Object.entries(content).filter(x =>
+  const smallEntries = Object.entries(content).filter((x) =>
     x[0].endsWith('-sm'),
   );
   const largeEntries = Object.entries(content).filter(
-    x => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'),
+    (x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'),
   );
-  const xlEntries = Object.entries(content).filter(x => x[0].endsWith('-xl'));
+  const xlEntries = Object.entries(content).filter((x) => x[0].endsWith('-xl'));
 
-  const codify = name =>
+  const codify = (name) =>
     name
       .replace('--', '-')
       .split('-')
@@ -523,7 +523,7 @@ gulp.task('generate-icon-names', done => {
     )
     .pipe(nunjucks.compile())
     .pipe(
-      rename(file => {
+      rename((file) => {
         // eslint-disable-next-line no-param-reassign
         file.extname = '';
       }),
@@ -583,7 +583,7 @@ gulp.task(
   }),
 );
 
-gulp.task('copy-icon-font', done => {
+gulp.task('copy-icon-font', (done) => {
   merge2([
     gulp.src('node_modules/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
       rename({

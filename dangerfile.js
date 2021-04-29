@@ -40,7 +40,7 @@ const projectFileMentionsRelative = async () => {
   return content.includes('SkyscannerRelative');
 };
 
-const hasNonRTLAnchor = async filePath => {
+const hasNonRTLAnchor = async (filePath) => {
   const stat = await fs.promises.stat(filePath);
   if (!stat.isFile()) {
     return false;
@@ -52,13 +52,13 @@ const hasNonRTLAnchor = async filePath => {
 
 const listOfFiles = danger.git.created_files.concat(danger.git.modified_files);
 const listOfFilesExcludingThisOne = listOfFiles.filter(
-  path => path !== 'dangerfile.js',
+  (path) => path !== 'dangerfile.js',
 );
 
 schedule(async () => {
   const usesNonRTLAnchor = await Promise.all(
     listOfFilesExcludingThisOne.map(hasNonRTLAnchor),
-  ).then(values => values.some(x => x));
+  ).then((values) => values.some((x) => x));
 
   if (usesNonRTLAnchor) {
     warn(
