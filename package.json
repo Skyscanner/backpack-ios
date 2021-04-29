@@ -44,6 +44,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.15",
+    "appcenter-cli": "^2.9.0",
     "babel-eslint": "^10.1.0",
     "bpk-svgs": "^12.5.3",
     "bpk-tokens": "^36.1.2",
