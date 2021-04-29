@@ -55,7 +55,7 @@ The _screenshots_ folder stores all of the screenshots we use on the [documentat
 bundle exec rake take_screenshots
 ```
 
-The script takes 10-15 minutes. It also requires that the iPhone Simulator is not already running.
+The script takes 10-15 minutes.
 
 ### Snapshot testing
 
