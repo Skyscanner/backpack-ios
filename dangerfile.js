@@ -128,14 +128,14 @@ if (unlicensedFiles.length > 0) {
 }
 
 // Updated files should include the latest year in licensing header.
-const outdatedLicenses = fileChanges.filter(filePath => {
+const outdatedLicenses = fileChanges.filter((filePath) => {
   if (
     shouldContainLicensingInformation(filePath) &&
     !unlicensedFiles.includes(filePath)
   ) {
     const fileContent = fs.readFileSync(filePath);
     return !fileContent.includes(
-      `Copyright 2016-${currentYear} Skyscanner Ltd`,
+      `Copyright 2018-${currentYear} Skyscanner Ltd`,
     );
   }
   return false;
