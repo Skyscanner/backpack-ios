@@ -41,7 +41,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 - (void)testSmallIcon {
-    UIImage *icon = [BPKIcon iconNamed:@"flight" color:[BPKColor skyBlue] size:BPKIconSizeSmall];
+    UIImage *icon = [BPKIcon smallIconNamed:@"flight" color:[BPKColor skyBlue]];
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 
@@ -49,7 +49,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 - (void)testLargeIcon {
-    UIImage *icon = [BPKIcon iconNamed:@"hotels" color:[BPKColor skyBlue] size:BPKIconSizeLarge];
+    UIImage *icon = [BPKIcon largeIconNamed:@"hotels" color:[BPKColor skyBlue]];
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
     view.image = icon;
 

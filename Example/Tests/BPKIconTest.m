@@ -28,7 +28,7 @@
 @implementation BPKIconTest
 
 - (void)testCreateWithEnum {
-    UIImage *rendered = [BPKIcon iconNamed:BPKIconNameFlag color:BPKColor.systemRed size:BPKIconSizeLarge];
+    UIImage *rendered = [BPKIcon largeIconNamed:BPKIconNameFlag color:BPKColor.systemRed];
 
     XCTAssertNotNil(rendered);
 }
