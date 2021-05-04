@@ -45,12 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, nonatomic, copy) BPKIconName iconName;
 
 /**
- * DEPRECATED. THIS WILL BE REMOVED SOON AS SETTING SIZE DURING LIFECYCLE WILL BE UNSUPORTED.
  * The size of the icon currently being displayed. Setting updates
  * the displayed icon.
+ *
+ * @deprecated Setting size during the component lifecycle will soon be unsupported.
  * @see BPKIconSize
  */
-@property(nonatomic, assign) BPKIconSize size;
+@property(nonatomic, assign) BPKIconSize size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
 
 /**
  * If flipsForRightToLeft is set to YES then BPKIconView will render its icon
