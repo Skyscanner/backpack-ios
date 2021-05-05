@@ -140,6 +140,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 #pragma mark - Private
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
+    self.interactionStyle = BPKCardInteractionStyleContainer;
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
     self.tintLayer.opacity = 0;
@@ -169,14 +170,14 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     CGFloat cornerRadius = 0;
 
     switch (self.cornerStyle) {
-    case BPKCardCornerStyleSmall:
-        cornerRadius = BPKCornerRadiusMd;
-        break;
-    case BPKCardCornerStyleLarge:
-        cornerRadius = BPKCornerRadiusLg;
-        break;
-    default:
-        break;
+        case BPKCardCornerStyleSmall:
+            cornerRadius = BPKCornerRadiusMd;
+            break;
+        case BPKCardCornerStyleLarge:
+            cornerRadius = BPKCornerRadiusLg;
+            break;
+        default:
+            break;
     }
 
     self.layer.cornerRadius = cornerRadius;
@@ -186,6 +187,23 @@ const BOOL BPKCardDefaultPaddedValue = YES;
         self.innerView.layer.cornerRadius = 0;
     } else {
         self.innerView.layer.cornerRadius = cornerRadius;
+    }
+}
+
+- (void)setInteractionStyle:(BPKCardInteractionStyle)interactionStyle {
+    switch (interactionStyle) {
+        case BPKCardInteractionStyleContainer:
+            self.accessibilityTraits = UIAccessibilityTraitNone;
+            self.shouldGroupAccessibilityChildren = NO;
+            break;
+        case BPKCardInteractionStyleButton:
+            self.accessibilityTraits = UIAccessibilityTraitButton;
+            self.shouldGroupAccessibilityChildren = YES;
+            break;
+        case BPKCardInteractionStyleLink:
+            self.accessibilityTraits = UIAccessibilityTraitLink;
+            self.shouldGroupAccessibilityChildren = YES;
+            break;
     }
 }
 
