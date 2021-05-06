@@ -1,6 +1,9 @@
 # Unreleased
 
 > Place your changes below this line.
+**Added:**
+ - Backpack/Card:
+   - Added `interactionStyle` which allows cards to be configured for assistive technology as buttons or links.
 
 ## How to write a good changelog entry
 

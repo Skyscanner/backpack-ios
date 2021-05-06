@@ -170,14 +170,14 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     CGFloat cornerRadius = 0;
 
     switch (self.cornerStyle) {
-        case BPKCardCornerStyleSmall:
-            cornerRadius = BPKCornerRadiusMd;
-            break;
-        case BPKCardCornerStyleLarge:
-            cornerRadius = BPKCornerRadiusLg;
-            break;
-        default:
-            break;
+    case BPKCardCornerStyleSmall:
+        cornerRadius = BPKCornerRadiusMd;
+        break;
+    case BPKCardCornerStyleLarge:
+        cornerRadius = BPKCornerRadiusLg;
+        break;
+    default:
+        break;
     }
 
     self.layer.cornerRadius = cornerRadius;
@@ -192,18 +192,18 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 
 - (void)setInteractionStyle:(BPKCardInteractionStyle)interactionStyle {
     switch (interactionStyle) {
-        case BPKCardInteractionStyleContainer:
-            self.accessibilityTraits = UIAccessibilityTraitNone;
-            self.isAccessibilityElement = NO;
-            break;
-        case BPKCardInteractionStyleButton:
-            self.accessibilityTraits = UIAccessibilityTraitButton;
-            self.isAccessibilityElement = YES;
-            break;
-        case BPKCardInteractionStyleLink:
-            self.accessibilityTraits = UIAccessibilityTraitLink;
-            self.isAccessibilityElement = YES;
-            break;
+    case BPKCardInteractionStyleContainer:
+        self.accessibilityTraits = UIAccessibilityTraitNone;
+        self.isAccessibilityElement = NO;
+        break;
+    case BPKCardInteractionStyleButton:
+        self.accessibilityTraits = UIAccessibilityTraitButton;
+        self.isAccessibilityElement = YES;
+        break;
+    case BPKCardInteractionStyleLink:
+        self.accessibilityTraits = UIAccessibilityTraitLink;
+        self.isAccessibilityElement = YES;
+        break;
     }
 }
 
