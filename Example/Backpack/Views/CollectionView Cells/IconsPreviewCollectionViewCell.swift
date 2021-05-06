@@ -23,7 +23,7 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
 
     var size: BPKIconSize? {
         didSet {
-            imageView.size = size ?? BPKIconSize.large
+            self.setupIconView(size: size ?? .large)
         }
     }
 
@@ -33,14 +33,14 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private let imageView: BPKIconView
+    private var imageView: BPKIconView
 
     override init(frame: CGRect) {
         self.imageView = BPKIconView(iconName: nil, size: .large)
 
         super.init(frame: frame)
 
-        self.setup()
+        self.setupIconView(size: .large)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +52,16 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: private
-    private func setup() {
+    private func setupIconView(size: BPKIconSize) {
+        contentView.subviews.forEach({ $0.removeFromSuperview() })
+
+        switch size {
+        case .small:
+            imageView = BPKSmallIconView(iconName: BPKSmallIconName(rawValue: icon?.rawValue ?? "bar"))
+        default:
+            imageView = BPKLargeIconView(iconName: BPKLargeIconName(rawValue: icon?.rawValue ?? "bar"))
+        }
+
         contentView.addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false

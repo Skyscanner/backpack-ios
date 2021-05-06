@@ -64,7 +64,7 @@ class DialogViewController: UIViewController {
             This is a floating style dialog, usually used for prompting users during the onboarding flow.
             Now you can use this variation with no title.
         """
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
         let dialogController = BPKDialogController(
             title: nil,
@@ -136,7 +136,7 @@ class DialogViewController: UIViewController {
 
     func showNormal() {
         let message = "Your flight is all booked. Why not check out some hotels now?"
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
 
         let dialogController  = BPKDialogController(
@@ -176,7 +176,7 @@ class DialogViewController: UIViewController {
             """
         let title = "You are going to Tokyo! With a very long title " +
             "spanning multiple lines and eventually being trauncated"
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
         let dialogController  = BPKDialogController(
             title: title,
@@ -247,7 +247,7 @@ class DialogViewController: UIViewController {
 
         Safe travels!
         """
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.monteverde)
         let alertController = BPKDialogController(
             title: "You're almost ready to pack your bags!",
@@ -267,7 +267,7 @@ class DialogViewController: UIViewController {
 
     func showWarning() {
         let message = "Engine Overload.!^R? Please do something. Throw me into the freezer or something!!"
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .lightning, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .lightning)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.kolkata)
         let alertController = BPKDialogController(
             title: "!#$Warning-0-1!#$#$?",
@@ -291,7 +291,7 @@ class DialogViewController: UIViewController {
     }
 
     func showDelete() {
-        let iconTemplate = BPKIcon.makeTemplateIcon(name: .trash, size: .large)
+        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .trash)
         let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.panjin)
         let alertController = BPKDialogController(
             title: "Delete?",

@@ -55,7 +55,7 @@ class NavigationBarViewController: UIViewController {
             // Right button setup
             navigationBar.rightButton.isHidden = false
             navigationBar.rightButton.title = "Done"
-            navigationBar.rightButton.setImage(BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small))
+            navigationBar.rightButton.setImage(BPKIcon.makeSmallTemplateIcon(name: .tickCircle))
             navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         }
 
