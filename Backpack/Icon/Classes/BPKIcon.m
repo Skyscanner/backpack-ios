@@ -286,27 +286,45 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 }
 
 + (UIImage *)smallTemplateIconNamed:(BPKSmallIconName)name {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self templateIconNamed:name size:BPKIconSizeSmall];
+#pragma GCC diagnostic pop
 }
 
 + (UIImage *)largeTemplateIconNamed:(BPKLargeIconName)name {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self templateIconNamed:name size:BPKIconSizeLarge];
+#pragma GCC diagnostic pop
 }
 
 + (UIImage *)xlTemplateIconNamed:(BPKXlIconName)name {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self templateIconNamed:name size:BPKIconSizeXLarge];
+#pragma GCC diagnostic pop
 }
 
 + (UIImage *)smallIconNamed:(BPKSmallIconName)name color:(UIColor *)color {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self iconNamed:name color:color size:BPKIconSizeSmall];
+#pragma GCC diagnostic pop
 }
 
 + (UIImage *)largeIconNamed:(BPKLargeIconName)name color:(UIColor *)color {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self iconNamed:name color:color size:BPKIconSizeLarge];
+#pragma GCC diagnostic pop
 }
 
 + (UIImage *)xlIconNamed:(BPKXlIconName)name color:(UIColor *)color {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [self iconNamed:name color:color size:BPKIconSizeXLarge];
+#pragma GCC diagnostic pop
 }
 
 @end

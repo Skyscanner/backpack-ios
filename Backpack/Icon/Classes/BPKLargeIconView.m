@@ -25,10 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
     return [super initWithIconName:iconName size:BPKIconSizeLarge];
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 - (void)setSize:(BPKIconSize)size {
     NSAssert(NO, @"Cannot set size on BPKLargeIconView. Use BPKSmallIconView or BPKXlIconView for other sizes.");
     [super setSize:size];
 }
+#pragma GCC diagnostic pop
 
 @end
 

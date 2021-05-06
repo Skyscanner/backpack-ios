@@ -47,7 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     if (self.iconName) {
-        super.image = [BPKIcon templateIconNamed:self.iconName size:self.size];
+        switch (self.size) {
+            case BPKIconSizeSmall:
+                super.image = [BPKIcon smallTemplateIconNamed:self.iconName];
+                break;
+            case BPKIconSizeLarge:
+                super.image = [BPKIcon largeTemplateIconNamed:self.iconName];
+                break;
+            case BPKIconSizeXLarge:
+                super.image = [BPKIcon xlTemplateIconNamed:self.iconName];
+                break;
+        }
     }
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -60,7 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
         _iconName = [iconName copy];
 
         if (iconName) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
             super.image = [self imageWithIconName:iconName size:self.size flipsForRightToLeft:self.flipsForRightToLeft];
+#pragma GCC diagnostic pop
         } else {
             super.image = nil;
         }
@@ -84,13 +97,19 @@ NS_ASSUME_NONNULL_BEGIN
         _flipsForRightToLeft = flipsForRightToLeft;
 
         if (self.iconName) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
             super.image = [self imageWithIconName:self.iconName size:self.size flipsForRightToLeft:flipsForRightToLeft];
+#pragma GCC diagnostic pop
         }
     }
 }
 
 - (UIImage *)imageWithIconName:(BPKIconName)iconName size:(BPKIconSize)size flipsForRightToLeft:(BOOL)flipsForRightToLeft {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     UIImage *image = [BPKIcon templateIconNamed:iconName size:size];
+#pragma GCC diagnostic pop
 
     if (flipsForRightToLeft) {
         image = [image imageFlippedForRightToLeftLayoutDirection];
@@ -100,7 +119,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGSize)intrinsicContentSize {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     return [BPKIcon concreteSizeForIconSize:self.size];
+#pragma GCC diagnostic pop
 }
 
 @end

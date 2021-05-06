@@ -57,9 +57,9 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
 
         switch size {
         case .small:
-            imageView = BPKSmallIconView(iconName: BPKSmallIconName(rawValue: icon?.rawValue ?? "bar"))
+            imageView = BPKSmallIconView(iconName: icon != nil ? BPKSmallIconName(rawValue: icon!.rawValue) : nil)
         default:
-            imageView = BPKLargeIconView(iconName: BPKLargeIconName(rawValue: icon?.rawValue ?? "bar"))
+            imageView = BPKLargeIconView(iconName: icon != nil ? BPKLargeIconName(rawValue: icon!.rawValue) : nil)
         }
 
         contentView.addSubview(imageView)
