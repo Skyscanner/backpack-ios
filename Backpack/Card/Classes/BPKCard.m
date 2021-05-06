@@ -194,15 +194,15 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     switch (interactionStyle) {
         case BPKCardInteractionStyleContainer:
             self.accessibilityTraits = UIAccessibilityTraitNone;
-            self.shouldGroupAccessibilityChildren = NO;
+            self.isAccessibilityElement = NO;
             break;
         case BPKCardInteractionStyleButton:
             self.accessibilityTraits = UIAccessibilityTraitButton;
-            self.shouldGroupAccessibilityChildren = YES;
+            self.isAccessibilityElement = YES;
             break;
         case BPKCardInteractionStyleLink:
             self.accessibilityTraits = UIAccessibilityTraitLink;
-            self.shouldGroupAccessibilityChildren = YES;
+            self.isAccessibilityElement = YES;
             break;
     }
 }

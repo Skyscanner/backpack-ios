@@ -44,6 +44,9 @@ class CardsViewController: UIViewController {
         card.cornerStyle = cornerStyle
         card.isSelected = selected
         card.interactionStyle = interactionStyle
+        if interactionStyle == .button || interactionStyle == .link {
+            card.accessibilityLabel = "Test accessibility label"
+        }
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
             label.textColor = BPKColor.textPrimaryLightColor
