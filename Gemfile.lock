@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (3.0.3)
-    activesupport (5.2.5)
+    activesupport (5.2.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -83,7 +83,7 @@ GEM
     dotenv (2.7.6)
     emoji_regex (3.2.2)
     escape (0.0.4)
-    ethon (0.13.0)
+    ethon (0.14.0)
       ffi (>= 1.15.0)
     excon (0.80.1)
     faraday (1.4.1)
@@ -192,7 +192,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    jazzy (0.13.6)
+    jazzy (0.13.7)
       cocoapods (~> 1.5)
       mustache (~> 1.1)
       open4
@@ -302,7 +302,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods (~> 1.10.1)
   fastlane (~> 2.181.0)
-  jazzy (~> 0.13.6)
+  jazzy (~> 0.13.7)
   rake
   rubocop (~> 1.13.0)
   semver2
