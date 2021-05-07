@@ -22,7 +22,7 @@ class CardsViewController: UIViewController {
     @IBOutlet weak var card: BPKCard!
     var padded: Bool = true
     var selected: Bool = false
-    var interactionStyle: BPKCardInteractionStyle = .container
+    var accessibilityConfiguration: BPKCardAccessibilityConfiguration = BPKCardAccessibilityConfigurationContainer()
     var backgroundColor: UIColor?
     var cornerStyle: BPKCardCornerStyle = .small
 
@@ -43,10 +43,7 @@ class CardsViewController: UIViewController {
         card.isPadded = padded
         card.cornerStyle = cornerStyle
         card.isSelected = selected
-        card.interactionStyle = interactionStyle
-        if interactionStyle == .button || interactionStyle == .link {
-            card.accessibilityLabel = "Test accessibility label"
-        }
+        card.accessibilityConfiguration = accessibilityConfiguration
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
             label.textColor = BPKColor.textPrimaryLightColor

@@ -22,32 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * Available interaction styles for card.
- */
-typedef NS_ENUM(NSUInteger, BPKCardInteractionStyle) {
-    /**
-     * The default interaction style. Assistive technology will not see the outer container, just the individual items inside
-     * The action caused by pressing the button should be made available to AT by a child element.
-     */
-    BPKCardInteractionStyleContainer,
-
-    /**
-     * The button interaction style. Assistive technology will see the outer container as a button.
-     * Should be used when pressing the card causes something to happen.
-     * All the content will be presented as the label of the button.
-     * This is not suitable for cards containing long, complex copy.
-     */
-    BPKCardInteractionStyleButton,
-
-    /**
-     * The link interaction style. Assistive technology will see the outer container as a link.
-     * Should only be used when pressing the card opens a webpage.
-     * All the content will be presented as the label of the link.
-     * This is not suitable for cards containing long, complex copy.
-     */
-    BPKCardInteractionStyleLink
-};
+@class BPKCardAccessibilityConfiguration;
 
 /**
  * `BPKCard` is a subclass of `UIControl` which contains the Skyscanner card style.
@@ -63,10 +38,10 @@ IB_DESIGNABLE @interface BPKCard : UIControl
 
 /**
  * Determines how the card should appear to assistive technology.
- * Default is container.
- * @see BPKCardInteractionStyle
+ * Default is BPKCardAccessibilityConfigurationContainer.
+ * @see BPKCardAccessibilityConfiguration
  */
-@property(nonatomic, assign) BPKCardInteractionStyle interactionStyle;
+@property(strong, nonatomic, nonnull) BPKCardAccessibilityConfiguration *accessibilityConfiguration;
 
 /**
  * The corner-style to apply to the card.

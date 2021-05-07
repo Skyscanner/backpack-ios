@@ -23,6 +23,8 @@
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
+#import "BPKCardAccessibilityConfigurationContainer.h"
+
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKCardDefaultPaddedValue = YES;
 
@@ -96,6 +98,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     [super setSelected:selected];
     BPKShadow *shadow = selected ? [BPKShadow shadowLg] : [BPKShadow shadowSm];
     [shadow applyToLayer:self.layer];
+    [self updateAccessibilityTraits];
 }
 
 - (CGSize)intrinsicContentSize {
@@ -140,7 +143,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 #pragma mark - Private
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
-    self.interactionStyle = BPKCardInteractionStyleContainer;
+    self.accessibilityConfiguration = [[BPKCardAccessibilityConfigurationContainer alloc] init];
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
     self.tintLayer.opacity = 0;
@@ -190,20 +193,21 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     }
 }
 
-- (void)setInteractionStyle:(BPKCardInteractionStyle)interactionStyle {
-    switch (interactionStyle) {
-    case BPKCardInteractionStyleContainer:
-        self.accessibilityTraits = UIAccessibilityTraitNone;
-        self.isAccessibilityElement = NO;
-        break;
-    case BPKCardInteractionStyleButton:
-        self.accessibilityTraits = UIAccessibilityTraitButton;
-        self.isAccessibilityElement = YES;
-        break;
-    case BPKCardInteractionStyleLink:
-        self.accessibilityTraits = UIAccessibilityTraitLink;
-        self.isAccessibilityElement = YES;
-        break;
+- (void)setAccessibilityConfiguration:(BPKCardAccessibilityConfiguration *)accessibilityConfiguration {
+    if (_accessibilityConfiguration != accessibilityConfiguration) {
+        _accessibilityConfiguration = accessibilityConfiguration;
+
+        self.accessibilityLabel = accessibilityConfiguration.accessibilityLabel;
+        self.isAccessibilityElement = accessibilityConfiguration.isAccessibilityElement;
+        [self updateAccessibilityTraits];
+    }
+}
+
+- (void)updateAccessibilityTraits {
+    self.accessibilityTraits = self.accessibilityConfiguration.accessibilityTraits;
+
+    if (self.selected) {
+        self.accessibilityTraits = self.accessibilityTraits | UIAccessibilityTraitSelected;
     }
 }
 

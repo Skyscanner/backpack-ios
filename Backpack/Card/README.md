@@ -6,9 +6,11 @@
 
 `BPKDividedCard` contains the Backpack Divided Card component. The divided card is a subclass of `BPKCard`. It can have 2 subviews and will add the appropriate constraints automatically when `-initWithPrimarySubview:secondarySubview:padded`/`init(primarySubview: secondarySubview: padded: )` or `-setPrimarySubview:secondarySubview`/`setSubviews(primarySubview: secondarySubview:)` are called. It's axis can be vertical or horizontal.
 
-Cards have an interaction style. By default this is `.container` which means the card is invisible to assistive technology. In this case, ensure that the content of the card provides users of AT with the same action as tapping the card, and explain actions clearly.
+Cards have an accessibility configuration. By default this is `Container` which means the card is invisible to assistive technology. In this case, ensure that the content of the card provides users of AT with the same action as tapping the card, and explain actions clearly.
 
-If using a `.button` or `.link` interaction style, ensure you provide a suitable `accessibilityLabel`.
+If using a `Button` or `Link` configuration, ensure that the accessibilityLabel used describes the whole content of the card and the same action.
+
+Do not use `Button` or `Link` configurations if the card has multiple actions or if the copy is long.
 
 ### Objective-C
 
@@ -20,7 +22,6 @@ If using a `.button` or `.link` interaction style, ensure you provide a suitable
 BPKCard *card = [[BPKCard alloc] initWithPadded:YES];
 [card setSubview:myInnerView];
 card.padded = NO;
-card.interactionStyle = BPKCardInteractionStyleContainer;
 ```
 
 **`BPKDividedCard`**
@@ -43,7 +44,6 @@ import Backpack
 let card = BPKCard(paddded: true)
 card.subview = myInnerView
 card.padded = false
-card.interactionStyle = .container
 ```
 
 **`BPKDividedCard`**
