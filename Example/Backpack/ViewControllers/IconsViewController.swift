@@ -21,13 +21,18 @@ import Backpack
 
 class IconsViewController: UICollectionViewController {
 
-    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
-    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
-    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
+    struct IconSection<T: IconDetails> {
+        let heading: String
+//        var icons: [T.IconNameType]
+    }
 
-    fileprivate static var icons = [
-        (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
-        (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
+    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
+    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") }).map({ BPKLargeIconName(rawValue: $0) })
+    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") }).map({ BPKSmallIconName(rawValue: $0) })
+
+    fileprivate static var icons: [IconSection<AnyIconDetails>] = [
+        IconSection<BPKSmallIconName>(heading: "Small icons"),
+        IconSection<BPKLargeIconName>(heading: "Large icons")
     ]
 
     fileprivate static let cellIdentifier = "IconsPreviewCollectionViewCell"
@@ -35,7 +40,8 @@ class IconsViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         collectionView?.register(
-            IconsPreviewCollectionViewCell.self, forCellWithReuseIdentifier: IconsViewController.cellIdentifier
+            IconsPreviewCollectionViewCell<BPKSmallIconName>.self,
+            forCellWithReuseIdentifier: IconsViewController.cellIdentifier
         )
         #if swift(>=4.2)
             collectionView?.register(
@@ -61,7 +67,7 @@ class IconsViewController: UICollectionViewController {
         collectionView?.contentInset = UIEdgeInsets(
             top: BPKSpacingBase, left: BPKSpacingBase, bottom: BPKSpacingBase, right: BPKSpacingBase
         )
-        layout.estimatedItemSize = IconsPreviewCollectionViewCell.estimatedSize()
+        layout.estimatedItemSize = IconsPreviewCollectionViewCell<BPKSmallIconName>.estimatedSize()
     }
 
 }
@@ -82,7 +88,7 @@ extension IconsViewController {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: IconsViewController.cellIdentifier,
             for: indexPath
-        ) as? IconsPreviewCollectionViewCell
+        ) as? IconsPreviewCollectionViewCell<BPKSmallIconName>
             else {
                 fatalError("No cell registered for reuse with identifier \(IconsViewController.cellIdentifier)")
         }
