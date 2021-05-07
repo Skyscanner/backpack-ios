@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The label describing the control. Default is nil.
  */
-@property(nonatomic, strong, readonly) NSString *accessibilityLabel;
+@property(nonatomic, copy, readonly) NSString *accessibilityLabel;
 
 /**
  * Whether the control should be an accessibilityElement. Default is NO.
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param isAccessibilityElement Whether the control should be an accessibilityElement. Default is NO.
  * @param accessibilityTraits The accessibilityTraits to apply. Default is UIAccessibilityTraitNone.
  */
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElememnt:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
 
 @end
 

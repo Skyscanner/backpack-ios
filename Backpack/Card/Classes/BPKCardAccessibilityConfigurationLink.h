@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 /// :nodoc:
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElememnt:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits NS_UNAVAILABLE;
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits NS_UNAVAILABLE;
 
 /**
  * Create a `BPKCardAccessibilityConfigurationLink` with the provided accessibilityLabel
