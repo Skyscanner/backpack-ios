@@ -16,14 +16,21 @@
  * limitations under the License.
  */
 
-#import "BPKCardAccessibilityConfigurationLink.h"
+#import "BPKCardConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKCardAccessibilityConfigurationLink
+@implementation BPKCardConfiguration
 
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel {
-    self = [super initWithAccessibilityLabel:accessibilityLabel isAccessibilityElement:YES accessibilityTraits:UIAccessibilityTraitLink];
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
+    self = [super init];
+
+    if (self) {
+        _accessibilityLabel = [accessibilityLabel copy];
+        _isAccessibilityElement = isAccessibilityElement;
+        _accessibilityTraits = accessibilityTraits;
+    }
+
     return self;
 }
 

@@ -23,7 +23,7 @@
 #import <Backpack/Shadow.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKCardAccessibilityConfigurationContainer.h"
+#import "BPKCardConfigurationContainer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 const BOOL BPKCardDefaultPaddedValue = YES;
@@ -143,7 +143,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 #pragma mark - Private
 
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
-    self.accessibilityConfiguration = [[BPKCardAccessibilityConfigurationContainer alloc] init];
+    self.configuration = [[BPKCardConfigurationContainer alloc] init];
     self.tintLayer = [CALayer layer];
     self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
     self.tintLayer.opacity = 0;
@@ -193,18 +193,18 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     }
 }
 
-- (void)setAccessibilityConfiguration:(BPKCardAccessibilityConfiguration *)accessibilityConfiguration {
-    if (_accessibilityConfiguration != accessibilityConfiguration) {
-        _accessibilityConfiguration = accessibilityConfiguration;
+- (void)setAccessibilityConfiguration:(BPKCardConfiguration *)configuration {
+    if (_configuration != configuration) {
+        _configuration = configuration;
 
-        self.accessibilityLabel = accessibilityConfiguration.accessibilityLabel;
-        self.isAccessibilityElement = accessibilityConfiguration.isAccessibilityElement;
+        self.accessibilityLabel = configuration.accessibilityLabel;
+        self.isAccessibilityElement = configuration.isAccessibilityElement;
         [self updateAccessibilityTraits];
     }
 }
 
 - (void)updateAccessibilityTraits {
-    self.accessibilityTraits = self.accessibilityConfiguration.accessibilityTraits;
+    self.accessibilityTraits = self.configuration.accessibilityTraits;
 
     if (self.selected) {
         self.accessibilityTraits = self.accessibilityTraits | UIAccessibilityTraitSelected;

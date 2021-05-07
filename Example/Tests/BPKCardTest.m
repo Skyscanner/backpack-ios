@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testButtonConfiguration {
     BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
-    c.accessibilityConfiguration = [[BPKCardAccessibilityConfigurationButton alloc] initWithAccessibilityLabel:@"Test label"];
+    c.configuration = [[BPKCardConfigurationButton alloc] initWithAccessibilityLabel:@"Test label"];
 
     XCTAssertTrue(c.padded);
     XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitButton);
@@ -147,7 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testLinkConfiguration {
     BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
-    c.accessibilityConfiguration = [[BPKCardAccessibilityConfigurationLink alloc] initWithAccessibilityLabel:@"Test label"];
+    c.configuration = [[BPKCardConfigurationLink alloc] initWithAccessibilityLabel:@"Test label"];
 
     XCTAssertTrue(c.padded);
     XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitLink);

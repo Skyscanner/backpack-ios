@@ -4,7 +4,7 @@
 > **Added:**
 
 - Backpack/Card:
-  - Added `accessibilityConfiguration` which allows cards to be configured for assistive technology as buttons or links.
+  - Added `configuration` which allows cards to be configured for assistive technology as buttons or links.
 
 ## How to write a good changelog entry
 

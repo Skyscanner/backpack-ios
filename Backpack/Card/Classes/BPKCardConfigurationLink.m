@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-#import "BPKCardAccessibilityConfigurationButton.h"
+#import "BPKCardConfigurationLink.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKCardAccessibilityConfigurationButton
+@implementation BPKCardConfigurationLink
 
 - (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel {
-    self = [super initWithAccessibilityLabel:accessibilityLabel isAccessibilityElement:YES accessibilityTraits:UIAccessibilityTraitButton];
+    self = [super initWithAccessibilityLabel:accessibilityLabel isAccessibilityElement:YES accessibilityTraits:UIAccessibilityTraitLink];
     return self;
 }
 

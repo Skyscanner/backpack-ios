@@ -22,7 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BPKCardAccessibilityConfiguration;
+@class BPKCardConfiguration;
 
 /**
  * `BPKCard` is a subclass of `UIControl` which contains the Skyscanner card style.
@@ -38,10 +38,10 @@ IB_DESIGNABLE @interface BPKCard : UIControl
 
 /**
  * Determines how the card should appear to assistive technology.
- * Default is BPKCardAccessibilityConfigurationContainer.
- * @see BPKCardAccessibilityConfiguration
+ * Default is BPKCardConfigurationContainer.
+ * @see BPKCardConfiguration
  */
-@property(strong, nonatomic, nonnull) BPKCardAccessibilityConfiguration *accessibilityConfiguration;
+@property(strong, nonatomic, nonnull) BPKCardConfiguration *configuration;
 
 /**
  * The corner-style to apply to the card.

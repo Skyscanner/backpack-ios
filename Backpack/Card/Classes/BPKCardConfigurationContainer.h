@@ -16,23 +16,15 @@
  * limitations under the License.
  */
 
-#import "BPKCardAccessibilityConfiguration.h"
+#import "BPKCardConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKCardAccessibilityConfiguration
-
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
-    self = [super init];
-
-    if (self) {
-        _accessibilityLabel = [accessibilityLabel copy];
-        _isAccessibilityElement = isAccessibilityElement;
-        _accessibilityTraits = accessibilityTraits;
-    }
-
-    return self;
-}
+/**
+ * `BPKCardConfigurationContainer` is the default interaction style. Assistive technology will not see the outer container, just the individual items inside
+ * The action caused by pressing the button should be made available to AT by a child element.
+ */
+@interface BPKCardConfigurationContainer : BPKCardConfiguration
 
 @end
 

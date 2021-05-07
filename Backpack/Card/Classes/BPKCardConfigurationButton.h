@@ -16,16 +16,16 @@
  * limitations under the License.
  */
 
-#import "BPKCardAccessibilityConfiguration.h"
+#import "BPKCardConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCardAccessibilityConfigurationLink` will present the card to assistive technology as a link.
- * Should only be used when pressing the card opens a webpage.
+ * `BPKCardConfigurationButton` will present the card to assistive technology as a button.
+ * Should only be used if the card has one behaviour when pressed.
  * This is not suitable for cards containing long, complex copy.
  */
-@interface BPKCardAccessibilityConfigurationLink : BPKCardAccessibilityConfiguration
+@interface BPKCardConfigurationButton : BPKCardConfiguration
 
 /// :nodoc:
 - (instancetype)init NS_UNAVAILABLE;
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits NS_UNAVAILABLE;
 
 /**
- * Create a `BPKCardAccessibilityConfigurationLink` with the provided accessibilityLabel
+ * Create a `BPKCardConfigurationButton` with the provided accessibilityLabel
  *
  * @param accessibilityLabel The label describing the control. Default is nil.
  */

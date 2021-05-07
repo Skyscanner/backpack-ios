@@ -42,11 +42,11 @@ enum CardStory: String, StoryGroup {
             case .default:
                 break
             case .button:
-                cardVC?.accessibilityConfiguration =
-                    BPKCardAccessibilityConfigurationButton(accessibilityLabel: "Test accessibility label")
+                cardVC?.configuration =
+                    BPKCardConfigurationButton(accessibilityLabel: "Test accessibility label")
             case .link:
-                cardVC?.accessibilityConfiguration =
-                    BPKCardAccessibilityConfigurationLink(accessibilityLabel: "Test accessibility label")
+                cardVC?.configuration =
+                    BPKCardConfigurationLink(accessibilityLabel: "Test accessibility label")
             case .withoutPadding:
                 cardVC?.padded = false
             case .selected:
