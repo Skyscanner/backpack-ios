@@ -22,6 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKCardConfiguration
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _accessibilityLabel = nil;
+        _isAccessibilityElement = NO;
+        _accessibilityTraits = UIAccessibilityTraitNone;
+    }
+    return self;
+}
+
 - (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
     self = [super init];
 

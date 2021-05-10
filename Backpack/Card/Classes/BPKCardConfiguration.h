@@ -42,11 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) UIAccessibilityTraits accessibilityTraits;
 
 /**
+ * Create a `BPKCardAccessiibilityConfiguration` with default properties.
+ */
+- (instancetype)init;
+
+/**
  * Create a `BPKCardAccessiibilityConfiguration` with the provided properties.
  *
- * @param accessibilityLabel The label describing the control. Default is nil.
- * @param isAccessibilityElement Whether the control should be an accessibilityElement. Default is NO.
- * @param accessibilityTraits The accessibilityTraits to apply. Default is UIAccessibilityTraitNone.
+ * @param accessibilityLabel The label describing the control.
+ * @param isAccessibilityElement Whether the control should be an accessibilityElement.
+ * @param accessibilityTraits The accessibilityTraits to apply.
  */
 - (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
 

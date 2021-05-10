@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Create a `BPKCardConfigurationButton` with the provided accessibilityLabel
  *
- * @param accessibilityLabel The label describing the control. Default is nil.
+ * @param accessibilityLabel The label describing the control.
  */
 - (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel;
 
