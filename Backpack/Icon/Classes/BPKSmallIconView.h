@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BPKSmallIconView : BPKIconView
 
+/// :nodoc:
+- (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
+
 /**
  * Initializes and returns a small Backpack Icon View with the specific icon name.
  *

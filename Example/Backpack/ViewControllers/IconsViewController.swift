@@ -21,27 +21,32 @@ import Backpack
 
 class IconsViewController: UICollectionViewController {
 
-    struct IconSection<T: IconDetails> {
-        let heading: String
-//        var icons: [T.IconNameType]
+    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
+    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
+    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
+
+    enum IconType {
+        case small
+        case large
     }
 
-    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
-    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") }).map({ BPKLargeIconName(rawValue: $0) })
-    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") }).map({ BPKSmallIconName(rawValue: $0) })
-
-    fileprivate static var icons: [IconSection<AnyIconDetails>] = [
-        IconSection<BPKSmallIconName>(heading: "Small icons"),
-        IconSection<BPKLargeIconName>(heading: "Large icons")
+    fileprivate static var icons = [
+        (heading: "Large icons", icons: largeIconList, iconType: IconType.large),
+        (heading: "Small icons", icons: smallIconList, iconType: IconType.small)
     ]
 
-    fileprivate static let cellIdentifier = "IconsPreviewCollectionViewCell"
+    fileprivate static let smallCellIdentifier = "IconsPreviewCollectionViewCellSmall"
+    fileprivate static let largeCellIdentifier = "IconsPreviewCollectionViewCellLarge"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
 
     override func viewDidLoad() {
         collectionView?.register(
             IconsPreviewCollectionViewCell<BPKSmallIconName>.self,
-            forCellWithReuseIdentifier: IconsViewController.cellIdentifier
+            forCellWithReuseIdentifier: IconsViewController.smallCellIdentifier
+        )
+        collectionView?.register(
+            IconsPreviewCollectionViewCell<BPKLargeIconName>.self,
+            forCellWithReuseIdentifier: IconsViewController.largeCellIdentifier
         )
         #if swift(>=4.2)
             collectionView?.register(
@@ -67,7 +72,7 @@ class IconsViewController: UICollectionViewController {
         collectionView?.contentInset = UIEdgeInsets(
             top: BPKSpacingBase, left: BPKSpacingBase, bottom: BPKSpacingBase, right: BPKSpacingBase
         )
-        layout.estimatedItemSize = IconsPreviewCollectionViewCell<BPKSmallIconName>.estimatedSize()
+        layout.estimatedItemSize = BPKIcon.concreteSizeForLargeIcon
     }
 
 }
@@ -85,28 +90,34 @@ extension IconsViewController {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: IconsViewController.cellIdentifier,
-            for: indexPath
-        ) as? IconsPreviewCollectionViewCell<BPKSmallIconName>
-            else {
-                fatalError("No cell registered for reuse with identifier \(IconsViewController.cellIdentifier)")
-        }
-
         let iconSet = IconsViewController.icons[indexPath.section]
 
-        // Whether we set `size` or `icon` first, we will potentially be trying to use an icon that doesn't exist.
-        // By setting the icon to `accessibility`, then setting the size, and then setting the iconName, we should
-        // never be trying to use an icon at an unavailable size.
-        cell.icon = BPKIconName.accessibility
+        var reuseIdentifier: String
+        switch iconSet.iconType {
+        case .small:
+            reuseIdentifier = IconsViewController.smallCellIdentifier
+        case .large:
+            reuseIdentifier = IconsViewController.largeCellIdentifier
+        }
 
-        cell.size = iconSet.size
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: reuseIdentifier,
+            for: indexPath
+        )
+
         var icon = iconSet.icons[indexPath.row]
 
         if icon.hasSuffix("-sm") {
             icon.removeLast(3)
         }
-        cell.icon = BPKIconName(icon)
+
+        if iconSet.iconType == .small, let cell = cell as? IconsPreviewCollectionViewCell<BPKSmallIconName> {
+            cell.icon = BPKSmallIconName(icon)
+        } else if iconSet.iconType == .large, let cell = cell as? IconsPreviewCollectionViewCell<BPKLargeIconName> {
+            cell.icon = BPKLargeIconName(icon)
+        } else {
+            fatalError("No cell registered for the icon type provided")
+        }
 
         return cell
     }

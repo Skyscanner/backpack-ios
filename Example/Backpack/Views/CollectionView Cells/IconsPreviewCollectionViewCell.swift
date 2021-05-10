@@ -26,10 +26,6 @@ protocol IconDetails {
     static func setIconName(view: Self.ViewClass, name: Self.IconNameType)
 }
 
-struct AnyIconDetails: IconDetails {
-    private var wrapped: IconDetails
-}
-
 extension BPKSmallIconName: IconDetails {
     static var size: CGSize = BPKIcon.concreteSizeForSmallIcon
 
@@ -37,10 +33,7 @@ extension BPKSmallIconName: IconDetails {
     typealias IconNameType = BPKSmallIconName
 
     static func setIconName(view: BPKSmallIconView, name: BPKSmallIconName) {
-//        guard let name =  else {
-//            fatalError()
-//        }
-        view.iconName = BPKIconName(rawValue: "asdg")
+        view.iconName = BPKIconName(rawValue: name.rawValue)
     }
 }
 
@@ -51,7 +44,7 @@ extension BPKLargeIconName: IconDetails {
     typealias IconNameType = BPKLargeIconName
 
     static func setIconName(view: BPKLargeIconView, name: BPKLargeIconName) {
-        view.iconName = BPKIconName(rawValue: "asdfg")
+        view.iconName = BPKIconName(rawValue: name.rawValue)
     }
 }
 
@@ -76,10 +69,6 @@ class IconsPreviewCollectionViewCell<T: IconDetails>: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
-    }
-
-    public static func estimatedSize() -> CGSize {
-        return BPKIcon.concreteSize(forSize: .large)
     }
 
     // MARK: private
