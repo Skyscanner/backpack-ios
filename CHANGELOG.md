@@ -1,6 +1,14 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 43.2.0
+
+**Added:**
+
+- Backpack/Icon:
+  - Added `BPKSmallIconView`, `BPKLargeIconView` and `BPKXlIconView` - preferred ways to create an icon view.
+  - See the [migration guide](https://github.com/Skyscanner/backpack-ios/blob/main/migration-guides/icon-migration-guide.md).
+ 
 # 43.1.0
 
 **Added:**
