@@ -82,26 +82,26 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 @property(class, readonly) CGSize concreteSizeForXlIcon;
 
 /**
- * DEPRECATED. USE `smallTemplateIconNamed:...`, OR `largeTemplateIconNamed:...` INSTEAD
  * Render a given icon as a UIImage for use as a template, i.e. with
  * `renderMode` set to `UIImageRenderingModeAlwaysTemplate`.
  *
  * @param name The name of the icon e.g. "flight".
  * @param size The size to render the icon in.
+ * @deprecated Use smallTemplateIconNamed or largeTemplateIconNamed instead
  * @return The rendered icon as a `UIImage` in template mode.
  */
-+ (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:));
++ (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:)) __deprecated_msg("Use smallTemplateIconNamed or largeTemplateIconNamed instead");
 
 /**
- * DEPRECATED. USE `smallIconNamed:...`, OR `largeIconNamed:...` INSTEAD
  * Render a given icon as a UIImage.
  *
  * @param name The name of the icon e.g. "flight".
  * @param color The color to render the icon in.
  * @param size The size to render the icon in.
+ * @deprecated Use smallIconNamed or largeIconNamed instead
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:));
++ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:)) __deprecated_msg("Use smallIconNamed or largeIconNamed instead");
 
 /**
  * Calculates the concrete point size a given BPKIconSize.

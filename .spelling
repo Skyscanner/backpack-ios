@@ -62,9 +62,12 @@ BPKHorizontalNavigationItem
 OverlayView
 BPKOverlayView
 
-BpkIcons
-BpkIcon
+BPKIcons
+BPKIcon
+BPKIconView
 BpkIcons.icon
+makeIcon
+makeTemplateIcon
 
 BpkImage
 
@@ -763,5 +766,7 @@ subviews
 BottomSheet
 BPKBottomSheet
 SimpleDate
+UIImage
+UIImageView
 enum
 BPKCalendarDateCellStyleNoData

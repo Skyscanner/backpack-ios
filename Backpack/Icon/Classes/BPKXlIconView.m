@@ -15,16 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "BPKXlIconView.h"
 
-import UIKit
-import XCTest
-import Backpack
+NS_ASSUME_NONNULL_BEGIN
 
-class IconSwiftTest: XCTestCase {
+@implementation BPKXlIconView
 
-    func testCreateWithEnum() {
-        let icon = BPKIcon.makeLargeIcon(name: .flag, color: BPKColor.skyBlue)
-
-        XCTAssertNotNil(icon)
-    }
+- (instancetype)initWithIconName:(nullable BPKXlIconName)iconName {
+    return [super initWithIconName:iconName size:BPKIconSizeXLarge];
 }
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
+- (void)setSize:(BPKIconSize)size {
+    NSAssert(NO, @"Cannot set size on BPKXlIconView. Use BPKSmallIconView or BPKLargeIconView for other sizes.");
+    [super setSize:size];
+}
+#pragma GCC diagnostic pop
+
+@end
+
+NS_ASSUME_NONNULL_END

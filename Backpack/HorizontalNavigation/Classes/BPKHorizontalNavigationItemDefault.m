@@ -157,7 +157,10 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.iconName == nil) {
         [self setImage:nil forState:UIControlStateNormal];
     } else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         UIImage *iconImage = [BPKIcon iconNamed:self.iconName color:self.contentColor size:size];
+#pragma GCC diagnostic pop
         [self setImage:iconImage forState:UIControlStateNormal];
         self.adjustsImageWhenHighlighted = NO;
     }

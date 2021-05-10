@@ -157,7 +157,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateSize {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     self.starView.size = [self iconSizeForStarSize:self.size];
+#pragma GCC diagnostic push
 
     [self setNeedsLayout];
     [self updateStarAppearance];

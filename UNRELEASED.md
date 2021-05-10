@@ -2,6 +2,12 @@
 
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/Icon:
+  - Added `BPKSmallIconView`, `BPKLargeIconView` and `BPKXlIconView` - preferred ways to create an icon view.
+  - See the [migration guide](https://github.com/Skyscanner/backpack-ios/blob/main/migration-guides/icon-migration-guide.md).
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
