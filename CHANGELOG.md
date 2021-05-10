@@ -1,6 +1,13 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 43.1.0
+
+**Added:**
+
+- Backpack/Card:
+  - Added `configuration` which allows cards to be configured for assistive technology as buttons or links.
+
 # 43.0.0
 
 **Breaking:**
