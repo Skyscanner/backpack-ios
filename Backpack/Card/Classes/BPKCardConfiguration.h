@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The label describing the control. Default is nil.
  */
-@property(nonatomic, copy, readonly) NSString *accessibilityLabel;
+@property(nonatomic, copy, readonly, nullable) NSString *accessibilityLabel;
 
 /**
  * Whether the control should be an accessibilityElement. Default is NO.

@@ -193,7 +193,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     }
 }
 
-- (void)setAccessibilityConfiguration:(BPKCardConfiguration *)configuration {
+- (void)setConfiguration:(BPKCardConfiguration *)configuration {
     if (_configuration != configuration) {
         _configuration = configuration;
 
