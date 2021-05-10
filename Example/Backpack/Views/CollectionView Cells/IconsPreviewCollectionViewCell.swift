@@ -19,60 +19,69 @@
 import UIKit
 import Backpack
 
-class IconsPreviewCollectionViewCell: UICollectionViewCell {
+protocol IconDetails {
+    associatedtype ViewClass: BPKIconView
+    associatedtype IconNameType: Any
+    static var size: CGSize { get }
+    static func setIconName(view: Self.ViewClass, name: Self.IconNameType)
+}
 
-    var size: BPKIconSize? {
+extension BPKSmallIconName: IconDetails {
+    static var size: CGSize = BPKIcon.concreteSizeForSmallIcon
+
+    typealias ViewClass = BPKSmallIconView
+    typealias IconNameType = BPKSmallIconName
+
+    static func setIconName(view: BPKSmallIconView, name: BPKSmallIconName) {
+        view.iconName = BPKIconName(rawValue: name.rawValue)
+    }
+}
+
+extension BPKLargeIconName: IconDetails {
+    static var size: CGSize = BPKIcon.concreteSizeForLargeIcon
+
+    typealias ViewClass = BPKLargeIconView
+    typealias IconNameType = BPKLargeIconName
+
+    static func setIconName(view: BPKLargeIconView, name: BPKLargeIconName) {
+        view.iconName = BPKIconName(rawValue: name.rawValue)
+    }
+}
+
+class IconsPreviewCollectionViewCell<T: IconDetails>: UICollectionViewCell {
+    var icon: T.IconNameType? {
         didSet {
-            self.setupIconView(size: size ?? .large)
+            if let icon = icon {
+                T.setIconName(view: imageView, name: icon)
+            }
         }
     }
 
-    var icon: BPKIconName? {
-        didSet {
-            imageView.iconName = icon
-        }
-    }
-
-    private var imageView: BPKIconView
+    private var imageView: T.ViewClass
 
     override init(frame: CGRect) {
-        self.imageView = BPKIconView(iconName: nil, size: .large)
+        self.imageView = T.ViewClass(frame: .zero)
 
         super.init(frame: frame)
 
-        self.setupIconView(size: .large)
+        self.setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
 
-    public static func estimatedSize() -> CGSize {
-        return BPKIcon.concreteSize(forSize: .large)
-    }
-
     // MARK: private
-    private func setupIconView(size: BPKIconSize) {
-        contentView.subviews.forEach({ $0.removeFromSuperview() })
-
-        switch size {
-        case .small:
-            imageView = BPKSmallIconView(iconName: icon != nil ? BPKSmallIconName(rawValue: icon!.rawValue) : nil)
-        default:
-            imageView = BPKLargeIconView(iconName: icon != nil ? BPKLargeIconName(rawValue: icon!.rawValue) : nil)
-        }
-
+    private func setup() {
         contentView.addSubview(imageView)
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: BPKIcon.concreteSize(forSize: .large).width),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 
             imageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: BPKSpacingSm),
             contentView.bottomAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: BPKSpacingSm)
         ])
-
     }
 }
