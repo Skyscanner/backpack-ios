@@ -25,14 +25,9 @@ class IconsViewController: UICollectionViewController {
     fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
     fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
 
-    enum IconType {
-        case small
-        case large
-    }
-
     fileprivate static var icons = [
-        (heading: "Large icons", icons: largeIconList, iconType: IconType.large),
-        (heading: "Small icons", icons: smallIconList, iconType: IconType.small)
+        (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
+        (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
     ]
 
     fileprivate static let smallCellIdentifier = "IconsPreviewCollectionViewCellSmall"
@@ -93,10 +88,12 @@ extension IconsViewController {
         let iconSet = IconsViewController.icons[indexPath.section]
 
         var reuseIdentifier: String
-        switch iconSet.iconType {
+        switch iconSet.size {
         case .small:
             reuseIdentifier = IconsViewController.smallCellIdentifier
         case .large:
+            reuseIdentifier = IconsViewController.largeCellIdentifier
+        default:
             reuseIdentifier = IconsViewController.largeCellIdentifier
         }
 
@@ -111,9 +108,9 @@ extension IconsViewController {
             icon.removeLast(3)
         }
 
-        if iconSet.iconType == .small, let cell = cell as? IconsPreviewCollectionViewCell<BPKSmallIconName> {
+        if iconSet.size == .small, let cell = cell as? IconsPreviewCollectionViewCell<BPKSmallIconName> {
             cell.icon = BPKSmallIconName(icon)
-        } else if iconSet.iconType == .large, let cell = cell as? IconsPreviewCollectionViewCell<BPKLargeIconName> {
+        } else if iconSet.size == .large, let cell = cell as? IconsPreviewCollectionViewCell<BPKLargeIconName> {
             cell.icon = BPKLargeIconName(icon)
         } else {
             fatalError("No cell registered for the icon type provided")
