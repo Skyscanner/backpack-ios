@@ -15,13 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_CARD__
-#define __BACKPACK_CARD__
 
-#import "BPKCard.h"
-#import "BPKDividedCard.h"
 #import "BPKCardConfiguration.h"
-#import "BPKCardConfigurationContainer.h"
-#import "BPKCardConfigurationButton.h"
-#import "BPKCardConfigurationLink.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * `BPKCardConfigurationContainer` is the default interaction style. Assistive technology will not see the outer container, just the individual items inside
+ * The action caused by pressing the button should be made available to AT by a child element.
+ */
+@interface BPKCardConfigurationContainer : BPKCardConfiguration
+
+@end
+
+NS_ASSUME_NONNULL_END

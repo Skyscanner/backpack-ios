@@ -15,13 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_CARD__
-#define __BACKPACK_CARD__
 
-#import "BPKCard.h"
-#import "BPKDividedCard.h"
-#import "BPKCardConfiguration.h"
-#import "BPKCardConfigurationContainer.h"
 #import "BPKCardConfigurationButton.h"
-#import "BPKCardConfigurationLink.h"
-#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation BPKCardConfigurationButton
+
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel {
+    self = [super initWithAccessibilityLabel:accessibilityLabel isAccessibilityElement:YES accessibilityTraits:UIAccessibilityTraitButton];
+    return self;
+}
+
+@end
+
+NS_ASSUME_NONNULL_END
