@@ -2,7 +2,7 @@
 
 > Place your changes below this line.
 
-**Changed:**
+**Fixed:**
 - Migrated to new Backpack Foundations packages, `@skyscanner/bpk-ios` and `@skyscanner/bpk-svgs`.
 
 **Added:**
