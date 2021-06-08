@@ -45,7 +45,7 @@ Once the fonts are downloaded, add them to the Xcode project under _Example for 
 
 ## Testing
 
-Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.5 to match what is used on CI.
+Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 14.4 to match what is used on CI.
 
 ## Taking screenshots
 
@@ -59,7 +59,7 @@ The script takes 10-15 minutes.
 
 ### Snapshot testing
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on an iPhone 8 running iOS 13.5. This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
+Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on an iPhone 8 running iOS 14.4. This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
 
 ## Git
 
