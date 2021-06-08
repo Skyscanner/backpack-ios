@@ -333,6 +333,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleSecondary:
     case BPKButtonStyleDestructive:
     case BPKButtonStyleOutline:
+    case BPKButtonStyleTertiary:
         switch (size) {
         case BPKButtonSizeDefault: {
             if (self.isIconOnly) {
@@ -419,6 +420,11 @@ NS_ASSUME_NONNULL_BEGIN
             [self setLinkStyleWithColor:contentColor];
             break;
         }
+        case BPKButtonStyleTertiary: {
+            UIColor *backgroundColor = self.tertiaryBackgroundColor ? self.tertiaryBackgroundColor : self.class.tertiaryBackgroundColor;
+            [self setFilledStyleWithNormalBackgroundColorGradientOnTop:backgroundColor gradientOnBottom:backgroundColor];
+            break;
+        }
         default: {
             NSAssert(NO, @"Invalid style value %d", (int)self.style);
             break;
@@ -501,6 +507,13 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleLink:
         highlightedContentColor = [self.currentContentColor colorWithAlphaComponent:0.2];
         break;
+    case BPKButtonStyleTertiary:
+        if (self.tertiaryContentColor != nil) {
+            highlightedContentColor = [self highlightedColor:self.tertiaryContentColor];
+        } else {
+            highlightedContentColor = BPKColor.textPrimaryColor;
+        }
+        break;
     default:
         highlightedContentColor = nil;
     }
@@ -554,6 +567,7 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKButtonStyleFeatured:
         case BPKButtonStyleSecondary:
         case BPKButtonStyleDestructive:
+        case BPKButtonStyleTertiary:
             return self.class.disabledContentColor;
         case BPKButtonStyleLink:
             return self.class.disabledContentColor;
@@ -592,6 +606,11 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.systemRed;
     case BPKButtonStyleOutline:
         return BPKColor.white;
+    case BPKButtonStyleTertiary:
+        if (self.tertiaryContentColor != nil) {
+            return self.tertiaryContentColor;
+        }
+        return BPKColor.textPrimaryColor;
     default:
         NSAssert(NO, @"Unknown BPKButtonStyle %d", (int)self.style);
         return BPKColor.white;
@@ -664,6 +683,7 @@ NS_ASSUME_NONNULL_BEGIN
     case BPKButtonStyleFeatured:
     case BPKButtonStyleSecondary:
     case BPKButtonStyleDestructive:
+    case BPKButtonStyleTertiary:
         backgroundColor = self.class.disabledBackgroundColor;
         break;
     case BPKButtonStyleOutline:
@@ -869,6 +889,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)boxyBorderColor {
     return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.skyGrayTint02];
+}
+
++ (UIColor *)tertiaryBackgroundColor {
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint02];
 }
 
 + (CGFloat)buttonTitleIconSpacing {

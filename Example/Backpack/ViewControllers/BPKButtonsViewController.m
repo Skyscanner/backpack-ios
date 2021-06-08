@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupButtons {
-    if (self.style == BPKButtonStyleOutline) {
+    if (self.style == BPKButtonStyleOutline || self.style == BPKButtonStyleTertiary) {
         for (UIView *contentView in self.contentViews) {
             [contentView setBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade03 darkVariant:BPKColor.backgroundDarkColor]];
         }

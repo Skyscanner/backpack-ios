@@ -69,6 +69,11 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
      * Outline button style, suitable for use on coloured backgrounds.
      */
     BPKButtonStyleOutline = 5,
+
+    /**
+     * Tertiary button style, suitable for use on map views
+     */
+    BPKButtonStyleTertiary = 6,
 };
 
 /**
@@ -132,6 +137,12 @@ IB_DESIGNABLE @interface BPKButton : UIButton
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *linkContentColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) UIColor *tertiaryBackgroundColor UI_APPEARANCE_SELECTOR;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) UIColor *tertiaryContentColor UI_APPEARANCE_SELECTOR;
 
 /// :nodoc:
 - (void)setTitle:(NSString *_Nullable)title forState:(UIControlState)state __attribute__((unavailable("use setTitle: instead")));
