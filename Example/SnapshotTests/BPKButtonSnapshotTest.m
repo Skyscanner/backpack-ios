@@ -227,6 +227,39 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (UIView *)createDefaultTertiary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleTertiary applyTheme:NO loading:NO];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
+}
+
+- (void)testDefaultTertiary {
+    UIView *lightView = [self createDefaultTertiary];
+    UIView *darkView = [self createDefaultTertiary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDefaultLoadingTertiary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeDefault style:BPKButtonStyleTertiary applyTheme:NO loading:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
+}
+
+- (void)testDefaultLoadingTertiary {
+    UIView *lightView = [self createDefaultLoadingTertiary];
+    UIView *darkView = [self createDefaultLoadingTertiary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+
 - (UIView *)createLargePrimary {
     UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStylePrimary applyTheme:NO loading:NO];
     CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -414,6 +447,38 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testLargeLoadingOutline {
     UIView *lightView = [self createLargeLoadingOutline];
     UIView *darkView = [self createLargeLoadingOutline];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeTertiary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleTertiary applyTheme:NO loading:NO];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
+}
+
+- (void)testLargeTertiary {
+    UIView *lightView = [self createLargeTertiary];
+    UIView *darkView = [self createLargeTertiary];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createLargeLoadingTertiary {
+    UIStackView *view = [self createAllVariantsOfSize:BPKButtonSizeLarge style:BPKButtonStyleTertiary applyTheme:NO loading:YES];
+    CGSize size = [view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    view.frame = CGRectMake(0, 0, size.width, size.height);
+
+    return view;
+}
+
+- (void)testLargeLoadingTertiary {
+    UIView *lightView = [self createLargeLoadingTertiary];
+    UIView *darkView = [self createLargeLoadingTertiary];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
