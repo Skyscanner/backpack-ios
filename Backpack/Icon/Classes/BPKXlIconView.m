@@ -25,6 +25,17 @@ NS_ASSUME_NONNULL_BEGIN
     return [super initWithIconName:iconName size:BPKIconSizeXLarge];
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        super.size = BPKIconSizeXLarge;
+#pragma GCC diagnostic pop
+    }
+    return self;
+}
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-implementations"
 - (void)setSize:(BPKIconSize)size {

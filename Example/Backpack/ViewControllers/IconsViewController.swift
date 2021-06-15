@@ -22,16 +22,19 @@ import Backpack
 class IconsViewController: UICollectionViewController {
 
     fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
+    fileprivate static var extraLargeIconList = iconList.filter({ $0.hasSuffix("-xl") })
     fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
     fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
 
     fileprivate static var icons = [
+        (heading: "Extra large icons", size: BPKIconSize.xLarge, icons: extraLargeIconList),
         (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
         (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
     ]
 
     fileprivate static let smallCellIdentifier = "IconsPreviewCollectionViewCellSmall"
     fileprivate static let largeCellIdentifier = "IconsPreviewCollectionViewCellLarge"
+    fileprivate static let extraLargeCellIdentifier = "IconsPreviewCollectionViewCellExtraLarge"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
 
     override func viewDidLoad() {
@@ -42,6 +45,10 @@ class IconsViewController: UICollectionViewController {
         collectionView?.register(
             IconsPreviewCollectionViewCell<BPKLargeIconName>.self,
             forCellWithReuseIdentifier: IconsViewController.largeCellIdentifier
+        )
+        collectionView?.register(
+            IconsPreviewCollectionViewCell<BPKXlIconName>.self,
+            forCellWithReuseIdentifier: IconsViewController.extraLargeCellIdentifier
         )
         #if swift(>=4.2)
             collectionView?.register(
@@ -93,6 +100,8 @@ extension IconsViewController {
             reuseIdentifier = IconsViewController.smallCellIdentifier
         case .large:
             reuseIdentifier = IconsViewController.largeCellIdentifier
+        case .xLarge:
+            reuseIdentifier = IconsViewController.extraLargeCellIdentifier
         default:
             reuseIdentifier = IconsViewController.largeCellIdentifier
         }
@@ -104,7 +113,7 @@ extension IconsViewController {
 
         var icon = iconSet.icons[indexPath.row]
 
-        if icon.hasSuffix("-sm") {
+        if icon.hasSuffix("-sm") || icon.hasSuffix("-xl") {
             icon.removeLast(3)
         }
 
@@ -112,6 +121,8 @@ extension IconsViewController {
             cell.icon = BPKSmallIconName(icon)
         } else if iconSet.size == .large, let cell = cell as? IconsPreviewCollectionViewCell<BPKLargeIconName> {
             cell.icon = BPKLargeIconName(icon)
+        } else if iconSet.size == .xLarge, let cell = cell as? IconsPreviewCollectionViewCell<BPKXlIconName> {
+            cell.icon = BPKXlIconName(icon)
         } else {
             fatalError("No cell registered for the icon type provided")
         }

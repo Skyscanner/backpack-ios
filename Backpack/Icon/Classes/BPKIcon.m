@@ -127,6 +127,8 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     NSString *lookupKey = name;
     if (size == BPKIconSizeSmall) {
         lookupKey = [NSString stringWithFormat:@"%@%@", name, @"-sm"];
+    } else if (size == BPKIconSizeXLarge) {
+        lookupKey = [NSString stringWithFormat:@"%@%@", name, @"-xl"];
     }
 
     if (self.iconMapping) {

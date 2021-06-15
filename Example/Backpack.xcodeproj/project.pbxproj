@@ -96,6 +96,7 @@
 		D24B548B22EA38D900ECD829 /* BPKProgressBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
 		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
+		D2506B572679ECB600C1BD6D /* BPKIconViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2506B562679ECB600C1BD6D /* BPKIconViewTest.m */; };
 		D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */; };
 		D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C765236AE319006683F5 /* BPKSimpleDateTest.m */; };
 		D257C769236AE3FB006683F5 /* TextViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D257C767236AE3FB006683F5 /* TextViewUITest.swift */; };
@@ -353,6 +354,7 @@
 		D24B548A22EA38D900ECD829 /* BPKProgressBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKProgressBarTest.m; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
 		D24D602A22F84CEC002847D1 /* TextField.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextField.storyboard; sourceTree = "<group>"; };
+		D2506B562679ECB600C1BD6D /* BPKIconViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKIconViewTest.m; sourceTree = "<group>"; };
 		D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTabBarControllerTest.m; sourceTree = "<group>"; };
 		D257C765236AE319006683F5 /* BPKSimpleDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSimpleDateTest.m; sourceTree = "<group>"; };
 		D257C767236AE3FB006683F5 /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */,
 				D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */,
 				D696CA1F215CC09400682666 /* BPKIconTest.m */,
+				D2506B562679ECB600C1BD6D /* BPKIconViewTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
 				D217FE5B262710A90095F1B3 /* BPKNudgerTest.m */,
 				D21AF43B2539E7CE00C8ED04 /* BPKOverlayViewTest.m */,
@@ -1436,6 +1439,7 @@
 				D21AF43C2539E7CE00C8ED04 /* BPKOverlayViewTest.m in Sources */,
 				D22EB158239EA78F0090C65E /* BPKBorderWidthTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
+				D2506B572679ECB600C1BD6D /* BPKIconViewTest.m in Sources */,
 				D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */,
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
 				589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */,
