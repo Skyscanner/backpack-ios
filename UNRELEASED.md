@@ -7,7 +7,7 @@
 - Migrated to new Backpack Foundations packages, `@skyscanner/bpk-ios` and `@skyscanner/bpk-svgs`.
 
 - Backpack/Icon
- - Minor changes to `BPKIcon` which should not affect how the are used or work.
+ - Minor changes to `BPKIcon` which should not affect how they are used or work.
 
 **Added:**
 - Backpack/Icon
