@@ -71,10 +71,24 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 - (void)testAllLargeIcons {
-    NSArray<BPKSmallIconName> *allLargeIcons = [[self class] allLargeIconNames];
+    NSArray<BPKLargeIconName> *allLargeIcons = [[self class] allLargeIconNames];
 
     UIView *view = [[self class] generateLargeIconGridWithIcons:allLargeIcons makeIconView:^UIImageView *(BPKLargeIconName name) {
         UIImage *icon = [BPKIcon largeTemplateIconNamed:name];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
+        imageView.image = icon;
+
+        return imageView;
+    }];
+
+    FBSnapshotVerifyView(view, nil);
+}
+
+- (void)testAllXlIcons {
+    NSArray<BPKXlIconName> *allXlIconNames = [[self class] allXlIconNames];
+
+    UIView *view = [[self class] generateXLargeIconGridWithIcons:allXlIconNames makeIconView:^UIImageView *(BPKXlIconName name) {
+        UIImage *icon = [BPKIcon xlTemplateIconNamed:name];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
         imageView.image = icon;
 
@@ -111,6 +125,20 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
     return [result copy];
 }
 
++ (NSArray<BPKXlIconName> *)allXlIconNames {
+    NSArray *allIcons = [BPKIcon.iconMapping allKeys];
+    NSMutableArray *result = [NSMutableArray new];
+
+    for (NSString *icon in allIcons) {
+        if ([icon hasSuffix:@"-xl"]) {
+            BPKXlIconName name = [icon substringToIndex:icon.length - 3];
+            [result addObject:name];
+        }
+    }
+
+    return [result copy];
+}
+
 + (UIView *)generateSmallIconGridWithIcons:(NSArray<BPKSmallIconName> *)icons makeIconView:(BPKIconMakeSmallIcon)makeSmallIcon {
     return [self generateIconGridWithIcons:icons
                               makeIconView:makeSmallIcon
@@ -121,6 +149,12 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
     return [self generateIconGridWithIcons:icons
                               makeIconView:makeLargeIcon
                                   iconSize:BPKIcon.concreteSizeForLargeIcon];
+}
+
++ (UIView *)generateXLargeIconGridWithIcons:(NSArray<BPKXlIconName> *)icons makeIconView:(BPKIconMakeXlIcon)makeXlIcon {
+    return [self generateIconGridWithIcons:icons
+                              makeIconView:makeXlIcon
+                                  iconSize:BPKIcon.concreteSizeForXlIcon];
 }
 
 + (UIView *)generateIconGridWithIcons:(NSArray<id> *)icons makeIconView:(BPKIconGenericMakeIcon)makeIcon iconSize:(CGSize)iconSize {
