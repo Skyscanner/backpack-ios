@@ -1,6 +1,19 @@
 
 [Unreleased changes](./UNRELEASED.md).
 
+# 43.3.0
+
+**Added:**
+- Backpack/Icon
+  - Added `car-door` icon.
+
+**Fixed:**
+
+- Migrated to new Backpack Foundations packages, `@skyscanner/bpk-ios` and `@skyscanner/bpk-svgs`.
+
+- Backpack/Icon
+ - Minor changes to `BPKIcon` which should not affect how they are used or work.
+
 # 43.2.0
 
 **Added:**
