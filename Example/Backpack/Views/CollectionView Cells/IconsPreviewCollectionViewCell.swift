@@ -89,8 +89,10 @@ class IconsPreviewCollectionViewCell<T: IconDetails>: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
         ])
     }
 }
