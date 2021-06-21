@@ -45,7 +45,7 @@ class PreviewCollectionViewHeader: UICollectionReusableView {
         mockLabel.text = text
         mockLabel.sizeToFit()
 
-        return CGSize(width: collectionView.frame.width, height: mockLabel.frame.height + BPKSpacingMd + BPKSpacingSm)
+        return CGSize(width: collectionView.frame.width, height: mockLabel.frame.height + BPKSpacingBase + BPKSpacingMd)
     }
 
     // MARK: private
@@ -56,7 +56,8 @@ class PreviewCollectionViewHeader: UICollectionReusableView {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.topAnchor, constant: BPKSpacingMd)
+            label.topAnchor.constraint(equalTo: self.topAnchor, constant: BPKSpacingBase),
+            self.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingMd)
         ])
     }
 }
