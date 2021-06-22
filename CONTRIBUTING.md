@@ -24,24 +24,26 @@ Use the most recent stable version of Xcode, however the project should work wit
 
 Given that you have a compatible environment as stated above you can now setup the project.
 
-+ `bundle install` to install ruby dependencies
-+ `npm install` to install npm dependencies
-+ `(cd Example && bundle exec pod install)` To setup the example project.
-+ `open Example/Backpack.xcworkspace` to open the example project
+- `bundle install` to install ruby dependencies
+- `npm install` to install npm dependencies
+- If you work for Skyscanner, [configure relative](#relative-font) (optional).
+- `(cd Example && bundle exec pod install)` To setup the example project.
+- `open Example/Backpack.xcworkspace` to open the example project
 
 ## Relative Font
 
 > Skyscanner employees only
 
-To use our `Skyscanner Relative` font-face in the example app, download the files first by executing the script below from the top level of the repo. You will need SSH access to `github.skyscannertools.net` to do this.
+Our fonts can only be used by Skyscanner employees. If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
 
-If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
+To use our `Skyscanner Relative` font-face in the example app do the following:
 
-```
-./scripts/download-relative-fonts
-```
+- Make sure you're connected to the VPN.
+- If you've already done a `pod install`, delete `Example/Pods`.
+- Set the environment variable using `export USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
+- Setup the project as [above](#setup).
 
-Once the fonts are downloaded, add them to the Xcode project under _Example for Backpack/Resources_. To do this, right click on _Resources_, press _Add files to "Backpack"_ and add them.
+During pod install, fonts will be downloaded and made available to the project automatically.
 
 ## Testing
 

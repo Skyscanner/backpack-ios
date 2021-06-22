@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+# This script pulls Skyscanner fonts only if `USE_RELATIVE=1`.
+# It adds them to the `Fonts` pod to make them available to the Example app build.
+
+if [ $USE_RELATIVE = 1 ]; then
+  echo "Attempting to pull Skyscanner fonts"
+  mkdir -p bpk-fonts-tmp
+  cd bpk-fonts-tmp
+  git init
+  git remote add origin git@github.skyscannertools.net:backpack/bpk-fonts.git
+  git config core.sparsecheckout true
+  echo "iOS" >> .git/info/sparse-checkout
+  git pull --depth=1 origin main || (echo "\033[0;31mUnable to download Skyscanner fonts\033[0m" && exit 1)
+  cd ..
+else
+  echo "Skipping setup of Skyscanner fonts"
+fi
+
+mkdir -p ./Assets
+cp ./bpk-fonts-tmp/iOS/SkyscannerRelativeiOS* ./Assets/
+rm -rf bpk-fonts-tmp
