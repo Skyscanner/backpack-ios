@@ -5,7 +5,7 @@
 build/
 bpk-fonts-tmp/
 Example/Backpack/Resources/SkyscannerRelative*
-Fonts/Assets/SkyscannerRelative*
+Backpack-Fonts/Assets/SkyscannerRelative*
 *.pbxuser
 !default.pbxuser
 *.mode1v3

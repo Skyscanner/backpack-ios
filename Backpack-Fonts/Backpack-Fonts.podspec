@@ -15,7 +15,7 @@
 # limitations under the License.
 
 Pod::Spec.new do |spec|
-  spec.name         = "Fonts"
+  spec.name         = "Backpack-Fonts"
   spec.version      = "0.0.1"
   spec.summary      = <<-DESC
     A local pod that can optionaly contain Skyscanner fonts to include in the bundle.
