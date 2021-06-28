@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
     A local pod that can optionaly contain Skyscanner fonts to include in the bundle.
                        DESC
   spec.homepage         = 'https://github.com/Skyscanner/backpack-ios'
-  spec.license          = { type: 'Apache-2.0', file: 'LICENSE' }
+  spec.license          = { type: 'Apache-2.0', file: '../LICENSE' }
   spec.author           = {
     'Backpack Design System' => 'backpack@skyscanner.net'
   }

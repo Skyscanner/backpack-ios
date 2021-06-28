@@ -40,7 +40,7 @@ To use our `Skyscanner Relative` font-face in the example app do the following:
 
 - Make sure you're connected to the VPN.
 - If you've already done a `pod install`, delete `Example/Pods`.
-- Set the environment variable using `export USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
+- Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
 - Setup the project as [above](#setup).
 
 During pod install, fonts will be downloaded and made available to the project automatically.
