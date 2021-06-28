@@ -14,6 +14,7 @@ PODS:
     - FSCalendar (~> 2.8.2)
     - MBProgressHUD (~> 1.2.0)
     - TTTAttributedLabel (~> 2.0.0)
+  - Backpack-Fonts (0.0.1)
   - FloatingPanel (1.6.6)
   - FSCalendar (2.8.2)
   - iOSSnapshotTestCase/Core (6.2.0)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - AppCenter (~> 4.1.1)
   - AppCenter/Distribute (~> 4.1.1)
   - Backpack (from `../`)
+  - Backpack-Fonts (from `../Backpack-Fonts`)
   - iOSSnapshotTestCase/Core (~> 6.2.0)
   - OCMock (~> 3.8.1)
   - SwiftLint (~> 0.43.1)
@@ -44,10 +46,13 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Backpack:
     :path: "../"
+  Backpack-Fonts:
+    :path: "../Backpack-Fonts"
 
 SPEC CHECKSUMS:
   AppCenter: cd53e3ed3563cc720bcb806c9731a12389b40d44
   Backpack: 89a31515530ebeea709279e0beaddc16f317272f
+  Backpack-Fonts: f1c8c3d4a8b2ddaac06a2b3a5afb34f5e80a4f29
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
@@ -56,6 +61,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: ea6d411a878c7481068b41712b06c4f04a4e0c5c
+PODFILE CHECKSUM: ca6dc279bfc214b37d0df7981d71180b444deea0
 
 COCOAPODS: 1.10.1

@@ -8,6 +8,7 @@ install! 'cocoapods', disable_input_output_paths: true
 
 target 'Backpack-Native' do
   pod 'Backpack', :path => '../'
+  pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
   pod 'SwiftLint', '~> 0.43.1'
   pod 'AppCenter', '~> 4.1.1'
   pod 'AppCenter/Distribute', '~> 4.1.1'
