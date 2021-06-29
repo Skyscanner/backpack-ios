@@ -18,26 +18,8 @@
 
 #import "BPKTheme.h"
 
-#import <Backpack/Button.h>
-#import <Backpack/Calendar.h>
-#import <Backpack/Chip.h>
-#import <Backpack/Color.h>
-#import <Backpack/Gradient.h>
-#import <Backpack/HorizontalNavigation.h>
-#import <Backpack/Label.h>
-#import <Backpack/ProgressBar.h>
-#import <Backpack/Rating.h>
-#import <Backpack/Spinner.h>
-#import <Backpack/StarRating.h>
-#import <Backpack/Switch.h>
-#import <Backpack/TappableLinkLabel.h>
-#import <Backpack/TextField.h>
-#import <Backpack/TextView.h>
-
-#import "BPKDohaThemeContainer.h"
-#import "BPKThemeContainer.h"
-#import "BPKThemeContainerController.h"
-#import "UIView+BPKThemeContainer.h"
+#import <Backpack/Backpack.h>
+#import <Backpack/Backpack-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -102,9 +84,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKStar *starAppearance = [BPKStar appearanceWhenContainedInInstancesOfClasses:@[class]];
     starAppearance.starFilledColor = theme.starFilledColor;
 
-    BPKHorizontalNavigation *horizontalNavigationAppearance = [BPKHorizontalNavigation appearanceWhenContainedInInstancesOfClasses:@[class]];
-    horizontalNavigationAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
-
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
@@ -112,6 +91,9 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     ratingAppearance.lowRatingColor = theme.ratingLowColor;
     ratingAppearance.mediumRatingColor = theme.ratingMediumColor;
     ratingAppearance.highRatingColor = theme.ratingHighColor;
+
+    BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];
+    horizontalNavAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
 }
 
 @end
