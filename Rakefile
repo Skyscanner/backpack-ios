@@ -86,7 +86,7 @@ end
 
 desc "Check for build-time errors and warnings"
 task :analyze do
-  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -v Pods/FloatingPanel/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 desc "Erase content and settings from all iPhone simulators"
