@@ -41,7 +41,10 @@
 
     id<BPKFontDefinitionProtocol> relativeFontDefinition = [BPKRelativeFontDefinition new];
     UIFont *relativeTestFont = [UIFont fontWithName:relativeFontDefinition.regularFontFace size:12];
-    if (relativeTestFont != nil) {
+    BOOL relativeAvailable = relativeTestFont != nil;
+    BOOL useRelative = ![NSProcessInfo.processInfo.arguments containsObject:@"DISABLE_RELATIVE"] && relativeAvailable;
+
+    if (useRelative) {
         [BPKFont setFontDefinition:relativeFontDefinition];
     }
 

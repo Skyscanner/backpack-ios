@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) BPKLabel *titleLabel;
 @property(nonatomic) CALayer *tintLayer;
 @property(nonatomic) UIColor *contentColor;
-@property(nullable, nonatomic) BPKIconView *iconView;
+@property(nullable, nonatomic) BPKLargeIconView *iconView;
 @property(nullable, nonatomic) NSArray<NSLayoutConstraint *> *iconConstraints;
 @end
 
@@ -283,7 +283,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setIconName:(BPKIconName _Nullable)iconName {
+- (void)setIconName:(BPKLargeIconName _Nullable)iconName {
     if (_iconName != iconName) {
         _iconName = iconName;
 
@@ -291,10 +291,11 @@ NS_ASSUME_NONNULL_BEGIN
             [self.iconView removeFromSuperview];
             self.iconView = nil;
         } else {
-            self.iconView = [[BPKIconView alloc] initWithIconName:iconName size:BPKIconSizeLarge];
+            self.iconView = [[BPKLargeIconView alloc] initWithIconName:iconName];
             [self addSubview:self.iconView];
             [self updateStyle];
         }
+
         [self updateIconConstraints];
     }
 }
