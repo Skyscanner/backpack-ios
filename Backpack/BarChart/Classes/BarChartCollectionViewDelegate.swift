@@ -21,9 +21,10 @@ import UIKit
 @objc(BPKBarChartCollectionViewDelegate)
 public protocol BPKBarChartCollectionViewDelegate {
 
-    /// Responds to user-selection of a specific bar
+    /// Responds to user-selection of a specific bar.
     ///
-    /// - parameter barChart: The BPKBarChart on which selection has been performed
-    /// - parameter index: The index of the selected bar
+    /// - Parameters:
+    ///   - barChart: The BPKBarChart on which selection has been performed
+    ///   - indexPath: The index of the selected bar
     func barChart(_ barChart: BPKBarChart, didSelectBarAt indexPath: IndexPath)
 }
