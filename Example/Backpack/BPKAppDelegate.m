@@ -39,10 +39,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.UITestingEnabled = [NSProcessInfo.processInfo.arguments containsObject:@"UITests"];
 
-    id<BPKFontDefinitionProtocol> relativeFontDefinition = [BPKRelativeFontDefinition new];
-    UIFont *relativeTestFont = [UIFont fontWithName:relativeFontDefinition.regularFontFace size:12];
-    if (relativeTestFont != nil) {
-        [BPKFont setFontDefinition:relativeFontDefinition];
+
+    BOOL useRelative = ![NSProcessInfo.processInfo.arguments containsObject:@"DISABLE_RELATIVE"];
+
+    if (useRelative) {
+        id<BPKFontDefinitionProtocol> relativeFontDefinition = [BPKRelativeFontDefinition new];
+        UIFont *relativeTestFont = [UIFont fontWithName:relativeFontDefinition.regularFontFace size:12];
+        if (relativeTestFont != nil) {
+            [BPKFont setFontDefinition:relativeFontDefinition];
+        }
     }
 
     // Override point for customization after application launch.
