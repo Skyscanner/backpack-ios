@@ -23,7 +23,7 @@ defaults:
 jobs:
   CI:
     name: Build and Test
-    runs-on: macos-10.15
+    runs-on: macos-11
 
     steps:
       - name: Set build image var
