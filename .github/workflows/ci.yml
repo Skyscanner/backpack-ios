@@ -128,8 +128,8 @@ jobs:
       - name: Build and Test
         env:
           FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator14.4
-          DESTINATION: 'OS=14.4,platform=iOS Simulator,name=iPhone 8'
+          BUILD_SDK: iphonesimulator14.5
+          DESTINATION: 'OS=14.5,platform=iOS Simulator,name=iPhone 8'
         run: bundle exec rake ci
         working-directory: Example
 
