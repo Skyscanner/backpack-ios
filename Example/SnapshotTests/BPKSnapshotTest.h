@@ -19,7 +19,7 @@
     {                                                                                                                                                \
         NSString *correctDeviceName = @"iPhone 8";                                                                                                   \
         int correctMajorVersion = 14;                                                                                                                \
-        int correctMinorVersion = 4;                                                                                                                 \
+        int correctMinorVersion = 5;                                                                                                                 \
         NSString *deviceName = [[UIDevice currentDevice] name];                                                                                      \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];                                             \
         BOOL validDevice = [deviceName isEqual:correctDeviceName];                                                                                   \

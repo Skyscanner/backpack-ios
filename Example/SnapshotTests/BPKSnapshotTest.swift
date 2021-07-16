@@ -24,7 +24,7 @@ import FBSnapshotTestCase
 
 private let expectedDeviceName: String = "iPhone 8"
 private let expectedMajorVersion: Int = 14
-private let expectedMinorVersion: Int = 4
+private let expectedMinorVersion: Int = 5
 
 func BPKVerifySnapshotOS() {
     let deviceName = UIDevice.current.name
