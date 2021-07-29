@@ -28,6 +28,7 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "BPKButtonAppearanceSets.h"
+#import "UIColor+BPKButton.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/DarkMode.h>
@@ -118,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
         BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:BPKColor.primaryColor];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:[BPKColor.primaryColor colorWithAlphaComponent:0.8f]];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:[UIColor reduceOpacityOfColor:BPKColor.primaryColor]];
 
         _linkSet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
@@ -127,11 +128,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedWhite {
-    return [BPKColor blend:BPKColor.white with:BPKColor.skyGray weight:0.85f];
+    return [UIColor dimColor:BPKColor.white];
 }
 
 + (UIColor *)highlightedOutlineBorder {
-    return [BPKColor dynamicColorWithLightVariant:[BPKColor.white colorWithAlphaComponent:0.8] darkVariant:BPKColor.white];
+    return [BPKColor dynamicColorWithLightVariant:[UIColor reduceOpacityOfColor:BPKColor.white] darkVariant:BPKColor.white];
 }
 
 + (UIColor *)highlightedOutlineBackground {
@@ -139,11 +140,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)highlightedSkyBlue {
-    return [BPKColor blend:BPKColor.skyBlue with:BPKColor.skyGray weight:0.85f];
+    return [UIColor dimColor:BPKColor.skyBlue];
 }
 
 + (UIColor *)highlightedMonteverde {
-    return [BPKColor blend:BPKColor.monteverde with:BPKColor.skyGray weight:0.85f];
+    return [UIColor dimColor:BPKColor.monteverde];
 }
 
 + (UIColor *)loadingBackgroundColor {

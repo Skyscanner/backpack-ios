@@ -29,6 +29,7 @@
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
 #import "BPKButtonAppearanceSets.h"
+#import "UIColor+BPKButton.h"
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -95,72 +96,69 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
-    if (!highlighted) {
-        return color;
-    }
-    return [BPKColor blend:color with:BPKColor.skyGray weight:0.85f];
+    return highlighted ? [UIColor dimColor:color] : color;
 }
 
 - (BPKButtonAppearance *)themedAppearance:(BPKButtonAppearance *)appearance highlighted:(BOOL)highlighted {
     BPKButtonAppearance *themedAppearance = [appearance clone];
     switch (self.style) {
-        case BPKButtonStylePrimary:
-            if (self.primaryContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.primaryContentColor highlighted:highlighted];
+    case BPKButtonStylePrimary:
+        if (self.primaryContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.primaryContentColor highlighted:highlighted];
+        }
+        if (self.primaryGradientStartColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.primaryGradientStartColor highlighted:highlighted];
+        }
+        if (self.primaryGradientEndColor) {
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.primaryGradientEndColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleSecondary:
+        if (self.secondaryContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.secondaryContentColor highlighted:highlighted];
+        }
+        if (self.secondaryBorderColor) {
+            themedAppearance.borderColor = [self applyHighlightToColor:self.secondaryBorderColor highlighted:highlighted];
+        }
+        if (self.secondaryBackgroundColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleDestructive:
+        if (self.destructiveContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.destructiveContentColor highlighted:highlighted];
+        }
+        if (self.destructiveBorderColor) {
+            themedAppearance.borderColor = [self applyHighlightToColor:self.destructiveBorderColor highlighted:highlighted];
+        }
+        if (self.destructiveBackgroundColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleFeatured:
+        if (self.featuredContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.featuredContentColor highlighted:highlighted];
+        }
+        if (self.featuredGradientStartColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.featuredGradientStartColor highlighted:highlighted];
+        }
+        if (self.featuredGradientEndColor) {
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.featuredGradientEndColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleLink:
+        if (self.linkContentColor) {
+            if (highlighted) {
+                themedAppearance.foregroundColor = [UIColor reduceOpacityOfColor:self.linkContentColor];
+            } else {
+                themedAppearance.foregroundColor = self.linkContentColor;
             }
-            if (self.primaryGradientStartColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.primaryGradientStartColor highlighted:highlighted];
-            }
-            if (self.primaryGradientEndColor) {
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.primaryGradientEndColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleSecondary:
-            if (self.secondaryContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.secondaryContentColor highlighted:highlighted];
-            }
-            if (self.secondaryBorderColor) {
-                themedAppearance.borderColor = [self applyHighlightToColor:self.secondaryBorderColor highlighted:highlighted];
-            }
-            if (self.secondaryBackgroundColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleDestructive:
-            if (self.destructiveContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.destructiveContentColor highlighted:highlighted];
-            }
-            if (self.destructiveBorderColor) {
-                themedAppearance.borderColor = [self applyHighlightToColor:self.destructiveBorderColor highlighted:highlighted];
-            }
-            if (self.destructiveBackgroundColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleFeatured:
-            if (self.featuredContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.featuredContentColor highlighted:highlighted];
-            }
-            if (self.featuredGradientStartColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.featuredGradientStartColor highlighted:highlighted];
-            }
-            if (self.featuredGradientEndColor) {
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.featuredGradientEndColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleLink:
-            if (self.linkContentColor) {
-                if (highlighted) {
-                    themedAppearance.foregroundColor = [self.linkContentColor colorWithAlphaComponent:0.8f];
-                } else {
-                    themedAppearance.foregroundColor = self.linkContentColor;
-                }
-            }
-            break;
-        case BPKButtonStyleOutline:
-            break;
+        }
+        break;
+    case BPKButtonStyleOutline:
+        break;
     }
 
     return themedAppearance;
@@ -170,24 +168,24 @@ NS_ASSUME_NONNULL_BEGIN
     BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSets.primary;
 
     switch (self.style) {
-        case BPKButtonStylePrimary:
-            appearanceSet = BPKButtonAppearanceSets.primary;
-            break;
-        case BPKButtonStyleSecondary:
-            appearanceSet = BPKButtonAppearanceSets.secondary;
-            break;
-        case BPKButtonStyleDestructive:
-            appearanceSet = BPKButtonAppearanceSets.destructive;
-            break;
-        case BPKButtonStyleFeatured:
-            appearanceSet = BPKButtonAppearanceSets.featured;
-            break;
-        case BPKButtonStyleLink:
-            appearanceSet = BPKButtonAppearanceSets.link;
-            break;
-        case BPKButtonStyleOutline:
-            appearanceSet = BPKButtonAppearanceSets.outline;
-            break;
+    case BPKButtonStylePrimary:
+        appearanceSet = BPKButtonAppearanceSets.primary;
+        break;
+    case BPKButtonStyleSecondary:
+        appearanceSet = BPKButtonAppearanceSets.secondary;
+        break;
+    case BPKButtonStyleDestructive:
+        appearanceSet = BPKButtonAppearanceSets.destructive;
+        break;
+    case BPKButtonStyleFeatured:
+        appearanceSet = BPKButtonAppearanceSets.featured;
+        break;
+    case BPKButtonStyleLink:
+        appearanceSet = BPKButtonAppearanceSets.link;
+        break;
+    case BPKButtonStyleOutline:
+        appearanceSet = BPKButtonAppearanceSets.outline;
+        break;
     }
 
     if (self.isLoading) {
@@ -430,37 +428,37 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIEdgeInsets)contentEdgeInsetsForStyle:(BPKButtonStyle)style size:(BPKButtonSize)size {
     switch (style) {
-        case BPKButtonStyleLink:
-            return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
+    case BPKButtonStyleLink:
+        return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
 
-            // NOTE: Explicit fall-through
-        case BPKButtonStylePrimary:
-        case BPKButtonStyleFeatured:
-        case BPKButtonStyleSecondary:
-        case BPKButtonStyleDestructive:
-        case BPKButtonStyleOutline:
-            switch (size) {
-                case BPKButtonSizeDefault: {
-                    if (self.isIconOnly) {
-                        return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingMd, BPKSpacingMd, BPKSpacingMd);
-                    } else {
-                        return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingSm * 3, BPKSpacingMd, BPKSpacingSm * 3);
-                    }
-                }
-                case BPKButtonSizeLarge: {
-                    if (self.isIconOnly) {
-                        return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3);
-                    } else {
-                        return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingBase, BPKSpacingSm * 3, BPKSpacingBase);
-                    }
-                }
-                default:
-                    NSAssert(NO, @"Unknown size %d", (int)size);
-                    break;
+    // NOTE: Explicit fall-through
+    case BPKButtonStylePrimary:
+    case BPKButtonStyleFeatured:
+    case BPKButtonStyleSecondary:
+    case BPKButtonStyleDestructive:
+    case BPKButtonStyleOutline:
+        switch (size) {
+        case BPKButtonSizeDefault: {
+            if (self.isIconOnly) {
+                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingMd, BPKSpacingMd, BPKSpacingMd);
+            } else {
+                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingSm * 3, BPKSpacingMd, BPKSpacingSm * 3);
             }
-            break;
+        }
+        case BPKButtonSizeLarge: {
+            if (self.isIconOnly) {
+                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3);
+            } else {
+                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingBase, BPKSpacingSm * 3, BPKSpacingBase);
+            }
+        }
         default:
-            NSAssert(NO, @"Unknown style %d", (int)style);
+            NSAssert(NO, @"Unknown size %d", (int)size);
+            break;
+        }
+        break;
+    default:
+        NSAssert(NO, @"Unknown style %d", (int)style);
     }
 }
 
@@ -511,13 +509,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKFontStyle)currentFontStyle {
     switch (self.size) {
-        case BPKButtonSizeDefault:
-            return BPKFontStyleTextSmEmphasized;
-        case BPKButtonSizeLarge:
-            return BPKFontStyleTextLgEmphasized;
-        default:
-            NSAssert(NO, @"Unknown button size %ld", (unsigned long)self.size);
-            return BPKFontStyleTextSmEmphasized;
+    case BPKButtonSizeDefault:
+        return BPKFontStyleTextSmEmphasized;
+    case BPKButtonSizeLarge:
+        return BPKFontStyleTextLgEmphasized;
+    default:
+        NSAssert(NO, @"Unknown button size %ld", (unsigned long)self.size);
+        return BPKFontStyleTextSmEmphasized;
     }
 }
 
