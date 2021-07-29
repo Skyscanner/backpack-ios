@@ -23,5 +23,5 @@ let spinner = BPKSpinner(size: .`default`, style: .primary)
 ```
 
 ### Appearance attributes
-`(UIColor)primaryColor`
 
+- `(UIColor)primaryColor`

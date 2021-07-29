@@ -241,5 +241,5 @@ extension MyClass: BPKCalendarDelegate {
 
 ### Appearance attributes
 
-`(UIColor)dateSelectedContentColor`
-`(UIColor)dateSelectedBackgroundColor`
+- `(UIColor)dateSelectedContentColor`
+- `(UIColor)dateSelectedBackgroundColor`
