@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = BPKButtonAppearanceSets.primary;
+    BPKButtonAppearanceSet *appearanceSet = nil;
 
     switch (self.style) {
     case BPKButtonStylePrimary:
