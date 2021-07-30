@@ -4,7 +4,6 @@
 
 `Backpack/ProgressBar` is a simple [`UIProgressView`](https://developer.apple.com/documentation/uikit/uiprogressview#) with Skyscanner styling applied.
 
-
 ```objective-c
 #import <Backpack/ProgressBar.h>
 
@@ -22,4 +21,5 @@ progressBar.set(progress:0.75 animated:true)
 ```
 
 ### Appearance attributes
-`(UIColor)fillColor`
+
+- `(UIColor)fillColor`

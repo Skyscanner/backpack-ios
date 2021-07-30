@@ -4,7 +4,6 @@
 
 `BPKSwitch` contains the Backpack Switch component which is a subclass of `UISwitch` with Skyscanner styles.
 
-
 ### Objective-C
 
 ```objective-c
@@ -24,5 +23,5 @@ let `switch` = BPKSwitch();
 ```
 
 ### Appearance attributes
-`(UIColor)onTintColor`
 
+- `(UIColor)onTintColor`

@@ -70,6 +70,5 @@ extension MyClass: BPKTappableLinkLabelDelegate {
 ```
 
 ### Appearance attributes
-`(UIColor)linkContentColor`
 
-
+- `(UIColor)linkContentColor`

@@ -35,4 +35,5 @@ chip.iconName = .map
 ```
 
 ### Appearance attributes
-`(UIColor)primaryColor`
+
+- `(UIColor)primaryColor`
