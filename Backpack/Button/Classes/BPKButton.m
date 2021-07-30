@@ -442,14 +442,14 @@ NS_ASSUME_NONNULL_BEGIN
             if (self.isIconOnly) {
                 return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingMd, BPKSpacingMd, BPKSpacingMd);
             } else {
-                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingSm * 3, BPKSpacingMd, BPKSpacingSm * 3);
+                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingBase, BPKSpacingMd, BPKSpacingBase);
             }
         }
         case BPKButtonSizeLarge: {
             if (self.isIconOnly) {
                 return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3);
             } else {
-                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingBase, BPKSpacingSm * 3, BPKSpacingBase);
+                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingLg, BPKSpacingSm * 3, BPKSpacingLg);
             }
         }
         default:
@@ -700,8 +700,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (CGFloat)buttonTitleIconSpacing {
-    // TODO change to BPKSpacingMd
-    return BPKSpacingSm;
+    return BPKSpacingMd;
 }
 
 - (UIImage *)dummyImage {
