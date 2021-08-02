@@ -25,7 +25,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonSnapshotTest : FBSnapshotTestCase
-//- (UIStackView *)createAllVariantsOfSize:(BPKButtonSize)size style:(BPKButtonStyle)style applyTheme:(BOOL)applyTheme;
 @end
 
 @implementation BPKButtonSnapshotTest
