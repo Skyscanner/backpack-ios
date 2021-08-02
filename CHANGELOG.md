@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.1
+
+**Fixed:**
+
+- Backpack/Button:
+  - Aligned appearance to Figma
+
 # 44.0.0
 
 **Breaking:**

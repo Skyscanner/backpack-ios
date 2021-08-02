@@ -1,9 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/Button:
-  - Aligned appearance to Figma
 
 ## How to write a good changelog entry
 
