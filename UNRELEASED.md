@@ -1,9 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
-
-- Backpack/Switch:
-  - Aligned appearance to Figma by making switch `SkyBlue`.
 
 ## How to write a good changelog entry
 

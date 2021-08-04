@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.2
+
+**Fixed:**
+
+- Backpack/Switch:
+  - Aligned appearance to Figma by making switch `SkyBlue`.
+
 # 44.0.1
 
 **Fixed:**
