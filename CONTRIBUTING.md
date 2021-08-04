@@ -4,6 +4,8 @@ In this document we describe how to setup this repository for development and th
 
 ## Code style
 
+**All new components should be written in Swift.**
+
 Please follow the [New York Times Objective-C style-guide](https://github.com/NYTimes/objective-c-style-guide) when writing Objective-C. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
 
 Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` blocks. Make sure to annotate any types that are nullable correctly.
