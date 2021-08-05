@@ -1,5 +1,8 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+ - Backpack/Map:
+   - Increased padding and dark-mode colours to align to Figma design.
 
 ## How to write a good changelog entry
 
