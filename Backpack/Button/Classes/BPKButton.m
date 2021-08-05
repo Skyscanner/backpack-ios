@@ -700,7 +700,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (CGFloat)buttonTitleIconSpacing {
-    return BPKSpacingMd;
+    return BPKSpacingIconText;
 }
 
 - (UIImage *)dummyImage {
