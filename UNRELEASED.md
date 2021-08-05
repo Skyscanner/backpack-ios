@@ -1,8 +1,5 @@
 # Unreleased
 > Place your changes below this line.
-**Fixed:**
- - Backpack/Chip:
-   - Increased spacing between icon and text to align to Figma design.
 
 ## How to write a good changelog entry
 

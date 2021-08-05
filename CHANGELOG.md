@@ -1,5 +1,11 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.3
+
+**Fixed:**
+ - Backpack/Chip:
+   - Increased spacing between icon and text to align to Figma design.
+
 # 44.0.2
 
 **Fixed:**
