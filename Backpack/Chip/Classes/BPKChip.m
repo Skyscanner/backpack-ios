@@ -341,7 +341,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Helpers
 
 - (CGFloat)chipIconSpacing {
-    return BPKSpacingSm;
+    return BPKSpacingIconText;
 }
 
 - (CGFloat)chipHorizontalSpacing {
