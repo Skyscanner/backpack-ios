@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIImage *smallLongArrowIcon =
         self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
-    [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Loading"];
+    [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Load"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.largeLeadingIconButton image:largeLongArrowIcon title:@"With icon"];
     [self setupButton:self.largeIconOnlyButton image:largeLongArrowIcon title:nil];
     [self setupButton:self.largeLoadingIconOnlyButton image:largeLongArrowIcon title:nil];
-    [self setupButton:self.largeLoadingButton image:largeLongArrowIcon title:@"Loading"];
+    [self setupButton:self.largeLoadingButton image:largeLongArrowIcon title:@"Load"];
 
     self.defaultTextButton.style = self.style;
     self.defaultDisabledButton.style = self.style;

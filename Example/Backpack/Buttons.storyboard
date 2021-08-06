@@ -42,11 +42,11 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-Q3-JaF" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
-                                                                <state key="normal" title="Loading"/>
+                                                                <state key="normal" title="Load"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQd-cV-VBa" customClass="BPKButton">
                                                                 <rect key="frame" x="72" y="0.0" width="64" height="34"/>
-                                                                <state key="normal" title="Loading"/>
+                                                                <state key="normal" title="Load"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-aE-VqH" customClass="BPKButton">
                                                                 <rect key="frame" x="144" y="0.0" width="30" height="34"/>
@@ -132,7 +132,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ler-Lw-jdv" customClass="BPKButton">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
-                                                                <state key="normal" title="Loading"/>
+                                                                <state key="normal" title="Load"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
                                                                         <integer key="value" value="1"/>
@@ -141,7 +141,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-p4-JoQ" customClass="BPKButton">
                                                                 <rect key="frame" x="72" y="0.0" width="64" height="34"/>
-                                                                <state key="normal" title="Loading"/>
+                                                                <state key="normal" title="Load"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
                                                                         <integer key="value" value="1"/>
