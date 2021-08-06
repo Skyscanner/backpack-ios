@@ -1,14 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
-
- - Backpack/Map:
-   - Increased padding and dark-mode colours to align to Figma design.
-
- - Backpack/Dialog:
-   - Adjusted corner radius and spacing to match Figma design.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

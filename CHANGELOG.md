@@ -1,5 +1,15 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.4
+
+**Fixed:**
+
+ - Backpack/Map:
+   - Increased padding and dark-mode colours to align to Figma design.
+
+ - Backpack/Dialog:
+   - Adjusted corner radius and spacing to match Figma design.
+
 # 44.0.3
 
 **Fixed:**
