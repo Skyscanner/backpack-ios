@@ -1,5 +1,15 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.5
+
+**Fixed:**
+
+ - Backpack/Badge:
+   - Font is now bold to align to Figma design.
+
+ - Backpack/StarRating:
+   - Adjusted dark-mode line colour to align to Figma design.
+
 # 44.0.4
 
 **Fixed:**
