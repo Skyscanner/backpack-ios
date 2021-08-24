@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 44.0.6
+
+**Fixed:**
+
+- Backpack/TabBarController:
+  - Fixed a missing `super` call to `didMoveToParentViewController:`.
+
 # 44.0.5
 
 **Fixed:**
