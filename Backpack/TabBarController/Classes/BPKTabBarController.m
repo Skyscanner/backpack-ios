@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)didMoveToParentViewController:(UIViewController *_Nullable)parent {
+    [super didMoveToParentViewController:parent];
     [self updateTabBarItems];
 }
 
