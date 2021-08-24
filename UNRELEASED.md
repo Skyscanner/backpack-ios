@@ -1,5 +1,9 @@
 # Unreleased
 > Place your changes below this line.
+**Fixed:**
+
+- Backpack/TabBarController:
+  - Fixed a missing `super` call to `didMoveToParentViewController:`.
 
 ## How to write a good changelog entry
 
