@@ -18,7 +18,31 @@
 
 import Backpack.Rating
 
+func makeAccessibilityLabel(
+    _ showSubtitle: Bool,
+    _ titleTextDefinition: BPKRatingTextDefinition,
+    _ subtitleTextDefinition: BPKRatingTextDefinition
+) -> ((BPKRatingRange, Double) -> String) {
+    return { range, value in
+        let title = titleTextDefinition.text(for: range)
+
+        if showSubtitle {
+            let subtitle = subtitleTextDefinition.text(for: range)
+
+            return "Rated \(value) of 10. \(title). \(subtitle)."
+        } else {
+            return "Rated \(value) of 10. \(title)."
+        }
+    }
+}
+
 class RatingsViewController: UIViewController {
+    struct RatingExample {
+        let ratingValue: Double
+        let makeStrings: (Bool) -> BPKRatingStrings
+        let size: BPKRatingSize
+    }
+
     @IBOutlet var ratings: [BPKRating]!
     var showSubtitle: Bool = false
     var showDifferentSizes: Bool = false
@@ -37,30 +61,12 @@ class RatingsViewController: UIViewController {
     )
 
     fileprivate static var ratingData = [
-        (
-            ratingValue: 3.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 3 out of 10. Low title.", size: BPKRatingSize.large
-        ),
-        (
-            ratingValue: 5.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 5.9 out of 10. Low title.", size: BPKRatingSize.large
-        ),
-        (
-            ratingValue: 6.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 6.0 out of 10. Medium title.", size: BPKRatingSize.base
-        ),
-        (
-            ratingValue: 7.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 7.9 out of 10. Medium title.", size: BPKRatingSize.small
-        ),
-        (
-            ratingValue: 8.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 8 out of 10. High title.", size: BPKRatingSize.extraSmall
-        ),
-        (
-            ratingValue: 10.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall
-        )
+        makeRatingData(rating: 3.0, size: .large),
+        makeRatingData(rating: 5.9, size: .large),
+        makeRatingData(rating: 6.0, size: .base),
+        makeRatingData(rating: 7.9, size: .small),
+        makeRatingData(rating: 8.0, size: .extraSmall),
+        makeRatingData(rating: 10.0, size: .extraSmall)
     ]
 
     override func viewDidLoad() {
@@ -74,17 +80,30 @@ class RatingsViewController: UIViewController {
     }
 
     func setupRatings() {
-        for index in 0...RatingsViewController.ratingData.count - 1 {
-            ratings[index].ratingValue = RatingsViewController.ratingData[index].ratingValue
-            ratings[index].title = RatingsViewController.ratingData[index].titleDefinition
-            ratings[index].accessibilityLabel = RatingsViewController.ratingData[index].accessibilityLabel
-            ratings[index].layout = layout
-            if showSubtitle {
-                ratings[index].subtitle = RatingsViewController.ratingData[index].subtitleDefinition
-            }
+        for (data, rating) in zip(RatingsViewController.ratingData, ratings) {
+            rating.ratingValue = data.ratingValue
+            rating.strings = data.makeStrings(showSubtitle)
+            rating.layout = layout
             if showDifferentSizes {
-                ratings[index].size = RatingsViewController.ratingData[index].size
+                rating.size = data.size
             }
         }
+    }
+
+    fileprivate static func makeRatingData(
+        rating: Double, size: BPKRatingSize
+    ) -> RatingExample {
+        return RatingExample(
+            ratingValue: rating,
+            makeStrings: { showSubtitles in
+                return BPKSimpleRatingStrings(
+                    titleText: titleTextDefinition,
+                    subtitleText: showSubtitles ? subtitleTextDefinition : nil,
+                    accessibilityLabel: makeAccessibilityLabel(
+                        showSubtitles, titleTextDefinition, subtitleTextDefinition)
+                )
+            },
+            size: size
+        )
     }
 }

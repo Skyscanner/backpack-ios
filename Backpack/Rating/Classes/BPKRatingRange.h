@@ -16,15 +16,31 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_RATING__
-#define __BACKPACK_RATING__
+NS_ASSUME_NONNULL_BEGIN
+/**
+ * A rating range is a name given to a given rating value.
+ *
+ * A rating range is one of high, medium, or low. What numerical value this corresponds to is determined by the rating scale used.
+ *
+ * For example, in a 1-5 scale 3 is a medium rating whereas in a 1-10 scale it's low.
+ *
+ * The rating range is used to decide
+ */
+typedef NS_ENUM(NSUInteger, BPKRatingRange) {
+    /*
+     * A low rating.
+     */
+    BPKRatingRangeLow,
 
-#import "BPKRating.h"
-#import "BPKRatingLayout.h"
-#import "BPKRatingSize.h"
-#import "BPKRatingTextDefinition.h"
-#import "BPKRatingRange.h"
-#import "BPKRatingStrings.h"
-#import "BPKSimpleRatingStrings.h"
+    /*
+     * A medium rating.
+     */
+    BPKRatingRangeMedium,
 
-#endif
+    /*
+     * A high rating.
+     */
+    BPKRatingRangeHigh,
+};
+
+NS_ASSUME_NONNULL_END

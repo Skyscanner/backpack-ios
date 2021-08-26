@@ -22,6 +22,7 @@
 #import "BPKRatingLayout.h"
 #import "BPKRatingSize.h"
 #import "BPKRatingTextDefinition.h"
+#import "BPKRatingStrings.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,15 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 IB_DESIGNABLE @interface BPKRating : UIView
 
-/**
- * The title to display inside the rating.
- */
-@property(nonatomic, strong) BPKRatingTextDefinition *title;
 
 /**
- * The subtitle to display inside the rating.
+ * The strings to display in the rating.
  */
-@property(nonatomic, strong, nullable) BPKRatingTextDefinition *subtitle;
+@property(nonatomic, strong) id<BPKRatingStrings> strings;
 
 /**
  * Size of the rating
@@ -79,13 +76,11 @@ IB_DESIGNABLE @interface BPKRating : UIView
  * Create a `BPKRating` with a given rating value and title.
  *
  * @param ratingValue The value shown in the rating component
- * @param title The title of the rating
- * @param subtitle The subtitle of the rating
+ * @param strings The strings to use for thr rating component.
  * @return `BPKRating` instance.
  */
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue
-                              title:(BPKRatingTextDefinition *)title
-                           subtitle:(BPKRatingTextDefinition *_Nullable)subtitle NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRatingValue:(double)ratingValue
+                              strings:(id<BPKRatingStrings>)strings NS_DESIGNATED_INITIALIZER;
 
 @property(nullable, nonatomic, strong) UIColor *lowRatingColor UI_APPEARANCE_SELECTOR;
 @property(nullable, nonatomic, strong) UIColor *mediumRatingColor UI_APPEARANCE_SELECTOR;

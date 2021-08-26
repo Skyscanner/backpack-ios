@@ -16,15 +16,20 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_RATING__
-#define __BACKPACK_RATING__
+#import <Foundation/Foundation.h>
 
-#import "BPKRating.h"
-#import "BPKRatingLayout.h"
-#import "BPKRatingSize.h"
-#import "BPKRatingTextDefinition.h"
 #import "BPKRatingRange.h"
-#import "BPKRatingStrings.h"
-#import "BPKSimpleRatingStrings.h"
 
-#endif
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol BPKRatingStrings
+@required
+
+- (NSString *)titleFor:(BPKRatingRange)range;
+- (nullable NSString *)subtitleFor:(BPKRatingRange)range;
+- (NSString *)accessibilityLabelFor:(BPKRatingRange)range value:(double)value;
+
+@end
+
+
+NS_ASSUME_NONNULL_END

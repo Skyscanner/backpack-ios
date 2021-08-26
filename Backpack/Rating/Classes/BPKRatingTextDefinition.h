@@ -18,6 +18,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BPKRatingRange.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -51,6 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithHighRatingText:(NSString *)highRatingText
                       mediumRatingText:(NSString *)mediumRatingText
                          lowRatingText:(NSString *)lowRatingText;
+
+/**
+ * The appropriate text to use for a given rating range.
+ *
+ * @param range The range.
+ * @return The text to use for the given range.
+ */
+- (NSString *)textFor:(BPKRatingRange)range;
 
 @end
 

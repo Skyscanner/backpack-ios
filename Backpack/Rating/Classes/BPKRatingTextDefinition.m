@@ -35,5 +35,20 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (NSString *)textFor:(BPKRatingRange)range {
+    switch (range) {
+        case BPKRatingRangeLow:
+            return self.lowRatingText;
+        case BPKRatingRangeMedium:
+            return self.mediumRatingText;
+        case BPKRatingRangeHigh:
+            return self.highRatingText;
+        default:
+            NSAssert(NO, @"[BPKRatingTextDefinition textFor:] doesn't handle all ranges");
+
+            return self.mediumRatingText;
+    }
+}
+
 @end
 NS_ASSUME_NONNULL_END

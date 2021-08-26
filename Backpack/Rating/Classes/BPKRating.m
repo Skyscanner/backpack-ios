@@ -59,15 +59,12 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithRatingValue:(CGFloat)ratingValue
-                              title:(BPKRatingTextDefinition *)title
-                           subtitle:(BPKRatingTextDefinition *_Nullable)subtitle {
+- (instancetype)initWithRatingValue:(double)ratingValue strings:(id<BPKRatingStrings>)strings {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
         self.ratingValue = ratingValue;
-        self.title = title;
-        self.subtitle = subtitle;
+        self.strings = strings;
 
         [self setUp];
     }
@@ -121,16 +118,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setTitle:(BPKRatingTextDefinition *)title {
+- (void)setStrings:(id<BPKRatingStrings>)strings {
     BPKAssertMainThread();
-    _title = title;
-
-    [self updateStyle];
-}
-
-- (void)setSubtitle:(BPKRatingTextDefinition *_Nullable)subtitle {
-    BPKAssertMainThread();
-    _subtitle = subtitle;
+    _strings = strings;
 
     [self updateStyle];
 }
@@ -236,19 +226,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateStyle {
     self.ratingBubble.ratingValue = self.ratingValue;
-    if (self.ratingValue < 6.00) {
-        self.ratingBubble.backgroundColor = self.lowRatingColor ?: BPKColor.panjin;
-        self.textWrapper.title = self.title.lowRatingText;
-        self.textWrapper.subtitle = self.subtitle.lowRatingText;
-    } else if (self.ratingValue < 8.00) {
-        self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.kolkata;
-        self.textWrapper.title = self.title.mediumRatingText;
-        self.textWrapper.subtitle = self.subtitle.mediumRatingText;
-    } else {
-        self.ratingBubble.backgroundColor = self.highRatingColor ?: BPKColor.monteverde;
-        self.textWrapper.title = self.title.highRatingText;
-        self.textWrapper.subtitle = self.subtitle.highRatingText;
+    BPKRatingRange range = BPKRatingRangeHigh;
+
+    if (self.ratingValue < 6.0) {
+        range = BPKRatingRangeLow;
+    } else if (self.ratingValue < 8.0) {
+        range = BPKRatingRangeMedium;
     }
+
+    switch (range) {
+        case BPKRatingRangeLow:
+            self.ratingBubble.backgroundColor = self.lowRatingColor ?: BPKColor.panjin;
+            break;
+        case BPKRatingRangeMedium:
+            self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.kolkata;
+            break;
+        case BPKRatingRangeHigh:
+            self.ratingBubble.backgroundColor = self.highRatingColor ?: BPKColor.monteverde;
+            break;
+        default:
+            NSAssert(NO, @"[BPKRatig updateStyle] does not correctly handle all rating ranges");
+            self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.kolkata;
+            break;
+    }
+
+    self.textWrapper.title = [self.strings titleFor:range];
+    self.textWrapper.subtitle = [self.strings subtitleFor:range];
+    self.accessibilityLabel = [self.strings accessibilityLabelFor:range value:self.ratingValue];
 }
 
 @end

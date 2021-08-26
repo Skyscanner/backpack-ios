@@ -19,6 +19,10 @@
 #import <Backpack/Rating.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+NSString *_Nonnull (^dummyA11yLabel)(BPKRatingRange, double) = ^NSString *_Nonnull(BPKRatingRange range, double value) {
+    return @"";
+};
+
 @interface BPKRatingSnapshotTest : FBSnapshotTestCase
 @property(strong, nonatomic) BPKRatingTextDefinition *titleTextDefinition;
 @property(strong, nonatomic) BPKRatingTextDefinition *subTitleTextDefinition;
@@ -39,7 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOutOfRangeLow {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Capped";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = -1.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -49,7 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOutOfRangeHigh {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Capped";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 11.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -59,7 +69,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingLowRangeLow {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Very low";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 0.1;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -69,7 +82,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingLowRangeHigh {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Low";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 5.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -79,7 +95,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingMediumRangeLow {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 6.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -89,7 +108,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingMediumRangeHigh {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium-high";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -99,7 +121,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingHighRangeLow {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -109,7 +134,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingHighRangeHigh {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -119,7 +147,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOversized {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Meh";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 4.7;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width * 3, fittingSize.height);
@@ -129,7 +160,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingUndersized {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 4.7;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
@@ -139,7 +173,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingLowWithTheme {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 1.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -152,7 +189,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingMediumWithTheme {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"This don't fit yo!";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -165,7 +205,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingHighWithTheme {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"This don't fit yo!";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -179,8 +222,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Very low";
     self.subTitleTextDefinition.lowRatingText = @"Very low subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 0.1;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -191,8 +236,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Low";
     self.subTitleTextDefinition.lowRatingText = @"Low subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 5.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -203,8 +250,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium";
     self.subTitleTextDefinition.mediumRatingText = @"Medium subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 6.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -215,8 +264,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium-high";
     self.subTitleTextDefinition.mediumRatingText = @"Medium-high subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -227,8 +278,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
     self.subTitleTextDefinition.highRatingText = @"High subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -239,8 +292,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
     self.subTitleTextDefinition.highRatingText = @"High subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
@@ -250,7 +305,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingPillHighRangeHigh {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.layout = BPKRatingLayoutHorizontalPill;
     bpkRating.ratingValue = 9.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -262,8 +320,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
     self.subTitleTextDefinition.highRatingText = @"High subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.layout = BPKRatingLayoutHorizontalPill;
     bpkRating.ratingValue = 9.9;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -275,8 +335,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Extra small";
     self.subTitleTextDefinition.highRatingText = @"Extra small subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeExtraSmall;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -288,8 +350,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Small";
     self.subTitleTextDefinition.highRatingText = @"Small subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeSmall;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -301,8 +365,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Base";
     self.subTitleTextDefinition.highRatingText = @"Base subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeBase;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -314,8 +380,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Large";
     self.subTitleTextDefinition.highRatingText = @"Large subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.size = BPKRatingSizeLarge;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -327,8 +395,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.lowRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 1.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -342,8 +412,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.mediumRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -357,8 +429,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.highRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.0;
     bpkRating.lowRatingColor = UIColor.purpleColor;
     bpkRating.mediumRatingColor = UIColor.orangeColor;
@@ -371,7 +445,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOutOfRangeLowVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Capped";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = -1.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -382,7 +459,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOutOfRangeHighVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Capped";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 11.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -393,7 +473,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingLowRangeLowVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Very low";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 0.1;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -404,7 +487,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingLowRangeHighVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Low";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 5.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -415,7 +501,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingMediumRangeLowVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 6.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -426,7 +515,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingMediumRangeHighVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium-high";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -437,7 +529,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingHighRangeLowVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -448,7 +543,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingHighRangeHighVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -459,7 +557,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingOversizedVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Meh";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 4.7;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -470,7 +571,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testRatingUndersizedVertical {
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
-    bpkRating.title = self.titleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 4.7;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -482,8 +586,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Very low";
     self.subTitleTextDefinition.lowRatingText = @"Very low subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 0.1;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -495,8 +601,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"Low";
     self.subTitleTextDefinition.lowRatingText = @"Low subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 5.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -508,8 +616,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium";
     self.subTitleTextDefinition.mediumRatingText = @"Medium subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 6.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -521,8 +631,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"Medium-high";
     self.subTitleTextDefinition.mediumRatingText = @"Medium-high subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -534,8 +646,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
     self.subTitleTextDefinition.highRatingText = @"High subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -547,8 +661,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"High";
     self.subTitleTextDefinition.highRatingText = @"High subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.9;
     bpkRating.layout = BPKRatingLayoutVertical;
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -560,8 +676,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Extra small";
     self.subTitleTextDefinition.highRatingText = @"Extra small subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeExtraSmall;
@@ -574,8 +692,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Small";
     self.subTitleTextDefinition.highRatingText = @"Small subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeSmall;
@@ -588,8 +708,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Base";
     self.subTitleTextDefinition.highRatingText = @"Base subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeBase;
@@ -602,8 +724,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"Large";
     self.subTitleTextDefinition.highRatingText = @"Large subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 8.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.size = BPKRatingSizeLarge;
@@ -616,8 +740,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.lowRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.lowRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 1.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.lowRatingColor = UIColor.purpleColor;
@@ -632,8 +758,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.mediumRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.mediumRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 7.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.lowRatingColor = UIColor.purpleColor;
@@ -648,8 +776,10 @@ NS_ASSUME_NONNULL_BEGIN
     BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
     self.titleTextDefinition.highRatingText = @"This don't fit yo!";
     self.subTitleTextDefinition.highRatingText = @"This don't fit yo! subtitle";
-    bpkRating.title = self.titleTextDefinition;
-    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.strings = [[BPKSimpleRatingStrings alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:self.subTitleTextDefinition
+                         accessibilityLabel:dummyA11yLabel];
     bpkRating.ratingValue = 9.0;
     bpkRating.layout = BPKRatingLayoutVertical;
     bpkRating.lowRatingColor = UIColor.purpleColor;
