@@ -47,6 +47,7 @@ class RatingsViewController: UIViewController {
     var showSubtitle: Bool = false
     var showDifferentSizes: Bool = false
     var layout: BPKRatingLayout = .horizontal
+    var use0to5Scale = false
 
     static let titleTextDefinition = BPKRatingTextDefinition(
         highRatingText: "High title",
@@ -60,7 +61,7 @@ class RatingsViewController: UIViewController {
         lowRatingText: "Low subtitle"
     )
 
-    fileprivate static var ratingData = [
+    fileprivate static var ratingData0to10 = [
         makeRatingData(rating: 3.0, size: .large),
         makeRatingData(rating: 5.9, size: .large),
         makeRatingData(rating: 6.0, size: .base),
@@ -69,18 +70,30 @@ class RatingsViewController: UIViewController {
         makeRatingData(rating: 10.0, size: .extraSmall)
     ]
 
+    fileprivate static var ratingData0to5 = [
+        makeRatingData(rating: 1.0, size: .large),
+        makeRatingData(rating: 2.9, size: .large),
+        makeRatingData(rating: 3.0, size: .base),
+        makeRatingData(rating: 3.9, size: .small),
+        makeRatingData(rating: 4.0, size: .extraSmall),
+        makeRatingData(rating: 5.0, size: .extraSmall)
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         assert(
-            ratings.count == RatingsViewController.ratingData.count,
+            ratings.count == RatingsViewController.ratingData0to10.count,
             "The number of rating components does not match the data"
         )
         self.setupRatings()
     }
 
     func setupRatings() {
-        for (data, rating) in zip(RatingsViewController.ratingData, ratings) {
+        let data = use0to5Scale ? RatingsViewController.ratingData0to5 : RatingsViewController.ratingData0to10
+
+        for (data, rating) in zip(data, ratings) {
+            rating.ratingScale = use0to5Scale ? .scale0to5 : .scale0to10
             rating.ratingValue = data.ratingValue
             rating.strings = data.makeStrings(showSubtitle)
             rating.layout = layout

@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
+  s.private_header_files = 'Backpack/*/Classes/Private/**/*.h'
   s.ios.resource_bundle = {
     'Icon' => 'Backpack/Icon/Assets/*'
   }

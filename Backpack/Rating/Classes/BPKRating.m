@@ -27,14 +27,18 @@
 #import "BPKRatingBubble.h"
 #import "BPKRatingTextWrapper.h"
 
+#import "BPKRatingScaleInternal.h"
+#import "BPKRatingScaleInternalDefault.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKRating ()
-@property(nonatomic) BPKRatingTextWrapper *textWrapper;
-@property(nonatomic) BPKRatingBubble *ratingBubble;
-@property(nonatomic) NSLayoutConstraint *textSpacingConstraintHorizontal;
-@property(nonatomic) NSLayoutConstraint *textSpacingConstraintVertical;
-@property(nonatomic) NSArray<NSLayoutConstraint *> *horizontalLayoutConstraints;
-@property(nonatomic) NSArray<NSLayoutConstraint *> *verticalLayoutConstraints;
+@property(nonatomic, strong) BPKRatingTextWrapper *textWrapper;
+@property(nonatomic, strong) BPKRatingBubble *ratingBubble;
+@property(nonatomic, strong) NSLayoutConstraint *textSpacingConstraintHorizontal;
+@property(nonatomic, strong) NSLayoutConstraint *textSpacingConstraintVertical;
+@property(nonatomic, strong) NSArray<NSLayoutConstraint *> *horizontalLayoutConstraints;
+@property(nonatomic, strong) NSArray<NSLayoutConstraint *> *verticalLayoutConstraints;
+@property(nonatomic, strong) id<BPKRatingScaleInternal> internalScale;
 @end
 
 @implementation BPKRating
@@ -73,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setUp {
+    _ratingScale = BPKRatingScale0to10;
+    _internalScale = [BPKRatingScaleInternalDefault make0to10scale];
+
     self.ratingBubble = [BPKRatingBubble new];
     self.ratingBubble.accessibilityElementsHidden = YES;
     self.size = BPKRatingSizeBase;
@@ -128,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setRatingValue:(CGFloat)ratingValue {
     BPKAssertMainThread();
     if (_ratingValue != ratingValue) {
-        _ratingValue = ratingValue;
+        _ratingValue = [self.internalScale clampRating:ratingValue];
 
         [self updateStyle];
     }
@@ -144,6 +151,31 @@ NS_ASSUME_NONNULL_BEGIN
 
         self.textWrapper.size = size;
         self.ratingBubble.size = size;
+    }
+}
+
+- (void)setRatingScale:(BPKRatingScale)ratingScale {
+    BPKAssertMainThread();
+
+    if (_ratingScale != ratingScale) {
+        _ratingScale = ratingScale;
+
+        switch (_ratingScale) {
+            case BPKRatingScale0to5:
+                self.internalScale = [BPKRatingScaleInternalDefault make0to5scale];
+                break;
+            case BPKRatingScale0to10:
+                self.internalScale = [BPKRatingScaleInternalDefault make0to10scale];
+                break;
+            default:
+                NSAssert(NO, @"Unhandled rating scale in [BPKRating setRatingScale:]");
+                self.internalScale = [BPKRatingScaleInternalDefault make0to10scale];
+        }
+
+        // Clamp the previous rating value to the new scale
+        self.ratingValue = [self.internalScale clampRating:self.ratingValue];
+
+        [self updateStyle];
     }
 }
 
@@ -225,14 +257,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Updates
 
 - (void)updateStyle {
-    self.ratingBubble.ratingValue = self.ratingValue;
-    BPKRatingRange range = BPKRatingRangeHigh;
-
-    if (self.ratingValue < 6.0) {
-        range = BPKRatingRangeLow;
-    } else if (self.ratingValue < 8.0) {
-        range = BPKRatingRangeMedium;
-    }
+    [self.ratingBubble setRatingValue:self.ratingValue
+                            isExtreme:[self.internalScale isExtreme:self.ratingValue ]];
+    BPKRatingRange range = [self.internalScale rangeFor:self.ratingValue];
 
     switch (range) {
         case BPKRatingRangeLow:

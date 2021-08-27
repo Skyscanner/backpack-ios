@@ -30,11 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE @interface BPKRatingBubble : UIView
 
 /**
- * The rating value
- */
-@property(nonatomic) double ratingValue;
-
-/**
  * Layout of the rating
  *
  * @see BPKRatingLayout
@@ -63,6 +58,8 @@ IB_DESIGNABLE @interface BPKRatingBubble : UIView
  * @see BPKRatingSize
  */
 @property(nonatomic) BPKRatingSize size;
+
+- (void)setRatingValue:(double)ratingValue isExtreme:(BOOL)isExtreme;
 
 @end
 

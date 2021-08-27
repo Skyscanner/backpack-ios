@@ -26,6 +26,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, BPKRatingScale) {
+    BPKRatingScale0to10,
+    BPKRatingScale0to5,
+};
+
+
 /**
  * `BPKRating` is a subclass of `UIView` configured with Skyscanner style properties.
  */
@@ -43,6 +49,15 @@ IB_DESIGNABLE @interface BPKRating : UIView
  * @see BPKRatingSize
  */
 @property(nonatomic) BPKRatingSize size;
+
+/**
+ * The rating scale to use.
+ *
+ * Defaults to 1 to 10 i.e. BPKRatingScale0to10
+ *
+ * @see BPKRatingScale
+ */
+@property(nonatomic, assign) BPKRatingScale ratingScale;
 
 /**
  * Layout of the rating

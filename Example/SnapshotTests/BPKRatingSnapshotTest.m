@@ -790,6 +790,90 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(bpkRating, nil);
 }
 
+- (void)testRatingLowRangeLowAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.lowRatingText = @"Very low";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 0.1;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingLowRangeHighAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.lowRatingText = @"Low";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 2.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeLowAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.mediumRatingText = @"Medium";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 3.0;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingMediumRangeHighAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.mediumRatingText = @"Medium-high";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 3.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeLowAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.highRatingText = @"High";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 4.0;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingHighRangeHighAlternateScale {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    bpkRating.ratingScale = BPKRatingScale0to5;
+    self.titleTextDefinition.highRatingText = @"High";
+    bpkRating.strings = [[BPKSimpleRatingStringSet alloc]
+                         initWithTitleText:self.titleTextDefinition
+                              subtitleText:nil
+                         accessibilityLabel:dummyA11yLabel];
+    bpkRating.ratingValue = 4.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    FBSnapshotVerifyView(bpkRating, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

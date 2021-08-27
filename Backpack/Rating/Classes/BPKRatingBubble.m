@@ -26,9 +26,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKRatingBubble ()
-@property(nonatomic) BPKLabel *ratingBubbleLabel;
-@property(nonatomic) NSLayoutConstraint *heightConstraint;
-@property(nonatomic) NSLayoutConstraint *widthConstraint;
+@property(nonatomic, strong) BPKLabel *ratingBubbleLabel;
+@property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
 @end
 
 @implementation BPKRatingBubble
@@ -65,17 +65,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - State setters
-- (void)setRatingValue:(CGFloat)ratingValue {
+- (void)setRatingValue:(double)ratingValue isExtreme:(BOOL)isExtreme {
     BPKAssertMainThread();
-    if (_ratingValue != ratingValue) {
-        _ratingValue = ratingValue;
-
-        double cappedRatingBubbleValue = MIN(10.0, MAX(0, self.ratingValue));
-        if (fabs(10.0 - cappedRatingBubbleValue) < 0.01 || fabs(0.0 - cappedRatingBubbleValue) < 0.01) {
-            self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.f", cappedRatingBubbleValue];
-        } else {
-            self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.1f", cappedRatingBubbleValue];
-        }
+    if (isExtreme) {
+        self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.f", ratingValue];
+    } else {
+        self.ratingBubbleLabel.text = [NSString stringWithFormat:@"%.1f", ratingValue];
     }
 }
 
