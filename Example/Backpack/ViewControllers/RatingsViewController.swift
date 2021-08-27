@@ -39,7 +39,7 @@ func makeAccessibilityLabel(
 class RatingsViewController: UIViewController {
     struct RatingExample {
         let ratingValue: Double
-        let makeStrings: (Bool) -> BPKRatingStrings
+        let makeStrings: (Bool) -> BPKRatingStringSet
         let size: BPKRatingSize
     }
 
@@ -96,7 +96,7 @@ class RatingsViewController: UIViewController {
         return RatingExample(
             ratingValue: rating,
             makeStrings: { showSubtitles in
-                return BPKSimpleRatingStrings(
+                return BPKSimpleRatingStringSet(
                     titleText: titleTextDefinition,
                     subtitleText: showSubtitles ? subtitleTextDefinition : nil,
                     accessibilityLabel: makeAccessibilityLabel(

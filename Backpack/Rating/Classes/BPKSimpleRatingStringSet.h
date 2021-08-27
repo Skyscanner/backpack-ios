@@ -20,13 +20,13 @@
 
 #import "BPKRatingTextDefinition.h"
 #import "BPKRatingRange.h"
-#import "BPKRatingStrings.h"
+#import "BPKRatingStringSet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * _Nonnull (^BPKRatingAccessibilityLabel)(BPKRatingRange, double);
 
-@interface BPKSimpleRatingStrings : NSObject<BPKRatingStrings>
+@interface BPKSimpleRatingStringSet : NSObject<BPKRatingStringSet>
 @property (nonatomic, strong) BPKRatingTextDefinition *titleText;
 @property (nonatomic, strong, nullable) BPKRatingTextDefinition *subtitleText;
 @property (nonatomic, strong) BPKRatingAccessibilityLabel accessibilityLabel;

@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-#import "BPKSimpleRatingStrings.h"
+#import "BPKSimpleRatingStringSet.h"
 
-@implementation BPKSimpleRatingStrings
+@implementation BPKSimpleRatingStringSet
 
 - (instancetype)initWithTitleText:(BPKRatingTextDefinition *)titleText
                      subtitleText:(nullable BPKRatingTextDefinition *)subtitleText
@@ -34,17 +34,19 @@
     return self;
 }
 
-- (nonnull NSString *)accessibilityLabelFor:(BPKRatingRange)range value:(double)value { 
-    return self.accessibilityLabel(range, value);
+- (nonnull NSString *)rating:(BPKRating *)rating titleFor:(BPKRatingRange)range {
+    return [self.titleText textFor:range];
 }
 
-- (nullable NSString *)subtitleFor:(BPKRatingRange)range { 
+- (nullable NSString *)rating:(BPKRating *)rating subtitleFor:(BPKRatingRange)range {
     // Relying on nil coalescing here
     return [self.subtitleText textFor:range];
 }
 
-- (nonnull NSString *)titleFor:(BPKRatingRange)range { 
-    return [self.titleText textFor:range];
+- (nonnull NSString *)rating:(BPKRating *)rating
+                      accessibilityLabelFor:(BPKRatingRange)range
+                      value:(double)value {
+    return self.accessibilityLabel(range, value);
 }
 
 @end

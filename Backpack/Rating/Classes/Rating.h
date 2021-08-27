@@ -24,7 +24,7 @@
 #import "BPKRatingSize.h"
 #import "BPKRatingTextDefinition.h"
 #import "BPKRatingRange.h"
-#import "BPKRatingStrings.h"
-#import "BPKSimpleRatingStrings.h"
+#import "BPKRatingStringSet.h"
+#import "BPKSimpleRatingStringSet.h"
 
 #endif

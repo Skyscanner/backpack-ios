@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithRatingValue:(double)ratingValue strings:(id<BPKRatingStrings>)strings {
+- (instancetype)initWithRatingValue:(double)ratingValue strings:(id<BPKRatingStringSet>)strings {
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-- (void)setStrings:(id<BPKRatingStrings>)strings {
+- (void)setStrings:(id<BPKRatingStringSet>)strings {
     BPKAssertMainThread();
     _strings = strings;
 
@@ -250,9 +250,9 @@ NS_ASSUME_NONNULL_BEGIN
             break;
     }
 
-    self.textWrapper.title = [self.strings titleFor:range];
-    self.textWrapper.subtitle = [self.strings subtitleFor:range];
-    self.accessibilityLabel = [self.strings accessibilityLabelFor:range value:self.ratingValue];
+    self.textWrapper.title = [self.strings rating:self titleFor:range];
+    self.textWrapper.subtitle = [self.strings rating:self subtitleFor:range];
+    self.accessibilityLabel = [self.strings rating:self accessibilityLabelFor:range value:self.ratingValue];
 }
 
 @end
