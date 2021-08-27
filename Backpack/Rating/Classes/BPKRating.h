@@ -26,8 +26,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * The rating scales supported by `BPKRating`.
+ */
 typedef NS_ENUM(NSUInteger, BPKRatingScale) {
+    /**
+     * A rating scale between 0 and 10(inclusive).
+     */
     BPKRatingScale0to10,
+
+    /**
+     * A rating scale between 0 and 5(inclusive).
+     */
     BPKRatingScale0to5,
 };
 
@@ -53,7 +63,7 @@ IB_DESIGNABLE @interface BPKRating : UIView
 /**
  * The rating scale to use.
  *
- * Defaults to 1 to 10 i.e. BPKRatingScale0to10
+ * Defaults to 0 to 10 i.e. BPKRatingScale0to10
  *
  * @see BPKRatingScale
  */
