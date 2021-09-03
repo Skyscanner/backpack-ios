@@ -69,10 +69,8 @@
     [BPKAppearance apply];
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    UINavigationController *navigationController = [UINavigationController new];
-
-    BPKRootTableViewController *rootTableViewController = [BPKRootTableViewController new];
-    navigationController.viewControllers = @[rootTableViewController];
+    BPKRootTableViewController *rootTableViewController = [[BPKRootTableViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootTableViewController];
     self.window.rootViewController = navigationController;
 
     if ([ThemeHelpers isThemingSupported]) {
