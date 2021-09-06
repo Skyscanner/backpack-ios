@@ -42,14 +42,14 @@ class ToastViewController: UIViewController {
     }
 
     func showPersistentToast() {
-        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
     }
 
     func showDefaultToast() {
-        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
@@ -57,7 +57,7 @@ class ToastViewController: UIViewController {
     }
 
     func showToastOnlyLabels() {
-        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .text
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"

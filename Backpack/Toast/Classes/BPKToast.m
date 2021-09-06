@@ -31,22 +31,31 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 @implementation BPKToast
 
 #pragma mark - Initializers
-+ (instancetype)showToastAddedTo:(UIView *)view animated:(BOOL)animated {
-    BPKToast *toast = [[BPKToast alloc] initWithView:view animated:animated];
++ (instancetype)showToastAddedTo:(UIView *)view
+                        animated:(BOOL)animated
+       accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
+    BPKToast *toast = [[BPKToast alloc] initWithView:view
+                                            animated:animated
+                           accessibilityAnnouncement:accessibilityAnnouncement];
     return toast;
 }
 
-- (instancetype)initWithView:(UIView *)view animated:(BOOL)animated {
+- (instancetype)initWithView:(UIView *)view
+                    animated:(BOOL)animated
+   accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
     if (self = [super initWithFrame:view.bounds]) {
         self.hud = [MBProgressHUD showHUDAddedTo:view animated:animated];
+        _accessibilityAnnouncement = [accessibilityAnnouncement copy];
         [self setupHUD];
+        [self postAccessibilityNotification];
     }
     return self;
 }
 
-- (instancetype)initWithView:(UIView *)view {
+- (instancetype)initWithView:(UIView *)view accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement{
     if (self = [super initWithFrame:view.bounds]) {
         self.hud = [[MBProgressHUD alloc] initWithView:self];
+        _accessibilityAnnouncement = [accessibilityAnnouncement copy];
         [self setupHUD];
         [self addSubview:self.hud];
     }
@@ -56,6 +65,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 #pragma mark - Public methods
 - (void)show:(BOOL)animated {
     [self.hud showAnimated:animated];
+    [self postAccessibilityNotification];
 }
 
 - (void)hide:(BOOL)animated {
@@ -78,6 +88,14 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
             self.hud.mode = MBProgressHUDModeIndeterminate;
             break;
         }
+    }
+}
+
+- (void)setAccessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
+    if (accessibilityAnnouncement != _accessibilityAnnouncement) {
+        _accessibilityAnnouncement = [accessibilityAnnouncement copy];
+
+        [self postAccessibilityNotification];
     }
 }
 
@@ -128,12 +146,24 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
     }
 }
 
+#pragma mark - Private methods
+
 - (void)setupHUD {
     self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     self.hud.bezelView.backgroundColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
     self.hud.contentColor = BPKColor.white;
     self.hud.delegate = self;
     self.hud.accessibilityIdentifier = ToastAccessibilityIdentifier;
+    self.hud.isAccessibilityElement = NO;
+    self.hud.label.isAccessibilityElement = NO;
+    self.hud.detailsLabel.isAccessibilityElement = NO;
+    self.hud.accessibilityViewIsModal = YES;
+}
+
+- (void)postAccessibilityNotification {
+    NSAttributedString *announcement = [[NSAttributedString alloc] initWithString:self.accessibilityAnnouncement
+                                                                       attributes:@{ UIAccessibilitySpeechAttributeQueueAnnouncement: @YES }];
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, announcement);
 }
 
 @end
