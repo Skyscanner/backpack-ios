@@ -37,6 +37,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
     BPKToast *toast = [[BPKToast alloc] initWithView:view
                                             animated:animated
                            accessibilityAnnouncement:accessibilityAnnouncement];
+    [toast postAccessibilityNotification];
     return toast;
 }
 
