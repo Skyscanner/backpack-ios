@@ -237,6 +237,7 @@ z-index
 # a11y terms
 aria-describedby
 tablist
+VoiceOver
 
 # Locales
 ja-JP
