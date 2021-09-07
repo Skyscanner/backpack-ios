@@ -48,7 +48,6 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
         self.hud = [MBProgressHUD showHUDAddedTo:view animated:animated];
         _accessibilityAnnouncement = [accessibilityAnnouncement copy];
         [self setupHUD];
-        [self postAccessibilityNotification];
     }
     return self;
 }
