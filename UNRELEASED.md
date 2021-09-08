@@ -1,11 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Breaking:**
-
-- Backpack/Toast:
-  - Add an announcement to be read by VoiceOver when a Toast is shown.
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

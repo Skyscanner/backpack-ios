@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 45.0.0
+
+**Breaking:**
+
+- Backpack/Toast:
+  - Add an announcement to be read by VoiceOver when a Toast is shown.
+
 # 44.0.6
 
 **Fixed:**
