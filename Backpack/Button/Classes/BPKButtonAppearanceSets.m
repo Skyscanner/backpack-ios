@@ -172,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)boxyBorderColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.skyGrayTint02];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint05 darkVariant:BPKColor.skyGrayTint02];
 }
 
 + (UIColor *)secondaryBorderColorHighlighted {
