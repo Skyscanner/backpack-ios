@@ -1,16 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Fixed:**
-
-- Backpack/Switch:
-  - Reverted back to primary color for the track, this means the dark mode track colour is now Sky Blue Tint 01.
-  - Set thumb colour to white, this has no effect in current versions of iOS as this matches the system.
-
-- Backpack/Button:
-  - Change destructive/secondary border colours to sky gray tint 06 in light mode.
-
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
