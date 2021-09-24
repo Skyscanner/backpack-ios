@@ -61,6 +61,16 @@ bundle exec rake take_screenshots
 
 The script takes 10-15 minutes.
 
+### Taking a subset of screenshots
+
+It's possible to take only a subset of the screenshots which greatly speeds up the process.
+
+To do this follow the following steps:
+
+1. Change the `runOnly` property in [`Screenshots.swift`](./Example/Backpack Screenshot/Screenshots.swift)
+2. Run the screenshots as above
+3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
+
 ### Snapshot testing
 
 Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/ci.yml#L132). This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
