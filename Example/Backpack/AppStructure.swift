@@ -101,7 +101,7 @@ extension Array: ItemConvertible where Element == Item {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct AppBuilder {
     public static func buildBlock() -> [Item] { [] }
 }
