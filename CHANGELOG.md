@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 45.0.2
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Fixed rendering of the small world icons. Previously, the outer border on these icons weren't rendering correctly.
+
 # 45.0.1
 
 **Fixed:**
