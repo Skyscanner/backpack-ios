@@ -56,17 +56,23 @@ internal final class BPKBarChartCollectionView: UICollectionView {
             selectedMarker.heightAnchor.constraint(equalToConstant: 1.0)
         ])
 
-        register(BPKBarChartCollectionViewCell.self,
-                 forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier)
+        register(
+            BPKBarChartCollectionViewCell.self,
+            forCellWithReuseIdentifier: BPKBarChartCollectionView.cellIdentifier
+        )
 
         #if swift(>=4.2)
-        register(BPKBarChartCollectionViewHeader.self,
-                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+        register(
+            BPKBarChartCollectionViewHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier
+        )
         #else
-        register(BPKBarChartCollectionViewHeader.self,
-                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                 withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier)
+        register(
+            BPKBarChartCollectionViewHeader.self,
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: BPKBarChartCollectionView.headerIdentifier
+        )
         #endif
 
         collectionViewLayout = layout
@@ -103,8 +109,10 @@ internal final class BPKBarChartCollectionView: UICollectionView {
         updateSelectedMarkerPosition()
     }
 
-    override public func selectItem(at indexPath: IndexPath?, animated: Bool,
-                                    scrollPosition: UICollectionView.ScrollPosition) {
+    override public func selectItem(
+        at indexPath: IndexPath?, animated: Bool,
+        scrollPosition: UICollectionView.ScrollPosition
+    ) {
         super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
         updateSelectedMarkerPosition()
     }

@@ -8,6 +8,7 @@ By default `userInteractionEnabled` is set to `NO` but we can change this value 
 ### Objective-C
 
 Small stars
+
 ```objective-c
 #import <Backpack/StarRating.h>
 
@@ -17,6 +18,7 @@ starRating.rating = 2.5;
 ```
 
 Large stars
+
 ```objective-c
 #import <Backpack/StarRating.h>
 
@@ -26,6 +28,7 @@ starRating.rating = 2.5;
 ```
 
 Extra Large stars with user interaction
+
 ```objective-c
 #import <Backpack/StarRating.h>
 
@@ -38,6 +41,7 @@ starRating.userInteractionEnabled = YES;
 ### Swift
 
 Small stars
+
 ```swift
 import Backpack
 
@@ -47,6 +51,7 @@ starRating.rating = 2.5
 ```
 
 Large stars
+
 ```swift
 import Backpack
 
@@ -56,6 +61,7 @@ starRating.rating = 2.5
 ```
 
 Extra Large stars with user interaction
+
 ```swift
 import Backpack
 
@@ -69,4 +75,4 @@ starRating.userInteractionEnabled = true
 
 `BPKStarRating` is displaying `BPKStarRating` views which have the following appearance attributes.
 
-`(UIColor)starFilledColor`
+- `(UIColor)starFilledColor`

@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeIconWithDefaultTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+    BPKIconView *view = [[BPKLargeIconView alloc] initWithIconName:BPKIconNameAccessibility];
 
     return view;
 }
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createLargeWithTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeLarge];
+    BPKIconView *view = [[BPKLargeIconView alloc] initWithIconName:BPKIconNameAccessibility];
     view.tintColor = BPKColor.panjin;
 
     return view;
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createSmallWithTint {
-    BPKIconView *view = [[BPKIconView alloc] initWithIconName:BPKIconNameAccessibility size:BPKIconSizeSmall];
+    BPKSmallIconView *view = [[BPKSmallIconView alloc] initWithIconName:BPKIconNameAccessibility];
     view.tintColor = BPKColor.panjin;
 
     return view;
@@ -75,6 +75,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testSmallWithTint {
     UIView *lightView = [self createSmallWithTint];
     UIView *darkView = [self createSmallWithTint];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createXlWithTint {
+    BPKXlIconView *view = [[BPKXlIconView alloc] initWithIconName:BPKIconNameStar];
+    view.tintColor = BPKColor.panjin;
+
+    return view;
+}
+
+- (void)testXlWithTint {
+    UIView *lightView = [self createXlWithTint];
+    UIView *darkView = [self createXlWithTint];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);

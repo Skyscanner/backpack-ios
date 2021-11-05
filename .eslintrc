@@ -1,7 +1,15 @@
 {
+  "parser": "babel-eslint",
   "extends": [
-    "skyscanner-with-prettier"
+    "prettier",
+    "eslint:recommended",
+    "plugin:eslint-comments/recommended"
   ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "plugins": ["prettier"],
   "rules": {
     "no-console": "off"
   }

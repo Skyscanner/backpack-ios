@@ -22,6 +22,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BPKCardConfiguration;
+
 /**
  * `BPKCard` is a subclass of `UIControl` which contains the Skyscanner card style.
  * Cards are a lightweight control with a shadow.
@@ -33,6 +35,13 @@ IB_DESIGNABLE @interface BPKCard : UIControl
  * Whether the card should provide padding or not.
  */
 @property(nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
+
+/**
+ * Determines how the card should appear to assistive technology.
+ * Default is BPKCardConfigurationContainer.
+ * @see BPKCardConfiguration
+ */
+@property(strong, nonatomic, nonnull) BPKCardConfiguration *configuration;
 
 /**
  * The corner-style to apply to the card.

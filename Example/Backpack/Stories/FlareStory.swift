@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,34 +19,35 @@
 import Foundation
 
 enum FlareStory: String, StoryGroup {
-  case `default` = "Default"
-  case flareAtTop = "Flare at top"
-  case rounded = "Rounded"
-  case backgroundImage = "Background image"
-  case animated = "Animated"
+    case `default` = "Default"
+    case flareAtTop = "Flare at top"
+    case rounded = "Rounded"
+    case backgroundImage = "Background image"
+    case animated = "Animated"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Main")
-    let viewController = storyboard("FlareViewViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let flareViewVC = $0 as? FlareViewViewController
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Main")
+        let presentable = storyboard("FlareViewViewController")
 
-      switch self {
-      case .flareAtTop:
-        flareViewVC?.flareAtTop = true
-      case .rounded:
-        flareViewVC?.rounded = true
-      case .backgroundImage:
-        flareViewVC?.backgroundImage = true
-      case .animated:
-        flareViewVC?.backgroundImage = true
-        flareViewVC?.animated = true
-      default: break
-      }
-    }))
-  }
+        return presentable.enrich {
+            let flareViewVC = $0 as? FlareViewViewController
+
+            switch self {
+            case .flareAtTop:
+                flareViewVC?.flareAtTop = true
+            case .rounded:
+                flareViewVC?.rounded = true
+            case .backgroundImage:
+                flareViewVC?.backgroundImage = true
+            case .animated:
+                flareViewVC?.backgroundImage = true
+                flareViewVC?.animated = true
+            default: break
+            }
+        }
+    }
 }

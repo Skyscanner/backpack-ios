@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createToastWithMode:(BPKToastMode)toastMode {
     UIView *parent = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     parent.backgroundColor = UIColor.whiteColor;
-    BPKToast *toast = [BPKToast showToastAddedTo:parent animated:NO];
+    BPKToast *toast = [BPKToast
+                       showToastAddedTo:parent
+                       animated:NO
+                       accessibilityAnnouncement:@"Saving your changes"];
     toast.mode = toastMode;
     toast.labelText = @"Toast Title Text";
     toast.detailsLabelText = @"Toast detail text";

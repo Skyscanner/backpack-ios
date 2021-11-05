@@ -18,16 +18,18 @@
 
 #import "BPKMapAnnotationViewCalloutView.h"
 
-#import "BPKMapAnnotationView.h"
-#import "BPKMapAnnotation.h"
-
 #import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
+#import <Backpack/FlareView.h>
 #import <Backpack/Label.h>
 #import <Backpack/Shadow.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
+
+#import "BPKMapAnnotationViewCalloutFlareView.h"
+#import "BPKMapAnnotationView.h"
+#import "BPKMapAnnotation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,7 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKIconView *iconView;
 @property(nonatomic, strong) BPKLabel *label;
 @property(nonatomic, strong) UIColor *contentColor;
-@property(nonatomic, readonly) CGFloat paddingSize;
+@property(nonatomic, strong) BPKMapAnnotationViewCalloutFlareView *flareView;
+@property(nonatomic, readonly) CGFloat verticalPaddingSize;
+@property(nonatomic, readonly) CGFloat horizontalPaddingSize;
 @property(nonatomic, readonly) CGFloat maximumWidth;
 
 - (void)setupAppearance;
@@ -78,11 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (CGFloat)flareHeight {
-    // Design uses non-standard backpack spacing
-    return 6;
-}
-
 - (void)update {
     self.label.text = self.annotationView.annotation.title;
 
@@ -99,43 +98,46 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)updateStyle {
+    BPKFontStyle fontStyle = BPKFontStyleTextBase;
+    UIColor *backgroundColor = nil;
+    UIColor *contentBackgroundColor = nil;
+    UIColor *contentColor = nil;
+    UIColor *borderColor = nil;
+
     if(!self.annotationView.enabled) {
-        self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundView.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
-        self.contentView.backgroundColor = BPKColor.clear;
-        self.contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
-        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
-        [self updateIcon];
-        return;
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
+        borderColor = BPKColor.clear;
+    } else if(self.annotationView.selected) {
+        fontStyle = BPKFontStyleTextBaseEmphasized;
+        backgroundColor = BPKColor.skyBlue;
+        contentBackgroundColor = BPKColor.white;
+        contentColor = BPKColor.skyBlue;
+        borderColor = BPKColor.skyBlue;
+    } else if (self.annotationView.hasBeenSelected) {
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = BPKColor.skyBlueTint03;
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = BPKColor.skyBlue;
+        borderColor = BPKColor.clear;
+    } else {
+        fontStyle = BPKFontStyleTextSmEmphasized;
+        backgroundColor = BPKColor.skyBlue;
+        contentBackgroundColor = BPKColor.clear;
+        contentColor = BPKColor.white;
+        borderColor = BPKColor.clear;
     }
 
-    if(self.annotationView.selected) {
-        self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
-        self.backgroundView.backgroundColor = BPKColor.skyBlue;
-        self.contentView.backgroundColor = BPKColor.white;
-        self.contentColor = BPKColor.skyBlue;
-        self.contentView.layer.borderColor = BPKColor.skyBlue.CGColor;
-        [self updateIcon];
-        return;
-    }
-
-    if (self.annotationView.hasBeenSelected) {
-        self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-        self.backgroundView.backgroundColor = BPKColor.skyBlueTint03;
-        self.contentView.backgroundColor = BPKColor.clear;
-        self.contentColor = BPKColor.skyBlue;
-        self.contentView.layer.borderColor = BPKColor.clear.CGColor;
-        [self updateIcon];
-        return;
-    }
-
-    self.label.fontStyle = BPKFontStyleTextSmEmphasized;
-    self.backgroundView.backgroundColor = BPKColor.skyBlue;
-    self.contentView.backgroundColor = BPKColor.clear;
-    self.contentColor = BPKColor.white;
-    self.contentView.layer.borderColor = BPKColor.clear.CGColor;
+    self.label.fontStyle = fontStyle;
+    self.flareView.backgroundView.backgroundColor = backgroundColor;
+    self.flareView.contentView.backgroundColor = contentBackgroundColor;
+    self.contentColor = contentColor;
+    self.flareView.contentView.layer.borderColor = borderColor.CGColor;
 
     [self updateIcon];
+    [self updateShadowPath];
 }
 
 -(void)updateIcon {
@@ -151,13 +153,24 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+-(void)updateShadowPath {
+    UIBezierPath *shadowPath = [BPKFlarePath flareViewPathForSize:self.bounds.size flareHeight:self.flareView.flareHeight cornerRadius:self.flareView.cornerRadius flarePosition:self.flareView.flarePosition];
+
+    CGPathRef finalPath = shadowPath.CGPath;
+    self.layer.shadowPath = finalPath;
+}
+
 - (void)setupAppearance {
     self.userInteractionEnabled = NO;
-    self.contentView.layer.borderWidth = BPKBorderWidthLg;
+    [[BPKShadow shadowSm] applyToLayer:self.layer];
+
+    BPKMapAnnotationViewCalloutFlareView *flareView = [BPKMapAnnotationViewCalloutFlareView new];
+    flareView.translatesAutoresizingMaskIntoConstraints = NO;
+    flareView.contentView.layer.borderWidth = BPKBorderWidthLg;
 
     UIStackView *stackView = [[UIStackView alloc] init];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.spacing = self.paddingSize;
+    stackView.spacing = BPKSpacingIconText;
     stackView.alignment = UIStackViewAlignmentCenter;
 
     BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
@@ -167,26 +180,36 @@ NS_ASSUME_NONNULL_BEGIN
     // Ensures that the icon will remain visible even if the label has to shrink
     [label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
-    [self.contentView addSubview:stackView];
+    [self addSubview:flareView];
+    [flareView.contentView addSubview:stackView];
     [stackView addArrangedSubview:iconView];
     [stackView addArrangedSubview:label];
 
     [NSLayoutConstraint activateConstraints:@[
-        [stackView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:self.paddingSize],
-        [self.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.paddingSize],
-        [stackView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:self.paddingSize],
-        [self.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.paddingSize],
+        [flareView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [flareView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [flareView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
+        [flareView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
+        [stackView.leadingAnchor constraintEqualToAnchor:flareView.contentView.leadingAnchor constant:self.horizontalPaddingSize],
+        [flareView.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.horizontalPaddingSize],
+        [stackView.topAnchor constraintEqualToAnchor:flareView.contentView.topAnchor constant:self.verticalPaddingSize],
+        [flareView.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.verticalPaddingSize],
         [self.widthAnchor constraintLessThanOrEqualToConstant:self.maximumWidth]
     ]];
+    self.flareView = flareView;
     self.stackView = stackView;
     self.label = label;
     self.iconView = iconView;
 
-    self.cornerRadius = BPKSpacingSm;
+    flareView.cornerRadius = BPKSpacingSm;
     [self updateStyle];
 }
 
-- (CGFloat)paddingSize {
+- (CGFloat)horizontalPaddingSize {
+    return BPKSpacingMd;
+}
+
+- (CGFloat)verticalPaddingSize {
     return BPKSpacingSm;
 }
 

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,35 +19,36 @@
 import Foundation
 
 enum ChipStory: String, StoryGroup {
-  case `default` = "Default"
-  case withIcons = "With icons"
-  case withBackgroundColor = "With background color"
-  case filled = "Filled"
-  case filledWithBackgroundColor = "Filled with background color"
+    case `default` = "Default"
+    case withIcons = "With icons"
+    case withBackgroundColor = "With background color"
+    case filled = "Filled"
+    case filledWithBackgroundColor = "Filled with background color"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Chips")
-    let viewController = storyboard("ChipsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let target = $0 as? ChipsViewController
-      let filledBackgroundColor: UIColor = .bpk_abisko
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Chips")
+        let presentable = storyboard("ChipsViewController")
 
-      switch self {
-      case .withIcons:
-        target?.icons = true
-      case .withBackgroundColor:
-        target?.backgroundTint = filledBackgroundColor
-      case .filled:
-        target?.style = .filled
-      case .filledWithBackgroundColor:
-        target?.style = .filled
-        target?.backgroundTint = filledBackgroundColor
-      default: break
-      }
-    }))
-  }
+        return presentable.enrich {
+            let target = $0 as? ChipsViewController
+            let filledBackgroundColor: UIColor = .bpk_abisko
+
+            switch self {
+            case .withIcons:
+                target?.icons = true
+            case .withBackgroundColor:
+                target?.backgroundTint = filledBackgroundColor
+            case .filled:
+                target?.style = .filled
+            case .filledWithBackgroundColor:
+                target?.style = .filled
+                target?.backgroundTint = filledBackgroundColor
+            default: break
+            }
+        }
+    }
 }

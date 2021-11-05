@@ -33,7 +33,7 @@ class OverlayViewsSelectorViewController: UITableViewController {
         }
 
         if let identifier = segue.identifier,
-           let overlayViewSegueIdentifier = OverlayViewSegueIdentifier(rawValue: identifier) {
+        let overlayViewSegueIdentifier = OverlayViewSegueIdentifier(rawValue: identifier) {
             switch overlayViewSegueIdentifier {
             case .default:
                 target.navigationItem.title = "Default"

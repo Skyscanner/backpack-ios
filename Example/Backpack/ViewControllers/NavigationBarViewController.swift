@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,12 +55,14 @@ class NavigationBarViewController: UIViewController {
             // Right button setup
             navigationBar.rightButton.isHidden = false
             navigationBar.rightButton.title = "Done"
-            navigationBar.rightButton.setImage(BPKIcon.makeTemplateIcon(name: .tickCircle, size: .small))
+            navigationBar.rightButton.setImage(BPKIcon.makeSmallTemplateIcon(name: .tickCircle))
             navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         }
 
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: NavigationBarViewController.CellIdentifier)
+        tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: NavigationBarViewController.CellIdentifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
 

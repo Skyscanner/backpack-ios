@@ -62,8 +62,10 @@ extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
     }
 
     func barChart(_ barChart: BPKBarChart, titleForBarAtIndex atIndex: IndexPath) -> String {
-        let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-                          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        let daysOfWeek = [
+            "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+            "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+        ]
         return daysOfWeek[atIndex.item]
     }
 

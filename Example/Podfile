@@ -8,18 +8,19 @@ install! 'cocoapods', disable_input_output_paths: true
 
 target 'Backpack-Native' do
   pod 'Backpack', :path => '../'
-  pod 'SwiftLint', '~> 0.39.2'
-  pod 'AppCenter', '~> 3.1.0'
-  pod 'AppCenter/Distribute', '~> 3.1.0'
+  pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
+  pod 'SwiftLint', '~> 0.43.1'
+  pod 'AppCenter', '~> 4.2.0'
+  pod 'AppCenter/Distribute', '~> 4.2.0'
 
   target 'Backpack_Tests' do
     inherit! :search_paths
-    pod 'OCMock', '~> 3.6.0'
+    pod 'OCMock', '~> 3.8.1'
   end
 
   target 'Backpack_SnapshotTests' do
       inherit! :search_paths
-      pod 'iOSSnapshotTestCase/Core', '~> 6.2.0'
+      pod 'iOSSnapshotTestCase', '~> 6.2.0'
   end
 end
 

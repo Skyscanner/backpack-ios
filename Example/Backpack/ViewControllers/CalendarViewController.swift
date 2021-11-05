@@ -121,9 +121,11 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
                 self.currentMaxEnabledDate = nil
             } else {
                 let lastSelectedDate = dateList.first
-                let newMaxDate = BPKSimpleDate(year: lastSelectedDate!.year,
-                                               month: lastSelectedDate!.month + 1,
-                                               day: lastSelectedDate!.day)
+                let newMaxDate = BPKSimpleDate(
+                    year: lastSelectedDate!.year,
+                    month: lastSelectedDate!.month + 1,
+                    day: lastSelectedDate!.day
+                )
                 self.currentMaxEnabledDate = newMaxDate.date(for: calendar.gregorian)
             }
         }

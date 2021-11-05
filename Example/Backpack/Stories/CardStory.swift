@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,34 +19,43 @@
 import Foundation
 
 enum CardStory: String, StoryGroup {
-  case `default` = "Default"
-  case withoutPadding = "Without padding"
-  case selected = "Selected"
-  case cornerStyleLarge = "Corner style large"
-  case alternativeBackgroundColor = "Background color"
+    case `default` = "Default"
+    case button = "Button"
+    case link = "Link"
+    case withoutPadding = "Without padding"
+    case selected = "Selected"
+    case cornerStyleLarge = "Corner style large"
+    case alternativeBackgroundColor = "Background color"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Cards")
-    let viewController = storyboard("CardsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let cardVC = $0 as? CardsViewController
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Cards")
+        let presentable = storyboard("CardsViewController")
 
-      switch self {
-      case .default:
-        break
-      case .withoutPadding:
-        cardVC?.padded = false
-      case .selected:
-        cardVC?.selected = true
-      case .cornerStyleLarge:
-        cardVC?.cornerStyle = .large
-      case .alternativeBackgroundColor:
-        cardVC?.backgroundColor = BPKColor.skyBlueTint01
-      }
-    }))
-  }
+        return presentable.enrich {
+            let cardVC = $0 as? CardsViewController
+
+            switch self {
+            case .default:
+                break
+            case .button:
+                cardVC?.configuration =
+                    BPKCardConfigurationButton(accessibilityLabel: "Test accessibility label")
+            case .link:
+                cardVC?.configuration =
+                    BPKCardConfigurationLink(accessibilityLabel: "Test accessibility label")
+            case .withoutPadding:
+                cardVC?.padded = false
+            case .selected:
+                cardVC?.selected = true
+            case .cornerStyleLarge:
+                cardVC?.cornerStyle = .large
+            case .alternativeBackgroundColor:
+                cardVC?.backgroundColor = BPKColor.skyBlueTint01
+            }
+        }
+    }
 }

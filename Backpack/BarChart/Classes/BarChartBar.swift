@@ -115,8 +115,10 @@ public final class BPKBarChartBar: UIControl {
 
     lazy fileprivate var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06,
-                                                     darkVariant: BPKColor.blackTint03)
+        view.backgroundColor = BPKColor.dynamicColor(
+            withLightVariant: BPKColor.skyGrayTint06,
+            darkVariant: BPKColor.blackTint03
+        )
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = BPKSpacingMd
         return view
@@ -150,8 +152,10 @@ public final class BPKBarChartBar: UIControl {
 
     static fileprivate var noValueColor: UIColor = BPKColor.skyGrayTint03
     static fileprivate var valueColor: UIColor = BPKColor.primaryColor
-    static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(withLightVariant: BPKColor.monteverde,
-                                                                          darkVariant: BPKColor.glencoe)
+    static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(
+        withLightVariant: BPKColor.monteverde,
+        darkVariant: BPKColor.glencoe
+    )
 
     fileprivate func updateBarColor() {
         if isSelected {
@@ -171,9 +175,11 @@ public final class BPKBarChartBar: UIControl {
             barViewHeightAnchor!.isActive = false
         }
 
-        barViewHeightAnchor = fillValue.map { _ in
-            barView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor,
-                                            multiplier: CGFloat(exactly: fillValue!)!)
+        barViewHeightAnchor = fillValue.map {
+            barView.heightAnchor.constraint(
+                equalTo: backgroundView.heightAnchor,
+                multiplier: CGFloat($0.doubleValue)
+            )
         } ?? barView.heightAnchor.constraint(equalToConstant: BPKSpacingLg)
 
         assert(barViewHeightAnchor != nil, "barViewHeightAnchor should not be nil")
@@ -185,8 +191,10 @@ public final class BPKBarChartBar: UIControl {
             miniFlareViewPositionAnchor?.isActive = false
         }
 
-        miniFlareViewPositionAnchor = miniFlareView.bottomAnchor.constraint(equalTo: barView.topAnchor,
-                                                                            constant: -BPKSpacingSm)
+        miniFlareViewPositionAnchor = miniFlareView.bottomAnchor.constraint(
+            equalTo: barView.topAnchor,
+            constant: -BPKSpacingSm
+        )
 
         assert(barViewHeightAnchor != nil, "miniFlareViewPositionAnchor should not be nil")
         miniFlareViewPositionAnchor?.isActive = true

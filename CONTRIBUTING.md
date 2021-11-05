@@ -4,6 +4,8 @@ In this document we describe how to setup this repository for development and th
 
 ## Code style
 
+**All new components should be written in Swift.**
+
 Please follow the [New York Times Objective-C style-guide](https://github.com/NYTimes/objective-c-style-guide) when writing Objective-C. Follow other conventions and patterns established in the source code already when the style-guide cannot help you. The goal is that the codebase should look like it was written by a single author.
 
 Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` blocks. Make sure to annotate any types that are nullable correctly.
@@ -24,28 +26,30 @@ Use the most recent stable version of Xcode, however the project should work wit
 
 Given that you have a compatible environment as stated above you can now setup the project.
 
-+ `bundle install` to install ruby dependencies
-+ `npm install` to install npm dependencies
-+ `(cd Example && bundle exec pod install)` To setup the example project.
-+ `open Example/Backpack.xcworkspace` to open the example project
+- `bundle install` to install ruby dependencies
+- `npm install` to install npm dependencies
+- If you work for Skyscanner, [configure relative](#relative-font) (optional).
+- `(cd Example && bundle exec pod install)` To setup the example project.
+- `open Example/Backpack.xcworkspace` to open the example project
 
 ## Relative Font
 
 > Skyscanner employees only
 
-To use our `Skyscanner Relative` font-face in the example app, download the files first by executing the script below from the top level of the repo. You will need SSH access to `github.skyscannertools.net` to do this.
+Our fonts can only be used by Skyscanner employees. If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
 
-If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
+To use our `Skyscanner Relative` font-face in the example app do the following:
 
-```
-./scripts/download-relative-fonts
-```
+- Make sure you're connected to the VPN.
+- If you've already done a `pod install`, delete `Example/Pods`.
+- Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
+- Setup the project as [above](#setup).
 
-Once the fonts are downloaded, ensure they're visible in Xcode at _Example for Backpack/Resources_. If they aren't, right click on _Resources_, press _Add files to Backpack_ and add them.
+During pod install, fonts will be downloaded and made available to the project automatically.
 
 ## Testing
 
-Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on an iPhone 8 running iOS 13.5 to match what is used on CI.
+Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/ci.yml#L132).
 
 ## Taking screenshots
 
@@ -55,17 +59,43 @@ The _screenshots_ folder stores all of the screenshots we use on the [documentat
 bundle exec rake take_screenshots
 ```
 
-The script takes 10-15 minutes. It also requires that the iPhone Simulator is not already running.
+The script takes 10-15 minutes.
+
+### Taking a subset of screenshots
+
+It's possible to take only a subset of the screenshots which greatly speeds up the process.
+
+To do this follow the following steps:
+
+
+1. In `Screenshots.swift` change the `runOnly` property per the guide.
+2. Run the screenshots as above
+3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
 
 ### Snapshot testing
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on an iPhone 8 running iOS 13.5. This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
+Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/ci.yml#L132). This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
 
 ## Git
 
 Please submit your requested changes as a pull request to the `main` branch. If your branch becomes out of date and conflicts need to be resolved with `main` use `git rebase`, do not merge `main` into your feature branch.
 
 Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
+
+## Upgrading Xcode/iOS
+
+As new versions of Xcode and iOS are released, we have to upgrade both to stay up to date with the main Skyscanner app, as well as what travellers are using. Our aim is to run our main test suite and snapshot tests on the dominate iOS version in use by Skyscanner travellers. At the time of a new release we continue to run our test suite on the previous major version until the new release has reached sufficient volume **and** the main app has moved to testing on the new version.
+
+### How to upgrade
+
+1. Change the value of `runs-on` in [`ci.yml`](./.github/workflows/ci.yml#26). The new value should be on of the [available environments](https://github.com/actions/virtual-environments/tree/main/images/macos) in GitHub Actions.
+1. Update the `BUILD_SDK` variable in [`Rakefile`](./Rakefile#5) to the new build SDK we should use.
+1. Update `correctMajorVersion` and `correctMinorVersion` in [`BPKSnapshotTest.`](./Example/SnapshotTests/BPKSnapshotTest.h).
+1. Update `expectedMajorVersion` and `expectedMinorVersion` in [`BPKSnapshotTest.swift`](./Example/SnapshotTests/BPKSnapshotTest.swift#26).
+1. Run all snapshot tests.
+1. **Review the failing snapshots thoroughly.** Most likely, all snapshots will have changed, **but** the diffs should be miniscule and mostly to do with changes in Apple's fonts.
+1. **Run all snapshot tests in record mode.** At the time of writing this involves manually setting `recordMode` in every test case, we should have a better method than this, but alas we don't :(
+1. Manually test the example app with the new version.
 
 ## Releasing
 
@@ -74,7 +104,6 @@ Write your commit messages using imperative mood and in general follow the rules
 To issue a new release make sure you've set the project up as above, that you have push access to the Backpack CocoaPod and that you're logged in to [CocoaPods trunk](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#getting-started). `bundle exec pod trunk me` should print **your info** and include the **Backpack pod** in the output.
 
 Move all the entries from the `UNRELEASED.md` file to the `CHANGELOG.md` and add them under the header with the new version you're about to publish. **Do not commit these changes** (leave them unstaged) and run `bundle exec rake release`.
-
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm

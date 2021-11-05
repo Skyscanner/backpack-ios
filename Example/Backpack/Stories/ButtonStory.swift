@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,46 +19,46 @@
 import Foundation
 
 enum ButtonStory: String, StoryGroup {
-  case primary = "Primary"
-  case secondary = "Secondary"
-  case destructive = "Destructive"
-  case featured = "Featured"
-  case link = "Link"
-  case outline = "Outline"
+    case primary = "Primary"
+    case secondary = "Secondary"
+    case destructive = "Destructive"
+    case featured = "Featured"
+    case link = "Link"
+    case outline = "Outline"
 
-  var buttonStyle: BPKButtonStyle {
-    switch self {
-    case .primary:
-      return .primary
-    case .secondary:
-      return .secondary
-    case .destructive:
-      return .destructive
-    case .featured:
-      return .featured
-    case .link:
-      return .link
-    case .outline:
-      return .outline
+    var buttonStyle: BPKButtonStyle {
+        switch self {
+        case .primary:
+            return .primary
+        case .secondary:
+            return .secondary
+        case .destructive:
+            return .destructive
+        case .featured:
+            return .featured
+        case .link:
+            return .link
+        case .outline:
+            return .outline
+        }
     }
-  }
 
-  var title: String {
-    self.rawValue
-  }
-
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Buttons")
-    let viewController = storyboard("ButtonsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, setButtonStyle()))
-  }
-
-  func setButtonStyle() -> (UIViewController) -> Void {
-    return { storyboardVC in
-      guard let buttonsVC = storyboardVC as? BPKButtonsViewController else {
-        return
-      }
-      buttonsVC.style = self.buttonStyle
+    var title: String {
+        self.rawValue
     }
-  }
+
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Buttons")
+        let viewController = storyboard("ButtonsViewController")
+
+        return viewController.enrich(setButtonStyle)
+    }
+
+    func setButtonStyle(storyBoardViewController: UIViewController) {
+        guard let buttonsVC = storyBoardViewController as? BPKButtonsViewController else {
+            return
+        }
+
+        buttonsVC.style = self.buttonStyle
+    }
 }

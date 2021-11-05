@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,24 +19,25 @@
 import Foundation
 
 enum MapStory: String, StoryGroup {
-  case `default` = "Default"
-  case performance = "Performance"
+    case `default` = "Default"
+    case performance = "Performance"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Map")
-    let viewController = storyboard("MapsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let mapViewController = $0 as? MapViewController
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Map")
+        let presentable = storyboard("MapsViewController")
 
-      switch self {
-      case .performance:
-        mapViewController?.testPerformance = true
-      default: break
-      }
-    }))
-  }
+        return presentable.enrich {
+            let mapViewController = $0 as? MapViewController
+
+            switch self {
+            case .performance:
+                mapViewController?.testPerformance = true
+            default: break
+            }
+        }
+    }
 }

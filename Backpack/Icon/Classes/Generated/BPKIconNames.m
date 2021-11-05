@@ -61,6 +61,7 @@ BPKIconName const BPKIconNameCalendar = @"calendar";
 BPKIconName const BPKIconNameCallBack = @"call-back";
 BPKIconName const BPKIconNameCamera = @"camera";
 BPKIconName const BPKIconNameCamperVan = @"camper-van";
+BPKIconName const BPKIconNameCarDoor = @"car-door";
 BPKIconName const BPKIconNameCarWash = @"car-wash";
 BPKIconName const BPKIconNameCarsFlexible = @"cars-flexible";
 BPKIconName const BPKIconNameCars = @"cars";

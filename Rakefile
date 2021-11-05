@@ -2,7 +2,7 @@ require 'fileutils'
 require 'semver'
 
 FULL_TESTS = ENV['FULL_TESTS'] != 'false'
-BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator14.4'
+BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator14.5'
 TEST_DEVICE_NAME = ENV['TEST_DEVICE_NAME'] || 'iPhone 8'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
@@ -86,7 +86,7 @@ end
 
 desc "Check for build-time errors and warnings"
 task :analyze do
-  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -v Pods/FloatingPanel/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 desc "Erase content and settings from all iPhone simulators"
@@ -114,9 +114,7 @@ task :take_screenshots do
   # Remove existing screenshots
   FileUtils.rm_rf('screenshots')
 
-  sh "xcrun simctl boot \"#{TEST_DEVICE_NAME}\""
-  sh "xcrun simctl status_bar \"#{TEST_DEVICE_NAME}\" override --time \"09:41\" --wifiBars 3 --cellularBars 4 --batteryLevel 100 --operatorName Backpack"
-  sh "(cd Example && fastlane snapshot)"
+  sh "(cd Example && bundle exec fastlane snapshot)"
   FileUtils.mv(Dir.glob('screenshots/en-US/*'), 'screenshots/')
 end
 

@@ -62,9 +62,12 @@ BPKHorizontalNavigationItem
 OverlayView
 BPKOverlayView
 
-BpkIcons
-BpkIcon
+BPKIcons
+BPKIcon
+BPKIconView
 BpkIcons.icon
+makeIcon
+makeTemplateIcon
 
 BpkImage
 
@@ -126,6 +129,7 @@ Artifactory
 Cocoapods
 CommonJS
 ESLint
+Figma
 GitHub
 HockeyApp
 Homebrew
@@ -151,6 +155,7 @@ react-virtualized
 rvm
 travelpro
 UINavigationBar
+nunjucks
 
 # Tech terms
 APLv2
@@ -162,6 +167,7 @@ DOM
 Horcrux
 IntersectionObserver
 JS
+JavaScript
 Keystore
 PRs
 PoC
@@ -207,6 +213,7 @@ UIKit
 keystore
 linter
 linters
+lockfile
 mixin
 mixins
 modals
@@ -215,6 +222,7 @@ nav
 navs
 noop
 plugin
+podspec
 popover
 popovers
 portalClassName
@@ -233,6 +241,7 @@ z-index
 # a11y terms
 aria-describedby
 tablist
+VoiceOver
 
 # Locales
 ja-JP
@@ -699,6 +708,7 @@ Udaipur
 20s
 62kb
 artifacts
+automator
 Blergh
 downtown
 janky
@@ -763,5 +773,7 @@ subviews
 BottomSheet
 BPKBottomSheet
 SimpleDate
+UIImage
+UIImageView
 enum
 BPKCalendarDateCellStyleNoData

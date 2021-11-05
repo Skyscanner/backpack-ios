@@ -19,10 +19,91 @@
 import UIKit
 import Backpack
 
-class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegate {
-    @IBOutlet weak var horizontalNav: BPKHorizontalNavigation!
+struct StoryIcon<Size: BPKHorizontalNavigationSize> {
+    let smallIconName: BPKSmallIconName
+    let largeIconName: BPKLargeIconName
 
-    var size: BPKHorizontalNavigationSize = .default
+    static var flight: Self {
+        .init(smallIconName: .flight, largeIconName: .flight)
+    }
+
+    static var hotels: Self {
+        .init(smallIconName: .hotels, largeIconName: .hotels)
+    }
+
+    static var cars: Self {
+        .init(smallIconName: .cars, largeIconName: .cars)
+    }
+
+    private static var isSmall: Bool {
+        Size.self == BPKHorizontalNavigationSizeSmall.self
+    }
+}
+
+extension StoryIcon: BPKHorizontalNavigationOptionIcon {
+    func makeImage() -> UIImage {
+        if Self.isSmall {
+            return BPKIcon.makeSmallTemplateIcon(name: smallIconName)
+        } else {
+            return BPKIcon.makeLargeTemplateIcon(name: largeIconName)
+        }
+    }
+
+    static var size: CGSize {
+        if isSmall {
+            return BPKIcon.concreteSizeForSmallIcon
+        } else {
+            return BPKIcon.concreteSizeForLargeIcon
+        }
+    }
+}
+
+// swiftlint:disable:next type_name
+struct CustomHorizontalNavigationOptionWithBackground<
+    Size: BPKHorizontalNavigationSize
+>: BPKHorizontalNavigationOption {
+    /**
+     *
+     */
+    let title: String
+
+    var tag: NSInteger
+
+    func makeItem() -> BPKHorizontalNavigationItem {
+        return HorizontalNavigationItemWithBackground<Size>(title: title)
+    }
+}
+
+extension BPKHorizontalNavigation.AnyOption {
+    static func withBackground<S: BPKHorizontalNavigationSize>(
+        title: String, tag: NSInteger = 0
+    ) -> BPKHorizontalNavigation.AnyOption<S> {
+        return BPKHorizontalNavigation.AnyOption<S>(
+            wrapped: CustomHorizontalNavigationOptionWithBackground<S>(title: title, tag: tag)
+        )
+    }
+}
+
+class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegate {
+    lazy var largeHorizontalNav: BPKHorizontalNavigation<BPKHorizontalNavigationSizeDefault> = {
+        let horizontalNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeDefault>(
+            options: [], selectedItemIndex: 0
+        )
+        horizontalNav.translatesAutoresizingMaskIntoConstraints = false
+
+        return horizontalNav
+    }()
+
+    lazy var smallHorizontalNav: BPKHorizontalNavigation<BPKHorizontalNavigationSizeSmall> = {
+        let horizontalNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeSmall>(
+            options: [], selectedItemIndex: 0
+        )
+        horizontalNav.translatesAutoresizingMaskIntoConstraints = false
+
+        return horizontalNav
+    }()
+
+    var small: Bool = false
     var appearance: BPKHorizontalNavigationAppearance = .normal
     var showBar: Bool = true
     var showIcons: Bool = false
@@ -34,58 +115,84 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .bpk_background
 
-        if showIcons {
-            horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
-                BPKHorizontalNavigationOption(name: "Hotels", tag: 1,
-                                              iconName: .hotels,
-                                              showNotificationDot: showNotificationDot),
-                BPKHorizontalNavigationOption(name: "Car hire", iconName: .cars, tag: 2)
-            ]
+        if small {
+            view.addSubview(smallHorizontalNav)
+            setUpConstraints(for: smallHorizontalNav)
+
+            configureExample(for: smallHorizontalNav)
         } else {
-            horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", tag: 0),
-                BPKHorizontalNavigationOption(name: "Hotels", tag: 1),
-                BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
-            ]
+            view.addSubview(largeHorizontalNav)
+            setUpConstraints(for: largeHorizontalNav)
+
+            configureExample(for: largeHorizontalNav)
         }
+    }
+
+    private func setUpConstraints(for innerView: UIView) {
+        NSLayoutConstraint.activate([
+            innerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingLg),
+            innerView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: wide ? -BPKSpacingLg : -(BPKSpacingXxl + BPKSpacingLg)
+            ),
+            innerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func configureExample<Size: BPKHorizontalNavigationSize>(for nav: BPKHorizontalNavigation<Size>) {
+        nav.options = [
+            .text("Flights", tag: 0),
+            .text("Hotels", tag: 1),
+            .text("Car Hire", tag: 2)
+        ]
 
         if showExtraContent {
-            horizontalNav.options += [
-                BPKHorizontalNavigationOption(name: "Flights", tag: 0),
-                BPKHorizontalNavigationOption(name: "Hotels", tag: 1),
-                BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
+            nav.options += [
+                .text("Flights", tag: 3),
+                .text("Hotels", tag: 4),
+                .text("Car Hire", tag: 5)
             ]
         }
 
-        if useCustomItems {
-            horizontalNav.options = [
-                BPKHorizontalNavigationOptionWithBackground(title: "Flights", tag: 0),
-                BPKHorizontalNavigationOptionWithBackground(title: "Hotels", tag: 1),
-                BPKHorizontalNavigationOptionWithBackground(title: "Car hire", tag: 2)
+        if showIcons {
+            nav.options = [
+                .textAndIcon("Flights", icon: StoryIcon.flight, tag: 0),
+                .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 1, showNotificationDot: showNotificationDot),
+                .textAndIcon("Car Hire", icon: StoryIcon.cars, tag: 2)
             ]
+
+            if showExtraContent {
+                smallHorizontalNav.options += [
+                    .textAndIcon("Flights", icon: StoryIcon.flight, tag: 3),
+                    .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 4, showNotificationDot: showNotificationDot),
+                    .textAndIcon("Car Hire", icon: StoryIcon.cars, tag: 5)
+                ]
+            }
+        } else {
+            if useCustomItems {
+                nav.options = [
+                    .withBackground(title: "Flights", tag: 0),
+                    .withBackground(title: "Hotels", tag: 1),
+                    .withBackground(title: "Car Hire", tag: 2)
+                ]
+            }
+
+            if useItemWithBadge {
+                nav.options = [
+                    .textAndIcon("Flights", icon: StoryIcon.flight, tag: 0),
+                    .textWithBadge("Hotels", badgeMessage: "NEW", tag: 1),
+                    .textAndIcon("Cars", icon: StoryIcon.cars, tag: 2)
+                ]
+            }
         }
 
-        if useItemWithBadge {
-            horizontalNav.options = [
-                BPKHorizontalNavigationOption(name: "Flights", iconName: .flight, tag: 0),
-                BPKHorizontalNavigationOptionWithBadge(title: "Hotels", badgeMessage: "NEW", tag: 1),
-                BPKHorizontalNavigationOption(name: "Car hire", tag: 2)
-            ]
-        }
+        nav.showsSelectedBar = showBar
+        nav.appearance = appearance
 
-        horizontalNav.showsSelectedBar = showBar
-        horizontalNav.size = size
-        horizontalNav.selectedItemIndex = 0
-
-        if wide {
-            horizontalNav.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        }
-
-        horizontalNav.appearance = appearance
-        if case .alternate = appearance {
-            horizontalNav.backgroundColor = BPKColor.skyGray
+        if appearance == .alternate {
+            nav.backgroundColor = BPKColor.skyGray
         }
     }
 }

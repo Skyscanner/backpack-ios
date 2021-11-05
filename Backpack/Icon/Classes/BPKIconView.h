@@ -47,9 +47,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The size of the icon currently being displayed. Setting updates
  * the displayed icon.
+ *
  * @see BPKIconSize
  */
 @property(nonatomic, assign) BPKIconSize size;
+
+/**
+ * Sets the size of the icon currently being displayed. Setting updates
+ * the displayed icon.
+ *
+ * @deprecated Setting size during the component lifecycle will soon be unsupported.
+ * @see BPKIconSize
+ */
+-(void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
 
 /**
  * If flipsForRightToLeft is set to YES then BPKIconView will render its icon

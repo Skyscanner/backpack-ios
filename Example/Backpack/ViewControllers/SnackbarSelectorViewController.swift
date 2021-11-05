@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,17 +20,17 @@ import Foundation
 
 class SnackBarSelectorViewController: UITableViewController {
     override func viewDidLoad() {
-          super.viewDidLoad()
-          navigationController?.navigationBar.prefersLargeTitles = false
-      }
+        super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           guard let destinationController = segue.destination as? SnackBarViewController  else {
-               fatalError("""
-                   The destination of all segues in `SnackbarSelectorViewController`
-                   should be `SnackBarViewController`
-               """)
-           }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationController = segue.destination as? SnackBarViewController  else {
+            fatalError("""
+                The destination of all segues in `SnackbarSelectorViewController`
+                should be `SnackBarViewController`
+            """)
+        }
 
         setupDestinationController(destinationController: destinationController, segue: segue)
     }

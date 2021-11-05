@@ -51,7 +51,9 @@ class TextViewUITest: BackpackUITestCase {
             return
         }
 
-        XCTAssertTrue(textViewValueAfter.elementsEqual("Testing " + textViewValueBefore),
-                      "The text view should be updated after typing")
+        XCTAssertTrue(
+            textViewValueAfter.elementsEqual("Testing " + textViewValueBefore),
+            "The text view should be updated after typing"
+        )
     }
 }

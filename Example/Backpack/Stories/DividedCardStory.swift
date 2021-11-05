@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2021 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,33 +19,34 @@
 import Foundation
 
 enum DividedCardStory: String, StoryGroup {
-  case dividedHorizontal = "With divider"
-  case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
-  case dividedVertical = "With divider arranged vertically"
-  case dividedVerticalNoPadding = "With divider without padding"
+    case dividedHorizontal = "With divider"
+    case dividedHorizontalCornerStyleLarge = "With divider and corner style large"
+    case dividedVertical = "With divider arranged vertically"
+    case dividedVerticalNoPadding = "With divider without padding"
 
-  var title: String {
-    self.rawValue
-  }
+    var title: String {
+        self.rawValue
+    }
 
-  var presentableStory: Presentable {
-    let storyboard = loadStoryboard(name: "Cards")
-    let viewController = storyboard("DividedCardsViewController").makeViewController
-    return CustomPresentable(generateViewController: enrich(viewController, {
-      let cardVC = $0 as? DividedCardsViewController
+    var presentableStory: Presentable {
+        let storyboard = loadStoryboard(name: "Cards")
+        let presentable = storyboard("DividedCardsViewController")
 
-      switch self {
-      case .dividedHorizontal:
-        cardVC?.divisionDirection = .horizontal
-      case .dividedHorizontalCornerStyleLarge:
-        cardVC?.divisionDirection = .horizontal
-        cardVC?.cornerStyle = .large
-      case .dividedVertical:
-        cardVC?.divisionDirection = .vertical
-      case .dividedVerticalNoPadding:
-        cardVC?.divisionDirection = .vertical
-        cardVC?.padded = false
-      }
-    }))
-  }
+        return presentable.enrich {
+            let cardVC = $0 as? DividedCardsViewController
+
+            switch self {
+            case .dividedHorizontal:
+                cardVC?.divisionDirection = .horizontal
+            case .dividedHorizontalCornerStyleLarge:
+                cardVC?.divisionDirection = .horizontal
+                cardVC?.cornerStyle = .large
+            case .dividedVertical:
+                cardVC?.divisionDirection = .vertical
+            case .dividedVerticalNoPadding:
+                cardVC?.divisionDirection = .vertical
+                cardVC?.padded = false
+            }
+        }
+    }
 }

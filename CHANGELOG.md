@@ -1,5 +1,156 @@
-
 [Unreleased changes](./UNRELEASED.md).
+
+# 45.0.2
+
+**Fixed:**
+
+- Backpack/Icon:
+  - Fixed rendering of the small world icons. Previously, the outer border on these icons weren't rendering correctly.
+
+# 45.0.1
+
+**Fixed:**
+
+- Backpack/Switch:
+  - Reverted back to primary color for the track, this means the dark mode track colour is now Sky Blue Tint 01.
+  - Set thumb colour to white, this has no effect in current versions of iOS as this matches the system.
+
+- Backpack/Button:
+  - Change destructive/secondary border colours to sky gray tint 06 in light mode.
+
+# 45.0.0
+
+**Breaking:**
+
+- Backpack/Toast:
+  - Add an announcement to be read by VoiceOver when a Toast is shown.
+
+# 44.0.6
+
+**Fixed:**
+
+- Backpack/TabBarController:
+  - Fixed a missing `super` call to `didMoveToParentViewController:`.
+
+# 44.0.5
+
+**Fixed:**
+
+ - Backpack/Badge:
+   - Font is now bold to align to Figma design.
+
+ - Backpack/StarRating:
+   - Adjusted dark-mode line colour to align to Figma design.
+
+# 44.0.4
+
+**Fixed:**
+
+ - Backpack/Map:
+   - Increased padding and dark-mode colours to align to Figma design.
+
+ - Backpack/Dialog:
+   - Adjusted corner radius and spacing to match Figma design.
+
+# 44.0.3
+
+**Fixed:**
+ - Backpack/Chip:
+   - Increased spacing between icon and text to align to Figma design.
+
+# 44.0.2
+
+**Fixed:**
+
+- Backpack/Switch:
+  - Aligned appearance to Figma by making switch `SkyBlue`.
+
+# 44.0.1
+
+**Fixed:**
+
+- Backpack/Button:
+  - Aligned appearance to Figma
+
+# 44.0.0
+
+**Breaking:**
+
+- Backpack/HorizontalNavigation:
+  - Migrated the component to Swift. This has caused regressions in the Objective-C capabilities of the component. 
+  - In Objective-C only the default size of the component is now available.
+  - In Objective-C some options are no longer supported e.g. the ability to show a notification dot and the support for badges.
+  - The component adopts the new `BPKIcon` API and enforces the correct usage of icons with the appropriate horizontal navigation size at compile time.
+  - Due to a bug in Swift/UIKit with generic views the component no longer supports theming. Theming can still be achieved with an explicit wrapping view that integrates with `UIAppearance`.
+  - For migration instructions see the [guide](./migration-guides/horizontal-nav-migration-guide.md).
+- Backpack/Chip:
+  - The type of `iconName` has changed from the deprecated `BPKIconName` to `BPKIconNameLarge`. Some icons previously used might to be available.
+
+# 43.3.0
+
+**Added:**
+- Backpack/Icon
+  - Added `car-door` icon.
+
+**Fixed:**
+
+- Migrated to new Backpack Foundations packages, `@skyscanner/bpk-ios` and `@skyscanner/bpk-svgs`.
+
+- Backpack/Icon
+ - Minor changes to `BPKIcon` which should not affect how they are used or work.
+
+# 43.2.0
+
+**Added:**
+
+- Backpack/Icon:
+  - Added `BPKSmallIconView`, `BPKLargeIconView` and `BPKXlIconView` - preferred ways to create an icon view.
+  - See the [migration guide](https://github.com/Skyscanner/backpack-ios/blob/main/migration-guides/icon-migration-guide.md).
+ 
+# 43.1.0
+
+**Added:**
+
+- Backpack/Card:
+  - Added `configuration` which allows cards to be configured for assistive technology as buttons or links.
+
+# 43.0.0
+
+**Breaking:**
+
+- Backpack/Nudger:
+  - Removed `accessibilityLabelFormatter` from `BPKNudgerConfiguration`.
+  - Added required `label` to `BPKNudgerConfiguration`.
+
+# 42.3.1
+
+**Fixed:**
+
+- Backpack/Nudger:
+  - Make label bold to align with design.
+
+# 42.3.0
+
+**Added:**
+- Backpack/Nudger:
+  - New nudger component - a control for specifying a numerical value that can be adjusted up and down.
+
+# 42.2.1
+
+**Fixed:**
+ - Backpack/Calendar:
+   - `reloadData` will now reload all visible cells without causing random cells to blink.
+
+# 42.2.0
+
+**Added:**
+ - Backpack/Map:
+   - Added shadows to callout views so that they are more distinguishable.
+
+**Fixed:**
+
+- Backpack/Dialog:
+  - Added the header trait to the title label within the dialog.
 
 # 42.1.2
 

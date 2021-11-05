@@ -41,7 +41,10 @@
 
     id<BPKFontDefinitionProtocol> relativeFontDefinition = [BPKRelativeFontDefinition new];
     UIFont *relativeTestFont = [UIFont fontWithName:relativeFontDefinition.regularFontFace size:12];
-    if (relativeTestFont != nil) {
+    BOOL relativeAvailable = relativeTestFont != nil;
+    BOOL useRelative = ![NSProcessInfo.processInfo.arguments containsObject:@"DISABLE_RELATIVE"] && relativeAvailable;
+
+    if (useRelative) {
         [BPKFont setFontDefinition:relativeFontDefinition];
     }
 
@@ -66,10 +69,8 @@
     [BPKAppearance apply];
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    UINavigationController *navigationController = [UINavigationController new];
-
-    BPKRootTableViewController *rootTableViewController = [BPKRootTableViewController new];
-    navigationController.viewControllers = @[rootTableViewController];
+    BPKRootTableViewController *rootTableViewController = [[BPKRootTableViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootTableViewController];
     self.window.rootViewController = navigationController;
 
     if ([ThemeHelpers isThemingSupported]) {
@@ -93,7 +94,7 @@
 #endif
     }
 
-    [MSAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSAnalytics.class, MSCrashes.class, MSDistribute.class]];
+    [MSACAppCenter start:@"$(APP_CENTER_SECRET)" withServices:@[MSACAnalytics.class, MSACCrashes.class, MSACDistribute.class]];
 
     if (self.UITestingEnabled) {
         self.window.layer.speed = 100;

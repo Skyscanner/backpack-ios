@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ class ToastUITest: BackpackUITestCase {
 
     func navigateAndShow() {
         app.tables.staticTexts["Toasts"].tap()
-        app.tables.staticTexts["Default toast"].tap()
+        app.tables.staticTexts["Default"].tap()
         app.buttons["Show Toast"].tap()
     }
 

@@ -89,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.textColor = BPKColor.textPrimaryColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 
     self.descriptionLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
     self.descriptionLabel.numberOfLines = 0;
@@ -118,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
 
-        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingBase],
         [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
 

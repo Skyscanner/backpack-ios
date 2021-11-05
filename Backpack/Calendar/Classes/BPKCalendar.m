@@ -374,8 +374,12 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
-- (void)reloadData {
+- (void)reloadCalendarData {
     [self.calendarView reloadData];
+}
+
+- (void)reloadData {
+    [self invalidateVisibleCells];
 }
 
 - (void)refreshDateAppearance {
@@ -698,10 +702,14 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     // If the consumer is dynamically disabling dates, we will need to invalidate all cells to ensure that the change is
     // visually reflected.
     if ([self.delegate respondsToSelector:@selector(calendar:isDateEnabled:)]) {
-        // This works, but it prevents the selection animation from working 😞
-        NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
-        [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
+        [self invalidateVisibleCells];
     }
+}
+
+- (void)invalidateVisibleCells {
+    // This works, but it prevents the selection animation from working 😞
+    NSArray<NSIndexPath *> *indexPathsForVisibleItems = [self.calendarView.collectionView indexPathsForVisibleItems];
+    [self.calendarView.collectionView reloadItemsAtIndexPaths:indexPathsForVisibleItems];
 }
 
 - (BOOL)isDateEnabled:(NSDate *)date {

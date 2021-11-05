@@ -16,6 +16,29 @@
  * limitations under the License.
  */
 
+/**
+ * This file contains the code for our "Stories" approach on iOS.
+ * The notion of stories is inspired by Storybook from the javascript community.
+ *
+ * The DSL that is used in this file is defined in `AppStructure.swift`.
+ *
+ * The central idea of this approach is to use a declarative system to describe
+ * the structure and navigation paths of the app.
+ * The implementation is based on Swift's
+ * [Result Builders](https://www.swiftbysundell.com/articles/deep-dive-into-swift-function-builders/),
+ * the very same that powers Swift UI. The main entry point for this is the function ``makeApp``.
+ *
+ * Prior to this system, we used storyboards to describe the navigation and structure of the app. We are in the process
+ * of migrating from that system to the stories format.
+ *
+ * The following PRs contain examples of this:
+ *
+ * * [#940](https://github.com/Skyscanner/backpack-ios/pull/940) _d8de142_
+ * * [#937](https://github.com/Skyscanner/backpack-ios/pull/937) _e323bea3_, 909d49e6_, _e8fdeee_
+ *
+ * We are done when we no longer use **segues** for navigation. We might still use storyboards for
+ * the stories, but all navigation should be specified declaratively using this system.
+ */
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
 
@@ -43,29 +66,48 @@ class NavigationData: NSObject {
             Item(name: "Bar charts", value: .story(loadStoryboard(name: "BarCharts", identifier: "BarChartsViewController")))
             Item(name: "Bottom sheet", value: .story(loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")))
             Group(name: "Buttons") {
-              ButtonStory.allExamples
+                ButtonStory.allExamples
             }
             Group(name: "Calendar") {
-              CalendarStory.allExamples
+                CalendarStory.allExamples
             }
             Group(name: "Cards") {
-              CardStory.allExamples
-              DividedCardStory.allExamples
+                CardStory.allExamples
+                DividedCardStory.allExamples
             }
             Group(name: "Chips") {
-              ChipStory.allExamples
+                ChipStory.allExamples
             }
             Group(name: "Flare views") {
-              FlareStory.allExamples
+                FlareStory.allExamples
             }
-            Item(name: "Dialogs", value: .story(loadStoryboard(name: "Dialogs", identifier: "DialogsViewController")))
-            Item(name: "Horizontal navigation", value: .story(loadStoryboard(name: "HorizontalNavigation", identifier: "HorizontalNavigationViewController")))
+            Group(name: "Dialogs") {
+                Group(name: "Alert") {
+                    DialogStory.Alert.allExamples
+                }
+                Group(name: "Bottom sheet") {
+                    DialogStory.BottomSheet.allExamples
+                }
+                Group(name: "In-app messaging") {
+                    DialogStory.InAppMessaging.allExamples
+                }
+            }
+            Group(name: "Horizontal navigation") {
+                HorizontalNavigationStory.allExamples
+            }
             Item(name: "Icons", value: .story(mainStoryboard("IconsViewController")))
-            Item(name: "Labels", value: .story(loadStoryboard(name: "Labels", identifier: "LabelsViewController")))
-            Item(name: "Navigation bars", value: .story(loadStoryboard(name: "NavigationBar", identifier: "NavigationBarViewController")))
+            Group(name: "Labels") {
+                LabelStory.allExamples
+            }
+            Group(name: "Navigation bars") {
+                NavigationBarStory.allExamples
+            }
+            Item(name: "Nudger", value: .story(CustomPresentable(generateViewController: {
+                return NudgerViewController()
+            })))
             Item(name: "Overlay views", value: .story(loadStoryboard(name: "OverlayView", identifier: "OverlayViewViewController")))
             Group(name: "Map") {
-              MapStory.allExamples
+                MapStory.allExamples
             }
             Item(name: "Panels", value: .story(loadStoryboard(name: "Panel", identifier: "PanelsViewController")))
             Item(name: "Progress bar", value: .story(loadStoryboard(name: "ProgressBar", identifier: "ProgressBarViewController")))
@@ -78,7 +120,9 @@ class NavigationData: NSObject {
             Item(name: "Tappable link labels", value: .story(loadStoryboard(name: "TappableLinkLabels", identifier: "TappableLinkLabelsViewController")))
             Item(name: "Text fields", value: .story(loadStoryboard(name: "TextField", identifier: "TextFieldViewController")))
             Item(name: "Text views", value: .story(mainStoryboard("TextViewsViewController")))
-            Item(name: "Toasts", value: .story(loadStoryboard(name: "Toasts", identifier: "ToastsViewController")))
+            Group(name: "Toasts") {
+                ToastStory.allExamples
+            }
         }
     }
 

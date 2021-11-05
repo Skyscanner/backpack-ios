@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018-2021 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import UIKit
 import Backpack
 
 enum ToastType {
+    case docs
     case defaultToast
     case onlyLabels
 }
@@ -31,6 +32,8 @@ class ToastViewController: UIViewController {
 
     @IBAction func show(_ sender: BPKButton) {
         switch type {
+        case .docs:
+            showPersistentToast()
         case .defaultToast:
             showDefaultToast()
         case .onlyLabels:
@@ -38,8 +41,15 @@ class ToastViewController: UIViewController {
         }
     }
 
+    func showPersistentToast() {
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
+        toast.mode = .indeterminate
+        toast.labelText = "This is the title"
+        toast.detailsLabelText = "Details label text"
+    }
+
     func showDefaultToast() {
-        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
@@ -47,7 +57,7 @@ class ToastViewController: UIViewController {
     }
 
     func showToastOnlyLabels() {
-        let toast = BPKToast.showAdded(to: self.view, animated: true)
+        let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .text
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"

@@ -71,8 +71,10 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        assert(fontStyles.count == tappableLinks.count,
-               "Number of font styles does not match the number of tappable links.")
+        assert(
+            fontStyles.count == tappableLinks.count,
+            "Number of font styles does not match the number of tappable links."
+        )
 
         let content = "Backpack is Skyscanner's design system."
         let firstLinkContent = "Backpack"
@@ -116,8 +118,10 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func tappableLabel(_ label: BPKTappableLinkLabel,
-                       didSelectLinkWithTransitInformation components: [AnyHashable: Any]) {
+    func tappableLabel(
+        _ label: BPKTappableLinkLabel,
+        didSelectLinkWithTransitInformation components: [AnyHashable: Any]
+    ) {
         print(components)
     }
 

@@ -109,6 +109,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameCamera;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCamperVan;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCarDoor;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCarWash;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCarsFlexible;

@@ -85,8 +85,10 @@ private extension BPKFloatingPanelController {
             bottomSection.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomContainerConstraint,
 
-            outsideSafeAreaView.topAnchor.constraint(greaterThanOrEqualTo: content.view.topAnchor,
-                                                     constant: layout.insetFor(position: .half) ?? 0)
+            outsideSafeAreaView.topAnchor.constraint(
+                greaterThanOrEqualTo: content.view.topAnchor,
+                constant: layout.insetFor(position: .half) ?? 0
+            )
         ])
     }
 
