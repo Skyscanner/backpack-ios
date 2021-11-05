@@ -109,7 +109,7 @@ jobs:
       - name: Run danger
         run: npm run danger:ci
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and verify docs
         if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
