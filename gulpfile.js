@@ -27,7 +27,7 @@ const merge2 = require('merge2');
 const del = require('del');
 const _ = require('lodash');
 const tinycolor = require('tinycolor2');
-const tokens = require('@skyscanner/bpk-ios/tokens/base.ios.json');
+const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
@@ -54,7 +54,16 @@ const VALID_TEXT_STYLES = new Set([
   'xxxl',
 ]);
 const VALID_SHADOWS = new Set(['sm', 'lg']);
-const VALID_SPACINGS = new Set(['none', 'sm', 'md', 'base', 'lg', 'xl', 'xxl']);
+const VALID_SPACINGS = new Set([
+  'none',
+  'sm',
+  'md',
+  'base',
+  'lg',
+  'xl',
+  'xxl',
+  'icontext',
+]);
 const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
 const VALID_BORDER_WIDTHS = new Set(['sm', 'lg', 'xl']);
 const WEIGHT_MAP = {
@@ -80,6 +89,7 @@ const LEGIBLE_NAMES = [
   { identifier: 'Xxl', legibleName: 'extra extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
+  { identifier: 'IconText', legibleName: 'icon text' },
 ];
 
 const TEXT_STYLES_WITH_HEAVY = new Set(['xl', 'xxl', 'xxxl']);

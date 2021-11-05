@@ -48,6 +48,17 @@ extension BPKLargeIconName: IconDetails {
     }
 }
 
+extension BPKXlIconName: IconDetails {
+    static var size: CGSize = BPKIcon.concreteSizeForXlIcon
+
+    typealias ViewClass = BPKXlIconView
+    typealias IconNameType = BPKXlIconName
+
+    static func setIconName(view: BPKXlIconView, name: BPKXlIconName) {
+        view.iconName = BPKIconName(rawValue: name.rawValue)
+    }
+}
+
 class IconsPreviewCollectionViewCell<T: IconDetails>: UICollectionViewCell {
     var icon: T.IconNameType? {
         didSet {
@@ -78,10 +89,10 @@ class IconsPreviewCollectionViewCell<T: IconDetails>: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
-            imageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: BPKSpacingSm),
-            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: BPKSpacingSm)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
         ])
     }
 }

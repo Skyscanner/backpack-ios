@@ -31,6 +31,11 @@ extern CGFloat const BPKSpacingNone;
 extern CGFloat const BPKSpacingSm;
 
 /**
+ * The Skyscanner icon text spacing(8pt).
+ */
+extern CGFloat const BPKSpacingIconText;
+
+/**
  * The Skyscanner medium spacing(8pt).
  */
 extern CGFloat const BPKSpacingMd;

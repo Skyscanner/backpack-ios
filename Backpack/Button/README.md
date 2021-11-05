@@ -7,6 +7,7 @@ There's an `isLoading` property that if we set to `YES` will show an `ActivityIn
 Setting the `isLoading` property to `NO` again will restore the predefined style.
 
 ### Objective-C
+
 ```objective-c
 #import <Backpack/Button.h>
 
@@ -55,13 +56,21 @@ button.image = icon
 `BPKButton` doesn't currently support **Dynamic Text**, but this is planned for a later release.
 
 ### Appearance attributes
-`(UIColor)primaryContentColor`
-`(UIColor)primaryGradientStartColor`
-`(UIColor)primaryGradientEndColor`
 
-`(UIColor)linkContentColor`
+- `(UIColor)primaryContentColor`
+- `(UIColor)primaryGradientStartColor`
+- `(UIColor)primaryGradientEndColor`
 
-`(UIColor)secondaryContentColor`
-`(UIColor)secondaryBackgroundColor`
-`(UIColor)secondaryBorderColor`
+- `(UIColor)featuredContentColor`
+- `(UIColor)featuredGradientStartColor`
+- `(UIColor)featuredGradientEndColor`
 
+- `(UIColor)linkContentColor`
+
+- `(UIColor)secondaryContentColor`
+- `(UIColor)secondaryBackgroundColor`
+- `(UIColor)secondaryBorderColor`
+
+- `(UIColor)destructiveContentColor`
+- `(UIColor)destructiveBackgroundColor`
+- `(UIColor)destructiveBorderColor`

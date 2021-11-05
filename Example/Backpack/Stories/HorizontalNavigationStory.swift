@@ -25,7 +25,7 @@ enum HorizontalNavigationStory: String, StoryGroup {
     case withIcons = "With icons"
     case smallWithIcons = "Small with icons"
     case wide = "Wide"
-    case withScroll = "With sroll"
+    case withScroll = "With scroll"
     case customItems = "Custom items"
     case withNotifications = "With notification"
     case withBadge = "With badge"
@@ -36,8 +36,9 @@ enum HorizontalNavigationStory: String, StoryGroup {
     }
 
     var presentableStory: Presentable {
-        let storyboard = loadStoryboard(name: "Main")
-        let presentable = storyboard("HorizontalNavViewController")
+        let presentable = CustomPresentable {
+            return HorizontalNavViewController()
+        }
 
         return presentable.enrich(self.configureStory)
     }
@@ -51,16 +52,16 @@ enum HorizontalNavigationStory: String, StoryGroup {
         case .default:
             break
         case .small:
-            navVc?.size = .small
+            navVc?.small = true
         case .withoutUnderline:
             navVc?.showBar = false
         case .withIcons:
             navVc?.showIcons = true
         case .smallWithIcons:
-            navVc?.size = .small
+            navVc?.small = true
             navVc?.showIcons = true
         case .wide:
-            navVc?.size = .small
+            navVc?.small = true
             navVc?.showIcons = true
             navVc?.wide = true
         case .withScroll:
