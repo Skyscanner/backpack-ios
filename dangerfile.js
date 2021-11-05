@@ -23,7 +23,7 @@
 // Globals provided by Danger
 import fs from 'fs';
 
-import { danger, fail, warn, markdown, schedule } from 'danger';
+import { danger, fail, warn, schedule } from 'danger';
 
 
 const currentYear = new Date().getFullYear();
