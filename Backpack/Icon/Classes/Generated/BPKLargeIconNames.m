@@ -61,6 +61,7 @@ BPKLargeIconName const BPKLargeIconNameCalendar = @"calendar";
 BPKLargeIconName const BPKLargeIconNameCallBack = @"call-back";
 BPKLargeIconName const BPKLargeIconNameCamera = @"camera";
 BPKLargeIconName const BPKLargeIconNameCamperVan = @"camper-van";
+BPKLargeIconName const BPKLargeIconNameCarDoor = @"car-door";
 BPKLargeIconName const BPKLargeIconNameCarWash = @"car-wash";
 BPKLargeIconName const BPKLargeIconNameCarsFlexible = @"cars-flexible";
 BPKLargeIconName const BPKLargeIconNameCars = @"cars";

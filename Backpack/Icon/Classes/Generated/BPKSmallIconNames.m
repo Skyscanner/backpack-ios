@@ -61,6 +61,7 @@ BPKSmallIconName const BPKSmallIconNameCalendar = @"calendar";
 BPKSmallIconName const BPKSmallIconNameCallBack = @"call-back";
 BPKSmallIconName const BPKSmallIconNameCamera = @"camera";
 BPKSmallIconName const BPKSmallIconNameCamperVan = @"camper-van";
+BPKSmallIconName const BPKSmallIconNameCarDoor = @"car-door";
 BPKSmallIconName const BPKSmallIconNameCarWash = @"car-wash";
 BPKSmallIconName const BPKSmallIconNameCarsFlexible = @"cars-flexible";
 BPKSmallIconName const BPKSmallIconNameCars = @"cars";

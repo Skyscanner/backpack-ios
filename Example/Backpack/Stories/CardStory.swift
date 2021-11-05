@@ -20,6 +20,8 @@ import Foundation
 
 enum CardStory: String, StoryGroup {
     case `default` = "Default"
+    case button = "Button"
+    case link = "Link"
     case withoutPadding = "Without padding"
     case selected = "Selected"
     case cornerStyleLarge = "Corner style large"
@@ -39,6 +41,12 @@ enum CardStory: String, StoryGroup {
             switch self {
             case .default:
                 break
+            case .button:
+                cardVC?.configuration =
+                    BPKCardConfigurationButton(accessibilityLabel: "Test accessibility label")
+            case .link:
+                cardVC?.configuration =
+                    BPKCardConfigurationLink(accessibilityLabel: "Test accessibility label")
             case .withoutPadding:
                 cardVC?.padded = false
             case .selected:

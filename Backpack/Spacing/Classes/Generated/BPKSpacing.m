@@ -22,6 +22,8 @@ CGFloat const BPKSpacingNone = 0;
 
 CGFloat const BPKSpacingSm = 4;
 
+CGFloat const BPKSpacingIconText = 8;
+
 CGFloat const BPKSpacingMd = 8;
 
 CGFloat const BPKSpacingBase = 16;

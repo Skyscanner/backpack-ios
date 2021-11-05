@@ -61,6 +61,13 @@ IB_DESIGNABLE @interface BPKToast : UIView
 @property(nonatomic, copy) NSString *detailsLabelText;
 
 /**
+ * A message that is announced to VoiceOver when the toast is presented.
+ *
+ * Setting this causes the value to be announced if the toast is currently visible.
+ */
+@property(nonatomic, copy) NSString *accessibilityAnnouncement;
+
+/**
  * Removes the Toast from its parent view when hidden.
  * Defaults to NO.
  */
@@ -75,10 +82,13 @@ IB_DESIGNABLE @interface BPKToast : UIView
  * @param view The view that the Toast will be added to
  * @param animated If set to YES the Toast will appear using the current animationType. If set to NO the Toast will not
  * use animations while appearing.
+ * @param accessibilityAnnouncement The announcement to make when the Toast is shown.
  * @return A reference to the created Toast.
  *
  */
-+ (instancetype)showToastAddedTo:(UIView *)view animated:(BOOL)animated;
++ (instancetype)showToastAddedTo:(UIView *)view
+                        animated:(BOOL)animated
+       accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
 
 /**
  * A convenience constructor that initializes the Toast with the view's bounds. Calls the designated constructor with
@@ -86,8 +96,9 @@ IB_DESIGNABLE @interface BPKToast : UIView
  *
  * @param view The view instance that will provide the bounds for the Toast. Should be the same instance as
  * the Toast's superview (i.e., the view that the Toast will be added to).
+ * @param accessibilityAnnouncement The announcement to make when the Toast is shown.
  */
-- (instancetype)initWithView:(UIView *)view;
+- (instancetype)initWithView:(UIView *)view accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
 
 /**
  * Display the Toast. You need to make sure that the main thread completes its run loop soon after this method call so

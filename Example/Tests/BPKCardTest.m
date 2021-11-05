@@ -126,6 +126,35 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertTrue(c.secondarySubview == secondInnerView);
 }
 
+- (void)testContainerConfiguration {
+    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+
+    XCTAssertTrue(c.padded);
+    XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitNone);
+    XCTAssertFalse(c.isAccessibilityElement);
+    XCTAssertNil(c.accessibilityLabel);
+}
+
+- (void)testButtonConfiguration {
+    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    c.configuration = [[BPKCardConfigurationButton alloc] initWithAccessibilityLabel:@"Test label"];
+
+    XCTAssertTrue(c.padded);
+    XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitButton);
+    XCTAssertTrue(c.isAccessibilityElement);
+    XCTAssertTrue([c.accessibilityLabel isEqualToString:@"Test label"]);
+}
+
+- (void)testLinkConfiguration {
+    BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
+    c.configuration = [[BPKCardConfigurationLink alloc] initWithAccessibilityLabel:@"Test label"];
+
+    XCTAssertTrue(c.padded);
+    XCTAssertTrue(c.accessibilityTraits == UIAccessibilityTraitLink);
+    XCTAssertTrue(c.isAccessibilityElement);
+    XCTAssertTrue([c.accessibilityLabel isEqualToString:@"Test label"]);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

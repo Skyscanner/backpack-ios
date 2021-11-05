@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,12 +15,43 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="acO-tb-3Oz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <sections>
+                            <tableViewSection headerTitle="About" id="cjj-3J-3Ou">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3El-ml-JEH">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3El-ml-JEH" id="cfu-Ya-Kef">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Backpack version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDZ-4E-Qb0" customClass="BPKLabel">
+                                                    <rect key="frame" x="16" y="11" width="134" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJL-2x-rGR" customClass="BPKLabel">
+                                                    <rect key="frame" x="324" y="11.666666666666664" width="35" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="VJL-2x-rGR" secondAttribute="trailing" constant="16" id="2FE-1v-HAG"/>
+                                                <constraint firstItem="VJL-2x-rGR" firstAttribute="centerY" secondItem="cfu-Ya-Kef" secondAttribute="centerY" id="zmv-x0-cbe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Component Themes" footerTitle="This will enable themes for compatible components." id="6DG-9L-o5S">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2bw-XW-006">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="162.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2bw-XW-006" id="xQ2-TJ-6KQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -33,7 +65,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="axS-EM-cj9" customClass="BPKSwitch">
-                                                    <rect key="frame" x="319" y="6" width="49" height="31"/>
+                                                    <rect key="frame" x="312" y="6" width="49" height="31"/>
                                                     <connections>
                                                         <action selector="didToggleTheming:" destination="o4i-vD-fRl" eventType="valueChanged" id="lcF-pR-lBv"/>
                                                     </connections>
@@ -41,7 +73,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="axS-EM-cj9" firstAttribute="centerY" secondItem="xQ2-TJ-6KQ" secondAttribute="centerY" id="GM9-G3-9p7"/>
-                                                <constraint firstAttribute="trailing" secondItem="axS-EM-cj9" secondAttribute="trailing" constant="8" id="kxk-W0-o8L"/>
+                                                <constraint firstAttribute="trailing" secondItem="axS-EM-cj9" secondAttribute="trailing" constant="16" id="kxk-W0-o8L"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -50,7 +82,7 @@
                             <tableViewSection headerTitle="Choose a theme" id="Cwf-ra-wOE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="c7m-x9-jZT" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="343.33333206176758" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="274.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c7m-x9-jZT" id="utb-0m-CPH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -67,7 +99,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="D4T-FS-ltO" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="167.33333206176758" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="318.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D4T-FS-ltO" id="5gQ-Is-xbZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -84,7 +116,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GrS-Qr-Qwy" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211.33333206176758" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="362.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GrS-Qr-Qwy" id="g4d-Re-tnD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -101,7 +133,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IYJ-hb-sKQ" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="255.33333206176758" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="406.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IYJ-hb-sKQ" id="KNx-Vf-G1H">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -118,7 +150,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Dex-Ur-CNM" customClass="BPKTableViewSelectableCell" customModule="Backpack_Native" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="299.33333206176758" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="450.66666412353516" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dex-Ur-CNM" id="yWV-3f-ddM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -148,6 +180,7 @@
                     <connections>
                         <outlet property="closeButton" destination="vtF-XU-ZNy" id="3pw-lO-IGZ"/>
                         <outlet property="enableThemeSwitch" destination="axS-EM-cj9" id="hWl-vS-k4b"/>
+                        <outlet property="versionLabel" destination="VJL-2x-rGR" id="lcY-Wx-F5l"/>
                         <outletCollection property="selectableCells" destination="D4T-FS-ltO" collectionClass="NSMutableArray" id="HSu-N4-CEc"/>
                         <outletCollection property="selectableCells" destination="GrS-Qr-Qwy" collectionClass="NSMutableArray" id="8iw-gC-kES"/>
                         <outletCollection property="selectableCells" destination="IYJ-hb-sKQ" collectionClass="NSMutableArray" id="Q0W-q8-BRl"/>
@@ -176,4 +209,41 @@
             <point key="canvasLocation" x="-1809" y="-786"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="IaA-kC-Jc2">
+            <size key="intrinsicContentSize" width="57.333333333333336" height="20.333333333333332"/>
+        </designable>
+        <designable name="MHs-eA-TdU">
+            <size key="intrinsicContentSize" width="42" height="20.333333333333332"/>
+        </designable>
+        <designable name="VJL-2x-rGR">
+            <size key="intrinsicContentSize" width="35" height="20.333333333333332"/>
+        </designable>
+        <designable name="axS-EM-cj9">
+            <size key="intrinsicContentSize" width="49" height="31"/>
+        </designable>
+        <designable name="bS6-ir-wGd">
+            <size key="intrinsicContentSize" width="112.66666666666667" height="20.333333333333332"/>
+        </designable>
+        <designable name="cHT-Wy-qGa">
+            <size key="intrinsicContentSize" width="85" height="20.333333333333332"/>
+        </designable>
+        <designable name="hRf-M0-Liy">
+            <size key="intrinsicContentSize" width="94.666666666666671" height="20.333333333333332"/>
+        </designable>
+        <designable name="mDZ-4E-Qb0">
+            <size key="intrinsicContentSize" width="133.66666666666666" height="20.333333333333332"/>
+        </designable>
+        <designable name="x9u-ev-hLd">
+            <size key="intrinsicContentSize" width="40.333333333333336" height="20.333333333333332"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

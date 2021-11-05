@@ -22,11 +22,15 @@ import Backpack
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var enableThemeSwitch: BPKSwitch!
+    @IBOutlet weak var versionLabel: BPKLabel!
     var showThemeList: Bool = false
     @IBOutlet var selectableCells: [BPKTableViewSelectableCell]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        versionLabel.text = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        versionLabel.textColor = BPKColor.textSecondaryColor
 
         closeButton.tintColor = BPKColor.skyBlue
         closeButton.target = self
@@ -91,10 +95,14 @@ class SettingsViewController: UITableViewController {
     // MARK: Table View
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 2 {
+            return
+        }
+
         applyTheme(theme: ThemeHelpers.ThemeName(rawValue: 1 + Int(indexPath.row))!)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return showThemeList ? 2 : 1
+        return showThemeList ? 3 : 2
     }
 }

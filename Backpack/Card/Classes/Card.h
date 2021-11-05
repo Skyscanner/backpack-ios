@@ -20,4 +20,8 @@
 
 #import "BPKCard.h"
 #import "BPKDividedCard.h"
+#import "BPKCardConfiguration.h"
+#import "BPKCardConfigurationContainer.h"
+#import "BPKCardConfigurationButton.h"
+#import "BPKCardConfigurationLink.h"
 #endif
