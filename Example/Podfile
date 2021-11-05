@@ -10,8 +10,8 @@ target 'Backpack-Native' do
   pod 'Backpack', :path => '../'
   pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
   pod 'SwiftLint', '~> 0.43.1'
-  pod 'AppCenter', '~> 4.1.1'
-  pod 'AppCenter/Distribute', '~> 4.1.1'
+  pod 'AppCenter', '~> 4.2.0'
+  pod 'AppCenter/Distribute', '~> 4.2.0'
 
   target 'Backpack_Tests' do
     inherit! :search_paths
@@ -20,7 +20,7 @@ target 'Backpack-Native' do
 
   target 'Backpack_SnapshotTests' do
       inherit! :search_paths
-      pod 'iOSSnapshotTestCase/Core', '~> 6.2.0'
+      pod 'iOSSnapshotTestCase', '~> 6.2.0'
   end
 end
 

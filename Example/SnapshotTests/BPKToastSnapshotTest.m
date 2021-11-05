@@ -32,7 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createToastWithMode:(BPKToastMode)toastMode {
     UIView *parent = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     parent.backgroundColor = UIColor.whiteColor;
-    BPKToast *toast = [BPKToast showToastAddedTo:parent animated:NO];
+    BPKToast *toast = [BPKToast
+                       showToastAddedTo:parent
+                       animated:NO
+                       accessibilityAnnouncement:@"Saving your changes"];
     toast.mode = toastMode;
     toast.labelText = @"Toast Title Text";
     toast.detailsLabelText = @"Toast detail text";

@@ -12,7 +12,7 @@ if ENV["BPK_USE_RELATIVE"] == "1"
     system "git init > /dev/null"
     system "git remote add origin git@github.skyscannertools.net:backpack/bpk-fonts.git > /dev/null"
     system "git config core.sparsecheckout true > /dev/null"
-    system "echo \"iOS\" >> .git/info/sparse-checkout > /dev/null"
+    system "echo \"iOS\" >> .git/info/sparse-checkout"
     font_success = system "git pull --depth=2 origin main > /dev/null"
     raise "Unable to download Skyscanner fonts." unless font_success
     puts "Skyscanner fonts successfully installed."

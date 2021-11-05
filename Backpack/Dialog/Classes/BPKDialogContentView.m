@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
 
-        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingMd],
+        [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:BPKSpacingBase],
         [self.descriptionLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
 

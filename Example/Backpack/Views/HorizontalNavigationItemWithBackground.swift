@@ -19,15 +19,10 @@
 import Foundation
 import Backpack
 
-@objc(BPKHorizontalNavigationItemWithBackground)
-public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavigationItem {
+public class HorizontalNavigationItemWithBackground<
+    Size: BPKHorizontalNavigationSize
+>: UIButton, BPKHorizontalNavigationItem {
     // MARK: - BPKHorizontalNavigationItem
-
-    public var size: BPKHorizontalNavigationSize = .default {
-        didSet {
-            updateTitle()
-        }
-    }
 
     public var selectedColor: UIColor? = BPKColor.primaryColor
 
@@ -52,7 +47,7 @@ public class HorizontalNavigationItemWithBackground: UIButton, BPKHorizontalNavi
     }
 
     func updateTitle() {
-        let fontStyle: BPKFontStyle = size == .default ? .textBaseEmphasized : .textSmEmphasized
+        let fontStyle = Size.fontStyle
         var textColor = BPKColor.textPrimaryColor
 
         if isSelected || isHighlighted {

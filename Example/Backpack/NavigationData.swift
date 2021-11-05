@@ -16,6 +16,29 @@
  * limitations under the License.
  */
 
+/**
+ * This file contains the code for our "Stories" approach on iOS.
+ * The notion of stories is inspired by Storybook from the javascript community.
+ *
+ * The DSL that is used in this file is defined in `AppStructure.swift`.
+ *
+ * The central idea of this approach is to use a declarative system to describe
+ * the structure and navigation paths of the app.
+ * The implementation is based on Swift's
+ * [Result Builders](https://www.swiftbysundell.com/articles/deep-dive-into-swift-function-builders/),
+ * the very same that powers Swift UI. The main entry point for this is the function ``makeApp``.
+ *
+ * Prior to this system, we used storyboards to describe the navigation and structure of the app. We are in the process
+ * of migrating from that system to the stories format.
+ *
+ * The following PRs contain examples of this:
+ *
+ * * [#940](https://github.com/Skyscanner/backpack-ios/pull/940) _d8de142_
+ * * [#937](https://github.com/Skyscanner/backpack-ios/pull/937) _e323bea3_, 909d49e6_, _e8fdeee_
+ *
+ * We are done when we no longer use **segues** for navigation. We might still use storyboards for
+ * the stories, but all navigation should be specified declaratively using this system.
+ */
 class NavigationData: NSObject {
     static var mainStoryboard = loadStoryboard(name: "Main")
 

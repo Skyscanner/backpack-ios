@@ -37,7 +37,6 @@
 #import "DarkMode.h"
 #import "Dialog.h"
 #import "FlareView.h"
-#import "HorizontalNavigation.h"
 #import "Icon.h"
 #import "Label.h"
 #import "Map.h"

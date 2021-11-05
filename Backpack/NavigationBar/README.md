@@ -81,4 +81,4 @@ if !decelerate {
 
 ### Appearance attributes
 
-`(UIColor *)largeTitleTextColor`
+- `(UIColor *)largeTitleTextColor`
