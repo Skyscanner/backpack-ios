@@ -187,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)defaultStarColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint04];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
 }
 
 @end

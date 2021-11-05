@@ -67,8 +67,7 @@
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
 		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
-		D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */; };
-		D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */; };
+		D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */; };
 		D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */; };
 		D217700C25ACCC0400C0FD8C /* TableNavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */; };
 		D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217701725ACCC5E00C0FD8C /* Presentable.swift */; };
@@ -158,6 +157,8 @@
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
 		D60B2458262F256600A9AA32 /* ToastStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60B2457262F256600A9AA32 /* ToastStory.swift */; };
 		D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D613CE542006795400D60CC4 /* BPKColorTest.m */; };
+		D6178E72268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */; };
+		D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */; };
 		D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61ACE042306E238001C976E /* NavigationBarViewController.swift */; };
 		D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */; };
 		D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6391601202CAF07006E8329 /* BPKShadowTest.m */; };
@@ -167,6 +168,7 @@
 		D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */; };
 		D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6517B4A216DF63700D85FF9 /* DialogUITest.swift */; };
 		D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D655C519200FA18100CB39AF /* BPKFontTest.m */; };
+		D66A620426948AC500B29F6C /* BPKHorizontalNavigationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */; };
 		D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */; };
 		D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */; };
 		D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
@@ -195,7 +197,6 @@
 		D6D81D59213FEE800013BB96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
-		D6EC0001241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC0000241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m */; };
 		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
@@ -325,8 +326,7 @@
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
 		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationSnapshotTest.m; sourceTree = "<group>"; };
-		D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationTest.m; sourceTree = "<group>"; };
+		D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationSnapshotTestObjc.m; sourceTree = "<group>"; };
 		D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationUITest.swift; sourceTree = "<group>"; };
 		D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableNavigationData.swift; sourceTree = "<group>"; };
 		D217701725ACCC5E00C0FD8C /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
@@ -420,6 +420,9 @@
 		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
 		D60B2457262F256600A9AA32 /* ToastStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStory.swift; sourceTree = "<group>"; };
 		D613CE542006795400D60CC4 /* BPKColorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKColorTest.m; sourceTree = "<group>"; };
+		D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack_SnapshotTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKHorizontalNavigationSnapshotTests.swift; sourceTree = "<group>"; };
+		D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnapshotTest.swift; sourceTree = "<group>"; };
 		D61ACE042306E238001C976E /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKShadowViewController.h; sourceTree = "<group>"; };
 		D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKShadowViewController.m; sourceTree = "<group>"; };
@@ -434,6 +437,7 @@
 		D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack NativeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D6517B4A216DF63700D85FF9 /* DialogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUITest.swift; sourceTree = "<group>"; };
 		D655C519200FA18100CB39AF /* BPKFontTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKFontTest.m; sourceTree = "<group>"; };
+		D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKHorizontalNavigationTest.swift; sourceTree = "<group>"; };
 		D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackUITestCase.swift; sourceTree = "<group>"; };
 		D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UITesting.swift"; sourceTree = "<group>"; };
 		D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPrimaryGradientSnapshotTests.m; sourceTree = "<group>"; };
@@ -459,10 +463,8 @@
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
 		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
-		D6EC0000241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKHorizontalNavigationOptionWithBackground.m; sourceTree = "<group>"; };
 		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationItemWithBackground.swift; sourceTree = "<group>"; };
-		D6ECFFFF241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKHorizontalNavigationOptionWithBackground.h; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationStory.swift; sourceTree = "<group>"; };
 		D6FC4CD6261F0BE7000BA351 /* DialogStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogStory.swift; sourceTree = "<group>"; };
@@ -587,7 +589,6 @@
 				D217701725ACCC5E00C0FD8C /* Presentable.swift */,
 				D217700B25ACCC0400C0FD8C /* TableNavigationData.swift */,
 				D269EE5F25A3B30A00DB6450 /* NavigationData.swift */,
-				D6ECFFFE241A8365004225E8 /* Models */,
 				D22FB970230C0E950023DC72 /* Resources */,
 				D6FA3DB2224E21F800CFA094 /* Categories */,
 				D2161D4F2146B8910097D0B1 /* Views */,
@@ -653,7 +654,6 @@
 				D283842A234381BE00E33EAD /* BPKDurationTest.m */,
 				D655C519200FA18100CB39AF /* BPKFontTest.m */,
 				2F3F86CE20E1069200DAB2DD /* BPKGradientTest.m */,
-				D216C20F22E974A300045A9E /* BPKHorizontalNavigationTest.m */,
 				D696CA1F215CC09400682666 /* BPKIconTest.m */,
 				D2506B562679ECB600C1BD6D /* BPKIconViewTest.m */,
 				D649E8EF212F0DAA00B25A9E /* BPKLabelTest.m */,
@@ -674,6 +674,7 @@
 				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -901,7 +902,7 @@
 				D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */,
 				D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */,
 				D643B6D72142BEA6008AB669 /* BPKGradientSnapshotTests.m */,
-				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTest.m */,
+				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */,
 				D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */,
 				D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */,
 				D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */,
@@ -925,17 +926,11 @@
 				76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */,
 				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
+				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
+				D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */,
+				D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */,
 			);
 			path = SnapshotTests;
-			sourceTree = "<group>";
-		};
-		D6ECFFFE241A8365004225E8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D6ECFFFF241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.h */,
-				D6EC0000241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		D6FA3DB2224E21F800CFA094 /* Categories */ = {
@@ -1089,7 +1084,7 @@
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 					D6D81D42213FEE800013BB96 = {
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1250;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
@@ -1330,7 +1325,6 @@
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
-				D6EC0001241A8378004225E8 /* BPKHorizontalNavigationOptionWithBackground.m in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
@@ -1420,13 +1414,13 @@
 				D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */,
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
 				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
+				D66A620426948AC500B29F6C /* BPKHorizontalNavigationTest.swift in Sources */,
 				D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
 				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
 				D246C1F4216643B8001CB366 /* BPKCardTest.m in Sources */,
 				2F3F86CF20E1069200DAB2DD /* BPKGradientTest.m in Sources */,
 				D231E2B625AF312A0061E53E /* BPKTabBarItemTest.swift in Sources */,
-				D216C21122E974A700045A9E /* BPKHorizontalNavigationTest.m in Sources */,
 				D251D2AC243664DF00E28B60 /* BPKTabBarControllerTest.m in Sources */,
 				D696CA20215CC09400682666 /* BPKIconTest.m in Sources */,
 				D217FE5C262710A90095F1B3 /* BPKNudgerTest.m in Sources */,
@@ -1478,8 +1472,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
+				D6178E72268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
-				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTest.m in Sources */,
+				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
@@ -1504,6 +1499,7 @@
 				76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
 				76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */,
+				D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */,
 				760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
 				D2CCB831243FB3AC00788DEC /* BPKBarChartBarSnapshotTest.m in Sources */,
@@ -1935,6 +1931,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnapshotTests/Backpack_SnapshotTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backpack-Native.app/Backpack-Native";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1958,6 +1957,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnapshotTests/Backpack_SnapshotTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backpack-Native.app/Backpack-Native";
 				WRAPPER_EXTENSION = xctest;
 			};

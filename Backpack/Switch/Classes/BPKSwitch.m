@@ -33,8 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithCoder:coder];
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
-
         [self setup];
     }
     return self;
@@ -44,8 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
     if (self) {
-        _primaryColor = BPKColor.skyBlue;
-
         [self setup];
     }
     return self;
@@ -65,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setup {
     self.tintColor = BPKColor.skyGrayTint06;
+    self.thumbTintColor = BPKColor.white;
+
     [self updateSwitchOnColor];
     [self setNeedsDisplay];
 }

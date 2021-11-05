@@ -39,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) BPKLabel *label;
 @property(nonatomic, strong) UIColor *contentColor;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutFlareView *flareView;
-@property(nonatomic, readonly) CGFloat paddingSize;
+@property(nonatomic, readonly) CGFloat verticalPaddingSize;
+@property(nonatomic, readonly) CGFloat horizontalPaddingSize;
 @property(nonatomic, readonly) CGFloat maximumWidth;
 
 - (void)setupAppearance;
@@ -107,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
         fontStyle = BPKFontStyleTextSmEmphasized;
         backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
         contentBackgroundColor = BPKColor.clear;
-        contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
+        contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
         borderColor = BPKColor.clear;
     } else if(self.annotationView.selected) {
         fontStyle = BPKFontStyleTextBaseEmphasized;
@@ -169,7 +170,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     UIStackView *stackView = [[UIStackView alloc] init];
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.spacing = self.paddingSize;
+    stackView.spacing = BPKSpacingIconText;
     stackView.alignment = UIStackViewAlignmentCenter;
 
     BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
@@ -189,10 +190,10 @@ NS_ASSUME_NONNULL_BEGIN
         [flareView.topAnchor constraintEqualToAnchor:self.topAnchor],
         [flareView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
         [flareView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
-        [stackView.leadingAnchor constraintEqualToAnchor:flareView.contentView.leadingAnchor constant:self.paddingSize],
-        [flareView.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.paddingSize],
-        [stackView.topAnchor constraintEqualToAnchor:flareView.contentView.topAnchor constant:self.paddingSize],
-        [flareView.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.paddingSize],
+        [stackView.leadingAnchor constraintEqualToAnchor:flareView.contentView.leadingAnchor constant:self.horizontalPaddingSize],
+        [flareView.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.horizontalPaddingSize],
+        [stackView.topAnchor constraintEqualToAnchor:flareView.contentView.topAnchor constant:self.verticalPaddingSize],
+        [flareView.contentView.bottomAnchor constraintEqualToAnchor:stackView.bottomAnchor constant:self.verticalPaddingSize],
         [self.widthAnchor constraintLessThanOrEqualToConstant:self.maximumWidth]
     ]];
     self.flareView = flareView;
@@ -204,7 +205,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
-- (CGFloat)paddingSize {
+- (CGFloat)horizontalPaddingSize {
+    return BPKSpacingMd;
+}
+
+- (CGFloat)verticalPaddingSize {
     return BPKSpacingSm;
 }
 

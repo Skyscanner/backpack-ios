@@ -87,7 +87,7 @@ IB_DESIGNABLE @interface BPKChip : UIControl
 /**
  * An optional icon
  */
-@property(nullable, nonatomic, copy) BPKIconName iconName;
+@property(nullable, nonatomic, copy) BPKLargeIconName iconName;
 
 /**
  * Style of the chip. Default is BPKChipStyleOutline.

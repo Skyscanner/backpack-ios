@@ -21,7 +21,7 @@ BPKChip *chip = [[BPKChip alloc] init];
 chip.title = @"Some title";
 chip.enabled = NO;
 chip.backgroundTint = BPKColor.panjin;
-chip.iconName = BPKIconNameMap;
+chip.iconName = BPKLargeIconNameMap;
 ```
 
 ```swift
@@ -35,4 +35,5 @@ chip.iconName = .map
 ```
 
 ### Appearance attributes
-`(UIColor)primaryColor`
+
+- `(UIColor)primaryColor`
