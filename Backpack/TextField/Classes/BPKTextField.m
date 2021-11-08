@@ -99,6 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.textColor = BPKColor.textPrimaryColor;
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
     
+    self.borderStyle = UITextBorderStyleRoundedRect;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = BPKBorderWidthSm;
     self.layer.cornerRadius = BPKCornerRadiusXs;
