@@ -27,3 +27,5 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 - Backpack/Dialog:
   - Fixed an issue that allowed a `Horcrux` to be contained in a `BPKDialog`.
+- Backpack/TextField:
+  - Fixed an issue with colour contrast for the border of `BPKTextField`s highlighted in accessibility review
