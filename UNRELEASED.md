@@ -1,7 +1,7 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
+**Breaking:**
 - Updated deployment target to `iOS 14.0`
 
 ## How to write a good changelog entry
