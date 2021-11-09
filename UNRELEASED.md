@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Fixed:**
+
+- Backpack/TextField:
+  - Fixed an issue with colour contrast for the border of `BPKTextField`s highlighted by accessibility review.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
@@ -27,5 +32,3 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 - Backpack/Dialog:
   - Fixed an issue that allowed a `Horcrux` to be contained in a `BPKDialog`.
-- Backpack/TextField:
-  - Fixed an issue with colour contrast for the border of `BPKTextField`s highlighted in accessibility review
