@@ -1,4 +1,4 @@
-# Backpack iOS
+# i Backpack iOS
 
 > Backpack is a collection of design resources, reusable components and guidelines for creating Skyscanner's products.
 
