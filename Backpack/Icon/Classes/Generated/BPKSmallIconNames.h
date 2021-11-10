@@ -419,6 +419,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameScales;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSearch;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSelfService;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameSendMessage;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameServices;

@@ -425,6 +425,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameScales;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSearch;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameSelfService;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameSendMessage;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameServices;

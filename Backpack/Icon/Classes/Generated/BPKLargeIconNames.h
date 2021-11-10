@@ -425,6 +425,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameScales;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameSearch;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameSelfService;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameSendMessage;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameServices;

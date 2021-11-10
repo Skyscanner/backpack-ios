@@ -219,6 +219,7 @@ BPKIconName const BPKIconNameReturn = @"return";
 BPKIconName const BPKIconNameRoom = @"room";
 BPKIconName const BPKIconNameScales = @"scales";
 BPKIconName const BPKIconNameSearch = @"search";
+BPKIconName const BPKIconNameSelfService = @"self-service";
 BPKIconName const BPKIconNameSendMessage = @"send-message";
 BPKIconName const BPKIconNameServices = @"services";
 BPKIconName const BPKIconNameSettings = @"settings";
