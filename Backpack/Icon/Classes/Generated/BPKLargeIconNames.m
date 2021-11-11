@@ -219,6 +219,7 @@ BPKLargeIconName const BPKLargeIconNameReturn = @"return";
 BPKLargeIconName const BPKLargeIconNameRoom = @"room";
 BPKLargeIconName const BPKLargeIconNameScales = @"scales";
 BPKLargeIconName const BPKLargeIconNameSearch = @"search";
+BPKLargeIconName const BPKLargeIconNameSelfService = @"self-service";
 BPKLargeIconName const BPKLargeIconNameSendMessage = @"send-message";
 BPKLargeIconName const BPKLargeIconNameServices = @"services";
 BPKLargeIconName const BPKLargeIconNameSettings = @"settings";

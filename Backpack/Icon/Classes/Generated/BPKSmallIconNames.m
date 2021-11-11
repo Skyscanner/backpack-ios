@@ -216,6 +216,7 @@ BPKSmallIconName const BPKSmallIconNameReturn = @"return";
 BPKSmallIconName const BPKSmallIconNameRoom = @"room";
 BPKSmallIconName const BPKSmallIconNameScales = @"scales";
 BPKSmallIconName const BPKSmallIconNameSearch = @"search";
+BPKSmallIconName const BPKSmallIconNameSelfService = @"self-service";
 BPKSmallIconName const BPKSmallIconNameSendMessage = @"send-message";
 BPKSmallIconName const BPKSmallIconNameServices = @"services";
 BPKSmallIconName const BPKSmallIconNameSettings = @"settings";
