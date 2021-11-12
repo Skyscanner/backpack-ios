@@ -12,7 +12,7 @@
         <!--Text field-->
         <scene sceneID="9rk-Eg-xdt">
             <objects>
-                <viewController storyboardIdentifier="TextFieldViewController" title="Text field" id="SHl-Oi-FFr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TextFieldViewController" title="Text field" id="SHl-Oi-FFr" customClass="TextFieldsViewController" customModule="Backpack_Native" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kec-l1-3BA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,6 +32,9 @@
                             <constraint firstItem="h4y-YC-Uzb" firstAttribute="trailing" secondItem="XWZ-pz-jIr" secondAttribute="trailing" constant="20" id="sxA-ju-OWu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="XWZ-pz-jIr" id="4eI-9W-XGZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhy-C9-82w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
