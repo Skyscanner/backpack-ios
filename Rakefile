@@ -97,7 +97,7 @@ end
 desc "Run unit tests up to #{MAX_TEST_REPEATS} times until they pass"
 task :test do
   only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
-  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=YES | xcpretty"
+  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=YES | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -v Pods/FloatingPanel/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\"
   repeat_on_fail(test_command)
 end
 
