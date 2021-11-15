@@ -24,8 +24,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ],
     "*.md": [
       "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions"
@@ -60,7 +59,7 @@
     "gulp-nunjucks": "^5.1.0",
     "gulp-rename": "^2.0.0",
     "husky": "^6.0.0",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^12.0.2",
     "lodash": "^4.17.21",
     "markdown-spellcheck": "^1.3.1",
     "merge2": "^1.4.1",
