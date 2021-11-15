@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     [super setUp];
-    self.recordMode = NO;
+    self.recordMode = YES;
 }
 
 - (UIView *)buildParentField {
