@@ -1,5 +1,16 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 45.1.1
+
+**Fixed:**
+
+- Backpack/TextField:
+  - Fixed an issue with colour contrast for the border of `BPKTextField`s highlighted by accessibility review.
+# 45.1.0
+
+**Added:**
+  - Updated bpk-svgs which brings in the new self-service icons.
+  
 # 45.0.2
 
 **Fixed:**

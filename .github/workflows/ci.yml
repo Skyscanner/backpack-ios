@@ -50,8 +50,8 @@ jobs:
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Select Xcode 12
-        run: sudo xcode-select --switch /Applications/Xcode_12.5.app
+      - name: Select Xcode 13.1
+        run: sudo xcode-select --switch /Applications/Xcode_13.1.app
 
       - name: Install clang format
         run: brew install clang-format
@@ -128,8 +128,8 @@ jobs:
       - name: Build and Test
         env:
           FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator14.5
-          DESTINATION: 'OS=14.5,platform=iOS Simulator,name=iPhone 8'
+          BUILD_SDK: iphonesimulator15.0
+          DESTINATION: 'OS=15.0,platform=iOS Simulator,name=iPhone 8'
         run: bundle exec rake ci
         working-directory: Example
 
@@ -150,16 +150,6 @@ jobs:
           external_repository: backpack/ios
           publish_branch: main
 
-      - name: Deploy docs to backpack.github.io/ios-prs, if a pull request
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref != 'refs/heads/main'
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_dir: docs/versions/
-          keep_files: true
-          external_repository: backpack/ios-prs
-          publish_branch: main
-
   trigger_docs:
     name: Trigger docs build
     if: github.ref == 'refs/heads/main'
@@ -171,19 +161,3 @@ jobs:
           BACKPACK_DOCS_DEPLOY_TOKEN: ${{ secrets.BACKPACK_DOCS_DEPLOY_TOKEN }}
         run: |
           curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"main","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
-
-  comment_on_pr:
-    needs: CI
-    name: Comment on PR
-    # Only run if there is no tag, and the commit is not on main
-    if: contains('refs/tags/', github.ref) && github.ref != 'refs/heads/main'
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Link to the pull request build
-        uses: unsplash/comment-on-pr@master
-        with:
-          msg: 'Visit https://backpack.github.io/ios-prs/${{ env.PR_NUMBER }} to see the docs for this PR.'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
