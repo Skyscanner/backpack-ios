@@ -1,12 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-- Support for iOS 15 and Xcode 13.1
-
-**Fixed:**
-- Backpack/TextField:
-  - Fixed an issue with colour contrast for the border of `BPKTextField`s highlighted by accessibility review.
 
 ## How to write a good changelog entry
 
