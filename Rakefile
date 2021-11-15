@@ -2,7 +2,7 @@ require 'fileutils'
 require 'semver'
 
 FULL_TESTS = ENV['FULL_TESTS'] != 'false'
-BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator15.0'
+BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator14.5'
 TEST_DEVICE_NAME = ENV['TEST_DEVICE_NAME'] || 'iPhone 8'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
@@ -86,7 +86,7 @@ end
 
 desc "Check for build-time errors and warnings"
 task :analyze do
-  sh "set -o pipefail && xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty"
+  sh "set -o pipefail && ! xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty | grep -v Pods/TTTAttributedLabel/TTTAttributedLabel/ | grep -v Pods/OCMock/ | grep -v Pods/MBProgressHUD/ | grep -v Pods/FloatingPanel/ | grep -A 5 \"#{ANALYZE_FAIL_MESSAGE}\""
 end
 
 desc "Erase content and settings from all iPhone simulators"
