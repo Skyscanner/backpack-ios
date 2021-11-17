@@ -1,6 +1,8 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+- Support for iOS 15 and Xcode 13.1
 
 ## How to write a good changelog entry
 
