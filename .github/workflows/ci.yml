@@ -50,8 +50,8 @@ jobs:
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Select Xcode 12
-        run: sudo xcode-select --switch /Applications/Xcode_12.5.app
+      - name: Select Xcode 13
+        run: sudo xcode-select --switch /Applications/Xcode_13.1.app
 
       - name: Install clang format
         run: brew install clang-format
@@ -128,8 +128,8 @@ jobs:
       - name: Build and Test
         env:
           FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator14.5
-          DESTINATION: 'OS=14.5,platform=iOS Simulator,name=iPhone 8'
+          BUILD_SDK: iphonesimulator15.0
+          DESTINATION: 'OS=15.0,platform=iOS Simulator,name=iPhone 8'
         run: bundle exec rake ci
         working-directory: Example
 
