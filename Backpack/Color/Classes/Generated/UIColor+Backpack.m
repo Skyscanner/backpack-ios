@@ -294,7 +294,7 @@
 }
 
 + (UIColor *)bpk_textSecondaryDarkColor {
-    return BPKColor.blackTint06;
+    return BPKColor.skyGrayTint04;
 }
 
 + (UIColor *)bpk_textSecondaryLightColor {
