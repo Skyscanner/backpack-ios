@@ -1,6 +1,13 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+
+- Generated code for token `textSecondaryColor`.
+
+- Backpack/Calendar:
+  - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
+
 **Breaking:**
 - Updated deployment target to `iOS 14.0`
 

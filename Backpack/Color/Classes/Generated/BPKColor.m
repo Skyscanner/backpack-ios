@@ -296,7 +296,7 @@
 }
 
 + (UIColor *)textSecondaryDarkColor {
-    return self.class.blackTint06;
+    return self.class.skyGrayTint04;
 }
 
 + (UIColor *)textSecondaryLightColor {
@@ -365,7 +365,7 @@
 }
 
 + (UIColor *)textSecondaryColor {
-    return [[self class] dynamicColorWithLightVariant:self.class.skyGrayTint02 darkVariant:self.class.blackTint06];
+    return [[self class] dynamicColorWithLightVariant:self.class.skyGrayTint02 darkVariant:self.class.skyGrayTint04];
 }
 
 + (UIColor *)textTertiaryColor {

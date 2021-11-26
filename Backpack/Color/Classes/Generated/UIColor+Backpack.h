@@ -500,9 +500,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_textQuaternaryLightColor;
 
 /**
- * The `textSecondaryDarkColor` color from the Backpack palette - rgb(142, 142, 147).
+ * The `textSecondaryDarkColor` color from the Backpack palette - rgb(178, 178, 191).
  *
- * <div style="width: 100px; height: 100px; background: #8e8e93ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #b2b2bfff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_textSecondaryDarkColor;
 
@@ -630,7 +630,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `textSecondaryColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #68697fff; background: linear-gradient(0.375turn, #68697fff 49%, #8e8e93ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #68697fff; background: linear-gradient(0.375turn, #68697fff 49%, #b2b2bfff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_textSecondaryColor;
 
