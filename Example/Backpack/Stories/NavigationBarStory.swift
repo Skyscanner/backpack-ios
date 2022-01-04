@@ -22,6 +22,7 @@ import Foundation
 enum NavigationBarStory: String, StoryGroup {
     case `default` = "Default"
     case withButtons = "With buttons"
+    case witHeaders = "With headers"
 
     var title: String {
         self.rawValue
@@ -39,6 +40,8 @@ enum NavigationBarStory: String, StoryGroup {
                 break
             case .withButtons:
                 navVc?.showButtons = true
+            case .witHeaders:
+                navVc?.showHeaders = true
             }
         }
     }

@@ -166,6 +166,7 @@ NS_ASSUME_NONNULL_BEGIN
         // are only executed a single time per transition.
         if (!self.isCollapsed) {
             self.heightConstraint.constant = BPKNavigationBarTitleHeight;
+            scrollView.contentInset = UIEdgeInsetsMake(BPKNavigationBarTitleHeight, 0, 0, 0);
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
@@ -175,9 +176,14 @@ NS_ASSUME_NONNULL_BEGIN
         }
     } else {
         // Expanded state
-        self.heightConstraint.constant = fabs(adjustedYOffset);
-        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(fabs(adjustedYOffset), 0, 0, 0);
-
+        CGFloat absAdjustedYOffset = fabs(adjustedYOffset);
+        self.heightConstraint.constant = absAdjustedYOffset;
+        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
+        
+        if (absAdjustedYOffset <= BPKNavigationBarExpandedFullHeight) {
+            scrollView.contentInset = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
+        }
+        
         // Making modifications on each scroll is very expensive.
         // To prevent extra work the changes between collapsed and expanded
         // are only executed a single time per transition.
