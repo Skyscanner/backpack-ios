@@ -22,6 +22,8 @@ import Backpack
 
 class NavigationBarViewController: UIViewController {
     var showButtons: Bool = false
+    var showHeaders: Bool = false
+    
     private static let CellIdentifier = "CellIdentifier"
 
     @IBOutlet weak var navigationButton: UIButton!
@@ -109,6 +111,32 @@ extension NavigationBarViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .bpk_backgroundSecondary
+        let label = BPKLabel(fontStyle: .textBase)
+        label.text = "Header \(section)"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
+            label.topAnchor.constraint(equalTo: view.topAnchor),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if !showHeaders {
+            return 0
+        }
+        
+        return BPKSpacingXl
     }
 }
 
