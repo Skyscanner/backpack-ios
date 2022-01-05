@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import Foundation
 enum NavigationBarStory: String, StoryGroup {
     case `default` = "Default"
     case withButtons = "With buttons"
+    case witHeaders = "With headers"
 
     var title: String {
         self.rawValue
@@ -39,6 +40,8 @@ enum NavigationBarStory: String, StoryGroup {
                 break
             case .withButtons:
                 navVc?.showButtons = true
+            case .witHeaders:
+                navVc?.showHeaders = true
             }
         }
     }
