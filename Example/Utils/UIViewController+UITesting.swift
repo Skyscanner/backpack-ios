@@ -21,8 +21,8 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    var appDelegate: BPKAppDelegate? {
-        return UIApplication.shared.delegate as? BPKAppDelegate
+    var appDelegate: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
     }
 
     var isUITesting: Bool {
