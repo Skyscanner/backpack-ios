@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright © 2022 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef __BACKPACK_BADGE__
-#define __BACKPACK_BADGE__
 
-<<<<<<< HEAD:Backpack/Badge/Classes/Badge.h
-#import "BPKBadge.h"
-#endif
-=======
 import XCTest
 
 class BPKBadgeTest: XCTestCase {
@@ -31,4 +26,3 @@ class BPKBadgeTest: XCTestCase {
         XCTAssertEqual(badge.message, "Backpack rocks!")
     }
 }
->>>>>>> f49be2a5 (migrating badge to Swift):Example/Tests/BPKBedgeTest.swift

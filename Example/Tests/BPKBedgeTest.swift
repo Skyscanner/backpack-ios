@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright © 2022 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +17,6 @@
  * limitations under the License.
  */
 
-<<<<<<< HEAD:Example/Tests/BPKBadgeTest.m
-#import <XCTest/XCTest.h>
-
-#import <Backpack/Badge.h>
-
-NS_ASSUME_NONNULL_BEGIN
-@interface BPKBadgeTest : XCTestCase
-
-@end
-
-@implementation BPKBadgeTest
-
-- (void)testInitWithTypeMessage {
-    BPKBadge *badge = [[BPKBadge alloc] initWithType:BPKBadgeTypeSuccess message:@"Backpack rocks!"];
-
-    XCTAssertEqual(badge.type, BPKBadgeTypeSuccess);
-    XCTAssertEqualObjects(badge.message, @"Backpack rocks!");
-}
-
-@end
-
-NS_ASSUME_NONNULL_END
-=======
 import XCTest
 import Backpack
 import FBSnapshotTestCase
@@ -86,4 +64,3 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
         BPKSnapshotVerifyViewDark(darkView)
     }
 }
->>>>>>> f49be2a5 (migrating badge to Swift):Example/SnapshotTests/BPKBadgeSnapshotTest.swift
