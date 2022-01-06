@@ -1,12 +1,15 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
+<<<<<<< HEAD
 <<<<<<< HEAD:Example/SnapshotTests/BPKBadgeSnapshotTest.swift
  * Copyright 2018-2022 Skyscanner Ltd
 =======
  * Copyright © 2022 Skyscanner Ltd. All rights reserved.
 >>>>>>> 05586564 (migrating badge to Swift):Backpack/Badge/Classes/Badge.h
+=======
+ * Copyright 2018-2022 Skyscanner Ltd
+>>>>>>> f291ff89 (copyright)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
