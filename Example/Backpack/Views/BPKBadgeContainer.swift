@@ -104,8 +104,6 @@ class BPKBadgeContainer: UIView {
             return "Light"
         case .outline:
             return "Outline"
-        @unknown default:
-            return "Success"
         }
     }
 }

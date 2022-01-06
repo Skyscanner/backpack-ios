@@ -49,11 +49,9 @@ class BPKHorizontalNavigationItemWithBadge<Size: BPKHorizontalNavigationSize>: U
     }()
 
     private lazy var badge: BPKHorizontalNavigationBadge = {
-        let badge = BPKHorizontalNavigationBadge(frame: .zero)
+        let badge = BPKHorizontalNavigationBadge(color: contentColor)
         badge.translatesAutoresizingMaskIntoConstraints = false
         badge.isUserInteractionEnabled = false
-        badge.color = contentColor
-
         return badge
     }()
 

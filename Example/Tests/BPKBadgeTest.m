@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+<<<<<<< HEAD:Example/Tests/BPKBadgeTest.m
 #import <XCTest/XCTest.h>
 
 #import <Backpack/Badge.h>
@@ -37,3 +38,52 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+=======
+import XCTest
+import Backpack
+import FBSnapshotTestCase
+
+class BPKBadgeSnapshotTest: FBSnapshotTestCase {
+    override func setUp() {
+        super.setUp()
+        recordMode = false
+    }
+    
+    private func createStackView() -> UIStackView {
+        let stackView = UIStackView(frame: .zero)
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .equalCentering
+        stackView.spacing = BPKSpacingMd
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }
+    
+    private func createViewWithTypes() -> UIView {
+        let stackView = createStackView()
+        let parentView = UIView(frame: .zero)
+        parentView.backgroundColor = BPKColor.skyGrayTint06
+        parentView.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(stackView)
+        
+        let badges = [BPKBadgeType.light, .inverse, .outline, .success, .warning, .destructive]
+            .map { BPKBadge(type: $0, message: "Backpack rocks") }
+        badges.forEach(stackView.addArrangedSubview(_:))
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: parentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            parentView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+            parentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+        ])
+        return parentView
+    }
+    
+    func testViewSnapshotWithTypes() {
+        let lightView = createViewWithTypes()
+        let darkView = createViewWithTypes()
+        
+        BPKSnapshotVerifyViewLight(lightView)
+        BPKSnapshotVerifyViewDark(darkView)
+    }
+}
+>>>>>>> f49be2a5 (migrating badge to Swift):Example/SnapshotTests/BPKBadgeSnapshotTest.swift
