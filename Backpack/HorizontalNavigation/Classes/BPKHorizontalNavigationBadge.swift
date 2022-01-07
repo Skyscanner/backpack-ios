@@ -30,7 +30,10 @@ class BPKHorizontalNavigationBadge: BPKBadge {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        color = BPKColor.primaryColor
+        super.init(coder: coder)
+        type = .outline
+        updateStyle(with: color)
     }
     
     private func updateStyle(with color: UIColor) {

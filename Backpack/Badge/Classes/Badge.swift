@@ -35,7 +35,7 @@ public class BPKBadge: UIView {
         self.init(frame: .zero)
         self.message = message
         self.type = type
-        setup()
+        updateLookAndFeel()
     }
     
     public override init(frame: CGRect) {
@@ -63,10 +63,12 @@ public class BPKBadge: UIView {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd).isActive = true
-        trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingMd).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm).isActive = true
-        bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm).isActive = true
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
+            trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingMd),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
+            bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm)
+        ])
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
