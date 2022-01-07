@@ -38,7 +38,7 @@ import FBSnapshotTestCase
 class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
     
     private func createStackView() -> UIStackView {
@@ -79,7 +79,7 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     }
     
     func testViewSnapshotWithLeadingIcon() {
-        let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.tick)
+        let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.time)
         let lightView = createViewWithTypes(andIcon: icon)
         let darkView = createViewWithTypes(andIcon: icon)
         
@@ -88,7 +88,7 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     }
     
     func testViewSnapshotWithTrailingIcon() {
-        let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.tick)
+        let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.time)
         let lightView = createViewWithTypes(andIcon: icon)
         let darkView = createViewWithTypes(andIcon: icon)
         

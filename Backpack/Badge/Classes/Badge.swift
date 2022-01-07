@@ -18,11 +18,9 @@
 
 import UIKit
 
+@objcMembers
 @objc
 public class BPKBadge: UIView {
-    private let label = BPKLabel(fontStyle: .textXsEmphasized)
-    private let iconView = UIImageView(frame: .zero)
-    
     public var message: String? {
         get { label.text }
         set { label.text = newValue }
@@ -37,6 +35,25 @@ public class BPKBadge: UIView {
             updateLookAndFeel()
         }
     }
+    
+    private let label: BPKLabel = {
+        let label = BPKLabel(fontStyle: .textXsEmphasized)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let iconView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    private let containerStackView: UIStackView = {
+        let stack = UIStackView(frame: .zero)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.spacing = BPKSpacingSm
+        return stack
+    }()
     
     public convenience init(type: BPKBadgeType = .success, icon: Icon? = nil, message: String) {
         self.init(frame: .zero)
@@ -66,42 +83,35 @@ public class BPKBadge: UIView {
             layer.borderWidth = BPKBorderWidthSm
         }
         
-        iconView.image = icon.orNil
-        
-        label.removeConstraints(label.constraints)
-        iconView.removeConstraints(iconView.constraints)
-            
-        NSLayoutConstraint.activate(contentSideConstraints(forIcon: icon))
+        iconView.image = icon.orNil(forType: type)
+        placeElements()
     }
     
-    private func contentSideConstraints(forIcon icon: Icon?) -> [NSLayoutConstraint] {
-        let iconPosition = icon?.position ?? .trailing
-        let leadingElement = iconPosition == .trailing ? label : iconView
-        let trailingElement = iconPosition == .trailing ? iconView : label
-        let spaceBetweenElements = icon != nil ? BPKSpacingMd : 0
-        let spacingConstraint = leadingElement.trailingAnchor.constraint(
-            equalTo: trailingElement.leadingAnchor,
-            constant: spaceBetweenElements
-        )
-        return [
-            leadingElement.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
-            spacingConstraint,
-            trailingAnchor.constraint(equalTo: trailingElement.trailingAnchor, constant: BPKSpacingMd),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
-            bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm),
-            iconView.centerYAnchor.constraint(equalTo: label.centerYAnchor)
-        ]
+    private func placeElements() {
+        containerStackView.arrangedSubviews.forEach(containerStackView.removeArrangedSubview)
+        containerStackView.addArrangedSubview(label)
+        if let icon = icon {
+            if icon.position == .leading {
+                containerStackView.insertArrangedSubview(iconView, at: 0)
+            } else {
+                containerStackView.addArrangedSubview(iconView)
+            }
+        }
     }
     
     private func setup() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(iconView)
-        iconView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(containerStackView)
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
+        
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
+            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
+            bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: BPKSpacingSm)
+        ])
         
         updateLookAndFeel()
     }
@@ -140,27 +150,9 @@ fileprivate extension BPKBadgeType {
     }
 }
 
-extension BPKBadge {
-    public struct Icon {
-        public init(position: Position, iconName: BPKSmallIconName) {
-            self.position = position
-            self.iconName = iconName
-        }
-        
-        let position: Position
-        let iconName: BPKSmallIconName
-    }
-}
-
-extension BPKBadge.Icon {
-    public enum Position {
-        case leading, trailing
-    }
-}
-
-extension Optional where Wrapped == BPKBadge.Icon {
-    var orNil: UIImage? {
+fileprivate extension Optional where Wrapped == BPKBadge.Icon {
+    func orNil(forType type: BPKBadgeType) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeSmallTemplateIcon(name: icon.iconName)
+        return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.textColor)
     }
 }
