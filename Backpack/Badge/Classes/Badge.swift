@@ -21,6 +21,7 @@ import UIKit
 @objc
 public class BPKBadge: UIView {
     private let label = BPKLabel(fontStyle: .textXsEmphasized)
+    private let iconView = UIImageView(frame: .zero)
     
     public var message: String? {
         get { label.text }
@@ -31,10 +32,17 @@ public class BPKBadge: UIView {
         didSet { updateLookAndFeel() }
     }
     
-    public convenience init(type: BPKBadgeType = .success, message: String) {
+    public var icon: Icon? {
+        didSet {
+            updateLookAndFeel()
+        }
+    }
+    
+    public convenience init(type: BPKBadgeType = .success, icon: Icon? = nil, message: String) {
         self.init(frame: .zero)
         self.message = message
         self.type = type
+        self.icon = icon
         updateLookAndFeel()
     }
     
@@ -57,18 +65,40 @@ public class BPKBadge: UIView {
             layer.borderColor = BPKColor.white.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
+        
+        iconView.image = icon.orNil
+        
+        label.removeConstraints(label.constraints)
+        iconView.removeConstraints(iconView.constraints)
+            
+        NSLayoutConstraint.activate(contentSideConstraints(forIcon: icon))
+    }
+    
+    private func contentSideConstraints(forIcon icon: Icon?) -> [NSLayoutConstraint] {
+        let iconPosition = icon?.position ?? .trailing
+        let leadingElement = iconPosition == .trailing ? label : iconView
+        let trailingElement = iconPosition == .trailing ? iconView : label
+        let spaceBetweenElements = icon != nil ? BPKSpacingMd : 0
+        let spacingConstraint = leadingElement.trailingAnchor.constraint(
+            equalTo: trailingElement.leadingAnchor,
+            constant: spaceBetweenElements
+        )
+        return [
+            leadingElement.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
+            spacingConstraint,
+            trailingAnchor.constraint(equalTo: trailingElement.trailingAnchor, constant: BPKSpacingMd),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
+            bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm),
+            iconView.centerYAnchor.constraint(equalTo: label.centerYAnchor)
+        ]
     }
     
     private func setup() {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
-            trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingMd),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
-            bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm)
-        ])
+        addSubview(iconView)
+        iconView.translatesAutoresizingMaskIntoConstraints = false
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
@@ -107,5 +137,30 @@ fileprivate extension BPKBadgeType {
         case .outline:
             return BPKColor.white.withAlphaComponent(0.2)
         }
+    }
+}
+
+extension BPKBadge {
+    public struct Icon {
+        public init(position: Position, iconName: BPKSmallIconName) {
+            self.position = position
+            self.iconName = iconName
+        }
+        
+        let position: Position
+        let iconName: BPKSmallIconName
+    }
+}
+
+extension BPKBadge.Icon {
+    public enum Position {
+        case leading, trailing
+    }
+}
+
+extension Optional where Wrapped == BPKBadge.Icon {
+    var orNil: UIImage? {
+        guard let icon = self else { return nil }
+        return BPKIcon.makeSmallTemplateIcon(name: icon.iconName)
     }
 }

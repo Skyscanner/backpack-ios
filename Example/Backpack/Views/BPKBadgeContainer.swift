@@ -22,7 +22,7 @@ import Backpack
 class BPKBadgeContainer: UIView {
     var label: BPKLabel!
     var badges = [BPKBadge]()
-    let badgeMessages = ["Apples", "Bananas", "Strawberries", "Pears"]
+    let badgeMessages = ["Apples"]
     var currentBadgeType = BPKBadgeType.success
     var badgesRequiringDarkBackground = [BPKBadgeType.light, BPKBadgeType.inverse, BPKBadgeType.outline]
 
@@ -85,6 +85,16 @@ class BPKBadgeContainer: UIView {
     func populateBadges() {
         for message in badgeMessages {
             let badge = BPKBadge(message: message)
+            badge.type = currentBadgeType
+            badges.append(badge)
+        }
+        for message in badgeMessages {
+            let badge = BPKBadge(icon: .init(position: .leading, iconName: .time), message: message)
+            badge.type = currentBadgeType
+            badges.append(badge)
+        }
+        for message in badgeMessages {
+            let badge = BPKBadge(icon: .init(position: .trailing, iconName: .time), message: message)
             badge.type = currentBadgeType
             badges.append(badge)
         }
