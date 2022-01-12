@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /*
  * Backpack - Skyscanner's Design System
  *
  * Copyright 2018-2022 Skyscanner Ltd
-=======
-//
-/*
- * Backpack - Skyscanner's Design System
- *
- * Copyright © 2022 Skyscanner Ltd. All rights reserved.
->>>>>>> 05586564 (migrating badge to Swift)
-=======
-/*
- * Backpack - Skyscanner's Design System
- *
- * Copyright 2018-2022 Skyscanner Ltd
->>>>>>> f291ff89 (copyright)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

@@ -87,8 +87,14 @@ public class BPKBadge: UIView {
         placeElements()
     }
     
+    private func removeStackViewSubviews() {
+        let subviews = containerStackView.arrangedSubviews
+        subviews.forEach(containerStackView.removeArrangedSubview)
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     private func placeElements() {
-        containerStackView.arrangedSubviews.forEach(containerStackView.removeArrangedSubview)
+        removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
         if let icon = icon {
             if icon.position == .leading {
@@ -106,7 +112,7 @@ public class BPKBadge: UIView {
         layer.masksToBounds = true
         
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
+            heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingLg),
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
             trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
