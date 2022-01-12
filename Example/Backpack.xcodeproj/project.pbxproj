@@ -21,8 +21,6 @@
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
-		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
-		6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* BPKAppDelegate.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -58,6 +56,8 @@
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
 		76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */; };
 		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
+		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
+		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
@@ -270,10 +270,7 @@
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6003F595195388D20070C39A /* Backpack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Backpack-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6003F59B195388D20070C39A /* Backpack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack-Prefix.pch"; sourceTree = "<group>"; };
-		6003F59C195388D20070C39A /* BPKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKAppDelegate.h; sourceTree = "<group>"; };
-		6003F59D195388D20070C39A /* BPKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* Backpack_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -314,6 +311,8 @@
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
 		76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
 		76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
+		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
@@ -597,8 +596,6 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				D205510722675DAE00BC5BCC /* LaunchScreen.xib */,
 				D2046EB02253FE2A002B7165 /* ExampleApp.swift */,
-				6003F59C195388D20070C39A /* BPKAppDelegate.h */,
-				6003F59D195388D20070C39A /* BPKAppDelegate.m */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				D2A350B522143F0700DEA01F /* Settings.storyboard */,
@@ -624,6 +621,8 @@
 				D2B70FA32434EB350026282A /* TabBarControllers.storyboard */,
 				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
 				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
+				793C2D5627852B9A0055AB9A /* SceneDelegate.swift */,
+				793C2D5427852B640055AB9A /* AppDelegate.swift */,
 			);
 			name = "Example for Backpack";
 			path = Backpack;
@@ -634,7 +633,6 @@
 			children = (
 				6003F595195388D20070C39A /* Backpack-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
-				6003F599195388D20070C39A /* main.m */,
 				6003F59B195388D20070C39A /* Backpack-Prefix.pch */,
 				D649E8ED212F0B6500B25A9E /* Localizable.strings */,
 			);
@@ -1346,10 +1344,10 @@
 				D6FC4DDC2620A826000BA351 /* NavigationBarStory.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
 				60AF37BD25E549EC00825050 /* StoryGroup.swift in Sources */,
+				793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */,
 				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
-				6003F59E195388D20070C39A /* BPKAppDelegate.m in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
 				60AF37C925E54B1000825050 /* ColorsStory.swift in Sources */,
 				D6FC4CF6261F11F5000BA351 /* LabelStory.swift in Sources */,
@@ -1380,6 +1378,7 @@
 				D2B4FC472538A88900070BEC /* OverlayViewsSelectorViewController.swift in Sources */,
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
+				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
@@ -1389,7 +1388,6 @@
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
 				D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
-				6003F59A195388D20070C39A /* main.m in Sources */,
 				7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */,
 				D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */,
 				D269EE6025A3B30B00DB6450 /* NavigationData.swift in Sources */,
