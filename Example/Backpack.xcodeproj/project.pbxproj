@@ -13,6 +13,8 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
+		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
+		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
 		589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */; };
 		589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45422DE092800F252E9 /* BPKStarRatingTest.m */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
@@ -179,7 +181,6 @@
 		D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696CA21215CC1BD00682666 /* IconSwiftTest.swift */; };
 		D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698E64E219C528100D03060 /* CalendarViewController.swift */; };
 		D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */; };
-		D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */; };
 		D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
 		D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */; };
 		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
@@ -187,7 +188,6 @@
 		D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */; };
 		D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */; };
 		D6CE74F22124230000154D92 /* BPKPanelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F12124230000154D92 /* BPKPanelTest.m */; };
-		D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CE74F821243A4500154D92 /* BPKBadgeTest.m */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */; };
 		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
@@ -258,6 +258,8 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeSnapshotTest.swift; sourceTree = "<group>"; };
+		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingSnapshotTest.m; sourceTree = "<group>"; };
 		589FD45422DE092800F252E9 /* BPKStarRatingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingTest.m; sourceTree = "<group>"; };
@@ -452,13 +454,11 @@
 		D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKCalendarSnapshotTest.m; sourceTree = "<group>"; };
 		D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKCalendarYearPillSnapshotTest.m; sourceTree = "<group>"; };
 		D6CE74F12124230000154D92 /* BPKPanelTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPanelTest.m; sourceTree = "<group>"; };
-		D6CE74F821243A4500154D92 /* BPKBadgeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeTest.m; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconSnapshotTest.m; sourceTree = "<group>"; };
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
 		D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKLabelSnapshotTest.m; sourceTree = "<group>"; };
-		D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKBadgeSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
 		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
@@ -643,7 +643,6 @@
 			isa = PBXGroup;
 			children = (
 				D2DACAEC25A75EDF0004BE39 /* ExampleApp */,
-				D6CE74F821243A4500154D92 /* BPKBadgeTest.m */,
 				D22EB156239EA75A0090C65E /* BPKBorderWidthTest.m */,
 				D21EB4C025EA7F2F00B21A01 /* BPKCalendarSelectionTests.m */,
 				D246C1F3216643B8001CB366 /* BPKCardTest.m */,
@@ -673,6 +672,7 @@
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */,
+				5367379F2787575C0084BEDD /* BPKBedgeTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -889,7 +889,6 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
-				D6D81D62213FEEB90013BB96 /* BPKBadgeSnapshotTest.m */,
 				D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */,
 				D28588B124586D2A005DE2E0 /* BPKBarChartSnapshotTest.m */,
 				D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */,
@@ -927,6 +926,7 @@
 				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
 				D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */,
 				D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */,
+				5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -1411,7 +1411,6 @@
 			files = (
 				D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */,
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
-				D6CE74F921243A4500154D92 /* BPKBadgeTest.m in Sources */,
 				D66A620426948AC500B29F6C /* BPKHorizontalNavigationTest.swift in Sources */,
 				D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
@@ -1474,6 +1473,7 @@
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
+				5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
@@ -1485,6 +1485,7 @@
 				D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */,
 				589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */,
 				D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */,
+				536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */,
 				D27055C425C9CD5C00EB9F66 /* BPKMapSnapshotTest.m in Sources */,
 				D28588B324586D33005DE2E0 /* BPKBarChartSnapshotTest.m in Sources */,
 				76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */,
@@ -1492,7 +1493,6 @@
 				600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
 				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
-				D6A1505F213FEEF000AAF968 /* BPKBadgeSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
 				76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,

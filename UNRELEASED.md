@@ -3,6 +3,8 @@
 
 **Added:**
 
+- Badge migrated to Swift
+
 - Generated code for token `textSecondaryColor`.
 
 - Backpack/Calendar:

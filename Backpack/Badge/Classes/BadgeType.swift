@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,27 +16,12 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
-
-#import <Backpack/BPKBadge.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- * A `BPKHorizontalNavigationBadge` is a `BPKBadge` that it should only be used inside the
- * `BPKHorizontalNavigationItemWithBadge`.
- *
- * It allows us to modiify the color for the entire badge.
- */
-@interface BPKHorizontalNavigationBadge : BPKBadge
-
-/**
- * Set this property to change the badge color
- */
-@property(nonatomic, strong) UIColor *color;
-
-- (instancetype)initWithFrame:(CGRect)frame;
-
-@end
-
-NS_ASSUME_NONNULL_END
+@objc
+public enum BPKBadgeType: UInt {
+    case success
+    case warning
+    case destructive
+    case light
+    case inverse
+    case outline
+}
