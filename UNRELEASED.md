@@ -3,6 +3,8 @@
 
 **Added:**
 
+- Badge support for icons
+
 - Badge migrated to Swift
 
 - Generated code for token `textSecondaryColor`.

@@ -36,7 +36,7 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
         return stackView
     }
     
-    private func createViewWithTypes() -> UIView {
+    private func createViewWithTypes(andIcon icon: BPKBadge.Icon? = nil) -> UIView {
         let stackView = createStackView()
         let parentView = UIView(frame: .zero)
         parentView.backgroundColor = BPKColor.skyGrayTint06
@@ -44,7 +44,7 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
         parentView.addSubview(stackView)
         
         let badges = [BPKBadgeType.light, .inverse, .outline, .success, .warning, .destructive]
-            .map { BPKBadge(type: $0, message: "Backpack rocks") }
+            .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: parentView.topAnchor),
@@ -58,6 +58,24 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     func testViewSnapshotWithTypes() {
         let lightView = createViewWithTypes()
         let darkView = createViewWithTypes()
+        
+        BPKSnapshotVerifyViewLight(lightView)
+        BPKSnapshotVerifyViewDark(darkView)
+    }
+    
+    func testViewSnapshotWithLeadingIcon() {
+        let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.time)
+        let lightView = createViewWithTypes(andIcon: icon)
+        let darkView = createViewWithTypes(andIcon: icon)
+        
+        BPKSnapshotVerifyViewLight(lightView)
+        BPKSnapshotVerifyViewDark(darkView)
+    }
+    
+    func testViewSnapshotWithTrailingIcon() {
+        let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.time)
+        let lightView = createViewWithTypes(andIcon: icon)
+        let darkView = createViewWithTypes(andIcon: icon)
         
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)

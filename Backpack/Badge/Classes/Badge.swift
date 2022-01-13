@@ -18,10 +18,9 @@
 
 import UIKit
 
+@objcMembers
 @objc
 public class BPKBadge: UIView {
-    private let label = BPKLabel(fontStyle: .textXsEmphasized)
-    
     public var message: String? {
         get { label.text }
         set { label.text = newValue }
@@ -31,10 +30,36 @@ public class BPKBadge: UIView {
         didSet { updateLookAndFeel() }
     }
     
-    public convenience init(type: BPKBadgeType = .success, message: String) {
+    public var icon: Icon? {
+        didSet {
+            updateLookAndFeel()
+        }
+    }
+    
+    private let label: BPKLabel = {
+        let label = BPKLabel(fontStyle: .textXsEmphasized)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let iconView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    private let containerStackView: UIStackView = {
+        let stack = UIStackView(frame: .zero)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.spacing = BPKSpacingSm
+        return stack
+    }()
+
+    public convenience init(type: BPKBadgeType = .success, icon: Icon? = nil, message: String) {
         self.init(frame: .zero)
         self.message = message
         self.type = type
+        self.icon = icon
         updateLookAndFeel()
     }
     
@@ -57,21 +82,41 @@ public class BPKBadge: UIView {
             layer.borderColor = BPKColor.white.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
+        
+        iconView.image = icon.orNil(forType: type)
+        placeElements()
+    }
+    
+    private func removeStackViewSubviews() {
+        let subviews = containerStackView.arrangedSubviews
+        subviews.forEach(containerStackView.removeArrangedSubview)
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    private func placeElements() {
+        removeStackViewSubviews()
+        containerStackView.addArrangedSubview(label)
+        guard let icon = icon else { return }
+        if icon.position == .leading {
+            containerStackView.insertArrangedSubview(iconView, at: 0)
+        } else {
+            containerStackView.addArrangedSubview(iconView)
+        }
     }
     
     private func setup() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
-            trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingMd),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
-            bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingSm)
-        ])
+        addSubview(containerStackView)
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
+        
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingLg),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingMd),
+            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: BPKSpacingMd),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm),
+            bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: BPKSpacingSm)
+        ])
         
         updateLookAndFeel()
     }
@@ -107,5 +152,12 @@ fileprivate extension BPKBadgeType {
         case .outline:
             return BPKColor.white.withAlphaComponent(0.2)
         }
+    }
+}
+
+fileprivate extension Optional where Wrapped == BPKBadge.Icon {
+    func orNil(forType type: BPKBadgeType) -> UIImage? {
+        guard let icon = self else { return nil }
+        return BPKIcon.makeSmallIcon(name: icon.iconName, color: type.textColor)
     }
 }
