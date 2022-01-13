@@ -2,6 +2,7 @@
 > Place your changes below this line.
 
 **Added:**
+- Changed navigation bar font
 
 - Badge support for icons
 
