@@ -2,7 +2,7 @@
 > Place your changes below this line.
 
 **Added:**
-- Changed NavigationBar large title font to: BPKFontStyleTextXxlEmphasized
+- Changed BPKNavigationBar large title font to: BPKFontStyleTextXxlEmphasized
 
 - Badge migrated to Swift
 
