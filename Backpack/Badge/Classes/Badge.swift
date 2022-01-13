@@ -54,10 +54,7 @@ public class BPKBadge: UIView {
         stack.spacing = BPKSpacingSm
         return stack
     }()
-    private var isRTL: Bool {
-        Self.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
-    }
-    
+
     public convenience init(type: BPKBadgeType = .success, icon: Icon? = nil, message: String) {
         self.init(frame: .zero)
         self.message = message
@@ -100,8 +97,7 @@ public class BPKBadge: UIView {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
         guard let icon = icon else { return }
-        let iconPosition = isRTL ? icon.position.rtl : icon.position
-        if iconPosition == .leading {
+        if icon.position == .leading {
             containerStackView.insertArrangedSubview(iconView, at: 0)
         } else {
             containerStackView.addArrangedSubview(iconView)
