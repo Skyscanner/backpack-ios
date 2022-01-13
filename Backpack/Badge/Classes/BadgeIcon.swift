@@ -35,9 +35,5 @@ extension BPKBadge.Icon {
     @objc(BPKBadgeIconPosition)
     public enum Position: UInt {
         case leading, trailing
-        
-        var rtl: Position {
-            return self == .leading ? .trailing : .leading
-        }
     }
 }
