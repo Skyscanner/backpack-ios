@@ -143,22 +143,22 @@ NS_ASSUME_NONNULL_BEGIN
              return [fontManager semiboldFontWithSize:12];
              
            case BPKFontStyleTextXxl:
-             return [fontManager regularFontWithSize:30];
+             return [fontManager regularFontWithSize:32];
              
            case BPKFontStyleTextXxlEmphasized:
-             return [fontManager semiboldFontWithSize:30];
+             return [fontManager semiboldFontWithSize:32];
              
            case BPKFontStyleTextXxlHeavy:
-             return [fontManager heavyFontWithSize:30];
+             return [fontManager heavyFontWithSize:32];
              
            case BPKFontStyleTextXxxl:
-             return [fontManager regularFontWithSize:36];
+             return [fontManager regularFontWithSize:40];
              
            case BPKFontStyleTextXxxlEmphasized:
-             return [fontManager semiboldFontWithSize:36];
+             return [fontManager semiboldFontWithSize:40];
              
            case BPKFontStyleTextXxxlHeavy:
-             return [fontManager heavyFontWithSize:36];
+             return [fontManager heavyFontWithSize:40];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
