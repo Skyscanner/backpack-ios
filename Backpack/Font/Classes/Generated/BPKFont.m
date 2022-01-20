@@ -112,6 +112,9 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextCaps:
              return [fontManager regularFontWithSize:10];
              
+           case BPKFontStyleTextCapsEmphasized:
+             return [fontManager semiboldFontWithSize:10];
+             
            case BPKFontStyleTextHero1:
              return [fontManager regularFontWithSize:120];
              
@@ -150,6 +153,9 @@ NS_ASSUME_NONNULL_BEGIN
              
            case BPKFontStyleTextXs:
              return [fontManager regularFontWithSize:12];
+             
+           case BPKFontStyleTextXsEmphasized:
+             return [fontManager semiboldFontWithSize:12];
              
            case BPKFontStyleTextXxl:
              return [fontManager regularFontWithSize:32];

@@ -40,6 +40,11 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextCaps = 11,
 
     /**
+     * Represents font size 10 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextCapsEmphasized = 12,
+
+    /**
      * Represents font size 120 with weight UIFontWeightBold.
      */
     BPKFontStyleTextHero1 = 19,
@@ -103,6 +108,11 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
      * Represents font size 12 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextXs = 8,
+
+    /**
+     * Represents font size 12 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextXsEmphasized = 9,
 
     /**
      * Represents font size 32 with weight UIFontWeightRegular.

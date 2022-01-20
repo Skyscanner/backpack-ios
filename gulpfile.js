@@ -99,7 +99,7 @@ const LEGIBLE_NAMES = [
 
 const TEXT_STYLES_WITH_HEAVY = new Set(['xl', 'xxl', 'xxxl']);
 
-const TEXT_STYLES_WITH_EMPHASIZED = new Set(['base', 'lg', 'sm', 'xl', 'xxl', 'xxxl']);
+const TEXT_STYLES_WITH_EMPHASIZED = new Set(['base', 'caps', 'lg', 'sm', 'xs', 'xl', 'xxl', 'xxxl']);
 
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
@@ -142,7 +142,6 @@ const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
 const enumValueForName = (name) => {
   const enumValue = FONT_ENUM_VALUES[name];
-  console.log(`name`, name)
   if (typeof enumValue !== 'number') {
     throw new Error(
       `No font enum value found for \`${name}\` in \`FONT_ENUM_VALUES\`. Every font variant MUST have a value in this object`,
@@ -305,7 +304,6 @@ const parseTokens = (tokensData) => {
     }
   }
 
-  
   const fonts = _.chain(tokensData.properties)
     .filter(
       ({ category }) =>
