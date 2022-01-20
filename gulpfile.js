@@ -52,6 +52,11 @@ const VALID_TEXT_STYLES = new Set([
   'xl',
   'xxl',
   'xxxl',
+  'hero1',
+  'hero2',
+  'hero3',
+  'hero4',
+  'hero5',
 ]);
 const VALID_SHADOWS = new Set(['sm', 'lg']);
 const VALID_SPACINGS = new Set([
@@ -94,6 +99,8 @@ const LEGIBLE_NAMES = [
 
 const TEXT_STYLES_WITH_HEAVY = new Set(['xl', 'xxl', 'xxxl']);
 
+const TEXT_STYLES_WITH_EMPHASIZED = new Set(['base', 'lg', 'sm', 'xl', 'xxl', 'xxxl']);
+
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
 const FONT_ENUM_VALUES = {
@@ -123,13 +130,19 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextXxxl: 16,
   BPKFontStyleTextXxxlEmphasized: 17,
   BPKFontStyleTextXxxlHeavy: 18,
+
+  BPKFontStyleTextHero1: 19,
+  BPKFontStyleTextHero2: 20,
+  BPKFontStyleTextHero3: 21,
+  BPKFontStyleTextHero4: 22,
+  BPKFontStyleTextHero5: 23,
 };
 
 const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
 const enumValueForName = (name) => {
   const enumValue = FONT_ENUM_VALUES[name];
-
+  console.log(`name`, name)
   if (typeof enumValue !== 'number') {
     throw new Error(
       `No font enum value found for \`${name}\` in \`FONT_ENUM_VALUES\`. Every font variant MUST have a value in this object`,
@@ -274,6 +287,25 @@ const parseTokens = (tokensData) => {
     )[0].value,
   );
 
+  const mapEmphasizedStyle = (properties, baseName) => {
+    if (!TEXT_STYLES_WITH_EMPHASIZED.has(baseName)) { return null }
+    const name = `${properties.enumName}Emphasized`
+    return {
+      name,
+      value: enumValueForName(name)
+    }
+  }
+
+  const mapHeavyStyle = (properties, baseName) => {
+    if (!TEXT_STYLES_WITH_HEAVY.has(baseName)) { return null }
+    const name = `${properties.enumName}Heavy`
+    return {
+      name,
+      value: enumValueForName(name)
+    }
+  }
+
+  
   const fonts = _.chain(tokensData.properties)
     .filter(
       ({ category }) =>
@@ -288,9 +320,9 @@ const parseTokens = (tokensData) => {
         .replace('LetterSpacing', ''),
     )
     .map((values, key) => [values, key])
-    .filter((token) =>
-      VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase()),
-    )
+    .filter((token) => {
+      return VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase())
+    })
     .map((token) => {
       const properties = token[0];
       const key = token[1];
@@ -322,34 +354,25 @@ const parseTokens = (tokensData) => {
       };
     })
     .flatMap((properties) => {
-      const emphasizedEnumName = `${properties.enumName}Emphasized`;
-      const emphasizedEnumValue = enumValueForName(emphasizedEnumName);
-
       const baseName = properties.name.replace('text', '').toLowerCase();
-      const hasHeavyStyle = TEXT_STYLES_WITH_HEAVY.has(baseName);
-      let heavyEnumName = null;
-      let heavyEnumValue = null;
-
-      if (hasHeavyStyle) {
-        heavyEnumName = `${properties.enumName}Heavy`;
-        heavyEnumValue = enumValueForName(heavyEnumName);
-      }
+      const emphasizedStyle = mapEmphasizedStyle(properties, baseName)
+      const heavyStyle = mapHeavyStyle(properties, baseName)
 
       return [
         properties,
-        {
+        emphasizedStyle && {
           ...properties,
           weight: emphazisedWeight,
           name: `${properties.name}Emphasized`,
-          enumName: emphasizedEnumName,
-          enumValue: emphasizedEnumValue,
+          enumName: emphasizedStyle.name,
+          enumValue: emphasizedStyle.value,
         },
-        hasHeavyStyle && {
+        heavyStyle && {
           ...properties,
           weight: convertFontWeight('800'), // TODO: From tokens
           name: `${properties.name}Heavy`,
-          enumName: heavyEnumName,
-          enumValue: heavyEnumValue,
+          enumName: heavyStyle.name,
+          enumValue: heavyStyle.value,
         },
       ].filter((x) => !!x);
     })
