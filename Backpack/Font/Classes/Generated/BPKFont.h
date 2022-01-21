@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,31 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
      * Represents font size 10 with weight UIFontWeightBold.
      */
     BPKFontStyleTextCapsEmphasized = 12,
+
+    /**
+     * Represents font size 120 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHero1 = 19,
+
+    /**
+     * Represents font size 96 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHero2 = 20,
+
+    /**
+     * Represents font size 76 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHero3 = 21,
+
+    /**
+     * Represents font size 64 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHero4 = 22,
+
+    /**
+     * Represents font size 48 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHero5 = 23,
 
     /**
      * Represents font size 20 with weight UIFontWeightRegular.
@@ -90,32 +115,32 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextXsEmphasized = 9,
 
     /**
-     * Represents font size 30 with weight UIFontWeightRegular.
+     * Represents font size 32 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextXxl = 13,
 
     /**
-     * Represents font size 30 with weight UIFontWeightBold.
+     * Represents font size 32 with weight UIFontWeightBold.
      */
     BPKFontStyleTextXxlEmphasized = 14,
 
     /**
-     * Represents font size 30 with weight UIFontWeightHeavy.
+     * Represents font size 32 with weight UIFontWeightHeavy.
      */
     BPKFontStyleTextXxlHeavy = 15,
 
     /**
-     * Represents font size 36 with weight UIFontWeightRegular.
+     * Represents font size 40 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextXxxl = 16,
 
     /**
-     * Represents font size 36 with weight UIFontWeightBold.
+     * Represents font size 40 with weight UIFontWeightBold.
      */
     BPKFontStyleTextXxxlEmphasized = 17,
 
     /**
-     * Represents font size 36 with weight UIFontWeightHeavy.
+     * Represents font size 40 with weight UIFontWeightHeavy.
      */
     BPKFontStyleTextXxxlHeavy = 18,
 };

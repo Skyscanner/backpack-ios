@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,6 +115,21 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextCapsEmphasized:
              return [fontManager semiboldFontWithSize:10];
              
+           case BPKFontStyleTextHero1:
+             return [fontManager regularFontWithSize:120];
+             
+           case BPKFontStyleTextHero2:
+             return [fontManager regularFontWithSize:96];
+             
+           case BPKFontStyleTextHero3:
+             return [fontManager regularFontWithSize:76];
+             
+           case BPKFontStyleTextHero4:
+             return [fontManager regularFontWithSize:64];
+             
+           case BPKFontStyleTextHero5:
+             return [fontManager regularFontWithSize:48];
+             
            case BPKFontStyleTextLg:
              return [fontManager regularFontWithSize:20];
              
@@ -143,22 +158,22 @@ NS_ASSUME_NONNULL_BEGIN
              return [fontManager semiboldFontWithSize:12];
              
            case BPKFontStyleTextXxl:
-             return [fontManager regularFontWithSize:30];
+             return [fontManager regularFontWithSize:32];
              
            case BPKFontStyleTextXxlEmphasized:
-             return [fontManager semiboldFontWithSize:30];
+             return [fontManager semiboldFontWithSize:32];
              
            case BPKFontStyleTextXxlHeavy:
-             return [fontManager heavyFontWithSize:30];
+             return [fontManager heavyFontWithSize:32];
              
            case BPKFontStyleTextXxxl:
-             return [fontManager regularFontWithSize:36];
+             return [fontManager regularFontWithSize:40];
              
            case BPKFontStyleTextXxxlEmphasized:
-             return [fontManager semiboldFontWithSize:36];
+             return [fontManager semiboldFontWithSize:40];
              
            case BPKFontStyleTextXxxlHeavy:
-             return [fontManager heavyFontWithSize:36];
+             return [fontManager heavyFontWithSize:40];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
