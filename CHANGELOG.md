@@ -1,5 +1,26 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 46.0.0
+
+**Added:**
+- Font sizes have been updated
+
+- Changed navigation bar font
+
+- Badge support for icons
+
+- Badge migrated to Swift
+
+- Generated code for token `textSecondaryColor`.
+
+- Backpack/Calendar:
+  - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
+
+- Support for iOS 15 and Xcode 13.1
+
+**Breaking:**
+- Updated deployment target to `iOS 14.0`
+
 # 45.1.1
 
 **Fixed:**

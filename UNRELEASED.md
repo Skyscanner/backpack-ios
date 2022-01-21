@@ -1,26 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-- Font sizes have been updated
-
-- Changed navigation bar font
-
-- Badge support for icons
-
-- Badge migrated to Swift
-
-- Generated code for token `textSecondaryColor`.
-
-- Backpack/Calendar:
-  - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
-
-**Breaking:**
-- Updated deployment target to `iOS 14.0`
-
-**Added:**
-- Support for iOS 15 and Xcode 13.1
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
