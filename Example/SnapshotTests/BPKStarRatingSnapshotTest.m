@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2019. Skyscanner Ltd. All rights reserved.
+ * Copyright © 2022. Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -315,22 +315,51 @@
     [self verifyExtraLargeRatingViewWithRating:6.0f];
 }
 
+#pragma mark - Rounding
+- (void)testRoundUpWithRatingValue_3_24 {
+    [self verifyRatingViewWithRating:3.24f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingUp];
+}
+
+- (void)testRoundUpWithRatingValue_3_26 {
+    [self verifyRatingViewWithRating:3.26f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingUp];
+}
+
+- (void)testRoundUpWithRatingValue_3_5 {
+    [self verifyRatingViewWithRating:3.5f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingUp];
+}
+
+- (void)testRoundNearestWithRatingValue_3_24 {
+    [self verifyRatingViewWithRating:3.24f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingNearest];
+}
+
+- (void)testRoundNearestWithRatingValue_3_26 {
+    [self verifyRatingViewWithRating:3.26f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingNearest];
+}
+
+- (void)testRoundNearestWithRatingValue_3_5 {
+    [self verifyRatingViewWithRating:3.5f size:BPKStarSizeLarge rounding:BPKStarRatingRoundingNearest];
+}
+
+
 #pragma mark - Helpers
 
 - (void)verifySmallRatingViewWithRating:(float)rating {
-    [self verifyRatingViewWithRating:rating size:BPKStarSizeSmall];
+    [self verifyRatingViewWithRating:rating size:BPKStarSizeSmall rounding:BPKStarRatingRoundingDown];
 }
 
 - (void)verifyLargeRatingViewWithRating:(float)rating {
-    [self verifyRatingViewWithRating:rating size:BPKStarSizeLarge];
+    [self verifyRatingViewWithRating:rating size:BPKStarSizeLarge rounding:BPKStarRatingRoundingDown];
 }
 
 - (void)verifyExtraLargeRatingViewWithRating:(float)rating {
-    [self verifyRatingViewWithRating:rating size:BPKStarSizeXLarge];
+    [self verifyRatingViewWithRating:rating size:BPKStarSizeXLarge rounding:BPKStarRatingRoundingDown];
 }
 
-- (UIView *)createRatingViewWithRating:(float)rating size:(BPKStarSize)size {
+- (UIView *)createRatingViewWithRating:(float)rating
+                                  size:(BPKStarSize)size
+                              rounding:(BPKStarRatingRounding)rounding {
     BPKStarRating *ratingView = [[BPKStarRating alloc] initWithSize:size];
+    ratingView.rounding = rounding;
     ratingView.rating = rating;
 
     CGSize fittingSize = [ratingView systemLayoutSizeFittingSize:CGSizeMake(1000, 1000)];
@@ -339,9 +368,9 @@
     return ratingView;
 }
 
-- (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size {
-    UIView *lightView = [self createRatingViewWithRating:rating size:size];
-    UIView *darkView = [self createRatingViewWithRating:rating size:size];
+- (void)verifyRatingViewWithRating:(float)rating size:(BPKStarSize)size rounding:(BPKStarRatingRounding)rounding {
+    UIView *lightView = [self createRatingViewWithRating:rating size:size rounding:rounding];
+    UIView *darkView = [self createRatingViewWithRating:rating size:size rounding:rounding];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);

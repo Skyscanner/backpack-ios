@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,27 @@
 #import "BPKStar.h"
 
 #import <UIKit/UIKit.h>
+
+/**
+ * These constants represent the type of badge.
+ */
+typedef NS_ENUM(NSUInteger, BPKStarRatingRounding) {
+
+    /**
+     * Round down to the next half star. This is the default behaviour
+     */
+    BPKStarRatingRoundingDown = 0,
+
+    /**
+     * Round up to the next half star.
+     */
+    BPKStarRatingRoundingUp,
+
+    /**
+     * Round to the nearest half star.
+     */
+    BPKStarRatingRoundingNearest
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,6 +72,13 @@ IB_DESIGNABLE @interface BPKStarRating : UIView
  * @see BPKStarSize
  */
 @property(nonatomic) BPKStarSize size;
+
+/**
+ * The method of rounding that should be used to fill in the stars.
+ *
+ * @see BPKStarSize
+ */
+@property(nonatomic) BPKStarRatingRounding rounding;
 
 - (instancetype)initWithSize:(BPKStarSize)size NS_DESIGNATED_INITIALIZER;
 
