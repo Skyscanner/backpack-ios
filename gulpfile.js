@@ -43,21 +43,6 @@ const TYPES = new Set([
   'shadow',
   'duration',
 ]);
-const VALID_TEXT_STYLES = new Set([
-  'caps',
-  'xs',
-  'sm',
-  'base',
-  'lg',
-  'xl',
-  'xxl',
-  'xxxl',
-  'hero1',
-  'hero2',
-  'hero3',
-  'hero4',
-  'hero5',
-]);
 const VALID_SHADOWS = new Set(['sm', 'lg']);
 const VALID_SPACINGS = new Set([
   'none',
@@ -96,10 +81,6 @@ const LEGIBLE_NAMES = [
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
 ];
-
-const TEXT_STYLES_WITH_HEAVY = new Set(['xl', 'xxl', 'xxxl']);
-
-const TEXT_STYLES_WITH_EMPHASIZED = new Set(['base', 'caps', 'lg', 'sm', 'xs', 'xl', 'xxl', 'xxxl']);
 
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
@@ -279,31 +260,6 @@ const parseTokens = (tokensData) => {
     }))
     .value();
 
-  const emphazisedWeight = convertFontWeight(
-    _.filter(
-      tokensData.properties,
-      ({ name }) => name === 'textEmphasizedFontWeight',
-    )[0].value,
-  );
-
-  const mapEmphasizedStyle = (properties, baseName) => {
-    if (!TEXT_STYLES_WITH_EMPHASIZED.has(baseName)) { return null }
-    const name = `${properties.enumName}Emphasized`
-    return {
-      name,
-      value: enumValueForName(name)
-    }
-  }
-
-  const mapHeavyStyle = (properties, baseName) => {
-    if (!TEXT_STYLES_WITH_HEAVY.has(baseName)) { return null }
-    const name = `${properties.enumName}Heavy`
-    return {
-      name,
-      value: enumValueForName(name)
-    }
-  }
-
   const fonts = _.chain(tokensData.properties)
     .filter(
       ({ category }) =>
@@ -319,7 +275,7 @@ const parseTokens = (tokensData) => {
     )
     .map((values, key) => [values, key])
     .filter((token) => {
-      return VALID_TEXT_STYLES.has(token[1].replace('text', '').toLowerCase())
+      return token[1].startsWith('text')
     })
     .map((token) => {
       const properties = token[0];
@@ -340,39 +296,15 @@ const parseTokens = (tokensData) => {
         );
       }
       const enumName = `BPKFontStyle${_.upperFirst(key)}`;
-      const enumValue = enumValueForName(enumName);
 
       return {
         name: key,
         enumName,
-        enumValue,
+        enumValue: enumValueForName(enumName),
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
       };
-    })
-    .flatMap((properties) => {
-      const baseName = properties.name.replace('text', '').toLowerCase();
-      const emphasizedStyle = mapEmphasizedStyle(properties, baseName)
-      const heavyStyle = mapHeavyStyle(properties, baseName)
-
-      return [
-        properties,
-        emphasizedStyle && {
-          ...properties,
-          weight: emphazisedWeight,
-          name: `${properties.name}Emphasized`,
-          enumName: emphasizedStyle.name,
-          enumValue: emphasizedStyle.value,
-        },
-        heavyStyle && {
-          ...properties,
-          weight: convertFontWeight('800'), // TODO: From tokens
-          name: `${properties.name}Heavy`,
-          enumName: heavyStyle.name,
-          enumValue: heavyStyle.value,
-        },
-      ].filter((x) => !!x);
     })
     .sortBy(['name'])
     .value();
