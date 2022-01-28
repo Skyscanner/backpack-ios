@@ -35,6 +35,16 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextBaseEmphasized = 1,
 
     /**
+     * Represents font size 16 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextBodyDefault = 31,
+
+    /**
+     * Represents font size 20 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextBodyLongform = 30,
+
+    /**
      * Represents font size 10 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextCaps = 11,
@@ -43,6 +53,41 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
      * Represents font size 10 with weight UIFontWeightBold.
      */
     BPKFontStyleTextCapsEmphasized = 12,
+
+    /**
+     * Represents font size 12 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextCaption = 35,
+
+    /**
+     * Represents font size 14 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextFootnote = 34,
+
+    /**
+     * Represents font size 40 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading1 = 28,
+
+    /**
+     * Represents font size 32 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading2 = 27,
+
+    /**
+     * Represents font size 24 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading3 = 26,
+
+    /**
+     * Represents font size 20 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading4 = 25,
+
+    /**
+     * Represents font size 16 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading5 = 24,
 
     /**
      * Represents font size 120 with weight UIFontWeightBold.
@@ -70,6 +115,16 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextHero5 = 23,
 
     /**
+     * Represents font size 16 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextLabel1 = 33,
+
+    /**
+     * Represents font size 14 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextLabel2 = 32,
+
+    /**
      * Represents font size 20 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextLg = 2,
@@ -88,6 +143,11 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
      * Represents font size 14 with weight UIFontWeightBold.
      */
     BPKFontStyleTextSmEmphasized = 5,
+
+    /**
+     * Represents font size 24 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextSubheading = 29,
 
     /**
      * Represents font size 24 with weight UIFontWeightRegular.

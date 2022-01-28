@@ -57,16 +57,8 @@ const VALID_SPACINGS = new Set([
 const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
 const VALID_BORDER_WIDTHS = new Set(['sm', 'lg', 'xl']);
 const WEIGHT_MAP = {
-  normal: 'UIFontWeightRegular',
-  bold: 'UIFontWeightBold',
-  100: 'UIFontWeightUltraLight',
-  200: 'UIFontWeightThin',
-  300: 'UIFontWeightLight',
   400: 'UIFontWeightRegular',
-  500: 'UIFontWeightMedium',
-  600: 'UIFontWeightSemibold',
   700: 'UIFontWeightBold',
-  800: 'UIFontWeightHeavy',
   900: 'UIFontWeightBlack',
 };
 const LEGIBLE_NAMES = [
@@ -117,6 +109,22 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextHero3: 21,
   BPKFontStyleTextHero4: 22,
   BPKFontStyleTextHero5: 23,
+
+  BPKFontStyleTextHeading5: 24,
+  BPKFontStyleTextHeading4: 25,
+  BPKFontStyleTextHeading3: 26,
+  BPKFontStyleTextHeading2: 27,
+  BPKFontStyleTextHeading1: 28,
+  
+  BPKFontStyleTextSubheading: 29,
+  BPKFontStyleTextBodyLongform: 30,
+  BPKFontStyleTextBodyDefault: 31,
+  
+  BPKFontStyleTextLabel2: 32,
+  BPKFontStyleTextLabel1: 33,
+
+  BPKFontStyleTextFootnote: 34,
+  BPKFontStyleTextCaption: 35,
 };
 
 const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
