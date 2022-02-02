@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,6 +69,7 @@ static NSUInteger const MAX_RATING = 5;
 - (void)setupWithSize:(BPKStarSize)size {
     _size = size;
     _rating = 0.0;
+    _rounding = BPKStarRatingRoundingDown;
     [self setupStackView];
     [self setupStars];
 
@@ -122,17 +123,28 @@ static NSUInteger const MAX_RATING = 5;
     }
 }
 
+- (void)setRounding:(BPKStarRatingRounding)rounding {
+    BPKAssertMainThread();
+    if (_rounding != rounding) {
+        _rounding = rounding;
+        if (self.rating > 0) {
+            [self updateRating];
+        }
+    }
+}
+
 #pragma mark - Updates
 
 - (void)updateRating {
+    float rating = [self roundRating:self.rating];
     for (NSInteger starIndex = 0; starIndex < self.stackView.arrangedSubviews.count; starIndex++) {
         NSAssert([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]], STARRATING_SUBVIEW_ASSERTION_MESSAGE);
 
         if ([self.stackView.arrangedSubviews[starIndex] isKindOfClass:[BPKStar class]]) {
             BPKStar *star = self.stackView.arrangedSubviews[starIndex];
 
-            float rest = self.rating - starIndex;
-            if (starIndex + 1.0f <= self.rating) {
+            float rest = rating - starIndex;
+            if (starIndex + 1.0f <= rating) {
                 star.state = BPKStarStateFull;
             } else if (rest >= 0.5f && rest < 1.0f) {
                 star.state = BPKStarStateHalf;
@@ -153,6 +165,16 @@ static NSUInteger const MAX_RATING = 5;
     }
 
     [self setNeedsLayout];
+}
+
+- (float)roundRating:(float)rating {
+    if (self.rounding == BPKStarRatingRoundingDown) {
+        return floorf(rating * 2) / 2;
+    } else if (self.rounding == BPKStarRatingRoundingUp) {
+        return ceilf(rating * 2) / 2;
+    } else {
+        return round(rating * 2) / 2;
+    }
 }
 
 @end

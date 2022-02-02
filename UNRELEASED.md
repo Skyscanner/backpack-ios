@@ -22,6 +22,8 @@ See [`CHANGELOG.md`](CHANGELOG.md) for real-world examples of good changelog ent
 
 - Backpack/Calendar:
   - New `timeStone` prop for controlling time. See &lt;link to docs site&gt;.
+- Backpack/StarRating:
+  - New `rounding` property to adjust how the rating value fills in the stars 
 
 **Fixed:**
 
