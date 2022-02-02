@@ -1,0 +1,58 @@
+// clang-format off
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018-2022 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Foundations
+
+public struct TextStyle {
+    let fontSize: FontSize
+    let fontWeight: FontWeight
+    let letterSpacing: LetterSpacing
+    let lineHeight: LineHeight
+}
+
+public struct FontSize {
+    let value: CGFloat
+}
+
+public struct FontWeight {
+    let value: CGFloat
+}
+
+public struct LetterSpacing {
+    let value: CGFloat
+}
+
+public struct LineHeight {
+    let value: CGFloat
+}
+
+}
+public extension TextStyle {
+    {% for style in fontStyle %}
+    static var {{style.name}}: TextStyle {
+        TextStyle(
+            fontSize: .init(value: {{style.fontSize}})
+            fontWeight: .init(value: {{style.fontWeight}})
+            letterSpacing: .init(value: {{style.letterSpacing}})
+            lineHeight: .init(value: {{style.lineHeight}})
+        )
+    }
+
+    {% endfor %}
+}

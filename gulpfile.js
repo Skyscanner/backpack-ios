@@ -28,6 +28,7 @@ const del = require('del');
 const _ = require('lodash');
 const tinycolor = require('tinycolor2');
 const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
+const rawTokens = require('@skyscanner/bpk-foundations-ios/tokens/base.raw.ios.json');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
@@ -37,6 +38,7 @@ const PATHS = {
 const TYPES = new Set([
   'color',
   'font',
+  'lineHeight',
   'spacing',
   'radii',
   'borderWidth',
@@ -54,6 +56,23 @@ const VALID_SPACINGS = new Set([
   'xxl',
   'icontext',
 ]);
+const VALID_LINE_HEIGHTS = new Set([
+  'base',
+  'basetight',
+  'xs',
+  'sm',
+  'lg',
+  'lgtight',
+  'xl',
+  'xltight',
+  'xxl',
+  'xxxl',
+  'xxxxl',
+  '5xl',
+  '6xl',
+  '7xl',
+  '8xl',
+]);
 const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
 const VALID_BORDER_WIDTHS = new Set(['sm', 'lg', 'xl']);
 const WEIGHT_MAP = {
@@ -66,9 +85,18 @@ const LEGIBLE_NAMES = [
   { identifier: 'Sm', legibleName: 'small' },
   { identifier: 'Md', legibleName: 'medium' },
   { identifier: 'Base', legibleName: 'base' },
+  { identifier: 'BaseTight', legibleName: 'base tight' },
   { identifier: 'Lg', legibleName: 'large' },
+  { identifier: 'LgTight', legibleName: 'large tight' },
   { identifier: 'Xl', legibleName: 'extra large' },
+  { identifier: 'XlTight', legibleName: 'extra large tight' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
+  { identifier: 'Xxxl', legibleName: 'extra extra extra large' },
+  { identifier: 'Xxxxl', legibleName: 'extra extra extra extra large' },
+  { identifier: '5Xl', legibleName: '5 extra large' },
+  { identifier: '6Xl', legibleName: '6 extra large' },
+  { identifier: '7Xl', legibleName: '7 extra large' },
+  { identifier: '8Xl', legibleName: '8 extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
@@ -115,11 +143,11 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextHeading3: 26,
   BPKFontStyleTextHeading2: 27,
   BPKFontStyleTextHeading1: 28,
-  
+
   BPKFontStyleTextSubheading: 29,
   BPKFontStyleTextBodyLongform: 30,
   BPKFontStyleTextBodyDefault: 31,
-  
+
   BPKFontStyleTextLabel2: 32,
   BPKFontStyleTextLabel1: 33,
 
@@ -187,10 +215,12 @@ const convertFontWeight = (weightString) => {
 const generatePrefixedConst = ({ name, ...rest }) => {
   const capitalize = (input) => input.charAt(0).toUpperCase() + input.slice(1);
   return {
-    name: `BPK${capitalize(name)}`,
+    name: formatPrefixedConstName(name),
     ...rest,
   };
 };
+
+const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${name.slice(1)}`
 
 const isDynamicColor = (entity) => entity.value && entity.darkValue;
 
@@ -317,6 +347,82 @@ const parseTokens = (tokensData) => {
     .sortBy(['name'])
     .value();
 
+  const lineHeights = _.chain(tokensData.properties)
+    .filter(({ category }) => category === 'typesettings')
+    .filter(({ name }) => VALID_LINE_HEIGHTS.has(name.replace('lineHeight', '').toLowerCase()))
+    .map(p => {
+      return {
+        styleName: p.name.replace('lineHeight', ''),
+        ...p
+      }
+    })
+    .map(l => {
+      const fontStyle = tokensData.properties
+        .filter(p => p.name.startsWith('text') && p.name.includes('LineHeight') && p.name.includes(l.styleName))[0]
+      l.styleName = fontStyle
+      return l
+    })
+    .map((p) => {
+      return {
+        type: 'lineHeight',
+        name: formatPrefixedConstName(p.name),
+        value: p.value,
+        legibleName: getLegibleName(p.name),
+        styleName: p.styleName
+      }
+    })
+    .sortBy(s => parseInt(s.value, 10))
+    .value();
+
+  const tokensWithCategory = category => Object.values(rawTokens.props).filter(p => p.category === category)
+
+  const textStyles = _.chain([
+    ...tokensWithCategory('typesettings'), //lineHeight
+    ...tokensWithCategory('font-sizes'),
+    ...tokensWithCategory('font-weights'),
+    ...tokensWithCategory('letter-spacings')
+  ])
+    .filter(a => a.name.startsWith('TEXT_'))
+    .groupBy(({ name }) =>
+      name
+        .replace('_FONT_SIZE', '')
+        .replace('_FONT_WEIGHT', '')
+        .replace('_LETTER_SPACING', '')
+        .replace('_LINE_HEIGHT', ''),
+    )
+    .map((values, key) => [values, key])
+    .map(a => {
+      console.log('a', a[1]
+        .replace('_FONT_SIZE', '')
+        .replace('_FONT_WEIGHT', '')
+        .replace('_LETTER_SPACING', '')
+        .replace('_LINE_HEIGHT', '')
+      );
+      return a
+    })
+    .map(token => {
+      const properties = token[0]
+      const key = token[1]
+
+      const sizeProp = _.filter(properties, ({ category }) => category === 'font-sizes')
+      const weightProp = _.filter(properties, ({ category }) => category === 'font-weights')
+      const styleName = key.replace('TEXT_', '').toLowerCase()
+      const letterSpacingProp = _.filter(properties, ({ category }) => category === 'letter-spacings')
+      const lineHeightProp = _.filter(properties, ({ category }) => category === 'typesettings')
+      if (sizeProp.length !== 1 || weightProp.length !== 1) {
+        throw new Error(`Expected all text sizes to have a weight, lineHeight and font size. ${key}`);
+      }
+
+      return {
+        name: styleName,
+        size: `@dimen/bpkText${pascalCase(sizeProp[0].originalValue.split('_')[2])}Size`,
+        fontFamily: fontFamilyMappings[fontWeight],
+        letterSpacing: (letterSpacingProp.size == 1) ? letterSpacingProp[0].value : null,
+        lineHeight: lineHeightProp.value
+      }
+    })
+    .value()
+
   const spacings = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'spacings')
     .filter(({ name }) =>
@@ -430,6 +536,8 @@ const parseTokens = (tokensData) => {
     ...dynamicColors,
     ...colors,
     ...fonts,
+    ...lineHeights,
+    ...textStyles,
     ...spacings,
     ...radii,
     ...borderWidths,
@@ -533,6 +641,14 @@ gulp.task(
           ),
       );
     }
+
+    streams.push(
+      gulp
+        .src(path.join(PATHS.templates, 'BPKTextStyle.swift.njk'))
+        .pipe(data(() => templateData))
+        .pipe(nunjucks.compile())
+        .pipe(rename('TextStyle/Classes/Generated/BPKTextStyle.swift')),
+    );
 
     streams.push(
       gulp
