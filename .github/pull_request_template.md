@@ -4,7 +4,7 @@ Thanks for contributing to Backpack :pray:
 Please include a description of the changes you are introducing and some screenshots if appropriate.
 -->
 
-+ [ ] Check this if you have read and followed the [contributing guidelines](https://github.com/Skyscanner/backpack-android/blob/main/CONTRIBUTING.md)
++ [ ] Check this if you have read and followed the [contributing guidelines](https://github.com/Skyscanner/backpack-ios/blob/main/CONTRIBUTING.md)
 
 Remember to include the following changes:
 + [ ] `UNRELEASED.md`
