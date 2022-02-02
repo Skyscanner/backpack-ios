@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -155,7 +155,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-            self.shapeLayer.frame = CGRectMake(paddingX + paddingInnerCircle / 2, paddingInnerCircle / 2, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle);
+        self.shapeLayer.frame = CGRectMake(paddingX + paddingInnerCircle / 2, paddingInnerCircle / 2, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle);
         break;
 
     default:
