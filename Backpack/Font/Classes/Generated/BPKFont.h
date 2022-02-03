@@ -297,7 +297,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSAttributedString *)attributedStringFromStyle:(BPKFontStyle)style
                                          andColor:(UIColor *)color
-                                          onLabel:(UILabel *)label;
+                               onAttributedString:(NSAttributedString *)attributedText;
 
 @end
 

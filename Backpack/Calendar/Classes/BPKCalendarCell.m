@@ -189,18 +189,18 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         case SelectionTypeSameDay:
             self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
                                                                        andColor:selectedColor
-                                                                        onLabel:self.titleLabel];
+                                                                        onAttributedString:self.titleLabel.attributedText];
             break;
         case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
                                                                        andColor:rangeTitleColor
-                                                                        onLabel:self.titleLabel];
+                                                             onAttributedString:self.titleLabel.attributedText];
             break;
 
         default:
             self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
                                                                        andColor:color
-                                                                        onLabel:self.titleLabel];
+                                                             onAttributedString:self.titleLabel.attributedText];
             break;
         }
     }
