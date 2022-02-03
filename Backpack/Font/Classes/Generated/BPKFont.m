@@ -46,8 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor {
-    NSDictionary *attributes = [self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]];
-    return [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content];
+    return [self attributedStringWithFontStyle:fontStyle
+                                      andColor:textColor
+                            onAttributedString:attributedString];
 }
 
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle {
@@ -89,23 +91,23 @@ NS_ASSUME_NONNULL_BEGIN
     };
 }
 
-+ (NSAttributedString *)attributedStringFromStyle:(BPKFontStyle)style andColor:(UIColor *)color onAttributedString:(NSAttributedString *)attributedText {
-    NSMutableAttributedString *newAttributedString = [[self attributedStringWithFontStyle:style content:attributedText.string textColor:color] mutableCopy];
-    NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:style];
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText {
+    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]] mutableCopy];
+    NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:fontStyle];
     if (paragraphStyle != nil) {
-        [newAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedText.length)];
+        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
-    return newAttributedString;
+    return [[NSAttributedString alloc] initWithString:attributedText.string attributes:[attributes copy]];
 }
 
-+ (NSParagraphStyle *) paragraphStyleOnAttributedString:(NSAttributedString *)attributedText forStyle:(BPKFontStyle)style {
-    NSParagraphStyle *paragraphStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
-    if (paragraphStyle == nil) { return nil; }
-    NSMutableParagraphStyle *mutableParagraph = [paragraphStyle mutableCopy];
++ (NSParagraphStyle *)paragraphStyleOnAttributedString:(NSAttributedString *)attributedText forStyle:(BPKFontStyle)style {
+    NSParagraphStyle *existingStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
+    if (existingStyle == nil) { return nil; }
+    NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
     UIFont *font = [self fontForFontStyle:style];
     CGFloat lineHeight = [self lineHeightForStyle:style];
-    [mutableParagraph setLineSpacing:lineHeight - font.lineHeight];
-    return mutableParagraph;
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    return paragraphStyle;
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {

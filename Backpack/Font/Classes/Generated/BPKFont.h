@@ -277,6 +277,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
 
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText;
+
 /**
  * Set the fontfaces to use globally.
  *
@@ -294,10 +296,6 @@ NS_ASSUME_NONNULL_BEGIN
  * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
-
-+ (NSAttributedString *)attributedStringFromStyle:(BPKFontStyle)style
-                                         andColor:(UIColor *)color
-                               onAttributedString:(NSAttributedString *)attributedText;
 
 @end
 
