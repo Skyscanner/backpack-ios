@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]] mutableCopy];
     NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:fontStyle];
     if (paragraphStyle != nil) {
-//        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
     return [[NSAttributedString alloc] initWithString:attributedText.string attributes:[attributes copy]];
 }
