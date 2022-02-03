@@ -199,13 +199,6 @@ const generatePrefixedConst = ({ name, ...rest }) => {
   };
 };
 
-const pascalCase = s => {
-  _.flow(
-    _.camelCase,
-    _.upperFirst,
-  )(s);
-}
-
 const isDynamicColor = (entity) => entity.value && entity.darkValue;
 
 const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${name.slice(1)}`
@@ -361,32 +354,6 @@ const parseTokens = (tokensData) => {
     })
     .sortBy(['name'])
     .value();
-
-  // const lineHeights = _.chain(tokensData.properties)
-  //   .filter(({ category }) => category === 'typesettings')
-  //   .map(p => {
-  //     return {
-  //       styleName: p.name.replace('lineHeight', ''),
-  //       ...p
-  //     }
-  //   })
-  //   .map(l => {
-  //     const fontStyle = tokensData.properties
-  //       .filter(p => p.name.startsWith('text') && p.name.includes('LineHeight') && p.name.includes(l.styleName))[0]
-  //     l.styleName = fontStyle
-  //     return l
-  //   })
-  //   .map((p) => {
-  //     return {
-  //       type: 'lineHeight',
-  //       name: formatPrefixedConstName(p.name),
-  //       value: p.value,
-  //       legibleName: getLegibleName(p.name),
-  //       styleName: p.styleName
-  //     }
-  //   })
-  //   .sortBy(s => parseInt(s.value, 10))
-  //   .value();
 
   const spacings = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'spacings')

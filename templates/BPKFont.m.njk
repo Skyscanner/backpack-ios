@@ -38,21 +38,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
-    NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
-
-    return attributedString;
+    return [self attributedStringWithFontStyle:fontStyle
+                                       content:content
+                                     textColor:BPKColor.textPrimaryColor];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor {
-    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
-    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
-
-
-    return attributedString;
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content];
+    return [self attributedStringWithFontStyle:fontStyle
+                                      andColor:textColor
+                            onAttributedString:attributedString];
 }
 
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle {
@@ -63,16 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
-    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontManager:[BPKFontManager sharedInstance]];
-}
-
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
-                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes
-                                                        fontManager:(BPKFontManager *)fontManager {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:fontManager] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:[BPKFontManager sharedInstance]] mutableCopy];
 
     for (NSAttributedStringKey key in customAttributes) {
-        if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
+        if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName] || [key isEqualToString:NSParagraphStyleAttributeName]) {
             // We explicitly ignore these as they would change the look of the rendered text significantly
             // enough that it would no longer be the Backpack style.
             continue;
@@ -84,26 +75,39 @@ NS_ASSUME_NONNULL_BEGIN
     return [attributes copy];
 }
 
-
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
     return [self attributesForFontStyle:style fontManager:[BPKFontManager sharedInstance]];
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    return [self attributesForFontStyle:style color:BPKColor.textPrimaryColor fontManager:fontManager];
+}
 
-    UIFont *font = [self fontForStyle:style fontManager:fontManager];
-    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style color:(UIColor *)color fontManager:(BPKFontManager *)fontManager {
+    return @{
+        NSForegroundColorAttributeName: color,
+        NSFontAttributeName: [self fontForStyle:style fontManager:fontManager],
+        NSKernAttributeName: [self letterSpacingForStyle:style]
+    };
+}
+
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText {
+    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]] mutableCopy];
+    NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:fontStyle];
+    if (paragraphStyle != nil) {
+        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    }
+    return [[NSAttributedString alloc] initWithString:attributedText.string attributes:[attributes copy]];
+}
+
++ (NSParagraphStyle *)paragraphStyleOnAttributedString:(NSAttributedString *)attributedText forStyle:(BPKFontStyle)style {
+    NSParagraphStyle *existingStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
+    if (existingStyle == nil) { return nil; }
+    NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
+    UIFont *font = [self fontForFontStyle:style];
     CGFloat lineHeight = [self lineHeightForStyle:style];
-    [paragraphStyle setMaximumLineHeight:lineHeight];
-    [paragraphStyle setMinimumLineHeight:lineHeight];
-    NSDictionary *result = @{
-                   NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                   NSFontAttributeName: font,
-                   NSParagraphStyleAttributeName: paragraphStyle,
-                   NSKernAttributeName: [self letterSpacingForStyle:style]
-                   };
-
-    return result;
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    return paragraphStyle;
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
