@@ -468,7 +468,6 @@ const parseTokens = (tokensData) => {
     ...dynamicColors,
     ...colors,
     ...fonts,
-    // ...lineHeights,
     ...spacings,
     ...radii,
     ...borderWidths,
