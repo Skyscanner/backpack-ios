@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
                                                                               withCustomAttributes:self.customFontAttributes];
 
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
+    NSAttributedString *newString = [BPKFont attributedStringFromStyle:self.fontStyle andColor:BPKColor.textPrimaryColor onLabel:self.contentView];
     self.contentView.text = newString;
 
     // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.
