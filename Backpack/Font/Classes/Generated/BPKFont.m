@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor {
+    if (content == nil) { return nil; }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content];
     return [self attributedStringWithFontStyle:fontStyle
                                       andColor:textColor
@@ -84,18 +85,20 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style color:(UIColor *)color fontManager:(BPKFontManager *)fontManager {
-    return @{
-        NSForegroundColorAttributeName: color,
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [@{
         NSFontAttributeName: [self fontForStyle:style fontManager:fontManager],
-        NSKernAttributeName: [self letterSpacingForStyle:style]
-    };
+        NSKernAttributeName: [self letterSpacingForStyle:style]} mutableCopy];
+    if (color != nil) {
+        attributes[NSForegroundColorAttributeName] = color;
+    }
+    return attributes;
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText {
     NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]] mutableCopy];
     NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:fontStyle];
     if (paragraphStyle != nil) {
-        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+//        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
     return [[NSAttributedString alloc] initWithString:attributedText.string attributes:[attributes copy]];
 }

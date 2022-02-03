@@ -54,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
         NSRange range = NSMakeRange(0, textField.text.length);
         NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
 
-        XCTAssertNil(attributes[NSKernAttributeName]);
         XCTAssertNotNil(attributes[NSFontAttributeName]);
         XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
     }

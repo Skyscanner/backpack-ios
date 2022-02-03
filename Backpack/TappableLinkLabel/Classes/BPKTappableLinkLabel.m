@@ -171,11 +171,14 @@ NS_ASSUME_NONNULL_BEGIN
     NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
                                                                               withCustomAttributes:self.customFontAttributes];
 
-    self.contentView.text = [BPKFont attributedStringWithFontStyle:self.fontStyle content:self.contentView.text];
-
+    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
+    
+    UIColor *textColor = self.customFontAttributes[NSForegroundColorAttributeName];
+    self.contentView.text = newString;
+    self.contentView.attributedText = [BPKFont attributedStringWithFontStyle:self.fontStyle content:self.text textColor:textColor];
     // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.
-    self.contentView.font = newStringAttributes[NSFontAttributeName];
-
+    self.contentView.font = [BPKFont fontForFontStyle:self.fontStyle];
+    
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
         if (linkDefinition.hasURLDefinition) {
