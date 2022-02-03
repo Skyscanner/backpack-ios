@@ -51,7 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
     [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
 
-
     return attributedString;
 }
 
@@ -92,12 +91,36 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
 
     UIFont *font = [self fontForStyle:style fontManager:fontManager];
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat lineHeight = [self lineHeightForStyle:style];
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
     NSDictionary *result = @{
+                   NSParagraphStyleAttributeName: paragraphStyle,
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
+                   NSKernAttributeName: [self letterSpacingForStyle:style]
                    };
 
     return result;
+}
+
++ (NSAttributedString *)attributedStringFromStyle:(BPKFontStyle)style andColor:(UIColor *)color onLabel:(UILabel *)label {
+    NSMutableAttributedString *newAttributedString = [[self attributedStringWithFontStyle:style content:label.text textColor:color] mutableCopy];
+    NSParagraphStyle *paragraphStyle = [BPKFont paragraphStyleOnLabel:label forStyle:style];
+    if (paragraphStyle != nil) {
+        [newAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, label.attributedText.length)];
+    }
+    return newAttributedString;
+}
+
++ (NSParagraphStyle *) paragraphStyleOnLabel:(UILabel *)label forStyle:(BPKFontStyle)style {
+    NSParagraphStyle *paragraphStyle = [label.attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, label.text.length)];
+    if (paragraphStyle == nil) { return nil; }
+    NSMutableParagraphStyle *mutableParagraph = [paragraphStyle mutableCopy];
+    UIFont *font = [self fontForFontStyle:style];
+    CGFloat lineHeight = [self lineHeightForStyle:style];
+    [mutableParagraph setLineSpacing:lineHeight - font.lineHeight];
+    return mutableParagraph;
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
@@ -213,6 +236,133 @@ NS_ASSUME_NONNULL_BEGIN
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    }
+}
+
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    switch (style) {
+        case BPKFontStyleTextBase: 
+            // Corresponding to Letter Spacing BASE
+            return @(0.12);
+        case BPKFontStyleTextCaps: 
+            // Corresponding to Letter Spacing CAPS
+            return @(0.28);
+        case BPKFontStyleTextHero1: 
+            // Corresponding to Letter Spacing TIGHT
+            return @(-0.02);
+        case BPKFontStyleTextHero2: 
+            // Corresponding to Letter Spacing TIGHT
+            return @(-0.02);
+        case BPKFontStyleTextHero3: 
+            // Corresponding to Letter Spacing TIGHT
+            return @(-0.02);
+        case BPKFontStyleTextHero4: 
+            // Corresponding to Letter Spacing TIGHT
+            return @(-0.02);
+        case BPKFontStyleTextHero5: 
+            // Corresponding to Letter Spacing TIGHT
+            return @(-0.02);
+        case BPKFontStyleTextSm: 
+            // Corresponding to Letter Spacing SM
+            return @(0.154);
+        
+        default:
+            return @(0); // No Defined Letter Spacing
+    }
+}
+
++ (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
+    switch (style) {
+        case BPKFontStyleTextBase: 
+            // Corresponding to Line Height BASE
+            return 24;
+        case BPKFontStyleTextBaseEmphasized: 
+            // Corresponding to Line Height BASE-TIGHT
+            return 20;
+        case BPKFontStyleTextBodyDefault: 
+            // Corresponding to Line Height BASE
+            return 24;
+        case BPKFontStyleTextBodyLongform: 
+            // Corresponding to Line Height LG
+            return 28;
+        case BPKFontStyleTextCaption: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextFootnote: 
+            // Corresponding to Line Height SM
+            return 20;
+        case BPKFontStyleTextHeading1: 
+            // Corresponding to Line Height XXXL
+            return 48;
+        case BPKFontStyleTextHeading2: 
+            // Corresponding to Line Height XXL
+            return 40;
+        case BPKFontStyleTextHeading3: 
+            // Corresponding to Line Height XL-TIGHT
+            return 28;
+        case BPKFontStyleTextHeading4: 
+            // Corresponding to Line Height LG-TIGHT
+            return 24;
+        case BPKFontStyleTextHeading5: 
+            // Corresponding to Line Height BASE-TIGHT
+            return 20;
+        case BPKFontStyleTextHero1: 
+            // Corresponding to Line Height 8XL
+            return 120;
+        case BPKFontStyleTextHero2: 
+            // Corresponding to Line Height 7XL
+            return 96;
+        case BPKFontStyleTextHero3: 
+            // Corresponding to Line Height 6XL
+            return 84;
+        case BPKFontStyleTextHero4: 
+            // Corresponding to Line Height 5XL
+            return 72;
+        case BPKFontStyleTextHero5: 
+            // Corresponding to Line Height XXXXL
+            return 56;
+        case BPKFontStyleTextLabel1: 
+            // Corresponding to Line Height BASE
+            return 24;
+        case BPKFontStyleTextLabel2: 
+            // Corresponding to Line Height SM
+            return 20;
+        case BPKFontStyleTextLg: 
+            // Corresponding to Line Height LG
+            return 28;
+        case BPKFontStyleTextLgEmphasized: 
+            // Corresponding to Line Height LG-TIGHT
+            return 24;
+        case BPKFontStyleTextSm: 
+            // Corresponding to Line Height SM
+            return 20;
+        case BPKFontStyleTextSmEmphasized: 
+            // Corresponding to Line Height SM
+            return 20;
+        case BPKFontStyleTextSubheading: 
+            // Corresponding to Line Height XL
+            return 32;
+        case BPKFontStyleTextXl: 
+            // Corresponding to Line Height XL
+            return 32;
+        case BPKFontStyleTextXlEmphasized: 
+            // Corresponding to Line Height XL-TIGHT
+            return 28;
+        case BPKFontStyleTextXs: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextXsEmphasized: 
+            // Corresponding to Line Height XS
+            return 16;
+        case BPKFontStyleTextXxlEmphasized: 
+            // Corresponding to Line Height XXL
+            return 40;
+        case BPKFontStyleTextXxxlEmphasized: 
+            // Corresponding to Line Height XXXL
+            return 48;
+        
+        default:
+            return 0; // No Defined Line Height
     }
 }
 

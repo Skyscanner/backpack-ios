@@ -66,9 +66,18 @@ const LEGIBLE_NAMES = [
   { identifier: 'Sm', legibleName: 'small' },
   { identifier: 'Md', legibleName: 'medium' },
   { identifier: 'Base', legibleName: 'base' },
+  { identifier: 'BaseTight', legibleName: 'base tight' },
   { identifier: 'Lg', legibleName: 'large' },
+  { identifier: 'LgTight', legibleName: 'large tight' },
   { identifier: 'Xl', legibleName: 'extra large' },
+  { identifier: 'XlTight', legibleName: 'extra large tight' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
+  { identifier: 'Xxxl', legibleName: 'extra extra extra large' },
+  { identifier: 'Xxxxl', legibleName: 'extra extra extra extra large' },
+  { identifier: '5Xl', legibleName: '5 extra large' },
+  { identifier: '6Xl', legibleName: '6 extra large' },
+  { identifier: '7Xl', legibleName: '7 extra large' },
+  { identifier: '8Xl', legibleName: '8 extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
@@ -115,18 +124,17 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextHeading3: 26,
   BPKFontStyleTextHeading2: 27,
   BPKFontStyleTextHeading1: 28,
-  
+
   BPKFontStyleTextSubheading: 29,
   BPKFontStyleTextBodyLongform: 30,
   BPKFontStyleTextBodyDefault: 31,
-  
+
   BPKFontStyleTextLabel2: 32,
   BPKFontStyleTextLabel1: 33,
 
   BPKFontStyleTextFootnote: 34,
   BPKFontStyleTextCaption: 35,
 };
-
 const format = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
 
 const enumValueForName = (name) => {
@@ -185,14 +193,22 @@ const convertFontWeight = (weightString) => {
 };
 
 const generatePrefixedConst = ({ name, ...rest }) => {
-  const capitalize = (input) => input.charAt(0).toUpperCase() + input.slice(1);
   return {
-    name: `BPK${capitalize(name)}`,
+    name: formatPrefixedConstName(name),
     ...rest,
   };
 };
 
+const pascalCase = s => {
+  _.flow(
+    _.camelCase,
+    _.upperFirst,
+  )(s);
+}
+
 const isDynamicColor = (entity) => entity.value && entity.darkValue;
+
+const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${name.slice(1)}`
 
 const parseTokens = (tokensData) => {
   /* eslint-disable no-unused-vars */
@@ -273,13 +289,15 @@ const parseTokens = (tokensData) => {
       ({ category }) =>
         category === 'font-sizes' ||
         category === 'font-weights' ||
+        category === 'typesettings' ||
         category === 'letter-spacings',
     )
     .groupBy(({ name }) =>
       name
         .replace('FontSize', '')
         .replace('FontWeight', '')
-        .replace('LetterSpacing', ''),
+        .replace('LetterSpacing', '')
+        .replace('LineHeight', ''),
     )
     .map((values, key) => [values, key])
     .filter((token) => {
@@ -298,12 +316,37 @@ const parseTokens = (tokensData) => {
         ({ category }) => category === 'font-weights',
       );
 
+      const lineHeightProp = _.filter(
+        properties,
+        ({ category }) => category === 'typesettings',
+      );
+
+      const letterSpacingProp = _.filter(
+        properties,
+        ({ category }) => category === 'letter-spacings',
+      );
+
       if (sizeProp.length !== 1 || weightProp.length !== 1) {
         throw new Error(
           `Expected all text sizes to have line height, letter spacing, weight, and font size. Not all were found for ${key}`,
         );
       }
       const enumName = `BPKFontStyle${_.upperFirst(key)}`;
+      const letterSpacingFor = prop => {
+        if (!prop || !prop.value) { return null }
+        return {
+          value: Number.parseFloat(prop.value),
+          name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')
+        }
+      }
+
+      const lineHeightFor = prop => {
+        if (!prop) { return null }
+        return {
+          value: Number.parseInt(prop.value, 10),
+          name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
+        }
+      }
 
       return {
         name: key,
@@ -312,10 +355,38 @@ const parseTokens = (tokensData) => {
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
+        lineHeight: lineHeightFor(lineHeightProp[0]),
+        letterSpacing: letterSpacingFor(letterSpacingProp[0])
       };
     })
     .sortBy(['name'])
     .value();
+
+  // const lineHeights = _.chain(tokensData.properties)
+  //   .filter(({ category }) => category === 'typesettings')
+  //   .map(p => {
+  //     return {
+  //       styleName: p.name.replace('lineHeight', ''),
+  //       ...p
+  //     }
+  //   })
+  //   .map(l => {
+  //     const fontStyle = tokensData.properties
+  //       .filter(p => p.name.startsWith('text') && p.name.includes('LineHeight') && p.name.includes(l.styleName))[0]
+  //     l.styleName = fontStyle
+  //     return l
+  //   })
+  //   .map((p) => {
+  //     return {
+  //       type: 'lineHeight',
+  //       name: formatPrefixedConstName(p.name),
+  //       value: p.value,
+  //       legibleName: getLegibleName(p.name),
+  //       styleName: p.styleName
+  //     }
+  //   })
+  //   .sortBy(s => parseInt(s.value, 10))
+  //   .value();
 
   const spacings = _.chain(tokensData.properties)
     .filter(({ category }) => category === 'spacings')
@@ -430,6 +501,7 @@ const parseTokens = (tokensData) => {
     ...dynamicColors,
     ...colors,
     ...fonts,
+    // ...lineHeights,
     ...spacings,
     ...radii,
     ...borderWidths,

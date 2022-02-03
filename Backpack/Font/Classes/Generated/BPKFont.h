@@ -295,6 +295,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
 
++ (NSAttributedString *)attributedStringFromStyle:(BPKFontStyle)style
+                                         andColor:(UIColor *)color
+                                          onLabel:(UILabel *)label;
+
 @end
 
 NS_ASSUME_NONNULL_END

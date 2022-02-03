@@ -187,20 +187,20 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
         case SelectionTypeSameDay:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
+            self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
+                                                                       andColor:selectedColor
+                                                                        onLabel:self.titleLabel];
             break;
         case SelectionTypeMiddle:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:rangeTitleColor];
+            self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
+                                                                       andColor:rangeTitleColor
+                                                                        onLabel:self.titleLabel];
             break;
 
         default:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBaseEmphasized
-                                                                            content:self.titleLabel.text
-                                                                          textColor:color];
+            self.titleLabel.attributedText = [BPKFont attributedStringFromStyle:BPKFontStyleTextBaseEmphasized
+                                                                       andColor:color
+                                                                        onLabel:self.titleLabel];
             break;
         }
     }

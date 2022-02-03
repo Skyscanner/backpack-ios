@@ -92,9 +92,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
 
     UIFont *font = [self fontForStyle:style fontManager:fontManager];
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    CGFloat lineHeight = [self lineHeightForStyle:style];
+    [paragraphStyle setMaximumLineHeight:lineHeight];
+    [paragraphStyle setMinimumLineHeight:lineHeight];
     NSDictionary *result = @{
                    NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
                    NSFontAttributeName: font,
+                   NSParagraphStyleAttributeName: paragraphStyle,
+                   NSKernAttributeName: [self letterSpacingForStyle:style]
                    };
 
     return result;
@@ -113,6 +119,28 @@ NS_ASSUME_NONNULL_BEGIN
              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    }
+}
+
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}{% if f.letterSpacing != null -%}case {{f.enumName}}: 
+            // Corresponding to Letter Spacing {{f.letterSpacing.name}}
+            return @({{f.letterSpacing.value}});
+        {% endif %}{% endfor %}
+        default:
+            return @(0); // No Defined Letter Spacing
+    }
+}
+
++ (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}{% if f.lineHeight != null -%}case {{f.enumName}}: 
+            // Corresponding to Line Height {{f.lineHeight.name}}
+            return {{f.lineHeight.value}};
+        {% endif %}{% endfor %}
+        default:
+            return 0; // No Defined Line Height
     }
 }
 
