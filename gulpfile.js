@@ -326,7 +326,7 @@ const parseTokens = (tokensData) => {
       }
       const enumName = `BPKFontStyle${_.upperFirst(key)}`;
       const letterSpacingFor = prop => {
-        if (!prop || !prop.value) { return null }
+        if (!prop || !prop.value || prop.type.includes('legacy')) { return null }
         return {
           value: Number.parseFloat(prop.value),
           name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')

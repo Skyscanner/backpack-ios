@@ -138,40 +138,40 @@ NS_ASSUME_NONNULL_BEGIN
              return [fontManager regularFontWithSize:14];
              
            case BPKFontStyleTextHeading1:
-             return [fontManager regularFontWithSize:40];
+             return [fontManager semiboldFontWithSize:40];
              
            case BPKFontStyleTextHeading2:
-             return [fontManager regularFontWithSize:32];
+             return [fontManager semiboldFontWithSize:32];
              
            case BPKFontStyleTextHeading3:
-             return [fontManager regularFontWithSize:24];
+             return [fontManager semiboldFontWithSize:24];
              
            case BPKFontStyleTextHeading4:
-             return [fontManager regularFontWithSize:20];
+             return [fontManager semiboldFontWithSize:20];
              
            case BPKFontStyleTextHeading5:
-             return [fontManager regularFontWithSize:16];
+             return [fontManager semiboldFontWithSize:16];
              
            case BPKFontStyleTextHero1:
-             return [fontManager regularFontWithSize:120];
+             return [fontManager semiboldFontWithSize:120];
              
            case BPKFontStyleTextHero2:
-             return [fontManager regularFontWithSize:96];
+             return [fontManager semiboldFontWithSize:96];
              
            case BPKFontStyleTextHero3:
-             return [fontManager regularFontWithSize:76];
+             return [fontManager semiboldFontWithSize:76];
              
            case BPKFontStyleTextHero4:
-             return [fontManager regularFontWithSize:64];
+             return [fontManager semiboldFontWithSize:64];
              
            case BPKFontStyleTextHero5:
-             return [fontManager regularFontWithSize:48];
+             return [fontManager semiboldFontWithSize:48];
              
            case BPKFontStyleTextLabel1:
-             return [fontManager regularFontWithSize:16];
+             return [fontManager semiboldFontWithSize:16];
              
            case BPKFontStyleTextLabel2:
-             return [fontManager regularFontWithSize:14];
+             return [fontManager semiboldFontWithSize:14];
              
            case BPKFontStyleTextLg:
              return [fontManager regularFontWithSize:20];
@@ -228,12 +228,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
     switch (style) {
-        case BPKFontStyleTextBase: 
-            // Corresponding to Letter Spacing BASE
-            return @(0.12);
-        case BPKFontStyleTextCaps: 
-            // Corresponding to Letter Spacing CAPS
-            return @(0.28);
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
             return @(-0.02);
@@ -249,9 +243,6 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextHero5: 
             // Corresponding to Letter Spacing TIGHT
             return @(-0.02);
-        case BPKFontStyleTextSm: 
-            // Corresponding to Letter Spacing SM
-            return @(0.154);
         
         default:
             return @(0); // No Defined Letter Spacing

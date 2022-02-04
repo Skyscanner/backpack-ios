@@ -114,9 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
        {% for f in font %}
            case {{f.enumName}}:
-             {% if f.enumName.includes("Heavy") -%}
+             {% if f.weight.includes("UIFontWeightBlack") -%}
                return [fontManager heavyFontWithSize:{{f.size}}];
-             {% elif f.enumName.includes("Emphasized") -%}
+             {% elif f.weight.includes("UIFontWeightBold") -%}
                return [fontManager semiboldFontWithSize:{{f.size}}];
              {% else -%}
                return [fontManager regularFontWithSize:{{f.size}}];
