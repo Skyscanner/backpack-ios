@@ -36,32 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqualObjects(label.text, @"Hello world");
 }
 
-- (void)testSizeWithAlternateStyle {
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXs];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextCaps];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextSm];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextBase];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextLg];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXlEmphasized];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxlEmphasized];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxxl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxxlEmphasized];
-}
-
-- (void)testAlternateLabelSizeWithStyle:(BPKFontStyle)fontStyle {
-    BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFontStyle:fontStyle];
-    label.text = @"Hello world";
-    [label addLinkToURL:[NSURL URLWithString:@"https"] withRange:NSMakeRange(0, 5)];
-    CGSize sizeWithDefaultStyle = label.size;
-
-    label.style = BPKTappableLinkLabelStyleAlternate;
-    CGSize sizeWithAlternateStyle = label.size;
-
-    XCTAssert(sizeWithDefaultStyle.width < sizeWithAlternateStyle.width);
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

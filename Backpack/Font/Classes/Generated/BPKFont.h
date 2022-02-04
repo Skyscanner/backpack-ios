@@ -282,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param fontStyle The desired fontStyle.
  * @param textColor The text color to use.
- * @param onAttributedString The onAttributedString to get preexisting Paragraph Styles from.
+ * @param attributedText The onAttributedString to get preexisting Paragraph Styles from.
  * @return An attributed string with the specified styles.
  *
  * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
@@ -306,6 +306,28 @@ NS_ASSUME_NONNULL_BEGIN
  * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
+
+/**
+ * Create a `NSNumber` for Letter Spacing instance for a specific text style.
+ *
+ *
+ * @param style The desired fontStyle.
+ * @return An instance of `NSNumber` for Letter Spacing for the specificed style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style;
+
+/**
+ * Create a `CGFloat` for Line Height instance for a specific text style.
+ *
+ *
+ * @param style The desired fontStyle.
+ * @return An instance of `CGFloat` for Line Height for the specificed style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (CGFloat)lineHeightForStyle:(BPKFontStyle)style;
 
 @end
 

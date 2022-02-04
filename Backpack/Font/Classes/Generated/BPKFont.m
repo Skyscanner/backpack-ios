@@ -46,7 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor {
-    if (content == nil) { return nil; }
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content];
     return [self attributedStringWithFontStyle:fontStyle
                                       andColor:textColor
@@ -85,13 +84,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style color:(UIColor *)color fontManager:(BPKFontManager *)fontManager {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [@{
+    return @{
+        NSForegroundColorAttributeName: color,
         NSFontAttributeName: [self fontForStyle:style fontManager:fontManager],
-        NSKernAttributeName: [self letterSpacingForStyle:style]} mutableCopy];
-    if (color != nil) {
-        attributes[NSForegroundColorAttributeName] = color;
-    }
-    return attributes;
+        NSKernAttributeName: [self letterSpacingForStyle:style]
+    };
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText {

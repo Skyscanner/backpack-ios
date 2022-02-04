@@ -167,17 +167,32 @@ NS_ASSUME_NONNULL_BEGIN
         self.contentView.text = nil;
         return;
     }
-
-    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                                                              withCustomAttributes:self.customFontAttributes];
-
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
     
-    UIColor *textColor = self.customFontAttributes[NSForegroundColorAttributeName];
-    self.contentView.text = newString;
-    self.contentView.attributedText = [BPKFont attributedStringWithFontStyle:self.fontStyle content:self.text textColor:textColor];
+    
+//    NSMutableAttributedString *attText = [[BPKFont attributedStringWithFontStyle:self.fontStyle content:self.text textColor:textColor] mutableCopy];
+//    self.contentView.kern = 0;
+    
+
+    UIFont *font = [BPKFont fontForFontStyle:self.fontStyle];
+    
     // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.
-    self.contentView.font = [BPKFont fontForFontStyle:self.fontStyle];
+    self.contentView.font = font;
+    self.contentView.kern = [[BPKFont letterSpacingForStyle:self.fontStyle] doubleValue];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    
+    CGFloat lineHeight = [BPKFont lineHeightForStyle:self.fontStyle];
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    
+    NSMutableDictionary *attributes = [@{
+        NSParagraphStyleAttributeName: paragraphStyle,
+        NSFontAttributeName: font
+    } mutableCopy];
+    if (self.customFontAttributes[NSForegroundColorAttributeName] != nil) {
+        attributes[NSForegroundColorAttributeName] = self.customFontAttributes[NSForegroundColorAttributeName];
+    }
+    
+    self.contentView.text = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
     
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {
