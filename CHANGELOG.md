@@ -1,5 +1,17 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 46.1.0
+
+**Added:**
+
+- Backpack/StarRating:
+  - New `rounding` property to adjust how the rating value fills in the stars 
+
+**Fixed:**
+
+- Backpack/Calendar:
+  - Same-Day-Return selection UI 
+
 # 46.0.0
 
 **Added:**
