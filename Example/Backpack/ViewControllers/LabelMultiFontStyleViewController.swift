@@ -27,12 +27,12 @@ class LabelMultiFontStyleViewController: UIViewController {
         super.viewDidLoad()
 
         label.numberOfLines = 15
-        label.fontStyle = .textBodyDefault
+        label.fontStyle = .textHeading1
 
         label.text = "This is a BPKLabel which supports multiple different font styles. You can simply create" +
         "a BPKLabel, and then set the FontStyle to use for any given range.\nALWAYS INK RESPONSIBLY."
-        label.setFontStyle(.textHeading4, range: NSRange(location: 10, length: 8))
-        label.setFontStyle(.textHero5, range: NSRange(location: 33, length: 32))
+        label.setFontStyle(.textHero5, range: NSRange(location: 10, length: 8))
+        label.setFontStyle(.textBodyDefault, range: NSRange(location: 33, length: 32))
         label.setFontStyle(.textCaption, range: NSRange(location: 97, length: 14))
         label.setFontStyle(.textBodyLongform, range: NSRange(location: 116, length: 9))
         label.setFontStyle(.textFootnote, range: NSRange(location: 141, length: 12))
