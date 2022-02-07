@@ -38,21 +38,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
-    NSDictionary *attributes = [self attributesForFontStyle:fontStyle];
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
-
-    return attributedString;
+    return [self attributedStringWithFontStyle:fontStyle
+                                       content:content
+                                     textColor:BPKColor.textPrimaryColor];
 }
 
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content
                                             textColor:(UIColor *)textColor {
-    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle] mutableCopy];
-    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content attributes:[attributes copy]];
-
-
-    return attributedString;
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:content];
+    return [self attributedStringWithFontStyle:fontStyle
+                                      andColor:textColor
+                            onAttributedString:attributedString];
 }
 
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle {
@@ -63,16 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
                                                withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes {
-    return [self attributesForFontStyle:fontStyle withCustomAttributes:customAttributes fontManager:[BPKFontManager sharedInstance]];
-}
-
-+ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)fontStyle
-                                               withCustomAttributes:(NSDictionary<NSAttributedStringKey,id> *)customAttributes
-                                                        fontManager:(BPKFontManager *)fontManager {
-    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:fontManager] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *attributes = [[self attributesForFontStyle:fontStyle fontManager:[BPKFontManager sharedInstance]] mutableCopy];
 
     for (NSAttributedStringKey key in customAttributes) {
-        if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName]) {
+        if ([key isEqualToString:NSKernAttributeName] || [key isEqualToString:NSFontAttributeName] || [key isEqualToString:NSParagraphStyleAttributeName]) {
             // We explicitly ignore these as they would change the look of the rendered text significantly
             // enough that it would no longer be the Backpack style.
             continue;
@@ -84,35 +75,78 @@ NS_ASSUME_NONNULL_BEGIN
     return [attributes copy];
 }
 
-
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style {
     return [self attributesForFontStyle:style fontManager:[BPKFontManager sharedInstance]];
 }
 
 + (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
+    return [self attributesForFontStyle:style color:BPKColor.textPrimaryColor fontManager:fontManager];
+}
 
-    UIFont *font = [self fontForStyle:style fontManager:fontManager];
-    NSDictionary *result = @{
-                   NSForegroundColorAttributeName: BPKColor.textPrimaryColor,
-                   NSFontAttributeName: font,
-                   };
++ (NSDictionary<NSAttributedStringKey, id> *)attributesForFontStyle:(BPKFontStyle)style color:(UIColor *)color fontManager:(BPKFontManager *)fontManager {
+    return @{
+        NSForegroundColorAttributeName: color,
+        NSFontAttributeName: [self fontForStyle:style fontManager:fontManager],
+        NSKernAttributeName: [self letterSpacingForStyle:style]
+    };
+}
 
-    return result;
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText {
+    NSMutableDictionary *attributes = [[self attributesForFontStyle:fontStyle color:textColor fontManager:[BPKFontManager sharedInstance]] mutableCopy];
+    NSParagraphStyle *paragraphStyle = [self paragraphStyleOnAttributedString:attributedText forStyle:fontStyle];
+    if (paragraphStyle != nil) {
+        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    }
+    return [[NSAttributedString alloc] initWithString:attributedText.string attributes:[attributes copy]];
+}
+
++ (NSParagraphStyle *)paragraphStyleOnAttributedString:(NSAttributedString *)attributedText forStyle:(BPKFontStyle)style {
+    NSParagraphStyle *existingStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
+    if (existingStyle == nil) { return nil; }
+    NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
+    UIFont *font = [self fontForFontStyle:style];
+    CGFloat lineHeight = [self lineHeightForStyle:style];
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    [paragraphStyle setMinimumLineHeight:font.capHeight];
+    [paragraphStyle setMaximumLineHeight:lineHeight];
+    return paragraphStyle;
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
     switch (style) {
        {% for f in font %}
            case {{f.enumName}}:
-             {% if f.enumName.includes("Heavy") -%}
+             {% if f.weight.includes("UIFontWeightBlack") -%}
                return [fontManager heavyFontWithSize:{{f.size}}];
-             {% elif f.enumName.includes("Emphasized") -%}
+             {% elif f.weight.includes("UIFontWeightBold") -%}
                return [fontManager semiboldFontWithSize:{{f.size}}];
              {% else -%}
                return [fontManager regularFontWithSize:{{f.size}}];
              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
+    }
+}
+
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}{% if f.letterSpacing != null -%}case {{f.enumName}}: 
+            // Corresponding to Letter Spacing {{f.letterSpacing.name}}
+            return @({{f.letterSpacing.value}});
+        {% endif %}{% endfor %}
+        default:
+            return @(0); // No Defined Letter Spacing
+    }
+}
+
++ (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
+    switch (style) {
+        {% for f in font %}{% if f.lineHeight != null -%}case {{f.enumName}}: 
+            // Corresponding to Line Height {{f.lineHeight.name}}
+            return {{f.lineHeight.value}};
+        {% endif %}{% endfor %}
+        default:
+            return 0; // No Defined Line Height
     }
 }
 

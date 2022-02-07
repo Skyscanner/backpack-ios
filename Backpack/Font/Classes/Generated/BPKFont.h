@@ -35,6 +35,16 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextBaseEmphasized = 1,
 
     /**
+     * Represents font size 16 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextBodyDefault = 31,
+
+    /**
+     * Represents font size 20 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextBodyLongform = 30,
+
+    /**
      * Represents font size 10 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextCaps = 11,
@@ -43,6 +53,41 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
      * Represents font size 10 with weight UIFontWeightBold.
      */
     BPKFontStyleTextCapsEmphasized = 12,
+
+    /**
+     * Represents font size 12 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextCaption = 35,
+
+    /**
+     * Represents font size 14 with weight UIFontWeightRegular.
+     */
+    BPKFontStyleTextFootnote = 34,
+
+    /**
+     * Represents font size 40 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading1 = 28,
+
+    /**
+     * Represents font size 32 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading2 = 27,
+
+    /**
+     * Represents font size 24 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading3 = 26,
+
+    /**
+     * Represents font size 20 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading4 = 25,
+
+    /**
+     * Represents font size 16 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextHeading5 = 24,
 
     /**
      * Represents font size 120 with weight UIFontWeightBold.
@@ -70,6 +115,16 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextHero5 = 23,
 
     /**
+     * Represents font size 16 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextLabel1 = 33,
+
+    /**
+     * Represents font size 14 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextLabel2 = 32,
+
+    /**
      * Represents font size 20 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextLg = 2,
@@ -92,6 +147,11 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     /**
      * Represents font size 24 with weight UIFontWeightRegular.
      */
+    BPKFontStyleTextSubheading = 29,
+
+    /**
+     * Represents font size 24 with weight UIFontWeightRegular.
+     */
     BPKFontStyleTextXl = 6,
 
     /**
@@ -100,7 +160,7 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextXlEmphasized = 7,
 
     /**
-     * Represents font size 24 with weight UIFontWeightHeavy.
+     * Represents font size 24 with weight UIFontWeightBlack.
      */
     BPKFontStyleTextXlHeavy = 10,
 
@@ -125,7 +185,7 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextXxlEmphasized = 14,
 
     /**
-     * Represents font size 32 with weight UIFontWeightHeavy.
+     * Represents font size 32 with weight UIFontWeightBlack.
      */
     BPKFontStyleTextXxlHeavy = 15,
 
@@ -140,7 +200,7 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextXxxlEmphasized = 17,
 
     /**
-     * Represents font size 40 with weight UIFontWeightHeavy.
+     * Represents font size 40 with weight UIFontWeightBlack.
      */
     BPKFontStyleTextXxxlHeavy = 18,
 };
@@ -218,6 +278,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle content:(NSString *)content textColor:(UIColor *)textColor NS_SWIFT_NAME(makeAttributedString(fontStyle:content:textColor:));
 
 /**
+ * Create an attributed string with a specified fontStyle, content, and text color.
+ *
+ * @param fontStyle The desired fontStyle.
+ * @param textColor The text color to use.
+ * @param attributedText The onAttributedString to get preexisting Paragraph Styles from.
+ * @return An attributed string with the specified styles.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle andColor:(UIColor *)textColor onAttributedString:(NSAttributedString *)attributedText;
+
+/**
  * Set the fontfaces to use globally.
  *
  * @param fontDefinition The new font definition to use when resolving fontface names.
@@ -234,6 +306,28 @@ NS_ASSUME_NONNULL_BEGIN
  * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
  */
 + (UIFont *)fontForFontStyle:(BPKFontStyle)fontStyle NS_SWIFT_NAME(makeFont(fontStyle:));
+
+/**
+ * Create a `NSNumber` for Letter Spacing instance for a specific text style.
+ *
+ *
+ * @param style The desired fontStyle.
+ * @return An instance of `NSNumber` for Letter Spacing for the specificed style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style;
+
+/**
+ * Create a `CGFloat` for Line Height instance for a specific text style.
+ *
+ *
+ * @param style The desired fontStyle.
+ * @return An instance of `CGFloat` for Line Height for the specificed style.
+ *
+ * @warning Prefer using `BPKLabel`, `BPKTextField`, or `BPKTextView` for rendering text when possible.
+ */
++ (CGFloat)lineHeightForStyle:(BPKFontStyle)style;
 
 @end
 

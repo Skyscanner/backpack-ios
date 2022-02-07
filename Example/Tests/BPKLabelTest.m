@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,11 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
         NSRange range = NSMakeRange(0, label.text.length);
         NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
 
-        XCTAssertNil(attributes[NSKernAttributeName]);
         XCTAssertNotNil(attributes[NSFontAttributeName]);
         XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
-        XCTAssertNil(attributes[NSParagraphStyleAttributeName],
-                     @"BPKFont's attributedString should not have a paragraph style. Adding one is a breaking chagne.");
     }
 }
 
@@ -79,9 +76,14 @@ NS_ASSUME_NONNULL_BEGIN
 
     [label setFontStyle:BPKFontStyleTextXxlHeavy range:range3];
 
-    NSDictionary<NSAttributedStringKey, id> *range1Attributes = [label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1];
-    NSDictionary<NSAttributedStringKey, id> *range2Attributes = [label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2];
-    NSDictionary<NSAttributedStringKey, id> *range3Attributes = [label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3];
+    NSMutableDictionary<NSAttributedStringKey, id> *range1Attributes = [[label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *range2Attributes = [[label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *range3Attributes = [[label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3] mutableCopy];
+    
+    // Needed because of the way paragraph style attribute is applied automatically by the system
+    range1Attributes[NSParagraphStyleAttributeName] = nil;
+    range2Attributes[NSParagraphStyleAttributeName] = nil;
+    range3Attributes[NSParagraphStyleAttributeName] = nil;
 
     XCTAssertEqualObjects(label.text, sampleText2);
     XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase]);

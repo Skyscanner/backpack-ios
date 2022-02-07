@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -168,14 +168,26 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSDictionary<NSAttributedStringKey, id> *newStringAttributes = [BPKFont attributesForFontStyle:self.fontStyle
-                                                                              withCustomAttributes:self.customFontAttributes];
-
-    NSAttributedString *newString = [[NSAttributedString alloc] initWithString:self.text attributes:newStringAttributes];
-    self.contentView.text = newString;
+    UIFont *font = [BPKFont fontForFontStyle:self.fontStyle];
 
     // Note: we have to set the font on our TTTAttributedLabel as this is what will be used in calculating its size.
-    self.contentView.font = newStringAttributes[NSFontAttributeName];
+    self.contentView.font = font;
+    self.contentView.kern = [[BPKFont letterSpacingForStyle:self.fontStyle] doubleValue];
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+
+    CGFloat lineHeight = [BPKFont lineHeightForStyle:self.fontStyle];
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+
+    NSMutableDictionary *attributes = [@{
+        NSParagraphStyleAttributeName: paragraphStyle,
+        NSFontAttributeName: font
+    } mutableCopy];
+    if (self.customFontAttributes[NSForegroundColorAttributeName] != nil) {
+        attributes[NSForegroundColorAttributeName] = self.customFontAttributes[NSForegroundColorAttributeName];
+    }
+
+    self.contentView.text = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
 
     // Re-apply the links
     for (BPKTappableLinkDefinition *linkDefinition in _persistedLinks) {

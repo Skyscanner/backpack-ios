@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
         NSRange range = NSMakeRange(0, textField.text.length);
         NSDictionary *attributes = [attributedString attributesAtIndex:0 effectiveRange:&range];
 
-        XCTAssertNil(attributes[NSKernAttributeName]);
         XCTAssertNotNil(attributes[NSFontAttributeName]);
         XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], expectedColor);
     }

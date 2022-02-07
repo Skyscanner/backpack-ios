@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,32 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
     [label addLinkToURL:[NSURL URLWithString:@"https"] withRange:NSMakeRange(0, 5)];
 
     XCTAssertEqualObjects(label.text, @"Hello world");
-}
-
-- (void)testSizeWithAlternateStyle {
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXs];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextCaps];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextSm];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextBase];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextLg];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXlEmphasized];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxlEmphasized];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxxl];
-    [self testAlternateLabelSizeWithStyle:BPKFontStyleTextXxxlEmphasized];
-}
-
-- (void)testAlternateLabelSizeWithStyle:(BPKFontStyle)fontStyle {
-    BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFontStyle:fontStyle];
-    label.text = @"Hello world";
-    [label addLinkToURL:[NSURL URLWithString:@"https"] withRange:NSMakeRange(0, 5)];
-    CGSize sizeWithDefaultStyle = label.size;
-
-    label.style = BPKTappableLinkLabelStyleAlternate;
-    CGSize sizeWithAlternateStyle = label.size;
-
-    XCTAssert(sizeWithDefaultStyle.width < sizeWithAlternateStyle.width);
 }
 
 @end

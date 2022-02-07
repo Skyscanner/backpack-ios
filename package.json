@@ -43,8 +43,8 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
-    "@skyscanner/bpk-foundations-ios": "^2.0.0",
-    "@skyscanner/bpk-svgs": "^14.0.10",
+    "@skyscanner/bpk-foundations-ios": "^2.2.0",
+    "@skyscanner/bpk-svgs": "^14.1.0",
     "appcenter-cli": "^2.10.0",
     "babel-eslint": "^10.1.0",
     "danger": "^10.6.6",
