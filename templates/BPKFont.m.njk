@@ -106,8 +106,9 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
     UIFont *font = [self fontForFontStyle:style];
     CGFloat lineHeight = [self lineHeightForStyle:style];
+    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    [paragraphStyle setMinimumLineHeight:font.capHeight];
     [paragraphStyle setMaximumLineHeight:lineHeight];
-    [paragraphStyle setMinimumLineHeight:font.lineHeight];
     return paragraphStyle;
 }
 
