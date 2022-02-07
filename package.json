@@ -47,7 +47,7 @@
     "@skyscanner/bpk-svgs": "^14.1.0",
     "appcenter-cli": "^2.10.0",
     "babel-eslint": "^10.1.0",
-    "danger": "^10.6.6",
+    "danger": "^11.0.2",
     "del": "^6.0.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-prettier": "^8.3.0",
