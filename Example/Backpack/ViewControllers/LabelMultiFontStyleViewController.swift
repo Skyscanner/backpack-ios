@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ class LabelMultiFontStyleViewController: UIViewController {
         super.viewDidLoad()
 
         label.numberOfLines = 15
-        label.fontStyle = .textBase
+        label.fontStyle = .textBodyDefault
 
         label.text = "This is a BPKLabel which supports multiple different font styles. You can simply create" +
         "a BPKLabel, and then set the FontStyle to use for any given range.\nALWAYS INK RESPONSIBLY."
-        label.setFontStyle(.textLg, range: NSRange(location: 10, length: 8))
-        label.setFontStyle(.textXlEmphasized, range: NSRange(location: 33, length: 32))
-        label.setFontStyle(.textCaps, range: NSRange(location: 97, length: 14))
-        label.setFontStyle(.textXlEmphasized, range: NSRange(location: 116, length: 9))
-        label.setFontStyle(.textXxxlHeavy, range: NSRange(location: 141, length: 12))
-        label.setFontStyle(.textCapsEmphasized, range: NSRange(location: 154, length: 23))
+        label.setFontStyle(.textHeading4, range: NSRange(location: 10, length: 8))
+        label.setFontStyle(.textHero5, range: NSRange(location: 33, length: 32))
+        label.setFontStyle(.textCaption, range: NSRange(location: 97, length: 14))
+        label.setFontStyle(.textBodyLongform, range: NSRange(location: 116, length: 9))
+        label.setFontStyle(.textFootnote, range: NSRange(location: 141, length: 12))
+        label.setFontStyle(.textSubheading, range: NSRange(location: 154, length: 23))
     }
 }

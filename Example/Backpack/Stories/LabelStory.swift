@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ import Foundation
 
 enum LabelStory: String, StoryGroup {
     case `default` = "Default"
-    case emphasized = "Emphasised"
-    case heavy = "Heavy"
     case performance = "Performance"
     case multipleFontStyle = "Multiple font styles"
 
@@ -33,41 +31,12 @@ enum LabelStory: String, StoryGroup {
         let storyboard = loadStoryboard(name: "Labels")
 
         switch self {
-        case .default, .emphasized, .heavy:
-            let presentable = storyboard("LabelsViewController")
-
-            return presentable.enrich {
-                let labelsVc = $0 as? LabelsViewController
-                labelsVc?.type = type
-            }
+        case .default:
+            return storyboard("LabelsViewController")
         case .performance:
             return storyboard("LabelsPerformanceViewController")
         case .multipleFontStyle:
             return storyboard("LabelMultiFontStyleViewController")
-        }
-    }
-
-    private var useLabelsViewController: Bool {
-        switch self {
-        case .default, .emphasized, .heavy:
-            return true
-        default:
-            return false
-        }
-    }
-
-    private var type: LabelsDisplayType {
-        switch self {
-        case.default:
-            return .normal
-        case .emphasized:
-            return .emphasized
-        case .heavy:
-            return .heavy
-        case .performance:
-            return .normal
-        case .multipleFontStyle:
-            return .normal
         }
     }
 }
