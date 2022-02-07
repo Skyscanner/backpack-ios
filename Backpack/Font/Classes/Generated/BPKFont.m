@@ -106,7 +106,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
     UIFont *font = [self fontForFontStyle:style];
     CGFloat lineHeight = [self lineHeightForStyle:style];
-    [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+    [paragraphStyle setMaximumLineHeight:lineHeight];
+    [paragraphStyle setMinimumLineHeight:font.lineHeight];
     return paragraphStyle;
 }
 
@@ -230,19 +231,19 @@ NS_ASSUME_NONNULL_BEGIN
     switch (style) {
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
-            return @(-0.02);
+            return @(-2);
         case BPKFontStyleTextHero2: 
             // Corresponding to Letter Spacing TIGHT
-            return @(-0.02);
+            return @(-2);
         case BPKFontStyleTextHero3: 
             // Corresponding to Letter Spacing TIGHT
-            return @(-0.02);
+            return @(-2);
         case BPKFontStyleTextHero4: 
             // Corresponding to Letter Spacing TIGHT
-            return @(-0.02);
+            return @(-2);
         case BPKFontStyleTextHero5: 
             // Corresponding to Letter Spacing TIGHT
-            return @(-0.02);
+            return @(-2);
         
         default:
             return @(0); // No Defined Letter Spacing
