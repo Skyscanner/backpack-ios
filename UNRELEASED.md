@@ -5,6 +5,7 @@
 
 - Backpack/Font:
   - Line Heights and Letter Spacing have been updated!
+  - Old font styles will be mapped to new styles behind the scenes
 
 ## How to write a good changelog entry
 

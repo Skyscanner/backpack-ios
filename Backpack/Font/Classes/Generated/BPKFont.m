@@ -113,7 +113,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-    switch (style) {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
        
            case BPKFontStyleTextBase:
              return [fontManager regularFontWithSize:16];
@@ -228,8 +230,40 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
++ (BPKFontStyle)newStyleMappingForStyle:(BPKFontStyle)style {
     switch (style) {
+        case BPKFontStyleTextBase: 
+            return BPKFontStyleTextBodyDefault;
+        case BPKFontStyleTextBaseEmphasized: 
+            return BPKFontStyleTextHeading5;
+        case BPKFontStyleTextLg: 
+            return BPKFontStyleTextBodyLongform;
+        case BPKFontStyleTextLgEmphasized: 
+            return BPKFontStyleTextHeading4;
+        case BPKFontStyleTextSm: 
+            return BPKFontStyleTextFootnote;
+        case BPKFontStyleTextSmEmphasized: 
+            return BPKFontStyleTextLabel2;
+        case BPKFontStyleTextXl: 
+            return BPKFontStyleTextSubheading;
+        case BPKFontStyleTextXlEmphasized: 
+            return BPKFontStyleTextHeading3;
+        case BPKFontStyleTextXs: 
+            return BPKFontStyleTextCaption;
+        case BPKFontStyleTextXxlEmphasized: 
+            return BPKFontStyleTextHeading2;
+        case BPKFontStyleTextXxxlEmphasized: 
+            return BPKFontStyleTextHeading1;
+        
+        default:
+            return style; // Using same style if no mapping is found
+    }
+}
+
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
@@ -252,7 +286,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
-    switch (style) {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
         case BPKFontStyleTextBase: 
             // Corresponding to Line Height BASE
             return 24;
