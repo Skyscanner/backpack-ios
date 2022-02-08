@@ -23,7 +23,7 @@ import FBSnapshotTestCase
 class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        recordMode = true
     }
     
     private func createStackView() -> UIStackView {
