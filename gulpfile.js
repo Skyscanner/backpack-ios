@@ -85,6 +85,12 @@ const LEGIBLE_NAMES = [
 
 const mapLegacyToNewStyle = style => {
   const MAP = {
+    BPKFontStyleTextCaps: "BPKFontStyleTextCapsEmphasized",
+    BPKFontStyleTextXlHeavy: "BPKFontStyleTextHeading3",
+    BPKFontStyleTextXxl: "BPKFontStyleTextHeading2",
+    BPKFontStyleTextXxlHeavy: "BPKFontStyleTextHeading2",
+    BPKFontStyleTextXxxl: "BPKFontStyleTextHeading1",
+    BPKFontStyleTextXxxlHeavy: "BPKFontStyleTextHeading1",
     BPKFontStyleTextBase: "BPKFontStyleTextBodyDefault",
     BPKFontStyleTextBaseEmphasized: "BPKFontStyleTextHeading5",
     BPKFontStyleTextLg: "BPKFontStyleTextBodyLongform",
