@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKFontManager *mockFontManager = OCMClassMock(BPKFontManager.class);
     OCMStub([mockFontManager regularFontWithSize:20.0]).andReturn([UIFont fontWithName:@"SnellRoundhand" size:16.0]);
     OCMStub([mockFontManager semiboldFontWithSize:20.0]).andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
-    OCMStub([mockFontManager heavyFontWithSize:24.0]).andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
+    OCMStub([mockFontManager semiboldFontWithSize:24.0]).andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
 
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg fontManager:mockFontManager];
     NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLgEmphasized fontManager:mockFontManager];
