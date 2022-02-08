@@ -113,7 +113,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-    switch (style) {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
        {% for f in font %}
            case {{f.enumName}}:
              {% if f.weight.includes("UIFontWeightBlack") -%}
@@ -128,8 +130,20 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-+ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
++ (BPKFontStyle)newStyleMappingForStyle:(BPKFontStyle)style {
     switch (style) {
+        {% for f in font %}{% if f.newStyleMapping != f.enumName -%}case {{f.enumName}}: 
+            return {{f.newStyleMapping}};
+        {% endif %}{% endfor %}
+        default:
+            return style; // Using same style if no mapping is found
+    }
+}
+
++ (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
         {% for f in font %}{% if f.letterSpacing != null -%}case {{f.enumName}}: 
             // Corresponding to Letter Spacing {{f.letterSpacing.name}}
             return @({{f.letterSpacing.value}});
@@ -140,7 +154,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
-    switch (style) {
+    // Map legacy styles to new ones first
+    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
+    switch (styleToUse) {
         {% for f in font %}{% if f.lineHeight != null -%}case {{f.enumName}}: 
             // Corresponding to Line Height {{f.lineHeight.name}}
             return {{f.lineHeight.value}};
