@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,63 +26,33 @@ enum LabelsDisplayType {
 }
 
 class LabelsViewController: UIViewController {
-    @IBOutlet var labels: [BPKLabel]!
-    var type: LabelsDisplayType = .normal
+    @IBOutlet var stack: UIStackView!
 
-    static let normalStyles: [BPKFontStyle] = [
-        .textXxxl,
-        .textXxl,
-        .textXl,
-        .textLg,
-        .textBase,
-        .textSm,
-        .textXs,
-        .textCaps
+    let styles: [(BPKFontStyle, String)] = [
+        (.textHero1, "Hero1"),
+        (.textHero2, "Hero2"),
+        (.textHero3, "Hero3"),
+        (.textHero5, "Hero5"),
+        (.textHero4, "Hero4"),
+        (.textHeading1, "Heading1"),
+        (.textHeading2, "Heading2"),
+        (.textHeading3, "Heading3"),
+        (.textHeading4, "Heading4"),
+        (.textHeading5, "Heading5"),
+        (.textSubheading, "Subheading"),
+        (.textBodyLongform, "BodyLongform"),
+        (.textBodyDefault, "BodyDefault"),
+        (.textFootnote, "Footnote"),
+        (.textCaption, "Caption")
     ]
-    static let emphasizedStyles: [BPKFontStyle] = [
-        .textXxxlEmphasized,
-        .textXxlEmphasized,
-        .textXlEmphasized,
-        .textLgEmphasized,
-        .textBaseEmphasized,
-        .textSmEmphasized,
-        .textXsEmphasized,
-        .textCapsEmphasized
-    ]
-    static let heavyStyles: [BPKFontStyle] = [
-        .textXxxlHeavy,
-        .textXxlHeavy,
-        .textXlHeavy
-        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var styles: [BPKFontStyle]! = nil
-        switch type {
-        case .normal:
-            styles = LabelsViewController.normalStyles
-        case .emphasized:
-            styles = LabelsViewController.emphasizedStyles
-        case .heavy:
-            styles = LabelsViewController.heavyStyles
-        }
-        assert(styles.count <= labels.count, "Number of styles must be less than or equal to the number of labels")
-
-        labels[0..<(labels.count - styles.count)].forEach {
-            $0.isHidden = true
-        }
-        zip(labels[(labels.count - styles.count)..<labels.count], styles).forEach { (tuple) in
-            let (label, style) = tuple
-
-            label.isHidden = false
-            label.fontStyle = style
-
-            if style != .textCaps && style != .textCapsEmphasized {
-                label.text = "Lorem ipsum"
-            } else {
-                label.text = "LOREM IPSUM"
-            }
-        }
+        styles.map {
+            let label = BPKLabel(fontStyle: $0.0)
+            label.text = $0.1
+            label.numberOfLines = 0
+            return label
+        }.forEach(stack.addArrangedSubview)
     }
 }
