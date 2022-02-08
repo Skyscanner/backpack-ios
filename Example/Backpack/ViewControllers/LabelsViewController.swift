@@ -41,7 +41,6 @@ class LabelsViewController: UIViewController {
         (.textHeading5, "Heading5"),
         (.textSubheading, "Subheading"),
         (.textBodyLongform, "BodyLongform"),
-        (.textHeading4, "Heading4"),
         (.textBodyDefault, "BodyDefault"),
         (.textFootnote, "Footnote"),
         (.textCaption, "Caption")
