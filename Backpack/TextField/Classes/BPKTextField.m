@@ -92,6 +92,19 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
+- (void)setBorderStyle:(UITextBorderStyle)borderStyle {
+    [super setBorderStyle:borderStyle];
+    if (borderStyle == UITextBorderStyleNone) {
+        self.layer.borderWidth = 0;
+        return;
+    }
+    self.layer.masksToBounds = YES;
+    self.layer.borderWidth = BPKBorderWidthSm;
+    self.layer.cornerRadius = BPKCornerRadiusXs;
+    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04
+                                                         darkVariant:BPKColor.blackTint05] CGColor];
+}
+
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
@@ -100,12 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
     
     self.borderStyle = UITextBorderStyleRoundedRect;
-    self.layer.masksToBounds = YES;
-    self.layer.borderWidth = BPKBorderWidthSm;
-    self.layer.cornerRadius = BPKCornerRadiusXs;
-    
-    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04
-                                                         darkVariant:BPKColor.blackTint05] CGColor];
 
     [self updateStyle];
 }
