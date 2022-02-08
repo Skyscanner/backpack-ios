@@ -118,14 +118,16 @@ task :take_screenshots do
   FileUtils.mv(Dir.glob('screenshots/en-US/*'), 'screenshots/')
 end
 
-task ci: [:erase_devices, :all_checks]
-task all_checks: [:lint, :analyze, :test]
-
-task :release_no_checks do
-  abort red 'Must be on main branch' unless current_branch == 'main'
+task :git_checks do
+  abort red 'Must be on main branch' unless current_branch == 'main' or current_branch.start_with?('fix/')
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
+end
 
+task ci: [:erase_devices, :all_checks]
+task all_checks: [:git_checks, :lint, :analyze, :test]
+
+task :release_no_checks do
   sh "npm ci"
   sh "npx gulp"
   abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
