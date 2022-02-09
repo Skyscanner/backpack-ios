@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,6 +92,19 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateStyle];
 }
 
+- (void)setBorderStyle:(UITextBorderStyle)borderStyle {
+    [super setBorderStyle:borderStyle];
+    if (borderStyle == UITextBorderStyleNone) {
+        self.layer.borderWidth = 0;
+        return;
+    }
+    self.layer.masksToBounds = YES;
+    self.layer.borderWidth = BPKBorderWidthSm;
+    self.layer.cornerRadius = BPKCornerRadiusXs;
+    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04
+                                                         darkVariant:BPKColor.blackTint05] CGColor];
+}
+
 #pragma mark - Private
 
 - (void)setupWithStyle:(BPKFontStyle)style {
@@ -100,12 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
     
     self.borderStyle = UITextBorderStyleRoundedRect;
-    self.layer.masksToBounds = YES;
-    self.layer.borderWidth = BPKBorderWidthSm;
-    self.layer.cornerRadius = BPKCornerRadiusXs;
-    
-    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04
-                                                         darkVariant:BPKColor.blackTint05] CGColor];
 
     [self updateStyle];
 }

@@ -1,5 +1,11 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 46.1.1
+
+**Fixed:**
+- Backpack/TextField:
+  - Only applying border width if the Border Style is not none
+
 # 46.1.0
 
 **Added:**

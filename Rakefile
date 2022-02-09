@@ -118,14 +118,16 @@ task :take_screenshots do
   FileUtils.mv(Dir.glob('screenshots/en-US/*'), 'screenshots/')
 end
 
+task :git_checks do
+  abort red 'Must be on main branch' unless current_branch == 'main' or current_branch.start_with?('fix/')
+  abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
+  abort red 'Git branch is not up to date please pull' unless branch_up_to_date
+end
+
 task ci: [:erase_devices, :all_checks]
 task all_checks: [:lint, :analyze, :test]
 
 task :release_no_checks do
-  abort red 'Must be on main branch' unless current_branch == 'main'
-  abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
-  abort red 'Git branch is not up to date please pull' unless branch_up_to_date
-
   sh "npm ci"
   sh "npx gulp"
   abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
@@ -136,6 +138,8 @@ task :release_no_checks do
     symbolized = input.downcase.to_sym
     symbolized if [:major, :minor, :patch, :custom].include?(symbolized)
   end
+
+  abort red 'Only patch is allowed if on fix/ branch' unless current_branch.start_with?('fix/') and change == :patch
 
   case change
   when :major
@@ -180,7 +184,7 @@ task :release_no_checks do
 end
 
 desc "Performs tests locally and then runs the release process"
-task release: ['git:fetch', :all_checks, :release_no_checks]
+task release: ['git:fetch', :git_checks, :all_checks, :release_no_checks]
 
 desc "Build the static API docs"
 task :docs, :outputDir do |t, args|
