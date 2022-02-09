@@ -125,7 +125,7 @@ task :git_checks do
 end
 
 task ci: [:erase_devices, :all_checks]
-task all_checks: [:git_checks, :lint, :analyze, :test]
+task all_checks: [:lint, :analyze, :test]
 
 task :release_no_checks do
   sh "npm ci"
@@ -184,7 +184,7 @@ task :release_no_checks do
 end
 
 desc "Performs tests locally and then runs the release process"
-task release: ['git:fetch', :all_checks, :release_no_checks]
+task release: ['git:fetch', :git_checks, :all_checks, :release_no_checks]
 
 desc "Build the static API docs"
 task :docs, :outputDir do |t, args|
