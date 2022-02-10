@@ -1,5 +1,13 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 47.0.0
+
+**Breaking:**
+
+- Backpack/Font:
+  - Line Heights and Letter Spacing have been updated!
+  - Old font styles will be mapped to new styles behind the scenes
+
 # 46.1.1
 
 **Fixed:**
