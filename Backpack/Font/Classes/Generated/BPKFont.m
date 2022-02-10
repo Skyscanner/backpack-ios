@@ -256,6 +256,8 @@ NS_ASSUME_NONNULL_BEGIN
             return BPKFontStyleTextHeading3;
         case BPKFontStyleTextXs: 
             return BPKFontStyleTextCaption;
+        case BPKFontStyleTextXsEmphasized: 
+            return BPKFontStyleTextCaption;
         case BPKFontStyleTextXxl: 
             return BPKFontStyleTextHeading2;
         case BPKFontStyleTextXxlEmphasized: 

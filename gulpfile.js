@@ -101,6 +101,7 @@ const mapLegacyToNewStyle = style => {
     BPKFontStyleTextXl: "BPKFontStyleTextSubheading",
     BPKFontStyleTextXlEmphasized: "BPKFontStyleTextHeading3",
     BPKFontStyleTextXs: "BPKFontStyleTextCaption",
+    BPKFontStyleTextXsEmphasized: "BPKFontStyleTextCaption",
     BPKFontStyleTextXxlEmphasized: "BPKFontStyleTextHeading2",
     BPKFontStyleTextXxxlEmphasized: "BPKFontStyleTextHeading1",
   }
