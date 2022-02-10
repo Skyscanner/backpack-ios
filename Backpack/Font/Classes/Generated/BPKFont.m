@@ -237,7 +237,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextBaseEmphasized: 
             return BPKFontStyleTextHeading5;
         case BPKFontStyleTextCaps: 
-            return BPKFontStyleTextCapsEmphasized;
+            return BPKFontStyleTextCaption;
+        case BPKFontStyleTextCapsEmphasized: 
+            return BPKFontStyleTextCaption;
         case BPKFontStyleTextLg: 
             return BPKFontStyleTextBodyLongform;
         case BPKFontStyleTextLgEmphasized: 
@@ -253,6 +255,8 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextXlHeavy: 
             return BPKFontStyleTextHeading3;
         case BPKFontStyleTextXs: 
+            return BPKFontStyleTextCaption;
+        case BPKFontStyleTextXsEmphasized: 
             return BPKFontStyleTextCaption;
         case BPKFontStyleTextXxl: 
             return BPKFontStyleTextHeading2;
