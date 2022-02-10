@@ -139,7 +139,7 @@ task :release_no_checks do
     symbolized if [:major, :minor, :patch, :custom].include?(symbolized)
   end
 
-  abort red 'Only patch is allowed if on fix/ branch' unless current_branch.start_with?('fix/') and change == :patch
+  abort red 'Only patch is allowed if on fix/ branch' if current_branch.start_with?('fix/') and change != :patch
 
   case change
   when :major
