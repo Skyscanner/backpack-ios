@@ -47,7 +47,7 @@
 #pragma mark - Helpers
 
 - (BPKFontStyle)currentFontStyle {
-    return BPKFontStyleTextBaseEmphasized;
+    return BPKFontStyleTextHeading5;
 }
 
 - (void)setContentColor:(UIColor *)contentColor {

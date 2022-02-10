@@ -81,8 +81,8 @@ static int const BPKSnackbarHeight = 60;
         self.snackbarView = [UIView new];
         self.stackView = [UIStackView new];
         self.leftIconContainer = [[UIImageView alloc] init];
-        self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSmEmphasized];
-        self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
+        self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLabel2];
+        self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextFootnote];
         self.actionButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
 
         self.translatesAutoresizingMaskIntoConstraints = NO;

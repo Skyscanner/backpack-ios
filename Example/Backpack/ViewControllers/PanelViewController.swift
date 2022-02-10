@@ -28,7 +28,7 @@ class PanelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
         "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
         "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."

@@ -32,7 +32,7 @@ class FlareViewViewController: UIViewController {
 
         flareView.backgroundColor = BPKColor.skyBlue
 
-        let label = BPKLabel(fontStyle: .textXlEmphasized)
+        let label = BPKLabel(fontStyle: .textHeading3)
         label.text = "Much wow!"
         label.textColor = BPKColor.white
         label.translatesAutoresizingMaskIntoConstraints = false

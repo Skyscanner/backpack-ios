@@ -67,7 +67,7 @@ public final class BPKBarChartKeyItem: UIView {
     }
 
     lazy fileprivate var titleLabel: BPKLabel = {
-        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textSm)
+        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textFootnote)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = text
         return titleLabel

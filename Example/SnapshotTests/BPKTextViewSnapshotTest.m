@@ -56,8 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testTextViewSnapshotWithFontStyle {
-    BPKFontStyle styles[] = {BPKFontStyleTextCaps, BPKFontStyleTextXs, BPKFontStyleTextSm,  BPKFontStyleTextBase,
-                             BPKFontStyleTextLg,   BPKFontStyleTextXl, BPKFontStyleTextXxl, BPKFontStyleTextXxxl};
+    BPKFontStyle styles[] = {BPKFontStyleTextCaption, BPKFontStyleTextCaption, BPKFontStyleTextFootnote,  BPKFontStyleTextBodyDefault,
+                             BPKFontStyleTextBodyLongform,   BPKFontStyleTextSubheading, BPKFontStyleTextHeading2, BPKFontStyleTextHeading1};
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
 
@@ -76,8 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testTextViewSnapshotWithFontStyleEmphasized {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized, BPKFontStyleTextSmEmphasized,  BPKFontStyleTextBaseEmphasized,
-        BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextCaption, BPKFontStyleTextCaption, BPKFontStyleTextLabel2,  BPKFontStyleTextHeading5,
+        BPKFontStyleTextHeading4,   BPKFontStyleTextHeading3, BPKFontStyleTextHeading2, BPKFontStyleTextHeading1,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -97,9 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testTextViewSnapshotWithFontStyleHeavy {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextXlHeavy,
-        BPKFontStyleTextXxlHeavy,
-        BPKFontStyleTextXxxlHeavy,
+        BPKFontStyleTextHeading3,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading1,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -119,8 +119,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testTextViewSnapshotWithThemeApplied {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextCapsEmphasized, BPKFontStyleTextXsEmphasized, BPKFontStyleTextSmEmphasized,  BPKFontStyleTextBaseEmphasized,
-        BPKFontStyleTextLgEmphasized,   BPKFontStyleTextXlEmphasized, BPKFontStyleTextXxlEmphasized, BPKFontStyleTextXxxlEmphasized,
+        BPKFontStyleTextCaption, BPKFontStyleTextCaption, BPKFontStyleTextLabel2,  BPKFontStyleTextHeading5,
+        BPKFontStyleTextHeading4,   BPKFontStyleTextHeading3, BPKFontStyleTextHeading2, BPKFontStyleTextHeading1,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);

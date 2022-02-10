@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     self.ratingBubbleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+    self.ratingBubbleLabel.fontStyle = BPKFontStyleTextHeading5;
     self.ratingBubbleLabel.textColor = BPKColor.white;
     self.ratingBubbleLabel.lineBreakMode = NSLineBreakByClipping;
     [self addSubview:self.ratingBubbleLabel];
@@ -106,19 +106,19 @@ NS_ASSUME_NONNULL_BEGIN
     switch (self.size) {
     case BPKRatingSizeLarge:
         newWidth = 2 * BPKSpacingLg;
-        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLgEmphasized;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextHeading4;
         break;
     case BPKRatingSizeBase:
         newWidth = BPKSpacingXxl;
-        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextHeading5;
         break;
     case BPKRatingSizeSmall:
         newWidth = 2 * BPKSpacingBase;
-        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLabel2;
         break;
     case BPKRatingSizeExtraSmall:
         newWidth = BPKSpacingXl;
-        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextSmEmphasized;
+        self.ratingBubbleLabel.fontStyle = BPKFontStyleTextLabel2;
         break;
     }
 

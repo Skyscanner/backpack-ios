@@ -58,7 +58,7 @@
 }
 
 - (void)setup {
-    self.priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXs];
+    self.priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextCaption];
     self.priceLabel.numberOfLines = 2;
     self.priceLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self.contentView addSubview:self.priceLabel];
@@ -84,7 +84,7 @@
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
-    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
+    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextCaption : BPKFontStyleTextCaption;
 }
 
 - (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {

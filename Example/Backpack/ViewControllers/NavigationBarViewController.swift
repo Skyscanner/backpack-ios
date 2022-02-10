@@ -116,7 +116,7 @@ extension NavigationBarViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .bpk_backgroundSecondary
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = "Header \(section)"
         label.translatesAutoresizingMaskIntoConstraints = false
         

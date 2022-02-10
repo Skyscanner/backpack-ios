@@ -37,7 +37,7 @@ public class BPKBadge: UIView {
     }
     
     private let label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textXsEmphasized)
+        let label = BPKLabel(fontStyle: .textCaption)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

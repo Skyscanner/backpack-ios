@@ -64,7 +64,7 @@
 
 - (void)updateYearAppearance {
     if (self.year != nil) {
-        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCaption
                                                                    content:[self.year stringValue]
                                                                  textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
                                                                                                       darkVariant:BPKColor.skyGray]];

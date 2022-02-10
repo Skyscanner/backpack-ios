@@ -35,12 +35,12 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     var style: BPKTappableLinkLabelStyle = .default
     var textColor: UIColor?
     var fontStyles = [
-        BPKFontStyle.textCaps,
-        BPKFontStyle.textSm,
-        BPKFontStyle.textBase,
-        BPKFontStyle.textLg,
-        BPKFontStyle.textXlEmphasized,
-        BPKFontStyle.textXxlEmphasized
+        BPKFontStyle.textCaption,
+        BPKFontStyle.textFootnote,
+        BPKFontStyle.textBodyDefault,
+        BPKFontStyle.textBodyLongform,
+        BPKFontStyle.textHeading3,
+        BPKFontStyle.textHeading2
     ]
 
     @IBOutlet var tappableLinks: [BPKTappableLinkLabel]!

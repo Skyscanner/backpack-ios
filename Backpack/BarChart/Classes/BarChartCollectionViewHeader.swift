@@ -71,6 +71,6 @@ internal final class BPKBarChartCollectionViewHeader: UICollectionReusableView {
     }()
 
     static func baseLabel() -> BPKLabel {
-        return BPKLabel(fontStyle: .textLgEmphasized)
+        return BPKLabel(fontStyle: .textHeading4)
     }
 }

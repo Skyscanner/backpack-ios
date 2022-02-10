@@ -29,17 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyle {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextLg,
-        BPKFontStyleTextLgEmphasized,
-        BPKFontStyleTextXl,
-        BPKFontStyleTextXlEmphasized,
-        BPKFontStyleTextXlHeavy,
-        BPKFontStyleTextXxl,
-        BPKFontStyleTextXxlEmphasized,
-        BPKFontStyleTextXxlHeavy,
-        BPKFontStyleTextXxxl,
-        BPKFontStyleTextXxxlEmphasized,
-        BPKFontStyleTextXxxlHeavy,
+        BPKFontStyleTextBodyLongform,
+        BPKFontStyleTextHeading4,
+        BPKFontStyleTextSubheading,
+        BPKFontStyleTextHeading3,
+        BPKFontStyleTextHeading3,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading1,
+        BPKFontStyleTextHeading1,
+        BPKFontStyleTextHeading1,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
@@ -66,15 +66,15 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *sampleText1 = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
     NSString *sampleText2 = @"consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt...";
 
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
 
     label.text = sampleText1;
-    [label setFontStyle:BPKFontStyleTextLg range:range1];
+    [label setFontStyle:BPKFontStyleTextBodyLongform range:range1];
 
     label.text = sampleText2;
-    [label setFontStyle:BPKFontStyleTextXxxlHeavy range:range2];
+    [label setFontStyle:BPKFontStyleTextHeading1 range:range2];
 
-    [label setFontStyle:BPKFontStyleTextXxlHeavy range:range3];
+    [label setFontStyle:BPKFontStyleTextHeading2 range:range3];
 
     NSMutableDictionary<NSAttributedStringKey, id> *range1Attributes = [[label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1] mutableCopy];
     NSMutableDictionary<NSAttributedStringKey, id> *range2Attributes = [[label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2] mutableCopy];
@@ -86,9 +86,9 @@ NS_ASSUME_NONNULL_BEGIN
     range3Attributes[NSParagraphStyleAttributeName] = nil;
 
     XCTAssertEqualObjects(label.text, sampleText2);
-    XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBase]);
-    XCTAssertEqualObjects(range2Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxxlHeavy]);
-    XCTAssertEqualObjects(range3Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextXxlHeavy]);
+    XCTAssertEqualObjects(range1Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextBodyDefault]);
+    XCTAssertEqualObjects(range2Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextHeading1]);
+    XCTAssertEqualObjects(range3Attributes, [BPKFont attributesForFontStyle:BPKFontStyleTextHeading2]);
 }
 
 - (void)testCompareBackpackLabelSizeWithNativeLabel {
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
     nativeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     nativeLabel.numberOfLines = 0;
     nativeLabel.textAlignment = NSTextAlignmentCenter;
-    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized content:@"SDIJSOIFSJFO"];
+    nativeLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCaption content:@"SDIJSOIFSJFO"];
     CGSize nativeLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
                                         withHorizontalFittingPriority:UILayoutPriorityRequired
                                               verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
     bpkLabel.lineBreakMode = NSLineBreakByWordWrapping;
     bpkLabel.numberOfLines = 0;
     bpkLabel.textAlignment = NSTextAlignmentCenter;
-    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCapsEmphasized content:@"SDIJSOIFSJFO"];
+    bpkLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCaption content:@"SDIJSOIFSJFO"];
     CGSize bpkLabelSize = [nativeLabel systemLayoutSizeFittingSize:CGSizeMake(12, 120)
                                      withHorizontalFittingPriority:UILayoutPriorityRequired
                                            verticalFittingPriority:UILayoutPriorityFittingSizeLevel];

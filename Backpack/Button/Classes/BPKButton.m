@@ -510,12 +510,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BPKFontStyle)currentFontStyle {
     switch (self.size) {
     case BPKButtonSizeDefault:
-        return BPKFontStyleTextSmEmphasized;
+        return BPKFontStyleTextLabel2;
     case BPKButtonSizeLarge:
-        return BPKFontStyleTextLgEmphasized;
+        return BPKFontStyleTextHeading4;
     default:
         NSAssert(NO, @"Unknown button size %ld", (unsigned long)self.size);
-        return BPKFontStyleTextSmEmphasized;
+        return BPKFontStyleTextLabel2;
     }
 }
 

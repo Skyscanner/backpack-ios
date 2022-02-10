@@ -33,7 +33,7 @@ class CardsViewController: UIViewController {
     }
 
     func setupCard() {
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
             "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, " +
             "nascetur ridiculus mus."

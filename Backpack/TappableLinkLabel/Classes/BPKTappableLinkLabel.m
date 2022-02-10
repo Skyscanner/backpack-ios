@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithStyle:BPKFontStyleTextBase];
+        [self setupWithStyle:BPKFontStyleTextBodyDefault];
     }
 
     return self;
@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithStyle:BPKFontStyleTextBase];
+        [self setupWithStyle:BPKFontStyleTextBodyDefault];
     }
 
     return self;
@@ -92,40 +92,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateTextColors];
 }
 
-- (BPKFontStyle)getEmphasizedFontStyleFor:(BPKFontStyle)fontStyle {
-    switch (fontStyle) {
-    case BPKFontStyleTextCaps:
-        return BPKFontStyleTextCapsEmphasized;
-    case BPKFontStyleTextXs:
-        return BPKFontStyleTextXsEmphasized;
-    case BPKFontStyleTextSm:
-        return BPKFontStyleTextSmEmphasized;
-    case BPKFontStyleTextBase:
-        return BPKFontStyleTextBaseEmphasized;
-    case BPKFontStyleTextLg:
-        return BPKFontStyleTextLgEmphasized;
-    case BPKFontStyleTextXl:
-        return BPKFontStyleTextXlEmphasized;
-    case BPKFontStyleTextXxl:
-        return BPKFontStyleTextXxlEmphasized;
-    case BPKFontStyleTextXxxl:
-        return BPKFontStyleTextXxxlEmphasized;
-    case BPKFontStyleTextXlEmphasized:
-        return BPKFontStyleTextXlHeavy;
-    case BPKFontStyleTextXxlEmphasized:
-        return BPKFontStyleTextXxlHeavy;
-    case BPKFontStyleTextXxxlEmphasized:
-        return BPKFontStyleTextXxxlHeavy;
-    default:
-        NSAssert(NO, @"Alternate style BPKTappableLinkLabels must have a more emphasized alternative to the fontStyle set.");
-    }
-    return fontStyle;
-}
-
-- (BPKFontStyle)linkFontStyle {
-    return self.style == BPKTappableLinkLabelStyleAlternate ? [self getEmphasizedFontStyleFor:self.fontStyle] : self.fontStyle;
-}
-
 - (void)setTextColor:(UIColor *)textColor {
     _textColor = textColor;
     [self updateTextColors];
@@ -151,13 +117,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateTextColors {
     NSDictionary *linkCustomAttributes =
         @{NSForegroundColorAttributeName: self.linkDisplayColor, NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
-    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle withCustomAttributes:linkCustomAttributes];
+    self.contentView.linkAttributes = [BPKFont attributesForFontStyle:self.fontStyle withCustomAttributes:linkCustomAttributes];
 
     NSDictionary *activeLinkCustomAttributes = @{
         NSForegroundColorAttributeName: [self.linkDisplayColor colorWithAlphaComponent:0.2],
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
     };
-    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.linkFontStyle withCustomAttributes:activeLinkCustomAttributes];
+    self.contentView.activeLinkAttributes = [BPKFont attributesForFontStyle:self.fontStyle withCustomAttributes:activeLinkCustomAttributes];
 
     [self updateTextDisplay];
 }

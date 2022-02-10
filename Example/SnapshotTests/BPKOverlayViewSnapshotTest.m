@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createForegroundView {
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     label.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.numberOfLines = 0;

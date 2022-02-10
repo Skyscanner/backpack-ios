@@ -53,7 +53,7 @@ class BPKBadgeContainer: UIView {
     }
 
     func setUp() {
-        label = BPKLabel(fontStyle: .textBase)
+        label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = getLegibleName(badgeType: currentBadgeType)
         label.sizeToFit()
         addSubview(label)

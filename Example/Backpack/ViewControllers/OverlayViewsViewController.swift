@@ -36,7 +36,7 @@ class OverlayViewsViewController: UIViewController {
 
         // Add foreground content
         if showContent {
-            let label = BPKLabel(fontStyle: .textBase)
+            let label = BPKLabel(fontStyle: .textBodyDefault)
             label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
             label.lineBreakMode = NSLineBreakMode.byWordWrapping
             label.numberOfLines = 0

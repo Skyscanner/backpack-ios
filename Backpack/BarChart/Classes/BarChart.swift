@@ -103,7 +103,7 @@ public final class BPKBarChart: UIView {
     }
 
     lazy fileprivate var titleLabel: BPKLabel = {
-        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textBaseEmphasized)
+        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textHeading5)
         titleLabel.text = title
         titleLabel.textColor = BPKColor.textSecondaryColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

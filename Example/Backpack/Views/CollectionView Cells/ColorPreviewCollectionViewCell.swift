@@ -78,7 +78,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         self.colorView = UIView(frame: CGRect.zero)
-        self.label = BPKLabel(fontStyle: .textSm)
+        self.label = BPKLabel(fontStyle: .textFootnote)
         label.numberOfLines = 2
 
         super.init(frame: frame)
@@ -112,7 +112,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     public static func estimatedSize() -> CGSize {
-        let mockLabel = BPKLabel(fontStyle: BPKFontStyle.textBase)
+        let mockLabel = BPKLabel(fontStyle: BPKFontStyle.textBodyDefault)
         mockLabel.text = "color"
         mockLabel.sizeToFit()
 

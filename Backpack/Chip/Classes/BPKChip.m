@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.accessibilityTraits = UIAccessibilityTraitButton;
 
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.fontStyle = BPKFontStyleTextSm;
+    self.titleLabel.fontStyle = BPKFontStyleTextFootnote;
     [self addSubview:self.titleLabel];
 
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

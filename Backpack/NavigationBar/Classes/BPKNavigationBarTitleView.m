@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKLabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
+        _titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading5];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;

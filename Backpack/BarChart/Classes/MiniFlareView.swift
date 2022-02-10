@@ -61,7 +61,7 @@ internal final class BPKMiniFlareView: BPKFlareView {
     }
 
     lazy fileprivate var label: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
         return label

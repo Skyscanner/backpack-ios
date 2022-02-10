@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testSetSubview {
     BPKCard *c = [[BPKCard alloc] initWithPadded:YES];
-    BPKLabel *testLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *testLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     testLabel.text = @"TEST";
     [c setSubview:testLabel];
 

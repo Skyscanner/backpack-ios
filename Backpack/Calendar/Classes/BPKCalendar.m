@@ -214,7 +214,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
 
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextFootnote];
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
@@ -226,7 +226,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     appearance.titleDefaultColor = BPKColor.textPrimaryColor;
     appearance.selectionColor = self.currentDateSelectedBackgroundColor;
     appearance.titleSelectionColor = self.currentDateSelectedContentColor;
-    appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
+    appearance.headerTitleFontStyle = BPKFontStyleTextHeading4;
 
     _appearance = appearance;
 

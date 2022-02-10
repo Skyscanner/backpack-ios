@@ -30,17 +30,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyle {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextLg,
-        BPKFontStyleTextLgEmphasized,
-        BPKFontStyleTextXl,
-        BPKFontStyleTextXlEmphasized,
-        BPKFontStyleTextXlHeavy,
-        BPKFontStyleTextXxl,
-        BPKFontStyleTextXxlEmphasized,
-        BPKFontStyleTextXxlHeavy,
-        BPKFontStyleTextXxxl,
-        BPKFontStyleTextXxxlEmphasized,
-        BPKFontStyleTextXxxlHeavy,
+        BPKFontStyleTextBodyLongform,
+        BPKFontStyleTextHeading4,
+        BPKFontStyleTextSubheading,
+        BPKFontStyleTextHeading3,
+        BPKFontStyleTextHeading3,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading2,
+        BPKFontStyleTextHeading1,
+        BPKFontStyleTextHeading1,
+        BPKFontStyleTextHeading1,
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
