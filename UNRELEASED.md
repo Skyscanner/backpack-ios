@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Changed:**
+
+- Backpack/Font:
+  - Components use all new text styles internally
+
 **Breaking:**
 
 - Backpack/Font:
