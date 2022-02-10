@@ -1,6 +1,11 @@
 # Unreleased
 > Place your changes below this line.
 
+**Breaking:**
+
+- Backpack/Font:
+  - Caps and Caps Emphasized to Captions behind the scenes
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
