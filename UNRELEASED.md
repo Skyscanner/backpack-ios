@@ -4,7 +4,7 @@
 **Breaking:**
 
 - Backpack/Font:
-  - Caps and Caps Emphasized to Captions behind the scenes
+  - XS Emphasized, Caps and Caps Emphasized to Captions behind the scenes
 
 ## How to write a good changelog entry
 
