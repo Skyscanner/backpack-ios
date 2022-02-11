@@ -21,11 +21,11 @@
 #import <Backpack/TextField.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
-@interface BPKTextFieldSnapshotTest : FBSnapshotTestCase
+@interface BPKTextFieldSnapshotTests : FBSnapshotTestCase
 @end
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKTextFieldSnapshotTest
+@implementation BPKTextFieldSnapshotTests
 
 + (CGRect)deviceFrame {
     // 375x812 = iPhone X dimensions.

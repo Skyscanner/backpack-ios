@@ -48,47 +48,26 @@ class BPKLabelSnapshotTest: FBSnapshotTestCase {
             let label = BPKLabel(fontStyle: $0)
             label.text = "Backpack Rocks"
             return label
-        }
-        .forEach(stack.addArrangedSubview)
+        }.forEach(stack.addArrangedSubview)
         let parent = parentView
         parent.addSubview(stack)
         return parent
     }
     
     func testLabelsWithRegularFontStyles() {
-        let styles: [BPKFontStyle] = [
-            .textCaption,
-            .textFootnote,
-            .textLabel2,
-            .textLabel1,
-            .textBodyDefault,
-            .textBodyLongform,
-            .textSubheading
-        ]
+        let styles: [BPKFontStyle] = .regularStyles
         BPKSnapshotVerifyViewLight(createView(withStyles: styles))
         BPKSnapshotVerifyViewDark(createView(withStyles: styles))
     }
     
     func testLabelsWithHeadingFontStyles() {
-        let styles: [BPKFontStyle] = [
-            .textHeading5,
-            .textHeading4,
-            .textHeading3,
-            .textHeading2,
-            .textHeading1
-        ]
+        let styles: [BPKFontStyle] = .headingStyles
         BPKSnapshotVerifyViewLight(createView(withStyles: styles))
         BPKSnapshotVerifyViewDark(createView(withStyles: styles))
     }
     
     func testLabelsWithHeroFontStyles() {
-        let styles: [BPKFontStyle] = [
-            .textHero5,
-            .textHero4,
-            .textHero3,
-            .textHero2,
-            .textHero1
-        ]
+        let styles: [BPKFontStyle] = .heroStyles
         BPKSnapshotVerifyViewLight(createView(withStyles: styles))
         BPKSnapshotVerifyViewDark(createView(withStyles: styles))
     }
