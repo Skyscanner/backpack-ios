@@ -26,32 +26,12 @@ class BPKLabelSnapshotTest: FBSnapshotTestCase {
         recordMode = false
     }
     
-    // iPhone X dimensions
-    private let deviceFrame = CGRect(x: 0, y: 0, width: 375, height: 812)
-    
-    private var parentView: UIView {
-        let parent = UIView(frame: deviceFrame)
-        parent.backgroundColor = BPKColor.skyGrayTint06
-        return parent
-    }
-    
-    private var stackView: UIStackView {
-        let stack = UIStackView(frame: deviceFrame)
-        stack.axis = .vertical
-        stack.distribution = .equalCentering
-        return stack
-    }
-    
     private func createView(withStyles styles: [BPKFontStyle]) -> UIView {
-        let stack = stackView
-        styles.map {
-            let label = BPKLabel(fontStyle: $0)
+        viewsInStack(withStyles: styles) { style in
+            let label = BPKLabel(fontStyle: style)
             label.text = "Backpack Rocks"
             return label
-        }.forEach(stack.addArrangedSubview)
-        let parent = parentView
-        parent.addSubview(stack)
-        return parent
+        }
     }
     
     func testLabelsWithRegularFontStyles() {

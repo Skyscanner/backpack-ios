@@ -25,26 +25,15 @@ class BPKTextViewSnapshotTest: FBSnapshotTestCase {
         recordMode = false
     }
     
-    // iPhone X dimensions
-    private let deviceFrame = CGRect(x: 0, y: 0, width: 375, height: 812)
-    
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {
-        let stack = UIStackView(frame: deviceFrame)
-        stack.axis = .vertical
-        stack.distribution = .equalCentering
-        let parent = UIView(frame: deviceFrame)
-        parent.backgroundColor = BPKColor.skyGrayTint06
-        
-        styles.map {
-            let textView = BPKTextView(fontStyle: $0)
+        viewsInStack(withStyles: styles) { style in
+            let textView = BPKTextView(fontStyle: style)
             textView.translatesAutoresizingMaskIntoConstraints = false
             textView.heightAnchor.constraint(equalToConstant: 70).isActive = true
             textView.text = "Backpack Rocks"
             if let color = textColor { textView.textColor = color }
             return textView
-        }.forEach(stack.addArrangedSubview)
-        parent.addSubview(stack)
-        return parent
+        }
     }
     
     func testTextViewWithRegularFontStyles() {
