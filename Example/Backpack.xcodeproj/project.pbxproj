@@ -21,6 +21,7 @@
 		53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */; };
 		53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */; };
 		53E897DA27B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */; };
+		53E897DC27B6EAC400A73444 /* BPKTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */; };
 		589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */; };
 		589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45422DE092800F252E9 /* BPKStarRatingTest.m */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
@@ -157,7 +158,6 @@
 		D2DACAEE25A75F0C0004BE39 /* TableNavigationDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACAED25A75F0C0004BE39 /* TableNavigationDataTest.swift */; };
 		D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB964B25C05DF600988978 /* MapViewController.swift */; };
 		D2EB965325C05E0800988978 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EB965225C05E0800988978 /* Map.storyboard */; };
-		D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76C236AE402006683F5 /* BPKTextFieldTest.m */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
 		D60B2458262F256600A9AA32 /* ToastStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60B2457262F256600A9AA32 /* ToastStory.swift */; };
 		D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D613CE542006795400D60CC4 /* BPKColorTest.m */; };
@@ -267,6 +267,7 @@
 		53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelTest.swift; sourceTree = "<group>"; };
+		53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldTest.swift; sourceTree = "<group>"; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingSnapshotTest.m; sourceTree = "<group>"; };
 		589FD45422DE092800F252E9 /* BPKStarRatingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingTest.m; sourceTree = "<group>"; };
@@ -365,7 +366,6 @@
 		D257C765236AE319006683F5 /* BPKSimpleDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSimpleDateTest.m; sourceTree = "<group>"; };
 		D257C767236AE3FB006683F5 /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
 		D257C768236AE3FB006683F5 /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
-		D257C76C236AE402006683F5 /* BPKTextFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldTest.m; sourceTree = "<group>"; };
 		D26017DD25C83A8800FAB768 /* BPKMapAnnotationSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKMapAnnotationSnapshotTest.m; sourceTree = "<group>"; };
 		D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TappableLinkLabels.storyboard; sourceTree = "<group>"; };
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 				53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */,
 				D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */,
 				D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */,
-				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
+				53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */,
@@ -1437,7 +1437,6 @@
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
-				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D21AF43C2539E7CE00C8ED04 /* BPKOverlayViewTest.m in Sources */,
 				D22EB158239EA78F0090C65E /* BPKBorderWidthTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
@@ -1446,6 +1445,7 @@
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
 				589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */,
 				6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */,
+				53E897DC27B6EAC400A73444 /* BPKTextFieldTest.swift in Sources */,
 				D2DACAEE25A75F0C0004BE39 /* TableNavigationDataTest.swift in Sources */,
 				D21EB4C125EA7F2F00B21A01 /* BPKCalendarSelectionTests.m in Sources */,
 			);

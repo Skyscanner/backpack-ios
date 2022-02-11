@@ -29,12 +29,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testInitWithFontStyle {
     BPKFontStyle styles[] = {
-        BPKFontStyleTextBodyLongform,
+        BPKFontStyleTextHero1,
+        BPKFontStyleTextHero2,
+        BPKFontStyleTextHero3,
+        BPKFontStyleTextHero4,
+        BPKFontStyleTextHero5,
+        BPKFontStyleTextHeading5,
         BPKFontStyleTextHeading4,
-        BPKFontStyleTextSubheading,
         BPKFontStyleTextHeading3,
         BPKFontStyleTextHeading2,
         BPKFontStyleTextHeading1,
+        BPKFontStyleTextSubheading,
+        BPKFontStyleTextBodyLongform,
+        BPKFontStyleTextBodyDefault,
+        BPKFontStyleTextLabel2,
+        BPKFontStyleTextLabel1,
+        BPKFontStyleTextFootnote,
+        BPKFontStyleTextCaption
     };
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
