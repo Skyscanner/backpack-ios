@@ -27,10 +27,10 @@ class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
     
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {
         viewsInStack(withStyles: styles) { style in
-            let textView = BPKTextField(fontStyle: style)
-            textView.text = "Backpack Rocks"
-            if let color = textColor { textView.textColor = color }
-            return textView
+            let textField = BPKTextField(fontStyle: style)
+            textField.text = "Backpack Rocks"
+            if let color = textColor { textField.textColor = color }
+            return textField
         }
     }
     

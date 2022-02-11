@@ -55,14 +55,25 @@ private let deviceFrame = CGRect(x: 0, y: 0, width: 375, height: 812)
 
 func viewsInStack(
     withStyles styles: [BPKFontStyle],
+    backgroundColor: UIColor = BPKColor.skyGrayTint06,
     _ viewProvider: ((BPKFontStyle) -> UIView)
 ) -> UIView {
-    let stack = UIStackView(frame: deviceFrame)
+    let stack = UIStackView(frame: .zero)
     stack.axis = .vertical
-    stack.distribution = .equalCentering
-    let parent = UIView(frame: deviceFrame)
-    parent.backgroundColor = BPKColor.skyGrayTint06
+    stack.spacing = BPKSpacingMd
+    stack.translatesAutoresizingMaskIntoConstraints = false
+    
+    let parent = UIView(frame: .zero)
+    parent.backgroundColor = backgroundColor
     parent.addSubview(stack)
+    parent.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+        stack.topAnchor.constraint(equalTo: parent.topAnchor),
+        stack.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+        stack.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
+        stack.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
+    ])
     
     styles
         .map(viewProvider)
