@@ -33,12 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
         BPKFontStyleTextHeading4,
         BPKFontStyleTextSubheading,
         BPKFontStyleTextHeading3,
-        BPKFontStyleTextHeading3,
         BPKFontStyleTextHeading2,
-        BPKFontStyleTextHeading2,
-        BPKFontStyleTextHeading2,
-        BPKFontStyleTextHeading1,
-        BPKFontStyleTextHeading1,
         BPKFontStyleTextHeading1,
     };
 
