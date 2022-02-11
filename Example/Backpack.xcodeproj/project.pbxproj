@@ -18,6 +18,7 @@
 		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
 		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
 		53E897D427B6D59B00A73444 /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */; };
+		53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */; };
 		589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */; };
 		589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45422DE092800F252E9 /* BPKStarRatingTest.m */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
@@ -59,7 +60,6 @@
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
 		764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */; };
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
-		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
@@ -316,7 +316,6 @@
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
 		764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSnackbarSnapshotTest.m; sourceTree = "<group>"; };
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
-		76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -930,7 +929,6 @@
 				600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */,
 				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
 				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
-				76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */,
 				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
@@ -1482,6 +1480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
+				53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */,
 				D6178E72268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
@@ -1510,7 +1509,6 @@
 				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
-				76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */,
 				D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */,
 				760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
