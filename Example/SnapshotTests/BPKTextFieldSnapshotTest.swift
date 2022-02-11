@@ -42,6 +42,10 @@ class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
         FBSnapshotVerifyView(createView(withStyles: .headingStyles))
     }
     
+    func testTextFieldWithHeroFontStyles() {
+        FBSnapshotVerifyView(createView(withStyles: .heroStyles))
+    }
+    
     func testTextFieldWithThemeApplied() {
         BPKSnapshotVerifyViewLight(
             createView(

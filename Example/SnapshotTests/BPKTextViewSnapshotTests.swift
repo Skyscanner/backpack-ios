@@ -29,7 +29,7 @@ class BPKTextViewSnapshotTest: FBSnapshotTestCase {
         viewsInStack(withStyles: styles) { style in
             let textView = BPKTextView(fontStyle: style)
             textView.translatesAutoresizingMaskIntoConstraints = false
-            textView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            textView.isScrollEnabled = false
             textView.text = "Backpack Rocks"
             if let color = textColor { textView.textColor = color }
             return textView
@@ -42,6 +42,10 @@ class BPKTextViewSnapshotTest: FBSnapshotTestCase {
     
     func testTextViewWithHeadingFontStyles() {
         FBSnapshotVerifyView(createView(withStyles: .headingStyles))
+    }
+    
+    func testTextViewWithHeroFontStyles() {
+        FBSnapshotVerifyView(createView(withStyles: .heroStyles))
     }
     
     func testTextViewWithThemeApplied() {
