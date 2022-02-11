@@ -84,7 +84,7 @@
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
-    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextCaption : BPKFontStyleTextCaption;
+    self.priceLabel.fontStyle = BPKFontStyleTextCaption;
 }
 
 - (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {
