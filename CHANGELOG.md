@@ -1,5 +1,13 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 47.1.0
+
+**Changed:**
+
+- Backpack/Font:
+  - Components use all new text styles internally
+  - XS Emphasized, Caps and Caps Emphasized to Captions behind the scenes
+
 # 47.0.0
 
 **Breaking:**
