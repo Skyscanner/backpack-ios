@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,12 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
     var style: BPKTappableLinkLabelStyle = .default
     var textColor: UIColor?
     var fontStyles = [
-        BPKFontStyle.textCaps,
-        BPKFontStyle.textSm,
-        BPKFontStyle.textBase,
-        BPKFontStyle.textLg,
-        BPKFontStyle.textXlEmphasized,
-        BPKFontStyle.textXxlEmphasized
+        BPKFontStyle.textCaption,
+        BPKFontStyle.textFootnote,
+        BPKFontStyle.textBodyDefault,
+        BPKFontStyle.textBodyLongform,
+        BPKFontStyle.textHeading3,
+        BPKFontStyle.textHeading2
     ]
 
     @IBOutlet var tappableLinks: [BPKTappableLinkLabel]!

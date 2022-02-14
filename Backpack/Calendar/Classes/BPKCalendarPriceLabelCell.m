@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@
 }
 
 - (void)setup {
-    self.priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextXs];
+    self.priceLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextCaption];
     self.priceLabel.numberOfLines = 2;
     self.priceLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self.contentView addSubview:self.priceLabel];
@@ -84,7 +84,7 @@
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;
     self.priceLabel.textColor = priceLabelCellData.labelStyle.textColor;
-    self.priceLabel.fontStyle = priceLabelCellData.labelStyle.isBold ? BPKFontStyleTextXsEmphasized : BPKFontStyleTextXs;
+    self.priceLabel.fontStyle = BPKFontStyleTextCaption;
 }
 
 - (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter {

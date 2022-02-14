@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,13 +139,13 @@ public final class BPKBarChartBar: UIControl {
     }()
 
     lazy fileprivate var titleLabel: BPKLabel = {
-        let view = BPKLabel(fontStyle: .textBaseEmphasized)
+        let view = BPKLabel(fontStyle: .textHeading5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     lazy fileprivate var subtitleLabel: BPKLabel = {
-        let view = BPKLabel(fontStyle: .textSm)
+        let view = BPKLabel(fontStyle: .textFootnote)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

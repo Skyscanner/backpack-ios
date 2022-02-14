@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ class CardsViewController: UIViewController {
     }
 
     func setupCard() {
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
             "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, " +
             "nascetur ridiculus mus."

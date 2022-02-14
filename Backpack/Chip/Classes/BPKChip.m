@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.accessibilityTraits = UIAccessibilityTraitButton;
 
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.fontStyle = BPKFontStyleTextSm;
+    self.titleLabel.fontStyle = BPKFontStyleTextFootnote;
     [self addSubview:self.titleLabel];
 
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

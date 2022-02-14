@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithStyle:BPKFontStyleTextBase];
+        [self setupWithStyle:BPKFontStyleTextBodyDefault];
     }
 
     return self;
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithStyle:BPKFontStyleTextBase];
+        [self setupWithStyle:BPKFontStyleTextBodyDefault];
     }
 
     return self;

@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testAttributesForFontStyleWithCustomAttributes {
     UIFont *font = [UIFont systemFontOfSize:120.0];
 
-    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg
+    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform
                                           withCustomAttributes:@{
                                               NSKernAttributeName: @1.5,
                                               NSFontAttributeName: font,
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testAttributesForFontStyleWithCustomFontFacesAndCustomAttributes {
     UIFont *font = [UIFont systemFontOfSize:120.0];
 
-    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg
+    NSDictionary *attributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform
                                           withCustomAttributes:@{
                                               NSKernAttributeName: @1.5,
                                               NSFontAttributeName: font,
@@ -69,9 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
     OCMStub([mockFontManager semiboldFontWithSize:20.0]).andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
     OCMStub([mockFontManager semiboldFontWithSize:24.0]).andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
 
-    NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLg fontManager:mockFontManager];
-    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextLgEmphasized fontManager:mockFontManager];
-    NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextXlHeavy fontManager:mockFontManager];
+    NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:mockFontManager];
+    NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:mockFontManager];
+    NSDictionary *heavyAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading3 fontManager:mockFontManager];
 
     UIFont *resultingRegularFont = regularAttributes[NSFontAttributeName];
     UIFont *resultingSemiboldFont = semiboldAttributes[NSFontAttributeName];
@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testAttributedStringWithCustomFontFaces {
-    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextLg content:@"Test" textColor:UIColor.purpleColor];
+    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBodyLongform content:@"Test" textColor:UIColor.purpleColor];
 
     NSDictionary<NSAttributedStringKey, id> *attributes = [attributedString attributesAtIndex:0
                                                                         longestEffectiveRange:nil
@@ -95,25 +95,17 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testFontWithStyle {
-    BPKFontStyle styles[] = {BPKFontStyleTextBase,
-                             BPKFontStyleTextBaseEmphasized,
-                             BPKFontStyleTextCaps,
-                             BPKFontStyleTextCapsEmphasized,
-                             BPKFontStyleTextLg,
-                             BPKFontStyleTextLgEmphasized,
-                             BPKFontStyleTextSm,
-                             BPKFontStyleTextSmEmphasized,
-                             BPKFontStyleTextXl,
-                             BPKFontStyleTextXlEmphasized,
-                             BPKFontStyleTextXlHeavy,
-                             BPKFontStyleTextXs,
-                             BPKFontStyleTextXsEmphasized,
-                             BPKFontStyleTextXxl,
-                             BPKFontStyleTextXxlEmphasized,
-                             BPKFontStyleTextXxlHeavy,
-                             BPKFontStyleTextXxxl,
-                             BPKFontStyleTextXxxlEmphasized,
-                             BPKFontStyleTextXxxlHeavy};
+    BPKFontStyle styles[] = {BPKFontStyleTextBodyDefault,
+                             BPKFontStyleTextCaption,
+                             BPKFontStyleTextBodyLongform,
+                             BPKFontStyleTextFootnote,
+                             BPKFontStyleTextLabel2,
+                             BPKFontStyleTextSubheading,
+                             BPKFontStyleTextHeading5,
+                             BPKFontStyleTextHeading4,
+                             BPKFontStyleTextHeading3,
+                             BPKFontStyleTextHeading2,
+                             BPKFontStyleTextHeading1};
 
     for (NSUInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         BPKFontStyle style = styles[i];
@@ -123,19 +115,6 @@ NS_ASSUME_NONNULL_BEGIN
         XCTAssertNotNil([BPKFont fontForFontStyle:style]);
         XCTAssertEqualObjects(font, attributes[NSFontAttributeName]);
     }
-}
-
-- (void)testStableFontStyles {
-    XCTAssertEqual(BPKFontStyleTextBase, 0);
-    XCTAssertEqual(BPKFontStyleTextBaseEmphasized, 1);
-    XCTAssertEqual(BPKFontStyleTextLg, 2);
-    XCTAssertEqual(BPKFontStyleTextLgEmphasized, 3);
-    XCTAssertEqual(BPKFontStyleTextSm, 4);
-    XCTAssertEqual(BPKFontStyleTextSmEmphasized, 5);
-    XCTAssertEqual(BPKFontStyleTextXl, 6);
-    XCTAssertEqual(BPKFontStyleTextXlEmphasized, 7);
-    XCTAssertEqual(BPKFontStyleTextXs, 8);
-    XCTAssertEqual(BPKFontStyleTextXsEmphasized, 9);
 }
 
 @end

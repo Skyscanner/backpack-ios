@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,12 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     self.titleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.fontStyle = BPKFontStyleTextBaseEmphasized;
+    self.titleLabel.fontStyle = BPKFontStyleTextHeading5;
     [self addSubview:self.titleLabel];
     [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
     self.subtitleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
-    self.subtitleLabel.fontStyle = BPKFontStyleTextBase;
+    self.subtitleLabel.fontStyle = BPKFontStyleTextBodyDefault;
     self.subtitleLabel.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint01 darkVariant:BPKColor.textSecondaryLightColor];
     [self.subtitleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:self.subtitleLabel];
@@ -107,30 +107,30 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateFontSizes {
-    CGFloat newTitleFontStyle = BPKFontStyleTextBase;
-    CGFloat newSubtitleFontStyle = BPKFontStyleTextBase;
-    CGFloat newPillSubtitleFontStyle = BPKFontStyleTextBase;
+    CGFloat newTitleFontStyle = BPKFontStyleTextBodyDefault;
+    CGFloat newSubtitleFontStyle = BPKFontStyleTextBodyDefault;
+    CGFloat newPillSubtitleFontStyle = BPKFontStyleTextBodyDefault;
 
     switch (self.size) {
     case BPKRatingSizeLarge:
-        newTitleFontStyle = BPKFontStyleTextLgEmphasized;
-        newPillSubtitleFontStyle = BPKFontStyleTextLg;
-        newSubtitleFontStyle = BPKFontStyleTextBase;
+        newTitleFontStyle = BPKFontStyleTextHeading4;
+        newPillSubtitleFontStyle = BPKFontStyleTextBodyLongform;
+        newSubtitleFontStyle = BPKFontStyleTextBodyDefault;
         break;
     case BPKRatingSizeBase:
-        newTitleFontStyle = BPKFontStyleTextBaseEmphasized;
-        newPillSubtitleFontStyle = BPKFontStyleTextBase;
-        newSubtitleFontStyle = BPKFontStyleTextSm;
+        newTitleFontStyle = BPKFontStyleTextHeading5;
+        newPillSubtitleFontStyle = BPKFontStyleTextBodyDefault;
+        newSubtitleFontStyle = BPKFontStyleTextFootnote;
         break;
     case BPKRatingSizeSmall:
-        newTitleFontStyle = BPKFontStyleTextSmEmphasized;
-        newPillSubtitleFontStyle = BPKFontStyleTextSm;
-        newSubtitleFontStyle = BPKFontStyleTextXs;
+        newTitleFontStyle = BPKFontStyleTextLabel2;
+        newPillSubtitleFontStyle = BPKFontStyleTextFootnote;
+        newSubtitleFontStyle = BPKFontStyleTextCaption;
         break;
     case BPKRatingSizeExtraSmall:
-        newTitleFontStyle = BPKFontStyleTextXsEmphasized;
-        newPillSubtitleFontStyle = BPKFontStyleTextXs;
-        newSubtitleFontStyle = BPKFontStyleTextXs;
+        newTitleFontStyle = BPKFontStyleTextCaption;
+        newPillSubtitleFontStyle = BPKFontStyleTextCaption;
+        newSubtitleFontStyle = BPKFontStyleTextCaption;
         break;
     }
 

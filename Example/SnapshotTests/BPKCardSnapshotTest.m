@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -160,8 +160,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createDividedSnapshotWithPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
@@ -183,8 +183,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createDividedSnapshotWithPaddedHorizontalAndLargeCornerStyle {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
@@ -207,8 +207,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createDividedSnapshotWithPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
@@ -232,8 +232,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createDividedSnapshotWithoutPaddedHorizontal {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
@@ -256,8 +256,8 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
     [[dividedCard.heightAnchor constraintGreaterThanOrEqualToConstant:2 * BPKSpacingLg] setActive:YES];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];
@@ -280,8 +280,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIView *)createDividedSnapshotWithoutPaddedVertical {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
-    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
-    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
     firstInnerView.backgroundColor = [BPKColor panjin];

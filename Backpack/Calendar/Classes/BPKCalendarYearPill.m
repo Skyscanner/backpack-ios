@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@
 
 - (void)updateYearAppearance {
     if (self.year != nil) {
-        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextXsEmphasized
+        self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCaption
                                                                    content:[self.year stringValue]
                                                                  textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
                                                                                                       darkVariant:BPKColor.skyGray]];

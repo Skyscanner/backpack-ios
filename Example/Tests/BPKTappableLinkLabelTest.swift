@@ -16,26 +16,14 @@
  * limitations under the License.
  */
 
-#import <Backpack/Color.h>
-#import <Backpack/TappableLinkLabel.h>
+import XCTest
+import Backpack
 
-#import <XCTest/XCTest.h>
-
-@interface BPKTappableLinkLabelTest : XCTestCase
-
-@end
-
-NS_ASSUME_NONNULL_BEGIN
-@implementation BPKTappableLinkLabelTest
-
-- (void)testSettingText {
-    BPKTappableLinkLabel *label = [[BPKTappableLinkLabel alloc] initWithFrame:CGRectZero];
-    label.text = @"Hello world";
-    [label addLinkToURL:[NSURL URLWithString:@"https"] withRange:NSMakeRange(0, 5)];
-
-    XCTAssertEqualObjects(label.text, @"Hello world");
+class BPKTappableLinkLabelTest: XCTestCase {
+    func testSettingText() {
+        let label = BPKTappableLinkLabel(frame: .zero)
+        label.text = "Hello world"
+        label.addLink(to: URL(string: "https")!, with: NSRange(location: 0, length: 5))
+        XCTAssertEqual(label.text, "Hello world")
+    }
 }
-
-@end
-
-NS_ASSUME_NONNULL_END

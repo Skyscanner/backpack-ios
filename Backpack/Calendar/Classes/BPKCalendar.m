@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -214,7 +214,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.calendarView.dataSource = self;
     self.calendarView.collectionView.delegate = self;
 
-    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextSm];
+    NSDictionary<NSAttributedStringKey, id> *weekdayTextAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextFootnote];
 
     BPKCalendarAppearance *appearance = [BPKCalendarAppearance fromFSCalendarAppearance:self.calendarView.appearance];
     appearance.headerDateFormat = HeaderDateFormat;
@@ -226,7 +226,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     appearance.titleDefaultColor = BPKColor.textPrimaryColor;
     appearance.selectionColor = self.currentDateSelectedBackgroundColor;
     appearance.titleSelectionColor = self.currentDateSelectedContentColor;
-    appearance.headerTitleFontStyle = BPKFontStyleTextLgEmphasized;
+    appearance.headerTitleFontStyle = BPKFontStyleTextHeading4;
 
     _appearance = appearance;
 

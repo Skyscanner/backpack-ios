@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,32 +98,32 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)updateStyle {
-    BPKFontStyle fontStyle = BPKFontStyleTextBase;
+    BPKFontStyle fontStyle = BPKFontStyleTextBodyDefault;
     UIColor *backgroundColor = nil;
     UIColor *contentBackgroundColor = nil;
     UIColor *contentColor = nil;
     UIColor *borderColor = nil;
 
     if(!self.annotationView.enabled) {
-        fontStyle = BPKFontStyleTextSmEmphasized;
+        fontStyle = BPKFontStyleTextLabel2;
         backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
         contentBackgroundColor = BPKColor.clear;
         contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
         borderColor = BPKColor.clear;
     } else if(self.annotationView.selected) {
-        fontStyle = BPKFontStyleTextBaseEmphasized;
+        fontStyle = BPKFontStyleTextHeading5;
         backgroundColor = BPKColor.skyBlue;
         contentBackgroundColor = BPKColor.white;
         contentColor = BPKColor.skyBlue;
         borderColor = BPKColor.skyBlue;
     } else if (self.annotationView.hasBeenSelected) {
-        fontStyle = BPKFontStyleTextSmEmphasized;
+        fontStyle = BPKFontStyleTextLabel2;
         backgroundColor = BPKColor.skyBlueTint03;
         contentBackgroundColor = BPKColor.clear;
         contentColor = BPKColor.skyBlue;
         borderColor = BPKColor.clear;
     } else {
-        fontStyle = BPKFontStyleTextSmEmphasized;
+        fontStyle = BPKFontStyleTextLabel2;
         backgroundColor = BPKColor.skyBlue;
         contentBackgroundColor = BPKColor.clear;
         contentColor = BPKColor.white;
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     BPKIconView *iconView = [[BPKIconView alloc] initWithIconName:nil size:BPKIconSizeSmall];
 
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBaseEmphasized];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHeading5];
 
     // Ensures that the icon will remain visible even if the label has to shrink
     [label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];

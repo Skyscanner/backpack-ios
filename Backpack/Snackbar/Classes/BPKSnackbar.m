@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,8 +81,8 @@ static int const BPKSnackbarHeight = 60;
         self.snackbarView = [UIView new];
         self.stackView = [UIStackView new];
         self.leftIconContainer = [[UIImageView alloc] init];
-        self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSmEmphasized];
-        self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextSm];
+        self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLabel2];
+        self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextFootnote];
         self.actionButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
 
         self.translatesAutoresizingMaskIntoConstraints = NO;

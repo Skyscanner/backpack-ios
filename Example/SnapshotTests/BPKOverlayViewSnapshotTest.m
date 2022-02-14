@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createForegroundView {
-    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+    BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     label.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.numberOfLines = 0;

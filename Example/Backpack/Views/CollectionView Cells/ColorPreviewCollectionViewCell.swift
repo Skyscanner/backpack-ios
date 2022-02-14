@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         self.colorView = UIView(frame: CGRect.zero)
-        self.label = BPKLabel(fontStyle: .textSm)
+        self.label = BPKLabel(fontStyle: .textFootnote)
         label.numberOfLines = 2
 
         super.init(frame: frame)
@@ -112,7 +112,7 @@ class ColorPreviewCollectionViewCell: UICollectionViewCell {
     }
 
     public static func estimatedSize() -> CGSize {
-        let mockLabel = BPKLabel(fontStyle: BPKFontStyle.textBase)
+        let mockLabel = BPKLabel(fontStyle: BPKFontStyle.textBodyDefault)
         mockLabel.text = "color"
         mockLabel.sizeToFit()
 

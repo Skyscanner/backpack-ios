@@ -15,6 +15,13 @@
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
 		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
+		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
+		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
+		53E897D427B6D59B00A73444 /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */; };
+		53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */; };
+		53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */; };
+		53E897DA27B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */; };
+		53E897DC27B6EAC400A73444 /* BPKTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */; };
 		589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */; };
 		589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45422DE092800F252E9 /* BPKStarRatingTest.m */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
@@ -56,8 +63,6 @@
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
 		764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */; };
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
-		76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */; };
-		76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
@@ -129,7 +134,6 @@
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
 		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
-		D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */; };
 		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
 		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
@@ -154,8 +158,6 @@
 		D2DACAEE25A75F0C0004BE39 /* TableNavigationDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACAED25A75F0C0004BE39 /* TableNavigationDataTest.swift */; };
 		D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB964B25C05DF600988978 /* MapViewController.swift */; };
 		D2EB965325C05E0800988978 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EB965225C05E0800988978 /* Map.storyboard */; };
-		D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76C236AE402006683F5 /* BPKTextFieldTest.m */; };
-		D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */; };
 		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
 		D60B2458262F256600A9AA32 /* ToastStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60B2457262F256600A9AA32 /* ToastStory.swift */; };
 		D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D613CE542006795400D60CC4 /* BPKColorTest.m */; };
@@ -180,7 +182,6 @@
 		D696CA20215CC09400682666 /* BPKIconTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D696CA1F215CC09400682666 /* BPKIconTest.m */; };
 		D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696CA21215CC1BD00682666 /* IconSwiftTest.swift */; };
 		D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698E64E219C528100D03060 /* CalendarViewController.swift */; };
-		D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */; };
 		D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
 		D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */; };
 		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
@@ -260,6 +261,13 @@
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeSnapshotTest.swift; sourceTree = "<group>"; };
 		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
+		53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKLabelSnapshotTest.swift; sourceTree = "<group>"; };
+		53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextViewSnapshotTests.swift; sourceTree = "<group>"; };
+		53E897D227B6D0D800A73444 /* FontStylesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStylesUtil.swift; sourceTree = "<group>"; };
+		53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldSnapshotTest.swift; sourceTree = "<group>"; };
+		53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelSnapshotTest.swift; sourceTree = "<group>"; };
+		53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelTest.swift; sourceTree = "<group>"; };
+		53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldTest.swift; sourceTree = "<group>"; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingSnapshotTest.m; sourceTree = "<group>"; };
 		589FD45422DE092800F252E9 /* BPKStarRatingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingTest.m; sourceTree = "<group>"; };
@@ -311,8 +319,6 @@
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
 		764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSnackbarSnapshotTest.m; sourceTree = "<group>"; };
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
-		76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextViewSnapshotTest.m; sourceTree = "<group>"; };
-		76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldSnapshotTest.m; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -360,8 +366,6 @@
 		D257C765236AE319006683F5 /* BPKSimpleDateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSimpleDateTest.m; sourceTree = "<group>"; };
 		D257C767236AE3FB006683F5 /* TextViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewUITest.swift; sourceTree = "<group>"; };
 		D257C768236AE3FB006683F5 /* TextFieldUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUITest.swift; sourceTree = "<group>"; };
-		D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelTest.m; sourceTree = "<group>"; };
-		D257C76C236AE402006683F5 /* BPKTextFieldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTextFieldTest.m; sourceTree = "<group>"; };
 		D26017DD25C83A8800FAB768 /* BPKMapAnnotationSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKMapAnnotationSnapshotTest.m; sourceTree = "<group>"; };
 		D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TappableLinkLabels.storyboard; sourceTree = "<group>"; };
 		D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsViewController.swift; sourceTree = "<group>"; };
@@ -392,7 +396,6 @@
 		D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "Backpack Screenshot/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
 		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
-		D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTappableLinkLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D297B8F323B90379008D094A /* Backpack Screenshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack Screenshot.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -458,7 +461,6 @@
 		D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconSnapshotTest.m; sourceTree = "<group>"; };
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
 		D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_SnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKLabelSnapshotTest.m; sourceTree = "<group>"; };
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
 		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
@@ -535,6 +537,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53E897D127B6D0CA00A73444 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				53E897D227B6D0D800A73444 /* FontStylesUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -665,10 +675,10 @@
 				589FD45422DE092800F252E9 /* BPKStarRatingTest.m */,
 				D251D2AB243664DF00E28B60 /* BPKTabBarControllerTest.m */,
 				D231E2B525AF312A0061E53E /* BPKTabBarItemTest.swift */,
-				D257C76B236AE402006683F5 /* BPKTappableLinkLabelTest.m */,
+				53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */,
 				D2B6450B23A01CB7001001B8 /* BPKTestFontDefinition.h */,
 				D2B6450C23A01CB7001001B8 /* BPKTestFontDefinition.m */,
-				D257C76C236AE402006683F5 /* BPKTextFieldTest.m */,
+				53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */,
 				D696CA21215CC1BD00682666 /* IconSwiftTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				D66A620326948AC500B29F6C /* BPKHorizontalNavigationTest.swift */,
@@ -889,6 +899,7 @@
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
+				53E897D127B6D0CA00A73444 /* Utils */,
 				D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */,
 				D28588B124586D2A005DE2E0 /* BPKBarChartSnapshotTest.m */,
 				D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */,
@@ -902,7 +913,6 @@
 				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */,
 				D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */,
 				D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */,
-				D6D81D61213FEEB90013BB96 /* BPKLabelSnapshotTest.m */,
 				D26017DD25C83A8800FAB768 /* BPKMapAnnotationSnapshotTest.m */,
 				D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */,
 				76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */,
@@ -918,15 +928,16 @@
 				589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */,
 				600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */,
 				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
-				D295701422C34C9D00797F47 /* BPKTappableLinkLabelSnapshotTest.m */,
-				76E345392360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m */,
-				76E345382360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m */,
 				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
 				D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */,
 				D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */,
 				5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */,
+				53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */,
+				53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */,
+				53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */,
+				53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */,
 			);
 			path = SnapshotTests;
 			sourceTree = "<group>";
@@ -1412,6 +1423,7 @@
 				D283842C234381C800E33EAD /* BPKDurationTest.m in Sources */,
 				60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */,
 				D66A620426948AC500B29F6C /* BPKHorizontalNavigationTest.swift in Sources */,
+				53E897DA27B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift in Sources */,
 				D2B6450D23A01CB7001001B8 /* BPKTestFontDefinition.m in Sources */,
 				D649E8F0212F0DAA00B25A9E /* BPKLabelTest.m in Sources */,
 				D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */,
@@ -1425,8 +1437,6 @@
 				D655C51A200FA18100CB39AF /* BPKFontTest.m in Sources */,
 				D696CA23215CC1DB00682666 /* IconSwiftTest.swift in Sources */,
 				D6391602202CAF07006E8329 /* BPKShadowTest.m in Sources */,
-				D2FBC4AD236AE69000331506 /* BPKTappableLinkLabelTest.m in Sources */,
-				D2FBC4AC236AE68D00331506 /* BPKTextFieldTest.m in Sources */,
 				D21AF43C2539E7CE00C8ED04 /* BPKOverlayViewTest.m in Sources */,
 				D22EB158239EA78F0090C65E /* BPKBorderWidthTest.m in Sources */,
 				D254D3BA236B12AB0000ADA6 /* BPKSimpleDateTest.m in Sources */,
@@ -1435,6 +1445,7 @@
 				D613CE552006795400D60CC4 /* BPKColorTest.m in Sources */,
 				589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */,
 				6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */,
+				53E897DC27B6EAC400A73444 /* BPKTextFieldTest.swift in Sources */,
 				D2DACAEE25A75F0C0004BE39 /* TableNavigationDataTest.swift in Sources */,
 				D21EB4C125EA7F2F00B21A01 /* BPKCalendarSelectionTests.m in Sources */,
 			);
@@ -1469,11 +1480,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21FA97A22EA370500FD866D /* BPKProgressBarSnapshotTest.m in Sources */,
+				53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */,
 				D6178E72268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
 				5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */,
+				53E897D427B6D59B00A73444 /* BPKTextViewSnapshotTests.swift in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
@@ -1482,21 +1495,20 @@
 				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
 				D21AF45D2539EB2C00C8ED04 /* BPKOverlayViewSnapshotTest.m in Sources */,
-				D6A1505E213FEEF000AAF968 /* BPKLabelSnapshotTest.m in Sources */,
 				589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */,
-				D295701622C34EC300797F47 /* BPKTappableLinkLabelSnapshotTest.m in Sources */,
+				53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */,
+				53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */,
 				536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */,
 				D27055C425C9CD5C00EB9F66 /* BPKMapSnapshotTest.m in Sources */,
 				D28588B324586D33005DE2E0 /* BPKBarChartSnapshotTest.m in Sources */,
 				76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */,
 				D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */,
+				53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */,
 				600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
 				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
-				76E3453A2360F4D400B5CEA5 /* BPKTextViewSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
-				76E3453B2360F4D400B5CEA5 /* BPKTextFieldSnapshotTest.m in Sources */,
 				D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */,
 				760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,

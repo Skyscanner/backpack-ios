@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ public protocol BPKHorizontalNavigationSize {
 public enum BPKHorizontalNavigationSizeDefault: BPKHorizontalNavigationSize {
     public static var verticalSpacing: CGFloat { BPKSpacingLg }
 
-    public static var fontStyle: BPKFontStyle { .textBaseEmphasized }
+    public static var fontStyle: BPKFontStyle { .textHeading5 }
 }
 
 /// The small size of `BPKHorizontalNavigation`.
 public enum BPKHorizontalNavigationSizeSmall: BPKHorizontalNavigationSize {
     public static var verticalSpacing: CGFloat { BPKSpacingBase }
 
-    public static var fontStyle: BPKFontStyle { .textSmEmphasized }
+    public static var fontStyle: BPKFontStyle { .textLabel2 }
 }
 
 extension BPKHorizontalNavigationSize {

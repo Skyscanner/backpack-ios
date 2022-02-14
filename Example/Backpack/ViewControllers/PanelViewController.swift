@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ class PanelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let label = BPKLabel(fontStyle: .textBase)
+        let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
         "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
         "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
