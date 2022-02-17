@@ -43,7 +43,7 @@ public enum BPKButtonStyle: NSInteger {
      * Outline button style, suitable for use on coloured backgrounds.
      */
     case outline
-};
+}
 
 extension BPKButtonStyle {
     var appearance: BPKButtonAppearanceSet {
