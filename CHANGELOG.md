@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 47.1.1
+
+**Fixed:**
+
+- Backpack/Font:
+  - Fixing bug when attributed text is empty.
+
 # 47.1.0
 
 **Changed:**
