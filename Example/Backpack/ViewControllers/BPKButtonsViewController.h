@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import <Backpack/Button.h>
+#import <Backpack/Backpack-Swift.h>
 #import <UIKit/UIKit.h>
 
 @interface BPKButtonsViewController : UIViewController

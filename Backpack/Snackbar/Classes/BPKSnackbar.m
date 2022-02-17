@@ -20,11 +20,11 @@
 
 #import "BPKSnackbarButton.h"
 
-#import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Duration.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Backpack-Swift.h>
 
 NSString *const SnackbarAccessibilityIdentifier = @"snackbarView";
 

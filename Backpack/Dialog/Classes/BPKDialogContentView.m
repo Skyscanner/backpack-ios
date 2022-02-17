@@ -18,11 +18,11 @@
 
 #import "BPKDialogContentView.h"
 
-#import <Backpack/Button.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
+#import <Backpack/Backpack-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKActionButtonPair : NSObject
