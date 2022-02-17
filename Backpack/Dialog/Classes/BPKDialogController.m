@@ -17,8 +17,7 @@
  */
 
 #import "BPKDialogController.h"
-
-#import <Backpack/Button.h>
+#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
@@ -67,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super init];
 
     if (self) {
-        self.buttonSize = BPKButtonSizeLarge;
+        self.buttonSize = BPKButtonS#import <Backpack/Backpack-Swift.h>izeLarge;
         self.titleText = title;
         self.messageText = message;
         self.style = style;

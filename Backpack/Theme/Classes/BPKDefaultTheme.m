@@ -17,8 +17,7 @@
  */
 
 #import "BPKDefaultTheme.h"
-
-#import <Backpack/Button.h>
+#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>

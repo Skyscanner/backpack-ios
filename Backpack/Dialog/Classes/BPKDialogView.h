@@ -17,7 +17,6 @@
  */
 
 #import <UIKit/UIKit.h>
-
 #import <Backpack/Backpack-Swift.h>
 #import <Backpack/FlareView.h>
 
