@@ -23,9 +23,9 @@
 #import <Backpack/Label.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKNavigationBarButton.h"
 #import "BPKNavigationBarLargeTitleView.h"
 #import "BPKNavigationBarTitleView.h"
+#import <Backpack/Backpack-Swift.h>
 
 const CGFloat BPKNavigationBarExpandedFullHeight = 96;
 
