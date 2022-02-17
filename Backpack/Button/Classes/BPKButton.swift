@@ -7,12 +7,11 @@
 
 import UIKit
 
-
 /**
  * Enum values for specifying button style
  */
-@objc(BPKButtonStyle)
-public enum ButtonStyle: NSInteger {
+@objc
+public enum BPKButtonStyle: NSInteger {
     /**
      * Primary button style, suitable for use as the primary call to action
      */
@@ -47,14 +46,14 @@ public enum ButtonStyle: NSInteger {
 };
 
 
-@objc(BPKButtonSize)
-public enum ButtonSize: NSInteger {
+@objc
+public enum BPKButtonSize: NSInteger {
     case `default`
     case large
 }
 
-@objc(BPKButtonImagePosition)
-public enum ButtonImagePosition: NSInteger {
+@objc
+public enum BPKButtonImagePosition: NSInteger {
     case leading
     case trailing
 }
@@ -155,17 +154,17 @@ public class BPKButton: UIButton {
             }
         }
     }
-    public var size = ButtonSize.default {
+    public var size = BPKButtonSize.default {
         didSet { updateTitle() }
     }
-    public var style = ButtonStyle.primary {
+    public var style = BPKButtonStyle.primary {
         didSet {
             updateAppearance()
             updateTitle()
             updateEdgeInsets()
         }
     }
-    public var imagePosition = ButtonImagePosition.trailing {
+    public var imagePosition = BPKButtonImagePosition.trailing {
         didSet { setNeedsLayout() }
     }
     private var gradientLayer = BPKGradientLayer()
@@ -181,7 +180,7 @@ public class BPKButton: UIButton {
         }
     }
     
-    public init(size: ButtonSize, style: ButtonStyle) {
+    public init(size: BPKButtonSize, style: BPKButtonStyle) {
         super.init(frame: .zero)
         setup(size: size, style: style)
     }
@@ -298,7 +297,7 @@ public class BPKButton: UIButton {
         currentAppearance.foregroundColor!
     }
     
-    func setup(size: ButtonSize, style: ButtonStyle) {
+    func setup(size: BPKButtonSize, style: BPKButtonStyle) {
         layer.masksToBounds = true
         adjustsImageWhenHighlighted = false
         adjustsImageWhenDisabled = false
@@ -472,7 +471,7 @@ public class BPKButton: UIButton {
         setNeedsDisplay()
     }
     
-    func contentEdgeInset(size: ButtonSize, style: ButtonStyle) -> UIEdgeInsets {
+    func contentEdgeInset(size: BPKButtonSize, style: BPKButtonStyle) -> UIEdgeInsets {
         switch style {
         case .link: return .zero
         default: return size.contentEdgeInsets(isIconOnly: isIconOnly)
@@ -490,7 +489,7 @@ public class BPKButton: UIButton {
     }
 }
 
-private extension ButtonStyle {
+private extension BPKButtonStyle {
     var appearance: BPKButtonAppearanceSet {
         switch self {
         case .primary: return BPKButtonAppearanceSets.primary
@@ -512,7 +511,7 @@ private extension UIColor {
     }
 }
 
-private extension ButtonSize {
+private extension BPKButtonSize {
     var spinnerSize: BPKSpinnerSize {
         switch self {
         case .`default`: return .small
@@ -545,7 +544,7 @@ private extension ButtonSize {
 }
 
 private extension BPKButton {
-    func dummyImage(withSize size: ButtonSize) -> UIImage? {
+    func dummyImage(withSize size: BPKButtonSize) -> UIImage? {
         let size = size == .large ? BPKIcon.concreteSizeForLargeIcon : BPKIcon.concreteSizeForSmallIcon
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
         UIColor.black.setFill()
