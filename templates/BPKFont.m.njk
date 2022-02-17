@@ -101,7 +101,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSParagraphStyle *)paragraphStyleOnAttributedString:(NSAttributedString *)attributedText forStyle:(BPKFontStyle)style {
-    NSParagraphStyle *existingStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
+    NSParagraphStyle *existingStyle = nil;
+    if (attributedText.length > 0) {
+        existingStyle = [attributedText attribute:NSParagraphStyleAttributeName atIndex: 0 longestEffectiveRange:NULL inRange:NSMakeRange(0, attributedText.length)];
+    } else {
+        existingStyle = [NSParagraphStyle defaultParagraphStyle];
+    }
     if (existingStyle == nil) { return nil; }
     NSMutableParagraphStyle *paragraphStyle = [existingStyle mutableCopy];
     UIFont *font = [self fontForFontStyle:style];
