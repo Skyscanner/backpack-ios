@@ -17,8 +17,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <Backpack/Backpack-Swift.h>
 #import <Backpack/FlareView.h>
+#import "BPKButtonSize.h"
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogControllerStyle.h"

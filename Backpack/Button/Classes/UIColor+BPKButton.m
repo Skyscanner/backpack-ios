@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -15,12 +16,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#import "UIColor+BPKButton.h"
 
-#import <Backpack/Backpack.h>
-#import <UIKit/UIKit.h>
+#import "Backpack/Color.h"
 
-@interface BPKButtonsViewController : UIViewController
+@implementation UIColor(BPKButton)
 
-@property(nonatomic) BPKButtonStyle style;
++ (UIColor *)dimColor:(UIColor *)color {
+    return [BPKColor blend:color with:BPKColor.skyGray weight:0.85f];
+}
+
++ (UIColor *)reduceOpacityOfColor:(UIColor *)color {
+    return [color colorWithAlphaComponent:0.8f];
+}
 
 @end

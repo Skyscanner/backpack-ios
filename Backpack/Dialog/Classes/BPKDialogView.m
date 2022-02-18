@@ -17,7 +17,7 @@
  */
 
 #import "BPKDialogView.h"
-#import <Backpack/Backpack-Swift.h>
+
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/Label.h>

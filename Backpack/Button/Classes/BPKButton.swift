@@ -10,6 +10,76 @@ import UIKit
 @objcMembers
 // noop
 public class BPKButton: UIButton {
+    public var featuredContentColor: UIColor? {
+        didSet {
+            updateAppearance()
+            updateTitle()
+        }
+    }
+    public var featuredGradientStartColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var featuredGradientEndColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var primaryContentColor: UIColor? {
+        didSet {
+            updateAppearance()
+            updateTitle()
+        }
+    }
+    public var primaryGradientStartColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var primaryGradientEndColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var destructiveContentColor: UIColor? {
+        didSet {
+            updateAppearance()
+            updateTitle()
+        }
+    }
+    public var destructiveBackgroundColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var destructiveBorderColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var secondaryContentColor: UIColor? {
+        didSet {
+            updateAppearance()
+            updateTitle()
+        }
+    }
+    public var secondaryBackgroundColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var secondaryBorderColor: UIColor? {
+        didSet {
+            updateAppearance()
+        }
+    }
+    public var linkContentColor: UIColor = BPKColor.primaryColor {
+        didSet {
+            updateAppearance()
+            updateTitle()
+        }
+    }
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
@@ -284,6 +354,15 @@ public class BPKButton: UIButton {
             fatalError("Unknown button size \(size)")
         }
     }
+    private func dummyImage(withSize size: BPKButtonSize) -> UIImage? {
+        let size = size == .large ? BPKIcon.concreteSizeForLargeIcon : BPKIcon.concreteSizeForSmallIcon
+        UIGraphicsBeginImageContextWithOptions(size, true, 0)
+        UIColor.black.setFill()
+        UIRectFill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
 
 private extension UIEdgeInsets {
@@ -303,5 +382,100 @@ private extension UIEdgeInsets {
             bottom: topBottom,
             right: side
         )
+    }
+}
+
+fileprivate extension BPKButtonSize {
+    var spinnerSize: BPKSpinnerSize {
+        switch self {
+        case .`default`: return .small
+        case .large: return .`default`
+        default:
+            // Only here because size is an Obj-C NSUInteger enum
+            fatalError("Unknown button size \(self)")
+        }
+    }
+    
+    func contentEdgeInsets(isIconOnly: Bool) -> UIEdgeInsets {
+        switch self {
+        case .`default`:
+            return isIconOnly ? .with(equalInsets: BPKSpacingMd) : .with(
+                sideInsets: BPKSpacingBase,
+                topBottomInsets: BPKSpacingMd
+            )
+        case .large:
+            return isIconOnly ? .with(
+                equalInsets: BPKSpacingSm * 3
+            ) : .with(
+                sideInsets: BPKSpacingLg,
+                topBottomInsets: BPKSpacingSm * 3
+            )
+        default:
+            // Only here because size is an Obj-C NSUInteger enum
+            fatalError("Unknown button size \(self)")
+        }
+    }
+}
+
+fileprivate extension BPKButtonStyle {
+    var appearance: BPKButtonAppearanceSet {
+        switch self {
+        case .primary: return BPKButtonAppearanceSets.primary
+        case .secondary: return BPKButtonAppearanceSets.secondary
+        case .destructive: return BPKButtonAppearanceSets.destructive
+        case .featured: return BPKButtonAppearanceSets.featured
+        case .link: return BPKButtonAppearanceSets.link
+        case .outline: return BPKButtonAppearanceSets.outline
+        default:
+            // Only here because style is an Obj-C NSUInteger enum
+            fatalError("Unknown button style \(self)")
+        }
+    }
+}
+
+fileprivate extension BPKButtonAppearance {
+    var hasGradientColor: Bool {
+        let hasStart = self.gradientStartColor != nil
+        let hasEnd = self.gradientEndColor != nil
+        return hasStart && hasEnd
+    }
+    
+    func gradient(traitCollection: UITraitCollection) -> BPKGradient? {
+        guard hasGradientColor else { return nil }
+        return gradientWith(
+            topColor: gradientStartColor!,
+            bottomColor: gradientEndColor!,
+            traitCollection: traitCollection
+        )
+    }
+    
+    private func gradientWith(
+        topColor top: UIColor,
+        bottomColor bottom: UIColor,
+        traitCollection: UITraitCollection
+    ) -> BPKGradient {
+        let direction = BPKGradientDirection.down
+        return BPKGradient(
+            colors: [
+                top.resolvedColor(with: traitCollection),
+                bottom.resolvedColor(with: traitCollection)
+            ],
+            start: BPKGradient.startPoint(for: direction),
+            end: BPKGradient.endPointFor(for: direction)
+        )
+    }
+}
+
+extension UIColor {
+    func highlighted(_ highlighted: Bool) -> UIColor {
+        return highlighted ? self.dim : self
+    }
+
+    var dim: UIColor {
+        BPKColor.blend(self, with: BPKColor.skyGray, weight: 0.85)
+    }
+
+    var reducedOpacity: UIColor {
+        withAlphaComponent(0.8)
     }
 }

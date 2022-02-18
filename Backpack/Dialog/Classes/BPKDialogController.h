@@ -17,10 +17,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <Backpack/Backpack-Swift.h>
 #import "BPKDialogControllerStyle.h"
 #import "BPKDialogCornerStyle.h"
 #import "BPKDialogView.h"
+#import "BPKButtonSize.h"
 
 @class BPKDialogConfiguration;
 @class BPKDialogScrimAction;

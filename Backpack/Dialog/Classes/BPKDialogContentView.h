@@ -20,6 +20,7 @@
 
 #import "BPKDialogButtonAction.h"
 #import "BPKDialogViewDelegate.h"
+#import "BPKButtonSize.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

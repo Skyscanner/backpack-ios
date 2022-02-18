@@ -17,6 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
+@class BPKButton;
 
 NS_ASSUME_NONNULL_BEGIN
 

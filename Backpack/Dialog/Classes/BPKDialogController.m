@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super init];
 
     if (self) {
-        self.buttonSize = BPKButtonS#import <Backpack/Backpack-Swift.h>izeLarge;
+        self.buttonSize = BPKButtonSizeLarge;
         self.titleText = title;
         self.messageText = message;
         self.style = style;

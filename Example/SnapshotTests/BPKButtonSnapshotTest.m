@@ -17,6 +17,9 @@
  */
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
+#import <Backpack/BPKButtonSize.h>
+#import <Backpack/BPKButtonImagePosition.h>
+#import <Backpack/BPKButtonStyle.h>
 #import <Backpack/Backpack-Swift.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>

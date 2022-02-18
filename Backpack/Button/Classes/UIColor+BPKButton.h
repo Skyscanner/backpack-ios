@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -16,11 +17,16 @@
  * limitations under the License.
  */
 
-#import <Backpack/Backpack.h>
 #import <UIKit/UIKit.h>
 
-@interface BPKButtonsViewController : UIViewController
 
-@property(nonatomic) BPKButtonStyle style;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIColor(BPKButton)
+
++ (UIColor *)dimColor:(UIColor *)color;
+
++ (UIColor *)reduceOpacityOfColor:(UIColor *)color;
 
 @end
+NS_ASSUME_NONNULL_END

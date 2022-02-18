@@ -19,8 +19,7 @@
 #import "BPKTheme.h"
 
 #import <Backpack/Backpack.h>
-#import <Backpack/Backpack-Swift.h>
-
+@class BPKButton;
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString *BPKThemeDidChangeNotification = @"BPKThemeDidChangeNotification";

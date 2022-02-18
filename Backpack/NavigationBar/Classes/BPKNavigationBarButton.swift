@@ -21,11 +21,11 @@ public class BPKNavigationBarButton: BPKButton {
         super.init(coder: coder)
     }
     
-    override func setup(size: ButtonSize, style: ButtonStyle) {
+    override func setup(size: BPKButtonSize, style: BPKButtonStyle) {
         super.setup(size: .default, style: .link)
     }
     
-    override func contentEdgeInset(size: ButtonSize, style: ButtonStyle) -> UIEdgeInsets {
+    override func contentEdgeInset(size: BPKButtonSize, style: BPKButtonStyle) -> UIEdgeInsets {
         .zero
     }
     
