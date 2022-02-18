@@ -27,7 +27,6 @@
 
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
-#import "BPKButtonAppearanceSets.h"
 #import "UIColor+BPKButton.h"
 
 #import <Backpack/Color.h>
@@ -35,16 +34,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation BPKButtonAppearanceSets
+@implementation BPKButtonAppearanceSetss
 
 +(BPKButtonAppearanceSet *)primary {
     static dispatch_once_t onceToken;
     static BPKButtonAppearanceSet *_primarySet = nil;
     dispatch_once(&onceToken, ^{
-        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.monteverde gradientEndColor:BPKColor.monteverde foregroundColor:BPKColor.white];
+        UIColor *regularBackground = BPKColor.monteverde;
+        UIColor *pressedBackground = [UIColor colorWithRed:0.000 green:0.416 blue:0.38 alpha:1];
+        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:regularBackground gradientEndColor:regularBackground foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.loadingBackgroundColor gradientEndColor:self.loadingBackgroundColor foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.disabledBackgroundColor gradientEndColor:self.disabledBackgroundColor foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.highlightedMonteverde gradientEndColor:self.highlightedMonteverde foregroundColor:self.highlightedWhite];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:pressedBackground gradientEndColor:pressedBackground foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
 
         _primarySet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
@@ -56,10 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
     static dispatch_once_t onceToken;
     static BPKButtonAppearanceSet *_featuredSet = nil;
     dispatch_once(&onceToken, ^{
-        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.skyBlue gradientEndColor:BPKColor.skyBlue foregroundColor:BPKColor.white];
+        UIColor *regularBackground = [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.skyBlueTint01];
+        UIColor *pressedBackground = BPKColor.skyBlueShade01;
+        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:regularBackground gradientEndColor:regularBackground foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.loadingBackgroundColor gradientEndColor:self.loadingBackgroundColor foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.disabledBackgroundColor gradientEndColor:self.disabledBackgroundColor foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.highlightedSkyBlue gradientEndColor:self.highlightedSkyBlue foregroundColor:self.highlightedWhite];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:pressedBackground gradientEndColor:pressedBackground foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
 
         _featuredSet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
@@ -71,10 +74,13 @@ NS_ASSUME_NONNULL_BEGIN
     static dispatch_once_t onceToken;
     static BPKButtonAppearanceSet *_secondarySet = nil;
     dispatch_once(&onceToken, ^{
-        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:self.boxyBorderColor gradientStartColor:self.boxyBackgroundColor gradientEndColor:self.boxyBackgroundColor foregroundColor:BPKColor.primaryColor];
+        UIColor *regularBackground = self.boxyBackgroundColor;
+        UIColor *pressedBackground = self.boxyBackgroundColorHighlighted;
+        UIColor *foreground = [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade01 darkVariant:BPKColor.skyBlueTint01];
+        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:regularBackground gradientEndColor:regularBackground foregroundColor:foreground];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.loadingBackgroundColor gradientEndColor:self.loadingBackgroundColor foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.disabledBackgroundColor gradientEndColor:self.disabledBackgroundColor foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:self.secondaryBorderColorHighlighted gradientStartColor:self.boxyBackgroundColorHighlighted gradientEndColor:self.boxyBackgroundColorHighlighted foregroundColor:BPKColor.primaryColor];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:pressedBackground gradientEndColor:pressedBackground foregroundColor:foreground];
 
         _secondarySet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
@@ -86,10 +92,14 @@ NS_ASSUME_NONNULL_BEGIN
     static dispatch_once_t onceToken;
     static BPKButtonAppearanceSet *_destructiveSet = nil;
     dispatch_once(&onceToken, ^{
-        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:self.boxyBorderColor gradientStartColor:self.boxyBackgroundColor gradientEndColor:self.boxyBackgroundColor foregroundColor:BPKColor.panjin];
+        UIColor *regularBackground = self.boxyBackgroundColor;
+        UIColor *pressedBackground = [BPKColor dynamicColorWithLightVariant:[UIColor colorWithRed:0.699 green:0.182 blue:0.269 alpha:1]
+                                                                darkVariant:[UIColor colorWithRed:0.972 green:0.361 blue:0.465 alpha:1]
+        ];
+        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:regularBackground gradientEndColor:regularBackground foregroundColor:pressedBackground];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.loadingBackgroundColor gradientEndColor:self.loadingBackgroundColor foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:self.disabledBackgroundColor gradientEndColor:self.disabledBackgroundColor foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:self.destructiveBorderColorHighlighted gradientStartColor:self.boxyBackgroundColorHighlighted gradientEndColor:self.boxyBackgroundColorHighlighted foregroundColor:BPKColor.panjin];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:pressedBackground gradientEndColor:pressedBackground foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black]];
 
         _destructiveSet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
@@ -116,19 +126,15 @@ NS_ASSUME_NONNULL_BEGIN
     static dispatch_once_t onceToken;
     static BPKButtonAppearanceSet *_linkSet = nil;
     dispatch_once(&onceToken, ^{
-        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:BPKColor.primaryColor];
+        BPKButtonAppearance *regularAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.skyBlueTint01]];
         BPKButtonAppearance *loadingAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:self.loadingContentColor];
         BPKButtonAppearance *disabledAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:self.disabledContentColor];
-        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:[UIColor reduceOpacityOfColor:BPKColor.primaryColor]];
+        BPKButtonAppearance *highlightedAppearance = [[BPKButtonAppearance alloc] initWithBorderColor:nil gradientStartColor:BPKColor.clear gradientEndColor:BPKColor.clear foregroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade01 darkVariant:BPKColor.skyBlue]];
 
         _linkSet = [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:regularAppearance loadingAppearance:loadingAppearance disabledAppearance:disabledAppearance highlightedAppearance:highlightedAppearance];
     });
 
     return _linkSet;
-}
-
-+ (UIColor *)highlightedWhite {
-    return [UIColor dimColor:BPKColor.white];
 }
 
 + (UIColor *)highlightedOutlineBorder {
@@ -139,48 +145,28 @@ NS_ASSUME_NONNULL_BEGIN
     return [BPKColor dynamicColorWithLightVariant:BPKColor.clear darkVariant:BPKColor.blackTint02];
 }
 
-+ (UIColor *)highlightedSkyBlue {
-    return [UIColor dimColor:BPKColor.skyBlue];
-}
-
-+ (UIColor *)highlightedMonteverde {
-    return [UIColor dimColor:BPKColor.monteverde];
-}
-
 + (UIColor *)loadingBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint01];
 }
 
 + (UIColor *)loadingContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint02 darkVariant:BPKColor.blackTint06];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint03];
 }
 
 + (UIColor *)disabledBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
+    return [self loadingBackgroundColor];
 }
 
 + (UIColor *)disabledContentColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
+    return [self loadingContentColor];
 }
 
 + (UIColor *)boxyBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint02];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
 }
 
 + (UIColor *)boxyBackgroundColorHighlighted {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint01];
-}
-
-+ (UIColor *)boxyBorderColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint05 darkVariant:BPKColor.skyGrayTint02];
-}
-
-+ (UIColor *)secondaryBorderColorHighlighted {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.primaryColor darkVariant:BPKColor.skyGrayTint02];
-}
-
-+ (UIColor *)destructiveBorderColorHighlighted {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.panjin darkVariant:BPKColor.skyGrayTint02];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint05 darkVariant:BPKColor.blackTint01];
 }
 
 @end

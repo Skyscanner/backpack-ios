@@ -21,12 +21,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BPKButtonAppearanceSet;
+@class BPKButtonAppearanceSets;
 
 /**
  * `BPKButtonAppearanceSets` is a subclass of `NSObject` containing multiple instances of `BPKButtonAppearanceSet` - one for each button style.
  */
-IB_DESIGNABLE @interface BPKButtonAppearanceSets : UIButton
+IB_DESIGNABLE @interface BPKButtonAppearanceSetss : UIButton
 
 /*
  * Appearance set for the primary button style.
