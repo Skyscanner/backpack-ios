@@ -69,7 +69,7 @@ public class BPKButtonAppearanceSets: NSObject {
         loading: clearDisabledAppearance, disabledAppearance: clearDisabledAppearance,
         highlightedAppearance: .with(
             background: .clear,
-            foreground: .bpk.skyBlueShade01.darkVariant(.bpk.skyBlueTint01)
+            foreground: .bpk.skyBlueShade01.darkVariant(.bpk.skyBlue)
         )
     )
     
