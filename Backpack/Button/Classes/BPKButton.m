@@ -28,7 +28,6 @@
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
-#import "BPKButtonAppearanceSets.h"
 #import "UIColor+BPKButton.h"
 
 #import <Backpack/Color.h>
@@ -40,6 +39,7 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
+#import <Backpack/Backpack-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton ()
