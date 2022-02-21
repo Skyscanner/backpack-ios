@@ -34,25 +34,17 @@ class LabelsViewController: UIViewController {
         (.textHero3, "Hero3"),
         (.textHero5, "Hero5"),
         (.textHero4, "Hero4"),
-        (.textHeading1, "Heading1"),
-        (.textHeading2, "Heading2"),
-        (.textHeading3, "Heading3"),
-        (.textHeading4, "Heading4"),
-        (.textHeading5, "Heading5"),
-        (.textSubheading, "Subheading"),
-        (.textBodyLongform, "BodyLongform"),
-        (.textBodyDefault, "BodyDefault"),
-        (.textFootnote, "Footnote"),
-        (.textCaption, "Caption")
+        (.textHeading1, "Heading1")
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        styles.map {
-            let label = BPKLabel(fontStyle: $0.0)
-            label.text = $0.1
-            label.numberOfLines = 0
-            return label
+        stack.alignment = .center
+        styles.map { _ in
+            let btn = AButton(frame: .zero)
+            btn.title = "Action"
+            btn.size = .large
+            return btn
         }.forEach(stack.addArrangedSubview)
     }
 }
