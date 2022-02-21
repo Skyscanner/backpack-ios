@@ -198,7 +198,7 @@ IB_DESIGNABLE @interface BPKButton : UIControl
  *
  * @see BPKButtonImagePosition
  */
-@property(nonatomic) BPKButtonImagePosition imagePosition;
+ @property(nonatomic) BPKButtonImagePosition imagePosition;
 
 /**
  * Setting this property to YES will change the button state.

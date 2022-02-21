@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,21 +35,21 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-jy-Zgv">
-                                                <rect key="frame" x="0.0" y="28.5" width="174" height="118"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="136" height="118"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vnV-BF-945">
-                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="126" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-Q3-JaF" customClass="BPKButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="34"/>
                                                                 <state key="normal" title="Load"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQd-cV-VBa" customClass="BPKButton">
-                                                                <rect key="frame" x="72" y="0.0" width="64" height="34"/>
+                                                                <rect key="frame" x="48" y="0.0" width="40" height="34"/>
                                                                 <state key="normal" title="Load"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-aE-VqH" customClass="BPKButton">
-                                                                <rect key="frame" x="144" y="0.0" width="30" height="34"/>
+                                                                <rect key="frame" x="96" y="0.0" width="30" height="34"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,13 +125,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KBU-NC-j3g">
-                                                <rect key="frame" x="0.0" y="28.5" width="174" height="157"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="173.5" height="157"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgv-kR-UpP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="174" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="126" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ler-Lw-jdv" customClass="BPKButton">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="34"/>
                                                                 <state key="normal" title="Load"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
@@ -140,7 +140,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-p4-JoQ" customClass="BPKButton">
-                                                                <rect key="frame" x="72" y="0.0" width="64" height="34"/>
+                                                                <rect key="frame" x="48" y="0.0" width="40" height="34"/>
                                                                 <state key="normal" title="Load"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
@@ -149,7 +149,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh8-UZ-7G5" customClass="BPKButton">
-                                                                <rect key="frame" x="144" y="2" width="30" height="30"/>
+                                                                <rect key="frame" x="96" y="2" width="30" height="30"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="size">
                                                                         <integer key="value" value="1"/>
@@ -318,13 +318,13 @@
             <size key="intrinsicContentSize" width="116.5" height="20.5"/>
         </designable>
         <designable name="WQd-cV-VBa">
-            <size key="intrinsicContentSize" width="64" height="34"/>
+            <size key="intrinsicContentSize" width="40" height="34"/>
         </designable>
         <designable name="WqP-4p-b67">
             <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="gcH-p4-JoQ">
-            <size key="intrinsicContentSize" width="64" height="34"/>
+            <size key="intrinsicContentSize" width="40" height="34"/>
         </designable>
         <designable name="htS-s3-5bd">
             <size key="intrinsicContentSize" width="30" height="34"/>
@@ -333,7 +333,7 @@
             <size key="intrinsicContentSize" width="55" height="20.5"/>
         </designable>
         <designable name="ler-Lw-jdv">
-            <size key="intrinsicContentSize" width="64" height="34"/>
+            <size key="intrinsicContentSize" width="40" height="34"/>
         </designable>
         <designable name="oeP-th-apx">
             <size key="intrinsicContentSize" width="60" height="30"/>
@@ -345,7 +345,7 @@
             <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="tgD-Q3-JaF">
-            <size key="intrinsicContentSize" width="64" height="34"/>
+            <size key="intrinsicContentSize" width="40" height="34"/>
         </designable>
         <designable name="wAK-NX-IQ0">
             <size key="intrinsicContentSize" width="30" height="34"/>
