@@ -4,7 +4,7 @@
 **Breaking:**
 
 - Backpack/Button:
-  - Update the colors to the new styles
+  - Update the colours to the new styles
 
 ## How to write a good changelog entry
 
