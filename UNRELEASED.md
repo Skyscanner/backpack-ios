@@ -1,9 +1,15 @@
 # Unreleased
 > Place your changes below this line.
 
+**Added:**
+
+- Backpack/Button:
+  - Adding PrimaryOnDark and PrimaryOnLight
+
 **Breaking:**
 
 - Backpack/Button:
+  - Removing Outline buttoy style
   - Update the colours and spacing to the new styles
   - Update the loading state to not change button sizes
 
