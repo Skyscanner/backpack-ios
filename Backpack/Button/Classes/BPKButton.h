@@ -142,7 +142,7 @@ IB_DESIGNABLE @interface BPKButton : UIControl
 /**
  * The title displayed by the button.
  */
-@property(nonatomic, strong, nullable) IBInspectable NSString *title;
+@property(nonatomic, copy, nullable) NSString *title;
 
 /**
  * Sets the image displayed by the receiver.
@@ -183,14 +183,14 @@ IB_DESIGNABLE @interface BPKButton : UIControl
  *
  * @see BPKButtonSize
  */
-@property(nonatomic) IBInspectable BPKButtonSize size;
+@property(nonatomic) BPKButtonSize size;
 
 /**
  * Style of the button
  *
  * @see BPKButtonStyle
  */
-@property(nonatomic) IBInspectable BPKButtonStyle style;
+@property(nonatomic) BPKButtonStyle style;
 
 /**
  * Position of the image in the button. This has
