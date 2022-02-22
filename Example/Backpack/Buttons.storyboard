@@ -266,13 +266,77 @@
                                     <constraint firstItem="fez-oG-XpD" firstAttribute="top" secondItem="fqb-N5-Kfh" secondAttribute="bottom" constant="20" id="xYI-XQ-2nv"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="drv-tJ-V85">
+                                <rect key="frame" x="20" y="20" width="335" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inU-8N-KQJ">
+                                        <rect key="frame" x="0.0" y="15" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWE-Vj-isb">
+                                        <rect key="frame" x="41.5" y="15" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-st-BVD">
+                                        <rect key="frame" x="83" y="15" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbA-UM-an7">
+                                        <rect key="frame" x="124.5" y="0.0" width="210.5" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfB-3W-Xgj">
+                                                <rect key="frame" x="169" y="0.0" width="41.5" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJY-m4-xd6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="50"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OM8-ZQ-mhv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="50"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="AJY-m4-xd6" firstAttribute="top" secondItem="XfB-3W-Xgj" secondAttribute="top" id="7Do-PX-eJ1"/>
+                                                    <constraint firstItem="AJY-m4-xd6" firstAttribute="leading" secondItem="XfB-3W-Xgj" secondAttribute="leading" id="NhN-ou-awy"/>
+                                                    <constraint firstAttribute="bottom" secondItem="AJY-m4-xd6" secondAttribute="bottom" id="WNR-DB-ca6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AJY-m4-xd6" secondAttribute="trailing" id="e0G-wq-7bQ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="XfB-3W-Xgj" secondAttribute="bottom" id="FqZ-Lw-AK9"/>
+                                            <constraint firstAttribute="trailing" secondItem="XfB-3W-Xgj" secondAttribute="trailing" id="Jbm-Kk-Sy2"/>
+                                            <constraint firstItem="XfB-3W-Xgj" firstAttribute="top" secondItem="GbA-UM-an7" secondAttribute="top" id="L1O-BP-qfk"/>
+                                            <constraint firstItem="XfB-3W-Xgj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GbA-UM-an7" secondAttribute="leading" id="VXT-J6-KwJ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hfm-Op-fVE"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kxe-Pd-Ob5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="centerY" secondItem="Kxe-Pd-Ob5" secondAttribute="centerY" id="Fi3-w8-XTO"/>
+                            <constraint firstItem="Kxe-Pd-Ob5" firstAttribute="trailing" secondItem="drv-tJ-V85" secondAttribute="trailing" constant="20" id="Miq-Bk-Tvp"/>
                             <constraint firstItem="FEW-9A-aRv" firstAttribute="leading" secondItem="Kxe-Pd-Ob5" secondAttribute="leading" id="aJX-e7-ig2"/>
                             <constraint firstItem="Kxe-Pd-Ob5" firstAttribute="trailing" secondItem="FEW-9A-aRv" secondAttribute="trailing" id="hmP-ma-vSr"/>
+                            <constraint firstItem="drv-tJ-V85" firstAttribute="top" secondItem="Kxe-Pd-Ob5" secondAttribute="top" constant="20" id="vc6-bo-xyr"/>
+                            <constraint firstItem="drv-tJ-V85" firstAttribute="leading" secondItem="Kxe-Pd-Ob5" secondAttribute="leading" constant="20" id="ycX-mx-kDk"/>
                         </constraints>
                     </view>
                     <connections>
@@ -308,62 +372,14 @@
         <designable name="1sV-cf-vRL">
             <size key="intrinsicContentSize" width="49" height="31"/>
         </designable>
-        <designable name="Fh8-UZ-7G5">
-            <size key="intrinsicContentSize" width="30" height="30"/>
-        </designable>
-        <designable name="GJf-SN-OB4">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
         <designable name="L9p-pp-ulS">
             <size key="intrinsicContentSize" width="116.5" height="20.5"/>
-        </designable>
-        <designable name="WQd-cV-VBa">
-            <size key="intrinsicContentSize" width="40" height="34"/>
-        </designable>
-        <designable name="WqP-4p-b67">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="gcH-p4-JoQ">
-            <size key="intrinsicContentSize" width="40" height="34"/>
-        </designable>
-        <designable name="htS-s3-5bd">
-            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="lPG-ZD-nKO">
             <size key="intrinsicContentSize" width="55" height="20.5"/>
         </designable>
-        <designable name="ler-Lw-jdv">
-            <size key="intrinsicContentSize" width="40" height="34"/>
-        </designable>
-        <designable name="oeP-th-apx">
-            <size key="intrinsicContentSize" width="60" height="30"/>
-        </designable>
         <designable name="s6e-sa-mbj">
             <size key="intrinsicContentSize" width="43.5" height="20.5"/>
-        </designable>
-        <designable name="sGM-4s-9a0">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="tgD-Q3-JaF">
-            <size key="intrinsicContentSize" width="40" height="34"/>
-        </designable>
-        <designable name="wAK-NX-IQ0">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="yhi-lX-0z6">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="zWH-oz-ScW">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="zfX-pm-To4">
-            <size key="intrinsicContentSize" width="70" height="34"/>
-        </designable>
-        <designable name="zyW-aE-VqH">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="zzc-e4-W0P">
-            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <resources>
