@@ -48,8 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @property(nonatomic, strong) UIView *contentView;
-@property(nonatomic, strong) UIImageView *imageView;
-@property(nonatomic, strong) BPKLabel *titleLabel;
 @property(nonatomic, strong) UIStackView *contentStack;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
@@ -263,7 +261,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKButtonAppearance *appearance = self.currentAppearance;
     self.titleLabel.textColor = appearance.foregroundColor;
     self.imageView.tintColor = appearance.foregroundColor;
-    self.spinner.tintColor = appearance.foregroundColor;
+    self.spinner.color = appearance.foregroundColor;
     
     if (appearance.gradientStartColor != nil && appearance.gradientEndColor != nil) {
         self.gradientLayer.gradient = [self gradientWithTopColor:appearance.gradientStartColor bottomColor:appearance.gradientEndColor];
@@ -484,8 +482,8 @@ NS_ASSUME_NONNULL_BEGIN
                 }
             }
             break;
-        case BPKButtonStyleOutline:
-            break;
+        case BPKButtonStylePrimaryOnDark: break; // not supporting theming for PrimaryOnDark
+        case BPKButtonStylePrimaryOnLight: break; // not supporting theming for PimaryOnLight
     }
     
     return themedAppearance;

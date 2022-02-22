@@ -27,6 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
+@property (weak, nonatomic) IBOutlet UIView *buttonsContainer;
 @property(strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
 @property(strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
@@ -64,19 +65,14 @@ NS_ASSUME_NONNULL_BEGIN
     }
 #endif
 
+    if (self.style == BPKButtonStylePrimaryOnDark) {
+        self.buttonsContainer.backgroundColor = BPKColor.skyBlueShade03;
+        self.view.backgroundColor = BPKColor.skyBlueShade03;
+    }
     [self setupButtons];
 }
 
 - (void)setupButtons {
-    if (self.style == BPKButtonStyleOutline) {
-        for (UIView *contentView in self.contentViews) {
-            [contentView setBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade03 darkVariant:BPKColor.backgroundDarkColor]];
-        }
-        for (UILabel *storyHeading in self.storyHeadings) {
-            [storyHeading setTextColor:BPKColor.white];
-        }
-    }
-
     UIImage *smallLongArrowIcon =
         self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
