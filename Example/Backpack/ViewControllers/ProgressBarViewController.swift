@@ -27,6 +27,8 @@ class ProgressBarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        resetButton.title = "Reset"
+        increaseButton.title = "Increase"
         progressBar.progress = 0.0
         resetButton.style = .secondary
         resetButton.isEnabled = false

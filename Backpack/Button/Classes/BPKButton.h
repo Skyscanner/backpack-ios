@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-@interface BPKButton : UIControl
+IB_DESIGNABLE @interface BPKButton : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
@@ -142,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The title displayed by the button.
  */
-@property(nonatomic, copy, nullable) IBInspectable NSString *title;
+@property(nonatomic, strong, nullable) IBInspectable NSString *title;
 
 /**
  * Sets the image displayed by the receiver.
@@ -183,14 +183,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see BPKButtonSize
  */
-@property(nonatomic) BPKButtonSize size;
+@property(nonatomic) IBInspectable BPKButtonSize size;
 
 /**
  * Style of the button
  *
  * @see BPKButtonStyle
  */
-@property(nonatomic) BPKButtonStyle style;
+@property(nonatomic) IBInspectable BPKButtonStyle style;
 
 /**
  * Position of the image in the button. This has
@@ -198,7 +198,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see BPKButtonImagePosition
  */
- @property(nonatomic) BPKButtonImagePosition imagePosition;
+@property(nonatomic) BPKButtonImagePosition imagePosition;
 
 /**
  * Setting this property to YES will change the button state.
