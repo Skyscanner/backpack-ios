@@ -131,6 +131,13 @@ NS_ASSUME_NONNULL_BEGIN
     return stack;
 }
 
+- (void)configureAccesibilityTraits {
+    self.accessibilityTraits = UIAccessibilityTraitButton;
+    self.accessibilityLabel = self.title;
+    self.titleLabel.isAccessibilityElement = NO;
+    self.imageView.isAccessibilityElement = NO;
+}
+
 - (void)setup {
     self.contentView = [self createContentView];
     self.titleLabel = [self createTitleLabel];
@@ -249,6 +256,7 @@ NS_ASSUME_NONNULL_BEGIN
     
     [self updateSize];
     [self updateAppearance];
+    [self configureAccesibilityTraits];
 }
 
 - (void)updateAppearance {
