@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKButton : UIControl
+@interface BPKButton : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
@@ -142,7 +142,7 @@ IB_DESIGNABLE @interface BPKButton : UIControl
 /**
  * The title displayed by the button.
  */
-@property(nonatomic, copy, nullable) NSString *title;
+@property(nonatomic, copy, nullable) IBInspectable NSString *title;
 
 /**
  * Sets the image displayed by the receiver.
