@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView = [[BPKDialogContentView alloc] initWithFrame:CGRectZero];
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.contentView.clipsToBounds = NO;
-    [self.contentView setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+    [self.contentView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (void)addViews {
