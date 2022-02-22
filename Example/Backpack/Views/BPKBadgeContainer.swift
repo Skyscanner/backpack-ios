@@ -65,12 +65,10 @@ class BPKBadgeContainer: UIView {
         badgesStack.distribution = .equalSpacing
         badgesStack.spacing = BPKSpacingMd
         for badge in badges {
-//            badgesStack.addArrangedSubview(badge)
+            badgesStack.addArrangedSubview(badge)
         }
         addSubview(badgesStack)
-        let butt = AButton(frame: .zero)
-        butt.title = "Create"
-        badgesStack.addArrangedSubview(butt)
+
         label.translatesAutoresizingMaskIntoConstraints = false
         badgesStack.translatesAutoresizingMaskIntoConstraints = false
 
@@ -119,125 +117,5 @@ class BPKBadgeContainer: UIView {
         case .outline:
             return "Outline"
         }
-    }
-}
-
-class AButton: UIControl {
-    enum Size {
-        case small, large
-        
-        var height: CGFloat {
-            switch self {
-            case .small: return 36
-            case .large: return 48
-            }
-        }
-        
-        var font: BPKFontStyle {
-            switch self {
-            case .small: return  .textLabel2
-            case .large: return  .textLabel1
-            }
-        }
-    }
-    private let stack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = BPKSpacingMd
-        stack.clipsToBounds = false
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    private lazy var titleLabel = BPKLabel(fontStyle: size.font)
-    private let imageView = UIImageView()
-    var title: String? {
-        get { titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
-    var image: UIImage? {
-        get { imageView.image }
-        set {
-            imageView.image = newValue
-            imageView.isHidden = newValue == nil
-        }
-    }
-    let backgroundLayer = CALayer()
-    private let contentView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = BPKColor.clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = false
-        view.isUserInteractionEnabled = false
-        return view
-    }()
-    var size: Size = .small {
-        didSet {
-            updateSize()
-        }
-    }
-    private lazy var heightConstraint = heightAnchor.constraint(equalToConstant: size.height)
-    
-    init(size: Size) {
-        self.size = size
-        super.init(frame: .zero)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-    
-    override var isHighlighted: Bool {
-        get { super.isHighlighted }
-        set {
-            super.isHighlighted = newValue
-            backgroundLayer.backgroundColor = BPKColor.backgroundSecondaryDarkColor.cgColor
-        }
-    }
-    
-    private func setup () {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        layer.addSublayer(backgroundLayer)
-        titleLabel.textColor = .white
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundLayer.backgroundColor = BPKColor.primaryColor.cgColor
-        
-        addSubview(contentView)
-        contentView.addSubview(stack)
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topAnchor.constraint(equalTo: contentView.topAnchor),
-            bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: BPKSpacingBase),
-            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -BPKSpacingBase),
-            stack.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
-            stack.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
-            stack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 24),
-            imageView.widthAnchor.constraint(equalToConstant: 24),
-            heightConstraint
-        ])
-        stack.addArrangedSubview(titleLabel)
-        stack.addArrangedSubview(imageView)
-        imageView.isHidden = true
-        updateSize()
-    }
-    private func updateSize() {
-        titleLabel.fontStyle = size.font
-        heightConstraint.constant = size.height
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        backgroundLayer.frame = self.bounds
     }
 }
