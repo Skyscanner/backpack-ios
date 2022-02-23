@@ -25,8 +25,6 @@ import fs from 'fs';
 
 import { danger, fail, warn, schedule } from 'danger';
 
-
-const currentYear = new Date().getFullYear();
 // Applies to js, css, scss and sh files that are not located in dist or flow-typed folders.
 const shouldContainLicensingInformation = (filePath) =>
   filePath.match(/\.(js|sh|swift|h|m|njk)$/);
