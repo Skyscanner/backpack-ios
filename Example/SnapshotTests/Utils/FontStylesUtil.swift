@@ -53,14 +53,16 @@ extension Array where Element == BPKFontStyle {
 // iPhone X dimensions
 private let deviceFrame = CGRect(x: 0, y: 0, width: 375, height: 812)
 
-func viewsInStack(
-    withStyles styles: [BPKFontStyle],
+func viewsInStack<S>(
+    withStyles styles: [S],
     backgroundColor: UIColor = BPKColor.skyGrayTint06,
-    _ viewProvider: ((BPKFontStyle) -> UIView)
+    axis: NSLayoutConstraint.Axis = .vertical,
+    _ viewProvider: ((S) -> UIView)
 ) -> UIView {
     let stack = UIStackView(frame: .zero)
-    stack.axis = .vertical
+    stack.axis = axis
     stack.spacing = BPKSpacingMd
+    stack.alignment = .leading
     stack.translatesAutoresizingMaskIntoConstraints = false
     
     let parent = UIView(frame: .zero)

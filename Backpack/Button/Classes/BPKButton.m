@@ -48,8 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @property(nonatomic, strong) UIView *contentView;
-@property(nonatomic, strong) UIImageView *imageView;
-@property(nonatomic, strong) BPKLabel *titleLabel;
 @property(nonatomic, strong) UIStackView *contentStack;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
@@ -132,10 +130,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)configureAccesibilityTraits {
-    self.accessibilityTraits = UIAccessibilityTraitButton;
+    self.isAccessibilityElement = YES;
+    
+    self.accessibilityTraits = self.isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitNotEnabled | UIAccessibilityTraitButton);
     self.accessibilityLabel = self.title;
     self.titleLabel.isAccessibilityElement = NO;
     self.imageView.isAccessibilityElement = NO;
+    self.spinner.isAccessibilityElement = NO;
 }
 
 - (void)setup {
@@ -212,18 +213,20 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconHeightConstraint.constant = [self iconHeightForSize:size];
     self.iconWidthConstraint.constant = self.iconHeightConstraint.constant;
     self.heightConstraint.constant = [self heightForSize:size];
+    
     self.spinner.transform = [self spinnerTransformForSize:size];
     [self updateConstraintsForType:self.isIconOnly];
 }
 
 - (void)updateConstraintsForType:(BOOL)isIconOnly {
     if (isIconOnly) {
-        self.widthConstraint.constant = self.heightConstraint.constant;
-        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
         [NSLayoutConstraint deactivateConstraints:@[
             self.stackLeadingConstraint,
-            self.stackTrailingConstraint
+            self.stackTrailingConstraint,
+            self.widthConstraint
         ]];
+        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
+        self.widthConstraint.constant = [self heightForSize:self.size];
     } else if (self.style == BPKButtonStyleLink) {
         self.stackLeadingConstraint.constant = 0;
         self.stackTrailingConstraint.constant = 0;
@@ -263,7 +266,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKButtonAppearance *appearance = self.currentAppearance;
     self.titleLabel.textColor = appearance.foregroundColor;
     self.imageView.tintColor = appearance.foregroundColor;
-    self.spinner.tintColor = appearance.foregroundColor;
+    self.spinner.color = appearance.foregroundColor;
     
     if (appearance.gradientStartColor != nil && appearance.gradientEndColor != nil) {
         self.gradientLayer.gradient = [self gradientWithTopColor:appearance.gradientStartColor bottomColor:appearance.gradientEndColor];
@@ -484,8 +487,8 @@ NS_ASSUME_NONNULL_BEGIN
                 }
             }
             break;
-        case BPKButtonStyleOutline:
-            break;
+        case BPKButtonStylePrimaryOnDark: break; // not supporting theming for PrimaryOnDark
+        case BPKButtonStylePrimaryOnLight: break; // not supporting theming for PimaryOnLight
     }
     
     return themedAppearance;

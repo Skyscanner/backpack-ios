@@ -31,6 +31,11 @@ public class BPKButtonAppearanceSets: NSObject {
         foreground: .bpk.skyGrayTint04.darkVariant(.bpk.blackTint03)
     )
     
+    private static var nonDynamicDisabledAppearance = BPKButtonAppearance.with(
+        background: .bpk.skyGrayTint06,
+        foreground: .bpk.skyGrayTint04.darkVariant(.bpk.skyGrayTint04)
+    )
+    
     private static var clearDisabledAppearance = BPKButtonAppearance.with(
         background: .clear,
         foreground: .bpk.skyGrayTint04.darkVariant(.bpk.blackTint03)
@@ -84,16 +89,26 @@ public class BPKButtonAppearanceSets: NSObject {
         )
     )
     
-    public static var outline = BPKButtonAppearanceSet(
+    public static var primaryOnDark = BPKButtonAppearanceSet(
         regularAppearance: .with(
-            border: .white,
-            background: .clear,
+            background: .white,
+            foreground: .bpk.skyGray
+        ),
+        loading: nonDynamicDisabledAppearance, disabledAppearance: nonDynamicDisabledAppearance,
+        highlightedAppearance: .with(
+            background: .bpk.skyGrayTint05,
+            foreground: .bpk.skyGray
+        )
+    )
+    
+    public static var primaryOnLight = BPKButtonAppearanceSet(
+        regularAppearance: .with(
+            background: .bpk_skyGray,
             foreground: .white
         ),
-        loading: disabledAppearance, disabledAppearance: disabledAppearance,
+        loading: nonDynamicDisabledAppearance, disabledAppearance: nonDynamicDisabledAppearance,
         highlightedAppearance: .with(
-            border: .white.darkVariant(.white),
-            background: .clear.darkVariant(.bpk.blackTint02),
+            background: .bpk.skyGrayTint01,
             foreground: .white
         )
     )
@@ -105,7 +120,8 @@ public class BPKButtonAppearanceSets: NSObject {
         case .destructive: return self.destructive
         case .featured: return self.featured
         case .link: return self.link
-        case .outline: return self.outline
+        case .primaryOnDark: return self.primaryOnDark
+        case .primaryOnLight: return self.primaryOnLight
         default: return self.primary
         }
     }
@@ -135,9 +151,9 @@ fileprivate extension UIColor {
 }
 
 fileprivate extension BPKButtonAppearance {
-    static func with(border: UIColor? = nil, background: UIColor, foreground: UIColor) -> BPKButtonAppearance {
+    static func with(background: UIColor, foreground: UIColor) -> BPKButtonAppearance {
         BPKButtonAppearance(
-            borderColor: border,
+            borderColor: nil,
             gradientStart: background,
             gradientEnd: background,
             foregroundColor: foreground

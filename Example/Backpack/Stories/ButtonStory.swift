@@ -24,7 +24,8 @@ enum ButtonStory: String, StoryGroup {
     case destructive = "Destructive"
     case featured = "Featured"
     case link = "Link"
-    case outline = "Outline"
+    case primaryOnDark = "Primary On Dark"
+    case primaryOnLight = "Primary On Light"
 
     var buttonStyle: BPKButtonStyle {
         switch self {
@@ -38,8 +39,10 @@ enum ButtonStory: String, StoryGroup {
             return .featured
         case .link:
             return .link
-        case .outline:
-            return .outline
+        case .primaryOnDark:
+            return .primaryOnDark
+        case .primaryOnLight:
+            return .primaryOnLight
         }
     }
 

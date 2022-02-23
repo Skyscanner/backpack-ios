@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "BPKLabel.h"
 /**
  * Enum values for specifying button size
  */
@@ -66,9 +66,14 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
     BPKButtonStyleLink = 4,
 
     /**
-     * Outline button style, suitable for use on coloured backgrounds.
+     * Primary on Dark button style, suitable for use on dark coloured backgrounds.
      */
-    BPKButtonStyleOutline = 5,
+    BPKButtonStylePrimaryOnDark = 5,
+    
+    /**
+     * Primary on Light button style, suitable for use on light coloured backgrounds.
+     */
+    BPKButtonStylePrimaryOnLight = 6,
 };
 
 /**
@@ -150,6 +155,12 @@ IB_DESIGNABLE @interface BPKButton : UIControl
  * @param image The image to display. If `nil` the image is removed.
  */
 - (void)setImage:(UIImage *_Nullable)image;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) UIImageView *imageView;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) BPKLabel *titleLabel;
 
 /**
  * Creates a `BPKButton` with a specific size and style.
