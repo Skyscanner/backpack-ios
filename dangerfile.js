@@ -77,27 +77,6 @@ if (unlicensedFiles.length > 0) {
   );
 }
 
-// Updated files should include the latest year in licensing header.
-const outdatedLicenses = fileChanges.filter((filePath) => {
-  if (
-    shouldContainLicensingInformation(filePath) &&
-    !unlicensedFiles.includes(filePath)
-  ) {
-    const fileContent = fs.readFileSync(filePath);
-    return !fileContent.includes(
-      `Copyright 2018 Skyscanner Ltd`,
-    );
-  }
-  return false;
-});
-if (outdatedLicenses.length > 0) {
-  fail(
-    `These files contain an outdated licensing header: ${outdatedLicenses.join(
-      ', ',
-    )}. Please update to ${currentYear}.`,
-  );
-}
-
 const listOfFilesExcludingThisOne = fileChanges.filter(
   (path) => path !== 'dangerfile.js',
 );
