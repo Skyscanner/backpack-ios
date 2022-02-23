@@ -97,6 +97,18 @@ public class BPKButtonAppearanceSets: NSObject {
             foreground: .white
         )
     )
+    
+    public static func appearance(fromStyle style: BPKButtonStyle) -> BPKButtonAppearanceSet {
+        switch style {
+        case .primary: return self.primary
+        case .secondary: return self.secondary
+        case .destructive: return self.destructive
+        case .featured: return self.featured
+        case .link: return self.link
+        case .outline: return self.outline
+        default: return self.primary
+        }
+    }
 }
 
 fileprivate extension UIColor {

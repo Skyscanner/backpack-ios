@@ -4,7 +4,8 @@
 **Breaking:**
 
 - Backpack/Button:
-  - Update the colours to the new styles
+  - Update the colours and spacing to the new styles
+  - Update the loading state to not change button sizes
 
 ## How to write a good changelog entry
 
