@@ -21,21 +21,11 @@
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
-@interface BPKButton ()
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style;
-
-@end
-
 @implementation BPKNavigationBarButton
 
 - (instancetype)init {
-    self = [super initWithFrame:CGRectZero];
+    self = [super initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
     return self;
-}
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
-    [super setupWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
 }
 
 #pragma mark Spacing
