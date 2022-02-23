@@ -130,10 +130,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)configureAccesibilityTraits {
-    self.accessibilityTraits = UIAccessibilityTraitButton;
+    self.isAccessibilityElement = YES;
+    
+    self.accessibilityTraits = self.isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitNotEnabled | UIAccessibilityTraitButton);
     self.accessibilityLabel = self.title;
     self.titleLabel.isAccessibilityElement = NO;
     self.imageView.isAccessibilityElement = NO;
+    self.spinner.isAccessibilityElement = NO;
 }
 
 - (void)setup {
