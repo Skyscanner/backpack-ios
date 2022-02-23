@@ -84,7 +84,10 @@ static int const BPKSnackbarHeight = 60;
         self.titleLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextLabel2];
         self.textLabel = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextFootnote];
         self.actionButton = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
-
+        UIView *actionContainer = [[UIView alloc] initWithFrame:CGRectZero];
+        actionContainer.translatesAutoresizingMaskIntoConstraints = NO;
+        self.actionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [actionContainer addSubview:self.actionButton];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.snackbarView.translatesAutoresizingMaskIntoConstraints = NO;
         self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -105,11 +108,6 @@ static int const BPKSnackbarHeight = 60;
         // Make the text label wider to distribute remaining space
         [self.textLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 
-        // Don't compress the button
-        [self.actionButton setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-        // Don't grow the button
-        [self.actionButton setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-
         self.titleLabel.textColor = BPKColor.white;
         self.textLabel.textColor = BPKColor.white;
         self.leftIconContainer.tintColor = BPKColor.white;
@@ -121,8 +119,8 @@ static int const BPKSnackbarHeight = 60;
         [self.stackView addArrangedSubview:self.leftIconContainer];
         [self.stackView addArrangedSubview:self.titleLabel];
         [self.stackView addArrangedSubview:self.textLabel];
-        [self.stackView addArrangedSubview:self.actionButton];
-        [self.stackView addSubview:self.actionButton];
+        [self.stackView addArrangedSubview:actionContainer];
+        [self.stackView addSubview:actionContainer];
 
         [self.stackView setCustomSpacing:BPKSpacingMd afterView:self.leftIconContainer];
         [self.stackView setCustomSpacing:BPKSpacingSm afterView:self.titleLabel];
@@ -137,6 +135,10 @@ static int const BPKSnackbarHeight = 60;
             [self.stackView.leadingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.leadingAnchor],
             [self.stackView.trailingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.trailingAnchor],
             [self.stackView.heightAnchor constraintEqualToAnchor:self.snackbarView.heightAnchor],
+            [actionContainer.topAnchor constraintEqualToAnchor:self.actionButton.topAnchor],
+            [actionContainer.leadingAnchor constraintLessThanOrEqualToAnchor:self.actionButton.leadingAnchor],
+            [actionContainer.trailingAnchor constraintEqualToAnchor:self.actionButton.trailingAnchor],
+            [actionContainer.bottomAnchor constraintEqualToAnchor:self.actionButton.bottomAnchor]
         ]];
 
         self.snackbarViewTopConstraint = [self.snackbarView.topAnchor constraintEqualToAnchor:self.topAnchor];

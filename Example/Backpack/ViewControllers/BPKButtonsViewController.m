@@ -81,6 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
         self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Load"];
+    [self setupButton:self.defaultLoadingTitleOnlyButton image:nil title:@"Load"];
+    [self setupButton:self.defaultDisabledButton image:nil title:@"Disabled"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
@@ -91,10 +93,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.largeTextButton image:nil title:@"Button"];
     [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];
     [self setupButton:self.largeLeadingIconButton image:largeLongArrowIcon title:@"With icon"];
+    [self setupButton:self.largeDisabledButton image:nil title:@"Disabled"];
     [self setupButton:self.largeIconOnlyButton image:largeLongArrowIcon title:nil];
     [self setupButton:self.largeLoadingIconOnlyButton image:largeLongArrowIcon title:nil];
     [self setupButton:self.largeLoadingButton image:largeLongArrowIcon title:@"Load"];
-
+    [self setupButton:self.largeLoadingTitleOnlyButton image:nil title:@"Load"];
     self.defaultTextButton.style = self.style;
     self.defaultDisabledButton.style = self.style;
     self.defaultIconOnlyButton.style = self.style;

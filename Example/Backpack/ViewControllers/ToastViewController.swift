@@ -40,7 +40,12 @@ class ToastViewController: UIViewController {
             showToastOnlyLabels()
         }
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showButton.title = "Show Toast"
+    }
+    
     func showPersistentToast() {
         let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .indeterminate

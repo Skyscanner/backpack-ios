@@ -59,6 +59,12 @@ class DialogViewController: UIViewController {
             showInAppMessaging()
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showButton.title = "Show"
+    }
+    
     func showNoTitle() {
         let message = """
             This is a floating style dialog, usually used for prompting users during the onboarding flow.
