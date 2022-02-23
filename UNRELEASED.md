@@ -9,7 +9,7 @@
 **Breaking:**
 
 - Backpack/Button:
-  - Removing Outline buttoy style
+  - Removing Outline button style
   - Update the colours and spacing to the new styles
   - Update the loading state to not change button sizes
 
