@@ -63,7 +63,6 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
                     if state == .loadingThemed || state == .regularThemed {
                         applyTheme(to: button)
                     }
-                    button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
                     return button
                 }
             }

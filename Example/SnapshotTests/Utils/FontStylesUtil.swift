@@ -62,6 +62,7 @@ func viewsInStack<S>(
     let stack = UIStackView(frame: .zero)
     stack.axis = axis
     stack.spacing = BPKSpacingMd
+    stack.alignment = .leading
     stack.translatesAutoresizingMaskIntoConstraints = false
     
     let parent = UIView(frame: .zero)
@@ -72,7 +73,7 @@ func viewsInStack<S>(
     NSLayoutConstraint.activate([
         stack.topAnchor.constraint(equalTo: parent.topAnchor),
         stack.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-        stack.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor),
+        stack.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
         stack.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
     ])
     

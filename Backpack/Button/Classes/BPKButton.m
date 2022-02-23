@@ -213,18 +213,20 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconHeightConstraint.constant = [self iconHeightForSize:size];
     self.iconWidthConstraint.constant = self.iconHeightConstraint.constant;
     self.heightConstraint.constant = [self heightForSize:size];
+    
     self.spinner.transform = [self spinnerTransformForSize:size];
     [self updateConstraintsForType:self.isIconOnly];
 }
 
 - (void)updateConstraintsForType:(BOOL)isIconOnly {
     if (isIconOnly) {
-        self.widthConstraint.constant = self.heightConstraint.constant;
-        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
         [NSLayoutConstraint deactivateConstraints:@[
             self.stackLeadingConstraint,
-            self.stackTrailingConstraint
+            self.stackTrailingConstraint,
+            self.widthConstraint
         ]];
+        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
+        self.widthConstraint.constant = [self heightForSize:self.size];
     } else if (self.style == BPKButtonStyleLink) {
         self.stackLeadingConstraint.constant = 0;
         self.stackTrailingConstraint.constant = 0;
