@@ -66,79 +66,18 @@ const LEGIBLE_NAMES = [
   { identifier: 'Sm', legibleName: 'small' },
   { identifier: 'Md', legibleName: 'medium' },
   { identifier: 'Base', legibleName: 'base' },
-  { identifier: 'BaseTight', legibleName: 'base tight' },
   { identifier: 'Lg', legibleName: 'large' },
-  { identifier: 'LgTight', legibleName: 'large tight' },
   { identifier: 'Xl', legibleName: 'extra large' },
-  { identifier: 'XlTight', legibleName: 'extra large tight' },
   { identifier: 'Xxl', legibleName: 'extra extra large' },
   { identifier: 'Xxxl', legibleName: 'extra extra extra large' },
-  { identifier: 'Xxxxl', legibleName: 'extra extra extra extra large' },
-  { identifier: '5Xl', legibleName: '5 extra large' },
-  { identifier: '6Xl', legibleName: '6 extra large' },
-  { identifier: '7Xl', legibleName: '7 extra large' },
-  { identifier: '8Xl', legibleName: '8 extra large' },
   { identifier: 'Pill', legibleName: 'pill' },
   { identifier: 'None', legibleName: 'none' },
   { identifier: 'IconText', legibleName: 'icon text' },
 ];
 
-const mapLegacyToNewStyle = style => {
-  const MAP = {
-    BPKFontStyleTextCaps: "BPKFontStyleTextCaption",
-    BPKFontStyleTextCapsEmphasized: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXlHeavy: "BPKFontStyleTextHeading3",
-    BPKFontStyleTextXxl: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxlHeavy: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxxl: "BPKFontStyleTextHeading1",
-    BPKFontStyleTextXxxlHeavy: "BPKFontStyleTextHeading1",
-    BPKFontStyleTextBase: "BPKFontStyleTextBodyDefault",
-    BPKFontStyleTextBaseEmphasized: "BPKFontStyleTextHeading5",
-    BPKFontStyleTextLg: "BPKFontStyleTextBodyLongform",
-    BPKFontStyleTextLgEmphasized: "BPKFontStyleTextHeading4",
-    BPKFontStyleTextSm: "BPKFontStyleTextFootnote",
-    BPKFontStyleTextSmEmphasized: "BPKFontStyleTextLabel2",
-    BPKFontStyleTextXl: "BPKFontStyleTextSubheading",
-    BPKFontStyleTextXlEmphasized: "BPKFontStyleTextHeading3",
-    BPKFontStyleTextXs: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXsEmphasized: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXxlEmphasized: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxxlEmphasized: "BPKFontStyleTextHeading1",
-  }
-  const foundMapping = MAP[style]
-  return foundMapping ? foundMapping : null
-}
-
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
 const FONT_ENUM_VALUES = {
-  BPKFontStyleTextBase: 0,
-  BPKFontStyleTextBaseEmphasized: 1,
-
-  BPKFontStyleTextLg: 2,
-  BPKFontStyleTextLgEmphasized: 3,
-
-  BPKFontStyleTextSm: 4,
-  BPKFontStyleTextSmEmphasized: 5,
-
-  BPKFontStyleTextXl: 6,
-  BPKFontStyleTextXlEmphasized: 7,
-  BPKFontStyleTextXlHeavy: 10,
-
-  BPKFontStyleTextXs: 8,
-  BPKFontStyleTextXsEmphasized: 9,
-
-  BPKFontStyleTextCaps: 11,
-  BPKFontStyleTextCapsEmphasized: 12,
-
-  BPKFontStyleTextXxl: 13,
-  BPKFontStyleTextXxlEmphasized: 14,
-  BPKFontStyleTextXxlHeavy: 15,
-
-  BPKFontStyleTextXxxl: 16,
-  BPKFontStyleTextXxxlEmphasized: 17,
-  BPKFontStyleTextXxxlHeavy: 18,
-
   BPKFontStyleTextHero1: 19,
   BPKFontStyleTextHero2: 20,
   BPKFontStyleTextHero3: 21,
@@ -322,6 +261,7 @@ const parseTokens = (tokensData) => {
     .filter((token) => {
       return token[1].startsWith('text')
     })
+    .filter(props => { return !props[0].find(p => p.deprecated) })
     .map((token) => {
       const properties = token[0];
       const key = token[1];
@@ -351,7 +291,6 @@ const parseTokens = (tokensData) => {
         );
       }
       const enumName = `BPKFontStyle${_.upperFirst(key)}`;
-      const newStyleMapping = mapLegacyToNewStyle(enumName);
       const letterSpacingFor = prop => {
         if (!prop || !prop.value || prop.type.includes('legacy')) { return null }
         const adjustedValue = Number.parseFloat(prop.value) * 100
@@ -373,7 +312,6 @@ const parseTokens = (tokensData) => {
         name: key,
         enumName,
         enumValue: enumValueForName(enumName),
-        newStyleMapping: newStyleMapping ? newStyleMapping : enumName,
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
