@@ -28,7 +28,7 @@
     {                                                                                                                                                \
         NSString *correctDeviceName = @"iPhone 8";                                                                                                   \
         int correctMajorVersion = 15;                                                                                                                \
-        int correctMinorVersion = 0;                                                                                                                 \
+        int correctMinorVersion = 2;                                                                                                                 \
         NSString *deviceName = [[UIDevice currentDevice] name];                                                                                      \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];                                             \
         BOOL validDevice = [deviceName isEqual:correctDeviceName];                                                                                   \
@@ -53,10 +53,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                           \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                               \
         FBSnapshotVerifyView(view__, identifier);                                                                                                    \
     }
 #else
@@ -75,10 +72,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                            \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                                \
         FBSnapshotVerifyView(view__, identifier);                                                                                                    \
     }
 #else
@@ -98,9 +92,7 @@
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
                                                                                                                                                      \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                           \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                               \
         FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__);                                                                \
     }
 #else
@@ -119,10 +111,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                            \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                                \
         FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__);                                                                \
     }
 #else
