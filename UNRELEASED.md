@@ -8,6 +8,9 @@
 
 **Breaking:**
 
+- Backpack/Font:
+  - Removing deprecated font styles
+
 - Backpack/Button:
   - Removing Outline button style
   - Update the colours and spacing to the new styles
