@@ -90,7 +90,9 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @deprecated Use smallTemplateIconNamed or largeTemplateIconNamed instead
  * @return The rendered icon as a `UIImage` in template mode.
  */
-+ (UIImage *)templateIconNamed:(BPKIconName)name size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:)) __deprecated_msg("Use smallTemplateIconNamed or largeTemplateIconNamed instead");
++ (UIImage *)templateIconNamed:(BPKIconName)name
+                          size:(BPKIconSize)size NS_SWIFT_NAME(makeTemplateIcon(name:size:))
+                                   __deprecated_msg("Use smallTemplateIconNamed or largeTemplateIconNamed instead");
 
 /**
  * Render a given icon as a UIImage.
@@ -101,7 +103,10 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  * @deprecated Use smallIconNamed or largeIconNamed instead
  * @return The rendered icon as a `UIImage`.
  */
-+ (UIImage *)iconNamed:(BPKIconName)name color:(UIColor *)color size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:)) __deprecated_msg("Use smallIconNamed or largeIconNamed instead");
++ (UIImage *)iconNamed:(BPKIconName)name
+                 color:(UIColor *)color
+                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:))
+                           __deprecated_msg("Use smallIconNamed or largeIconNamed instead");
 
 /**
  * Calculates the concrete point size a given BPKIconSize.

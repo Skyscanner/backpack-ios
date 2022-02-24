@@ -35,13 +35,13 @@
 
 #import "BPKCalendarAppearance.h"
 #import "BPKCalendarCell.h"
+#import "BPKCalendarCellSpacing.h"
 #import "BPKCalendarConfiguration.h"
 #import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarSelectionConfiguration.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
-#import "BPKCalendarSelectionConfiguration.h"
 #import "BPKCalendarYearPill.h"
-#import "BPKCalendarCellSpacing.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -143,13 +143,18 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
     return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
 }
 
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     BPKAssertMainThread();
     if (_configuration == nil) {
         _configuration = [BPKCalendarTrafficLightConfiguration new];
@@ -167,7 +172,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
-- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration
+               selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
     self = [self initWithFrame:CGRectZero];
@@ -180,7 +186,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self;
 }
 
--(void)applySubviewClipsToBoundsHack {
+- (void)applySubviewClipsToBoundsHack {
     // FSCalendar has an internal hierarchy of views in which the collectionView is rendered.
     // We need to ensure all of these have `clipsToBounds` set to `NO` to ensure the selection range can extend beyond the collectionView.
     self.calendarView.subviews[0].clipsToBounds = NO;
@@ -321,7 +327,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         // Prevent crashing if we somehow get here and there are no selected dates
         // We should fix this properly by ensuring that sameDayRange is never true when there are 0 selected dates.
         // To fix in BPK-4370
-        if(self.calendarView.selectedDates.count == 0) {
+        if (self.calendarView.selectedDates.count == 0) {
             return @[];
         }
         NSArray<NSDate *> *dates = [self.calendarView.selectedDates arrayByAddingObject:self.calendarView.selectedDates.firstObject];
@@ -386,7 +392,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     [self invalidateVisibleCellsIfNeeded];
 }
 
--(void)scrollToDate:(BPKSimpleDate *)date {
+- (void)scrollToDate:(BPKSimpleDate *)date {
     // Scrolling to date only works if this is enabled.
     // See https://github.com/WenchaoD/FSCalendar/issues/875#issuecomment-360024984
     self.calendarView.pagingEnabled = YES;
@@ -436,7 +442,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 
     BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
-        [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date];
+                            [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date];
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
@@ -452,7 +458,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
-  if (self.sameDayRange || !self.selectionConfiguration.isRangeStyleSelection) {
+    if (self.sameDayRange || !self.selectionConfiguration.isRangeStyleSelection) {
         self.sameDayRange = NO;
         return YES;
     } else {
@@ -658,7 +664,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
         NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
-        calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date selectedDates:sortedSelectedDates baseLabel:baseAccessibilityLabel];
+        calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date
+                                                                                   selectedDates:sortedSelectedDates
+                                                                                       baseLabel:baseAccessibilityLabel];
         calendarCell.accessibilityHint = [self.selectionConfiguration accessibilityHintForDate:date selectedDates:sortedSelectedDates];
 
         if ([self isDateEnabled:date]) {
@@ -686,7 +694,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
  * If the same day is selected twice, it will also populate the resulting list twice so that
  * it represents both selections.
  */
--(NSArray<NSDate *> *)sortedSelectedDates {
+- (NSArray<NSDate *> *)sortedSelectedDates {
     NSArray<NSDate *> *selectedDates = [self.calendarView.selectedDates sortedArrayUsingComparator:^NSComparisonResult(NSDate *a, NSDate *b) {
       return [a compare:b];
     }];

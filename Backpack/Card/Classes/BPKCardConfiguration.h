@@ -53,7 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param isAccessibilityElement Whether the control should be an accessibilityElement.
  * @param accessibilityTraits The accessibilityTraits to apply.
  */
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel
+                    isAccessibilityElement:(BOOL)isAccessibilityElement
+                       accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
 
 @end
 

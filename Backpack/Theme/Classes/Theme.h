@@ -39,8 +39,7 @@
 
 #import "BPKTheme.h"
 #import "BPKThemeContainerController.h"
-#import "UIViewController+BPKThemeContainerController.h"
 #import "UIView+BPKThemeContainer.h"
-
+#import "UIViewController+BPKThemeContainerController.h"
 
 #endif

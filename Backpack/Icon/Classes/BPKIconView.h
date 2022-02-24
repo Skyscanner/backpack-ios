@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @deprecated Setting size during the component lifecycle will soon be unsupported.
  * @see BPKIconSize
  */
--(void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
+- (void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
 
 /**
  * If flipsForRightToLeft is set to YES then BPKIconView will render its icon

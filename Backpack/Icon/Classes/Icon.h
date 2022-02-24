@@ -20,12 +20,12 @@
 
 #import "BPKIcon.h"
 #import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import "BPKSmallIconNames.h"
+#import "BPKIconView.h"  // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconNames.h"
-#import "BPKXlIconNames.h"
-#import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
-#import "BPKSmallIconView.h"
 #import "BPKLargeIconView.h"
+#import "BPKSmallIconNames.h"
+#import "BPKSmallIconView.h"
+#import "BPKXlIconNames.h"
 #import "BPKXlIconView.h"
 
 #endif

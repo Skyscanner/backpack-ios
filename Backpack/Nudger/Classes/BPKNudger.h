@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A component for selecting a numerical value by incrementing and decrementing in defined steps.
  */
-IB_DESIGNABLE @interface BPKNudger: UIControl
+IB_DESIGNABLE @interface BPKNudger : UIControl
 
 /// :nodoc:
 - (instancetype)init NS_UNAVAILABLE;

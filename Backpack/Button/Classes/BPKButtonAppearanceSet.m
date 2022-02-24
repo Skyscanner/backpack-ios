@@ -16,14 +16,17 @@
  * limitations under the License.
  */
 
-#import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKButtonAppearance.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKButtonAppearanceSet : NSObject
 
-- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance loadingAppearance:(BPKButtonAppearance *)loadingAppearance  disabledAppearance:(BPKButtonAppearance *)disabledAppearance highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance {
+- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance
+                        loadingAppearance:(BPKButtonAppearance *)loadingAppearance
+                       disabledAppearance:(BPKButtonAppearance *)disabledAppearance
+                    highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance {
     self = [super init];
 
     if (self) {
@@ -37,7 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)clone {
-    return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:[self.regularAppearance clone] loadingAppearance:[self.loadingAppearance clone] disabledAppearance:[self.disabledAppearance clone] highlightedAppearance:[self.highlightedAppearance clone]];
+    return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:[self.regularAppearance clone]
+                                                   loadingAppearance:[self.loadingAppearance clone]
+                                                  disabledAppearance:[self.disabledAppearance clone]
+                                               highlightedAppearance:[self.highlightedAppearance clone]];
 }
 
 @end

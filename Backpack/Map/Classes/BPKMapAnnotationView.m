@@ -21,12 +21,12 @@
 #import <Backpack/Color.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKMapAnnotationViewCalloutView.h"
 #import "BPKMapAnnotation.h"
+#import "BPKMapAnnotationViewCalloutView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BPKMapAnnotationView()
+@interface BPKMapAnnotationView ()
 @property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
 @property(nonatomic, nullable, strong) UIView *dotView;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKMapAnnotationView
 
-- (instancetype)initWithAnnotation:(id<MKAnnotation> _Nullable)annotation reuseIdentifier:(NSString * _Nullable)reuseIdentifier {
+- (instancetype)initWithAnnotation:(id<MKAnnotation> _Nullable)annotation reuseIdentifier:(NSString *_Nullable)reuseIdentifier {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
 
     if (self) {
@@ -57,20 +57,21 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
--(BPKMapAnnotation *_Nullable)bpk_annotation {
-    if(self.annotation == nil) {
+- (BPKMapAnnotation *_Nullable)bpk_annotation {
+    if (self.annotation == nil) {
         return nil;
     }
 
-    if(![self.annotation isKindOfClass:BPKMapAnnotation.class]) {
-        NSAssert(false, @"BPKMapAnnotationView should be initialised with an instance of BPKMapAnnotation. Instead annotation class is %@", self.annotation.class);
+    if (![self.annotation isKindOfClass:BPKMapAnnotation.class]) {
+        NSAssert(false, @"BPKMapAnnotationView should be initialised with an instance of BPKMapAnnotation. Instead annotation class is %@",
+                 self.annotation.class);
         return nil;
     }
 
     return (BPKMapAnnotation *)self.annotation;
 }
 
--(void)setupAppearance {
+- (void)setupAppearance {
     self.hasBeenSelected = false;
     [self updateImage];
 
@@ -79,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
-    self.dotView.layer.borderWidth = BPKSpacingSm/2;
-    self.dotView.layer.cornerRadius = self.annotationDotHeight/2;
+    self.dotView.layer.borderWidth = BPKSpacingSm / 2;
+    self.dotView.layer.cornerRadius = self.annotationDotHeight / 2;
     [self updateAppearance];
 }
 
 - (BPKMapAnnotationViewCalloutView *)calloutView {
-    if(_calloutView == nil && self.dotView != nil) {
+    if (_calloutView == nil && self.dotView != nil) {
         BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
         [self addSubview:calloutView];
         calloutView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -95,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
     return _calloutView;
 }
 
--(void)updateImage {
+- (void)updateImage {
     self.image = nil;
 }
 
@@ -116,13 +117,13 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateAppearance];
 }
 
--(void)updateAccessibilityProperties {
+- (void)updateAccessibilityProperties {
     self.accessibilityLabel = self.bpk_annotation.accessibilityLabel;
     self.accessibilityValue = self.bpk_annotation.accessibilityValue;
     self.accessibilityHint = self.bpk_annotation.accessibilityHint;
 }
 
--(void)updateAppearance {
+- (void)updateAppearance {
     [self updateAccessibilityProperties];
     self.enabled = self.bpk_annotation.enabled;
 
@@ -169,12 +170,12 @@ NS_ASSUME_NONNULL_BEGIN
         CGFloat dotTop = calloutViewSize.height - self.calloutViewOverlap;
         self.dotView.frame = CGRectMake(dotLeft, dotTop, self.annotationDotHeight, self.annotationDotHeight);
 
-        CGFloat offset = - (self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
+        CGFloat offset = -(self.bounds.size.height / 2) + (self.annotationDotHeight / 2);
         self.centerOffset = CGPointMake(0, offset);
     }
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
 
     if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {

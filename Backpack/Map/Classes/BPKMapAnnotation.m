@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
--(void)setup {
+- (void)setup {
     self.enabled = true;
 }
 

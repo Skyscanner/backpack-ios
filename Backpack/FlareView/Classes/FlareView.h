@@ -18,7 +18,7 @@
 #ifndef __BACKPACK_MASK_LAYER__
 #define __BACKPACK_MASK_LAYER__
 
-#import "BPKFlareView.h"
 #import "BPKFlarePath.h"
+#import "BPKFlareView.h"
 
 #endif

@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)defaultStarFilledColor {
-  return [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
 }
 
 + (UIColor *)defaultStarColor {

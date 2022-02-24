@@ -54,19 +54,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The pre-defined selection style of the calendar.
  */
-@property(readonly)BPKCalendarSelectionStyle selectionStyle;
+@property(readonly) BPKCalendarSelectionStyle selectionStyle;
 
 /**
  * Whether the selection configuration is a range style (ie start date and end date with 0 or more dates between).
  */
-@property(readonly)BOOL isRangeStyleSelection;
+@property(readonly) BOOL isRangeStyleSelection;
 
 /**
  * Whether the selection configuration allows multiple dates to be selected simultaneously.
  */
-@property(readonly)BOOL allowsMultipleSelection;
+@property(readonly) BOOL allowsMultipleSelection;
 
--(BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date;
+- (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date;
 
 /**
  * Provides the accessibility hint that should be applied to a cell.

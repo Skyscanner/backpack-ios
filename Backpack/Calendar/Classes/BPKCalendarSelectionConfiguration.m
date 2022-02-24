@@ -31,7 +31,8 @@
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
-    NSAssert(false, @"BPKCalendarSelectionConfiguration shouldClearSelectedDates: should be overridden. The base class method should never be called.");
+    NSAssert(false,
+             @"BPKCalendarSelectionConfiguration shouldClearSelectedDates: should be overridden. The base class method should never be called.");
     return NO;
 }
 
@@ -48,7 +49,7 @@
 }
 
 - (NSString *_Nullable)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel {
-        return baseLabel;
+    return baseLabel;
 }
 
 - (NSString *_Nullable)accessibilityInstructionHavingSelectedDates:(NSArray<NSDate *> *)selectedDates {

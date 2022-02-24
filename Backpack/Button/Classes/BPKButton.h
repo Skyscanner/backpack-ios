@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
+#import "BPKLabel.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "BPKLabel.h"
 /**
  * Enum values for specifying button size
  */
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
      * Primary on Dark button style, suitable for use on dark coloured backgrounds.
      */
     BPKButtonStylePrimaryOnDark = 5,
-    
+
     /**
      * Primary on Light button style, suitable for use on light coloured backgrounds.
      */

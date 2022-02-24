@@ -46,7 +46,7 @@ IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : UIView
  */
 - (instancetype)initWithAnnotationView:(BPKMapAnnotationView *)annotationView NS_DESIGNATED_INITIALIZER;
 
--(void)update;
+- (void)update;
 
 @end
 NS_ASSUME_NONNULL_END
