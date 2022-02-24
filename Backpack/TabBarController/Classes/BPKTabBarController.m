@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
 
--(void)updateTabBarItems {
+- (void)updateTabBarItems {
     UIUserInterfaceStyle interfaceStyle = self.traitCollection.userInterfaceStyle;
 
     NSUInteger index = 0;
     for (UITabBarItem *tabBarItem in self.tabBar.items) {
-        if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
+        if ([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
             BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
             bpkTabBarItem.interfaceStyle = interfaceStyle;
             bpkTabBarItem.selected = self.selectedIndex == index;

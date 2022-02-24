@@ -42,10 +42,11 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 - (void)configureWithData:(id)data;
 
 /**
- * Returns the cell's default accessibility label string for the date. This can be overridden so that different cell types provide different format strings.
+ * Returns the cell's default accessibility label string for the date. This can be overridden so that different cell types provide different format
+ * strings.
  *
  * @param date The date to include in the resulting string.
- * @param formatter The NSDateFormatter to be used for formatting the date. 
+ * @param formatter The NSDateFormatter to be used for formatting the date.
  */
 - (NSString *)defaultAccessibilityLabelForDate:(NSDate *)date formatter:(NSDateFormatter *)formatter;
 

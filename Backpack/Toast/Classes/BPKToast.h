@@ -86,9 +86,7 @@ IB_DESIGNABLE @interface BPKToast : UIView
  * @return A reference to the created Toast.
  *
  */
-+ (instancetype)showToastAddedTo:(UIView *)view
-                        animated:(BOOL)animated
-       accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
++ (instancetype)showToastAddedTo:(UIView *)view animated:(BOOL)animated accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
 
 /**
  * A convenience constructor that initializes the Toast with the view's bounds. Calls the designated constructor with

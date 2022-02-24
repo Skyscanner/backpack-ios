@@ -19,9 +19,9 @@
 #define __BACKPACK_CARD__
 
 #import "BPKCard.h"
-#import "BPKDividedCard.h"
 #import "BPKCardConfiguration.h"
-#import "BPKCardConfigurationContainer.h"
 #import "BPKCardConfigurationButton.h"
+#import "BPKCardConfigurationContainer.h"
 #import "BPKCardConfigurationLink.h"
+#import "BPKDividedCard.h"
 #endif

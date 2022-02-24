@@ -30,6 +30,7 @@
 #import "BPKButtonAppearanceSet.h"
 #import "UIColor+BPKButton.h"
 
+#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
@@ -39,7 +40,6 @@
 #import <Backpack/Radii.h>
 #import <Backpack/Spacing.h>
 #import <Backpack/UIView+BPKRTL.h>
-#import <Backpack/Backpack-Swift.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton ()
@@ -63,39 +63,39 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
-    
+
     if (self) {
         _size = size;
         _style = style;
         [self setup];
     }
-    
+
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     BPKAssertMainThread();
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         _size = BPKButtonSizeDefault;
         _style = BPKButtonStylePrimary;
         [self setup];
     }
-    
+
     return self;
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     BPKAssertMainThread();
     self = [super initWithCoder:aDecoder];
-    
+
     if (self) {
         _size = BPKButtonSizeDefault;
         _style = BPKButtonStylePrimary;
         [self setup];
     }
-    
+
     return self;
 }
 
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configureAccesibilityTraits {
     self.isAccessibilityElement = YES;
-    
+
     self.accessibilityTraits = self.isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitNotEnabled | UIAccessibilityTraitButton);
     self.accessibilityLabel = self.title;
     self.titleLabel.isAccessibilityElement = NO;
@@ -149,27 +149,26 @@ NS_ASSUME_NONNULL_BEGIN
     self.spinner = [[UIActivityIndicatorView alloc] init];
     self.spinner.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.spinner];
-    
+
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:[self heightForSize:self.size]];
     // To use when just icon
     self.widthConstraint = [self.widthAnchor constraintEqualToConstant:[self heightForSize:self.size]];
-    self.iconHeightConstraint = [self.imageView.heightAnchor constraintGreaterThanOrEqualToConstant: 14];
-    self.iconWidthConstraint = [self.imageView.widthAnchor constraintEqualToConstant: 14];
-    self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor: self.contentView.leadingAnchor
-                                                                                  constant: BPKSpacingBase];
-    self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor: self.contentView.trailingAnchor
-                                                                                    constant: -BPKSpacingBase];
-    
+    self.iconHeightConstraint = [self.imageView.heightAnchor constraintGreaterThanOrEqualToConstant:14];
+    self.iconWidthConstraint = [self.imageView.widthAnchor constraintEqualToConstant:14];
+    self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
+    self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+                                                                                    constant:-BPKSpacingBase];
+
     self.imagePosition = BPKButtonImagePositionTrailing;
-    
+
     self.layer.masksToBounds = YES;
-    
+
     self.gradientLayer = [[BPKGradientLayer alloc] init];
     [self.layer insertSublayer:self.gradientLayer atIndex:0];
-    
+
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-    
+
     [self setupConstraints];
     [self updateLookAndFeel];
 }
@@ -178,18 +177,13 @@ NS_ASSUME_NONNULL_BEGIN
     [NSLayoutConstraint activateConstraints:@[
         [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.topAnchor constraintEqualToAnchor: self.contentView.topAnchor],
-        [self.bottomAnchor constraintEqualToAnchor: self.contentView.bottomAnchor],
-        self.stackLeadingConstraint,
-        self.stackTrailingConstraint,
-        [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor: self.contentView.topAnchor],
-        [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor: self.contentView.bottomAnchor],
-        [self.contentStack.centerYAnchor constraintEqualToAnchor: self.contentView.centerYAnchor],
-        [self.contentStack.centerXAnchor constraintEqualToAnchor: self.contentView.centerXAnchor],
-        self.iconHeightConstraint,
-        self.iconWidthConstraint,
-        self.heightConstraint,
-        [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
+        [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor],
+        [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor],
+        [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.iconHeightConstraint, self.iconWidthConstraint,
+        self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
     ]];
 }
@@ -213,18 +207,14 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconHeightConstraint.constant = [self iconHeightForSize:size];
     self.iconWidthConstraint.constant = self.iconHeightConstraint.constant;
     self.heightConstraint.constant = [self heightForSize:size];
-    
+
     self.spinner.transform = [self spinnerTransformForSize:size];
     [self updateConstraintsForType:self.isIconOnly];
 }
 
 - (void)updateConstraintsForType:(BOOL)isIconOnly {
     if (isIconOnly) {
-        [NSLayoutConstraint deactivateConstraints:@[
-            self.stackLeadingConstraint,
-            self.stackTrailingConstraint,
-            self.widthConstraint
-        ]];
+        [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.widthConstraint]];
         [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
         self.widthConstraint.constant = [self heightForSize:self.size];
     } else if (self.style == BPKButtonStyleLink) {
@@ -234,10 +224,7 @@ NS_ASSUME_NONNULL_BEGIN
         [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
         self.stackLeadingConstraint.constant = BPKSpacingBase;
         self.stackTrailingConstraint.constant = -BPKSpacingBase;
-        [NSLayoutConstraint activateConstraints:@[
-            self.stackLeadingConstraint,
-            self.stackTrailingConstraint
-        ]];
+        [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
     }
 }
 
@@ -256,7 +243,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLookAndFeel {
     [self.imageView setHidden:!self.hasIcon];
     [self.titleLabel setHidden:!self.hasTitle];
-    
+
     [self updateSize];
     [self updateAppearance];
     [self configureAccesibilityTraits];
@@ -267,28 +254,31 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleLabel.textColor = appearance.foregroundColor;
     self.imageView.tintColor = appearance.foregroundColor;
     self.spinner.color = appearance.foregroundColor;
-    
+
     if (appearance.gradientStartColor != nil && appearance.gradientEndColor != nil) {
         self.gradientLayer.gradient = [self gradientWithTopColor:appearance.gradientStartColor bottomColor:appearance.gradientEndColor];
     } else {
         self.gradientLayer.gradient = nil;
     }
-    
+
     if (appearance.borderColor != nil) {
         self.layer.borderColor = appearance.borderColor.CGColor;
         self.layer.borderWidth = 2;
     } else {
         self.layer.borderWidth = 0;
     }
-    
+
     [self setNeedsDisplay];
 }
 
 - (BPKButtonAppearance *)currentAppearance {
     BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets appearanceFromStyle:self.style];
-    if (self.isLoading) return appearanceSet.loadingAppearance;
-    if (!self.isEnabled) return appearanceSet.disabledAppearance;
-    if (self.highlighted) return [self themedAppearance:appearanceSet.highlightedAppearance highlighted:YES];
+    if (self.isLoading)
+        return appearanceSet.loadingAppearance;
+    if (!self.isEnabled)
+        return appearanceSet.disabledAppearance;
+    if (self.highlighted)
+        return [self themedAppearance:appearanceSet.highlightedAppearance highlighted:YES];
     return [self themedAppearance:appearanceSet.regularAppearance highlighted:NO];
 }
 
@@ -313,7 +303,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
-    
+
     self.titleLabel.text = title;
     _title = [title copy];
     [self updateLookAndFeel];
@@ -360,10 +350,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BPKGradient *)gradientWithTopColor:(UIColor *)top bottomColor:(UIColor *)bottom {
     NSParameterAssert(top);
     NSParameterAssert(bottom);
-    
+
     UIColor *resolvedTopColor = [top resolvedColorWithTraitCollection:self.traitCollection];
     UIColor *resolvedBottomColor = [bottom resolvedColorWithTraitCollection:self.traitCollection];
-    
+
     BPKGradientDirection direction = BPKGradientDirectionDown;
     return [[BPKGradient alloc] initWithColors:@[resolvedTopColor, resolvedBottomColor]
                                     startPoint:[BPKGradient startPointForDirection:direction]
@@ -372,47 +362,57 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BPKFontStyle)fontStyleForSize:(BPKButtonSize)size {
     switch (size) {
-        case BPKButtonSizeDefault: return BPKFontStyleTextLabel2;
-        case BPKButtonSizeLarge: return BPKFontStyleTextLabel1;
+    case BPKButtonSizeDefault:
+        return BPKFontStyleTextLabel2;
+    case BPKButtonSizeLarge:
+        return BPKFontStyleTextLabel1;
     }
 }
 
 - (CGFloat)cornerRadiusForStyle:(BPKButtonStyle)style {
-    if (style == BPKButtonStyleLink) { return 0; }
+    if (style == BPKButtonStyleLink) {
+        return 0;
+    }
     return BPKCornerRadiusSm;
 }
 
 - (CGFloat)heightForSize:(BPKButtonSize)size {
     switch (size) {
-        case BPKButtonSizeDefault: return 36.0;
-        case BPKButtonSizeLarge: return 48.0;
+    case BPKButtonSizeDefault:
+        return 36.0;
+    case BPKButtonSizeLarge:
+        return 48.0;
     }
 }
 
 - (CGFloat)iconHeightForSize:(BPKButtonSize)size {
     switch (size) {
-        case BPKButtonSizeDefault: return 14;
-        case BPKButtonSizeLarge: return 18;
+    case BPKButtonSizeDefault:
+        return 14;
+    case BPKButtonSizeLarge:
+        return 18;
     }
 }
 
 - (CGAffineTransform)spinnerTransformForSize:(BPKButtonSize)size {
     switch (size) {
-        case BPKButtonSizeDefault: return CGAffineTransformMakeScale(.75f, .75f);
-        case BPKButtonSizeLarge: return CGAffineTransformMakeScale(1.f, 1.f);
+    case BPKButtonSizeDefault:
+        return CGAffineTransformMakeScale(.75f, .75f);
+    case BPKButtonSizeLarge:
+        return CGAffineTransformMakeScale(1.f, 1.f);
     }
 }
 
 - (void)updateLoadingState {
     self.enabled = !self.isLoading;
     self.spinner.hidden = !self.isLoading;
-    
+
     if (self.isLoading) {
         [self.spinner startAnimating];
     } else {
         [self.spinner stopAnimating];
     }
-    
+
     self.contentView.layer.opacity = self.isLoading ? 0.0 : 1.0;
 }
 
@@ -425,72 +425,74 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Theming
 
--(UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
+- (UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
     return highlighted ? [UIColor dimColor:color] : color;
 }
 
 - (BPKButtonAppearance *)themedAppearance:(BPKButtonAppearance *)appearance highlighted:(BOOL)highlighted {
     BPKButtonAppearance *themedAppearance = [appearance clone];
     switch (self.style) {
-        case BPKButtonStylePrimary:
-            if (self.primaryContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.primaryContentColor highlighted:highlighted];
+    case BPKButtonStylePrimary:
+        if (self.primaryContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.primaryContentColor highlighted:highlighted];
+        }
+        if (self.primaryGradientStartColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.primaryGradientStartColor highlighted:highlighted];
+        }
+        if (self.primaryGradientEndColor) {
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.primaryGradientEndColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleSecondary:
+        if (self.secondaryContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.secondaryContentColor highlighted:highlighted];
+        }
+        if (self.secondaryBorderColor) {
+            themedAppearance.borderColor = [self applyHighlightToColor:self.secondaryBorderColor highlighted:highlighted];
+        }
+        if (self.secondaryBackgroundColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleDestructive:
+        if (self.destructiveContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.destructiveContentColor highlighted:highlighted];
+        }
+        if (self.destructiveBorderColor) {
+            themedAppearance.borderColor = [self applyHighlightToColor:self.destructiveBorderColor highlighted:highlighted];
+        }
+        if (self.destructiveBackgroundColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleFeatured:
+        if (self.featuredContentColor) {
+            themedAppearance.foregroundColor = [self applyHighlightToColor:self.featuredContentColor highlighted:highlighted];
+        }
+        if (self.featuredGradientStartColor) {
+            themedAppearance.gradientStartColor = [self applyHighlightToColor:self.featuredGradientStartColor highlighted:highlighted];
+        }
+        if (self.featuredGradientEndColor) {
+            themedAppearance.gradientEndColor = [self applyHighlightToColor:self.featuredGradientEndColor highlighted:highlighted];
+        }
+        break;
+    case BPKButtonStyleLink:
+        if (self.linkContentColor) {
+            if (highlighted) {
+                themedAppearance.foregroundColor = [UIColor reduceOpacityOfColor:self.linkContentColor];
+            } else {
+                themedAppearance.foregroundColor = self.linkContentColor;
             }
-            if (self.primaryGradientStartColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.primaryGradientStartColor highlighted:highlighted];
-            }
-            if (self.primaryGradientEndColor) {
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.primaryGradientEndColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleSecondary:
-            if (self.secondaryContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.secondaryContentColor highlighted:highlighted];
-            }
-            if (self.secondaryBorderColor) {
-                themedAppearance.borderColor = [self applyHighlightToColor:self.secondaryBorderColor highlighted:highlighted];
-            }
-            if (self.secondaryBackgroundColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.secondaryBackgroundColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleDestructive:
-            if (self.destructiveContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.destructiveContentColor highlighted:highlighted];
-            }
-            if (self.destructiveBorderColor) {
-                themedAppearance.borderColor = [self applyHighlightToColor:self.destructiveBorderColor highlighted:highlighted];
-            }
-            if (self.destructiveBackgroundColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.destructiveBackgroundColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleFeatured:
-            if (self.featuredContentColor) {
-                themedAppearance.foregroundColor = [self applyHighlightToColor:self.featuredContentColor highlighted:highlighted];
-            }
-            if (self.featuredGradientStartColor) {
-                themedAppearance.gradientStartColor = [self applyHighlightToColor:self.featuredGradientStartColor highlighted:highlighted];
-            }
-            if (self.featuredGradientEndColor) {
-                themedAppearance.gradientEndColor = [self applyHighlightToColor:self.featuredGradientEndColor highlighted:highlighted];
-            }
-            break;
-        case BPKButtonStyleLink:
-            if (self.linkContentColor) {
-                if (highlighted) {
-                    themedAppearance.foregroundColor = [UIColor reduceOpacityOfColor:self.linkContentColor];
-                } else {
-                    themedAppearance.foregroundColor = self.linkContentColor;
-                }
-            }
-            break;
-        case BPKButtonStylePrimaryOnDark: break; // not supporting theming for PrimaryOnDark
-        case BPKButtonStylePrimaryOnLight: break; // not supporting theming for PimaryOnLight
+        }
+        break;
+    case BPKButtonStylePrimaryOnDark:
+        break; // not supporting theming for PrimaryOnDark
+    case BPKButtonStylePrimaryOnLight:
+        break; // not supporting theming for PimaryOnLight
     }
-    
+
     return themedAppearance;
 }
 

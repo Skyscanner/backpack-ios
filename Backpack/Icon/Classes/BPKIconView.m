@@ -48,15 +48,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     if (self.iconName) {
         switch (self.size) {
-            case BPKIconSizeSmall:
-                super.image = [BPKIcon smallTemplateIconNamed:self.iconName];
-                break;
-            case BPKIconSizeLarge:
-                super.image = [BPKIcon largeTemplateIconNamed:self.iconName];
-                break;
-            case BPKIconSizeXLarge:
-                super.image = [BPKIcon xlTemplateIconNamed:self.iconName];
-                break;
+        case BPKIconSizeSmall:
+            super.image = [BPKIcon smallTemplateIconNamed:self.iconName];
+            break;
+        case BPKIconSizeLarge:
+            super.image = [BPKIcon largeTemplateIconNamed:self.iconName];
+            break;
+        case BPKIconSizeXLarge:
+            super.image = [BPKIcon xlTemplateIconNamed:self.iconName];
+            break;
         }
     }
     [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];

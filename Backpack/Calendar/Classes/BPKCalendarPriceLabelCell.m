@@ -18,8 +18,8 @@
 
 #import "BPKCalendarPriceLabelCell.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Label.h>
+#import <Backpack/Spacing.h>
 
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelStyle.h"
@@ -79,7 +79,8 @@
 }
 
 - (void)configureWithData:(id)data {
-    NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class], @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
+    NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class],
+             @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;

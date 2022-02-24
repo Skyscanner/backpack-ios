@@ -84,7 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param selectionConfiguration The configuration to use to handle selection logic.
  * @return A configured calendar.
  */
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a calendar with given minimum date and maximum date.
@@ -96,7 +98,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @see BPKCalendarTrafficLightConfiguration
  * @return A configured calendar.
  */
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate maxDate:(BPKSimpleDate *)maxDate configuration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
 
 /**
  * Create a calendar with given configuration
@@ -106,7 +111,8 @@ NS_ASSUME_NONNULL_BEGIN
  * @see BPKCalendarTrafficLightConfiguration
  * @return A configured calendar.
  */
-- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
+- (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration
+               selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
@@ -198,7 +204,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Scrolls the month of the given date into view.
  * @param date The date to scroll into view
  */
--(void)scrollToDate:(BPKSimpleDate *)date;
+- (void)scrollToDate:(BPKSimpleDate *)date;
 
 @end
 NS_ASSUME_NONNULL_END

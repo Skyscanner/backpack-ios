@@ -22,19 +22,19 @@
 
 @implementation BPKCalendarCellSpacing
 
-+(CGFloat)cellCircleHeight {
++ (CGFloat)cellCircleHeight {
     return 9 * BPKSpacingSm;
 }
 
-+(CGFloat)cellBottomSpacing {
++ (CGFloat)cellBottomSpacing {
     return BPKSpacingMd;
 }
 
-+(CGFloat)cellTitleHeight {
++ (CGFloat)cellTitleHeight {
     return [self cellCircleHeight];
 }
 
-+(CGFloat)defaultCellHeight {
++ (CGFloat)defaultCellHeight {
     return [self cellCircleHeight] + [self cellBottomSpacing];
 }
 

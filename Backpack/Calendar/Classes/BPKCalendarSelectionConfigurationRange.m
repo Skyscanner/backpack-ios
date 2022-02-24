@@ -20,7 +20,6 @@
 
 @implementation BPKCalendarSelectionConfigurationRange
 
-
 - (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
                           endSelectionHint:(NSString *)endSelectionHint
                        startSelectionState:(NSString *)startSelectionState
@@ -50,8 +49,7 @@
     if (selectedDates.count >= 2) {
         // Two dates are selected already and a new one has been tapped
         shouldClearDates = YES;
-    } else if (selectedDates.count == 1 && firstSelectedDate != nil &&
-               [date compare:firstSelectedDate] == NSOrderedAscending) {
+    } else if (selectedDates.count == 1 && firstSelectedDate != nil && [date compare:firstSelectedDate] == NSOrderedAscending) {
         // One date is selected already, but it is after the date that has been tapped
         shouldClearDates = YES;
     }

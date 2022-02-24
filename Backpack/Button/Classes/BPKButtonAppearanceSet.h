@@ -51,7 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  * Creates an instance of `BPKButtonAppearanceSet` with the values provided.
  */
-- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance loadingAppearance:(BPKButtonAppearance *)loadingAppearance  disabledAppearance:(BPKButtonAppearance *)disabledAppearance highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance;
+- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance
+                        loadingAppearance:(BPKButtonAppearance *)loadingAppearance
+                       disabledAppearance:(BPKButtonAppearance *)disabledAppearance
+                    highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance;
 
 /*
  * Creates an new instance of `BPKButtonAppearanceSet` with cloned appearances that match the current instance.

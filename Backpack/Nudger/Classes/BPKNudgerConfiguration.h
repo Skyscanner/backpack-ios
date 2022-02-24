@@ -18,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * _Nonnull(^BPKNudgerValueFormatter)(double value);
+typedef NSString *_Nonnull (^BPKNudgerValueFormatter)(double value);
 
 @interface BPKNudgerConfiguration : NSObject
 

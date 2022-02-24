@@ -179,11 +179,11 @@ NS_ASSUME_NONNULL_BEGIN
         CGFloat absAdjustedYOffset = fabs(adjustedYOffset);
         self.heightConstraint.constant = absAdjustedYOffset;
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
-        
+
         if (absAdjustedYOffset <= BPKNavigationBarExpandedFullHeight) {
             scrollView.contentInset = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
         }
-        
+
         // Making modifications on each scroll is very expensive.
         // To prevent extra work the changes between collapsed and expanded
         // are only executed a single time per transition.

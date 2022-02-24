@@ -145,10 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat lineHeight = [BPKFont lineHeightForStyle:self.fontStyle];
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
 
-    NSMutableDictionary *attributes = [@{
-        NSParagraphStyleAttributeName: paragraphStyle,
-        NSFontAttributeName: font
-    } mutableCopy];
+    NSMutableDictionary *attributes = [@{NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: font} mutableCopy];
     if (self.customFontAttributes[NSForegroundColorAttributeName] != nil) {
         attributes[NSForegroundColorAttributeName] = self.customFontAttributes[NSForegroundColorAttributeName];
     }

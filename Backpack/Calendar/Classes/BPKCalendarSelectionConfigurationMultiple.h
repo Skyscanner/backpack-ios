@@ -21,7 +21,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCalendarSelectionConfigurationMultiple` is a subclass of `BPKCalendarSelectionConfiguration` designed to enable a user to select any number of individual dates.
+ * `BPKCalendarSelectionConfigurationMultiple` is a subclass of `BPKCalendarSelectionConfiguration` designed to enable a user to select any number of
+ * individual dates.
  */
 @interface BPKCalendarSelectionConfigurationMultiple : BPKCalendarSelectionConfiguration
 
@@ -37,9 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(readonly, nonatomic, copy) NSString *deselectionHint;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
+- (instancetype)init __attribute__((
+    unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use `initWithSelectionHint:deselectionHint:` instead")));
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
+    __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationMultiple. Use "
+                               "`initWithSelectionHint:deselectionHint:` instead")));
 
 /**
  * Create a multi-selection configuration with given accessibility strings.

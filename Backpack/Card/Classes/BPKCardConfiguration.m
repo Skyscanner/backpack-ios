@@ -32,7 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel
+                    isAccessibilityElement:(BOOL)isAccessibilityElement
+                       accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits {
     self = [super init];
 
     if (self) {

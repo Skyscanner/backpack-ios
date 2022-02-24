@@ -31,9 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(readonly, nonatomic, copy) NSString *selectionHint;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationSingle. Use `initWithSelectionHint:` instead")));
+- (instancetype)init
+    __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationSingle. Use `initWithSelectionHint:` instead")));
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationSingle. Use `initWithSelectionHint:` instead")));
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
+    __attribute__((
+        unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationSingle. Use `initWithSelectionHint:` instead")));
 
 /**
  * Create a single selection configuration with given accessibility strings.

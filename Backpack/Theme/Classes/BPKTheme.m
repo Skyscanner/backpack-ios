@@ -18,8 +18,8 @@
 
 #import "BPKTheme.h"
 
-#import <Backpack/Backpack.h>
 #import <Backpack/Backpack-Swift.h>
+#import <Backpack/Backpack.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
