@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 47.1.2
+
+**Fixed:**
+
+- Backpack/TappableLinkLabel:
+  - A default textPrimaryColor is set for the text if no custom color is passed
+
 # 47.1.1
 
 **Fixed:**
