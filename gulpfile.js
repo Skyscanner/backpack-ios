@@ -322,6 +322,7 @@ const parseTokens = (tokensData) => {
     .filter((token) => {
       return token[1].startsWith('text')
     })
+    .filter(props => { return !props[0].find(p => p.deprecated) })
     .map((token) => {
       const properties = token[0];
       const key = token[1];
