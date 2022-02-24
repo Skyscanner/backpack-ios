@@ -86,33 +86,6 @@ const LEGIBLE_NAMES = [
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
 const FONT_ENUM_VALUES = {
-  BPKFontStyleTextBase: 0,
-  BPKFontStyleTextBaseEmphasized: 1,
-
-  BPKFontStyleTextLg: 2,
-  BPKFontStyleTextLgEmphasized: 3,
-
-  BPKFontStyleTextSm: 4,
-  BPKFontStyleTextSmEmphasized: 5,
-
-  BPKFontStyleTextXl: 6,
-  BPKFontStyleTextXlEmphasized: 7,
-  BPKFontStyleTextXlHeavy: 10,
-
-  BPKFontStyleTextXs: 8,
-  BPKFontStyleTextXsEmphasized: 9,
-
-  BPKFontStyleTextCaps: 11,
-  BPKFontStyleTextCapsEmphasized: 12,
-
-  BPKFontStyleTextXxl: 13,
-  BPKFontStyleTextXxlEmphasized: 14,
-  BPKFontStyleTextXxlHeavy: 15,
-
-  BPKFontStyleTextXxxl: 16,
-  BPKFontStyleTextXxxlEmphasized: 17,
-  BPKFontStyleTextXxxlHeavy: 18,
-
   BPKFontStyleTextHero1: 19,
   BPKFontStyleTextHero2: 20,
   BPKFontStyleTextHero3: 21,
