@@ -1,5 +1,24 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.0
+
+**Added:**
+
+- Support for Xcode 13.2 and iOS 15.2
+
+- Backpack/Button:
+  - Adding PrimaryOnDark and PrimaryOnLight
+
+**Breaking:**
+
+- Backpack/Font:
+  - Removing deprecated font styles
+
+- Backpack/Button:
+  - Removing Outline button style
+  - Update the colours and spacing to the new styles
+  - Update the loading state to not change button sizes
+
 # 47.1.1
 
 **Fixed:**

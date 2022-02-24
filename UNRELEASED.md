@@ -1,23 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-
-- Support for Xcode 13.2 and iOS 15.2
-
-- Backpack/Button:
-  - Adding PrimaryOnDark and PrimaryOnLight
-
-**Breaking:**
-
-- Backpack/Font:
-  - Removing deprecated font styles
-
-- Backpack/Button:
-  - Removing Outline button style
-  - Update the colours and spacing to the new styles
-  - Update the loading state to not change button sizes
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
