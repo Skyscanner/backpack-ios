@@ -24,7 +24,7 @@ import FBSnapshotTestCase
 
 private let expectedDeviceName: String = "iPhone 8"
 private let expectedMajorVersion: Int = 15
-private let expectedMinorVersion: Int = 0
+private let expectedMinorVersion: Int = 2
 
 func BPKVerifySnapshotOS() {
     let deviceName = UIDevice.current.name
@@ -54,11 +54,7 @@ extension FBSnapshotTestCase {
         if let identifier = identifier {
             finalIdentifier = "\(finalIdentifier)_\(identifier)"
         }
-
-        if #available(iOS 13.0, *) {
-            view.overrideUserInterfaceStyle = .light
-        }
-
+        view.overrideUserInterfaceStyle = .light
         FBSnapshotVerifyView(view, identifier: finalIdentifier)
     }
 
@@ -70,11 +66,7 @@ extension FBSnapshotTestCase {
         if let identifier = identifier {
             finalIdentifier = "\(finalIdentifier)_\(identifier)"
         }
-
-        if #available(iOS 13.0, *) {
-            view.overrideUserInterfaceStyle = .dark
-        }
-
+        view.overrideUserInterfaceStyle = .dark
         FBSnapshotVerifyView(view, identifier: finalIdentifier)
     }
 }

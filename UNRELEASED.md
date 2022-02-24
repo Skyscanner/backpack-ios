@@ -3,6 +3,8 @@
 
 **Added:**
 
+- Support for Xcode 13.2 and iOS 15.2
+
 - Backpack/Button:
   - Adding PrimaryOnDark and PrimaryOnLight
 
