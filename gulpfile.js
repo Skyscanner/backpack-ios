@@ -83,32 +83,6 @@ const LEGIBLE_NAMES = [
   { identifier: 'IconText', legibleName: 'icon text' },
 ];
 
-const mapLegacyToNewStyle = style => {
-  const MAP = {
-    BPKFontStyleTextCaps: "BPKFontStyleTextCaption",
-    BPKFontStyleTextCapsEmphasized: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXlHeavy: "BPKFontStyleTextHeading3",
-    BPKFontStyleTextXxl: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxlHeavy: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxxl: "BPKFontStyleTextHeading1",
-    BPKFontStyleTextXxxlHeavy: "BPKFontStyleTextHeading1",
-    BPKFontStyleTextBase: "BPKFontStyleTextBodyDefault",
-    BPKFontStyleTextBaseEmphasized: "BPKFontStyleTextHeading5",
-    BPKFontStyleTextLg: "BPKFontStyleTextBodyLongform",
-    BPKFontStyleTextLgEmphasized: "BPKFontStyleTextHeading4",
-    BPKFontStyleTextSm: "BPKFontStyleTextFootnote",
-    BPKFontStyleTextSmEmphasized: "BPKFontStyleTextLabel2",
-    BPKFontStyleTextXl: "BPKFontStyleTextSubheading",
-    BPKFontStyleTextXlEmphasized: "BPKFontStyleTextHeading3",
-    BPKFontStyleTextXs: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXsEmphasized: "BPKFontStyleTextCaption",
-    BPKFontStyleTextXxlEmphasized: "BPKFontStyleTextHeading2",
-    BPKFontStyleTextXxxlEmphasized: "BPKFontStyleTextHeading1",
-  }
-  const foundMapping = MAP[style]
-  return foundMapping ? foundMapping : null
-}
-
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
 const FONT_ENUM_VALUES = {
@@ -352,7 +326,6 @@ const parseTokens = (tokensData) => {
         );
       }
       const enumName = `BPKFontStyle${_.upperFirst(key)}`;
-      const newStyleMapping = mapLegacyToNewStyle(enumName);
       const letterSpacingFor = prop => {
         if (!prop || !prop.value || prop.type.includes('legacy')) { return null }
         const adjustedValue = Number.parseFloat(prop.value) * 100
@@ -374,7 +347,6 @@ const parseTokens = (tokensData) => {
         name: key,
         enumName,
         enumValue: enumValueForName(enumName),
-        newStyleMapping: newStyleMapping ? newStyleMapping : enumName,
         size: Number.parseInt(sizeProp[0].value, 10),
         weight: convertFontWeight(weightProp[0].value),
         type: 'font',
