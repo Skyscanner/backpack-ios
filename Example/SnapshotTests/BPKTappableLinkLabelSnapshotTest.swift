@@ -51,42 +51,52 @@ class BPKTappableLinkLabelSnapshotTest: FBSnapshotTestCase {
     }
     
     func testTappableLinkLabelWithRegularFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles))
     }
     
     func testTappableLinkLabelWithHeadingFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .headingStyles))
     }
     
     func testTappableLinkLabelWithHeroFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .heroStyles))
     }
     
     func testViewSnapshotWithAlternateStyle() {
-        FBSnapshotVerifyView(
-            createView(
-                withStyles: .regularStyles,
-                backgroundColor: BPKColor.skyBlue,
-                tappableLabelStyle: .alternate
-            )
-        )
+        BPKSnapshotVerifyViewLight(createView(
+            withStyles: .regularStyles,
+            backgroundColor: BPKColor.skyBlue,
+            tappableLabelStyle: .alternate
+        ))
+        BPKSnapshotVerifyViewDark(createView(
+            withStyles: .regularStyles,
+            backgroundColor: BPKColor.skyBlue,
+            tappableLabelStyle: .alternate
+        ))
     }
     
     func testViewSnapshotWithThemeApplied() {
-        FBSnapshotVerifyView(
-            createView(
-                withStyles: .headingStyles,
-                linkColor: .orange
-            )
-        )
+        BPKSnapshotVerifyViewLight(createView(
+            withStyles: .headingStyles,
+            linkColor: .orange
+        ))
+        BPKSnapshotVerifyViewDark(createView(
+            withStyles: .headingStyles,
+            linkColor: .orange
+        ))
     }
     
     func testViewSnapshotWithColorApplied() {
-        BPKSnapshotVerifyViewLight(
-            createView(
-                withStyles: .headingStyles,
-                textColor: BPKColor.panjin
-            )
-        )
+        BPKSnapshotVerifyViewLight(createView(
+            withStyles: .headingStyles,
+            textColor: BPKColor.panjin
+        ))
+        BPKSnapshotVerifyViewDark(createView(
+            withStyles: .headingStyles,
+            textColor: BPKColor.panjin
+        ))
     }
 }
