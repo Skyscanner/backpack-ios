@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.1
+
+**Fixed:**
+
+- Backpack/TappableLinkLabel:
+  - Forward-port: A default textPrimaryColor is set for the text if no custom color is passed
+
 # 48.0.0
 
 **Added:**
@@ -25,7 +32,7 @@
 
 - Backpack/TappableLinkLabel:
   - A default textPrimaryColor is set for the text if no custom color is passed
-  - 
+
 # 47.1.1
 
 **Fixed:**
