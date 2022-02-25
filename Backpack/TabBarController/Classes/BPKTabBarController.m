@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarController
 
--(void)updateTabBarItems {
+- (void)updateTabBarItems {
     UIUserInterfaceStyle interfaceStyle = self.traitCollection.userInterfaceStyle;
 
     NSUInteger index = 0;
     for (UITabBarItem *tabBarItem in self.tabBar.items) {
-        if([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
+        if ([tabBarItem isKindOfClass:BPKTabBarItem.class]) {
             BPKTabBarItem *bpkTabBarItem = (BPKTabBarItem *)tabBarItem;
             bpkTabBarItem.interfaceStyle = interfaceStyle;
             bpkTabBarItem.selected = self.selectedIndex == index;

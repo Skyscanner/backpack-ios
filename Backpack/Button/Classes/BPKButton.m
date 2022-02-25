@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@
 #import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
-#import "BPKButtonAppearanceSets.h"
 #import "UIColor+BPKButton.h"
 
+#import <Backpack/Backpack-Swift.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/DarkMode.h>
@@ -43,21 +43,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButton ()
-@property(nonatomic, getter=isInitializing) BOOL initializing;
 
 @property(nonatomic) BPKGradientLayer *gradientLayer;
 
-@property(nonatomic, readonly) BOOL hasTitle;
-@property(nonatomic, readonly, getter=hasIcon) BOOL hasIcon;
-@property(nonatomic, readonly, getter=isIconOnly) BOOL iconOnly;
-@property(nonatomic, readonly, getter=isTextOnly) BOOL textOnly;
-@property(nonatomic, readonly, getter=isTextAndIcon) BOOL textAndIcon;
-
-@property(nonatomic, readonly) UIColor *currentContentColor;
-@property(nonatomic, readonly) BPKButtonAppearance *currentAppearance;
-@property(nonatomic, readonly) BPKFontStyle currentFontStyle;
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
-@property(nonatomic, strong) NSNumber *cornerRadius;
+@property(nonatomic, strong) UIView *contentView;
+@property(nonatomic, strong) UIStackView *contentStack;
+@property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *iconHeightConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *iconWidthConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackLeadingConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackTrailingConstraint;
+
 @end
 
 @implementation BPKButton
@@ -67,7 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        [self setupWithSize:size style:style];
+        _size = size;
+        _style = style;
+        [self setup];
     }
 
     return self;
@@ -78,7 +78,9 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithFrame:frame];
 
     if (self) {
-        [self setupWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
+        _size = BPKButtonSizeDefault;
+        _style = BPKButtonStylePrimary;
+        [self setup];
     }
 
     return self;
@@ -89,13 +91,341 @@ NS_ASSUME_NONNULL_BEGIN
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        [self setupWithSize:BPKButtonSizeDefault style:BPKButtonStylePrimary];
+        _size = BPKButtonSizeDefault;
+        _style = BPKButtonStylePrimary;
+        [self setup];
     }
 
     return self;
 }
 
--(UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
+- (UIView *)createContentView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectZero];
+    contentView.backgroundColor = BPKColor.clear;
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    contentView.clipsToBounds = NO;
+    [contentView setUserInteractionEnabled:NO];
+    return contentView;
+}
+
+- (BPKLabel *)createTitleLabel {
+    BPKLabel *titleLabel = [[BPKLabel alloc] initWithFontStyle:[self fontStyleForSize:self.size]];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    return titleLabel;
+}
+
+- (UIImageView *)createImageView {
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    return imageView;
+}
+
+- (UIStackView *)createContentStack {
+    UIStackView *stack = [[UIStackView alloc] initWithFrame:CGRectZero];
+    stack.axis = UILayoutConstraintAxisHorizontal;
+    stack.spacing = BPKSpacingMd;
+    stack.translatesAutoresizingMaskIntoConstraints = NO;
+    return stack;
+}
+
+- (void)configureAccesibilityTraits {
+    self.isAccessibilityElement = YES;
+
+    self.accessibilityTraits = self.isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitNotEnabled | UIAccessibilityTraitButton);
+    self.accessibilityLabel = self.title;
+    self.titleLabel.isAccessibilityElement = NO;
+    self.imageView.isAccessibilityElement = NO;
+    self.spinner.isAccessibilityElement = NO;
+}
+
+- (void)setup {
+    self.contentView = [self createContentView];
+    self.titleLabel = [self createTitleLabel];
+    self.imageView = [self createImageView];
+    self.contentStack = [self createContentStack];
+    [self addSubview:self.contentView];
+    [self.contentView addSubview:self.contentStack];
+    self.spinner = [[UIActivityIndicatorView alloc] init];
+    self.spinner.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.spinner];
+
+    self.heightConstraint = [self.heightAnchor constraintEqualToConstant:[self heightForSize:self.size]];
+    // To use when just icon
+    self.widthConstraint = [self.widthAnchor constraintEqualToConstant:[self heightForSize:self.size]];
+    self.iconHeightConstraint = [self.imageView.heightAnchor constraintGreaterThanOrEqualToConstant:14];
+    self.iconWidthConstraint = [self.imageView.widthAnchor constraintEqualToConstant:14];
+    self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
+    self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+                                                                                    constant:-BPKSpacingBase];
+
+    self.imagePosition = BPKButtonImagePositionTrailing;
+
+    self.layer.masksToBounds = YES;
+
+    self.gradientLayer = [[BPKGradientLayer alloc] init];
+    [self.layer insertSublayer:self.gradientLayer atIndex:0];
+
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+
+    [self setupConstraints];
+    [self updateLookAndFeel];
+}
+
+- (void)setupConstraints {
+    [NSLayoutConstraint activateConstraints:@[
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
+        [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor],
+        [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor],
+        [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.iconHeightConstraint, self.iconWidthConstraint,
+        self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
+    ]];
+}
+
+- (void)addContentInOrder {
+    for (UIView *subview in self.contentStack.arrangedSubviews) {
+        [self.contentStack removeArrangedSubview:subview];
+    }
+    if (self.imagePosition == BPKButtonImagePositionLeading) {
+        [self.contentStack addArrangedSubview:self.imageView];
+        [self.contentStack addArrangedSubview:self.titleLabel];
+    } else {
+        [self.contentStack addArrangedSubview:self.titleLabel];
+        [self.contentStack addArrangedSubview:self.imageView];
+    }
+}
+
+- (void)updateSize {
+    BPKButtonSize size = self.size;
+    self.titleLabel.fontStyle = [self fontStyleForSize:size];
+    self.iconHeightConstraint.constant = [self iconHeightForSize:size];
+    self.iconWidthConstraint.constant = self.iconHeightConstraint.constant;
+    self.heightConstraint.constant = [self heightForSize:size];
+
+    self.spinner.transform = [self spinnerTransformForSize:size];
+    [self updateConstraintsForType:self.isIconOnly];
+}
+
+- (void)updateConstraintsForType:(BOOL)isIconOnly {
+    if (isIconOnly) {
+        [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.widthConstraint]];
+        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
+        self.widthConstraint.constant = [self heightForSize:self.size];
+    } else if (self.style == BPKButtonStyleLink) {
+        self.stackLeadingConstraint.constant = 0;
+        self.stackTrailingConstraint.constant = 0;
+    } else {
+        [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
+        self.stackLeadingConstraint.constant = BPKSpacingBase;
+        self.stackTrailingConstraint.constant = -BPKSpacingBase;
+        [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
+    }
+}
+
+- (BOOL)hasTitle {
+    return self.title != nil && self.title.length > 0;
+}
+
+- (BOOL)hasIcon {
+    return self.imageView.image != nil;
+}
+
+- (BOOL)isIconOnly {
+    return self.hasIcon && !self.hasTitle;
+}
+
+- (void)updateLookAndFeel {
+    [self.imageView setHidden:!self.hasIcon];
+    [self.titleLabel setHidden:!self.hasTitle];
+
+    [self updateSize];
+    [self updateAppearance];
+    [self configureAccesibilityTraits];
+}
+
+- (void)updateAppearance {
+    BPKButtonAppearance *appearance = self.currentAppearance;
+    self.titleLabel.textColor = appearance.foregroundColor;
+    self.imageView.tintColor = appearance.foregroundColor;
+    self.spinner.color = appearance.foregroundColor;
+
+    if (appearance.gradientStartColor != nil && appearance.gradientEndColor != nil) {
+        self.gradientLayer.gradient = [self gradientWithTopColor:appearance.gradientStartColor bottomColor:appearance.gradientEndColor];
+    } else {
+        self.gradientLayer.gradient = nil;
+    }
+
+    if (appearance.borderColor != nil) {
+        self.layer.borderColor = appearance.borderColor.CGColor;
+        self.layer.borderWidth = 2;
+    } else {
+        self.layer.borderWidth = 0;
+    }
+
+    [self setNeedsDisplay];
+}
+
+- (BPKButtonAppearance *)currentAppearance {
+    BPKButtonAppearanceSet *appearanceSet = [BPKButtonAppearanceSets appearanceFromStyle:self.style];
+    if (self.isLoading)
+        return appearanceSet.loadingAppearance;
+    if (!self.isEnabled)
+        return appearanceSet.disabledAppearance;
+    if (self.highlighted)
+        return [self themedAppearance:appearanceSet.highlightedAppearance highlighted:YES];
+    return [self themedAppearance:appearanceSet.regularAppearance highlighted:NO];
+}
+
+#pragma mark - State setters
+
+- (void)setSize:(BPKButtonSize)size {
+    BPKAssertMainThread();
+    _size = size;
+    [self updateLookAndFeel];
+}
+
+- (void)setStyle:(BPKButtonStyle)style {
+    BPKAssertMainThread();
+    _style = style;
+    [self updateLookAndFeel];
+}
+
+- (void)setImagePosition:(BPKButtonImagePosition)imagePosition {
+    _imagePosition = imagePosition;
+    [self addContentInOrder];
+}
+
+- (void)setTitle:(NSString *_Nullable)title {
+    BPKAssertMainThread();
+
+    self.titleLabel.text = title;
+    _title = [title copy];
+    [self updateLookAndFeel];
+}
+
+- (void)setImage:(UIImage *_Nullable)image {
+    BPKAssertMainThread();
+    [self.imageView setImage:image];
+    [self updateLookAndFeel];
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    BPKAssertMainThread();
+    [super setEnabled:enabled];
+    [self updateLookAndFeel];
+}
+
+- (void)setSelected:(BOOL)selected {
+    BPKAssertMainThread();
+    NSAssert(NO, @"The Backpack button does not support selected");
+    [super setSelected:selected];
+}
+
+- (void)setHighlighted:(BOOL)highlighted {
+    BPKAssertMainThread();
+    [super setHighlighted:highlighted];
+    [self updateLookAndFeel];
+}
+
+- (void)setIsLoading:(BOOL)isLoading {
+    BPKAssertMainThread();
+    _isLoading = isLoading;
+    [self updateLoadingState];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.gradientLayer.frame = self.layer.bounds;
+    self.layer.cornerRadius = [self cornerRadiusForStyle:self.style];
+}
+
+#pragma mark - Helpers
+
+- (BPKGradient *)gradientWithTopColor:(UIColor *)top bottomColor:(UIColor *)bottom {
+    NSParameterAssert(top);
+    NSParameterAssert(bottom);
+
+    UIColor *resolvedTopColor = [top resolvedColorWithTraitCollection:self.traitCollection];
+    UIColor *resolvedBottomColor = [bottom resolvedColorWithTraitCollection:self.traitCollection];
+
+    BPKGradientDirection direction = BPKGradientDirectionDown;
+    return [[BPKGradient alloc] initWithColors:@[resolvedTopColor, resolvedBottomColor]
+                                    startPoint:[BPKGradient startPointForDirection:direction]
+                                      endPoint:[BPKGradient endPointForDirection:direction]];
+}
+
+- (BPKFontStyle)fontStyleForSize:(BPKButtonSize)size {
+    switch (size) {
+    case BPKButtonSizeDefault:
+        return BPKFontStyleTextLabel2;
+    case BPKButtonSizeLarge:
+        return BPKFontStyleTextLabel1;
+    }
+}
+
+- (CGFloat)cornerRadiusForStyle:(BPKButtonStyle)style {
+    if (style == BPKButtonStyleLink) {
+        return 0;
+    }
+    return BPKCornerRadiusSm;
+}
+
+- (CGFloat)heightForSize:(BPKButtonSize)size {
+    switch (size) {
+    case BPKButtonSizeDefault:
+        return 36.0;
+    case BPKButtonSizeLarge:
+        return 48.0;
+    }
+}
+
+- (CGFloat)iconHeightForSize:(BPKButtonSize)size {
+    switch (size) {
+    case BPKButtonSizeDefault:
+        return 14;
+    case BPKButtonSizeLarge:
+        return 18;
+    }
+}
+
+- (CGAffineTransform)spinnerTransformForSize:(BPKButtonSize)size {
+    switch (size) {
+    case BPKButtonSizeDefault:
+        return CGAffineTransformMakeScale(.75f, .75f);
+    case BPKButtonSizeLarge:
+        return CGAffineTransformMakeScale(1.f, 1.f);
+    }
+}
+
+- (void)updateLoadingState {
+    self.enabled = !self.isLoading;
+    self.spinner.hidden = !self.isLoading;
+
+    if (self.isLoading) {
+        [self.spinner startAnimating];
+    } else {
+        [self.spinner stopAnimating];
+    }
+
+    self.contentView.layer.opacity = self.isLoading ? 0.0 : 1.0;
+}
+
+// Note this is needed as the system does not correctly respond to the trait collection change to update the background
+// color.
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    [self updateAppearance];
+}
+
+#pragma mark - Theming
+
+- (UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
     return highlighted ? [UIColor dimColor:color] : color;
 }
 
@@ -157,597 +487,78 @@ NS_ASSUME_NONNULL_BEGIN
             }
         }
         break;
-    case BPKButtonStyleOutline:
-        break;
+    case BPKButtonStylePrimaryOnDark:
+        break; // not supporting theming for PrimaryOnDark
+    case BPKButtonStylePrimaryOnLight:
+        break; // not supporting theming for PimaryOnLight
     }
 
     return themedAppearance;
 }
 
-- (BPKButtonAppearance *)currentAppearance {
-    BPKButtonAppearanceSet *appearanceSet = nil;
-
-    switch (self.style) {
-    case BPKButtonStylePrimary:
-        appearanceSet = BPKButtonAppearanceSets.primary;
-        break;
-    case BPKButtonStyleSecondary:
-        appearanceSet = BPKButtonAppearanceSets.secondary;
-        break;
-    case BPKButtonStyleDestructive:
-        appearanceSet = BPKButtonAppearanceSets.destructive;
-        break;
-    case BPKButtonStyleFeatured:
-        appearanceSet = BPKButtonAppearanceSets.featured;
-        break;
-    case BPKButtonStyleLink:
-        appearanceSet = BPKButtonAppearanceSets.link;
-        break;
-    case BPKButtonStyleOutline:
-        appearanceSet = BPKButtonAppearanceSets.outline;
-        break;
-    }
-
-    if (self.isLoading) {
-        return appearanceSet.loadingAppearance;
-    }
-    if (!self.isEnabled) {
-        return appearanceSet.disabledAppearance;
-    }
-    if (self.highlighted) {
-        return [self themedAppearance:appearanceSet.highlightedAppearance highlighted:YES];
-    }
-    return [self themedAppearance:appearanceSet.regularAppearance highlighted:NO];
-}
-
-- (UIColor *)currentContentColor {
-    return self.currentAppearance.foregroundColor;
-}
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
-    self.initializing = YES;
-
-    _cornerRadius = @(BPKCornerRadiusSm);
-
-    self.layer.masksToBounds = YES;
-    self.adjustsImageWhenHighlighted = NO;
-    self.adjustsImageWhenDisabled = NO;
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-
-    // Use this to get the title value if one has been set in storyboard.
-    if (self.titleLabel != nil && self.titleLabel.text != nil) {
-        _title = self.titleLabel.text;
-    }
-
-    self.size = size;
-    self.style = style;
-    self.imagePosition = BPKButtonImagePositionTrailing;
-
-    self.gradientLayer = [[BPKGradientLayer alloc] init];
-    [self.layer insertSublayer:self.gradientLayer atIndex:0];
-
-    [self updateEdgeInsets];
-    [self updateAppearance];
-    [self updateTitle];
-    self.initializing = NO;
-}
-
-- (BOOL)hasTitle {
-    return self.titleLabel.text.length > 0 && self.currentAttributedTitle != nil;
-}
-
-- (BOOL)hasIcon {
-    // A button has an image if `currentImage` is set with the exception
-    // of when the image is one of the two dummy images used for the
-    // positoning hack for the text only button in the loading state
-
-    return self.currentImage != nil && self.currentImage != [[self class] defaultDummyImage] && self.currentImage != [[self class] largeDummyImage];
-}
-
-- (BOOL)isIconOnly {
-    return self.currentImage && !self.hasTitle;
-}
-
-- (BOOL)isTextOnly {
-    return !self.hasIcon && self.hasTitle;
-}
-
-- (BOOL)isTextAndIcon {
-    return self.hasIcon && self.hasTitle;
-}
-
-#pragma mark - Style setters
-
-- (void)setSize:(BPKButtonSize)size {
-    BPKAssertMainThread();
-    if (_size != size || self.isInitializing) {
-        _size = size;
-
-        [self updateTitle];
-    }
-}
-
-- (void)setStyle:(BPKButtonStyle)style {
-    BPKAssertMainThread();
-    if (_style != style || self.isInitializing) {
-        _style = style;
-
-        [self updateAppearance];
-        [self updateTitle];
-        [self updateEdgeInsets];
-    }
-}
-
-- (void)setImagePosition:(BPKButtonImagePosition)imagePosition {
-    if (_imagePosition != imagePosition || self.isInitializing) {
-        _imagePosition = imagePosition;
-
-        [self setNeedsLayout];
-    }
-}
-
-- (void)setTitle:(NSString *_Nullable)title {
-    BPKAssertMainThread();
-    _title = [title copy];
-    [self updateTitle];
-}
-
-- (void)updateTitle {
-    if (self.title) {
-        NSAttributedString *attributedTitle = [BPKFont attributedStringWithFontStyle:self.currentFontStyle
-                                                                             content:self.title
-                                                                           textColor:self.currentContentColor];
-        [self setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    } else {
-        [self setAttributedTitle:nil forState:UIControlStateNormal];
-        [self setAttributedTitle:nil forState:UIControlStateHighlighted];
-    }
-
-    [self updateFont];
-    [self updateEdgeInsets];
-}
-
-- (void)setImage:(UIImage *_Nullable)image {
-    BPKAssertMainThread();
-    [super setImage:image forState:UIControlStateNormal];
-
-    [self updateAppearance];
-    [self updateTitle];
-    [self updateEdgeInsets];
-}
-
-#pragma mark - State setters
-
-- (void)setEnabled:(BOOL)enabled {
-    BPKAssertMainThread();
-    BOOL changed = self.isEnabled != enabled;
-
-    [super setEnabled:enabled];
-
-    if (changed) {
-        [self updateAppearance];
-        [self updateTitle];
-    }
-}
-
-- (void)setSelected:(BOOL)selected {
-    BPKAssertMainThread();
-    NSAssert(NO, @"The Backpack button does not support selected");
-    [super setSelected:selected];
-}
-
-- (void)setHighlighted:(BOOL)highlighted {
-    BPKAssertMainThread();
-    BOOL changed = self.isHighlighted != highlighted;
-
-    [super setHighlighted:highlighted];
-
-    if (changed) {
-        [self updateAppearance];
-        [self updateTitle];
-    }
-}
-
-- (void)setIsLoading:(BOOL)isLoading {
-    BPKAssertMainThread();
-    if (_isLoading != isLoading) {
-        _isLoading = isLoading;
-        [self updateLoadingState:isLoading];
-    }
-}
-
-#pragma mark - Layout
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-
-    self.gradientLayer.frame = self.layer.bounds;
-
-    if (self.style != BPKButtonStyleLink) {
-        if (self.cornerRadius != nil && !self.iconOnly) {
-            self.layer.cornerRadius = self.cornerRadius.doubleValue;
-        } else {
-            // Pill shape
-            CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
-            [self.layer setCornerRadius:radius];
-        }
-    } else {
-        self.layer.cornerRadius = 0;
-    }
-    CGFloat buttonTitleIconSpacing = [[self class] buttonTitleIconSpacing];
-
-    if (self.isTextAndIcon || (self.isLoading && self.isTextOnly)) {
-        if (self.imagePosition == BPKButtonImagePositionTrailing) {
-            UIEdgeInsets titleEdgeInsets =
-                [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                leading:-(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)
-                                                 bottom:0
-                                               trailing:(CGRectGetWidth(self.imageView.bounds) + buttonTitleIconSpacing / 2.0)];
-            self.titleEdgeInsets = titleEdgeInsets;
-
-            UIEdgeInsets imageEdgeInsets =
-                [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                leading:(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)
-                                                 bottom:0
-                                               trailing:-(CGRectGetWidth(self.titleLabel.bounds) + buttonTitleIconSpacing / 2.0)];
-            self.imageEdgeInsets = imageEdgeInsets;
-        } else {
-            UIEdgeInsets titleEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                                           leading:(buttonTitleIconSpacing / 2.0)
-                                                                            bottom:0
-                                                                          trailing:-(buttonTitleIconSpacing / 2.0)];
-            self.titleEdgeInsets = titleEdgeInsets;
-
-            UIEdgeInsets imageEdgeInsets = [self bpk_makeRTLAwareEdgeInsetsWithTop:0
-                                                                           leading:-(buttonTitleIconSpacing / 2.0)
-                                                                            bottom:0
-                                                                          trailing:(buttonTitleIconSpacing / 2.0)];
-            self.imageEdgeInsets = imageEdgeInsets;
-        }
-    } else {
-        self.titleEdgeInsets = UIEdgeInsetsZero;
-        self.imageEdgeInsets = UIEdgeInsetsZero;
-        self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
-    }
-
-    self.spinner.center = self.imageView.center;
-    self.imageView.alpha = self.isLoading ? .0f : 1.f;
-}
-
-- (CGSize)intrinsicContentSize {
-    CGSize superSize = [super intrinsicContentSize];
-    if (self.isIconOnly || self.isTextOnly) {
-        return superSize;
-    }
-
-    return CGSizeMake(superSize.width + [[self class] buttonTitleIconSpacing], superSize.height);
-}
-
-#pragma mark Spacing
-
-- (UIEdgeInsets)contentEdgeInsetsForStyle:(BPKButtonStyle)style size:(BPKButtonSize)size {
-    switch (style) {
-    case BPKButtonStyleLink:
-        return UIEdgeInsetsMake(BPKSpacingNone, BPKSpacingNone, BPKSpacingNone, BPKSpacingNone);
-
-    // NOTE: Explicit fall-through
-    case BPKButtonStylePrimary:
-    case BPKButtonStyleFeatured:
-    case BPKButtonStyleSecondary:
-    case BPKButtonStyleDestructive:
-    case BPKButtonStyleOutline:
-        switch (size) {
-        case BPKButtonSizeDefault: {
-            if (self.isIconOnly) {
-                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingMd, BPKSpacingMd, BPKSpacingMd);
-            } else {
-                return UIEdgeInsetsMake(BPKSpacingMd, BPKSpacingBase, BPKSpacingMd, BPKSpacingBase);
-            }
-        }
-        case BPKButtonSizeLarge: {
-            if (self.isIconOnly) {
-                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3, BPKSpacingSm * 3);
-            } else {
-                return UIEdgeInsetsMake(BPKSpacingSm * 3, BPKSpacingLg, BPKSpacingSm * 3, BPKSpacingLg);
-            }
-        }
-        default:
-            NSAssert(NO, @"Unknown size %d", (int)size);
-            break;
-        }
-        break;
-    default:
-        NSAssert(NO, @"Unknown style %d", (int)style);
-    }
-}
-
-#pragma mark - Updates
-
-- (void)updateAppearance {
-    BPKButtonAppearance *appearance = self.currentAppearance;
-    self.tintColor = appearance.foregroundColor;
-    self.imageView.tintColor = appearance.foregroundColor;
-    self.spinner.tintColor = appearance.foregroundColor;
-
-    if (appearance.gradientStartColor != nil && appearance.gradientEndColor != nil) {
-        self.gradientLayer.gradient = [self gradientWithTopColor:appearance.gradientStartColor bottomColor:appearance.gradientEndColor];
-    } else {
-        self.gradientLayer.gradient = nil;
-    }
-
-    if (appearance.borderColor != nil) {
-        self.layer.borderColor = appearance.borderColor.CGColor;
-        self.layer.borderWidth = 2;
-    } else {
-        self.layer.borderWidth = 0;
-    }
-
-    [self setNeedsDisplay];
-}
-
-- (void)updateFont {
-    if (self.isIconOnly) {
-        self.titleLabel.font = [UIFont systemFontOfSize:0];
-        [self setAttributedTitle:nil forState:UIControlStateNormal];
-    }
-
-    [self setNeedsDisplay];
-}
-
-- (void)updateEdgeInsets {
-    if (self.isIconOnly) {
-        self.imageEdgeInsets = UIEdgeInsetsZero;
-        self.titleEdgeInsets = UIEdgeInsetsZero;
-    }
-
-    self.contentEdgeInsets = [self contentEdgeInsetsForStyle:self.style size:self.size];
-    [self setNeedsLayout];
-}
-
-#pragma mark - Helpers
-
-- (BPKFontStyle)currentFontStyle {
-    switch (self.size) {
-    case BPKButtonSizeDefault:
-        return BPKFontStyleTextLabel2;
-    case BPKButtonSizeLarge:
-        return BPKFontStyleTextHeading4;
-    default:
-        NSAssert(NO, @"Unknown button size %ld", (unsigned long)self.size);
-        return BPKFontStyleTextLabel2;
-    }
-}
-
-- (BPKGradient *)gradientWithSingleColor:(UIColor *)color {
-    NSParameterAssert(color);
-
-    return [self gradientWithTopColor:color bottomColor:color];
-}
-
-- (BPKGradient *)gradientWithTopColor:(UIColor *)top bottomColor:(UIColor *)bottom {
-    NSParameterAssert(top);
-    NSParameterAssert(bottom);
-
-    UIColor *resolvedTopColor = top;
-    UIColor *resolvedBottomColor = bottom;
-
-#if __BPK_DARK_MODE_SUPPORTED
-    if (@available(iOS 13.0, *)) {
-        resolvedTopColor = [top resolvedColorWithTraitCollection:self.traitCollection];
-        resolvedBottomColor = [bottom resolvedColorWithTraitCollection:self.traitCollection];
-    }
-#endif
-
-    BPKGradientDirection direction = BPKGradientDirectionDown;
-    return [[BPKGradient alloc] initWithColors:@[resolvedTopColor, resolvedBottomColor]
-                                    startPoint:[BPKGradient startPointForDirection:direction]
-                                      endPoint:[BPKGradient endPointForDirection:direction]];
-}
-
-- (void)setupSpinner {
-    self.spinner = [[UIActivityIndicatorView alloc] init];
-    switch (self.size) {
-    case BPKButtonSizeDefault:
-        self.spinner.transform = CGAffineTransformMakeScale(.75f, .75f);
-        break;
-
-    case BPKButtonSizeLarge:
-        self.spinner.transform = CGAffineTransformMakeScale(1.f, 1.f);
-        break;
-    }
-
-    [self addSubview:self.spinner];
-}
-
-- (void)updateLoadingState:(BOOL)loading {
-    self.enabled = !loading;
-    self.spinner.hidden = !self.isLoading;
-
-    if (!self.spinner && self.isLoading) {
-        [self setupSpinner];
-    }
-
-    if (loading) {
-        [self.spinner startAnimating];
-    } else {
-        [self.spinner stopAnimating];
-    }
-
-    // For text only buttons we piggy back on
-    // the icon implementation which shows the spinner
-    // in the same location as the icon by creating
-    // a dummy image. This dummy image is rendered
-    // with opacity 0.0 but it serves to create the
-    // required space in the layout to show the spinner.
-    if (self.isTextOnly) {
-        if (loading) {
-            [self setImage:[self dummyImage]];
-            self.imageView.layer.opacity = 0.0;
-        } else {
-            [self setImage:nil];
-            self.imageView.layer.opacity = 1.0;
-        }
-    }
-}
-
 - (void)setFeaturedContentColor:(UIColor *_Nullable)featuredContentColor {
-    if (featuredContentColor != _featuredContentColor) {
-        _featuredContentColor = featuredContentColor;
-        [self updateAppearance];
-        [self updateTitle];
-    }
+    _featuredContentColor = featuredContentColor;
+    [self updateAppearance];
 }
 
 - (void)setFeaturedGradientStartColor:(UIColor *_Nullable)featuredGradientStartColor {
-    if (featuredGradientStartColor != _featuredGradientStartColor) {
-        _featuredGradientStartColor = featuredGradientStartColor;
-        [self updateAppearance];
-    }
+    _featuredGradientStartColor = featuredGradientStartColor;
+    [self updateAppearance];
 }
 
 - (void)setFeaturedGradientEndColor:(UIColor *_Nullable)featuredGradientEndColor {
-    if (featuredGradientEndColor != _featuredGradientEndColor) {
-        _featuredGradientEndColor = featuredGradientEndColor;
-        [self updateAppearance];
-    }
+    _featuredGradientEndColor = featuredGradientEndColor;
+    [self updateAppearance];
 }
 
 - (void)setPrimaryContentColor:(UIColor *_Nullable)primaryContentColor {
-    if (primaryContentColor != _primaryContentColor) {
-        _primaryContentColor = primaryContentColor;
-        [self updateAppearance];
-        [self updateTitle];
-    }
+    _primaryContentColor = primaryContentColor;
+    [self updateAppearance];
 }
 
 - (void)setPrimaryGradientStartColor:(UIColor *_Nullable)primaryGradientStartColor {
-    if (primaryGradientStartColor != _primaryGradientStartColor) {
-        _primaryGradientStartColor = primaryGradientStartColor;
-        [self updateAppearance];
-    }
+    _primaryGradientStartColor = primaryGradientStartColor;
+    [self updateAppearance];
 }
 
 - (void)setPrimaryGradientEndColor:(UIColor *_Nullable)primaryGradientEndColor {
-    if (primaryGradientEndColor != _primaryGradientEndColor) {
-        _primaryGradientEndColor = primaryGradientEndColor;
-        [self updateAppearance];
-    }
+    _primaryGradientEndColor = primaryGradientEndColor;
+    [self updateAppearance];
 }
 
 - (void)setSecondaryContentColor:(UIColor *_Nullable)secondaryContentColor {
-    if (secondaryContentColor != _secondaryContentColor) {
-        _secondaryContentColor = secondaryContentColor;
-        [self updateAppearance];
-        [self updateTitle];
-    }
+    _secondaryContentColor = secondaryContentColor;
+    [self updateAppearance];
 }
 
 - (void)setSecondaryBackgroundColor:(UIColor *_Nullable)secondaryBackgroundColor {
-    if (secondaryBackgroundColor != _secondaryBackgroundColor) {
-        _secondaryBackgroundColor = secondaryBackgroundColor;
-        [self updateAppearance];
-    }
+    _secondaryBackgroundColor = secondaryBackgroundColor;
+    [self updateAppearance];
 }
 
 - (void)setSecondaryBorderColor:(UIColor *_Nullable)secondaryBorderColor {
-    if (secondaryBorderColor != _secondaryBorderColor) {
-        _secondaryBorderColor = secondaryBorderColor;
-        [self updateAppearance];
-    }
+    _secondaryBorderColor = secondaryBorderColor;
+    [self updateAppearance];
 }
 
 - (void)setDestructiveContentColor:(UIColor *_Nullable)destructiveContentColor {
-    if (destructiveContentColor != _destructiveContentColor) {
-        _destructiveContentColor = destructiveContentColor;
-        [self updateAppearance];
-        [self updateTitle];
-    }
+    _destructiveContentColor = destructiveContentColor;
+    [self updateAppearance];
 }
 
 - (void)setDestructiveBackgroundColor:(UIColor *_Nullable)destructiveBackgroundColor {
-    if (destructiveBackgroundColor != _destructiveBackgroundColor) {
-        _destructiveBackgroundColor = destructiveBackgroundColor;
-        [self updateAppearance];
-    }
+    _destructiveBackgroundColor = destructiveBackgroundColor;
+    [self updateAppearance];
 }
 
 - (void)setDestructiveBorderColor:(UIColor *_Nullable)destructiveBorderColor {
-    if (destructiveBorderColor != _destructiveBorderColor) {
-        _destructiveBorderColor = destructiveBorderColor;
-        [self updateAppearance];
-    }
+    _destructiveBorderColor = destructiveBorderColor;
+    [self updateAppearance];
 }
 
 - (void)setLinkContentColor:(UIColor *_Nullable)linkContentColor {
-    if (linkContentColor != _linkContentColor) {
-        _linkContentColor = linkContentColor;
-        [self updateAppearance];
-        [self updateTitle];
-    }
-}
-
-// Note this is needed as the system does not correctly respond to the trait collection change to update the background
-// color.
-- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
-    [super traitCollectionDidChange:previousTraitCollection];
-#if __BPK_DARK_MODE_SUPPORTED
-    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
-        [self updateAppearance];
-        [self updateTitle];
-    }
-#endif
-}
-
-+ (CGFloat)buttonTitleIconSpacing {
-    return BPKSpacingIconText;
-}
-
-- (UIImage *)dummyImage {
-    switch (self.size) {
-    case BPKButtonSizeDefault:
-        return [[self class] defaultDummyImage];
-    case BPKButtonSizeLarge:
-        return [[self class] largeDummyImage];
-    default:
-        NSAssert(NO, @"Unknown size %lu", (unsigned long)self.size);
-    }
-}
-
-+ (UIImage *)defaultDummyImage {
-    static dispatch_once_t onceToken;
-    static UIImage *image;
-
-    dispatch_once(&onceToken, ^{
-      BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeSmall];
-
-      UIGraphicsBeginImageContextWithOptions(size, YES, 0);
-      [UIColor.blackColor setFill];
-      UIRectFill(CGRectMake(0, 0, size.width, size.height));
-      image = UIGraphicsGetImageFromCurrentImageContext();
-      UIGraphicsEndImageContext();
-    });
-
-    return image;
-}
-
-+ (UIImage *)largeDummyImage {
-    static dispatch_once_t onceToken;
-    static UIImage *image;
-
-    dispatch_once(&onceToken, ^{
-      BPKAssertMainThread();
-      CGSize size = [BPKIcon concreteSizeForIconSize:BPKIconSizeLarge];
-
-      UIGraphicsBeginImageContextWithOptions(size, YES, 0);
-      [UIColor.blackColor setFill];
-      UIRectFill(CGRectMake(0, 0, size.width, size.height));
-      image = UIGraphicsGetImageFromCurrentImageContext();
-      UIGraphicsEndImageContext();
-    });
-
-    return image;
+    _linkContentColor = linkContentColor;
+    [self updateAppearance];
 }
 
 @end

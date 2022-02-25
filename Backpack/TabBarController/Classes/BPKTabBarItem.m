@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKTabBarItem
 
-- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition {
+- (instancetype)initWithTitle:(NSString *)title
+                        image:(UIImage *)image
+                          tag:(NSInteger)tag
+           dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition {
     self = [self initWithTitle:title image:image tag:tag];
 
     if (self) {
@@ -48,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString * _Nullable)title image:(UIImage * _Nullable)image tag:(NSInteger)tag {
+- (instancetype)initWithTitle:(NSString *_Nullable)title image:(UIImage *_Nullable)image tag:(NSInteger)tag {
     self = [super initWithTitle:title image:image tag:tag];
 
     if (self) {
@@ -69,17 +72,18 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
--(void)setup {
+- (void)setup {
     self.interfaceStyle = UIUserInterfaceStyleUnspecified;
     self.dotShown = false;
     self.selected = false;
 }
 
--(void)updateImage {
+- (void)updateImage {
     UIImageRenderingMode renderingMode = self.selected ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
 
     if (self.dotShown) {
-        NSAssert(self.dotImageDefinition != nil, @"A dot can only be added to a BPKTabBarItem if a dotImageDefinition is provided, but dotImageDefintion was nil");
+        NSAssert(self.dotImageDefinition != nil,
+                 @"A dot can only be added to a BPKTabBarItem if a dotImageDefinition is provided, but dotImageDefintion was nil");
         if (self.dotImageDefinition != nil) {
             if (self.interfaceStyle == UIUserInterfaceStyleDark) {
                 self.image = [self.dotImageDefinition.darkImage imageWithRenderingMode:renderingMode];
@@ -92,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
--(void)setInterfaceStyle:(UIUserInterfaceStyle)interfaceStyle{
+- (void)setInterfaceStyle:(UIUserInterfaceStyle)interfaceStyle {
     if (_interfaceStyle != interfaceStyle) {
         _interfaceStyle = interfaceStyle;
         [self updateImage];

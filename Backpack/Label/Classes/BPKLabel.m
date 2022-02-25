@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,9 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    NSMutableAttributedString *newAttributedString = [[BPKFont attributedStringWithFontStyle:self.fontStyle andColor:self.textColor onAttributedString:self.attributedText] mutableCopy];
+    NSMutableAttributedString *newAttributedString = [[BPKFont attributedStringWithFontStyle:self.fontStyle
+                                                                                    andColor:self.textColor
+                                                                          onAttributedString:self.attributedText] mutableCopy];
 
     // Recreate the attributed string from the persisted definitions
     for (BPKTextDefinition *styleRange in self.persistentStyleRanges) {

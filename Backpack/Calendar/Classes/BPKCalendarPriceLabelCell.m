@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 
 #import "BPKCalendarPriceLabelCell.h"
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Label.h>
+#import <Backpack/Spacing.h>
 
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelStyle.h"
@@ -79,7 +79,8 @@
 }
 
 - (void)configureWithData:(id)data {
-    NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class], @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
+    NSAssert([data isKindOfClass:BPKCalendarPriceLabelCellData.class],
+             @"BPKCalendarPriceLabelCell can only be configured with data of type BPKCalendarPriceLabelCellData");
     BPKCalendarPriceLabelCellData *priceLabelCellData = (BPKCalendarPriceLabelCellData *)data;
     self.priceLabelCellData = priceLabelCellData;
     self.priceLabel.text = priceLabelCellData.price;

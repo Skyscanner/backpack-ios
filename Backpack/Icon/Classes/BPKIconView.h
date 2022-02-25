@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @deprecated Setting size during the component lifecycle will soon be unsupported.
  * @see BPKIconSize
  */
--(void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
+- (void)setSize:(BPKIconSize)size __deprecated_msg("Setting size during the component lifecycle will soon be unsupported.");
 
 /**
  * If flipsForRightToLeft is set to YES then BPKIconView will render its icon

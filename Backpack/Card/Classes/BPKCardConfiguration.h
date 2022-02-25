@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @param isAccessibilityElement Whether the control should be an accessibilityElement.
  * @param accessibilityTraits The accessibilityTraits to apply.
  */
-- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel isAccessibilityElement:(BOOL)isAccessibilityElement accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
+- (instancetype)initWithAccessibilityLabel:(NSString *)accessibilityLabel
+                    isAccessibilityElement:(BOOL)isAccessibilityElement
+                       accessibilityTraits:(UIAccessibilityTraits)accessibilityTraits;
 
 @end
 

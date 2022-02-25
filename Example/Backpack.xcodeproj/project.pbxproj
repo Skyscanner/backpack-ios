@@ -17,7 +17,7 @@
 		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
 		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
 		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
-		53E897D427B6D59B00A73444 /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */; };
+		53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */; };
 		53E897D627B6DC7B00A73444 /* BPKTextFieldSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */; };
 		53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */; };
 		53E897DA27B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */; };
@@ -176,7 +176,6 @@
 		D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */; };
 		D686A73D241293C0000EDCCC /* UIViewController+UITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */; };
 		D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
-		D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */; };
 		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
 		D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */; };
 		D696CA20215CC09400682666 /* BPKIconTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D696CA1F215CC09400682666 /* BPKIconTest.m */; };
@@ -261,8 +260,9 @@
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeSnapshotTest.swift; sourceTree = "<group>"; };
 		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
+		53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextViewSnapshotTests.swift; sourceTree = "<group>"; };
 		53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKLabelSnapshotTest.swift; sourceTree = "<group>"; };
-		53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextViewSnapshotTests.swift; sourceTree = "<group>"; };
+		53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKButtonSnapshotTests.swift; sourceTree = "<group>"; };
 		53E897D227B6D0D800A73444 /* FontStylesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStylesUtil.swift; sourceTree = "<group>"; };
 		53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelSnapshotTest.swift; sourceTree = "<group>"; };
@@ -445,7 +445,6 @@
 		D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackUITestCase.swift; sourceTree = "<group>"; };
 		D686A73B241292F3000EDCCC /* UIViewController+UITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UITesting.swift"; sourceTree = "<group>"; };
 		D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKPrimaryGradientSnapshotTests.m; sourceTree = "<group>"; };
-		D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonSnapshotTest.m; sourceTree = "<group>"; };
 		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
 		D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsPerformanceViewController.swift; sourceTree = "<group>"; };
 		D696CA1F215CC09400682666 /* BPKIconTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconTest.m; sourceTree = "<group>"; };
@@ -902,7 +901,6 @@
 				53E897D127B6D0CA00A73444 /* Utils */,
 				D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */,
 				D28588B124586D2A005DE2E0 /* BPKBarChartSnapshotTest.m */,
-				D690703721590F0A0088C97B /* BPKButtonSnapshotTest.m */,
 				D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */,
 				D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
@@ -934,7 +932,8 @@
 				D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */,
 				D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */,
 				5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */,
-				53E897D027B6CFB000A73444 /* BPKTextViewSnapshotTests.swift */,
+				53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */,
+				53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */,
 				53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */,
 				53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */,
 				53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */,
@@ -1075,6 +1074,7 @@
 				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
+						DevelopmentTeam = U9XKRL39B6;
 						LastSwiftMigration = 1200;
 					};
 					6003F5AD195388D20070C39A = {
@@ -1486,13 +1486,12 @@
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
 				5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */,
-				53E897D427B6D59B00A73444 /* BPKTextViewSnapshotTests.swift in Sources */,
+				53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
 				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
-				D690703821590F0A0088C97B /* BPKButtonSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
 				D21AF45D2539EB2C00C8ED04 /* BPKOverlayViewSnapshotTest.m in Sources */,
 				589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */,
@@ -1687,7 +1686,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U9XKRL39B6;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
@@ -1722,7 +1721,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U9XKRL39B6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

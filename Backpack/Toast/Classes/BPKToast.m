@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,19 +31,13 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 @implementation BPKToast
 
 #pragma mark - Initializers
-+ (instancetype)showToastAddedTo:(UIView *)view
-                        animated:(BOOL)animated
-       accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
-    BPKToast *toast = [[BPKToast alloc] initWithView:view
-                                            animated:animated
-                           accessibilityAnnouncement:accessibilityAnnouncement];
++ (instancetype)showToastAddedTo:(UIView *)view animated:(BOOL)animated accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
+    BPKToast *toast = [[BPKToast alloc] initWithView:view animated:animated accessibilityAnnouncement:accessibilityAnnouncement];
     [toast postAccessibilityNotification];
     return toast;
 }
 
-- (instancetype)initWithView:(UIView *)view
-                    animated:(BOOL)animated
-   accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
+- (instancetype)initWithView:(UIView *)view animated:(BOOL)animated accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
     if (self = [super initWithFrame:view.bounds]) {
         self.hud = [MBProgressHUD showHUDAddedTo:view animated:animated];
         _accessibilityAnnouncement = [accessibilityAnnouncement copy];
@@ -52,7 +46,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
     return self;
 }
 
-- (instancetype)initWithView:(UIView *)view accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement{
+- (instancetype)initWithView:(UIView *)view accessibilityAnnouncement:(nonnull NSString *)accessibilityAnnouncement {
     if (self = [super initWithFrame:view.bounds]) {
         self.hud = [[MBProgressHUD alloc] initWithView:self];
         _accessibilityAnnouncement = [accessibilityAnnouncement copy];
@@ -150,7 +144,8 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 
 - (void)setupHUD {
     self.hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    self.hud.bezelView.backgroundColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
+    self.hud.bezelView.backgroundColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGray
+                                                                     darkVariant:BPKColor.blackTint03] colorWithAlphaComponent:0.85];
     self.hud.contentColor = BPKColor.white;
     self.hud.delegate = self;
     self.hud.accessibilityIdentifier = ToastAccessibilityIdentifier;
@@ -162,7 +157,7 @@ NSString *const ToastAccessibilityIdentifier = @"toastView";
 
 - (void)postAccessibilityNotification {
     NSAttributedString *announcement = [[NSAttributedString alloc] initWithString:self.accessibilityAnnouncement
-                                                                       attributes:@{ UIAccessibilitySpeechAttributeQueueAnnouncement: @YES }];
+                                                                       attributes:@{UIAccessibilitySpeechAttributeQueueAnnouncement: @YES}];
     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, announcement);
 }
 

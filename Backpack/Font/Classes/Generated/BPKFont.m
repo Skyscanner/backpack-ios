@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,27 +118,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIFont *)fontForStyle:(BPKFontStyle)style fontManager:(BPKFontManager *)fontManager {
-    // Map legacy styles to new ones first
-    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
-    switch (styleToUse) {
+    switch (style) {
        
-           case BPKFontStyleTextBase:
-             return [fontManager regularFontWithSize:16];
-             
-           case BPKFontStyleTextBaseEmphasized:
-             return [fontManager semiboldFontWithSize:16];
-             
            case BPKFontStyleTextBodyDefault:
              return [fontManager regularFontWithSize:16];
              
            case BPKFontStyleTextBodyLongform:
              return [fontManager regularFontWithSize:20];
-             
-           case BPKFontStyleTextCaps:
-             return [fontManager regularFontWithSize:10];
-             
-           case BPKFontStyleTextCapsEmphasized:
-             return [fontManager semiboldFontWithSize:10];
              
            case BPKFontStyleTextCaption:
              return [fontManager regularFontWithSize:12];
@@ -182,109 +168,16 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextLabel2:
              return [fontManager semiboldFontWithSize:14];
              
-           case BPKFontStyleTextLg:
-             return [fontManager regularFontWithSize:20];
-             
-           case BPKFontStyleTextLgEmphasized:
-             return [fontManager semiboldFontWithSize:20];
-             
-           case BPKFontStyleTextSm:
-             return [fontManager regularFontWithSize:14];
-             
-           case BPKFontStyleTextSmEmphasized:
-             return [fontManager semiboldFontWithSize:14];
-             
            case BPKFontStyleTextSubheading:
              return [fontManager regularFontWithSize:24];
-             
-           case BPKFontStyleTextXl:
-             return [fontManager regularFontWithSize:24];
-             
-           case BPKFontStyleTextXlEmphasized:
-             return [fontManager semiboldFontWithSize:24];
-             
-           case BPKFontStyleTextXlHeavy:
-             return [fontManager heavyFontWithSize:24];
-             
-           case BPKFontStyleTextXs:
-             return [fontManager regularFontWithSize:12];
-             
-           case BPKFontStyleTextXsEmphasized:
-             return [fontManager semiboldFontWithSize:12];
-             
-           case BPKFontStyleTextXxl:
-             return [fontManager regularFontWithSize:32];
-             
-           case BPKFontStyleTextXxlEmphasized:
-             return [fontManager semiboldFontWithSize:32];
-             
-           case BPKFontStyleTextXxlHeavy:
-             return [fontManager heavyFontWithSize:32];
-             
-           case BPKFontStyleTextXxxl:
-             return [fontManager regularFontWithSize:40];
-             
-           case BPKFontStyleTextXxxlEmphasized:
-             return [fontManager semiboldFontWithSize:40];
-             
-           case BPKFontStyleTextXxxlHeavy:
-             return [fontManager heavyFontWithSize:40];
              
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);
     }
 }
 
-+ (BPKFontStyle)newStyleMappingForStyle:(BPKFontStyle)style {
-    switch (style) {
-        case BPKFontStyleTextBase: 
-            return BPKFontStyleTextBodyDefault;
-        case BPKFontStyleTextBaseEmphasized: 
-            return BPKFontStyleTextHeading5;
-        case BPKFontStyleTextCaps: 
-            return BPKFontStyleTextCaption;
-        case BPKFontStyleTextCapsEmphasized: 
-            return BPKFontStyleTextCaption;
-        case BPKFontStyleTextLg: 
-            return BPKFontStyleTextBodyLongform;
-        case BPKFontStyleTextLgEmphasized: 
-            return BPKFontStyleTextHeading4;
-        case BPKFontStyleTextSm: 
-            return BPKFontStyleTextFootnote;
-        case BPKFontStyleTextSmEmphasized: 
-            return BPKFontStyleTextLabel2;
-        case BPKFontStyleTextXl: 
-            return BPKFontStyleTextSubheading;
-        case BPKFontStyleTextXlEmphasized: 
-            return BPKFontStyleTextHeading3;
-        case BPKFontStyleTextXlHeavy: 
-            return BPKFontStyleTextHeading3;
-        case BPKFontStyleTextXs: 
-            return BPKFontStyleTextCaption;
-        case BPKFontStyleTextXsEmphasized: 
-            return BPKFontStyleTextCaption;
-        case BPKFontStyleTextXxl: 
-            return BPKFontStyleTextHeading2;
-        case BPKFontStyleTextXxlEmphasized: 
-            return BPKFontStyleTextHeading2;
-        case BPKFontStyleTextXxlHeavy: 
-            return BPKFontStyleTextHeading2;
-        case BPKFontStyleTextXxxl: 
-            return BPKFontStyleTextHeading1;
-        case BPKFontStyleTextXxxlEmphasized: 
-            return BPKFontStyleTextHeading1;
-        case BPKFontStyleTextXxxlHeavy: 
-            return BPKFontStyleTextHeading1;
-        
-        default:
-            return style; // Using same style if no mapping is found
-    }
-}
-
 + (NSNumber *)letterSpacingForStyle:(BPKFontStyle)style {
-    // Map legacy styles to new ones first
-    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
-    switch (styleToUse) {
+    switch (style) {
         case BPKFontStyleTextHero1: 
             // Corresponding to Letter Spacing TIGHT
             return @(-2);
@@ -307,15 +200,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (CGFloat)lineHeightForStyle:(BPKFontStyle)style {
-    // Map legacy styles to new ones first
-    BPKFontStyle styleToUse = [self newStyleMappingForStyle:style];
-    switch (styleToUse) {
-        case BPKFontStyleTextBase: 
-            // Corresponding to Line Height BASE
-            return 24;
-        case BPKFontStyleTextBaseEmphasized: 
-            // Corresponding to Line Height BASE-TIGHT
-            return 20;
+    switch (style) {
         case BPKFontStyleTextBodyDefault: 
             // Corresponding to Line Height BASE
             return 24;
@@ -364,39 +249,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextLabel2: 
             // Corresponding to Line Height SM
             return 20;
-        case BPKFontStyleTextLg: 
-            // Corresponding to Line Height LG
-            return 28;
-        case BPKFontStyleTextLgEmphasized: 
-            // Corresponding to Line Height LG-TIGHT
-            return 24;
-        case BPKFontStyleTextSm: 
-            // Corresponding to Line Height SM
-            return 20;
-        case BPKFontStyleTextSmEmphasized: 
-            // Corresponding to Line Height SM
-            return 20;
         case BPKFontStyleTextSubheading: 
             // Corresponding to Line Height XL
             return 32;
-        case BPKFontStyleTextXl: 
-            // Corresponding to Line Height XL
-            return 32;
-        case BPKFontStyleTextXlEmphasized: 
-            // Corresponding to Line Height XL-TIGHT
-            return 28;
-        case BPKFontStyleTextXs: 
-            // Corresponding to Line Height XS
-            return 16;
-        case BPKFontStyleTextXsEmphasized: 
-            // Corresponding to Line Height XS
-            return 16;
-        case BPKFontStyleTextXxlEmphasized: 
-            // Corresponding to Line Height XXL
-            return 40;
-        case BPKFontStyleTextXxxlEmphasized: 
-            // Corresponding to Line Height XXXL
-            return 48;
         
         default:
             return 0; // No Defined Line Height

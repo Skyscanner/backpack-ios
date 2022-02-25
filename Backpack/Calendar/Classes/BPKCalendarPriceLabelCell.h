@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class BPKLabel;
 
 /**
- * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows a custom label containing auxillary price information to be shown below the cell.
+ * `BPKCalendarPriceLabelCell` is a subclass of `BPKCalendarCell`. It allows a custom label containing auxillary price information to be shown below
+ * the cell.
  */
 @interface BPKCalendarPriceLabelCell : BPKCalendarCell
 

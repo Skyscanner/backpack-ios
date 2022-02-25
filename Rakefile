@@ -104,7 +104,7 @@ end
 desc "Runs clang-format on all h and m files to ensure formatting is correct"
 task :lint do
   abort red "The following generated files have changed during setup:\n#{get_changed_files}" unless check_pristine
-  `clang-format -i **/*.h **/*.m`
+  `find ./Backpack -name "*.[hm]" -exec clang-format -i {} \+`
   abort red "clang-format has changed the following files:\n#{get_changed_files}" unless check_pristine
   sh "bundle exec pod lib lint --allow-warnings"
 end

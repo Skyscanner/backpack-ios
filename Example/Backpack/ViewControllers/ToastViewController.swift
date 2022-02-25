@@ -2,7 +2,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,12 @@ class ToastViewController: UIViewController {
             showToastOnlyLabels()
         }
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showButton.title = "Show Toast"
+    }
+    
     func showPersistentToast() {
         let toast = BPKToast.showAdded(to: self.view, animated: true, accessibilityAnnouncement: "Saving your changes")
         toast.mode = .indeterminate

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,14 +22,14 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 #import <Backpack/FlareView.h>
+#import <Backpack/Icon.h>
 #import <Backpack/Label.h>
 #import <Backpack/Shadow.h>
-#import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
 
-#import "BPKMapAnnotationViewCalloutFlareView.h"
-#import "BPKMapAnnotationView.h"
 #import "BPKMapAnnotation.h"
+#import "BPKMapAnnotationView.h"
+#import "BPKMapAnnotationViewCalloutFlareView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -97,20 +97,20 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
--(void)updateStyle {
+- (void)updateStyle {
     BPKFontStyle fontStyle = BPKFontStyleTextBodyDefault;
     UIColor *backgroundColor = nil;
     UIColor *contentBackgroundColor = nil;
     UIColor *contentColor = nil;
     UIColor *borderColor = nil;
 
-    if(!self.annotationView.enabled) {
+    if (!self.annotationView.enabled) {
         fontStyle = BPKFontStyleTextLabel2;
         backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
         contentBackgroundColor = BPKColor.clear;
         contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
         borderColor = BPKColor.clear;
-    } else if(self.annotationView.selected) {
+    } else if (self.annotationView.selected) {
         fontStyle = BPKFontStyleTextHeading5;
         backgroundColor = BPKColor.skyBlue;
         contentBackgroundColor = BPKColor.white;
@@ -140,7 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateShadowPath];
 }
 
--(void)updateIcon {
+- (void)updateIcon {
     id<MKAnnotation> annotation = self.annotationView.annotation;
     if ([annotation isKindOfClass:BPKMapAnnotation.class]) {
         BPKMapAnnotation *bpkAnnotation = (BPKMapAnnotation *)annotation;
@@ -153,8 +153,11 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
--(void)updateShadowPath {
-    UIBezierPath *shadowPath = [BPKFlarePath flareViewPathForSize:self.bounds.size flareHeight:self.flareView.flareHeight cornerRadius:self.flareView.cornerRadius flarePosition:self.flareView.flarePosition];
+- (void)updateShadowPath {
+    UIBezierPath *shadowPath = [BPKFlarePath flareViewPathForSize:self.bounds.size
+                                                      flareHeight:self.flareView.flareHeight
+                                                     cornerRadius:self.flareView.cornerRadius
+                                                    flarePosition:self.flareView.flarePosition];
 
     CGPathRef finalPath = shadowPath.CGPath;
     self.layer.shadowPath = finalPath;
@@ -186,10 +189,8 @@ NS_ASSUME_NONNULL_BEGIN
     [stackView addArrangedSubview:label];
 
     [NSLayoutConstraint activateConstraints:@[
-        [flareView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [flareView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [flareView.widthAnchor constraintEqualToAnchor:self.widthAnchor],
-        [flareView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
+        [flareView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor], [flareView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [flareView.widthAnchor constraintEqualToAnchor:self.widthAnchor], [flareView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
         [stackView.leadingAnchor constraintEqualToAnchor:flareView.contentView.leadingAnchor constant:self.horizontalPaddingSize],
         [flareView.contentView.trailingAnchor constraintEqualToAnchor:stackView.trailingAnchor constant:self.horizontalPaddingSize],
         [stackView.topAnchor constraintEqualToAnchor:flareView.contentView.topAnchor constant:self.verticalPaddingSize],

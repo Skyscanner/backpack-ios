@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -179,11 +179,11 @@ NS_ASSUME_NONNULL_BEGIN
         CGFloat absAdjustedYOffset = fabs(adjustedYOffset);
         self.heightConstraint.constant = absAdjustedYOffset;
         scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
-        
+
         if (absAdjustedYOffset <= BPKNavigationBarExpandedFullHeight) {
             scrollView.contentInset = UIEdgeInsetsMake(absAdjustedYOffset, 0, 0, 0);
         }
-        
+
         // Making modifications on each scroll is very expensive.
         // To prevent extra work the changes between collapsed and expanded
         // are only executed a single time per transition.

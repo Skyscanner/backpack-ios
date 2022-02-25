@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@
 
 #import "BPKIcon.h"
 #import "BPKIconNames.h" // DEPRECATED: Consumers should use BPK<SIZE>IconNames instead
-#import "BPKSmallIconNames.h"
+#import "BPKIconView.h"  // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
 #import "BPKLargeIconNames.h"
-#import "BPKXlIconNames.h"
-#import "BPKIconView.h" // DEPRECATED: Consumers should use BPK<SIZE>IconView instead
-#import "BPKSmallIconView.h"
 #import "BPKLargeIconView.h"
+#import "BPKSmallIconNames.h"
+#import "BPKSmallIconView.h"
+#import "BPKXlIconNames.h"
 #import "BPKXlIconView.h"
 
 #endif

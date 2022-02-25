@@ -124,6 +124,9 @@ BpkThemeProvider
 
 BpkTicket
 
+PrimaryOnDark
+PrimaryOnLight
+
 # Company names, libraries etc.
 Artifactory
 Cocoapods

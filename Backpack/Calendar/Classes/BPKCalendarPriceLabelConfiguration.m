@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,21 +18,23 @@
 
 #import "BPKCalendarPriceLabelConfiguration.h"
 
+#import "BPKCalendarCellSpacing.h"
 #import "BPKCalendarPriceLabelCell.h"
 #import "BPKCalendarPriceLabelCellData.h"
-#import "BPKCalendarCellSpacing.h"
 
 @implementation BPKCalendarPriceLabelConfiguration
 
 const CGFloat CellVerticalSpacingAbovePrice = 2;
 const CGFloat PriceLabelHeightWhenWrapped = 28;
 
--(CGFloat)priceCellHeight {
-    return BPKCalendarCellSpacing.cellCircleHeight + CellVerticalSpacingAbovePrice + PriceLabelHeightWhenWrapped + BPKCalendarCellSpacing.cellBottomSpacing;
+- (CGFloat)priceCellHeight {
+    return BPKCalendarCellSpacing.cellCircleHeight + CellVerticalSpacingAbovePrice + PriceLabelHeightWhenWrapped +
+           BPKCalendarCellSpacing.cellBottomSpacing;
 }
 
 - (instancetype)init {
-    return [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:[self priceCellHeight]];
+    return
+        [super initWithCellClass:BPKCalendarPriceLabelCell.class cellDataClass:BPKCalendarPriceLabelCellData.class rowHeight:[self priceCellHeight]];
 }
 
 @end

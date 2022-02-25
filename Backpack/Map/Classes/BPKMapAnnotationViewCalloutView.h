@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ IB_DESIGNABLE @interface BPKMapAnnotationViewCalloutView : UIView
  */
 - (instancetype)initWithAnnotationView:(BPKMapAnnotationView *)annotationView NS_DESIGNATED_INITIALIZER;
 
--(void)update;
+- (void)update;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelConfiguration.h"
 #import "BPKCalendarPriceLabelStyle.h"
-#import "BPKCalendarStickyHeader.h"
-#import "BPKCalendarSelectionConfigurationSingle.h"
 #import "BPKCalendarSelectionConfigurationMultiple.h"
 #import "BPKCalendarSelectionConfigurationRange.h"
+#import "BPKCalendarSelectionConfigurationSingle.h"
+#import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightCell.h"
 #import "BPKCalendarTrafficLightCellData.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
