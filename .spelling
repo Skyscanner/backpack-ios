@@ -534,6 +534,7 @@ yAxisMargin
 yAxisTickValue
 yAxisNumTicks
 withAccordionItemState
+textPrimaryColor
 
 BpkAccordion
 BpkAccordionItem

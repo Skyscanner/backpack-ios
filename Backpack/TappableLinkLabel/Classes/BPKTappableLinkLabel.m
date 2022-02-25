@@ -148,6 +148,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableDictionary *attributes = [@{NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: font} mutableCopy];
     if (self.customFontAttributes[NSForegroundColorAttributeName] != nil) {
         attributes[NSForegroundColorAttributeName] = self.customFontAttributes[NSForegroundColorAttributeName];
+    } else {
+        attributes[NSForegroundColorAttributeName] = BPKColor.textPrimaryColor;
     }
 
     self.contentView.text = [[NSAttributedString alloc] initWithString:self.text attributes:attributes];
