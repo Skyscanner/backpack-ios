@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ enum ButtonStory: String, StoryGroup {
     case destructive = "Destructive"
     case featured = "Featured"
     case link = "Link"
-    case outline = "Outline"
+    case primaryOnDark = "Primary On Dark"
+    case primaryOnLight = "Primary On Light"
 
     var buttonStyle: BPKButtonStyle {
         switch self {
@@ -38,8 +39,10 @@ enum ButtonStory: String, StoryGroup {
             return .featured
         case .link:
             return .link
-        case .outline:
-            return .outline
+        case .primaryOnDark:
+            return .primaryOnDark
+        case .primaryOnLight:
+            return .primaryOnLight
         }
     }
 

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,17 @@
  * limitations under the License.
  */
 
-#import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
+#import "BPKButtonAppearance.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKButtonAppearanceSet : NSObject
 
-- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance loadingAppearance:(BPKButtonAppearance *)loadingAppearance  disabledAppearance:(BPKButtonAppearance *)disabledAppearance highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance {
+- (instancetype)initWithRegularAppearance:(BPKButtonAppearance *)regularAppearance
+                        loadingAppearance:(BPKButtonAppearance *)loadingAppearance
+                       disabledAppearance:(BPKButtonAppearance *)disabledAppearance
+                    highlightedAppearance:(BPKButtonAppearance *)highlightedAppearance {
     self = [super init];
 
     if (self) {
@@ -37,7 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)clone {
-    return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:[self.regularAppearance clone] loadingAppearance:[self.loadingAppearance clone] disabledAppearance:[self.disabledAppearance clone] highlightedAppearance:[self.highlightedAppearance clone]];
+    return [[BPKButtonAppearanceSet alloc] initWithRegularAppearance:[self.regularAppearance clone]
+                                                   loadingAppearance:[self.loadingAppearance clone]
+                                                  disabledAppearance:[self.disabledAppearance clone]
+                                               highlightedAppearance:[self.highlightedAppearance clone]];
 }
 
 @end

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKButtonAppearance` is a subclass of `NSObject` that describes the appearance of a button using colour properties for each aspect of the button's visual appearance.
+ * `BPKButtonAppearance` is a subclass of `NSObject` that describes the appearance of a button using colour properties for each aspect of the button's
+ * visual appearance.
  */
 @interface BPKButtonAppearance : NSObject
 
@@ -49,7 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  * Creates an instance of `BPKButtonAppearence` with the values provided.
  */
-- (instancetype)initWithBorderColor:(UIColor *_Nullable)borderColor gradientStartColor:(UIColor *)gradientStartColor gradientEndColor:(UIColor *)gradientEndColor foregroundColor:(UIColor *)foregroundColor;
+- (instancetype)initWithBorderColor:(UIColor *_Nullable)borderColor
+                 gradientStartColor:(UIColor *)gradientStartColor
+                   gradientEndColor:(UIColor *)gradientEndColor
+                    foregroundColor:(UIColor *)foregroundColor;
 
 /*
  * Creates a new instance of `BPKButtonAppearance` with the same apearance properties as the current instance.

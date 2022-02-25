@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ const double BPKNudgerDefaultMinimumValue = 0;
 const double BPKNudgerDefaultMaximumValue = 100;
 const double BPKNudgerDefaultStepValue = 1;
 
-@interface BPKNudger()
+@interface BPKNudger ()
 @property(nonatomic, strong) BPKNudgerConfiguration *configuration;
 
 @property(nonatomic, strong, readonly) UIStackView *stackView;
@@ -47,10 +47,7 @@ const double BPKNudgerDefaultStepValue = 1;
 @end
 
 @implementation BPKNudger
-@synthesize stackView = _stackView,
-      decrementButton = _decrementButton,
-                label = _label,
-      incrementButton = _incrementButton;
+@synthesize stackView = _stackView, decrementButton = _decrementButton, label = _label, incrementButton = _incrementButton;
 
 - (instancetype)initWithConfiguration:(BPKNudgerConfiguration *)configuration {
     self = [super initWithFrame:CGRectZero];
@@ -64,13 +61,13 @@ const double BPKNudgerDefaultStepValue = 1;
     return self;
 }
 
--(CGFloat)minimumLabelWidth {
+- (CGFloat)minimumLabelWidth {
     // Reserve space for 2 digits. 9 is one of the widest digits
     // in Relative so 99 is one of the widest two digit numbers possible
-    CGFloat width =  [@"99" sizeWithAttributes:@{NSFontAttributeName: self.label.font}].width;
+    CGFloat width = [@"99" sizeWithAttributes:@{NSFontAttributeName: self.label.font}].width;
 
     // Round the value up to the nearest value that aligns to our spacing grid:
-    width = ceil(width/BPKSpacingSm) * BPKSpacingSm;
+    width = ceil(width / BPKSpacingSm) * BPKSpacingSm;
 
     return width;
 }
@@ -173,7 +170,6 @@ const double BPKNudgerDefaultStepValue = 1;
     [self incrementValue];
 }
 
-
 #pragma mark - Setters / Logic
 
 - (void)decrementValue {
@@ -209,11 +205,8 @@ const double BPKNudgerDefaultStepValue = 1;
 
 - (void)setMinimumValue:(double)minimumValue {
     if (minimumValue > self.maximumValue) {
-        NSString *reason = [NSString stringWithFormat:@"Cannot set minimumValue %f when maximumValue is %f",
-                            minimumValue, self.maximumValue];
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:reason
-                                     userInfo:nil];
+        NSString *reason = [NSString stringWithFormat:@"Cannot set minimumValue %f when maximumValue is %f", minimumValue, self.maximumValue];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
     }
 
     _minimumValue = minimumValue;
@@ -224,11 +217,8 @@ const double BPKNudgerDefaultStepValue = 1;
 
 - (void)setMaximumValue:(double)maximumValue {
     if (maximumValue < self.minimumValue) {
-        NSString *reason = [NSString stringWithFormat:@"Cannot set maximumValue %f when minimumValue is %f",
-                            maximumValue, self.minimumValue];
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:reason
-                                     userInfo:nil];
+        NSString *reason = [NSString stringWithFormat:@"Cannot set maximumValue %f when minimumValue is %f", maximumValue, self.minimumValue];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
     }
 
     _maximumValue = maximumValue;
@@ -238,18 +228,13 @@ const double BPKNudgerDefaultStepValue = 1;
 
 - (void)setStepValue:(double)stepValue {
     if (stepValue <= 0) {
-        NSString *reason = [NSString stringWithFormat:@"Cannot set stepValue %f. Value needs to be greater than 0",
-                            stepValue];
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:reason
-                                     userInfo:nil];
+        NSString *reason = [NSString stringWithFormat:@"Cannot set stepValue %f. Value needs to be greater than 0", stepValue];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
     }
 
     _stepValue = stepValue;
     [self updateDisplay];
 }
-
-
 
 - (void)updateDisplay {
     NSString *newValue = self.configuration.valueFormatter(self.value);

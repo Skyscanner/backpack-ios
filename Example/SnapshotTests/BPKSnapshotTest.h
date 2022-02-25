@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,10 +53,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                           \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                               \
         FBSnapshotVerifyView(view__, identifier);                                                                                                    \
     }
 #else
@@ -75,10 +72,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                            \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                                \
         FBSnapshotVerifyView(view__, identifier);                                                                                                    \
     }
 #else
@@ -98,9 +92,7 @@
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
                                                                                                                                                      \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                           \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;                                                                               \
         FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__);                                                                \
     }
 #else
@@ -119,10 +111,7 @@
         if (identifier__ != nil) {                                                                                                                   \
             identifier = [NSString stringWithFormat:@"%@_%@", identifier, identifier__];                                                             \
         }                                                                                                                                            \
-                                                                                                                                                     \
-        if (@available(iOS 13.0, *)) {                                                                                                               \
-            view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                            \
-        }                                                                                                                                            \
+        view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                                \
         FBSnapshotVerifyViewWithOptions(view__, identifier, suffixes__, tolerance__);                                                                \
     }
 #else

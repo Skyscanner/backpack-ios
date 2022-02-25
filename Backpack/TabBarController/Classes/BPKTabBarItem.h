@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKTabBarItem` is a subclass of `UITabBarItem` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKTabBarItem: UITabBarItem
+IB_DESIGNABLE @interface BPKTabBarItem : UITabBarItem
 
 /**
  * The base image to use when a dot is not shown.
@@ -64,17 +64,20 @@ IB_DESIGNABLE @interface BPKTabBarItem: UITabBarItem
  * @param dotImageDefinition The images to show in the tab bar item when a dot is shown.
  * @return `BPKTabBarItem` instance.
  */
-- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition;
+- (instancetype)initWithTitle:(NSString *)title
+                        image:(UIImage *)image
+                          tag:(NSInteger)tag
+           dotImageDefinition:(BPKTabBarDotImageDefinition *)dotImageDefinition;
 
 /**
  * Apply the dot by using the dotImageDefinition images
  */
--(void)addDot;
+- (void)addDot;
 
 /**
  * Remove the dot if currently shown.
  */
--(void)removeDot;
+- (void)removeDot;
 
 @end
 

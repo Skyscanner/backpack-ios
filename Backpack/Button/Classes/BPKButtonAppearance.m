@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation BPKButtonAppearance
 
-- (instancetype)initWithBorderColor:(UIColor *_Nullable)borderColor gradientStartColor:(UIColor *)gradientStartColor gradientEndColor:(UIColor *)gradientEndColor foregroundColor:(UIColor *)foregroundColor {
+- (instancetype)initWithBorderColor:(UIColor *_Nullable)borderColor
+                 gradientStartColor:(UIColor *)gradientStartColor
+                   gradientEndColor:(UIColor *)gradientEndColor
+                    foregroundColor:(UIColor *)foregroundColor {
     self = [super init];
 
     if (self) {
@@ -36,7 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)clone {
-    return [[BPKButtonAppearance alloc] initWithBorderColor:self.borderColor gradientStartColor:self.gradientStartColor gradientEndColor:self.gradientEndColor foregroundColor:self.foregroundColor];
+    return [[BPKButtonAppearance alloc] initWithBorderColor:self.borderColor
+                                         gradientStartColor:self.gradientStartColor
+                                           gradientEndColor:self.gradientEndColor
+                                            foregroundColor:self.foregroundColor];
 }
 
 @end

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 #import "BPKCalendarSelectionConfigurationRange.h"
 
 @implementation BPKCalendarSelectionConfigurationRange
-
 
 - (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
                           endSelectionHint:(NSString *)endSelectionHint
@@ -50,8 +49,7 @@
     if (selectedDates.count >= 2) {
         // Two dates are selected already and a new one has been tapped
         shouldClearDates = YES;
-    } else if (selectedDates.count == 1 && firstSelectedDate != nil &&
-               [date compare:firstSelectedDate] == NSOrderedAscending) {
+    } else if (selectedDates.count == 1 && firstSelectedDate != nil && [date compare:firstSelectedDate] == NSOrderedAscending) {
         // One date is selected already, but it is after the date that has been tapped
         shouldClearDates = YES;
     }

@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKButtonsViewController ()
+@property (weak, nonatomic) IBOutlet UIView *buttonsContainer;
 @property(strong, nonatomic) IBOutletCollection(UIView) NSArray *contentViews;
 @property(strong, nonatomic) IBOutletCollection(BPKLabel) NSArray *storyHeadings;
 @property(weak, nonatomic) IBOutlet BPKButton *defaultTextButton;
@@ -64,23 +65,20 @@ NS_ASSUME_NONNULL_BEGIN
     }
 #endif
 
+    if (self.style == BPKButtonStylePrimaryOnDark) {
+        self.buttonsContainer.backgroundColor = BPKColor.skyBlueShade03;
+        self.view.backgroundColor = BPKColor.skyBlueShade03;
+    }
     [self setupButtons];
 }
 
 - (void)setupButtons {
-    if (self.style == BPKButtonStyleOutline) {
-        for (UIView *contentView in self.contentViews) {
-            [contentView setBackgroundColor:[BPKColor dynamicColorWithLightVariant:BPKColor.skyBlueShade03 darkVariant:BPKColor.backgroundDarkColor]];
-        }
-        for (UILabel *storyHeading in self.storyHeadings) {
-            [storyHeading setTextColor:BPKColor.white];
-        }
-    }
-
     UIImage *smallLongArrowIcon =
         self.isRTL ? [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowLeft] : [BPKIcon smallTemplateIconNamed:BPKSmallIconNameLongArrowRight];
     [self setupButton:self.defaultTextButton image:nil title:@"Search Flights"];
     [self setupButton:self.defaultLoadingButton image:smallLongArrowIcon title:@"Load"];
+    [self setupButton:self.defaultLoadingTitleOnlyButton image:nil title:@"Load"];
+    [self setupButton:self.defaultDisabledButton image:nil title:@"Disabled"];
     [self setupButton:self.defaultTrailingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultLeadingIconButton image:smallLongArrowIcon title:@"With icon"];
     [self setupButton:self.defaultIconOnlyButton image:smallLongArrowIcon title:nil];
@@ -91,10 +89,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self setupButton:self.largeTextButton image:nil title:@"Button"];
     [self setupButton:self.largeTrailingIconButton image:largeLongArrowIcon title:@"With icon"];
     [self setupButton:self.largeLeadingIconButton image:largeLongArrowIcon title:@"With icon"];
+    [self setupButton:self.largeDisabledButton image:nil title:@"Disabled"];
     [self setupButton:self.largeIconOnlyButton image:largeLongArrowIcon title:nil];
     [self setupButton:self.largeLoadingIconOnlyButton image:largeLongArrowIcon title:nil];
     [self setupButton:self.largeLoadingButton image:largeLongArrowIcon title:@"Load"];
-
+    [self setupButton:self.largeLoadingTitleOnlyButton image:nil title:@"Load"];
     self.defaultTextButton.style = self.style;
     self.defaultDisabledButton.style = self.style;
     self.defaultIconOnlyButton.style = self.style;

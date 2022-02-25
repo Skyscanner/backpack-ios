@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,9 +86,7 @@ IB_DESIGNABLE @interface BPKToast : UIView
  * @return A reference to the created Toast.
  *
  */
-+ (instancetype)showToastAddedTo:(UIView *)view
-                        animated:(BOOL)animated
-       accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
++ (instancetype)showToastAddedTo:(UIView *)view animated:(BOOL)animated accessibilityAnnouncement:(NSString *)accessibilityAnnouncement;
 
 /**
  * A convenience constructor that initializes the Toast with the view's bounds. Calls the designated constructor with

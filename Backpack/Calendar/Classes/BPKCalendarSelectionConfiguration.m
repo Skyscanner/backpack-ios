@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
-    NSAssert(false, @"BPKCalendarSelectionConfiguration shouldClearSelectedDates: should be overridden. The base class method should never be called.");
+    NSAssert(false,
+             @"BPKCalendarSelectionConfiguration shouldClearSelectedDates: should be overridden. The base class method should never be called.");
     return NO;
 }
 
@@ -48,7 +49,7 @@
 }
 
 - (NSString *_Nullable)accessibilityLabelForDate:(NSDate *)date selectedDates:(NSArray<NSDate *> *)selectedDates baseLabel:(NSString *)baseLabel {
-        return baseLabel;
+    return baseLabel;
 }
 
 - (NSString *_Nullable)accessibilityInstructionHavingSelectedDates:(NSArray<NSDate *> *)selectedDates {

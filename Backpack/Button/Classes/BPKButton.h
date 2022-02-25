@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
+#import "BPKLabel.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 /**
  * Enum values for specifying button size
  */
@@ -66,9 +66,14 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
     BPKButtonStyleLink = 4,
 
     /**
-     * Outline button style, suitable for use on coloured backgrounds.
+     * Primary on Dark button style, suitable for use on dark coloured backgrounds.
      */
-    BPKButtonStyleOutline = 5,
+    BPKButtonStylePrimaryOnDark = 5,
+
+    /**
+     * Primary on Light button style, suitable for use on light coloured backgrounds.
+     */
+    BPKButtonStylePrimaryOnLight = 6,
 };
 
 /**
@@ -92,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * `BPKButton` is a subclass of `UIButton` configured with Skyscanner style properties.
  */
-IB_DESIGNABLE @interface BPKButton : UIButton
+IB_DESIGNABLE @interface BPKButton : UIControl
 
 /// :nodoc:
 @property(nullable, nonatomic, strong) UIColor *featuredContentColor UI_APPEARANCE_SELECTOR;
@@ -150,6 +155,12 @@ IB_DESIGNABLE @interface BPKButton : UIButton
  * @param image The image to display. If `nil` the image is removed.
  */
 - (void)setImage:(UIImage *_Nullable)image;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) UIImageView *imageView;
+
+/// :nodoc:
+@property(nullable, nonatomic, strong) BPKLabel *titleLabel;
 
 /**
  * Creates a `BPKButton` with a specific size and style.

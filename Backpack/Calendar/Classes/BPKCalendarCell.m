@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,32 +87,32 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     self.shapeLayer.frame = CGRectMake(paddingX, 0, BPKCalendarCellSpacing.cellCircleHeight, BPKCalendarCellSpacing.cellCircleHeight);
 
     // We use the screen width to ensure the overflowLength is always long enough
-    //even when we need to draw it from the first cell on a row to the edge of the opposite screen.
+    // even when we need to draw it from the first cell on a row to the edge of the opposite screen.
     CGFloat overflowLength = [[UIScreen mainScreen] bounds].size.width;
     CGFloat underflow = 0;
     CGFloat overflow = 0;
 
     switch (self.rowType) {
-        case RowTypeStart:
-            if (self.selectionType != SelectionTypeLeadingBorder) {
-                underflow = overflowLength;
-            }
-            break;
-        case RowTypeEnd:
-            if (self.selectionType != SelectionTypeTrailingBorder) {
-                overflow = overflowLength;
-            }
-            break;
-        case RowTypeBoth:
-            if (self.selectionType != SelectionTypeLeadingBorder) {
-                underflow = overflowLength;
-            }
-            if (self.selectionType != SelectionTypeTrailingBorder) {
-                overflow = overflowLength;
-            }
-            break;
-        default:
-            break;
+    case RowTypeStart:
+        if (self.selectionType != SelectionTypeLeadingBorder) {
+            underflow = overflowLength;
+        }
+        break;
+    case RowTypeEnd:
+        if (self.selectionType != SelectionTypeTrailingBorder) {
+            overflow = overflowLength;
+        }
+        break;
+    case RowTypeBoth:
+        if (self.selectionType != SelectionTypeLeadingBorder) {
+            underflow = overflowLength;
+        }
+        if (self.selectionType != SelectionTypeTrailingBorder) {
+            overflow = overflowLength;
+        }
+        break;
+    default:
+        break;
     }
 
     CGFloat overunderflow = overflow + underflow;
@@ -123,11 +123,11 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     switch (self.selectionType) {
     case SelectionTypeMiddle:
         self.shapeLayer.hidden = !self.dateIsToday;
-            if(!isRTL) {
-                selectionRect = CGRectMake(0 - underflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
-            }else {
-                selectionRect = CGRectMake(0 - overflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
-            }
+        if (!isRTL) {
+            selectionRect = CGRectMake(0 - underflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
+        } else {
+            selectionRect = CGRectMake(0 - overflow, 0, CGRectGetWidth(bounds) + overunderflow, height);
+        }
         break;
 
     case SelectionTypeTrailingBorder:
@@ -155,7 +155,9 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     case SelectionTypeSameDay:
         self.samedayLayer.hidden = NO;
         self.selectionLayer.hidden = YES;
-        self.shapeLayer.frame = CGRectMake(paddingX + paddingInnerCircle / 2, paddingInnerCircle / 2, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle);
+        self.shapeLayer.frame =
+            CGRectMake(paddingX + paddingInnerCircle / 2, paddingInnerCircle / 2, BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle,
+                       BPKCalendarCellSpacing.cellCircleHeight - paddingInnerCircle);
         break;
 
     default:

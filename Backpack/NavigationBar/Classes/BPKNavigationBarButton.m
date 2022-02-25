@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,21 +21,11 @@
 #import <Backpack/Font.h>
 #import <Backpack/Spacing.h>
 
-@interface BPKButton ()
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style;
-
-@end
-
 @implementation BPKNavigationBarButton
 
 - (instancetype)init {
-    self = [super initWithFrame:CGRectZero];
+    self = [super initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
     return self;
-}
-
-- (void)setupWithSize:(BPKButtonSize)size style:(BPKButtonStyle)style {
-    [super setupWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
 }
 
 #pragma mark Spacing

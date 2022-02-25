@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
  */
 #import "BPKTextField.h"
 
+#import <Backpack/BorderWidth.h>
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
-#import <Backpack/BorderWidth.h>
 #import <Backpack/Radii.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -101,8 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = BPKBorderWidthSm;
     self.layer.cornerRadius = BPKCornerRadiusXs;
-    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04
-                                                         darkVariant:BPKColor.blackTint05] CGColor];
+    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05] CGColor];
 }
 
 #pragma mark - Private
@@ -111,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.fontStyle = style;
     self.textColor = BPKColor.textPrimaryColor;
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
-    
+
     self.borderStyle = UITextBorderStyleRoundedRect;
 
     [self updateStyle];

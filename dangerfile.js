@@ -2,7 +2,7 @@
  *
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,6 @@ import fs from 'fs';
 
 import { danger, fail, warn, schedule } from 'danger';
 
-
-const currentYear = new Date().getFullYear();
 // Applies to js, css, scss and sh files that are not located in dist or flow-typed folders.
 const shouldContainLicensingInformation = (filePath) =>
   filePath.match(/\.(js|sh|swift|h|m|njk)$/);
@@ -74,27 +72,6 @@ if (unlicensedFiles.length > 0) {
     `These new files do not include the license heading: ${unlicensedFiles.join(
       ', ',
     )}`,
-  );
-}
-
-// Updated files should include the latest year in licensing header.
-const outdatedLicenses = fileChanges.filter((filePath) => {
-  if (
-    shouldContainLicensingInformation(filePath) &&
-    !unlicensedFiles.includes(filePath)
-  ) {
-    const fileContent = fs.readFileSync(filePath);
-    return !fileContent.includes(
-      `Copyright 2018-${currentYear} Skyscanner Ltd`,
-    );
-  }
-  return false;
-});
-if (outdatedLicenses.length > 0) {
-  fail(
-    `These files contain an outdated licensing header: ${outdatedLicenses.join(
-      ', ',
-    )}. Please update to ${currentYear}.`,
   );
 }
 

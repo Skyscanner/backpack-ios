@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * `BPKCalendarSelectionConfigurationRange` is a subclass of `BPKCalendarSelectionConfiguration` designed to enable a user to select a range of dates, represented by a start date and end date.
+ * `BPKCalendarSelectionConfigurationRange` is a subclass of `BPKCalendarSelectionConfiguration` designed to enable a user to select a range of dates,
+ * represented by a start date and end date.
  */
 @interface BPKCalendarSelectionConfigurationRange : BPKCalendarSelectionConfiguration
 
@@ -63,9 +64,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(readonly, nonatomic, copy) NSString *returnDatePrompt;
 
-- (instancetype)init __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
+- (instancetype)init
+    __attribute__((unavailable("`init` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle __attribute__((unavailable("`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
+    __attribute__((unavailable(
+        "`initWithSelectionStyle:` cannot be used on BPKCalendarSelectionConfigurationRange. Use `initWithStartSelectionHint:...:` instead")));
 
 /**
  * Create a multi-selection configuration with given accessibility strings.
@@ -74,17 +78,19 @@ NS_ASSUME_NONNULL_BEGIN
  * @param endSelectionHint The hint provided to assistive technologies informing a user how to select the second date in the range.
  * @param startSelectionState The label provided to assistive technologies informing a user that a date is selected as the first date in the range.
  * @param endSelectionState The label provided to assistive technologies informing a user that a date is selected as the second date in the range.
- * @param betweenSelectionState The label provided to assistive technologies informing a user that a date lies between the first and second selected dates.
- * @param startAndEndSelectionState The label provided to assistive technologies informing a user that a date is selected as both the first and second date in the range.
+ * @param betweenSelectionState The label provided to assistive technologies informing a user that a date lies between the first and second selected
+ * dates.
+ * @param startAndEndSelectionState The label provided to assistive technologies informing a user that a date is selected as both the first and second
+ * date in the range.
  * @param returnDatePrompt The prompt provided to assistive technologies informing a user that they should now select a second date.
  * @return A selection configuration.
  */
 - (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
-                       endSelectionHint:(NSString *)endSelectionHint
+                          endSelectionHint:(NSString *)endSelectionHint
                        startSelectionState:(NSString *)startSelectionState
-                      endSelectionState:(NSString *)endSelectionState
+                         endSelectionState:(NSString *)endSelectionState
                      betweenSelectionState:(NSString *)betweenSelectionState
-              startAndEndSelectionState:(NSString *)startAndEndSelectionState
+                 startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt;
 
 @end
