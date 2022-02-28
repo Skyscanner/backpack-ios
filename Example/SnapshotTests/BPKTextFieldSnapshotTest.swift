@@ -22,7 +22,7 @@ import FBSnapshotTestCase
 class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
     
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {

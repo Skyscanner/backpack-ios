@@ -22,7 +22,7 @@ import FBSnapshotTestCase
 class BPKToastSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
     
     private func create(toastMode: BPKToastMode) -> UIView {

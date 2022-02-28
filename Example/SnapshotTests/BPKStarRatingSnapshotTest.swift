@@ -23,7 +23,7 @@ import FBSnapshotTestCase
 class BPKStarRatingSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
     
     private func createView(

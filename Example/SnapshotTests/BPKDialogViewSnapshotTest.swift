@@ -23,7 +23,7 @@ import FBSnapshotTestCase
 class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = true
+        recordMode = false
     }
     
     /// Needed to draw the shadow
