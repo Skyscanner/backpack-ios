@@ -106,11 +106,5 @@ NS_ASSUME_NONNULL_BEGIN
     [self setText:self.attributedText.string];
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection * __nullable)previousTraitCollection {
-    [super traitCollectionDidChange:previousTraitCollection];
-    
-    [self updateStyle];
-}
-
 @end
 NS_ASSUME_NONNULL_END
