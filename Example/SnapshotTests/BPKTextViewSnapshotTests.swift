@@ -31,29 +31,35 @@ class BPKTextViewSnapshotTest: FBSnapshotTestCase {
             textView.translatesAutoresizingMaskIntoConstraints = false
             textView.isScrollEnabled = false
             textView.text = "Backpack Rocks"
+            textView.backgroundColor = .clear
             if let color = textColor { textView.textColor = color }
             return textView
         }
     }
     
     func testTextViewWithRegularFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles))
     }
     
     func testTextViewWithHeadingFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .headingStyles))
     }
     
     func testTextViewWithHeroFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .heroStyles))
     }
     
     func testTextViewWithThemeApplied() {
-        BPKSnapshotVerifyViewLight(
-            createView(
-                withStyles: .regularStyles,
-                textColor: .orange
-            )
-        )
+        BPKSnapshotVerifyViewLight(createView(
+            withStyles: .regularStyles,
+            textColor: .orange
+        ))
+        BPKSnapshotVerifyViewDark(createView(
+            withStyles: .regularStyles,
+            textColor: .orange
+        ))
     }
 }

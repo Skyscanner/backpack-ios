@@ -75,6 +75,17 @@
         view__.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;                                                                                \
         FBSnapshotVerifyView(view__, identifier);                                                                                                    \
     }
+
+#define BPKSnapshotViewApplyDarkMode(view__)                                                                                                         \
+    {                                                                                                                                                \
+        if (view__ == nil) { return; }                                                                                                               \
+        NSArray *subviews__ = view__.subviews;                                                                                                       \
+        for (UIVIew *subview__ in subviews__) {                                                                                                      \
+            [subview__ traitCollectionDidChange:[UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark]];                 \
+            BPKSnapshotViewApplyDarkMode(subview__);                                                                                                 \
+        }                                                                                                                                            \
+    }                                                                                                                                                \
+
 #else
 #define BPKSnapshotVerifyViewDark(view__, identifier__)                                                                                              \
     {                                                                                                                                                \
