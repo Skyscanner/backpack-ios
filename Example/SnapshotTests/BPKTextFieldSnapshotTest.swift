@@ -22,7 +22,7 @@ import FBSnapshotTestCase
 class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        recordMode = true
     }
     
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {
@@ -35,23 +35,22 @@ class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
     }
     
     func testTextFieldWithRegularFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles))
     }
     
     func testTextFieldWithHeadingFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .headingStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .headingStyles))
     }
     
     func testTextFieldWithHeroFontStyles() {
-        FBSnapshotVerifyView(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .heroStyles))
+        BPKSnapshotVerifyViewDark(createView(withStyles: .heroStyles))
     }
     
     func testTextFieldWithThemeApplied() {
-        BPKSnapshotVerifyViewLight(
-            createView(
-                withStyles: .regularStyles,
-                textColor: .orange
-            )
-        )
+        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles, textColor: .orange))
+        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles, textColor: .orange))
     }
 }

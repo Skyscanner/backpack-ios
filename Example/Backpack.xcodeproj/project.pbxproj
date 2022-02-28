@@ -15,6 +15,11 @@
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
 		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
+		538B55EE27C91329007BDE6B /* BPKSwitchSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */; };
+		538B55F027C915F9007BDE6B /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */; };
+		538B55F227C91793007BDE6B /* BPKToastSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */; };
+		538B55F527C93BE7007BDE6B /* BPKStarRatingSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */; };
+		538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */; };
 		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
 		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
 		53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */; };
@@ -22,7 +27,6 @@
 		53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */; };
 		53E897DA27B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */; };
 		53E897DC27B6EAC400A73444 /* BPKTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */; };
-		589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */; };
 		589FD45522DE092800F252E9 /* BPKStarRatingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 589FD45422DE092800F252E9 /* BPKStarRatingTest.m */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
 		58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */; };
@@ -35,7 +39,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */; };
 		60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60127A712021B6BC00703622 /* BPKSpacingTest.m */; };
 		603658D025E3E15D00A94126 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603658CF25E3E15D00A94126 /* Story.swift */; };
 		603658D825E3E1CF00A94126 /* ChipStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603658D725E3E1CF00A94126 /* ChipStory.swift */; };
@@ -54,7 +57,6 @@
 		60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CE0F9A2189FC5000309211 /* Switches.storyboard */; };
 		60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D302CE201B77F4006DBC18 /* BPKSpacingsViewController.m */; };
 		71BBEC91A179922B39796E66 /* Pods_Backpack_SnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */; };
-		760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */; };
 		760E41E5232BD50700A0CE8D /* ToastUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E4232BD50700A0CE8D /* ToastUITest.swift */; };
 		760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */; };
 		7639E567232909C7004D7B09 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639E566232909C7004D7B09 /* ToastViewController.swift */; };
@@ -197,7 +199,6 @@
 		D6D81D59213FEE800013BB96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
-		D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */; };
 		D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4CCB261F0713000BA351 /* HorizontalNavigationStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */; };
@@ -260,6 +261,10 @@
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeSnapshotTest.swift; sourceTree = "<group>"; };
 		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
+		538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSwitchSnapshotTest.swift; sourceTree = "<group>"; };
+		538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKToastSnapshotTest.swift; sourceTree = "<group>"; };
+		538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKStarRatingSnapshotTest.swift; sourceTree = "<group>"; };
+		538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKDialogViewSnapshotTest.swift; sourceTree = "<group>"; };
 		53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextViewSnapshotTests.swift; sourceTree = "<group>"; };
 		53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKLabelSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKButtonSnapshotTests.swift; sourceTree = "<group>"; };
@@ -269,7 +274,6 @@
 		53E897D927B6EA0D00A73444 /* BPKTappableLinkLabelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTappableLinkLabelTest.swift; sourceTree = "<group>"; };
 		53E897DB27B6EAB700A73444 /* BPKTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextFieldTest.swift; sourceTree = "<group>"; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
-		589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingSnapshotTest.m; sourceTree = "<group>"; };
 		589FD45422DE092800F252E9 /* BPKStarRatingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKStarRatingTest.m; sourceTree = "<group>"; };
 		58CFF14622D3837900C45B0B /* StarRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StarRatings.storyboard; sourceTree = "<group>"; };
 		58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsViewController.swift; sourceTree = "<group>"; };
@@ -286,7 +290,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSwitchSnapshotTest.m; sourceTree = "<group>"; };
 		60127A712021B6BC00703622 /* BPKSpacingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingTest.m; sourceTree = "<group>"; };
 		603658CF25E3E15D00A94126 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		603658D725E3E1CF00A94126 /* ChipStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipStory.swift; sourceTree = "<group>"; };
@@ -310,7 +313,6 @@
 		699EB6BD228CC6C604691703 /* Pods_Backpack_SnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_SnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		749A593BF4A88C859392AAF6 /* Pods-Backpack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKToastSnapshotTest.m; sourceTree = "<group>"; };
 		760E41E4232BD50700A0CE8D /* ToastUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUITest.swift; sourceTree = "<group>"; };
 		760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsDocViewController.swift; sourceTree = "<group>"; };
 		7639E566232909C7004D7B09 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
@@ -463,7 +465,6 @@
 		D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKPanelSnapshotTest.m; sourceTree = "<group>"; };
 		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
-		D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKDialogViewSnapshotTest.m; sourceTree = "<group>"; };
 		D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationItemWithBackground.swift; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4CCA261F0713000BA351 /* HorizontalNavigationStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationStory.swift; sourceTree = "<group>"; };
@@ -903,9 +904,9 @@
 				D28588B124586D2A005DE2E0 /* BPKBarChartSnapshotTest.m */,
 				D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */,
 				D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */,
+				538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
 				D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */,
-				D6ECFDC0216D06F50093F22A /* BPKDialogViewSnapshotTest.m */,
 				D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */,
 				D643B6D72142BEA6008AB669 /* BPKGradientSnapshotTests.m */,
 				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */,
@@ -923,10 +924,10 @@
 				764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */,
 				D269975323526E57006138D2 /* BPKSnapshotTest.h */,
 				3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */,
-				589FD45222DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m */,
-				600E2ACE218B119000E959B3 /* BPKSwitchSnapshotTest.m */,
 				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
-				760E41E1232A9BDC00A0CE8D /* BPKToastSnapshotTest.m */,
+				538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */,
+				538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */,
+				538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
 				D6178E70268C83DA00A17A7D /* Backpack_SnapshotTests-Bridging-Header.h */,
@@ -1485,34 +1486,35 @@
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
+				538B55F027C915F9007BDE6B /* BPKTextViewSnapshotTests.swift in Sources */,
 				5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */,
 				53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */,
+				538B55F227C91793007BDE6B /* BPKToastSnapshotTest.swift in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
+				538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */,
+				538B55F527C93BE7007BDE6B /* BPKStarRatingSnapshotTest.swift in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
 				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
 				D21AF45D2539EB2C00C8ED04 /* BPKOverlayViewSnapshotTest.m in Sources */,
-				589FD45322DDFFB500F252E9 /* BPKStarRatingSnapshotTest.m in Sources */,
 				53E897D827B6DE8200A73444 /* BPKTappableLinkLabelSnapshotTest.swift in Sources */,
 				53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */,
 				536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */,
 				D27055C425C9CD5C00EB9F66 /* BPKMapSnapshotTest.m in Sources */,
 				D28588B324586D33005DE2E0 /* BPKBarChartSnapshotTest.m in Sources */,
 				76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */,
-				D6ECFDC1216D06F50093F22A /* BPKDialogViewSnapshotTest.m in Sources */,
 				53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */,
-				600E2AD0218B119000E959B3 /* BPKSwitchSnapshotTest.m in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
 				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
 				D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */,
-				760E41E2232A9BDC00A0CE8D /* BPKToastSnapshotTest.m in Sources */,
 				D246C1F621665056001CB366 /* BPKCardSnapshotTest.m in Sources */,
 				D2CCB831243FB3AC00788DEC /* BPKBarChartBarSnapshotTest.m in Sources */,
 				D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m in Sources */,
+				538B55EE27C91329007BDE6B /* BPKSwitchSnapshotTest.swift in Sources */,
 				D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */,
 				D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */,
 			);

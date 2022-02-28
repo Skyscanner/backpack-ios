@@ -55,7 +55,7 @@ private let deviceFrame = CGRect(x: 0, y: 0, width: 375, height: 812)
 
 func viewsInStack<S>(
     withStyles styles: [S],
-    backgroundColor: UIColor = BPKColor.skyGrayTint06,
+    backgroundColor: UIColor = .clear,
     axis: NSLayoutConstraint.Axis = .vertical,
     _ viewProvider: ((S) -> UIView)
 ) -> UIView {

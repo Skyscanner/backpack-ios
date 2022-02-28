@@ -50,10 +50,10 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
     }
     
     private func createViews(style: BPKButtonStyle) -> UIView {
-        let stack = viewsInStack(withStyles: allTypes, backgroundColor: .clear, axis: .horizontal) { type in
+        let stack = viewsInStack(withStyles: allTypes, axis: .horizontal) { type in
             
-            viewsInStack(withStyles: allStates, backgroundColor: .clear) { state in
-                viewsInStack(withStyles: allSizes, backgroundColor: .clear) { size in
+            viewsInStack(withStyles: allStates) { state in
+                viewsInStack(withStyles: allSizes) { size in
                     let button = BPKButton(size: size, style: style)
                     button.isLoading = state == .loading || state == .loadingThemed
                     if type != .justIcon { button.title = "Button" }

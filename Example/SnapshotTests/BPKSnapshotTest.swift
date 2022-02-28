@@ -67,6 +67,17 @@ extension FBSnapshotTestCase {
             finalIdentifier = "\(finalIdentifier)_\(identifier)"
         }
         view.overrideUserInterfaceStyle = .dark
+        applyDarkMode(view)
+        
         FBSnapshotVerifyView(view, identifier: finalIdentifier)
+    }
+    
+    private func applyDarkMode(_ view: UIView?) {
+        guard let view = view else { return }
+        view.subviews.forEach { subview in
+            subview.overrideUserInterfaceStyle = .dark
+            subview.traitCollectionDidChange(UITraitCollection(userInterfaceStyle: .dark))
+            applyDarkMode(subview)
+        }
     }
 }
