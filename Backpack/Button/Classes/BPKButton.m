@@ -209,22 +209,25 @@ NS_ASSUME_NONNULL_BEGIN
     self.heightConstraint.constant = [self heightForSize:size];
 
     self.spinner.transform = [self spinnerTransformForSize:size];
-    [self updateConstraintsForType:self.isIconOnly];
+    [self updateConstraintsForType];
 }
 
-- (void)updateConstraintsForType:(BOOL)isIconOnly {
-    if (isIconOnly) {
-        [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.widthConstraint]];
-        [NSLayoutConstraint activateConstraints:@[self.widthConstraint]];
-        self.widthConstraint.constant = [self heightForSize:self.size];
-    } else if (self.style == BPKButtonStyleLink) {
+- (void)updateConstraintsForType {
+    if (self.style == BPKButtonStyleLink) {
         self.stackLeadingConstraint.constant = 0;
         self.stackTrailingConstraint.constant = 0;
+        [NSLayoutConstraint deactivateConstraints:@[self.heightConstraint, self.widthConstraint]];
+        return;
+    }
+    if (self.isIconOnly) {
+        [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
+        [NSLayoutConstraint activateConstraints:@[self.widthConstraint, self.heightConstraint]];
+        self.widthConstraint.constant = [self heightForSize:self.size];
     } else {
         [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
         self.stackLeadingConstraint.constant = BPKSpacingBase;
         self.stackTrailingConstraint.constant = -BPKSpacingBase;
-        [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
+        [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.heightConstraint]];
     }
 }
 
