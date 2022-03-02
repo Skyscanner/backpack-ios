@@ -162,8 +162,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
     self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
                                                                                     constant:-BPKSpacingBase];
-    self.stackTopConstraint = [self.contentStack.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant: 0];
-    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant: 0];
+    self.stackTopConstraint = [self.contentStack.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:0];
+    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:0];
 
     self.imagePosition = BPKButtonImagePositionTrailing;
 
@@ -256,7 +256,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
     [NSLayoutConstraint deactivateConstraints:@[self.stackTopConstraint, self.stackBottomConstraint]];
-    
+
     if (self.isIconOnly) {
         [self updateIconOnlyConstraints];
         return;
