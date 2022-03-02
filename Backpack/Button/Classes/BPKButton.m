@@ -55,6 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSLayoutConstraint *iconWidthConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackLeadingConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTrailingConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackTopConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackBottomConstraint;
+@property(nonatomic) NSDirectionalEdgeInsets customPaddings;
+@property(nonatomic) BOOL hasCustomPaddings;
 
 @end
 
@@ -158,6 +162,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
     self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
                                                                                     constant:-BPKSpacingBase];
+    self.stackTopConstraint = [self.contentStack.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant: 0];
+    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant: 0];
 
     self.imagePosition = BPKButtonImagePositionTrailing;
 
@@ -212,23 +218,54 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateConstraintsForType];
 }
 
+- (BOOL)shouldUseCustomPadding {
+    return self.style == BPKButtonStyleLink && self.hasCustomPaddings;
+}
+
+- (void)updateCustomPaddingConstraints {
+    self.stackLeadingConstraint.constant = self.customPaddings.leading;
+    self.stackTrailingConstraint.constant = self.customPaddings.trailing;
+    self.stackTopConstraint.constant = self.customPaddings.top;
+    self.stackBottomConstraint.constant = self.customPaddings.bottom;
+    [NSLayoutConstraint deactivateConstraints:@[self.heightConstraint, self.widthConstraint]];
+    [NSLayoutConstraint activateConstraints:@[self.stackTopConstraint, self.stackBottomConstraint]];
+}
+
+- (void)updateIconOnlyConstraints {
+    [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
+    [NSLayoutConstraint activateConstraints:@[self.widthConstraint, self.heightConstraint]];
+    self.widthConstraint.constant = [self heightForSize:self.size];
+}
+
+- (void)updateLinkConstraints {
+    self.stackLeadingConstraint.constant = 0;
+    self.stackTrailingConstraint.constant = 0;
+    [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
+}
+
+- (void)updateDefaultConstraints {
+    [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
+    self.stackLeadingConstraint.constant = BPKSpacingBase;
+    self.stackTrailingConstraint.constant = -BPKSpacingBase;
+    [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.heightConstraint]];
+}
+
 - (void)updateConstraintsForType {
-    if (self.style == BPKButtonStyleLink) {
-        self.stackLeadingConstraint.constant = 0;
-        self.stackTrailingConstraint.constant = 0;
-        [NSLayoutConstraint deactivateConstraints:@[self.heightConstraint, self.widthConstraint]];
+    if ([self shouldUseCustomPadding]) {
+        [self updateCustomPaddingConstraints];
         return;
     }
+    [NSLayoutConstraint deactivateConstraints:@[self.stackTopConstraint, self.stackBottomConstraint]];
+    
     if (self.isIconOnly) {
-        [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
-        [NSLayoutConstraint activateConstraints:@[self.widthConstraint, self.heightConstraint]];
-        self.widthConstraint.constant = [self heightForSize:self.size];
-    } else {
-        [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
-        self.stackLeadingConstraint.constant = BPKSpacingBase;
-        self.stackTrailingConstraint.constant = -BPKSpacingBase;
-        [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.heightConstraint]];
+        [self updateIconOnlyConstraints];
+        return;
     }
+    if (self.style == BPKButtonStyleLink) {
+        [self updateLinkConstraints];
+        return;
+    }
+    [self updateDefaultConstraints];
 }
 
 - (BOOL)hasTitle {
@@ -340,6 +377,12 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     _isLoading = isLoading;
     [self updateLoadingState];
+}
+
+- (void)setCustomPadding:(NSDirectionalEdgeInsets)padding {
+    self.customPaddings = padding;
+    self.hasCustomPaddings = YES;
+    [self updateLookAndFeel];
 }
 
 - (void)layoutSubviews {
