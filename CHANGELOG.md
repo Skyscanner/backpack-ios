@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.2
+
+**Added:**
+
+- Backpack/Button:
+  - A way to set custom paddings to support historic use cases. Marked it as deprecated as well.
+
 # 48.0.1
 
 **Fixed:**
