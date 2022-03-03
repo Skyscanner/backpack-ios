@@ -185,8 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
-        self.stackTopConstraint, self.stackBottomConstraint,
-        [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        self.stackTopConstraint, self.stackBottomConstraint, [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.iconHeightConstraint, self.iconWidthConstraint,
         self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
