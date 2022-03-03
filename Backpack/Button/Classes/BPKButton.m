@@ -162,8 +162,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
     self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
                                                                                     constant:-BPKSpacingBase];
-    self.stackTopConstraint = [self.contentStack.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:0];
-    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:0];
+    self.stackTopConstraint = [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor constant:0];
+    self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor constant:0];
 
     self.imagePosition = BPKButtonImagePositionTrailing;
 
@@ -185,9 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
-        [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor],
-        [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor],
-        [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        self.stackTopConstraint, self.stackBottomConstraint, [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.iconHeightConstraint, self.iconWidthConstraint,
         self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
@@ -223,12 +221,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateCustomPaddingConstraints {
-    self.stackLeadingConstraint.constant = self.customPaddings.leading;
-    self.stackTrailingConstraint.constant = self.customPaddings.trailing;
-    self.stackTopConstraint.constant = self.customPaddings.top;
-    self.stackBottomConstraint.constant = self.customPaddings.bottom;
+    [self.contentStack setLayoutMarginsRelativeArrangement:YES];
+    [self.contentStack setDirectionalLayoutMargins:self.customPaddings];
+    self.stackLeadingConstraint.constant = 0;
+    self.stackTrailingConstraint.constant = 0;
+    self.stackTopConstraint.constant = 0;
+    self.stackBottomConstraint.constant = 0;
     [NSLayoutConstraint deactivateConstraints:@[self.heightConstraint, self.widthConstraint]];
-    [NSLayoutConstraint activateConstraints:@[self.stackTopConstraint, self.stackBottomConstraint]];
 }
 
 - (void)updateIconOnlyConstraints {
@@ -255,8 +254,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self updateCustomPaddingConstraints];
         return;
     }
-    [NSLayoutConstraint deactivateConstraints:@[self.stackTopConstraint, self.stackBottomConstraint]];
-
+    [self.contentStack setLayoutMarginsRelativeArrangement:NO];
+    self.contentStack.directionalLayoutMargins = NSDirectionalEdgeInsetsZero;
     if (self.isIconOnly) {
         [self updateIconOnlyConstraints];
         return;

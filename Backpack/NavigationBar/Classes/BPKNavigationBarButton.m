@@ -24,7 +24,7 @@
 @implementation BPKNavigationBarButton
 
 - (instancetype)init {
-    self = [super initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
+    self = [super initWithSize:BPKButtonSizeLarge style:BPKButtonStyleLink];
     return self;
 }
 
