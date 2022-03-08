@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2021 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-/*
- * Note that in some places we are having to resolve the correct UIColors from dynamic values ourselves to ensure
- * that we support overriding UIViewController interface styles. if we allow UIKit to resolve them for us,
- * it may do so wrongly.
- * This is because UIKit only sets the UIView's trait collection on a handful of lifecycle methods, and we
- * are using dynamic colours outside of these. If we do not manually resolve colours using self.traitCollection,
- * then UIKit will fall back to using [UITraitCollection currentTraitCollection] which does not reflect the override.
  */
 
 #import "BPKButton.h"
