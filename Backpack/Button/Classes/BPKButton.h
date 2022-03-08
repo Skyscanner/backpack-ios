@@ -218,14 +218,6 @@ IB_DESIGNABLE @interface BPKButton : UIControl
  */
 @property(nonatomic) BOOL isLoading;
 
-/**
- * Set a specific padding for the button. Should only be used if the button's style is Link
- *
- * @deprecated use `setSize` instead
- * @see BPKButtonSize
- */
-- (void)setCustomPadding:(NSDirectionalEdgeInsets)padding __deprecated_msg("Changing paddings is not supported.");
-
 @end
 
 NS_ASSUME_NONNULL_END

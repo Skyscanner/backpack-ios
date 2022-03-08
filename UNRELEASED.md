@@ -4,7 +4,7 @@
 **Added:**
 
 - Backpack/Button:
-  - A way to set custom paddings to support historic use cases. Marked it as deprecated as well.
+  - Introduction of a Deprecated new Legacy Link utton, to support historic cases on the app.
 
 ## How to write a good changelog entry
 

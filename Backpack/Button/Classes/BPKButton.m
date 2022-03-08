@@ -57,8 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSLayoutConstraint *stackTrailingConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTopConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackBottomConstraint;
-@property(nonatomic) NSDirectionalEdgeInsets customPaddings;
-@property(nonatomic) BOOL hasCustomPaddings;
 
 @end
 
@@ -115,6 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BPKLabel *)createTitleLabel {
     BPKLabel *titleLabel = [[BPKLabel alloc] initWithFontStyle:[self fontStyleForSize:self.size]];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [titleLabel setUserInteractionEnabled:NO];
     return titleLabel;
 }
 
@@ -122,6 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     imageView.translatesAutoresizingMaskIntoConstraints = NO;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [imageView setUserInteractionEnabled:NO];
     return imageView;
 }
 
@@ -216,20 +216,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self updateConstraintsForType];
 }
 
-- (BOOL)shouldUseCustomPadding {
-    return self.style == BPKButtonStyleLink && self.hasCustomPaddings;
-}
-
-- (void)updateCustomPaddingConstraints {
-    [self.contentStack setLayoutMarginsRelativeArrangement:YES];
-    [self.contentStack setDirectionalLayoutMargins:self.customPaddings];
-    self.stackLeadingConstraint.constant = 0;
-    self.stackTrailingConstraint.constant = 0;
-    self.stackTopConstraint.constant = 0;
-    self.stackBottomConstraint.constant = 0;
-    [NSLayoutConstraint deactivateConstraints:@[self.heightConstraint, self.widthConstraint]];
-}
-
 - (void)updateIconOnlyConstraints {
     [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
     [NSLayoutConstraint activateConstraints:@[self.widthConstraint, self.heightConstraint]];
@@ -250,12 +236,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateConstraintsForType {
-    if ([self shouldUseCustomPadding]) {
-        [self updateCustomPaddingConstraints];
-        return;
-    }
-    [self.contentStack setLayoutMarginsRelativeArrangement:NO];
-    self.contentStack.directionalLayoutMargins = NSDirectionalEdgeInsetsZero;
     if (self.isIconOnly) {
         [self updateIconOnlyConstraints];
         return;
@@ -376,12 +356,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     _isLoading = isLoading;
     [self updateLoadingState];
-}
-
-- (void)setCustomPadding:(NSDirectionalEdgeInsets)padding {
-    self.customPaddings = padding;
-    self.hasCustomPaddings = YES;
-    [self updateLookAndFeel];
 }
 
 - (void)layoutSubviews {
