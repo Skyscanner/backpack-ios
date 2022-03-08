@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-#import "BPKButton.h"
 #import "BPKLegacyLinkButton.h"
+#import "BPKButton.h"
 #import "BPKButtonAppearance.h"
 #import "BPKButtonAppearanceSet.h"
-#import <Backpack/Backpack-Swift.h>
 #import "UIColor+BPKButton.h"
+#import <Backpack/Backpack-Swift.h>
 
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
--(UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
+- (UIColor *)applyHighlightToColor:(UIColor *)color highlighted:(BOOL)highlighted {
     return highlighted ? [UIColor dimColor:color] : color;
 }
 
