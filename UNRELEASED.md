@@ -4,7 +4,7 @@
 **Added:**
 
 - Backpack/Button:
-  - Introduction of a Deprecated new Legacy Link utton, to support historic cases on the app.
+  - Introduction of a Deprecated new Legacy Link Button, to support historic cases on the app.
 
 ## How to write a good changelog entry
 
