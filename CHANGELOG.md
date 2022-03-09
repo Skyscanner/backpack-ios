@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.3
+
+**Added:**
+
+- Backpack/Button:
+  - Introduction of a Deprecated new Legacy Link Button, to support historic cases on the app.
+
 # 48.0.2
 
 **Added:**
