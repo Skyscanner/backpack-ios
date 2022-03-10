@@ -9,11 +9,11 @@
 ```objective-c
 #import <Backpack/Label.h>
 
-BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
+BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextHero2];
 // Position label with autolayout or other method
 
 // Set font style for a specific range
-[label setFontStyle:BPKFontStyleTextLg range:NSMakeRange(12, 10)];
+[label setFontStyle:BPKFontStyleTextBodyDefault range:NSMakeRange(12, 10)];
 
 ```
 
@@ -22,11 +22,11 @@ BPKLabel *label = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBase];
 ```swift
 import Backpack
 
-let label = BPKLabel(fontStyle: .base)
+let label = BPKLabel(fontStyle: .textLabel2)
 // Position label with autolayout or other method
 
 // Set font style for a specific range
-label.setFontStyle(.textLg, range: NSRange(location: 12, length: 10))
+label.setFontStyle(.textHeading2, range: NSRange(location: 12, length: 10))
 
 ```
 
