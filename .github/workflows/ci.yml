@@ -30,7 +30,7 @@ jobs:
         run: echo "ImageVersion=$ImageVersion"  >> $GITHUB_ENV
 
       # Checkout the repo
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
       # This is hopefully somewhat more helpful:
