@@ -51,8 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIStackView *contentStack;
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *iconHeightConstraint;
-@property(nonatomic, strong) NSLayoutConstraint *iconWidthConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackLeadingConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTrailingConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTopConstraint;
@@ -157,8 +155,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:[self heightForSize:self.size]];
     // To use when just icon
     self.widthConstraint = [self.widthAnchor constraintEqualToConstant:[self heightForSize:self.size]];
-    self.iconHeightConstraint = [self.imageView.heightAnchor constraintGreaterThanOrEqualToConstant:14];
-    self.iconWidthConstraint = [self.imageView.widthAnchor constraintEqualToConstant:14];
     self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
     self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
                                                                                     constant:-BPKSpacingBase];
@@ -186,8 +182,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
         self.stackTopConstraint, self.stackBottomConstraint, [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
-        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.iconHeightConstraint, self.iconWidthConstraint,
-        self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.heightConstraint,
+        [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
     ]];
 }
@@ -208,8 +204,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateSize {
     BPKButtonSize size = self.size;
     self.titleLabel.fontStyle = [self fontStyleForSize:size];
-    self.iconHeightConstraint.constant = [self iconHeightForSize:size];
-    self.iconWidthConstraint.constant = self.iconHeightConstraint.constant;
     self.heightConstraint.constant = [self heightForSize:size];
 
     self.spinner.transform = [self spinnerTransformForSize:size];
@@ -401,15 +395,6 @@ NS_ASSUME_NONNULL_BEGIN
         return 36.0;
     case BPKButtonSizeLarge:
         return 48.0;
-    }
-}
-
-- (CGFloat)iconHeightForSize:(BPKButtonSize)size {
-    switch (size) {
-    case BPKButtonSizeDefault:
-        return 14;
-    case BPKButtonSizeLarge:
-        return 18;
     }
 }
 

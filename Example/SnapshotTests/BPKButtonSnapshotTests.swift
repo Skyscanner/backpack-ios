@@ -49,6 +49,12 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
         button.linkContentColor = .purple
     }
     
+    private func icon(forSize size: BPKButtonSize) -> UIImage {
+        let small = BPKIcon.makeSmallTemplateIcon(name:)
+        let large = BPKIcon.makeLargeTemplateIcon(name:)
+        return size == .large ? large(.longArrowRight) : small(.longArrowRight)
+    }
+    
     private func createViews(style: BPKButtonStyle) -> UIView {
         let stack = viewsInStack(withStyles: allTypes, axis: .horizontal) { type in
             
@@ -57,7 +63,7 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
                     let button = BPKButton(size: size, style: style)
                     button.isLoading = state == .loading || state == .loadingThemed
                     if type != .justIcon { button.title = "Button" }
-                    if type != .regular { button.setImage(BPKIcon.makeSmallTemplateIcon(name: .longArrowRight)) }
+                    if type != .regular { button.setImage(icon(forSize: size)) }
                     if type == .iconLeft { button.imagePosition = .leading }
                     if type == .iconRight { button.imagePosition = .trailing }
                     if state == .loadingThemed || state == .regularThemed {
