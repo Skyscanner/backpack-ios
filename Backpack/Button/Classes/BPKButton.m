@@ -182,8 +182,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
         self.stackTopConstraint, self.stackBottomConstraint, [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
-        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor],
-        self.heightConstraint, [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+        [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.heightConstraint,
+        [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
     ]];
 }
