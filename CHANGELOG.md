@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.4
+
+**Fixed:**
+
+- Backpack/Button:
+  - Fixing icon sizes on buttons
+
 # 48.0.3
 
 **Added:**
