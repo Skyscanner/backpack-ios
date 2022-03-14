@@ -84,5 +84,17 @@ class CalendarUITest: BackpackUITestCase {
         XCTAssertTrue(app.cells["March 16, 2020"].isSelected)
         XCTAssertTrue(app.cells["March 10, 2020"].isSelected)
         XCTAssertTrue(app.cells["March 13, 2020"].isSelected)
+        
+        collectionViewsQuery.cells["March 1, 2020"].staticTexts["1"].tap()
+        collectionViewsQuery.cells["March 3, 2020"].staticTexts["3"].tap()
+        collectionViewsQuery.cells["March 16, 2020"].staticTexts["16"].tap()
+        collectionViewsQuery.cells["March 10, 2020"].staticTexts["10"].tap()
+        collectionViewsQuery.cells["March 13, 2020"].staticTexts["13"].tap()
+        
+        XCTAssertFalse(app.cells["March 1, 2020"].isSelected)
+        XCTAssertFalse(app.cells["March 3, 2020"].isSelected)
+        XCTAssertFalse(app.cells["March 16, 2020"].isSelected)
+        XCTAssertFalse(app.cells["March 10, 2020"].isSelected)
+        XCTAssertFalse(app.cells["March 13, 2020"].isSelected)
     }
 }
