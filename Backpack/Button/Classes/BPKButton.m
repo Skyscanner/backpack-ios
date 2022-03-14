@@ -340,6 +340,18 @@ NS_ASSUME_NONNULL_BEGIN
     [super setSelected:selected];
 }
 
+- (void)setContentHuggingPriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis {
+    [super setContentHuggingPriority:priority forAxis:axis];
+    [self.titleLabel setContentHuggingPriority:priority forAxis:axis];
+    [self.imageView setContentHuggingPriority:priority forAxis:axis];
+}
+
+- (void)setContentCompressionResistancePriority:(UILayoutPriority)priority forAxis:(UILayoutConstraintAxis)axis {
+    [super setContentCompressionResistancePriority:priority forAxis:axis];
+    [self.titleLabel setContentCompressionResistancePriority:priority forAxis:axis];
+    [self.imageView setContentCompressionResistancePriority:priority forAxis:axis];
+}
+
 - (void)setHighlighted:(BOOL)highlighted {
     BPKAssertMainThread();
     [super setHighlighted:highlighted];
