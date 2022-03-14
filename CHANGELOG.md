@@ -1,5 +1,15 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.5
+
+**Added:**
+
+- Backpack/Button:
+  - Forwarding Content Compression Resistance and Hugging Priority to inner label and icon of the Button.
+
+- Backpack/Calendar:
+  - Adding UI Tests for happy paths for calendar
+
 # 48.0.4
 
 **Fixed:**
