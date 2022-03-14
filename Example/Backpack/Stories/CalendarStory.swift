@@ -35,21 +35,25 @@ enum CalendarStory: String, StoryGroup {
         let presentable = storyboard("CalendarViewController")
 
         return presentable.enrich {
-            let calendarVC = $0 as? CalendarViewController
+            guard let calendarVC = $0 as? CalendarViewController else { return }
 
             switch self {
             case .default:
                 break
             case .withMaxEnabledDate:
-                calendarVC?.maxEnabledDate = true
+                calendarVC.maxEnabledDate = true
             case .withCustomStyles:
-                calendarVC?.customStylesForDates = true
+                calendarVC.customStylesForDates = true
             case .withPrices:
-                calendarVC?.showPrices = true
+                calendarVC.showPrices = true
             case .alternativeBackgroundColor:
-                calendarVC?.alternativeBackgroundColor = true
+                calendarVC.alternativeBackgroundColor = true
             case .preselectedDates:
-                calendarVC?.preselectedDates = true
+                let startingDate = BPKSimpleDate(year: 2020, month: 1, day: 1)
+                let selectedDate1 = BPKSimpleDate(year: startingDate.year, month: startingDate.month + 2, day: 12)
+                let selectedDate2 = BPKSimpleDate(year: startingDate.year, month: startingDate.month + 2, day: 20)
+                calendarVC.preselectedDates = (selectedDate1, selectedDate2)
+                calendarVC.minDate = startingDate
             }
         }
     }

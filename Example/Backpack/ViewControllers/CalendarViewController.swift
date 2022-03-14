@@ -26,9 +26,10 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var customStylesForDates = false
     var showPrices = false
     var alternativeBackgroundColor = false
-    var preselectedDates = false
+    var preselectedDates: (BPKSimpleDate, BPKSimpleDate)?
     var currentMaxEnabledDate: Date?
     var calendar = BPKCalendar()
+    var minDate = BPKSimpleDate(date: Date(), for: Calendar(identifier: .gregorian))
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -64,14 +65,11 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
                 selectionConfiguration: singleSelectionConfiguration
             )
         }
-        if preselectedDates {
+        if let preselectedDates = preselectedDates {
             segmentedControl.selectedSegmentIndex = 1
             calendar.selectionConfiguration = rangeSelectionConfiguration
 
-            let currentDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
-            let selectedDate1 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 12)
-            let selectedDate2 = BPKSimpleDate(year: currentDate.year, month: currentDate.month + 2, day: 20)
-            calendar.selectedDates = [selectedDate1, selectedDate2]
+            calendar.selectedDates = [preselectedDates.0, preselectedDates.1]
         }
         myView.addSubview(calendar)
         calendar.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +79,7 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
             myView.trailingAnchor.constraint(equalTo: calendar.trailingAnchor),
             myView.bottomAnchor.constraint(equalTo: calendar.bottomAnchor)
         ])
-        calendar.minDate = BPKSimpleDate(date: Date(), for: calendar.gregorian)
+        calendar.minDate = minDate
         calendar.locale = Locale.current
         calendar.delegate = self
         if alternativeBackgroundColor {
