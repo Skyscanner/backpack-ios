@@ -42,9 +42,7 @@ class CalendarUITest: BackpackUITestCase {
         XCTAssertFalse(app.cells["March 12, 2020, Between departure and return date"].isSelected)
         XCTAssertFalse(app.cells["March 20, 2020, Between departure and return date"].isSelected)
     }
-    
-    
-    
+
     func testCanSelectDifferentDatesOnSingleSelectionCalendar() {
         let app = XCUIApplication()
         goToPreselectedDatesCalendar(app)
