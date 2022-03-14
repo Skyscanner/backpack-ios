@@ -3,6 +3,9 @@
 
 **Added:**
 
+- Backpack/Button:
+  - Forwarding Content Compression Resistance and Hugging Priority to inner label and icon of the Button.
+
 - Backpack/Calendar:
   - Adding UI Tests for happy paths for calendar
 
