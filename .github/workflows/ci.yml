@@ -69,7 +69,7 @@ jobs:
         run: bundle config path vendor/bundle
 
       - name: Cache Bundler install Gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -77,7 +77,7 @@ jobs:
             ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Cache Pods
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
