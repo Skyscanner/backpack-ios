@@ -119,12 +119,10 @@ static int const BPKSnackbarHeight = 60;
         [self.stackView addArrangedSubview:self.leftIconContainer];
         [self.stackView addArrangedSubview:self.titleLabel];
         [self.stackView addArrangedSubview:self.textLabel];
-        [self.stackView addArrangedSubview:actionContainer];
-        [self.stackView addSubview:actionContainer];
+        [self.snackbarView addSubview:actionContainer];
 
         [self.stackView setCustomSpacing:BPKSpacingMd afterView:self.leftIconContainer];
         [self.stackView setCustomSpacing:BPKSpacingSm afterView:self.titleLabel];
-        [self.stackView setCustomSpacing:BPKSpacingLg afterView:self.textLabel];
 
         self.snackbarView.layoutMargins = UIEdgeInsetsMake(0, BPKSpacingLg, 0, BPKSpacingLg);
 
@@ -133,8 +131,10 @@ static int const BPKSnackbarHeight = 60;
             [self.snackbarView.heightAnchor constraintEqualToAnchor:self.heightAnchor],
 
             [self.stackView.leadingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.leadingAnchor],
-            [self.stackView.trailingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.trailingAnchor],
             [self.stackView.heightAnchor constraintEqualToAnchor:self.snackbarView.heightAnchor],
+            [actionContainer.leadingAnchor constraintEqualToAnchor:self.stackView.trailingAnchor constant:BPKSpacingLg],
+            [actionContainer.trailingAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.trailingAnchor],
+            [actionContainer.centerYAnchor constraintEqualToAnchor:self.snackbarView.layoutMarginsGuide.centerYAnchor],
             [actionContainer.topAnchor constraintEqualToAnchor:self.actionButton.topAnchor],
             [actionContainer.leadingAnchor constraintLessThanOrEqualToAnchor:self.actionButton.leadingAnchor],
             [actionContainer.trailingAnchor constraintEqualToAnchor:self.actionButton.trailingAnchor],

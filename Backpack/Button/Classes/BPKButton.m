@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSLayoutConstraint *widthConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackLeadingConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTrailingConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackLeadingFallbackConstraint;
+@property(nonatomic, strong) NSLayoutConstraint *stackTrailingFallbackConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackTopConstraint;
 @property(nonatomic, strong) NSLayoutConstraint *stackBottomConstraint;
 
@@ -155,9 +157,16 @@ NS_ASSUME_NONNULL_BEGIN
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:[self heightForSize:self.size]];
     // To use when just icon
     self.widthConstraint = [self.widthAnchor constraintEqualToConstant:[self heightForSize:self.size]];
-    self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:BPKSpacingBase];
-    self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                                                                    constant:-BPKSpacingBase];
+    self.stackLeadingFallbackConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
+                                                                                          constant:BPKSpacingBase];
+    self.stackLeadingFallbackConstraint.priority = UILayoutPriorityDefaultLow;
+    self.stackTrailingFallbackConstraint = [self.contentStack.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+                                                                                            constant:-BPKSpacingBase];
+    self.stackTrailingFallbackConstraint.priority = UILayoutPriorityDefaultLow;
+    self.stackLeadingConstraint = [self.contentStack.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.leadingAnchor
+                                                                                               constant:BPKSpacingBase];
+    self.stackTrailingConstraint = [self.contentStack.trailingAnchor constraintLessThanOrEqualToAnchor:self.contentView.trailingAnchor
+                                                                                              constant:-BPKSpacingBase];
     self.stackTopConstraint = [self.contentStack.topAnchor constraintGreaterThanOrEqualToAnchor:self.contentView.topAnchor constant:0];
     self.stackBottomConstraint = [self.contentStack.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor constant:0];
 
@@ -181,7 +190,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor], self.stackLeadingConstraint, self.stackTrailingConstraint,
-        self.stackTopConstraint, self.stackBottomConstraint, [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        self.stackLeadingFallbackConstraint, self.stackTrailingFallbackConstraint, self.stackTopConstraint, self.stackBottomConstraint,
+        [self.contentStack.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.contentStack.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor], self.heightConstraint,
         [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
@@ -211,7 +221,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateIconOnlyConstraints {
-    [NSLayoutConstraint deactivateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint]];
+    [NSLayoutConstraint deactivateConstraints:@[
+        self.stackLeadingConstraint, self.stackTrailingConstraint, self.stackLeadingFallbackConstraint, self.stackTrailingFallbackConstraint
+    ]];
     [NSLayoutConstraint activateConstraints:@[self.widthConstraint, self.heightConstraint]];
     self.widthConstraint.constant = [self heightForSize:self.size];
 }
@@ -219,14 +231,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateLinkConstraints {
     self.stackLeadingConstraint.constant = 0;
     self.stackTrailingConstraint.constant = 0;
+    self.stackLeadingFallbackConstraint.constant = 0;
+    self.stackTrailingFallbackConstraint.constant = 0;
     [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
 }
 
 - (void)updateDefaultConstraints {
     [NSLayoutConstraint deactivateConstraints:@[self.widthConstraint]];
     self.stackLeadingConstraint.constant = BPKSpacingBase;
+    self.stackLeadingFallbackConstraint.constant = BPKSpacingBase;
     self.stackTrailingConstraint.constant = -BPKSpacingBase;
-    [NSLayoutConstraint activateConstraints:@[self.stackLeadingConstraint, self.stackTrailingConstraint, self.heightConstraint]];
+    self.stackTrailingFallbackConstraint.constant = -BPKSpacingBase;
+    [NSLayoutConstraint activateConstraints:@[
+        self.stackLeadingConstraint, self.stackTrailingConstraint, self.stackTrailingFallbackConstraint, self.stackLeadingFallbackConstraint,
+        self.heightConstraint
+    ]];
 }
 
 - (void)updateConstraintsForType {
@@ -242,7 +261,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)hasTitle {
-    return self.title != nil && self.title.length > 0;
+    return self.title != nil;
 }
 
 - (BOOL)hasIcon {
