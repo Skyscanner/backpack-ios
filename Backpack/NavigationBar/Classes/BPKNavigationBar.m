@@ -287,6 +287,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_rightButton) {
         _rightButton = [[BPKNavigationBarButton alloc] init];
         _rightButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _rightButton.title = @"";
         _rightButton.hidden = YES;
     }
     return _rightButton;
