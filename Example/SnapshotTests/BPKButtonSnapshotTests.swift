@@ -129,4 +129,18 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
         BPKSnapshotVerifyViewLight(createViews(style: .primaryOnLight))
         BPKSnapshotVerifyViewDark(createViews(style: .primaryOnLight))
     }
+    
+    func testBigButtonWithIconHasContentCentered() {
+        let stack = viewsInStack(withStyles: [BPKButtonImagePosition.leading, .trailing]) { position in
+            let button = BPKButton(size: .large, style: .primary)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.title = "Tap me"
+            button.setImage(icon(forSize: .large))
+            button.imagePosition = position
+            button.widthAnchor.constraint(equalToConstant: 300).isActive = true
+            return button
+        }
+        BPKSnapshotVerifyViewLight(stack)
+        
+    }
 }
