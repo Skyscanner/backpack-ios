@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.0.6
+
+**Added:**
+
+- Backpack/Button:
+  - Big buttons now center it's content to match usages on the app
+
 # 48.0.5
 
 **Added:**
