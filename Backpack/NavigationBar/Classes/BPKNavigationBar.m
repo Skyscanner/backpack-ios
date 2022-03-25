@@ -276,6 +276,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_leftButton) {
         _leftButton = [[BPKNavigationBarButton alloc] init];
         _leftButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _leftButton.title = @"";
         _leftButton.imagePosition = BPKButtonImagePositionLeading;
         _leftButton.hidden = YES;
     }
