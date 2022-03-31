@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithStyle:(BPKSpinnerStyle)style size:(BPKSpinnerSize)size {
     BPKAssertMainThread();
-    self = [super initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self = [super initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     if (self) {
         [self setupWithStyle:style size:size];
     }
@@ -102,9 +102,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIActivityIndicatorViewStyle)styleForSpinnerSize:(BPKSpinnerSize)size {
     switch (size) {
     case BPKSpinnerSizeDefault:
-        return UIActivityIndicatorViewStyleWhiteLarge;
+        return UIActivityIndicatorViewStyleLarge;
     case BPKSpinnerSizeSmall:
-        return UIActivityIndicatorViewStyleWhite;
+        return UIActivityIndicatorViewStyleMedium;
     default:
         NSAssert(NO, @"Undefined size: %d", (int)size);
         break;
