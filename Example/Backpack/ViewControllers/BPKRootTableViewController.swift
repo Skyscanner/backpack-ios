@@ -20,7 +20,10 @@ import UIKit
 import Backpack
 
 class BPKRootTableViewController: BPKNavigationViewController {
-    init() {
+    private let showSettingsView: () -> Void
+    
+    init(showSettingsView: @escaping () -> Void) {
+        self.showSettingsView = showSettingsView
         super.init(structure: NavigationData.appStructure)
     }
 
@@ -46,6 +49,6 @@ class BPKRootTableViewController: BPKNavigationViewController {
 
     @objc
     func didTapSettingsButton() {
-        ExampleApp.showSettingsView()
+        showSettingsView()
     }
 }

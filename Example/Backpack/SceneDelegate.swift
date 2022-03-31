@@ -34,7 +34,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let rootTableViewController = BPKRootTableViewController()
+        let rootTableViewController = BPKRootTableViewController {
+            ExampleApp(getKeyWindow: {
+                UIApplication.shared.windows.first(where: \.isKeyWindow)
+            }).showSettingsView()
+        }
         let navigationController = UINavigationController(rootViewController: rootTableViewController)
         window.rootViewController = navigationController
         

@@ -18,37 +18,23 @@
 
 import Backpack.Theme
 
-@objc
-class ExampleApp: UIApplication {
-    #if swift(>=4.2)
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-
-        if motion == .motionShake {
-            type(of: self).showSettingsView()
-        }
-
-        super.motionEnded(motion, with: event)
+class ExampleApp {
+    private let getKeyWindow: () -> UIWindow?
+    
+    init(getKeyWindow: @escaping () -> UIWindow?) {
+        self.getKeyWindow = getKeyWindow
     }
-    #else
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            type(of: self).showSettingsView()
-        }
-
-        super.motionEnded(motion, with: event)
-    }
-    #endif
 
     @objc
-    class func showSettingsView() {
+    func showSettingsView() {
         let storyboardName = "Main"
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
-        guard let rvc = UIApplication.shared.keyWindow?.rootViewController as? BPKContainerController else {
+        guard let rvc = getKeyWindow()?.rootViewController as? BPKContainerController else {
             return
         }
 
         let modalController = rvc.createIdenticalContainerController(forRootController: viewController)
-        UIApplication.shared.keyWindow?.topMostController()?.present(modalController, animated: true, completion: nil)
+        getKeyWindow()?.topMostController()?.present(modalController, animated: true, completion: nil)
     }
 }
