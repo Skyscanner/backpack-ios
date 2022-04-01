@@ -17,20 +17,14 @@
  * limitations under the License.
  */
 
-import Foundation
 import UIKit
 
 extension UIViewController {
-    var appDelegate: AppDelegate? {
+    private var appDelegate: AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
     }
 
     var isUITesting: Bool {
-        guard let delegate = appDelegate else {
-            assertionFailure("The apps delegate should be of type `BPKAppDelegate`")
-            return false
-        }
-
-        return delegate.isUITestingEnabled
+        appDelegate?.isUITestingEnabled ?? false
     }
 }

@@ -34,6 +34,7 @@ enum ToastStory: String, StoryGroup {
         return presentable.enrich {
             let toastVc = $0 as? ToastViewController
             toastVc?.type = toastViewControllerType
+            toastVc?.toastHideTime = toastVc?.isUITesting ?? false ? 0.1 : 6
         }
     }
 

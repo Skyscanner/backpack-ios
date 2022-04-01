@@ -21,26 +21,21 @@ import UIKit
 import Backpack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-    var isUITestingEnabled = false
+    
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        guard let window = UIWindowFactory().window(forScene: scene) else { return }
 
-    // swiftlint:disable indentation_width
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
-        self.isUITestingEnabled = ProcessInfo.processInfo.arguments.contains("UITests")
-        
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        
         let rootTableViewController = BPKRootTableViewController {
             ExampleApp(getKeyWindow: {
                 UIApplication.shared.windows.first(where: \.isKeyWindow)
             }).showSettingsView()
         }
-        let navigationController = UINavigationController(rootViewController: rootTableViewController)
-        window.rootViewController = navigationController
+        window.rootViewController = UINavigationController(rootViewController: rootTableViewController)
         
         if let rootVc = window.rootViewController, ThemeHelpers.isThemingSupported() {
             ThemeHelpers.applyAllThemes()
@@ -54,11 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if ThemeHelpers.forceDarkMode() {
             self.window?.overrideUserInterfaceStyle = .dark
-        }
-        
-        if self.isUITestingEnabled {
-            self.window?.layer.speed = 100
-            UIView.setAnimationsEnabled(false)
         }
     }
 }

@@ -21,6 +21,7 @@
 		538B55F527C93BE7007BDE6B /* BPKStarRatingSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */; };
 		538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */; };
 		53B5822127DA3CF4004101A3 /* CalendarUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B5822027DA3CF3004101A3 /* CalendarUITest.swift */; };
+		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
 		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
 		53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */; };
@@ -267,6 +268,7 @@
 		538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKStarRatingSnapshotTest.swift; sourceTree = "<group>"; };
 		538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKDialogViewSnapshotTest.swift; sourceTree = "<group>"; };
 		53B5822027DA3CF3004101A3 /* CalendarUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUITest.swift; sourceTree = "<group>"; };
+		53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowFactory.swift; sourceTree = "<group>"; };
 		53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKTextViewSnapshotTests.swift; sourceTree = "<group>"; };
 		53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKLabelSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKButtonSnapshotTests.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
 				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				793C2D5627852B9A0055AB9A /* SceneDelegate.swift */,
+				53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */,
 				793C2D5427852B640055AB9A /* AppDelegate.swift */,
 			);
 			name = "Example for Backpack";
@@ -1369,6 +1372,7 @@
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,
+				53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */,
 				D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */,
 				60D302CF201B77F4006DBC18 /* BPKSpacingsViewController.m in Sources */,
 				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,

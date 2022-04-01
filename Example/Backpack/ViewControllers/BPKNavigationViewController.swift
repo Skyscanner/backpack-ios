@@ -19,7 +19,7 @@
 import UIKit
 
 class BPKNavigationViewController: UITableViewController {
-    fileprivate static let cellIdentifier = "BPKNavigationViewControllerTableViewCell"
+    private let cellIdentifier = "BPKNavigationViewControllerTableViewCell"
 
     var appStructure = sectionify(items: NavigationData.appStructure)
 
@@ -39,10 +39,7 @@ class BPKNavigationViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView?.register(
-            UITableViewCell.self, forCellReuseIdentifier: BPKNavigationViewController.cellIdentifier
-        )
-        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,9 +55,7 @@ class BPKNavigationViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: BPKNavigationViewController.cellIdentifier, for: indexPath
-        )
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = appStructure[indexPath.section].rows[indexPath.row].name
         return cell
     }

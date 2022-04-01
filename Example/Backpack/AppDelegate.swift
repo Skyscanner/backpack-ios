@@ -31,19 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isUITestingEnabled = false
     
     // swiftlint:disable indentation_width
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.isUITestingEnabled = ProcessInfo.processInfo.arguments.contains("UITests")
-        
-        let relativeFontDefinition = BPKRelativeFontDefinition()
-        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace, size: 12)
-        let relativeAvailable = relativeTestFont != nil
-        let useRelative = !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") && relativeAvailable
-        
-        if useRelative {
-            BPKFont.setFontDefinition(relativeFontDefinition)
-        }
-        
+    fileprivate func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
@@ -61,18 +49,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ], for: .normal)
         
         BPKAppearance.apply()
-        
+    }
+    
+    private func setupRelativeFont() {
+        guard !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") else { return }
+        let relativeFontDefinition = BPKRelativeFontDefinition()
+        let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace, size: 12)
+        if relativeTestFont != nil {
+            BPKFont.setFontDefinition(relativeFontDefinition)
+        }
+    }
+    
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.isUITestingEnabled = ProcessInfo.processInfo.arguments.contains("UITests")
+        setupRelativeFont()
+        setupAppearance()
         AppCenter.start(withAppSecret: "$(APP_CENTER_SECRET)",
                         services: [Analytics.self, Crashes.self, Distribute.self])
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-    func application(_ application: UIApplication,
-                     configurationForConnecting connectingSceneSession: UISceneSession,
-                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }
