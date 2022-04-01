@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,10 +41,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2Eu-vd-4Ma" firstAttribute="centerX" secondItem="CmZ-QO-G9Q" secondAttribute="centerX" id="1N9-eC-fuF"/>
-                            <constraint firstItem="2Eu-vd-4Ma" firstAttribute="top" secondItem="1Or-8d-yCd" secondAttribute="bottom" constant="8" id="2wj-z1-rcg"/>
+                            <constraint firstItem="2Eu-vd-4Ma" firstAttribute="top" secondItem="aSY-Lo-V5I" secondAttribute="top" constant="8" id="2wj-z1-rcg"/>
                             <constraint firstItem="nIn-Se-Vyq" firstAttribute="top" secondItem="2Eu-vd-4Ma" secondAttribute="bottom" constant="8" id="Drf-Kg-WB0"/>
                             <constraint firstItem="nIn-Se-Vyq" firstAttribute="leading" secondItem="CmZ-QO-G9Q" secondAttribute="leading" id="GgG-Ff-bdk"/>
-                            <constraint firstItem="wK3-Q9-P0R" firstAttribute="top" secondItem="nIn-Se-Vyq" secondAttribute="bottom" id="dNB-d7-9Ni"/>
+                            <constraint firstItem="aSY-Lo-V5I" firstAttribute="bottom" secondItem="nIn-Se-Vyq" secondAttribute="bottom" id="dNB-d7-9Ni"/>
                             <constraint firstAttribute="trailing" secondItem="nIn-Se-Vyq" secondAttribute="trailing" id="pO9-69-J52"/>
                         </constraints>
                     </view>

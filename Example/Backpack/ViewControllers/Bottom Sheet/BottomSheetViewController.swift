@@ -31,11 +31,14 @@ final class BottomSheetViewController: UITableViewController {
 // MARK: - UITableViewDelegate
 extension BottomSheetViewController {
 
+    private var rootWindow: UIWindow? {
+        UIApplication.shared.windows.first(where: \.isKeyWindow)
+    }
+    
     // swiftlint:disable:next function_body_length cyclomatic_complexity
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let rootViewController =  UIApplication.shared.keyWindow?.rootViewController as?
-            BPKThemeContainerController else {
-                return
+        guard let rootViewController = rootWindow?.rootViewController as? BPKThemeContainerController else {
+            return
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
