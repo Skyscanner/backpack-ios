@@ -19,36 +19,19 @@
 import UIKit
 import Backpack
 
-class BPKRootTableViewController: BPKNavigationViewController {
-    private let showSettingsView: () -> Void
+class GroupsViewControllerFactory {
+    private let settingsButton: UIBarButtonItem?
     
-    init(showSettingsView: @escaping () -> Void) {
-        self.showSettingsView = showSettingsView
-        super.init(structure: NavigationData.appStructure)
+    init(settingsButton: UIBarButtonItem?) {
+        self.settingsButton = settingsButton
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.navigationItem.title = "Backpack"
-
-        if ThemeHelpers.isThemingSupported() {
-            let largeSettingsIcon = BPKIcon.makeLargeTemplateIcon(name: .settings)
-            let settingsButton: UIBarButtonItem = UIBarButtonItem()
-            settingsButton.image = largeSettingsIcon
-            settingsButton.accessibilityLabel = "Settings"
-            settingsButton.target = self
-            settingsButton.action = #selector(self.didTapSettingsButton)
-            self.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
+    
+    func groupsScreen(title: String, withGroups groups: [Components.Group]) -> UIViewController {
+        let home = GroupsViewController(groups: groups)
+        home.navigationItem.title = title
+        if let settingsButton = settingsButton {
+            home.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
         }
-    }
-
-    @objc
-    func didTapSettingsButton() {
-        showSettingsView()
+        return home
     }
 }

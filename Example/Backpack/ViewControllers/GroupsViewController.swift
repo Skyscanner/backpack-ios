@@ -18,64 +18,51 @@
 
 import UIKit
 
-class BPKNavigationViewController: UITableViewController {
+struct Components {
+    struct Group {
+        let title: String
+        let cells: [Cell]
+    }
+    
+    struct Cell {
+        let title: String
+        let onSelection: () -> Void
+    }
+}
+class GroupsViewController: UITableViewController {
     private let cellIdentifier = "BPKNavigationViewControllerTableViewCell"
 
-    var appStructure = sectionify(items: NavigationData.appStructure)
-
-    public init(structure: [Item]) {
+    let groups: [Components.Group]
+    
+    init(groups: [Components.Group]) {
+        self.groups = groups
         super.init(style: .grouped)
-
-        appStructure = sectionify(items: structure)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
-
-    convenience init() {
-        self.init(structure: NavigationData.appStructure)
-    }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        appStructure.count
+        groups.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        appStructure[section].name
+        groups.count > 0 ? groups[section].title : nil
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        appStructure[section].rows.count
+        groups[section].cells.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = appStructure[indexPath.section].rows[indexPath.row].name
+        cell.textLabel?.text = groups[indexPath.section].cells[indexPath.row].title
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = appStructure[indexPath.section].rows[indexPath.row].value
-        let resultingVC: UIViewController?
-
-        switch item.value {
-        case .story(let presentable):
-            resultingVC = presentable.makeViewController()
-        case .group(let items):
-            resultingVC = BPKNavigationViewController(structure: items)
-        }
-
-        guard let viewController = resultingVC else {
-            return
-        }
-
-        viewController.title = item.name
-        show(viewController, sender: self)
+        groups[indexPath.section].cells[indexPath.row].onSelection()
     }
 }
