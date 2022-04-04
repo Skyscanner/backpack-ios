@@ -33,9 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let groupsScreenFactory = GroupsViewControllerFactory(settingsButton: settingsButton)
         let presentableNavigator = PresentableNavigator(groupsScreenFactory: groupsScreenFactory)
         let groups = HomeGroupsProvider(
-            onPresentableSelected: presentableNavigator.present(presentable:),
-            goToChildGroups: presentableNavigator.present(title:groups:),
-            buttonGroups: ButtonsGroupsProvider(onPresentableSelected: presentableNavigator.present(presentable:))
+            tokens: TokenCells(navigator: presentableNavigator).cells(),
+            components: ComponentCells(navigator: presentableNavigator).cells()
         ).groups()
         let rootTableViewController = groupsScreenFactory
             .groupsScreen(title: "Backpack", withGroups: groups)
@@ -76,121 +75,70 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-protocol GroupsProvider {
-    func groups() -> [Components.Group]
+protocol CellDataSource {
+    var title: String { get }
+    func onSelected()
 }
 
-struct HomeGroupsProvider: GroupsProvider {
-    let onPresentableSelected: (Presentable) -> Void
-    let goToChildGroups: (String, [Components.Group]) -> Void
-    let buttonGroups: GroupsProvider
+struct GroupCellDataSource: CellDataSource {
+    var title: String
+    let groups: [Components.Group]
+    let showChilds: ([Components.Group]) -> Void
     
-    private func presentableCell(
-        _ title: String,
-        storyboardName: String? = nil,
-        storyboardIdentifier: String
-    ) -> Components.Cell {
-        Components.Cell(title: title, onSelection: {
-            let presentable = loadStoryboard(name: storyboardName ?? title, identifier: storyboardIdentifier)
-            self.onPresentableSelected(presentable)
-        })
+    func onSelected() {
+        showChilds(groups)
     }
+}
+
+struct SingleGroupProvider {
+    let cellDataSources: [CellDataSource]
     
-    private func presentableGroupCell(_ title: String, groups: [Components.Group]) -> Components.Cell {
-        Components.Cell(title: title) { self.goToChildGroups(title, groups) }
-    }
-    
-    private func presentableGroupCell(_ title: String, provider: GroupsProvider) -> Components.Cell {
-        presentableGroupCell(title, groups: provider.groups())
-    }
-    
-    private func presentableGroupCell(_ group: Components.Group) -> Components.Cell {
-        presentableGroupCell(group.title, groups: [
-            Components.Group(title: group.title, cells: group.cells)
-        ])
-    }
-    
-    private func gradients() -> Components.Cell { presentableGroupCell(
+    func groups() -> [Components.Group] {[
         Components.Group(
-            title: "Gradients",
-            cells: [
-                presentableCell(
-                    "Primary",
-                    storyboardName: "Gradients",
-                    storyboardIdentifier: "PrimaryGradientViewController"
-                ),
-                presentableCell(
-                    "Baseline Scrim",
-                    storyboardName: "Gradients",
-                    storyboardIdentifier: "GradientViewController"
-                )
-            ]
+            title: "",
+            cells: cellDataSources.map { dataSource in
+                Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
+            }
         )
-    )}
-    private func barCharts() -> Components.Cell { presentableCell(
-        "Bar charts",
-        storyboardName: "BarCharts",
-        storyboardIdentifier: "BarChartsViewController"
-    )}
-    private func bottomSheet() -> Components.Cell { presentableCell(
-        "Bottom sheet",
-        storyboardName: "BottomSheet",
-        storyboardIdentifier: "BottomSheetViewController"
-    )}
+    ]}
+}
+
+struct PresentableCellDataSource: CellDataSource {
+    struct Storyboard {
+        let name: String
+        let identifier: String
+        
+        static func named(_ name: String, on identifier: String) -> Storyboard {
+            Storyboard(name: name, identifier: identifier)
+        }
+    }
+    var title: String
+    let storyboard: Storyboard
+    let showPresentable: (Presentable) -> Void
+    
+    func onSelected() {
+        let presentable = loadStoryboard(name: storyboard.name, identifier: storyboard.identifier)
+        showPresentable(presentable)
+    }
+}
+
+struct HomeGroupsProvider {
+    let tokens: [CellDataSource]
+    let components: [CellDataSource]
+    
     func groups() -> [Components.Group] {
         [
             Components.Group(
-                title: "Components",
-                cells: [
-                    presentableCell("Colors", storyboardName: "Main", storyboardIdentifier: "ColorsViewController"),
-                    gradients(),
-                    presentableCell("Spacings", storyboardIdentifier: "SpacingsViewController"),
-                    presentableCell("Radii", storyboardIdentifier: "RadiiViewController"),
-                    presentableCell("Shadows", storyboardIdentifier: "ShadowsViewController")
-                ]
+                title: "Tokens",
+                cells: tokens.map { dataSource in
+                    Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
+                }
             ),
             Components.Group(
                 title: "Components",
-                cells: [
-                    presentableCell("Badges", storyboardIdentifier: "BadgesViewController"),
-                    barCharts(),
-                    bottomSheet(),
-                    presentableGroupCell("Buttons", provider: buttonGroups)
-                ]
-            )
-        ]
-    }
-}
-
-struct ButtonsGroupsProvider: GroupsProvider {
-    let onPresentableSelected: (Presentable) -> Void
-    
-    private func enrich(screen: UIViewController, style: BPKButtonStyle) {
-        guard let screen = screen as? BPKButtonsViewController else {
-            return
-        }
-        screen.style = style
-    }
-    
-    private func presentableCell(_ name: String, style: BPKButtonStyle) -> Components.Cell {
-        let presentable = loadStoryboard(name: "Buttons", identifier: "ButtonsViewController")
-            .enrich { enrich(screen: $0, style: style) }
-        return Components.Cell(title: name) { self.onPresentableSelected(presentable) }
-    }
-    
-    func groups() -> [Components.Group] {
-        [
-            Components.Group(
-                title: "Buttons",
-                cells: [
-                    presentableCell("Primary", style: .primary),
-                    presentableCell("Secondary", style: .secondary),
-                    presentableCell("Destructive", style: .destructive),
-                    presentableCell("Featured", style: .featured),
-                    presentableCell("Link", style: .link),
-                    presentableCell("Primary On Dark", style: .primaryOnDark),
-                    presentableCell("Primary On Light", style: .primaryOnLight)
-                ]
+                cells: components.map { dataSource in
+                    Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
+                }
             )
         ]
     }
