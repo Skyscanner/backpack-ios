@@ -23,9 +23,9 @@ let THEMEKEY = "theme"
 class Settings: NSObject {
 
     let userDefaults: UserDefaults
-    @objc static let sharedSettings = Settings(userDefaults: UserDefaults.standard)
+    static let sharedSettings = Settings(userDefaults: UserDefaults.standard)
 
-    @objc var activeTheme: ThemeHelpers.ThemeName {
+    var activeTheme: ThemeHelpers.ThemeName {
         get {
             guard let currentTheme = userDefaults.value(forKey: THEMEKEY) as? String else {
                 return .none
