@@ -86,7 +86,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
 		BB36C7EE82AEA4457426F7DE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* ExampleApp.swift */; };
+		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
@@ -348,7 +348,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
-		D2046EB02253FE2A002B7165 /* ExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
+		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
 		D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKExampleAppTitleAttributes.m; sourceTree = "<group>"; };
 		D20470422347878A00A1BE48 /* BPKExampleAppTitleAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKExampleAppTitleAttributes.h; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -660,7 +660,7 @@
 				6003F594195388D20070C39A /* Supporting Files */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				D205510722675DAE00BC5BCC /* LaunchScreen.xib */,
-				D2046EB02253FE2A002B7165 /* ExampleApp.swift */,
+				D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				D2A350B522143F0700DEA01F /* Settings.storyboard */,
@@ -1426,7 +1426,7 @@
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
-				D2046EB12253FE2A002B7165 /* ExampleApp.swift in Sources */,
+				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
 				53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */,
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
