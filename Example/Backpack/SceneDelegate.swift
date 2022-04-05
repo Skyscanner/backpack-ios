@@ -28,13 +28,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let window = UIWindowFactory().window(forScene: scene) else { return }
+        let isUITestRun = ProcessInfo.processInfo.arguments.contains("UITests")
+        guard let window = UIWindowFactory(isUITestsRun: isUITestRun).window(forScene: scene) else { return }
         
         let groupsScreenFactory = GroupsViewControllerFactory(settingsButton: settingsButton)
         let presentableNavigator = PresentableNavigator(groupsScreenFactory: groupsScreenFactory)
         let groups = HomeGroupsProvider(
             tokens: TokenCellsProvider(navigator: presentableNavigator).cells(),
-            components: ComponentCellsProvider(navigator: presentableNavigator).cells()
+            components: ComponentCellsProvider(
+                navigator: presentableNavigator,
+                isUITest: isUITestRun
+            ).cells()
         ).groups()
         let rootTableViewController = groupsScreenFactory
             .groupsScreen(title: "Backpack", withGroups: groups)
@@ -72,163 +76,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         ExampleApp(getKeyWindow: {
             UIApplication.shared.windows.first(where: \.isKeyWindow)
         }).showSettingsView()
-    }
-}
-
-protocol CellDataSource {
-    var title: String { get }
-    func onSelected()
-}
-
-extension CellDataSource {
-    var cell: Components.Cell {
-        Components.Cell(title: title, onSelection: onSelected)
-    }
-}
-
-struct GroupCellDataSource: CellDataSource {
-    var title: String
-    let groups: [Components.Group]
-    let showChilds: ([Components.Group]) -> Void
-    
-    func onSelected() {
-        showChilds(groups)
-    }
-}
-
-struct PresentableCellDataSource: CellDataSource {
-    var title: String
-    private let presentable: () -> Presentable
-    private let enrich: ((UIViewController) -> Void)?
-    private let showPresentable: (Presentable) -> Void
-    
-    private init(
-        title: String,
-        presentable: @escaping () -> Presentable,
-        enrich: ((UIViewController) -> Void)?,
-        showPresentable: @escaping (Presentable) -> Void
-    ) {
-        self.title = title
-        self.presentable = presentable
-        self.enrich = enrich
-        self.showPresentable = showPresentable
-    }
-    
-    private func decoratePresentable() -> Presentable {
-        guard let enrich = enrich else {
-            return presentable()
-        }
-        return presentable().enrich(enrich)
-    }
-    
-    func onSelected() {
-        showPresentable(decoratePresentable())
-    }
-}
-
-extension PresentableCellDataSource {
-    struct Storyboard {
-        fileprivate let name: String
-        fileprivate let identifier: String
-        
-        static func named(_ name: String, on identifier: String) -> Storyboard {
-            Storyboard(name: name, identifier: identifier)
-        }
-    }
-    
-    init(
-        title: String,
-        storyboard: Storyboard,
-        showPresentable: @escaping (Presentable) -> Void
-    ) {
-        self.title = title
-        self.presentable = { loadStoryboard(name: storyboard.name, identifier: storyboard.identifier) }
-        self.showPresentable = showPresentable
-        enrich = nil
-    }
-    
-    static func enrichable<Screen: UIViewController>(
-        title: String,
-        storyboard: Storyboard,
-        enrich: @escaping (Screen) -> Void,
-        showPresentable: @escaping (Presentable) -> Void
-    ) -> PresentableCellDataSource {
-        func handle(_ screen: UIViewController) {
-            guard let screen = screen as? Screen else { return }
-            enrich(screen)
-        }
-        return PresentableCellDataSource(
-            title: title,
-            presentable: { loadStoryboard(name: storyboard.name, identifier: storyboard.identifier) },
-            enrich: handle(_:),
-            showPresentable: showPresentable
-        )
-    }
-    
-    static func customEnrichable<Screen: UIViewController>(
-        title: String,
-        customController: @escaping () -> UIViewController,
-        enrich: @escaping (Screen) -> Void,
-        showPresentable: @escaping (Presentable) -> Void
-    ) -> PresentableCellDataSource {
-        func handle(_ screen: UIViewController) {
-            guard let screen = screen as? Screen else { return }
-            enrich(screen)
-        }
-        return PresentableCellDataSource(
-            title: title,
-            presentable: { CustomPresentable(generateViewController: customController) },
-            enrich: handle(_:),
-            showPresentable: showPresentable
-        )
-    }
-}
-
-struct SingleGroupProvider {
-    let cellDataSources: [CellDataSource]
-    
-    func groups() -> [Components.Group] {[
-        Components.Group(
-            title: "",
-            cells: cellDataSources.map { dataSource in
-                Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
-            }
-        )
-    ]}
-}
-
-struct HomeGroupsProvider {
-    let tokens: [Components.Cell]
-    let components: [Components.Cell]
-    
-    func groups() -> [Components.Group] {
-        [
-            Components.Group(
-                title: "Tokens",
-                cells: tokens
-            ),
-            Components.Group(
-                title: "Components",
-                cells: components
-            )
-        ]
-    }
-}
-
-class PresentableNavigator {
-    var navigationController: UINavigationController!
-    private let groupsScreenFactory: GroupsViewControllerFactory
-    
-    init(groupsScreenFactory: GroupsViewControllerFactory) {
-        self.groupsScreenFactory = groupsScreenFactory
-    }
-    
-    func present(presentable: Presentable) {
-        navigationController.pushViewController(presentable.makeViewController(), animated: true)
-    }
-    
-    func present(title: String, groups: [Components.Group]) {
-        let screen = groupsScreenFactory.groupsScreen(title: title, withGroups: groups)
-        navigationController.pushViewController(screen, animated: true)
     }
 }

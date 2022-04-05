@@ -18,15 +18,13 @@
 
 import UIKit
 
-class UIWindowFactory {
-    private func isUITestsRun() -> Bool {
-        return ProcessInfo.processInfo.arguments.contains("UITests")
-    }
+struct UIWindowFactory {
+    let isUITestsRun: Bool
     
     func window(forScene scene: UIScene) -> UIWindow? {
         guard let windowScene = (scene as? UIWindowScene) else { return nil }
         let window = UIWindow(windowScene: windowScene)
-        if isUITestsRun() {
+        if isUITestsRun {
             let uiTestWindow = UITestsUIWindowSceneDecorator(windowScene: windowScene)
             uiTestWindow.decoratee = window
             return uiTestWindow

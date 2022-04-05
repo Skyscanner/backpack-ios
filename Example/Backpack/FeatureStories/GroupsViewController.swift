@@ -18,17 +18,6 @@
 
 import UIKit
 
-struct Components {
-    struct Group {
-        let title: String
-        let cells: [Cell]
-    }
-    
-    struct Cell {
-        let title: String
-        let onSelection: () -> Void
-    }
-}
 class GroupsViewController: UITableViewController {
     private let cellIdentifier = "BPKNavigationViewControllerTableViewCell"
 
