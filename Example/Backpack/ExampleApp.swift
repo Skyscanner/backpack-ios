@@ -16,20 +16,16 @@
  * limitations under the License.
  */
 
-import Backpack.Theme
+import Backpack
+import UIKit
 
-struct SettingsScreenFactory {
-    let getKeyWindow: () -> UIWindow?
+class SettingsScreenFactory {
+    var rootThemedController: BPKContainerController!
 
-    func showSettingsView() {
+    func settingsViewController() -> UIViewController {
         let storyboardName = "Main"
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
-        guard let rvc = getKeyWindow()?.rootViewController as? BPKContainerController else {
-            return
-        }
-
-        let modalController = rvc.createIdenticalContainerController(forRootController: viewController)
-        getKeyWindow()?.topMostController()?.present(modalController, animated: true, completion: nil)
+        return rootThemedController.createIdenticalContainerController(forRootController: viewController)
     }
 }

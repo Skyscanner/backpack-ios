@@ -43,6 +43,7 @@
 		53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075B627FC9C010033147C /* PresentableNavigator.swift */; };
 		53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075B827FC9FAF0033147C /* StoryboardPresentable.swift */; };
 		53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BA27FC9FD30033147C /* CustomPresentable.swift */; };
+		53E075BE27FCBE8C0033147C /* RootViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */; };
 		53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
 		53E897D327B6D0D800A73444 /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
 		53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */; };
@@ -127,7 +128,6 @@
 		D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D263EA8B22B7B5D400569757 /* ThemeRegistry.swift */; };
 		D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */; };
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
-		D26E5A0B25A787060064D9F1 /* BPKRootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E5A0925A787060064D9F1 /* BPKRootTableViewController.swift */; };
 		D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E5A0A25A787060064D9F1 /* GroupsViewController.swift */; };
 		D27055C425C9CD5C00EB9F66 /* BPKMapSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */; };
 		D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */; };
@@ -293,6 +293,7 @@
 		53E075B627FC9C010033147C /* PresentableNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableNavigator.swift; sourceTree = "<group>"; };
 		53E075B827FC9FAF0033147C /* StoryboardPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardPresentable.swift; sourceTree = "<group>"; };
 		53E075BA27FC9FD30033147C /* CustomPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentable.swift; sourceTree = "<group>"; };
+		53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerFactory.swift; sourceTree = "<group>"; };
 		53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKLabelSnapshotTest.swift; sourceTree = "<group>"; };
 		53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKButtonSnapshotTests.swift; sourceTree = "<group>"; };
 		53E897D227B6D0D800A73444 /* FontStylesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStylesUtil.swift; sourceTree = "<group>"; };
@@ -391,7 +392,6 @@
 		D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableLinkLabelsSelectorViewController.swift; sourceTree = "<group>"; };
 		D269975323526E57006138D2 /* BPKSnapshotTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotTest.h; sourceTree = "<group>"; };
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
-		D26E5A0925A787060064D9F1 /* BPKRootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKRootTableViewController.swift; sourceTree = "<group>"; };
 		D26E5A0A25A787060064D9F1 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKMapSnapshotTest.m; sourceTree = "<group>"; };
 		D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKTabBarControllerSnapshotTest.m; sourceTree = "<group>"; };
@@ -687,6 +687,7 @@
 				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
 				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				793C2D5627852B9A0055AB9A /* SceneDelegate.swift */,
+				53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */,
 				53E075B627FC9C010033147C /* PresentableNavigator.swift */,
 				53B6DB5627FB6F930042B7C0 /* FeatureStories */,
 				53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */,
@@ -871,7 +872,6 @@
 		D655C515200F9B9200CB39AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D26E5A0925A787060064D9F1 /* BPKRootTableViewController.swift */,
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
 				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
@@ -1386,6 +1386,7 @@
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
+				53E075BE27FCBE8C0033147C /* RootViewControllerFactory.swift in Sources */,
 				793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */,
 				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
@@ -1410,7 +1411,6 @@
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
 				53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */,
-				D26E5A0B25A787060064D9F1 /* BPKRootTableViewController.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
 				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,

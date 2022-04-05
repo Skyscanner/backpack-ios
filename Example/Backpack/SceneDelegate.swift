@@ -22,6 +22,7 @@ import Backpack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    private let settingsScreenFactory = SettingsScreenFactory()
     
     func scene(
         _ scene: UIScene,
@@ -31,48 +32,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isUITestRun = ProcessInfo.processInfo.arguments.contains("UITests")
         guard let window = UIWindowFactory(isUITestsRun: isUITestRun).window(forScene: scene) else { return }
         
-        let groupsScreenFactory = GroupsViewControllerFactory(settingsButton: settingsButton)
-        let presentableNavigator = PresentableNavigator(groupsScreenFactory: groupsScreenFactory)
-        let groups = HomeGroupsProvider(
-            tokens: TokenCellsProvider(navigator: presentableNavigator).cells(),
-            components: ComponentCellsProvider(
-                navigator: presentableNavigator,
-                isUITest: isUITestRun
-            ).cells()
-        ).groups()
-        let rootTableViewController = groupsScreenFactory
-            .groupsScreen(title: "Backpack", withGroups: groups)
-        let navigationController = UINavigationController(rootViewController: rootTableViewController)
-        presentableNavigator.navigationController = navigationController
-        window.rootViewController = navigationController
-        
-        if let rootVc = window.rootViewController, ThemeHelpers.isThemingSupported() {
-            ThemeHelpers.applyAllThemes()
-            let activeTheme = ThemeHelpers.themeDefinition(forTheme: Settings.sharedSettings.activeTheme)
-            let themeController = BPKThemeContainerController(themeDefinition: activeTheme, rootViewController: rootVc)
-            window.rootViewController = themeController
+        window.rootViewController = rootViewController(isUITestRun: isUITestRun)
+        if ThemeHelpers.forceDarkMode() {
+            window.overrideUserInterfaceStyle = .dark
         }
-        
         self.window = window
         window.makeKeyAndVisible()
-        
-        if ThemeHelpers.forceDarkMode() {
-            self.window?.overrideUserInterfaceStyle = .dark
-        }
     }
     
-    private var settingsButton: UIBarButtonItem? {
-        if !ThemeHelpers.isThemingSupported() { return nil }
+    private func rootViewController(isUITestRun: Bool) -> UIViewController {
+        let presentableNavigator = PresentableNavigator()
+        
+        let defaultController = DefaultRootViewControllerFactory(
+            tokensProvider: TokenCellsProvider(navigator: presentableNavigator),
+            componentsProvider: ComponentCellsProvider(
+                navigator: presentableNavigator,
+                toastDuration: isUITestRun ? 0.1 : 5
+            )
+        ).create()
+        let navigationController = UINavigationController(rootViewController: defaultController)
+        defaultController.navigationItem.title = "Backpack"
+        presentableNavigator.navigationController = navigationController
+        
+        guard ThemeHelpers.isThemingSupported() else { return navigationController }
+        
+        let themed = ThemedViewControllerFactoryDecorator { navigationController }.create()
         let settingsButton = UIBarButtonItem()
         settingsButton.image = BPKIcon.makeLargeTemplateIcon(name: .settings)
         settingsButton.accessibilityLabel = "Settings"
         settingsButton.target = self
         settingsButton.action = #selector(didTapSettingsButton)
-        return settingsButton
+        defaultController.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
+        settingsScreenFactory.rootThemedController = themed as? BPKContainerController
+        return themed
     }
     
     @objc
     private func didTapSettingsButton() {
-        SettingsScreenFactory(getKeyWindow: { self.window }).showSettingsView()
+        let settings = settingsScreenFactory.settingsViewController()
+        self.window?.topMostController()?.present(settings, animated: true, completion: nil)
     }
 }

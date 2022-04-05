@@ -1,6 +1,6 @@
 struct ComponentCellsProvider {
     let navigator: PresentableNavigator
-    let isUITest: Bool
+    let toastDuration: TimeInterval
     
     private func show(presentable: Presentable) {
         navigator.present(presentable: presentable)
@@ -39,7 +39,7 @@ struct ComponentCellsProvider {
             tappableLinkLabels(),
             textField(),
             textViews(),
-            toasts(duration: isUITest ? 0.1 : 5)
+            toasts(duration: toastDuration)
         ]
         return dataSources.map(\.cell)
     }

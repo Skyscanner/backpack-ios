@@ -21,8 +21,8 @@ import Foundation
 import Backpack.Theme
 
 class ThemeRegistry: NSObject {
-
-@objc
+    
+    @objc
     class func register(theme: BPKThemeDefinition) {
         guard let themeContainerUIViewClass = theme.themeContainerClass as? UIAppearanceContainer.Type else {
             return
