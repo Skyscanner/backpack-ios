@@ -27,9 +27,6 @@ import Backpack
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    var isUITestingEnabled = false
-    
     // swiftlint:disable indentation_width
     fileprivate func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
@@ -60,9 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.isUITestingEnabled = ProcessInfo.processInfo.arguments.contains("UITests")
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         setupRelativeFont()
         setupAppearance()
         AppCenter.start(withAppSecret: "$(APP_CENTER_SECRET)",

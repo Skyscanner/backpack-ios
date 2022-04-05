@@ -18,14 +18,9 @@
 
 import Backpack.Theme
 
-class ExampleApp {
-    private let getKeyWindow: () -> UIWindow?
-    
-    init(getKeyWindow: @escaping () -> UIWindow?) {
-        self.getKeyWindow = getKeyWindow
-    }
+struct SettingsScreenFactory {
+    let getKeyWindow: () -> UIWindow?
 
-    @objc
     func showSettingsView() {
         let storyboardName = "Main"
         let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)

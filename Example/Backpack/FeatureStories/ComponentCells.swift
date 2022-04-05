@@ -21,6 +21,7 @@ struct ComponentCellsProvider {
             chips(),
             flare(),
             dialog(),
+            horizontalNavigation(),
             icon(),
             label(),
             navBar(),
@@ -38,7 +39,7 @@ struct ComponentCellsProvider {
             tappableLinkLabels(),
             textField(),
             textViews(),
-            toasts(duration: isUITest ? 0.1 : 6)
+            toasts(duration: isUITest ? 0.1 : 5)
         ]
         return dataSources.map(\.cell)
     }
@@ -108,6 +109,13 @@ extension ComponentCellsProvider {
             showChilds: { showChilds(title: "Dialogs", childs: $0) }
         )
     }
+    private func horizontalNavigation() -> CellDataSource {
+        GroupCellDataSource(
+            title: "Horizontal navigation",
+            groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChilds: { showChilds(title: "Horizontal navigation", childs: $0) }
+        )
+    }
     private func icon() -> CellDataSource {
         PresentableCellDataSource(
             title: "Icons",
@@ -146,7 +154,7 @@ extension ComponentCellsProvider {
     private func mapView() -> CellDataSource {
         GroupCellDataSource(
             title: "Map",
-            groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups(),
+            groups: MapGroupsProvider(showPresentable: show(presentable:)).groups(),
             showChilds: { showChilds(title: "Navigation bars", childs: $0) }
         )
     }

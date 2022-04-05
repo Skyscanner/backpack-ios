@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -17,14 +16,6 @@
  * limitations under the License.
  */
 
-import UIKit
-
-extension UIViewController {
-    private var appDelegate: AppDelegate? {
-        return UIApplication.shared.delegate as? AppDelegate
-    }
-
-    var isUITesting: Bool {
-        appDelegate?.isUITestingEnabled ?? false
-    }
+protocol Presentable {
+    func makeViewController() -> UIViewController
 }

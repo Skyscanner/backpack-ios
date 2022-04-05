@@ -73,8 +73,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @objc
     private func didTapSettingsButton() {
-        ExampleApp(getKeyWindow: {
-            UIApplication.shared.windows.first(where: \.isKeyWindow)
-        }).showSettingsView()
+        SettingsScreenFactory(getKeyWindow: { self.window }).showSettingsView()
     }
 }
