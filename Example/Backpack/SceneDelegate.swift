@@ -33,8 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let groupsScreenFactory = GroupsViewControllerFactory(settingsButton: settingsButton)
         let presentableNavigator = PresentableNavigator(groupsScreenFactory: groupsScreenFactory)
         let groups = HomeGroupsProvider(
-            tokens: TokenCells(navigator: presentableNavigator).cells(),
-            components: ComponentCells(navigator: presentableNavigator).cells()
+            tokens: TokenCellsProvider(navigator: presentableNavigator).cells(),
+            components: ComponentCellsProvider(navigator: presentableNavigator).cells()
         ).groups()
         let rootTableViewController = groupsScreenFactory
             .groupsScreen(title: "Backpack", withGroups: groups)
@@ -80,6 +80,12 @@ protocol CellDataSource {
     func onSelected()
 }
 
+extension CellDataSource {
+    var cell: Components.Cell {
+        Components.Cell(title: title, onSelection: onSelected)
+    }
+}
+
 struct GroupCellDataSource: CellDataSource {
     var title: String
     let groups: [Components.Group]
@@ -87,6 +93,94 @@ struct GroupCellDataSource: CellDataSource {
     
     func onSelected() {
         showChilds(groups)
+    }
+}
+
+struct PresentableCellDataSource: CellDataSource {
+    var title: String
+    private let presentable: () -> Presentable
+    private let enrich: ((UIViewController) -> Void)?
+    private let showPresentable: (Presentable) -> Void
+    
+    private init(
+        title: String,
+        presentable: @escaping () -> Presentable,
+        enrich: ((UIViewController) -> Void)?,
+        showPresentable: @escaping (Presentable) -> Void
+    ) {
+        self.title = title
+        self.presentable = presentable
+        self.enrich = enrich
+        self.showPresentable = showPresentable
+    }
+    
+    private func decoratePresentable() -> Presentable {
+        guard let enrich = enrich else {
+            return presentable()
+        }
+        return presentable().enrich(enrich)
+    }
+    
+    func onSelected() {
+        showPresentable(decoratePresentable())
+    }
+}
+
+extension PresentableCellDataSource {
+    struct Storyboard {
+        fileprivate let name: String
+        fileprivate let identifier: String
+        
+        static func named(_ name: String, on identifier: String) -> Storyboard {
+            Storyboard(name: name, identifier: identifier)
+        }
+    }
+    
+    init(
+        title: String,
+        storyboard: Storyboard,
+        showPresentable: @escaping (Presentable) -> Void
+    ) {
+        self.title = title
+        self.presentable = { loadStoryboard(name: storyboard.name, identifier: storyboard.identifier) }
+        self.showPresentable = showPresentable
+        enrich = nil
+    }
+    
+    static func enrichable<Screen: UIViewController>(
+        title: String,
+        storyboard: Storyboard,
+        enrich: @escaping (Screen) -> Void,
+        showPresentable: @escaping (Presentable) -> Void
+    ) -> PresentableCellDataSource {
+        func handle(_ screen: UIViewController) {
+            guard let screen = screen as? Screen else { return }
+            enrich(screen)
+        }
+        return PresentableCellDataSource(
+            title: title,
+            presentable: { loadStoryboard(name: storyboard.name, identifier: storyboard.identifier) },
+            enrich: handle(_:),
+            showPresentable: showPresentable
+        )
+    }
+    
+    static func customEnrichable<Screen: UIViewController>(
+        title: String,
+        customController: @escaping () -> UIViewController,
+        enrich: @escaping (Screen) -> Void,
+        showPresentable: @escaping (Presentable) -> Void
+    ) -> PresentableCellDataSource {
+        func handle(_ screen: UIViewController) {
+            guard let screen = screen as? Screen else { return }
+            enrich(screen)
+        }
+        return PresentableCellDataSource(
+            title: title,
+            presentable: { CustomPresentable(generateViewController: customController) },
+            enrich: handle(_:),
+            showPresentable: showPresentable
+        )
     }
 }
 
@@ -103,42 +197,19 @@ struct SingleGroupProvider {
     ]}
 }
 
-struct PresentableCellDataSource: CellDataSource {
-    struct Storyboard {
-        let name: String
-        let identifier: String
-        
-        static func named(_ name: String, on identifier: String) -> Storyboard {
-            Storyboard(name: name, identifier: identifier)
-        }
-    }
-    var title: String
-    let storyboard: Storyboard
-    let showPresentable: (Presentable) -> Void
-    
-    func onSelected() {
-        let presentable = loadStoryboard(name: storyboard.name, identifier: storyboard.identifier)
-        showPresentable(presentable)
-    }
-}
-
 struct HomeGroupsProvider {
-    let tokens: [CellDataSource]
-    let components: [CellDataSource]
+    let tokens: [Components.Cell]
+    let components: [Components.Cell]
     
     func groups() -> [Components.Group] {
         [
             Components.Group(
                 title: "Tokens",
-                cells: tokens.map { dataSource in
-                    Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
-                }
+                cells: tokens
             ),
             Components.Group(
                 title: "Components",
-                cells: components.map { dataSource in
-                    Components.Cell(title: dataSource.title, onSelection: dataSource.onSelected)
-                }
+                cells: components
             )
         ]
     }

@@ -1,4 +1,4 @@
-struct TokenCells {
+struct TokenCellsProvider {
     let navigator: PresentableNavigator
     
     private func show(presentable: Presentable) {
@@ -9,8 +9,8 @@ struct TokenCells {
         navigator.present(title: title, groups: childs)
     }
     
-    func cells() -> [CellDataSource] {
-        [
+    func cells() -> [Components.Cell] {
+        let dataSources: [CellDataSource] = [
             PresentableCellDataSource(
                 title: "Colors",
                 storyboard: .named("Main", on: "ColorsViewController"),
@@ -49,5 +49,6 @@ struct TokenCells {
                 showPresentable: show(presentable:)
             )
         ]
+        return dataSources.map(\.cell)
     }
 }
