@@ -54,7 +54,7 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
 
       - name: Install clang format
-        run: brew install clang-format@14.0.0
+        run: brew install clang-format@14
 
       - name: nvm install
         run: nvm install
