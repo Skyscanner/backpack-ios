@@ -53,17 +53,17 @@ struct TokenCellsProvider {
             ),
             PresentableCellDataSource(
                 title: "Spacings",
-                storyboard: .named("Spacings", on: "SpacingsViewController"),
+                storyboard: .named("Main", on: "SpacingsViewController"),
                 showPresentable: show(presentable:)
             ),
             PresentableCellDataSource(
                 title: "Radii",
-                storyboard: .named("Radii", on: "RadiiViewController"),
+                storyboard: .named("Main", on: "RadiiViewController"),
                 showPresentable: show(presentable:)
             ),
             PresentableCellDataSource(
                 title: "Shadows",
-                storyboard: .named("Shadows", on: "ShadowsViewController"),
+                storyboard: .named("Main", on: "ShadowsViewController"),
                 showPresentable: show(presentable:)
             )
         ]
