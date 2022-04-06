@@ -105,8 +105,7 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
  */
 + (UIImage *)iconNamed:(BPKIconName)name
                  color:(UIColor *)color
-                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:))
-                           __deprecated_msg("Use smallIconNamed or largeIconNamed instead");
+                  size:(BPKIconSize)size NS_SWIFT_NAME(makeIcon(name:color:size:)) __deprecated_msg("Use smallIconNamed or largeIconNamed instead");
 
 /**
  * Calculates the concrete point size a given BPKIconSize.
