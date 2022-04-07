@@ -29,6 +29,7 @@ enum ToastType {
 class ToastViewController: UIViewController {
     @IBOutlet weak var showButton: BPKButton!
     var type: ToastType = .defaultToast
+    var toastHideTime: TimeInterval = 6
 
     @IBAction func show(_ sender: BPKButton) {
         switch type {
@@ -58,7 +59,7 @@ class ToastViewController: UIViewController {
         toast.mode = .indeterminate
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
-        toast.hide(true, afterDelay: isUITesting ? 1.5: 5)
+        toast.hide(true, afterDelay: toastHideTime)
     }
 
     func showToastOnlyLabels() {
@@ -66,6 +67,6 @@ class ToastViewController: UIViewController {
         toast.mode = .text
         toast.labelText = "This is the title"
         toast.detailsLabelText = "Details label text"
-        toast.hide(true, afterDelay: isUITesting ? 0.1: 6)
+        toast.hide(true, afterDelay: toastHideTime)
     }
 }

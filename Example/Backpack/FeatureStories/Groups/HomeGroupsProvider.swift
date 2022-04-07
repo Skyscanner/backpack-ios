@@ -16,16 +16,20 @@
  * limitations under the License.
  */
 
-import Foundation
-
-struct ColorsStory: Story {
-
-    var title: String {
-        "Colors"
-    }
-
-    var presentableStory: Presentable {
-        let mainStoryboard = loadStoryboard(name: "Main")
-        return mainStoryboard("ColorsViewController")
+struct HomeGroupsProvider {
+    let tokens: [Components.Cell]
+    let components: [Components.Cell]
+    
+    func groups() -> [Components.Group] {
+        [
+            Components.Group(
+                title: "Tokens",
+                cells: tokens
+            ),
+            Components.Group(
+                title: "Components",
+                cells: components
+            )
+        ]
     }
 }

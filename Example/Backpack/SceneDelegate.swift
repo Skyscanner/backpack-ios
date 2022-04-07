@@ -21,44 +21,55 @@ import UIKit
 import Backpack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-    var isUITestingEnabled = false
-
-    // swiftlint:disable indentation_width
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
-        self.isUITestingEnabled = ProcessInfo.processInfo.arguments.contains("UITests")
+    private let settingsScreenFactory = SettingsScreenFactory()
+    
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        let isUITestRun = ProcessInfo.processInfo.arguments.contains("UITests")
+        guard let window = UIWindowFactory(isUITestsRun: isUITestRun).window(forScene: scene) else { return }
         
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        
-        let rootTableViewController = BPKRootTableViewController {
-            ExampleApp(getKeyWindow: {
-                UIApplication.shared.windows.first(where: \.isKeyWindow)
-            }).showSettingsView()
+        window.rootViewController = rootViewController(isUITestRun: isUITestRun)
+        if ThemeHelpers.forceDarkMode() {
+            window.overrideUserInterfaceStyle = .dark
         }
-        let navigationController = UINavigationController(rootViewController: rootTableViewController)
-        window.rootViewController = navigationController
-        
-        if let rootVc = window.rootViewController, ThemeHelpers.isThemingSupported() {
-            ThemeHelpers.applyAllThemes()
-            let activeTheme = ThemeHelpers.themeDefinition(forTheme: Settings.sharedSettings.activeTheme)
-            let themeController = BPKThemeContainerController(themeDefinition: activeTheme, rootViewController: rootVc)
-            window.rootViewController = themeController
-        }
-        
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    private func rootViewController(isUITestRun: Bool) -> UIViewController {
+        let presentableNavigator = PresentableNavigator()
         
-        if ThemeHelpers.forceDarkMode() {
-            self.window?.overrideUserInterfaceStyle = .dark
-        }
+        let defaultController = DefaultRootViewControllerFactory(
+            tokensProvider: TokenCellsProvider(navigator: presentableNavigator),
+            componentsProvider: ComponentCellsProvider(
+                navigator: presentableNavigator,
+                toastDuration: isUITestRun ? 0.1 : 5
+            )
+        ).create()
+        let navigationController = UINavigationController(rootViewController: defaultController)
+        defaultController.navigationItem.title = "Backpack"
+        presentableNavigator.navigationController = navigationController
         
-        if self.isUITestingEnabled {
-            self.window?.layer.speed = 100
-            UIView.setAnimationsEnabled(false)
-        }
+        guard ThemeHelpers.isThemingSupported() else { return navigationController }
+        
+        let themed = ThemedViewControllerFactoryDecorator { navigationController }.create()
+        let settingsButton = UIBarButtonItem()
+        settingsButton.image = BPKIcon.makeLargeTemplateIcon(name: .settings)
+        settingsButton.accessibilityLabel = "Settings"
+        settingsButton.target = self
+        settingsButton.action = #selector(didTapSettingsButton)
+        defaultController.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
+        settingsScreenFactory.rootThemedController = themed as? BPKContainerController
+        return themed
+    }
+    
+    @objc
+    private func didTapSettingsButton() {
+        let settings = settingsScreenFactory.settingsViewController()
+        self.window?.topMostController()?.present(settings, animated: true, completion: nil)
     }
 }

@@ -16,15 +16,16 @@
  * limitations under the License.
  */
 
-import Foundation
+import Backpack
+import UIKit
 
-protocol Story {
-    var presentableStory: Presentable { get }
-    var title: String { get }
-}
+class SettingsScreenFactory {
+    var rootThemedController: BPKContainerController!
 
-extension Story {
-    var example: Item {
-        Item(name: self.title, value: .story(self.presentableStory))
+    func settingsViewController() -> UIViewController {
+        let storyboardName = "Main"
+        let storyboard = UIStoryboard.init(name: storyboardName, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
+        return rootThemedController.createIdenticalContainerController(forRootController: viewController)
     }
 }

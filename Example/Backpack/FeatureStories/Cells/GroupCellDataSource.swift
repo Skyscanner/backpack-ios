@@ -16,27 +16,12 @@
  * limitations under the License.
  */
 
-import Foundation
-
-enum LabelStory: String, StoryGroup {
-    case `default` = "Default"
-    case performance = "Performance"
-    case multipleFontStyle = "Multiple font styles"
-
-    var title: String {
-        self.rawValue
-    }
-
-    var presentableStory: Presentable {
-        let storyboard = loadStoryboard(name: "Labels")
-
-        switch self {
-        case .default:
-            return storyboard("LabelsViewController")
-        case .performance:
-            return storyboard("LabelsPerformanceViewController")
-        case .multipleFontStyle:
-            return storyboard("LabelMultiFontStyleViewController")
-        }
+struct GroupCellDataSource: CellDataSource {
+    var title: String
+    let groups: [Components.Group]
+    let showChildren: ([Components.Group]) -> Void
+    
+    func onSelected() {
+        showChildren(groups)
     }
 }

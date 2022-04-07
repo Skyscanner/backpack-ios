@@ -16,28 +16,19 @@
  * limitations under the License.
  */
 
-import Foundation
+import UIKit
 
-enum MapStory: String, StoryGroup {
-    case `default` = "Default"
-    case performance = "Performance"
+class PresentableNavigator {
+    var navigationController: UINavigationController!
 
-    var title: String {
-        self.rawValue
+    func present(presentable: Presentable) {
+        navigationController.pushViewController(presentable.makeViewController(), animated: true)
     }
-
-    var presentableStory: Presentable {
-        let storyboard = loadStoryboard(name: "Map")
-        let presentable = storyboard("MapsViewController")
-
-        return presentable.enrich {
-            let mapViewController = $0 as? MapViewController
-
-            switch self {
-            case .performance:
-                mapViewController?.testPerformance = true
-            default: break
-            }
-        }
+    
+    func present(title: String, groups: [Components.Group]) {
+        navigationController.pushViewController(
+            GroupsViewController(groups: groups),
+            animated: true
+        )
     }
 }

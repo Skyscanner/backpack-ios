@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -17,6 +16,8 @@
  * limitations under the License.
  */
 
+import UIKit
+
 /**
  * Makes a UIViewController based on the storyboard name and identifier.
  */
@@ -33,21 +34,6 @@ struct StoryboardPresentable: Presentable {
 }
 
 /**
- * Loads a story board and returns a function that can create
- * a Presentable for a given view controller.
- *
- * parameter name: The name of the storyboard.
- * returns: A function that accespts a scene identifier and returns the presentable
- */
-func loadStoryboard(name: String) -> (String) -> Presentable {
-    let storyboard = UIStoryboard(name: name, bundle: nil)
-
-    return { sceneIdentier in
-        StoryboardPresentable(storyboard: storyboard, identifier: sceneIdentier)
-    }
-}
-
-/**
  * Loads a view controller from a given story board and returns a Presentable
  * that can instantiate this view controller.
  *
@@ -56,33 +42,8 @@ func loadStoryboard(name: String) -> (String) -> Presentable {
  * returns: The Presentable which can display the storyboard view controller
  */
 func loadStoryboard(name: String, identifier: String) -> Presentable {
-    loadStoryboard(name: name)(identifier)
-}
-
-/**
- * Makes a UIViewController by invoking a the supplied custom generator.
- */
-struct CustomPresentable: Presentable {
-    func makeViewController() -> UIViewController {
-        return generateViewController()
-    }
-
-    var generateViewController: () -> UIViewController
-}
-
-/**
- * Given two functions, returns a new function that, when invoked, will invoke the first function,
- * apply the second function to it, and return the resulting value.
- *
- * parameter fun: The function to apply to get the result.
- * parameter map: The function to apply to the result before returning.
- * returns: A function which, when invoked, applies the supplied functions and returns the result.
-*/
-func enrich<R>(_ fun: @escaping () -> R, _ map: @escaping (R) -> Void) -> () -> R {
-    return {
-        let result: R = fun()
-        map(result)
-
-        return result
-    }
+    StoryboardPresentable(
+        storyboard: UIStoryboard(name: name, bundle: nil),
+        identifier: identifier
+    )
 }

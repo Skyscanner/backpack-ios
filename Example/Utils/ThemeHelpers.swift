@@ -22,12 +22,10 @@ import Backpack.Theme
 
 class ThemeHelpers: NSObject {
 
-    @objc
     enum ThemeName: Int {
         case none = 0, springClean, london, hongKong, doha, silver
     }
 
-    @objc
     class func applyAllThemes() {
         apply(theme: BPKDefaultTheme())
         apply(theme: BPKSpringCleanTheme())
@@ -37,13 +35,11 @@ class ThemeHelpers: NSObject {
         apply(theme: BPKSilverTheme())
     }
 
-    @objc
     class func apply(theme: BPKThemeDefinition) {
         BPKTheme.apply(theme)
         ThemeRegistry.register(theme: theme)
     }
 
-    @objc
     class func isThemingSupported() -> Bool {
         return ProcessInfo.processInfo.environment["THEMING_ENABLED"] != "NO"
     }
@@ -53,12 +49,10 @@ class ThemeHelpers: NSObject {
         return ProcessInfo.processInfo.environment["OVERRIDE_INTERFACE_STLYE"] == "YES"
     }
 
-    @objc
     class func forceDarkMode() -> Bool {
         return ProcessInfo.processInfo.arguments.contains("FORCE_DARK_MODE")
     }
 
-    @objc
     class func themeDefinition(forTheme: ThemeName) -> BPKThemeDefinition {
         switch forTheme {
         case .none:

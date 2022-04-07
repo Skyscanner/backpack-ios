@@ -35,7 +35,7 @@ class ToastUITest: BackpackUITestCase {
             navigateAndShow()
         }
 
-        let exists = toastView.waitForExistence(timeout: 5)
+        let exists = toastView.exists
         XCTAssertTrue(exists, "The toast should have been shown")
     }
 

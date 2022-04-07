@@ -57,13 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-#if __BPK_DARK_MODE_SUPPORTED
     if (ThemeHelpers.overrideUserInterfaceStyle) {
-        if (@available(iOS 13.0, *)) {
-            self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-        }
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
-#endif
 
     if (self.style == BPKButtonStylePrimaryOnDark) {
         self.buttonsContainer.backgroundColor = BPKColor.skyBlueShade03;
