@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 struct ToastGroupsProvider {
     let showPresentable: (Presentable) -> Void
     let toastDuration: TimeInterval

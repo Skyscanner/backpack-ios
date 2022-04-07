@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 struct ComponentCellsProvider {
     let navigator: PresentableNavigator
     let toastDuration: TimeInterval
@@ -24,8 +26,8 @@ struct ComponentCellsProvider {
         navigator.present(presentable: presentable)
     }
     
-    private func showChilds(title: String, childs: [Components.Group]) {
-        navigator.present(title: title, groups: childs)
+    private func showChildren(title: String, children: [Components.Group]) {
+        navigator.present(title: title, groups: children)
     }
     
     func cells() -> [Components.Cell] {
@@ -89,49 +91,49 @@ extension ComponentCellsProvider {
         GroupCellDataSource(
             title: "Buttons",
             groups: ButtonGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Buttons", childs: $0) }
+            showChildren: { showChildren(title: "Buttons", children: $0) }
         )
     }
     private func calendar() -> CellDataSource {
         GroupCellDataSource(
             title: "Calendar",
             groups: CalendarGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Calendar", childs: $0) }
+            showChildren: { showChildren(title: "Calendar", children: $0) }
         )
     }
     private func card() -> CellDataSource {
         GroupCellDataSource(
             title: "Cards",
             groups: CardGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Cards", childs: $0) }
+            showChildren: { showChildren(title: "Cards", children: $0) }
         )
     }
     private func chips() -> CellDataSource {
         GroupCellDataSource(
             title: "Chips",
             groups: ChipsGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Chips", childs: $0) }
+            showChildren: { showChildren(title: "Chips", children: $0) }
         )
     }
     private func flare() -> CellDataSource {
         GroupCellDataSource(
             title: "Flare views",
             groups: FlareGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Flare views", childs: $0) }
+            showChildren: { showChildren(title: "Flare views", children: $0) }
         )
     }
     private func dialog() -> CellDataSource {
         GroupCellDataSource(
             title: "Dialogs",
             groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Dialogs", childs: $0) }
+            showChildren: { showChildren(title: "Dialogs", children: $0) }
         )
     }
     private func horizontalNavigation() -> CellDataSource {
         GroupCellDataSource(
             title: "Horizontal navigation",
             groups: HorizontalNavigationGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Horizontal navigation", childs: $0) }
+            showChildren: { showChildren(title: "Horizontal navigation", children: $0) }
         )
     }
     private func icon() -> CellDataSource {
@@ -145,14 +147,14 @@ extension ComponentCellsProvider {
         GroupCellDataSource(
             title: "Labels",
             groups: LabelGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Labels", childs: $0) }
+            showChildren: { showChildren(title: "Labels", children: $0) }
         )
     }
     private func navBar() -> CellDataSource {
         GroupCellDataSource(
             title: "Navigation bars",
             groups: NavBarGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Navigation bars", childs: $0) }
+            showChildren: { showChildren(title: "Navigation bars", children: $0) }
         )
     }
     private func nudger() -> CellDataSource {
@@ -173,7 +175,7 @@ extension ComponentCellsProvider {
         GroupCellDataSource(
             title: "Map",
             groups: MapGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChilds: { showChilds(title: "Navigation bars", childs: $0) }
+            showChildren: { showChildren(title: "Navigation bars", children: $0) }
         )
     }
     private func panels() -> CellDataSource {
@@ -260,7 +262,7 @@ extension ComponentCellsProvider {
                 showPresentable: show(presentable:),
                 toastDuration: duration
             ).groups(),
-            showChilds: { showChilds(title: "Toasts", childs: $0) }
+            showChildren: { showChildren(title: "Toasts", children: $0) }
         )
     }
 }

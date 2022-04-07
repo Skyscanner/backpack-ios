@@ -27,7 +27,7 @@ import Backpack
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // swiftlint:disable indentation_width
-    fileprivate func setupAppearance() {
+    private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,

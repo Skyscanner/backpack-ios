@@ -23,8 +23,8 @@ struct TokenCellsProvider {
         navigator.present(presentable: presentable)
     }
     
-    private func showChilds(for title: String, childs: [Components.Group]) {
-        navigator.present(title: title, groups: childs)
+    private func showChildren(for title: String, children: [Components.Group]) {
+        navigator.present(title: title, groups: children)
     }
     
     func cells() -> [Components.Cell] {
@@ -49,7 +49,7 @@ struct TokenCellsProvider {
                             showPresentable: show(presentable:)
                         )
                     ]).groups(),
-                showChilds: { showChilds(for: "Gradients", childs: $0) }
+                showChildren: { showChildren(for: "Gradients", children: $0) }
             ),
             PresentableCellDataSource(
                 title: "Spacings",
