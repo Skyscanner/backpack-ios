@@ -1,5 +1,15 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 48.1.0
+
+**Added:**
+
+- Backpack/Typography:
+  - Adding Label 3 font style.
+
+- Backpack/Buttons:
+  - Adding Secondary On Dark and Link On Dark
+  
 # 48.0.6
 
 **Added:**
