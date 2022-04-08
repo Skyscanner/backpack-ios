@@ -526,10 +526,10 @@ NS_ASSUME_NONNULL_BEGIN
         break; // not supporting theming for PrimaryOnDark
     case BPKButtonStylePrimaryOnLight:
         break; // not supporting theming for PimaryOnLight
-        case BPKButtonStyleLinkOnDark:
-            break; // not supporting theming for LinkOnDark
-        case BPKButtonStyleSecondaryOnDark:
-            break; // not supporting theming for SecondaryOnDark
+    case BPKButtonStyleLinkOnDark:
+        break; // not supporting theming for LinkOnDark
+    case BPKButtonStyleSecondaryOnDark:
+        break; // not supporting theming for SecondaryOnDark
     }
 
     return themedAppearance;
