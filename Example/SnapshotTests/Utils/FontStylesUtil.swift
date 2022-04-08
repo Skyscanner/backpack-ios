@@ -21,6 +21,7 @@ extension Array where Element == BPKFontStyle {
         [
             .textCaption,
             .textFootnote,
+            .textLabel3,
             .textLabel2,
             .textLabel1,
             .textBodyDefault,

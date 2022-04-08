@@ -105,6 +105,11 @@ typedef NS_ENUM(NSUInteger, BPKFontStyle) {
     BPKFontStyleTextLabel2 = 32,
 
     /**
+     * Represents font size 12 with weight UIFontWeightBold.
+     */
+    BPKFontStyleTextLabel3 = 36,
+
+    /**
      * Represents font size 24 with weight UIFontWeightRegular.
      */
     BPKFontStyleTextSubheading = 29,

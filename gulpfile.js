@@ -94,6 +94,7 @@ const FONT_ENUM_VALUES = {
   BPKFontStyleTextBodyLongform: 30,
   BPKFontStyleTextBodyDefault: 31,
 
+  BPKFontStyleTextLabel3: 36,
   BPKFontStyleTextLabel2: 32,
   BPKFontStyleTextLabel1: 33,
 

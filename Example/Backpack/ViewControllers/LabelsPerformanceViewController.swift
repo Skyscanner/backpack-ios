@@ -38,7 +38,10 @@ class LabelsPerformanceViewController: UIViewController {
         (.textHeading4, "Heading4"),
         (.textBodyDefault, "BodyDefault"),
         (.textFootnote, "Footnote"),
-        (.textCaption, "Caption")
+        (.textCaption, "Caption"),
+        (.textLabel1, "Label 1"),
+        (.textLabel2, "Label 2"),
+        (.textLabel3, "Label 3")
     ]
 
     override func viewDidLoad() {

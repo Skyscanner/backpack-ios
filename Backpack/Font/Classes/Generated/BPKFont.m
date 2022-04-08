@@ -168,6 +168,9 @@ NS_ASSUME_NONNULL_BEGIN
            case BPKFontStyleTextLabel2:
              return [fontManager semiboldFontWithSize:14];
              
+           case BPKFontStyleTextLabel3:
+             return [fontManager semiboldFontWithSize:12];
+             
            case BPKFontStyleTextSubheading:
              return [fontManager regularFontWithSize:24];
              
@@ -249,6 +252,9 @@ NS_ASSUME_NONNULL_BEGIN
         case BPKFontStyleTextLabel2: 
             // Corresponding to Line Height SM
             return 20;
+        case BPKFontStyleTextLabel3: 
+            // Corresponding to Line Height XS
+            return 16;
         case BPKFontStyleTextSubheading: 
             // Corresponding to Line Height XL
             return 32;
