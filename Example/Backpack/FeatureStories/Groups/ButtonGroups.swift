@@ -16,12 +16,19 @@
  * limitations under the License.
  */
 
+import Backpack
+
 struct ButtonGroupsProvider {
     let showPresentable: (Presentable) -> Void
     
-    private func presentable(_ title: String, style: BPKButtonStyle) -> CellDataSource {
+    private func presentable(
+        _ title: String,
+        style: BPKButtonStyle,
+        backgroundColor: UIColor = .systemBackground
+    ) -> CellDataSource {
         func enrich(screen: BPKButtonsViewController) {
             screen.style = style
+            screen.view?.backgroundColor = backgroundColor
         }
         return PresentableCellDataSource.enrichable(
             title: title,
@@ -36,10 +43,12 @@ struct ButtonGroupsProvider {
             cellDataSources: [
                 presentable("Primary", style: .primary),
                 presentable("Secondary", style: .secondary),
+                presentable("Secondary On Dark", style: .secondaryOnDark, backgroundColor: BPKColor.skyGray),
                 presentable("Destructive", style: .destructive),
                 presentable("Featured", style: .featured),
                 presentable("Link", style: .link),
-                presentable("Primary On Dark", style: .primaryOnDark),
+                presentable("Link On Dark", style: .linkOnDark, backgroundColor: BPKColor.skyGray),
+                presentable("Primary On Dark", style: .primaryOnDark, backgroundColor: BPKColor.skyGray),
                 presentable("Primary On Light", style: .primaryOnLight)
             ]
         ).groups()

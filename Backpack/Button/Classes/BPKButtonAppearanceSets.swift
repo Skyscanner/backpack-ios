@@ -41,6 +41,11 @@ public class BPKButtonAppearanceSets: NSObject {
         foreground: .bpk.skyGrayTint04.darkVariant(.bpk.blackTint03)
     )
     
+    private static var clearOnDarkDisabledAppearance = BPKButtonAppearance.with(
+        background: .clear,
+        foreground: .white.withAlphaComponent(0.2)
+    )
+    
     public static var primary = BPKButtonAppearanceSet(
         regularAppearance: .with(background: .bpk.monteverde, foreground: textPrimary),
         loading: disabledAppearance, disabledAppearance: disabledAppearance,
@@ -89,6 +94,18 @@ public class BPKButtonAppearanceSets: NSObject {
         )
     )
     
+    public static var linkOnDark = BPKButtonAppearanceSet(
+        regularAppearance: .with(
+            background: .clear,
+            foreground: .white
+        ),
+        loading: clearOnDarkDisabledAppearance, disabledAppearance: clearOnDarkDisabledAppearance,
+        highlightedAppearance: .with(
+            background: .clear,
+            foreground: .white.withAlphaComponent(0.6)
+        )
+    )
+    
     public static var primaryOnDark = BPKButtonAppearanceSet(
         regularAppearance: .with(
             background: .white,
@@ -98,6 +115,18 @@ public class BPKButtonAppearanceSets: NSObject {
         highlightedAppearance: .with(
             background: .bpk.skyGrayTint05,
             foreground: .bpk.skyGray
+        )
+    )
+    
+    public static var secondaryOnDark = BPKButtonAppearanceSet(
+        regularAppearance: .with(
+            background: .white.withAlphaComponent(0.1),
+            foreground: .white
+        ),
+        loading: nonDynamicDisabledAppearance, disabledAppearance: nonDynamicDisabledAppearance,
+        highlightedAppearance: .with(
+            background: .white.withAlphaComponent(0.15),
+            foreground: .white
         )
     )
     
@@ -117,9 +146,11 @@ public class BPKButtonAppearanceSets: NSObject {
         switch style {
         case .primary: return self.primary
         case .secondary: return self.secondary
+        case .secondaryOnDark: return self.secondaryOnDark
         case .destructive: return self.destructive
         case .featured: return self.featured
         case .link: return self.link
+        case .linkOnDark: return self.linkOnDark
         case .primaryOnDark: return self.primaryOnDark
         case .primaryOnLight: return self.primaryOnLight
         default: return self.primary

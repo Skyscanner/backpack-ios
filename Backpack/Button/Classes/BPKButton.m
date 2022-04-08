@@ -253,7 +253,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self updateIconOnlyConstraints];
         return;
     }
-    if (self.style == BPKButtonStyleLink) {
+    if (self.style == BPKButtonStyleLink || self.style == BPKButtonStyleLinkOnDark) {
         [self updateLinkConstraints];
         return;
     }
@@ -414,7 +414,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (CGFloat)cornerRadiusForStyle:(BPKButtonStyle)style {
-    if (style == BPKButtonStyleLink) {
+    if (style == BPKButtonStyleLink || style == BPKButtonStyleLinkOnDark) {
         return 0;
     }
     return BPKCornerRadiusSm;
@@ -526,6 +526,10 @@ NS_ASSUME_NONNULL_BEGIN
         break; // not supporting theming for PrimaryOnDark
     case BPKButtonStylePrimaryOnLight:
         break; // not supporting theming for PimaryOnLight
+    case BPKButtonStyleLinkOnDark:
+        break; // not supporting theming for LinkOnDark
+    case BPKButtonStyleSecondaryOnDark:
+        break; // not supporting theming for SecondaryOnDark
     }
 
     return themedAppearance;
