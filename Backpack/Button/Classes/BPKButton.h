@@ -74,6 +74,16 @@ typedef NS_ENUM(NSUInteger, BPKButtonStyle) {
      * Primary on Light button style, suitable for use on light coloured backgrounds.
      */
     BPKButtonStylePrimaryOnLight = 6,
+    
+    /**
+     * Secondary on Dark button style, suitable for use on dark coloured backgrounds.
+     */
+    BPKButtonStyleSecondaryOnDark = 7,
+    
+    /**
+     * Link on Dark button style, suitable for use on dark coloured backgrounds.
+     */
+    BPKButtonStyleLinkOnDark = 8,
 };
 
 /**

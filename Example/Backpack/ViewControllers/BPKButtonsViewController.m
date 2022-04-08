@@ -60,11 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (ThemeHelpers.overrideUserInterfaceStyle) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
-
-    if (self.style == BPKButtonStylePrimaryOnDark) {
-        self.buttonsContainer.backgroundColor = BPKColor.skyBlueShade03;
-        self.view.backgroundColor = BPKColor.skyBlueShade03;
-    }
     [self setupButtons];
 }
 

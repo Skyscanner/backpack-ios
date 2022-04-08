@@ -85,15 +85,6 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
         .regularThemed,
         .loadingThemed
     ]
-    private var allStyles: [BPKButtonStyle] = [
-        .primary,
-        .secondary,
-        .destructive,
-        .featured,
-        .link,
-        .primaryOnDark,
-        .primaryOnLight
-    ]
     
     func testDefaultPrimary() {
         BPKSnapshotVerifyViewLight(createViews(style: .primary))
@@ -128,6 +119,16 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
     func testDefaultPrimaryOnLight() {
         BPKSnapshotVerifyViewLight(createViews(style: .primaryOnLight))
         BPKSnapshotVerifyViewDark(createViews(style: .primaryOnLight))
+    }
+    
+    func testDefaultSecondaryOnDark() {
+        BPKSnapshotVerifyViewLight(createViews(style: .secondaryOnDark))
+        BPKSnapshotVerifyViewDark(createViews(style: .secondaryOnDark))
+    }
+    
+    func testDefaultLinkOnDark() {
+        BPKSnapshotVerifyViewLight(createViews(style: .linkOnDark))
+        BPKSnapshotVerifyViewDark(createViews(style: .linkOnDark))
     }
     
     func testBigButtonWithIconHasContentCentered() {

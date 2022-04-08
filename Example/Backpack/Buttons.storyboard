@@ -255,7 +255,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="fez-oG-XpD" secondAttribute="trailing" id="570-kq-MPi"/>
                                     <constraint firstItem="fqb-N5-Kfh" firstAttribute="top" secondItem="FEW-9A-aRv" secondAttribute="topMargin" id="C3B-aR-RSk"/>
