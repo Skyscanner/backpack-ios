@@ -33,7 +33,7 @@ struct SpacingsView: View {
             Spacer()
             ForEach(spacingTokens, id: \.0) { token in
                 HStack {
-                    Color(BPKColor.abisko)
+                    Color(BPKColor.skyBlue)
                         .frame(maxWidth: token.1, maxHeight: BPKSpacingLg)
                     Text("\(token.0) = \(token.1, specifier: "%.0f")")
                 }
