@@ -37,15 +37,13 @@ struct SpacingsView: View {
                         .frame(
                             maxWidth: token.1,
                             maxHeight: BPKSpacingLg)
-                    Color.white
-                        .frame(
-                            maxWidth: BPKSpacingXxl - token.1,
-                            maxHeight: BPKSpacingLg)
+                    Spacer()
                     Text("\(token.0) = \(token.1, specifier: "%.0f")")
                 }
             }
             Spacer()
         }
+        .padding()
     }
 }
 
