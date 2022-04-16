@@ -1,87 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Spacings-->
-        <scene sceneID="F2s-ME-Yp8">
-            <objects>
-                <viewController storyboardIdentifier="SpacingsViewController" title="Spacings" id="nQY-22-QjU" customClass="BPKSpacingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V8u-GX-Ikq"/>
-                        <viewControllerLayoutGuide type="bottom" id="IIH-co-1aQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mWn-uo-h3B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0ur-aP-5A7">
-                                <rect key="frame" x="167" y="252" width="41.5" height="163"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ya-ea-mAD" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LR5-bY-D8T" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="28.5" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mu-hl-qyW" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="57" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onU-Xq-RBS" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="85.5" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gj-mt-RB8" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="114" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEY-EC-ThN" customClass="BPKLabel">
-                                        <rect key="frame" x="0.0" y="142.5" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="0ur-aP-5A7" firstAttribute="centerY" secondItem="mWn-uo-h3B" secondAttribute="centerY" id="NCn-cE-QMt"/>
-                            <constraint firstItem="0ur-aP-5A7" firstAttribute="centerX" secondItem="mWn-uo-h3B" secondAttribute="centerX" id="mDH-88-ip0"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outletCollection property="labels" destination="0ya-ea-mAD" id="lDj-oi-lwV"/>
-                        <outletCollection property="labels" destination="LR5-bY-D8T" id="kyV-48-Ok1"/>
-                        <outletCollection property="labels" destination="0Mu-hl-qyW" id="LKa-fW-jD0"/>
-                        <outletCollection property="labels" destination="onU-Xq-RBS" id="78e-ba-Efk"/>
-                        <outletCollection property="labels" destination="2Gj-mt-RB8" id="FRh-rv-3Y1"/>
-                        <outletCollection property="labels" destination="JEY-EC-ThN" id="awc-rN-7AS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2iC-9W-foP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-569" y="1414"/>
-        </scene>
         <!--Colors-->
         <scene sceneID="d4t-AN-NKR">
             <objects>
@@ -511,22 +438,7 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="0Mu-hl-qyW">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="0ya-ea-mAD">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
         <designable name="0zq-Nk-d5B">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="2Gj-mt-RB8">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="JEY-EC-ThN">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="LR5-bY-D8T">
             <size key="intrinsicContentSize" width="41.5" height="20.5"/>
         </designable>
         <designable name="Msm-ko-uwP">
@@ -536,9 +448,6 @@
             <size key="intrinsicContentSize" width="41.5" height="20.5"/>
         </designable>
         <designable name="nv4-Qs-8EY">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
-        </designable>
-        <designable name="onU-Xq-RBS">
             <size key="intrinsicContentSize" width="41.5" height="20.5"/>
         </designable>
         <designable name="pu3-eU-M3o">

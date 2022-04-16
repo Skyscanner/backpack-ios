@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 struct TokenCellsProvider {
     let navigator: PresentableNavigator
     
@@ -51,11 +53,10 @@ struct TokenCellsProvider {
                     ]).groups(),
                 showChildren: { showChildren(for: "Gradients", children: $0) }
             ),
-            PresentableCellDataSource(
+            PresentableCellDataSource.swiftUI(
                 title: "Spacings",
-                storyboard: .named("Main", on: "SpacingsViewController"),
-                showPresentable: show(presentable:)
-            ),
+                view: { SpacingsView() },
+                showPresentable: show(presentable:)),
             PresentableCellDataSource(
                 title: "Radii",
                 storyboard: .named("Main", on: "RadiiViewController"),

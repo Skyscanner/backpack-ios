@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 struct PresentableCellDataSource: CellDataSource {
     var title: String
     private let presentable: () -> Presentable
@@ -113,6 +115,19 @@ extension PresentableCellDataSource {
         return PresentableCellDataSource(
             title: title,
             presentable: { CustomPresentable(generateViewController: customController) },
+            enrich: nil,
+            showPresentable: showPresentable
+        )
+    }
+    
+    static func swiftUI<Content: View>(
+        title: String,
+        view: @escaping () -> Content,
+        showPresentable: @escaping (Presentable) -> Void
+    ) -> PresentableCellDataSource {
+        return PresentableCellDataSource(
+            title: title,
+            presentable: { SwitUIPresentable(generateView: view) },
             enrich: nil,
             showPresentable: showPresentable
         )

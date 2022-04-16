@@ -1,7 +1,8 @@
+//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright © 2022 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +17,19 @@
  * limitations under the License.
  */
 
-#import <UIKit/UIKit.h>
+import Foundation
+import SwiftUI
 
-@interface BPKSpacingsViewController : UIViewController
+/**
+ * Makes a UIViewController by invoking a the supplied custom generator.
+ */
+struct SwitUIPresentable<Content: View>: Presentable {
+    func makeViewController() -> UIViewController {
+        let viewController = SwiftUIHostViewController<Content>()
+        viewController.content = generateView()
+        
+        return viewController
+    }
 
-@end
+    var generateView: () -> Content
+}
