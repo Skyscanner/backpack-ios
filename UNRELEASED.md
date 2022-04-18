@@ -3,7 +3,7 @@
 
 **Fixed:**
 
-- Upgraded to the current node lts - v16
+- Upgraded to the current node LTS - 16
 
 ## How to write a good changelog entry
 
