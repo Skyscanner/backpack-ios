@@ -65,7 +65,6 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		60127A722021B6BC00703622 /* BPKSpacingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60127A712021B6BC00703622 /* BPKSpacingTest.m */; };
 		6048F7762028B8CB00C53A8B /* BPKRadiiTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */; };
-		6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */; };
 		6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821621523A1300BF9F3E /* IconsViewController.swift */; };
 		6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */; };
 		60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CE0F982189F99200309211 /* SwitchesViewController.swift */; };
@@ -84,6 +83,7 @@
 		794E1FF0280A829D00B965FF /* SpacingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingsView.swift */; };
 		794E1FF4280A890F00B965FF /* SwiftUIPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF3280A890F00B965FF /* SwiftUIPresentable.swift */; };
 		794E1FF6280A8A0000B965FF /* SwiftUIHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* SwiftUIHostViewController.swift */; };
+		794E1FF8280CF63100B965FF /* RadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
@@ -322,8 +322,6 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60127A712021B6BC00703622 /* BPKSpacingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSpacingTest.m; sourceTree = "<group>"; };
 		6048F7752028B8CB00C53A8B /* BPKRadiiTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiTest.m; sourceTree = "<group>"; };
-		6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKRadiiViewController.h; sourceTree = "<group>"; };
-		6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKRadiiViewController.m; sourceTree = "<group>"; };
 		6055821621523A1300BF9F3E /* IconsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
@@ -345,6 +343,7 @@
 		794E1FEF280A829D00B965FF /* SpacingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingsView.swift; sourceTree = "<group>"; };
 		794E1FF3280A890F00B965FF /* SwiftUIPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPresentable.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* SwiftUIHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHostViewController.swift; sourceTree = "<group>"; };
+		794E1FF7280CF63100B965FF /* RadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusView.swift; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
@@ -773,6 +772,7 @@
 			isa = PBXGroup;
 			children = (
 				794E1FEF280A829D00B965FF /* SpacingsView.swift */,
+				794E1FF7280CF63100B965FF /* RadiusView.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
@@ -890,8 +890,6 @@
 				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
 				3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */,
 				3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */,
-				6048F77B2028BCE000C53A8B /* BPKRadiiViewController.h */,
-				6048F77C2028BCE000C53A8B /* BPKRadiiViewController.m */,
 				D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */,
 				D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */,
 				D698E64E219C528100D03060 /* CalendarViewController.swift */,
@@ -1421,11 +1419,11 @@
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
+				794E1FF8280CF63100B965FF /* RadiusView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
 				53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
-				6048F77D2028BCE000C53A8B /* BPKRadiiViewController.m in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,

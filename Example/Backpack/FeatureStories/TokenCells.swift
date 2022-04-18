@@ -57,11 +57,10 @@ struct TokenCellsProvider {
                 title: "Spacings",
                 view: { SpacingsView() },
                 showPresentable: show(presentable:)),
-            PresentableCellDataSource(
+            PresentableCellDataSource.swiftUI(
                 title: "Radii",
-                storyboard: .named("Main", on: "RadiiViewController"),
-                showPresentable: show(presentable:)
-            ),
+                view: { RadiusView() },
+                showPresentable: show(presentable:)),
             PresentableCellDataSource(
                 title: "Shadows",
                 storyboard: .named("Main", on: "ShadowsViewController"),
