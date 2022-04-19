@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "^12.13.0",
-    "npm": "^6.12.0"
+    "node": "^16.13.0",
+    "npm": "^8.1.0"
   },
   "scripts": {
-    "preinstall": "npx ensure-node-env",
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp && npm run spellcheck",
     "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
