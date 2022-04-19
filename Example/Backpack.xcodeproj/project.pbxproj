@@ -13,6 +13,7 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
+		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
 		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
 		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
 		538B55EE27C91329007BDE6B /* BPKSwitchSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */; };
@@ -78,7 +79,6 @@
 		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
 		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
-		764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */; };
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
@@ -263,6 +263,7 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnackbarSnapshotTest.swift; sourceTree = "<group>"; };
 		5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeSnapshotTest.swift; sourceTree = "<group>"; };
 		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
 		538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSwitchSnapshotTest.swift; sourceTree = "<group>"; };
@@ -338,7 +339,6 @@
 		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
 		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
-		764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKSnackbarSnapshotTest.m; sourceTree = "<group>"; };
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -949,12 +949,12 @@
 				D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */,
 				D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */,
 				D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */,
-				764D003D2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m */,
 				D269975323526E57006138D2 /* BPKSnapshotTest.h */,
 				3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */,
 				D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */,
 				538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */,
 				538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */,
+				5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */,
 				538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */,
 				D6B8D3B621417FFD00B0BFAB /* SnapshotTests-Info.plist */,
 				D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */,
@@ -1527,7 +1527,6 @@
 				538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */,
 				538B55F527C93BE7007BDE6B /* BPKStarRatingSnapshotTest.swift in Sources */,
 				D2BE85162305E2910055BD7D /* BPKFlareViewSnapshotTest.m in Sources */,
-				764D003E2382D12E00FE60AC /* BPKSnackbarSnapshotTest.m in Sources */,
 				D6A15060213FEEF000AAF968 /* BPKPanelSnapshotTest.m in Sources */,
 				D6B7C246220C917100671624 /* BPKIconViewSnapshotTest.m in Sources */,
 				D21AF45D2539EB2C00C8ED04 /* BPKOverlayViewSnapshotTest.m in Sources */,
@@ -1548,6 +1547,7 @@
 				D6CD7F0821BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m in Sources */,
 				538B55EE27C91329007BDE6B /* BPKSwitchSnapshotTest.swift in Sources */,
 				D6CD7F0621BEC8570030FAD7 /* BPKCalendarSnapshotTest.m in Sources */,
+				5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */,
 				D68A296C2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
