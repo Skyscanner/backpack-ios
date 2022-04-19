@@ -20,37 +20,29 @@
 import UIKit
 import SwiftUI
 
-class SwiftUIHostViewController<Content: View>: UIViewController {
+class ContentUIHostingController<Content: View>: UIViewController {
     
     public var content: Content?
-    private var contentView: UIHostingController<Content>?
-
+    private let contentView: UIHostingController<Content>
+    
+    init(_ content: Content) {
+        self.contentView = UIHostingController(rootView: content)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupContent()
+        addChild(contentView)
+        view.addSubview(contentView.view)
         setupConstraints()
     }
     
-    private func setupContent() {
-        guard let content = content else {
-            return
-        }
-
-        contentView = UIHostingController(rootView: content)
-        
-        guard let contentView = contentView else {
-            return
-        }
-
-        addChild(contentView)
-        view.addSubview(contentView.view)
-    }
-    
     private func setupConstraints() {
-        guard let contentView = contentView else {
-            return
-        }
-        
         contentView.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

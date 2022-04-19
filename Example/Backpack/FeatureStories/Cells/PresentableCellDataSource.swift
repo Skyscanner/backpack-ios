@@ -119,17 +119,4 @@ extension PresentableCellDataSource {
             showPresentable: showPresentable
         )
     }
-    
-    static func swiftUI<Content: View>(
-        title: String,
-        view: @escaping () -> Content,
-        showPresentable: @escaping (Presentable) -> Void
-    ) -> PresentableCellDataSource {
-        return PresentableCellDataSource(
-            title: title,
-            presentable: { SwitUIPresentable(generateView: view) },
-            enrich: nil,
-            showPresentable: showPresentable
-        )
-    }
 }

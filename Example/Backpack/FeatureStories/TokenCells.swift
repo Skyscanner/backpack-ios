@@ -53,14 +53,16 @@ struct TokenCellsProvider {
                     ]).groups(),
                 showChildren: { showChildren(for: "Gradients", children: $0) }
             ),
-            PresentableCellDataSource.swiftUI(
+            PresentableCellDataSource.custom(
                 title: "Spacings",
-                view: { SpacingsView() },
-                showPresentable: show(presentable:)),
-            PresentableCellDataSource.swiftUI(
+                customController: { ContentUIHostingController(SpacingsView()) },
+                showPresentable: show(presentable:)
+            ),
+            PresentableCellDataSource.custom(
                 title: "Radii",
-                view: { RadiusView() },
-                showPresentable: show(presentable:)),
+                customController: { ContentUIHostingController(RadiusView()) },
+                showPresentable: show(presentable:)
+            ),
             PresentableCellDataSource(
                 title: "Shadows",
                 storyboard: .named("Main", on: "ShadowsViewController"),
