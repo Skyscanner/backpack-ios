@@ -18,6 +18,7 @@
 
 #import <Backpack/Rating.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import "BPKSnapshotTest.h"
 
 @interface BPKRatingSnapshotTest : FBSnapshotTestCase
 @property(strong, nonatomic) BPKRatingTextDefinition *titleTextDefinition;
@@ -658,6 +659,19 @@ NS_ASSUME_NONNULL_BEGIN
     CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width / 1.5, fittingSize.height);
     FBSnapshotVerifyView(bpkRating, nil);
+}
+
+- (void)testRatingInDarkMode {
+    BPKRating *bpkRating = [[BPKRating alloc] initWithFrame:CGRectZero];
+    self.titleTextDefinition.highRatingText = @"High";
+    self.subTitleTextDefinition.highRatingText = @"High subtitle";
+    bpkRating.title = self.titleTextDefinition;
+    bpkRating.subtitle = self.subTitleTextDefinition;
+    bpkRating.layout = BPKRatingLayoutHorizontalPill;
+    bpkRating.ratingValue = 9.9;
+    CGSize fittingSize = [bpkRating systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    bpkRating.frame = CGRectMake(0.0, 0.0, fittingSize.width, fittingSize.height);
+    BPKSnapshotVerifyViewDark(bpkRating, nil);
 }
 
 @end
