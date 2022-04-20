@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SpacingsView: View {
+struct SpacingTokensView: View {
     let spacingTokens = [
         ("BPKSpacingSm", BPKSpacingSm),
         ("BPKSpacingMd", BPKSpacingMd),
@@ -49,6 +49,6 @@ struct SpacingsView: View {
 
 struct SpacingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SpacingsView()
+        SpacingTokensView()
     }
 }

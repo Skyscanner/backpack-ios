@@ -20,7 +20,7 @@
 import SwiftUI
 import Backpack
 
-struct RadiusView: View {
+struct RadiusTokensView: View {
     
     let radiusTokens = [
         ("BPKCornerRadiusXs", BPKCornerRadiusXs),
@@ -47,6 +47,6 @@ struct RadiusView: View {
 
 struct RadiusView_Previews: PreviewProvider {
     static var previews: some View {
-        RadiusView()
+        RadiusTokensView()
     }
 }

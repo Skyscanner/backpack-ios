@@ -80,9 +80,9 @@
 		76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
-		794E1FF0280A829D00B965FF /* SpacingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingsView.swift */; };
+		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
-		794E1FF8280CF63100B965FF /* RadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusView.swift */; };
+		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A15061AA3F67A79468DBC7A2 /* Pods_Backpack_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732AAEEA0C015F6E54AC4148 /* Pods_Backpack_Tests.framework */; };
@@ -339,9 +339,9 @@
 		76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKNavigationBarSnapshotTest.m; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		794E1FEF280A829D00B965FF /* SpacingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingsView.swift; sourceTree = "<group>"; };
+		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
-		794E1FF7280CF63100B965FF /* RadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusView.swift; sourceTree = "<group>"; };
+		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
 		7AF4BFD91A5D1EA30FE75098 /* Pods-Backpack_SnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_SnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_SnapshotTests/Pods-Backpack_SnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
@@ -768,8 +768,8 @@
 		794E1FEE280A828F00B965FF /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
-				794E1FEF280A829D00B965FF /* SpacingsView.swift */,
-				794E1FF7280CF63100B965FF /* RadiusView.swift */,
+				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
+				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
@@ -1416,7 +1416,7 @@
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
-				794E1FF8280CF63100B965FF /* RadiusView.swift in Sources */,
+				794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */,
 				53B6DB6A27FC73A90042B7C0 /* LabelGroups.swift in Sources */,
 				53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
@@ -1451,7 +1451,7 @@
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,
 				53E075AF27FC9B160033147C /* GroupCellDataSource.swift in Sources */,
-				794E1FF0280A829D00B965FF /* SpacingsView.swift in Sources */,
+				794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */,
 				53E075B127FC9B290033147C /* PresentableCellDataSource.swift in Sources */,
 				D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */,
 			);

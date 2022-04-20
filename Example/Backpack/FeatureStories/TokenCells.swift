@@ -55,12 +55,12 @@ struct TokenCellsProvider {
             ),
             PresentableCellDataSource.custom(
                 title: "Spacings",
-                customController: { ContentUIHostingController(SpacingsView()) },
+                customController: { ContentUIHostingController(SpacingTokensView()) },
                 showPresentable: show(presentable:)
             ),
             PresentableCellDataSource.custom(
                 title: "Radii",
-                customController: { ContentUIHostingController(RadiusView()) },
+                customController: { ContentUIHostingController(RadiusTokensView()) },
                 showPresentable: show(presentable:)
             ),
             PresentableCellDataSource(
