@@ -19,6 +19,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Panel.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import "BPKSnapshotTest.h"
 
 @interface BPKPanelSnapshotTest : FBSnapshotTestCase
 
@@ -64,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
     FBSnapshotVerifyView(parentView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
+    BPKSnapshotVerifyViewDark(parentView, nil);
 }
 
 - (void)testViewSnapshotElevated {
@@ -76,6 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
     FBSnapshotVerifyView(parentView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
+    BPKSnapshotVerifyViewDark(parentView, nil);
 }
 
 - (void)testViewSnapshotWithoutPadded {
@@ -87,6 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
     FBSnapshotVerifyView(parentView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
+    BPKSnapshotVerifyViewDark(parentView, nil);
 }
 
 - (void)testViewSnapshotWithPadded {
@@ -98,6 +105,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self configurePanel:panel withInnerView:innerView];
     [self configureParentView:parentView forPanel:panel];
     FBSnapshotVerifyView(parentView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
+    BPKSnapshotVerifyViewDark(parentView, nil);
 }
 
 @end
