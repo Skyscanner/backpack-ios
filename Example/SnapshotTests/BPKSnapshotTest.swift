@@ -76,6 +76,7 @@ extension FBSnapshotTestCase {
         guard let view = view else { return }
         view.subviews.forEach { subview in
             subview.overrideUserInterfaceStyle = .dark
+            usesDrawViewHierarchyInRect = true
             subview.traitCollectionDidChange(UITraitCollection(userInterfaceStyle: .dark))
             applyDarkMode(subview)
         }
