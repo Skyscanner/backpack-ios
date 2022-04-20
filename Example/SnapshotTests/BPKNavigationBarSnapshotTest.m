@@ -19,6 +19,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/NavigationBar.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import "BPKSnapshotTest.h"
 
 NSString *const CellIdentifier = @"CellId";
 
@@ -39,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupView {
     self.containerVC = [UIViewController new];
-    self.containerVC.view.backgroundColor = BPKColor.white;
+    self.containerVC.view.backgroundColor = BPKColor.backgroundColor;
 
     self.navigationBar = [[BPKNavigationBar alloc] initWithFrame:CGRectZero];
     self.navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -90,6 +91,28 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Tests
 - (void)testNavBarPosition {
     FBSnapshotVerifyView(self.containerVC.view, nil);
+}
+
+- (void)testExpandedDarkMode {
+    self.navigationBar.leftButton.title = @"Back";
+    self.navigationBar.leftButton.hidden = NO;
+    self.navigationBar.rightButton.title = @"Done";
+    self.navigationBar.rightButton.hidden = NO;
+    [self setUsesDrawViewHierarchyInRect:YES];
+    BPKSnapshotVerifyViewDark(self.containerVC.view, nil);
+}
+
+- (void)testCollapsedDarkMode {
+    [UIView setAnimationsEnabled:NO];
+    NSIndexPath *index = [NSIndexPath indexPathForRow:249 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    self.navigationBar.leftButton.title = @"Back";
+    self.navigationBar.leftButton.hidden = NO;
+    self.navigationBar.rightButton.title = @"Done";
+    self.navigationBar.rightButton.hidden = NO;
+    [self setUsesDrawViewHierarchyInRect:YES];
+    
+    BPKSnapshotVerifyViewDark(self.containerVC.view, nil);
 }
 
 - (void)testNavBarCollapsed {
