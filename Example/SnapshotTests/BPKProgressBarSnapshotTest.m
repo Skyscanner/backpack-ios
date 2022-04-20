@@ -49,6 +49,7 @@
     UIView *darkView = [self createSettingValueView];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
@@ -69,6 +70,7 @@
     UIView *darkView = [self createOverridingBackgroundColorView];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
@@ -89,6 +91,7 @@
     UIView *darkView = [self createThemeView];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
+    [self setUsesDrawViewHierarchyInRect:YES];
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
