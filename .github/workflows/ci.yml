@@ -134,7 +134,7 @@ jobs:
         working-directory: Example
 
       - name: Save assets
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
           name: FailureDiffs
