@@ -1,6 +1,6 @@
 [Unreleased changes](./UNRELEASED.md).
 
-# 48.1.1
+# 49.0.0
 
 **Added:**
 
