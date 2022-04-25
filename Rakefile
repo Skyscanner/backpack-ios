@@ -1,15 +1,16 @@
 require 'fileutils'
 require 'semver'
 
-FULL_TESTS = ENV['FULL_TESTS'] != 'false'
 BUILD_SDK = ENV['BUILD_SDK'] || 'iphonesimulator15.2'
 TEST_DEVICE_NAME = ENV['TEST_DEVICE_NAME'] || 'iPhone 8'
 DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
-EXAMPLE_SCHEMA = 'Backpack Native'
+EXAMPLE_SCHEME = 'Backpack Native'
+SWIFTUI_SCHEME = 'Backpack-SwiftUI'
 UNIT_TEST_SCHEMA = 'Backpack Native Unit Tests'
 VERSION_FORMAT = '%M.%m.%p%s%d'
-PODSPEC = 'Backpack.podspec'
+UIKIT_PODSPEC = 'Backpack.podspec'
+SWIFTUI_PODSPEC = 'Backpack.podspec'
 MAX_TEST_REPEATS = 3
 ANALYZE_FAIL_MESSAGE = '⚠️'
 SWIFT = ENV['SWIFT'] || '5.0'
@@ -56,7 +57,7 @@ def repeat_on_fail(command, run_count = 1)
   end
 
   puts "Running process. This is attempt #{run_count} of #{MAX_TEST_REPEATS}."
-  `#{command}`
+  sh command
   if $?.exitstatus == 0
     puts "Process succeeded on attempt #{run_count}."
   else
@@ -85,8 +86,8 @@ namespace :git do
 end
 
 desc "Check for build-time errors and warnings"
-task :analyze do
-  sh "set -o pipefail && xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty"
+task :analyze, [:scheme] do |t, args|
+  sh "set -o pipefail && xcodebuild -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{args[:scheme]}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty"
 end
 
 desc "Erase content and settings from all iPhone simulators"
@@ -95,9 +96,8 @@ task :erase_devices do
 end
 
 desc "Run unit tests up to #{MAX_TEST_REPEATS} times until they pass"
-task :test do
-  only_testing = FULL_TESTS ? '' : '-only-testing:Backpack_Tests'
-  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{EXAMPLE_SCHEMA}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" #{only_testing} ONLY_ACTIVE_ARCH=YES | xcpretty"
+task :test, [:scheme] do |t, args|
+  test_command = "set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{args[:scheme]}\" SWIFT_VERSION=#{SWIFT} -sdk #{BUILD_SDK} -destination \"#{DESTINATION}\" ONLY_ACTIVE_ARCH=YES | xcpretty"
   repeat_on_fail(test_command)
 end
 
@@ -124,8 +124,20 @@ task :git_checks do
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 end
 
-task ci: [:erase_devices, :all_checks]
-task all_checks: [:lint, :analyze, :test]
+task ci: [:erase_devices, :ci_uikit, :ci_swiftui]
+
+task :ci_uikit do
+  task(:all_checks).invoke(EXAMPLE_SCHEME)
+end
+
+task :ci_swiftui do
+  task(:all_checks).invoke(SWIFTUI_SCHEME)
+end
+
+task :all_checks, [:scheme] => [:lint] do |tasks, args|
+  task(:analyze).invoke(args[:scheme])
+  task(:test).invoke(args[:scheme])
+end
 
 task :release_no_checks do
   sh "npm ci"
@@ -161,30 +173,52 @@ task :release_no_checks do
   puts "New version will be #{green(version)}"
 
   version_string = version.format(VERSION_FORMAT)
-  puts "Updating podspec."
-  contents = File.read(PODSPEC)
-  contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{version_string}\"")
-  File.open(PODSPEC, 'w') { |file| file.puts contents }
-  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(PODSPEC)
 
-  has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
-  abort red "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry
+  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
+  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
+  task(:check_changelog_version).invoke(version_string)
   abort red "Installing pods in the Example project failed" unless install_pods_in_example_project
-
-  puts "Comitting, tagging, and pushing"
-  message = "[Release] Version #{version_string}"
-  sh "git commit -am '#{message}'"
-  sh "git tag #{version_string} -m '#{message}'"
-  sh "git push  --follow-tags"
-
-  puts "Pushing to CocoaPods trunk."
-  sh "bundle exec pod trunk push #{PODSPEC} --allow-warnings"
+  task(:push_tag).invoke(version_string)
+  task(:push_cocoapods_trunk).invoke(UIKIT_PODSPEC)
+  task(:push_cocoapods_trunk).invoke(SWIFTUI_PODSPEC)
 
   puts green("🎉 All went well. Version #{version_string} published.")
 end
 
+task :check_changelog_version, [:version] do |t, args|
+  version_string = args[:version]
+  has_changelog_entry = !(%x{cat CHANGELOG.md | grep #{version_string}}.chomp.empty?)
+  abort red "No entry for version #{version_string} in CHANGELOG.md" unless has_changelog_entry
+end
+
+task :push_tag, [:version] do |t, args|
+  puts "Comitting, tagging, and pushing"
+  version_string = args[:version]
+  message = "[Release] Version #{version_string}"
+  sh "git commit -am '#{message}'"
+  sh "git tag #{version_string} -m '#{message}'"
+  sh "git push  --follow-tags"
+end
+
+task :push_cocoapods_trunk, [:podspec] do |t, args|
+  puts "Pushing #{args[:podspec]} to CocoaPods trunk."
+  sh "bundle exec pod trunk push #{args[:podspec]} --allow-warnings"
+end
+
+task :update_version_in_podspec, [:podspec_file, :version] do |t, args|
+  puts "Updating podspec #{args[:podspec_file]}"
+  contents = File.read(args[:podspec_file])
+  contents.gsub!(/s\.version\s*=\s(:?'|")\d+\.\d+\.\d+(-\w+\.\d)?(:?'|")/, "s.version          = \"#{args[:version]}\"")
+  File.open(args[:podspec_file], 'w') { |file| file.puts contents }
+  abort red "Podspec should have been updated with the new version, but it wasn't." unless file_is_dirty(args[:podspec_file])
+end
+
 desc "Performs tests locally and then runs the release process"
-task release: ['git:fetch', :git_checks, :all_checks, :release_no_checks]
+task release: ['git:fetch', :git_checks] do
+  task(:all_checks).invoke(EXAMPLE_SCHEME)
+  task(:all_checks).invoke(SWIFTUI_SCHEME)
+  release_no_checks
+end
 
 desc "Build the static API docs"
 task :docs, :outputDir do |t, args|
