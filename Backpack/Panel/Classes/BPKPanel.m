@@ -45,6 +45,17 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    BPKAssertMainThread();
+    self = [super initWithFrame:frame];
+
+    if (self) {
+        [self setupWithPadded:BPKPanelDefaultPaddedValue];
+    }
+
+    return self;
+}
+
 - (instancetype)initWithPadded:(BOOL)padded {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
