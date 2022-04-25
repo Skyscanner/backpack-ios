@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.swift_versions = ['5.0']
 
-  s.test_spec 'SwiftUIUnitTests' do |test_spec|
+  s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.swift'
   end  
 end
