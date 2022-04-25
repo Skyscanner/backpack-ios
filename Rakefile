@@ -128,15 +128,20 @@ task ci: [:erase_devices, :lint, :ci_uikit, :ci_swiftui]
 
 task :ci_uikit do
   task(:all_checks).invoke(EXAMPLE_SCHEME)
+  task(:all_checks).reenable
 end
 
 task :ci_swiftui do
   task(:all_checks).invoke(SWIFTUI_SCHEME)
+  task(:all_checks).reenable
 end
 
 task :all_checks, [:scheme] do |tasks, args|
+  puts args[:scheme]
   # task(:analyze).invoke(args[:scheme])
+  # task(:analyze).reenable
   # task(:test).invoke(args[:scheme])
+  # task(:test).reenable
 end
 
 task :release_no_checks do
@@ -175,11 +180,13 @@ task :release_no_checks do
   version_string = version.format(VERSION_FORMAT)
 
   task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
+  task(:update_version_in_podspec).reenable
   task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
   task(:check_changelog_version).invoke(version_string)
   abort red "Installing pods in the Example project failed" unless install_pods_in_example_project
   task(:push_tag).invoke(version_string)
   task(:push_cocoapods_trunk).invoke(UIKIT_PODSPEC)
+  task(:push_cocoapods_trunk).reenable
   task(:push_cocoapods_trunk).invoke(SWIFTUI_PODSPEC)
 
   puts green("🎉 All went well. Version #{version_string} published.")
@@ -215,8 +222,9 @@ end
 
 desc "Performs tests locally and then runs the release process"
 task release: ['git:fetch', :git_checks] do
-  task(:all_checks).invoke(EXAMPLE_SCHEME)
   task(:all_checks).invoke(SWIFTUI_SCHEME)
+  task(:all_checks).reenable
+  task(:all_checks).invoke(EXAMPLE_SCHEME)
   task(:release_no_checks).invoke()
 end
 

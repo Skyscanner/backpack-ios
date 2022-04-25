@@ -1,5 +1,12 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 50.0.0
+
+**Added:**
+
+- Backpack-SwiftUI:
+  - Adding Module
+
 # 49.0.0
 
 **Added:**
