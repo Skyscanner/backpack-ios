@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
 struct PresentableCellDataSource: CellDataSource {
     var title: String
     private let presentable: () -> Presentable
