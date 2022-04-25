@@ -7,3 +7,9 @@ public struct ExampleComponent: View {
         Text(content)
     }
 }
+
+struct ExampleComponent_Previews: PreviewProvider {
+    static var previews: some View {
+        ExampleComponent(content: "Testing!")
+    }
+}
