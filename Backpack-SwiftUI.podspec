@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack-SwiftUI'
-  s.version          = "50.0.0"
+  s.version          = "48.1.0"
   s.summary          = "Skyscanner's Design System Backpack for SwiftUI"
 
   s.description      = <<-DESC
@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
   s.ios.deployment_target = '14.0'
-  s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
   s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
   s.ios.resource_bundle = {
     'Icon' => 'Backpack/Icon/Assets/*'

@@ -106,7 +106,7 @@ task :lint do
   abort red "The following generated files have changed during setup:\n#{get_changed_files}" unless check_pristine
   `find ./Backpack -name "*.[hm]" -exec clang-format -i {} \+`
   abort red "clang-format has changed the following files:\n#{get_changed_files}" unless check_pristine
-  # sh "bundle exec pod lib lint --allow-warnings"
+  sh "bundle exec pod lib lint --allow-warnings"
 end
 
 desc "Takes screenshots of all components in both light and dark mode"
@@ -119,7 +119,7 @@ task :take_screenshots do
 end
 
 task :git_checks do
-  # abort red 'Must be on main branch' unless current_branch == 'main' or current_branch.start_with?('fix/')
+  abort red 'Must be on main branch' unless current_branch == 'main' or current_branch.start_with?('fix/')
   abort red 'Must have push access to Backpack on CocoaPods trunk' unless has_trunk_push
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 end
@@ -137,17 +137,16 @@ task :ci_swiftui do
 end
 
 task :all_checks, [:scheme] do |tasks, args|
-  puts args[:scheme]
-  # task(:analyze).invoke(args[:scheme])
-  # task(:analyze).reenable
-  # task(:test).invoke(args[:scheme])
-  # task(:test).reenable
+  task(:analyze).invoke(args[:scheme])
+  task(:analyze).reenable
+  task(:test).invoke(args[:scheme])
+  task(:test).reenable
 end
 
 task :release_no_checks do
   sh "npm ci"
   sh "npx gulp"
-  # abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
+  abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
