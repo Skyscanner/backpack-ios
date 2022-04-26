@@ -1,11 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-
-- Backpack-SwiftUI:
-  - Adding Module
-
 **Fixed:**
 
 - Upgraded to the current node LTS - 16
