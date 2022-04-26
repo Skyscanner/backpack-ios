@@ -124,8 +124,11 @@ class Screenshots: XCTestCase {
             app.tables.staticTexts["Link"].tap()
             saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Outline"].tap()
-            saveScreenshot(component: "button", scenario: "outline", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["Primary On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Light"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 
@@ -309,12 +312,6 @@ class Screenshots: XCTestCase {
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "label", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Emphasised"].tap()
-            saveScreenshot(component: "label", scenario: "emphasized", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Heavy"].tap()
-            saveScreenshot(component: "label", scenario: "heavy", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -322,9 +319,9 @@ class Screenshots: XCTestCase {
 
         navigate(title: "Map") {
             app.tables.staticTexts["Default"].tap()
-            app.maps.element.otherElements["Manchester"].tap()
-            app.maps.element.otherElements["London"].tap()
-            app.maps.element.otherElements["London"].tap()
+            app.otherElements["Manchester airport"].tap()
+            app.otherElements["London"].tap()
+            app.maps.otherElements["London"].tap()
             saveScreenshot(component: "map", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
