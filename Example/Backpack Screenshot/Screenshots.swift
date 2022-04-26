@@ -319,9 +319,9 @@ class Screenshots: XCTestCase {
 
         navigate(title: "Map") {
             app.tables.staticTexts["Default"].tap()
-            app.maps.element.otherElements["Manchester"].tap()
-            app.maps.element.otherElements["London"].tap()
-            app.maps.element.otherElements["London"].tap()
+            app.otherElements["Manchester airport"].tap()
+            app.otherElements["London"].tap()
+            app.maps.otherElements["London"].tap()
             saveScreenshot(component: "map", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
