@@ -4,7 +4,7 @@
 **Fixed:**
 
 - Upgraded to the current node LTS - 16
-- Added init(frame:) to BPKPanel
+- Added initializer to BPKPanel
 
 ## How to write a good changelog entry
 
