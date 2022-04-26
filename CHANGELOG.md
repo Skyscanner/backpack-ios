@@ -7,6 +7,11 @@
 - Backpack-SwiftUI:
   - Adding Module
 
+**Fixed:**
+
+- Upgraded to the current node LTS - 16
+- Added initialiser to BpkPanel
+
 # 48.1.0
 
 **Added:**
