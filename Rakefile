@@ -230,6 +230,12 @@ end
 desc "Build the static API docs"
 task :docs, :outputDir do |t, args|
   args.with_defaults(:outputDir => "docs")
+  sh "sourcekitten doc -- -workspace #{EXAMPLE_WORKSPACE} -scheme Backpack > swiftDoc.json"
+  sh "jazzy --sourcekitten-sourcefile swiftDoc.json"
+  FileUtils.rm('swiftDoc.json')
+  sh "sourcekitten doc -- -workspace #{EXAMPLE_WORKSPACE} -scheme \"#{SWIFTUI_SCHEME}\" > swiftDoc-swiftui.json"
+  sh "jazzy --sourcekitten-sourcefile swiftDoc-swiftui.json"
+  FileUtils.rm('swiftDoc-swiftui.json')
   sh "bundle exec jazzy -o #{args.outputDir} --objc --author Backpack --umbrella-header Backpack/Backpack.h --framework-root Backpack --module Backpack --skip-undocumented --sdk iphonesimulator"
 end
 
