@@ -309,9 +309,6 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Labels") {
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "label", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
