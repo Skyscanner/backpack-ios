@@ -9,14 +9,14 @@ PODS:
     - AppCenter/Core
   - AppCenter/Distribute (4.2.0):
     - AppCenter/Core
-  - Backpack (49.0.0):
+  - Backpack (49.0.1):
     - FloatingPanel (= 1.6.6)
     - FSCalendar (~> 2.8.2)
     - MBProgressHUD (~> 1.2.0)
     - TTTAttributedLabel (~> 2.0.0)
   - Backpack-Fonts (0.0.1)
-  - Backpack-SwiftUI (49.0.0)
-  - Backpack-SwiftUI/Tests (49.0.0)
+  - Backpack-SwiftUI (49.0.1)
+  - Backpack-SwiftUI/Tests (49.0.1)
   - FloatingPanel (1.6.6)
   - FSCalendar (2.8.4)
   - iOSSnapshotTestCase (6.2.0):
@@ -61,9 +61,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
-  Backpack: c12a0db90503a5532730b5b5762b4a33824318aa
+  Backpack: 713a94cca85614014d3b1f1f56bebd410b6578c6
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: bb8daabf9f93fa8c4c63f251d26b6b8c4aa0b2ff
+  Backpack-SwiftUI: c07513ff0738bc5e35a67987c5ae2137c8778ccb
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6

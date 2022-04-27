@@ -1,5 +1,11 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 49.0.1
+
+**Added:**
+  - Backpack:
+    - Swift Code documentation
+
 # 49.0.0
 
 **Added:**
