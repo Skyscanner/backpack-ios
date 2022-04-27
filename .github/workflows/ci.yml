@@ -55,6 +55,9 @@ jobs:
 
       - name: Install clang format
         run: brew install clang-format@14
+      
+      - name: Install sourcekitten
+        run: brew install sourcekitten
 
       - name: nvm install
         run: nvm install
