@@ -1,5 +1,10 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 49.0.2
+
+**Fixed:**
+  - Documentation generation with Jazzy
+
 # 49.0.1
 
 **Added:**
