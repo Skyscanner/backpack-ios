@@ -15,6 +15,7 @@ const colors = (properties, isDynamicColor, parseColor) => {
     })
     .value();
 
+  /* eslint-disable no-unused-vars */
   colorsa.forEach(({ value, name, hex, type, ...rest }) => {
     const matchingValueColors = colorsa.filter(
       (c) => c.type === 'valueColor' && c.hex === hex && c.name !== name,

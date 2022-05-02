@@ -1,5 +1,6 @@
 const _ = require('lodash');
 
+/* eslint-disable no-unused-vars */
 const dynamicColors = (properties, isDynamicColor) => _.chain(properties)
   .filter((entity) => entity.type === 'color' && isDynamicColor(entity))
   .map(

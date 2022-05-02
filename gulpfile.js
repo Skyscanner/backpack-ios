@@ -37,21 +37,12 @@ const spacings = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, parseColor, isDynamicColor, capitaliseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
+const objectiveC = require('./scripts/gulp/generation/objc');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
   output: path.join(__dirname, 'Backpack'),
 };
-
-const TYPES = new Set([
-  'color',
-  'font',
-  'spacing',
-  'radii',
-  'borderWidth',
-  'shadow',
-  'duration',
-]);
 
 const parseTokens = (tokensData) => {
   const properties = tokensData.properties
@@ -69,13 +60,36 @@ const parseTokens = (tokensData) => {
     .value();
 };
 
-gulp.task('generate-icon-names', (done) => {
+const generateTemplates = (templateData) => () => {
+  const generate = (template, destination) => gulp
+    .src(path.join(PATHS.templates, template))
+    .pipe(data(() => templateData))
+    .pipe(nunjucks.compile())
+    .pipe(destination)
+
+  const streams = objectiveC(generate);
+  return merge2(streams).pipe(gulp.dest(PATHS.output));
+}
+
+const copyIconFont = (done) => {
+  merge2([
+    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
+      rename({
+        basename: 'BpkIconIOS',
+      }),
+    ),
+    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/iconMapping.json'),
+  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
+  done();
+}
+
+const generateIconNames = (done) => {
   gulp
     .src(
       path.join(
         PATHS.templates,
-        `{BPKIconNames.h.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`,
-      ),
+        `{BPKIconNames.h.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
+      )
     )
     .pipe(data(iconNames(capitaliseFirstLetter)))
     .pipe(nunjucks.compile())
@@ -87,68 +101,10 @@ gulp.task('generate-icon-names', (done) => {
     )
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
   done();
-});
+};
 
-gulp.task('template', gulp.series('generate-icon-names', () => {
-  const streams = [];
-  const templateData = parseTokens(tokens);
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const type of TYPES) {
-    const processedType = capitaliseFirstLetter(type);
-
-    streams.push(
-      gulp
-        .src(path.join(PATHS.templates, `BPK${processedType}.h.njk`))
-        .pipe(data(() => templateData))
-        .pipe(nunjucks.compile())
-        .pipe(
-          rename(`${processedType}/Classes/Generated/BPK${processedType}.h`),
-        ),
-    );
-
-    streams.push(
-      gulp
-        .src(path.join(PATHS.templates, `BPK${processedType}.m.njk`))
-        .pipe(data(() => templateData))
-        .pipe(nunjucks.compile())
-        .pipe(
-          rename(`${processedType}/Classes/Generated/BPK${processedType}.m`),
-        ),
-    );
-  }
-
-  streams.push(
-    gulp
-      .src(path.join(PATHS.templates, 'UIColor+Backpack.h.njk'))
-      .pipe(data(() => templateData))
-      .pipe(nunjucks.compile())
-      .pipe(rename('Color/Classes/Generated/UIColor+Backpack.h')),
-  );
-
-  streams.push(
-    gulp
-      .src(path.join(PATHS.templates, 'UIColor+Backpack.m.njk'))
-      .pipe(data(() => templateData))
-      .pipe(nunjucks.compile())
-      .pipe(rename('Color/Classes/Generated/UIColor+Backpack.m')),
-  );
-
-  return merge2(streams).pipe(gulp.dest(PATHS.output));
-}),
-);
-
-gulp.task('copy-icon-font', (done) => {
-  merge2([
-    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
-      rename({
-        basename: 'BpkIconIOS',
-      }),
-    ),
-    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/iconMapping.json'),
-  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
-  done();
-});
-
+gulp.task('generate-icon-names', generateIconNames);
+gulp.task('template', gulp.series('generate-icon-names', generateTemplates(parseTokens(tokens))));
+gulp.task('copy-icon-font', copyIconFont);
 gulp.task('default', gulp.series('template', 'copy-icon-font'));
 gulp.task('clean', () => del([PATHS.output], { force: true }));
