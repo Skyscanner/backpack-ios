@@ -2,9 +2,15 @@
 > Place your changes below this line.
 
 ** Breaking **
+
 - BpkChip
   - Improved icon for BpkChip, you now need to use the icon class when adding an icon to the chip
   - BpkChip now supports trailing icons
+
+**Added:**
+
+- Backpack-Common:
+  - Adding Module
 
 ## How to write a good changelog entry
 
