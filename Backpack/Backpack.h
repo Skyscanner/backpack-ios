@@ -32,7 +32,6 @@
 #import "Button.h"
 #import "Calendar.h"
 #import "Card.h"
-#import "Chip.h"
 #import "DarkMode.h"
 #import "Dialog.h"
 #import "FlareView.h"
