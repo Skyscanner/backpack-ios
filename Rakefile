@@ -210,7 +210,7 @@ task :push_tag, [:version] do |t, args|
   sh "git push  --follow-tags"
 end
 
-task :push_all_modules_cocoapods_trunk, [:podspec] do |t, args|
+task :push_all_modules_cocoapods_trunk do
   task(:push_cocoapods_trunk).invoke(COMMON_PODSPEC)
   task(:push_cocoapods_trunk).reenable
   task(:push_cocoapods_trunk).invoke(UIKIT_PODSPEC)
