@@ -7,10 +7,12 @@ DESTINATION = ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
 EXAMPLE_WORKSPACE = 'Example/Backpack.xcworkspace'
 EXAMPLE_SCHEME = 'Backpack Native'
 SWIFTUI_SCHEME = 'Backpack-SwiftUI'
+COMMON_SCHEME = 'Backpack-Common'
 UNIT_TEST_SCHEMA = 'Backpack Native Unit Tests'
 VERSION_FORMAT = '%M.%m.%p%s%d'
 UIKIT_PODSPEC = 'Backpack.podspec'
 SWIFTUI_PODSPEC = 'Backpack-SwiftUI.podspec'
+COMMON_PODSPEC = 'Backpack-Common.podspec'
 MAX_TEST_REPEATS = 3
 ANALYZE_FAIL_MESSAGE = '⚠️'
 SWIFT = ENV['SWIFT'] || '5.0'
@@ -124,7 +126,9 @@ task :git_checks do
   abort red 'Git branch is not up to date please pull' unless branch_up_to_date
 end
 
-task ci: [:erase_devices, :lint, :ci_uikit, :ci_swiftui]
+task ci: [:erase_devices, :lint, :check_modules]
+
+task check_modules: [:ci_common, :ci_uikit, :ci_swiftui]
 
 task :ci_uikit do
   task(:all_checks).invoke(EXAMPLE_SCHEME)
@@ -134,6 +138,11 @@ end
 task :ci_swiftui do
   task(:all_checks).invoke(SWIFTUI_SCHEME)
   task(:all_checks).reenable
+end
+
+task :ci_common do
+  task(:analyze).invoke(COMMON_SCHEME)
+  task(:analyze).reenable
 end
 
 task :all_checks, [:scheme] do |tasks, args|
@@ -178,16 +187,11 @@ task :release_no_checks do
 
   version_string = version.format(VERSION_FORMAT)
 
-  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
-  task(:update_version_in_podspec).reenable
-  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
+  task(:update_all_modules_version_in_podspec).invoke(version_string)
   task(:check_changelog_version).invoke(version_string)
   abort red "Installing pods in the Example project failed" unless install_pods_in_example_project
   task(:push_tag).invoke(version_string)
-  task(:push_cocoapods_trunk).invoke(UIKIT_PODSPEC)
-  task(:push_cocoapods_trunk).reenable
-  task(:push_cocoapods_trunk).invoke(SWIFTUI_PODSPEC)
-
+  task(:push_all_modules_cocoapods_trunk).invoke()
   puts green("🎉 All went well. Version #{version_string} published.")
 end
 
@@ -206,9 +210,25 @@ task :push_tag, [:version] do |t, args|
   sh "git push  --follow-tags"
 end
 
+task :push_all_modules_cocoapods_trunk do
+  task(:push_cocoapods_trunk).invoke(COMMON_PODSPEC)
+  task(:push_cocoapods_trunk).reenable
+  task(:push_cocoapods_trunk).invoke(UIKIT_PODSPEC)
+  task(:push_cocoapods_trunk).reenable
+  task(:push_cocoapods_trunk).invoke(SWIFTUI_PODSPEC)
+end
+
 task :push_cocoapods_trunk, [:podspec] do |t, args|
   puts "Pushing #{args[:podspec]} to CocoaPods trunk."
   sh "bundle exec pod trunk push #{args[:podspec]} --allow-warnings"
+end
+
+task :update_all_modules_version_in_podspec, [:version] do |t, args|
+  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version)
+  task(:update_version_in_podspec).reenable
+  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version)
+  task(:update_version_in_podspec).reenable
+  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version)
 end
 
 task :update_version_in_podspec, [:podspec_file, :version] do |t, args|
@@ -221,9 +241,7 @@ end
 
 desc "Performs tests locally and then runs the release process"
 task release: ['git:fetch', :git_checks] do
-  task(:all_checks).invoke(SWIFTUI_SCHEME)
-  task(:all_checks).reenable
-  task(:all_checks).invoke(EXAMPLE_SCHEME)
+  task(:check_modules).invoke()
   task(:release_no_checks).invoke()
 end
 
