@@ -9,9 +9,9 @@
   - Adding Color Tokens
 
 ** Breaking **
-- Backpack/Chip
-  - Improved icon for BPKChip, you now need to use BPKChip.Icon when adding an icon to the chip
-  - BPKChip now supports trailing icons
+- BpkChip
+  - Improved icon for BpkChip, you now need to use the icon class when adding an icon to the chip
+  - BpkChip now supports trailing icons
 
 ## How to write a good changelog entry
 
