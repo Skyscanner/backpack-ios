@@ -20,5 +20,13 @@ import Foundation
 
 @objc
 public enum BPKChipStyle: UInt {
-    case filled, outline
+    /**
+     * Chip style with solid color background.
+     */
+    case filled = 0
+    
+    /**
+     * Chip style with 1pt outline and clear color background.
+     */
+    case outline = 1
 }

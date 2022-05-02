@@ -22,29 +22,48 @@ import Foundation
 @objc
 public class BPKChip: UIControl {
     // MARK: - Public API
+    
+    /**
+     * The title to display inside the chip.
+     */
     public var title: String? {
         get { label.text }
         set { label.text = newValue }
     }
     
+    /**
+     * The icon to display inside the chip.
+     */
     public var icon: Icon? {
         didSet {
             updateLookAndFeel()
         }
     }
     
+    /**
+     * The primary color of the reciever. This is used to control the
+     * selected background colour.
+     *
+     * @warning This is not intended to be used directly, it exists to support theming only.
+     */
     public var primaryColor: UIColor? {
         didSet {
             updateLookAndFeel()
         }
     }
     
+    /**
+     * An optional custom background.
+     */
     public var backgroundTint: UIColor? {
         didSet {
             updateLookAndFeel()
         }
     }
     
+    /**
+     * Style of the chip. Default is BPKChipStyleOutline.
+     */
     public var style: BPKChipStyle = .outline {
         didSet {
             updateLookAndFeel()
@@ -104,6 +123,12 @@ public class BPKChip: UIControl {
         return layer
     }()
     
+    /**
+     * Creates a `BPKChip` with the title and icon given.
+     *
+     * @param title String to use as the title.
+     * @param icon BPKChip.Icon to use as the icon
+     */
     public convenience init(title: String, icon: Icon? = nil) {
         self.init(frame: .zero)
         self.title = title
@@ -112,11 +137,23 @@ public class BPKChip: UIControl {
         updateLookAndFeel()
     }
     
+    /**
+     * Create a `BPKChip` with a given frame.
+     *
+     * @param frame The initial frame of the chip.
+     * @return `BPKChip` instance.
+     */
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
     
+    /**
+     * Creates a `BPKChip` with a decoder (typically when creating from Storyboards)
+     *
+     * @param aDecoder Decoder object to extract parameters from
+     * @return `BPKChip` instance.
+     */
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
