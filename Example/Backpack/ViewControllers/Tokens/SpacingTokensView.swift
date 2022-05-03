@@ -17,15 +17,16 @@
  */
 
 import SwiftUI
+import Backpack_SwiftUI
 
 struct SpacingTokensView: View {
-    let spacingTokens = [
-        ("BPKSpacingSm", BPKSpacingSm),
-        ("BPKSpacingMd", BPKSpacingMd),
-        ("BPKSpacingBase", BPKSpacingBase),
-        ("BPKSpacingLg", BPKSpacingLg),
-        ("BPKSpacingXl", BPKSpacingXl),
-        ("BPKSpacingXxl", BPKSpacingXxl)
+    let spacingTokens: [(String, Spacing)] = [
+        ("BPKSpacingSm", .sm),
+        ("BPKSpacingMd", .md),
+        ("BPKSpacingBase", .base),
+        ("BPKSpacingLg", .lg),
+        ("BPKSpacingXl", .xl),
+        ("BPKSpacingXxl", .xxl)
     ]
     
     var body: some View {
@@ -36,9 +37,9 @@ struct SpacingTokensView: View {
                     Color(BPKColor.primaryColor)
                         .frame(
                             maxWidth: token.1,
-                            maxHeight: BPKSpacingLg)
+                            maxHeight: .lg)
                     Spacer()
-                    Text("\(token.0) = \(token.1, specifier: "%.0f")")
+                    Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                 }
             }
             Spacer()
