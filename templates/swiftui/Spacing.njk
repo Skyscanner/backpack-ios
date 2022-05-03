@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct Spacing {
-    let value: CGFloat
+    public let value: CGFloat
     
     private init(value: CGFloat) {
         self.value = value
@@ -39,6 +39,10 @@ public extension View {
     
     func padding(_ edge: Edge.Set, _ spacing: Spacing) -> some View {
         padding(edge, spacing.value)
+    }
+
+    func frame(maxWidth: Spacing, maxHeight: Spacing) -> some View {
+        frame(maxWidth: maxWidth.value, maxHeight: maxHeight.value)
     }
 }
 
