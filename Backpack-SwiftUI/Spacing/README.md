@@ -11,4 +11,10 @@ Text("Hello World")
 
 Text("Hello World")
     .padding(.top, .lg)
+
+Text("Hello World")
+    .frame(width: .lg, height: .base)
+
+Text("Hello World")
+    .frame(maxWidth: .lg, maxHeight: .xxl)
 ```
