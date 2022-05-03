@@ -27,37 +27,29 @@ public struct Spacing {
 }
 
 public extension Spacing {
-    /**
-    * The Skyscanner none spacing(0pt).
-    */
+
+    /// The Skyscanner none spacing (0pt).
     static var none: Spacing { Spacing(value: 0) }
-    /**
-    * The Skyscanner small spacing(4pt).
-    */
+
+    /// The Skyscanner small spacing (4pt).
     static var sm: Spacing { Spacing(value: 4) }
-    /**
-    * The Skyscanner icon text spacing(8pt).
-    */
+
+    /// The Skyscanner icon text spacing (8pt).
     static var iconText: Spacing { Spacing(value: 8) }
-    /**
-    * The Skyscanner medium spacing(8pt).
-    */
+
+    /// The Skyscanner medium spacing (8pt).
     static var md: Spacing { Spacing(value: 8) }
-    /**
-    * The Skyscanner base spacing(16pt).
-    */
+
+    /// The Skyscanner base spacing (16pt).
     static var base: Spacing { Spacing(value: 16) }
-    /**
-    * The Skyscanner large spacing(24pt).
-    */
+
+    /// The Skyscanner large spacing (24pt).
     static var lg: Spacing { Spacing(value: 24) }
-    /**
-    * The Skyscanner extra large spacing(32pt).
-    */
+
+    /// The Skyscanner extra large spacing (32pt).
     static var xl: Spacing { Spacing(value: 32) }
-    /**
-    * The Skyscanner extra extra large spacing(40pt).
-    */
+
+    /// The Skyscanner extra extra large spacing (40pt).
     static var xxl: Spacing { Spacing(value: 40) }
 }
 

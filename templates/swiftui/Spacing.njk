@@ -27,9 +27,8 @@ public struct Spacing {
 }
 
 public extension Spacing {
-{% for s in spacing %}    /**
-    * The Skyscanner {{s.legibleName}} spacing({{s.value}}pt).
-    */
+{% for s in spacing %}
+    /// The Skyscanner {{s.legibleName}} spacing ({{s.value}}pt).
     static var {{s.name}}: Spacing { Spacing(value: {{s.value}}) }
 {% endfor %}}
 
