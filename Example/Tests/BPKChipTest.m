@@ -18,7 +18,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <Backpack/Chip.h>
+@import Backpack;
 
 @interface BPKChipTest : XCTestCase
 
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testInitWithTitle {
-    BPKChip *c1 = [[BPKChip alloc] initWithTitle:@"Test"];
+    BPKChip *c1 = [[BPKChip alloc] initWithTitle:@"Test" icon: NULL];
     XCTAssertFalse(c1.selected);
     XCTAssertTrue(c1.enabled);
     XCTAssertEqual(c1.title, @"Test");

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-#import <Backpack/Chip.h>
+@import Backpack;
 #import <Backpack/Spacing.h>
 
 #import "BPKSnapshotTest.h"
@@ -192,7 +192,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.iconName = BPKIconNameMap;
+    bpkChip.icon = [[BPKChipIcon alloc] initWithPosition:BPKChipPositionLeading iconName:BPKIconNameMap];
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
 }
@@ -209,7 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.iconName = BPKIconNameMap;
+    bpkChip.icon = [[BPKChipIcon alloc] initWithPosition:BPKChipPositionLeading iconName:BPKIconNameMap];
     bpkChip.enabled = NO;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
@@ -227,7 +227,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKChip *bpkChip = [[BPKChip alloc] initWithFrame:CGRectZero];
     bpkChip.title = @"Test";
-    bpkChip.iconName = BPKIconNameMap;
+    bpkChip.icon = [[BPKChipIcon alloc] initWithPosition:BPKChipPositionLeading iconName:BPKIconNameMap];
     bpkChip.selected = YES;
     [self configureParentView:parentView forChip:bpkChip];
     return parentView;
