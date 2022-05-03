@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const colors = (properties, isDynamicColor, parseColor) => {
-  const colorsa = _.chain(properties)
+  const colors = _.chain(properties)
     .filter((entity) => entity.type === 'color' && !isDynamicColor(entity))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
@@ -15,31 +15,30 @@ const colors = (properties, isDynamicColor, parseColor) => {
     })
     .value();
 
-  /* eslint-disable no-unused-vars */
-  colorsa.forEach(({ value, name, hex, type, ...rest }) => {
-    const matchingValueColors = colorsa.filter(
+  colors.forEach(({ value, name, hex, ...rest }) => {
+    const matchingValueColors = colors.filter(
       (c) => c.type === 'valueColor' && c.hex === hex && c.name !== name,
     );
     if (matchingValueColors.length > 0) {
-      colorsa.push({
+      colors.push({
         value,
         name,
         hex,
         reference: matchingValueColors[0].name,
-        type: 'referenceColor',
         ...rest,
+        type: 'referenceColor',
       });
     } else {
-      colorsa.push({
+      colors.push({
         value,
         name,
         hex,
-        type: 'valueColor',
         ...rest,
+        type: 'valueColor',
       });
     }
   });
-  return colorsa
+  return colors
 }
 
 module.exports = colors

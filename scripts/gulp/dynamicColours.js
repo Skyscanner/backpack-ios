@@ -1,6 +1,5 @@
 const _ = require('lodash');
 
-/* eslint-disable no-unused-vars */
 const dynamicColors = (properties, isDynamicColor) => _.chain(properties)
   .filter((entity) => entity.type === 'color' && isDynamicColor(entity))
   .map(
@@ -10,7 +9,6 @@ const dynamicColors = (properties, isDynamicColor) => _.chain(properties)
       darkValue,
       originalDarkValue,
       name,
-      type,
       ...rest
     }) => ({
       value: _.camelCase(originalValue),
@@ -18,8 +16,8 @@ const dynamicColors = (properties, isDynamicColor) => _.chain(properties)
       name: name[0].toLowerCase() + name.slice(1),
       hex: value.toString(),
       darkHex: darkValue.toString(),
-      type: 'dynamicColor',
       ...rest,
+      type: 'dynamicColor',
     }),
   )
   .value();
