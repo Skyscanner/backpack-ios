@@ -19,9 +19,15 @@
 import XCTest
 @testable import Backpack_SwiftUI
 
-class ExampleComponentTests: XCTestCase {
-    func testExampleComponent() {
-        let sut = ExampleComponent(content: "Example Content")
-        XCTAssertEqual(sut.content, "Example Content")
+class SpacingTests: XCTestCase {
+    func testSpacingsHaveCorrectValues() {
+        XCTAssertEqual(Spacing.none.value, 0);
+        XCTAssertEqual(Spacing.sm.value, 4);
+        XCTAssertEqual(Spacing.md.value, 8);
+        XCTAssertEqual(Spacing.iconText.value, 8);
+        XCTAssertEqual(Spacing.base.value, 16);
+        XCTAssertEqual(Spacing.lg.value, 24);
+        XCTAssertEqual(Spacing.xl.value, 32);
+        XCTAssertEqual(Spacing.xxl.value, 40);
     }
 }

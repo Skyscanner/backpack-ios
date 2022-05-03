@@ -27,7 +27,7 @@ public struct Spacing {
 }
 
 public extension Spacing {
-
+    
     /// The Skyscanner none spacing (0pt).
     static var none: Spacing { Spacing(value: 0) }
 
@@ -57,13 +57,33 @@ public extension View {
     func padding(_ spacing: Spacing) -> some View {
         padding(spacing.value)
     }
-    
+
     func padding(_ edge: Edge.Set, _ spacing: Spacing) -> some View {
         padding(edge, spacing.value)
     }
 
-    func frame(maxWidth: Spacing, maxHeight: Spacing) -> some View {
-        frame(maxWidth: maxWidth.value, maxHeight: maxHeight.value)
+    func frame(
+        minWidth: Spacing? = nil,
+        idealWidth: Spacing? = nil,
+        maxWidth: Spacing? = nil,
+        minHeight: Spacing? = nil,
+        idealHeight: Spacing? = nil,
+        maxHeight: Spacing? = nil,
+        alignment: Alignment = .center
+    ) -> some View {
+        frame(
+            minWidth: minWidth?.value,
+            idealWidth: idealWidth?.value,
+            maxWidth: maxWidth?.value,
+            minHeight: minHeight?.value,
+            idealHeight: idealHeight?.value,
+            maxHeight: maxHeight?.value,
+            alignment: alignment
+        )
+    }
+    
+    func frame(width: Spacing? = nil, height: Spacing? = nil, alignment: Alignment = .center) -> some View {
+        frame(width: width?.value, height: height?.value, alignment: alignment)
     }
 }
 
