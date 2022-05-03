@@ -17,6 +17,8 @@
  */
 
 const _ = require('lodash');
+const { lowercaseFirstLetter, formatPrefixedConstName } = require('./utils/formatUtils');
+const getLegibleName = require('./utils/legibleName');
 
 const VALID_SPACINGS = new Set([
   'none',
@@ -29,20 +31,24 @@ const VALID_SPACINGS = new Set([
   'icontext',
 ]);
 
-const spacings = (properties, formatName, getLegibleName) => _.chain(properties)
+const filterValidAndMap = (properties, formatName) => _.chain(properties)
   .filter(({ category }) => category === 'spacings')
   .filter(({ name }) =>
-    VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase()),
+    VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase())
   )
-  .map(({ name, value }) => {
-    return {
-      type: 'spacing',
-      name: formatName(name),
-      value,
-      legibleName: getLegibleName(name),
-    }
-  })
+  .map(({ name, value }) => ({
+    type: 'spacing',
+    name: formatName(name),
+    value,
+    legibleName: getLegibleName(name)
+  }))
   .sortBy((s) => parseInt(s.value, 10))
   .value();
 
-module.exports = spacings
+const spacingsUIKit = (properties) =>
+  filterValidAndMap(properties, formatPrefixedConstName)
+
+const spacingsSwiftUI = (properties) =>
+  filterValidAndMap(properties, name => lowercaseFirstLetter(name.replace('spacing', '')))
+
+module.exports = { spacingsUIKit, spacingsSwiftUI }

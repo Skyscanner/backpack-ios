@@ -33,24 +33,34 @@ const radii = require('./scripts/gulp/radii');
 const shadows = require('./scripts/gulp/shadows');
 const colors = require('./scripts/gulp/colours');
 const durations = require('./scripts/gulp/durations');
-const spacings = require('./scripts/gulp/spacings');
+const { spacingsSwiftUI, spacingsUIKit } = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, parseColor, isDynamicColor, capitaliseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
+const swiftUI = require('./scripts/gulp/generation/swiftui');
 
 const PATHS = {
   templates: path.join(__dirname, 'templates'),
   output: path.join(__dirname, 'Backpack'),
 };
 
-const parseTokens = (tokensData) => {
+const parseSwiftUITokens = (tokensData) => {
+  const properties = tokensData.properties
+  return _.chain([
+    ...spacingsSwiftUI(properties)
+  ])
+    .groupBy(({ type }) => type)
+    .value();
+};
+
+const parseUIKitTokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
     ...dynamicColors(properties, isDynamicColor),
     ...colors(properties, isDynamicColor, parseColor),
     ...fonts(properties),
-    ...spacings(properties, formatPrefixedConstName, getLegibleName),
+    ...spacingsUIKit(properties),
     ...radii(properties, formatPrefixedConstName, getLegibleName),
     ...borderWidths(properties, formatPrefixedConstName, getLegibleName),
     ...shadows(properties, parseColor, getLegibleName),
@@ -59,6 +69,17 @@ const parseTokens = (tokensData) => {
     .groupBy(({ type }) => type)
     .value();
 };
+
+const generateSwiftUI = (templateData) => () => {
+  const generate = (template, destination) => gulp
+    .src(path.join(`${PATHS.templates}/swiftui`, template))
+    .pipe(data(() => templateData))
+    .pipe(nunjucks.compile())
+    .pipe(destination)
+
+  return merge2(swiftUI(generate))
+    .pipe(gulp.dest('Backpack-SwiftUI'));
+}
 
 const generateTemplates = (templateData) => () => {
   const generate = (template, destination) => gulp
@@ -104,7 +125,7 @@ const generateIconNames = (done) => {
 };
 
 gulp.task('generate-icon-names', generateIconNames);
-gulp.task('template', gulp.series('generate-icon-names', generateTemplates(parseTokens(tokens))));
+gulp.task('template', gulp.series('generate-icon-names', generateTemplates(parseUIKitTokens(tokens)), generateSwiftUI(parseSwiftUITokens(tokens))));
 gulp.task('copy-icon-font', copyIconFont);
 gulp.task('default', gulp.series('template', 'copy-icon-font'));
 gulp.task('clean', () => del([PATHS.output], { force: true }));
