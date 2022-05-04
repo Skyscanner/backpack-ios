@@ -22,7 +22,7 @@ const swiftUI = (generate) => {
   return ['Spacing']
     .map(token => {
       const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/${token}.swift`))
+      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
     })
 }
 
