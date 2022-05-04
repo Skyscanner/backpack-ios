@@ -20,10 +20,6 @@ import SwiftUI
 
 public struct BPKColor {
     public let value: UIColor
-    
-    init(value: UIColor) {
-        self.value = value
-    }
 }
 
 public extension Color {

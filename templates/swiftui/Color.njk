@@ -27,3 +27,9 @@ public extension Color {
         self.init(color.value)
     }
 }
+
+public extension View {
+    func background(_ color: BPKColor, alignment: Alignment = .center) -> some View {
+        background(Color(color.value), alignment: alignment)
+    }
+}
