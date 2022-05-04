@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright 2018-2022 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+import XCTest
+@testable import Backpack_SwiftUI
 
-const rename = require('gulp-rename');
-
-const swiftUI = (generate) => {
-  return ['Spacing', 'Radii']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+class RadiiTests: XCTestCase {
+    func testSpacingsHaveCorrectValues() {
+        XCTAssertEqual(BPKCornerRadius.lg.value, 24);
+        XCTAssertEqual(BPKCornerRadius.md.value, 12);
+        XCTAssertEqual(BPKCornerRadius.pill.value, 40);
+        XCTAssertEqual(BPKCornerRadius.sm.value, 8);
+        XCTAssertEqual(BPKCornerRadius.xs.value, 4);
+    }
 }
-
-module.exports = swiftUI

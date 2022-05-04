@@ -19,26 +19,27 @@
 
 import SwiftUI
 import Backpack
+import Backpack_SwiftUI
 
 struct RadiusTokensView: View {
     
-    let radiusTokens = [
-        ("BPKCornerRadiusXs", BPKCornerRadiusXs),
-        ("BPKCornerRadiusSm", BPKCornerRadiusSm),
-        ("BPKCornerRadiusMd", BPKCornerRadiusMd),
-        ("BPKCornerRadiusLg", BPKCornerRadiusLg),
-        ("BPKCornerRadiusPill", BPKCornerRadiusPill)
+    let radiusTokens: [(String, BPKCornerRadius)] = [
+        ("BPKCornerRadiusXs", .xs),
+        ("BPKCornerRadiusSm", .sm),
+        ("BPKCornerRadiusMd", .md),
+        ("BPKCornerRadiusLg", .lg),
+        ("BPKCornerRadiusPill", .pill)
     ]
     
     var body: some View {
         ScrollView {
             VStack {
                 ForEach(radiusTokens, id: \.0) { token in
-                    Text("\(token.0) = \(token.1, specifier: "%.0f")")
+                    Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                         .padding(BPKSpacingLg)
                         .background(Color(BPKColor.primaryColor))
                         .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: token.1))
+                        .clipShape(RoundedRectangle(cornerRadius: token.1.value))
                 }
             }
         }

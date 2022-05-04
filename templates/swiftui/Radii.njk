@@ -1,3 +1,4 @@
+// clang-format off
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -16,14 +17,24 @@
  * limitations under the License.
  */
 
-const rename = require('gulp-rename');
+import SwiftUI
 
-const swiftUI = (generate) => {
-  return ['Spacing', 'Radii']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+public struct BPKCornerRadius {
+    public let value: CGFloat
+    
+    private init(value: CGFloat) {
+        self.value = value
+    }
 }
 
-module.exports = swiftUI
+public extension RoundedRectangle {
+    init(cornerRadius: BPKCornerRadius, style: RoundedCornerStyle = .circular) {
+        self.init(cornerRadius: cornerRadius.value, style: style)
+    }
+}
+
+public extension BPKCornerRadius {
+    {% for r in radii %}
+    /// The Skyscanner {{r.legibleName}} radius.
+    static let {{r.name}} = BPKCornerRadius(value: {{r.value}})
+{% endfor %}}

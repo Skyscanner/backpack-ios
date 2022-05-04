@@ -29,7 +29,7 @@ const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
 const fonts = require('./scripts/gulp/fonts');
 const iconNames = require('./scripts/gulp/iconNames');
 const borderWidths = require('./scripts/gulp/borderWidths');
-const radii = require('./scripts/gulp/radii');
+const { radiiTokens } = require('./scripts/gulp/radii');
 const shadows = require('./scripts/gulp/shadows');
 const colors = require('./scripts/gulp/colours');
 const durations = require('./scripts/gulp/durations');
@@ -51,7 +51,8 @@ const PATHS = {
 const parseSwiftUITokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
-    ...spacingTokens.swiftui(properties)
+    ...radiiTokens.swiftui(properties),
+    ...spacingTokens.swiftui(properties),
   ])
     .groupBy(({ type }) => type)
     .value();
@@ -64,7 +65,7 @@ const parseUIKitTokens = (tokensData) => {
     ...colors(properties, isDynamicColor, parseColor),
     ...fonts(properties),
     ...spacingTokens.uikit(properties),
-    ...radii(properties, formatPrefixedConstName, getLegibleName),
+    ...radiiTokens.uikit(properties),
     ...borderWidths(properties, formatPrefixedConstName, getLegibleName),
     ...shadows(properties, parseColor, getLegibleName),
     ...durations(properties),

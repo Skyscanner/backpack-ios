@@ -5,6 +5,7 @@
 
 - Backpack-SwiftUI:
   - Adding Spacing Tokens
+  - Adding Corner Radius Tokens
 
 **Added:**
 
