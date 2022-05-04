@@ -18,7 +18,7 @@
  
 import SwiftUI
 
-public struct Spacing {
+public struct BPKSpacing {
     public let value: CGFloat
     
     private init(value: CGFloat) {
@@ -26,28 +26,28 @@ public struct Spacing {
     }
 }
 
-public extension Spacing {
+public extension BPKSpacing {
     {% for s in spacing %}
     /// The Skyscanner {{s.legibleName}} spacing ({{s.value}}pt).
-    static var {{s.name}}: Spacing { Spacing(value: {{s.value}}) }
+    static var {{s.name}}: BPKSpacing { BPKSpacing(value: {{s.value}}) }
 {% endfor %}}
 
 public extension View {
-    func padding(_ spacing: Spacing) -> some View {
+    func padding(_ spacing: BPKSpacing) -> some View {
         padding(spacing.value)
     }
 
-    func padding(_ edge: Edge.Set, _ spacing: Spacing) -> some View {
+    func padding(_ edge: Edge.Set, _ spacing: BPKSpacing) -> some View {
         padding(edge, spacing.value)
     }
 
     func frame(
-        minWidth: Spacing? = nil,
-        idealWidth: Spacing? = nil,
-        maxWidth: Spacing? = nil,
-        minHeight: Spacing? = nil,
-        idealHeight: Spacing? = nil,
-        maxHeight: Spacing? = nil,
+        minWidth: BPKSpacing? = nil,
+        idealWidth: BPKSpacing? = nil,
+        maxWidth: BPKSpacing? = nil,
+        minHeight: BPKSpacing? = nil,
+        idealHeight: BPKSpacing? = nil,
+        maxHeight: BPKSpacing? = nil,
         alignment: Alignment = .center
     ) -> some View {
         frame(
@@ -61,13 +61,13 @@ public extension View {
         )
     }
     
-    func frame(width: Spacing? = nil, height: Spacing? = nil, alignment: Alignment = .center) -> some View {
+    func frame(width: BPKSpacing? = nil, height: BPKSpacing? = nil, alignment: Alignment = .center) -> some View {
         frame(width: width?.value, height: height?.value, alignment: alignment)
     }
 }
 
 public extension Spacer {
-    init(minLength: Spacing) {
+    init(minLength: BPKSpacing) {
         self.init(minLength: minLength.value)
     }
 }

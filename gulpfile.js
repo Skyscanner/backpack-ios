@@ -33,7 +33,7 @@ const radii = require('./scripts/gulp/radii');
 const shadows = require('./scripts/gulp/shadows');
 const colors = require('./scripts/gulp/colours');
 const durations = require('./scripts/gulp/durations');
-const { spacingsSwiftUI, spacingsUIKit } = require('./scripts/gulp/spacings');
+const { spacingTokens } = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, parseColor, isDynamicColor, capitaliseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
@@ -41,14 +41,17 @@ const objectiveC = require('./scripts/gulp/generation/objc');
 const swiftUI = require('./scripts/gulp/generation/swiftui');
 
 const PATHS = {
-  templates: path.join(__dirname, 'templates'),
+  templates: {
+    objc: path.join(__dirname, 'templates'),
+    swiftui: path.join(__dirname, 'templates/swiftui')
+  },
   output: path.join(__dirname, 'Backpack'),
 };
 
 const parseSwiftUITokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
-    ...spacingsSwiftUI(properties)
+    ...spacingTokens.swiftui(properties)
   ])
     .groupBy(({ type }) => type)
     .value();
@@ -60,7 +63,7 @@ const parseUIKitTokens = (tokensData) => {
     ...dynamicColors(properties, isDynamicColor),
     ...colors(properties, isDynamicColor, parseColor),
     ...fonts(properties),
-    ...spacingsUIKit(properties),
+    ...spacingTokens.uikit(properties),
     ...radii(properties, formatPrefixedConstName, getLegibleName),
     ...borderWidths(properties, formatPrefixedConstName, getLegibleName),
     ...shadows(properties, parseColor, getLegibleName),
@@ -70,25 +73,20 @@ const parseUIKitTokens = (tokensData) => {
     .value();
 };
 
-const generateSwiftUI = (templateData) => () => {
-  const generate = (template, destination) => gulp
-    .src(path.join(`${PATHS.templates}/swiftui`, template))
+const generateFromTemplate = (templatesFolder, templateData) =>
+  (template, destination) => gulp
+    .src(path.join(templatesFolder, template))
     .pipe(data(() => templateData))
     .pipe(nunjucks.compile())
     .pipe(destination)
 
-  return merge2(swiftUI(generate))
-    .pipe(gulp.dest('Backpack-SwiftUI'));
+const generateSwiftUI = (templateData) => () => {
+  const streams = swiftUI(generateFromTemplate(PATHS.templates.swiftui, templateData))
+  return merge2(streams).pipe(gulp.dest('Backpack-SwiftUI'))
 }
 
-const generateTemplates = (templateData) => () => {
-  const generate = (template, destination) => gulp
-    .src(path.join(PATHS.templates, template))
-    .pipe(data(() => templateData))
-    .pipe(nunjucks.compile())
-    .pipe(destination)
-
-  const streams = objectiveC(generate);
+const generateUIKit = (templateData) => () => {
+  const streams = objectiveC(generateFromTemplate(PATHS.templates.objc, templateData))
   return merge2(streams).pipe(gulp.dest(PATHS.output));
 }
 
@@ -108,7 +106,7 @@ const generateIconNames = (done) => {
   gulp
     .src(
       path.join(
-        PATHS.templates,
+        PATHS.templates.objc,
         `{BPKIconNames.h.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
       )
     )
@@ -125,7 +123,14 @@ const generateIconNames = (done) => {
 };
 
 gulp.task('generate-icon-names', generateIconNames);
-gulp.task('template', gulp.series('generate-icon-names', generateTemplates(parseUIKitTokens(tokens)), generateSwiftUI(parseSwiftUITokens(tokens))));
+gulp.task(
+  'template',
+  gulp.series(
+    'generate-icon-names',
+    generateUIKit(parseUIKitTokens(tokens)),
+    generateSwiftUI(parseSwiftUITokens(tokens))
+  )
+);
 gulp.task('copy-icon-font', copyIconFont);
 gulp.task('default', gulp.series('template', 'copy-icon-font'));
 gulp.task('clean', () => del([PATHS.output], { force: true }));

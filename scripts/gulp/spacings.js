@@ -31,24 +31,32 @@ const VALID_SPACINGS = new Set([
   'icontext',
 ]);
 
-const filterValidAndMap = (properties, formatName) => _.chain(properties)
+const filterSpacingProperties = (properties) => _.chain(properties)
   .filter(({ category }) => category === 'spacings')
   .filter(({ name }) =>
     VALID_SPACINGS.has(name.replace('spacing', '').toLowerCase())
   )
-  .map(({ name, value }) => ({
-    type: 'spacing',
-    name: formatName(name),
-    value,
-    legibleName: getLegibleName(name)
-  }))
-  .sortBy((s) => parseInt(s.value, 10))
-  .value();
 
-const spacingsUIKit = (properties) =>
-  filterValidAndMap(properties, formatPrefixedConstName)
+const mapSpacingProperties = (properties, formatName) =>
+  filterSpacingProperties(properties)
+    .map(({ name, value }) => ({
+      type: 'spacing',
+      name: formatName(name),
+      value,
+      legibleName: getLegibleName(name)
+    }))
+    .sortBy((s) => parseInt(s.value, 10))
+    .value();
 
-const spacingsSwiftUI = (properties) =>
-  filterValidAndMap(properties, name => lowercaseFirstLetter(name.replace('spacing', '')))
+const spacingUIKit = (properties) =>
+  mapSpacingProperties(properties, formatPrefixedConstName)
 
-module.exports = { spacingsUIKit, spacingsSwiftUI }
+const spacingSwiftUI = (properties) =>
+  mapSpacingProperties(properties, name => lowercaseFirstLetter(name.replace('spacing', '')))
+
+module.exports = {
+  spacingTokens: {
+    uikit: spacingUIKit,
+    swiftui: spacingSwiftUI
+  }
+}

@@ -18,7 +18,7 @@
  
 import SwiftUI
 
-public struct Spacing {
+public struct BPKSpacing {
     public let value: CGFloat
     
     private init(value: CGFloat) {
@@ -26,49 +26,49 @@ public struct Spacing {
     }
 }
 
-public extension Spacing {
+public extension BPKSpacing {
     
     /// The Skyscanner none spacing (0pt).
-    static var none: Spacing { Spacing(value: 0) }
+    static var none: BPKSpacing { BPKSpacing(value: 0) }
 
     /// The Skyscanner small spacing (4pt).
-    static var sm: Spacing { Spacing(value: 4) }
+    static var sm: BPKSpacing { BPKSpacing(value: 4) }
 
     /// The Skyscanner icon text spacing (8pt).
-    static var iconText: Spacing { Spacing(value: 8) }
+    static var iconText: BPKSpacing { BPKSpacing(value: 8) }
 
     /// The Skyscanner medium spacing (8pt).
-    static var md: Spacing { Spacing(value: 8) }
+    static var md: BPKSpacing { BPKSpacing(value: 8) }
 
     /// The Skyscanner base spacing (16pt).
-    static var base: Spacing { Spacing(value: 16) }
+    static var base: BPKSpacing { BPKSpacing(value: 16) }
 
     /// The Skyscanner large spacing (24pt).
-    static var lg: Spacing { Spacing(value: 24) }
+    static var lg: BPKSpacing { BPKSpacing(value: 24) }
 
     /// The Skyscanner extra large spacing (32pt).
-    static var xl: Spacing { Spacing(value: 32) }
+    static var xl: BPKSpacing { BPKSpacing(value: 32) }
 
     /// The Skyscanner extra extra large spacing (40pt).
-    static var xxl: Spacing { Spacing(value: 40) }
+    static var xxl: BPKSpacing { BPKSpacing(value: 40) }
 }
 
 public extension View {
-    func padding(_ spacing: Spacing) -> some View {
+    func padding(_ spacing: BPKSpacing) -> some View {
         padding(spacing.value)
     }
 
-    func padding(_ edge: Edge.Set, _ spacing: Spacing) -> some View {
+    func padding(_ edge: Edge.Set, _ spacing: BPKSpacing) -> some View {
         padding(edge, spacing.value)
     }
 
     func frame(
-        minWidth: Spacing? = nil,
-        idealWidth: Spacing? = nil,
-        maxWidth: Spacing? = nil,
-        minHeight: Spacing? = nil,
-        idealHeight: Spacing? = nil,
-        maxHeight: Spacing? = nil,
+        minWidth: BPKSpacing? = nil,
+        idealWidth: BPKSpacing? = nil,
+        maxWidth: BPKSpacing? = nil,
+        minHeight: BPKSpacing? = nil,
+        idealHeight: BPKSpacing? = nil,
+        maxHeight: BPKSpacing? = nil,
         alignment: Alignment = .center
     ) -> some View {
         frame(
@@ -82,13 +82,13 @@ public extension View {
         )
     }
     
-    func frame(width: Spacing? = nil, height: Spacing? = nil, alignment: Alignment = .center) -> some View {
+    func frame(width: BPKSpacing? = nil, height: BPKSpacing? = nil, alignment: Alignment = .center) -> some View {
         frame(width: width?.value, height: height?.value, alignment: alignment)
     }
 }
 
 public extension Spacer {
-    init(minLength: Spacing) {
+    init(minLength: BPKSpacing) {
         self.init(minLength: minLength.value)
     }
 }
