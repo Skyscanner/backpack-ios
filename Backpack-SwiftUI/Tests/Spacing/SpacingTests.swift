@@ -21,13 +21,13 @@ import XCTest
 
 class SpacingTests: XCTestCase {
     func testSpacingsHaveCorrectValues() {
-        XCTAssertEqual(Spacing.none.value, 0);
-        XCTAssertEqual(Spacing.sm.value, 4);
-        XCTAssertEqual(Spacing.md.value, 8);
-        XCTAssertEqual(Spacing.iconText.value, 8);
-        XCTAssertEqual(Spacing.base.value, 16);
-        XCTAssertEqual(Spacing.lg.value, 24);
-        XCTAssertEqual(Spacing.xl.value, 32);
-        XCTAssertEqual(Spacing.xxl.value, 40);
+        XCTAssertEqual(BPKSpacing.none.value, 0);
+        XCTAssertEqual(BPKSpacing.sm.value, 4);
+        XCTAssertEqual(BPKSpacing.md.value, 8);
+        XCTAssertEqual(BPKSpacing.iconText.value, 8);
+        XCTAssertEqual(BPKSpacing.base.value, 16);
+        XCTAssertEqual(BPKSpacing.lg.value, 24);
+        XCTAssertEqual(BPKSpacing.xl.value, 32);
+        XCTAssertEqual(BPKSpacing.xxl.value, 40);
     }
 }

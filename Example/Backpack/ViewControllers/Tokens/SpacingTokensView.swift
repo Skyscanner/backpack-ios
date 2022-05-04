@@ -20,7 +20,7 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SpacingTokensView: View {
-    let spacingTokens: [(String, Spacing)] = [
+    let spacingTokens: [(String, BPKSpacing)] = [
         ("BPKSpacingSm", .sm),
         ("BPKSpacingMd", .md),
         ("BPKSpacingBase", .base),
