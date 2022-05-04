@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import XCTest
-@testable import Backpack_SwiftUI
 
-class ExampleComponentTests: XCTestCase {
-    func testExampleComponent() {
-        let sut = ExampleComponent(content: "Example Content")
-        XCTAssertEqual(sut.content, "Example Content")
-    }
+const rename = require('gulp-rename');
+
+const swiftUI = (generate) => {
+  return ['Spacing']
+    .map(token => {
+      const destinationPrefix = `${token}/Classes/Generated`;
+      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
+    })
 }
+
+module.exports = swiftUI

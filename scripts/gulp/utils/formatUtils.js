@@ -20,6 +20,7 @@ const _ = require('lodash');
 const tinycolor = require('tinycolor2');
 
 const capitaliseFirstLetter = (s) => s[0].toUpperCase() + _.camelCase(s.substring(1));
+const lowercaseFirstLetter = (s) => s[0].toLowerCase() + _.camelCase(s.substring(1));
 
 const parseColor = (color) => {
   const { r, g, b, a } = tinycolor(color).toRgb();
@@ -39,6 +40,7 @@ const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${n
 
 module.exports = {
   capitaliseFirstLetter,
+  lowercaseFirstLetter,
   parseColor,
   isDynamicColor,
   formatPrefixedConstName

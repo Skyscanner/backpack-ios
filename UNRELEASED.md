@@ -3,6 +3,11 @@
 
 **Added:**
 
+- Backpack-SwiftUI:
+  - Adding Spacing Tokens
+
+**Added:**
+
 - Backpack-Common:
   - Adding Module
 
