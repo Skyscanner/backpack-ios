@@ -16,14 +16,12 @@
  * limitations under the License.
  */
 
-const rename = require('gulp-rename');
+import UIKit
 
-const swiftUI = (generate) => {
-  return ['Spacing']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+public class DynamicColor {
+    private init() {}
+    
+    public static func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
+        UIColor { $0.userInterfaceStyle == .dark ? darkVariant : lightVariant }
+    }
 }
-
-module.exports = swiftUI

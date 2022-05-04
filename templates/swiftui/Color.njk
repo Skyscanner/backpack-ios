@@ -15,15 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 
-const rename = require('gulp-rename');
 
-const swiftUI = (generate) => {
-  return ['Spacing']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+public struct BPKColor {
+    public let value: CGFloat
+    
+    private init(value: CGFloat) {
+        self.value = value
+    }
 }
-
-module.exports = swiftUI

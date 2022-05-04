@@ -16,14 +16,26 @@
  * limitations under the License.
  */
 
-const rename = require('gulp-rename');
+import SwiftUI
+import Backpack_Common
 
-const swiftUI = (generate) => {
-  return ['Spacing']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+
+public struct BPKColor {
+    public let value: UIColor
+    
+    private init(value: UIColor) {
+        self.value = value
+    }
 }
 
-module.exports = swiftUI
+public extension BPKColor {
+    static var panjin: BPKColor {
+        BPKColor(value: DynamicColor.dynamicColor(lightVariant: .red, darkVariant: .blue))
+    }
+}
+
+public extension Color {
+    init(_ color: BPKColor) {
+        self.init(color.value)
+    }
+}
