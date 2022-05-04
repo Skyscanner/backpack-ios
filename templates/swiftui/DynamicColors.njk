@@ -1,0 +1,38 @@
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import UIKit
+
+public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
+    UIColor { $0.userInterfaceStyle == .dark ? darkVariant : lightVariant }
+}
+
+/// Backpack Dynamic Colors
+public extension BPKColor {
+    private init(lightVariant: BPKColor, darkVariant: BPKColor) {
+        self.init(
+            value: dynamicColor(
+                lightVariant: lightVariant.value,
+                darkVariant: darkVariant.value
+            )
+        )
+    }
+{% for c in dynamicColor %}
+    /// The `{{c.name}}` dynamic color from the Backpack palette.
+    static let {{c.name}} = BPKColor(lightVariant: {{c.value}}, darkVariant: {{c.darkValue}})
+{% endfor %}}

@@ -16,8 +16,10 @@ PODS:
     - TTTAttributedLabel (~> 2.0.0)
   - Backpack-Common (49.0.2)
   - Backpack-Fonts (0.0.1)
-  - Backpack-SwiftUI (49.0.2)
-  - Backpack-SwiftUI/Tests (49.0.2)
+  - Backpack-SwiftUI (49.0.2):
+    - Backpack-Common
+  - Backpack-SwiftUI/Tests (49.0.2):
+    - Backpack-Common
   - FloatingPanel (1.6.6)
   - FSCalendar (2.8.4)
   - iOSSnapshotTestCase (6.2.0):
@@ -68,7 +70,7 @@ SPEC CHECKSUMS:
   Backpack: 6c6a1a10a4d3e636be5f8ff87a4e713ff83b292c
   Backpack-Common: 0cae03b9599131b63a2d58bba1a7f4d3ee9bc4b5
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: 1747a903893f02fa7303a43f903f5f4ce063c42e
+  Backpack-SwiftUI: f64b9b2353e12f5989850583416cd52374c14195
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6

@@ -51,7 +51,9 @@ const PATHS = {
 const parseSwiftUITokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
-    ...spacingTokens.swiftui(properties)
+    ...spacingTokens.swiftui(properties),
+    ...dynamicColors(properties, isDynamicColor),
+    ...colors(properties, isDynamicColor, parseColor),
   ])
     .groupBy(({ type }) => type)
     .value();
