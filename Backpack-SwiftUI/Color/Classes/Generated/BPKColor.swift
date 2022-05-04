@@ -32,4 +32,8 @@ public extension View {
     func background(_ color: BPKColor, alignment: Alignment = .center) -> some View {
         background(Color(color.value), alignment: alignment)
     }
+
+    func foregroundColor(_ color: BPKColor) -> some View {
+        foregroundColor(Color(color.value))
+    }
 }

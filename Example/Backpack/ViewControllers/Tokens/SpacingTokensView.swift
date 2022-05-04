@@ -45,7 +45,6 @@ struct SpacingTokensView: View {
             }
             Spacer()
         }
-        .background(.panjin)
         .padding()
     }
 }

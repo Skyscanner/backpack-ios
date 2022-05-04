@@ -10,5 +10,6 @@ Color(.panjin)
 
 Text("Hello World")
     .background(.skyBlue)
+    .foregroundColor(.abisko)
 
 ```
