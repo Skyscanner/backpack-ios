@@ -39,7 +39,7 @@ struct RadiusTokensView: View {
                         .padding(BPKSpacingLg)
                         .background(Color(BPKColor.primaryColor))
                         .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: token.1))
+                        .cornerRadius(.lg)
                 }
             }
         }

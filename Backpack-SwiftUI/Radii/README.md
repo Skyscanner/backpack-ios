@@ -7,5 +7,5 @@
 ```swift
 import Backpack
 Text("Hello World")
-    .clipShape(RoundedRectangle(cornerRadius: .sm))
+    .cornerRadius(.lg)
 ```
