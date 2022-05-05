@@ -5,7 +5,8 @@
 ### SwiftUI
 
 ```swift
-import Backpack
+import Backpack_SwiftUI
+
 Text("Hello World")
-    .cornerRadius(.lg)
+    .clipShape(RoundedRectangle(cornerRadius: .lg))
 ```

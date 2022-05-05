@@ -5,7 +5,7 @@
 ### SwiftUI
 
 ```swift
-import Backpack
+import Backpack_SwiftUI
 Text("Hello World")
     .padding(.xxl)
 

@@ -33,12 +33,6 @@ public extension RoundedRectangle {
     }
 }
 
-public extension View {
-    func cornerRadius(_ cornerRadius: BPKCornerRadius, style: FillStyle = FillStyle()) -> some View {
-        clipShape(RoundedRectangle(cornerRadius: cornerRadius), style: style)
-    }
-}
-
 public extension BPKCornerRadius {
     
     /// The Skyscanner large radius.
