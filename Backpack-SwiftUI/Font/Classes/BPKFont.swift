@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import SwiftUI
 
 public struct BPKFont {
@@ -26,32 +26,19 @@ public struct BPKFont {
     }
 }
 
-public protocol BPKFontDefinition {
-    var fontFamily: String { get }
-    var regularFontFace: String { get }
-    var semiboldFontFace: String { get }
-    var heavyFontFace: String { get }
-}
-
-private extension UIFont {
-    static func customOrDefault(_ name: String?, size: CGFloat, weight: Weight) -> UIFont {
-        guard let name = name, let font = UIFont(name: name, size: size) else {
+extension UIFont {
+    static func customOrDefault(
+        _ name: String?,
+        size: CGFloat,
+        weight: Weight,
+        fontProvider: (String, CGFloat) -> UIFont? = UIFont.init
+    ) -> UIFont {
+        guard let name = name, let font = fontProvider(name, size) else {
             return .systemFont(ofSize: size, weight: weight)
         }
         return font
     }
-}
-
-public struct BPKRelativeFontDefinition: BPKFontDefinition {
-    public var fontFamily = "SkyscannerRelativeiOS"
-    public var regularFontFace = "SkyscannerRelativeiOS-Book"
-    public var semiboldFontFace = "SkyscannerRelativeiOS-Bold"
-    public var heavyFontFace = "SkyscannerRelativeiOS-Black"
     
-    public init() {}
-}
-
-extension UIFont {
     static func regular(size: CGFloat) -> UIFont {
         return .customOrDefault(
             BPKFont.fontDefinition?.regularFontFace,
@@ -65,14 +52,6 @@ extension UIFont {
             BPKFont.fontDefinition?.semiboldFontFace,
             size: size,
             weight: .semibold
-        )
-    }
-    
-    static func heavy(size: CGFloat) -> UIFont {
-        return .customOrDefault(
-            BPKFont.fontDefinition?.heavyFontFace,
-            size: size,
-            weight: .heavy
         )
     }
 }
