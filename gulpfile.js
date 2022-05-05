@@ -50,10 +50,13 @@ const PATHS = {
 
 const parseSwiftUITokens = (tokensData) => {
   const properties = tokensData.properties
+
   return _.chain([
     ...spacingTokens.swiftui(properties),
-    ...dynamicColors(properties, isDynamicColor),
-    ...colors(properties, isDynamicColor, parseColor),
+    ...dynamicColors(properties),
+    ...colors(properties, e => {
+      return !e.name.toLowerCase().endsWith('darkcolor') && !e.name.toLowerCase().endsWith('lightcolor');
+    }),
   ])
     .groupBy(({ type }) => type)
     .value();
@@ -62,8 +65,8 @@ const parseSwiftUITokens = (tokensData) => {
 const parseUIKitTokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
-    ...dynamicColors(properties, isDynamicColor),
-    ...colors(properties, isDynamicColor, parseColor),
+    ...dynamicColors(properties),
+    ...colors(properties),
     ...fonts(properties),
     ...spacingTokens.uikit(properties),
     ...radii(properties, formatPrefixedConstName, getLegibleName),

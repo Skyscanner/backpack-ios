@@ -22,54 +22,6 @@ public extension BPKColor {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
 
-    /// The `backgroundAlternativeDarkColor` color from the Backpack palette - rgb(0, 0, 0)
-    static let backgroundAlternativeDarkColor = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:1)
-
-    /// The `backgroundAlternativeLightColor` color from the Backpack palette - rgb(241, 242, 248)
-    static let backgroundAlternativeLightColor = BPKColor(red:0.945, green:0.949, blue:0.973, alpha:1)
-
-    /// The `backgroundAlternativeSecondaryDarkColor` color from the Backpack palette - rgb(29, 27, 32)
-    static let backgroundAlternativeSecondaryDarkColor = BPKColor(red:0.114, green:0.106, blue:0.125, alpha:1)
-
-    /// The `backgroundAlternativeSecondaryLightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundAlternativeSecondaryLightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `backgroundDarkColor` color from the Backpack palette - rgb(0, 0, 0)
-    static let backgroundDarkColor = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:1)
-
-    /// The `backgroundElevation01DarkColor` color from the Backpack palette - rgb(29, 27, 32)
-    static let backgroundElevation01DarkColor = BPKColor(red:0.114, green:0.106, blue:0.125, alpha:1)
-
-    /// The `backgroundElevation01LightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundElevation01LightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `backgroundElevation02DarkColor` color from the Backpack palette - rgb(44, 44, 46)
-    static let backgroundElevation02DarkColor = BPKColor(red:0.173, green:0.173, blue:0.180, alpha:1)
-
-    /// The `backgroundElevation02LightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundElevation02LightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `backgroundElevation03DarkColor` color from the Backpack palette - rgb(58, 58, 60)
-    static let backgroundElevation03DarkColor = BPKColor(red:0.227, green:0.227, blue:0.235, alpha:1)
-
-    /// The `backgroundElevation03LightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundElevation03LightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `backgroundLightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundLightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `backgroundSecondaryDarkColor` color from the Backpack palette - rgb(29, 27, 32)
-    static let backgroundSecondaryDarkColor = BPKColor(red:0.114, green:0.106, blue:0.125, alpha:1)
-
-    /// The `backgroundSecondaryLightColor` color from the Backpack palette - rgb(241, 242, 248)
-    static let backgroundSecondaryLightColor = BPKColor(red:0.945, green:0.949, blue:0.973, alpha:1)
-
-    /// The `backgroundTertiaryDarkColor` color from the Backpack palette - rgb(44, 44, 46)
-    static let backgroundTertiaryDarkColor = BPKColor(red:0.173, green:0.173, blue:0.180, alpha:1)
-
-    /// The `backgroundTertiaryLightColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let backgroundTertiaryLightColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
     /// The `abisko` color from the Backpack palette - rgb(90, 72, 155)
     static let abisko = BPKColor(red:0.353, green:0.282, blue:0.608, alpha:1)
 
@@ -193,47 +145,11 @@ public extension BPKColor {
     /// The `white` color from the Backpack palette - rgb(255, 255, 255)
     static let white = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
 
-    /// The `lineDarkColor` color from the Backpack palette - rgb(72, 72, 74)
-    static let lineDarkColor = BPKColor(red:0.282, green:0.282, blue:0.290, alpha:1)
-
-    /// The `lineLightColor` color from the Backpack palette - rgb(205, 205, 215)
-    static let lineLightColor = BPKColor(red:0.804, green:0.804, blue:0.843, alpha:1)
-
-    /// The `primaryDarkColor` color from the Backpack palette - rgb(109, 159, 235)
-    static let primaryDarkColor = BPKColor(red:0.427, green:0.624, blue:0.922, alpha:1)
-
-    /// The `primaryLightColor` color from the Backpack palette - rgb(7, 112, 227)
-    static let primaryLightColor = BPKColor(red:0.027, green:0.439, blue:0.890, alpha:1)
-
     /// The `shadowLgColor` color from the Backpack palette - rgb(17, 18, 54)
     static let shadowLgColor = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)
 
     /// The `shadowSmColor` color from the Backpack palette - rgb(17, 18, 54)
     static let shadowSmColor = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)
-
-    /// The `textPrimaryDarkColor` color from the Backpack palette - rgb(255, 255, 255)
-    static let textPrimaryDarkColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-
-    /// The `textPrimaryLightColor` color from the Backpack palette - rgb(17, 18, 54)
-    static let textPrimaryLightColor = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)
-
-    /// The `textQuaternaryDarkColor` color from the Backpack palette - rgb(142, 142, 147)
-    static let textQuaternaryDarkColor = BPKColor(red:0.557, green:0.557, blue:0.576, alpha:1)
-
-    /// The `textQuaternaryLightColor` color from the Backpack palette - rgb(143, 144, 160)
-    static let textQuaternaryLightColor = BPKColor(red:0.561, green:0.565, blue:0.627, alpha:1)
-
-    /// The `textSecondaryDarkColor` color from the Backpack palette - rgb(178, 178, 191)
-    static let textSecondaryDarkColor = BPKColor(red:0.698, green:0.698, blue:0.749, alpha:1)
-
-    /// The `textSecondaryLightColor` color from the Backpack palette - rgb(104, 105, 127)
-    static let textSecondaryLightColor = BPKColor(red:0.408, green:0.412, blue:0.498, alpha:1)
-
-    /// The `textTertiaryDarkColor` color from the Backpack palette - rgb(142, 142, 147)
-    static let textTertiaryDarkColor = BPKColor(red:0.557, green:0.557, blue:0.576, alpha:1)
-
-    /// The `textTertiaryLightColor` color from the Backpack palette - rgb(143, 144, 160)
-    static let textTertiaryLightColor = BPKColor(red:0.561, green:0.565, blue:0.627, alpha:1)
 
     /// The `touchableOverlayColor` color from the Backpack palette - rgb(17, 18, 54)
     static let touchableOverlayColor = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)

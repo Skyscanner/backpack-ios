@@ -17,8 +17,9 @@
  */
 
 const _ = require('lodash');
+const { isDynamicColor, parseColor } = require('./utils/formatUtils');
 
-const colors = (properties, isDynamicColor, parseColor) => {
+const colors = (properties, filterColors) => {
   const colors = _.chain(properties)
     .filter((entity) => entity.type === 'color' && !isDynamicColor(entity))
     .map(({ value, name, ...rest }) => {
@@ -31,6 +32,7 @@ const colors = (properties, isDynamicColor, parseColor) => {
         ...rest,
       };
     })
+    .filter(entity => filterColors ? filterColors(entity) : entity)
     .value();
 
   colors.forEach(({ value, name, hex, ...rest }) => {

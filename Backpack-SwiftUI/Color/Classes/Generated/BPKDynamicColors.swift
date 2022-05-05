@@ -24,54 +24,49 @@ public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor
 
 /// Backpack Dynamic Colors
 public extension BPKColor {
-    private init(lightVariant: BPKColor, darkVariant: BPKColor) {
-        self.init(
-            value: dynamicColor(
-                lightVariant: lightVariant.value,
-                darkVariant: darkVariant.value
-            )
-        )
+    private func darkVariant(_ darkVariant: BPKColor) -> BPKColor {
+        BPKColor(value: dynamicColor(lightVariant: value, darkVariant: darkVariant.value))
     }
 
     /// The `backgroundAlternativeColor` dynamic color from the Backpack palette.
-    static let backgroundAlternativeColor = BPKColor(lightVariant: skyGrayTint07, darkVariant: black)
+    static let backgroundAlternativeColor = skyGrayTint07.darkVariant(black)
 
     /// The `backgroundAlternativeSecondaryColor` dynamic color from the Backpack palette.
-    static let backgroundAlternativeSecondaryColor = BPKColor(lightVariant: white, darkVariant: blackTint01)
+    static let backgroundAlternativeSecondaryColor = white.darkVariant(blackTint01)
 
     /// The `backgroundColor` dynamic color from the Backpack palette.
-    static let backgroundColor = BPKColor(lightVariant: white, darkVariant: black)
+    static let backgroundColor = white.darkVariant(black)
 
     /// The `backgroundElevation01Color` dynamic color from the Backpack palette.
-    static let backgroundElevation01Color = BPKColor(lightVariant: white, darkVariant: blackTint01)
+    static let backgroundElevation01Color = white.darkVariant(blackTint01)
 
     /// The `backgroundElevation02Color` dynamic color from the Backpack palette.
-    static let backgroundElevation02Color = BPKColor(lightVariant: white, darkVariant: blackTint02)
+    static let backgroundElevation02Color = white.darkVariant(blackTint02)
 
     /// The `backgroundElevation03Color` dynamic color from the Backpack palette.
-    static let backgroundElevation03Color = BPKColor(lightVariant: white, darkVariant: blackTint03)
+    static let backgroundElevation03Color = white.darkVariant(blackTint03)
 
     /// The `backgroundSecondaryColor` dynamic color from the Backpack palette.
-    static let backgroundSecondaryColor = BPKColor(lightVariant: skyGrayTint07, darkVariant: blackTint01)
+    static let backgroundSecondaryColor = skyGrayTint07.darkVariant(blackTint01)
 
     /// The `backgroundTertiaryColor` dynamic color from the Backpack palette.
-    static let backgroundTertiaryColor = BPKColor(lightVariant: white, darkVariant: blackTint02)
+    static let backgroundTertiaryColor = white.darkVariant(blackTint02)
 
     /// The `lineColor` dynamic color from the Backpack palette.
-    static let lineColor = BPKColor(lightVariant: skyGrayTint05, darkVariant: blackTint04)
+    static let lineColor = skyGrayTint05.darkVariant(blackTint04)
 
     /// The `primaryColor` dynamic color from the Backpack palette.
-    static let primaryColor = BPKColor(lightVariant: skyBlue, darkVariant: skyBlueTint01)
+    static let primaryColor = skyBlue.darkVariant(skyBlueTint01)
 
     /// The `textPrimaryColor` dynamic color from the Backpack palette.
-    static let textPrimaryColor = BPKColor(lightVariant: skyGray, darkVariant: white)
+    static let textPrimaryColor = skyGray.darkVariant(white)
 
     /// The `textQuaternaryColor` dynamic color from the Backpack palette.
-    static let textQuaternaryColor = BPKColor(lightVariant: skyGrayTint03, darkVariant: blackTint06)
+    static let textQuaternaryColor = skyGrayTint03.darkVariant(blackTint06)
 
     /// The `textSecondaryColor` dynamic color from the Backpack palette.
-    static let textSecondaryColor = BPKColor(lightVariant: skyGrayTint02, darkVariant: skyGrayTint04)
+    static let textSecondaryColor = skyGrayTint02.darkVariant(skyGrayTint04)
 
     /// The `textTertiaryColor` dynamic color from the Backpack palette.
-    static let textTertiaryColor = BPKColor(lightVariant: skyGrayTint03, darkVariant: blackTint06)
+    static let textTertiaryColor = skyGrayTint03.darkVariant(blackTint06)
 }
