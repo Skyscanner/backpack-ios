@@ -23,7 +23,7 @@ struct ChipConfig {
     let title: String
     let selected: Bool
     let enabled: Bool
-    let iconName: BPKSmallIconName
+    let icon: BPKChip.Icon
 }
 
 class ChipsViewController: UIViewController {
@@ -33,19 +33,84 @@ class ChipsViewController: UIViewController {
     var backgroundTint: UIColor?
     var style: BPKChipStyle?
     fileprivate static var chips: [ChipConfig] = [
-        ChipConfig(title: "Afghanistan", selected: false, enabled: false, iconName: .award),
-        ChipConfig(title: "Belgium", selected: false, enabled: true, iconName: .account),
-        ChipConfig(title: "Canada", selected: false, enabled: true, iconName: .adult),
-        ChipConfig(title: "Denmark", selected: false, enabled: true, iconName: .airline),
-        ChipConfig(title: "Ethiopia", selected: true, enabled: true, iconName: .arrowUp),
-        ChipConfig(title: "Fiji", selected: false, enabled: true, iconName: .alertAdd),
-        ChipConfig(title: "Germany", selected: false, enabled: true, iconName: .accountIdCard),
-        ChipConfig(title: "Honduras", selected: false, enabled: true, iconName: .alertActive),
-        ChipConfig(title: "India", selected: true, enabled: true, iconName: .baggageAdd),
-        ChipConfig(title: "Jamaica", selected: false, enabled: true, iconName: .calendar),
-        ChipConfig(title: "Kosovo", selected: false, enabled: false, iconName: .cafe),
-        ChipConfig(title: "Lesotho", selected: false, enabled: true, iconName: .close),
-        ChipConfig(title: "Madagascar", selected: true, enabled: true, iconName: .camera)
+        ChipConfig(
+            title: "Afghanistan",
+            selected: false,
+            enabled: false,
+            icon: BPKChip.Icon(position: .leading, iconName: .award)
+        ),
+        ChipConfig(
+            title: "Belgium",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .trailing, iconName: .account)
+        ),
+        ChipConfig(
+            title: "Canada",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .adult)
+        ),
+        ChipConfig(
+            title: "Denmark",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .trailing, iconName: .airline)
+        ),
+        ChipConfig(
+            title: "Ethiopia",
+            selected: true,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .arrowUp)
+        ),
+        ChipConfig(
+            title: "Fiji",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .trailing, iconName: .alertAdd)
+        ),
+        ChipConfig(
+            title: "Germany",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .accountIdCard)
+        ),
+        ChipConfig(
+            title: "Honduras",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .alertActive)
+        ),
+        ChipConfig(
+            title: "India",
+            selected: true,
+            enabled: true,
+            icon: BPKChip.Icon(position: .trailing, iconName: .baggageAdd)
+        ),
+        ChipConfig(
+            title: "Jamaica",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .calendar)
+        ),
+        ChipConfig(
+            title: "Kosovo",
+            selected: false,
+            enabled: false,
+            icon: BPKChip.Icon(position: .leading, iconName: .cafe)
+        ),
+        ChipConfig(
+            title: "Lesotho",
+            selected: false,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .close)
+        ),
+        ChipConfig(
+            title: "Madagascar",
+            selected: true,
+            enabled: true,
+            icon: BPKChip.Icon(position: .leading, iconName: .camera)
+        )
     ]
 
     fileprivate static let cellIdentifier = "ChipPreviewCollectionViewCell"
@@ -122,7 +187,7 @@ extension ChipsViewController: UICollectionViewDelegate {
         cell.isSelected = config.selected
         cell.enabled = config.enabled
         if icons {
-            cell.icon = config.iconName
+            cell.icon = config.icon
         }
         if backgroundTint != nil {
             cell.backgroundTint = backgroundTint
