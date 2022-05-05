@@ -91,7 +91,17 @@ public class BPKChip: UIControl {
         }
     }
     
-    private var contentColor: UIColor = BPKColor.textPrimaryColor
+    private var colors: Colors {
+        guard isEnabled else {
+            return .disabled(style, backgroundTint: backgroundTint)
+        }
+        
+        if isSelected {
+            return .selected(backgroundTint: backgroundTint, primaryColor: primaryColor)
+        } else {
+            return .unselected(style, backgroundTint: backgroundTint)
+        }
+    }
     
     private let label: BPKLabel = {
         let label = BPKLabel(fontStyle: .textFootnote)
@@ -202,21 +212,9 @@ extension BPKChip {
     }
     
     private func updateLookAndFeel() {
-        if self.isSelected {
-            backgroundColor = selectedBackgroundColor
-            contentColor = BPKColor.white
-        } else {
-            backgroundColor = unselectedBackgroundColor
-            contentColor = BPKColor.textPrimaryColor
-        }
-        
-        if !self.isEnabled {
-            backgroundColor = disabledBackgroundColor
-            contentColor = disabledContentColor
-        }
-                
-        iconView.image = icon.orNil(color: contentColor)
-        label.textColor = contentColor
+        backgroundColor = colors.background
+        iconView.image = icon.orNil(color: colors.content)
+        label.textColor = colors.content
         
         accessibilityTraits = .button
         if isSelected {
@@ -234,7 +232,7 @@ extension BPKChip {
     }
     
     private func updateOutline() {
-        if isSelected {
+        if isSelected && isEnabled {
             layer.borderWidth = 0
             layer.borderColor = nil
             return
@@ -269,57 +267,6 @@ extension BPKChip {
     }
 }
 
-// MARK: - Updates
-extension BPKChip {
-    private var currentPrimaryColor: UIColor {
-        guard let primaryColor = primaryColor else {
-            return BPKColor.skyBlue
-        }
-        
-        return primaryColor
-    }
-    
-    private var selectedBackgroundColor: UIColor {
-        guard let backgroundTint = backgroundTint else {
-            return currentPrimaryColor
-        }
-        
-        return backgroundTint
-    }
-    
-    private var unselectedBackgroundColor: UIColor {
-        guard let backgroundTint = backgroundTint else {
-            switch style {
-            case .filled:
-                return BPKColor.dynamicColor(
-                    withLightVariant: BPKColor.skyGrayTint07,
-                    darkVariant: BPKColor.blackTint03
-                )
-            case .outline:
-                return BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.blackTint03)
-            }
-        }
-        
-        return BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
-    }
-    
-    private var disabledBackgroundColor: UIColor {
-        switch style {
-        case .outline:
-            return BPKColor.clear
-        case .filled:
-            var lightColor = BPKColor.skyGrayTint07
-            let darkColor = BPKColor.blackTint03
-            
-            if let backgroundTint = backgroundTint {
-                lightColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
-            }
-            
-            return BPKColor.dynamicColor(withLightVariant: lightColor, darkVariant: darkColor)
-        }
-    }
-}
-
 // MARK: - Helpers
 extension BPKChip {
     private var chipIconSpacing: CGFloat {
@@ -334,14 +281,10 @@ extension BPKChip {
         return BPKSpacingMd
     }
     
-    private var disabledContentColor: UIColor {
-        return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint04, darkVariant: BPKColor.blackTint06)
-    }
-    
     private var outlineColor: UIColor {
         return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint03, darkVariant: BPKColor.blackTint06)
     }
-    
+
     private var disabledOutlineColor: UIColor {
         return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint05, darkVariant: BPKColor.blackTint06)
     }
