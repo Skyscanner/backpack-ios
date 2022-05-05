@@ -35,6 +35,7 @@ struct RadiusTokensView: View {
         ScrollView {
             VStack {
                 ForEach(radiusTokens, id: \.0) { token in
+                    Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                         .padding(.lg)
                         .background(.primaryColor)
                         .foregroundColor(.white)
