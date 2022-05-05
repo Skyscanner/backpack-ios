@@ -15,15 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+import UIKit
 
-const rename = require('gulp-rename');
-
-const swiftUI = (generate) => {
-  return ['Spacing', 'Font']
-    .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
-    })
+public struct BPKFontStyle {
+    public let font: UIFont
+    public let letterSpacing: CGFloat
+    public let lineHeight: CGFloat
 }
 
-module.exports = swiftUI
+public extension BPKFontStyle {
+    {% for f in font %}
+    static let {{f.swiftuiName}} = BPKFontStyle(
+        font: {% if f.weight.includes("UIFontWeightBold") -%}.semibold(size:{{f.size}}){% else -%}.regular(size:{{f.size}}){% endif %},
+        letterSpacing: {% if f.letterSpacing != null -%}{{f.letterSpacing.value}}{% else -%}0{% endif %},
+        lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
+    ){% endfor %}
+}

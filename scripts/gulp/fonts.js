@@ -17,6 +17,7 @@
  */
 
 const _ = require('lodash');
+const { lowercaseFirstLetter } = require('./utils/formatUtils');
 
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
@@ -88,7 +89,7 @@ const fonts = properties => _.chain(properties)
     .filter((token) => {
         return token[1].startsWith('text')
     })
-    .filter(props => { return !props[0].find(p => p.deprecated) })
+    .filter(props => !props[0].find(p => p.deprecated))
     .map((token) => {
         const properties = token[0];
         const key = token[1];
@@ -135,16 +136,20 @@ const fonts = properties => _.chain(properties)
             }
         }
 
-        return {
+        const swiftUIName = (name) => lowercaseFirstLetter(name.replace('text', ''))
+        const pr = {
             name: key,
             enumName,
             enumValue: enumValueForName(enumName),
+            swiftuiName: swiftUIName(key),
             size: Number.parseInt(sizeProp[0].value, 10),
             weight: convertFontWeight(weightProp[0].value),
             type: 'font',
             lineHeight: lineHeightFor(lineHeightProp[0]),
             letterSpacing: letterSpacingFor(letterSpacingProp[0])
         };
+        console.log('pr', pr)
+        return pr
     })
     .sortBy(['name'])
     .value();

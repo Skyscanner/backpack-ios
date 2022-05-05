@@ -22,12 +22,22 @@ public struct ExampleComponent: View {
     @State var content: String
 
     public var body: some View {
-        Text(content)
+        VStack{
+            Text(content)
+                .font(style: .bodyLongform)
+                .background(Color.red)
+            Text(content)
+                .font(style: .caption)
+                .background(Color.green)
+            Text(content)
+                .font(style: .hero3)
+                .background(Color.red)
+        }
     }
 }
 
 struct ExampleComponent_Previews: PreviewProvider {
     static var previews: some View {
-        ExampleComponent(content: "Testing!")
+        return ExampleComponent(content: "Testing! ashdjahs alkh aksdha hakdh adh sdad asdjasd asl asdasd asd")
     }
 }
