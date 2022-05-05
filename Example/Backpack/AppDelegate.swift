@@ -31,17 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
         ]
         
         UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 34)
         ]
         
         UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
         ], for: .normal)
         

@@ -5,6 +5,8 @@
 
 - Backpack-SwiftUI:
   - Adding Spacing Tokens
+  - Adding Color Tokens
+  - Adding Font Tokens
 
 **Added:**
 

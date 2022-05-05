@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018-2022 Skyscanner Ltd
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import SwiftUI
 
-public struct ExampleComponent: View {
-    @State var content: String
+public struct BPKColor {
+    public let value: UIColor
+}
 
-    public var body: some View {
-        Text(content)
+public extension Color {
+    init(_ color: BPKColor) {
+        self.init(color.value)
     }
 }
 
-struct ExampleComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        return ExampleComponent(content: "Testing! ashdjahs alkh aksdha hakdh adh sdad asdjasd asl asdasd asd")
+public extension View {
+    func background(_ color: BPKColor, alignment: Alignment = .center) -> some View {
+        background(Color(color.value), alignment: alignment)
+    }
+
+    func foregroundColor(_ color: BPKColor) -> some View {
+        foregroundColor(Color(color.value))
     }
 }

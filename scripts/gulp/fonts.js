@@ -46,10 +46,15 @@ const FONT_ENUM_VALUES = {
     BPKFontStyleTextCaption: 35,
 };
 
-const WEIGHT_MAP = {
+const WEIGHT_MAP_OBJC = {
     400: 'UIFontWeightRegular',
     700: 'UIFontWeightBold',
     900: 'UIFontWeightBlack',
+};
+
+const WEIGHT_MAP_SWIFTUI = {
+    400: 'regular',
+    700: 'semibold'
 };
 
 const enumValueForName = (name) => {
@@ -62,8 +67,8 @@ const enumValueForName = (name) => {
     return enumValue;
 };
 
-const convertFontWeight = (weightString) => {
-    const weight = WEIGHT_MAP[weightString.trim()];
+const convertFontWeight = (weightMap, weightString) => {
+    const weight = weightMap[weightString.trim()];
     if (!weight) {
         throw new Error(`Invalid weight string \`${weightString}\``);
     }
@@ -135,21 +140,20 @@ const fonts = properties => _.chain(properties)
                 name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
             }
         }
-
         const swiftUIName = (name) => lowercaseFirstLetter(name.replace('text', ''))
-        const pr = {
+        
+        return {
             name: key,
             enumName,
             enumValue: enumValueForName(enumName),
             swiftuiName: swiftUIName(key),
+            swiftuiWeight: convertFontWeight(WEIGHT_MAP_SWIFTUI, weightProp[0].value),
             size: Number.parseInt(sizeProp[0].value, 10),
-            weight: convertFontWeight(weightProp[0].value),
+            weight: convertFontWeight(WEIGHT_MAP_OBJC, weightProp[0].value),
             type: 'font',
             lineHeight: lineHeightFor(lineHeightProp[0]),
             letterSpacing: letterSpacingFor(letterSpacingProp[0])
         };
-        console.log('pr', pr)
-        return pr
     })
     .sortBy(['name'])
     .value();
