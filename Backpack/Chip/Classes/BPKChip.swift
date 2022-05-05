@@ -350,6 +350,6 @@ extension BPKChip {
 fileprivate extension Optional where Wrapped == BPKChip.Icon {
     func orNil(color: UIColor) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeLargeIcon(name: icon.iconName, color: color)
+        return BPKIcon.makeSmallIcon(name: icon.iconName, color: color)
     }
 }

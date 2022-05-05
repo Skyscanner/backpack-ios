@@ -23,7 +23,7 @@ struct ChipConfig {
     let title: String
     let selected: Bool
     let enabled: Bool
-    let iconName: BPKLargeIconName
+    let iconName: BPKSmallIconName
 }
 
 class ChipsViewController: UIViewController {
