@@ -35,8 +35,8 @@ struct RadiusTokensView: View {
             VStack {
                 ForEach(radiusTokens, id: \.0) { token in
                     Text("\(token.0) = \(token.1, specifier: "%.0f")")
-                        .padding(BPKSpacingLg)
-                        .background(Color(BPKColor.primaryColor))
+                        .padding(.lg)
+                        .background(.primaryColor)
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: token.1))
                 }

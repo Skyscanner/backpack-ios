@@ -17,8 +17,9 @@
  */
 
 const _ = require('lodash');
+const { isDynamicColor } = require('./utils/formatUtils');
 
-const dynamicColors = (properties, isDynamicColor) => _.chain(properties)
+const dynamicColors = (properties) => _.chain(properties)
   .filter((entity) => entity.type === 'color' && isDynamicColor(entity))
   .map(
     ({
