@@ -26,6 +26,7 @@ const swiftUI = (generate) => {
       generatedFileName: 'FontStyle',
       templateName: 'Font'
     },
+    { name: 'Radii' },
     { name: 'Color' },
     {
       destinationFolder: 'Color',
