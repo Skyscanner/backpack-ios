@@ -22,14 +22,11 @@ extension BPKChip {
         let content: UIColor
         
         static func disabled(_ style: BPKChipStyle, backgroundTint: UIColor?) -> Colors {
-            let contentColor = BPKColor.dynamicColor(
-                withLightVariant: BPKColor.skyGrayTint04,
-                darkVariant: BPKColor.blackTint06
-            )
+            var backgroundColor: UIColor
             
             switch style {
             case .outline:
-                return Colors(background: BPKColor.clear, content: contentColor)
+                backgroundColor = BPKColor.clear
             case .filled:
                 var lightColor = BPKColor.skyGrayTint07
                 let darkColor = BPKColor.blackTint03
@@ -38,40 +35,39 @@ extension BPKChip {
                     lightColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
                 }
                 
-                return Colors(
-                    background: BPKColor.dynamicColor(withLightVariant: lightColor, darkVariant: darkColor),
-                    content: contentColor)
+                backgroundColor = BPKColor.dynamicColor(withLightVariant: lightColor, darkVariant: darkColor)
             }
+            
+            return Colors(
+                background: backgroundColor,
+                content: BPKColor.dynamicColor(
+                    withLightVariant: BPKColor.skyGrayTint04,
+                    darkVariant: BPKColor.blackTint06
+                )
+            )
         }
         
         static func unselected(_ style: BPKChipStyle, backgroundTint: UIColor?) -> Colors {
-            let contentColor = BPKColor.textPrimaryColor
+            var backgroundColor: UIColor
             
             if let backgroundTint = backgroundTint {
-                return Colors(
-                    background: BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2),
-                    content: contentColor
-                )
+                backgroundColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
             }
             
             switch style {
             case .filled:
-                return Colors(
-                    background: BPKColor.dynamicColor(
-                        withLightVariant: BPKColor.skyGrayTint07,
-                        darkVariant: BPKColor.blackTint03
-                    ),
-                    content: contentColor
+                backgroundColor = BPKColor.dynamicColor(
+                    withLightVariant: BPKColor.skyGrayTint07,
+                    darkVariant: BPKColor.blackTint03
                 )
             case .outline:
-                return Colors(
-                    background: BPKColor.dynamicColor(
-                        withLightVariant: BPKColor.white,
-                        darkVariant: BPKColor.blackTint03
-                    ),
-                    content: contentColor
+                backgroundColor = BPKColor.dynamicColor(
+                    withLightVariant: BPKColor.white,
+                    darkVariant: BPKColor.blackTint03
                 )
             }
+            
+            return Colors(background: backgroundColor, content: BPKColor.textPrimaryColor)
         }
         
         static func selected(backgroundTint: UIColor?, primaryColor: UIColor?) -> Colors {
