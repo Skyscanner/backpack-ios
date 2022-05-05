@@ -26,7 +26,7 @@ const merge2 = require('merge2');
 const del = require('del');
 const _ = require('lodash');
 const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
-const fonts = require('./scripts/gulp/fonts');
+const { fontTokens } = require('./scripts/gulp/fonts');
 const iconNames = require('./scripts/gulp/iconNames');
 const borderWidths = require('./scripts/gulp/borderWidths');
 const { radiiTokens } = require('./scripts/gulp/radii');
@@ -55,7 +55,7 @@ const parseSwiftUITokens = (tokensData) => {
     ...radiiTokens.swiftui(properties),
     ...spacingTokens.swiftui(properties),
     ...dynamicColors(properties),
-    ...fonts(properties),
+    ...fontTokens.swiftui(properties),
     ...colors(properties, e => !e.name.toLowerCase().endsWith('darkcolor') && !e.name.toLowerCase().endsWith('lightcolor')),
   ])
     .groupBy(({ type }) => type)
@@ -67,7 +67,7 @@ const parseUIKitTokens = (tokensData) => {
   return _.chain([
     ...dynamicColors(properties),
     ...colors(properties),
-    ...fonts(properties),
+    ...fontTokens.uikit(properties),
     ...spacingTokens.uikit(properties),
     ...radiiTokens.uikit(properties),
     ...borderWidths(properties, formatPrefixedConstName, getLegibleName),

@@ -26,9 +26,9 @@ public struct BPKFontStyle {
 
 public extension BPKFontStyle {
     {% for f in font %}
-    /// Represents font size {{f.size}} with weight {{f.swiftuiWeight}}.
-    static let {{f.swiftuiName}} = BPKFontStyle(
-        font: .{{f.swiftuiWeight}}(size:{{f.size}}),
+    /// Represents font size {{f.size}} with weight {{f.weight}}.
+    static let {{f.name}} = BPKFontStyle(
+        font: .{{f.weight}}(size:{{f.size}}),
         letterSpacing: {% if f.letterSpacing != null -%}{{f.letterSpacing.value}}{% else -%}0{% endif %},
         lineHeight: {% if f.lineHeight != null -%}{{f.lineHeight.value}}{% else -%}0{% endif %}
     )
