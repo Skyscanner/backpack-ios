@@ -50,10 +50,6 @@ extension BPKChip {
         static func unselected(_ style: BPKChipStyle, backgroundTint: UIColor?) -> Colors {
             var backgroundColor: UIColor
             
-            if let backgroundTint = backgroundTint {
-                backgroundColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
-            }
-            
             switch style {
             case .filled:
                 backgroundColor = BPKColor.dynamicColor(
@@ -65,6 +61,10 @@ extension BPKChip {
                     withLightVariant: BPKColor.white,
                     darkVariant: BPKColor.blackTint03
                 )
+            }
+            
+            if let backgroundTint = backgroundTint {
+                backgroundColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
             }
             
             return Colors(background: backgroundColor, content: BPKColor.textPrimaryColor)
