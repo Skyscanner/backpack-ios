@@ -20,13 +20,13 @@ extension BPKChip {
     @objcMembers
     @objc(BPKChipIcon)
     public class Icon: NSObject {
-        public init(position: Position, iconName: BPKLargeIconName) {
+        public init(position: Position, iconName: BPKSmallIconName) {
             self.position = position
             self.iconName = iconName
         }
         
         let position: Position
-        let iconName: BPKLargeIconName
+        let iconName: BPKSmallIconName
     }
 }
 
