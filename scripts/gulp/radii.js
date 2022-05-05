@@ -17,10 +17,12 @@
  */
 
 const _ = require('lodash');
+const { formatPrefixedConstName, lowercaseFirstLetter } = require('./utils/formatUtils');
+const getLegibleName = require('./utils/legibleName');
 
 const VALID_RADII = new Set(['xs', 'sm', 'md', 'lg', 'pill']);
 
-const radii = (properties, formatName, getLegibleName) => _.chain(properties)
+const radii = (properties, formatName) => _.chain(properties)
   .filter(({ category }) => category === 'radii')
   .filter(({ name }) =>
     VALID_RADII.has(name.replace('cornerRadius', '').toLowerCase()),
@@ -35,4 +37,13 @@ const radii = (properties, formatName, getLegibleName) => _.chain(properties)
   })
   .value();
 
-module.exports = radii
+const radiiUIKit = (properties) => radii(properties, formatPrefixedConstName)
+const radiiSwiftUI = (properties) =>
+  radii(properties, name => lowercaseFirstLetter(name.replace('cornerRadius', '')))
+
+module.exports = {
+  radiiTokens: {
+    uikit: radiiUIKit,
+    swiftui: radiiSwiftUI
+  }
+}
