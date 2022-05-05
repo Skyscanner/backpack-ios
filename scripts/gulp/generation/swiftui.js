@@ -19,10 +19,27 @@
 const rename = require('gulp-rename');
 
 const swiftUI = (generate) => {
-  return ['Spacing', 'Radii']
+  return [
+    { name: 'Spacing' },
+    { name: 'Radii' },
+    { name: 'Color' },
+    {
+      destinationFolder: 'Color',
+      generatedFileName: 'DynamicColors',
+      templateName: 'DynamicColors'
+    },
+    {
+      destinationFolder: 'Color',
+      generatedFileName: 'StaticColors',
+      templateName: 'StaticColors'
+    }
+  ]
     .map(token => {
-      const destinationPrefix = `${token}/Classes/Generated`;
-      return generate(`${token}.njk`, rename(`${destinationPrefix}/BPK${token}.swift`))
+      const destinationPrefix = `${token.destinationFolder ?? token.name}/Classes/Generated`;
+      return generate(
+        `${token.templateName ?? token.name}.njk`,
+        rename(`${destinationPrefix}/BPK${token.generatedFileName ?? token.name}.swift`)
+      )
     })
 }
 

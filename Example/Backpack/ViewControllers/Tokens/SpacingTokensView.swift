@@ -34,7 +34,7 @@ struct SpacingTokensView: View {
             Spacer()
             ForEach(spacingTokens, id: \.0) { token in
                 HStack {
-                    Color(BPKColor.primaryColor)
+                    Color(.primaryColor)
                         .frame(width: .lg, height: .base)
                         .frame(
                             maxWidth: token.1,
