@@ -28,6 +28,6 @@ public struct ExampleComponent: View {
 
 struct ExampleComponent_Previews: PreviewProvider {
     static var previews: some View {
-        return ExampleComponent(content: "Testing! ashdjahs alkh aksdha hakdh adh sdad asdjasd asl asdasd asd")
+        ExampleComponent(content: "Testing!")
     }
 }
