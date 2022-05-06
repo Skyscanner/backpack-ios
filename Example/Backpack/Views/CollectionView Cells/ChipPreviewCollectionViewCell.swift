@@ -20,10 +20,10 @@ import UIKit
 import Backpack
 
 class ChipPreviewCollectionViewCell: UICollectionViewCell {
-    var icon: BPKLargeIconName? {
+    var icon: BPKChip.Icon? {
         didSet {
             if let icon = icon {
-                chip.icon = BPKChip.Icon(position: .leading, iconName: icon)
+                chip.icon = icon
             } else {
                 chip.icon = nil
             }
