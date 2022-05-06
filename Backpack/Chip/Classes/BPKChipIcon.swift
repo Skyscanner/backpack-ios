@@ -16,8 +16,24 @@
  * limitations under the License.
  */
 
-#ifndef __BACKPACK_CHIP__
-#define __BACKPACK_CHIP__
+extension BPKChip {
+    @objcMembers
+    @objc(BPKChipIcon)
+    public class Icon: NSObject {
+        public init(position: Position, iconName: BPKLargeIconName) {
+            self.position = position
+            self.iconName = iconName
+        }
+        
+        let position: Position
+        let iconName: BPKLargeIconName
+    }
+}
 
-#import "BPKChip.h"
-#endif
+extension BPKChip.Icon {
+    
+    @objc(BPKChipPosition)
+    public enum Position: UInt {
+        case leading, trailing
+    }
+}
