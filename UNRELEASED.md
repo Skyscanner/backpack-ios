@@ -7,6 +7,7 @@
   - Adding Spacing Tokens
   - Adding Corner Radius Tokens
   - Adding Color Tokens
+  - Adding Font Tokens
 
 **Added:**
 

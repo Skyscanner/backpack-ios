@@ -23,6 +23,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 
 import Backpack
+import Backpack_SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,17 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
         ]
         
         UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 34)
         ]
         
         UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: BPKColor.textPrimaryColor,
+            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
             NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
         ], for: .normal)
         
@@ -49,10 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupRelativeFont() {
         guard !ProcessInfo.processInfo.arguments.contains("DISABLE_RELATIVE") else { return }
-        let relativeFontDefinition = BPKRelativeFontDefinition()
+        let relativeFontDefinition = Backpack.BPKRelativeFontDefinition()
         let relativeTestFont = UIFont(name: relativeFontDefinition.regularFontFace, size: 12)
         if relativeTestFont != nil {
             BPKFont.setFontDefinition(relativeFontDefinition)
+            BPKFont.setFontDefinition(Backpack_SwiftUI.BPKRelativeFontDefinition())
         }
     }
     

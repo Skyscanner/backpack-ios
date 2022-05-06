@@ -17,6 +17,7 @@
  */
 
 const _ = require('lodash');
+const { lowercaseFirstLetter } = require('./utils/formatUtils');
 
 // NOTE: These values MUST be stable and any change
 // other than introducing new unique values is a breaking change.
@@ -45,31 +46,26 @@ const FONT_ENUM_VALUES = {
     BPKFontStyleTextCaption: 35,
 };
 
-const WEIGHT_MAP = {
+const WEIGHT_MAP_OBJC = {
     400: 'UIFontWeightRegular',
     700: 'UIFontWeightBold',
     900: 'UIFontWeightBlack',
 };
 
-const enumValueForName = (name) => {
-    const enumValue = FONT_ENUM_VALUES[name];
-    if (typeof enumValue !== 'number') {
-        throw new Error(
-            `No font enum value found for \`${name}\` in \`FONT_ENUM_VALUES\`. Every font variant MUST have a value in this object`,
-        );
-    }
-    return enumValue;
+const WEIGHT_MAP_SWIFTUI = {
+    400: 'regular',
+    700: 'semibold'
 };
 
-const convertFontWeight = (weightString) => {
-    const weight = WEIGHT_MAP[weightString.trim()];
+const convertFontWeight = (weightMap, weightString) => {
+    const weight = weightMap[weightString.trim()];
     if (!weight) {
         throw new Error(`Invalid weight string \`${weightString}\``);
     }
     return weight;
 };
 
-const fonts = properties => _.chain(properties)
+const fonts = (properties, mapFont) => _.chain(properties)
     .filter(
         ({ category }) =>
             category === 'font-sizes' ||
@@ -85,10 +81,8 @@ const fonts = properties => _.chain(properties)
             .replace('LineHeight', ''),
     )
     .map((values, key) => [values, key])
-    .filter((token) => {
-        return token[1].startsWith('text')
-    })
-    .filter(props => { return !props[0].find(p => p.deprecated) })
+    .filter(token => token[1].startsWith('text'))
+    .filter(props => !props[0].find(p => p.deprecated))
     .map((token) => {
         const properties = token[0];
         const key = token[1];
@@ -111,42 +105,80 @@ const fonts = properties => _.chain(properties)
             properties,
             ({ category }) => category === 'letter-spacings',
         );
-
         if (sizeProp.length !== 1 || weightProp.length !== 1) {
             throw new Error(
                 `Expected all text sizes to have line height, letter spacing, weight, and font size. Not all were found for ${key}`,
             );
         }
-        const enumName = `BPKFontStyle${_.upperFirst(key)}`;
-        const letterSpacingFor = prop => {
-            if (!prop || !prop.value || prop.type.includes('legacy')) { return null }
-            const adjustedValue = Number.parseFloat(prop.value) * 100
-            return {
-                value: adjustedValue,
-                name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')
-            }
-        }
-
-        const lineHeightFor = prop => {
-            if (!prop) { return null }
-            return {
-                value: Number.parseInt(prop.value, 10),
-                name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
-            }
-        }
-
         return {
-            name: key,
-            enumName,
-            enumValue: enumValueForName(enumName),
-            size: Number.parseInt(sizeProp[0].value, 10),
-            weight: convertFontWeight(weightProp[0].value),
-            type: 'font',
-            lineHeight: lineHeightFor(lineHeightProp[0]),
-            letterSpacing: letterSpacingFor(letterSpacingProp[0])
-        };
+            key,
+            properties,
+            sizeProp,
+            weightProp,
+            lineHeightProp,
+            letterSpacingProp
+        }
     })
+    .map(mapFont)
     .sortBy(['name'])
     .value();
 
-module.exports = fonts
+const letterSpacingFor = prop => {
+    if (!prop || !prop.value || prop.type.includes('legacy')) { return null }
+    const adjustedValue = Number.parseFloat(prop.value) * 100
+    return {
+        value: adjustedValue,
+        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LETTER_SPACING_', '')
+    }
+}
+
+const lineHeightFor = prop => {
+    if (!prop) { return null }
+    return {
+        value: Number.parseInt(prop.value, 10),
+        name: prop.originalValue.replace('{!', '').replace('}', '').replace('LINE_HEIGHT_', '')
+    }
+}
+
+const uikitFonts = properties => fonts(properties, fontProps => {
+        const enumValueForName = (name) => {
+            const enumValue = FONT_ENUM_VALUES[name];
+            if (typeof enumValue !== 'number') {
+                throw new Error(
+                    `No font enum value found for \`${name}\` in \`FONT_ENUM_VALUES\`. Every font variant MUST have a value in this object`,
+                );
+            }
+            return enumValue;
+        };
+        const enumName = `BPKFontStyle${_.upperFirst(fontProps.key)}`;
+
+        return {
+            name: fontProps.key,
+            enumName,
+            enumValue: enumValueForName(enumName),
+            size: Number.parseInt(fontProps.sizeProp[0].value, 10),
+            weight: convertFontWeight(WEIGHT_MAP_OBJC, fontProps.weightProp[0].value),
+            type: 'font',
+            lineHeight: lineHeightFor(fontProps.lineHeightProp[0]),
+            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0])
+        };
+    })
+
+    const swiftuiFonts = properties => fonts(properties, fontProps => {
+        const swiftUIName = (name) => lowercaseFirstLetter(name.replace('text', ''))
+        return {
+            name: swiftUIName(fontProps.key),
+            size: Number.parseInt(fontProps.sizeProp[0].value, 10),
+            weight: convertFontWeight(WEIGHT_MAP_SWIFTUI, fontProps.weightProp[0].value),
+            type: 'font',
+            lineHeight: lineHeightFor(fontProps.lineHeightProp[0]),
+            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0])
+        };
+    })
+
+module.exports = {
+    fontTokens: {
+        uikit: uikitFonts,
+        swiftui: swiftuiFonts
+    }
+}
