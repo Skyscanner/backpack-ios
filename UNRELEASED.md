@@ -17,7 +17,6 @@
 
 - BpkChip
   - Icon can now be leading or trailing
-  - Icon can be set similar to BpkBadge
   - Icon is now 'small' instead of 'large'
 
 ## How to write a good changelog entry
