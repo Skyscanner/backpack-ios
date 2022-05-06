@@ -28,7 +28,10 @@ public class BPKChip: UIControl {
      */
     public var title: String? {
         get { label.text }
-        set { label.text = newValue }
+        set {
+            label.text = newValue
+            updateLookAndFeel()
+        }
     }
     
     /**
