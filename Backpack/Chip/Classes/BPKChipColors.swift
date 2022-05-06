@@ -28,7 +28,7 @@ extension BPKChip {
             case .outline:
                 backgroundColor = BPKColor.clear
             case .filled:
-                var lightColor = BPKColor.skyGrayTint07
+                var lightColor = BPKColor.skyGrayTint06
                 let darkColor = BPKColor.blackTint03
                 
                 if let backgroundTint = backgroundTint {
@@ -53,7 +53,7 @@ extension BPKChip {
             switch style {
             case .filled:
                 backgroundColor = BPKColor.dynamicColor(
-                    withLightVariant: BPKColor.skyGrayTint07,
+                    withLightVariant: BPKColor.skyGrayTint06,
                     darkVariant: BPKColor.blackTint03
                 )
             case .outline:
