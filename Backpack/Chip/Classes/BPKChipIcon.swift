@@ -31,7 +31,6 @@ extension BPKChip {
 }
 
 extension BPKChip.Icon {
-    
     @objc(BPKChipPosition)
     public enum Position: UInt {
         case leading, trailing
