@@ -43,6 +43,17 @@ public class BPKChip: UIControl {
         }
     }
     
+    @available(*, deprecated, message: "Please use `icon` instead")
+    public var iconName: BPKSmallIconName? {
+        didSet {
+            if let iconName = iconName {
+                self.icon = Icon(position: .leading, iconName: iconName)
+            } else {
+                self.icon = nil
+            }
+        }
+    }
+    
     /**
      * The primary color of the reciever. This is used to control the
      * selected background colour.
