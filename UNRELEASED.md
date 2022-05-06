@@ -8,10 +8,10 @@
   - Adding Corner Radius Tokens
   - Adding Color Tokens
 
-**Added:**
-
-- Backpack-Common:
-  - Adding Module
+** Breaking **
+- Backpack/Chip
+  - Improved icon for BPKChip, you now need to use BPKChip.Icon when adding an icon to the chip
+  - BPKChip now supports trailing icons
 
 ## How to write a good changelog entry
 
