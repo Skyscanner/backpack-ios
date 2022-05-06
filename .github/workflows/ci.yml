@@ -152,15 +152,3 @@ jobs:
           keep_files: true
           external_repository: backpack/ios
           publish_branch: main
-
-  trigger_docs:
-    name: Trigger docs build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Trigger docs build
-        env:
-          BACKPACK_DOCS_DEPLOY_TOKEN: ${{ secrets.BACKPACK_DOCS_DEPLOY_TOKEN }}
-        run: |
-          curl -f -s -X POST -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $BACKPACK_DOCS_DEPLOY_TOKEN" -d '{"ref":"main","inputs":{"repo":"backpack-ios"}}' https://api.github.com/repos/Skyscanner/backpack-docs/actions/workflows/ci.yml/dispatches
