@@ -208,6 +208,7 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
+        guard isEnabled else { return }
         isSelected.toggle()
     }
     
@@ -217,7 +218,7 @@ extension BPKChip {
         label.textColor = colors.content
         
         accessibilityTraits = .button
-        if isSelected {
+        if isSelected && isEnabled {
             accessibilityTraits.insert(.selected)
         }
         
