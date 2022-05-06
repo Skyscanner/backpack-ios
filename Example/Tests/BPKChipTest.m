@@ -35,13 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
     BPKChip *c1 = [[BPKChip alloc] initWithTitle:@"Test" icon:NULL];
     XCTAssertFalse(c1.selected);
     XCTAssertTrue(c1.enabled);
-    XCTAssertEqual(c1.title, @"Test");
+    XCTAssertTrue([c1.title isEqualToString:@"Test"]);
 }
 
 - (void)testSetTitle {
     BPKChip *c1 = [[BPKChip alloc] initWithFrame:CGRectZero];
     c1.title = @"Test";
-    XCTAssertEqual(c1.title, @"Test");
+    XCTAssertTrue([c1.title isEqualToString:@"Test"]);
 }
 
 @end
