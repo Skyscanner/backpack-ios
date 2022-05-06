@@ -72,6 +72,10 @@ public class BPKChip: UIControl {
     
     public override var isSelected: Bool {
         didSet {
+            if !isEnabled {
+                isSelected = false
+            }
+            
             updateLookAndFeel()
         }
     }
@@ -208,7 +212,6 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
-        guard isEnabled else { return }
         isSelected.toggle()
     }
     
@@ -218,7 +221,7 @@ extension BPKChip {
         label.textColor = colors.content
         
         accessibilityTraits = .button
-        if isSelected && isEnabled {
+        if isSelected {
             accessibilityTraits.insert(.selected)
         }
         
