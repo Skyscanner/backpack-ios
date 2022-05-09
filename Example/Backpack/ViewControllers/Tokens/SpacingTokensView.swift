@@ -35,10 +35,9 @@ struct SpacingTokensView: View {
             ForEach(spacingTokens, id: \.0) { token in
                 HStack {
                     Color(.primaryColor)
-                        .frame(width: .lg, height: .base)
                         .frame(
                             maxWidth: token.1,
-                            maxHeight: .lg)
+                            maxHeight: .base)
                     Spacer()
                     Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                 }
