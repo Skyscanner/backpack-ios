@@ -19,5 +19,14 @@
 import Foundation 
 
 @objc
-public class DummyToken: NSObject {
+public class BPKCommonBundle: NSObject {
+    public static var iconsBundle: Bundle {
+        guard
+            let url = Bundle(for: BPKCommonBundle.self).resourceURL?.appendingPathComponent("Icons.bundle"),
+            let bundle = Bundle(url: url)
+        else {
+            return .main
+        }
+        return bundle
+    }
 }

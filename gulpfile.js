@@ -36,7 +36,7 @@ const durations = require('./scripts/gulp/durations');
 const { spacingTokens } = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
-const { formatPrefixedConstName, parseColor, capitaliseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
+const { formatPrefixedConstName, parseColor, capitaliseFirstLetter, lowercaseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
 const swiftUI = require('./scripts/gulp/generation/swiftui');
 
@@ -112,7 +112,7 @@ const generateIconNames = (done) => {
     .src(
       path.join(
         PATHS.templates.objc,
-        `{BPKIconNames.h.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
+        `{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
       )
     )
     .pipe(data(iconNames(capitaliseFirstLetter)))
@@ -126,8 +126,27 @@ const generateIconNames = (done) => {
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
   done();
 };
+const generateIconNamesSUI = (done) => {
+  gulp
+    .src(
+      path.join(
+        PATHS.templates.swiftui,
+        `BPKIcons.swift.njk`
+      )
+    )
+    .pipe(data(iconNames()))
+    .pipe(nunjucks.compile())
+    .pipe(
+      rename((file) => {
+        // eslint-disable-next-line no-param-reassign
+        file.extname = '';
+      })
+    )
+    .pipe(gulp.dest(path.join('Backpack-SwiftUI', 'Icons', 'Classes', 'Generated')));
+  done();
+};
 
-gulp.task('generate-icon-names', generateIconNames);
+gulp.task('generate-icon-names', generateIconNamesSUI);
 gulp.task(
   'template',
   gulp.series(

@@ -33,9 +33,9 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
-  s.ios.resource_bundle = {
-    'Icon' => 'Backpack/Icon/Assets/*'
-  }
+
+  s.dependency 'Backpack-Common'
+
   s.requires_arc = true
   s.swift_versions = ['5.0']
 

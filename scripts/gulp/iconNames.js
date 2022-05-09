@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
-const iconNames = (format) => {
+const { lowercaseFirstLetter, capitaliseFirstLetter } = require('./utils/formatUtils');
+
+const iconNames = (format, format2) => {
   const content = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
   const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
   const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
@@ -24,12 +26,13 @@ const iconNames = (format) => {
   const xlEntries = Object.entries(content).filter((x) => x[0].endsWith('-xl'));
 
   const codify = (name) =>
-    name
+    lowercaseFirstLetter( name
       .replace('--', '-')
+      .replace('return', "`return`")
       .split('-')
-      .map(format)
-      .join('')
-      .replace('Ios', 'iOS');
+      .map(capitaliseFirstLetter)
+      .join('-')
+      .replace('Ios', 'iOS'));
 
   // Once we drop support for the legacy API, we can leave the suffix in the string
   // so that `BPKIcon.m` doesn't need to add it back in programmatically
