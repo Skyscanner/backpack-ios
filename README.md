@@ -25,6 +25,10 @@ To learn more about the available Backpack components on iOS head over the [Back
 
 Please see the [Contributing guide][0] for instructions on contributing to this project.
 
+## Our Principles
+
+We follow a set of principles that are stated in the [Backpack documentation site](https://backpack.github.io/using/principles)
+
 ## License
 
 Backpack is available under the Apache 2.0 license. See the LICENSE file for more info.
