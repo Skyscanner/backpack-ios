@@ -27,7 +27,6 @@ const swiftUI = (generate) => {
       templateName: 'Font'
     },
     { name: 'Radii' },
-    { name: 'Color' },
     {
       destinationFolder: 'Color',
       generatedFileName: 'DynamicColors',
