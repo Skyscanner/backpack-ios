@@ -19,7 +19,6 @@
 #import "BPKDohaTheme.h"
 
 #import <Backpack/Button.h>
-#import <Backpack/Chip.h>
 #import <Backpack/Color.h>
 #import <Backpack/Font.h>
 #import <Backpack/Gradient.h>
