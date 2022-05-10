@@ -62,11 +62,6 @@ typedef NS_ENUM(NSUInteger, BPKIconSize) {
 @interface BPKIcon : NSObject
 
 /**
- * A dictionary mapping icon names to the unicode code point in the icon font of the icon.
- */
-@property(class, nonatomic, readonly, nullable) NSDictionary<BPKIconName, NSString *> *iconMapping;
-
-/**
  * The concrete point size for a small icon.
  */
 @property(class, readonly) CGSize concreteSizeForSmallIcon;

@@ -39,8 +39,8 @@ struct SpacingTokensView: View {
                             maxWidth: token.1,
                             maxHeight: .base)
                     Spacer()
-                    Color.red
-                    BPKIconView(.airplane)
+                    Color.blue
+                    BPKIconView(.return)
                         
                 }
             }

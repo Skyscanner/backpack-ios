@@ -27,7 +27,7 @@ const del = require('del');
 const _ = require('lodash');
 const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
 const { fontTokens } = require('./scripts/gulp/fonts');
-const iconNames = require('./scripts/gulp/iconNames');
+const { iconsUIKit, iconsSwiftUI } = require('./scripts/gulp/iconNames');
 const borderWidths = require('./scripts/gulp/borderWidths');
 const { radiiTokens } = require('./scripts/gulp/radii');
 const shadows = require('./scripts/gulp/shadows');
@@ -39,6 +39,7 @@ const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, parseColor, capitaliseFirstLetter, lowercaseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
 const swiftUI = require('./scripts/gulp/generation/swiftui');
+const generateSvgIcons = require('./scripts/gulp/generation/iconSvgs');
 
 const PATHS = {
   templates: {
@@ -94,20 +95,7 @@ const generateUIKit = (templateData) => () => {
   const streams = objectiveC(generateFromTemplate(PATHS.templates.objc, templateData))
   return merge2(streams).pipe(gulp.dest(PATHS.output));
 }
-
-const copyIconFont = (done) => {
-  merge2([
-    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/BpkIconIOS.ttf').pipe(
-      rename({
-        basename: 'BpkIconIOS',
-      }),
-    ),
-    gulp.src('node_modules/@skyscanner/bpk-svgs/dist/font/iconMapping.json'),
-  ]).pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Assets')));
-  done();
-}
-
-const generateIconNames = (done) => {
+const generateIconNamesUIKit = (done) => {
   gulp
     .src(
       path.join(
@@ -115,7 +103,7 @@ const generateIconNames = (done) => {
         `{BPKIconNames.h.njk,BPKIcons.swift.njk,BPKIconNames.m.njk,BPKSmallIconNames.h.njk,BPKSmallIconNames.m.njk,BPKLargeIconNames.h.njk,BPKLargeIconNames.m.njk,BPKXlIconNames.h.njk,BPKXlIconNames.m.njk}`
       )
     )
-    .pipe(data(iconNames(capitaliseFirstLetter)))
+    .pipe(data(iconsUIKit()))
     .pipe(nunjucks.compile())
     .pipe(
       rename((file) => {
@@ -126,27 +114,50 @@ const generateIconNames = (done) => {
     .pipe(gulp.dest(path.join(PATHS.output, 'Icon', 'Classes', 'Generated')));
   done();
 };
-const generateIconNamesSUI = (done) => {
+
+// Create helper for icons example screen
+const generateIconExampleUtil = (done) => {
+  const mappings = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
+
   gulp
-    .src(
-      path.join(
-        PATHS.templates.swiftui,
-        `BPKIcons.swift.njk`
-      )
-    )
-    .pipe(data(iconNames()))
+    .src(path.join(PATHS.templates.swiftui, 'icons/BPKIconsExampleUtil.njk'))
+    .pipe(data({ icons: Object.keys(mappings) }))
     .pipe(nunjucks.compile())
-    .pipe(
-      rename((file) => {
-        // eslint-disable-next-line no-param-reassign
-        file.extname = '';
-      })
-    )
-    .pipe(gulp.dest(path.join('Backpack-SwiftUI', 'Icons', 'Classes', 'Generated')));
-  done();
+    .pipe(rename('BPKIconsExampleUtil.swift'))
+    .pipe(gulp.dest('Example/Backpack/ViewControllers/Icons/Generated'))
+  done()
 };
 
-gulp.task('generate-icon-names', generateIconNamesSUI);
+// Create helper for icons tests
+const generateIconExampleTestsUtil = (done) => {
+  const mappings = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
+
+  gulp
+    .src(path.join(PATHS.templates.swiftui, 'icons/BPKIconsExampleTestsUtil.njk'))
+    .pipe(data({ icons: Object.keys(mappings) }))
+    .pipe(nunjucks.compile())
+    .pipe(rename('BPKIconsTestsUtils.m'))
+    .pipe(gulp.dest('Example/SnapshotTests/Utils/'))
+  done()
+};
+
+const generateIconNamesSwiftUI = (done) => {
+  gulp
+    .src(path.join(PATHS.templates.swiftui, 'icons/BPKIcons.njk'))
+    .pipe(data(iconsSwiftUI()))
+    .pipe(nunjucks.compile())
+    .pipe(rename('BPKIcons.swift'))
+    .pipe(gulp.dest('Backpack-SwiftUI/Icons/Classes/Generated'))
+  done()
+};
+
+gulp.task('generate-icon-names', gulp.series(
+  generateIconNamesSwiftUI,
+  generateIconNamesUIKit,
+  generateIconExampleUtil,
+  generateIconExampleTestsUtil,
+  generateSvgIcons(`${PATHS.templates.swiftui}/icons/AssetContents.json`)),
+);
 gulp.task(
   'template',
   gulp.series(
@@ -155,6 +166,6 @@ gulp.task(
     generateSwiftUI(parseSwiftUITokens(tokens))
   )
 );
-gulp.task('copy-icon-font', copyIconFont);
-gulp.task('default', gulp.series('template', 'copy-icon-font'));
+
+gulp.task('default', gulp.series('template'));
 gulp.task('clean', () => del([PATHS.output], { force: true }));

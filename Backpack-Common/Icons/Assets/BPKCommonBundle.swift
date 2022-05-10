@@ -20,6 +20,7 @@ import Foundation
 
 @objc
 public class BPKCommonBundle: NSObject {
+    @objc
     public static var iconsBundle: Bundle {
         guard
             let url = Bundle(for: BPKCommonBundle.self).resourceURL?.appendingPathComponent("Icons.bundle"),

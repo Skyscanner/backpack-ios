@@ -13,6 +13,8 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
+		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
+		5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
 		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
 		5336BD462811876D00550AE7 /* BPKSnapshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */; };
 		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
@@ -265,6 +267,9 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
+		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
+		5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconsTestsUtils.m; sourceTree = "<group>"; };
 		5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnackbarSnapshotTest.swift; sourceTree = "<group>"; };
 		5336BD442811876D00550AE7 /* BPKSnapshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotHelper.h; sourceTree = "<group>"; };
 		5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSnapshotHelper.m; sourceTree = "<group>"; };
@@ -548,6 +553,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5307FFC3282B26330081B16E /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5307FFC4282B26840081B16E /* Generated */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		5307FFC4282B26840081B16E /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		53B6DB5627FB6F930042B7C0 /* FeatureStories */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +628,8 @@
 				5336BD442811876D00550AE7 /* BPKSnapshotHelper.h */,
 				5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */,
 				53E897D227B6D0D800A73444 /* FontStylesUtil.swift */,
+				5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */,
+				5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -886,6 +909,7 @@
 		D655C515200F9B9200CB39AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5307FFC3282B26330081B16E /* Icons */,
 				794E1FEE280A828F00B965FF /* Tokens */,
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
@@ -1443,6 +1467,7 @@
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D217702425ACCC9700C0FD8C /* EnrichablePresentable.swift in Sources */,
+				5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */,
 				D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */,
 				D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */,
 				6055821921523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift in Sources */,
@@ -1536,6 +1561,7 @@
 				5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */,
 				53E897D427B6D59B00A73444 /* BPKButtonSnapshotTests.swift in Sources */,
 				538B55F227C91793007BDE6B /* BPKToastSnapshotTest.swift in Sources */,
+				5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */,
 				D270C05F243B47810036A040 /* BPKTabBarControllerSnapshotTest.m in Sources */,
 				D217FE7D2628208C0095F1B3 /* BPKNudgerSnapshotTest.m in Sources */,
 				538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */,
