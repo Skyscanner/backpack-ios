@@ -13,49 +13,6 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
-		530700A1282C350B0081B16E /* BPKProgressBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21FA97822EA370100FD866D /* BPKProgressBarSnapshotTest.m */; };
-		530700A2282C350B0081B16E /* BPKTextFieldSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D527B6D93000A73444 /* BPKTextFieldSnapshotTest.swift */; };
-		530700A3282C350B0081B16E /* BPKHorizontalNavigationSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6178E71268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift */; };
-		530700A4282C350B0081B16E /* BPKSpinnerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F0215BE73700838FBB /* BPKSpinnerSnapshotTest.m */; };
-		530700A5282C350B0081B16E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */; };
-		530700A6282C350B0081B16E /* BPKMapAnnotationSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D26017DD25C83A8800FAB768 /* BPKMapAnnotationSnapshotTest.m */; };
-		530700A7282C350B0081B16E /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */; };
-		530700A8282C350B0081B16E /* BPKSnapshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */; };
-		530700A9282C350B0081B16E /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
-		530700AA282C350B0081B16E /* BPKButtonSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D027B6CFB000A73444 /* BPKButtonSnapshotTests.swift */; };
-		530700AB282C350B0081B16E /* BPKToastSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */; };
-		530700AC282C350B0081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
-		530700AD282C350B0081B16E /* BPKTabBarControllerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D270C05D243B468A0036A040 /* BPKTabBarControllerSnapshotTest.m */; };
-		530700AE282C350B0081B16E /* BPKNudgerSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D217FE6C26281FA40095F1B3 /* BPKNudgerSnapshotTest.m */; };
-		530700AF282C350B0081B16E /* BPKDialogViewSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */; };
-		530700B0282C350B0081B16E /* BPKStarRatingSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */; };
-		530700B1282C350B0081B16E /* BPKFlareViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */; };
-		530700B2282C350B0081B16E /* BPKPanelSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D81D63213FEEB90013BB96 /* BPKPanelSnapshotTest.m */; };
-		530700B3282C350B0081B16E /* BPKIconViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B7C244220C916C00671624 /* BPKIconViewSnapshotTest.m */; };
-		530700B4282C350B0081B16E /* BPKOverlayViewSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D21AF44C2539EA8600C8ED04 /* BPKOverlayViewSnapshotTest.m */; };
-		530700B5282C350B0081B16E /* BPKTappableLinkLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D727B6DE6F00A73444 /* BPKTappableLinkLabelSnapshotTest.swift */; };
-		530700B6282C350B0081B16E /* FontStylesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897D227B6D0D800A73444 /* FontStylesUtil.swift */; };
-		530700B7282C350B0081B16E /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
-		530700B8282C350B0081B16E /* BPKMapSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D27055B825C9CCA800EB9F66 /* BPKMapSnapshotTest.m */; };
-		530700B9282C350B0081B16E /* BPKBarChartSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D28588B124586D2A005DE2E0 /* BPKBarChartSnapshotTest.m */; };
-		530700BA282C350B0081B16E /* BPKNavigationBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB13D42316907E00B47887 /* BPKNavigationBarSnapshotTest.m */; };
-		530700BB282C350B0081B16E /* BPKLabelSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E897CE27B6B97700A73444 /* BPKLabelSnapshotTest.swift */; };
-		530700BC282C350B0081B16E /* BPKIconSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D494B2214FF3CA0095F9CF /* BPKIconSnapshotTest.m */; };
-		530700BD282C350B0081B16E /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
-		530700BE282C350B0081B16E /* BPKRatingSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2475A05232B69BD00DB9A3E /* BPKRatingSnapshotTest.m */; };
-		530700BF282C350B0081B16E /* BPKGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D643B6D72142BEA6008AB669 /* BPKGradientSnapshotTests.m */; };
-		530700C0282C350B0081B16E /* BPKSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6178E73268C851900A17A7D /* BPKSnapshotTest.swift */; };
-		530700C1282C350B0081B16E /* BPKCardSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */; };
-		530700C2282C350B0081B16E /* BPKBarChartBarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB82F243FB36F00788DEC /* BPKBarChartBarSnapshotTest.m */; };
-		530700C3282C350B0081B16E /* BPKCalendarYearPillSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */; };
-		530700C4282C350B0081B16E /* BPKSwitchSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */; };
-		530700C5282C350B0081B16E /* BPKCalendarSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD7F0521BEC8570030FAD7 /* BPKCalendarSnapshotTest.m */; };
-		530700C6282C350B0081B16E /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
-		530700C7282C350B0081B16E /* BPKPrimaryGradientSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68A296B2277242000CCB674 /* BPKPrimaryGradientSnapshotTests.m */; };
-		530700C9282C350B0081B16E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
-		530700CA282C350B0081B16E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		530700CB282C350B0081B16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		530700CE282C350B0081B16E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
 		5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
 		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
@@ -271,13 +228,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5307009E282C350B0081B16E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6003F582195388D10070C39A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = Backpack;
-		};
 		D297B8F823B90379008D094A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6003F582195388D10070C39A /* Project object */;
@@ -320,7 +270,6 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		530700D3282C350B0081B16E /* Backpack_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Backpack_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		530700D4282C350C0081B16E /* Backpack_SnapshotTests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Backpack_SnapshotTests copy-Info.plist"; path = "/Users/nicolasfrugoni/development/backpack/backpack-ios/Example/Backpack_SnapshotTests copy-Info.plist"; sourceTree = "<absolute>"; };
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
@@ -559,16 +508,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		530700C8282C350B0081B16E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				530700C9282C350B0081B16E /* XCTest.framework in Frameworks */,
-				530700CA282C350B0081B16E /* UIKit.framework in Frameworks */,
-				530700CB282C350B0081B16E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F587195388D20070C39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -728,7 +667,6 @@
 				D6D81D5E213FEE800013BB96 /* Backpack_SnapshotTests.xctest */,
 				D6517B3F216DF5F800D85FF9 /* Backpack NativeUITests.xctest */,
 				D297B8F323B90379008D094A /* Backpack Screenshot.xctest */,
-				530700D3282C350B0081B16E /* Backpack_SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1102,24 +1040,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5307009C282C350B0081B16E /* Backpack_SwiftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 530700D0282C350B0081B16E /* Build configuration list for PBXNativeTarget "Backpack_SwiftUITests" */;
-			buildPhases = (
-				530700A0282C350B0081B16E /* Sources */,
-				530700C8282C350B0081B16E /* Frameworks */,
-				530700CD282C350B0081B16E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5307009D282C350B0081B16E /* PBXTargetDependency */,
-			);
-			name = Backpack_SwiftUITests;
-			productName = BackpackTests;
-			productReference = 530700D3282C350B0081B16E /* Backpack_SwiftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		6003F589195388D20070C39A /* Backpack-Native */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "Backpack-Native" */;
@@ -1271,20 +1191,11 @@
 				D6D81D42213FEE800013BB96 /* Backpack_SnapshotTests */,
 				D6517B3E216DF5F800D85FF9 /* Backpack NativeUITests */,
 				D297B8F223B90379008D094A /* Backpack Screenshot */,
-				5307009C282C350B0081B16E /* Backpack_SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		530700CD282C350B0081B16E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				530700CE282C350B0081B16E /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F588195388D20070C39A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1485,52 +1396,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		530700A0282C350B0081B16E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				530700A1282C350B0081B16E /* BPKProgressBarSnapshotTest.m in Sources */,
-				530700A2282C350B0081B16E /* BPKTextFieldSnapshotTest.swift in Sources */,
-				530700A3282C350B0081B16E /* BPKHorizontalNavigationSnapshotTests.swift in Sources */,
-				530700A4282C350B0081B16E /* BPKSpinnerSnapshotTest.m in Sources */,
-				530700A5282C350B0081B16E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
-				530700A6282C350B0081B16E /* BPKMapAnnotationSnapshotTest.m in Sources */,
-				530700A7282C350B0081B16E /* BPKTextViewSnapshotTests.swift in Sources */,
-				530700A8282C350B0081B16E /* BPKSnapshotHelper.m in Sources */,
-				530700A9282C350B0081B16E /* BPKBadgeSnapshotTest.swift in Sources */,
-				530700AA282C350B0081B16E /* BPKButtonSnapshotTests.swift in Sources */,
-				530700AB282C350B0081B16E /* BPKToastSnapshotTest.swift in Sources */,
-				530700AC282C350B0081B16E /* BPKIconsTestsUtils.m in Sources */,
-				530700AD282C350B0081B16E /* BPKTabBarControllerSnapshotTest.m in Sources */,
-				530700AE282C350B0081B16E /* BPKNudgerSnapshotTest.m in Sources */,
-				530700AF282C350B0081B16E /* BPKDialogViewSnapshotTest.swift in Sources */,
-				530700B0282C350B0081B16E /* BPKStarRatingSnapshotTest.swift in Sources */,
-				530700B1282C350B0081B16E /* BPKFlareViewSnapshotTest.m in Sources */,
-				530700B2282C350B0081B16E /* BPKPanelSnapshotTest.m in Sources */,
-				530700B3282C350B0081B16E /* BPKIconViewSnapshotTest.m in Sources */,
-				530700B4282C350B0081B16E /* BPKOverlayViewSnapshotTest.m in Sources */,
-				530700B5282C350B0081B16E /* BPKTappableLinkLabelSnapshotTest.swift in Sources */,
-				530700B6282C350B0081B16E /* FontStylesUtil.swift in Sources */,
-				530700B7282C350B0081B16E /* BPKBedgeTest.swift in Sources */,
-				530700B8282C350B0081B16E /* BPKMapSnapshotTest.m in Sources */,
-				530700B9282C350B0081B16E /* BPKBarChartSnapshotTest.m in Sources */,
-				530700BA282C350B0081B16E /* BPKNavigationBarSnapshotTest.m in Sources */,
-				530700BB282C350B0081B16E /* BPKLabelSnapshotTest.swift in Sources */,
-				530700BC282C350B0081B16E /* BPKIconSnapshotTest.m in Sources */,
-				530700BD282C350B0081B16E /* BPKChipSnapshotTest.m in Sources */,
-				530700BE282C350B0081B16E /* BPKRatingSnapshotTest.m in Sources */,
-				530700BF282C350B0081B16E /* BPKGradientSnapshotTests.m in Sources */,
-				530700C0282C350B0081B16E /* BPKSnapshotTest.swift in Sources */,
-				530700C1282C350B0081B16E /* BPKCardSnapshotTest.m in Sources */,
-				530700C2282C350B0081B16E /* BPKBarChartBarSnapshotTest.m in Sources */,
-				530700C3282C350B0081B16E /* BPKCalendarYearPillSnapshotTest.m in Sources */,
-				530700C4282C350B0081B16E /* BPKSwitchSnapshotTest.swift in Sources */,
-				530700C5282C350B0081B16E /* BPKCalendarSnapshotTest.m in Sources */,
-				530700C6282C350B0081B16E /* BPKSnackbarSnapshotTest.swift in Sources */,
-				530700C7282C350B0081B16E /* BPKPrimaryGradientSnapshotTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F586195388D20070C39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1742,11 +1607,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5307009D282C350B0081B16E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* Backpack-Native */;
-			targetProxy = 5307009E282C350B0081B16E /* PBXContainerItemProxy */;
-		};
 		D297B8F923B90379008D094A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* Backpack-Native */;
@@ -1797,55 +1657,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		530700D1282C350B0081B16E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				INFOPLIST_FILE = "Backpack_SnapshotTests copy-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SnapshotTests/Backpack_SnapshotTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		530700D2282C350B0081B16E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				INFOPLIST_FILE = "Backpack_SnapshotTests copy-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SnapshotTests/Backpack_SnapshotTests-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 		6003F5BD195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2251,15 +2062,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		530700D0282C350B0081B16E /* Build configuration list for PBXNativeTarget "Backpack_SwiftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				530700D1282C350B0081B16E /* Debug */,
-				530700D2282C350B0081B16E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6003F585195388D10070C39A /* Build configuration list for PBXProject "Backpack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
