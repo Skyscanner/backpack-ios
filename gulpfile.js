@@ -100,7 +100,7 @@ gulp.task('generate-icons', gulp.series(
   generateIconNamesSwiftUI(PATHS.templates.swiftui),
   generateIconNamesUIKit(PATHS.output, PATHS.templates.objc),
   generateIconExampleUtil(PATHS.templates.objc),
-  generateIconExampleTestsUtil(PATHS.templates.objc),
+  generateIconExampleTestsUtil(PATHS.templates.objc, PATHS.templates.swiftui),
   generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`)),
 );
 

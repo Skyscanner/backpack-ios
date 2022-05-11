@@ -30,6 +30,8 @@ public struct BPKIconView: View {
 
     public var body: some View {
         Image(icon: icon, size: size)
+            .resizable()
+            .renderingMode(.template)
             .frame(width: size.frame.width, height: size.frame.height)
     }
 }

@@ -19,16 +19,8 @@
 import Backpack_SwiftUI
 
 // swiftlint:disable file_length
-extension IconsViewController {
-    static var allIcons: [String] {
-        [
-            "{{icons | join('",\n            "') | safe}}"
-        ]
-    }
-}
-
 // swiftlint:disable type_body_length
-struct IconsExampleViewContent {
+extension BPKIconViewTests {
     static let allIcons: [Backpack_SwiftUI.BPKIcon] = [
         .{{iconNames | join(',\n        .') | safe}}
     ]

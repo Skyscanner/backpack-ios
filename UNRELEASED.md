@@ -8,11 +8,13 @@
   - Adding Corner Radius Tokens
   - Adding Color Tokens
   - Adding Font Tokens
+  - Adding Icons Component
 
 **Added:**
 
 - Backpack-Common:
   - Adding Module
+  - Adding Icons as SVG
 
 ## How to write a good changelog entry
 

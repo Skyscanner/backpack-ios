@@ -22,7 +22,7 @@ import FBSnapshotTestCase
 class BPKSnackbarSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        recordMode = true
     }
     
     private func showSnackbar(

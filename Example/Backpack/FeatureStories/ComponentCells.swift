@@ -137,10 +137,10 @@ extension ComponentCellsProvider {
         )
     }
     private func icon() -> CellDataSource {
-        PresentableCellDataSource(
+        GroupCellDataSource(
             title: "Icons",
-            storyboard: .named("Main", on: "IconsViewController"),
-            showPresentable: show(presentable:)
+            groups: IconGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChildren: { showChildren(title: "Icons", children: $0) }
         )
     }
     private func label() -> CellDataSource {

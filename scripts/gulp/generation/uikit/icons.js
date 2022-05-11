@@ -3,7 +3,7 @@ const data = require('gulp-data');
 const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const rename = require('gulp-rename');
-const { iconsUIKit } = require('../../iconNames');
+const { iconsUIKit, iconsSwiftUI } = require('../../iconNames');
 
 const iconsForExamples = Object.keys(require('@skyscanner/bpk-svgs/dist/font/iconMapping.json'))
   .filter(iconName => !iconName.endsWith('-xl'))
@@ -39,7 +39,10 @@ const generateIconNamesUIKit = (output, templatesFolder) => (done) => {
 const generateIconExampleUtil = (templatesFolder) => (done) => {
   generateFromTemplate(
     path.join(templatesFolder, 'icons/BPKIconsExampleUtil.njk'),
-    { icons: iconsForExamples },
+    {
+      icons: iconsForExamples,
+      iconNames: iconsSwiftUI().icons.map(i => i.name)
+     },
     'BPKIconsExampleUtil.swift',
     'Example/Backpack/ViewControllers/Icons/Generated'
   )
@@ -47,12 +50,19 @@ const generateIconExampleUtil = (templatesFolder) => (done) => {
 };
 
 // Create helper for icons tests
-const generateIconExampleTestsUtil = (templatesFolder) => (done) => {
+const generateIconExampleTestsUtil = (uikitTemplatesFolder, swiftuiTemplatesFolder) => (done) => {
   generateFromTemplate(
-    path.join(templatesFolder, 'icons/BPKIconsExampleTestsUtil.njk'),
+    path.join(uikitTemplatesFolder, 'icons/BPKIconsExampleTestsUtil.njk'),
     { icons: iconsForExamples },
     'BPKIconsTestsUtils.m',
-    'Example/SnapshotTests/Utils/'
+    'Example/SnapshotTests/Utils'
+  )
+
+  generateFromTemplate(
+    path.join(swiftuiTemplatesFolder, 'IconsTestsUtils.njk'),
+    { iconNames: iconsSwiftUI().icons.map(i => i.name) },
+    'IconsTestsUtils.swift',
+    'Backpack-SwiftUI/Tests/Icons/Generated'
   )
   done()
 };
