@@ -15,6 +15,12 @@
 - Backpack-Common:
   - Adding Module
   - Adding Icons as SVG
+  
+**Breaking**
+
+- BpkChip
+  - Icon can now be leading or trailing
+  - Icon is now 'small' instead of 'large'
 
 ## How to write a good changelog entry
 
