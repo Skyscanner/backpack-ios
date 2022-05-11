@@ -84,7 +84,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 + (NSArray<BPKSmallIconName> *)allSmallIconNames {
-    NSArray *allIcons = [[BPKIconsTestsUtils getAllIcons] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *allIcons = [BPKIconsTestsUtils getAllIcons];
     NSMutableArray *result = [NSMutableArray new];
 
     for (NSString *icon in allIcons) {
@@ -98,7 +98,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 + (NSArray<BPKLargeIconName> *)allLargeIconNames {
-    NSArray *allIcons = [[BPKIconsTestsUtils getAllIcons] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray *allIcons = [BPKIconsTestsUtils getAllIcons];
     NSMutableArray *result = [NSMutableArray new];
 
     for (NSString *icon in allIcons) {
