@@ -22,7 +22,7 @@ import SwiftUI
 
 class BPKIconViewTests: XCTestCase {
     func testLargeIcon() {
-        assertSnapshot(BPKIconView(.account, size: .small))
+        assertSnapshot(BPKIconView(.account, size: .large))
     }
     
     func testSmallIcon() {
