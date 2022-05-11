@@ -17,8 +17,8 @@
  */
 #import "BPKIcon.h"
 
-#import <CoreText/CoreText.h>
 #import <Backpack_Common/Backpack_Common-Swift.h>
+#import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -49,11 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {
     NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color size:size];
     UIImage *icon = [self.imageCache objectForKey:cacheKey];
-    
+
     if (icon) {
         return icon;
     }
-    
+
     NSString *iconName = [BPKIcon iconName:name forSize:size];
     NSBundle *iconsBundle = BPKCommonBundle.iconsBundle;
     icon = [UIImage imageNamed:iconName inBundle:iconsBundle withConfiguration:nil];
@@ -71,8 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
     [icon drawInRect:iconRect];
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    
+
     [self.imageCache setObject:icon forKey:cacheKey];
 
     return icon;
