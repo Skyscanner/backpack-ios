@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import MapKit
 
 public struct BPKFont {
     static var fontDefinition: BPKFontDefinition?
@@ -57,6 +58,8 @@ extension UIFont {
 }
 
 public extension Text {
+    init()
+    
     func font(style: BPKFontStyle) -> some View {
         let font = style.font
         return self.font(Font(font))
