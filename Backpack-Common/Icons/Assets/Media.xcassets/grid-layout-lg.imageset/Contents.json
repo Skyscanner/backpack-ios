@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "grid-layout-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

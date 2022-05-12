@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "face--happy-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

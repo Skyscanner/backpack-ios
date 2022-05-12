@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "plane-seat-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

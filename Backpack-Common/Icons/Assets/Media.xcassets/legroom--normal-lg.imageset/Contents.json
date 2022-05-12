@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "legroom--normal-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

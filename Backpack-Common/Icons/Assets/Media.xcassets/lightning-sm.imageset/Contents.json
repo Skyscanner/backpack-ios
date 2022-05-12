@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "lightning-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

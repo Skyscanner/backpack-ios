@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "city-center-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
