@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "social-like-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

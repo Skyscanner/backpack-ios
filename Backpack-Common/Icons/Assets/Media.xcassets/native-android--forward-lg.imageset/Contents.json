@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "native-android--forward-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

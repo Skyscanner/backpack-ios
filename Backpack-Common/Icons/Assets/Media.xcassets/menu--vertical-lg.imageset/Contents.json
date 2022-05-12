@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "menu--vertical-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

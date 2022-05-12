@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "mail-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
