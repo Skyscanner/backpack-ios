@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
         // Fallback to empty UIImage if we try to use an icon that does not exist
         icon = [UIImage new];
     }
-    icon = [icon imageWithTintColor: color];
+    icon = [icon imageWithTintColor:color];
     CGSize iconSize = [self concreteSizeForIconSize:size];
     UIGraphicsBeginImageContextWithOptions(iconSize, NO, 0.0);
     UIImage *placeholder = [UIImage new];
