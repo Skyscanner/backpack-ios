@@ -27,6 +27,10 @@ public struct BPKShadow {
     struct Offset {
         let x: CGFloat
         let y: CGFloat
+        
+        static func y(_ y: CGFloat) -> Offset {
+            Offset(x: 0, y: y)
+        }
     }
 }
 
@@ -36,7 +40,7 @@ public extension BPKShadow {
     static let {{s.swiftuiName}} = BPKShadow(color: .{{s.name}}Color, radius: {{s.radius}}, offset: Offset(x: {{s.offset.x}}, y: {{s.offset.y}}), opacity: {{s.opacity}})
 {% endfor %}}
 
-extension View {
+public extension View {
     func shadow(_ shadow: BPKShadow) -> some View {
         self.shadow(
             color: Color(shadow.color).opacity(shadow.opacity),
