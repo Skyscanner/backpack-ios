@@ -34,9 +34,7 @@ const generateSvgIcons = (template) => (done) => {
 
   const processSmSvgFile = (svgName) => {
     const file = `${imagesetFolder(svgName)}/${svgName}.svg`
-    const content = fs.readFileSync(file)
-    .toString()
-    // .replace('viewBox="0 0 24 24"', 'viewBox="0 0 16 16"')
+    const content = fs.readFileSync(file).toString()
     fs.writeFileSync(file, content)
   }
 
