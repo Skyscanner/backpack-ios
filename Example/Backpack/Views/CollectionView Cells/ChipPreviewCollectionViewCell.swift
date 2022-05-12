@@ -20,9 +20,13 @@ import UIKit
 import Backpack
 
 class ChipPreviewCollectionViewCell: UICollectionViewCell {
-    var icon: BPKLargeIconName? {
+    var icon: BPKChip.Icon? {
         didSet {
-            chip.iconName = icon ?? nil
+            if let icon = icon {
+                chip.icon = icon
+            } else {
+                chip.icon = nil
+            }
         }
     }
     var backgroundTint: UIColor? {

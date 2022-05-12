@@ -13,6 +13,12 @@
 
 - Backpack-Common:
   - Adding Module
+  
+**Breaking**
+
+- BpkChip
+  - Icon can now be leading or trailing
+  - Icon is now 'small' instead of 'large'
 
 ## How to write a good changelog entry
 
