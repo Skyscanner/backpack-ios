@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "device-wide-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

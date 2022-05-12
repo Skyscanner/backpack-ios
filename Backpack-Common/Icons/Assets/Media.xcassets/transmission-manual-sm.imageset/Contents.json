@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "transmission-manual-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

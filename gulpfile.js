@@ -39,6 +39,7 @@ const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, parseColor, capitaliseFirstLetter } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
 const swiftUI = require('./scripts/gulp/generation/swiftui');
+const generateSvgIcons = require('./scripts/gulp/generation/iconSvgs')
 
 const PATHS = {
   templates: {
@@ -128,7 +129,10 @@ const generateIconNames = (done) => {
   done();
 };
 
-gulp.task('generate-icon-names', generateIconNames);
+gulp.task('generate-icon-names', gulp.series(
+  generateIconNames,
+  generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`)
+  ));
 gulp.task(
   'template',
   gulp.series(

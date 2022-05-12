@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "camper-van-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "weather--partly-cloudy-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

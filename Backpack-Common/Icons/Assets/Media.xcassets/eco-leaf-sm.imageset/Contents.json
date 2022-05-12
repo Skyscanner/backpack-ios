@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "eco-leaf-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
