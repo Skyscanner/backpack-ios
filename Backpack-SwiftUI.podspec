@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack-SwiftUI'
-  s.version          = "49.0.2"
+  s.version          = "50.0.0-alpha"
   s.summary          = "Skyscanner's Design System Backpack for SwiftUI"
 
   s.description      = <<-DESC
