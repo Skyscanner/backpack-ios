@@ -15,7 +15,7 @@ PODS:
     - FSCalendar (~> 2.8.2)
     - MBProgressHUD (~> 1.2.0)
     - TTTAttributedLabel (~> 2.0.0)
-  - Backpack-Common (50.0.0-alpha)
+  - Backpack-Common (50.0.0)
   - Backpack-Fonts (0.0.1)
   - Backpack-SwiftUI (50.0.0-alpha):
     - Backpack-Common
@@ -72,7 +72,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
   Backpack: 71e1e1a53506ca26e26a66f37eff31c9cf0fc939
-  Backpack-Common: e8623bea3c0f334ca6db6820aa7c859cb4ec2b79
+  Backpack-Common: 909ff48b5f2c78249ad829927d43a842a85066ac
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
   Backpack-SwiftUI: d735a45fa97fed99f9ba66ad4e153ce7fbf397e5
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558

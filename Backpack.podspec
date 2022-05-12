@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "50.0.0-alpha"
+  s.version          = "49.0.2"
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC
@@ -34,9 +34,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
-  s.ios.resource_bundle = {
-    'Icon' => 'Backpack/Icon/Assets/*'
-  }
+
   s.dependency 'FSCalendar', '~> 2.8.2'
   s.dependency 'TTTAttributedLabel', '~> 2.0.0'
   s.dependency 'FloatingPanel', '1.6.6'
