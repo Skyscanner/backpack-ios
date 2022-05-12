@@ -262,7 +262,7 @@ end
 def documentBackpack(output)
   sh "sourcekitten doc -- -workspace #{EXAMPLE_WORKSPACE} -scheme Backpack > swiftDoc.json"
   createHeaderDoc
-  sh "sourcekitten doc --objc $(pwd)/Backpack/BackpackDocHeaders.h -- -x objective-c -isysroot $(xcrun --show-sdk-path --sdk iphonesimulator) -I $(pwd) -fmodules > objcDocs.json"
+  sh "sourcekitten doc --objc $(pwd)/Backpack/BackpackDocHeaders.h -- -x objective-c -isysroot $(xcrun --show-sdk-path --sdk iphonesimulator15.2) -I $(pwd) -fmodules > objcDocs.json"
   sh "jazzy --sourcekitten-sourcefile objcDocs.json,swiftDoc.json -o #{output}/uikit"
   
   File.delete("Backpack/BackpackDocHeaders.h")

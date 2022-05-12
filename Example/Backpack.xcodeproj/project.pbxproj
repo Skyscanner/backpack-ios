@@ -270,7 +270,6 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		530700D4282C350C0081B16E /* Backpack_SnapshotTests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Backpack_SnapshotTests copy-Info.plist"; path = "/Users/nicolasfrugoni/development/backpack/backpack-ios/Example/Backpack_SnapshotTests copy-Info.plist"; sourceTree = "<absolute>"; };
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
 		5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconsTestsUtils.m; sourceTree = "<group>"; };
@@ -655,7 +654,6 @@
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				C92ADAF91733A08AB077E3E3 /* Pods */,
-				530700D4282C350C0081B16E /* Backpack_SnapshotTests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
