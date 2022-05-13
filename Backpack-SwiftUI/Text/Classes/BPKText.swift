@@ -28,9 +28,10 @@ private extension Text {
 }
 
 public struct BPKText: View {
+    @State private var textColor = Color(BPKColor.textPrimaryColor)
+    
     private var text: String
     private var style: BPKFontStyle
-    @State private var foregroundColor = Color(BPKColor.textPrimaryColor)
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = text
@@ -40,12 +41,12 @@ public struct BPKText: View {
     public var body: some View {
         Text(text)
             .font(style: style)
-            .foregroundColor(foregroundColor)
+            .foregroundColor(textColor)
     }
     
     func foregroundColor(_ color: BPKColor) -> BPKText {
         var view = self
-        view._foregroundColor = State(initialValue: Color(color))
+        view._textColor = State(initialValue: Color(color))
         return view
     }
 }
