@@ -21,6 +21,7 @@
 		536737A02787575C0084BEDD /* BPKBedgeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379F2787575C0084BEDD /* BPKBedgeTest.swift */; };
 		537ED1A3282C36C900032105 /* IconGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1A2282C36C900032105 /* IconGroups.swift */; };
 		537ED1A5282C36E700032105 /* IconsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1A4282C36E700032105 /* IconsExampleView.swift */; };
+		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		538B55EE27C91329007BDE6B /* BPKSwitchSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */; };
 		538B55F027C915F9007BDE6B /* BPKTextViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DBB72927C5623300BD5E5A /* BPKTextViewSnapshotTests.swift */; };
 		538B55F227C91793007BDE6B /* BPKToastSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */; };
@@ -280,6 +281,7 @@
 		5367379F2787575C0084BEDD /* BPKBedgeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBedgeTest.swift; sourceTree = "<group>"; };
 		537ED1A2282C36C900032105 /* IconGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconGroups.swift; sourceTree = "<group>"; };
 		537ED1A4282C36E700032105 /* IconsExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsExampleView.swift; sourceTree = "<group>"; };
+		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		538B55ED27C911AF007BDE6B /* BPKSwitchSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSwitchSnapshotTest.swift; sourceTree = "<group>"; };
 		538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKToastSnapshotTest.swift; sourceTree = "<group>"; };
 		538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKStarRatingSnapshotTest.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 			children = (
 				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
 				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
+				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
 				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
 			);
 			path = Tokens;
@@ -1441,6 +1444,7 @@
 				D6ECFFFA241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
+				537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,

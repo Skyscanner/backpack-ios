@@ -17,6 +17,7 @@
  */
 
 const _ = require('lodash');
+const { lowercaseFirstLetter } = require('./utils/formatUtils');
 
 const VALID_SHADOWS = new Set(['sm', 'lg']);
 
@@ -78,6 +79,8 @@ const shadows = (properties, parseColor, getLegibleName) => _.chain(properties)
       color: parseColor(colorProp[0].value),
       opacity: opacityProp[0].value,
       radius: radiusProp[0].value,
+      swiftuiName: lowercaseFirstLetter(key.replace('shadow', '')),
+      swiftuiColorName: lowercaseFirstLetter(key.replace('shadow', '')),
       legibleName: getLegibleName(key),
     };
   })

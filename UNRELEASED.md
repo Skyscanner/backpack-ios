@@ -9,6 +9,7 @@
   - Adding Color Tokens
   - Adding Font Tokens
   - Adding Icons Component
+  - Adding Shadow Tokens
 
 **Added:**
 
