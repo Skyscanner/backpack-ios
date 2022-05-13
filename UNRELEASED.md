@@ -8,6 +8,7 @@
   - Adding Corner Radius Tokens
   - Adding Color Tokens
   - Adding Font Tokens
+  - Adding Shadow Tokens
 
 **Added:**
 
