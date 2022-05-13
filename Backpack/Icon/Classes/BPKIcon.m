@@ -40,12 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)iconName:(NSString *)name forSize:(BPKIconSize)size {
     if (size == BPKIconSizeSmall) {
         return [NSString stringWithFormat:@"%@%@", name, @"-sm"];
-    } else if (size == BPKIconSizeLarge) {
-        return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
-    } else if (size == BPKIconSizeXLarge) {
-        return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
     }
-    return nil;
+    return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
 }
 
 + (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {
