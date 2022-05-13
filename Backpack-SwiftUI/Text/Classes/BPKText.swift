@@ -55,7 +55,6 @@ struct BPKText_Previews: PreviewProvider {
         VStack {
             BPKText("Hello world!")
                 .foregroundColor(.skyBlue)
-                .foregroundColor(.systemRed)
             BPKText("Hello world!", style: .heading1)
         }
     }
