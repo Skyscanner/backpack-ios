@@ -22,6 +22,16 @@ public struct BPKColor {
     public let value: UIColor
 }
 
+extension BPKColor {
+    static var clear: BPKColor {
+        BPKColor(value: .clear)
+    }
+    
+    func withAlphaComponent(_ alpha: CGFloat) -> BPKColor {
+        BPKColor(value: value.withAlphaComponent(alpha))
+    }
+}
+
 public extension Color {
     init(_ color: BPKColor) {
         self.init(color.value)
@@ -32,8 +42,14 @@ public extension View {
     func background(_ color: BPKColor, alignment: Alignment = .center) -> some View {
         background(Color(color.value), alignment: alignment)
     }
-
+    
     func foregroundColor(_ color: BPKColor) -> some View {
+        foregroundColor(Color(color.value))
+    }
+}
+
+public extension Text {
+    func foregroundColor(_ color: BPKColor) -> Text {
         foregroundColor(Color(color.value))
     }
 }
