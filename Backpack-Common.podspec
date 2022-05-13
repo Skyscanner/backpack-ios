@@ -31,6 +31,9 @@ Pod::Spec.new do |s|
   s.source = {
     git: 'https://github.com/Skyscanner/backpack-ios.git', tag: s.version.to_s
   }
+  s.ios.resource_bundle = {
+    'Icons' => 'Backpack-Common/Icons/Assets/*'
+  }
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack-Common/**/*.swift'
   s.requires_arc = true

@@ -21,20 +21,15 @@ import Backpack
 
 class IconsViewController: UICollectionViewController {
 
-    fileprivate static var iconList = Array(BPKIcon.iconMapping!.keys).map({ $0.rawValue }).sorted()
-    fileprivate static var extraLargeIconList = iconList.filter({ $0.hasSuffix("-xl") })
-    fileprivate static var largeIconList = iconList.filter({ !$0.hasSuffix("-sm") })
-    fileprivate static var smallIconList = iconList.filter({ $0.hasSuffix("-sm") })
+    fileprivate static var iconList = allIcons.sorted()
 
     fileprivate static var icons = [
-        (heading: "Extra large icons", size: BPKIconSize.xLarge, icons: extraLargeIconList),
-        (heading: "Large icons", size: BPKIconSize.large, icons: largeIconList),
-        (heading: "Small icons", size: BPKIconSize.small, icons: smallIconList)
+        (heading: "Large icons", size: BPKIconSize.large, icons: iconList.filter({ !$0.hasSuffix("-sm") })),
+        (heading: "Small icons", size: BPKIconSize.small, icons: iconList.filter({ $0.hasSuffix("-sm") }))
     ]
 
     fileprivate static let smallCellIdentifier = "IconsPreviewCollectionViewCellSmall"
     fileprivate static let largeCellIdentifier = "IconsPreviewCollectionViewCellLarge"
-    fileprivate static let extraLargeCellIdentifier = "IconsPreviewCollectionViewCellExtraLarge"
     fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
 
     override func viewDidLoad() {
@@ -47,22 +42,10 @@ class IconsViewController: UICollectionViewController {
             forCellWithReuseIdentifier: IconsViewController.largeCellIdentifier
         )
         collectionView?.register(
-            IconsPreviewCollectionViewCell<BPKXlIconName>.self,
-            forCellWithReuseIdentifier: IconsViewController.extraLargeCellIdentifier
+            PreviewCollectionViewHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: IconsViewController.headerIdentifier
         )
-        #if swift(>=4.2)
-            collectionView?.register(
-                PreviewCollectionViewHeader.self,
-                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: IconsViewController.headerIdentifier
-            )
-        #else
-            collectionView?.register(
-                PreviewCollectionViewHeader.self,
-                forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                withReuseIdentifier: IconsViewController.headerIdentifier
-            )
-        #endif
 
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -100,8 +83,6 @@ extension IconsViewController {
             reuseIdentifier = IconsViewController.smallCellIdentifier
         case .large:
             reuseIdentifier = IconsViewController.largeCellIdentifier
-        case .xLarge:
-            reuseIdentifier = IconsViewController.extraLargeCellIdentifier
         default:
             reuseIdentifier = IconsViewController.largeCellIdentifier
         }
@@ -113,7 +94,7 @@ extension IconsViewController {
 
         var icon = iconSet.icons[indexPath.row]
 
-        if icon.hasSuffix("-sm") || icon.hasSuffix("-xl") {
+        if icon.hasSuffix("-sm") {
             icon.removeLast(3)
         }
 
@@ -121,8 +102,6 @@ extension IconsViewController {
             cell.icon = BPKSmallIconName(icon)
         } else if iconSet.size == .large, let cell = cell as? IconsPreviewCollectionViewCell<BPKLargeIconName> {
             cell.icon = BPKLargeIconName(icon)
-        } else if iconSet.size == .xLarge, let cell = cell as? IconsPreviewCollectionViewCell<BPKXlIconName> {
-            cell.icon = BPKXlIconName(icon)
         } else {
             fatalError("No cell registered for the icon type provided")
         }
@@ -134,11 +113,7 @@ extension IconsViewController {
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
-        #if swift(>=4.2)
-            let isExpectedHeader = kind == UICollectionView.elementKindSectionHeader
-        #else
-            let isExpectedHeader = kind == UICollectionElementKindSectionHeader
-        #endif
+        let isExpectedHeader = kind == UICollectionView.elementKindSectionHeader
 
         if isExpectedHeader {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(

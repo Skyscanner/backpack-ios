@@ -10,14 +10,18 @@ PODS:
   - AppCenter/Distribute (4.2.0):
     - AppCenter/Core
   - Backpack (49.0.2):
+    - Backpack-Common
     - FloatingPanel (= 1.6.6)
     - FSCalendar (~> 2.8.2)
     - MBProgressHUD (~> 1.2.0)
     - TTTAttributedLabel (~> 2.0.0)
   - Backpack-Common (49.0.2)
   - Backpack-Fonts (0.0.1)
-  - Backpack-SwiftUI (49.0.2)
-  - Backpack-SwiftUI/Tests (49.0.2)
+  - Backpack-SwiftUI (49.0.2):
+    - Backpack-Common
+  - Backpack-SwiftUI/Tests (49.0.2):
+    - Backpack-Common
+    - SnapshotTesting (~> 1.9.0)
   - FloatingPanel (1.6.6)
   - FSCalendar (2.8.4)
   - iOSSnapshotTestCase (6.2.0):
@@ -27,6 +31,7 @@ PODS:
     - iOSSnapshotTestCase/Core
   - MBProgressHUD (1.2.0)
   - OCMock (3.8.1)
+  - SnapshotTesting (1.9.0)
   - SwiftLint (0.43.1)
   - TTTAttributedLabel (2.0.0)
 
@@ -50,6 +55,7 @@ SPEC REPOS:
     - iOSSnapshotTestCase
     - MBProgressHUD
     - OCMock
+    - SnapshotTesting
     - SwiftLint
     - TTTAttributedLabel
 
@@ -65,15 +71,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
-  Backpack: 6c6a1a10a4d3e636be5f8ff87a4e713ff83b292c
-  Backpack-Common: 0cae03b9599131b63a2d58bba1a7f4d3ee9bc4b5
+  Backpack: cd50bd562e67c827b7054be02ad68a331c1f63de
+  Backpack-Common: aa274057f7d71626e523e78531c1e66974c212f2
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: 1747a903893f02fa7303a43f903f5f4ce063c42e
+  Backpack-SwiftUI: 644eba0eb2dd7442124a7f6f8c4d2fdb45bd7ec6
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
+  SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 

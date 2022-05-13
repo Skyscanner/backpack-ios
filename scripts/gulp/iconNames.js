@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
-const iconNames = (format) => {
+const { capitaliseFirstLetter, lowercaseFirstLetter } = require('./utils/formatUtils');
+
+const iconsUIKit = () => {
   const content = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
   const combinedEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm'));
   const smallEntries = Object.entries(content).filter((x) => x[0].endsWith('-sm'));
@@ -27,7 +29,7 @@ const iconNames = (format) => {
     name
       .replace('--', '-')
       .split('-')
-      .map(format)
+      .map(capitaliseFirstLetter)
       .join('')
       .replace('Ios', 'iOS');
 
@@ -53,4 +55,29 @@ const iconNames = (format) => {
   }
 }
 
-module.exports = iconNames
+const iconsSwiftUI = () => {
+  const content = require('@skyscanner/bpk-svgs/dist/font/iconMapping.json')
+  const largeEntries = Object.entries(content).filter((x) => !x[0].endsWith('-sm') && !x[0].endsWith('-xl'));
+
+  const codify = (name) =>
+    lowercaseFirstLetter(name
+      .replace('--', '-')
+      .split('-')
+      .map(capitaliseFirstLetter)
+      .join('')
+      .replace('Ios', 'iOS'))
+
+  const templateData = (entries) =>
+    entries.map(([key]) => ({
+      name: codify(key),
+      file: key
+    }))
+  return {
+    icons: templateData(largeEntries)
+  }
+}
+
+module.exports = {
+  iconsUIKit,
+  iconsSwiftUI
+}

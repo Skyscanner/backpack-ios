@@ -8,12 +8,14 @@
   - Adding Corner Radius Tokens
   - Adding Color Tokens
   - Adding Font Tokens
+  - Adding Icons Component
   - Adding Shadow Tokens
 
 **Added:**
 
 - Backpack-Common:
   - Adding Module
+  - Adding Icons as SVG
   
 **Breaking**
 
