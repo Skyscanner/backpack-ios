@@ -50,7 +50,7 @@ struct IconsExampleView: View {
             LazyVGrid(columns: columns, spacing: 8) {
                 ForEach((0..<filtered.count), id: \.self) { iconId in
                     VStack {
-                        BPKIconView(IconsExampleViewContent.allIcons[iconId], size: size)
+                        BPKIconView(filtered[iconId], size: size)
                             .foregroundColor(.primaryColor)
                         Text(filtered[iconId].name)
                             .font(style: .caption)

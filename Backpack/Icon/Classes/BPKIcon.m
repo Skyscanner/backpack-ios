@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
         return [NSString stringWithFormat:@"%@%@", name, @"-sm"];
     } else if (size == BPKIconSizeLarge) {
         return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
+    } else if (size == BPKIconSizeXLarge) {
+        return [NSString stringWithFormat:@"%@%@", name, @"-lg"];
     }
     return nil;
 }
