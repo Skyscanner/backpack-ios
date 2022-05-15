@@ -151,7 +151,7 @@ extension ComponentCellsProvider {
                 cellDataSources: [
                     PresentableCellDataSource.custom(
                         title: "SwiftUI",
-                        customController: { ContentUIHostingController(TextExampleView()) },
+                        customController: { ContentUIHostingController(AttributedTextExample()) },
                         showPresentable: show(presentable:)
                     ),
                     GroupCellDataSource(

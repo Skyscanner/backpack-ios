@@ -81,7 +81,6 @@ struct BPKText_Previews: PreviewProvider {
         VStack {
             BPKText("Hello world!")
                 .foregroundColor(.skyBlue)
-                .lineLimit(1)
             BPKText("Hello world!", style: .heading1)
         }
     }

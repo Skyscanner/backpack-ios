@@ -89,6 +89,7 @@
 		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
+		797FA4F428312782006E2A87 /* AttributedTextExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F328312782006E2A87 /* AttributedTextExample.swift */; };
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -358,6 +359,7 @@
 		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
+		797FA4F328312782006E2A87 /* AttributedTextExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextExample.swift; sourceTree = "<group>"; };
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
@@ -815,6 +817,15 @@
 			path = Tokens;
 			sourceTree = "<group>";
 		};
+		797FA4F22831275E006E2A87 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				79A0416428311D5C00A852B1 /* TextExampleView.swift */,
+				797FA4F328312782006E2A87 /* AttributedTextExample.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,6 +933,7 @@
 		D655C515200F9B9200CB39AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				797FA4F22831275E006E2A87 /* Text */,
 				5307FFC3282B26330081B16E /* Icons */,
 				794E1FEE280A828F00B965FF /* Tokens */,
 				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
@@ -946,7 +958,6 @@
 				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
 				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
 				D2EB964B25C05DF600988978 /* MapViewController.swift */,
-				79A0416428311D5C00A852B1 /* TextExampleView.swift */,
 				D61ACE042306E238001C976E /* NavigationBarViewController.swift */,
 				D2B4FC452538A88800070BEC /* OverlayViewsSelectorViewController.swift */,
 				D2B4FC462538A88900070BEC /* OverlayViewsViewController.swift */,
@@ -1433,6 +1444,7 @@
 				D2297C2A232A7F3F006E00E0 /* RatingSelectorViewController.swift in Sources */,
 				53B6DB6827FC4D520042B7C0 /* HorizontalNavigationGroups.swift in Sources */,
 				E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */,
+				797FA4F428312782006E2A87 /* AttributedTextExample.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
