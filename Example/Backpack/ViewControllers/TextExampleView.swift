@@ -47,10 +47,10 @@ private struct BPKTextContentExample {
         (.heading4, "Heading 4"),
         (.heading5, "Heading 5"),
         (.subheading, "Subheading"),
-        (.bodyDefault, "Body default"),
         (.bodyLongform, "Body long form"),
-        (.caption, "Caption"),
+        (.bodyDefault, "Body default"),
         (.footnote, "Footnote"),
+        (.caption, "Caption"),
         (.label1, "Label 1"),
         (.label2, "Label 2"),
         (.label3, "Label 3")
