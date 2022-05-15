@@ -32,4 +32,14 @@ class BPKTextTests: XCTestCase {
                         .frame(width: 300)
         )
     }
+    
+    func test_customStyle() {
+        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!", style: .heading1))
+    }
+    
+    func test_customColor() {
+        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
+                        .foregroundColor(.primaryColor)
+        )
+    }
 }
