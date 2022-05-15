@@ -27,10 +27,15 @@ fileprivate extension Text {
     }
 }
 
+/// A view that displays one or more lines of text
+/// By default the color of BPKText is set to `BPKColor.textPrimary` with a lineLimit of 1
+///
+/// Use `foregroundColor(_ color: BPKColor)` to change the color of the text
+/// Use `limeLimit(_ number: Int?)` to set the number of lines can be displayed. Pass in `nil` for unlimited lines
+///
 public struct BPKText: View {
     private var text: String
     private var style: BPKFontStyle
-    
     
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
@@ -47,12 +52,23 @@ public struct BPKText: View {
             .lineLimit(lineLimit)
     }
     
+    /// Sets the color of the text.
+    ///
+    /// - Parameter color: The foreground `BPKColor` to use when displaying this
+    ///   view.
+    ///
+    /// - Returns: A BPKText that uses the foreground color you supply.
     public func foregroundColor(_ color: BPKColor) -> BPKText {
         var view = self
         view.textColor = Color(color)
         return view
     }
     
+    /// Sets the maximum number of lines that text can occupy in the BPKText.
+    /// - Parameter number: The line limit. If `nil`, no line limit applies.
+    ///
+    /// - Returns: A BPKText that limits the number of lines that this ``BPKText``
+    ///   instance displays.
     public func lineLimit(_ number: Int?) -> BPKText {
         var view = self
         view.lineLimit = number
