@@ -22,6 +22,14 @@ import SwiftUI
 
 class BPKTextTests: XCTestCase {
     func test_defaultSettings() {
-        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!"))
+        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
+                        .frame(width: 300))
+    }
+    
+    func test_multiLine() {
+        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
+                        .lineLimit(2)
+                        .frame(width: 300)
+        )
     }
 }
