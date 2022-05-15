@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "share--ios-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -63,12 +63,28 @@ struct TokenCellsProvider {
                 customController: { ContentUIHostingController(RadiusTokensView()) },
                 showPresentable: show(presentable:)
             ),
-            PresentableCellDataSource(
-                title: "Shadows",
-                storyboard: .named("Main", on: "ShadowsViewController"),
-                showPresentable: show(presentable:)
-            )
+            shadowGroup
         ]
         return dataSources.map(\.cell)
+    }
+    
+    private var shadowGroup: GroupCellDataSource {
+        GroupCellDataSource(
+            title: "Shadows",
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    PresentableCellDataSource.custom(
+                        title: "SwiftUI",
+                        customController: { ContentUIHostingController(ShadowTokensView()) },
+                        showPresentable: show(presentable:)
+                    ),
+                    PresentableCellDataSource(
+                        title: "UIKit",
+                        storyboard: .named("Main", on: "ShadowsViewController"),
+                        showPresentable: show(presentable:)
+                    )
+                ]).groups(),
+            showChildren: { showChildren(for: "Gradients", children: $0) }
+        )
     }
 }

@@ -102,6 +102,16 @@
                ReferencedContainer = "container:Backpack.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "938411F25C58CF28B1E7322BEFB38F1A"
+               BuildableName = "Backpack-SwiftUI-Unit-Tests.xctest"
+               BlueprintName = "Backpack-SwiftUI-Unit-Tests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

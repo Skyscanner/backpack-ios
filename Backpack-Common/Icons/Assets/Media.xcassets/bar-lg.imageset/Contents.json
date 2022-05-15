@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "bar-lg.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

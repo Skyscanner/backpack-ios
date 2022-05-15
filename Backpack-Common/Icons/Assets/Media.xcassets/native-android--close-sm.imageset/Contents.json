@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "native-android--close-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

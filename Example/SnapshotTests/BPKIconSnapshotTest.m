@@ -20,11 +20,10 @@
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-
+#import "BPKIconsTestsUtils.h"
 
 typedef UIImageView* (^BPKIconMakeSmallIcon)(BPKSmallIconName);
 typedef UIImageView* (^BPKIconMakeLargeIcon)(BPKLargeIconName);
-typedef UIImageView* (^BPKIconMakeXlIcon)(BPKXlIconName);
 typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 
 
@@ -84,22 +83,8 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
     FBSnapshotVerifyView(view, nil);
 }
 
-- (void)testAllXlIcons {
-    NSArray<BPKXlIconName> *allXlIconNames = [[self class] allXlIconNames];
-
-    UIView *view = [[self class] generateXLargeIconGridWithIcons:allXlIconNames makeIconView:^UIImageView *(BPKXlIconName name) {
-        UIImage *icon = [BPKIcon xlTemplateIconNamed:name];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
-        imageView.image = icon;
-
-        return imageView;
-    }];
-
-    FBSnapshotVerifyView(view, nil);
-}
-
 + (NSArray<BPKSmallIconName> *)allSmallIconNames {
-    NSArray *allIcons = [BPKIcon.iconMapping allKeys];
+    NSArray *allIcons = [BPKIconsTestsUtils getAllIcons];
     NSMutableArray *result = [NSMutableArray new];
 
     for (NSString *icon in allIcons) {
@@ -113,26 +98,12 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 + (NSArray<BPKLargeIconName> *)allLargeIconNames {
-    NSArray *allIcons = [BPKIcon.iconMapping allKeys];
+    NSArray *allIcons = [BPKIconsTestsUtils getAllIcons];
     NSMutableArray *result = [NSMutableArray new];
 
     for (NSString *icon in allIcons) {
         if (![icon hasSuffix:@"-sm"]) {
             [result addObject:(BPKLargeIconName) icon];
-        }
-    }
-
-    return [result copy];
-}
-
-+ (NSArray<BPKXlIconName> *)allXlIconNames {
-    NSArray *allIcons = [BPKIcon.iconMapping allKeys];
-    NSMutableArray *result = [NSMutableArray new];
-
-    for (NSString *icon in allIcons) {
-        if ([icon hasSuffix:@"-xl"]) {
-            BPKXlIconName name = [icon substringToIndex:icon.length - 3];
-            [result addObject:name];
         }
     }
 
@@ -149,12 +120,6 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
     return [self generateIconGridWithIcons:icons
                               makeIconView:makeLargeIcon
                                   iconSize:BPKIcon.concreteSizeForLargeIcon];
-}
-
-+ (UIView *)generateXLargeIconGridWithIcons:(NSArray<BPKXlIconName> *)icons makeIconView:(BPKIconMakeXlIcon)makeXlIcon {
-    return [self generateIconGridWithIcons:icons
-                              makeIconView:makeXlIcon
-                                  iconSize:BPKIcon.concreteSizeForXlIcon];
 }
 
 + (UIView *)generateIconGridWithIcons:(NSArray<id> *)icons makeIconView:(BPKIconGenericMakeIcon)makeIcon iconSize:(CGSize)iconSize {

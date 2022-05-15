@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "baggage-tick-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

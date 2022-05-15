@@ -80,21 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
-- (UIView *)createXlWithTint {
-    BPKXlIconView *view = [[BPKXlIconView alloc] initWithIconName:BPKIconNameStar];
-    view.tintColor = BPKColor.panjin;
-
-    return view;
-}
-
-- (void)testXlWithTint {
-    UIView *lightView = [self createXlWithTint];
-    UIView *darkView = [self createXlWithTint];
-
-    BPKSnapshotVerifyViewLight(lightView, nil);
-    BPKSnapshotVerifyViewDark(darkView, nil);
-}
-
 @end
 
 NS_ASSUME_NONNULL_END
