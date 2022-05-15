@@ -28,7 +28,7 @@ private extension Text {
 }
 
 public struct BPKText: View {
-    @State private var textColor = Color(BPKColor.textPrimaryColor)§
+    @State private var textColor = Color(BPKColor.textPrimaryColor)
     
     private var text: String
     private var style: BPKFontStyle
