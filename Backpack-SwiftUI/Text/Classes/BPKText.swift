@@ -28,10 +28,12 @@ fileprivate extension Text {
 }
 
 public struct BPKText: View {
-    @State private var textColor = Color(BPKColor.textPrimaryColor)
-    
     private var text: String
     private var style: BPKFontStyle
+    
+    
+    private var textColor = Color(BPKColor.textPrimaryColor)
+    private var lineLimit: Int? = 1
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = text
@@ -42,11 +44,18 @@ public struct BPKText: View {
         Text(text)
             .font(style: style)
             .foregroundColor(textColor)
+            .lineLimit(lineLimit)
     }
     
-    func foregroundColor(_ color: BPKColor) -> BPKText {
+    public func foregroundColor(_ color: BPKColor) -> BPKText {
         var view = self
-        view._textColor = State(initialValue: Color(color))
+        view.textColor = Color(color)
+        return view
+    }
+    
+    public func lineLimit(_ number: Int?) -> BPKText {
+        var view = self
+        view.lineLimit = number
         return view
     }
 }
@@ -56,6 +65,7 @@ struct BPKText_Previews: PreviewProvider {
         VStack {
             BPKText("Hello world!")
                 .foregroundColor(.skyBlue)
+                .lineLimit(1)
             BPKText("Hello world!", style: .heading1)
         }
     }
