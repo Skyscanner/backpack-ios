@@ -149,10 +149,10 @@ extension ComponentCellsProvider {
             title: "Labels",
             groups: SingleGroupProvider(
                 cellDataSources: [
-                    PresentableCellDataSource.custom(
+                    GroupCellDataSource(
                         title: "SwiftUI",
-                        customController: { ContentUIHostingController(AttributedTextExample()) },
-                        showPresentable: show(presentable:)
+                        groups: TextGroupsProvider(showPresentable: show(presentable:)).groups(),
+                        showChildren: { showChildren(title: "Labels", children: $0) }
                     ),
                     GroupCellDataSource(
                         title: "UIKit",

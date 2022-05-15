@@ -20,7 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct AttributedTextExample: View {
+struct AttributedTextExampleView: View {
     let items: [BPKAttributedText.Item] = [
         .init("This is a ", style: .heading2),
         .init("BPKAttributedText ", style: .heading1, color: .abisko),
@@ -39,8 +39,8 @@ struct AttributedTextExample: View {
     }
 }
 
-struct AttributedTextExample_Previews: PreviewProvider {
+struct AttributedTextExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        AttributedTextExample()
+        AttributedTextExampleView()
     }
 }
