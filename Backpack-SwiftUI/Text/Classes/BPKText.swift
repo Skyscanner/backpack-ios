@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-private extension Text {
+fileprivate extension Text {
     func font(style: BPKFontStyle) -> some View {
         let font = style.font
         return self.font(Font(font))
