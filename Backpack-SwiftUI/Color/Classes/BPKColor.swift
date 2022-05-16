@@ -47,9 +47,3 @@ public extension View {
         foregroundColor(Color(color.value))
     }
 }
-
-public extension Text {
-    func foregroundColor(_ color: BPKColor) -> Text {
-        foregroundColor(Color(color.value))
-    }
-}

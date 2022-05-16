@@ -37,12 +37,11 @@ class BPKButtonTests: XCTestCase {
                         .buttonStyle(style)
                     BPKButton("Click Me", icon: .trailing(icon: .account), size: self.sizes[size], action: {})
                         .buttonStyle(style)
-                    BPKButton(icon: .trailing(icon: .account), size: self.sizes[size], action: {})
+                    BPKButton(icon: .account, accessibilityLabel: "Click Me", size: self.sizes[size], action: {})
                         .buttonStyle(style)
                 }
-                
             }
-        }.frame(width: 650)
+        }
     }
     
     func testPrimaryButton() {

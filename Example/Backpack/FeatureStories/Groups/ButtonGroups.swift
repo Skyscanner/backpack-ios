@@ -41,8 +41,8 @@ struct ButtonGroupsProvider {
     
     private var swiftUI: CellDataSource {
         PresentableCellDataSource.custom(
-            title: title,
-            customController: UIHostingController(rootView: ButtonsExampleView()),
+            title: "SwiftUI",
+            customController: { UIHostingController(rootView: ButtonsExampleView()) },
             showPresentable: showPresentable
         )
     }

@@ -20,17 +20,35 @@ import SwiftUI
 import Backpack_Common
 
 public struct BPKButton: View {
-    private let title: String
+    private let title: String?
     private let icon: Icon?
     private let size: BPKButton.Size
     private var style: BPKButton.Style = .primary
+    private var accessibilityLabel: String
     private let action: () -> Void
     
     @Binding private var loading: Bool
     @Binding private var enabled: Bool
     
     public init(
-        _ title: String = "",
+        icon: BPKIcon,
+        accessibilityLabel: String,
+        loading: Binding<Bool> = .constant(false),
+        enabled: Binding<Bool> = .constant(true),
+        size: BPKButton.Size = .default,
+        action: @escaping () -> Void
+    ) {
+        self.title = nil
+        self.accessibilityLabel = accessibilityLabel
+        self.icon = Icon(icon: icon, position: .leading)
+        self._loading = loading
+        self._enabled = enabled
+        self.action = action
+        self.size = size
+    }
+    
+    public init(
+        _ title: String,
         icon: Icon? = nil,
         loading: Binding<Bool> = .constant(false),
         enabled: Binding<Bool> = .constant(true),
@@ -38,6 +56,7 @@ public struct BPKButton: View {
         action: @escaping () -> Void
     ) {
         self.title = title
+        self.accessibilityLabel = title
         self.icon = icon
         self._loading = loading
         self._enabled = enabled
@@ -53,6 +72,7 @@ public struct BPKButton: View {
                     .opacity(loading ? 0 : 1)
             }
         }
+        .accessibilityLabel(accessibilityLabel)
         .buttonStyle(buttonStyle)
         .disabled(!enabled || loading)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
@@ -61,6 +81,12 @@ public struct BPKButton: View {
     public func buttonStyle(_ style: BPKButton.Style) -> BPKButton {
         var result = self
         result.style = style
+        return result
+    }
+    
+    public func accessiblityLabel(_ text: String) -> BPKButton {
+        var result = self
+        result.accessibilityLabel = accessibilityLabel
         return result
     }
     
@@ -84,7 +110,7 @@ public struct BPKButton: View {
     }
     
     private var isIconOnly: Bool {
-        icon != nil && title == ""
+        icon != nil && title == nil || title == ""
     }
 }
 
@@ -106,18 +132,18 @@ private struct ButtonLoadingContentView: View {
 }
 
 private struct ButtonContentView: View {
-    let title: String
+    let title: String?
     let size: BPKButton.Size
     let icon: BPKButton.Icon?
     
     var body: some View {
         if let icon = icon {
-            if title != "" {
+            if let title = title, title != "" {
                 content(withIcon: icon, title: title)
             } else {
                 content(withIcon: icon)
             }
-        } else {
+        } else if let title = title {
             content(withTitle: title)
         }
     }

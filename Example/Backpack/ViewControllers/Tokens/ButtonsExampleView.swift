@@ -26,7 +26,7 @@ struct ButtonsExampleView: View {
     @State var loading = false
     @State var title: String = "Click Me"
     @State var trailingIcon = true
-    @State var buttonType: BPKButton.Style = .primary
+    @State var buttonType: Backpack_SwiftUI.BPKButton.Style = .primary
     
     private var toggles: some View {
         VStack {
@@ -67,11 +67,12 @@ struct ButtonsExampleView: View {
         .background(background)
     }
     
-    private var background: BPKColor {
+    private var background: Backpack_SwiftUI.BPKColor {
         let isOnDarkStyle = buttonType == .primaryOnDark
         || buttonType == .secondaryOnDark
         || buttonType == .linkOnDark
-        return isOnDarkStyle ? .black : .backgroundColor
+        let isOnLightStyle = buttonType == .primaryOnLight
+        return isOnDarkStyle ? .black : isOnLightStyle ? .white : .backgroundColor
     }
     
     private var stylesPicker: some View {
