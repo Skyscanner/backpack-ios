@@ -23,12 +23,12 @@ const nunjucks = require('gulp-nunjucks');
 const rename = require('gulp-rename');
 
 const generateAutoMirrorIconNames = (templateFolder) => (done) => {
-    const content = require('@skyscanner/bpk-svgs/dist/metadata.json')
-    const autoMirror = Object.entries(content).filter((x) => x[0].autoMirror);
+    const content = require('@skyscanner/bpk-svgs/dist/metadata.json');
+    const iconNames = Object.entries(content).filter((x) => x[1].autoMirror).map(item => item[0]);
 
     gulp
       .src(path.join(templateFolder, 'BPKAutoMirrorIconNames.njk'))
-      .pipe(data({iconNames: autoMirror}))
+      .pipe(data({iconNames: iconNames}))
       .pipe(nunjucks.compile())
       .pipe(rename('BPKAutoMirrorIconNames.swift'))
       .pipe(gulp.dest('Backpack-Common'))
