@@ -17,7 +17,6 @@
  */
 
 import SwiftUI
-import Backpack_Common
 
 public struct BPKIconView: View {
     @State var icon: BPKIcon

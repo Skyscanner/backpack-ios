@@ -34,7 +34,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
 
-  s.dependency 'Backpack-Common'
+  s.subspec 'Backpack_Common' do |sp|
+    sp.source_files = 'Backpack-Common/**/*.swift'
+  end
 
   s.requires_arc = true
   s.swift_versions = ['5.0']
