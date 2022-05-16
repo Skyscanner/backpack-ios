@@ -24,7 +24,7 @@
   - Icon is now 'small' instead of 'large'
   
 **Fixed**
-- BpkIconView
+- BPKIconView
   - Certain icons will not automatically mirror in right to left mode
 
 ## How to write a good changelog entry
