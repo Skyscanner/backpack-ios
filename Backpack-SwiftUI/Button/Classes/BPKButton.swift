@@ -110,7 +110,7 @@ public struct BPKButton: View {
     }
     
     private var isIconOnly: Bool {
-        icon != nil && title == nil || title == ""
+        icon != nil && title == nil
     }
 }
 
