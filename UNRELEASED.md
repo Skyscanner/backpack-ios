@@ -12,6 +12,7 @@
   - Adding Shadow Tokens
   - Adding BpkText and BpkAttributedText
   - Adding Card Component
+  - Adding Button Component
 
 **Added:**
 

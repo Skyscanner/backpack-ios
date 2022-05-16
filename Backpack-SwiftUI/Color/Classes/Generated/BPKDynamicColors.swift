@@ -24,7 +24,7 @@ public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor
 
 /// Backpack Dynamic Colors
 public extension BPKColor {
-    private func darkVariant(_ darkVariant: BPKColor) -> BPKColor {
+    func darkVariant(_ darkVariant: BPKColor) -> BPKColor {
         BPKColor(value: dynamicColor(lightVariant: value, darkVariant: darkVariant.value))
     }
 

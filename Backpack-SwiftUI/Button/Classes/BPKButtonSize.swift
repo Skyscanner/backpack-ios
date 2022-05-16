@@ -16,18 +16,12 @@
  * limitations under the License.
  */
 
-import UIKit
-
-public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
-    UIColor { $0.userInterfaceStyle == .dark ? darkVariant : lightVariant }
-}
-
-/// Backpack Dynamic Colors
-public extension BPKColor {
-    func darkVariant(_ darkVariant: BPKColor) -> BPKColor {
-        BPKColor(value: dynamicColor(lightVariant: value, darkVariant: darkVariant.value))
+extension BPKButton {
+    public enum Size {
+        /// Default, smaller, button size.
+        case `default`
+        
+        /// Larger button size.
+        case large
     }
-{% for c in dynamicColor %}
-    /// The `{{c.name}}` dynamic color from the Backpack palette.
-    static let {{c.name}} = {{c.value}}.darkVariant({{c.darkValue}})
-{% endfor %}}
+}

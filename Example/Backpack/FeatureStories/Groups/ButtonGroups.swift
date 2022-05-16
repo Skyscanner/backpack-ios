@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 
+import SwiftUI
 import Backpack
 
 struct ButtonGroupsProvider {
@@ -38,9 +39,18 @@ struct ButtonGroupsProvider {
         )
     }
     
+    private var swiftUI: CellDataSource {
+        PresentableCellDataSource.custom(
+            title: "SwiftUI",
+            customController: { UIHostingController(rootView: ButtonsExampleView()) },
+            showPresentable: showPresentable
+        )
+    }
+    
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
+                swiftUI,
                 presentable("Primary", style: .primary),
                 presentable("Secondary", style: .secondary),
                 presentable("Secondary On Dark", style: .secondaryOnDark, backgroundColor: BPKColor.skyGray),
