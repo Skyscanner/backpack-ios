@@ -103,7 +103,7 @@ private struct CardButtonStyle: ButtonStyle {
 
 }
 
-struct ExampleComponent_Previews: PreviewProvider {
+struct BPKCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 40){
             BPKCard() {
