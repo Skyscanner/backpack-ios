@@ -27,6 +27,7 @@
 		538B55F227C91793007BDE6B /* BPKToastSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */; };
 		538B55F527C93BE7007BDE6B /* BPKStarRatingSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */; };
 		538B55F727C94BE9007BDE6B /* BPKDialogViewSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */; };
+		538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B6EC12832B4D10084C721 /* CardExampleView.swift */; };
 		53B5822127DA3CF4004101A3 /* CalendarUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B5822027DA3CF3004101A3 /* CalendarUITest.swift */; };
 		53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */; };
 		53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5827FB6F930042B7C0 /* TokenCells.swift */; };
@@ -289,6 +290,7 @@
 		538B55F127C9178B007BDE6B /* BPKToastSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKToastSnapshotTest.swift; sourceTree = "<group>"; };
 		538B55F427C939B1007BDE6B /* BPKStarRatingSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKStarRatingSnapshotTest.swift; sourceTree = "<group>"; };
 		538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKDialogViewSnapshotTest.swift; sourceTree = "<group>"; };
+		538B6EC12832B4D10084C721 /* CardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExampleView.swift; sourceTree = "<group>"; };
 		53B5822027DA3CF3004101A3 /* CalendarUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUITest.swift; sourceTree = "<group>"; };
 		53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCells.swift; sourceTree = "<group>"; };
 		53B6DB5827FB6F930042B7C0 /* TokenCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCells.swift; sourceTree = "<group>"; };
@@ -814,6 +816,7 @@
 			children = (
 				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
 				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
+				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
 				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
 				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
 			);
@@ -1425,6 +1428,7 @@
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
+				538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
