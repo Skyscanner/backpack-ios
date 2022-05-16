@@ -40,6 +40,7 @@ const swiftUI = require('./scripts/gulp/generation/swiftui');
 const generateSvgIcons = require('./scripts/gulp/generation/iconSvgs');
 const generateIconNamesSwiftUI = require('./scripts/gulp/generation/swiftui/icons');
 const { generateIconNamesUIKit, generateIconExampleUtil, generateIconExampleTestsUtil } = require('./scripts/gulp/generation/uikit/icons');
+const generateAutoMirrorIconNames = require('./scripts/gulp/autoMirrorIconNames');
 
 const PATHS = {
   templates: {
@@ -103,6 +104,7 @@ gulp.task('generate-icons', gulp.series(
   generateIconExampleUtil(PATHS.templates.objc),
   generateIconExampleTestsUtil(PATHS.templates.objc, PATHS.templates.swiftui),
   generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`)),
+  generateAutoMirrorIconNames(PATHS.templates.objc)
 );
 
 gulp.task(
