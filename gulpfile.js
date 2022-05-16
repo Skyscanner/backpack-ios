@@ -103,8 +103,8 @@ gulp.task('generate-icons', gulp.series(
   generateIconNamesUIKit(PATHS.output, PATHS.templates.objc),
   generateIconExampleUtil(PATHS.templates.objc),
   generateIconExampleTestsUtil(PATHS.templates.objc, PATHS.templates.swiftui),
-  generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`)),
-  generateAutoMirrorIconNames(PATHS.templates.objc)
+  generateSvgIcons(`${PATHS.templates.objc}/icons/AssetContents.json`),
+  generateAutoMirrorIconNames(PATHS.templates.objc)),
 );
 
 gulp.task(

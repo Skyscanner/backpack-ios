@@ -34,9 +34,9 @@ public class BPKAutoMirrorIconNames: NSObject {
         "star-half",
         "swap--horizontal",
         "swap--vertical",
-        "trend",
         "trend--down",
         "trend--steady",
-        "trend--will-rise"
+        "trend--will-rise",
+        "trend"
     ]
 }
