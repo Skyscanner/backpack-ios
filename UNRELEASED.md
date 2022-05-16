@@ -10,6 +10,7 @@
   - Adding Font Tokens
   - Adding Icons Component
   - Adding Shadow Tokens
+  - Adding Button Component
 
 **Added:**
 
