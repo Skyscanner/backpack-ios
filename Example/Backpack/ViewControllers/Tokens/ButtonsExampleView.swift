@@ -28,7 +28,7 @@ struct ButtonsExampleView: View {
     @State var trailingIcon = true
     @State var buttonType: BPKButton.Style = .primary
     
-    var body: some View {
+    private var toggles: some View {
         VStack {
             Toggle("Enabled", isOn: $enabled)
             Toggle("Loading", isOn: $loading)
@@ -38,44 +38,65 @@ struct ButtonsExampleView: View {
                 TextField("Title", text: $title)
                     .textFieldStyle(.roundedBorder)
             }
+        }
+    }
+    
+    private var exampleButtons: some View {
+        HStack {
+            Spacer()
+            BPKButton(
+                title,
+                icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
+                loading: $loading,
+                enabled: $enabled,
+                size: .default
+            ) { times += 1 }
+            .buttonStyle(buttonType)
+            Spacer()
+            BPKButton(
+                title,
+                icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
+                loading: $loading,
+                enabled: $enabled,
+                size: .large
+            ) { times += 1 }
+            .buttonStyle(buttonType)
+            Spacer()
+        }
+        .padding()
+        .background(background)
+    }
+    
+    private var background: BPKColor {
+        let isOnDarkStyle = buttonType == .primaryOnDark
+        || buttonType == .secondaryOnDark
+        || buttonType == .linkOnDark
+        return isOnDarkStyle ? .black : .backgroundColor
+    }
+    
+    private var stylesPicker: some View {
+        Picker("Style", selection: $buttonType) {
+            Text("Primary").tag(BPKButton.Style.primary)
+            Text("Primary On Light").tag(BPKButton.Style.primaryOnLight)
+            Text("Primary On Dark").tag(BPKButton.Style.primaryOnDark)
+            Text("Destructive").tag(BPKButton.Style.destructive)
+            Text("Featured").tag(BPKButton.Style.featured)
+            Text("Secondary").tag(BPKButton.Style.secondary)
+            Text("Secondry On Dark").tag(BPKButton.Style.secondaryOnDark)
+            Text("Link").tag(BPKButton.Style.link)
+            Text("Link On Dark").tag(BPKButton.Style.linkOnDark)
+        }
+        .pickerStyle(.inline)
+    }
+    
+    var body: some View {
+        VStack {
+            toggles
             Text("Tapped \(times) times")
             Spacer()
-            HStack {
-                Spacer()
-                BPKButton(
-                    title,
-                    icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
-                    loading: $loading,
-                    enabled: $enabled,
-                    size: .default
-                ) { times += 1 }
-                .buttonStyle(buttonType)
-                Spacer()
-                BPKButton(
-                    title,
-                    icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
-                    loading: $loading,
-                    enabled: $enabled,
-                    size: .large
-                ) { times += 1 }
-                .buttonStyle(buttonType)
-                Spacer()
-            }
-            .padding()
-            .background(buttonType == .primaryOnDark || buttonType == .secondaryOnDark || buttonType == .linkOnDark ? .black : .backgroundColor)
+            exampleButtons
             Spacer()
-            Picker("Style", selection: $buttonType) {
-                Text("Primary").tag(BPKButton.Style.primary)
-                Text("Primary On Light").tag(BPKButton.Style.primaryOnLight)
-                Text("Primary On Dark").tag(BPKButton.Style.primaryOnDark)
-                Text("Destructive").tag(BPKButton.Style.destructive)
-                Text("Featured").tag(BPKButton.Style.featured)
-                Text("Secondary").tag(BPKButton.Style.secondary)
-                Text("Secondry On Dark").tag(BPKButton.Style.secondaryOnDark)
-                Text("Link").tag(BPKButton.Style.link)
-                Text("Link On Dark").tag(BPKButton.Style.linkOnDark)
-            }
-            .pickerStyle(.inline)
+            stylesPicker
         }
         .padding()
     }
