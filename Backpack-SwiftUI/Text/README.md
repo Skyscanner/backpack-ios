@@ -2,7 +2,7 @@
 
 ## Usage
 
-### BPKText
+### BpkText
 
 ```swift
 import Backpack_SwiftUI
@@ -17,7 +17,7 @@ BPKText("Hello world")
     
 ```
 
-### BPKAttributedText
+### BpkAttributedText
 
 ```swift
 import Backpack_SwiftUI
