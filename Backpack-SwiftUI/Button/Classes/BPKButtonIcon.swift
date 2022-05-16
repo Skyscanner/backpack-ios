@@ -35,3 +35,13 @@ extension BPKButton {
         case trailing
     }
 }
+
+public extension BPKButton.Icon {
+    static func leading(icon: BPKIcon) -> BPKButton.Icon {
+        BPKButton.Icon(icon: icon, position: .leading)
+    }
+    
+    static func trailing(icon: BPKIcon) -> BPKButton.Icon {
+        BPKButton.Icon(icon: icon, position: .trailing)
+    }
+}

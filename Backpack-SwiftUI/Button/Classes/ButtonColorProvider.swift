@@ -16,13 +16,11 @@
  * limitations under the License.
  */
 
-protocol ButtonColorProvider {
-    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState) -> BPKButton.ColorSets.Colors
-}
-
-struct DefaultButtonColorProvider: ButtonColorProvider {
-    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState) -> BPKButton.ColorSets.Colors {
-        let colorSet = colorSet(forStyle: style)
+struct ButtonColorProvider {
+    let colorSetFactory: ButtonColorSetFactory
+    
+    func color(forStyle style: BPKButton.Style, currentState: BPKButton.CurrentState) -> BPKButtonColors {
+        let colorSet = colorSetFactory.colorSet(forStyle: style)
         switch currentState {
         case .regular: return colorSet.regular
         case .loading: return colorSet.loading
@@ -30,18 +28,23 @@ struct DefaultButtonColorProvider: ButtonColorProvider {
         case .disabled: return colorSet.disabled
         }
     }
-    
-    private func colorSet(forStyle style: BPKButton.Style) -> BPKButton.ColorSets {
+}
+protocol ButtonColorSetFactory {
+    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet
+}
+
+struct DefaultButtonColorSetFactory: ButtonColorSetFactory {
+    func colorSet(forStyle style: BPKButton.Style) -> BPKButtonColorSet {
         switch style {
-        case .primary: return .primary
-        case .secondary: return .secondary
-        case .secondaryOnDark: return .secondaryOnDark
-        case .destructive: return .destructive
-        case .featured: return .featured
-        case .link: return .link
-        case .linkOnDark: return .linkOnDark
-        case .primaryOnDark: return .primaryOnDark
-        case .primaryOnLight: return .primaryOnLight
+        case .primary: return PrimaryBPKButtonColorSet()
+        case .secondary: return SecondaryBPKButtonColorSet()
+        case .secondaryOnDark: return SecondaryOnDarkBPKButtonColorSet()
+        case .destructive: return DestructiveBPKButtonColorSet()
+        case .featured: return FeaturedBPKButtonColorSet()
+        case .link: return LinkBPKButtonColorSet()
+        case .linkOnDark: return LinkOnDarkBPKButtonColorSet()
+        case .primaryOnDark: return PrimaryOnDarkBPKButtonColorSet()
+        case .primaryOnLight: return PrimaryOnLightBPKButtonColorSet()
         }
     }
 }

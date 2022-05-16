@@ -38,7 +38,7 @@ struct CurrentStateButtonStyle: ButtonStyle {
         return hasPadding ? .none : .base
     }
     
-    private func colors(forConfiguration configuration: Configuration) -> BPKButton.ColorSets.Colors {
+    private func colors(forConfiguration configuration: Configuration) -> BPKButtonColors {
         let currentState = getCurrentState(configuration.isPressed)
         return colorProvider.color(forStyle: style, currentState: currentState)
     }

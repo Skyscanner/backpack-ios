@@ -70,7 +70,9 @@ public struct BPKButton: View {
             size: size,
             iconOnly: isIconOnly,
             getCurrentState: currentState(isPressed:),
-            colorProvider: DefaultButtonColorProvider()
+            colorProvider: ButtonColorProvider(
+                colorSetFactory: DefaultButtonColorSetFactory()
+            )
         )
     }
     

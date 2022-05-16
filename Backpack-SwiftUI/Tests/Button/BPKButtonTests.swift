@@ -21,23 +21,76 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKButtonTests: XCTestCase {
-    func testLargeIcon() {
-        assertSnapshot(BPKIconView(.account, size: .large))
+    let sizes: [BPKButton.Size] = [.default, .large]
+    
+    private func allStates(for style: BPKButton.Style) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            ForEach(0..<2) { size in
+                HStack(spacing: 2) {
+                    BPKButton("Click Me", size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                    BPKButton("Click Me", enabled: .constant(false), size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                    BPKButton("Click Me", loading: .constant(true), size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                    BPKButton("Click Me", icon: .leading(icon: .account), size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                    BPKButton("Click Me", icon: .trailing(icon: .account), size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                    BPKButton(icon: .trailing(icon: .account), size: self.sizes[size], action: {})
+                        .buttonStyle(style)
+                }
+                
+            }
+        }.frame(width: 650)
     }
     
-    func testSmallIcon() {
-        assertSnapshot(BPKIconView(.account, size: .small))
+    func testPrimaryButton() {
+        assertSnapshot(allStates(for: .primary))
     }
     
-    private func iconsGrid(size: BPKIcon.Size) -> some View {
-        Text("")
+    func testSecondaryButton() {
+        assertSnapshot(allStates(for: .secondary))
     }
     
-    func testAllSmallIcons() {
-        assertSnapshot(iconsGrid(size: .small))
+    func testSecondaryOnDarkButton() {
+        assertSnapshot(
+            allStates(for: .secondaryOnDark)
+                .background(.blackTint01)
+        )
     }
     
-    func testAllLargeIcons() {
-        assertSnapshot(iconsGrid(size: .large))
+    func testDestructiveButton() {
+        assertSnapshot(allStates(for: .destructive))
     }
+    
+    func testFeaturedButton() {
+        assertSnapshot(allStates(for: .featured))
+    }
+    
+    func testLinkButton() {
+        assertSnapshot(allStates(for: .link))
+    }
+    
+    func testLinkOnDarkButton() {
+        assertSnapshot(
+            allStates(for: .linkOnDark)
+                .background(.blackTint01)
+        )
+    }
+    
+    func testPrimaryOnDarkButton() {
+        assertSnapshot(
+            allStates(for: .primaryOnDark)
+                .background(.blackTint01)
+        )
+    }
+    
+    func testPrimaryOnLightButton() {
+        assertSnapshot(
+            allStates(for: .primaryOnLight)
+                .background(.white)
+        )
+    }
+    
 }
