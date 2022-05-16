@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
     UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
-    
+
     if ([BPKAutoMirrorIconNames.items containsObject:name]) {
         image = [image imageFlippedForRightToLeftLayoutDirection];
     }
