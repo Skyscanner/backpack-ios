@@ -18,6 +18,7 @@
 #import "BPKIcon.h"
 
 #import <Backpack_Common/Backpack_Common-Swift.h>
+#import <Backpack/Backpack-Swift.h>
 #import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
     UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
+    
+    if ([BPKAutoMirrorIconNames.items containsObject:name]) {
+        image = [image imageFlippedForRightToLeftLayoutDirection];
+    }
 
     return [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
