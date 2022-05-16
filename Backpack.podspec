@@ -35,8 +35,11 @@ Pod::Spec.new do |s|
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
 
-  s.subspec 'Backpack_Common' do |sp|
+  s.subspec 'Common' do |sp|
     sp.source_files = 'Backpack-Common/**/*.swift'
+    sp.ios.resource_bundle = {
+      'Icons' => 'Backpack-Common/Icons/Assets/*'
+    }
   end
 
   s.dependency 'FSCalendar', '~> 2.8.2'

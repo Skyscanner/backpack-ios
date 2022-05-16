@@ -34,8 +34,11 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack-SwiftUI/*/Classes/**/*.swift'
 
-  s.subspec 'Backpack_Common' do |sp|
+  s.subspec 'Common' do |sp|
     sp.source_files = 'Backpack-Common/**/*.swift'
+    sp.ios.resource_bundle = {
+      'Icons' => 'Backpack-Common/Icons/Assets/*'
+    }
   end
 
   s.requires_arc = true
