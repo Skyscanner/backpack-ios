@@ -18,6 +18,7 @@
 
 import XCTest
 import SwiftUI
+import SnapshotTesting
 @testable import Backpack_SwiftUI
 
 class BPKIconViewTests: XCTestCase {
