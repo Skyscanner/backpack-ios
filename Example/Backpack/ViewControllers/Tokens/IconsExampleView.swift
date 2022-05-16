@@ -45,15 +45,13 @@ struct IconsExampleView: View {
     
     private func iconGroup(title: String, size: Backpack_SwiftUI.BPKIcon.Size) -> some View {
         VStack {
-            Text(title)
-                .font(style: .heading1)
+            BPKText(title, style: .heading1)
             LazyVGrid(columns: columns, spacing: 8) {
                 ForEach((0..<filtered.count), id: \.self) { iconId in
                     VStack {
                         BPKIconView(filtered[iconId], size: size)
                             .foregroundColor(.primaryColor)
-                        Text(filtered[iconId].name)
-                            .font(style: .caption)
+                        BPKText(filtered[iconId].name, style: .caption)
                             .lineLimit(1)
                     }
                 }

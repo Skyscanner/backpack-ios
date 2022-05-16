@@ -127,6 +127,9 @@ BpkTicket
 PrimaryOnDark
 PrimaryOnLight
 
+BpkText
+BpkAttributedText
+
 # Company names, libraries etc.
 Artifactory
 Cocoapods

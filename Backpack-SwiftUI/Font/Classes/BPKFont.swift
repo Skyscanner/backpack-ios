@@ -55,12 +55,3 @@ extension UIFont {
         )
     }
 }
-
-public extension Text {
-    func font(style: BPKFontStyle) -> some View {
-        let font = style.font
-        return self.font(Font(font))
-            .tracking(style.letterSpacing)
-            .lineSpacing(style.lineHeight - font.lineHeight)
-    }
-}
