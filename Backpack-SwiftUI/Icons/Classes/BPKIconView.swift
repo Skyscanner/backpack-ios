@@ -37,7 +37,7 @@ public struct BPKIconView: View {
     }
     
     private var shouldAutoMirror: Bool {
-        return BPKAutoMirrorIconNames.items.firstIndex(of: icon.name) != nil
+        BPKAutoMirrorIconNames.items.firstIndex(of: icon.name) != nil
     }
 }
 
