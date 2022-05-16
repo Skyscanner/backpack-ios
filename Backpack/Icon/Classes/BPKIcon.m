@@ -17,7 +17,7 @@
  */
 #import "BPKIcon.h"
 
-#import <Backpack/Backpack-Swift.h>
+#import <Backpack_Common/Backpack_Common-Swift.h>
 #import <CoreText/CoreText.h>
 
 NS_ASSUME_NONNULL_BEGIN
