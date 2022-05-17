@@ -32,7 +32,7 @@ class Screenshots: XCTestCase {
     // 
     // For Example: `Set(["Nudger"])` will only take the
     // Nudger screenshots.
-    var runOnly: Set<String>? = Set(["Labels"])
+    var runOnly: Set<String>?
 
 
     func createApp() -> XCUIApplication {
@@ -309,7 +309,7 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Labels") {
-            app.tables.staticTexts["UIKit"].tap()
+            app.tables.staticTexts["Multiple font styles"].tap()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
