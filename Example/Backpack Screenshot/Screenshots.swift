@@ -21,7 +21,6 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable file_length
-@available(iOS 13.0, *)
 class Screenshots: XCTestCase {
 
     var app: XCUIApplication!
@@ -309,6 +308,7 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Labels") {
+            app.tables.staticTexts["UIKit"].tap()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()

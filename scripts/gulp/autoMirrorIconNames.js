@@ -28,7 +28,7 @@ const generateAutoMirrorIconNames = (templateFolder) => (done) => {
 
     gulp
       .src(path.join(templateFolder, 'BPKAutoMirrorIconNames.njk'))
-      .pipe(data({iconNames: iconNames}))
+      .pipe(data({iconNames}))
       .pipe(nunjucks.compile())
       .pipe(rename('BPKAutoMirrorIconNames.swift'))
       .pipe(gulp.dest('Backpack-Common/Icons/Generated'))

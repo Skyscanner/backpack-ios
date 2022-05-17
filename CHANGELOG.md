@@ -1,5 +1,30 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 50.0.1
+
+**Added:**
+
+- Backpack-SwiftUI:
+  - Adding Spacing Tokens
+  - Adding Corner Radius Tokens
+  - Adding Color Tokens
+  - Adding Font Tokens
+  - Adding Icons Component
+  - Adding Shadow Tokens
+  - Adding BpkText and BpkAttributedText
+  - Adding Card Component
+  - Adding Button Component
+
+- Backpack-Common:
+  - Adding Module
+  - Adding Icons as SVG
+  
+**Breaking**
+
+- BpkChip
+  - Icon can now be leading or trailing
+  - Icon is now 'small' instead of 'large'
+
 # 49.0.2
 
 **Fixed:**

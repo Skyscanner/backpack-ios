@@ -225,11 +225,12 @@ task :push_cocoapods_trunk, [:podspec] do |t, args|
 end
 
 task :update_all_modules_version_in_podspec, [:version] do |t, args|
-  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version)
+  version_string = args[:version]
+  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version_string)
   task(:update_version_in_podspec).reenable
-  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version)
+  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
   task(:update_version_in_podspec).reenable
-  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version)
+  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
 end
 
 task :update_version_in_podspec, [:podspec_file, :version] do |t, args|

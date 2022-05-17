@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack-SwiftUI'
-  s.version          = "49.0.2"
+  s.version          = "50.0.1"
   s.summary          = "Skyscanner's Design System Backpack for SwiftUI"
 
   s.description      = <<-DESC
@@ -41,6 +41,6 @@ Pod::Spec.new do |s|
 
   s.test_spec 'Tests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
-    test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.swift'
+    test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.{swift,png}'
   end  
 end
