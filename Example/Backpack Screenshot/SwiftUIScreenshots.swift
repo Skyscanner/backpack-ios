@@ -21,7 +21,6 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable file_length
-@available(iOS 13.0, *)
 class SwiftUIScreenshots: XCTestCase {
     
     var app: XCUIApplication!
