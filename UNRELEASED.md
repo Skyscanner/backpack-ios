@@ -1,31 +1,6 @@
 # Unreleased
 > Place your changes below this line.
 
-**Added:**
-
-- Backpack-SwiftUI:
-  - Adding Spacing Tokens
-  - Adding Corner Radius Tokens
-  - Adding Color Tokens
-  - Adding Font Tokens
-  - Adding Icons Component
-  - Adding Shadow Tokens
-  - Adding BpkText and BpkAttributedText
-  - Adding Card Component
-  - Adding Button Component
-
-**Added:**
-
-- Backpack-Common:
-  - Adding Module
-  - Adding Icons as SVG
-  
-**Breaking**
-
-- BpkChip
-  - Icon can now be leading or trailing
-  - Icon is now 'small' instead of 'large'
-
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

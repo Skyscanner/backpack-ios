@@ -154,9 +154,9 @@ task :all_checks, [:scheme] do |tasks, args|
 end
 
 task :release_no_checks do
-  sh "npm ci"
-  sh "npx gulp"
-  abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
+  # sh "npm ci"
+  # sh "npx gulp"
+  # abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"
@@ -225,11 +225,12 @@ task :push_cocoapods_trunk, [:podspec] do |t, args|
 end
 
 task :update_all_modules_version_in_podspec, [:version] do |t, args|
-  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version)
+  version_string = args[:version]
+  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version_string)
   task(:update_version_in_podspec).reenable
-  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version)
+  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
   task(:update_version_in_podspec).reenable
-  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version)
+  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
 end
 
 task :update_version_in_podspec, [:podspec_file, :version] do |t, args|
