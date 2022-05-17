@@ -154,9 +154,9 @@ task :all_checks, [:scheme] do |tasks, args|
 end
 
 task :release_no_checks do
-  # sh "npm ci"
-  # sh "npx gulp"
-  # abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
+  sh "npm ci"
+  sh "npx gulp"
+  abort red 'Gulp task has made changes to source. Ensure these are intentional and commit them before releasing.' unless check_pristine
 
   version = SemVer.parse(last_version)
   puts "Starting new release. Previous version was #{green(version)}"

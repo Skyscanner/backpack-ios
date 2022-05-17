@@ -41,6 +41,6 @@ Pod::Spec.new do |s|
 
   s.test_spec 'Tests' do |test_spec|
     test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
-    test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.swift'
+    test_spec.source_files = 'Backpack-SwiftUI/Tests/**/*.{swift,png}'
   end  
 end
