@@ -15,6 +15,7 @@
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
 		5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
+		532BE2A428340BDA0023B0CF /* ToggleExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BE2A328340BDA0023B0CF /* ToggleExampleView.swift */; };
 		532E03572831B64000DA9FC0 /* ButtonsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */; };
 		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
 		5336BD462811876D00550AE7 /* BPKSnapshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */; };
@@ -280,6 +281,7 @@
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
 		5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconsTestsUtils.m; sourceTree = "<group>"; };
+		532BE2A328340BDA0023B0CF /* ToggleExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleExampleView.swift; sourceTree = "<group>"; };
 		532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsExampleView.swift; sourceTree = "<group>"; };
 		5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnackbarSnapshotTest.swift; sourceTree = "<group>"; };
 		5336BD442811876D00550AE7 /* BPKSnapshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotHelper.h; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
 				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
 				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
+				532BE2A328340BDA0023B0CF /* ToggleExampleView.swift */,
 				532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */,
 				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
 				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
@@ -1459,6 +1462,7 @@
 				E38947D422F5F0E900A357DB /* BottomSheetViewController.swift in Sources */,
 				797FA4F428312782006E2A87 /* AttributedTextExampleView.swift in Sources */,
 				D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */,
+				532BE2A428340BDA0023B0CF /* ToggleExampleView.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
 				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,

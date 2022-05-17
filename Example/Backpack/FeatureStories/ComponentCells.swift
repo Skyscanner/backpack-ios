@@ -234,11 +234,25 @@ extension ComponentCellsProvider {
         )
     }
     private func switches() -> CellDataSource {
-        PresentableCellDataSource(
+        GroupCellDataSource(
             title: "Switches",
-            storyboard: .named("Switches", on: "SwitchesViewController"),
-            showPresentable: show(presentable:)
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    PresentableCellDataSource.custom(
+                        title: "SwiftUI",
+                        customController: { ContentUIHostingController(SwitchExampleView()) },
+                        showPresentable: show(presentable:)
+                    ),
+                    PresentableCellDataSource(
+                        title: "UIKit",
+                        storyboard: .named("Switches", on: "SwitchesViewController"),
+                        showPresentable: show(presentable:)
+                    )
+                ]
+            ).groups(),
+            showChildren: { showChildren(title: "Toasts", children: $0) }
         )
+        
     }
     private func tabBarControllers() -> CellDataSource {
         PresentableCellDataSource(
