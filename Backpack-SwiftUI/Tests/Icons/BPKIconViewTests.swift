@@ -18,6 +18,7 @@
 
 import XCTest
 import SwiftUI
+import SnapshotTesting
 @testable import Backpack_SwiftUI
 
 class BPKIconViewTests: XCTestCase {
@@ -43,5 +44,13 @@ class BPKIconViewTests: XCTestCase {
     
     func testAllLargeIcons() {
         assertSnapshot(iconsGrid(size: .large))
+    }
+    
+    func testAutoMirrorLargeIcon() {
+        assertSnapshot(BPKIconView(.arrowLeft, size: .large))
+    }
+    
+    func testAutoMirrorSmallIcon() {
+        assertSnapshot(BPKIconView(.arrowLeft, size: .small))
     }
 }

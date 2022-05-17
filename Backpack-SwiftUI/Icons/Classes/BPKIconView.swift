@@ -32,7 +32,12 @@ public struct BPKIconView: View {
         Image(icon: icon, size: size)
             .resizable()
             .renderingMode(.template)
+            .flipsForRightToLeftLayoutDirection(shouldAutoMirror)
             .frame(width: size.frame.width, height: size.frame.height)
+    }
+    
+    private var shouldAutoMirror: Bool {
+        BPKAutoMirrorIconNames.items.firstIndex(of: icon.name) != nil
     }
 }
 

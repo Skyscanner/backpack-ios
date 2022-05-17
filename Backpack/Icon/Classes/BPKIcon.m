@@ -70,6 +70,10 @@ NS_ASSUME_NONNULL_BEGIN
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
+    if ([BPKAutoMirrorIconNames.items containsObject:name]) {
+        icon = [icon imageFlippedForRightToLeftLayoutDirection];
+    }
+
     [self.imageCache setObject:icon forKey:cacheKey];
 
     return icon;

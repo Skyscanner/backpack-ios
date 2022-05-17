@@ -74,7 +74,7 @@ SPEC CHECKSUMS:
   Backpack: 60b1edd16e18c6747ae50fbabdbd59d916786291
   Backpack-Common: d078a568dd9dd49c13378b976a3eb7ab9414e98b
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: da0d033bd8f27fa330a8f616a2301ef4f878229e
+  Backpack-SwiftUI: 6fa81826f9f5f943fb0fa3b2064c92174505746f
   FloatingPanel: 5fe605e073e60395bc4bb416fd513d0fa38a6558
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
