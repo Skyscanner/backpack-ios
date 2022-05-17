@@ -32,7 +32,7 @@ class Screenshots: XCTestCase {
     // 
     // For Example: `Set(["Nudger"])` will only take the
     // Nudger screenshots.
-    var runOnly: Set<String>?
+    var runOnly: Set<String>? = Set(["Labels"])
 
 
     func createApp() -> XCUIApplication {
