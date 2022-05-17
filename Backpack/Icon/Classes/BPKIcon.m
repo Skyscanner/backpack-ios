@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
     UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
-    
+
     return [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
     [icon drawInRect:iconRect];
     icon = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     if ([BPKAutoMirrorIconNames.items containsObject:name]) {
         icon = [icon imageFlippedForRightToLeftLayoutDirection];
     }
