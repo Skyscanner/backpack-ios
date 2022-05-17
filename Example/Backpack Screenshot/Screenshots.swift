@@ -309,7 +309,7 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Labels") {
-            app.tables.staticTexts["Multiple font styles"].tap()
+            app.tables.staticTexts["UIKit"].tap()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
