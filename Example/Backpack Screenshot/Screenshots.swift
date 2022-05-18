@@ -108,6 +108,7 @@ class Screenshots: XCTestCase {
 
 
         navigate(title: "Buttons") {
+            app.tables.staticTexts["UIKit"].tap()
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -128,6 +129,7 @@ class Screenshots: XCTestCase {
             tapBackButton()
             app.tables.staticTexts["Primary On Light"].tap()
             saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
             tapBackButton()
         }
 

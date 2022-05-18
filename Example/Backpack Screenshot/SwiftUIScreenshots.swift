@@ -33,7 +33,7 @@ class SwiftUIScreenshots: XCTestCase {
     // Nudger screenshots.
     var runOnly: Set<String>?
 
-
+    
     func createApp() -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments.append("UITests")
@@ -92,6 +92,33 @@ class SwiftUIScreenshots: XCTestCase {
             
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "text", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            tapBackButton()
+        }
+        
+        navigate(title: "Buttons") {
+            app.tables.staticTexts["SwiftUI"].tap()
+            app.tables.staticTexts["Primary"].tap()
+            saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Secondary"].tap()
+            saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Destructive"].tap()
+            saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Featured"].tap()
+            saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Link"].tap()
+            saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Light"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
             tapBackButton()
         }
     }
