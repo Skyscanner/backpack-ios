@@ -15,7 +15,7 @@
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
 		5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
-		532E03572831B64000DA9FC0 /* ButtonsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */; };
+		532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */; };
 		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
 		5336BD462811876D00550AE7 /* BPKSnapshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */; };
 		5367379E278750CD0084BEDD /* BPKBadgeSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5367379D278750CD0084BEDD /* BPKBadgeSnapshotTest.swift */; };
@@ -92,6 +92,7 @@
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
 		796DE9EF2833865A00D07664 /* SwiftUIScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DE9EE2833865A00D07664 /* SwiftUIScreenshots.swift */; };
+		796DE9F12834840D00D07664 /* ButtonsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796DE9F02834840D00D07664 /* ButtonsExampleView.swift */; };
 		797FA4F428312782006E2A87 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F328312782006E2A87 /* AttributedTextExampleView.swift */; };
 		797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F528312A00006E2A87 /* TextGroups.swift */; };
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
@@ -280,7 +281,7 @@
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
 		5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconsTestsUtils.m; sourceTree = "<group>"; };
-		532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsExampleView.swift; sourceTree = "<group>"; };
+		532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlaygroundView.swift; sourceTree = "<group>"; };
 		5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnackbarSnapshotTest.swift; sourceTree = "<group>"; };
 		5336BD442811876D00550AE7 /* BPKSnapshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPKSnapshotHelper.h; sourceTree = "<group>"; };
 		5336BD452811876D00550AE7 /* BPKSnapshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPKSnapshotHelper.m; sourceTree = "<group>"; };
@@ -366,6 +367,7 @@
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
 		796DE9EE2833865A00D07664 /* SwiftUIScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIScreenshots.swift; sourceTree = "<group>"; };
+		796DE9F02834840D00D07664 /* ButtonsExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsExampleView.swift; sourceTree = "<group>"; };
 		797FA4F328312782006E2A87 /* AttributedTextExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextExampleView.swift; sourceTree = "<group>"; };
 		797FA4F528312A00006E2A87 /* TextGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGroups.swift; sourceTree = "<group>"; };
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
@@ -821,9 +823,10 @@
 				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
 				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
 				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
-				532E03562831B64000DA9FC0 /* ButtonsExampleView.swift */,
+				532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */,
 				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
 				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
+				796DE9F02834840D00D07664 /* ButtonsExampleView.swift */,
 			);
 			path = Tokens;
 			sourceTree = "<group>";
@@ -1474,7 +1477,7 @@
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
 				537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */,
-				532E03572831B64000DA9FC0 /* ButtonsExampleView.swift in Sources */,
+				532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,
@@ -1486,6 +1489,7 @@
 				53B6DB6027FC3A030042B7C0 /* CardGroups.swift in Sources */,
 				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
+				796DE9F12834840D00D07664 /* ButtonsExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
