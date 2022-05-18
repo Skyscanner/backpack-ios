@@ -90,15 +90,3 @@ BPKButton(
     print("Button tap closure")
 }
 ```
-
-## Button types
-
-* .primary
-* .secondary
-* .destructive
-* .featured
-* .link
-* .primaryOnDark
-* .primaryOnLight
-* .secondaryOnDark
-* .linkOnDark
