@@ -1,15 +1,21 @@
-# Backpack / Switch
+Switch
 
 ## Usage
 
-### SwiftUI
+### Regular Switch
+If you don't specify a `size`, it will use `.large`
 
 ```swift
 import Backpack_SwiftUI
 @State var isEnabled = true
 
 BPKSwitch(isOn: $isEnabled)
+```
 
-/// Set it's size
+### Switch with `small` size
+```swift
+import Backpack_SwiftUI
+@State var isEnabled = true
+
 BPKSwitch(isOn: $isEnabled, size: .small)
 ```
