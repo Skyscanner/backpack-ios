@@ -74,18 +74,18 @@ class Screenshots: XCTestCase {
     }
 
     func testLightModeScreenshots() {
-        app = createApp()
-        setupSnapshot(app)
-        app.launch()
-        captureAllScreenshots()
+//        app = createApp()
+//        setupSnapshot(app)
+//        app.launch()
+//        captureAllScreenshots()
     }
 
     func testDarkModeScreenshots() {
-        app = createApp()
-        app.launchArguments.append("FORCE_DARK_MODE")
-        setupSnapshot(app)
-        app.launch()
-        captureAllScreenshots(userInterfaceStyle: .dark)
+//        app = createApp()
+//        app.launchArguments.append("FORCE_DARK_MODE")
+//        setupSnapshot(app)
+//        app.launch()
+//        captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {

@@ -24,7 +24,7 @@ struct SwitchExampleView: View {
     
     var body: some View {
         VStack {
-            BPKSwitch(isOn: $value)
+            BPKSwitch(isOn: $value, text: "Switch is \(value ? "On" : "Off")")
         }
         .padding()
     }

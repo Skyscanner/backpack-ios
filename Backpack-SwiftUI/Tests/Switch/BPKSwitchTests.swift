@@ -22,10 +22,10 @@ import SwiftUI
 
 class BPKSwitchTests: XCTestCase {
     func testSwitchOnState() {
-        assertSnapshot(BPKSwitch(isOn: .constant(true)).padding(.sm))
+        assertSnapshot(BPKSwitch(isOn: .constant(true), text: "Test").padding(.sm))
     }
     
     func testSwitchOffState() {
-        assertSnapshot(BPKSwitch(isOn: .constant(false)).padding(.sm))
+        assertSnapshot(BPKSwitch(isOn: .constant(false), text: "Test").padding(.sm))
     }
 }

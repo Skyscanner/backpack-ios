@@ -18,18 +18,25 @@
 
 import SwiftUI
 
-public struct BPKSwitch: View {
+public struct BPKSwitch<Content: View>: View {
     @Binding private var isOn: Bool
+    private let content: Content
     
-    public init(isOn: Binding<Bool>) {
+    public init(isOn: Binding<Bool>, text: String) where Content == BPKText {
+        self.init(isOn: isOn) {
+            BPKText(text)
+        }
+    }
+    
+    public init(isOn: Binding<Bool>, @ViewBuilder content: () -> Content) {
         self._isOn = isOn
+        self.content = content()
     }
     
     public var body: some View {
         Toggle(isOn: $isOn) {
-            Group {}
+            content
         }
-        .labelsHidden()
         .toggleStyle(SwitchToggleStyle(tint: Color(.primaryColor)))
         
     }
@@ -38,14 +45,18 @@ public struct BPKSwitch: View {
 struct BPKSwitch_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            HStack {
-                BPKSwitch(isOn: .constant(true))
-                BPKSwitch(isOn: .constant(false))
+            VStack {
+                BPKSwitch(isOn: .constant(true), text: "Test")
+                BPKSwitch(isOn: .constant(false)) {
+                    BPKText("Test")
+                }
             }
             .previewLayout(.sizeThatFits)
-            HStack {
-                BPKSwitch(isOn: .constant(true))
-                BPKSwitch(isOn: .constant(false))
+            VStack {
+                BPKSwitch(isOn: .constant(true), text: "Test")
+                BPKSwitch(isOn: .constant(false)) {
+                    BPKText("Test")
+                }
             }
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
