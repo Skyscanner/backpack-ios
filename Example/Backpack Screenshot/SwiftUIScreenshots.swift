@@ -33,7 +33,6 @@ class SwiftUIScreenshots: XCTestCase {
     // Nudger screenshots.
     var runOnly: Set<String>?
 
-    
     func createApp() -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments.append("UITests")
@@ -120,6 +119,11 @@ class SwiftUIScreenshots: XCTestCase {
             saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
             tapBackButton()
+        }
+        
+        navigate(title: "Cards") {
+            app.tables.staticTexts["SwiftUI"].tap()
+            saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
     }
 }
