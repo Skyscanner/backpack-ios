@@ -90,7 +90,20 @@ extension ComponentCellsProvider {
     private func button() -> CellDataSource {
         GroupCellDataSource(
             title: "Buttons",
-            groups: ButtonGroupsProvider(showPresentable: show(presentable:)).groups(),
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    GroupCellDataSource(
+                        title: "SwiftUI",
+                        groups: ButtonGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups(),
+                        showChildren: { showChildren(title: "Buttons", children: $0) }
+                    ),
+                    GroupCellDataSource(
+                        title: "UIKit",
+                        groups: ButtonGroupsProvider(showPresentable: show(presentable:)).groups(),
+                        showChildren: { showChildren(title: "Buttons", children: $0) }
+                    )
+                ]
+            ).groups(),
             showChildren: { showChildren(title: "Buttons", children: $0) }
         )
     }
