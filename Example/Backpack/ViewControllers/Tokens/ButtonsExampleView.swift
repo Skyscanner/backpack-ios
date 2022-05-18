@@ -33,6 +33,7 @@ struct ButtonsExampleView: View {
                 BPKText("Large")
                 buttonRow(size: .large)
                 Toggle("Switch loading", isOn: $loading)
+                    .foregroundColor(switchTextColor)
             }
             .padding()
         }
@@ -44,6 +45,15 @@ struct ButtonsExampleView: View {
             return .skyGray
         default:
             return .backgroundColor
+        }
+    }
+    
+    private var switchTextColor: Backpack_SwiftUI.BPKColor {
+        switch style {
+        case .secondaryOnDark, .linkOnDark, .primaryOnDark:
+            return .white
+        default:
+            return .textPrimaryColor
         }
     }
     
