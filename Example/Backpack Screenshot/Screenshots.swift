@@ -423,7 +423,9 @@ class Screenshots: XCTestCase {
         }
 
         navigate(title: "Switches") {
+            app.tables.staticTexts["UIKit"].tap()
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Tab bar controller") {

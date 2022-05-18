@@ -28,7 +28,9 @@ public struct BPKSwitch: View {
     public var body: some View {
         Toggle(isOn: $isOn) {
             Group {}
-        }.toggleStyle(SwitchToggleStyle(tint: Color(.primaryColor)))
+        }
+        .labelsHidden()
+        .toggleStyle(SwitchToggleStyle(tint: Color(.primaryColor)))
         
     }
 }

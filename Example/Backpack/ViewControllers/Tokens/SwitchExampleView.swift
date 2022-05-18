@@ -20,25 +20,11 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SwitchExampleView: View {
-    @State var smallSwitch = true
-    @State var largeSwitch = true
-    
-    func stateDescription(isOn: Bool) -> String {
-        isOn ? "On" : "Off"
-    }
+    @State var value = true
     
     var body: some View {
         VStack {
-            HStack {
-                BPKText("Small switch is \(stateDescription(isOn: smallSwitch))")
-                Spacer()
-                BPKSwitch(isOn: $smallSwitch, size: .small)
-            }
-            HStack {
-                BPKText("Large switch is \(stateDescription(isOn: largeSwitch))")
-                Spacer()
-                BPKSwitch(isOn: $largeSwitch)
-            }
+            BPKSwitch(isOn: $value)
         }
         .padding()
     }
