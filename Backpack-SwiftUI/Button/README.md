@@ -5,7 +5,7 @@
 ### Basic button with a title and action closure. 
 If you don't specify a `.buttonStyle(<type>)` it will use the `.primary` type
 
-```Swift
+```swift
 BPKButton("Button title") {
     print("Button tap closure")
 }
@@ -13,7 +13,7 @@ BPKButton("Button title") {
 
 ### Styled `.secondary` Button.
 
-```Swift 
+```swift 
 BPKButton("Button title") {
     print("Button tap closure")
 }
@@ -26,7 +26,7 @@ Set the icon to:
 * `.leading(icon: <BPKIcon>)` 
 * `.trailing(icon: <BPKICon>)`
 
-```Swift
+```swift
 BPKButton(
     "Button title",
     icon: .leading(icon: .longArrowRight)
@@ -46,7 +46,7 @@ BPKButton(
 
 Pass in a `@State` variable or use `.constant(true)` 
 
-```Swift
+```swift
 BPKButton(
     "Button title",
     loading: $isLoading
@@ -59,7 +59,7 @@ BPKButton(
 
 Pass in a `@State` variable or use `.constant(true)` 
 
-```Swift
+```swift
 BPKButton(
     "Button title",
     enabled: $isEnabled
@@ -71,7 +71,7 @@ BPKButton(
 ### Button with `icon` only
 > Pass in `accessibilityLabel` when creating a button with just an icon
 
-```Swift
+```swift
 BPKButton(
     icon: .longArrowRight,
     accessibilityLabel: "Button label"
@@ -82,7 +82,7 @@ BPKButton(
 
 ### Button with `large` size
 
-```Swift
+```swift
 BPKButton(
     "Button title",
     size: .large
