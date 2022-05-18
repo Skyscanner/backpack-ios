@@ -39,10 +39,13 @@ struct ButtonGroupsProvider {
         )
     }
     
-    private var swiftUI: CellDataSource {
+    private func presentable<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
         PresentableCellDataSource.custom(
-            title: "SwiftUI",
-            customController: { UIHostingController(rootView: ButtonsExampleView()) },
+            title: title,
+            customController: { ContentUIHostingController(view) },
             showPresentable: showPresentable
         )
     }
@@ -50,7 +53,6 @@ struct ButtonGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                swiftUI,
                 presentable("Primary", style: .primary),
                 presentable("Secondary", style: .secondary),
                 presentable("Secondary On Dark", style: .secondaryOnDark, backgroundColor: BPKColor.skyGray),
@@ -60,6 +62,23 @@ struct ButtonGroupsProvider {
                 presentable("Link On Dark", style: .linkOnDark, backgroundColor: BPKColor.skyGray),
                 presentable("Primary On Dark", style: .primaryOnDark, backgroundColor: BPKColor.skyGray),
                 presentable("Primary On Light", style: .primaryOnLight)
+            ]
+        ).groups()
+    }
+    
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentable("Playground", view: ButtonsPlaygroundView()),
+                presentable("Primary", view: ButtonsExampleView(style: .primary)),
+                presentable("Secondary", view: ButtonsExampleView(style: .secondary)),
+                presentable("Secondary On Dark", view: ButtonsExampleView(style: .secondaryOnDark)),
+                presentable("Destructive", view: ButtonsExampleView(style: .destructive)),
+                presentable("Featured", view: ButtonsExampleView(style: .featured)),
+                presentable("Link", view: ButtonsExampleView(style: .link)),
+                presentable("Link On Dark", view: ButtonsExampleView(style: .linkOnDark)),
+                presentable("Primary On Dark", view: ButtonsExampleView(style: .primaryOnDark)),
+                presentable("Primary On Light", view: ButtonsExampleView(style: .primaryOnLight))
             ]
         ).groups()
     }

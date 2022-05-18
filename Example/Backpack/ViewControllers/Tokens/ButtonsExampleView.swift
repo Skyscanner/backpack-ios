@@ -21,89 +21,122 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct ButtonsExampleView: View {
-    @State var times = 0
-    @State var enabled = true
-    @State var loading = false
-    @State var title: String = "Click Me"
-    @State var trailingIcon = true
-    @State var buttonType: Backpack_SwiftUI.BPKButton.Style = .primary
-    
-    private var toggles: some View {
-        VStack {
-            Toggle("Enabled", isOn: $enabled)
-            Toggle("Loading", isOn: $loading)
-            Toggle("Icon Position", isOn: $trailingIcon)
-            HStack {
-                Text("Change Title")
-                TextField("Title", text: $title)
-                    .textFieldStyle(.roundedBorder)
-            }
-        }
-    }
-    
-    private var exampleButtons: some View {
-        HStack {
-            Spacer()
-            BPKButton(
-                title,
-                icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
-                loading: $loading,
-                enabled: $enabled,
-                size: .default
-            ) { times += 1 }
-            .buttonStyle(buttonType)
-            Spacer()
-            BPKButton(
-                title,
-                icon: BPKButton.Icon(icon: .plus, position: trailingIcon ? .trailing : .leading),
-                loading: $loading,
-                enabled: $enabled,
-                size: .large
-            ) { times += 1 }
-            .buttonStyle(buttonType)
-            Spacer()
-        }
-        .padding()
-        .background(background)
-    }
-    
-    private var background: Backpack_SwiftUI.BPKColor {
-        let isOnDarkStyle = buttonType == .primaryOnDark
-        || buttonType == .secondaryOnDark
-        || buttonType == .linkOnDark
-        let isOnLightStyle = buttonType == .primaryOnLight
-        return isOnDarkStyle ? .black : isOnLightStyle ? .white : .backgroundColor
-    }
-    
-    private var stylesPicker: some View {
-        Picker("Style", selection: $buttonType) {
-            Text("Primary").tag(BPKButton.Style.primary)
-            Text("Primary On Light").tag(BPKButton.Style.primaryOnLight)
-            Text("Primary On Dark").tag(BPKButton.Style.primaryOnDark)
-            Text("Destructive").tag(BPKButton.Style.destructive)
-            Text("Featured").tag(BPKButton.Style.featured)
-            Text("Secondary").tag(BPKButton.Style.secondary)
-            Text("Secondry On Dark").tag(BPKButton.Style.secondaryOnDark)
-            Text("Link").tag(BPKButton.Style.link)
-            Text("Link On Dark").tag(BPKButton.Style.linkOnDark)
-        }
-        .pickerStyle(.inline)
-    }
+    @State private var loading = true
+    let style: Backpack_SwiftUI.BPKButton.Style
     
     var body: some View {
-        VStack {
-            toggles
-            Text("Tapped \(times) times")
-            Spacer()
-            exampleButtons
-            Spacer()
-            stylesPicker
+        ZStack {
+            Color(backgroundColor)
+            VStack(alignment: .leading) {
+                BPKText("Default")
+                buttonRow(size: .default)
+                BPKText("Large")
+                buttonRow(size: .large)
+                Toggle("Switch loading", isOn: $loading)
+                    .foregroundColor(switchTextColor)
+            }
+            .padding()
         }
-        .padding()
+    }
+    
+    private var backgroundColor: Backpack_SwiftUI.BPKColor {
+        switch style {
+        case .secondaryOnDark, .linkOnDark, .primaryOnDark:
+            return .skyGray
+        default:
+            return .backgroundColor
+        }
+    }
+    
+    private var switchTextColor: Backpack_SwiftUI.BPKColor {
+        switch style {
+        case .secondaryOnDark, .linkOnDark, .primaryOnDark:
+            return .white
+        default:
+            return .textPrimaryColor
+        }
+    }
+    
+    private func buttonRow(size: Backpack_SwiftUI.BPKButton.Size) -> some View {
+        VStack(alignment: .leading) {
+            loadingButtons(size: size)
+            basicButtons(size: size)
+            iconButtons(size: size)
+        }
+    }
+    
+    private func loadingButtons(size: Backpack_SwiftUI.BPKButton.Size) -> some View {
+        HStack {
+            BPKButton(
+                "Button",
+                loading: $loading,
+                size: size
+            ) { }
+            .buttonStyle(style)
+            
+            BPKButton(
+                "Button",
+                icon: .trailing(icon: .longArrowRight),
+                loading: $loading,
+                size: size
+            ) { }
+            .buttonStyle(style)
+            
+            BPKButton(
+                icon: .longArrowRight,
+                accessibilityLabel: "Button",
+                loading: $loading,
+                size: size
+            ) { }
+            .buttonStyle(style)
+        }
+    }
+    
+    private func basicButtons(size: Backpack_SwiftUI.BPKButton.Size) -> some View {
+        HStack {
+            BPKButton(
+                "Search flights",
+                size: size
+            ) { }
+            .buttonStyle(style)
+            
+            BPKButton(
+                "Disabled",
+                enabled: .constant(false),
+                size: size
+            ) { }
+            .buttonStyle(style)
+            
+            BPKButton(
+                icon: .longArrowRight,
+                accessibilityLabel: "Button",
+                size: size
+            ) { }
+            .buttonStyle(style)
+        }
+    }
+    
+    private func iconButtons(size: Backpack_SwiftUI.BPKButton.Size) -> some View {
+        HStack {
+            BPKButton(
+                "Button",
+                icon: .trailing(icon: .longArrowRight),
+                size: size
+            ) { }
+            .buttonStyle(style)
+            
+            BPKButton(
+                "Button",
+                icon: .leading(icon: .longArrowRight),
+                size: size
+            ) { }
+            .buttonStyle(style)
+        }
     }
 }
+
 struct ButtonsExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonsExampleView()
+        ButtonsExampleView(style: .secondary)
     }
 }
