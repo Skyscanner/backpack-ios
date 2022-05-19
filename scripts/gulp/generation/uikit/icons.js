@@ -62,7 +62,7 @@ const generateIconExampleUtil = (templatesFolder) => (done) => {
       iconNames: iconsSwiftUI().icons.map(i => i.name)
      },
     'BPKIconsExampleUtil.swift',
-    'Example/Backpack/ViewControllers/Icons/Generated'
+    'Example/Backpack/SwiftUI/Components/Icons/Generated'
   )
   done()
 };
