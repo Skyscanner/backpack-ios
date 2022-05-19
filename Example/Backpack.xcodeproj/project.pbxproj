@@ -373,7 +373,7 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		7F1C7617095FBE509B1D5D95 /* Pods-Backpack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8D78AD47823950385EC6D00E /* Pods-Backpack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Tests/Pods-Backpack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
@@ -578,6 +578,7 @@
 		5307FFC3282B26330081B16E /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
 				5307FFC4282B26840081B16E /* Generated */,
 			);
 			path = Icons;
@@ -661,7 +662,6 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				D29F9C47221B1B3200773A6D /* Utils */,
 				D6D81D60213FEEB90013BB96 /* SnapshotTests */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for Backpack */,
@@ -704,45 +704,14 @@
 		6003F593195388D20070C39A /* Example for Backpack */ = {
 			isa = PBXGroup;
 			children = (
-				53E075BC27FC9FE10033147C /* Presentable */,
-				D22FB970230C0E950023DC72 /* Resources */,
-				D6FA3DB2224E21F800CFA094 /* Categories */,
-				D2161D4F2146B8910097D0B1 /* Views */,
-				D655C515200F9B9200CB39AF /* ViewControllers */,
+				D29F9C47221B1B3200773A6D /* Utils */,
+				793EC5512836140100D627F6 /* UIKit */,
+				793EC54B2836137000D627F6 /* SwiftUI */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				D205510722675DAE00BC5BCC /* LaunchScreen.xib */,
-				D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */,
 				D643B6DC2142C36B008AB669 /* Backpack Native-Bridging-Header.h */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				D2A350B522143F0700DEA01F /* Settings.storyboard */,
-				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
-				D2CCB827243F538400788DEC /* BarCharts.storyboard */,
-				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
-				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
-				D233F00E2162159E00A07D9B /* Cards.storyboard */,
-				D2C49DB623856A55008D41FB /* Calendar.storyboard */,
-				D27EE9292193159C00C877EA /* Chips.storyboard */,
-				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
-				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
-				D6907039215A39D30088C97B /* Labels.storyboard */,
-				D2EB965225C05E0800988978 /* Map.storyboard */,
-				D2B4FC3E2538A87600070BEC /* OverlayView.storyboard */,
-				D2C4466F23158479009E58A5 /* Panel.storyboard */,
-				D278358C22EA2A81004C79CF /* ProgressBar.storyboard */,
-				D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */,
-				764D0037237DDD7600FE60AC /* Snackbar.storyboard */,
-				D242176D252F6B5E00F449E4 /* Spinners.storyboard */,
-				58CFF14622D3837900C45B0B /* StarRatings.storyboard */,
-				60CE0F9A2189FC5000309211 /* Switches.storyboard */,
-				D2B70FA32434EB350026282A /* TabBarControllers.storyboard */,
-				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
-				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
 				793C2D5627852B9A0055AB9A /* SceneDelegate.swift */,
-				53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */,
-				53E075B627FC9C010033147C /* PresentableNavigator.swift */,
-				53B6DB5627FB6F930042B7C0 /* FeatureStories */,
-				53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */,
 				793C2D5427852B640055AB9A /* AppDelegate.swift */,
 			);
 			name = "Example for Backpack";
@@ -817,27 +786,386 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		794E1FEE280A828F00B965FF /* Tokens */ = {
+		793EC54B2836137000D627F6 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
-				537ED1A4282C36E700032105 /* IconsExampleView.swift */,
-				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
-				532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */,
-				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
-				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
-				796DE9F02834840D00D07664 /* ButtonsExampleView.swift */,
+				793EC5502836139A00D627F6 /* Components */,
+				793EC54F2836139000D627F6 /* Tokens */,
 			);
-			path = Tokens;
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		797FA4F22831275E006E2A87 /* Text */ = {
+		793EC54C2836137400D627F6 /* Text */ = {
 			isa = PBXGroup;
 			children = (
 				79A0416428311D5C00A852B1 /* TextExampleView.swift */,
 				797FA4F328312782006E2A87 /* AttributedTextExampleView.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		793EC54D2836137B00D627F6 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */,
+				796DE9F02834840D00D07664 /* ButtonsExampleView.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		793EC54E2836138000D627F6 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		793EC54F2836139000D627F6 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				537ED1AE282D65A300032105 /* ShadowTokensView.swift */,
+				794E1FF7280CF63100B965FF /* RadiusTokensView.swift */,
+				794E1FEF280A829D00B965FF /* SpacingTokensView.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		793EC5502836139A00D627F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5307FFC3282B26330081B16E /* Icons */,
+				793EC54E2836138000D627F6 /* Card */,
+				793EC54D2836137B00D627F6 /* Button */,
+				793EC54C2836137400D627F6 /* Text */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		793EC5512836140100D627F6 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				793EC5532836140A00D627F6 /* Components */,
+				793EC5522836140400D627F6 /* Tokens */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		793EC5522836140400D627F6 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
+				D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		793EC5532836140A00D627F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				793EC56F283615C900D627F6 /* Text view */,
+				793EC56E283615BD00D627F6 /* Gradient */,
+				793EC56D283615AF00D627F6 /* Spinner */,
+				793EC56C283615A300D627F6 /* Navigation bar */,
+				793EC56B2836159300D627F6 /* Icon */,
+				793EC56A2836158100D627F6 /* Star rating */,
+				793EC5692836157700D627F6 /* Nudger */,
+				793EC5682836156900D627F6 /* Text input */,
+				793EC5672836155B00D627F6 /* Switch */,
+				793EC5662836154B00D627F6 /* Tab bar */,
+				793EC5652836153C00D627F6 /* Horizontal navigation */,
+				793EC5642836152F00D627F6 /* Map */,
+				793EC5632836151D00D627F6 /* Progress bar */,
+				793EC5622836150600D627F6 /* Snackbar */,
+				793EC561283614F500D627F6 /* Toast */,
+				793EC560283614D000D627F6 /* Overlay */,
+				793EC55F283614BE00D627F6 /* Rating */,
+				793EC55E283614AE00D627F6 /* Panel */,
+				793EC55D283614A600D627F6 /* Link */,
+				793EC55C2836148700D627F6 /* Text */,
+				793EC55B2836147700D627F6 /* Flare */,
+				793EC55A2836147000D627F6 /* Dialog */,
+				793EC5592836145200D627F6 /* Chip */,
+				793EC5582836144800D627F6 /* Card */,
+				793EC5572836143E00D627F6 /* Calendar */,
+				793EC5562836143100D627F6 /* Button */,
+				793EC5552836142600D627F6 /* Bar chart */,
+				793EC5542836141C00D627F6 /* Badge */,
+				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		793EC5542836141C00D627F6 /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */,
+				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
+				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
+			);
+			path = Badge;
+			sourceTree = "<group>";
+		};
+		793EC5552836142600D627F6 /* Bar chart */ = {
+			isa = PBXGroup;
+			children = (
+				D2CCB827243F538400788DEC /* BarCharts.storyboard */,
+				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
+			);
+			path = "Bar chart";
+			sourceTree = "<group>";
+		};
+		793EC5562836143100D627F6 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				D6D1649F2153934500FFB667 /* Buttons.storyboard */,
+				3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */,
+				3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */,
+				D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */,
+				D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		793EC5572836143E00D627F6 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				D2C49DB623856A55008D41FB /* Calendar.storyboard */,
+				D698E64E219C528100D03060 /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		793EC5582836144800D627F6 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				D233F00E2162159E00A07D9B /* Cards.storyboard */,
+				D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */,
+				D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		793EC5592836145200D627F6 /* Chip */ = {
+			isa = PBXGroup;
+			children = (
+				D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */,
+				D27EE9292193159C00C877EA /* Chips.storyboard */,
+				D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */,
+				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
+			);
+			path = Chip;
+			sourceTree = "<group>";
+		};
+		793EC55A2836147000D627F6 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
+				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		793EC55B2836147700D627F6 /* Flare */ = {
+			isa = PBXGroup;
+			children = (
+				D28443E922FC42A30066F88B /* FlareViewViewController.swift */,
+			);
+			path = Flare;
+			sourceTree = "<group>";
+		};
+		793EC55C2836148700D627F6 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				D6907039215A39D30088C97B /* Labels.storyboard */,
+				D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */,
+				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
+				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		793EC55D283614A600D627F6 /* Link */ = {
+			isa = PBXGroup;
+			children = (
+				D261F26722C0E52300A4A476 /* TappableLinkLabels.storyboard */,
+				D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */,
+				D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */,
+			);
+			path = Link;
+			sourceTree = "<group>";
+		};
+		793EC55E283614AE00D627F6 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				D2C4466F23158479009E58A5 /* Panel.storyboard */,
+				D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */,
+				D2D624AA231586F600D8ED38 /* PanelViewController.swift */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
+		793EC55F283614BE00D627F6 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */,
+				D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */,
+				D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
+		793EC560283614D000D627F6 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				D2B4FC3E2538A87600070BEC /* OverlayView.storyboard */,
+				D2B4FC452538A88800070BEC /* OverlayViewsSelectorViewController.swift */,
+				D2B4FC462538A88900070BEC /* OverlayViewsViewController.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		793EC561283614F500D627F6 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				7639E566232909C7004D7B09 /* ToastViewController.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		793EC5622836150600D627F6 /* Snackbar */ = {
+			isa = PBXGroup;
+			children = (
+				764D0037237DDD7600FE60AC /* Snackbar.storyboard */,
+				764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */,
+				764D003B237DE51000FE60AC /* SnackbarViewController.swift */,
+			);
+			path = Snackbar;
+			sourceTree = "<group>";
+		};
+		793EC5632836151D00D627F6 /* Progress bar */ = {
+			isa = PBXGroup;
+			children = (
+				D278358C22EA2A81004C79CF /* ProgressBar.storyboard */,
+				D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */,
+			);
+			path = "Progress bar";
+			sourceTree = "<group>";
+		};
+		793EC5642836152F00D627F6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D2EB965225C05E0800988978 /* Map.storyboard */,
+				D2EB964B25C05DF600988978 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		793EC5652836153C00D627F6 /* Horizontal navigation */ = {
+			isa = PBXGroup;
+			children = (
+				D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */,
+				D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */,
+			);
+			path = "Horizontal navigation";
+			sourceTree = "<group>";
+		};
+		793EC5662836154B00D627F6 /* Tab bar */ = {
+			isa = PBXGroup;
+			children = (
+				D2B70FA32434EB350026282A /* TabBarControllers.storyboard */,
+				D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */,
+			);
+			path = "Tab bar";
+			sourceTree = "<group>";
+		};
+		793EC5672836155B00D627F6 /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				60CE0F9A2189FC5000309211 /* Switches.storyboard */,
+				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
+			);
+			path = Switch;
+			sourceTree = "<group>";
+		};
+		793EC5682836156900D627F6 /* Text input */ = {
+			isa = PBXGroup;
+			children = (
+				D24D602A22F84CEC002847D1 /* TextField.storyboard */,
+				D282E865259E04F3000AD77E /* TextFieldsViewController.swift */,
+			);
+			path = "Text input";
+			sourceTree = "<group>";
+		};
+		793EC5692836157700D627F6 /* Nudger */ = {
+			isa = PBXGroup;
+			children = (
+				D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */,
+			);
+			path = Nudger;
+			sourceTree = "<group>";
+		};
+		793EC56A2836158100D627F6 /* Star rating */ = {
+			isa = PBXGroup;
+			children = (
+				58CFF14622D3837900C45B0B /* StarRatings.storyboard */,
+				58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */,
+				760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */,
+			);
+			path = "Star rating";
+			sourceTree = "<group>";
+		};
+		793EC56B2836159300D627F6 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */,
+				6055821621523A1300BF9F3E /* IconsViewController.swift */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		793EC56C283615A300D627F6 /* Navigation bar */ = {
+			isa = PBXGroup;
+			children = (
+				D61ACE042306E238001C976E /* NavigationBarViewController.swift */,
+			);
+			path = "Navigation bar";
+			sourceTree = "<group>";
+		};
+		793EC56D283615AF00D627F6 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				D242176D252F6B5E00F449E4 /* Spinners.storyboard */,
+				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
+		793EC56E283615BD00D627F6 /* Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				D6D6BB6321958C3200312C1C /* Gradients.storyboard */,
+				D643B6DD2142C36C008AB669 /* GradientViewController.swift */,
+			);
+			path = Gradient;
+			sourceTree = "<group>";
+		};
+		793EC56F283615C900D627F6 /* Text view */ = {
+			isa = PBXGroup;
+			children = (
+				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
+			);
+			path = "Text view";
+			sourceTree = "<group>";
+		};
+		793EC57028361CA200D627F6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */,
+				D2A350B522143F0700DEA01F /* Settings.storyboard */,
+				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -868,31 +1196,11 @@
 		D2161D4F2146B8910097D0B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D2161D502146B8D50097D0B1 /* CollectionView Cells */,
 				D202BD2E219AE88C007906A7 /* CollectionView FlowLayouts */,
 				D2B8A0192147FF49002290DE /* CollectionView Headers */,
-				D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */,
 				D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */,
-				D6ECFFF9241A5BAE004225E8 /* HorizontalNavigationItemWithBackground.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		D2161D502146B8D50097D0B1 /* CollectionView Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */,
-				D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */,
-				6055821821523FAD00BF9F3E /* IconsPreviewCollectionViewCell.swift */,
-			);
-			path = "CollectionView Cells";
-			sourceTree = "<group>";
-		};
-		D22FB970230C0E950023DC72 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		D297B8F423B90379008D094A /* Backpack Screenshot */ = {
@@ -909,6 +1217,16 @@
 		D29F9C47221B1B3200773A6D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				793EC57028361CA200D627F6 /* Settings */,
+				53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */,
+				794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */,
+				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				53E075B627FC9C010033147C /* PresentableNavigator.swift */,
+				53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */,
+				53B6DB5627FB6F930042B7C0 /* FeatureStories */,
+				53E075BC27FC9FE10033147C /* Presentable */,
+				D6FA3DB2224E21F800CFA094 /* Categories */,
+				D2161D4F2146B8910097D0B1 /* Views */,
 				D20470422347878A00A1BE48 /* BPKExampleAppTitleAttributes.h */,
 				D204703F2347875900A1BE48 /* BPKExampleAppTitleAttributes.m */,
 				D28784902250FCBD00353E32 /* Settings.swift */,
@@ -943,61 +1261,6 @@
 				760E41E4232BD50700A0CE8D /* ToastUITest.swift */,
 			);
 			path = "Backpack NativeUITests";
-			sourceTree = "<group>";
-		};
-		D655C515200F9B9200CB39AF /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				797FA4F22831275E006E2A87 /* Text */,
-				5307FFC3282B26330081B16E /* Icons */,
-				794E1FEE280A828F00B965FF /* Tokens */,
-				E397BEA022F5F56100C8EC04 /* Bottom Sheet */,
-				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
-				D2CCB829243F544300788DEC /* BarChartViewController.swift */,
-				3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */,
-				3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */,
-				D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */,
-				D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */,
-				D698E64E219C528100D03060 /* CalendarViewController.swift */,
-				D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */,
-				D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */,
-				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
-				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
-				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
-				D219C1DF2163918B00C9968D /* DividedCardsViewController.swift */,
-				D28443E922FC42A30066F88B /* FlareViewViewController.swift */,
-				D643B6DD2142C36C008AB669 /* GradientViewController.swift */,
-				D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */,
-				6055821621523A1300BF9F3E /* IconsViewController.swift */,
-				D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */,
-				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
-				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
-				D2EB964B25C05DF600988978 /* MapViewController.swift */,
-				D61ACE042306E238001C976E /* NavigationBarViewController.swift */,
-				D2B4FC452538A88800070BEC /* OverlayViewsSelectorViewController.swift */,
-				D2B4FC462538A88900070BEC /* OverlayViewsViewController.swift */,
-				D2D624A9231586F500D8ED38 /* PanelSelectorViewController.swift */,
-				D2D624AA231586F600D8ED38 /* PanelViewController.swift */,
-				D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */,
-				D2297C28232A7F3F006E00E0 /* RatingSelectorViewController.swift */,
-				D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */,
-				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
-				764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */,
-				764D003B237DE51000FE60AC /* SnackbarViewController.swift */,
-				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
-				760E41E62334EBDC00A0CE8D /* StarRatingsDocViewController.swift */,
-				58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */,
-				60CE0F982189F99200309211 /* SwitchesViewController.swift */,
-				D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */,
-				D2644E2F22C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift */,
-				D261F26B22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift */,
-				D282E865259E04F3000AD77E /* TextFieldsViewController.swift */,
-				3AA018F3215D000700838FBB /* TextViewsViewController.swift */,
-				7639E566232909C7004D7B09 /* ToastViewController.swift */,
-				D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */,
-				794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D6D81D60213FEEB90013BB96 /* SnapshotTests */ = {
@@ -1057,6 +1320,7 @@
 		E397BEA022F5F56100C8EC04 /* Bottom Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				E38947D122F5CB3300A357DB /* BottomSheet.storyboard */,
 				E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */,
 				E38E82EB24165A40004273E9 /* BottomSheetContentViewController.swift */,
 				E35EA59524212F9900373CE4 /* BottomSheetResizableContentViewController.swift */,
