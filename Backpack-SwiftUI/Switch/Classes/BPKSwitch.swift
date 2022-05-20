@@ -18,16 +18,36 @@
 
 import SwiftUI
 
+/// A control that toggles between on and off states.
+///
+/// You create a switch by providing an `isOn` binding and a label. Bind `isOn`
+/// to a Boolean property that determines whether the switch is on or off. Set
+/// the label to a view that visually describes the purpose of switching between
+/// toggle states
 public struct BPKSwitch<Content: View>: View {
     @Binding private var isOn: Bool
     private let content: Content
     
+    /// Creates a switch that generates its label from a string.
+    ///
+    /// This initializer creates a ``BPKText`` view on your behalf, and treats the
+    /// title similar to ``BPKText/init(_:)``.
+    ///
+    /// - Parameter isOn: A binding to a property that indicates whether the switch is
+    ///    on or off.
+    /// - Parameter text: A string that describes the purpose of the switch.
     public init(isOn: Binding<Bool>, text: String) where Content == BPKText {
         self.init(isOn: isOn) {
             BPKText(text)
         }
     }
     
+    /// Creates a switch that displays a custom label.
+    ///
+    /// - Parameters:
+    ///   - isOn: A binding to a property that determines whether the switch is on
+    ///     or off.
+    ///   - content: A view that describes the purpose of the switch.
     public init(isOn: Binding<Bool>, @ViewBuilder content: () -> Content) {
         self._isOn = isOn
         self.content = content()
@@ -38,7 +58,6 @@ public struct BPKSwitch<Content: View>: View {
             content
         }
         .toggleStyle(SwitchToggleStyle(tint: Color(.primaryColor)))
-        
     }
 }
 
