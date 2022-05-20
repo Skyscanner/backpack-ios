@@ -30,10 +30,9 @@ func assertSnapshot<V: View>(
 ) {
     let identifier: (UIUserInterfaceStyle) -> String = { mode in mode == .dark ? "dark-mode" : "light-mode" }
     let view: UIView = UIHostingController(rootView: view).view
-    
+    isRecording = false
     modes.forEach { mode in
         let styleTrait = UITraitCollection(userInterfaceStyle: mode)
-        isRecording = false
         assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: styleTrait), named:identifier(mode), file: file, testName: testName, line:line)
     }
     
