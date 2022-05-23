@@ -156,8 +156,18 @@ extension ComponentCellsProvider {
             showChildren: { showChildren(title: "Icons", children: $0) }
         )
     }
-    // LabelGroupsProvider(showPresentable: show(presentable:)).groups()
+    
     private func label() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Labels",
+            uikitGroups: LabelGroupsProvider(showPresentable: show(presentable:)).groups(),
+            swiftuiGroups: TextGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChildren: { showChildren(title: "Labels", children: $0) }
+        )
+    }
+    
+    // LabelGroupsProvider(showPresentable: show(presentable:)).groups()
+    private func oldlabel() -> CellDataSource {
         GroupCellDataSource(
             title: "Labels",
             groups: SingleGroupProvider(
