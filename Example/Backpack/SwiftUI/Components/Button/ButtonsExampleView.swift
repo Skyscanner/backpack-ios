@@ -32,8 +32,7 @@ struct ButtonsExampleView: View {
                 buttonRow(size: .default)
                 BPKText("Large")
                 buttonRow(size: .large)
-                Toggle("Switch loading", isOn: $loading)
-                    .foregroundColor(switchTextColor)
+                BPKSwitch(isOn: $loading, text: "Switch loading")
             }
             .padding()
         }

@@ -121,6 +121,12 @@ class SwiftUIScreenshots: XCTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Switches") {
+            navigate(title: "SwiftUI") {
+                saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            }
+        }
+
         navigate(title: "Cards") {
             app.tables.staticTexts["SwiftUI"].tap()
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
