@@ -48,7 +48,7 @@ struct CardGroupsProvider {
             }))
         ]
     }
-    
+        
     private func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [

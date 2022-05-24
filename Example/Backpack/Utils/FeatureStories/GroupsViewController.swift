@@ -49,7 +49,6 @@ class GroupsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = groups[indexPath.section].cells[indexPath.row].title
         cell.accessoryType = .disclosureIndicator
-
         return cell
     }
 

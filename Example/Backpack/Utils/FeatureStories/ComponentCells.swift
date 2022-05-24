@@ -33,7 +33,7 @@ struct ComponentCellsProvider {
     private func showComponent(title: String, tabs: [Tab]) {
         navigator.present(title: title, tabs: tabs)
     }
-    
+
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
             badge(),
@@ -150,7 +150,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Icons", tabs: $0) }
         )
     }
-    
     private func label() -> CellDataSource {
         ComponentCellDataSource(
             title: "Labels",
