@@ -40,7 +40,6 @@ class TabsViewController: BPKTabBarController {
             tabBarItem.originalImage = tab.image
             
             tab.viewController.tabBarItem = tabBarItem
-            tab.viewController.navigationItem.title = tab.title
             
             return tab.viewController
         }
