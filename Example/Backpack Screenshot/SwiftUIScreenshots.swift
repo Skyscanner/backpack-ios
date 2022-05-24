@@ -96,7 +96,6 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         navigate(title: "Switches") {
             switchTab(title: "SwiftUI") {
                 saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
             }
         }
 
