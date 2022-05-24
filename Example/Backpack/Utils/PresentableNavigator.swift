@@ -31,4 +31,11 @@ class PresentableNavigator {
             animated: true
         )
     }
+
+    func present(title: String, tabs: [Components.Tab]) {
+        navigationController.pushViewController(
+            TabsViewController(title: title, tabs: tabs),
+            animated: true
+        )
+    }
 }

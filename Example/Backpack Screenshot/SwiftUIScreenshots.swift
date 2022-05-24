@@ -21,18 +21,7 @@ import XCTest
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable file_length
-class SwiftUIScreenshots: XCTestCase {
-    
-    var app: XCUIApplication!
-
-    // To run only a subset of the screenshots
-    // set the below property to a Set with the top level
-    // titles of the components to screenshot.
-    //
-    // For Example: `Set(["Nudger"])` will only take the
-    // Nudger screenshots.
-    var runOnly: Set<String>?
-
+class SwiftUIScreenshots: BackpackSnapshotTestCase {
     func createApp() -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments.append("UITests")
@@ -45,25 +34,9 @@ class SwiftUIScreenshots: XCTestCase {
         continueAfterFailure = true
     }
 
-    func saveScreenshot(component componentName: String, scenario scenarioName: String,
+    override func saveScreenshot(component componentName: String, scenario scenarioName: String,
                         userInterfaceStyle: UIUserInterfaceStyle) {
-        let interfaceStyle = userInterfaceStyle == .dark ? "dm" : "lm"
-        let outputName = "swiftui_\(componentName)___\(scenarioName)_\(interfaceStyle)"
-        snapshot(outputName)
-    }
-    
-    func navigate(title: String, _ closure: () -> Void) {
-        if !(runOnly?.contains(title) ?? true) {
-            return
-        }
-
-        app.tables.staticTexts[title].tap()
-        closure()
-        tapBackButton()
-    }
-    
-    func tapBackButton() {
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        super.saveScreenshot(component: "swiftui_\(componentName)", scenario: scenarioName, userInterfaceStyle: userInterfaceStyle)
     }
     
     func testLightModeScreenshots() {
@@ -83,8 +56,7 @@ class SwiftUIScreenshots: XCTestCase {
     
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
         navigate(title: "Labels") {
-            app.tables.staticTexts["SwiftUI"].tap()
-            
+            switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "text", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -92,11 +64,10 @@ class SwiftUIScreenshots: XCTestCase {
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "text", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            tapBackButton()
         }
         
         navigate(title: "Buttons") {
-            app.tables.staticTexts["SwiftUI"].tap()
+            switchTab(title: "SwiftUI")
             app.tables.staticTexts["Primary"].tap()
             saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -118,17 +89,15 @@ class SwiftUIScreenshots: XCTestCase {
             app.tables.staticTexts["Primary On Light"].tap()
             saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            tapBackButton()
         }
         
         navigate(title: "Switches") {
-            navigate(title: "SwiftUI") {
-                saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            }
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         navigate(title: "Cards") {
-            app.tables.staticTexts["SwiftUI"].tap()
+            switchTab(title: "SwiftUI")
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
     }

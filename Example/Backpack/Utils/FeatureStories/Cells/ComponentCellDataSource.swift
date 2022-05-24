@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright © 2022 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,31 +16,15 @@
  * limitations under the License.
  */
 
-struct Components {
-    struct Group {
-        let title: String
-        let cells: [Cell]
-    }
-    
-    struct Cell {
-        let title: String
-        let onSelection: () -> Void
-    }
-    
-    struct Tab {
-        let title: String
-        let viewController: () -> UIViewController
-        let image: UIImage?
-    }
-}
+import Foundation
 
-protocol CellDataSource {
-    var title: String { get }
-    func onSelected()
-}
-
-extension CellDataSource {
-    var cell: Components.Cell {
-        Components.Cell(title: title, onSelection: onSelected)
+struct ComponentCellDataSource: CellDataSource {
+    let title: String
+    let tabs: [Components.Tab]
+    
+    let showChildren: ([Components.Tab]) -> Void
+    
+    func onSelected() {
+        showChildren(tabs)
     }
 }
