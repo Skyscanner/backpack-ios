@@ -21,7 +21,7 @@ import Backpack
 
 class TabsViewController: BPKTabBarController {
     
-    let tabs: [Components.Tab]
+    private let tabs: [Components.Tab]
     
     init(title: String, tabs: [Components.Tab]) {
         self.tabs = tabs
@@ -32,8 +32,8 @@ class TabsViewController: BPKTabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tabItems = tabs.map { tab -> UIViewController in
+                
+        viewControllers = tabs.map { tab -> UIViewController in
             let tabBarItem = BPKTabBarItem()
             tabBarItem.title = tab.title
             tabBarItem.originalImage = tab.image
@@ -42,8 +42,6 @@ class TabsViewController: BPKTabBarController {
             
             return tab.viewController
         }
-        
-        viewControllers = tabItems
     }
     
     @available(*, unavailable)
