@@ -56,53 +56,49 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
     
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
         navigate(title: "Labels") {
-            switchTab(title: "SwiftUI") {
-                app.tables.staticTexts["Default"].tap()
-                saveScreenshot(component: "text", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                
-                app.tables.staticTexts["Multiple font styles"].tap()
-                saveScreenshot(component: "text", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "text", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Multiple font styles"].tap()
+            saveScreenshot(component: "text", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
         
         navigate(title: "Buttons") {
-            switchTab(title: "SwiftUI") {
-                app.tables.staticTexts["Primary"].tap()
-                saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Secondary"].tap()
-                saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Destructive"].tap()
-                saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Featured"].tap()
-                saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Link"].tap()
-                saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Primary On Dark"].tap()
-                saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Primary On Light"].tap()
-                saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Primary"].tap()
+            saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Secondary"].tap()
+            saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Destructive"].tap()
+            saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Featured"].tap()
+            saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Link"].tap()
+            saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Light"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
         
         navigate(title: "Switches") {
-            switchTab(title: "SwiftUI") {
-                saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            }
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
 
         navigate(title: "Cards") {
-            switchTab(title: "SwiftUI") {
-                saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            }
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
     }
 }

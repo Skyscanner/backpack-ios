@@ -44,9 +44,8 @@ class BackpackSnapshotTestCase: XCTestCase {
         tapBackButton()
     }
     
-    func switchTab(title: String, _ closure: () -> Void) {
+    func switchTab(title: String) {
         app.tabBars.buttons[title].tap()
-        closure()
     }
     
     func tapBackButton() {

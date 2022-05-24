@@ -75,29 +75,28 @@ class Screenshots: BackpackSnapshotTestCase {
 
 
         navigate(title: "Buttons") {
-            switchTab(title: "UIKit") {
-                app.tables.staticTexts["Primary"].tap()
-                saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Secondary"].tap()
-                saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Destructive"].tap()
-                saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Featured"].tap()
-                saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Link"].tap()
-                saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Primary On Dark"].tap()
-                saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Primary On Light"].tap()
-                saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "UIKit")
+            app.tables.staticTexts["Primary"].tap()
+            saveScreenshot(component: "button", scenario: "primary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Secondary"].tap()
+            saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Destructive"].tap()
+            saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Featured"].tap()
+            saveScreenshot(component: "button", scenario: "featured", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Link"].tap()
+            saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Primary On Light"].tap()
+            saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Calendar") {
@@ -130,38 +129,37 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Cards") {
-            switchTab(title: "UIKit") {
-                app.tables.staticTexts["Default"].tap()
-                saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Without padding"].tap()
-                saveScreenshot(component: "card", scenario: "without-padding", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Selected"].tap()
-                saveScreenshot(component: "card", scenario: "selected", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Corner style large"].tap()
-                saveScreenshot(component: "card", scenario: "corner-style-large", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["Background color"].tap()
-                saveScreenshot(component: "card", scenario: "background-color", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["With divider"].tap()
-                saveScreenshot(component: "card", scenario: "with-divider", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["With divider arranged vertically"].tap()
-                saveScreenshot(component: "card", scenario: "with-divider-arranged-vertically",
-                               userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["With divider without padding"].tap()
-                saveScreenshot(component: "card", scenario: "with-divider-without-padding",
-                               userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-                app.tables.staticTexts["With divider and corner style large"].tap()
-                saveScreenshot(component: "card", scenario: "with-divider-and-corner-style-large",
-                               userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "UIKit")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Without padding"].tap()
+            saveScreenshot(component: "card", scenario: "without-padding", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Selected"].tap()
+            saveScreenshot(component: "card", scenario: "selected", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Corner style large"].tap()
+            saveScreenshot(component: "card", scenario: "corner-style-large", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Background color"].tap()
+            saveScreenshot(component: "card", scenario: "background-color", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With divider"].tap()
+            saveScreenshot(component: "card", scenario: "with-divider", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With divider arranged vertically"].tap()
+            saveScreenshot(component: "card", scenario: "with-divider-arranged-vertically",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With divider without padding"].tap()
+            saveScreenshot(component: "card", scenario: "with-divider-without-padding",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With divider and corner style large"].tap()
+            saveScreenshot(component: "card", scenario: "with-divider-and-corner-style-large",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Chips") {
@@ -275,18 +273,16 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Icons") {
-            switchTab(title: "UIKit") {
-                saveScreenshot(component: "icon", scenario: "all", userInterfaceStyle: userInterfaceStyle)
-            }
+            switchTab(title: "UIKit")
+            saveScreenshot(component: "icon", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         navigate(title: "Labels") {
-            switchTab(title: "UIKit") {
-                app.tables.staticTexts["UIKit"].tap()
-                app.tables.staticTexts["Multiple font styles"].tap()
-                saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "UIKit")
+            app.tables.staticTexts["UIKit"].tap()
+            app.tables.staticTexts["Multiple font styles"].tap()
+            saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Map") {
@@ -396,10 +392,9 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Switches") {
-            switchTab(title: "UIKit") {
-                saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-                tapBackButton()
-            }
+            switchTab(title: "UIKit")
+            saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Tab bar controller") {
