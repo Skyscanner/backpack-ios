@@ -40,16 +40,7 @@ struct CardGroupsProvider {
         )
     }
     
-    func tabs() -> [Tab] {
-        [
-            .uikit(groups: groups()),
-            .swiftui(presentable: CustomPresentable(generateViewController: {
-                ContentUIHostingController(CardExampleView())
-            }))
-        ]
-    }
-        
-    private func groups() -> [Components.Group] {
+    func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
                 presentableCard("Default") { _ in },

@@ -30,7 +30,7 @@ struct ComponentCellsProvider {
         navigator.present(title: title, groups: children)
     }
     
-    private func showComponent(title: String, tabs: [Tab]) {
+    private func showComponent(title: String, tabs: [Components.Tab]) {
         navigator.present(title: title, tabs: tabs)
     }
 
@@ -111,7 +111,12 @@ extension ComponentCellsProvider {
     private func card() -> CellDataSource {
         ComponentCellDataSource(
             title: "Cards",
-            tabs: CardGroupsProvider(showPresentable: show(presentable:)).tabs(),
+            tabs: [
+                .uikit(groups: CardGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CardExampleView())
+                }))
+            ],
             showChildren: { showComponent(title: "Cards", tabs: $0) }
         )
     }
@@ -146,7 +151,15 @@ extension ComponentCellsProvider {
     private func icon() -> CellDataSource {
         ComponentCellDataSource(
             title: "Icons",
-            tabs: IconGroupsProvider.tabs(),
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "Main",
+                    identifier: "IconsViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(IconsExampleView())
+                }))
+            ],
             showChildren: { showComponent(title: "Icons", tabs: $0) }
         )
     }

@@ -19,33 +19,29 @@
 
 import Foundation
 
-struct Tab {
-    let title: String
-    let viewController: UIViewController
-    let image: UIImage?
-    
-    static func uikit(groups: [Components.Group]) -> Tab {
-        Tab.uikit(presentable: CustomPresentable(generateViewController: {
+extension Components.Tab {
+    static func uikit(groups: [Components.Group]) -> Components.Tab {
+        Components.Tab.uikit(presentable: CustomPresentable(generateViewController: {
             GroupsViewController(groups: groups)
         }))
     }
     
-    static func swiftui(groups: [Components.Group]) -> Tab {
-        Tab.swiftui(presentable: CustomPresentable(generateViewController: {
+    static func swiftui(groups: [Components.Group]) -> Components.Tab {
+        Components.Tab.swiftui(presentable: CustomPresentable(generateViewController: {
             GroupsViewController(groups: groups)
         }))
     }
     
-    static func uikit(presentable: Presentable) -> Tab {
-        Tab(
+    static func uikit(presentable: Presentable) -> Components.Tab {
+        Components.Tab(
             title: "UIKit",
             viewController: presentable.makeViewController(),
             image: BPKIcon.makeLargeTemplateIcon(name: .window)
         )
     }
     
-    static func swiftui(presentable: Presentable) -> Tab {
-        Tab(
+    static func swiftui(presentable: Presentable) -> Components.Tab {
+        Components.Tab(
             title: "SwiftUI",
             viewController: presentable.makeViewController(),
             image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff)

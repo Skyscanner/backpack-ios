@@ -21,9 +21,9 @@ import Foundation
 
 struct ComponentCellDataSource: CellDataSource {
     let title: String
-    let tabs: [Tab]
+    let tabs: [Components.Tab]
     
-    let showChildren: ([Tab]) -> Void
+    let showChildren: ([Components.Tab]) -> Void
     
     func onSelected() {
         showChildren(tabs)

@@ -26,6 +26,12 @@ struct Components {
         let title: String
         let onSelection: () -> Void
     }
+    
+    struct Tab {
+        let title: String
+        let viewController: UIViewController
+        let image: UIImage?
+    }
 }
 
 protocol CellDataSource {

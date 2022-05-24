@@ -22,9 +22,9 @@ import Backpack
 
 class TabsViewController: BPKTabBarController {
     
-    let tabs: [Tab]
+    let tabs: [Components.Tab]
     
-    init(title: String, tabs: [Tab]) {
+    init(title: String, tabs: [Components.Tab]) {
         self.tabs = tabs
         
         super.init(nibName: nil, bundle: nil)
