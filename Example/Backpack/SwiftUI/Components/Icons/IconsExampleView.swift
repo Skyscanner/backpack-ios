@@ -47,12 +47,11 @@ struct IconsExampleView: View {
         VStack {
             BPKText(title, style: .heading1)
             LazyVGrid(columns: columns, spacing: 8) {
-                ForEach((0..<filtered.count), id: \.self) { iconId in
+                ForEach(filtered, id: \.name) { icon in
                     VStack {
-                        BPKIconView(filtered[iconId], size: size)
+                        BPKIconView(icon, size: size)
                             .foregroundColor(.primaryColor)
-                        BPKText(filtered[iconId].name, style: .caption)
-                            .lineLimit(1)
+                        BPKText(icon.name, style: .caption)
                     }
                 }
             }
