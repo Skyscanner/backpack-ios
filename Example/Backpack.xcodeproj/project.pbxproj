@@ -91,6 +91,7 @@
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
 		794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337A8283C77BD00797D1C /* TabsViewController.swift */; };
 		794337AB283C829100797D1C /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AA283C829100797D1C /* Tab.swift */; };
+		794337AD283CB0D100797D1C /* BackpackTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AC283CB0D100797D1C /* BackpackTestCase.swift */; };
 		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
@@ -369,6 +370,7 @@
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		794337A8283C77BD00797D1C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		794337AA283C829100797D1C /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		794337AC283CB0D100797D1C /* BackpackTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackTestCase.swift; sourceTree = "<group>"; };
 		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
@@ -1227,6 +1229,7 @@
 				D28D0E8123B2183D008B4C09 /* Screenshots.swift */,
 				D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */,
 				796DE9EE2833865A00D07664 /* SwiftUIScreenshots.swift */,
+				794337AC283CB0D100797D1C /* BackpackTestCase.swift */,
 			);
 			path = "Backpack Screenshot";
 			sourceTree = "<group>";
@@ -1859,6 +1862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */,
+				794337AD283CB0D100797D1C /* BackpackTestCase.swift in Sources */,
 				796DE9EF2833865A00D07664 /* SwiftUIScreenshots.swift in Sources */,
 				D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */,
 			);
