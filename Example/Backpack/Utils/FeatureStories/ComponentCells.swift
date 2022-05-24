@@ -30,6 +30,10 @@ struct ComponentCellsProvider {
         navigator.present(title: title, groups: children)
     }
     
+    private func showComponent(title: String, tabs: [Tab]) {
+        navigator.present(title: title, tabs: tabs)
+    }
+    
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
             badge(),
@@ -88,23 +92,13 @@ extension ComponentCellsProvider {
         )
     }
     private func button() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Buttons",
-            groups: SingleGroupProvider(
-                cellDataSources: [
-                    GroupCellDataSource(
-                        title: "SwiftUI",
-                        groups: ButtonGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups(),
-                        showChildren: { showChildren(title: "Buttons", children: $0) }
-                    ),
-                    GroupCellDataSource(
-                        title: "UIKit",
-                        groups: ButtonGroupsProvider(showPresentable: show(presentable:)).groups(),
-                        showChildren: { showChildren(title: "Buttons", children: $0) }
-                    )
-                ]
-            ).groups(),
-            showChildren: { showChildren(title: "Buttons", children: $0) }
+            tabs: [
+                .uikit(groups: ButtonGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: ButtonGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Labels", tabs: $0) }
         )
     }
     private func calendar() -> CellDataSource {
@@ -160,30 +154,11 @@ extension ComponentCellsProvider {
     private func label() -> CellDataSource {
         ComponentCellDataSource(
             title: "Labels",
-            uikitGroups: LabelGroupsProvider(showPresentable: show(presentable:)).groups(),
-            swiftuiGroups: TextGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Labels", children: $0) }
-        )
-    }
-    
-    // LabelGroupsProvider(showPresentable: show(presentable:)).groups()
-    private func oldlabel() -> CellDataSource {
-        GroupCellDataSource(
-            title: "Labels",
-            groups: SingleGroupProvider(
-                cellDataSources: [
-                    GroupCellDataSource(
-                        title: "SwiftUI",
-                        groups: TextGroupsProvider(showPresentable: show(presentable:)).groups(),
-                        showChildren: { showChildren(title: "Labels", children: $0) }
-                    ),
-                    GroupCellDataSource(
-                        title: "UIKit",
-                        groups: LabelGroupsProvider(showPresentable: show(presentable:)).groups(),
-                        showChildren: { showChildren(title: "Labels", children: $0) }
-                    )
-                ]).groups(),
-            showChildren: { showChildren(title: "Labels", children: $0) }
+            tabs: [
+                .uikit(groups: LabelGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: TextGroupsProvider(showPresentable: show(presentable:)).groups())
+            ],
+            showChildren: { showComponent(title: "Labels", tabs: $0) }
         )
     }
     private func navBar() -> CellDataSource {

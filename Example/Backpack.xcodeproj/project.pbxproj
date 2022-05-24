@@ -91,6 +91,8 @@
 		793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
+		794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337A8283C77BD00797D1C /* TabsViewController.swift */; };
+		794337AB283C829100797D1C /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AA283C829100797D1C /* Tab.swift */; };
 		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
@@ -369,6 +371,8 @@
 		793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCellDataSource.swift; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		794337A8283C77BD00797D1C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
+		794337AA283C829100797D1C /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
@@ -606,6 +610,8 @@
 				53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */,
 				53B6DB5827FB6F930042B7C0 /* TokenCells.swift */,
 				53E075AD27FC9AF90033147C /* Cells */,
+				794337A8283C77BD00797D1C /* TabsViewController.swift */,
+				794337AA283C829100797D1C /* Tab.swift */,
 			);
 			path = FeatureStories;
 			sourceTree = "<group>";
@@ -1729,6 +1735,7 @@
 				6055821721523A1300BF9F3E /* IconsViewController.swift in Sources */,
 				D20470402347875900A1BE48 /* BPKExampleAppTitleAttributes.m in Sources */,
 				D28784922250FCBD00353E32 /* Settings.swift in Sources */,
+				794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */,
 				D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */,
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */,
@@ -1761,6 +1768,7 @@
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
 				537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */,
 				532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */,
+				794337AB283C829100797D1C /* Tab.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,

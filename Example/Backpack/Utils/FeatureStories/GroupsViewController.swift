@@ -48,6 +48,8 @@ class GroupsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = groups[indexPath.section].cells[indexPath.row].title
+        cell.accessoryType = .disclosureIndicator
+
         return cell
     }
 

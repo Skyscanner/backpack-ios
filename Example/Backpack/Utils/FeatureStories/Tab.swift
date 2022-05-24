@@ -19,13 +19,16 @@
 
 import Foundation
 
-struct ComponentCellDataSource: CellDataSource {
+struct Tab {
     let title: String
-    let tabs: [Tab]
+    let groups: [Components.Group]
+    let image: UIImage?
     
-    let showChildren: ([Tab]) -> Void
+    static func uikit(groups: [Components.Group]) -> Tab {
+        Tab(title: "UIKit", groups: groups, image: BPKIcon.makeLargeTemplateIcon(name: .window))
+    }
     
-    func onSelected() {
-        showChildren(tabs)
+    static func swiftui(groups: [Components.Group]) -> Tab {
+        Tab(title: "SwiftUI", groups: groups, image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff))
     }
 }
