@@ -52,7 +52,6 @@ struct IconsExampleView: View {
                         BPKIconView(icon, size: size)
                             .foregroundColor(.primaryColor)
                         BPKText(icon.name, style: .caption)
-                            .lineLimit(1)
                     }
                 }
             }
