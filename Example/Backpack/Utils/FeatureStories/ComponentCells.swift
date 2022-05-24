@@ -144,10 +144,10 @@ extension ComponentCellsProvider {
         )
     }
     private func icon() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Icons",
-            groups: IconGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Icons", children: $0) }
+            tabs: IconGroupsProvider.tabs(),
+            showChildren: { showComponent(title: "Icons", tabs: $0) }
         )
     }
     

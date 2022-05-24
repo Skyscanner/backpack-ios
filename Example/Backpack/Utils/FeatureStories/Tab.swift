@@ -21,14 +21,30 @@ import Foundation
 
 struct Tab {
     let title: String
-    let groups: [Components.Group]
+    let viewController: UIViewController
     let image: UIImage?
     
     static func uikit(groups: [Components.Group]) -> Tab {
-        Tab(title: "UIKit", groups: groups, image: BPKIcon.makeLargeTemplateIcon(name: .window))
+        Tab.uikit(viewController: GroupsViewController(groups: groups))
     }
     
     static func swiftui(groups: [Components.Group]) -> Tab {
-        Tab(title: "SwiftUI", groups: groups, image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff))
+        Tab.swiftui(viewController: GroupsViewController(groups: groups))
+    }
+    
+    static func uikit(viewController: UIViewController) -> Tab {
+        Tab(
+            title: "UIKit",
+            viewController: viewController,
+            image: BPKIcon.makeLargeTemplateIcon(name: .window)
+        )
+    }
+    
+    static func swiftui(viewController: UIViewController) -> Tab {
+        Tab(
+            title: "SwiftUI",
+            viewController: viewController,
+            image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff)
+        )
     }
 }

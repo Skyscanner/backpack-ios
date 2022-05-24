@@ -35,16 +35,14 @@ class TabsViewController: BPKTabBarController {
         super.viewDidLoad()
         
         let tabItems = tabs.map { tab -> UIViewController in
-            let groupsVc = GroupsViewController(groups: tab.groups)
-            
             let tabBarItem = BPKTabBarItem()
             tabBarItem.title = tab.title
             tabBarItem.originalImage = tab.image
             
-            groupsVc.tabBarItem = tabBarItem
-            groupsVc.navigationItem.title = tab.title
+            tab.viewController.tabBarItem = tabBarItem
+            tab.viewController.navigationItem.title = tab.title
             
-            return groupsVc
+            return tab.viewController
         }
         
         viewControllers = tabItems

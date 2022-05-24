@@ -31,20 +31,13 @@ struct IconGroupsProvider {
         )
     }
     
-    func groups() -> [Components.Group] {
-        SingleGroupProvider(
-            cellDataSources: [
-                PresentableCellDataSource.custom(
-                    title: "SwiftUI",
-                    customController: { ContentUIHostingController(IconsExampleView()) },
-                    showPresentable: showPresentable
-                ),
-                PresentableCellDataSource(
-                    title: "UIKit",
-                    storyboard: .named("Main", on: "IconsViewController"),
-                    showPresentable: showPresentable
-                )
-            ]
-        ).groups()
+    static func tabs() -> [Tab] {
+        [
+            .uikit(viewController: loadStoryboard(
+                name: "Main",
+                identifier: "IconsViewController"
+            ).makeViewController()),
+            .swiftui(viewController: ContentUIHostingController(IconsExampleView()))
+        ]
     }
 }
