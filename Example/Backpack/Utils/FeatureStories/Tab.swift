@@ -25,25 +25,29 @@ struct Tab {
     let image: UIImage?
     
     static func uikit(groups: [Components.Group]) -> Tab {
-        Tab.uikit(viewController: GroupsViewController(groups: groups))
+        Tab.uikit(presentable: CustomPresentable(generateViewController: {
+            GroupsViewController(groups: groups)
+        }))
     }
     
     static func swiftui(groups: [Components.Group]) -> Tab {
-        Tab.swiftui(viewController: GroupsViewController(groups: groups))
+        Tab.swiftui(presentable: CustomPresentable(generateViewController: {
+            GroupsViewController(groups: groups)
+        }))
     }
     
-    static func uikit(viewController: UIViewController) -> Tab {
+    static func uikit(presentable: Presentable) -> Tab {
         Tab(
             title: "UIKit",
-            viewController: viewController,
+            viewController: presentable.makeViewController(),
             image: BPKIcon.makeLargeTemplateIcon(name: .window)
         )
     }
     
-    static func swiftui(viewController: UIViewController) -> Tab {
+    static func swiftui(presentable: Presentable) -> Tab {
         Tab(
             title: "SwiftUI",
-            viewController: viewController,
+            viewController: presentable.makeViewController(),
             image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff)
         )
     }

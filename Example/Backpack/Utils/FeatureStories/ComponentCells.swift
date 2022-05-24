@@ -109,10 +109,10 @@ extension ComponentCellsProvider {
         )
     }
     private func card() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Cards",
-            groups: CardGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Cards", children: $0) }
+            tabs: CardGroupsProvider(showPresentable: show(presentable:)).tabs(),
+            showChildren: { showComponent(title: "Cards", tabs: $0) }
         )
     }
     private func chips() -> CellDataSource {

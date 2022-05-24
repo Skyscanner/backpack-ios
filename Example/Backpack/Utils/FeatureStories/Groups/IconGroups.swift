@@ -33,11 +33,13 @@ struct IconGroupsProvider {
     
     static func tabs() -> [Tab] {
         [
-            .uikit(viewController: loadStoryboard(
+            .uikit(presentable: loadStoryboard(
                 name: "Main",
                 identifier: "IconsViewController"
-            ).makeViewController()),
-            .swiftui(viewController: ContentUIHostingController(IconsExampleView()))
+            )),
+            .swiftui(presentable: CustomPresentable(generateViewController: {
+                ContentUIHostingController(IconsExampleView())
+            }))
         ]
     }
 }
