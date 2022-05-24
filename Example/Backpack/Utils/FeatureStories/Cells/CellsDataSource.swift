@@ -29,7 +29,7 @@ struct Components {
     
     struct Tab {
         let title: String
-        let viewController: UIViewController
+        let viewController: () -> UIViewController
         let image: UIImage?
     }
 }

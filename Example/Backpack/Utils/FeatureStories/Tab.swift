@@ -34,7 +34,7 @@ extension Components.Tab {
     static func uikit(presentable: Presentable) -> Components.Tab {
         Components.Tab(
             title: "UIKit",
-            viewController: presentable.makeViewController(),
+            viewController: presentable.makeViewController,
             image: BPKIcon.makeLargeTemplateIcon(name: .window)
         )
     }
@@ -42,7 +42,7 @@ extension Components.Tab {
     static func swiftui(presentable: Presentable) -> Components.Tab {
         Components.Tab(
             title: "SwiftUI",
-            viewController: presentable.makeViewController(),
+            viewController: presentable.makeViewController,
             image: BPKIcon.makeLargeTemplateIcon(name: .flightTakeoff)
         )
     }

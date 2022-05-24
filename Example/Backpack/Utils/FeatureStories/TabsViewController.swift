@@ -38,9 +38,10 @@ class TabsViewController: BPKTabBarController {
             tabBarItem.title = tab.title
             tabBarItem.originalImage = tab.image
             
-            tab.viewController.tabBarItem = tabBarItem
+            let viewController = tab.viewController()
+            viewController.tabBarItem = tabBarItem
             
-            return tab.viewController
+            return viewController
         }
     }
     
