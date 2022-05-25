@@ -1,5 +1,11 @@
 [Unreleased changes](./UNRELEASED.md).
 
+# 50.1.0
+
+**Added:**
+  - Backpack-SwiftUI:
+    - Added BPKSwitch component
+
 # 50.0.1
 
 **Added:**
