@@ -30,7 +30,7 @@ public protocol BPKHorizontalNavigationSize {
 public enum BPKHorizontalNavigationSizeDefault: BPKHorizontalNavigationSize {
     public static var verticalSpacing: CGFloat { BPKSpacingLg }
 
-    public static var fontStyle: BPKFontStyle { .textHeading5 }
+    public static var fontStyle: BPKFontStyle { .textLabel1 }
 }
 
 /// The small size of `BPKHorizontalNavigation`.
