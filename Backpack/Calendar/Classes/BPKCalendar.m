@@ -370,6 +370,14 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.sameDayRange = selectedDates.count == 2 && [selectedDates.firstObject isEqual:selectedDates.lastObject];
 }
 
+- (BOOL)allowsWholeMonthSelection {
+    return self.selectionConfiguration.wholeMonthTitle != nil && self.selectionConfiguration.wholeMonthTitle.length > 0;
+}
+
+- (NSString * _Nullable)wholeMonthTitle {
+    return self.selectionConfiguration.wholeMonthTitle;
+}
+
 #pragma mark - public methods
 
 - (void)didMoveToSuperview {

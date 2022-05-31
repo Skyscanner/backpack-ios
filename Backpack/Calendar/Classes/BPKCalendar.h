@@ -63,6 +63,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 
+/**
+ * Called when a whole month is selected.
+ *
+ * @param calendar The backpack calendar.
+ * @param dateList The selected dates that represet the whole month selected.
+ */
+- (void)calendar:(BPKCalendar *)calendar didSelectWholeMonth:(NSArray<BPKSimpleDate *> *)dateList;
+
 @end
 
 /**
@@ -186,6 +194,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) BOOL isDragging;
 
 /**
+ * Whether selecting a whole month is allowed or not
+ */
+@property(readonly) BOOL allowsWholeMonthSelection;
+
+/**
+ * The title for the whole month button
+ */
+@property(readonly, nonatomic, strong) NSString * _Nullable wholeMonthTitle;
+
+/**
  * The calendar's delegate
  */
 @property(nonatomic, nullable, weak) id<BPKCalendarDelegate> delegate;
@@ -205,6 +223,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param date The date to scroll into view
  */
 - (void)scrollToDate:(BPKSimpleDate *)date;
+
 
 @end
 NS_ASSUME_NONNULL_END
