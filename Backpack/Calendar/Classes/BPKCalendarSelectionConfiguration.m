@@ -20,14 +20,20 @@
 
 @implementation BPKCalendarSelectionConfiguration
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle {
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
+                andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle {
     self = [super init];
 
     if (self) {
         _selectionStyle = selectionStyle;
+        _wholeMonthTitle = wholeMonthTitle;
     }
 
     return self;
+}
+
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle {
+    return [self initWithSelectionStyle:selectionStyle andWholeMonthTitle:nil];
 }
 
 - (BOOL)shouldClearSelectedDates:(NSArray<NSDate *> *)selectedDates whenSelectingDate:(NSDate *)date {
