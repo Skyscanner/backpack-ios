@@ -19,6 +19,8 @@
 #import "BPKCalendarStickyHeader.h"
 
 #import <Backpack/Font.h>
+#import <Backpack/Button.h>
+#import <BackPack/Calendar.h>
 
 #import "BPKCalendarAppearance.h"
 
@@ -27,6 +29,7 @@
 @property(weak, nonatomic) UIView *contentView;
 @property(weak, nonatomic) UIView *bottomBorder;
 @property(weak, nonatomic) FSCalendarWeekdayView *weekdayView;
+@property(weak, nonatomic) BPKButton *selectMonthButton;
 
 @end
 
@@ -38,6 +41,12 @@
     if (self) {
         [self.weekdayView removeFromSuperview];
         [self.bottomBorder removeFromSuperview];
+        
+        BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
+        [button setTitle:@"Select whole month"];
+        [button addTarget:self action:@selector(didTapSelectMonth:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:button];
+        self.selectMonthButton = button;
     }
 
     return self;
@@ -50,7 +59,19 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
+    self.titleLabel.frame = CGRectZero;
+    
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.selectMonthButton.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [NSLayoutConstraint activateConstraints:@[
+        [self.titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
+        [self.titleLabel.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor],
+        
+        [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
+        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor]
+    ]];
 }
 
 - (void)setMonth:(NSDate *)month {
@@ -62,6 +83,18 @@
                                                                    content:self.titleLabel.text
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
+    
+    if ([self.calendar isMemberOfClass:[BPKCalendar class]]) {
+        BPKCalendar * const calendar = (BPKCalendar *) self.calendar;
+        self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
+        [self.selectMonthButton setTitle: calendar.wholeMonthTitle];
+    }
+}
+
+#pragma mark - Actions
+
+- (void)didTapSelectMonth:(BPKButton *)sender {
+    
 }
 
 @end
