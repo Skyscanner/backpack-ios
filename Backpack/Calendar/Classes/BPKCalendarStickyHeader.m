@@ -20,7 +20,8 @@
 
 #import <Backpack/Font.h>
 #import <Backpack/Button.h>
-#import <BackPack/Calendar.h>
+#import <Backpack/Calendar.h>
+#import <Backpack/SimpleDate.h>
 
 #import "BPKCalendarAppearance.h"
 
@@ -29,7 +30,12 @@
 @property(weak, nonatomic) UIView *contentView;
 @property(weak, nonatomic) UIView *bottomBorder;
 @property(weak, nonatomic) FSCalendarWeekdayView *weekdayView;
-@property(weak, nonatomic) BPKButton *selectMonthButton;
+
+@end
+
+@interface BPKCalendarStickyHeader ()
+
+@property(weak, nonatomic, readonly) BPKButton *selectMonthButton;
 
 @end
 
@@ -46,7 +52,7 @@
         [button setTitle:@"Select whole month"];
         [button addTarget:self action:@selector(didTapSelectMonth:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:button];
-        self.selectMonthButton = button;
+        _selectMonthButton = button;
     }
 
     return self;
@@ -84,8 +90,8 @@
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
     
-    if ([self.calendar isMemberOfClass:[BPKCalendar class]]) {
-        BPKCalendar * const calendar = (BPKCalendar *) self.calendar;
+    if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
+        BPKCalendar *calendar = (BPKCalendar *) self.calendar.superview.superview;
         self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
         [self.selectMonthButton setTitle: calendar.wholeMonthTitle];
     }
@@ -94,7 +100,12 @@
 #pragma mark - Actions
 
 - (void)didTapSelectMonth:(BPKButton *)sender {
-    
+    if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
+        BPKCalendar *calendar = (BPKCalendar *) self.calendar.superview.superview;
+        BPKSimpleDate *month = [[BPKSimpleDate alloc] initWithDate:self.month
+                                                       forCalendar:calendar.gregorian];
+        [calendar selectWholeMonth: month];
+    }
 }
 
 @end
