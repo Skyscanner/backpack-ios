@@ -27,7 +27,26 @@
                      betweenSelectionState:(NSString *)betweenSelectionState
                  startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt {
-    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange];
+    return [self initWithStartSelectionHint:startSelectionHint
+                           endSelectionHint:endSelectionHint
+                        startSelectionState:startSelectionState
+                          endSelectionState:endSelectionState
+                      betweenSelectionState:betweenSelectionState
+                  startAndEndSelectionState:startAndEndSelectionState
+                           returnDatePrompt:returnDatePrompt
+                         andWholeMonthTitle:nil];
+}
+
+- (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
+                          endSelectionHint:(NSString *)endSelectionHint
+                       startSelectionState:(NSString *)startSelectionState
+                         endSelectionState:(NSString *)endSelectionState
+                     betweenSelectionState:(NSString *)betweenSelectionState
+                 startAndEndSelectionState:(NSString *)startAndEndSelectionState
+                          returnDatePrompt:(NSString *)returnDatePrompt
+                        andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange
+                      andWholeMonthTitle:wholeMonthTitle];
 
     if (self) {
         _startSelectionHint = [startSelectionHint copy];
