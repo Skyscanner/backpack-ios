@@ -42,6 +42,7 @@
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarYearPill.h"
+#import "BPKCalendarPresenter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -95,6 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 @property(readonly) NSArray<NSDate *> *sortedSelectedDates;
+@property(nonatomic, strong, nonnull) NSObject<BPKCalendarPresenting> *presenter;
 
 @property BOOL sameDayRange;
 
@@ -378,6 +380,14 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self.selectionConfiguration.wholeMonthTitle;
 }
 
+- (id<BPKCalendarPresenting>)presenter {
+    if (!_presenter) {
+        _presenter = [[BPKCalendarPresenter alloc] initWithCalendar:self.gregorian minDate:self.minDate];
+    }
+    
+    return _presenter;
+}
+
 #pragma mark - public methods
 
 - (void)didMoveToSuperview {
@@ -407,6 +417,30 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     NSDate *dateToScrollIntoView = [date dateForCalendar:self.gregorian];
     [self.calendarView selectDate:dateToScrollIntoView scrollToDate:dateToScrollIntoView];
     self.calendarView.pagingEnabled = NO;
+}
+
+- (void)selectWholeMonth:(BPKSimpleDate *)month {
+    NSDate *date = [month dateForCalendar:self.gregorian];
+    NSArray<BPKSimpleDate *> *selectedDates = [self.presenter dateListForMonth:date];
+    
+    // TODO: select the dates in the UI
+    [self setSelectedDates:selectedDates];
+    [self.calendarView.collectionView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(calendar:didSelectWholeMonth:)]) {
+        [self.delegate calendar:self didSelectWholeMonth:selectedDates];
+    }
+}
+
+- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
+    NSDate *monthDate = [month dateForCalendar:self.gregorian];
+    NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
+    
+    NSDateComponents *comps = [self.gregorian components:NSCalendarUnitMonth
+                                                fromDate:minDate
+                                                  toDate:monthDate
+                                                 options:0];
+    return comps.month >= 0;
 }
 
 #pragma mark - <FSCalendarDataSource>

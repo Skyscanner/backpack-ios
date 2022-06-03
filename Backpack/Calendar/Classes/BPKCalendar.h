@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /**
- * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
+ * `BPKCalendar` contains a `FSCalendar` configured with Skyscanner style properties.
  */
 @interface BPKCalendar : UIView
 
@@ -223,6 +223,19 @@ NS_ASSUME_NONNULL_BEGIN
  * @param date The date to scroll into view
  */
 - (void)scrollToDate:(BPKSimpleDate *)date;
+
+/**
+ * Selects the indicated whole month.
+ * @param month The month to be selected.
+ */
+- (void)selectWholeMonth:(BPKSimpleDate *)month;
+
+/**
+ * Wheteher the whole month button is enabled for a given month.
+ * @param month A date representing the month.
+ * * @return `FALSE` if the month is previous to the `minDate`, `TRUE` otherwise.
+ */
+- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month;
 
 
 @end
