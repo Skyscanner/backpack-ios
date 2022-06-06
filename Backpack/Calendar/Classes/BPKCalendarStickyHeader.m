@@ -58,6 +58,18 @@
     return self;
 }
 
++ (NSDateFormatter *) formatter {
+     static NSDateFormatter *dateFormatter;
+     static dispatch_once_t onceToken;
+     dispatch_once(&onceToken, ^{
+         dateFormatter = [[NSDateFormatter alloc] init];
+         [dateFormatter setDateFormat:@"MMMM, yyyy"];
+         NSLocale *locale = [NSLocale currentLocale];
+         [dateFormatter setLocale:locale];
+     });
+     return dateFormatter;
+}
+
 - (void)configureAppearance {
     [super configureAppearance];
     self.titleLabel.textAlignment = NSTextAlignmentNatural;
@@ -94,6 +106,7 @@
         BPKCalendar *calendar = (BPKCalendar *) self.calendar.superview.superview;
         self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
         [self.selectMonthButton setTitle: calendar.wholeMonthTitle];
+        self.selectMonthButton.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
     }
 }
 
