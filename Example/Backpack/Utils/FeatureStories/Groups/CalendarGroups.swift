@@ -46,6 +46,9 @@ struct CalendarGroupsProvider {
                         BPKSimpleDate(year: startingDate.year, month: startingDate.month + 2, day: 20)
                     )
                     vController.minDate = startingDate
+                },
+                presentable("With select whole month button") {
+                    $0.wholeMonthTitle = "Select whole month"
                 }
             ]
         ).groups()
