@@ -148,6 +148,17 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
+                      presenter:(NSObject<BPKCalendarPresenting>*)presenter {
+    _configuration = configuration;
+    _presenter = presenter;
+
+    return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
+}
+
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     _configuration = configuration;
 
@@ -380,7 +391,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self.selectionConfiguration.wholeMonthTitle;
 }
 
-- (id<BPKCalendarPresenting>)presenter {
+- (NSObject<BPKCalendarPresenting>*)presenter {
     if (!_presenter) {
         _presenter = [[BPKCalendarPresenter alloc] initWithCalendar:self.gregorian minDate:self.minDate];
     }
