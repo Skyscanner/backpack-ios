@@ -21,6 +21,8 @@
 @class BPKCalendarConfiguration;
 @class BPKCalendarSelectionConfiguration;
 
+@protocol BPKCalendarPresenting;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -95,6 +97,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
                         maxDate:(BPKSimpleDate *)maxDate
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Create a calendar with given minimum date and maximum date.
+ *
+ * @param minDate The minimum date that can be selected in the calendar.
+ * @param maxDate The maximum date that can be selected in the calendar.
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @param selectionConfiguration The configuration to use to handle selection logic.
+ * @see BPKCalendarTrafficLightConfiguration
+ * @param presenter The one responsible for the logic related to dates calculation.
+ * @return A configured calendar.
+ */
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
+                      presenter:(NSObject<BPKCalendarPresenting>*)presenter;
 
 /**
  * Create a calendar with given minimum date and maximum date.
