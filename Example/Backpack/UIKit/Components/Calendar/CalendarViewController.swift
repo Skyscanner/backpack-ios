@@ -37,23 +37,36 @@ class CalendarViewController: UIViewController, BPKCalendarDelegate {
     var mediumPrice = BPKCalendarPriceLabelCellData(price: "£28", labelStyle: BPKCalendarPriceLabelStyle.noData)
     var highPrice = BPKCalendarPriceLabelCellData(price: "£480", labelStyle: BPKCalendarPriceLabelStyle.negative)
     var noPrice = BPKCalendarPriceLabelCellData(price: "–", labelStyle: BPKCalendarPriceLabelStyle.noData)
+    
+    var wholeMonthTitle: String?
 
-    var singleSelectionConfiguration = BPKCalendarSelectionConfigurationSingle(
-        selectionHint: "Double tap to select date"
-    )
-    var multipleSelectionConfiguration = BPKCalendarSelectionConfigurationMultiple(
-        selectionHint: "Double tap to select date",
-        deselectionHint: "Double tap to deselect date"
-    )
-    var rangeSelectionConfiguration = BPKCalendarSelectionConfigurationRange(
-        startSelectionHint: "Double tap to select departure date",
-        endSelectionHint: "Double tap to select return date",
-        startSelectionState: "Selected as departure date",
-        endSelectionState: "Selected as return date",
-        betweenSelectionState: "Between departure and return date",
-        startAndEndSelectionState: "Selected as both departure and return date",
-        returnDatePrompt: "Now please select a return date"
-    )
+    var singleSelectionConfiguration: BPKCalendarSelectionConfiguration {
+        return BPKCalendarSelectionConfigurationSingle(
+            selectionHint: "Double tap to select date",
+            andWholeMonthTitle: wholeMonthTitle
+        )
+    }
+    
+    var multipleSelectionConfiguration: BPKCalendarSelectionConfiguration {
+        return BPKCalendarSelectionConfigurationMultiple(
+            selectionHint: "Double tap to select date",
+            deselectionHint: "Double tap to deselect date",
+            andWholeMonthTitle: wholeMonthTitle
+        )
+    }
+    
+    var rangeSelectionConfiguration: BPKCalendarSelectionConfiguration {
+        BPKCalendarSelectionConfigurationRange(
+            startSelectionHint: "Double tap to select departure date",
+            endSelectionHint: "Double tap to select return date",
+            startSelectionState: "Selected as departure date",
+            endSelectionState: "Selected as return date",
+            betweenSelectionState: "Between departure and return date",
+            startAndEndSelectionState: "Selected as both departure and return date",
+            returnDatePrompt: "Now please select a return date",
+            andWholeMonthTitle: wholeMonthTitle
+        )
+    }
 
     override func viewDidLoad() {
         // I guess it shouldn't be possible to create a calendar without a selection config 🤔
