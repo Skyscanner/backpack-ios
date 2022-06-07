@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
                      betweenSelectionState:(NSString *)betweenSelectionState
                  startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt
-                        andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle;
+                        andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
 
 @end
 

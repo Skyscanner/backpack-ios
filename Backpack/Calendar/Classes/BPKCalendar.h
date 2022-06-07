@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
-                      presenter:(NSObject<BPKCalendarPresenting>*)presenter;
+                      presenter:(NSObject<BPKCalendarPresenting> *)presenter;
 
 /**
  * Create a calendar with given minimum date and maximum date.
@@ -220,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The title for the whole month button
  */
-@property(readonly, nonatomic, strong) NSString * _Nullable wholeMonthTitle;
+@property(readonly, nonatomic, strong) NSString *_Nullable wholeMonthTitle;
 
 /**
  * The calendar's delegate
@@ -255,7 +255,6 @@ NS_ASSUME_NONNULL_BEGIN
  * * @return `FALSE` if the month is previous to the `minDate`, `TRUE` otherwise.
  */
 - (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month;
-
 
 @end
 NS_ASSUME_NONNULL_END
