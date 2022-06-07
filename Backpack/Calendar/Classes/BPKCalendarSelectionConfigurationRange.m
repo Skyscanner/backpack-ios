@@ -44,9 +44,8 @@
                      betweenSelectionState:(NSString *)betweenSelectionState
                  startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt
-                        andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle {
-    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange
-                      andWholeMonthTitle:wholeMonthTitle];
+                        andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleRange andWholeMonthTitle:wholeMonthTitle];
 
     if (self) {
         _startSelectionHint = [startSelectionHint copy];

@@ -20,8 +20,7 @@
 
 @implementation BPKCalendarSelectionConfiguration
 
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
-                andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle {
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle {
     self = [super init];
 
     if (self) {

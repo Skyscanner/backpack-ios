@@ -26,9 +26,8 @@
 
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint
                       deselectionHint:(NSString *)deselectionHint
-                   andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle {
-    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple
-                      andWholeMonthTitle:wholeMonthTitle];
+                   andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle {
+    self = [super initWithSelectionStyle:BPKCalendarSelectionStyleMultiple andWholeMonthTitle:wholeMonthTitle];
 
     if (self) {
         _selectionHint = [selectionHint copy];

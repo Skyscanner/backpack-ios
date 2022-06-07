@@ -23,6 +23,7 @@
 #import "BPKCalendarColor.h"
 #import "BPKCalendarConfiguration.h"
 #import "BPKCalendarHeaderCell.h"
+#import "BPKCalendarPresenter.h"
 #import "BPKCalendarPriceLabelCell.h"
 #import "BPKCalendarPriceLabelCellData.h"
 #import "BPKCalendarPriceLabelConfiguration.h"
@@ -35,5 +36,4 @@
 #import "BPKCalendarTrafficLightCellData.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
 #import "BPKCalendarYearPill.h"
-#import "BPKCalendarPresenter.h"
 #endif

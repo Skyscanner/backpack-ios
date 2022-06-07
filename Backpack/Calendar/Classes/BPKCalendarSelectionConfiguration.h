@@ -50,11 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @param wholeMonthTitle The title of the whole month button, if it's `nil` or empty then the button won't be visible.
  * @return `BPKCalendarSelectionConfiguration` instance.
  */
-- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle
-                andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle;
+- (instancetype)initWithSelectionStyle:(BPKCalendarSelectionStyle)selectionStyle andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
 
 /**
- * Creates a `BPKCalendarSelectionConfiguration` with the specific classes. Internally it calls to initWithSelectionStyle:andWholeMonthTitle: but passing `nil` as `wholeMonthTitle`
+ * Creates a `BPKCalendarSelectionConfiguration` with the specific classes. Internally it calls to initWithSelectionStyle:andWholeMonthTitle: but
+ * passing `nil` as `wholeMonthTitle`
  *
  * @param selectionStyle The selection style of the config.
  * @return `BPKCalendarSelectionConfiguration` instance.
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The title of the whole month button.
  * if it's `nil` or empty then the button won't be visible.
  */
-@property(readonly) NSString * _Nullable wholeMonthTitle;
+@property(readonly) NSString *_Nullable wholeMonthTitle;
 
 /**
  * Provides the accessibility hint that should be applied to a cell.

@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithSelectionHint:(NSString *)selectionHint
                       deselectionHint:(NSString *)deselectionHint
-                   andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle;
+                   andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
 
 @end
 

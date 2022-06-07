@@ -53,8 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param wholeMonthTitle The title of the whole month button, if it's `nil` or empty then the button won't be visible.
  * @return A selection configuration.
  */
-- (instancetype)initWithSelectionHint:(NSString *)selectionHint
-                   andWholeMonthTitle:(NSString *_Nullable) wholeMonthTitle;
+- (instancetype)initWithSelectionHint:(NSString *)selectionHint andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
 
 @end
 
