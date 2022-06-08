@@ -46,28 +46,28 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
     func test_firstValidDayOfMonth_whenMinDateIsPreviousToMonth_thenGetFirstDayOfMonth() {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 5, day: 2)
-        sut = givenCalendarPresenter(withMinDate: minDate)
+        sut = givenCalendarPresenter()
         let expected = "2022/06/01"
         
         // When
         let month = date(from: "2022/06/01")
         
         // Then
-        let firstDayOfMonth = sut.firstValidDay(ofMonth: month)
+        let firstDayOfMonth = sut.firstValidDay(ofMonth: month, fromMinDate: minDate.date(for: calendar))
         XCTAssertEqual(dateFormatter.string(from: firstDayOfMonth), expected)
     }
     
     func test_firstValidDayOfMonth_whenMinDateIsInTheMonth_thenGetMinDate() {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 6, day: 3)
-        sut = givenCalendarPresenter(withMinDate: minDate)
+        sut = givenCalendarPresenter()
         let expected = "2022/06/03"
         
         // When
         let month = date(from: "2022/06/01")
         
         // Then
-        let firstDayOfMonth = sut.firstValidDay(ofMonth: month)
+        let firstDayOfMonth = sut.firstValidDay(ofMonth: month, fromMinDate: minDate.date(for: calendar))
         XCTAssertEqual(dateFormatter.string(from: firstDayOfMonth), expected)
     }
     
@@ -126,7 +126,7 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
     func test_dateListForMonth_whenMinDateIsPreviousToMonth() {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 5, day: 2)
-        sut = givenCalendarPresenter(withMinDate: minDate)
+        sut = givenCalendarPresenter()
         let expectedFirst = BPKSimpleDate(year: 2022, month: 6, day: 1)
         let expectedLast = BPKSimpleDate(year: 2022, month: 6, day: 30)
         
@@ -134,7 +134,7 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
         let month = date(from: "2022/06/01")
         
         // Then
-        let dateList = sut.dateList(forMonth: month)
+        let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
         XCTAssertEqual(dateList.count, 30)
         XCTAssertEqual(dateList.first!, expectedFirst)
         XCTAssertEqual(dateList.last!, expectedLast)
@@ -143,14 +143,14 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
     func test_dateListForMonth_whenMinDateIsInTheMonth() {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 6, day: 15)
-        sut = givenCalendarPresenter(withMinDate: minDate)
+        sut = givenCalendarPresenter()
         let expectedLast = BPKSimpleDate(year: 2022, month: 6, day: 30)
         
         // When
         let month = date(from: "2022/06/01")
         
         // Then
-        let dateList = sut.dateList(forMonth: month)
+        let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
         XCTAssertEqual(dateList.count, 16)
         XCTAssertEqual(dateList.first!, minDate)
         XCTAssertEqual(dateList.last!, expectedLast)
@@ -159,15 +159,10 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
 }
 
 private extension BPKCalendarMonthDateProviderTests {
-    func givenCalendarPresenter(withMinDate minDate: BPKSimpleDate) -> BPKCalendarMonthDateProvider {
-        return BPKCalendarMonthDateProvider(
-            calendar: calendar,
-            minDate: minDate
-        )!
-    }
-    
     func givenCalendarPresenter() -> BPKCalendarMonthDateProvider {
-        return givenCalendarPresenter(withMinDate: minDate)
+        return BPKCalendarMonthDateProvider(
+            calendar: calendar
+        )!
     }
     
     func date(from dateString: String) -> Date {

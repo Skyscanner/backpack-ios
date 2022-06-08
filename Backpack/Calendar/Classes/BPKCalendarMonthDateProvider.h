@@ -22,15 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BPKMonthDateProvider <NSObject>
 
-- (NSDate *)firstValidDayOfMonth:(NSDate *)month;
+- (NSDate *)firstValidDayOfMonth:(NSDate *)month fromMinDate:(NSDate *)minDate;
 - (NSDate *)lastDayOfMonth:(NSDate *)month;
-- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month;
+- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate;
 
 @end
 
 @interface BPKCalendarMonthDateProvider : NSObject <BPKMonthDateProvider>
 
-- initWithCalendar:(NSCalendar *)calendar minDate:(BPKSimpleDate *)minDate;
+- initWithCalendar:(NSCalendar *)calendar;
 
 @end
 

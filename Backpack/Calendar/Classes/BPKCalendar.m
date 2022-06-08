@@ -393,7 +393,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (NSObject<BPKMonthDateProvider> *)presenter {
     if (!_presenter) {
-        _presenter = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:self.gregorian minDate:self.minDate];
+        _presenter = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:self.gregorian];
     }
 
     return _presenter;
@@ -432,7 +432,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (void)selectWholeMonth:(BPKSimpleDate *)month {
     NSDate *date = [month dateForCalendar:self.gregorian];
-    NSArray<BPKSimpleDate *> *selectedDates = [self.presenter dateListForMonth:date];
+    NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
+    NSArray<BPKSimpleDate *> *selectedDates = [self.presenter dateListForMonth:date fromMinDate:minDate];
 
     // TODO: select the dates in the UI
     [self setSelectedDates:selectedDates];

@@ -24,18 +24,16 @@
 @interface BPKCalendarMonthDateProvider ()
 
 @property(nonatomic, strong, readonly) NSCalendar *calendar;
-@property(nonatomic, strong, readonly) BPKSimpleDate *minDate;
 
 @end
 
 @implementation BPKCalendarMonthDateProvider
 
-- initWithCalendar:(NSCalendar *)calendar minDate:(BPKSimpleDate *)minDate {
+- initWithCalendar:(NSCalendar *)calendar {
     self = [super init];
 
     if (self) {
         _calendar = calendar;
-        _minDate = minDate;
     }
 
     return self;
@@ -49,8 +47,7 @@
     return [self.calendar dateFromComponents:comp];
 }
 
-- (NSDate *)firstValidDayOfMonth:(NSDate *)month {
-    NSDate *minDate = [self.minDate dateForCalendar:self.calendar];
+- (NSDate *)firstValidDayOfMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
     NSDate *firstDay = [self day:1 fromMonth:month];
 
     return [firstDay compare:minDate] == NSOrderedDescending ? firstDay : minDate;
@@ -79,8 +76,8 @@
     return dateList;
 }
 
-- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month {
-    NSDate *firstDay = [self firstValidDayOfMonth:month];
+- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
+    NSDate *firstDay = [self firstValidDayOfMonth:month fromMinDate:minDate];
     NSDate *lastDay = [self lastDayOfMonth:month];
 
     NSArray<NSDate *> *dateList = [self dateListFrom:firstDay to:lastDay];
