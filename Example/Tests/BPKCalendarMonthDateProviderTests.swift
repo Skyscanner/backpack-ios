@@ -20,7 +20,7 @@
 import XCTest
 @testable import Backpack
 
-final class BPKCalendarPresenterTests: XCTestCase {
+final class BPKCalendarMonthDateProviderTests: XCTestCase {
     private let timeZone = TimeZone(identifier: "GMT")!
     private let minDate = BPKSimpleDate(year: 2022, month: 1, day: 1)
     
@@ -37,7 +37,7 @@ final class BPKCalendarPresenterTests: XCTestCase {
         return calendar
     }()
     
-    private var sut: BPKCalendarPresenter!
+    private var sut: BPKCalendarMonthDateProvider!
     
     override func tearDown() {
         sut = nil
@@ -158,15 +158,15 @@ final class BPKCalendarPresenterTests: XCTestCase {
     
 }
 
-private extension BPKCalendarPresenterTests {
-    func givenCalendarPresenter(withMinDate minDate: BPKSimpleDate) -> BPKCalendarPresenter {
-        return BPKCalendarPresenter(
+private extension BPKCalendarMonthDateProviderTests {
+    func givenCalendarPresenter(withMinDate minDate: BPKSimpleDate) -> BPKCalendarMonthDateProvider {
+        return BPKCalendarMonthDateProvider(
             calendar: calendar,
             minDate: minDate
         )!
     }
     
-    func givenCalendarPresenter() -> BPKCalendarPresenter {
+    func givenCalendarPresenter() -> BPKCalendarMonthDateProvider {
         return givenCalendarPresenter(withMinDate: minDate)
     }
     

@@ -21,7 +21,7 @@
 @class BPKCalendarConfiguration;
 @class BPKCalendarSelectionConfiguration;
 
-@protocol BPKCalendarPresenting;
+@protocol BPKMonthDateProvider;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
-                      presenter:(NSObject<BPKCalendarPresenting> *)presenter;
+                      presenter:(NSObject<BPKMonthDateProvider> *)presenter;
 
 /**
  * Create a calendar with given minimum date and maximum date.
