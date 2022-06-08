@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 
-#import "BPKCalendarPresenter.h"
+#import "BPKCalendarMonthDateProvider.h"
 
 #import <Backpack/SimpleDate.h>
 #import <Foundation/Foundation.h>
 
-@interface BPKCalendarPresenter ()
+@interface BPKCalendarMonthDateProvider ()
 
 @property(nonatomic, strong, readonly) NSCalendar *calendar;
 @property(nonatomic, strong, readonly) BPKSimpleDate *minDate;
 
 @end
 
-@implementation BPKCalendarPresenter
+@implementation BPKCalendarMonthDateProvider
 
 - initWithCalendar:(NSCalendar *)calendar minDate:(BPKSimpleDate *)minDate {
     self = [super init];

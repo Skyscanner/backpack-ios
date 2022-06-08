@@ -38,7 +38,7 @@
 #import "BPKCalendarCellSpacing.h"
 #import "BPKCalendarConfiguration.h"
 #import "BPKCalendarHeaderCell.h"
-#import "BPKCalendarPresenter.h"
+#import "BPKCalendarMonthDateProvider.h"
 #import "BPKCalendarSelectionConfiguration.h"
 #import "BPKCalendarStickyHeader.h"
 #import "BPKCalendarTrafficLightConfiguration.h"
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 @property(readonly) NSArray<NSDate *> *sortedSelectedDates;
-@property(nonatomic, strong, nonnull) NSObject<BPKCalendarPresenting> *presenter;
+@property(nonatomic, strong, nonnull) NSObject<BPKMonthDateProvider> *presenter;
 
 @property BOOL sameDayRange;
 
@@ -149,7 +149,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
-                      presenter:(NSObject<BPKCalendarPresenting> *)presenter {
+                      presenter:(NSObject<BPKMonthDateProvider> *)presenter {
     _configuration = configuration;
     _presenter = presenter;
 
@@ -391,9 +391,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self.selectionConfiguration.wholeMonthTitle;
 }
 
-- (NSObject<BPKCalendarPresenting> *)presenter {
+- (NSObject<BPKMonthDateProvider> *)presenter {
     if (!_presenter) {
-        _presenter = [[BPKCalendarPresenter alloc] initWithCalendar:self.gregorian minDate:self.minDate];
+        _presenter = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:self.gregorian minDate:self.minDate];
     }
 
     return _presenter;
