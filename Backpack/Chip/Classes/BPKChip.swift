@@ -21,7 +21,6 @@ import Foundation
 @objcMembers
 @objc
 public class BPKChip: UIControl {
-    // MARK: - Public API
     
     /**
      * The title to display inside the chip.
@@ -33,24 +32,10 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-    
-    /**
-     * The icon to display inside the chip.
-     */
-    public var icon: Icon? {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
-    
-    @available(*, deprecated, message: "Please use `icon` instead")
+
     public var iconName: BPKSmallIconName? {
         didSet {
-            if let iconName = iconName {
-                self.icon = Icon(position: .leading, iconName: iconName)
-            } else {
-                self.icon = nil
-            }
+            updateLookAndFeel()
         }
     }
     
@@ -61,15 +46,6 @@ public class BPKChip: UIControl {
      * @warning This is not intended to be used directly, it exists to support theming only.
      */
     public var primaryColor: UIColor? {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
-    
-    /**
-     * An optional custom background.
-     */
-    public var backgroundTint: UIColor? {
         didSet {
             updateLookAndFeel()
         }
@@ -89,7 +65,9 @@ public class BPKChip: UIControl {
             if !isEnabled && isSelected {
                 isSelected = false
             }
-            
+            if isSelected {
+                accessibilityTraits.insert(.selected)
+            }
             updateLookAndFeel()
         }
     }
@@ -105,20 +83,18 @@ public class BPKChip: UIControl {
     
     public override var isEnabled: Bool {
         didSet {
+            if !isEnabled {
+                accessibilityTraits.insert(.notEnabled)
+            }
             updateLookAndFeel()
         }
     }
     
-    private var colors: Colors {
-        guard isEnabled else {
-            return .disabled(style, backgroundTint: backgroundTint)
-        }
-        
-        if isSelected {
-            return .selected(backgroundTint: backgroundTint, primaryColor: primaryColor)
-        } else {
-            return .unselected(style, backgroundTint: backgroundTint)
-        }
+    private var colors: BPKChipAppearanceSets.Colors {
+        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+        if !isEnabled { return appearance.disabled }
+        if isSelected { return appearance.on }
+        return appearance.off
     }
     
     private let label: BPKLabel = {
@@ -157,10 +133,10 @@ public class BPKChip: UIControl {
      * @param title String to use as the title.
      * @param icon BPKChip.Icon to use as the icon
      */
-    public convenience init(title: String, icon: Icon? = nil) {
+    public convenience init(title: String, icon: BPKSmallIconName? = nil) {
         self.init(frame: .zero)
         self.title = title
-        self.icon = icon
+        self.iconName = icon
         
         updateLookAndFeel()
     }
@@ -231,17 +207,10 @@ extension BPKChip {
     
     private func updateLookAndFeel() {
         backgroundColor = colors.background
-        iconView.image = icon.orNil(color: colors.content)
+        iconView.image = iconName.orNil(withColor: colors.content)
         label.textColor = colors.content
         
         accessibilityTraits = .button
-        if isSelected {
-            accessibilityTraits.insert(.selected)
-        }
-        
-        if !isEnabled {
-            accessibilityTraits.insert(.notEnabled)
-        }
         
         accessibilityLabel = title
         
@@ -249,6 +218,7 @@ extension BPKChip {
         updateOutline()
     }
     
+    @available(*, deprecated, message: "Will be removed when outline style is removed")
     private func updateOutline() {
         if isSelected && isEnabled {
             layer.borderWidth = 0
@@ -256,32 +226,24 @@ extension BPKChip {
             return
         }
         
-        switch style {
-        case .filled:
-            layer.borderWidth = 0
-            layer.borderColor = nil
-        case .outline:
+        if style == .outline {
             layer.borderWidth = 1
             let borderColor = isEnabled ? outlineColor : disabledOutlineColor
             layer.borderColor = borderColor.cgColor
+            return
         }
-    }
-    
-    private func removeStackViewSubviews() {
-        let subviews = containerStackView.arrangedSubviews
-        subviews.forEach(containerStackView.removeArrangedSubview)
-        subviews.forEach { $0.removeFromSuperview() }
+        layer.borderWidth = 0
+        layer.borderColor = nil
     }
     
     private func placeElements() {
-        removeStackViewSubviews()
-        containerStackView.addArrangedSubview(label)
-        guard let icon = icon else { return }
-        if icon.position == .leading {
-            containerStackView.insertArrangedSubview(iconView, at: 0)
-        } else {
+        let subviews = containerStackView.arrangedSubviews
+        subviews.forEach(containerStackView.removeArrangedSubview)
+        subviews.forEach { $0.removeFromSuperview() }
+        if iconName != nil {
             containerStackView.addArrangedSubview(iconView)
         }
+        containerStackView.addArrangedSubview(label)
     }
 }
 
@@ -308,9 +270,9 @@ extension BPKChip {
     }
 }
 
-fileprivate extension Optional where Wrapped == BPKChip.Icon {
-    func orNil(color: UIColor) -> UIImage? {
+fileprivate extension Optional where Wrapped == BPKSmallIconName {
+    func orNil(withColor color: UIColor) -> UIImage? {
         guard let icon = self else { return nil }
-        return BPKIcon.makeSmallIcon(name: icon.iconName, color: color)
+        return BPKIcon.makeSmallIcon(name: icon, color: color)
     }
 }
