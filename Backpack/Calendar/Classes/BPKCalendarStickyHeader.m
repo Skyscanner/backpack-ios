@@ -102,22 +102,31 @@
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
 
-    if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
-        BPKCalendar *calendar = (BPKCalendar *)self.calendar.superview.superview;
-        self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
-        [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
-        self.selectMonthButton.accessibilityLabel =
-            [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
-    }
+    BPKCalendar *calendar = [self bpkCalendar];
+    if (!calendar) { return; }
+    
+    self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
+    [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
+    self.selectMonthButton.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
 }
 
 #pragma mark - Actions
 
 - (void)didTapSelectMonth:(BPKButton *)sender {
+    BPKCalendar *calendar = [self bpkCalendar];
+    if (!calendar) { return; }
+    
+    BPKSimpleDate *month = [[BPKSimpleDate alloc] initWithDate:self.month forCalendar:calendar.gregorian];
+    [calendar selectWholeMonth:month];
+}
+
+#pragma mark - Helpers
+
+- (BPKCalendar * _Nullable) bpkCalendar {
     if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
-        BPKCalendar *calendar = (BPKCalendar *)self.calendar.superview.superview;
-        BPKSimpleDate *month = [[BPKSimpleDate alloc] initWithDate:self.month forCalendar:calendar.gregorian];
-        [calendar selectWholeMonth:month];
+        return (BPKCalendar *)self.calendar.superview.superview;
+    } else {
+        return nil;
     }
 }
 
