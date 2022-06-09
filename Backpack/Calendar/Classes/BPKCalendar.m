@@ -93,10 +93,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) BPKCalendarYearPill *yearPill;
 @property(nonatomic, strong, nonnull) BPKCalendarAppearance *appearance;
 @property(nonatomic, strong, nonnull) UIView *bottomBorder;
-@property(nonatomic, strong, nonnull) NSCalendar *gregorian;
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 @property(readonly) NSArray<NSDate *> *sortedSelectedDates;
-@property(nonatomic, strong, nonnull) NSObject<BPKMonthDateProvider> *presenter;
+@property(nonatomic, strong, nonnull) NSObject<BPKMonthDateProvider> *dateProvider;
 
 @property BOOL sameDayRange;
 
@@ -121,6 +120,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
+        _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        _dateProvider = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:_gregorian];
         [self setup];
     }
 
@@ -139,6 +140,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         // `minDate` and `maxDate` is `nonnull` so we need to ensure **it is not** `nil`.
         self.minDate = [[BPKSimpleDate alloc] initWithYear:1970 month:1 day:1];
         self.maxDate = [[BPKSimpleDate alloc] initWithYear:2099 month:12 day:31];
+        _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        _dateProvider = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:_gregorian];
         [self setup];
     }
 
@@ -149,49 +152,56 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
-                      presenter:(NSObject<BPKMonthDateProvider> *)presenter {
-    _configuration = configuration;
-    _presenter = presenter;
-
-    return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
-}
-
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
-                        maxDate:(BPKSimpleDate *)maxDate
-                  configuration:(BPKCalendarConfiguration *)configuration
-         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
-    _configuration = configuration;
-
-    return [self initWithMinDate:minDate maxDate:maxDate selectionConfiguration:selectionConfiguration];
-}
-
-- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
-                        maxDate:(BPKSimpleDate *)maxDate
-         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+                       calendar:(NSCalendar *)calendar
+                   dateProvider:(NSObject<BPKMonthDateProvider> *)dateProvider {
     BPKAssertMainThread();
-    if (_configuration == nil) {
-        _configuration = [BPKCalendarTrafficLightConfiguration new];
-    }
-
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        self.selectionConfiguration = selectionConfiguration;
         self.minDate = minDate;
         self.maxDate = maxDate;
+        _configuration = configuration != nil ? configuration : [BPKCalendarTrafficLightConfiguration new];
+        self.selectionConfiguration = selectionConfiguration;
+        _gregorian = calendar;
+        _dateProvider = dateProvider;
         [self setup];
     }
 
     return self;
 }
 
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+                  configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    BPKCalendarMonthDateProvider *dateProvider = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:gregorian];
+    
+    return [self initWithMinDate:minDate
+                         maxDate:maxDate
+                   configuration:configuration
+          selectionConfiguration:selectionConfiguration
+                        calendar:gregorian
+                    dateProvider:dateProvider];
+}
+
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
+    BPKCalendarConfiguration *configuration = [BPKCalendarTrafficLightConfiguration new];
+    
+    return [self initWithMinDate:minDate
+                         maxDate:maxDate
+                   configuration:configuration
+          selectionConfiguration:selectionConfiguration];
+}
+
 - (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration
                selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
-    _configuration = configuration;
-
     self = [self initWithFrame:CGRectZero];
 
     if (self) {
+        _configuration = configuration;
         self.selectionConfiguration = selectionConfiguration;
         [self setup];
     }
@@ -207,7 +217,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)setup {
-    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     self.dateFormatter = [NSDateFormatter new];
     self.dateFormatter.locale = self.locale;
     self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
@@ -391,14 +400,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return self.selectionConfiguration.wholeMonthTitle;
 }
 
-- (NSObject<BPKMonthDateProvider> *)presenter {
-    if (!_presenter) {
-        _presenter = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:self.gregorian];
-    }
-
-    return _presenter;
-}
-
 #pragma mark - public methods
 
 - (void)didMoveToSuperview {
@@ -433,7 +434,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 - (void)selectWholeMonth:(BPKSimpleDate *)month {
     NSDate *date = [month dateForCalendar:self.gregorian];
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
-    NSArray<BPKSimpleDate *> *selectedDates = [self.presenter dateListForMonth:date fromMinDate:minDate];
+    NSArray<BPKSimpleDate *> *selectedDates = [self.dateProvider dateListForMonth:date fromMinDate:minDate];
 
     // TODO: select the dates in the UI
     [self setSelectedDates:selectedDates];
