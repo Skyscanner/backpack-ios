@@ -182,7 +182,6 @@ public final class BPKBottomSheet: NSObject {
             return
         }
         
-        // ToODO --> WHAT IS THIS?
         if let scrollView = floatingPanelController.trackingScrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
