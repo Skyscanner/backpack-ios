@@ -87,7 +87,7 @@ private extension BPKFloatingPanelController {
 
             outsideSafeAreaView.topAnchor.constraint(
                 greaterThanOrEqualTo: content.view.topAnchor,
-                constant: layout.insetFor(position: .half) ?? 0
+                constant: 0
             )
         ])
     }
@@ -130,12 +130,11 @@ private extension BPKFloatingPanelController {
     }
 
     func updateScrollViewInsetsForBottomSection() {
-        guard let scrollView = scrollView, let bottomSection = bottomSectionViewController else { return }
+        guard let scrollView = trackingScrollView, let bottomSection = bottomSectionViewController else { return }
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: bottomSection.view.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
-
 }
 
 private extension BPKFloatingPanelController {

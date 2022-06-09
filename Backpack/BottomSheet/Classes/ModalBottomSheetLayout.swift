@@ -22,39 +22,33 @@ import FloatingPanel
 /// will not be interactable, there will be an overlay in the Parent ViewController,
 /// and the BPKBottomShet can be dismissed
 public final class ModalBottomSheetLayout: FloatingPanelLayout {
+    public let position: FloatingPanelPosition = .bottom
+    
     /// Initial position of BPKBottomSheet
-    public var initialPosition: FloatingPanelPosition {
-        return .half
-    }
+    public let initialState: FloatingPanelState = .half
     
     /// All supported positions of BPKBottomSheet
-    public var supportedPositions: Set<FloatingPanelPosition> {
-        return [.full, .half]
+    public var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: insets.fullAnchor,
+            .half: insets.halfAnchor
+        ]
     }
     
-    /// Insets that will be used for the modal presentation
-    private let insets: BottomSheetInsets
-    
-    public init(insets: BottomSheetInsets) {
-        self.insets = insets
-    }
-
-    /// Method to describe the height of BPKBottomSheet in each position
-    public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-        switch position {
-        case .half: return insets.half
-        default: return nil
-        }
-    }
-
     /// Method to define the overlay in the parent view controller
-    public func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-        switch position {
+    public func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        switch state {
         case .full, .half:
             return Constants.backdropAlpha
         default:
             return 0.0
         }
+    }
+    
+    private let insets: BottomSheetInsets
+    
+    public init(insets: BottomSheetInsets) {
+        self.insets = insets
     }
 }
 

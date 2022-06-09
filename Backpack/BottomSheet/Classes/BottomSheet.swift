@@ -75,13 +75,15 @@ public final class BPKBottomSheet: NSObject {
 
     private lazy var floatingPanelController: BPKFloatingPanelController = {
         var panel = BPKFloatingPanelController(delegate: self)
+        
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = BPKCornerRadiusLg
+        panel.surfaceView.appearance = appearance
 
         panel.surfaceView.backgroundColor = BPKColor.backgroundTertiaryColor
-        panel.surfaceView.cornerRadius = BPKCornerRadiusLg
-        panel.surfaceView.grabberTopPadding = BPKSpacingMd
-        panel.surfaceView.grabberHandleHeight = BPKSpacingSm
-        panel.surfaceView.grabberHandleWidth = Constants.grabberHandleWidth
+        panel.surfaceView.grabberHandlePadding = BPKSpacingMd
         panel.surfaceView.grabberHandle.barColor = BPKColor.skyGrayTint06
+        panel.surfaceView.grabberHandleSize = .init(width: Constants.grabberHandleWidth, height: BPKSpacingSm)
 
         switch presentationStyle {
         case .modal:
@@ -179,7 +181,9 @@ public final class BPKBottomSheet: NSObject {
             assertionFailure("present(_:animated:completion:) not compatible with persistent presentation style")
             return
         }
-        if let scrollView = floatingPanelController.scrollView {
+        
+        // ToODO --> WHAT IS THIS?
+        if let scrollView = floatingPanelController.trackingScrollView {
             scrollView.setContentOffset(.init(x: 0, y: -scrollView.adjustedContentInset.top), animated: animated)
         }
 
@@ -200,7 +204,7 @@ public final class BPKBottomSheet: NSObject {
             assertionFailure("present(in:animated:completion:) not compatible with modal presentation style")
             return
         }
-        floatingPanelController.addPanel(toParent: parent, belowView: nil, animated: true)
+        floatingPanelController.addPanel(toParent: parent)
     }
     
     /// This method removes the panel from the parent view
@@ -213,7 +217,7 @@ public final class BPKBottomSheet: NSObject {
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
     public func updateLayout() {
-        floatingPanelController.updateLayout()
+//        floatingPanelController.updateLayout()
     }
     
     /// This method allows change the presentation mode of the BPKBottomSheet.
@@ -225,26 +229,20 @@ public final class BPKBottomSheet: NSObject {
 }
 
 extension BPKBottomSheet: FloatingPanelControllerDelegate {
-    final class IntrinsicLayout: FloatingPanelIntrinsicLayout {
-        func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-            return Constants.backdropAlpha
-        }
-    }
-    
     public func floatingPanel(
         _ viewController: FloatingPanelController,
         layoutFor newCollection: UITraitCollection
-    ) -> FloatingPanelLayout? {
+    ) -> FloatingPanelLayout {
         switch self.presentationStyle {
         case .modal:
-            return scrollView == nil ? IntrinsicLayout() : ModalBottomSheetLayout(insets: insets)
+            return scrollView == nil ? IntrinsicBottomSheetLayout() : ModalBottomSheetLayout(insets: insets)
         case .persistent:
             return PersistentBottomSheetLayout(insets: insets)
         }
     }
 
     public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
-        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.position))
+//        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.position))
     }
 }
 
@@ -253,7 +251,7 @@ private enum Constants {
     static let grabberHandleWidth: CGFloat = 60.0
 }
 
-extension FloatingPanelPosition {
+extension FloatingPanelState {
     var asBPKFloatingPanelPosition: BPKFloatingPanelPosition {
         switch self {
         case .full:
@@ -264,6 +262,8 @@ extension FloatingPanelPosition {
             return .tip
         case .hidden:
             return .hidden
+        default:
+            return .half
         }
     }
 }

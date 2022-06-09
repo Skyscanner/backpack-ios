@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'FSCalendar', '~> 2.8.2'
   s.dependency 'TTTAttributedLabel', '~> 2.0.0'
-  s.dependency 'FloatingPanel', '1.6.6'
+  s.dependency 'FloatingPanel', '2.5.2'
   s.dependency 'Backpack-Common'
   s.dependency 'MBProgressHUD', '~> 1.2.0'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'

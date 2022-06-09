@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import FloatingPanel
+
 public struct BottomSheetInsets {
     public let full: CGFloat?
     public let half: CGFloat?
@@ -35,5 +37,31 @@ public struct BottomSheetInsets {
         self.full = full
         self.half = half
         self.tip = tip
+    }
+}
+
+extension BottomSheetInsets {
+    var fullAnchor: FloatingPanelLayoutAnchoring {
+        guard let full = full else {
+            return FloatingPanelLayoutAnchor(absoluteInset: 0, edge: .top, referenceGuide: .safeArea)
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: full, edge: .top, referenceGuide: .safeArea)
+    }
+    
+    var halfAnchor: FloatingPanelLayoutAnchoring {
+        guard let half = half else {
+            return FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea)
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: half, edge: .bottom, referenceGuide: .safeArea)
+    }
+    
+    var tipAnchor: FloatingPanelLayoutAnchoring {
+        guard let tip = tip else {
+            return FloatingPanelLayoutAnchor(absoluteInset: 120.0, edge: .bottom, referenceGuide: .safeArea)
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: tip, edge: .bottom, referenceGuide: .safeArea)
     }
 }

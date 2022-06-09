@@ -29,7 +29,7 @@ public enum BPKFloatingPanelPosition: Int {
 
 extension BPKFloatingPanelPosition {
     // create a BPKFloatingPanelPositon from a 3rd party FloatingPanelPosition
-    init(floatinPanelPosition: FloatingPanelPosition) {
+    init(floatinPanelPosition: FloatingPanelState) {
         switch floatinPanelPosition {
         case .full:
             self = .full
@@ -39,10 +39,12 @@ extension BPKFloatingPanelPosition {
             self = .tip
         case .hidden:
             self = .hidden
+        default:
+            self = .half
         }
     }
 
-    var asFloatingPanelPosition: FloatingPanelPosition {
+    var asFloatingPanelPosition: FloatingPanelState {
         switch self {
         case .full:
             return .full
