@@ -41,6 +41,8 @@
 
 @implementation BPKCalendarStickyHeader
 
+CGFloat const BPKBaselineOffset = -5.0;
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
 
@@ -83,12 +85,11 @@
     self.selectMonthButton.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
+        [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
-        [self.titleLabel.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor],
 
+        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.lastBaselineAnchor constant:BPKBaselineOffset],
         [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
-        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor]
     ]];
 }
 
