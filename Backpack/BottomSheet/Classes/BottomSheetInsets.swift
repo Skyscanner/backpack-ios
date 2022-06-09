@@ -23,9 +23,18 @@ public struct BottomSheetInsets {
     public let half: CGFloat?
     public let tip: CGFloat?
     
+    public enum Constants {
+        static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
+        static let bottomSheetHeightInTipPosition: CGFloat = 120.0
+    }
+    
     /// Default insets for the bottom sheet.
     public init() {
-        self.init(full: nil, half: 386.0, tip: 120.0)
+        self.init(
+            full: nil,
+            half: Constants.bottomSheetHeightInHalfPosition,
+            tip: Constants.bottomSheetHeightInTipPosition
+        )
     }
     
     /// Use this initializer to have full control over the heights and spacing of your bottom sheet

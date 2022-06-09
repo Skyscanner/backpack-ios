@@ -87,7 +87,7 @@ private extension BPKFloatingPanelController {
 
             outsideSafeAreaView.topAnchor.constraint(
                 greaterThanOrEqualTo: content.view.topAnchor,
-                constant: 0
+                constant: BottomSheetInsets.Constants.bottomSheetHeightInHalfPosition
             )
         ])
     }

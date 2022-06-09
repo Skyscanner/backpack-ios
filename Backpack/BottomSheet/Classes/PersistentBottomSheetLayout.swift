@@ -47,8 +47,3 @@ public final class PersistentBottomSheetLayout: FloatingPanelLayout {
         self.insets = insets
     }
 }
-
-private enum Constants {
-    static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
-    static let bottomSheetHeightInTipPosition: CGFloat = 120.0
-}
