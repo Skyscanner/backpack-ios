@@ -217,7 +217,7 @@ public final class BPKBottomSheet: NSObject {
     /// It can be useful, for example, when changing the inner constraints of the `contentViewController`
     /// and bottom sheet needs to be resized to fit the content.
     public func updateLayout() {
-//        floatingPanelController.updateLayout()
+        floatingPanelController.invalidateLayout()
     }
     
     /// This method allows change the presentation mode of the BPKBottomSheet.
@@ -242,7 +242,7 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
     }
 
     public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
-//        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.position))
+        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.state))
     }
 }
 
