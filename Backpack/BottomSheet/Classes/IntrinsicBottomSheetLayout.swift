@@ -27,4 +27,8 @@ class IntrinsicBottomSheetLayout: FloatingPanelLayout {
             .full: FloatingPanelIntrinsicLayoutAnchor(absoluteOffset: 0, referenceGuide: .safeArea)
         ]
     }
+    
+    func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        return 0.3
+    }
 }
