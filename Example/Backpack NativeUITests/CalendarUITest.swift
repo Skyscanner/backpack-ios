@@ -18,7 +18,7 @@
 
 import XCTest
 
-class CalendarUITest: BackpackUITestCase {
+final class CalendarUITest: BackpackUITestCase {
     private func goToPreselectedDatesCalendar(_ app: XCUIApplication) {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Calendar"].tap()
@@ -99,38 +99,15 @@ class CalendarUITest: BackpackUITestCase {
     }
     
     func testCanSelectWholeMonth() {
-        // Calculate the next month to avoid trying to select past dates
-        let calendar = Calendar.current
-        let currentMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: Date()))!
-        let nextMonth = calendar.date(byAdding: .month, value: 1, to: currentMonth)!
-        var components = calendar.dateComponents([.year, .month, .day], from: nextMonth)
-        components.day = 15
-        let halfMonth = calendar.date(from: components)!
-        let lastDay = calendar.date(byAdding: .init(month: 1, day: -1), to: nextMonth)!
-        
         let app = XCUIApplication()
         app.tables.staticTexts["Calendar"].tap()
         app.tables.staticTexts["With select whole month button"].tap()
         app.buttons["Range"].tap()
         
         let collectionViewsQuery = app.collectionViews
-        collectionViewsQuery.buttons[accessiblityLabelForWholeMonthButton(nextMonth)].tap()
+        collectionViewsQuery.buttons["Select whole month February, 2020"].tap()
         
-        XCTAssertTrue(app.cells[accessibilityLabelForCell(halfMonth)].isSelected)
-        XCTAssertTrue(app.cells[accessibilityLabelForCell(lastDay)].isSelected)
-    }
-    
-    private func accessiblityLabelForWholeMonthButton(_ month: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "MMMM, yyyy"
-        return "Select whole month \(formatter.string(from: month))"
-    }
-    
-    private func accessibilityLabelForCell(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "MMMM d, yyyy"
-        return formatter.string(from: date)
+        XCTAssertTrue(app.cells["February 1, 2020, Selected as departure date"].isSelected)
+        XCTAssertTrue(app.cells["February 29, 2020, Selected as return date"].isSelected)
     }
 }

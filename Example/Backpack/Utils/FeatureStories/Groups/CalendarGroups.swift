@@ -49,6 +49,12 @@ struct CalendarGroupsProvider {
                 },
                 presentable("With select whole month button") {
                     $0.wholeMonthTitle = "Select whole month"
+                    let startingDate = BPKSimpleDate(year: 2020, month: 1, day: 1)
+                    $0.preselectedDates = (
+                        BPKSimpleDate(year: startingDate.year, month: startingDate.month + 1, day: 12),
+                        BPKSimpleDate(year: startingDate.year, month: startingDate.month + 1, day: 20)
+                    )
+                    $0.minDate = startingDate
                 }
             ]
         ).groups()
