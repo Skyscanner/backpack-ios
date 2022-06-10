@@ -28,9 +28,9 @@ public enum BPKFloatingPanelPosition: Int {
 }
 
 extension BPKFloatingPanelPosition {
-    // create a BPKFloatingPanelPositon from a 3rd party FloatingPanelPosition
-    init(floatinPanelPosition: FloatingPanelState) {
-        switch floatinPanelPosition {
+    // create a BPKFloatingPanelPosition from a 3rd party FloatingPanelPosition
+    init(floatingPanelPosition: FloatingPanelState) {
+        switch floatingPanelPosition {
         case .full:
             self = .full
         case .half:

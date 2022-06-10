@@ -241,28 +241,11 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
     }
 
     public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
-        delegate?.bottomSheetDidChangePosition(.init(floatinPanelPosition: viewController.state))
+        delegate?.bottomSheetDidChangePosition(.init(floatingPanelPosition: viewController.state))
     }
 }
 
 private enum Constants {
     static let backdropAlpha: CGFloat = 0.3
     static let grabberHandleWidth: CGFloat = 60.0
-}
-
-extension FloatingPanelState {
-    var asBPKFloatingPanelPosition: BPKFloatingPanelPosition {
-        switch self {
-        case .full:
-            return .full
-        case .half:
-            return .half
-        case .tip:
-            return .tip
-        case .hidden:
-            return .hidden
-        default:
-            return .half
-        }
-    }
 }
