@@ -64,23 +64,11 @@
     return daysOfMonth.length;
 }
 
-- (NSArray<NSDate *> *)dateListFrom:(NSDate *)firstDay to:(NSDate *)lastDay {
-    NSMutableArray<NSDate *> *dateList = [NSMutableArray new];
-
-    NSDate *day = firstDay;
-    while ([day compare:lastDay] != NSOrderedDescending) {
-        [dateList addObject:day];
-        day = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:day options:0];
-    }
-
-    return dateList;
-}
-
 - (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
     NSDate *firstDay = [self firstValidDayOfMonth:month fromMinDate:minDate];
     NSDate *lastDay = [self lastDayOfMonth:month];
 
-    NSArray<NSDate *> *dateList = [self dateListFrom:firstDay to:lastDay];
+    NSArray<NSDate *> *dateList = @[firstDay, lastDay];
     return [BPKSimpleDate simpleDatesFromDates:dateList forCalendar:self.calendar];
 }
 
