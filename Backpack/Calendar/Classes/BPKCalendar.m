@@ -176,7 +176,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     BPKCalendarMonthDateProvider *dateProvider = [[BPKCalendarMonthDateProvider alloc] initWithCalendar:gregorian];
-    
+
     return [self initWithMinDate:minDate
                          maxDate:maxDate
                    configuration:configuration
@@ -189,11 +189,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                         maxDate:(BPKSimpleDate *)maxDate
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration {
     BPKCalendarConfiguration *configuration = [BPKCalendarTrafficLightConfiguration new];
-    
-    return [self initWithMinDate:minDate
-                         maxDate:maxDate
-                   configuration:configuration
-          selectionConfiguration:selectionConfiguration];
+
+    return [self initWithMinDate:minDate maxDate:maxDate configuration:configuration selectionConfiguration:selectionConfiguration];
 }
 
 - (instancetype)initWithConfiguration:(BPKCalendarConfiguration *)configuration

@@ -104,26 +104,31 @@ CGFloat const BPKBaselineOffset = -5.0;
     self.titleLabel.attributedText = monthText;
 
     BPKCalendar *calendar = [self bpkCalendar];
-    if (!calendar) { return; }
-    
+    if (!calendar) {
+        return;
+    }
+
     self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
     [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
-    self.selectMonthButton.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
+    self.selectMonthButton.accessibilityLabel =
+        [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
 }
 
 #pragma mark - Actions
 
 - (void)didTapSelectMonth:(BPKButton *)sender {
     BPKCalendar *calendar = [self bpkCalendar];
-    if (!calendar) { return; }
-    
+    if (!calendar) {
+        return;
+    }
+
     BPKSimpleDate *month = [[BPKSimpleDate alloc] initWithDate:self.month forCalendar:calendar.gregorian];
     [calendar selectWholeMonth:month];
 }
 
 #pragma mark - Helpers
 
-- (BPKCalendar * _Nullable) bpkCalendar {
+- (BPKCalendar *_Nullable)bpkCalendar {
     if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
         return (BPKCalendar *)self.calendar.superview.superview;
     } else {
