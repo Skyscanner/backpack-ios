@@ -153,7 +153,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
                   configuration:(BPKCalendarConfiguration *)configuration
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
                        calendar:(NSCalendar *)calendar
-                   dateProvider:(NSObject<BPKMonthDateProvider> *)dateProvider {
+                   dateProvider:(id<BPKMonthDateProvider>)dateProvider {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
