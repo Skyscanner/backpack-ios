@@ -91,6 +91,7 @@ public final class BPKBottomSheet: NSObject {
             panel.backdropView.dismissalTapGestureRecognizer.isEnabled = true
         case .persistent:
             panel.isRemovalInteractionEnabled = false
+            panel.backdropView.dismissalTapGestureRecognizer.isEnabled = false
             panel.backdropView.backgroundColor = .clear
         }
 
