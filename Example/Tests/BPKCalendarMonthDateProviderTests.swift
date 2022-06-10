@@ -128,7 +128,6 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
         
         // Then
         let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
-        XCTAssertEqual(dateList.count, 30)
         let firstDay = try XCTUnwrap(dateList.first)
         XCTAssertEqual(firstDay, expectedFirst)
         let lastDay = try XCTUnwrap(dateList.last)
@@ -146,7 +145,6 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
         
         // Then
         let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
-        XCTAssertEqual(dateList.count, 16)
         let firstDay = try XCTUnwrap(dateList.first)
         XCTAssertEqual(firstDay, minDate)
         let lastDay = try XCTUnwrap(dateList.last)
