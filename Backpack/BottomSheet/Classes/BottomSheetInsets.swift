@@ -52,7 +52,11 @@ public struct BottomSheetInsets {
 extension BottomSheetInsets {
     var fullAnchor: FloatingPanelLayoutAnchoring {
         guard let full = full else {
-            return FloatingPanelLayoutAnchor(absoluteInset: 0, edge: .top, referenceGuide: .safeArea)
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: BPKSpacingNone,
+                edge: .top,
+                referenceGuide: .safeArea
+            )
         }
         
         return FloatingPanelLayoutAnchor(absoluteInset: full, edge: .top, referenceGuide: .safeArea)
@@ -60,7 +64,11 @@ extension BottomSheetInsets {
     
     var halfAnchor: FloatingPanelLayoutAnchoring {
         guard let half = half else {
-            return FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea)
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: Constants.bottomSheetHeightInHalfPosition,
+                edge: .bottom,
+                referenceGuide: .safeArea
+            )
         }
         
         return FloatingPanelLayoutAnchor(absoluteInset: half, edge: .bottom, referenceGuide: .safeArea)
@@ -68,7 +76,11 @@ extension BottomSheetInsets {
     
     var tipAnchor: FloatingPanelLayoutAnchoring {
         guard let tip = tip else {
-            return FloatingPanelLayoutAnchor(absoluteInset: 120.0, edge: .bottom, referenceGuide: .safeArea)
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: Constants.bottomSheetHeightInTipPosition,
+                edge: .bottom,
+                referenceGuide: .safeArea
+            )
         }
         
         return FloatingPanelLayoutAnchor(absoluteInset: tip, edge: .bottom, referenceGuide: .safeArea)
