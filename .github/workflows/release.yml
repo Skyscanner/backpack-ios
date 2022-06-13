@@ -1,17 +1,12 @@
 name: Release
 
 on:
-  workflow_dispatch: 
-    inputs:
-      tag:
-        description: 'tag/version'
-        required: true
-        default: '1.0.0'
-      
-      action_tag:
-        description: 'create tag ("no" to skip)'
-        required: true
-        default: 'yes'
+  release:
+    types: [ published ]
+
+defaults:
+  run:
+    shell: bash -l {0}
 
 jobs:
   release_backpack:
