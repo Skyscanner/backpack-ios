@@ -233,6 +233,15 @@ task :update_all_modules_version_in_podspec, [:version] do |t, args|
   task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
 end
 
+task :update_all_modules_version do
+  version_string = ENV['POD_VERSION']
+  task(:update_version_in_podspec).invoke(COMMON_PODSPEC, version_string)
+  task(:update_version_in_podspec).reenable
+  task(:update_version_in_podspec).invoke(UIKIT_PODSPEC, version_string)
+  task(:update_version_in_podspec).reenable
+  task(:update_version_in_podspec).invoke(SWIFTUI_PODSPEC, version_string)
+end
+
 task :update_version_in_podspec, [:podspec_file, :version] do |t, args|
   puts "Updating podspec #{args[:podspec_file]}"
   contents = File.read(args[:podspec_file])
