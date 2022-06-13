@@ -1,8 +1,8 @@
-name: CI
+name: Build
 
 on:
   workflow_call:
-  
+
 # For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 #
 # We try to align the versions of tools with what is already available on the image to reduce the time it takes to run our CI.
