@@ -9,8 +9,18 @@ defaults:
     shell: bash -l {0}
 
 jobs:
-  release_backpack:
+  Build:
+      name: Build
+      permissions:
+        statuses: write
+        pull-requests: write
+      uses: ./.github/workflows/_build.yml
+  Deploy:
+    name: Deploy
     runs-on: macos-11
+    environment: Publishing
+    needs: [Build]
+    timeout-minutes: 30
     steps:
     - uses: actions/checkout@v2
       with:
