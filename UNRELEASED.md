@@ -1,6 +1,13 @@
 # Unreleased
 > Place your changes below this line.
 
+**Breaking:**
+
+- Backpack/Chip:
+  - Introducing `default` and `onDark` styles.
+  - Introducing `select`, `option` and `dismiss` types.
+  - Removing ability to configure icon position.
+
 ## How to write a good changelog entry
 
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).
