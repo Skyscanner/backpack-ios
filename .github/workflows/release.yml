@@ -31,13 +31,10 @@ jobs:
     
     - name: Install cocoapods
       run: gem install cocoapods
-
-    - name: Check version in Podspec
+      
+    - name: Update pods versions
       run: |
-        set -eo pipefail
-        echo Target version: ${{ github.event.inputs.tag }}
-        make check-version VERSION=${{ github.event.inputs.tag }}
-        
+        bundle exec rake update_all_modules_version POD_VERSION=${{ github.event.inputs.tag }}
     - name: Pod repo update
       run: | 
         pod repo update
