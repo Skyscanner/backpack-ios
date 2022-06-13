@@ -8,6 +8,7 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - dependabot
+  - dependencies
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -19,6 +20,7 @@ updates:
     - dependency-type: "direct"
   labels:
   - dependabot
+  - dependencies
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
@@ -27,3 +29,4 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - dependabot
+  - dependencies
