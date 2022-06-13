@@ -21,7 +21,6 @@ import Foundation
 @objcMembers
 @objc
 public class BPKChip: UIControl {
-    
     /**
      * The title to display inside the chip.
      */
@@ -33,7 +32,7 @@ public class BPKChip: UIControl {
         }
     }
 
-    public var iconName: BPKSmallIconName? {
+    public var icon: BPKSmallIconName? {
         didSet {
             updateLookAndFeel()
         }
@@ -60,14 +59,14 @@ public class BPKChip: UIControl {
         }
     }
     
+    public var type: BPKChipType = .option {
+        didSet {
+            updateLookAndFeel()
+        }
+    }
+
     public override var isSelected: Bool {
         didSet {
-            if !isEnabled && isSelected {
-                isSelected = false
-            }
-            if isSelected {
-                accessibilityTraits.insert(.selected)
-            }
             updateLookAndFeel()
         }
     }
@@ -83,9 +82,6 @@ public class BPKChip: UIControl {
     
     public override var isEnabled: Bool {
         didSet {
-            if !isEnabled {
-                accessibilityTraits.insert(.notEnabled)
-            }
             updateLookAndFeel()
         }
     }
@@ -93,8 +89,8 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if isSelected { return appearance.on }
-        return appearance.off
+        if isSelected { return appearance.selected }
+        return appearance.normal
     }
     
     private let label: BPKLabel = {
@@ -105,6 +101,13 @@ public class BPKChip: UIControl {
     }()
     
     private let iconView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let accessoryIconView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +139,7 @@ public class BPKChip: UIControl {
     public convenience init(title: String, icon: BPKSmallIconName? = nil) {
         self.init(frame: .zero)
         self.title = title
-        self.iconName = icon
+        self.icon = icon
         
         updateLookAndFeel()
     }
@@ -170,15 +173,6 @@ public class BPKChip: UIControl {
         tintLayer.cornerRadius = self.bounds.height / 2.0
         self.layer.cornerRadius = self.bounds.height / 2.0
     }
-    
-    // This is required as the colours that are blended will not be dynamic values
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
-            updateLookAndFeel()
-        }
-    }
 }
 
 // MARK: - Private API
@@ -192,9 +186,9 @@ extension BPKChip {
         
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipHorizontalSpacing),
-            trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: chipHorizontalSpacing),
+            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -chipHorizontalSpacing),
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
-            bottomAnchor.constraint(equalTo: containerStackView.bottomAnchor, constant: chipVerticalSpacing)
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)
@@ -202,14 +196,16 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
-        isSelected.toggle()
+        if isEnabled {
+            isSelected.toggle()
+        }
     }
     
     private func updateLookAndFeel() {
         backgroundColor = colors.background
-        iconView.image = iconName.orNil(withColor: colors.content)
+        iconView.image = icon.orNil(withColor: colors.content)
         label.textColor = colors.content
-        
+        accessoryIconView.image = accessoryIcon.orNil(withColor: colors.content)
         accessibilityTraits = .button
         
         accessibilityLabel = title
@@ -240,10 +236,19 @@ extension BPKChip {
         let subviews = containerStackView.arrangedSubviews
         subviews.forEach(containerStackView.removeArrangedSubview)
         subviews.forEach { $0.removeFromSuperview() }
-        if iconName != nil {
+        if icon != nil {
             containerStackView.addArrangedSubview(iconView)
         }
         containerStackView.addArrangedSubview(label)
+        if accessoryIcon != nil {
+            containerStackView.addArrangedSubview(accessoryIconView)
+        }
+    }
+
+    private var accessoryIcon: BPKSmallIconName? {
+        if type == .select { return .tick }
+        if type == .dismiss { return .closeCircle }
+        return nil
     }
 }
 

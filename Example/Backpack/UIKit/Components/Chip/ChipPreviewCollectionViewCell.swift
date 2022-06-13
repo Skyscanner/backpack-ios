@@ -23,9 +23,9 @@ class ChipPreviewCollectionViewCell: UICollectionViewCell {
     var icon: BPKSmallIconName? {
         didSet {
             if let icon = icon {
-                chip.iconName = icon
+                chip.icon = icon
             } else {
-                chip.iconName = nil
+                chip.icon = nil
             }
         }
     }

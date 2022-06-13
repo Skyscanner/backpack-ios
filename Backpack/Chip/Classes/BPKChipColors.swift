@@ -18,9 +18,8 @@
 
 struct BPKChipAppearanceSets {
     struct AppearanceSet {
-        let off: Colors
-        // swiftlint:disable:next identifier_name
-        let on: Colors
+        let normal: Colors
+        let selected: Colors
         let disabled: Colors
     }
     
@@ -31,14 +30,14 @@ struct BPKChipAppearanceSets {
 
     @available(*, deprecated, message: "will be removed when filled are removed")
     static let filledAppearance = AppearanceSet(
-        off: Colors(
+        normal: Colors(
             background: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.skyGrayTint06,
                 darkVariant: BPKColor.blackTint03
             ),
             content: BPKColor.textPrimaryColor
         ),
-        on: Colors(
+        selected: Colors(
             background: BPKColor.primaryColor,
             content: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
@@ -59,14 +58,14 @@ struct BPKChipAppearanceSets {
 
     @available(*, deprecated, message: "will be removed when outline are removed")
     private static let outlineAppearance = AppearanceSet(
-        off: Colors(
+        normal: Colors(
             background: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
                 darkVariant: BPKColor.blackTint03
             ),
             content: BPKColor.textPrimaryColor
         ),
-        on: Colors(
+        selected: Colors(
             background: BPKColor.primaryColor,
             content: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
@@ -83,13 +82,13 @@ struct BPKChipAppearanceSets {
     )
 
     private static let onDarkAppearance = AppearanceSet(
-        off: Colors(
+        normal: Colors(
             background: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
                 darkVariant: BPKColor.backgroundElevation03DarkColor
             ),
             content: BPKColor.textPrimaryColor),
-        on: Colors(
+        selected: Colors(
             background: BPKColor.primaryColor,
             content: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
@@ -108,14 +107,14 @@ struct BPKChipAppearanceSets {
     )
 
     private static let defaultAppearance = AppearanceSet(
-        off: Colors(
+        normal: Colors(
             background: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.skyGrayTint06,
                 darkVariant: BPKColor.blackTint03
             ),
             content: BPKColor.textPrimaryColor
         ),
-        on: Colors(
+        selected: Colors(
             background: BPKColor.primaryColor,
             content: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,

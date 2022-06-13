@@ -15,6 +15,7 @@
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
 		5307FFC7282B28230081B16E /* BPKIconsTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */; };
+		5322ADAF285782790070D32D /* BPKChipSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322ADAE285780F40070D32D /* BPKChipSnapshotTest.swift */; };
 		532BE2A428340BDA0023B0CF /* SwitchExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */; };
 		532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */; };
 		5336BD3C280D994100550AE7 /* BPKSnackbarSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */; };
@@ -165,7 +166,6 @@
 		D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28784912250FCBD00353E32 /* ThemeHelpers.swift */; };
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D29349C02199C7690099D2EC /* BPKChipTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349BE2199C7650099D2EC /* BPKChipTest.m */; };
-		D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */; };
 		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
 		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
 		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
@@ -285,6 +285,7 @@
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		5307FFC5282B28230081B16E /* BPKIconsTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKIconsTestsUtils.h; sourceTree = "<group>"; };
 		5307FFC6282B28230081B16E /* BPKIconsTestsUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKIconsTestsUtils.m; sourceTree = "<group>"; };
+		5322ADAE285780F40070D32D /* BPKChipSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKChipSnapshotTest.swift; sourceTree = "<group>"; };
 		532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchExampleView.swift; sourceTree = "<group>"; };
 		532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlaygroundView.swift; sourceTree = "<group>"; };
 		5336BD3B280D991800550AE7 /* BPKSnackbarSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKSnackbarSnapshotTest.swift; sourceTree = "<group>"; };
@@ -448,7 +449,6 @@
 		D28D0E8123B2183D008B4C09 /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "Backpack Screenshot/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		D29349BE2199C7650099D2EC /* BPKChipTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipTest.m; sourceTree = "<group>"; };
-		D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKChipSnapshotTest.m; sourceTree = "<group>"; };
 		D297B8F323B90379008D094A /* Backpack Screenshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack Screenshot.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -1293,7 +1293,7 @@
 				D6CD7F0721BFF8210030FAD7 /* BPKCalendarYearPillSnapshotTest.m */,
 				538B55F627C94BD5007BDE6B /* BPKDialogViewSnapshotTest.swift */,
 				D246C1F521665056001CB366 /* BPKCardSnapshotTest.m */,
-				D29349C12199C9190099D2EC /* BPKChipSnapshotTest.m */,
+				5322ADAE285780F40070D32D /* BPKChipSnapshotTest.swift */,
 				D2BE85142305E2540055BD7D /* BPKFlareViewSnapshotTest.m */,
 				D643B6D72142BEA6008AB669 /* BPKGradientSnapshotTests.m */,
 				D216C20C22E9749200045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m */,
@@ -1893,6 +1893,7 @@
 				D6178E72268C83DA00A17A7D /* BPKHorizontalNavigationSnapshotTests.swift in Sources */,
 				3AA018F2215BEA2D00838FBB /* BPKSpinnerSnapshotTest.m in Sources */,
 				D216C20E22E9749700045A9E /* BPKHorizontalNavigationSnapshotTestObjc.m in Sources */,
+				5322ADAF285782790070D32D /* BPKChipSnapshotTest.swift in Sources */,
 				D26017EF25C83C9D00FAB768 /* BPKMapAnnotationSnapshotTest.m in Sources */,
 				538B55F027C915F9007BDE6B /* BPKTextViewSnapshotTests.swift in Sources */,
 				5336BD462811876D00550AE7 /* BPKSnapshotHelper.m in Sources */,
@@ -1916,7 +1917,6 @@
 				76AB13D6231690BA00B47887 /* BPKNavigationBarSnapshotTest.m in Sources */,
 				53E897CF27B6B97700A73444 /* BPKLabelSnapshotTest.swift in Sources */,
 				D6D494B3214FF3CA0095F9CF /* BPKIconSnapshotTest.m in Sources */,
-				D29349C22199C9190099D2EC /* BPKChipSnapshotTest.m in Sources */,
 				D2475A07232B6A0B00DB9A3E /* BPKRatingSnapshotTest.m in Sources */,
 				D643B6D92142BEAA008AB669 /* BPKGradientSnapshotTests.m in Sources */,
 				D6178E74268C851900A17A7D /* BPKSnapshotTest.swift in Sources */,

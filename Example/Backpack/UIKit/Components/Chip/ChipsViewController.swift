@@ -24,6 +24,7 @@ struct ChipConfig {
     let selected: Bool
     let enabled: Bool
     let icon: BPKSmallIconName?
+    let type: BPKChipType
 }
 
 class ChipsViewController: UIViewController {
@@ -40,28 +41,53 @@ class ChipsViewController: UIViewController {
     
     private let chips: [ChipConfig] = [
         ChipConfig(
-            title: "Jamaica",
+            title: "Option",
             selected: false,
             enabled: true,
-            icon: nil
+            icon: nil,
+            type: .option
         ),
         ChipConfig(
-            title: "Kosovo",
-            selected: false,
-            enabled: false,
-            icon: nil
-        ),
-        ChipConfig(
-            title: "Lesotho",
-            selected: false,
-            enabled: true,
-            icon: .close
-        ),
-        ChipConfig(
-            title: "Madagascar",
+            title: "Selected",
             selected: true,
             enabled: true,
-            icon: .camera
+            icon: nil,
+            type: .option
+        ),
+        ChipConfig(
+            title: "Disabled",
+            selected: false,
+            enabled: false,
+            icon: nil,
+            type: .option
+        ),
+        ChipConfig(
+            title: "With Icon Disabled",
+            selected: false,
+            enabled: false,
+            icon: .camera,
+            type: .option
+        ),
+        ChipConfig(
+            title: "Select",
+            selected: false,
+            enabled: true,
+            icon: .food,
+            type: .select
+        ),
+        ChipConfig(
+            title: "Selected Select",
+            selected: true,
+            enabled: true,
+            icon: .beer,
+            type: .select
+        ),
+        ChipConfig(
+            title: "Dismiss",
+            selected: false,
+            enabled: true,
+            icon: .cafe,
+            type: .dismiss
         )
     ]
 
@@ -82,6 +108,8 @@ class ChipsViewController: UIViewController {
             let chip = BPKChip(title: $0.title, icon: $0.icon)
             chip.isEnabled = $0.enabled
             chip.style = style
+            chip.type = $0.type
+            chip.isSelected = $0.selected
             return chip
         }.forEach(stack.addArrangedSubview)
     }
