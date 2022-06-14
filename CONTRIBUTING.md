@@ -80,6 +80,12 @@ Snapshot tests are used to capture images of components under different configur
 
 Please submit your requested changes as a pull request to the `main` branch. If your branch becomes out of date and conflicts need to be resolved with `main` use `git rebase`, do not merge `main` into your feature branch.
 
+Please add the correct label to your PR:
+
+* major, A breaking change or new component
+* minor, A non-breaking chang
+* patch, A fixed bug or updates to documentation
+
 Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
 
 ## Upgrading Xcode/iOS
@@ -101,9 +107,14 @@ As new versions of Xcode and iOS are released, we have to upgrade both to stay u
 
 > Backpack team only
 
-To issue a new release make sure you've set the project up as above, that you have push access to the Backpack CocoaPod and that you're logged in to [CocoaPods trunk](https://guides.cocoapods.org/making/getting-setup-with-trunk.html#getting-started). `bundle exec pod trunk me` should print **your info** and include the **Backpack pod** in the output.
+To issue a new release:
 
-Move all the entries from the `UNRELEASED.md` file to the `CHANGELOG.md` and add them under the header with the new version you're about to publish. **Do not commit these changes** (leave them unstaged) and run `bundle exec rake release`.
+* Create a new branch with the intended release number (Get this from the draft release)
+* Run `rake update_all_modules_version POD_VERSION=<NEW VERSION>
+* Commit and push changes
+* Create PR to `main` and label `skip-changelog`
+* Merge PR
+* Publish release
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
