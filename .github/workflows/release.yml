@@ -26,15 +26,9 @@ jobs:
       with:
         ref: main
     
-    - name: Install jq
-      run: brew install jq
-    
     - name: Install cocoapods
       run: gem install cocoapods
       
-    - name: Update pods versions
-      run: |
-        bundle exec rake update_all_modules_version POD_VERSION=${{ github.event.inputs.tag }}
     - name: Pod repo update
       run: | 
         pod repo update
