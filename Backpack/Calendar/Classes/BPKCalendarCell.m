@@ -94,20 +94,20 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     switch (self.rowType) {
     case RowTypeStart:
-        if (self.selectionType != SelectionTypeLeadingBorder) {
+        if (self.selectionType != SelectionTypeLeadingBorder && self.selectionType != SelectionTypeLeading) {
             underflow = overflowLength;
         }
         break;
     case RowTypeEnd:
-        if (self.selectionType != SelectionTypeTrailingBorder) {
+        if (self.selectionType != SelectionTypeTrailingBorder && self.selectionType != SelectionTypeTrailing) {
             overflow = overflowLength;
         }
         break;
     case RowTypeBoth:
-        if (self.selectionType != SelectionTypeLeadingBorder) {
+        if (self.selectionType != SelectionTypeLeadingBorder && self.selectionType != SelectionTypeLeading) {
             underflow = overflowLength;
         }
-        if (self.selectionType != SelectionTypeTrailingBorder) {
+        if (self.selectionType != SelectionTypeTrailingBorder && self.selectionType != SelectionTypeTrailing) {
             overflow = overflowLength;
         }
         break;
@@ -130,6 +130,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         }
         break;
 
+    case SelectionTypeTrailing:
     case SelectionTypeTrailingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
@@ -141,6 +142,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
+    case SelectionTypeLeading:
     case SelectionTypeLeadingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
@@ -185,14 +187,16 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     if (self.titleLabel.text) {
         switch (self.selectionType) {
-        case SelectionTypeSingle:
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
+        case SelectionTypeSingle:
         case SelectionTypeSameDay:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
             break;
+        case SelectionTypeLeading:
+        case SelectionTypeTrailing:
         case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
                                                                             content:self.titleLabel.text
@@ -205,6 +209,10 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
                                                                           textColor:color];
             break;
         }
+    }
+    
+    if (self.isSelected && (self.selectionType == SelectionTypeLeading || self.selectionType == SelectionTypeTrailing)) {
+        [self setSelected:NO];
     }
 }
 
