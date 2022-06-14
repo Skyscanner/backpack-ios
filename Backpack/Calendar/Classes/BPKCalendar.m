@@ -96,6 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 @property(readonly) NSArray<NSDate *> *sortedSelectedDates;
 @property(nonatomic, strong, nonnull) NSObject<BPKMonthDateProvider> *dateProvider;
+@property(nonatomic, assign) BOOL isSelectingWholeMonth;
 
 @property BOOL sameDayRange;
 
@@ -214,6 +215,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)setup {
+    self.isSelectingWholeMonth = NO;
     self.dateFormatter = [NSDateFormatter new];
     self.dateFormatter.locale = self.locale;
     self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
@@ -429,17 +431,21 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)selectWholeMonth:(BPKSimpleDate *)month {
+    self.isSelectingWholeMonth = YES;
     NSDate *date = [month dateForCalendar:self.gregorian];
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
     NSArray<BPKSimpleDate *> *selectedDates = [self.dateProvider dateListForMonth:date fromMinDate:minDate];
 
     // TODO: select the dates in the UI
+    BOOL previousMultiSelectionConfiguration = self.calendarView.allowsMultipleSelection;
+    self.calendarView.allowsMultipleSelection = YES;
     [self setSelectedDates:selectedDates];
     [self.calendarView.collectionView reloadData];
 
     if ([self.delegate respondsToSelector:@selector(calendar:didSelectWholeMonth:)]) {
         [self.delegate calendar:self didSelectWholeMonth:selectedDates];
     }
+    self.calendarView.allowsMultipleSelection = previousMultiSelectionConfiguration;
 }
 
 - (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month {
@@ -490,8 +496,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         return NO;
     }
 
-    BOOL shouldClearDates = self.selectionConfiguration.allowsMultipleSelection &&
-                            [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date];
+    BOOL shouldClearDates = self.isSelectingWholeMonth || (self.selectionConfiguration.allowsMultipleSelection &&
+                            [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date]);
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
@@ -523,6 +529,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    self.isSelectingWholeMonth = NO;
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
@@ -535,6 +542,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition {
+    self.isSelectingWholeMonth = NO;
     [self configureVisibleCells];
     [self.delegate calendar:self didChangeDateSelection:self.selectedDates];
 
@@ -675,37 +683,16 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
 
-        if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
-            NSDate *minDate = [sortedSelectedDates firstObject];
-            NSDate *maxDate = [sortedSelectedDates lastObject];
-            BOOL dateInsideRange = [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
-            if (dateInsideRange) {
-                BOOL isMinDate = [date isEqualToDate:minDate];
-                BOOL isMaxDate = [date isEqualToDate:maxDate];
-                NSCalendar *gregorian = self.calendarView.gregorian;
-                NSDate *firstWeekday = [gregorian fs_firstDayOfWeek:date];
-                NSDate *lastWeekday = [gregorian fs_lastDayOfWeek:date];
-                NSDate *firstDayOfMonth = [gregorian fs_firstDayOfMonth:date];
-                NSDate *lastDayOfMonth = [gregorian fs_lastDayOfMonth:date];
-                BOOL isRowStart = [gregorian isDate:date inSameDayAsDate:firstWeekday] || [gregorian isDate:date inSameDayAsDate:firstDayOfMonth];
-                BOOL isRowEnd = [gregorian isDate:date inSameDayAsDate:lastWeekday] || [gregorian isDate:date inSameDayAsDate:lastDayOfMonth];
-
-                if (isRowStart && isRowEnd) {
-                    rowType = RowTypeBoth;
-                } else if (isRowStart) {
-                    rowType = RowTypeStart;
-                } else if (isRowEnd) {
-                    rowType = RowTypeEnd;
-                }
-
-                if (isMinDate) {
-                    selectionType = SelectionTypeLeadingBorder;
-                } else if (isMaxDate) {
-                    selectionType = SelectionTypeTrailingBorder;
-                } else {
-                    selectionType = SelectionTypeMiddle;
-                }
-            }
+        if (self.isSelectingWholeMonth) {
+            rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
+            selectionType = [self selectionTypeForDate:date
+                                     amongRangeOfDates:sortedSelectedDates
+                                            withBorder:NO];
+        } else if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
+            rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
+            selectionType = [self selectionTypeForDate:date
+                                     amongRangeOfDates:sortedSelectedDates
+                                            withBorder:YES];
         } else if ([sortedSelectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
@@ -802,6 +789,66 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         return NO;
 
     return YES;
+}
+
+- (RowType)rowTypeForDate:(NSDate *)date amongRangeOfDates:(NSArray<NSDate *> *)datesRange {
+    if ([self isDate:date betweenRangeOfDates:datesRange]) {
+        BOOL isRowStart = [self isFirstDayOfTheWeekOrTheMonth:date];
+        BOOL isRowEnd = [self isLastDayOfTheWeekOrTheMonth:date];
+
+        if (isRowStart && isRowEnd) {
+            return RowTypeBoth;
+        } else if (isRowStart) {
+            return RowTypeStart;
+        } else if (isRowEnd) {
+            return RowTypeEnd;
+        } else {
+            return RowTypeMiddle;
+        }
+    } else {
+        return RowTypeMiddle;
+    }
+}
+
+- (SelectionType)selectionTypeForDate:(NSDate *)date
+                    amongRangeOfDates:(NSArray <NSDate *> *)datesRange
+                           withBorder:(BOOL)hasBorder {
+    if ([self isDate:date betweenRangeOfDates:datesRange]) {
+        NSDate *minDate = [datesRange firstObject];
+        NSDate *maxDate = [datesRange lastObject];
+        BOOL isMinDate = [date isEqualToDate:minDate];
+        BOOL isMaxDate = [date isEqualToDate:maxDate];
+
+        if (isMinDate) {
+            return hasBorder ? SelectionTypeLeadingBorder : SelectionTypeLeading;
+        } else if (isMaxDate) {
+            return hasBorder ? SelectionTypeTrailingBorder : SelectionTypeTrailing;
+        } else {
+            return SelectionTypeMiddle;
+        }
+    } else {
+        return SelectionTypeNone;
+    }
+}
+
+- (BOOL)isDate:(NSDate *)date betweenRangeOfDates:(NSArray<NSDate *> *)dates {
+    NSDate *minDate = [dates firstObject];
+    NSDate *maxDate = [dates lastObject];
+    return [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
+}
+
+- (BOOL)isFirstDayOfTheWeekOrTheMonth:(NSDate *)date  {
+    NSCalendar *gregorian = self.calendarView.gregorian;
+    NSDate *firstWeekday = [gregorian fs_firstDayOfWeek:date];
+    NSDate *firstDayOfMonth = [gregorian fs_firstDayOfMonth:date];
+    return [gregorian isDate:date inSameDayAsDate:firstWeekday] || [gregorian isDate:date inSameDayAsDate:firstDayOfMonth];
+}
+
+- (BOOL)isLastDayOfTheWeekOrTheMonth:(NSDate *)date {
+    NSCalendar *gregorian = self.calendarView.gregorian;
+    NSDate *lastWeekday = [gregorian fs_lastDayOfWeek:date];
+    NSDate *lastDayOfMonth = [gregorian fs_lastDayOfMonth:date];
+    return [gregorian isDate:date inSameDayAsDate:lastWeekday] || [gregorian isDate:date inSameDayAsDate:lastDayOfMonth];
 }
 
 #pragma mark -
