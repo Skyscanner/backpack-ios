@@ -83,7 +83,7 @@ Please submit your requested changes as a pull request to the `main` branch. If 
 Please add the correct label to your PR:
 
 * major, A breaking change or new component
-* minor, A non-breaking chang
+* minor, A non-breaking change
 * patch, A fixed bug or updates to documentation
 
 Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
