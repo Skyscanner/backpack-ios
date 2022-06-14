@@ -210,7 +210,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
             break;
         }
     }
-    
+
     if (self.isSelected && (self.selectionType == SelectionTypeLeading || self.selectionType == SelectionTypeTrailing)) {
         [self setSelected:NO];
     }
