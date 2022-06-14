@@ -497,7 +497,8 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 
     BOOL shouldClearDates = self.isSelectingWholeMonth || (self.selectionConfiguration.allowsMultipleSelection &&
-                            [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates whenSelectingDate:date]);
+                                                           [self.selectionConfiguration shouldClearSelectedDates:self.sortedSelectedDates
+                                                                                               whenSelectingDate:date]);
 
     if (shouldClearDates) {
         for (NSDate *date in calendar.selectedDates) {
@@ -685,14 +686,10 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         if (self.isSelectingWholeMonth) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
-            selectionType = [self selectionTypeForDate:date
-                                     amongRangeOfDates:sortedSelectedDates
-                                            withBorder:NO];
+            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates withBorder:NO];
         } else if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
-            selectionType = [self selectionTypeForDate:date
-                                     amongRangeOfDates:sortedSelectedDates
-                                            withBorder:YES];
+            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates withBorder:YES];
         } else if ([sortedSelectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
@@ -810,9 +807,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
-- (SelectionType)selectionTypeForDate:(NSDate *)date
-                    amongRangeOfDates:(NSArray <NSDate *> *)datesRange
-                           withBorder:(BOOL)hasBorder {
+- (SelectionType)selectionTypeForDate:(NSDate *)date amongRangeOfDates:(NSArray<NSDate *> *)datesRange withBorder:(BOOL)hasBorder {
     if ([self isDate:date betweenRangeOfDates:datesRange]) {
         NSDate *minDate = [datesRange firstObject];
         NSDate *maxDate = [datesRange lastObject];
@@ -837,7 +832,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     return [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
 }
 
-- (BOOL)isFirstDayOfTheWeekOrTheMonth:(NSDate *)date  {
+- (BOOL)isFirstDayOfTheWeekOrTheMonth:(NSDate *)date {
     NSCalendar *gregorian = self.calendarView.gregorian;
     NSDate *firstWeekday = [gregorian fs_firstDayOfWeek:date];
     NSDate *firstDayOfMonth = [gregorian fs_firstDayOfMonth:date];
