@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack-Common'
-  s.version          = "50.1.0"
+  s.version          = ENV['LIB_VERSION'] || '1.0' # Fallback to v1
   s.summary          = "Skyscanner's Common Design Tokens for Backpack"
 
   s.description      = <<-DESC

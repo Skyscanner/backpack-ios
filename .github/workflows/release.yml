@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   release:
@@ -16,13 +16,14 @@ jobs:
         pull-requests: write
       uses: ./.github/workflows/_build.yml
   Deploy:
-    name: Deploy
+    name: Release to Cocoapods
     runs-on: macos-11
     environment: Publishing
     needs: [Build]
-    timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
+
+    - name: Checkout source code
+      uses: actions/checkout@v3
       with:
         ref: main
     
@@ -33,36 +34,32 @@ jobs:
       run: | 
         pod repo update
 
-    - uses: release-drafter/release-drafter@v5
-      if: ${{ github.event.inputs.action_tag == 'yes' }}
-      with:
-        name: v${{ github.event.inputs.tag }}
-        tag: ${{ github.event.inputs.tag }}
-        version: ${{ github.event.inputs.tag }}
-        publish: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
+        pod lib lint Backpack-Common.podspec  --allow-warnings
         pod trunk push Backpack-Common.podspec --allow-warnings --synchronous
         pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
 
     - name: Publish Pods - Backpack UIKit
       run: |
         set -eo pipefail
+        pod lib lint Backpack.podspec --allow-warnings
         pod trunk push Backpack.podspec --allow-warnings --synchronous
         pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
         set -eo pipefail
+        pod lib lint Backpack-SwiftUI.podspec --allow-warnings
         pod trunk push Backpack-SwiftUI.podspec --allow-warnings --synchronous
         pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
