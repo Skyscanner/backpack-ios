@@ -109,6 +109,20 @@ jobs:
         run: npm run danger:ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and verify docs
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
+        run: ./scripts/build-docs-ci && rm -rf docs
+
+      - name: Build (pull request build)
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
+        run: ./scripts/build-docs-ci $PR_NUMBER
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+
+      - name: Build docs
+        if: steps.extract_git_tag.outputs.GIT_TAG != ''
+        run: ./scripts/build-docs-ci ${{ steps.extract_git_tag.outputs.GIT_TAG }}
           
       - name: Build and Test
         env:
@@ -124,3 +138,13 @@ jobs:
         with:
           name: FailureDiffs
           path: Example/BackpackTests/FailureDiffs
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: steps.extract_git_tag.outputs.GIT_TAG != ''
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: docs/
+          keep_files: true
+          external_repository: backpack/ios
+          publish_branch: main
