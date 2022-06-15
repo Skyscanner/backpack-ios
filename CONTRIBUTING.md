@@ -109,12 +109,7 @@ As new versions of Xcode and iOS are released, we have to upgrade both to stay u
 
 To issue a new release:
 
-* Create a new branch with the intended release number (Get this from the draft release)
-* Run `rake update_all_modules_version POD_VERSION=<NEW VERSION>
-* Commit and push changes
-* Create PR to `main` and label `skip-changelog`
-* Merge PR
-* Publish release
+* Publish draft release
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
