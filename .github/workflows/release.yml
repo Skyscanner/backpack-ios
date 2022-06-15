@@ -1,0 +1,62 @@
+name: release
+
+on:
+  release:
+    types: [ published ]
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  Build:
+      name: Build
+      permissions:
+        statuses: write
+        pull-requests: write
+      uses: ./.github/workflows/_build.yml
+  Deploy:
+    name: Release to Cocoapods
+    runs-on: macos-11
+    environment: Publishing
+    needs: [Build]
+    steps:
+
+    - name: Checkout source code
+      uses: actions/checkout@v3
+      with:
+        ref: main
+    
+    - name: Install cocoapods
+      run: gem install cocoapods
+      
+    - name: Pod repo update
+      run: | 
+        pod repo update
+
+    - name: Publish Pods - Backpack Common
+      run: |
+        set -eo pipefail
+        pod trunk push Backpack-Common.podspec --allow-warnings --synchronous
+        pod repo update
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
+
+    - name: Publish Pods - Backpack UIKit
+      run: |
+        set -eo pipefail
+        pod trunk push Backpack.podspec --allow-warnings --synchronous
+        pod repo update
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
+
+    - name: Publish Pods - Backpack SwiftUI
+      run: |
+        set -eo pipefail
+        pod trunk push Backpack-SwiftUI.podspec --allow-warnings --synchronous
+        pod repo update
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        LIB_VERSION: ${{ github.event.release.tag_name }}
