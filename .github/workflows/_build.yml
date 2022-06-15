@@ -20,7 +20,6 @@ jobs:
   CI:
     name: Build and Test
     runs-on: macos-11
-    environment: Publishing
     permissions:
       statuses: write
       pull-requests: write
