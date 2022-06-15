@@ -37,7 +37,6 @@ jobs:
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
-        pod lib lint Backpack-Common.podspec  --allow-warnings
         pod trunk push Backpack-Common.podspec --allow-warnings --synchronous
         pod repo update
       env:
@@ -47,7 +46,6 @@ jobs:
     - name: Publish Pods - Backpack UIKit
       run: |
         set -eo pipefail
-        pod lib lint Backpack.podspec --allow-warnings
         pod trunk push Backpack.podspec --allow-warnings --synchronous
         pod repo update
       env:
@@ -57,7 +55,6 @@ jobs:
     - name: Publish Pods - Backpack SwiftUI
       run: |
         set -eo pipefail
-        pod lib lint Backpack-SwiftUI.podspec --allow-warnings
         pod trunk push Backpack-SwiftUI.podspec --allow-warnings --synchronous
         pod repo update
       env:
