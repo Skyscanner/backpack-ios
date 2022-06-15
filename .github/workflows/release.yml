@@ -11,6 +11,7 @@ defaults:
 jobs:
   Build:
       name: Build
+      environment: Publishing
       permissions:
         statuses: write
         pull-requests: write
