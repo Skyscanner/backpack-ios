@@ -20,6 +20,9 @@ jobs:
   CI:
     name: Build and Test
     runs-on: macos-11
+    permissions:
+      statuses: write
+      pull-requests: write
 
     steps:
       - name: Set build image var
