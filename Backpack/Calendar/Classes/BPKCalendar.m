@@ -436,7 +436,6 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
     NSArray<BPKSimpleDate *> *selectedDates = [self.dateProvider dateListForMonth:date fromMinDate:minDate];
 
-    // TODO: select the dates in the UI
     BOOL previousMultiSelectionConfiguration = self.calendarView.allowsMultipleSelection;
     self.calendarView.allowsMultipleSelection = YES;
     [self setSelectedDates:selectedDates];
