@@ -18,16 +18,21 @@ function runTests() {
 }
 
 function ci_common() {
+    echo "Running common analysis"
     analyze $BACKPACK_COMMON_SCHEMA
 }
 
 function ci_uikit() {
+    echo "Running UIKit analysis"
     analyze $BACKPACK_SCHEMA
+    echo "Running UIKit tests"
     runTests $BACKPACK_SCHEMA
 }
 
 function ci_swiftui() {
+    echo "Running SwiftUI analysis"
     analyze $BACKPACK_SWIFTUI_SCHEMA
+    echo "Running SwiftUI tests"
     runTests $BACKPACK_SWIFTUI_SCHEMA
 }
 
