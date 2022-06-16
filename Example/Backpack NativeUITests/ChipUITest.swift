@@ -19,41 +19,16 @@
 import XCTest
 
 class ChipUITest: BackpackUITestCase {
-    lazy var afghanistanChip: XCUIElement = {
-        return app.buttons["Afghanistan"]
-    }()
-
-    lazy var belgiumChip: XCUIElement = {
-        return app.buttons["Belgium"]
-    }()
-
-    lazy var ethiopiaChip: XCUIElement = {
-        return app.buttons["Ethiopia"]
-    }()
-
-    func navigateAndShow() {
-        app.tables.staticTexts["Chips"].tap()
-        app.tables.staticTexts["Default"].tap()
-    }
-
     func testTapChipToSelect() {
-        XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow()
-        }
-
-        XCTContext.runActivity(named: "Act") { _ in
-            belgiumChip.tap()
-        }
-
-        XCTAssertTrue(belgiumChip.isSelected, "The chip should have been selected when tapped")
-        saveScreenshot(named: "Chip selected")
-    }
-
-    func testDisabledChip() {
-        XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow()
-        }
-
-        XCTAssertFalse(afghanistanChip.isEnabled, "The chip should not yet have been selected")
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Chips"].tap()
+        tablesQuery.staticTexts["Default"].tap()
+        
+        let optionButton = app.buttons["Option"]
+        optionButton.tap()
+        optionButton.tap()
+        
+        app.buttons["Disabled"].tap()
     }
 }

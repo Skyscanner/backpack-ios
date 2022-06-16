@@ -23,179 +23,94 @@ struct ChipConfig {
     let title: String
     let selected: Bool
     let enabled: Bool
-    let icon: BPKChip.Icon
+    let icon: BPKSmallIconName?
+    let type: BPKChipType
 }
 
 class ChipsViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    var icons: Bool = false
-    var backgroundTint: UIColor?
-    var style: BPKChipStyle?
-    fileprivate static var chips: [ChipConfig] = [
+    private var style: BPKChipStyle
+
+    init(style: BPKChipStyle) {
+        self.style = style
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let chips: [ChipConfig] = [
         ChipConfig(
-            title: "Afghanistan",
+            title: "Option",
+            selected: false,
+            enabled: true,
+            icon: nil,
+            type: .option
+        ),
+        ChipConfig(
+            title: "Selected",
+            selected: true,
+            enabled: true,
+            icon: nil,
+            type: .option
+        ),
+        ChipConfig(
+            title: "Disabled",
             selected: false,
             enabled: false,
-            icon: BPKChip.Icon(position: .leading, iconName: .award)
+            icon: nil,
+            type: .option
         ),
         ChipConfig(
-            title: "Belgium",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .trailing, iconName: .account)
-        ),
-        ChipConfig(
-            title: "Canada",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .adult)
-        ),
-        ChipConfig(
-            title: "Denmark",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .trailing, iconName: .airline)
-        ),
-        ChipConfig(
-            title: "Ethiopia",
-            selected: true,
-            enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .arrowUp)
-        ),
-        ChipConfig(
-            title: "Fiji",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .trailing, iconName: .alertAdd)
-        ),
-        ChipConfig(
-            title: "Germany",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .accountIdCard)
-        ),
-        ChipConfig(
-            title: "Honduras",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .alertActive)
-        ),
-        ChipConfig(
-            title: "India",
-            selected: true,
-            enabled: true,
-            icon: BPKChip.Icon(position: .trailing, iconName: .baggageAdd)
-        ),
-        ChipConfig(
-            title: "Jamaica",
-            selected: false,
-            enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .calendar)
-        ),
-        ChipConfig(
-            title: "Kosovo",
+            title: "With Icon Disabled",
             selected: false,
             enabled: false,
-            icon: BPKChip.Icon(position: .leading, iconName: .cafe)
+            icon: .camera,
+            type: .option
         ),
         ChipConfig(
-            title: "Lesotho",
+            title: "Select",
             selected: false,
             enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .close)
+            icon: .food,
+            type: .select
         ),
         ChipConfig(
-            title: "Madagascar",
+            title: "Selected Select",
             selected: true,
             enabled: true,
-            icon: BPKChip.Icon(position: .leading, iconName: .camera)
+            icon: .beer,
+            type: .select
+        ),
+        ChipConfig(
+            title: "Dismiss",
+            selected: false,
+            enabled: true,
+            icon: .cafe,
+            type: .dismiss
         )
     ]
 
-    fileprivate static let cellIdentifier = "ChipPreviewCollectionViewCell"
-    fileprivate static let headerIdentifier = "PreviewCollectionViewHeader"
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.collectionView.allowsMultipleSelection = true
-        self.collectionView.isScrollEnabled = false
-
-        collectionView?.register(
-            ChipPreviewCollectionViewCell.self, forCellWithReuseIdentifier: ChipsViewController.cellIdentifier
-        )
-        #if swift(>=4.2)
-            collectionView?.register(
-                PreviewCollectionViewHeader.self,
-                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: ChipsViewController.headerIdentifier
-            )
-        #else
-            collectionView?.register(
-                PreviewCollectionViewHeader.self,
-                forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                withReuseIdentifier: ChipsViewController.headerIdentifier
-            )
-        #endif
-
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-
-        guard let layout = collectionView?.collectionViewLayout as? UICollectionViewMasonryFlowLayout else {
-            fatalError("ChipsViewController collectionView must be using UICollectionViewMasonryFlowLayout")
-        }
-
-        collectionView?.contentInset = UIEdgeInsets(
-            top: BPKSpacingBase, left: BPKSpacingBase, bottom: BPKSpacingBase, right: BPKSpacingBase
-        )
-
-        layout.estimatedItemSize = CGSize(width: 100, height: 100)
-        layout.minimumInteritemSpacing = BPKSpacingMd
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        self.heightConstraint.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height
-    }
-}
-
-extension ChipsViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ChipsViewController.chips.count
-    }
-}
-
-extension ChipsViewController: UICollectionViewDelegate {
-    func collectionView(
-        _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
-        ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ChipsViewController.cellIdentifier,
-            for: indexPath) as? ChipPreviewCollectionViewCell
-            else {
-                fatalError("No cell registered for reuse with identifier \(ChipsViewController.cellIdentifier)")
-        }
-
-        let config = ChipsViewController.chips[indexPath.row]
-        cell.title = config.title
-        cell.isSelected = config.selected
-        cell.enabled = config.enabled
-        if icons {
-            cell.icon = config.icon
-        }
-        if backgroundTint != nil {
-            cell.backgroundTint = backgroundTint
-        }
-        if let style = style {
-            cell.style = style
-        }
-
-        return cell
+        view.backgroundColor = .white
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = BPKSpacingMd
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        chips.map {
+            let chip = BPKChip(title: $0.title, icon: $0.icon)
+            chip.isEnabled = $0.enabled
+            chip.style = style
+            chip.type = $0.type
+            chip.isSelected = $0.selected
+            return chip
+        }.forEach(stack.addArrangedSubview)
     }
 }
