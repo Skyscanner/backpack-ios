@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 
-| | |
+| Pod | Version |
 | --- | --- |
 | Backpack-Common | [![Version](https://img.shields.io/cocoapods/v/Backpack-Common.svg?style=flat)](https://cocoapods.org/pods/Backpack-Common) |
 | Backpack | [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack) |
