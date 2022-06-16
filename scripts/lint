@@ -9,7 +9,7 @@ function checkPristine() {
 
 function clangFormat() {
     brew list clang-format@14 || brew install clang-format@14
-    find ./Backpack -name "*.[hm]" -exec clang-format --verbose -i {} \+ 
+    find ./Backpack -name "*.[hm]" -exec clang-format -i {} \+ 
 }
 
 echo "Checking that the working tree is clean"
