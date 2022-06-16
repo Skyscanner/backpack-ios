@@ -4,7 +4,7 @@ EXAMPLE_WORKSPACE='Example/Backpack.xcworkspace'
 releaseTag=$1
 
 function createHeaderDoc() {
-  bundle exec rake create_documentation_headers
+  $(dirname "$0")/create-docs-header
 }
 
 function buildDocs() {
@@ -29,7 +29,7 @@ function documentUIKit() {
 function documentSwiftUI() {
   output=${1:-"docs"}
 
-  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack-SwiftUI" >swiftDoc-swiftui.json
+  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack SwiftUI" >swiftDoc-swiftui.json
   jazzy --sourcekitten-sourcefile swiftDoc-swiftui.json -o $output/swiftui
   rm swiftDoc-swiftui.json
 }
