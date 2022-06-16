@@ -27,6 +27,12 @@ jobs:
       with:
         ref: main
     
+    - name: Install sourcekitten
+      run: brew install sourcekitten
+
+    - name: Set Ruby version
+      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
       
