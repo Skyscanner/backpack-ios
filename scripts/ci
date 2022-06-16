@@ -1,39 +1,51 @@
 #!/bin/bash
 set -e
 
-EXAMPLE_WORKSPACE=Example/Backpack.xcworkspace
-SWIFT=ENV['SWIFT'] || '5.0'
-BUILD_SDK=ENV['BUILD_SDK'] || 'iphonesimulator15.2'
-DESTINATION=ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
-BACKPACK_COMMON_SCHEMA="Backpack-Common"
-BACKPACK_SCHEMA="Backpack Native"
-BACKPACK_SWIFTUI_SCHEMA="Backpack SwiftUI"
+EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
+SWIFT=${SWIFT:-'5.0'}
+BUILD_SDK=${BUILD_SDK:-'iphonesimulator15.2'}
+DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone 8"}
 
 function analyze() {
-    set -o pipefail && xcodebuild -workspace $EXAMPLE_WORKSPACE -scheme \"$1\" SWIFT_VERSION=$SWIFT -sdk $BUILD_SDK -destination \"$DESTINATION\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty
+    xcodebuild analyze \
+        -workspace $EXAMPLE_WORKSPACE \
+        -scheme "$1" \
+        SWIFT_VERSION=$SWIFT \
+        -sdk $BUILD_SDK \
+        -destination "$(echo $DESTINATION)" \
+        ONLY_ACTIVE_ARCH=YES 2>&1 |
+        xcpretty
 }
 
 function runTests() {
-    set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace $EXAMPLE_WORKSPACE -scheme \"$1\" SWIFT_VERSION=$SWIFT -sdk $BUILD_SDK -destination \"$DESTINATION\" ONLY_ACTIVE_ARCH=YES | xcpretty
+    xcodebuild test \
+        -enableCodeCoverage YES \
+        -workspace $EXAMPLE_WORKSPACE \
+        -scheme "$1" \
+        SWIFT_VERSION=$SWIFT \
+        -sdk $BUILD_SDK \
+        -destination "$(echo $DESTINATION)" \
+        ONLY_ACTIVE_ARCH=YES 2>&1 |
+        xcpretty
 }
 
 function ci_common() {
     echo "Running common analysis"
-    analyze $BACKPACK_COMMON_SCHEMA
+    analyze "Backpack-Common"
 }
 
 function ci_uikit() {
     echo "Running UIKit analysis"
-    analyze $BACKPACK_SCHEMA
+    analyze "Backpack Native"
     echo "Running UIKit tests"
-    runTests $BACKPACK_SCHEMA
+    runTests "Backpack Native"
 }
 
 function ci_swiftui() {
     echo "Running SwiftUI analysis"
-    analyze $BACKPACK_SWIFTUI_SCHEMA
+    analyze "Backpack SwiftUI"
     echo "Running SwiftUI tests"
-    runTests $BACKPACK_SWIFTUI_SCHEMA
+    runTests "Backpack SwiftUI"
 }
 
 function check_modules() {
@@ -45,6 +57,6 @@ function check_modules() {
 echo "Erase content and settings from all iPhone simulators"
 pkill Simulator || xcrun simctl erase all
 
-$(dirname "$0")/lint    
+$(dirname "$0")/lint
 
 check_modules
