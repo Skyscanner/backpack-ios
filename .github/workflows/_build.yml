@@ -129,7 +129,6 @@ jobs:
           BUILD_SDK: iphonesimulator15.2
           DESTINATION: 'OS=15.2,platform=iOS Simulator,name=iPhone 8'
         run: ./scripts/ci
-        working-directory: Example
 
       - name: Save assets
         uses: actions/upload-artifact@v3

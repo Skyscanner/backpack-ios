@@ -1,94 +1,77 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-const fs = require('fs');
-const {
-    promisify
-} = require("util");
-const {
-    exec
-} = require('child_process');
-const execAsync = promisify(exec);
+EXAMPLE_WORKSPACE='Example/Backpack.xcworkspace'
+releaseTag=$1
 
-const [node, path, releaseTag, ...rest] = process.argv;
-
-async function buildDocs() {
-    fs.mkdirSync(`./docs`, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.mkdirSync(`./docs/versions`, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.mkdirSync(`./docs/versions/${releaseTag}`, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.mkdirSync(`./docs/versions/latest`, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.writeFile(`docs/404.html`,
-`<!DOCTYPE html>
-  <html>
-    <meta http-equiv="refresh" content="1;url=/ios/versions/latest" />
-    <script type="text/javascript">
-      const iosDocsPath = (window.location + '').split('ios/versions/latest');
-      if (iosDocsPath.length > 1) {
-        window.location = \`/ios/versions/${releaseTag}\${iosDocsPath[1]}\`;
-      }
-    </script>
-  </html>
-`, { flag: 'w' }, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.writeFile(`docs/index.html`,
-`<!DOCTYPE html>
-  <html>
-    <meta http-equiv="refresh" content="0;url=/ios/versions/latest" />
-  </html>
-`, { flag: 'w' }, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    fs.writeFile(`docs/versions/latest/index.html`, 
-`<!DOCTYPE html>
-  <html>
-    <meta http-equiv="refresh" content="0;url=/ios/versions/${releaseTag}" />
-  </html>
-`, { flag: 'w' }, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
-
-    await execAsync(`bundle exec rake "docs['./docs/versions/${releaseTag}']"`, function(err) {
-      if(err) {
-          console.log(err);
-          process.exit(1);
-      }
-    });
+function createHeaderDoc() {
+  bundle exec rake create_documentation_headers
 }
 
-buildDocs();
+function buildDocs() {
+  output=${1:-"docs"}
+  documentUIKit $1
+  documentSwiftUI $1
+}
 
+function documentUIKit() {
+  output=${1:-"docs"}
+
+  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack Native" >swiftDoc.json
+  createHeaderDoc
+  sourcekitten doc --objc $(pwd)/Backpack/BackpackDocHeaders.h -- -x objective-c -isysroot $(xcrun --show-sdk-path --sdk iphonesimulator) -I $(pwd) -fmodules >objcDocs.json
+  jazzy --sourcekitten-sourcefile objcDocs.json,swiftDoc.json -o $output/uikit
+
+  rm Backpack/BackpackDocHeaders.h
+  rm objcDocs.json
+  rm swiftDoc.json
+}
+
+function documentSwiftUI() {
+  output=${1:-"docs"}
+
+  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack-SwiftUI" >swiftDoc-swiftui.json
+  jazzy --sourcekitten-sourcefile swiftDoc-swiftui.json -o $output/swiftui
+  rm swiftDoc-swiftui.json
+}
+
+function build404Page() {
+  echo "<!DOCTYPE html>
+  <html>
+    <meta http-equiv=\"refresh\" content=\"1;url=/ios/versions/latest\" />
+    <script type=\"text/javascript\">
+      const iosDocsPath = (window.location + '').split('ios/versions/latest');
+      if (iosDocsPath.length > 1) {
+        window.location = \`/ios/versions/$releaseTag\${iosDocsPath[1]}\`;
+      }
+    </script>
+  </html>" >"./docs/404.html"
+}
+
+function buildIndex() {
+  echo '<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="0;url=/ios/versions/latest" />
+  </html>' >"docs/index.html"
+}
+
+function buildLatestIndex() {
+  echo "<!DOCTYPE html>
+  <html>
+    <meta http-equiv=\"refresh\" content=\"0;url=/ios/versions/$releaseTag\" />
+  </html>" >"docs/versions/latest/index.html"
+}
+
+function buildDocsHtmlFiles() {
+  mkdir "./docs"
+  mkdir "./docs/versions"
+  mkdir "./docs/versions/$releaseTag"
+  mkdir "./docs/versions/latest"
+
+  build404Page
+  buildIndex
+  buildLatestIndex
+
+  buildDocs "./docs/versions/$releaseTag"
+}
+
+buildDocsHtmlFiles
