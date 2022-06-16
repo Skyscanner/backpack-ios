@@ -1,4 +1,4 @@
-[Unreleased changes](./UNRELEASED.md).
+[Latest releases](https://github.com/Skyscanner/backpack-ios/releases).
 
 # 50.1.0
 

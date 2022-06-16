@@ -7,7 +7,6 @@ Please include a description of the changes you are introducing and some screens
 + [ ] Check this if you have read and followed the [contributing guidelines](https://github.com/Skyscanner/backpack-ios/blob/main/CONTRIBUTING.md)
 
 Remember to include the following changes:
-+ [ ] `UNRELEASED.md`
 + [ ] `README.md`
 + [ ] Tests
 + [ ] [Screenshotting code](https://github.com/Skyscanner/backpack-ios/blob/main/Example/Backpack%20Screenshot/Screenshots.swift)
