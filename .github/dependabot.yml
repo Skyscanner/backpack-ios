@@ -6,8 +6,6 @@ updates:
     interval: daily
     time: "10:00"
   open-pull-requests-limit: 10
-  labels:
-  - dependabot
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -17,13 +15,9 @@ updates:
   versioning-strategy: increase-if-necessary
   allow:
     - dependency-type: "direct"
-  labels:
-  - dependabot
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
     interval: daily
     time: "10:00"
   open-pull-requests-limit: 10
-  labels:
-  - dependabot

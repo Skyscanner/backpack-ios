@@ -16,7 +16,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Backpack'
-  s.version          = "50.1.0"
+  s.version          = ENV['LIB_VERSION'] || '1.0' # Fallback to v1
   s.summary          = "Skyscanner's Design System Backpack for iOS"
 
   s.description      = <<-DESC

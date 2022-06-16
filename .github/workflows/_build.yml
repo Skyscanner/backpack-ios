@@ -1,11 +1,7 @@
-name: CI
+name: Build
 
 on:
-  push:
-    branches: [main]
-    tags: ['*.*.*']
-  pull_request:
-    branches: [main]
+  workflow_call:
 
 # For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
 #
@@ -24,6 +20,9 @@ jobs:
   CI:
     name: Build and Test
     runs-on: macos-11
+    permissions:
+      statuses: write
+      pull-requests: write
 
     steps:
       - name: Set build image var
@@ -124,10 +123,6 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
 
-      - name: Build docs
-        if: steps.extract_git_tag.outputs.GIT_TAG != ''
-        run: ./scripts/build-docs-ci ${{ steps.extract_git_tag.outputs.GIT_TAG }}
-
       - name: Build and Test
         env:
           FULL_TEST: TRUE
@@ -142,13 +137,3 @@ jobs:
         with:
           name: FailureDiffs
           path: Example/BackpackTests/FailureDiffs
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: steps.extract_git_tag.outputs.GIT_TAG != ''
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_dir: docs/
-          keep_files: true
-          external_repository: backpack/ios
-          publish_branch: main
