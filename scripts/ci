@@ -1,0 +1,45 @@
+#!/bin/bash
+set -e
+
+EXAMPLE_WORKSPACE=Example/Backpack.xcworkspace
+SWIFT=ENV['SWIFT'] || '5.0'
+BUILD_SDK=ENV['BUILD_SDK'] || 'iphonesimulator15.2'
+DESTINATION=ENV['DESTINATION'] || 'platform=iOS Simulator,name=iPhone 8'
+BACKPACK_COMMON_SCHEMA="Backpack-Common"
+BACKPACK_SCHEMA="Backpack Native"
+BACKPACK_SWIFTUI_SCHEMA="Backpack SwiftUI"
+
+function analyze() {
+    set -o pipefail && xcodebuild -workspace $EXAMPLE_WORKSPACE -scheme \"$1\" SWIFT_VERSION=$SWIFT -sdk $BUILD_SDK -destination \"$DESTINATION\" ONLY_ACTIVE_ARCH=YES analyze 2>&1 | xcpretty
+}
+
+function runTests() {
+    set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace $EXAMPLE_WORKSPACE -scheme \"$1\" SWIFT_VERSION=$SWIFT -sdk $BUILD_SDK -destination \"$DESTINATION\" ONLY_ACTIVE_ARCH=YES | xcpretty
+}
+
+function ci_common() {
+    analyze $BACKPACK_COMMON_SCHEMA
+}
+
+function ci_uikit() {
+    analyze $BACKPACK_SCHEMA
+    runTests $BACKPACK_SCHEMA
+}
+
+function ci_swiftui() {
+    analyze $BACKPACK_SWIFTUI_SCHEMA
+    runTests $BACKPACK_SWIFTUI_SCHEMA
+}
+
+function check_modules() {
+    ci_common
+    ci_uikit
+    ci_swiftui
+}
+
+echo "Erase content and settings from all iPhone simulators"
+pkill Simulator || xcrun simctl erase all
+
+$(dirname "$0")/lint    
+
+check_modules

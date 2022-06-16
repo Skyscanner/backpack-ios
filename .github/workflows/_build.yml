@@ -128,7 +128,7 @@ jobs:
           FULL_TEST: TRUE
           BUILD_SDK: iphonesimulator15.2
           DESTINATION: 'OS=15.2,platform=iOS Simulator,name=iPhone 8'
-        run: bundle exec rake ci
+        run: ./scripts/ci
         working-directory: Example
 
       - name: Save assets

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function checkPristine() {
+    if [ -n "$(git status --porcelain)" ]; then
+        echo "$1"
+        exit 1
+    fi
+}
+
+function clangFormat() {
+    brew list clang-format@14
+    clang-format -i Backpack/**/*.{h,m}
+}
+
+echo "Checking that the working tree is clean"
+checkPristine "You have uncommited changes. Please commit or stash them."
+clangFormat
+checkPristine "Formatter failed to format some files. Please run 'brew install clang-format@14' and try again."
+
+bundle exec pod lib lint --allow-warnings
