@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Remove existing screenshots
+rm -rf screenshots
+
+cd Example && bundle exec fastlane snapshot
+mv screenshots/en-US/* screenshots/
