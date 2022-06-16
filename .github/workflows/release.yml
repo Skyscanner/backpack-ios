@@ -11,7 +11,6 @@ defaults:
 jobs:
   Build:
       name: Build
-      environment: Publishing
       permissions:
         statuses: write
         pull-requests: write
@@ -63,12 +62,10 @@ jobs:
         LIB_VERSION: ${{ github.event.release.tag_name }}
 
     - name: Build code docs
-      if: steps.extract_git_tag.outputs.GIT_TAG != ''
       run: ./scripts/build-docs-ci ${{ github.event.release.tag_name }}
 
     - name: Deploy code documentation
       uses: peaceiris/actions-gh-pages@v3
-      if: steps.extract_git_tag.outputs.GIT_TAG != ''
       with:
         personal_token: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: docs/
