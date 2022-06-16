@@ -2,10 +2,17 @@
 
 > Backpack is a collection of design resources, reusable components and guidelines for creating Skyscanner's products.
 
-[![CI Status](https://github.com/Skyscanner/backpack-ios/workflows/CI/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions)
-[![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
+[![release](https://github.com/Skyscanner/backpack-ios/actions/workflows/release.yml/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions/workflows/release.yml)
+[![main](https://github.com/Skyscanner/backpack-ios/actions/workflows/main.yml/badge.svg)](https://github.com/Skyscanner/backpack-ios/actions/workflows/main.yml)
 [![License](https://img.shields.io/cocoapods/l/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
 [![Platform](https://img.shields.io/cocoapods/p/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack)
+
+| Pod | Version |
+| --- | --- |
+| Backpack-Common | [![Version](https://img.shields.io/cocoapods/v/Backpack-Common.svg?style=flat)](https://cocoapods.org/pods/Backpack-Common) |
+| Backpack | [![Version](https://img.shields.io/cocoapods/v/Backpack.svg?style=flat)](https://cocoapods.org/pods/Backpack) |
+| Backpack-SwiftUI | [![Version](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](https://cocoapods.org/pods/Backpack-SwiftUI) |
+
 
 
 ## Installation
@@ -15,6 +22,12 @@ all of it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'Backpack'
+```
+
+Backpack is also available for SwiftUI. To install, simply add the following line to your Podfile:
+> Backpack-SwiftUI is currently in development and supports a subset of components only.
+```ruby
+pod 'Backpack-SwiftUI'
 ```
 
 ## Documentation
