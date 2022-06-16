@@ -27,18 +27,24 @@ jobs:
       with:
         ref: main
     
-    - name: Install cocoapods
-      run: gem install cocoapods
+    - name: Install sourcekitten
+      run: brew install sourcekitten
+
+    - name: Set Ruby version
+      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+    - name: Bundle Install
+      run: bundle install --jobs 4 --retry 3
       
     - name: Pod repo update
       run: | 
-        pod repo update
+        bundle exec pod repo update
 
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
-        pod trunk push Backpack-Common.podspec --allow-warnings --synchronous
-        pod repo update
+        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --synchronous
+        bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
@@ -46,8 +52,8 @@ jobs:
     - name: Publish Pods - Backpack UIKit
       run: |
         set -eo pipefail
-        pod trunk push Backpack.podspec --allow-warnings --synchronous
-        pod repo update
+        bundle exec pod trunk push Backpack.podspec --allow-warnings --synchronous
+        bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
@@ -55,8 +61,8 @@ jobs:
     - name: Publish Pods - Backpack SwiftUI
       run: |
         set -eo pipefail
-        pod trunk push Backpack-SwiftUI.podspec --allow-warnings --synchronous
-        pod repo update
+        bundle exec pod trunk push Backpack-SwiftUI.podspec --allow-warnings --synchronous
+        bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
