@@ -47,8 +47,8 @@ function buildDocsHtmlFiles() {
 outputDir="docs"
 version=$1
 
-if [ $# -ne 2 ]; then
-  echo "Usage: $0 <output dir> <version>"
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <version>"
   exit 1
 fi
 
