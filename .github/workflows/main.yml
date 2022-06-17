@@ -16,6 +16,12 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/_build.yml
 
+  BuildDocs:
+    runs-on: macos-11
+    steps:
+      - name: Build and verify docs
+        run: ./scripts/build-docs pr_docs && rm -rf docs
+
   ReleaseDraft:
     runs-on: ubuntu-latest
     permissions:

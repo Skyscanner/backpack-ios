@@ -1,0 +1,57 @@
+#!/bin/bash
+
+EXAMPLE_WORKSPACE='Example/Backpack.xcworkspace'
+
+function documentUIKit() {
+  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack Native" >swiftDoc.json
+
+  $(dirname "$0")/create-docs-header
+
+  sourcekitten doc --objc $(pwd)/Backpack/BackpackDocHeaders.h -- -x objective-c -isysroot $(xcrun --show-sdk-path --sdk iphonesimulator) -I $(pwd) -fmodules >objcDocs.json
+  jazzy --sourcekitten-sourcefile objcDocs.json,swiftDoc.json -o $outputDir/uikit
+
+  rm Backpack/BackpackDocHeaders.h
+  rm objcDocs.json
+  rm swiftDoc.json
+}
+
+function documentSwiftUI() {
+  sourcekitten doc -- -workspace $EXAMPLE_WORKSPACE -scheme "Backpack SwiftUI" >swiftDoc-swiftui.json
+  jazzy --sourcekitten-sourcefile swiftDoc-swiftui.json -o $outputDir/swiftui
+  rm swiftDoc-swiftui.json
+}
+
+function buildRedirectHTML() {
+  echo '<!DOCTYPE html>
+  <html>
+    <meta http-equiv="refresh" content="0;url=/ios/versions/latest" />
+  </html>' >$1
+}
+
+function buildLatestIndex() {
+  echo "<!DOCTYPE html>
+  <html>
+    <meta http-equiv=\"refresh\" content=\"0;url=/ios/versions/$1/swiftui\" />
+  </html>" >"docs/versions/latest/index.html"
+}
+
+function buildDocsHtmlFiles() {
+  mkdir -p "$outputDir/versions/$version"
+  mkdir -p "$outputDir/versions/latest"
+
+  buildRedirectHTML "$outputDir/404.html"
+  buildRedirectHTML "$outputDir/index.html"
+  buildLatestIndex $version
+}
+
+outputDir="docs"
+version=$1
+
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 <output dir> <version>"
+  exit 1
+fi
+
+buildDocsHtmlFiles
+documentUIKit
+documentSwiftUI

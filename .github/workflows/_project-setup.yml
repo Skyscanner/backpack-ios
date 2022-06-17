@@ -24,8 +24,7 @@ jobs:
       statuses: write
       pull-requests: write
     steps:
-      - name: Set build image var
-        run: echo "ImageVersion=$ImageVersion"  >> $GITHUB_ENV
+      
 
       # Checkout the repo
       - uses: actions/checkout@v3

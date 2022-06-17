@@ -21,6 +21,15 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/_build.yml
 
+  BuildDocs:
+    name: Build Docs
+    permissions:
+    steps:
+      - name: Build Docs
+        run: ./scripts/build-docs $PR_NUMBER && rm -rf docs
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+
   Dependabot:
     runs-on: ubuntu-latest
     permissions:
