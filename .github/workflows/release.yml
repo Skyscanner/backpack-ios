@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Pod repo update
         run: bundle exec pod repo update
-        
+
       - name: Publish Pods - Backpack Common
         run: |
           set -eo pipefail
@@ -51,17 +51,18 @@ jobs:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           LIB_VERSION: ${{ github.event.release.tag_name }}
 
+  BuildDocs:
+    name: Build Docs
+    permissions:
+      statuses: write
+      pull-requests: write
+    uses: ./.github/workflows/_build-docs.yml
+  
   PublishDoc:
     name: Publish Docs
     runs-on: macos-11
-    needs: [PublishLibs]
+    needs: [PublishLibs, BuildDocs]
     steps:
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-
-      - name: Build code docs
-        run: ./scripts/build-docs ${{ github.event.release.tag_name }}
-
       - name: Deploy code documentation
         uses: peaceiris/actions-gh-pages@v3
         with:

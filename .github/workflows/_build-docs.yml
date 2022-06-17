@@ -1,4 +1,4 @@
-name: project-setup
+name: Build-Docs
 
 on:
   workflow_call:
@@ -17,15 +17,13 @@ defaults:
     shell: bash -l {0}
 
 jobs:
-  ProjectSetup:
-    name: Install Dependencies
+  BuildDocs:
+    name: Build Docs
     runs-on: macos-11
     permissions:
       statuses: write
       pull-requests: write
     steps:
-      
-
       # Checkout the repo
       - uses: actions/checkout@v3
 
@@ -98,3 +96,19 @@ jobs:
 
       - name: Run NPM build
         run: npm run build
+
+      - name: Build and verify docs (main)
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
+        run: ./scripts/build-docs pr_docs && rm -rf docs
+
+      - name: Build and verify docs (release)
+        if: github.event.release.tag_name != ''
+        run: ./scripts/build-docs $RELEASE_VERSION
+        env:
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
+    
+      - name: Build and verify docs (pull request build)
+        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
+        run: ./scripts/build-docs $PR_VERSION
+        env:
+          PR_VERSION: ${{ github.event.pull_request.number }}

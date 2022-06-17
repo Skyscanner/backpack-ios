@@ -21,19 +21,11 @@ jobs:
     uses: ./.github/workflows/_build.yml
 
   BuildDocs:
-    runs-on: macos-11
+    name: Build Docs
     permissions:
       statuses: write
       pull-requests: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-      - name: Build Docs
-        run: ./scripts/build-docs $PR_NUMBER && rm -rf docs
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+    uses: ./.github/workflows/_build-docs.yml
 
   Dependabot:
     runs-on: ubuntu-latest
