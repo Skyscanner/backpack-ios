@@ -16,23 +16,9 @@
  * limitations under the License.
  */
 
-extension BPKChip {
-    @objcMembers
-    @objc(BPKChipIcon)
-    public class Icon: NSObject {
-        public init(position: Position, iconName: BPKSmallIconName) {
-            self.position = position
-            self.iconName = iconName
-        }
-        
-        let position: Position
-        let iconName: BPKSmallIconName
-    }
-}
+import Foundation
 
-extension BPKChip.Icon {
-    @objc(BPKChipPosition)
-    public enum Position: UInt {
-        case leading, trailing
-    }
+@objc
+public enum BPKChipType: UInt {
+    case option, select, dismiss
 }

@@ -16,72 +16,129 @@
  * limitations under the License.
  */
 
-extension BPKChip {
+struct BPKChipAppearanceSets {
+    struct AppearanceSet {
+        let normal: Colors
+        let selected: Colors
+        let disabled: Colors
+    }
+    
     struct Colors {
         let background: UIColor
         let content: UIColor
-        
-        static func disabled(_ style: BPKChipStyle, backgroundTint: UIColor?) -> Colors {
-            var backgroundColor: UIColor
-            
-            switch style {
-            case .outline:
-                backgroundColor = BPKColor.clear
-            case .filled:
-                var lightColor = BPKColor.skyGrayTint06
-                let darkColor = BPKColor.blackTint03
-                
-                if let backgroundTint = backgroundTint {
-                    lightColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
-                }
-                
-                backgroundColor = BPKColor.dynamicColor(withLightVariant: lightColor, darkVariant: darkColor)
-            }
-            
-            return Colors(
-                background: backgroundColor,
-                content: BPKColor.dynamicColor(
-                    withLightVariant: BPKColor.skyGrayTint04,
-                    darkVariant: BPKColor.blackTint06
-                )
+    }
+
+    @available(*, deprecated, message: "will be removed when filled are removed")
+    static let filledAppearance = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint06,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.textPrimaryColor
+        ),
+        selected: Colors(
+            background: BPKColor.primaryColor,
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.black
             )
-        }
-        
-        static func unselected(_ style: BPKChipStyle, backgroundTint: UIColor?) -> Colors {
-            var backgroundColor: UIColor
-            
-            switch style {
-            case .filled:
-                backgroundColor = BPKColor.dynamicColor(
-                    withLightVariant: BPKColor.skyGrayTint06,
-                    darkVariant: BPKColor.blackTint03
-                )
-            case .outline:
-                backgroundColor = BPKColor.dynamicColor(
-                    withLightVariant: BPKColor.white,
-                    darkVariant: BPKColor.blackTint03
-                )
-            }
-            
-            if let backgroundTint = backgroundTint {
-                backgroundColor = BPKColor.blend(backgroundTint, with: BPKColor.backgroundTertiaryColor, weight: 0.2)
-            }
-            
-            return Colors(background: backgroundColor, content: BPKColor.textPrimaryColor)
-        }
-        
-        static func selected(backgroundTint: UIColor?, primaryColor: UIColor?) -> Colors {
-            var backgroundColor = BPKColor.skyBlue
-            
-            if let backgroundTint = backgroundTint {
-                backgroundColor = backgroundTint
-            }
-            
-            if let primaryColor = primaryColor {
-                backgroundColor = primaryColor
-            }
-            
-            return Colors(background: backgroundColor, content: BPKColor.white)
+        ),
+        disabled: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint06,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint04,
+                darkVariant: BPKColor.blackTint06
+            )
+        )
+    )
+
+    @available(*, deprecated, message: "will be removed when outline are removed")
+    private static let outlineAppearance = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.textPrimaryColor
+        ),
+        selected: Colors(
+            background: BPKColor.primaryColor,
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.black
+            )
+        ),
+        disabled: Colors(
+            background: BPKColor.clear,
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint04,
+                darkVariant: BPKColor.blackTint06
+            )
+        )
+    )
+
+    private static let onDarkAppearance = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.backgroundElevation03DarkColor
+            ),
+            content: BPKColor.textPrimaryColor),
+        selected: Colors(
+            background: BPKColor.primaryColor,
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.black
+            )),
+        disabled: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint06,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint04,
+                darkVariant: BPKColor.blackTint06
+            )
+        )
+    )
+
+    private static let defaultAppearance = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint06,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.textPrimaryColor
+        ),
+        selected: Colors(
+            background: BPKColor.primaryColor,
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.white,
+                darkVariant: BPKColor.black
+            )
+        ),
+        disabled: Colors(
+            background: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint06,
+                darkVariant: BPKColor.blackTint03
+            ),
+            content: BPKColor.dynamicColor(
+                withLightVariant: BPKColor.skyGrayTint04,
+                darkVariant: BPKColor.blackTint06
+            )
+        )
+    )
+
+    static func appearance(fromStyle style: BPKChipStyle) -> AppearanceSet {
+        switch style {
+        case .`default`: return defaultAppearance
+        case .onDark: return onDarkAppearance
+        case .filled: return filledAppearance
+        case .outline: return outlineAppearance
         }
     }
 }

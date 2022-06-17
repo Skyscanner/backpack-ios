@@ -29,31 +29,6 @@ enum ChipSegueIdentifier: String {
 
 class ChipSelectorViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let target = segue.destination as? ChipsViewController else {
-            fatalError("Expected destination to be of type ChipViewController.")
-        }
-
-        if let identifier = segue.identifier,
-            let chipSegueIdentifier = ChipSegueIdentifier(rawValue: identifier) {
-            switch chipSegueIdentifier {
-            case .outline:
-                target.title = "Default"
-            case .filledWithIcons:
-                target.title = "With icons"
-                target.icons = true
-            case .withBackgroundColor:
-                target.title = "Background color"
-                target.backgroundTint = BPKColor.abisko
-            case .filled:
-                target.title = "Filled"
-                target.style = .filled
-            case .filledWithBackgroundColor:
-                target.title = "Filled with background color"
-                target.style = .filled
-                target.backgroundTint = BPKColor.abisko
-            }
-        } else {
-            fatalError("Unknown segue identifer \(segue.identifier.debugDescription)")
-        }
+       
     }
 }

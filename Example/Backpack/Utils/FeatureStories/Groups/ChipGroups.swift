@@ -21,12 +21,16 @@ struct ChipsGroupsProvider {
     
     private func presentable(
         _ title: String,
-        enrich: @escaping (ChipsViewController) -> Void
+        style: BPKChipStyle
     ) -> CellDataSource {
-        PresentableCellDataSource.enrichable(
+        PresentableCellDataSource.customEnrichable(
             title: title,
-            storyboard: .named("Chips", on: "ChipsViewController"),
-            enrich: enrich,
+            customController: { ChipsViewController(style: style) },
+            enrich: { controller in
+                if style == .onDark {
+                    controller.view.backgroundColor = BPKColor.black
+                }
+            },
             showPresentable: showPresentable
         )
     }
@@ -34,14 +38,10 @@ struct ChipsGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Default") { _ in },
-                presentable("With icons") { $0.icons = true },
-                presentable("With background color") { $0.backgroundTint = .bpk_abisko },
-                presentable("Filled") { $0.style = .filled },
-                presentable("Filled with background color") { target in
-                    target.style = .filled
-                    target.backgroundTint = .bpk_abisko
-                }
+                presentable("Default", style: .default),
+                presentable("On Dark", style: .onDark),
+                presentable("Filled - Deprecated", style: .filled),
+                presentable("Outline - Deprecated", style: .outline)
             ]
         ).groups()
     }
