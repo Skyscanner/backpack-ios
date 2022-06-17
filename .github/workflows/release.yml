@@ -15,35 +15,15 @@ jobs:
       statuses: write
       pull-requests: write
     uses: ./.github/workflows/_build.yml
-  SetupDeploy:
-    name: Setup Deploy
-    runs-on: macos-11
-    environment: Publishing
-    needs: [Build]
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-        with:
-          ref: main
-
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-
-      - name: Set Ruby version
-        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
-
-      - name: Bundle Install
-        run: bundle install --jobs 4 --retry 3
-
-      - name: Pod repo update
-        run: |
-          bundle exec pod repo update
 
   PublishLibs:
     name: Publish Libs
     runs-on: macos-11
-    needs: [SetupDeploy]
+    needs: [Build]
     steps:
+      - name: Pod repo update
+        run: bundle exec pod repo update
+        
       - name: Publish Pods - Backpack Common
         run: |
           set -eo pipefail
@@ -76,6 +56,9 @@ jobs:
     runs-on: macos-11
     needs: [PublishLibs]
     steps:
+      - name: Install sourcekitten
+        run: brew install sourcekitten
+
       - name: Build code docs
         run: ./scripts/build-docs ${{ github.event.release.tag_name }}
 
