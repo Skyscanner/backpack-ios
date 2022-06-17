@@ -16,14 +16,25 @@
  * limitations under the License.
  */
 
+import FloatingPanel
+
 public struct BottomSheetInsets {
     public let full: CGFloat?
     public let half: CGFloat?
     public let tip: CGFloat?
     
+    public enum Constants {
+        static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
+        static let bottomSheetHeightInTipPosition: CGFloat = 120.0
+    }
+    
     /// Default insets for the bottom sheet.
     public init() {
-        self.init(full: nil, half: 386.0, tip: 120.0)
+        self.init(
+            full: nil,
+            half: Constants.bottomSheetHeightInHalfPosition,
+            tip: Constants.bottomSheetHeightInTipPosition
+        )
     }
     
     /// Use this initializer to have full control over the heights and spacing of your bottom sheet
@@ -35,5 +46,43 @@ public struct BottomSheetInsets {
         self.full = full
         self.half = half
         self.tip = tip
+    }
+}
+
+extension BottomSheetInsets {
+    var fullAnchor: FloatingPanelLayoutAnchoring {
+        guard let full = full else {
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: BPKSpacingNone,
+                edge: .top,
+                referenceGuide: .safeArea
+            )
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: full, edge: .top, referenceGuide: .safeArea)
+    }
+    
+    var halfAnchor: FloatingPanelLayoutAnchoring {
+        guard let half = half else {
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: Constants.bottomSheetHeightInHalfPosition,
+                edge: .bottom,
+                referenceGuide: .safeArea
+            )
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: half, edge: .bottom, referenceGuide: .safeArea)
+    }
+    
+    var tipAnchor: FloatingPanelLayoutAnchoring {
+        guard let tip = tip else {
+            return FloatingPanelLayoutAnchor(
+                absoluteInset: Constants.bottomSheetHeightInTipPosition,
+                edge: .bottom,
+                referenceGuide: .safeArea
+            )
+        }
+        
+        return FloatingPanelLayoutAnchor(absoluteInset: tip, edge: .bottom, referenceGuide: .safeArea)
     }
 }

@@ -21,14 +21,24 @@ import FloatingPanel
 /// Layout implementation where the BPKBottomSheet will remain persistent in the parent
 /// ViewController. There is no overlay and the parent ViewController remains interactable
 public final class PersistentBottomSheetLayout: FloatingPanelLayout {
+    /// The position of the floating panel
+    public let position: FloatingPanelPosition = .bottom
+    
     /// Initial position of BPKBottomSheet
-    public var initialPosition: FloatingPanelPosition {
-        return .half
-    }
-
+    public let initialState: FloatingPanelState = .half
+    
     /// All supported positions of BPKBottomSheet
-    public var supportedPositions: Set<FloatingPanelPosition> {
-        return [.half, .full, .tip]
+    public var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .full: insets.fullAnchor,
+            .half: insets.halfAnchor,
+            .tip: insets.tipAnchor
+        ]
+    }
+    
+    /// Method to define the overlay in the parent view controller
+    public func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
+        return 0
     }
     
     private let insets: BottomSheetInsets
@@ -36,26 +46,4 @@ public final class PersistentBottomSheetLayout: FloatingPanelLayout {
     public init(insets: BottomSheetInsets) {
         self.insets = insets
     }
-
-    /// Method to describe the height of BPKBottomSheet in each position
-    public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
-        switch position {
-        case .half:
-            return insets.half
-        case .tip:
-            return insets.tip
-        default:
-            return insets.full
-        }
-    }
-
-    /// Method to define the overlay in the parent view controller
-    public func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-        return 0.0
-    }
-}
-
-private enum Constants {
-    static let bottomSheetHeightInHalfPosition: CGFloat = 386.0
-    static let bottomSheetHeightInTipPosition: CGFloat = 120.0
 }
