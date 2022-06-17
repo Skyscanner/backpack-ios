@@ -51,12 +51,6 @@ jobs:
       - name: Select Xcode 13
         run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
 
-      - name: Install clang format
-        run: brew install clang-format@14
-
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-
       - name: nvm install
         run: nvm install
 
@@ -107,6 +101,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install clang format
+        run: brew install clang-format@14
+
       - name: Check pristine
         run: ./scripts/lint
 
@@ -148,7 +145,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Build and Test
         run: ./scripts/ci common
 
