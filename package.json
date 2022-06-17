@@ -9,30 +9,11 @@
   "scripts": {
     "test": "eslint . --ext .js,.jsx",
     "build": "npm run test && gulp && npm run spellcheck",
-    "prettier": "prettier --config .prettierrc --write \"**/*.js\"",
-    "danger:ci": "danger ci",
-    "danger:local": "danger local",
+    "danger": "danger ci",
     "gulp": "gulp",
-    "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md' '!gems/**/*.md'",
-    "spellcheck:interactive": "mdspell --en-gb --ignore-acronyms --no-suggestions --ignore-numbers '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!gems/**/*.md'"
+    "spellcheck": "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions '*.md' '**/*.md' '!**/node_modules/**/*.md' '!Example/Pods/**/*.md' '!vendor/**/*.md' '!gems/**/*.md'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.md": [
-      "mdspell -r --en-gb --ignore-acronyms --ignore-numbers --no-suggestions"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Skyscanner/backpack-ios.git"
-  },
+  "repository.url": "git+https://github.com/Skyscanner/backpack-ios.git",
   "author": "Backpack Design System <backpack@skyscanner.net>",
   "license": "Apache-2.0",
   "bugs": {
@@ -40,30 +21,19 @@
   },
   "homepage": "https://github.com/Skyscanner/backpack-ios#readme",
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
     "@skyscanner/bpk-foundations-ios": "^2.3.0",
     "@skyscanner/bpk-svgs": "^14.1.0",
-    "appcenter-cli": "^2.10.0",
-    "babel-eslint": "^10.1.0",
     "danger": "^11.0.2",
     "del": "^6.0.0",
-    "eslint-config-airbnb": "^19.0.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint_d": "^11.1.0",
     "gulp": "^4.0.2",
     "gulp-data": "^1.3.1",
     "gulp-nunjucks": "^5.1.0",
     "gulp-rename": "^2.0.0",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.1",
     "lodash": "^4.17.21",
     "markdown-spellcheck": "^1.3.1",
     "merge2": "^1.4.1",
-    "prettier": "^2.4.0",
-    "through2": "^4.0.2",
     "tinycolor2": "^1.4.2"
   }
 }

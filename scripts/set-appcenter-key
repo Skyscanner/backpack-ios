@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# This script injects the app-center API key into the Backpack Example app.
-# This allows the built app to communicate with AppCenter to retrive updates and report usage statistics.
-
-key="$1"
-
-sed -i -e "s/\$(APP_CENTER_SECRET)/${key}/g" ./Example/Backpack/BPKAppDelegate.m

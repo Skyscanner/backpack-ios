@@ -1,0 +1,101 @@
+name: project-setup
+
+on:
+  workflow_call:
+
+# For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
+#
+# We try to align the versions of tools with what is already available on the image to reduce the time it takes to run our CI.
+# At the time of writing(October 2020) these are:
+#
+# Node: 12.18.4 (Set via .nvmrc)
+# Bundler: 2.2.3 (Installed below)
+#
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  ProjectSetup:
+    name: Install Dependencies
+    runs-on: macos-11
+    permissions:
+      statuses: write
+      pull-requests: write
+    steps:
+      - name: Set build image var
+        run: echo "ImageVersion=$ImageVersion"  >> $GITHUB_ENV
+
+      # Checkout the repo
+      - uses: actions/checkout@v3
+
+      # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
+      # This is hopefully somewhat more helpful:
+      - name: Verify Bundler Version
+        run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
+
+      - name: Set GIT_TAG
+        id: extract_git_tag
+        run: |
+          if [[ $GITHUB_REF == "refs/tags/"* ]]
+          then
+            echo ::set-output name=GIT_TAG::${GITHUB_REF#refs/tags/}
+          else
+            echo ::set-output name=GIT_TAG::""
+          fi
+
+      - name: Print tag
+        run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
+
+      - name: Select Xcode 13
+        run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
+
+      - name: Install clang format
+        run: brew install clang-format@14
+
+      - name: Install sourcekitten
+        run: brew install sourcekitten
+
+      - name: nvm install
+        run: nvm install
+
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+      - name: Set Bundler Config
+        run: bundle config path vendor/bundle
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: NPM ci
+        run: |
+          nvm use
+          npm ci
+
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: "Erase content from simulators"
+        run: "pkill Simulator || xcrun simctl erase all"
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
+      - name: Run NPM build
+        run: npm run build
