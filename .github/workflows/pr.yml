@@ -22,8 +22,10 @@ jobs:
     uses: ./.github/workflows/_build.yml
 
   BuildDocs:
-    name: Build Docs
-    permissions:
+    runs-on: macos-11
+    permissions: 
+      statuses: write
+      pull-requests: write
     steps:
       - name: Build Docs
         run: ./scripts/build-docs $PR_NUMBER && rm -rf docs
