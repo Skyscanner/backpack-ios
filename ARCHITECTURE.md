@@ -29,10 +29,9 @@ The templates themselves are in `templates` and are called `*.{finalExtension}.n
 
 * [`Gemfile`](./Gemfile) Defines Ruby gems we use.
 * [`Gemfile.lock`](./Gemfile.lock) Bundler, lockfile.
-* [`Rakefile`](./Rakefile) Defines rake tasks for automation.
 * [`Backpack.podspec`](./Backpack.podspec) the project's podspec, which defines the library for consumption via CocoaPods.
 
-We use Ruby and [`Bundler`](https://bundler.io/) with `rake` to perform most other automation and management of the project. The three most important gems we use are:
+We use Ruby and [`Bundler`](https://bundler.io/) to perform most other automation and management of the project. The three most important gems we use are:
 
 * `cocoapods` publishing the project, hosting the example project.
 * `fastlane` iOS project automation, used for taking our screenshots.
