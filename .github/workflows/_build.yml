@@ -138,7 +138,6 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Bundle Install
-        if: steps.cache_bundler_install_gems.outputs.cache-hit != 'true'
         run: bundle install --jobs 4 --retry 3
 
       - name: Pod Install
