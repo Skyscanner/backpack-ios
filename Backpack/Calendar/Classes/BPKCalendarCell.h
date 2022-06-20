@@ -21,10 +21,8 @@
 typedef NS_ENUM(NSUInteger, SelectionType) {
     SelectionTypeNone,
     SelectionTypeSingle,
-    SelectionTypeLeading,
     SelectionTypeLeadingBorder,
     SelectionTypeMiddle,
-    SelectionTypeTrailing,
     SelectionTypeTrailingBorder,
     SelectionTypeSameDay
 };
@@ -35,6 +33,7 @@ typedef NS_ENUM(NSUInteger, RowType) { RowTypeMiddle, RowTypeStart, RowTypeEnd, 
 
 @property(nonatomic, assign) SelectionType selectionType;
 @property(nonatomic, assign) RowType rowType;
+@property(nonatomic, assign) BOOL wholeMonthSelection;
 
 /**
  * Applies the given data to the cell.

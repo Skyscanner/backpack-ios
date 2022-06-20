@@ -682,19 +682,22 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     if (monthPosition == FSCalendarMonthPositionCurrent) {
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
+        BOOL wholeMonthSelection = NO;
 
         if (self.isSelectingWholeMonth) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
-            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates withBorder:NO];
+            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates];
+            wholeMonthSelection = [self isDate:date betweenRangeOfDates:sortedSelectedDates];
         } else if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
-            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates withBorder:YES];
+            selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates];
         } else if ([sortedSelectedDates containsObject:date]) {
             selectionType = self.sameDayRange ? SelectionTypeSameDay : SelectionTypeSingle;
         }
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
+        calendarCell.wholeMonthSelection = wholeMonthSelection;
         NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
         calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date
                                                                                    selectedDates:sortedSelectedDates
@@ -806,7 +809,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     }
 }
 
-- (SelectionType)selectionTypeForDate:(NSDate *)date amongRangeOfDates:(NSArray<NSDate *> *)datesRange withBorder:(BOOL)hasBorder {
+- (SelectionType)selectionTypeForDate:(NSDate *)date amongRangeOfDates:(NSArray<NSDate *> *)datesRange {
     if ([self isDate:date betweenRangeOfDates:datesRange]) {
         NSDate *minDate = [datesRange firstObject];
         NSDate *maxDate = [datesRange lastObject];
@@ -814,9 +817,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         BOOL isMaxDate = [date isEqualToDate:maxDate];
 
         if (isMinDate) {
-            return hasBorder ? SelectionTypeLeadingBorder : SelectionTypeLeading;
+            return SelectionTypeLeadingBorder;
         } else if (isMaxDate) {
-            return hasBorder ? SelectionTypeTrailingBorder : SelectionTypeTrailing;
+            return SelectionTypeTrailingBorder;
         } else {
             return SelectionTypeMiddle;
         }
