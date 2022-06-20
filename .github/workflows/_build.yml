@@ -17,13 +17,12 @@ defaults:
     shell: bash -l {0}
 
 jobs:
-  CI:
-    name: Build and Test
+  Setup:
+    name: Install Dependencies
     runs-on: macos-11
     permissions:
       statuses: write
       pull-requests: write
-
     steps:
       - name: Set build image var
         run: echo "ImageVersion=$ImageVersion"  >> $GITHUB_ENV
@@ -52,17 +51,8 @@ jobs:
       - name: Select Xcode 13
         run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
 
-      - name: Install clang format
-        run: brew install clang-format@14
-      
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-
       - name: nvm install
         run: nvm install
-
-      - name: nvm use
-        run: nvm use
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
@@ -86,6 +76,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-     
+
       - name: NPM ci
         run: |
           nvm use
@@ -94,42 +92,97 @@ jobs:
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
 
+      - name: "Erase content from simulators"
+        run: "pkill Simulator || xcrun simctl erase all"
+
       - name: Pod Install
         run: bundle exec pod install
         working-directory: Example
 
       - name: Run NPM build
         run: npm run build
+  Lint:
+    name: Lint Project
+    runs-on: macos-11
+    needs: [Setup]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Bundler Config
+        run: bundle config path vendor/bundle
+      
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-   
+
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install clang format
+        run: brew install clang-format@14
 
       - name: Check pristine
-        run: ./scripts/check-pristine-state package-lock.json
+        run: ./scripts/lint
 
       - name: Run Swiftlint
         run: Pods/SwiftLint/swiftlint lint --strict --config .swiftlint.yml
         working-directory: Example
 
       - name: Run danger
-        run: npm run danger:ci
+        run: npm run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  BuildPods:
+    name: Build pods
+    runs-on: macos-11
+    needs: [Setup]
 
-      - name: Build and verify docs
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
-        run: ./scripts/build-docs-ci && rm -rf docs
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - common
+          - uikit
+          - swiftui
 
-      - name: Build (pull request build)
-        if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
-        run: ./scripts/build-docs-ci $PR_NUMBER
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
       - name: Build and Test
-        env:
-          FULL_TEST: TRUE
-          BUILD_SDK: iphonesimulator15.2
-          DESTINATION: 'OS=15.2,platform=iOS Simulator,name=iPhone 8'
-        run: ./scripts/ci
-
+        run: ./scripts/ci ${{ matrix.variant }}
+  
+  UploadArtifacts:
+    name: Build Backpack
+    runs-on: macos-11
+    needs: [BuildPods]
+    steps:
       - name: Save assets
         uses: actions/upload-artifact@v3
         if: ${{ failure() }}

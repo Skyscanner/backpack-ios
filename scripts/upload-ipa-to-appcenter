@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# This script uploads the built app to appcenter.
-#
-# Requires you to run `npx appcenter login` first
-
-npx appcenter distribute release --app Backpack/Backpack-iOS --file build/Backpack-Native.ipa  --group "Backpack internal distribution"

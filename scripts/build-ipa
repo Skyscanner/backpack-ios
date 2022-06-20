@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# This script builds the Backpack app and creates an IPA file to './build/Backpack-Native.ipa'
-
-xcodebuild -workspace Example/Backpack.xcworkspace -scheme "Backpack Native" DEVELOPMENT_TEAM="U9XKRL39B6" CODE_SIGN_IDENTITY="iPhone Distribution: SKYSCANNER LTD" -destination generic/platform=iOS build
-xcodebuild -workspace Example/Backpack.xcworkspace -scheme "Backpack Native" DEVELOPMENT_TEAM="U9XKRL39B6" CODE_SIGN_IDENTITY="iPhone Distribution: SKYSCANNER LTD" -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/CLI.xcarchive
-xcodebuild -exportArchive -archivePath $PWD/build/CLI.xcarchive -exportOptionsPlist ./exportOptions.plist -exportPath $PWD/build

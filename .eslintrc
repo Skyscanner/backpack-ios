@@ -1,7 +1,6 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "prettier",
     "eslint:recommended",
     "plugin:eslint-comments/recommended"
   ],
@@ -9,7 +8,6 @@
     "es6": true,
     "node": true
   },
-  "plugins": ["prettier"],
   "rules": {
     "no-console": "off"
   }

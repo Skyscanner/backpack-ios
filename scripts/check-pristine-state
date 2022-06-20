@@ -11,11 +11,8 @@ const execAsync = promisify(exec);
 const command = 'git status --porcelain | awk \'{print $2}\'';
 const [node, path, ...filesToIgnore] = process.argv;
 
-async function init() {
-    const {
-        stdout,
-        stderr
-    } = await execAsync(command, {
+const init = async () => {
+    const { stdout } = await execAsync(command, {
         cwd: `${__dirname}/../`
     });
     const changedFiles = stdout
@@ -30,14 +27,8 @@ async function init() {
     }
 }
 
-function exists(item) {
-    return !!item;
-}
+const exists = item => !!item
 
-function isNotInList(list) {
-    return function isItemNotInList(item) {
-        return list.indexOf(item) === -1;
-    }
-}
+const isNotInList = list => list.indexOf(item) === -1
 
 init();

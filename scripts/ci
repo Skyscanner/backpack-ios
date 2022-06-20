@@ -13,8 +13,7 @@ function analyze() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function runTests() {
@@ -25,14 +24,13 @@ function runTests() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function ci_common() {
     echo "Running common analysis"
     analyze "Backpack-Common"
-}
+} 
 
 function ci_uikit() {
     echo "Running UIKit analysis"
@@ -49,14 +47,20 @@ function ci_swiftui() {
 }
 
 function check_modules() {
-    ci_common
-    ci_uikit
-    ci_swiftui
+    if [ $1 == "uikit" ]; then
+        ci_uikit
+    elif [ $1 == "swiftui" ]; then
+        ci_swiftui
+    elif [ $1 == "common" ]; then
+        ci_common
+    fi
 }
 
-echo "Erase content and settings from all iPhone simulators"
-pkill Simulator || xcrun simctl erase all
-
-$(dirname "$0")/lint
-
-check_modules
+if [ $# -eq 0 ]; then
+    echo "No arguments provided. Running all tests."
+    check_modules "uikit"
+    check_modules "swiftui"
+    check_modules "common"
+else
+    check_modules $1
+fi

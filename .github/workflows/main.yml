@@ -16,6 +16,13 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/_build.yml
 
+  BuildDocs:
+    name: Build Docs
+    permissions:
+      statuses: write
+      pull-requests: write
+    uses: ./.github/workflows/_build-docs.yml
+
   ReleaseDraft:
     runs-on: ubuntu-latest
     permissions:
