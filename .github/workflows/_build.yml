@@ -100,6 +100,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
 
       - name: Install clang format
         run: brew install clang-format@14
@@ -146,7 +154,7 @@ jobs:
   UploadArtifacts:
     name: Build Backpack
     runs-on: macos-11
-    needs: [BuildUIKit, BuildSwiftUI, BuildCommon]
+    needs: [BuildPods]
     steps:
       - name: Save assets
         uses: actions/upload-artifact@v3
