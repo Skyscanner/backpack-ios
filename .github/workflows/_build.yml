@@ -124,6 +124,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       - name: Build and Test
         run: ./scripts/ci uikit
 
@@ -135,6 +143,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       - name: Build and Test
         run: ./scripts/ci swiftui
 
@@ -145,6 +161,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+  
+      - name: Cache Pods
+        uses: actions/cache@v3
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
       - name: Build and Test
         run: ./scripts/ci common
