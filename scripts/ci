@@ -13,8 +13,7 @@ function analyze() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function runTests() {
@@ -25,14 +24,13 @@ function runTests() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function ci_common() {
     echo "Running common analysis"
     analyze "Backpack-Common"
-}
+} 
 
 function ci_uikit() {
     echo "Running UIKit analysis"
