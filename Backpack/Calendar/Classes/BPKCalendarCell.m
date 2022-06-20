@@ -190,10 +190,10 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
             [self setSelected:NO];
-            
+
             return;
         }
-        
+
         switch (self.selectionType) {
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
