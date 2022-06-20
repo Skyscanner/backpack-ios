@@ -115,11 +115,19 @@ jobs:
         run: npm run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  BuildUIKit:
-    name: Build UIKit
+  BuildPods:
+    name: Build pods
     runs-on: macos-11
     needs: [Setup]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - common
+          - uikit
+          - swiftui
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -133,46 +141,8 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Build and Test
-        run: ./scripts/ci uikit
-
-  BuildSwiftUI:
-    name: Build SwiftUI
-    runs-on: macos-11
-    needs: [Setup]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Cache Pods
-        uses: actions/cache@v3
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Build and Test
-        run: ./scripts/ci swiftui
-
-  BuildCommon:
-    name: Build Common
-    runs-on: macos-11
-    needs: [Setup]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        run: ./scripts/ci ${{ matrix.variant }}
   
-      - name: Cache Pods
-        uses: actions/cache@v3
-        with:
-          path: Example/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Build and Test
-        run: ./scripts/ci common
-
   UploadArtifacts:
     name: Build Backpack
     runs-on: macos-11
