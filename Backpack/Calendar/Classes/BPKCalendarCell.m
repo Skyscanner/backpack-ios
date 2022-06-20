@@ -50,6 +50,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         [self.contentView.layer insertSublayer:selectionLayer below:samedayLayer];
         self.selectionLayer = selectionLayer;
         self.samedayLayer = samedayLayer;
+        self.wholeMonthSelection = NO;
     }
 
     return self;
@@ -94,20 +95,20 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     switch (self.rowType) {
     case RowTypeStart:
-        if (self.selectionType != SelectionTypeLeadingBorder && self.selectionType != SelectionTypeLeading) {
+        if (self.selectionType != SelectionTypeLeadingBorder) {
             underflow = overflowLength;
         }
         break;
     case RowTypeEnd:
-        if (self.selectionType != SelectionTypeTrailingBorder && self.selectionType != SelectionTypeTrailing) {
+        if (self.selectionType != SelectionTypeTrailingBorder) {
             overflow = overflowLength;
         }
         break;
     case RowTypeBoth:
-        if (self.selectionType != SelectionTypeLeadingBorder && self.selectionType != SelectionTypeLeading) {
+        if (self.selectionType != SelectionTypeLeadingBorder) {
             underflow = overflowLength;
         }
-        if (self.selectionType != SelectionTypeTrailingBorder && self.selectionType != SelectionTypeTrailing) {
+        if (self.selectionType != SelectionTypeTrailingBorder) {
             overflow = overflowLength;
         }
         break;
@@ -130,7 +131,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         }
         break;
 
-    case SelectionTypeTrailing:
     case SelectionTypeTrailingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopRight | UIRectCornerBottomRight;
@@ -142,7 +142,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         cornerRadii = CGSizeMake(height / 2.0, height / 2.0);
         break;
 
-    case SelectionTypeLeading:
     case SelectionTypeLeadingBorder:
         if (!isRTL) {
             corners |= UIRectCornerTopLeft | UIRectCornerBottomLeft;
@@ -186,6 +185,15 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     UIColor *rangeTitleColor = [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {
+        if (self.wholeMonthSelection) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
+                                                                            content:self.titleLabel.text
+                                                                          textColor:rangeTitleColor];
+            [self setSelected:NO];
+            
+            return;
+        }
+        
         switch (self.selectionType) {
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
@@ -195,8 +203,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
             break;
-        case SelectionTypeLeading:
-        case SelectionTypeTrailing:
         case SelectionTypeMiddle:
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
                                                                             content:self.titleLabel.text
@@ -209,10 +215,6 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
                                                                           textColor:color];
             break;
         }
-    }
-
-    if (self.isSelected && (self.selectionType == SelectionTypeLeading || self.selectionType == SelectionTypeTrailing)) {
-        [self setSelected:NO];
     }
 }
 
