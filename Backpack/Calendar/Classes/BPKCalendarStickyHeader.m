@@ -51,7 +51,6 @@ CGFloat const BPKBaselineOffset = -5.0;
         [self.bottomBorder removeFromSuperview];
 
         BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
-        [button setTitle:@"Select whole month"];
         [button addTarget:self action:@selector(didTapSelectMonth:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:button];
         _selectMonthButton = button;
