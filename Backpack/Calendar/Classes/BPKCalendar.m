@@ -829,7 +829,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (BOOL)isDate:(NSDate *)date betweenRangeOfDates:(NSArray<NSDate *> *)dates {
-    if (dates.count == 0) {
+    if (dates.firstObject == nil) {
         return NO;
     }
     NSDate *minDate = [dates firstObject];
