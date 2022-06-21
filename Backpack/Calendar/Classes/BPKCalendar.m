@@ -829,6 +829,9 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (BOOL)isDate:(NSDate *)date betweenRangeOfDates:(NSArray<NSDate *> *)dates {
+    if (dates.count == 0) {
+        return NO;
+    }
     NSDate *minDate = [dates firstObject];
     NSDate *maxDate = [dates lastObject];
     return [BPKCalendar date:date isBetweenDate:minDate andDate:maxDate];
