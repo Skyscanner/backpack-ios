@@ -191,6 +191,7 @@ const BPKFontStyle fontStyle = BPKFontStyleTextHeading5;
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
+            // NOTE: OGM-530 When it's whole month selection we don't want to show the dark blue selection circle at the beginning or the ending of the selection so we need to deselect the cells.
             [self setSelected:NO];
 
             return;
