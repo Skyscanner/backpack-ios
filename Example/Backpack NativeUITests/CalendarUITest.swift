@@ -105,7 +105,7 @@ final class CalendarUITest: BackpackUITestCase {
         app.buttons["Range"].tap()
         
         let collectionViewsQuery = app.collectionViews
-        collectionViewsQuery.buttons["Select whole month February, 2020"].tap()
+        collectionViewsQuery.buttons["Select whole month"].firstMatch.tap()
         
         XCTAssertTrue(app.cells["February 1, 2020, Selected as departure date"].isSelected)
         XCTAssertTrue(app.cells["February 29, 2020, Selected as return date"].isSelected)

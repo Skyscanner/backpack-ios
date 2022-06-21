@@ -111,8 +111,7 @@ CGFloat const BPKBaselineOffset = -5.0;
     BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
     self.selectMonthButton.enabled = [calendar isWholeMonthButtonEnabledForMonth:simpleMonth];
     [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
-    self.selectMonthButton.accessibilityLabel =
-        [NSString stringWithFormat:@"%@ %@", calendar.wholeMonthTitle, [[BPKCalendarStickyHeader formatter] stringFromDate:month]];
+    self.selectMonthButton.accessibilityLabel = calendar.wholeMonthTitle;
 }
 
 #pragma mark - Actions
