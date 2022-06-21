@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Called when a whole month is selected.
  *
  * @param calendar The backpack calendar.
- * @param dateList The selected dates that represet the whole month selected.
+ * @param dateList The selected dates that represent the whole month selected.
  */
 - (void)calendar:(BPKCalendar *)calendar didSelectWholeMonth:(NSArray<BPKSimpleDate *> *)dateList;
 
