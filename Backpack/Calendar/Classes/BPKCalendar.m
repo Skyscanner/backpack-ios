@@ -682,12 +682,12 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     if (monthPosition == FSCalendarMonthPositionCurrent) {
         SelectionType selectionType = SelectionTypeNone;
         RowType rowType = RowTypeMiddle;
-        BOOL wholeMonthSelection = NO;
+        BOOL isWholeMonthSelection = NO;
 
         if (self.isSelectingWholeMonth) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
             selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates];
-            wholeMonthSelection = [self isDate:date betweenRangeOfDates:sortedSelectedDates];
+            isWholeMonthSelection = [self isDate:date betweenRangeOfDates:sortedSelectedDates];
         } else if (!self.sameDayRange && sortedSelectedDates.count > 1 && self.selectionConfiguration.isRangeStyleSelection) {
             rowType = [self rowTypeForDate:date amongRangeOfDates:sortedSelectedDates];
             selectionType = [self selectionTypeForDate:date amongRangeOfDates:sortedSelectedDates];
@@ -697,7 +697,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.isWholeMonthSelection = wholeMonthSelection;
+        calendarCell.isWholeMonthSelection = isWholeMonthSelection;
         NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
         calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date
                                                                                    selectedDates:sortedSelectedDates
