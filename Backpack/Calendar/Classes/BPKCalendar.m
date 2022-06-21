@@ -697,7 +697,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 
         calendarCell.selectionType = selectionType;
         calendarCell.rowType = rowType;
-        calendarCell.wholeMonthSelection = wholeMonthSelection;
+        calendarCell.isWholeMonthSelection = wholeMonthSelection;
         NSString *baseAccessibilityLabel = [calendarCell defaultAccessibilityLabelForDate:date formatter:self.dateFormatter];
         calendarCell.accessibilityLabel = [self.selectionConfiguration accessibilityLabelForDate:date
                                                                                    selectedDates:sortedSelectedDates

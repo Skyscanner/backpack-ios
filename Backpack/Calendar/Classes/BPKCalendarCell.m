@@ -50,7 +50,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         [self.contentView.layer insertSublayer:selectionLayer below:samedayLayer];
         self.selectionLayer = selectionLayer;
         self.samedayLayer = samedayLayer;
-        self.wholeMonthSelection = NO;
+        self.isWholeMonthSelection = NO;
     }
 
     return self;
@@ -185,7 +185,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     UIColor *rangeTitleColor = [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {
-        if (self.wholeMonthSelection) {
+        if (self.isWholeMonthSelection) {
             self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
