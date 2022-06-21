@@ -392,7 +392,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 }
 
 - (BOOL)allowsWholeMonthSelection {
-    return self.selectionConfiguration.wholeMonthTitle != nil && self.selectionConfiguration.wholeMonthTitle.length > 0;
+    return self.wholeMonthTitle != nil && self.wholeMonthTitle.length > 0;
 }
 
 - (NSString *_Nullable)wholeMonthTitle {
