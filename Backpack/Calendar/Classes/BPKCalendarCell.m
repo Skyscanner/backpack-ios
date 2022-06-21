@@ -38,6 +38,8 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
 @implementation BPKCalendarCell
 
+const BPKFontStyle fontStyle = BPKFontStyleTextHeading5;
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
 
@@ -186,7 +188,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
     if (self.titleLabel.text) {
         if (self.isWholeMonthSelection) {
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
             [self setSelected:NO];
@@ -199,18 +201,18 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         case SelectionTypeTrailingBorder:
         case SelectionTypeSingle:
         case SelectionTypeSameDay:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                             content:self.titleLabel.text
                                                                           textColor:selectedColor];
             break;
         case SelectionTypeMiddle:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                             content:self.titleLabel.text
                                                                           textColor:rangeTitleColor];
             break;
 
         default:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle
                                                                             content:self.titleLabel.text
                                                                           textColor:color];
             break;
