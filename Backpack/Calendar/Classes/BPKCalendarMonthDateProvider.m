@@ -20,6 +20,7 @@
 
 #import <Backpack/SimpleDate.h>
 #import <Foundation/Foundation.h>
+#import <FSCalendar/FSCalendarExtensions.h>
 
 @interface BPKCalendarMonthDateProvider ()
 
@@ -39,29 +40,18 @@
     return self;
 }
 
-- (NSDate *)day:(NSInteger)day fromMonth:(NSDate *)month {
-    NSDateComponents *comp = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:month];
-
-    [comp setDay:day];
-
-    return [self.calendar dateFromComponents:comp];
-}
-
 - (NSDate *)firstValidDayOfMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
-    NSDate *firstDay = [self day:1 fromMonth:month];
+    NSDate *firstDay = [self.calendar fs_firstDayOfMonth:month];
 
     return [firstDay compare:minDate] == NSOrderedDescending ? firstDay : minDate;
 }
 
 - (NSDate *)lastDayOfMonth:(NSDate *)month {
-    NSInteger lastDay = [self numberOfDaysInMonth:month];
-
-    return [self day:lastDay fromMonth:month];
+    return [self.calendar fs_lastDayOfMonth:month];
 }
 
 - (NSInteger)numberOfDaysInMonth:(NSDate *)month {
-    NSRange daysOfMonth = [self.calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:month];
-    return daysOfMonth.length;
+    return [self.calendar fs_numberOfDaysInMonth:month];
 }
 
 - (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
