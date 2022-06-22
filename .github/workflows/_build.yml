@@ -34,7 +34,7 @@ jobs:
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
-            
+
   Lint:
     name: Lint Project
     runs-on: macos-11
@@ -61,6 +61,33 @@ jobs:
 
       - name: Run NPM build
         run: npm run build
+
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        id: cache_bundler_install_gems
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
+      - name: Cache Pods
+        uses: actions/cache@v3
+        id: cache_pods
+        with:
+          path: Example/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Bundle Install
+        if: steps.cache_bundler_install_gems.outputs.cache-hit != 'true'
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        if: steps.cache_pods.outputs.cache-hit != 'true'
+        run: bundle exec pod install
+        working-directory: Example
 
       - name: Check pristine
         run: ./scripts/lint
