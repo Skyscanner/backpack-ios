@@ -18,7 +18,10 @@
 
 #import "BPKCalendarStickyHeader.h"
 
+#import <Backpack/Button.h>
+#import <Backpack/Calendar.h>
 #import <Backpack/Font.h>
+#import <Backpack/SimpleDate.h>
 
 #import "BPKCalendarAppearance.h"
 
@@ -30,7 +33,15 @@
 
 @end
 
+@interface BPKCalendarStickyHeader ()
+
+@property(weak, nonatomic, readonly) BPKButton *selectMonthButton;
+
+@end
+
 @implementation BPKCalendarStickyHeader
+
+CGFloat const BPKBaselineOffset = -5.0;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -38,9 +49,26 @@
     if (self) {
         [self.weekdayView removeFromSuperview];
         [self.bottomBorder removeFromSuperview];
+
+        BPKButton *button = [[BPKButton alloc] initWithSize:BPKButtonSizeDefault style:BPKButtonStyleLink];
+        [button addTarget:self action:@selector(didTapSelectMonth:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:button];
+        _selectMonthButton = button;
     }
 
     return self;
+}
+
++ (NSDateFormatter *)formatter {
+    static NSDateFormatter *dateFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+      dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"MMMM, yyyy"];
+      NSLocale *locale = [NSLocale currentLocale];
+      [dateFormatter setLocale:locale];
+    });
+    return dateFormatter;
 }
 
 - (void)configureAppearance {
@@ -50,7 +78,18 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
+    self.titleLabel.frame = CGRectZero;
+
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.selectMonthButton.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
+
+        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.lastBaselineAnchor constant:BPKBaselineOffset],
+        [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
+    ]];
 }
 
 - (void)setMonth:(NSDate *)month {
@@ -62,6 +101,39 @@
                                                                    content:self.titleLabel.text
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
+
+    BPKCalendar *calendar = [self bpkCalendar];
+    if (!calendar) {
+        return;
+    }
+
+    self.selectMonthButton.hidden = !calendar.allowsWholeMonthSelection;
+    BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
+    self.selectMonthButton.enabled = [calendar isWholeMonthButtonEnabledForMonth:simpleMonth];
+    [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
+    self.selectMonthButton.accessibilityLabel = calendar.wholeMonthTitle;
+}
+
+#pragma mark - Actions
+
+- (void)didTapSelectMonth:(BPKButton *)sender {
+    BPKCalendar *calendar = [self bpkCalendar];
+    if (!calendar) {
+        return;
+    }
+
+    BPKSimpleDate *month = [[BPKSimpleDate alloc] initWithDate:self.month forCalendar:calendar.gregorian];
+    [calendar selectWholeMonth:month];
+}
+
+#pragma mark - Helpers
+
+- (BPKCalendar *_Nullable)bpkCalendar {
+    if ([self.calendar.superview.superview isMemberOfClass:[BPKCalendar class]]) {
+        return (BPKCalendar *)self.calendar.superview.superview;
+    } else {
+        return nil;
+    }
 }
 
 @end

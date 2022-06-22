@@ -38,6 +38,8 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
 
 @implementation BPKCalendarCell
 
+const BPKFontStyle fontStyle = BPKFontStyleTextHeading5;
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
 
@@ -50,6 +52,7 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
         [self.contentView.layer insertSublayer:selectionLayer below:samedayLayer];
         self.selectionLayer = selectionLayer;
         self.samedayLayer = samedayLayer;
+        self.isWholeMonthSelection = NO;
     }
 
     return self;
@@ -184,25 +187,28 @@ const CGFloat BPKCalendarCellSameDayXOffset = 3.75;
     UIColor *rangeTitleColor = [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {
+        if (self.isWholeMonthSelection) {
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:rangeTitleColor];
+            // NOTE: OGM-530 When it's whole month selection we don't want to show the dark blue selection circle at the beginning or the ending of
+            // the selection so we need to deselect the cells.
+            [self setSelected:NO];
+
+            return;
+        }
+
         switch (self.selectionType) {
-        case SelectionTypeSingle:
         case SelectionTypeLeadingBorder:
         case SelectionTypeTrailingBorder:
+        case SelectionTypeSingle:
         case SelectionTypeSameDay:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
-                                                                            content:self.titleLabel.text
-                                                                          textColor:selectedColor];
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:selectedColor];
             break;
         case SelectionTypeMiddle:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
-                                                                            content:self.titleLabel.text
-                                                                          textColor:rangeTitleColor];
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:rangeTitleColor];
             break;
 
         default:
-            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextHeading5
-                                                                            content:self.titleLabel.text
-                                                                          textColor:color];
+            self.titleLabel.attributedText = [BPKFont attributedStringWithFontStyle:fontStyle content:self.titleLabel.text textColor:color];
             break;
         }
     }

@@ -240,6 +240,26 @@ NS_ASSUME_NONNULL_BEGIN
     FBSnapshotVerifyView(parentView, nil);
 }
 
+- (void)testCalendarWithWholeMonthButton {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCalendar *bpkCalendar = [[BPKCalendar alloc] initWithFrame:CGRectZero];
+
+    [self configureParentView:parentView forCalendar:bpkCalendar];
+    bpkCalendar.selectionConfiguration = [[BPKCalendarSelectionConfigurationRange alloc]
+                                          initWithStartSelectionHint:@""
+                                          endSelectionHint:@""
+                                          startSelectionState:@""
+                                          endSelectionState:@""
+                                          betweenSelectionState:@""
+                                          startAndEndSelectionState:@""
+                                          returnDatePrompt:@""
+                                          andWholeMonthTitle:@"Select whole month"];
+    [bpkCalendar selectWholeMonth:[[BPKSimpleDate alloc] initWithDate:self.date1 forCalendar:bpkCalendar.gregorian]];
+    [bpkCalendar reloadData];
+
+    FBSnapshotVerifyView(parentView, nil);
+}
+
 #pragma mark - <BPKCalendarDelegate>
 
 - (BOOL)calendar:(BPKCalendar *)calendar isDateEnabled:(BPKSimpleDate *)date {
