@@ -175,6 +175,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Pod Install
+        run: bundle exec pod install
+        working-directory: Example
+
       - name: Build and Test
         run: ./scripts/ci ${{ matrix.variant }}
   
