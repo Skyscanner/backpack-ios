@@ -121,7 +121,6 @@ jobs:
 
       - name: Cache Bundler install Gems
         uses: actions/cache@v3
-        id: cache_bundler_install_gems
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -130,7 +129,6 @@ jobs:
 
       - name: Cache Pods
         uses: actions/cache@v3
-        id: cache_pods
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
@@ -138,11 +136,9 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Bundle Install
-        if: steps.cache_bundler_install_gems.outputs.cache-hit != 'true'
         run: bundle install --jobs 4 --retry 3
 
       - name: Pod Install
-        if: steps.cache_pods.outputs.cache-hit != 'true'
         run: bundle exec pod install
         working-directory: Example
 
