@@ -45,26 +45,12 @@ jobs:
       - name: Print tag
         run: echo ${{ steps.extract_git_tag.outputs.GIT_TAG }}
 
-      - name: Select Xcode 13
-        run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
-
-      - name: Install clang format
-        run: brew install clang-format@14
-
-      - name: Install sourcekitten
-        run: brew install sourcekitten
-
-      - name: nvm install
-        run: nvm install
-
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
 
-      - name: Set Bundler Config
-        run: bundle config path vendor/bundle
-
       - name: Cache Bundler install Gems
         uses: actions/cache@v3
+        id: cache_bundler_install_gems
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -73,29 +59,27 @@ jobs:
 
       - name: Cache Pods
         uses: actions/cache@v3
+        id: cache_pods
         with:
           path: Example/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
 
-      - name: NPM ci
-        run: |
-          nvm use
-          npm ci
-
       - name: Bundle Install
+        if: steps.cache_bundler_install_gems.outputs.cache-hit != 'true'
         run: bundle install --jobs 4 --retry 3
 
-      - name: "Erase content from simulators"
-        run: "pkill Simulator || xcrun simctl erase all"
-
       - name: Pod Install
+        if: steps.cache_pods.outputs.cache-hit != 'true'
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Run NPM build
-        run: npm run build
+      - name: Select Xcode 13
+        run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
+
+      - name: Install sourcekitten
+        run: brew install sourcekitten
 
       - name: Build and verify docs (main)
         if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
@@ -106,7 +90,7 @@ jobs:
         run: ./scripts/build-docs $RELEASE_VERSION
         env:
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
-    
+
       - name: Build and verify docs (pull request build)
         if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref != 'refs/heads/main'
         run: ./scripts/build-docs $PR_VERSION

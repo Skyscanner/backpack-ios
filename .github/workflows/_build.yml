@@ -34,17 +34,6 @@ jobs:
 
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
-
-      - name: Set Bundler Config
-        run: bundle config path vendor/bundle
-      
-      - name: Cache Bundler install Gems
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-${{ env.ImageVersion }}
             
   Lint:
     name: Lint Project
@@ -72,9 +61,6 @@ jobs:
 
       - name: Run NPM build
         run: npm run build
-
-      - name: Install clang format
-        run: brew install clang-format@14
 
       - name: Check pristine
         run: ./scripts/lint
@@ -104,6 +90,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        id: cache_bundler_install_gems
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+
       - name: Cache Pods
         uses: actions/cache@v3
         id: cache_pods
@@ -114,6 +109,7 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Bundle Install
+        if: steps.cache_bundler_install_gems.outputs.cache-hit != 'true'
         run: bundle install --jobs 4 --retry 3
 
       - name: Pod Install
