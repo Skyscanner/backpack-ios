@@ -32,6 +32,20 @@ jobs:
       - name: Verify Bundler Version
         run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
 
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+      - name: Set Bundler Config
+        run: bundle config path vendor/bundle
+      
+      - name: Cache Bundler install Gems
+        uses: actions/cache@v3
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.ImageVersion }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.ImageVersion }}
+            
   Lint:
     name: Lint Project
     runs-on: macos-11
@@ -39,15 +53,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set Ruby version
-        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
-        with:
-          ruby-version: 2.7.6
-          bundler-cache: true
-
-      - name: Set Bundler Config
-        run: bundle config path vendor/bundle
 
       - name: Cache Node modules
         uses: actions/cache@v3
@@ -82,7 +87,7 @@ jobs:
         run: npm run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
   BuildPods:
     name: Build pods
     runs-on: macos-11
@@ -107,12 +112,6 @@ jobs:
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
-
-      - name: Set Ruby version
-        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
-        with:
-          ruby-version: 2.7.6
-          bundler-cache: true
 
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
