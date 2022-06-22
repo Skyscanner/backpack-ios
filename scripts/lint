@@ -14,4 +14,4 @@ find ./Backpack -name "*.[hm]" -exec clang-format -i {} \+
 
 checkPristine "Formatter failed to format some files. Please run 'brew install clang-format@14' and try again."
 
-bundle exec pod lib lint --allow-warnings
+bundle exec pod lib lint --allow-warnings --skip-tests
