@@ -37,6 +37,11 @@ IB_DESIGNABLE @interface BPKCard : UIControl
 @property(nonatomic, assign, getter=isPadded) IBInspectable BOOL padded;
 
 /**
+ * Whether the card should have a shadow or not.
+ */
+@property(nonatomic, assign) IBInspectable BOOL isElevated;
+
+/**
  * Determines how the card should appear to assistive technology.
  * Default is BPKCardConfigurationContainer.
  * @see BPKCardConfiguration

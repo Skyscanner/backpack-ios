@@ -87,6 +87,12 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     [self updateCorners];
 }
 
+- (void)setIsElevated:(BOOL)isElevated {
+    BPKAssertMainThread();
+    _isElevated = isElevated;
+    [self updateShadows];
+}
+
 - (void)setCornerStyle:(BPKCardCornerStyle)cornerStyle {
     BPKAssertMainThread();
     _cornerStyle = cornerStyle;
@@ -96,8 +102,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setSelected:(BOOL)selected {
     BPKAssertMainThread();
     [super setSelected:selected];
-    BPKShadow *shadow = selected ? [BPKShadow shadowLg] : [BPKShadow shadowSm];
-    [shadow applyToLayer:self.layer];
+    [self updateShadows];
     [self updateAccessibilityTraits];
 }
 
@@ -150,7 +155,8 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     [self.layer addSublayer:self.tintLayer];
 
     self.backgroundColor = BPKColor.backgroundTertiaryColor;
-    [[BPKShadow shadowSm] applyToLayer:self.layer];
+    self.isElevated = YES;
+    [self updateShadows];
 
     self.innerView = [[UIView alloc] initWithFrame:CGRectZero];
     self.innerView.layer.masksToBounds = YES;
@@ -167,6 +173,16 @@ const BOOL BPKCardDefaultPaddedValue = YES;
         [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:self.innerView.trailingAnchor],
         [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:self.innerView.bottomAnchor]
     ]];
+}
+
+- (void)updateShadows {
+    if (!self.isElevated) {
+        // if `elevated` is changed after it's been drawn, hide the shadow
+        self.layer.shadowOpacity = 0;
+        return;
+    }
+    BPKShadow *shadow = self.selected ? [BPKShadow shadowLg] : [BPKShadow shadowSm];
+    [shadow applyToLayer:self.layer];
 }
 
 - (void)updateCorners {

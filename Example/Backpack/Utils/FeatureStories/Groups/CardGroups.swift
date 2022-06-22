@@ -45,6 +45,7 @@ struct CardGroupsProvider {
             cellDataSources: [
                 presentableCard("Default") { _ in },
                 presentableCard("Button") { $0.configuration = .button },
+                presentableCard("Not elevated") { $0.isElevated = false },
                 presentableCard("Link") { $0.configuration = .link },
                 presentableCard("Without padding") { $0.padded = false },
                 presentableCard("Selected") { $0.selected = true },

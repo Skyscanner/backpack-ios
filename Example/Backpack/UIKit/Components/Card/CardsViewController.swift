@@ -16,16 +16,17 @@
  * limitations under the License.
  */
 
-import Backpack.Card
+import Backpack
 
 class CardsViewController: UIViewController {
     @IBOutlet weak var card: BPKCard!
-    var padded: Bool = true
-    var selected: Bool = false
+    var padded = true
+    var selected = false
     var configuration: BPKCardConfiguration = BPKCardConfigurationContainer()
     var backgroundColor: UIColor?
-    var cornerStyle: BPKCardCornerStyle = .small
-
+    var cornerStyle = BPKCardCornerStyle.small
+    var isElevated = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +44,7 @@ class CardsViewController: UIViewController {
         card.isPadded = padded
         card.cornerStyle = cornerStyle
         card.isSelected = selected
+        card.isElevated = isElevated
         card.configuration = configuration
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
