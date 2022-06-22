@@ -88,6 +88,9 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
+      - name: Install clang-format
+        run: brew install clang-format@14
+
       - name: Check pristine
         run: ./scripts/lint
 
