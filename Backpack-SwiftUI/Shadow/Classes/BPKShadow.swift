@@ -18,6 +18,22 @@
 
 import SwiftUI
 
+public struct BPKShadow {
+    let color: BPKColor
+    let radius: CGFloat
+    let offset: Offset
+    let opacity: Double
+    
+    struct Offset {
+        let x: CGFloat
+        let y: CGFloat
+        
+        static func y(_ y: CGFloat) -> Offset {
+            Offset(x: 0, y: y)
+        }
+    }
+}
+
 extension View {
     @ViewBuilder
     func shadow(_ shadow: BPKShadow?) -> some View {
@@ -26,5 +42,16 @@ extension View {
         } else {
             self
         }
+    }
+}
+
+public extension View {
+    func shadow(_ shadow: BPKShadow) -> some View {
+        self.shadow(
+            color: Color(shadow.color).opacity(shadow.opacity),
+            radius: shadow.radius,
+            x: shadow.offset.x,
+            y: shadow.offset.y
+        )
     }
 }

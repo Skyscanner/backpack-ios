@@ -15,38 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import SwiftUI
-
-public struct BPKShadow {
-    let color: BPKColor
-    let radius: CGFloat
-    let offset: Offset
-    let opacity: Double
-    
-    struct Offset {
-        let x: CGFloat
-        let y: CGFloat
-        
-        static func y(_ y: CGFloat) -> Offset {
-            Offset(x: 0, y: y)
-        }
-    }
-}
 
 public extension BPKShadow {
     {% for s in shadow %}
     /// The Skyscanner {{s.legibleName}} shadow.
     static let {{s.swiftuiName}} = BPKShadow(color: .{{s.name}}Color, radius: {{s.radius}}, offset: Offset(x: {{s.offset.x}}, y: {{s.offset.y}}), opacity: {{s.opacity}})
 {% endfor %}}
-
-public extension View {
-    func shadow(_ shadow: BPKShadow) -> some View {
-        self.shadow(
-            color: Color(shadow.color).opacity(shadow.opacity),
-            radius: shadow.radius,
-            x: shadow.offset.x,
-            y: shadow.offset.y
-        )
-    }
-}
