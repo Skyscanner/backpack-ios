@@ -16,16 +16,15 @@
  * limitations under the License.
  */
 
+#import "BPKIconsTestsUtils.h"
 #import <Backpack/Color.h>
 #import <Backpack/Icon.h>
 #import <Backpack/Spacing.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import "BPKIconsTestsUtils.h"
 
-typedef UIImageView* (^BPKIconMakeSmallIcon)(BPKSmallIconName);
-typedef UIImageView* (^BPKIconMakeLargeIcon)(BPKLargeIconName);
-typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
-
+typedef UIImageView * (^BPKIconMakeSmallIcon)(BPKSmallIconName);
+typedef UIImageView * (^BPKIconMakeLargeIcon)(BPKLargeIconName);
+typedef UIImageView * (^BPKIconGenericMakeIcon)(id);
 
 @interface BPKIconSnapshotTest : FBSnapshotTestCase
 
@@ -58,13 +57,15 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 - (void)testAllSmallIcons {
     NSArray<BPKSmallIconName> *allSmallIcons = [[self class] allSmallIconNames];
 
-    UIView *view = [[self class] generateSmallIconGridWithIcons:allSmallIcons makeIconView:^UIImageView *(BPKSmallIconName name) {
-        UIImage *icon = [BPKIcon smallTemplateIconNamed:name];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
-        imageView.image = icon;
+    UIView *view = [[self class] generateSmallIconGridWithIcons:allSmallIcons
+                                                   makeIconView:^UIImageView *(BPKSmallIconName name) {
+                                                     UIImage *icon = [BPKIcon smallTemplateIconNamed:name];
+                                                     UIImageView *imageView =
+                                                         [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
+                                                     imageView.image = icon;
 
-        return imageView;
-    }];
+                                                     return imageView;
+                                                   }];
 
     FBSnapshotVerifyView(view, nil);
 }
@@ -72,13 +73,15 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 - (void)testAllLargeIcons {
     NSArray<BPKLargeIconName> *allLargeIcons = [[self class] allLargeIconNames];
 
-    UIView *view = [[self class] generateLargeIconGridWithIcons:allLargeIcons makeIconView:^UIImageView *(BPKLargeIconName name) {
-        UIImage *icon = [BPKIcon largeTemplateIconNamed:name];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
-        imageView.image = icon;
+    UIView *view = [[self class] generateLargeIconGridWithIcons:allLargeIcons
+                                                   makeIconView:^UIImageView *(BPKLargeIconName name) {
+                                                     UIImage *icon = [BPKIcon largeTemplateIconNamed:name];
+                                                     UIImageView *imageView =
+                                                         [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, icon.size.width, icon.size.height)];
+                                                     imageView.image = icon;
 
-        return imageView;
-    }];
+                                                     return imageView;
+                                                   }];
 
     FBSnapshotVerifyView(view, nil);
 }
@@ -103,7 +106,7 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 
     for (NSString *icon in allIcons) {
         if (![icon hasSuffix:@"-sm"]) {
-            [result addObject:(BPKLargeIconName) icon];
+            [result addObject:(BPKLargeIconName)icon];
         }
     }
 
@@ -111,15 +114,11 @@ typedef UIImageView* (^BPKIconGenericMakeIcon)(id);
 }
 
 + (UIView *)generateSmallIconGridWithIcons:(NSArray<BPKSmallIconName> *)icons makeIconView:(BPKIconMakeSmallIcon)makeSmallIcon {
-    return [self generateIconGridWithIcons:icons
-                              makeIconView:makeSmallIcon
-                                  iconSize:BPKIcon.concreteSizeForSmallIcon];
+    return [self generateIconGridWithIcons:icons makeIconView:makeSmallIcon iconSize:BPKIcon.concreteSizeForSmallIcon];
 }
 
 + (UIView *)generateLargeIconGridWithIcons:(NSArray<BPKLargeIconName> *)icons makeIconView:(BPKIconMakeLargeIcon)makeLargeIcon {
-    return [self generateIconGridWithIcons:icons
-                              makeIconView:makeLargeIcon
-                                  iconSize:BPKIcon.concreteSizeForLargeIcon];
+    return [self generateIconGridWithIcons:icons makeIconView:makeLargeIcon iconSize:BPKIcon.concreteSizeForLargeIcon];
 }
 
 + (UIView *)generateIconGridWithIcons:(NSArray<id> *)icons makeIconView:(BPKIconGenericMakeIcon)makeIcon iconSize:(CGSize)iconSize {

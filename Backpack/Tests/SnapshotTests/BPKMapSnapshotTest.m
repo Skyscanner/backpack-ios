@@ -18,8 +18,8 @@
 
 #import <Backpack/Map.h>
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import "BPKSnapshotTest.h"
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 @interface BPKMapSnapshotTest : FBSnapshotTestCase
 @end
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
--(BPKMapView *)createMapView {
+- (BPKMapView *)createMapView {
     BPKMapView *mapView = [[BPKMapView alloc] initWithFrame:CGRectMake(0, 0, 100, 250)];
     return mapView;
 }

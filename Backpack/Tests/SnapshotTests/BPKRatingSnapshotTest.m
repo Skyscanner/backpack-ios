@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
+#import "BPKSnapshotTest.h"
 #import <Backpack/Rating.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
-#import "BPKSnapshotTest.h"
 
 @interface BPKRatingSnapshotTest : FBSnapshotTestCase
 @property(strong, nonatomic) BPKRatingTextDefinition *titleTextDefinition;

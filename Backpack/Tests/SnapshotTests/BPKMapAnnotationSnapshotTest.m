@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-#import <Backpack/Spacing.h>
 #import <Backpack/Map.h>
+#import <Backpack/Spacing.h>
 
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 #import "BPKSnapshotTest.h"
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 NSString *const ReuseIdentifier = @"Annotation";
 
@@ -35,8 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.recordMode = NO;
 }
 
--(UIView *)createMapAnnotationWithLabel:(NSString *)label alwaysShowCallout:(BOOL)alwaysShowCallout previouslySelected:(BOOL)previouslySelected selected:(BOOL)selected enabled:(BOOL)enabled icon:(BOOL)icon {
-    BPKMapAnnotation *annotation =  [[BPKMapAnnotation alloc] init];
+- (UIView *)createMapAnnotationWithLabel:(NSString *)label
+                       alwaysShowCallout:(BOOL)alwaysShowCallout
+                      previouslySelected:(BOOL)previouslySelected
+                                selected:(BOOL)selected
+                                 enabled:(BOOL)enabled
+                                    icon:(BOOL)icon {
+    BPKMapAnnotation *annotation = [[BPKMapAnnotation alloc] init];
     annotation.title = label;
     annotation.alwaysShowCallout = alwaysShowCallout;
     annotation.enabled = enabled;
@@ -62,13 +67,43 @@ NS_ASSUME_NONNULL_BEGIN
     return wrapper;
 }
 
--(UIView *)createMapAnnotationsWithIcons:(BOOL)icon {
-    UIView *annotationView1 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:NO enabled:YES icon:icon];
-    UIView *annotationView2 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:NO previouslySelected:NO selected:YES enabled:YES icon:icon];
-    UIView *annotationView3 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:YES icon:icon];
-    UIView *annotationView4 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:YES selected:NO enabled:YES icon:icon];
-    UIView *annotationView5 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:YES enabled:YES icon:icon];
-    UIView *annotationView6 = [self createMapAnnotationWithLabel:@"Edinburgh" alwaysShowCallout:YES previouslySelected:NO selected:NO enabled:NO icon:icon];
+- (UIView *)createMapAnnotationsWithIcons:(BOOL)icon {
+    UIView *annotationView1 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:NO
+                                              previouslySelected:NO
+                                                        selected:NO
+                                                         enabled:YES
+                                                            icon:icon];
+    UIView *annotationView2 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:NO
+                                              previouslySelected:NO
+                                                        selected:YES
+                                                         enabled:YES
+                                                            icon:icon];
+    UIView *annotationView3 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:YES
+                                              previouslySelected:NO
+                                                        selected:NO
+                                                         enabled:YES
+                                                            icon:icon];
+    UIView *annotationView4 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:YES
+                                              previouslySelected:YES
+                                                        selected:NO
+                                                         enabled:YES
+                                                            icon:icon];
+    UIView *annotationView5 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:YES
+                                              previouslySelected:NO
+                                                        selected:YES
+                                                         enabled:YES
+                                                            icon:icon];
+    UIView *annotationView6 = [self createMapAnnotationWithLabel:@"Edinburgh"
+                                               alwaysShowCallout:YES
+                                              previouslySelected:NO
+                                                        selected:NO
+                                                         enabled:NO
+                                                            icon:icon];
 
     UIView *outerView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -133,15 +168,13 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
--(UIView *)createLongTitleCalloutViewWithIcon:(BOOL)icon {
-    UIView *annotationView = [self
-                              createMapAnnotationWithLabel:@"Callout with a super super super long title that goes on and on and on"
-                              alwaysShowCallout:YES
-                              previouslySelected:NO
-                              selected:NO
-                              enabled:YES
-                              icon:icon
-                              ];
+- (UIView *)createLongTitleCalloutViewWithIcon:(BOOL)icon {
+    UIView *annotationView = [self createMapAnnotationWithLabel:@"Callout with a super super super long title that goes on and on and on"
+                                              alwaysShowCallout:YES
+                                             previouslySelected:NO
+                                                       selected:NO
+                                                        enabled:YES
+                                                           icon:icon];
     annotationView.translatesAutoresizingMaskIntoConstraints = NO;
     return annotationView;
 }

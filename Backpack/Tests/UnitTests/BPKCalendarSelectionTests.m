@@ -52,7 +52,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)rangeConfigShouldHaveCorrectFeatures {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"" endSelectionHint:@"" startSelectionState:@"" endSelectionState:@"" betweenSelectionState:@"" startAndEndSelectionState:@"" returnDatePrompt:@""];
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@""
+                                                                                                      endSelectionHint:@""
+                                                                                                   startSelectionState:@""
+                                                                                                     endSelectionState:@""
+                                                                                                 betweenSelectionState:@""
+                                                                                             startAndEndSelectionState:@""
+                                                                                                      returnDatePrompt:@""];
 
     XCTAssertTrue(c1.allowsMultipleSelection);
     XCTAssertTrue(c1.isRangeStyleSelection);
@@ -75,27 +81,44 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)rangeConfigShouldNotClearSelectedDatesWhenSelectingSecondDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"" endSelectionHint:@"" startSelectionState:@"" endSelectionState:@"" betweenSelectionState:@"" startAndEndSelectionState:@"" returnDatePrompt:@""];
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@""
+                                                                                                      endSelectionHint:@""
+                                                                                                   startSelectionState:@""
+                                                                                                     endSelectionState:@""
+                                                                                                 betweenSelectionState:@""
+                                                                                             startAndEndSelectionState:@""
+                                                                                                      returnDatePrompt:@""];
 
     XCTAssertFalse([c1 shouldClearSelectedDates:@[self.date1] whenSelectingDate:self.date2]);
 }
 
 - (void)rangeConfigShouldClearSelectedDatesWhenSelectingDateBeforeFirst {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"" endSelectionHint:@"" startSelectionState:@"" endSelectionState:@"" betweenSelectionState:@"" startAndEndSelectionState:@"" returnDatePrompt:@""];
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@""
+                                                                                                      endSelectionHint:@""
+                                                                                                   startSelectionState:@""
+                                                                                                     endSelectionState:@""
+                                                                                                 betweenSelectionState:@""
+                                                                                             startAndEndSelectionState:@""
+                                                                                                      returnDatePrompt:@""];
 
     XCTAssertTrue([c1 shouldClearSelectedDates:@[self.date2] whenSelectingDate:self.date1]);
     XCTAssertTrue([c1 shouldClearSelectedDates:(@[self.date2, self.date3]) whenSelectingDate:self.date1]);
 }
 
-
 - (void)rangeConfigShouldClearSelectedDatesWhenSelectingThirdDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"" endSelectionHint:@"" startSelectionState:@"" endSelectionState:@"" betweenSelectionState:@"" startAndEndSelectionState:@"" returnDatePrompt:@""];
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@""
+                                                                                                      endSelectionHint:@""
+                                                                                                   startSelectionState:@""
+                                                                                                     endSelectionState:@""
+                                                                                                 betweenSelectionState:@""
+                                                                                             startAndEndSelectionState:@""
+                                                                                                      returnDatePrompt:@""];
 
     XCTAssertTrue([c1 shouldClearSelectedDates:(@[self.date1, self.date2]) whenSelectingDate:self.date3]);
     XCTAssertTrue([c1 shouldClearSelectedDates:(@[self.date1, self.date3]) whenSelectingDate:self.date2]);
 }
 
--(void)testSingleAccessibilityHintSelectedDate {
+- (void)testSingleAccessibilityHintSelectedDate {
     BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"SELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date1]];
@@ -103,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertNil(hint);
 }
 
--(void)testSingleAccessibilityHintDeselectedDate {
+- (void)testSingleAccessibilityHintDeselectedDate {
     BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"SELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date2]];
@@ -111,7 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(hint, @"SELECTION_HINT");
 }
 
--(void)testSingleAccessibilityLabelIsUnchanged {
+- (void)testSingleAccessibilityLabelIsUnchanged {
     BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"SELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date1 selectedDates:@[self.date2] baseLabel:@"BASE_LABEL"];
@@ -119,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertEqual(hint, @"BASE_LABEL");
 }
 
--(void)testSingleAccessibilityPromptIsNil {
+- (void)testSingleAccessibilityPromptIsNil {
     BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationSingle alloc] initWithSelectionHint:@"SELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityInstructionHavingSelectedDates:@[self.date1]];
@@ -127,256 +150,232 @@ NS_ASSUME_NONNULL_BEGIN
     XCTAssertNil(hint);
 }
 
--(void)testMultipleAccessibilityHintSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT" deselectionHint:@"DESELECTION_HINT"];
+- (void)testMultipleAccessibilityHintSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT"
+                                                                                                     deselectionHint:@"DESELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date1]];
 
     XCTAssertEqual(hint, @"DESELECTION_HINT");
 }
 
--(void)testMultipleAccessibilityHintDeselectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT" deselectionHint:@"DESELECTION_HINT"];
+- (void)testMultipleAccessibilityHintDeselectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT"
+                                                                                                     deselectionHint:@"DESELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date2]];
 
     XCTAssertEqual(hint, @"SELECTION_HINT");
 }
 
--(void)testMultipleAccessibilityLabelIsUnchanged {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT" deselectionHint:@"DESELECTION_HINT"];
+- (void)testMultipleAccessibilityLabelIsUnchanged {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT"
+                                                                                                     deselectionHint:@"DESELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date1 selectedDates:@[self.date2] baseLabel:@"BASE_LABEL"];
 
     XCTAssertEqual(hint, @"BASE_LABEL");
 }
 
--(void)testMultipleAccessibilityPromptIsNil {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT" deselectionHint:@"DESELECTION_HINT"];
+- (void)testMultipleAccessibilityPromptIsNil {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationMultiple alloc] initWithSelectionHint:@"SELECTION_HINT"
+                                                                                                     deselectionHint:@"DESELECTION_HINT"];
 
     NSString *hint = [c1 accessibilityInstructionHavingSelectedDates:@[self.date1]];
 
     XCTAssertNil(hint);
 }
 
--(void)testRangeAccessibilityHintNoSelectedDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintNoSelectedDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[]];
 
     XCTAssertEqual(hint, @"FIRST_HINT");
 }
 
--(void)testRangeAccessibilityHintBeforeSelectedDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintBeforeSelectedDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date2, self.date3]];
 
     XCTAssertEqual(hint, @"FIRST_HINT");
 }
 
--(void)testRangeAccessibilityHintBetweenSelectedDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintBetweenSelectedDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date2 selectedDates:@[self.date1, self.date3]];
 
     XCTAssertEqual(hint, @"FIRST_HINT");
 }
 
--(void)testRangeAccessibilityHintAfterSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintAfterSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date2 selectedDates:@[self.date1]];
 
     XCTAssertEqual(hint, @"SECOND_HINT");
 }
 
--(void)testRangeAccessibilityHintSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date1 selectedDates:@[self.date1]];
 
     XCTAssertEqual(hint, @"SECOND_HINT");
 }
 
--(void)testRangeAccessibilityHintAfterSelectedDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityHintAfterSelectedDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityHintForDate:self.date2 selectedDates:@[self.date1, self.date1]];
 
     XCTAssertEqual(hint, @"FIRST_HINT");
 }
 
--(void)testRangeAccessibilityLabelUnselectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityLabelUnselectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date1 selectedDates:@[self.date2, self.date3] baseLabel:@"BASE_LABEL"];
 
     XCTAssertEqual(hint, @"BASE_LABEL");
 }
 
--(void)testRangeAccessibilityLabelFirstSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityLabelFirstSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date1 selectedDates:@[self.date1, self.date2] baseLabel:@"BASE_LABEL"];
 
     XCTAssertTrue([hint isEqualToString:@"BASE_LABEL, FIRST_STATE"]);
 }
 
--(void)testRangeAccessibilityLabelSecondSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityLabelSecondSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date2 selectedDates:@[self.date1, self.date2] baseLabel:@"BASE_LABEL"];
 
     XCTAssertTrue([hint isEqualToString:@"BASE_LABEL, SECOND_STATE"]);
 }
 
--(void)testRangeAccessibilityLabelBetweenSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityLabelBetweenSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date2 selectedDates:@[self.date1, self.date3] baseLabel:@"BASE_LABEL"];
 
     XCTAssertTrue([hint isEqualToString:@"BASE_LABEL, BETWEEN_STATE"]);
 }
 
--(void)testRangeAccessibilityLabelBothSelectedDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityLabelBothSelectedDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityLabelForDate:self.date1 selectedDates:@[self.date1, self.date1] baseLabel:@"BASE_LABEL"];
 
     XCTAssertTrue([hint isEqualToString:@"BASE_LABEL, BOTH_STATE"]);
 }
 
--(void)testRangeAccessibilityPromptNoDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityPromptNoDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityInstructionHavingSelectedDates:@[]];
 
     XCTAssertEqual(hint, nil);
 }
 
--(void)testRangeAccessibilityPromptOneDate {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityPromptOneDate {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityInstructionHavingSelectedDates:@[self.date1]];
 
     XCTAssertEqual(hint, @"RETURN_PROMPT");
 }
 
--(void)testRangeAccessibilityPromptTwoDates {
-    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc]
-                                             initWithStartSelectionHint:@"FIRST_HINT"
-                                             endSelectionHint:@"SECOND_HINT"
-                                             startSelectionState:@"FIRST_STATE"
-                                             endSelectionState:@"SECOND_STATE"
-                                             betweenSelectionState:@"BETWEEN_STATE"
-                                             startAndEndSelectionState:@"BOTH_STATE"
-                                             returnDatePrompt:@"RETURN_PROMPT"
-                                             ];
+- (void)testRangeAccessibilityPromptTwoDates {
+    BPKCalendarSelectionConfiguration *c1 = [[BPKCalendarSelectionConfigurationRange alloc] initWithStartSelectionHint:@"FIRST_HINT"
+                                                                                                      endSelectionHint:@"SECOND_HINT"
+                                                                                                   startSelectionState:@"FIRST_STATE"
+                                                                                                     endSelectionState:@"SECOND_STATE"
+                                                                                                 betweenSelectionState:@"BETWEEN_STATE"
+                                                                                             startAndEndSelectionState:@"BOTH_STATE"
+                                                                                                      returnDatePrompt:@"RETURN_PROMPT"];
 
     NSString *hint = [c1 accessibilityInstructionHavingSelectedDates:@[self.date1, self.date2]];
 

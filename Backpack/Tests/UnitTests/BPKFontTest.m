@@ -83,7 +83,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testAttributedStringWithCustomFontFaces {
-    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBodyLongform content:@"Test" textColor:UIColor.purpleColor];
+    NSAttributedString *attributedString = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextBodyLongform
+                                                                          content:@"Test"
+                                                                        textColor:UIColor.purpleColor];
 
     NSDictionary<NSAttributedStringKey, id> *attributes = [attributedString attributesAtIndex:0
                                                                         longestEffectiveRange:nil
@@ -95,17 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)testFontWithStyle {
-    BPKFontStyle styles[] = {BPKFontStyleTextBodyDefault,
-                             BPKFontStyleTextCaption,
-                             BPKFontStyleTextBodyLongform,
-                             BPKFontStyleTextFootnote,
-                             BPKFontStyleTextLabel2,
-                             BPKFontStyleTextSubheading,
-                             BPKFontStyleTextHeading5,
-                             BPKFontStyleTextHeading4,
-                             BPKFontStyleTextHeading3,
-                             BPKFontStyleTextHeading2,
-                             BPKFontStyleTextHeading1};
+    BPKFontStyle styles[] = {BPKFontStyleTextBodyDefault, BPKFontStyleTextCaption,    BPKFontStyleTextBodyLongform, BPKFontStyleTextFootnote,
+                             BPKFontStyleTextLabel2,      BPKFontStyleTextSubheading, BPKFontStyleTextHeading5,     BPKFontStyleTextHeading4,
+                             BPKFontStyleTextHeading3,    BPKFontStyleTextHeading2,   BPKFontStyleTextHeading1};
 
     for (NSUInteger i = 0; i < sizeof(styles) / sizeof(styles[0]); i++) {
         BPKFontStyle style = styles[i];

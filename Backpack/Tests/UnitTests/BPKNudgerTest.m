@@ -28,13 +28,12 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKNudgerTest
 
--(BPKNudgerConfiguration *)nudgerConfiguration {
-    BPKNudgerConfiguration *nudgerConfiguration = [[BPKNudgerConfiguration alloc]
-                                                   initWithLabel:@"Passengers"
-                                                   valueFormatter:^(double value) {
-            return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
-        }
-    ];
+- (BPKNudgerConfiguration *)nudgerConfiguration {
+    BPKNudgerConfiguration *nudgerConfiguration =
+        [[BPKNudgerConfiguration alloc] initWithLabel:@"Passengers"
+                                       valueFormatter:^(double value) {
+                                         return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
+                                       }];
     return nudgerConfiguration;
 }
 

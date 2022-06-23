@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-
 #import "BPKIconsTestsUtils.h"
 
 @implementation BPKIconsTestsUtils

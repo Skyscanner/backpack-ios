@@ -31,7 +31,7 @@
         int correctMinorVersion = 2;                                                                                                                 \
         NSString *deviceName = [[UIDevice currentDevice] name];                                                                                      \
         NSOperatingSystemVersion deviceOSVersion = [[NSProcessInfo processInfo] operatingSystemVersion];                                             \
-        BOOL validDevice = [deviceName containsString:correctDeviceName];                                                                                   \
+        BOOL validDevice = [deviceName containsString:correctDeviceName];                                                                            \
         if (deviceOSVersion.majorVersion != correctMajorVersion) {                                                                                   \
             validDevice = NO;                                                                                                                        \
         }                                                                                                                                            \
@@ -78,13 +78,15 @@
 
 #define BPKSnapshotViewApplyDarkMode(view__)                                                                                                         \
     {                                                                                                                                                \
-        if (view__ == nil) { return; }                                                                                                               \
+        if (view__ == nil) {                                                                                                                         \
+            return;                                                                                                                                  \
+        }                                                                                                                                            \
         NSArray *subviews__ = view__.subviews;                                                                                                       \
-        for (UIVIew *subview__ in subviews__) {                                                                                                      \
+        for (UIVIew * subview__ in subviews__) {                                                                                                     \
             [subview__ traitCollectionDidChange:[UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark]];                 \
             BPKSnapshotViewApplyDarkMode(subview__);                                                                                                 \
         }                                                                                                                                            \
-    }                                                                                                                                                \
+    }
 
 #else
 #define BPKSnapshotVerifyViewDark(view__, identifier__)                                                                                              \

@@ -33,12 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createNudgerWithValue:(double)value {
-    BPKNudgerConfiguration *nudgerConfiguration = [[BPKNudgerConfiguration alloc]
-               initWithLabel:@"Passengers"
-               valueFormatter:^(double value) {
-            return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
-        }
-    ];
+    BPKNudgerConfiguration *nudgerConfiguration =
+        [[BPKNudgerConfiguration alloc] initWithLabel:@"Passengers"
+                                       valueFormatter:^(double value) {
+                                         return [NSNumberFormatter localizedStringFromNumber:@(value) numberStyle:NSNumberFormatterDecimalStyle];
+                                       }];
 
     BPKNudger *view = [[BPKNudger alloc] initWithConfiguration:nudgerConfiguration];
     view.minimumValue = 1;

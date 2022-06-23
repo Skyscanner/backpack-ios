@@ -28,25 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKLabelTest
 
 - (void)testInitWithFontStyle {
-    BPKFontStyle styles[] = {
-        BPKFontStyleTextHero1,
-        BPKFontStyleTextHero2,
-        BPKFontStyleTextHero3,
-        BPKFontStyleTextHero4,
-        BPKFontStyleTextHero5,
-        BPKFontStyleTextHeading5,
-        BPKFontStyleTextHeading4,
-        BPKFontStyleTextHeading3,
-        BPKFontStyleTextHeading2,
-        BPKFontStyleTextHeading1,
-        BPKFontStyleTextSubheading,
-        BPKFontStyleTextBodyLongform,
-        BPKFontStyleTextBodyDefault,
-        BPKFontStyleTextLabel2,
-        BPKFontStyleTextLabel1,
-        BPKFontStyleTextFootnote,
-        BPKFontStyleTextCaption
-    };
+    BPKFontStyle styles[] = {BPKFontStyleTextHero1,       BPKFontStyleTextHero2,    BPKFontStyleTextHero3,      BPKFontStyleTextHero4,
+                             BPKFontStyleTextHero5,       BPKFontStyleTextHeading5, BPKFontStyleTextHeading4,   BPKFontStyleTextHeading3,
+                             BPKFontStyleTextHeading2,    BPKFontStyleTextHeading1, BPKFontStyleTextSubheading, BPKFontStyleTextBodyLongform,
+                             BPKFontStyleTextBodyDefault, BPKFontStyleTextLabel2,   BPKFontStyleTextLabel1,     BPKFontStyleTextFootnote,
+                             BPKFontStyleTextCaption};
 
     NSUInteger length = sizeof(styles) / sizeof(styles[0]);
     UIColor *expectedColor = BPKColor.textPrimaryColor;
@@ -82,10 +68,13 @@ NS_ASSUME_NONNULL_BEGIN
 
     [label setFontStyle:BPKFontStyleTextHeading2 range:range3];
 
-    NSMutableDictionary<NSAttributedStringKey, id> *range1Attributes = [[label.attributedText attributesAtIndex:range1.location + 1 effectiveRange:&range1] mutableCopy];
-    NSMutableDictionary<NSAttributedStringKey, id> *range2Attributes = [[label.attributedText attributesAtIndex:range2.location + 1 effectiveRange:&range2] mutableCopy];
-    NSMutableDictionary<NSAttributedStringKey, id> *range3Attributes = [[label.attributedText attributesAtIndex:range3.location + 1 effectiveRange:&range3] mutableCopy];
-    
+    NSMutableDictionary<NSAttributedStringKey, id> *range1Attributes = [[label.attributedText attributesAtIndex:range1.location + 1
+                                                                                                 effectiveRange:&range1] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *range2Attributes = [[label.attributedText attributesAtIndex:range2.location + 1
+                                                                                                 effectiveRange:&range2] mutableCopy];
+    NSMutableDictionary<NSAttributedStringKey, id> *range3Attributes = [[label.attributedText attributesAtIndex:range3.location + 1
+                                                                                                 effectiveRange:&range3] mutableCopy];
+
     // Needed because of the way paragraph style attribute is applied automatically by the system
     range1Attributes[NSParagraphStyleAttributeName] = nil;
     range2Attributes[NSParagraphStyleAttributeName] = nil;
