@@ -45,7 +45,7 @@ extension MockImage {
 public class TestBundle: NSObject {
     public static var iconsBundle: Bundle {
         guard
-            let url = Bundle(for: TestBundle.self).resourceURL?.appendingPathComponent("TestImages.bundle"),
+            let url = Bundle(for: TestBundle.self).resourceURL?.appendingPathComponent("UnitTestImages.bundle"),
             let bundle = Bundle(url: url)
         else {
             return .main
