@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
   s.test_spec 'SnapshotTests' do |test_spec|
     test_spec.dependency 'iOSSnapshotTestCase', '~> 6.2.0'
-    test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m,png}'
+    test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'
     test_spec.ios.resource_bundle = {
     'SnapshotTestImages' => 'Backpack/Tests/SnapshotTests/Images*'
   }
