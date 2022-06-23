@@ -58,6 +58,97 @@ extension StoryIcon: BPKHorizontalNavigationOptionIcon {
     }
 }
 
+class HorizontalNavigationItemWithBackground<
+    Size: BPKHorizontalNavigationSize
+>: UIButton, BPKHorizontalNavigationItem {
+    // MARK: - BPKHorizontalNavigationItem
+
+    public var selectedColor: UIColor? = BPKColor.primaryColor
+
+    public var appearance: BPKHorizontalNavigationAppearance = .normal
+
+    // MARK: Implementaiton
+
+    let title: String
+
+    @objc
+    public init(title: String) {
+        self.title = title
+
+        super.init(frame: .zero)
+
+        setUp()
+    }
+
+    func setUp() {
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: BPKSpacingBase, bottom: 0, right: BPKSpacingBase)
+        updateStyle()
+    }
+
+    func updateTitle() {
+        let fontStyle = Size.fontStyle
+        var textColor = BPKColor.textPrimaryColor
+
+        if isSelected || isHighlighted {
+            textColor = .white
+        }
+
+        let attributedString = BPKFont.makeAttributedString(
+            fontStyle: fontStyle, content: title, textColor: textColor
+        )
+
+        setAttributedTitle(attributedString, for: .normal)
+    }
+
+    func updateBackground() {
+        if isSelected {
+            self.backgroundColor = selectedColor
+        } else if isHighlighted {
+            self.backgroundColor = selectedColor?.withAlphaComponent(0.6)
+        } else {
+            self.backgroundColor = .clear
+        }
+    }
+
+    func updateStyle() {
+        updateTitle()
+        updateBackground()
+    }
+
+    // MARK: - Overrides
+
+    override public var isSelected: Bool {
+        didSet {
+            updateStyle()
+        }
+    }
+
+    override public var isHighlighted: Bool {
+        didSet {
+            updateStyle()
+        }
+    }
+
+    override public var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + 2 * BPKSpacingBase, height: size.height)
+    }
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            updateStyle()
+        }
+    }
+
+    // MARK: - Coder
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 // swiftlint:disable:next type_name
 struct CustomHorizontalNavigationOptionWithBackground<
     Size: BPKHorizontalNavigationSize

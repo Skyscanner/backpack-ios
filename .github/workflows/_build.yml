@@ -110,10 +110,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant:
-          - common
-          - uikit
-          - swiftui
+        tests: [uitests, uikit, swiftui]
+        analysis: [common, uikit, swiftui]
 
     steps:
       - name: Checkout code
@@ -145,8 +143,11 @@ jobs:
       - name: Select Xcode 13
         run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
 
-      - name: Build and Test
-        run: ./scripts/ci ${{ matrix.variant }}
+      - name: Run Tests
+        run: ./scripts/ci ${{ matrix.tests }}
+      
+      - name: Analyze
+        run: ./scripts/ci ${{ matrix.analysis }}
 
   UploadArtifacts:
     name: Build Backpack

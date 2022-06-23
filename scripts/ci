@@ -32,35 +32,66 @@ function ci_common() {
     analyze "Backpack-Common"
 } 
 
-function ci_uikit() {
-    echo "Running UIKit analysis"
-    analyze "Backpack Native"
-    echo "Running UIKit tests"
-    runTests "Backpack Native"
+function ci_uitests() {
+    echo "Running UITests tests"
+    runTests "Backpack-UI-Tests"
 }
 
-function ci_swiftui() {
+function ci_uikit_analysis() {
+    echo "Running UIKit analysis"
+    analyze "Backpack Native"
+}
+
+function ci_uikit_tests() {
+    echo "Running UIKit tests"
+    runTests "Backpack-Snapshot-Tests"
+    runTests "Backpack-Unit-Tests"
+}
+
+function ci_swiftui_analysis() {
     echo "Running SwiftUI analysis"
     analyze "Backpack SwiftUI"
+}
+
+function ci_swiftui_tests() {
     echo "Running SwiftUI tests"
     runTests "Backpack SwiftUI"
 }
 
-function check_modules() {
+function runTests() {
     if [ $1 == "uikit" ]; then
-        ci_uikit
+        ci_uikit_tests
+    elif [ $1 == "uitests" ]; then
+        ci_uitests
     elif [ $1 == "swiftui" ]; then
-        ci_swiftui
+        ci_swiftui_tests
+    fi
+}
+
+function analyze() {
+    if [ $1 == "uikit" ]; then
+        ci_uikit_analysis
+    elif [ $1 == "swiftui" ]; then
+        ci_swiftui_analysis
     elif [ $1 == "common" ]; then
         ci_common
     fi
 }
 
-if [ $# -eq 0 ]; then
+function check_modules() {
+    if [ $2 == "test" ]; then
+        runTests $1
+    elif [ $2 == "analysis" ]; then
+        analyze $1
+    fi
+}
+
+if [ $# -lt 2 ]; then
     echo "No arguments provided. Running all tests."
-    check_modules "uikit"
-    check_modules "swiftui"
-    check_modules "common"
+    check_modules "uikit" "test"
+    check_modules "swiftui" "test"
+    check_modules "common" "test"
+    check_modules "uitests" "test"
 else
-    check_modules $1
+    check_modules $1 $2
 fi

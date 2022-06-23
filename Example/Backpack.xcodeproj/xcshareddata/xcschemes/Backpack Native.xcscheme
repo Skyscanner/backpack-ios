@@ -20,20 +20,6 @@
                ReferencedContainer = "container:Backpack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Backpack_Tests.xctest"
-               BlueprintName = "Backpack_Tests"
-               ReferencedContainer = "container:Backpack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -59,40 +45,19 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "IMAGE_DIFF_DIR"
-            value = "$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs"
+            value = "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "FB_REFERENCE_IMAGE_DIR"
-            value = "$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages"
+            value = "$(SOURCE_ROOT)/../Backpack/Tests/SnapshotTests/ReferenceImages"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
       <Testables>
          <TestableReference
             skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Backpack_Tests.xctest"
-               BlueprintName = "Backpack_Tests"
-               ReferencedContainer = "container:Backpack.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D6D81D42213FEE800013BB96"
-               BuildableName = "Backpack_SnapshotTests.xctest"
-               BlueprintName = "Backpack_SnapshotTests"
-               ReferencedContainer = "container:Backpack.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
+            parallelizable = "YES"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -103,12 +68,38 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "938411F25C58CF28B1E7322BEFB38F1A"
                BuildableName = "Backpack-SwiftUI-Unit-Tests.xctest"
                BlueprintName = "Backpack-SwiftUI-Unit-Tests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "140CE9B355533F5C3471D70AACB99385"
+               BuildableName = "Backpack-Unit-SnapshotTests.xctest"
+               BlueprintName = "Backpack-Unit-SnapshotTests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4D1E70FFC57A3E87B50E67DC59C8EC69"
+               BuildableName = "Backpack-Unit-UnitTests.xctest"
+               BlueprintName = "Backpack-Unit-UnitTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </TestableReference>

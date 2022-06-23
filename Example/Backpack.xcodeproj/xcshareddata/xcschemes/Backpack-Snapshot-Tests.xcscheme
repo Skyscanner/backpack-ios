@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "938411F25C58CF28B1E7322BEFB38F1A"
-               BuildableName = "Backpack-SwiftUI-Unit-Tests.xctest"
-               BlueprintName = "Backpack-SwiftUI-Unit-Tests"
+               BlueprintIdentifier = "140CE9B355533F5C3471D70AACB99385"
+               BuildableName = "Backpack-Unit-SnapshotTests.xctest"
+               BlueprintName = "Backpack-Unit-SnapshotTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,16 +30,21 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "938411F25C58CF28B1E7322BEFB38F1A"
-            BuildableName = "Backpack-SwiftUI-Unit-Tests.xctest"
-            BlueprintName = "Backpack-SwiftUI-Unit-Tests"
+            BlueprintIdentifier = "140CE9B355533F5C3471D70AACB99385"
+            BuildableName = "Backpack-Unit-SnapshotTests.xctest"
+            BlueprintName = "Backpack-Unit-SnapshotTests"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "SNAPSHOT_ARTIFACTS"
-            value = "$(SOURCE_ROOT)/../BackpackTests/FailureDiffs"
+            key = "IMAGE_DIFF_DIR"
+            value = "$(SOURCE_ROOT)/../../BackpackTests/FailureDiffs"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "FB_REFERENCE_IMAGE_DIR"
+            value = "$(SOURCE_ROOT)/../../Backpack/Tests/SnapshotTests/ReferenceImages"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -50,9 +55,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "938411F25C58CF28B1E7322BEFB38F1A"
-               BuildableName = "Backpack-SwiftUI-Unit-Tests.xctest"
-               BlueprintName = "Backpack-SwiftUI-Unit-Tests"
+               BlueprintIdentifier = "140CE9B355533F5C3471D70AACB99385"
+               BuildableName = "Backpack-Unit-SnapshotTests.xctest"
+               BlueprintName = "Backpack-Unit-SnapshotTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -75,6 +80,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "140CE9B355533F5C3471D70AACB99385"
+            BuildableName = "Backpack-Unit-SnapshotTests.xctest"
+            BlueprintName = "Backpack-Unit-SnapshotTests"
+            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

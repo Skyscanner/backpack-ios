@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
   }
   s.ios.deployment_target = '14.0'
   s.source_files = 'Backpack/Backpack.h', 'Backpack/Common.h', 'Backpack/*/Classes/**/*.{h,m,swift}'
+  s.exclude_files = 'Backpack/Tests/**'
   s.public_header_files = 'Backpack/Backpack.h', 'Backpack/*/Classes/**/*.h'
 
   s.dependency 'FSCalendar', '~> 2.8.2'
@@ -43,4 +44,20 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
   s.requires_arc = true
   s.swift_versions = ['5.0', '4.2', '4.0']
+
+  s.test_spec 'SnapshotTests' do |test_spec|
+    test_spec.dependency 'iOSSnapshotTestCase', '~> 6.2.0'
+    test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m,png}'
+    test_spec.ios.resource_bundle = {
+    'SnapshotTestImages' => 'Backpack/Tests/SnapshotTests/Images*'
+  }
+  end  
+
+  s.test_spec 'UnitTests' do |test_spec|
+    test_spec.dependency 'OCMock', '~> 3.8.1'
+    test_spec.source_files = 'Backpack/Tests/UnitTests/**/*.{swift,h,m}'
+    test_spec.ios.resource_bundle = {
+    'UnitTestImages' => 'Backpack/Tests/UnitTests/Images*'
+  }
+  end  
 end
