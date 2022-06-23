@@ -21,7 +21,11 @@ const rename = require('gulp-rename');
 const swiftUI = (generate) => {
   return [
     { name: 'Spacing' },
-    { name: 'Shadow' },
+    {
+      destinationFolder: 'Shadow',
+      generatedFileName: 'Shadow+Generated',
+      templateName: 'Shadow'
+    },
     {
       destinationFolder: 'Font',
       generatedFileName: 'FontStyle',
