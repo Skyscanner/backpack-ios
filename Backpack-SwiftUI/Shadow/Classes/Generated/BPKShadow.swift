@@ -53,14 +53,3 @@ public extension View {
         )
     }
 }
-
-extension View {
-    @ViewBuilder
-    func shadow(_ shadow: BPKShadow?) -> some View {
-        if let shadow = shadow {
-            self.shadow(shadow)
-        } else {
-            self
-        }
-    }
-}
