@@ -40,6 +40,13 @@ class BPKCardViewTests: XCTestCase {
         )
     }
 
+    func testCardNoShadow() {
+        assertSnapshot(
+            BPKCard(elevation: .none) { content("No Shadow") }
+                .padding()
+        )
+    }
+    
     func testCardNotPadded() {
         assertSnapshot(
             BPKCard(padding: .none) { content("Not Padded") }
