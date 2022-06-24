@@ -27,40 +27,37 @@ function runTests() {
         ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
-function ci_common() {
-    echo "Running common analysis"
-    analyze "Backpack-Common"
-} 
-
-function ci_uikit() {
-    echo "Running UIKit analysis"
-    analyze "Backpack Native"
-    echo "Running UIKit tests"
-    runTests "Backpack Native"
-}
-
-function ci_swiftui() {
-    echo "Running SwiftUI analysis"
-    analyze "Backpack SwiftUI"
-    echo "Running SwiftUI tests"
-    runTests "Backpack SwiftUI"
-}
-
 function check_modules() {
-    if [ $1 == "uikit" ]; then
-        ci_uikit
-    elif [ $1 == "swiftui" ]; then
-        ci_swiftui
-    elif [ $1 == "common" ]; then
-        ci_common
+    if [ $2 == "test" ]; then
+        if [ $1 == "uikit" ]; then
+            runTests "Backpack-Snapshot-Tests"
+            runTests "Backpack-Unit-Tests"
+
+        elif [ $1 == "uitests" ]; then
+            runTests "Backpack-UI-Tests"
+
+        elif [ $1 == "swiftui" ]; then
+            runTests "Backpack SwiftUI"
+        fi
+    elif [ $2 == "analysis" ]; then
+        if [ $1 == "uikit" ]; then
+            analyze "Backpack Native"
+
+        elif [ $1 == "swiftui" ]; then
+            analyze "Backpack SwiftUI"
+
+        elif [ $1 == "common" ]; then
+            analyze "Backpack-Common"
+        fi
     fi
 }
 
-if [ $# -eq 0 ]; then
+if [ $# -lt 2 ]; then
     echo "No arguments provided. Running all tests."
-    check_modules "uikit"
-    check_modules "swiftui"
-    check_modules "common"
+    check_modules "uikit" "test"
+    check_modules "swiftui" "test"
+    check_modules "common" "test"
+    check_modules "uitests" "test"
 else
-    check_modules $1
+    check_modules $1 $2
 fi
