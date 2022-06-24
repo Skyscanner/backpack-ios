@@ -30,6 +30,9 @@ struct CardExampleView: View {
                 BPKCard(elevation: .focus) {
                     content(title: "Focused")
                 }
+                BPKCard(elevation: .none) {
+                    content(title: "Not elevated")
+                }
                 BPKCard(padding: .none) {
                     content(title: "Not Padded")
                 }

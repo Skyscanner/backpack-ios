@@ -99,6 +99,26 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (UIView *)createViewSnapshotWithoutElevation {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKCard *card = [[BPKCard alloc] initWithPadded:NO cornerStyle:BPKCardCornerStyleLarge];
+    card.isElevated = NO;
+    UIView *innerView = [[UIView alloc] initWithFrame:CGRectZero];
+    innerView.backgroundColor = [BPKColor panjin];
+
+    [self configureCard:card withInnerView:innerView];
+    [self configureParentView:parentView forCard:card];
+    return parentView;
+}
+
+- (void)testViewSnapshotWithoutElevation {
+    UIView *lightView = [self createViewSnapshotWithoutElevation];
+    UIView *darkView = [self createViewSnapshotWithoutElevation];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 - (UIView *)createViewSnapshotWithPadded {
     UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
     BPKCard *card = [[BPKCard alloc] initWithPadded:YES];

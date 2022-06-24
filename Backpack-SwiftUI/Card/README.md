@@ -26,6 +26,7 @@ BPKCard(padding: .none) {
 Set the elevation to:
 * `.default`
 * `.focus`
+* `.none`
 
 ```swift
 BPKCard(elevation: .focus) {

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import SwiftUI
 
 public struct BPKShadow {
@@ -34,13 +34,17 @@ public struct BPKShadow {
     }
 }
 
-public extension BPKShadow {
-    
-    /// The Skyscanner large shadow.
-    static let lg = BPKShadow(color: .shadowLgColor, radius: 16, offset: Offset(x: 0, y: 4), opacity: 0.15)
-
-    /// The Skyscanner small shadow.
-    static let sm = BPKShadow(color: .shadowSmColor, radius: 3, offset: Offset(x: 0, y: 1), opacity: 0.15)
+extension View {
+    /// This method is internal by design.
+    /// It is not meant to be used by third-parties.
+    @ViewBuilder
+    func shadow(_ shadow: BPKShadow?) -> some View {
+        if let shadow = shadow {
+            self.shadow(shadow)
+        } else {
+            self
+        }
+    }
 }
 
 public extension View {

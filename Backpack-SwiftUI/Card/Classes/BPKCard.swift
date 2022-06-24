@@ -24,10 +24,14 @@ public struct BPKCard<Content: View>: View {
     }
 
     public enum Elevation {
-        case `default`, focus
+        case `default`, focus, none
 
-        var shadow: BPKShadow {
-            self == .focus ? .lg : .sm
+        var shadow: BPKShadow? {
+            switch self {
+            case .none: return nil
+            case .focus: return .lg
+            case .`default`: return .sm
+            }
         }
 
         var backgroundColor: BPKColor {
@@ -77,7 +81,7 @@ public struct BPKCard<Content: View>: View {
         ))
         .shadow(elevation.shadow)
     }
-
+    
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {
         var result = self
         result.tapAction = perform
