@@ -35,6 +35,8 @@ public struct BPKShadow {
 }
 
 extension View {
+    /// This method is internal by design.
+    /// It is not meant to be used by third-parties.
     @ViewBuilder
     func shadow(_ shadow: BPKShadow?) -> some View {
         if let shadow = shadow {
