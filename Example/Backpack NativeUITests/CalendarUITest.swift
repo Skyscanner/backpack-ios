@@ -18,7 +18,7 @@
 
 import XCTest
 
-class CalendarUITest: BackpackUITestCase {
+final class CalendarUITest: BackpackUITestCase {
     private func goToPreselectedDatesCalendar(_ app: XCUIApplication) {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Calendar"].tap()
@@ -96,5 +96,18 @@ class CalendarUITest: BackpackUITestCase {
         XCTAssertFalse(app.cells["March 16, 2020"].isSelected)
         XCTAssertFalse(app.cells["March 10, 2020"].isSelected)
         XCTAssertFalse(app.cells["March 13, 2020"].isSelected)
+    }
+    
+    func testCanSelectWholeMonth() {
+        let app = XCUIApplication()
+        app.tables.staticTexts["Calendar"].tap()
+        app.tables.staticTexts["With select whole month button"].tap()
+        app.buttons["Range"].tap()
+        
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery.buttons["Select whole month"].firstMatch.tap()
+        
+        XCTAssertTrue(app.cells["February 1, 2020, Selected as departure date"].isSelected)
+        XCTAssertTrue(app.cells["February 29, 2020, Selected as return date"].isSelected)
     }
 }

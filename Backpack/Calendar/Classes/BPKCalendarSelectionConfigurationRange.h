@@ -93,6 +93,30 @@ NS_ASSUME_NONNULL_BEGIN
                  startAndEndSelectionState:(NSString *)startAndEndSelectionState
                           returnDatePrompt:(NSString *)returnDatePrompt;
 
+/**
+ * Create a multi-selection configuration with given accessibility strings.
+ *
+ * @param startSelectionHint The hint provided to assistive technologies informing a user how to select the first date in the range.
+ * @param endSelectionHint The hint provided to assistive technologies informing a user how to select the second date in the range.
+ * @param startSelectionState The label provided to assistive technologies informing a user that a date is selected as the first date in the range.
+ * @param endSelectionState The label provided to assistive technologies informing a user that a date is selected as the second date in the range.
+ * @param betweenSelectionState The label provided to assistive technologies informing a user that a date lies between the first and second selected
+ * dates.
+ * @param startAndEndSelectionState The label provided to assistive technologies informing a user that a date is selected as both the first and second
+ * date in the range.
+ * @param returnDatePrompt The prompt provided to assistive technologies informing a user that they should now select a second date.
+ * * @param wholeMonthTitle The title of the whole month button, if it's `nil` or empty then the button won't be visible.
+ * @return A selection configuration.
+ */
+- (instancetype)initWithStartSelectionHint:(NSString *)startSelectionHint
+                          endSelectionHint:(NSString *)endSelectionHint
+                       startSelectionState:(NSString *)startSelectionState
+                         endSelectionState:(NSString *)endSelectionState
+                     betweenSelectionState:(NSString *)betweenSelectionState
+                 startAndEndSelectionState:(NSString *)startAndEndSelectionState
+                          returnDatePrompt:(NSString *)returnDatePrompt
+                        andWholeMonthTitle:(NSString *_Nullable)wholeMonthTitle;
+
 @end
 
 NS_ASSUME_NONNULL_END

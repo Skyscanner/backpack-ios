@@ -21,6 +21,8 @@
 @class BPKCalendarConfiguration;
 @class BPKCalendarSelectionConfiguration;
 
+@protocol BPKMonthDateProvider;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -63,10 +65,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id _Nullable)calendar:(BPKCalendar *)calendar cellDataForDate:(BPKSimpleDate *)date;
 
+/**
+ * Called when a whole month is selected.
+ *
+ * @param calendar The backpack calendar.
+ * @param dateList The selected dates that represent the whole month selected.
+ */
+- (void)calendar:(BPKCalendar *)calendar didSelectWholeMonth:(NSArray<BPKSimpleDate *> *)dateList;
+
 @end
 
 /**
- * `BPKCalendar` is a subclass of `FSCalendar` configured with Skyscanner style properties.
+ * `BPKCalendar` contains a `FSCalendar` configured with Skyscanner style properties.
  */
 @interface BPKCalendar : UIView
 
@@ -81,12 +91,19 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param minDate The minimum date that can be selected in the calendar.
  * @param maxDate The maximum date that can be selected in the calendar.
+ * @param configuration The configuration to use. By default this will be `BPKCalendarTrafficLightConfiguration`
+ * @see BPKCalendarTrafficLightConfiguration
  * @param selectionConfiguration The configuration to use to handle selection logic.
+ * @param calendar An object that defines the relationships between calendar units (such as eras, years, and weekdays) and absolute points in time.
+ * @param dateProvider The one responsible for the logic related to dates calculation.
  * @return A configured calendar.
  */
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
                         maxDate:(BPKSimpleDate *)maxDate
-         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration NS_DESIGNATED_INITIALIZER;
+                  configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration
+                       calendar:(NSCalendar *)calendar
+                   dateProvider:(id<BPKMonthDateProvider>)dateProvider NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a calendar with given minimum date and maximum date.
@@ -101,6 +118,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
                         maxDate:(BPKSimpleDate *)maxDate
                   configuration:(BPKCalendarConfiguration *)configuration
+         selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
+
+/**
+ * Create a calendar with given minimum date and maximum date.
+ *
+ * @param minDate The minimum date that can be selected in the calendar.
+ * @param maxDate The maximum date that can be selected in the calendar.
+ * @param selectionConfiguration The configuration to use to handle selection logic.
+ * @return A configured calendar.
+ */
+- (instancetype)initWithMinDate:(BPKSimpleDate *)minDate
+                        maxDate:(BPKSimpleDate *)maxDate
          selectionConfiguration:(BPKCalendarSelectionConfiguration *)selectionConfiguration;
 
 /**
@@ -186,6 +215,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly) BOOL isDragging;
 
 /**
+ * Whether selecting a whole month is allowed or not
+ */
+@property(readonly) BOOL allowsWholeMonthSelection;
+
+/**
+ * The title for the whole month button
+ */
+@property(readonly, nonatomic, strong) NSString *_Nullable wholeMonthTitle;
+
+/**
  * The calendar's delegate
  */
 @property(nonatomic, nullable, weak) id<BPKCalendarDelegate> delegate;
@@ -205,6 +244,19 @@ NS_ASSUME_NONNULL_BEGIN
  * @param date The date to scroll into view
  */
 - (void)scrollToDate:(BPKSimpleDate *)date;
+
+/**
+ * Selects the indicated whole month.
+ * @param month The month to be selected.
+ */
+- (void)selectWholeMonth:(BPKSimpleDate *)month;
+
+/**
+ * Wheteher the whole month button is enabled for a given month.
+ * @param month A date representing the month.
+ * * @return `FALSE` if the month is previous to the `minDate`, `TRUE` otherwise.
+ */
+- (BOOL)isWholeMonthButtonEnabledForMonth:(BPKSimpleDate *)month;
 
 @end
 NS_ASSUME_NONNULL_END
