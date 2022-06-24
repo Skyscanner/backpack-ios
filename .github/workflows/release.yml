@@ -43,7 +43,7 @@ jobs:
     - name: Publish Pods - Backpack Common
       run: |
         set -eo pipefail
-        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests--synchronous 
+        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests --synchronous 
         bundle exec pod repo update
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
