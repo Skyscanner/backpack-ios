@@ -21,6 +21,8 @@ excluded:
   - "Backpack\ Screenshot/"
 included:
   - ../Backpack
+  - ../Backpack-SwiftUI
+  - ../Backpack-Common
   - ./
 
 custom_rules:
