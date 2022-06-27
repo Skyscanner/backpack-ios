@@ -2,7 +2,7 @@ name: release
 
 on:
   release:
-    types: [ published ]
+    types: [published]
 
 defaults:
   run:
@@ -10,71 +10,70 @@ defaults:
 
 jobs:
   Build:
-      name: Build
-      permissions:
-        statuses: write
-        pull-requests: write
-      uses: ./.github/workflows/_build.yml
+    name: Build
+    permissions:
+      statuses: write
+      pull-requests: write
+    uses: ./.github/workflows/_build.yml
   Deploy:
     name: Release to Cocoapods
     runs-on: macos-11
     environment: Publishing
     needs: [Build]
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          ref: main
 
-    - name: Checkout source code
-      uses: actions/checkout@v3
-      with:
-        ref: main
-    
-    - name: Install sourcekitten
-      run: brew install sourcekitten
+      - name: Install sourcekitten
+        run: brew install sourcekitten
 
-    - name: Set Ruby version
-      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+      - name: Set Ruby version
+        uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
 
-    - name: Bundle Install
-      run: bundle install --jobs 4 --retry 3
-      
-    - name: Pod repo update
-      run: | 
-        bundle exec pod repo update
+      - name: Bundle Install
+        run: bundle install --jobs 4 --retry 3
 
-    - name: Publish Pods - Backpack Common
-      run: |
-        set -eo pipefail
-        bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests --synchronous 
-        bundle exec pod repo update
-      env:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        LIB_VERSION: ${{ github.event.release.tag_name }}
+      - name: Pod repo update
+        run: |
+          bundle exec pod repo update
 
-    - name: Publish Pods - Backpack UIKit
-      run: |
-        set -eo pipefail
-        bundle exec pod trunk push Backpack.podspec --allow-warnings --skip-tests --synchronous
-        bundle exec pod repo update
-      env:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        LIB_VERSION: ${{ github.event.release.tag_name }}
+      - name: Publish Pods - Backpack Common
+        run: |
+          set -eo pipefail
+          bundle exec pod trunk push Backpack-Common.podspec --allow-warnings --skip-tests --synchronous 
+          bundle exec pod repo update
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          LIB_VERSION: ${{ github.event.release.tag_name }}
 
-    - name: Publish Pods - Backpack SwiftUI
-      run: |
-        set -eo pipefail
-        bundle exec pod trunk push Backpack-SwiftUI.podspec --allow-warnings --skip-tests --synchronous
-        bundle exec pod repo update
-      env:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        LIB_VERSION: ${{ github.event.release.tag_name }}
+      - name: Publish Pods - Backpack UIKit
+        run: |
+          set -eo pipefail
+          bundle exec pod trunk push Backpack.podspec --allow-warnings --skip-tests --synchronous
+          bundle exec pod repo update
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          LIB_VERSION: ${{ github.event.release.tag_name }}
 
-    - name: Build Docs
-      uses: ./.github/workflows/_build-docs.yml
-    
-    - name: Deploy code documentation
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.DEPLOY_TOKEN }}
-        publish_dir: docs/
-        keep_files: true
-        external_repository: backpack/ios
-        publish_branch: main
+      - name: Publish Pods - Backpack SwiftUI
+        run: |
+          set -eo pipefail
+          bundle exec pod trunk push Backpack-SwiftUI.podspec --allow-warnings --skip-tests --synchronous
+          bundle exec pod repo update
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          LIB_VERSION: ${{ github.event.release.tag_name }}
+
+      - name: Build Docs
+        uses: ./.github/workflows/_build-docs.yml
+
+      - name: Deploy code documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: docs/
+          keep_files: true
+          external_repository: backpack/ios
+          publish_branch: main
