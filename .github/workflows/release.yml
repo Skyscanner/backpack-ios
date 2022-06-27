@@ -66,20 +66,10 @@ jobs:
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
-  BuildDocs:
-    name: Build Docs
-    needs: [Deploy]
-    permissions:
-      statuses: write
-      pull-requests: write
-    uses: ./.github/workflows/_build-docs.yml
-  
-  DeployDocs:
-    name: Deploy Documentation
-    runs-on: macos-11
-    environment: Publishing
-    needs: [BuildDocs]
-    steps:
+
+    - name: Build Docs
+      uses: ./.github/workflows/_build-docs.yml
+    
     - name: Deploy code documentation
       uses: peaceiris/actions-gh-pages@v3
       with:
