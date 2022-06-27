@@ -50,7 +50,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         super.viewWillAppear(animated)
 
         if isAlternateStyleWithLightMode() {
-            let titleAttributes = ExampleAppTitleAttributes.darkTitleAttributes()
+            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.white]
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.tintColor = BPKColor.white
@@ -61,7 +61,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
         super .viewWillDisappear(animated)
 
         if isAlternateStyleWithLightMode() {
-            let titleAttributes = ExampleAppTitleAttributes.lightTitleAttributes()
+            let titleAttributes = [NSAttributedString.Key.foregroundColor: BPKColor.skyGray]
             self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.largeTitleTextAttributes = titleAttributes
             self.navigationController?.navigationBar.tintColor = BPKColor.skyGray
