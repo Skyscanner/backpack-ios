@@ -34,18 +34,18 @@ struct BadgeExampleVIew: View {
     
     var regularBadges: some View {
         VStack(alignment: .leading) {
-            BPKBadge("Normal")
-                .badgeStyle(.normal)
-            BPKBadge("Strong")
-                .badgeStyle(.strong)
+            BPKBadge("Default")
+                .badgeStyle(.`default`)
+            BPKBadge("Emphasis")
+                .badgeStyle(.emphasis)
             BPKBadge("Success")
                 .badgeStyle(.success)
             BPKBadge("Warning")
                 .badgeStyle(.warning)
-            BPKBadge("Destructive")
-                .badgeStyle(.destructive)
-            BPKBadge("Inverse")
-                .badgeStyle(.inverse)
+            BPKBadge("Error")
+                .badgeStyle(.error)
+            BPKBadge("OnDark")
+                .badgeStyle(.onDark)
             BPKBadge("Outline")
                 .badgeStyle(.outline)
         }
@@ -53,18 +53,18 @@ struct BadgeExampleVIew: View {
     
     var iconBadges: some View {
         VStack(alignment: .leading) {
-            BPKBadge("Normal", icon: .tickCircle)
-                .badgeStyle(.normal)
-            BPKBadge("Strong", icon: .tickCircle)
-                .badgeStyle(.strong)
+            BPKBadge("Default", icon: .tickCircle)
+                .badgeStyle(.`default`)
+            BPKBadge("Emphasis", icon: .tickCircle)
+                .badgeStyle(.emphasis)
             BPKBadge("Success", icon: .tickCircle)
                 .badgeStyle(.success)
             BPKBadge("Warning", icon: .helpCircle)
                 .badgeStyle(.warning)
-            BPKBadge("Destructive", icon: .closeCircle)
-                .badgeStyle(.destructive)
-            BPKBadge("Inverse", icon: .tickCircle)
-                .badgeStyle(.inverse)
+            BPKBadge("Error", icon: .closeCircle)
+                .badgeStyle(.error)
+            BPKBadge("OnDark", icon: .tickCircle)
+                .badgeStyle(.onDark)
             BPKBadge("Outline", icon: .tickCircle)
                 .badgeStyle(.outline)
         }

@@ -19,17 +19,17 @@
 internal extension BPKBadge.Style {
     var backgroundColor: BPKColor {
         switch self {
-        case .normal:
+        case .`default`:
             return .skyGrayTint07.darkVariant(.blackTint02)
-        case .strong:
+        case .emphasis:
             return .skyGray.darkVariant(.white)
         case .success:
             return .glencoe
         case .warning:
             return .erfoud
-        case .destructive:
+        case .error:
             return .panjin
-        case .inverse:
+        case .onDark:
             return .white
         case .outline:
             return .clear
@@ -38,11 +38,11 @@ internal extension BPKBadge.Style {
     
     var foregroundColor: BPKColor {
         switch self {
-        case .normal:
+        case .`default`:
             return .textPrimaryColor
-        case .strong:
+        case .emphasis:
             return .white.darkVariant(.skyGray)
-        case .destructive, .outline:
+        case .error, .outline:
             return .white
         default:
             return .skyGray

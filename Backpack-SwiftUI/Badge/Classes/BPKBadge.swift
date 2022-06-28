@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKBadge: View {
     private let title: String
     private let icon: BPKIcon?
-    private var style: BPKBadge.Style = .normal
+    private var style: BPKBadge.Style = .`default`
     
     public init(_ title: String, icon: BPKIcon? = nil) {
         self.title = title
