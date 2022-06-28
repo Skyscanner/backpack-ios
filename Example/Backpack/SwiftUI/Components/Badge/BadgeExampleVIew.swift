@@ -34,6 +34,10 @@ struct BadgeExampleVIew: View {
     
     var regularBadges: some View {
         VStack(alignment: .leading) {
+            BPKBadge("Normal")
+                .badgeStyle(.normal)
+            BPKBadge("Strong")
+                .badgeStyle(.strong)
             BPKBadge("Success")
                 .badgeStyle(.success)
             BPKBadge("Warning")
@@ -49,6 +53,10 @@ struct BadgeExampleVIew: View {
     
     var iconBadges: some View {
         VStack(alignment: .leading) {
+            BPKBadge("Normal", icon: .tickCircle)
+                .badgeStyle(.normal)
+            BPKBadge("Strong", icon: .tickCircle)
+                .badgeStyle(.strong)
             BPKBadge("Success", icon: .tickCircle)
                 .badgeStyle(.success)
             BPKBadge("Warning", icon: .helpCircle)

@@ -18,6 +18,9 @@
 
 extension BPKBadge {
     public enum Style {
+        case normal
+        
+        case strong
         
         case success
         
