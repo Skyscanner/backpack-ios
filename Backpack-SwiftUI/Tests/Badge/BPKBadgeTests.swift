@@ -27,8 +27,8 @@ class BPKBadgeTests: XCTestCase {
         .emphasis,
         .success,
         .warning,
-        .error,
-        .onDark,
+        .destructive,
+        .inverse,
         .outline
     ]
     

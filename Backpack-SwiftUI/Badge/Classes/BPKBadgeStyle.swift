@@ -30,11 +30,11 @@ extension BPKBadge {
         /// The warning style, using a yellow background
         case warning
         
-        /// The error style, using a red background
-        case error
+        /// The destructive style, using a red background
+        case destructive
         
-        /// The onDark style, using a white background
-        case onDark
+        /// The inverse style, using a white background
+        case inverse
         
         /// The outline style, using a clear background with white outline
         case outline

@@ -27,9 +27,9 @@ internal extension BPKBadge.Style {
             return .glencoe
         case .warning:
             return .erfoud
-        case .error:
+        case .destructive:
             return .panjin
-        case .onDark:
+        case .inverse:
             return .white
         case .outline:
             return .clear
@@ -42,7 +42,7 @@ internal extension BPKBadge.Style {
             return .textPrimaryColor
         case .emphasis:
             return .white.darkVariant(.skyGray)
-        case .error, .outline:
+        case .destructive, .outline:
             return .white
         default:
             return .skyGray
