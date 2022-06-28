@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct BPKBadge: View {
+public struct BPKBadge: View {
     private let title: String
     private let icon: BPKIcon?
     private var style: BPKBadge.Style = .success
@@ -28,17 +28,36 @@ struct BPKBadge: View {
         self.icon = icon
     }
     
-    var body: some View {
-        Text("Hello, World!")
-            .padding([.leading, .trailing], .sm)
-            .padding([.top, .bottom], .md)
-            .background(.panjin)
+    public var body: some View {
+        content
+            .padding([.leading, .trailing], .md)
+            .padding([.top, .bottom], .sm)
+            .background(style.backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: .xs))
+            .overlay(
+                RoundedRectangle(cornerRadius: .xs)
+                    .stroke(Color(style.borderColor))
+            )
     }
     
     public func badgeStyle(_ style: BPKBadge.Style) -> BPKBadge {
         var result = self
         result.style = style
         return result
+    }
+    
+    private var content: some View {
+        HStack(spacing: BPKSpacing.sm.value) {
+            if let icon = icon {
+                BPKIconView(icon, size: .small)
+                    .foregroundColor(style.foregroundColor)
+            }
+        
+            BPKText(title, style: .caption)
+                .foregroundColor(style.foregroundColor)
+        }
+        // Align text and icon frame.
+        .frame(minHeight: BPKSpacing.base.value)
     }
 }
 
