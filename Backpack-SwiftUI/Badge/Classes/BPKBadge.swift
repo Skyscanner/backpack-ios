@@ -18,6 +18,11 @@
 
 import SwiftUI
 
+/// A view that displays one line of text with an optional icon
+/// By default the style of BPKBadge is set to `.default`
+///
+/// Use `badgeStyle(_ style: BPKBadge.Style)` to change the style of the badge
+///
 public struct BPKBadge: View {
     private let title: String
     private let icon: BPKIcon?
@@ -40,6 +45,12 @@ public struct BPKBadge: View {
             )
     }
     
+    /// Sets the style of the badge
+    ///
+    /// - Parameter style: The `BPKBadge.Style` to change the appearance
+    ///   view.
+    ///
+    /// - Returns: A BPKBadge that uses the style you supply.
     public func badgeStyle(_ style: BPKBadge.Style) -> BPKBadge {
         var result = self
         result.style = style
