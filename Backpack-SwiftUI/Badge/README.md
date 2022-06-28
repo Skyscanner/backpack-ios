@@ -2,7 +2,8 @@
  
 ## Usage
 
-### Basic badge
+### Basic text badge
+If you don't specify a `.badgeStyle(<style>)` it will use the `.normal` type
 
 ```swift
 import Backpack_SwiftUI
@@ -13,7 +14,8 @@ BPKBadge("Hello World")
     .badgeStyle(.destructive)
 ```
 
-### With icon
+### Badge with icon
+If you don't specify a `.badgeStyle(<style>)` it will use the `.normal` type
 
 ```swift
 import Backpack_SwiftUI
