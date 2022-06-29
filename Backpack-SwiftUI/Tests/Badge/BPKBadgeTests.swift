@@ -23,8 +23,8 @@ import SwiftUI
 class BPKBadgeTests: XCTestCase {
     
     let styles: [BPKBadge.Style] = [
-        .`default`,
-        .emphasis,
+        .normal,
+        .strong,
         .success,
         .warning,
         .destructive,

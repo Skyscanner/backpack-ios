@@ -23,51 +23,38 @@ import Backpack_SwiftUI
 struct BadgeExampleVIew: View {
     var body: some View {
         ZStack {
-            Color(.skyGrayTint06.darkVariant(.black))
+            Color(.backgroundColor)
                 .ignoresSafeArea()
-            HStack {
-                regularBadges
-                iconBadges
+            VStack(spacing: 0) {
+                makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
+                makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
+                makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
+                makeBadgeRow(text: "Warning", icon: .helpCircle, style: .warning)
+                makeBadgeRow(text: "Destructive", icon: .closeCircle, style: .destructive)
+                makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .skyGray)
+                makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .skyBlue)
+                Spacer()
             }
         }
     }
     
-    var regularBadges: some View {
-        VStack(alignment: .leading) {
-            BPKBadge("Default")
-                .badgeStyle(.`default`)
-            BPKBadge("Emphasis")
-                .badgeStyle(.emphasis)
-            BPKBadge("Success")
-                .badgeStyle(.success)
-            BPKBadge("Warning")
-                .badgeStyle(.warning)
-            BPKBadge("Destructive")
-                .badgeStyle(.destructive)
-            BPKBadge("Inverse")
-                .badgeStyle(.inverse)
-            BPKBadge("Outline")
-                .badgeStyle(.outline)
+    private func makeBadgeRow(
+        text: String,
+        icon: Backpack_SwiftUI.BPKIcon,
+        style: Backpack_SwiftUI.BPKBadge.Style,
+        background: Backpack_SwiftUI.BPKColor = .backgroundColor
+    ) -> some View {
+        HStack {
+            Spacer()
+            BPKBadge(text)
+                .badgeStyle(style)
+            Spacer()
+            BPKBadge(text, icon: icon)
+                .badgeStyle(style)
+            Spacer()
         }
-    }
-    
-    var iconBadges: some View {
-        VStack(alignment: .leading) {
-            BPKBadge("Default", icon: .tickCircle)
-                .badgeStyle(.`default`)
-            BPKBadge("Emphasis", icon: .tickCircle)
-                .badgeStyle(.emphasis)
-            BPKBadge("Success", icon: .tickCircle)
-                .badgeStyle(.success)
-            BPKBadge("Warning", icon: .helpCircle)
-                .badgeStyle(.warning)
-            BPKBadge("Destructive", icon: .closeCircle)
-                .badgeStyle(.destructive)
-            BPKBadge("Inverse", icon: .tickCircle)
-                .badgeStyle(.inverse)
-            BPKBadge("Outline", icon: .tickCircle)
-                .badgeStyle(.outline)
-        }
+        .padding()
+        .background(background)
     }
 }
 

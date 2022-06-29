@@ -19,9 +19,9 @@
 internal extension BPKBadge.Style {
     var backgroundColor: BPKColor {
         switch self {
-        case .`default`:
+        case .normal:
             return .skyGrayTint07.darkVariant(.blackTint02)
-        case .emphasis:
+        case .strong:
             return .skyGray.darkVariant(.white)
         case .success:
             return .glencoe
@@ -38,9 +38,9 @@ internal extension BPKBadge.Style {
     
     var foregroundColor: BPKColor {
         switch self {
-        case .`default`:
+        case .normal:
             return .textPrimaryColor
-        case .emphasis:
+        case .strong:
             return .white.darkVariant(.skyGray)
         case .destructive, .outline:
             return .white

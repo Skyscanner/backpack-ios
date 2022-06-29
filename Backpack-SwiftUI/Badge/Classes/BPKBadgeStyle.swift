@@ -18,25 +18,6 @@
 
 extension BPKBadge {
     public enum Style {
-        /// The default style, will change in dark mode
-        case `default`
-        
-        /// The epmahsized style, will change in dark mode
-        case emphasis
-        
-        /// The success style, using a green background
-        case success
-        
-        /// The warning style, using a yellow background
-        case warning
-        
-        /// The destructive style, using a red background
-        case destructive
-        
-        /// The inverse style, using a white background
-        case inverse
-        
-        /// The outline style, using a clear background with white outline
-        case outline
+        case normal, strong, success, warning, destructive, inverse, outline
     }
 }
