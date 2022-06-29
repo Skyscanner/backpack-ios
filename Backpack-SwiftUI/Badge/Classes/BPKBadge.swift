@@ -37,6 +37,7 @@ public struct BPKBadge: View {
         content
             .padding([.leading, .trailing], .md)
             .padding([.top, .bottom], .sm)
+            .frame(height: 24)
             .background(style.backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: .xs))
             .outline(style.borderColor, cornerRadius: .xs)
@@ -64,8 +65,6 @@ public struct BPKBadge: View {
             BPKText(title, style: .caption)
                 .foregroundColor(style.foregroundColor)
         }
-        // Align text and icon frame.
-        .frame(minHeight: BPKSpacing.base.value)
     }
 }
 
