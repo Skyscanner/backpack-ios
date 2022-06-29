@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// A view that displays one line of text with an optional icon
-/// By default the style of BPKBadge is set to `.default`
+/// By default the style of BPKBadge is set to `.normal`
 ///
 /// Use `badgeStyle(_ style: BPKBadge.Style)` to change the style of the badge
 ///
