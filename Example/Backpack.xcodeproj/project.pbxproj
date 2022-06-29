@@ -64,6 +64,7 @@
 		794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337A8283C77BD00797D1C /* TabsViewController.swift */; };
 		794337AB283C829100797D1C /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AA283C829100797D1C /* Tab.swift */; };
 		794337AD283CB0D100797D1C /* BackpackSnapshotTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AC283CB0D100797D1C /* BackpackSnapshotTestCase.swift */; };
+		7944BA99286C391700FDE965 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944BA98286C391700FDE965 /* SpinnerExampleView.swift */; };
 		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
@@ -246,6 +247,7 @@
 		794337A8283C77BD00797D1C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		794337AA283C829100797D1C /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		794337AC283CB0D100797D1C /* BackpackSnapshotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackSnapshotTestCase.swift; sourceTree = "<group>"; };
+		7944BA98286C391700FDE965 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7944BA97286C38FD00FDE965 /* Spinner */,
 				793B9744283B3578009A5164 /* Switch */,
 				5307FFC3282B26330081B16E /* Icons */,
 				793EC54E2836138000D627F6 /* Card */,
@@ -916,6 +919,14 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		7944BA97286C38FD00FDE965 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				7944BA98286C391700FDE965 /* SpinnerExampleView.swift */,
+			);
+			path = Spinner;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -1265,6 +1276,7 @@
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
+				7944BA99286C391700FDE965 /* SpinnerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */,
