@@ -39,10 +39,7 @@ public struct BPKBadge: View {
             .padding([.top, .bottom], .sm)
             .background(style.backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: .xs))
-            .overlay(
-                RoundedRectangle(cornerRadius: .xs)
-                    .stroke(Color(style.borderColor))
-            )
+            .outline(style.borderColor, cornerRadius: .xs)
     }
     
     /// Sets the style of the badge
@@ -69,6 +66,36 @@ public struct BPKBadge: View {
         }
         // Align text and icon frame.
         .frame(minHeight: BPKSpacing.base.value)
+    }
+}
+
+
+// Helper functions to apply the outline style
+fileprivate struct Outline: ViewModifier {
+    let color: BPKColor
+    let cornerRadius: BPKCornerRadius
+    
+    func body(content: Content) -> some View {
+        return content
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color(color))
+            )
+    }
+}
+
+fileprivate extension View {
+    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius) -> some View {
+        guard let color = color else {
+            return AnyView(self)
+        }
+
+        return AnyView(
+            ModifiedContent(
+                content: self,
+                modifier: Outline(color: color, cornerRadius: cornerRadius)
+            )
+        )
     }
 }
 

@@ -49,12 +49,12 @@ internal extension BPKBadge.Style {
         }
     }
     
-    var borderColor: BPKColor {
+    var borderColor: BPKColor? {
         switch self {
         case .outline:
             return .white
         default:
-            return .clear
+            return nil
         }
     }
 }
