@@ -83,17 +83,16 @@ fileprivate struct Outline: ViewModifier {
 }
 
 fileprivate extension View {
+    @ViewBuilder
     func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius) -> some View {
-        guard let color = color else {
-            return AnyView(self)
-        }
-
-        return AnyView(
+        if let color = color {
             ModifiedContent(
                 content: self,
                 modifier: Outline(color: color, cornerRadius: cornerRadius)
             )
-        )
+        } else {
+            self
+        }
     }
 }
 
