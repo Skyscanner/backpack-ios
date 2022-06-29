@@ -69,7 +69,6 @@ public struct BPKBadge: View {
     }
 }
 
-
 // Helper functions to apply the outline style
 fileprivate struct Outline: ViewModifier {
     let color: BPKColor
