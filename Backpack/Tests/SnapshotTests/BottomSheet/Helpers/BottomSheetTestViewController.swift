@@ -40,6 +40,6 @@ class BottomSheetTestViewController: UIViewController {
     }
     
     func moveBottomSheet(toState state: BPKFloatingPanelPosition, animated: Bool = true) {
-        bottomSheet.move(to: state, animated: animated)
+        bottomSheet.move(to: <BPKFloatingPanelPosition>, animated: animated)
     }
 }
