@@ -74,14 +74,18 @@ NS_ASSUME_NONNULL_BEGIN
         self.iconDefinition = iconDefinition;
         self.flareView = flareView;
         self.scrimActions = [NSMutableArray new];
-        self.transitioningDelegate = self;
-
-        [self setupViews];
-        [self addViews];
-        [self setupConstraints];
+        self.transitioningDelegate = self;  
     }
 
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setupViews];
+    [self addViews];
+    [self setupConstraints];
 }
 
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
