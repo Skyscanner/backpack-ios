@@ -46,6 +46,7 @@ Pod::Spec.new do |s|
   s.swift_versions = ['5.0', '4.2', '4.0']
 
   s.test_spec 'SnapshotTests' do |test_spec|
+    test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.dependency 'iOSSnapshotTestCase', '~> 6.2.0'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'
     test_spec.ios.resource_bundle = {

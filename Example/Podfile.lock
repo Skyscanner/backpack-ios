@@ -28,6 +28,7 @@ PODS:
     - FSCalendar (~> 2.8.2)
     - iOSSnapshotTestCase (~> 6.2.0)
     - MBProgressHUD (~> 1.2.0)
+    - SnapshotTesting (~> 1.9.0)
     - TTTAttributedLabel (~> 2.0.0)
   - Backpack/UnitTests (1.0):
     - Backpack-Common
@@ -85,7 +86,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
-  Backpack: 315c1ae9a6ebdef6c637219f213d37fdb7c0301f
+  Backpack: 63abc02827fc9d60ff220828235a44a4c715a842
   Backpack-Common: cdd325d7f97b6d83e9e25ee25557f3173fa2a0ba
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
   Backpack-SwiftUI: 3b3fffa24593c763cc9d06ee28587a6690236bc9
