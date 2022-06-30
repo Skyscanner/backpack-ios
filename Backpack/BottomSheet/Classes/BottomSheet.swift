@@ -224,8 +224,9 @@ public final class BPKBottomSheet: NSObject {
     /// This method allows change the presentation mode of the BPKBottomSheet.
     /// - Parameters:
     ///   - position: The new bottom sheet presentation position
-    public func move(to position: BPKFloatingPanelPosition) {
-        floatingPanelController.move(to: position.asFloatingPanelPosition, animated: true)
+    ///   - animated: Change with animation
+    public func move(to position: BPKFloatingPanelPosition, animated: Bool = true) {
+        floatingPanelController.move(to: position.asFloatingPanelPosition, animated: animated)
     }
 }
 
@@ -241,9 +242,9 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
             return PersistentBottomSheetLayout(insets: insets)
         }
     }
-
-    public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
-        delegate?.bottomSheetDidChangePosition(.init(floatingPanelPosition: viewController.state))
+    
+    public func floatingPanelDidMove(_ fpc: FloatingPanelController) {
+        delegate?.bottomSheetDidChangePosition(.init(floatingPanelPosition: fpc.state))
     }
 }
 
