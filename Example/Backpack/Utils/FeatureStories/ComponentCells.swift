@@ -71,10 +71,18 @@ struct ComponentCellsProvider {
 
 extension ComponentCellsProvider {
     private func badge() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Badges",
-            storyboard: .named("Badges", on: "BadgesViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "Badges",
+                    identifier: "BadgesViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BadgeExampleVIew())
+                }))
+            ],
+            showChildren: { showComponent(title: "Badges", tabs: $0) }
         )
     }
     private func barChart() -> CellDataSource {

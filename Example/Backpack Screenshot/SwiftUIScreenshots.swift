@@ -28,7 +28,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
 
         return app
     }
-
+    
     override func setUp() {
         super.setUp()
         continueAfterFailure = true
@@ -99,6 +99,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         navigate(title: "Cards") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Badges") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
     }
 }
