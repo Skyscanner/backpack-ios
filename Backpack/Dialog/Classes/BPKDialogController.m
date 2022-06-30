@@ -74,7 +74,9 @@ NS_ASSUME_NONNULL_BEGIN
         self.iconDefinition = iconDefinition;
         self.flareView = flareView;
         self.scrimActions = [NSMutableArray new];
-        self.transitioningDelegate = self;  
+        self.transitioningDelegate = self;
+        
+        [self setupViews];
     }
 
     return self;
@@ -82,8 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setupViews];
+   
     [self addViews];
     [self setupConstraints];
 }
