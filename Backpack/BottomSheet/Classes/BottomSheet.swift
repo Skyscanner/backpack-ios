@@ -241,9 +241,9 @@ extension BPKBottomSheet: FloatingPanelControllerDelegate {
             return PersistentBottomSheetLayout(insets: insets)
         }
     }
-
-    public func floatingPanelDidChangePosition(_ viewController: FloatingPanelController) {
-        delegate?.bottomSheetDidChangePosition(.init(floatingPanelPosition: viewController.state))
+    
+    public func floatingPanelDidMove(_ fpc: FloatingPanelController) {
+        delegate?.bottomSheetDidChangePosition(.init(floatingPanelPosition: fpc.state))
     }
 }
 
