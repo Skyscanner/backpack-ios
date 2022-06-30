@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.flareView = flareView;
         self.scrimActions = [NSMutableArray new];
         self.transitioningDelegate = self;
-        
+
         [self setupViews];
     }
 
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     [self addViews];
     [self setupConstraints];
 }
