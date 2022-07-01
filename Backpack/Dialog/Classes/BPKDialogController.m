@@ -77,11 +77,16 @@ NS_ASSUME_NONNULL_BEGIN
         self.transitioningDelegate = self;
 
         [self setupViews];
-        [self addViews];
-        [self setupConstraints];
     }
 
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self addViews];
+    [self setupConstraints];
 }
 
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title

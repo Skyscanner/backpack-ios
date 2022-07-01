@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'FSCalendar', '~> 2.8.2'
   s.dependency 'TTTAttributedLabel', '~> 2.0.0'
-  s.dependency 'FloatingPanel', '2.5.2'
+  s.dependency 'FloatingPanel', '2.5.3'
   s.dependency 'Backpack-Common'
   s.dependency 'MBProgressHUD', '~> 1.2.0'
   s.frameworks = 'UIKit', 'Foundation', 'CoreText'
@@ -46,6 +46,7 @@ Pod::Spec.new do |s|
   s.swift_versions = ['5.0', '4.2', '4.0']
 
   s.test_spec 'SnapshotTests' do |test_spec|
+    test_spec.dependency 'SnapshotTesting', '~> 1.9.0'
     test_spec.dependency 'iOSSnapshotTestCase', '~> 6.2.0'
     test_spec.source_files = 'Backpack/Tests/SnapshotTests/**/*.{swift,h,m}'
     test_spec.ios.resource_bundle = {

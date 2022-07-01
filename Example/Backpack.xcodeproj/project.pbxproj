@@ -58,13 +58,14 @@
 		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
 		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
+		7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */; };
+		7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */; };
 		793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
 		794337A9283C77BD00797D1C /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337A8283C77BD00797D1C /* TabsViewController.swift */; };
 		794337AB283C829100797D1C /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AA283C829100797D1C /* Tab.swift */; };
 		794337AD283CB0D100797D1C /* BackpackSnapshotTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794337AC283CB0D100797D1C /* BackpackSnapshotTestCase.swift */; };
-		7944BA99286C391700FDE965 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944BA98286C391700FDE965 /* SpinnerExampleView.swift */; };
 		794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FEF280A829D00B965FF /* SpacingTokensView.swift */; };
 		794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */; };
 		794E1FF8280CF63100B965FF /* RadiusTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1FF7280CF63100B965FF /* RadiusTokensView.swift */; };
@@ -241,13 +242,14 @@
 		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
 		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
+		7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeExampleVIew.swift; sourceTree = "<group>"; };
+		7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCellDataSource.swift; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		794337A8283C77BD00797D1C /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		794337AA283C829100797D1C /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		794337AC283CB0D100797D1C /* BackpackSnapshotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackSnapshotTestCase.swift; sourceTree = "<group>"; };
-		7944BA98286C391700FDE965 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		794E1FEF280A829D00B965FF /* SpacingTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensView.swift; sourceTree = "<group>"; };
 		794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUIHostingController.swift; sourceTree = "<group>"; };
 		794E1FF7280CF63100B965FF /* RadiusTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensView.swift; sourceTree = "<group>"; };
@@ -530,6 +532,22 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		7914E3AA286AB03C00EB9F90 /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */,
+			);
+			path = Badge;
+			sourceTree = "<group>";
+		};
+		7928F7D3286EDAB100D8B9E8 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
 		793B9744283B3578009A5164 /* Switch */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,7 +604,8 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7944BA97286C38FD00FDE965 /* Spinner */,
+				7928F7D3286EDAB100D8B9E8 /* Spinner */,
+				7914E3AA286AB03C00EB9F90 /* Badge */,
 				793B9744283B3578009A5164 /* Switch */,
 				5307FFC3282B26330081B16E /* Icons */,
 				793EC54E2836138000D627F6 /* Card */,
@@ -919,14 +938,6 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		7944BA97286C38FD00FDE965 /* Spinner */ = {
-			isa = PBXGroup;
-			children = (
-				7944BA98286C391700FDE965 /* SpinnerExampleView.swift */,
-			);
-			path = Spinner;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -1276,7 +1287,6 @@
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
-				7944BA99286C391700FDE965 /* SpinnerExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */,
@@ -1345,12 +1355,14 @@
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
+				7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
 				D2B4FC472538A88900070BEC /* OverlayViewsSelectorViewController.swift in Sources */,
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
+				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
@@ -1557,6 +1569,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = U9XKRL39B6;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;

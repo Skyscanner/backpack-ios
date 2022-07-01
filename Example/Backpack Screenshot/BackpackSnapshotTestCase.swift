@@ -55,7 +55,7 @@ class BackpackSnapshotTestCase: XCTestCase {
     func saveScreenshot(component componentName: String, scenario scenarioName: String,
                         userInterfaceStyle: UIUserInterfaceStyle) {
         let interfaceStyle = userInterfaceStyle == .dark ? "dm" : "lm"
-        let outputName = "swiftui_\(componentName)___\(scenarioName)_\(interfaceStyle)"
+        let outputName = "\(componentName)___\(scenarioName)_\(interfaceStyle)"
         snapshot(outputName)
     }
 }
