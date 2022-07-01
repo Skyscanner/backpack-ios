@@ -23,9 +23,9 @@ import Backpack_SwiftUI
 struct SpinnerExampleView: View {
     var body: some View {
         HStack {
-            BPKSpinner(.small)
-            BPKSpinner(.medium)
-            BPKSpinner(.large)
+            BPKSpinner(.sm)
+            BPKSpinner(.lg)
+            BPKSpinner(.xl)
         }
     }
 }

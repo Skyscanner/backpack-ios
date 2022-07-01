@@ -16,19 +16,49 @@
  * limitations under the License.
  */
 
+import SwiftUI
+
+internal extension BPKSpinner.Style {
+    var foregroundColor: BPKColor {
+        switch self {
+        case .textPrimary:
+            return .textPrimaryColor
+        case .disabled:
+            return .skyGrayTint04
+        case .onDarkSurface:
+            return .white
+        }
+    }
+}
+
 internal extension BPKSpinner.Size {
     var width: BPKSpacing {
         switch self {
-        case .small:
+        case .sm:
             return BPKSpacing.base
-        case .medium:
+        case .lg:
             return BPKSpacing.lg
-        case .large:
+        case .xl:
             return BPKSpacing.xl
         }
     }
     
     var height: BPKSpacing {
         return width
+    }
+    
+    var capsuleHeight: CGFloat {
+        return 2
+    }
+    
+    var capsuleWidth: CGFloat {
+        switch self {
+        case .sm:
+            return 4
+        case .lg:
+            return 6
+        case .xl:
+            return 8
+        }
     }
 }
