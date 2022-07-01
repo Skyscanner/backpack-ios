@@ -238,10 +238,18 @@ extension ComponentCellsProvider {
         )
     }
     private func spinners() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Spinners",
-            storyboard: .named("Spinners", on: "SpinnersViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "Spinners",
+                    identifier: "SpinnersViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SpinnerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Spinners", tabs: $0) }
         )
     }
     private func starRatings() -> CellDataSource {

@@ -22,11 +22,44 @@ import Backpack_SwiftUI
 
 struct SpinnerExampleView: View {
     var body: some View {
-        HStack {
-            BPKSpinner(.sm)
-            BPKSpinner(.lg)
-            BPKSpinner(.xl)
+        VStack(alignment: .leading) {
+            BPKText("TextPrimary", style: .heading4)
+            makeSpinnerRow(.textPrimary)
+            
+            BPKText("Disabled", style: .heading4)
+            makeSpinnerRow(.disabled)
+            
+            BPKText("OnDarkSurface", style: .heading4)
+            makeSpinnerRow(.onDarkSurface, foregroundColor: .white)
+                .background(.black)
         }
+        .padding()
+    }
+    
+    private func makeSpinnerRow(
+        _ style: Backpack_SwiftUI.BPKSpinner.Style,
+        foregroundColor: Backpack_SwiftUI.BPKColor = .textPrimaryColor
+    ) -> some View {
+        HStack(alignment: .bottom) {
+            VStack {
+                BPKSpinner(.sm, style: style)
+                BPKText("Small")
+                    .foregroundColor(foregroundColor)
+            }
+            Spacer()
+            VStack {
+                BPKSpinner(.lg, style: style)
+                BPKText("Large")
+                    .foregroundColor(foregroundColor)
+            }
+            Spacer()
+            VStack {
+                BPKSpinner(.xl, style: style)
+                BPKText("ExtraLarge")
+                    .foregroundColor(foregroundColor)
+            }
+        }
+        .padding()
     }
 }
 
