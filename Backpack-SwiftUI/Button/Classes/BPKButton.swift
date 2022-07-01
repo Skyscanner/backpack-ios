@@ -121,6 +121,7 @@ private struct ButtonLoadingContentView: View {
     var body: some View {
         if loading {
             BPKSpinner(spinnerSize, style: .disabled)
+                .accessibilityHidden(true)
         }
     }
     
