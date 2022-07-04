@@ -30,16 +30,14 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
     struct TextOption<Size: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOption {
         let name: String
         let tag: Int
-        let showNotificationDot: Bool
 
-        init(name: String, tag: Int, showNotificationDot: Bool) {
+        init(name: String, tag: Int) {
             self.name = name
             self.tag = tag
-            self.showNotificationDot = showNotificationDot
         }
 
         func makeItem() -> BPKHorizontalNavigationItem {
-            let item = BPKHorizontalNavigationItemDefault<Size>(name: name, showNotificationDot: showNotificationDot)
+            let item = BPKHorizontalNavigationItemDefault<Size>(name: name)
             item.tag = tag
 
             return item
@@ -52,20 +50,17 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         let name: String
         let icon: Icon
         let tag: Int
-        let showNotificationDot: Bool
 
-        init(name: String, tag: Int, icon: Icon, showNotificationDot: Bool) {
+        init(name: String, tag: Int, icon: Icon) {
             self.name = name
             self.tag = tag
             self.icon = icon
-            self.showNotificationDot = showNotificationDot
         }
 
         func makeItem() -> BPKHorizontalNavigationItem {
             BPKHorizontalNavigationItemDefault<Size>(
                 name: name,
-                iconDefinition: .init(image: icon.makeImage(), size: Icon.size),
-                showNotificationDot: showNotificationDot
+                iconDefinition: .init(image: icon.makeImage(), size: Icon.size)
             )
         }
 
@@ -76,21 +71,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         ) -> Bool {
             return lhs.name == rhs.name &&
                 lhs.tag == rhs.tag &&
-                lhs.icon == rhs.icon &&
-                lhs.showNotificationDot == rhs.showNotificationDot
-        }
-    }
-
-    struct TextWithBadge<Size: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOption {
-        let name: String
-        let tag: Int
-        let badgeMessage: String
-
-        func makeItem() -> BPKHorizontalNavigationItem {
-            let item = BPKHorizontalNavigationItemWithBadge<Size>(title: name, badgeMessage: badgeMessage)
-            item.tag = tag
-
-            return item
+                lhs.icon == rhs.icon
         }
     }
 
@@ -113,14 +94,12 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         /// - Parameters:
         ///   - name: The text to display in the resulting item.
         ///   - tag: The tag to use for the resulting item.
-        ///   - showNotificationDot: Whether the resulting item should show a notificaiton dot
         /// - Returns: A type erased option.
         public static func text<S: BPKHorizontalNavigationSize>(
             _ name: String,
-            tag: Int = 0,
-            showNotificationDot: Bool = false
+            tag: Int = 0
         ) -> AnyOption<S> {
-            return AnyOption<S>(wrapped: TextOption<S>(name: name, tag: tag, showNotificationDot: showNotificationDot))
+            return AnyOption<S>(wrapped: TextOption<S>(name: name, tag: tag))
         }
 
         /// Creates an option with a title and icon.
@@ -129,31 +108,17 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
         ///   - name: The text to display in the resulting item.
         ///   - icon: The icon to display in the result item.
         ///   - tag: The tag to use for the resulting item.
-        ///   - showNotificationDot: Whether the resulting item should show a notificaiton dot
         /// - Returns: A type erased option.
         public static func textAndIcon<
             S,
             Icon: BPKHorizontalNavigationOptionIcon
-        >(_ name: String, icon: Icon, tag: Int = 0, showNotificationDot: Bool = false) -> AnyOption<S>
+        >(_ name: String, icon: Icon, tag: Int = 0) -> AnyOption<S>
         where Icon.Size == S {
             return AnyOption<S>(
                 wrapped: TextWithIconOption<S, Icon>(
-                    name: name, tag: tag, icon: icon, showNotificationDot: showNotificationDot
+                    name: name, tag: tag, icon: icon
                 )
             )
-        }
-
-        /// Creates an option with a title and badge.
-        ///
-        /// - Parameters:
-        ///   - name: The text to display in the resulting item.
-        ///   - badgeMessage: The message to display in th badge in the resulting item.
-        ///   - tag: The tag to use for the resulting item.
-        /// - Returns: A type erased option.
-        public static func textWithBadge<S: BPKHorizontalNavigationSize>(
-            _ name: String, badgeMessage: String, tag: Int = 0
-        ) -> AnyOption<S> {
-            return AnyOption<S>(wrapped: TextWithBadge<S>(name: name, tag: tag, badgeMessage: badgeMessage))
         }
 
         // MARK: Equatable

@@ -55,11 +55,6 @@ struct HorizontalNavigationGroupsProvider {
                     $0.useCustomItems = true
                     $0.showBar = false
                 },
-                presentable("With notification") {
-                    $0.showNotificationDot = true
-                    $0.showIcons = true
-                },
-                presentable("With badge") { $0.useItemWithBadge = true },
                 presentable("Alternate") {
                     $0.appearance = .alternate
                     $0.showBar = true

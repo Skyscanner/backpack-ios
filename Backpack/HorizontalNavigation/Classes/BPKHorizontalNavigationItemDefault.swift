@@ -49,17 +49,6 @@ class BPKHorizontalNavigationItemDefault<
     var hasIcon: Bool { icon != nil }
     let name: String
 
-    private(set) var showNotificationDot: Bool = false
-
-    private lazy var notificationDot: UIView = {
-        let dot = UIView()
-        dot.translatesAutoresizingMaskIntoConstraints = false
-        dot.backgroundColor = .bpk_systemRed
-        dot.layer.cornerRadius = BPKSpacingMd / 2.0
-
-        return dot
-    }()
-
     private var contentColor: UIColor {
         if isSelected {
             return selectedColor ?? .bpk_primary
@@ -79,38 +68,11 @@ class BPKHorizontalNavigationItemDefault<
         setUp()
     }
 
-    init(name: String, showNotificationDot: Bool) {
-        self.name = name
-        self.showNotificationDot = showNotificationDot
-
-        super.init(frame: .zero)
-
-        if showNotificationDot {
-            addSubview(notificationDot)
-        }
-
-        setUp()
-    }
-
     init(name: String, iconDefinition: IconDefinition) {
         self.name = name
         self.icon = iconDefinition
 
         super.init(frame: .zero)
-
-        setUp()
-    }
-
-    init(name: String, iconDefinition: IconDefinition, showNotificationDot: Bool) {
-        self.name = name
-        self.icon = iconDefinition
-        self.showNotificationDot = showNotificationDot
-
-        super.init(frame: .zero)
-
-        if showNotificationDot {
-            addSubview(notificationDot)
-        }
 
         setUp()
     }
@@ -129,23 +91,6 @@ class BPKHorizontalNavigationItemDefault<
             let height = buttonIntrinsicContentSize.height
 
             return CGSize(width: width, height: height)
-        }
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        if let frame = titleLabel?.frame, showNotificationDot {
-            let location = notificationLocation(for: frame)
-            self.notificationDot.frame = CGRect(x: location.x, y: location.y, width: BPKSpacingMd, height: BPKSpacingMd)
-        }
-    }
-
-    private func notificationLocation(for labelFrame: CGRect) -> CGPoint {
-        if BPKRTLSupport.viewIsRTL(self) {
-            return CGPoint(x: labelFrame.minX - BPKSpacingMd, y: labelFrame.minY - BPKSpacingSm)
-        } else {
-            return CGPoint(x: labelFrame.maxX, y: labelFrame.minY - BPKSpacingSm)
         }
     }
 

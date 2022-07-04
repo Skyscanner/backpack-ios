@@ -226,11 +226,10 @@ public class BPKHorizontalNavigationObjc: UIView {
                 return .textAndIcon(
                     item.name,
                     icon: iconName,
-                    tag: item.tag,
-                    showNotificationDot: false
+                    tag: item.tag
                 )
             } else {
-                return .text(item.name, tag: item.tag, showNotificationDot: false)
+                return .text(item.name, tag: item.tag)
             }
         }
     }
