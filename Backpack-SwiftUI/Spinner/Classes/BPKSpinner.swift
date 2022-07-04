@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Backpack_Common
 
 struct LoadingCapsule: View {
     let size: BPKSpinner.Size
@@ -29,12 +30,13 @@ struct LoadingCapsule: View {
 }
 
 public struct BPKSpinner: View {
-    @State private var itemOpacities = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.65, 0.75, 0.85, 1]
+    @State private var rotation: Double = 0
     
     private let size: BPKSpinner.Size
     private let style: BPKSpinner.Style
     
     private let timer = Timer.publish(every: 0.08, on: .main, in: .common).autoconnect()
+    private let itemOpacities = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.65, 0.75, 0.85, 1]
     
     public init(_ size: BPKSpinner.Size = .sm, style: BPKSpinner.Style = .textPrimary) {
         self.size = size
@@ -52,20 +54,18 @@ public struct BPKSpinner: View {
                 LoadingCapsule(size: size)
                     .foregroundColor(style.foregroundColor)
                     .opacity(itemOpacities[index])
-                    .rotationEffect(.degrees(Double(index * (360 / itemOpacities.count))))
+                    .rotationEffect(.degrees(Double(index) * degrees))
             }
+            .rotationEffect(.degrees(rotation))
         }
         .onReceive(timer) { input in
-            itemOpacities = itemOpacities.shiftedLeft(by: -1)
+            rotation += degrees
+            rotation = rotation.truncatingRemainder(dividingBy: 360)
         }
     }
-}
-
-fileprivate extension Array {
-    func shiftedLeft(by rawOffset: Int = 1) -> Array {
-        let clampedAmount = rawOffset % count
-        let offset = clampedAmount < 0 ? count + clampedAmount : clampedAmount
-        return Array(self[offset ..< count] + self[0 ..< offset])
+    
+    private var degrees: Double {
+        return Double(360 / itemOpacities.count)
     }
 }
 
