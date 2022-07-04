@@ -262,14 +262,6 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "horizontal-navigation", scenario: "alternate",
                            userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["With notification"].tap()
-            saveScreenshot(component: "horizontal-navigation", scenario: "notification",
-                           userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["With badge"].tap()
-            saveScreenshot(component: "horizontal-navigation", scenario: "badge",
-                           userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
 
         navigate(title: "Icons") {

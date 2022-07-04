@@ -201,8 +201,6 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
     var wide: Bool = false
     var showExtraContent = false
     var useCustomItems = false
-    var showNotificationDot = false
-    var useItemWithBadge = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -250,14 +248,14 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
         if showIcons {
             nav.options = [
                 .textAndIcon("Flights", icon: StoryIcon.flight, tag: 0),
-                .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 1, showNotificationDot: showNotificationDot),
+                .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 1),
                 .textAndIcon("Car Hire", icon: StoryIcon.cars, tag: 2)
             ]
 
             if showExtraContent {
                 smallHorizontalNav.options += [
                     .textAndIcon("Flights", icon: StoryIcon.flight, tag: 3),
-                    .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 4, showNotificationDot: showNotificationDot),
+                    .textAndIcon("Hotels", icon: StoryIcon.hotels, tag: 4),
                     .textAndIcon("Car Hire", icon: StoryIcon.cars, tag: 5)
                 ]
             }
@@ -267,14 +265,6 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
                     .withBackground(title: "Flights", tag: 0),
                     .withBackground(title: "Hotels", tag: 1),
                     .withBackground(title: "Car Hire", tag: 2)
-                ]
-            }
-
-            if useItemWithBadge {
-                nav.options = [
-                    .textAndIcon("Flights", icon: StoryIcon.flight, tag: 0),
-                    .textWithBadge("Hotels", badgeMessage: "NEW", tag: 1),
-                    .textAndIcon("Cars", icon: StoryIcon.cars, tag: 2)
                 ]
             }
         }
