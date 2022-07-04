@@ -120,14 +120,13 @@ private struct ButtonLoadingContentView: View {
     
     var body: some View {
         if loading {
-            ProgressView()
-                .scaleEffect(spinnerScale)
+            BPKSpinner(spinnerSize, style: .disabled)
                 .accessibilityHidden(true)
         }
     }
     
-    private var spinnerScale: CGFloat {
-        size == .default ? 0.75 : 1
+    private var spinnerSize: BPKSpinner.Size {
+        size == .default ? .sm : .lg
     }
 }
 

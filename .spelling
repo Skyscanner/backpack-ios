@@ -787,3 +787,4 @@ UIImageView
 enum
 BPKCalendarDateCellStyleNoData
 skip-changelog
+textPrimary

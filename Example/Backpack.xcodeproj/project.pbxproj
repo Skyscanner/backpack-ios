@@ -59,6 +59,7 @@
 		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
 		7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */; };
+		7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */; };
 		793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
@@ -242,6 +243,7 @@
 		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
 		7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeExampleVIew.swift; sourceTree = "<group>"; };
+		7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCellDataSource.swift; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -538,6 +540,14 @@
 			path = Badge;
 			sourceTree = "<group>";
 		};
+		7928F7D3286EDAB100D8B9E8 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
 		793B9744283B3578009A5164 /* Switch */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +604,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7928F7D3286EDAB100D8B9E8 /* Spinner */,
 				7914E3AA286AB03C00EB9F90 /* Badge */,
 				793B9744283B3578009A5164 /* Switch */,
 				5307FFC3282B26330081B16E /* Icons */,
@@ -1344,6 +1355,7 @@
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
+				7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
 				8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */,
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
