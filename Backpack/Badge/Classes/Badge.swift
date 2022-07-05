@@ -121,6 +121,13 @@ public class BPKBadge: UIView {
         updateLookAndFeel()
     }
     
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else { return }
+        updateLookAndFeel()
+    }
+    
     func changeContent(color: UIColor) {
         guard type == .outline else { return }
         backgroundColor = BPKColor.clear
@@ -160,7 +167,7 @@ fileprivate extension BPKBadgeType {
         case .normal:
             return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint07, darkVariant: BPKColor.blackTint02)
         case .strong:
-            return BPKColor.textPrimaryColor
+            return  BPKColor.dynamicColor(withLightVariant: BPKColor.skyGray, darkVariant: BPKColor.white)
         }
     }
 }
