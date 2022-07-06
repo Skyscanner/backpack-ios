@@ -19,12 +19,15 @@
 import XCTest
 import Backpack
 
-import FBSnapshotTestCase
+import SnapshotTesting
 
-class BPKBadgeSnapshotTest: FBSnapshotTestCase {
+class BPKBadgeSnapshotTest: XCTestCase {
+    
+    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
+    
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
 
     private func createStackView() -> UIStackView {
@@ -44,7 +47,7 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
         parentView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(stackView)
 
-        let badges = [BPKBadgeType.light, .inverse, .outline, .success, .warning, .destructive]
+        let badges = [BPKBadgeType.light, .inverse, .outline, .success, .warning, .destructive, .strong, .normal]
             .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([
@@ -57,28 +60,25 @@ class BPKBadgeSnapshotTest: FBSnapshotTestCase {
     }
 
     func testViewSnapshotWithTypes() {
-        let lightView = createViewWithTypes()
-        let darkView = createViewWithTypes()
+        let exampleView = createViewWithTypes()
 
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        assertSnapshot(matching: exampleView, as: .image)
+        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
     }
 
     func testViewSnapshotWithLeadingIcon() {
         let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.time)
-        let lightView = createViewWithTypes(andIcon: icon)
-        let darkView = createViewWithTypes(andIcon: icon)
+        let exampleView = createViewWithTypes(andIcon: icon)
 
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        assertSnapshot(matching: exampleView, as: .image)
+        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
     }
 
     func testViewSnapshotWithTrailingIcon() {
         let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.time)
-        let lightView = createViewWithTypes(andIcon: icon)
-        let darkView = createViewWithTypes(andIcon: icon)
+        let exampleView = createViewWithTypes(andIcon: icon)
 
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        assertSnapshot(matching: exampleView, as: .image)
+        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
     }
 }

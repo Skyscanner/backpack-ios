@@ -24,7 +24,10 @@ class BPKBadgeContainer: UIView {
     var badges = [BPKBadge]()
     let badgeMessages = ["Apples", "Bananas", "Strawberries"]
     var currentBadgeType = BPKBadgeType.success
-    var badgesRequiringDarkBackground = [BPKBadgeType.light, BPKBadgeType.inverse, BPKBadgeType.outline]
+    var badgesRequiringDarkBackground = [
+        BPKBadgeType.light, BPKBadgeType.inverse,
+        BPKBadgeType.outline, BPKBadgeType.normal
+    ]
 
     var badgeType: BPKBadgeType {
         get { return currentBadgeType }
@@ -116,6 +119,10 @@ class BPKBadgeContainer: UIView {
             return "Light"
         case .outline:
             return "Outline"
+        case .normal:
+            return "Normal"
+        case .strong:
+            return "Strong"
         }
     }
 }
