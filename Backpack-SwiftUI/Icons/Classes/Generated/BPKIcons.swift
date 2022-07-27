@@ -64,6 +64,7 @@ public extension BPKIcon {
     static let carsFlexible = BPKIcon(name: "cars-flexible")
     static let cars = BPKIcon(name: "cars")
     static let centerLocation = BPKIcon(name: "center-location")
+    static let centreLocation = BPKIcon(name: "centre-location")
     static let chart = BPKIcon(name: "chart")
     static let chauffeur = BPKIcon(name: "chauffeur")
     static let chevronDown = BPKIcon(name: "chevron-down")

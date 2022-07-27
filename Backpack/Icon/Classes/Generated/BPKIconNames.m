@@ -66,6 +66,7 @@ BPKIconName const BPKIconNameCarWash = @"car-wash";
 BPKIconName const BPKIconNameCarsFlexible = @"cars-flexible";
 BPKIconName const BPKIconNameCars = @"cars";
 BPKIconName const BPKIconNameCenterLocation = @"center-location";
+BPKIconName const BPKIconNameCentreLocation = @"centre-location";
 BPKIconName const BPKIconNameChart = @"chart";
 BPKIconName const BPKIconNameChauffeur = @"chauffeur";
 BPKIconName const BPKIconNameChevronDown = @"chevron-down";

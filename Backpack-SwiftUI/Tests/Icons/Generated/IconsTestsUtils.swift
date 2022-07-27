@@ -69,6 +69,7 @@ extension BPKIconViewTests {
         .carsFlexible,
         .cars,
         .centerLocation,
+        .centreLocation,
         .chart,
         .chauffeur,
         .chevronDown,

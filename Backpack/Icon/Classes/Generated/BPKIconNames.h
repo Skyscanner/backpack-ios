@@ -119,6 +119,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameCars;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameCenterLocation;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameCentreLocation;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameChauffeur;

@@ -117,6 +117,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCarsFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCars;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCentreLocation;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChauffeur;
@@ -205,6 +207,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFaceHappy;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFaceSad;
 /// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFaceId;
+/// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFaceMask;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFamily;
@@ -214,6 +218,8 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFastTrack;
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFastTrain;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFilter;
+/// :nodoc:
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFingerprint;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameFlag;
 /// :nodoc:
