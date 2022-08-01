@@ -66,7 +66,6 @@ BPKLargeIconName const BPKLargeIconNameCarWash = @"car-wash";
 BPKLargeIconName const BPKLargeIconNameCarsFlexible = @"cars-flexible";
 BPKLargeIconName const BPKLargeIconNameCars = @"cars";
 BPKLargeIconName const BPKLargeIconNameCenterLocation = @"center-location";
-BPKLargeIconName const BPKLargeIconNameCentreLocation = @"centre-location";
 BPKLargeIconName const BPKLargeIconNameChart = @"chart";
 BPKLargeIconName const BPKLargeIconNameChauffeur = @"chauffeur";
 BPKLargeIconName const BPKLargeIconNameChevronDown = @"chevron-down";

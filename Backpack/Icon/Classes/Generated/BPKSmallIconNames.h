@@ -117,7 +117,7 @@ FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCarsFlexible;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCars;
 /// :nodoc:
-FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCentreLocation;
+FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameCenterLocation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKSmallIconName const BPKSmallIconNameChart;
 /// :nodoc:

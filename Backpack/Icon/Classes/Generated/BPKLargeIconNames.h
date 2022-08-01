@@ -119,8 +119,6 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCars;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCenterLocation;
 /// :nodoc:
-FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameCentreLocation;
-/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameChart;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameChauffeur;
