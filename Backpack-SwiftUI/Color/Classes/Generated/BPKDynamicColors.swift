@@ -52,20 +52,83 @@ public extension BPKColor {
     /// The `backgroundTertiaryColor` dynamic color from the Backpack palette.
     static let backgroundTertiaryColor = white.darkVariant(blackTint02)
 
+    /// The `canvasContrastColor` dynamic color from the Backpack palette.
+    static let canvasContrastColor = grey10.darkVariant(nightGrey20)
+
+    /// The `canvasColor` dynamic color from the Backpack palette.
+    static let canvasColor = white.darkVariant(nightGrey10)
+
+    /// The `coreAccentColor` dynamic color from the Backpack palette.
+    static let coreAccentColor = skyBlue.darkVariant(nightBlue)
+
+    /// The `coreEcoColor` dynamic color from the Backpack palette.
+    static let coreEcoColor = ecoGreen.darkVariant(ecoGreen)
+
+    /// The `corePrimaryColor` dynamic color from the Backpack palette.
+    static let corePrimaryColor = darkSky.darkVariant(nightSky)
+
     /// The `lineColor` dynamic color from the Backpack palette.
-    static let lineColor = skyGrayTint05.darkVariant(blackTint04)
+    static let lineColor = skyGrayTint05.darkVariant(nightGrey30)
 
     /// The `primaryColor` dynamic color from the Backpack palette.
     static let primaryColor = skyBlue.darkVariant(skyBlueTint01)
 
+    /// The `scrimColor` dynamic color from the Backpack palette.
+    static let scrimColor = blackAlpha70.darkVariant(blackAlpha70)
+
+    /// The `statusDangerFillColor` dynamic color from the Backpack palette.
+    static let statusDangerFillColor = pinkMuted.darkVariant(nightPink)
+
+    /// The `statusDangerSpotColor` dynamic color from the Backpack palette.
+    static let statusDangerSpotColor = berry.darkVariant(nightBerry)
+
+    /// The `statusSuccessFillColor` dynamic color from the Backpack palette.
+    static let statusSuccessFillColor = greenMuted.darkVariant(nightGreenFill)
+
+    /// The `statusSuccessSpotColor` dynamic color from the Backpack palette.
+    static let statusSuccessSpotColor = greenSpot.darkVariant(nightGreenSpot)
+
+    /// The `statusWarningFillColor` dynamic color from the Backpack palette.
+    static let statusWarningFillColor = yellowMuted.darkVariant(nightYellowFill)
+
+    /// The `statusWarningSpotColor` dynamic color from the Backpack palette.
+    static let statusWarningSpotColor = amberSpot.darkVariant(nightYellowSpot)
+
+    /// The `surfaceContrastColor` dynamic color from the Backpack palette.
+    static let surfaceContrastColor = darkSky.darkVariant(nightGrey20)
+
+    /// The `surfaceDefaultColor` dynamic color from the Backpack palette.
+    static let surfaceDefaultColor = white.darkVariant(nightGrey20)
+
+    /// The `surfaceElevatedColor` dynamic color from the Backpack palette.
+    static let surfaceElevatedColor = white.darkVariant(nightGrey25)
+
+    /// The `surfaceHighlightColor` dynamic color from the Backpack palette.
+    static let surfaceHighlightColor = grey20.darkVariant(nightGreenFill)
+
+    /// The `textDisabledColor` dynamic color from the Backpack palette.
+    static let textDisabledColor = blackAlpha20.darkVariant(whiteAlpha20)
+
+    /// The `textErrorColor` dynamic color from the Backpack palette.
+    static let textErrorColor = berry.darkVariant(nightBerry)
+
+    /// The `textLinkColor` dynamic color from the Backpack palette.
+    static let textLinkColor = skyBlue.darkVariant(nightBlue)
+
     /// The `textPrimaryColor` dynamic color from the Backpack palette.
     static let textPrimaryColor = skyGray.darkVariant(white)
+
+    /// The `textPrimaryOnContrastColor` dynamic color from the Backpack palette.
+    static let textPrimaryOnContrastColor = white.darkVariant(white)
 
     /// The `textQuaternaryColor` dynamic color from the Backpack palette.
     static let textQuaternaryColor = skyGrayTint03.darkVariant(blackTint06)
 
     /// The `textSecondaryColor` dynamic color from the Backpack palette.
     static let textSecondaryColor = skyGrayTint02.darkVariant(skyGrayTint04)
+
+    /// The `textSecondaryOnContrastColor` dynamic color from the Backpack palette.
+    static let textSecondaryOnContrastColor = whiteAlpha80.darkVariant(nightGrey40)
 
     /// The `textTertiaryColor` dynamic color from the Backpack palette.
     static let textTertiaryColor = skyGrayTint03.darkVariant(blackTint06)
