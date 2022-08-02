@@ -27,7 +27,7 @@
     "@skyscanner/bpk-svgs": "^14.3.3",
     "babel-eslint": "^10.1.0",
     "danger": "^11.0.2",
-    "del": "^6.0.0",
+    "del": "^7.0.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
