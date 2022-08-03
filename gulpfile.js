@@ -22,7 +22,6 @@ const gulp = require('gulp');
 const nunjucks = require('gulp-nunjucks');
 const data = require('gulp-data');
 const merge2 = require('merge2');
-const del = require('del');
 const _ = require('lodash');
 const tokens = require('@skyscanner/bpk-foundations-ios/tokens/base.ios.json');
 const { fontTokens } = require('./scripts/gulp/fonts');
@@ -117,4 +116,3 @@ gulp.task(
 );
 
 gulp.task('default', gulp.series('template'));
-gulp.task('clean', () => del([PATHS.output], { force: true }));
