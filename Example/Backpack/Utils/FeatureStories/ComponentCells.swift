@@ -56,6 +56,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             snackbar(),
+            skeleton(),
             spinners(),
             starRatings(),
             switches(),
@@ -235,6 +236,13 @@ extension ComponentCellsProvider {
             title: "Snackbar",
             storyboard: .named("Snackbar", on: "SnackbarViewController"),
             showPresentable: show(presentable:)
+        )
+    }
+    private func skeleton() -> CellDataSource {
+        GroupCellDataSource(
+            title: "Skeleton",
+            groups: SkeletonGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChildren: { showChildren(title: "Skeleton", children: $0) }
         )
     }
     private func spinners() -> CellDataSource {
