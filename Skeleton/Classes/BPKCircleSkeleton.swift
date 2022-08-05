@@ -37,6 +37,7 @@ public class BPKCircleSkeleton: BPKSkeleton {
     }
     
     internal override func updateSize() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: diameter),
             widthAnchor.constraint(equalToConstant: diameter),

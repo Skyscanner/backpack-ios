@@ -37,6 +37,7 @@ public class BPKHeadlineSkeleton: BPKSkeleton {
     }
     
     internal override func updateSize() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: height),
             widthAnchor.constraint(equalToConstant: BPKSpacingXxl * 2),

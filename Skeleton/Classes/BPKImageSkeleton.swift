@@ -32,6 +32,7 @@ public class BPKImageSkeleton: BPKSkeleton {
     }
     
     internal override func setupSubviews() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = super.bgColor
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: BPKSpacingXl * 3),

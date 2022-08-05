@@ -98,6 +98,7 @@ public class BPKSkeleton: UIView {
     }
     
     internal func setup() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         addSubview(containerStackView)
         containerStackView.addSubview(skeletonView)
         
