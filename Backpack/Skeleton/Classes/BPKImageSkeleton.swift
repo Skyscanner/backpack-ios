@@ -19,12 +19,10 @@
 import Foundation
 import UIKit
 
-
 public class BPKImageSkeleton: BPKSkeleton {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     public required init?(coder: NSCoder) {
@@ -37,6 +35,10 @@ public class BPKImageSkeleton: BPKSkeleton {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: BPKSpacingXl * 3),
             widthAnchor.constraint(equalToConstant: BPKSpacingXl * 3),
+            leadingAnchor.constraint(equalTo: leadingAnchor),
+            trailingAnchor.constraint(equalTo: trailingAnchor),
+            topAnchor.constraint(equalTo: topAnchor),
+            bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

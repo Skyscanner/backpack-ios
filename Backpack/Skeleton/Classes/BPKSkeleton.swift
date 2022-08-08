@@ -19,7 +19,6 @@
 import Foundation
 import UIKit
 
-
 public class BPKSkeleton: UIView {
     
     public var type: BPKSkeletonType = .image {
@@ -36,17 +35,9 @@ public class BPKSkeleton: UIView {
     
     public var style: BPKSkeletonStyle = .default {
         didSet {
-            updateType()
+            updateStyle()
         }
     }
-    
-    private let containerStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.isUserInteractionEnabled = false
-        return stack
-    }()
     
     private var skeletonView: UIView = {
         let view = UIView(frame: .zero)
@@ -98,22 +89,13 @@ public class BPKSkeleton: UIView {
     }
     
     internal func setup() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(containerStackView)
-        containerStackView.addSubview(skeletonView)
+        addSubview(skeletonView)
         
         NSLayoutConstraint.activate([
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            containerStackView.topAnchor.constraint(equalTo: topAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            skeletonView.topAnchor.constraint(equalTo: topAnchor),
-            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            skeletonView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            skeletonView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-        
+
         setupSubviews()
     }
     
@@ -124,9 +106,6 @@ public class BPKSkeleton: UIView {
     }
     
     internal func setupSubviews() {
-    }
-    
-    internal func placeElements() {
     }
 }
 

@@ -19,12 +19,10 @@
 import Foundation
 import UIKit
 
-
-public class BPKHeadlineSkeleton: BPKSkeleton {
+public class BPKCircleSkeleton: BPKSkeleton {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     public required init?(coder: NSCoder) {
@@ -33,27 +31,28 @@ public class BPKHeadlineSkeleton: BPKSkeleton {
     
     internal override func setupSubviews() {
         self.backgroundColor = super.bgColor
-        self.layer.cornerRadius = BPKCornerRadiusXs
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.layer.cornerRadius = self.bounds.height / 2.0
+        updateSize()
     }
     
     internal override func updateSize() {
-        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: height),
-            widthAnchor.constraint(equalToConstant: BPKSpacingXxl * 2),
+            heightAnchor.constraint(equalToConstant: diameter),
+            widthAnchor.constraint(equalToConstant: diameter),
+            centerXAnchor.constraint(equalTo: centerXAnchor),
+            centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }
 
-extension BPKHeadlineSkeleton {
-    fileprivate var height: CGFloat {
+extension BPKCircleSkeleton {
+    fileprivate var diameter: CGFloat {
         switch super.size {
         case .small:
-            return BPKSpacingMd
-        case .large:
             return BPKSpacingXl
         default:
-            return BPKSpacingBase
+            return BPKSpacingLg * 2
         }
     }
 }

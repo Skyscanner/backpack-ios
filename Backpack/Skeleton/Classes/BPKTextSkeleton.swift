@@ -19,21 +19,19 @@
 import Foundation
 import UIKit
 
-
 public class BPKTextSkeleton: BPKSkeleton {
     
     fileprivate let containerStackView: UIStackView = {
         let stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.spacing = BPKSpacingIconText
+        stack.spacing = BPKSpacingSm * 2.5
         stack.isUserInteractionEnabled = false
         return stack
     }()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     public required init?(coder: NSCoder) {
@@ -43,22 +41,21 @@ public class BPKTextSkeleton: BPKSkeleton {
     internal override func setupSubviews() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = super.bgColor
-        let textSkeletons = [6, 7, 4].map{
+        let textSkeletons = [6, 7, 4].map {
             createTextSkeletonView(length: $0)
         }
-        textSkeletons.forEach{ containerStackView.addSubview($0)}
+        textSkeletons.forEach { containerStackView.addArrangedSubview($0) }
         self.addSubview(containerStackView)
         
         NSLayoutConstraint.activate([
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            containerStackView.topAnchor.constraint(equalTo: topAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containerStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
     fileprivate func createTextSkeletonView(length: Int) -> UIView {
-        let textSkeleton = UIView()
+        let frame = CGRect(x: 0, y: 0, width: CGFloat(length) * BPKSpacingMd, height: BPKSpacingMd)
+        let textSkeleton = UIView(frame: frame)
         textSkeleton.backgroundColor = .green
         textSkeleton.layer.cornerRadius = BPKCornerRadiusXs / 2.0
         return textSkeleton

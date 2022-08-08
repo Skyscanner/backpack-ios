@@ -33,21 +33,17 @@ class SkeletonViewController: UIViewController {
         stack.spacing = BPKSpacingMd
         stack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stack)
-        NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: view.topAnchor, constant: 10*BPKSpacingBase),
-            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 5*BPKSpacingBase),
-            stack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5*BPKSpacingBase),
-            stack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 5*BPKSpacingBase)
-        ])
-        
+
         let imageSkeleton = BPKSkeleton(type: .image)
         let circleSkeleton = BPKSkeleton(type: .circle)
         let headlineSkeleton = BPKSkeleton(type: .headline)
         let textSkeleton = BPKSkeleton(type: .bodytext)
         
-        stack.addSubview(imageSkeleton)
-        stack.addSubview(circleSkeleton)
-        stack.addSubview(headlineSkeleton)
-        stack.addSubview(textSkeleton)
+        NSLayoutConstraint.activate([
+            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        imageSkeleton.style = .rounded
+        [imageSkeleton, circleSkeleton, headlineSkeleton, textSkeleton].forEach(stack.addArrangedSubview)
     }
 }
