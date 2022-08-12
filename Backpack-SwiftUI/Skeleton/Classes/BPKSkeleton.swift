@@ -24,7 +24,7 @@ public struct BPKSkeleton: View {
     private var size: BPKSkeleton.Size = .default
     private var style: BPKSkeleton.Style = .default
     private var color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
-    private var translateX: CGFloat {
+    private var transformX: CGFloat {
         switch type {
         case .image:
             return (size.imageSize / 2) + size.shimmerOverlayWidth
@@ -37,6 +37,8 @@ public struct BPKSkeleton: View {
         }
     }
     
+    @State var animated = false
+    
     public init(
         type: BPKSkeleton.ViewType,
         size: BPKSkeleton.Size = .default,
@@ -47,8 +49,6 @@ public struct BPKSkeleton: View {
         self.size = size
 
     }
-    
-    @State var animated = false
     
     public var body: some View {
         switch type {
@@ -94,7 +94,7 @@ public struct BPKSkeleton: View {
             .frame(width: size.shimmerOverlayWidth)
             .background(
                 LinearGradient(gradient: Gradient(colors: [alpha(0), alpha(0.6), alpha(0)]), startPoint: .leading, endPoint: .trailing))
-            .offset(x: animated ? translateX : -translateX)
+            .offset(x: animated ? transformX : -transformX)
             .animation(
                 .linear(duration: 1).delay(0.2).repeatForever(autoreverses: false))
             .onAppear() {

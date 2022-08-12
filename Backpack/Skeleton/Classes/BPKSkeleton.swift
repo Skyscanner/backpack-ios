@@ -45,12 +45,14 @@ public class BPKSkeleton: UIView {
     }
     
     private var skeletonView: UIView = {
-        let view = UIView(frame: .zero)
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private var shimmerOverlay: UIView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
 //        let transperant = overlayColor.withAlphaComponent(0)
 //        let midColor = overlayColor.withAlphaComponent(0.6)
 //        let gradientLayer = CAGradientLayer()
@@ -94,6 +96,7 @@ public class BPKSkeleton: UIView {
     }
     
     private func updateType() {
+        skeletonView.translatesAutoresizingMaskIntoConstraints = false
         switch self.type {
         case .image:
             self.skeletonView = BPKImageSkeleton()
@@ -106,6 +109,7 @@ public class BPKSkeleton: UIView {
         case .shimmeroverlay:
             self.skeletonView = BPKImageSkeleton()
         }
+        skeletonView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     internal func setup() {
