@@ -96,7 +96,6 @@ public class BPKSkeleton: UIView {
     }
     
     private func updateType() {
-        skeletonView.translatesAutoresizingMaskIntoConstraints = false
         switch self.type {
         case .image:
             self.skeletonView = BPKImageSkeleton()
@@ -109,19 +108,20 @@ public class BPKSkeleton: UIView {
         case .shimmeroverlay:
             self.skeletonView = BPKImageSkeleton()
         }
-        skeletonView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     internal func setup() {
         addSubview(skeletonView)
         skeletonView.addSubview(shimmerOverlay)
         NSLayoutConstraint.activate([
-            skeletonView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            skeletonView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            skeletonView.topAnchor.constraint(equalTo: topAnchor),
+            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             shimmerOverlay.leadingAnchor.constraint(equalTo: skeletonView.leadingAnchor, constant: -BPKSpacingXl),
             shimmerOverlay.topAnchor.constraint(equalTo: skeletonView.topAnchor),
-            shimmerOverlay.heightAnchor.constraint(equalTo: skeletonView.heightAnchor),
+            shimmerOverlay.bottomAnchor.constraint(equalTo: skeletonView.bottomAnchor),
             shimmerOverlay.widthAnchor.constraint(equalToConstant: BPKSpacingXl)
         ])
 

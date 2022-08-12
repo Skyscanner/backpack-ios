@@ -25,11 +25,9 @@ class SkeletonViewController: UIViewController {
     private lazy var containerView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-//        stackView.alignment = .leading
-//        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         stackView.spacing = BPKSpacingMd
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isUserInteractionEnabled = false
         return stackView
     }()
 
@@ -41,16 +39,23 @@ class SkeletonViewController: UIViewController {
 
         let imageSkeleton = BPKSkeleton(type: .image)
         let circleSkeleton = BPKSkeleton(type: .circle)
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        circleSkeleton.translatesAutoresizingMaskIntoConstraints = false
+        imageSkeleton.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.addArrangedSubview(imageSkeleton)
+        containerView.addArrangedSubview(circleSkeleton)
+    
 //        circleSkeleton.size = .default
 //        let headlineSkeleton = BPKSkeleton(type: .headline)
 //        let textSkeleton = BPKSkeleton(type: .bodytext)
         
         NSLayoutConstraint.activate([
-            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        containerView.addArrangedSubview(imageSkeleton)
-        containerView.addArrangedSubview(circleSkeleton)
     }
     
     private func imageSkeletonRow() {
