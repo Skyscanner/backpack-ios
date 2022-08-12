@@ -1,8 +1,7 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2022 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,3 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+extension BPKSkeleton {
+    public enum Size {
+        case small, `default`, large
+    }
+}

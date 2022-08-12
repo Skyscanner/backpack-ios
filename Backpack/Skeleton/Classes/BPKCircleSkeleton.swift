@@ -30,9 +30,9 @@ public class BPKCircleSkeleton: BPKSkeleton {
     }
     
     internal override func setupSubviews() {
-        self.backgroundColor = super.bgColor
+        self.backgroundColor = BPKSkeleton.bgColor
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.layer.cornerRadius = self.bounds.height / 2.0
+        self.layer.cornerRadius = diameter / 2.0
         updateSize()
     }
     

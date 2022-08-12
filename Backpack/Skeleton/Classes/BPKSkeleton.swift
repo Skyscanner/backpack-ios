@@ -18,8 +18,13 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 public class BPKSkeleton: UIView {
+    static internal var bgColor: UIColor =
+        BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
+    static fileprivate var overlayColor: UIColor =
+        BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
     
     public var type: BPKSkeletonType = .image {
         didSet {
@@ -41,6 +46,21 @@ public class BPKSkeleton: UIView {
     
     private var skeletonView: UIView = {
         let view = UIView(frame: .zero)
+        return view
+    }()
+    
+    private var shimmerOverlay: UIView = {
+        let view = UIView()
+//        let transperant = overlayColor.withAlphaComponent(0)
+//        let midColor = overlayColor.withAlphaComponent(0.6)
+//        let gradientLayer = CAGradientLayer()
+//
+//        gradientLayer.colors = [transperant, midColor, transperant]
+//        gradientLayer.locations = [0, 0.5, 1]
+//        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+//        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+//        view.layer.insertSublayer(gradientLayer, at: 0)
+        view.backgroundColor = .blue
         return view
     }()
     
@@ -90,13 +110,19 @@ public class BPKSkeleton: UIView {
     
     internal func setup() {
         addSubview(skeletonView)
-        
+        skeletonView.addSubview(shimmerOverlay)
         NSLayoutConstraint.activate([
             skeletonView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            skeletonView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            skeletonView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            shimmerOverlay.leadingAnchor.constraint(equalTo: skeletonView.leadingAnchor, constant: -BPKSpacingXl),
+            shimmerOverlay.topAnchor.constraint(equalTo: skeletonView.topAnchor),
+            shimmerOverlay.heightAnchor.constraint(equalTo: skeletonView.heightAnchor),
+            shimmerOverlay.widthAnchor.constraint(equalToConstant: BPKSpacingXl)
         ])
 
         setupSubviews()
+        startShimmer()
     }
     
     internal func updateSize() {
@@ -107,10 +133,14 @@ public class BPKSkeleton: UIView {
     
     internal func setupSubviews() {
     }
-}
+    
+    private func startShimmer() {
+        UIView.animate(withDuration: 1, delay: 0.2, options: .repeat) {
+            self.shimmerOverlay.transform = self.shimmerOverlay.transform.translatedBy(x: 100+BPKSpacingXl, y: 0)
+        } completion: {_ in
+            self.shimmerOverlay.transform = self.shimmerOverlay.transform.translatedBy(x: -(100+BPKSpacingXl*2), y: 0)
+            self.startShimmer()
+        }
 
-extension BPKSkeleton {
-    internal var bgColor: UIColor {
-        return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
     }
 }

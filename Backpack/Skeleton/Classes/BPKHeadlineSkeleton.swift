@@ -30,7 +30,7 @@ public class BPKHeadlineSkeleton: BPKSkeleton {
     }
     
     internal override func setupSubviews() {
-        self.backgroundColor = super.bgColor
+//        self.backgroundColor = super.bgColor
         self.layer.cornerRadius = BPKCornerRadiusXs
         updateSize()
     }

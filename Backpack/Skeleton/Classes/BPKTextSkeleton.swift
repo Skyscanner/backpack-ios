@@ -40,7 +40,7 @@ public class BPKTextSkeleton: BPKSkeleton {
     
     internal override func setupSubviews() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = super.bgColor
+//        self.backgroundColor = super.bgColor
         let textSkeletons = [6, 7, 4].map {
             createTextSkeletonView(length: $0)
         }

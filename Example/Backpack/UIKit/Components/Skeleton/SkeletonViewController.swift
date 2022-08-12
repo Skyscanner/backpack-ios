@@ -21,29 +21,39 @@ import UIKit
 import Backpack
 
 class SkeletonViewController: UIViewController {
-    var rounded = true
+    
+    private lazy var containerView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fillEqually
+        stackView.spacing = BPKSpacingMd
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isUserInteractionEnabled = false
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = BPKSpacingMd
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stack)
+
+        view.addSubview(containerView)
 
         let imageSkeleton = BPKSkeleton(type: .image)
-        let circleSkeleton = BPKSkeleton(type: .circle)
-        let headlineSkeleton = BPKSkeleton(type: .headline)
-        let textSkeleton = BPKSkeleton(type: .bodytext)
+//        let circleSkeleton = BPKSkeleton(type: .circle)
+//        circleSkeleton.size = .default
+//        let headlineSkeleton = BPKSkeleton(type: .headline)
+//        let textSkeleton = BPKSkeleton(type: .bodytext)
         
         NSLayoutConstraint.activate([
-            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        imageSkeleton.style = .rounded
-        [imageSkeleton, circleSkeleton, headlineSkeleton, textSkeleton].forEach(stack.addArrangedSubview)
+        containerView.addSubview(imageSkeleton)
+//        containerView.addSubview(circleSkeleton)
+    }
+    
+    private func imageSkeletonRow() {
+        
     }
 }

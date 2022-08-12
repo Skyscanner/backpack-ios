@@ -239,10 +239,18 @@ extension ComponentCellsProvider {
         )
     }
     private func skeleton() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Skeleton",
-            groups: SkeletonGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Skeleton", children: $0) }
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        SkeletonViewController()
+                    })),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SkeletonExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Skeleton", tabs: $0) }
         )
     }
     private func spinners() -> CellDataSource {
