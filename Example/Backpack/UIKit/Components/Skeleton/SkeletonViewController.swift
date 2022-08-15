@@ -26,8 +26,44 @@ class SkeletonViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        stackView.spacing = BPKSpacingMd
+        stackView.alignment = .leading
+        stackView.spacing = BPKSpacingBase
+        return stackView
+    }()
+    
+    private lazy var imageRow: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .bottom
+        stackView.spacing = BPKSpacingBase
+        return stackView
+    }()
+    
+    private lazy var headlineRow: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .bottom
+        stackView.spacing = BPKSpacingBase
+        return stackView
+    }()
+    
+    private lazy var circleRow: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .bottom
+        stackView.spacing = BPKSpacingBase
+        return stackView
+    }()
+    
+    private lazy var bodytextRow: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .bottom
+        stackView.spacing = BPKSpacingBase
         return stackView
     }()
 
@@ -37,28 +73,69 @@ class SkeletonViewController: UIViewController {
 
         view.addSubview(containerView)
 
-        let imageSkeleton = BPKSkeleton(type: .image)
-        let circleSkeleton = BPKSkeleton(type: .circle)
+        imageSkeletonRow()
+        circleSkeletonRow()
+        headlineSkeletonRow()
+        bodytextSkeletonRow()
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        circleSkeleton.translatesAutoresizingMaskIntoConstraints = false
-        imageSkeleton.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerView.addArrangedSubview(imageSkeleton)
-        containerView.addArrangedSubview(circleSkeleton)
-    
-//        circleSkeleton.size = .default
-//        let headlineSkeleton = BPKSkeleton(type: .headline)
-//        let textSkeleton = BPKSkeleton(type: .bodytext)
         
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingLg),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
     private func imageSkeletonRow() {
+        let defaultImage = BPKSkeleton(type: .image)
+        let roundedImage = BPKSkeleton(type: .image, size: .default, style: .rounded)
+        let title = BPKLabel(fontStyle: .textHeading5)
+        title.text = "ImageSKeleton"
         
+        imageRow.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addArrangedSubview(title)
+        containerView.addArrangedSubview(imageRow)
+        imageRow.addArrangedSubview(defaultImage)
+        imageRow.addArrangedSubview(roundedImage)
+    }
+    
+    private func circleSkeletonRow() {
+        let defaultCircle = BPKSkeleton(type: .circle)
+        let small = BPKSkeleton(type: .circle, size: .small, style: .default)
+        let title = BPKLabel(fontStyle: .textHeading5)
+        title.text = "CircleSKeleton"
+        
+        circleRow.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addArrangedSubview(title)
+        containerView.addArrangedSubview(circleRow)
+        circleRow.addArrangedSubview(small)
+        circleRow.addArrangedSubview(defaultCircle)
+    }
+    
+    private func headlineSkeletonRow() {
+        let defaultImage = BPKSkeleton(type: .headline)
+        let small = BPKSkeleton(type: .headline, size: .small, style: .default)
+        let large = BPKSkeleton(type: .headline, size: .large, style: .default)
+        let title = BPKLabel(fontStyle: .textHeading5)
+        title.text = "HeadlineSKeleton"
+        
+        headlineRow.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addArrangedSubview(title)
+        containerView.addArrangedSubview(headlineRow)
+        headlineRow.addArrangedSubview(small)
+        headlineRow.addArrangedSubview(defaultImage)
+        headlineRow.addArrangedSubview(large)
+    }
+    
+    private func bodytextSkeletonRow() {
+        let bodytext = BPKSkeleton(type: .bodytext)
+        let title = BPKLabel(fontStyle: .textHeading5)
+        title.text = "BodytextSKeleton"
+        
+        bodytextRow.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addArrangedSubview(title)
+        containerView.addArrangedSubview(bodytextRow)
+        bodytextRow.addArrangedSubview(bodytext)
     }
 }

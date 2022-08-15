@@ -36,8 +36,10 @@ public struct BPKSkeleton: View {
             return 100 + size.shimmerOverlayWidth
         }
     }
-    
-    @State var animated = false
+
+    @State private var phase: CGFloat = 0
+    let duration = 1.0
+    let delay = 0.2
     
     public init(
         type: BPKSkeleton.ViewType,
@@ -57,19 +59,31 @@ public struct BPKSkeleton: View {
                .fill(color)
                .frame(width: size.imageSize, height: size.imageSize)
                .clipped()
-               .overlay(makeGradientOverlay())
+               .modifier(ShimmerMask(phase: phase).animation(
+                    Animation.linear(duration: duration).delay(delay)
+                            .repeatForever(autoreverses: false)
+                ))
+                .onAppear { phase = 0.8 }
         case .headline:
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
                .frame(width: size.headlineWidth, height: size.headlineHeight)
                .clipped()
-               .overlay(makeGradientOverlay())
+               .modifier(ShimmerMask(phase: phase).animation(
+                    Animation.linear(duration: duration).delay(delay)
+                            .repeatForever(autoreverses: false)
+                ))
+                .onAppear { phase = 0.8 }
         case .circle:
             Circle()
                .fill(color)
                .frame(width: size.circleDiameter, height: size.circleDiameter)
                .clipped()
-               .overlay(makeGradientOverlay())
+               .modifier(ShimmerMask(phase: phase).animation(
+                    Animation.linear(duration: duration).delay(delay)
+                            .repeatForever(autoreverses: false)
+                ))
+                .onAppear { phase = 0.8 }
             
         case .bodytext:
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
@@ -80,30 +94,47 @@ public struct BPKSkeleton: View {
         }
     }
     
+    struct ShimmerMask: AnimatableModifier {
+        var phase: CGFloat = 0
+
+        var animatableData: CGFloat {
+            get { phase }
+            set { phase = newValue }
+        }
+
+        func body(content: Content) -> some View {
+            content
+                .mask(GradientMask(phase: phase).scaleEffect(3))
+        }
+    }
+    
+    struct GradientMask: View {
+        let phase: CGFloat
+
+        var body: some View {
+            LinearGradient(gradient:
+                Gradient(stops: [
+                    .init(color: alpha(1), location: phase),
+                    .init(color: alpha(0.4), location: phase + 0.1),
+                    .init(color: alpha(1), location: phase + 0.2)
+                ]), startPoint: .leading, endPoint: .trailing)
+        }
+        
+        private func alpha(_ alpha: CGFloat) -> Color {
+            return Color(.white.withAlphaComponent(alpha).darkVariant(.black.withAlphaComponent(alpha)))
+        }
+    }
+    
     private func makeTextRow(width: CGFloat) -> some View {
         RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
            .fill(color)
            .frame(width: width, height: BPKSpacing.md.value)
            .clipped()
-           .overlay(makeGradientOverlay())
-    }
-    
-    private func makeGradientOverlay() -> some View {
-        Rectangle()
-            .fill(alpha(0))
-            .frame(width: size.shimmerOverlayWidth)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [alpha(0), alpha(0.6), alpha(0)]), startPoint: .leading, endPoint: .trailing))
-            .offset(x: animated ? transformX : -transformX)
-            .animation(
-                .linear(duration: 1).delay(0.2).repeatForever(autoreverses: false))
-            .onAppear() {
-                animated.toggle()
-            }
-    }
-    
-    private func alpha(_ alpha: CGFloat) -> Color {
-        return Color(.white.withAlphaComponent(alpha).darkVariant(.black.withAlphaComponent(alpha)))
+           .modifier(ShimmerMask(phase: phase).animation(
+                Animation.linear(duration: duration).delay(delay)
+                        .repeatForever(autoreverses: false)
+            ))
+           .onAppear { phase = 0.8 }
     }
 }
 

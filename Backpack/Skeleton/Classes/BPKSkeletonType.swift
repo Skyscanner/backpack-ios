@@ -20,5 +20,5 @@ import Foundation
 
 @objc
 public enum BPKSkeletonType: UInt {
-    case image, headline, circle, bodytext, shimmeroverlay
+    case image, headline, circle, bodytext
 }

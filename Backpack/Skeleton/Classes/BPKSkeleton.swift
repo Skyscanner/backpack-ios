@@ -23,8 +23,8 @@ import SwiftUI
 public class BPKSkeleton: UIView {
     static internal var bgColor: UIColor =
         BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
-    static fileprivate var overlayColor: UIColor =
-        BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
+    static internal var defaultColor: UIColor =
+        BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
     
     public var type: BPKSkeletonType = .image {
         didSet {
@@ -47,28 +47,19 @@ public class BPKSkeleton: UIView {
     private var skeletonView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
         return view
     }()
     
-    private var shimmerOverlay: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-//        let transperant = overlayColor.withAlphaComponent(0)
-//        let midColor = overlayColor.withAlphaComponent(0.6)
-//        let gradientLayer = CAGradientLayer()
-//
-//        gradientLayer.colors = [transperant, midColor, transperant]
-//        gradientLayer.locations = [0, 0.5, 1]
-//        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-//        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-//        view.layer.insertSublayer(gradientLayer, at: 0)
-        view.backgroundColor = .blue
-        return view
-    }()
-    
-    public convenience init(type: BPKSkeletonType) {
+    public convenience init(
+        type: BPKSkeletonType,
+        size: BPKSkeletonSize = .default,
+        style: BPKSkeletonStyle = .default
+    ) {
         self.init()
         self.type = type
+        self.size = size
+        self.style = style
         updateType()
         setup()
     }
@@ -76,7 +67,7 @@ public class BPKSkeleton: UIView {
     /**
      * Create a `BPKSkeleton` with a given frame.
      *
-     * @param frame The initial frame of the chip.
+     * @param frame The initial frame of the Skeleton.
      * @return `BPKSkeleton` instance.
      */
     public override init(frame: CGRect) {
@@ -97,54 +88,92 @@ public class BPKSkeleton: UIView {
     
     private func updateType() {
         switch self.type {
-        case .image:
-            self.skeletonView = BPKImageSkeleton()
-        case .headline:
-            self.skeletonView = BPKHeadlineSkeleton()
-        case .circle:
-            self.skeletonView = BPKCircleSkeleton()
         case .bodytext:
             self.skeletonView = BPKTextSkeleton()
-        case .shimmeroverlay:
-            self.skeletonView = BPKImageSkeleton()
+        default:
+            self.skeletonView = BPKCommonSkeleton()
         }
     }
     
     internal func setup() {
         addSubview(skeletonView)
-        skeletonView.addSubview(shimmerOverlay)
         NSLayoutConstraint.activate([
             skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
             skeletonView.topAnchor.constraint(equalTo: topAnchor),
             skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
             skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            shimmerOverlay.leadingAnchor.constraint(equalTo: skeletonView.leadingAnchor, constant: -BPKSpacingXl),
-            shimmerOverlay.topAnchor.constraint(equalTo: skeletonView.topAnchor),
-            shimmerOverlay.bottomAnchor.constraint(equalTo: skeletonView.bottomAnchor),
-            shimmerOverlay.widthAnchor.constraint(equalToConstant: BPKSpacingXl)
+            skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
+            skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
         ])
 
-        setupSubviews()
-        startShimmer()
+        updateStyle()
+        startShimmer(size: viewSize)
     }
     
-    internal func updateSize() {
+    private func updateSize() {
+        startShimmer(size: viewSize)
     }
     
-    internal func updateStyle() {
-    }
-    
-    internal func setupSubviews() {
-    }
-    
-    private func startShimmer() {
-        UIView.animate(withDuration: 1, delay: 0.2, options: .repeat) {
-            self.shimmerOverlay.transform = self.shimmerOverlay.transform.translatedBy(x: 100+BPKSpacingXl, y: 0)
-        } completion: {_ in
-            self.shimmerOverlay.transform = self.shimmerOverlay.transform.translatedBy(x: -(100+BPKSpacingXl*2), y: 0)
-            self.startShimmer()
+    private func updateStyle() {
+        if type == .image {
+            skeletonView.layer.cornerRadius = cornerStyle
         }
+        if type == .headline {
+            skeletonView.layer.cornerRadius = BPKCornerRadiusXs
+        }
+        if type == .circle {
+            skeletonView.layer.cornerRadius = viewSize.height / 2.0
+        }
+    }
 
+    private func startShimmer(size: CGSize) {
+        let gradientLayer = CAGradientLayer()
+        let transperant = BPKSkeleton.defaultColor.withAlphaComponent(0).cgColor
+        let midColor = BPKSkeleton.defaultColor.withAlphaComponent(0.6).cgColor
+        let duration = 1.0
+        let delay = 0.2
+        
+        gradientLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+        gradientLayer.colors = [transperant, midColor, transperant]
+        gradientLayer.locations = [0, 0.5, 1]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.masksToBounds = true
+        
+        let gradientChangeAnimation = CABasicAnimation(keyPath: "locations")
+        gradientChangeAnimation.beginTime = CACurrentMediaTime() + delay
+        gradientChangeAnimation.duration = duration
+        gradientChangeAnimation.fromValue = [-0.2, -0.1, 0]
+        gradientChangeAnimation.toValue = [1.0, 1.1, 1.2]
+        gradientChangeAnimation.repeatCount = .infinity
+        gradientChangeAnimation.autoreverses = false
+        
+        gradientLayer.add(gradientChangeAnimation, forKey: "shimmer")
+        skeletonView.layer.addSublayer(gradientLayer)
+    }
+}
+
+extension BPKSkeleton {
+    fileprivate var cornerStyle: CGFloat {
+        switch style {
+        case .rounded:
+            return BPKCornerRadiusSm
+        default:
+            return 0
+        }
+    }
+    
+    fileprivate var viewSize: CGSize {
+        switch type {
+        case .image:
+            return CGSize(width: size.imageSize, height: size.imageSize)
+        case .circle:
+            return CGSize(width: size.circleDiameter, height: size.circleDiameter)
+        case .bodytext:
+            return CGSize(width: BPKSpacingXxl * 5, height: BPKSpacingMd * 3 + BPKSpacingSm * 5)
+        case .headline:
+            return CGSize(width: size.headlineWidth, height: size.headlineHeight)
+        }
     }
 }

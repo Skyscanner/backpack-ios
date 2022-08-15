@@ -19,12 +19,17 @@
 import Foundation
 import UIKit
 
-public class BPKTextSkeleton: BPKSkeleton {
+public class BPKTextSkeleton: UIView {
+    var textRows = [UIView]()
+    var width: CGFloat = BPKSpacingXxl * 5
+    var rowHeight: CGFloat = BPKSpacingMd
+    var rowSpacing: CGFloat = BPKSpacingSm * 2.5
     
     fileprivate let containerStackView: UIStackView = {
-        let stack = UIStackView(frame: .zero)
+        let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
+        stack.axis = .vertical
+        stack.backgroundColor = BPKSkeleton.defaultColor
         stack.spacing = BPKSpacingSm * 2.5
         stack.isUserInteractionEnabled = false
         return stack
@@ -32,31 +37,42 @@ public class BPKTextSkeleton: BPKSkeleton {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        setupSubviews()
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal override func setupSubviews() {
+    private func setupSubviews() {
+        textRows = [createTextRow(), createTextRow(), createTextRow()]
         self.translatesAutoresizingMaskIntoConstraints = false
-//        self.backgroundColor = super.bgColor
-        let textSkeletons = [6, 7, 4].map {
-            createTextSkeletonView(length: $0)
-        }
-        textSkeletons.forEach { containerStackView.addArrangedSubview($0) }
+        self.backgroundColor = BPKSkeleton.bgColor
+        
         self.addSubview(containerStackView)
+        textRows.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            containerStackView.addArrangedSubview($0)
+        }
         
         NSLayoutConstraint.activate([
-            containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            textRows[0].heightAnchor.constraint(equalToConstant: rowHeight),
+            textRows[1].heightAnchor.constraint(equalToConstant: rowHeight),
+            textRows[2].heightAnchor.constraint(equalToConstant: rowHeight),
+            textRows[0].widthAnchor.constraint(equalToConstant: width),
+            textRows[1].widthAnchor.constraint(equalToConstant: width),
+            textRows[2].widthAnchor.constraint(equalToConstant: width)
         ])
     }
     
-    fileprivate func createTextSkeletonView(length: Int) -> UIView {
-        let frame = CGRect(x: 0, y: 0, width: CGFloat(length) * BPKSpacingMd, height: BPKSpacingMd)
-        let textSkeleton = UIView(frame: frame)
-        textSkeleton.backgroundColor = .green
+    fileprivate func createTextRow() -> UIView {
+        let textSkeleton = UIView()
+        textSkeleton.backgroundColor = BPKSkeleton.bgColor
         textSkeleton.layer.cornerRadius = BPKCornerRadiusXs / 2.0
         return textSkeleton
     }

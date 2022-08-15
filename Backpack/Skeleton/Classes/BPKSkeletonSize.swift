@@ -17,8 +17,39 @@
  */
 
 import Foundation
+import UIKit
 
 @objc
 public enum BPKSkeletonSize: UInt {
     case small, `default`, large
+}
+
+internal extension BPKSkeletonSize {
+    var imageSize: CGFloat {
+        return BPKSpacingXl * 3
+    }
+    
+    var circleDiameter: CGFloat {
+        switch self {
+        case .small:
+            return BPKSpacingXl
+        default:
+            return BPKSpacingLg * 2
+        }
+    }
+    
+    var headlineHeight: CGFloat {
+        switch self {
+        case .small:
+            return BPKSpacingMd
+        case .default:
+            return BPKSpacingBase
+        case .large:
+            return BPKSpacingXl
+        }
+    }
+    
+    var headlineWidth: CGFloat {
+        return BPKSpacingXxl * 2
+    }
 }

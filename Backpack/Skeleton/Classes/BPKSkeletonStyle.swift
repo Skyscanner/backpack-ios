@@ -20,5 +20,5 @@ import Foundation
 
 @objc
 public enum BPKSkeletonStyle: UInt {
-    case `default`, rounded
+    case rounded, `default`
 }

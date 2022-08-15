@@ -19,40 +19,26 @@
 import Foundation
 import UIKit
 
-public class BPKCircleSkeleton: BPKSkeleton {
-    
+public class BPKCommonSkeleton: UIView {
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        setupSubviews()
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal override func setupSubviews() {
-        self.backgroundColor = BPKSkeleton.bgColor
+    private func setupSubviews() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.layer.cornerRadius = diameter / 2.0
-        updateSize()
-    }
-    
-    internal override func updateSize() {
+        self.backgroundColor = BPKSkeleton.bgColor
+        
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: diameter),
-            widthAnchor.constraint(equalToConstant: diameter),
-            centerXAnchor.constraint(equalTo: centerXAnchor),
-            centerYAnchor.constraint(equalTo: centerYAnchor)
+            leadingAnchor.constraint(equalTo: leadingAnchor),
+            trailingAnchor.constraint(equalTo: trailingAnchor),
+            topAnchor.constraint(equalTo: topAnchor),
+            bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-}
-
-extension BPKCircleSkeleton {
-    fileprivate var diameter: CGFloat {
-        switch super.size {
-        case .small:
-            return BPKSpacingXl
-        default:
-            return BPKSpacingLg * 2
-        }
     }
 }
