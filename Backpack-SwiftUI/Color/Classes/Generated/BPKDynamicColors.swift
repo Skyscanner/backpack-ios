@@ -104,7 +104,7 @@ public extension BPKColor {
     static let surfaceElevatedColor = white.darkVariant(nightGrey25)
 
     /// The `surfaceHighlightColor` dynamic color from the Backpack palette.
-    static let surfaceHighlightColor = grey20.darkVariant(nightGreenFill)
+    static let surfaceHighlightColor = grey20.darkVariant(nightGrey25)
 
     /// The `textDisabledColor` dynamic color from the Backpack palette.
     static let textDisabledColor = blackAlpha20.darkVariant(whiteAlpha20)

@@ -61,12 +61,6 @@ public extension BPKColor {
     /// The `blackTint06` color from the Backpack palette - rgb(142, 142, 147)
     static let blackTint06 = BPKColor(red:0.557, green:0.557, blue:0.576, alpha:1)
 
-    /// The `blueBright` color from the Backpack palette - rgb(161, 238, 255)
-    static let blueBright = BPKColor(red:0.631, green:0.933, blue:1.000, alpha:1)
-
-    /// The `blueMuted` color from the Backpack palette - rgb(217, 248, 255)
-    static let blueMuted = BPKColor(red:0.851, green:0.973, blue:1.000, alpha:1)
-
     /// The `bunol` color from the Backpack palette - rgb(255, 123, 89)
     static let bunol = BPKColor(red:1.000, green:0.482, blue:0.349, alpha:1)
 
@@ -84,9 +78,6 @@ public extension BPKColor {
 
     /// The `glencoe` color from the Backpack palette - rgb(115, 206, 198)
     static let glencoe = BPKColor(red:0.451, green:0.808, blue:0.776, alpha:1)
-
-    /// The `greenBright` color from the Backpack palette - rgb(147, 255, 222)
-    static let greenBright = BPKColor(red:0.576, green:1.000, blue:0.871, alpha:1)
 
     /// The `greenMuted` color from the Backpack palette - rgb(208, 238, 236)
     static let greenMuted = BPKColor(red:0.816, green:0.933, blue:0.925, alpha:1)
@@ -136,11 +127,11 @@ public extension BPKColor {
     /// The `nightGrey10` color from the Backpack palette - rgb(0, 0, 0)
     static let nightGrey10 = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:1)
 
-    /// The `nightGrey20` color from the Backpack palette - rgb(44, 44, 46)
-    static let nightGrey20 = BPKColor(red:0.173, green:0.173, blue:0.180, alpha:1)
+    /// The `nightGrey20` color from the Backpack palette - rgb(29, 27, 32)
+    static let nightGrey20 = BPKColor(red:0.114, green:0.106, blue:0.125, alpha:1)
 
-    /// The `nightGrey25` color from the Backpack palette - rgb(27, 40, 57)
-    static let nightGrey25 = BPKColor(red:0.106, green:0.157, blue:0.224, alpha:1)
+    /// The `nightGrey25` color from the Backpack palette - rgb(44, 44, 46)
+    static let nightGrey25 = BPKColor(red:0.173, green:0.173, blue:0.180, alpha:1)
 
     /// The `nightGrey30` color from the Backpack palette - rgb(72, 72, 74)
     static let nightGrey30 = BPKColor(red:0.282, green:0.282, blue:0.290, alpha:1)
@@ -160,26 +151,17 @@ public extension BPKColor {
     /// The `nightYellowSpot` color from the Backpack palette - rgb(255, 181, 77)
     static let nightYellowSpot = BPKColor(red:1.000, green:0.710, blue:0.302, alpha:1)
 
-    /// The `orange` color from the Backpack palette - rgb(255, 123, 89)
-    static let orange = BPKColor(red:1.000, green:0.482, blue:0.349, alpha:1)
-
     /// The `panjin` color from the Backpack palette - rgb(209, 67, 91)
     static let panjin = BPKColor(red:0.820, green:0.263, blue:0.357, alpha:1)
 
     /// The `petra` color from the Backpack palette - rgb(255, 171, 149)
     static let petra = BPKColor(red:1.000, green:0.671, blue:0.584, alpha:1)
 
-    /// The `pink` color from the Backpack palette - rgb(255, 163, 229)
-    static let pink = BPKColor(red:1.000, green:0.639, blue:0.898, alpha:1)
-
     /// The `pinkMuted` color from the Backpack palette - rgb(246, 221, 225)
     static let pinkMuted = BPKColor(red:0.965, green:0.867, blue:0.882, alpha:1)
 
     /// The `primaryGradientLight` color from the Backpack palette - rgb(7, 112, 227)
     static let primaryGradientLight = BPKColor(red:0.027, green:0.439, blue:0.890, alpha:1)
-
-    /// The `purple` color from the Backpack palette - rgb(142, 71, 186)
-    static let purple = BPKColor(red:0.557, green:0.278, blue:0.729, alpha:1)
 
     /// The `sagano` color from the Backpack palette - rgb(208, 238, 236)
     static let sagano = BPKColor(red:0.816, green:0.933, blue:0.925, alpha:1)
@@ -250,11 +232,59 @@ public extension BPKColor {
     /// The `whiteAlpha80` color from the Backpack palette - rgb(142, 142, 147)
     static let whiteAlpha80 = BPKColor(red:0.557, green:0.557, blue:0.576, alpha:1)
 
-    /// The `yellow` color from the Backpack palette - rgb(254, 235, 135)
-    static let yellow = BPKColor(red:0.996, green:0.922, blue:0.529, alpha:1)
-
     /// The `yellowMuted` color from the Backpack palette - rgb(255, 235, 208)
     static let yellowMuted = BPKColor(red:1.000, green:0.922, blue:0.816, alpha:1)
+
+    /// The `marcommsBerry` color from the Backpack palette - rgb(209, 67, 91)
+    static let marcommsBerry = BPKColor(red:0.820, green:0.263, blue:0.357, alpha:1)
+
+    /// The `marcommsBlueBright` color from the Backpack palette - rgb(161, 238, 255)
+    static let marcommsBlueBright = BPKColor(red:0.631, green:0.933, blue:1.000, alpha:1)
+
+    /// The `marcommsBlueMuted` color from the Backpack palette - rgb(217, 248, 255)
+    static let marcommsBlueMuted = BPKColor(red:0.851, green:0.973, blue:1.000, alpha:1)
+
+    /// The `marcommsCharcoal` color from the Backpack palette - rgb(17, 18, 54)
+    static let marcommsCharcoal = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)
+
+    /// The `marcommsDarkSky` color from the Backpack palette - rgb(2, 18, 44)
+    static let marcommsDarkSky = BPKColor(red:0.008, green:0.071, blue:0.173, alpha:1)
+
+    /// The `marcommsEcoGreen` color from the Backpack palette - rgb(15, 161, 169)
+    static let marcommsEcoGreen = BPKColor(red:0.059, green:0.631, blue:0.663, alpha:1)
+
+    /// The `marcommsGreenBright` color from the Backpack palette - rgb(147, 255, 222)
+    static let marcommsGreenBright = BPKColor(red:0.576, green:1.000, blue:0.871, alpha:1)
+
+    /// The `marcommsGreenMuted` color from the Backpack palette - rgb(208, 238, 236)
+    static let marcommsGreenMuted = BPKColor(red:0.816, green:0.933, blue:0.925, alpha:1)
+
+    /// The `marcommsGrey40` color from the Backpack palette - rgb(104, 105, 127)
+    static let marcommsGrey40 = BPKColor(red:0.408, green:0.412, blue:0.498, alpha:1)
+
+    /// The `marcommsOrange` color from the Backpack palette - rgb(255, 123, 89)
+    static let marcommsOrange = BPKColor(red:1.000, green:0.482, blue:0.349, alpha:1)
+
+    /// The `marcommsPink` color from the Backpack palette - rgb(255, 163, 229)
+    static let marcommsPink = BPKColor(red:1.000, green:0.639, blue:0.898, alpha:1)
+
+    /// The `marcommsPinkMuted` color from the Backpack palette - rgb(246, 221, 225)
+    static let marcommsPinkMuted = BPKColor(red:0.965, green:0.867, blue:0.882, alpha:1)
+
+    /// The `marcommsPurple` color from the Backpack palette - rgb(142, 71, 186)
+    static let marcommsPurple = BPKColor(red:0.557, green:0.278, blue:0.729, alpha:1)
+
+    /// The `marcommsSkyBlue` color from the Backpack palette - rgb(7, 112, 227)
+    static let marcommsSkyBlue = BPKColor(red:0.027, green:0.439, blue:0.890, alpha:1)
+
+    /// The `marcommsWhite` color from the Backpack palette - rgb(255, 255, 255)
+    static let marcommsWhite = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
+
+    /// The `marcommsYellow` color from the Backpack palette - rgb(254, 235, 135)
+    static let marcommsYellow = BPKColor(red:0.996, green:0.922, blue:0.529, alpha:1)
+
+    /// The `marcommsYellowMuted` color from the Backpack palette - rgb(255, 235, 208)
+    static let marcommsYellowMuted = BPKColor(red:1.000, green:0.922, blue:0.816, alpha:1)
 
     /// The `shadowLgColor` color from the Backpack palette - rgb(17, 18, 54)
     static let shadowLgColor = BPKColor(red:0.067, green:0.071, blue:0.212, alpha:1)
