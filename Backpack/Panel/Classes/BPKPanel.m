@@ -78,7 +78,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
 - (void)updatePanelAppearance {
     switch (self.style) {
     case BPKPanelStyleDefault:
-        self.layer.borderColor = [BPKColor skyGrayTint06].CGColor;
+        self.layer.borderColor = [BPKColor lineColor].CGColor;
         self.layer.borderWidth = 1.0;
         self.layer.masksToBounds = YES;
         break;
@@ -122,7 +122,7 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     self.originalLayoutMargins = self.layoutMargins;
     self.padded = padded;
     self.style = BPKPanelStyleDefault;
-    self.backgroundColor = BPKColor.backgroundTertiaryColor;
+    self.backgroundColor = BPKColor.surfaceDefaultColor;
     self.layer.cornerRadius = BPKCornerRadiusMd;
     [self updatePanelAppearance];
 }
