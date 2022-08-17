@@ -144,8 +144,9 @@ public class BPKSkeleton: UIView {
         let gradientChangeAnimation = CABasicAnimation(keyPath: "locations")
         gradientChangeAnimation.beginTime = CACurrentMediaTime() + delay
         gradientChangeAnimation.duration = duration
-        gradientChangeAnimation.fromValue = [-0.2, -0.1, 0]
-        gradientChangeAnimation.toValue = [1.0, 1.1, 1.2]
+        gradientChangeAnimation.fillMode = .removed
+        gradientChangeAnimation.fromValue = [-0.6, -0.3, 0]
+        gradientChangeAnimation.toValue = [1.0, 1.3, 1.6]
         gradientChangeAnimation.repeatCount = .infinity
         gradientChangeAnimation.autoreverses = false
         
