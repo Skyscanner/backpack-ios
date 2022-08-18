@@ -35,6 +35,7 @@ struct SkeletonExampleView: View {
             BPKText("Body text Skeleton", style: .heading4)
             makeBodytextSkeletonRow()
         }
+        .shimmering()
         .padding()
     }
     

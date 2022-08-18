@@ -40,6 +40,8 @@ internal extension BPKSkeleton.Size {
             return BPKSpacing.base.value
         case .large:
             return BPKSpacing.xl.value
+        case .none:
+            return .zero
         }
     }
     

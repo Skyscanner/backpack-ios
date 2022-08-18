@@ -21,7 +21,7 @@ import UIKit
 
 @objc
 public enum BPKSkeletonSize: UInt {
-    case small, `default`, large
+    case none, small, `default`, large
 }
 
 internal extension BPKSkeletonSize {
@@ -42,10 +42,10 @@ internal extension BPKSkeletonSize {
         switch self {
         case .small:
             return BPKSpacingMd
-        case .default:
-            return BPKSpacingBase
         case .large:
             return BPKSpacingXl
+        default:
+            return BPKSpacingBase
         }
     }
     

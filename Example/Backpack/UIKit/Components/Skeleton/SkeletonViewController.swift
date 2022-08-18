@@ -77,7 +77,7 @@ class SkeletonViewController: UIViewController {
         circleSkeletonRow()
         headlineSkeletonRow()
         bodytextSkeletonRow()
-        
+          
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -87,9 +87,15 @@ class SkeletonViewController: UIViewController {
         ])
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        BPKSkeleton.startShimmer(view: containerView)
+    }
+    
     private func imageSkeletonRow() {
         let defaultImage = BPKSkeleton(type: .image)
         let roundedImage = BPKSkeleton(type: .image, size: .default, style: .rounded)
+        let customImage = BPKSkeleton(type: .image, size: CGSize(width: 200, height: 200))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "ImageSKeleton"
         
@@ -97,12 +103,14 @@ class SkeletonViewController: UIViewController {
         containerView.addArrangedSubview(title)
         containerView.addArrangedSubview(imageRow)
         imageRow.addArrangedSubview(defaultImage)
+        imageRow.addArrangedSubview(customImage)
         imageRow.addArrangedSubview(roundedImage)
     }
     
     private func circleSkeletonRow() {
         let defaultCircle = BPKSkeleton(type: .circle)
         let small = BPKSkeleton(type: .circle, size: .small, style: .default)
+        let customImage = BPKSkeleton(type: .circle, size: CGSize(width: 100, height: 100))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "CircleSKeleton"
         
@@ -110,6 +118,7 @@ class SkeletonViewController: UIViewController {
         containerView.addArrangedSubview(title)
         containerView.addArrangedSubview(circleRow)
         circleRow.addArrangedSubview(small)
+        circleRow.addArrangedSubview(customImage)
         circleRow.addArrangedSubview(defaultCircle)
     }
     

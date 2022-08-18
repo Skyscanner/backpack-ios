@@ -21,21 +21,10 @@ import Backpack_Common
 
 public struct BPKSkeleton: View {
     private var type: BPKSkeleton.ViewType = .image
-    private var size: BPKSkeleton.Size = .default
+    private var size: BPKSkeleton.Size = .none
+    private var customSize: CGSize = .zero
     private var style: BPKSkeleton.Style = .default
     private var color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
-    private var transformX: CGFloat {
-        switch type {
-        case .image:
-            return (size.imageSize / 2) + size.shimmerOverlayWidth
-        case .headline:
-            return (size.headlineWidth / 2) + size.shimmerOverlayWidth
-        case .circle:
-            return (size.circleDiameter / 2) + size.shimmerOverlayWidth
-        case .bodytext:
-            return 100 + size.shimmerOverlayWidth
-        }
-    }
 
     @State private var phase: CGFloat = 0
     let duration = 1.0
@@ -52,6 +41,16 @@ public struct BPKSkeleton: View {
 
     }
     
+    public init(
+        type: BPKSkeleton.ViewType,
+        size: CGSize,
+        style: BPKSkeleton.Style = .default
+    ) {
+        self.type = type
+        self.style = style
+        self.customSize = size
+    }
+    
     public var body: some View {
         switch type {
         case .image:
@@ -59,31 +58,16 @@ public struct BPKSkeleton: View {
                .fill(color)
                .frame(width: size.imageSize, height: size.imageSize)
                .clipped()
-               .modifier(ShimmerMask(phase: phase).animation(
-                    Animation.linear(duration: duration).delay(delay)
-                            .repeatForever(autoreverses: false)
-                ))
-                .onAppear { phase = 0.8 }
         case .headline:
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
                .frame(width: size.headlineWidth, height: size.headlineHeight)
                .clipped()
-               .modifier(ShimmerMask(phase: phase).animation(
-                    Animation.linear(duration: duration).delay(delay)
-                            .repeatForever(autoreverses: false)
-                ))
-                .onAppear { phase = 0.8 }
         case .circle:
             Circle()
                .fill(color)
                .frame(width: size.circleDiameter, height: size.circleDiameter)
                .clipped()
-               .modifier(ShimmerMask(phase: phase).animation(
-                    Animation.linear(duration: duration).delay(delay)
-                            .repeatForever(autoreverses: false)
-                ))
-                .onAppear { phase = 0.8 }
             
         case .bodytext:
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
@@ -94,47 +78,11 @@ public struct BPKSkeleton: View {
         }
     }
     
-    struct ShimmerMask: AnimatableModifier {
-        var phase: CGFloat = 0
-
-        var animatableData: CGFloat {
-            get { phase }
-            set { phase = newValue }
-        }
-
-        func body(content: Content) -> some View {
-            content
-                .mask(GradientMask(phase: phase).scaleEffect(3))
-        }
-    }
-    
-    struct GradientMask: View {
-        let phase: CGFloat
-
-        var body: some View {
-            LinearGradient(gradient:
-                Gradient(stops: [
-                    .init(color: alpha(1), location: phase),
-                    .init(color: alpha(0.4), location: phase + 0.1),
-                    .init(color: alpha(1), location: phase + 0.2)
-                ]), startPoint: .leading, endPoint: .trailing)
-        }
-        
-        private func alpha(_ alpha: CGFloat) -> Color {
-            return Color(.white.withAlphaComponent(alpha).darkVariant(.black.withAlphaComponent(alpha)))
-        }
-    }
-    
     private func makeTextRow(width: CGFloat) -> some View {
         RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
            .fill(color)
            .frame(width: width, height: BPKSpacing.md.value)
            .clipped()
-           .modifier(ShimmerMask(phase: phase).animation(
-                Animation.linear(duration: duration).delay(delay)
-                        .repeatForever(autoreverses: false)
-            ))
-           .onAppear { phase = 0.8 }
     }
 }
 

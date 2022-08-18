@@ -25,6 +25,7 @@ public class BPKSkeleton: UIView {
         BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
     static internal var defaultColor: UIColor =
         BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+    private var customSize: CGSize = .zero
     
     public var type: BPKSkeletonType = .image {
         didSet {
@@ -32,11 +33,7 @@ public class BPKSkeleton: UIView {
         }
     }
     
-    public var size: BPKSkeletonSize = .default {
-        didSet {
-            updateSize()
-        }
-    }
+    public var size: BPKSkeletonSize = .none
     
     public var style: BPKSkeletonStyle = .default {
         didSet {
@@ -60,6 +57,20 @@ public class BPKSkeleton: UIView {
         self.type = type
         self.size = size
         self.style = style
+//        self.viewSize = defaultSize
+        updateType()
+        setup()
+    }
+    
+    public convenience init(
+        type: BPKSkeletonType,
+        size: CGSize,
+        style: BPKSkeletonStyle = .default
+    ) {
+        self.init()
+        self.type = type
+        self.customSize = size
+        self.style = style
         updateType()
         setup()
     }
@@ -72,7 +83,6 @@ public class BPKSkeleton: UIView {
      */
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
     }
     
     /**
@@ -97,22 +107,28 @@ public class BPKSkeleton: UIView {
     
     internal func setup() {
         addSubview(skeletonView)
-        NSLayoutConstraint.activate([
-            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            skeletonView.topAnchor.constraint(equalTo: topAnchor),
-            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
-            skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
-        ])
-
+        if size == .none {
+            NSLayoutConstraint.activate([
+                skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                skeletonView.topAnchor.constraint(equalTo: topAnchor),
+                skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                
+                skeletonView.widthAnchor.constraint(equalToConstant: customSize.width),
+                skeletonView.heightAnchor.constraint(equalToConstant: customSize.height)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                skeletonView.topAnchor.constraint(equalTo: topAnchor),
+                skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                
+                skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
+                skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
+            ])
+        }
         updateStyle()
-        startShimmer(size: viewSize)
-    }
-    
-    private func updateSize() {
-        startShimmer(size: viewSize)
     }
     
     private func updateStyle() {
@@ -122,19 +138,22 @@ public class BPKSkeleton: UIView {
         if type == .headline {
             skeletonView.layer.cornerRadius = BPKCornerRadiusXs
         }
-        if type == .circle {
+        if type == .circle && size != .none {
             skeletonView.layer.cornerRadius = viewSize.height / 2.0
+        }
+        if type == .circle && size == .none {
+            skeletonView.layer.cornerRadius = min(customSize.height, customSize.width) / 2.0
         }
     }
 
-    private func startShimmer(size: CGSize) {
+    public static func startShimmer(view: UIView) {
         let gradientLayer = CAGradientLayer()
         let transperant = BPKSkeleton.defaultColor.withAlphaComponent(0).cgColor
         let midColor = BPKSkeleton.defaultColor.withAlphaComponent(0.6).cgColor
         let duration = 1.0
         let delay = 0.2
         
-        gradientLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: size)
+        gradientLayer.frame = view.bounds
         gradientLayer.colors = [transperant, midColor, transperant]
         gradientLayer.locations = [0, 0.5, 1]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
@@ -151,7 +170,7 @@ public class BPKSkeleton: UIView {
         gradientChangeAnimation.autoreverses = false
         
         gradientLayer.add(gradientChangeAnimation, forKey: "shimmer")
-        skeletonView.layer.addSublayer(gradientLayer)
+        view.layer.addSublayer(gradientLayer)
     }
 }
 

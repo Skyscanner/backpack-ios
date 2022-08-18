@@ -18,6 +18,6 @@
 
 extension BPKSkeleton {
     public enum Size {
-        case small, `default`, large
+        case none, small, `default`, large
     }
 }
