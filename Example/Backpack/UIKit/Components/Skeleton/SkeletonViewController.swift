@@ -95,7 +95,7 @@ class SkeletonViewController: UIViewController {
     private func imageSkeletonRow() {
         let defaultImage = BPKSkeleton(type: .image)
         let roundedImage = BPKSkeleton(type: .image, size: .default, style: .rounded)
-        let customImage = BPKSkeleton(type: .image, size: CGSize(width: 200, height: 200))
+        let customImage = BPKSkeleton(type: .image, size: CGSize(width: 160, height: 160))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "ImageSKeleton"
         
@@ -103,8 +103,8 @@ class SkeletonViewController: UIViewController {
         containerView.addArrangedSubview(title)
         containerView.addArrangedSubview(imageRow)
         imageRow.addArrangedSubview(defaultImage)
-        imageRow.addArrangedSubview(customImage)
         imageRow.addArrangedSubview(roundedImage)
+        imageRow.addArrangedSubview(customImage)
     }
     
     private func circleSkeletonRow() {
@@ -118,8 +118,8 @@ class SkeletonViewController: UIViewController {
         containerView.addArrangedSubview(title)
         containerView.addArrangedSubview(circleRow)
         circleRow.addArrangedSubview(small)
-        circleRow.addArrangedSubview(customImage)
         circleRow.addArrangedSubview(defaultCircle)
+        circleRow.addArrangedSubview(customImage)
     }
     
     private func headlineSkeletonRow() {

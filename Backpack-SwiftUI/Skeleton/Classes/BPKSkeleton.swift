@@ -52,36 +52,42 @@ public struct BPKSkeleton: View {
     }
     
     public var body: some View {
+        let isCustom: Bool = (size == .none)
         switch type {
         case .image:
+            let imageSize = isCustom ? customSize : size.imageSize
             RoundedRectangle(cornerRadius: style.cornerRadius)
                .fill(color)
-               .frame(width: size.imageSize, height: size.imageSize)
+               .frame(width: imageSize.width, height: imageSize.height)
                .clipped()
         case .headline:
+            let headlineSize = isCustom ? customSize : size.headlineSize
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
-               .frame(width: size.headlineWidth, height: size.headlineHeight)
+               .frame(width: headlineSize.width, height:  headlineSize.height)
                .clipped()
         case .circle:
+            let circleSize = isCustom ? customSize : size.circleDiameter
             Circle()
                .fill(color)
-               .frame(width: size.circleDiameter, height: size.circleDiameter)
+               .frame(width: circleSize.width, height:  circleSize.height)
                .clipped()
             
         case .bodytext:
+            let bodytextSize = isCustom ? customSize : size.bodytextSize
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
-                makeTextRow(width: 171)
-                makeTextRow(width: 200)
-                makeTextRow(width: 114)
+                makeTextRow(size: bodytextSize, percentage: 0.86)
+                makeTextRow(size: bodytextSize, percentage: 1.0)
+                makeTextRow(size: bodytextSize, percentage: 0.57)
             }
         }
     }
     
-    private func makeTextRow(width: CGFloat) -> some View {
-        RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
+    private func makeTextRow(size: CGSize, percentage: Double) -> some View {
+        let rowHeight = abs(size.height - BPKSpacing.sm.value * 5) / 3.0
+        return RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
            .fill(color)
-           .frame(width: width, height: BPKSpacing.md.value)
+           .frame(width: size.width * percentage, height: rowHeight)
            .clipped()
     }
 }

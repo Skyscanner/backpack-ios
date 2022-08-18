@@ -57,7 +57,6 @@ public class BPKSkeleton: UIView {
         self.type = type
         self.size = size
         self.style = style
-//        self.viewSize = defaultSize
         updateType()
         setup()
     }
@@ -75,22 +74,10 @@ public class BPKSkeleton: UIView {
         setup()
     }
     
-    /**
-     * Create a `BPKSkeleton` with a given frame.
-     *
-     * @param frame The initial frame of the Skeleton.
-     * @return `BPKSkeleton` instance.
-     */
     public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    /**
-     * Creates a `BPKSkeleton` with a decoder (typically when creating from Storyboards)
-     *
-     * @param aDecoder Decoder object to extract parameters from
-     * @return `BPKSkeleton` instance.
-     */
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
@@ -107,27 +94,17 @@ public class BPKSkeleton: UIView {
     
     internal func setup() {
         addSubview(skeletonView)
-        if size == .none {
-            NSLayoutConstraint.activate([
-                skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                skeletonView.topAnchor.constraint(equalTo: topAnchor),
-                skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                
-                skeletonView.widthAnchor.constraint(equalToConstant: customSize.width),
-                skeletonView.heightAnchor.constraint(equalToConstant: customSize.height)
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                skeletonView.topAnchor.constraint(equalTo: topAnchor),
-                skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                
-                skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
-                skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
-            ])
-        }
+        let skeletonSize = size == .none ? customSize : viewSize
+        NSLayoutConstraint.activate([
+            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            skeletonView.topAnchor.constraint(equalTo: topAnchor),
+            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            skeletonView.widthAnchor.constraint(equalToConstant: skeletonSize.width),
+            skeletonView.heightAnchor.constraint(equalToConstant: skeletonSize.height)
+        ])
+        
         updateStyle()
     }
     

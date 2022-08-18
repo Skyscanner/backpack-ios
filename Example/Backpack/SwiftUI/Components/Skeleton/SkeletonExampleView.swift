@@ -54,6 +54,12 @@ struct SkeletonExampleView: View {
                     .foregroundColor(.textPrimaryColor)
             }
             Spacer()
+            VStack {
+                BPKSkeleton(type: .image, size: CGSize(width: 120, height: 120))
+                BPKText("Custom size")
+                    .foregroundColor(.textPrimaryColor)
+            }
+            Spacer()
         }
         .padding()
     }

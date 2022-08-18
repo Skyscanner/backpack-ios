@@ -19,37 +19,31 @@
 import SwiftUI
 
 internal extension BPKSkeleton.Size {
-    var imageSize: CGFloat {
-        return BPKSpacing.xl.value * 3
+    var imageSize: CGSize {
+        return CGSize(width: BPKSpacing.xl.value * 3, height: BPKSpacing.xl.value * 3)
     }
     
-    var circleDiameter: CGFloat {
+    var circleDiameter: CGSize {
         switch self {
         case .small:
-            return BPKSpacing.xl.value
+            return CGSize(width: BPKSpacing.xl.value, height: BPKSpacing.xl.value)
         default:
-            return BPKSpacing.lg.value * 2
+            return CGSize(width: BPKSpacing.lg.value * 2, height: BPKSpacing.lg.value * 2)
         }
     }
     
-    var headlineHeight: CGFloat {
+    var headlineSize: CGSize {
         switch self {
         case .small:
-            return BPKSpacing.md.value
-        case .default:
-            return BPKSpacing.base.value
+            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.md.value)
         case .large:
-            return BPKSpacing.xl.value
-        case .none:
-            return .zero
+            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.xl.value)
+        default:
+            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.base.value)
         }
     }
     
-    var headlineWidth: CGFloat {
-        return BPKSpacing.xxl.value * 2
-    }
-    
-    var shimmerOverlayWidth: CGFloat {
-        return BPKSpacing.xxl.value
+    var bodytextSize: CGSize {
+        return CGSize(width: BPKSpacing.xxl.value * 5, height: BPKSpacing.sm.value * 11)
     }
 }

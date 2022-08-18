@@ -376,6 +376,10 @@ class Screenshots: BackpackSnapshotTestCase {
         navigate(title: "Spinners") {
             saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        navigate(title: "Skeleton") {
+            saveScreenshot(component: "skeleton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
 
         navigate(title: "Star ratings") {
             app.tables.staticTexts["Docs"].tap()

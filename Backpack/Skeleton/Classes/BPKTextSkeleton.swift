@@ -64,9 +64,9 @@ public class BPKTextSkeleton: UIView {
             textRows[0].heightAnchor.constraint(equalToConstant: rowHeight),
             textRows[1].heightAnchor.constraint(equalToConstant: rowHeight),
             textRows[2].heightAnchor.constraint(equalToConstant: rowHeight),
-            textRows[0].widthAnchor.constraint(equalToConstant: width),
+            textRows[0].widthAnchor.constraint(equalToConstant: width * 0.86),
             textRows[1].widthAnchor.constraint(equalToConstant: width),
-            textRows[2].widthAnchor.constraint(equalToConstant: width)
+            textRows[2].widthAnchor.constraint(equalToConstant: width * 0.57)
         ])
     }
     
