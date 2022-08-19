@@ -116,9 +116,9 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
 }
 
-- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {
-    [super traitCollectionDidChange: previousTraitCollection];
-    if(self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
         [self updatePanelAppearance];
     }
 }
