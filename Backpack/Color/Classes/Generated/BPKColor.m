@@ -86,14 +86,6 @@
     return [UIColor colorWithRed:0.557 green:0.557 blue:0.576 alpha:1];
 }
 
-+ (UIColor *)blueBright {
-    return [UIColor colorWithRed:0.631 green:0.933 blue:1.000 alpha:1];
-}
-
-+ (UIColor *)blueMuted {
-    return [UIColor colorWithRed:0.851 green:0.973 blue:1.000 alpha:1];
-}
-
 + (UIColor *)bunol {
     return [UIColor colorWithRed:1.000 green:0.482 blue:0.349 alpha:1];
 }
@@ -112,10 +104,6 @@
 
 + (UIColor *)glencoe {
     return [UIColor colorWithRed:0.451 green:0.808 blue:0.776 alpha:1];
-}
-
-+ (UIColor *)greenBright {
-    return [UIColor colorWithRed:0.576 green:1.000 blue:0.871 alpha:1];
 }
 
 + (UIColor *)greenMuted {
@@ -158,10 +146,6 @@
     return [UIColor colorWithRed:0.694 green:1.000 blue:0.906 alpha:1];
 }
 
-+ (UIColor *)nightGrey25 {
-    return [UIColor colorWithRed:0.106 green:0.157 blue:0.224 alpha:1];
-}
-
 + (UIColor *)nightPink {
     return [UIColor colorWithRed:1.000 green:0.792 blue:0.867 alpha:1];
 }
@@ -178,16 +162,8 @@
     return [UIColor colorWithRed:1.000 green:0.671 blue:0.584 alpha:1];
 }
 
-+ (UIColor *)pink {
-    return [UIColor colorWithRed:1.000 green:0.639 blue:0.898 alpha:1];
-}
-
 + (UIColor *)primaryGradientLight {
     return [UIColor colorWithRed:0.027 green:0.439 blue:0.890 alpha:1];
-}
-
-+ (UIColor *)purple {
-    return [UIColor colorWithRed:0.557 green:0.278 blue:0.729 alpha:1];
 }
 
 + (UIColor *)skyBlueShade01 {
@@ -222,7 +198,27 @@
     return [UIColor colorWithRed:0.647 green:0.608 blue:0.784 alpha:1];
 }
 
-+ (UIColor *)yellow {
++ (UIColor *)marcommsBlueBright {
+    return [UIColor colorWithRed:0.631 green:0.933 blue:1.000 alpha:1];
+}
+
++ (UIColor *)marcommsBlueMuted {
+    return [UIColor colorWithRed:0.851 green:0.973 blue:1.000 alpha:1];
+}
+
++ (UIColor *)marcommsGreenBright {
+    return [UIColor colorWithRed:0.576 green:1.000 blue:0.871 alpha:1];
+}
+
++ (UIColor *)marcommsPink {
+    return [UIColor colorWithRed:1.000 green:0.639 blue:0.898 alpha:1];
+}
+
++ (UIColor *)marcommsPurple {
+    return [UIColor colorWithRed:0.557 green:0.278 blue:0.729 alpha:1];
+}
+
++ (UIColor *)marcommsYellow {
     return [UIColor colorWithRed:0.996 green:0.922 blue:0.529 alpha:1];
 }
 
@@ -272,7 +268,7 @@
 }
 
 + (UIColor *)canvasContrastNight {
-    return self.class.backgroundElevation02DarkColor;
+    return self.class.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)canvasDay {
@@ -328,6 +324,10 @@
 }
 
 + (UIColor *)nightGrey20 {
+    return self.class.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)nightGrey25 {
     return self.class.backgroundElevation02DarkColor;
 }
 
@@ -341,10 +341,6 @@
 
 + (UIColor *)nightYellowSpot {
     return self.class.erfoud;
-}
-
-+ (UIColor *)orange {
-    return self.class.bunol;
 }
 
 + (UIColor *)panjin {
@@ -459,6 +455,50 @@
     return self.class.blackTint04;
 }
 
++ (UIColor *)marcommsBerry {
+    return self.class.berry;
+}
+
++ (UIColor *)marcommsCharcoal {
+    return self.class.charcoal;
+}
+
++ (UIColor *)marcommsDarkSky {
+    return self.class.blackAlpha70;
+}
+
++ (UIColor *)marcommsEcoGreen {
+    return self.class.ecoGreen;
+}
+
++ (UIColor *)marcommsGreenMuted {
+    return self.class.greenMuted;
+}
+
++ (UIColor *)marcommsGrey40 {
+    return self.class.grey40;
+}
+
++ (UIColor *)marcommsOrange {
+    return self.class.bunol;
+}
+
++ (UIColor *)marcommsPinkMuted {
+    return self.class.harbour;
+}
+
++ (UIColor *)marcommsSkyBlue {
+    return self.class.primaryGradientLight;
+}
+
++ (UIColor *)marcommsWhite {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)marcommsYellowMuted {
+    return self.class.bagan;
+}
+
 + (UIColor *)primaryDarkColor {
     return self.class.nightBlue;
 }
@@ -536,7 +576,7 @@
 }
 
 + (UIColor *)surfaceContrastNight {
-    return self.class.backgroundElevation02DarkColor;
+    return self.class.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)surfaceDefaultDay {
@@ -544,7 +584,7 @@
 }
 
 + (UIColor *)surfaceDefaultNight {
-    return self.class.backgroundElevation02DarkColor;
+    return self.class.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)surfaceElevatedDay {
@@ -552,7 +592,7 @@
 }
 
 + (UIColor *)surfaceElevatedNight {
-    return self.class.nightGrey25;
+    return self.class.backgroundElevation02DarkColor;
 }
 
 + (UIColor *)surfaceHighlightDay {
@@ -560,7 +600,7 @@
 }
 
 + (UIColor *)surfaceHighlightNight {
-    return self.class.nightGreenFill;
+    return self.class.backgroundElevation02DarkColor;
 }
 
 + (UIColor *)textDisabledDay {
@@ -757,7 +797,7 @@
 }
 
 + (UIColor *)surfaceHighlightColor {
-    return [[self class] dynamicColorWithLightVariant:self.class.grey20 darkVariant:self.class.nightGreenFill];
+    return [[self class] dynamicColorWithLightVariant:self.class.grey20 darkVariant:self.class.nightGrey25];
 }
 
 + (UIColor *)textDisabledColor {

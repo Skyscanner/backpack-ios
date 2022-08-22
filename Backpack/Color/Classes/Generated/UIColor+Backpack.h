@@ -150,9 +150,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_canvasContrastDay;
 
 /**
- * The `canvasContrastNight` color from the Backpack palette - rgb(44, 44, 46).
+ * The `canvasContrastNight` color from the Backpack palette - rgb(29, 27, 32).
  *
- * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_canvasContrastNight;
 
@@ -262,20 +262,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_blackTint06;
 
 /**
- * The `blueBright` color from the Backpack palette - rgb(161, 238, 255).
- *
- * <div style="width: 100px; height: 100px; background: #a1eeffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blueBright;
-
-/**
- * The `blueMuted` color from the Backpack palette - rgb(217, 248, 255).
- *
- * <div style="width: 100px; height: 100px; background: #d9f8ffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_blueMuted;
-
-/**
  * The `bunol` color from the Backpack palette - rgb(255, 123, 89).
  *
  * <div style="width: 100px; height: 100px; background: #ff7b59ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -316,13 +302,6 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background: #73cec6ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_glencoe;
-
-/**
- * The `greenBright` color from the Backpack palette - rgb(147, 255, 222).
- *
- * <div style="width: 100px; height: 100px; background: #93ffdeff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_greenBright;
 
 /**
  * The `greenMuted` color from the Backpack palette - rgb(208, 238, 236).
@@ -437,16 +416,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_nightGrey10;
 
 /**
- * The `nightGrey20` color from the Backpack palette - rgb(44, 44, 46).
+ * The `nightGrey20` color from the Backpack palette - rgb(29, 27, 32).
  *
- * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_nightGrey20;
 
 /**
- * The `nightGrey25` color from the Backpack palette - rgb(27, 40, 57).
+ * The `nightGrey25` color from the Backpack palette - rgb(44, 44, 46).
  *
- * <div style="width: 100px; height: 100px; background: #1b2839ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_nightGrey25;
 
@@ -493,13 +472,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_nightYellowSpot;
 
 /**
- * The `orange` color from the Backpack palette - rgb(255, 123, 89).
- *
- * <div style="width: 100px; height: 100px; background: #ff7b59ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_orange;
-
-/**
  * The `panjin` color from the Backpack palette - rgb(209, 67, 91).
  *
  * <div style="width: 100px; height: 100px; background: #d1435bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -514,13 +486,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_petra;
 
 /**
- * The `pink` color from the Backpack palette - rgb(255, 163, 229).
- *
- * <div style="width: 100px; height: 100px; background: #ffa3e5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_pink;
-
-/**
  * The `pinkMuted` color from the Backpack palette - rgb(246, 221, 225).
  *
  * <div style="width: 100px; height: 100px; background: #f6dde1ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -533,13 +498,6 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background: #0770e3ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_primaryGradientLight;
-
-/**
- * The `purple` color from the Backpack palette - rgb(142, 71, 186).
- *
- * <div style="width: 100px; height: 100px; background: #8e47baff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_purple;
 
 /**
  * The `sagano` color from the Backpack palette - rgb(208, 238, 236).
@@ -703,13 +661,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_whiteAlpha80;
 
 /**
- * The `yellow` color from the Backpack palette - rgb(254, 235, 135).
- *
- * <div style="width: 100px; height: 100px; background: #feeb87ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * bpk_yellow;
-
-/**
  * The `yellowMuted` color from the Backpack palette - rgb(255, 235, 208).
  *
  * <div style="width: 100px; height: 100px; background: #ffebd0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -785,6 +736,125 @@ NS_ASSUME_NONNULL_BEGIN
  * <div style="width: 100px; height: 100px; background: #48484aff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_lineNight;
+
+/**
+ * The `marcommsBerry` color from the Backpack palette - rgb(209, 67, 91).
+ *
+ * <div style="width: 100px; height: 100px; background: #d1435bff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsBerry;
+
+/**
+ * The `marcommsBlueBright` color from the Backpack palette - rgb(161, 238, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #a1eeffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsBlueBright;
+
+/**
+ * The `marcommsBlueMuted` color from the Backpack palette - rgb(217, 248, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #d9f8ffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsBlueMuted;
+
+/**
+ * The `marcommsCharcoal` color from the Backpack palette - rgb(17, 18, 54).
+ *
+ * <div style="width: 100px; height: 100px; background: #111236ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsCharcoal;
+
+/**
+ * The `marcommsDarkSky` color from the Backpack palette - rgb(2, 18, 44).
+ *
+ * <div style="width: 100px; height: 100px; background: #02122cff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsDarkSky;
+
+/**
+ * The `marcommsEcoGreen` color from the Backpack palette - rgb(15, 161, 169).
+ *
+ * <div style="width: 100px; height: 100px; background: #0fa1a9ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsEcoGreen;
+
+/**
+ * The `marcommsGreenBright` color from the Backpack palette - rgb(147, 255, 222).
+ *
+ * <div style="width: 100px; height: 100px; background: #93ffdeff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsGreenBright;
+
+/**
+ * The `marcommsGreenMuted` color from the Backpack palette - rgb(208, 238, 236).
+ *
+ * <div style="width: 100px; height: 100px; background: #d0eeecff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsGreenMuted;
+
+/**
+ * The `marcommsGrey40` color from the Backpack palette - rgb(104, 105, 127).
+ *
+ * <div style="width: 100px; height: 100px; background: #68697fff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsGrey40;
+
+/**
+ * The `marcommsOrange` color from the Backpack palette - rgb(255, 123, 89).
+ *
+ * <div style="width: 100px; height: 100px; background: #ff7b59ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsOrange;
+
+/**
+ * The `marcommsPink` color from the Backpack palette - rgb(255, 163, 229).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffa3e5ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsPink;
+
+/**
+ * The `marcommsPinkMuted` color from the Backpack palette - rgb(246, 221, 225).
+ *
+ * <div style="width: 100px; height: 100px; background: #f6dde1ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsPinkMuted;
+
+/**
+ * The `marcommsPurple` color from the Backpack palette - rgb(142, 71, 186).
+ *
+ * <div style="width: 100px; height: 100px; background: #8e47baff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsPurple;
+
+/**
+ * The `marcommsSkyBlue` color from the Backpack palette - rgb(7, 112, 227).
+ *
+ * <div style="width: 100px; height: 100px; background: #0770e3ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsSkyBlue;
+
+/**
+ * The `marcommsWhite` color from the Backpack palette - rgb(255, 255, 255).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffffffff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsWhite;
+
+/**
+ * The `marcommsYellow` color from the Backpack palette - rgb(254, 235, 135).
+ *
+ * <div style="width: 100px; height: 100px; background: #feeb87ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsYellow;
+
+/**
+ * The `marcommsYellowMuted` color from the Backpack palette - rgb(255, 235, 208).
+ *
+ * <div style="width: 100px; height: 100px; background: #ffebd0ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_marcommsYellowMuted;
 
 /**
  * The `primaryDarkColor` color from the Backpack palette - rgb(109, 159, 235).
@@ -920,9 +990,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceContrastDay;
 
 /**
- * The `surfaceContrastNight` color from the Backpack palette - rgb(44, 44, 46).
+ * The `surfaceContrastNight` color from the Backpack palette - rgb(29, 27, 32).
  *
- * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceContrastNight;
 
@@ -934,9 +1004,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceDefaultDay;
 
 /**
- * The `surfaceDefaultNight` color from the Backpack palette - rgb(44, 44, 46).
+ * The `surfaceDefaultNight` color from the Backpack palette - rgb(29, 27, 32).
  *
- * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #1d1b20ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceDefaultNight;
 
@@ -948,9 +1018,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceElevatedDay;
 
 /**
- * The `surfaceElevatedNight` color from the Backpack palette - rgb(27, 40, 57).
+ * The `surfaceElevatedNight` color from the Backpack palette - rgb(44, 44, 46).
  *
- * <div style="width: 100px; height: 100px; background: #1b2839ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceElevatedNight;
 
@@ -962,9 +1032,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceHighlightDay;
 
 /**
- * The `surfaceHighlightNight` color from the Backpack palette - rgb(177, 255, 231).
+ * The `surfaceHighlightNight` color from the Backpack palette - rgb(44, 44, 46).
  *
- * <div style="width: 100px; height: 100px; background: #b1ffe7ff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background: #2c2c2eff; box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceHighlightNight;
 
@@ -1197,7 +1267,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `canvasContrastColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #f1f2f8ff; background: linear-gradient(0.375turn, #f1f2f8ff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #f1f2f8ff; background: linear-gradient(0.375turn, #f1f2f8ff 49%, #1d1b20ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_canvasContrastColor;
 
@@ -1295,28 +1365,28 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `surfaceContrastColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #02122cff; background: linear-gradient(0.375turn, #02122cff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #02122cff; background: linear-gradient(0.375turn, #02122cff 49%, #1d1b20ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceContrastColor;
 
 /**
  * The `surfaceDefaultColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #1d1b20ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceDefaultColor;
 
 /**
  * The `surfaceElevatedColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #1b2839ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceElevatedColor;
 
 /**
  * The `surfaceHighlightColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #dddde5ff; background: linear-gradient(0.375turn, #dddde5ff 49%, #b1ffe7ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #dddde5ff; background: linear-gradient(0.375turn, #dddde5ff 49%, #2c2c2eff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * bpk_surfaceHighlightColor;
 

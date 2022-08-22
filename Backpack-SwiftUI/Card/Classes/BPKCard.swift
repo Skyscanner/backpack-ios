@@ -35,7 +35,7 @@ public struct BPKCard<Content: View>: View {
         }
 
         var backgroundColor: BPKColor {
-            self == .focus ? .backgroundElevation02Color : .backgroundElevation01Color
+            self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
         }
     }
 

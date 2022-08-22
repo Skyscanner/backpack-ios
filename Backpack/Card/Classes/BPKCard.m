@@ -102,6 +102,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setSelected:(BOOL)selected {
     BPKAssertMainThread();
     [super setSelected:selected];
+    self.backgroundColor = selected ? BPKColor.surfaceElevatedColor : BPKColor.surfaceDefaultColor;
     [self updateShadows];
     [self updateAccessibilityTraits];
 }
@@ -154,7 +155,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 
-    self.backgroundColor = BPKColor.backgroundTertiaryColor;
+    self.backgroundColor = BPKColor.surfaceDefaultColor;
     self.isElevated = YES;
     [self updateShadows];
 

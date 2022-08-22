@@ -84,14 +84,6 @@
     return BPKColor.blackTint06;
 }
 
-+ (UIColor *)bpk_blueBright {
-    return BPKColor.blueBright;
-}
-
-+ (UIColor *)bpk_blueMuted {
-    return BPKColor.blueMuted;
-}
-
 + (UIColor *)bpk_bunol {
     return BPKColor.bunol;
 }
@@ -110,10 +102,6 @@
 
 + (UIColor *)bpk_glencoe {
     return BPKColor.glencoe;
-}
-
-+ (UIColor *)bpk_greenBright {
-    return BPKColor.greenBright;
 }
 
 + (UIColor *)bpk_greenMuted {
@@ -156,10 +144,6 @@
     return BPKColor.nightGreenFill;
 }
 
-+ (UIColor *)bpk_nightGrey25 {
-    return BPKColor.nightGrey25;
-}
-
 + (UIColor *)bpk_nightPink {
     return BPKColor.nightPink;
 }
@@ -176,16 +160,8 @@
     return BPKColor.petra;
 }
 
-+ (UIColor *)bpk_pink {
-    return BPKColor.pink;
-}
-
 + (UIColor *)bpk_primaryGradientLight {
     return BPKColor.primaryGradientLight;
-}
-
-+ (UIColor *)bpk_purple {
-    return BPKColor.purple;
 }
 
 + (UIColor *)bpk_skyBlueShade01 {
@@ -220,8 +196,28 @@
     return BPKColor.valensole;
 }
 
-+ (UIColor *)bpk_yellow {
-    return BPKColor.yellow;
++ (UIColor *)bpk_marcommsBlueBright {
+    return BPKColor.marcommsBlueBright;
+}
+
++ (UIColor *)bpk_marcommsBlueMuted {
+    return BPKColor.marcommsBlueMuted;
+}
+
++ (UIColor *)bpk_marcommsGreenBright {
+    return BPKColor.marcommsGreenBright;
+}
+
++ (UIColor *)bpk_marcommsPink {
+    return BPKColor.marcommsPink;
+}
+
++ (UIColor *)bpk_marcommsPurple {
+    return BPKColor.marcommsPurple;
+}
+
++ (UIColor *)bpk_marcommsYellow {
+    return BPKColor.marcommsYellow;
 }
 
 
@@ -270,7 +266,7 @@
 }
 
 + (UIColor *)bpk_canvasContrastNight {
-    return BPKColor.backgroundElevation02DarkColor;
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)bpk_canvasDay {
@@ -326,6 +322,10 @@
 }
 
 + (UIColor *)bpk_nightGrey20 {
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)bpk_nightGrey25 {
     return BPKColor.backgroundElevation02DarkColor;
 }
 
@@ -339,10 +339,6 @@
 
 + (UIColor *)bpk_nightYellowSpot {
     return BPKColor.erfoud;
-}
-
-+ (UIColor *)bpk_orange {
-    return BPKColor.bunol;
 }
 
 + (UIColor *)bpk_panjin {
@@ -457,6 +453,50 @@
     return BPKColor.blackTint04;
 }
 
++ (UIColor *)bpk_marcommsBerry {
+    return BPKColor.berry;
+}
+
++ (UIColor *)bpk_marcommsCharcoal {
+    return BPKColor.charcoal;
+}
+
++ (UIColor *)bpk_marcommsDarkSky {
+    return BPKColor.blackAlpha70;
+}
+
++ (UIColor *)bpk_marcommsEcoGreen {
+    return BPKColor.ecoGreen;
+}
+
++ (UIColor *)bpk_marcommsGreenMuted {
+    return BPKColor.greenMuted;
+}
+
++ (UIColor *)bpk_marcommsGrey40 {
+    return BPKColor.grey40;
+}
+
++ (UIColor *)bpk_marcommsOrange {
+    return BPKColor.bunol;
+}
+
++ (UIColor *)bpk_marcommsPinkMuted {
+    return BPKColor.harbour;
+}
+
++ (UIColor *)bpk_marcommsSkyBlue {
+    return BPKColor.primaryGradientLight;
+}
+
++ (UIColor *)bpk_marcommsWhite {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_marcommsYellowMuted {
+    return BPKColor.bagan;
+}
+
 + (UIColor *)bpk_primaryDarkColor {
     return BPKColor.nightBlue;
 }
@@ -534,7 +574,7 @@
 }
 
 + (UIColor *)bpk_surfaceContrastNight {
-    return BPKColor.backgroundElevation02DarkColor;
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)bpk_surfaceDefaultDay {
@@ -542,7 +582,7 @@
 }
 
 + (UIColor *)bpk_surfaceDefaultNight {
-    return BPKColor.backgroundElevation02DarkColor;
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
 }
 
 + (UIColor *)bpk_surfaceElevatedDay {
@@ -550,7 +590,7 @@
 }
 
 + (UIColor *)bpk_surfaceElevatedNight {
-    return BPKColor.nightGrey25;
+    return BPKColor.backgroundElevation02DarkColor;
 }
 
 + (UIColor *)bpk_surfaceHighlightDay {
@@ -558,7 +598,7 @@
 }
 
 + (UIColor *)bpk_surfaceHighlightNight {
-    return BPKColor.nightGreenFill;
+    return BPKColor.backgroundElevation02DarkColor;
 }
 
 + (UIColor *)bpk_textDisabledDay {
