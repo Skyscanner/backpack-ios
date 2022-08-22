@@ -35,9 +35,15 @@ public class BPKTextSkeleton: UIView {
         return stack
     }()
     
+    public convenience init(size: CGSize) {
+        self.init()
+        self.width = size.width
+        self.rowHeight = abs(size.height - rowSpacing * 2) / 3.0
+        setupSubviews()
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubviews()
     }
     
     public required init?(coder: NSCoder) {
@@ -64,9 +70,9 @@ public class BPKTextSkeleton: UIView {
             textRows[0].heightAnchor.constraint(equalToConstant: rowHeight),
             textRows[1].heightAnchor.constraint(equalToConstant: rowHeight),
             textRows[2].heightAnchor.constraint(equalToConstant: rowHeight),
-            textRows[0].widthAnchor.constraint(equalToConstant: width * 0.86),
             textRows[1].widthAnchor.constraint(equalToConstant: width),
-            textRows[2].widthAnchor.constraint(equalToConstant: width * 0.57)
+            textRows[0].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.86),
+            textRows[2].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.57)
         ])
     }
     

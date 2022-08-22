@@ -80,13 +80,12 @@ public class BPKSkeleton: UIView {
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
     }
     
     private func updateType() {
         switch self.type {
         case .bodytext:
-            self.skeletonView = BPKTextSkeleton()
+            self.skeletonView = BPKTextSkeleton(size: size == .none ? customSize : viewSize)
         default:
             self.skeletonView = BPKCommonSkeleton()
         }
