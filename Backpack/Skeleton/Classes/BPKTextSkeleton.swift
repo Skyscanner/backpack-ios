@@ -66,14 +66,10 @@ public class BPKTextSkeleton: UIView {
             containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerStackView.topAnchor.constraint(equalTo: topAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            textRows[0].heightAnchor.constraint(equalToConstant: rowHeight),
-            textRows[1].heightAnchor.constraint(equalToConstant: rowHeight),
-            textRows[2].heightAnchor.constraint(equalToConstant: rowHeight),
             textRows[1].widthAnchor.constraint(equalToConstant: width),
             textRows[0].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.86),
             textRows[2].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.57)
-        ])
+        ] + [0, 1, 2].map { textRows[$0].heightAnchor.constraint(equalToConstant: rowHeight) })
     }
     
     fileprivate func createTextRow() -> UIView {
