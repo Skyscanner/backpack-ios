@@ -867,7 +867,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
 #pragma mark - Getters
 
 - (UIColor *)currentDateSelectedBackgroundColor {
-    return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.primaryColor;
+    return self.dateSelectedBackgroundColor != nil ? self.dateSelectedBackgroundColor : BPKColor.coreAccentColor;
 }
 
 - (UIColor *)currentDateSelectedContentColor {
