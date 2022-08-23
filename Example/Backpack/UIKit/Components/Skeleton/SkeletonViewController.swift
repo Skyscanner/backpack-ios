@@ -94,7 +94,7 @@ class SkeletonViewController: UIViewController {
     private func imageSkeletonRow() {
         let defaultImage = BPKSkeleton(type: .image)
         let roundedImage = BPKSkeleton(type: .image, size: .default, style: .rounded)
-        let customImage = BPKSkeleton(type: .image, size: CGSize(width: 160, height: 160))
+        let customImage = BPKSkeleton(type: .image, size: .custom(size: CGSize(width: 160, height: 160)))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "ImageSKeleton"
         
@@ -109,7 +109,7 @@ class SkeletonViewController: UIViewController {
     private func circleSkeletonRow() {
         let defaultCircle = BPKSkeleton(type: .circle)
         let small = BPKSkeleton(type: .circle, size: .small)
-        let customImage = BPKSkeleton(type: .circle, size: CGSize(width: 100, height: 120))
+        let customImage = BPKSkeleton(type: .circle, size: .custom(size: CGSize(width: 100, height: 120)))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "CircleSKeleton"
         
@@ -125,7 +125,7 @@ class SkeletonViewController: UIViewController {
         let defaultImage = BPKSkeleton(type: .headline)
         let small = BPKSkeleton(type: .headline, size: .small)
         let large = BPKSkeleton(type: .headline, size: .large)
-        let custom = BPKSkeleton(type: .headline, size: CGSize(width: 88, height: 48))
+        let custom = BPKSkeleton(type: .headline, size: .custom(size: CGSize(width: 88, height: 48)))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "HeadlineSKeleton"
         
@@ -140,7 +140,7 @@ class SkeletonViewController: UIViewController {
     
     private func bodytextSkeletonRow() {
         let bodytext = BPKSkeleton(type: .bodytext)
-        let custom = BPKSkeleton(type: .bodytext, size: CGSize(width: 260, height: 60))
+        let custom = BPKSkeleton(type: .bodytext, size: .custom(size: CGSize(width: 260, height: 60)))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "BodytextSKeleton"
         

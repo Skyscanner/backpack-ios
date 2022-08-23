@@ -33,7 +33,7 @@ public class BPKSkeleton: UIView {
         }
     }
     
-    public var size: BPKSkeletonSize = .none
+    public var size: BPKSkeletonSize = .default
     
     public var style: BPKSkeletonStyle = .default {
         didSet {
@@ -57,24 +57,7 @@ public class BPKSkeleton: UIView {
         self.type = type
         self.size = size
         self.style = style
-        updateType()
-        setup()
-    }
-    
-    public convenience init(
-        type: BPKSkeletonType,
-        size: CGSize,
-        style: BPKSkeletonStyle = .default
-    ) {
-        self.init()
-        self.type = type
-        self.customSize = size
-        self.style = style
         
-        if type == .circle && size.width != size.height {
-            let minLength = min(size.height, size.width)
-            self.customSize = CGSize(width: minLength, height: minLength)
-        }
         updateType()
         setup()
     }
@@ -90,7 +73,8 @@ public class BPKSkeleton: UIView {
     private func updateType() {
         switch self.type {
         case .bodytext:
-            self.skeletonView = BPKTextSkeleton(size: size == .none ? customSize : viewSize)
+            self.skeletonView = BPKTextSkeleton(size: viewSize)
+            self.skeletonView.backgroundColor = .clear
         default:
             self.skeletonView = BPKCommonSkeleton()
         }
@@ -98,15 +82,14 @@ public class BPKSkeleton: UIView {
     
     internal func setup() {
         addSubview(skeletonView)
-        let skeletonSize = size == .none ? customSize : viewSize
         NSLayoutConstraint.activate([
             skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
             skeletonView.topAnchor.constraint(equalTo: topAnchor),
             skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
             skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            skeletonView.widthAnchor.constraint(equalToConstant: skeletonSize.width),
-            skeletonView.heightAnchor.constraint(equalToConstant: skeletonSize.height)
+            skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
+            skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
         ])
         
         updateStyle()
@@ -119,11 +102,8 @@ public class BPKSkeleton: UIView {
         if type == .headline {
             skeletonView.layer.cornerRadius = BPKCornerRadiusXs
         }
-        if type == .circle && size != .none {
-            skeletonView.layer.cornerRadius = viewSize.height / 2.0
-        }
-        if type == .circle && size == .none {
-            skeletonView.layer.cornerRadius = min(customSize.height, customSize.width) / 2.0
+        if type == .circle {
+            skeletonView.layer.cornerRadius = min(viewSize.height, viewSize.width) / 2.0
         }
     }
 
@@ -162,7 +142,7 @@ extension BPKSkeleton {
         switch style {
         case .rounded:
             return BPKCornerRadiusSm
-        default:
+        case .`default`:
             return 0
         }
     }
@@ -170,13 +150,13 @@ extension BPKSkeleton {
     fileprivate var viewSize: CGSize {
         switch type {
         case .image:
-            return CGSize(width: size.imageSize, height: size.imageSize)
+            return size.image
         case .circle:
-            return CGSize(width: size.circleDiameter, height: size.circleDiameter)
+            return size.circle
         case .bodytext:
-            return CGSize(width: BPKSpacingXxl * 5, height: BPKSpacingMd * 3 + BPKSpacingSm * 5)
+            return size.bodytext
         case .headline:
-            return CGSize(width: size.headlineWidth, height: size.headlineHeight)
+            return size.headline
         }
     }
 }

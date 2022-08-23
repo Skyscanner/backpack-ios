@@ -21,8 +21,7 @@ import Backpack_Common
 
 public struct BPKSkeleton: View {
     private var type: BPKSkeleton.ViewType = .image
-    private var size: BPKSkeleton.Size = .none
-    private var customSize: CGSize = .zero
+    private var size: BPKSkeleton.Size = .default
     private var style: BPKSkeleton.Style = .default
     private var color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
 
@@ -41,46 +40,31 @@ public struct BPKSkeleton: View {
 
     }
     
-    public init(
-        type: BPKSkeleton.ViewType,
-        size: CGSize,
-        style: BPKSkeleton.Style = .default
-    ) {
-        self.type = type
-        self.style = style
-        self.customSize = size
-    }
-    
     public var body: some View {
-        let isCustom: Bool = (size == .none)
         switch type {
         case .image:
-            let imageSize = isCustom ? customSize : size.imageSize
             RoundedRectangle(cornerRadius: style.cornerRadius)
                .fill(color)
-               .frame(width: imageSize.width, height: imageSize.height)
+               .frame(width: size.imageSize.width, height: size.imageSize.height)
                .clipped()
             
         case .headline:
-            let headlineSize = isCustom ? customSize : size.headlineSize
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
-               .frame(width: headlineSize.width, height:  headlineSize.height)
+               .frame(width: size.headlineSize.width, height:  size.headlineSize.height)
                .clipped()
             
         case .circle:
-            let circleSize = isCustom ? customSize : size.circleDiameter
             Circle()
                .fill(color)
-               .frame(width: circleSize.width, height:  circleSize.height)
+               .frame(width: size.circleDiameter.width, height:  size.circleDiameter.height)
                .clipped()
             
         case .bodytext:
-            let bodytextSize = isCustom ? customSize : size.bodytextSize
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
-                makeTextRow(size: bodytextSize, multiplier: 0.86)
-                makeTextRow(size: bodytextSize, multiplier: 1.0)
-                makeTextRow(size: bodytextSize, multiplier: 0.57)
+                makeTextRow(size: size.bodytextSize, multiplier: 0.86)
+                makeTextRow(size: size.bodytextSize, multiplier: 1.0)
+                makeTextRow(size: size.bodytextSize, multiplier: 0.57)
             }
         }
     }
@@ -95,17 +79,11 @@ public struct BPKSkeleton: View {
 }
 
 public extension BPKSkeleton {
-    static func image(style: BPKSkeleton.Style = .default, size: CGSize = .zero) -> BPKSkeleton {
-        return size == .zero ?
-        BPKSkeleton(type: .image, style: style) :
-        BPKSkeleton(type: .image, size: size, style: style)
+    static func image(style: BPKSkeleton.Style = .default, size: BPKSkeleton.Size = .default) -> BPKSkeleton {
+        return BPKSkeleton(type: .image, size: size, style: style)
     }
     
     static func circle(size: BPKSkeleton.Size = .default) -> BPKSkeleton {
-        return BPKSkeleton(type: .circle, size: size)
-    }
-    
-    static func circle(size: CGSize) -> BPKSkeleton {
         return BPKSkeleton(type: .circle, size: size)
     }
     
@@ -113,14 +91,8 @@ public extension BPKSkeleton {
         return BPKSkeleton(type: .headline, size: size)
     }
     
-    static func headline(size: CGSize) -> BPKSkeleton {
-        return BPKSkeleton(type: .headline, size: size)
-    }
-    
-    static func bodytext(size: CGSize = .zero) -> BPKSkeleton {
-        return size == .zero ?
-        BPKSkeleton(type: .bodytext) :
-        BPKSkeleton(type: .bodytext, size: size)
+    static func bodytext(size: BPKSkeleton.Size = .default) -> BPKSkeleton {
+        return BPKSkeleton(type: .bodytext, size: size)
     }
 }
 

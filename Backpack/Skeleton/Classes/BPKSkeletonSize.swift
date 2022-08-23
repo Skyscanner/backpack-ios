@@ -19,37 +19,51 @@
 import Foundation
 import UIKit
 
-@objc
-public enum BPKSkeletonSize: UInt {
-    case none, small, `default`, large
+public enum BPKSkeletonSize {
+    case small, `default`, large, custom(size: CGSize)
 }
 
 internal extension BPKSkeletonSize {
-    var imageSize: CGFloat {
-        return BPKSpacingXl * 3
-    }
-    
-    var circleDiameter: CGFloat {
+    var image: CGSize {
         switch self {
-        case .small:
-            return BPKSpacingXl
+        case .custom(let customSize):
+            return customSize
         default:
-            return BPKSpacingLg * 2
+            return CGSize(width: BPKSpacingXl * 3, height: BPKSpacingXl * 3)
         }
     }
     
-    var headlineHeight: CGFloat {
+    var circle: CGSize {
         switch self {
+        case .custom(let customSize):
+            let minLength = min(customSize.height, customSize.width)
+            return CGSize(width: minLength, height: minLength)
         case .small:
-            return BPKSpacingMd
+            return CGSize(width: BPKSpacingXl, height: BPKSpacingXl)
+        default:
+            return CGSize(width: BPKSpacingLg * 2, height: BPKSpacingLg * 2)
+        }
+    }
+    
+    var headline: CGSize {
+        switch self {
+        case .custom(let customSize):
+            return customSize
+        case .small:
+            return CGSize(width: BPKSpacingXxl * 2, height: BPKSpacingMd)
+        case .`default`:
+            return CGSize(width: BPKSpacingXxl * 2, height: BPKSpacingBase)
         case .large:
-            return BPKSpacingXl
-        default:
-            return BPKSpacingBase
+            return CGSize(width: BPKSpacingXxl * 2, height: BPKSpacingXl)
         }
     }
     
-    var headlineWidth: CGFloat {
-        return BPKSpacingXxl * 2
+    var bodytext: CGSize {
+        switch self {
+        case .custom(let customSize):
+            return customSize
+        default:
+            return CGSize(width: BPKSpacingXxl * 5, height: BPKSpacingMd * 3 + BPKSpacingSm * 5)
+        }
     }
 }

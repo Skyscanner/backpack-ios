@@ -27,7 +27,7 @@ internal extension BPKSkeleton.Style {
         switch self {
         case .rounded:
             return BPKCornerRadius.sm.value
-        default:
+        case .`default`:
             return 0
         }
     }

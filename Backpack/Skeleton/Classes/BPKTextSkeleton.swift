@@ -29,7 +29,7 @@ public class BPKTextSkeleton: UIView {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.backgroundColor = BPKSkeleton.defaultColor
+        stack.backgroundColor = .clear
         stack.spacing = BPKSpacingSm * 2.5
         stack.isUserInteractionEnabled = false
         return stack

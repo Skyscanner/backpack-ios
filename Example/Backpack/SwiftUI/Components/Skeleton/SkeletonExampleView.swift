@@ -57,7 +57,7 @@ struct SkeletonExampleView: View {
             }
             Spacer()
             VStack {
-                BPKSkeleton.image(size: CGSize(width: 120, height: 120))
+                BPKSkeleton.image(size: .custom(size: CGSize(width: 120, height: 120)))
                 BPKText("Custom - 120")
                     .foregroundColor(.textPrimaryColor)
             }
@@ -107,7 +107,7 @@ struct SkeletonExampleView: View {
             }
             Spacer()
             VStack {
-                BPKSkeleton.circle(size: CGSize(width: 80, height: 80))
+                BPKSkeleton.circle(size: .custom(size: CGSize(width: 80, height: 80)))
                 BPKText("Custom - 80")
                     .foregroundColor(.textPrimaryColor)
             }
@@ -124,7 +124,7 @@ struct SkeletonExampleView: View {
             }
             Spacer()
             VStack {
-                BPKSkeleton.bodytext(size: CGSize(width: 280, height: 61))
+                BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 280, height: 61)))
                 BPKText("Custom - W280, H61")
                     .foregroundColor(.textPrimaryColor)
             }
