@@ -43,6 +43,11 @@ class BPKSkeletonSnapshotTest: FBSnapshotTestCase {
         BPKSnapshotVerifyViewDark(create())
     }
     
+    func testCustomSizeImageSkeleton() {
+        BPKSnapshotVerifyViewLight(create(type: .image, size: .custom(size: CGSize(width: 111, height: 222))))
+        BPKSnapshotVerifyViewDark(create(type: .image, size: .custom(size: CGSize(width: 111, height: 222))))
+    }
+    
     func testRoundedImageSkeleton() {
         BPKSnapshotVerifyViewLight(create(type: .image, style: .rounded))
         BPKSnapshotVerifyViewDark(create(type: .image, style: .rounded))
@@ -66,6 +71,11 @@ class BPKSkeletonSnapshotTest: FBSnapshotTestCase {
         BPKSnapshotVerifyViewDark(create(type: .circle))
     }
     
+    func testCustomSizeCircleSkeleton() {
+        BPKSnapshotVerifyViewLight(create(type: .circle, size: .custom(size: CGSize(width: 88, height: 111))))
+        BPKSnapshotVerifyViewDark(create(type: .circle, size: .custom(size: CGSize(width: 88, height: 111))))
+    }
+    
     func testSmallHeadlineSkeleton() {
         BPKSnapshotVerifyViewLight(create(type: .headline, size: .small, style: .default))
         BPKSnapshotVerifyViewDark(create(type: .headline, size: .small, style: .default))
@@ -84,5 +94,10 @@ class BPKSkeletonSnapshotTest: FBSnapshotTestCase {
     func testBodytextSkeleton() {
         BPKSnapshotVerifyViewLight(create(type: .bodytext))
         BPKSnapshotVerifyViewDark(create(type: .bodytext))
+    }
+    
+    func testCustomSizeBodytextSkeleton() {
+        BPKSnapshotVerifyViewLight(create(type: .bodytext, size: .custom(size: CGSize(width: 280, height: 111))))
+        BPKSnapshotVerifyViewDark(create(type: .bodytext, size: .custom(size: CGSize(width: 280, height: 111))))
     }
 }

@@ -26,14 +26,35 @@ class BPKSkeletonTests: XCTestCase {
         ZStack {
             Color(.clear.darkVariant(.black))
             VStack {
-                BPKSkeleton(type: .image)
-                BPKSkeleton(type: .image, style: .rounded)
-                BPKSkeleton(type: .headline, size: .small)
-                BPKSkeleton(type: .headline)
-                BPKSkeleton(type: .headline, size: .large)
-                BPKSkeleton(type: .circle, size: .small)
-                BPKSkeleton(type: .circle)
-                BPKSkeleton(type: .bodytext)
+                Group {
+                    BPKSkeleton.image()
+                    BPKSkeleton.image(size: .small) // Should be the same as .default
+                    BPKSkeleton.image(style: .rounded)
+                    BPKSkeleton.image(size: .custom(size: CGSize(width: 111, height: 111)))
+                    BPKSkeleton.image(size: .custom(size: CGSize(width: 111, height: 222)))
+                }
+                
+                Group {
+                    BPKSkeleton.circle()
+                    BPKSkeleton.circle(size: .small)
+                    BPKSkeleton.circle(size: .large) // Should be the same as .default
+                    BPKSkeleton.circle(size: .custom(size: CGSize(width: 111, height: 111)))
+                    BPKSkeleton.circle(size: .custom(size: CGSize(width: 111, height: 222))) // Should be the same as above
+                }
+                
+                Group {
+                    BPKSkeleton.headline()
+                    BPKSkeleton.headline(size: .small)
+                    BPKSkeleton.headline(size: .large)
+                    BPKSkeleton.headline(size: .custom(size: CGSize(width: 111, height: 111)))
+                }
+                
+                Group {
+                    BPKSkeleton.bodytext()
+                    BPKSkeleton.bodytext(size: .small) // Should be the same as .default
+                    BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 111, height: 111)))
+                    BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 111, height: 222)))
+                }
             }
             .padding()
         }

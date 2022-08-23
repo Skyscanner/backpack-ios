@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public enum BPKSkeletonSize {
+public enum BPKSkeletonSize: Equatable {
     case small, `default`, large, custom(size: CGSize)
 }
 

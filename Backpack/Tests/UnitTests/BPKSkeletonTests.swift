@@ -20,22 +20,29 @@ import XCTest
 import Backpack
 
 class BPKSkeletonTest: XCTestCase {
-    func testInitWithDefaultValue() {
+    func testInitWithAllDefaultValues() {
         let skeleton = BPKSkeleton()
         XCTAssertEqual(skeleton.type, .image)
-        XCTAssertEqual(skeleton.size, .none)
+        XCTAssertEqual(skeleton.size, .default)
         XCTAssertEqual(skeleton.style, .default)
     }
     
-    func testInitWithDefaultSize() {
-        let skeleton = BPKSkeleton(type: .circle)
+    func testInitWithOptionalSize() {
+        let skeleton = BPKSkeleton(type: .circle, size: .small)
         XCTAssertEqual(skeleton.type, .circle)
-        XCTAssertEqual(skeleton.size, .default)
+        XCTAssertEqual(skeleton.size, .small)
     }
     
     func testInitWithStyle() {
         let skeleton = BPKSkeleton(type: .image, style: .rounded)
         XCTAssertEqual(skeleton.type, .image)
+        XCTAssertEqual(skeleton.style, .rounded)
+    }
+    
+    func testInitWithCustomSize() {
+        let skeleton = BPKSkeleton(type: .image, size: .custom(size: CGSize(width: 111, height: 222)), style: .rounded)
+        XCTAssertEqual(skeleton.type, .image)
+        XCTAssertEqual(skeleton.size, .custom(size: CGSize(width: 111, height: 222)))
         XCTAssertEqual(skeleton.style, .rounded)
     }
 }
