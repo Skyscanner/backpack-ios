@@ -27,7 +27,8 @@ public class BPKCommonSkeleton: UIView {
     }
     
     public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupSubviews()
     }
     
     private func setupSubviews() {

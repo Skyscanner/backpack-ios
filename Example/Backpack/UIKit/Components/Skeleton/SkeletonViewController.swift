@@ -63,16 +63,15 @@ class SkeletonViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .bottom
-        stackView.spacing = BPKSpacingBase
+        stackView.spacing = BPKSpacingLg
         return stackView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
 
+        view.backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
         view.addSubview(containerView)
-
         imageSkeletonRow()
         circleSkeletonRow()
         headlineSkeletonRow()
@@ -109,8 +108,8 @@ class SkeletonViewController: UIViewController {
     
     private func circleSkeletonRow() {
         let defaultCircle = BPKSkeleton(type: .circle)
-        let small = BPKSkeleton(type: .circle, size: .small, style: .default)
-        let customImage = BPKSkeleton(type: .circle, size: CGSize(width: 100, height: 100))
+        let small = BPKSkeleton(type: .circle, size: .small)
+        let customImage = BPKSkeleton(type: .circle, size: CGSize(width: 100, height: 120))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "CircleSKeleton"
         
@@ -124,8 +123,9 @@ class SkeletonViewController: UIViewController {
     
     private func headlineSkeletonRow() {
         let defaultImage = BPKSkeleton(type: .headline)
-        let small = BPKSkeleton(type: .headline, size: .small, style: .default)
-        let large = BPKSkeleton(type: .headline, size: .large, style: .default)
+        let small = BPKSkeleton(type: .headline, size: .small)
+        let large = BPKSkeleton(type: .headline, size: .large)
+        let custom = BPKSkeleton(type: .headline, size: CGSize(width: 88, height: 48))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "HeadlineSKeleton"
         
@@ -135,10 +135,12 @@ class SkeletonViewController: UIViewController {
         headlineRow.addArrangedSubview(small)
         headlineRow.addArrangedSubview(defaultImage)
         headlineRow.addArrangedSubview(large)
+        headlineRow.addArrangedSubview(custom)
     }
     
     private func bodytextSkeletonRow() {
         let bodytext = BPKSkeleton(type: .bodytext)
+        let custom = BPKSkeleton(type: .bodytext, size: CGSize(width: 260, height: 60))
         let title = BPKLabel(fontStyle: .textHeading5)
         title.text = "BodytextSKeleton"
         
@@ -146,5 +148,6 @@ class SkeletonViewController: UIViewController {
         containerView.addArrangedSubview(title)
         containerView.addArrangedSubview(bodytextRow)
         bodytextRow.addArrangedSubview(bodytext)
+        bodytextRow.addArrangedSubview(custom)
     }
 }

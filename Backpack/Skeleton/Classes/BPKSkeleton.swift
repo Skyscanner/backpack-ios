@@ -70,6 +70,11 @@ public class BPKSkeleton: UIView {
         self.type = type
         self.customSize = size
         self.style = style
+        
+        if type == .circle && size.width != size.height {
+            let minLength = min(size.height, size.width)
+            self.customSize = CGSize(width: minLength, height: minLength)
+        }
         updateType()
         setup()
     }
@@ -123,7 +128,9 @@ public class BPKSkeleton: UIView {
     }
 
     public static func startShimmer(view: UIView) {
-        let gradientLayer = CAGradientLayer()
+        view.layer.sublayers?.filter { $0 is BPKShimmerLayer }.forEach { $0.removeFromSuperlayer() }
+        
+        let gradientLayer = BPKShimmerLayer()
         let transperant = BPKSkeleton.defaultColor.withAlphaComponent(0).cgColor
         let midColor = BPKSkeleton.defaultColor.withAlphaComponent(0.6).cgColor
         let duration = 1.0

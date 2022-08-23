@@ -60,12 +60,14 @@ public struct BPKSkeleton: View {
                .fill(color)
                .frame(width: imageSize.width, height: imageSize.height)
                .clipped()
+            
         case .headline:
             let headlineSize = isCustom ? customSize : size.headlineSize
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
                .frame(width: headlineSize.width, height:  headlineSize.height)
                .clipped()
+            
         case .circle:
             let circleSize = isCustom ? customSize : size.circleDiameter
             Circle()
@@ -76,19 +78,49 @@ public struct BPKSkeleton: View {
         case .bodytext:
             let bodytextSize = isCustom ? customSize : size.bodytextSize
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
-                makeTextRow(size: bodytextSize, percentage: 0.86)
-                makeTextRow(size: bodytextSize, percentage: 1.0)
-                makeTextRow(size: bodytextSize, percentage: 0.57)
+                makeTextRow(size: bodytextSize, multiplier: 0.86)
+                makeTextRow(size: bodytextSize, multiplier: 1.0)
+                makeTextRow(size: bodytextSize, multiplier: 0.57)
             }
         }
     }
     
-    private func makeTextRow(size: CGSize, percentage: Double) -> some View {
+    private func makeTextRow(size: CGSize, multiplier: Double) -> some View {
         let rowHeight = abs(size.height - BPKSpacing.sm.value * 5) / 3.0
         return RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
            .fill(color)
-           .frame(width: size.width * percentage, height: rowHeight)
+           .frame(width: size.width * multiplier, height: rowHeight)
            .clipped()
+    }
+}
+
+public extension BPKSkeleton {
+    static func image(style: BPKSkeleton.Style = .default, size: CGSize = .zero) -> BPKSkeleton {
+        return size == .zero ?
+        BPKSkeleton(type: .image, style: style) :
+        BPKSkeleton(type: .image, size: size, style: style)
+    }
+    
+    static func circle(size: BPKSkeleton.Size = .default) -> BPKSkeleton {
+        return BPKSkeleton(type: .circle, size: size)
+    }
+    
+    static func circle(size: CGSize) -> BPKSkeleton {
+        return BPKSkeleton(type: .circle, size: size)
+    }
+    
+    static func headline(size: BPKSkeleton.Size = .default) -> BPKSkeleton {
+        return BPKSkeleton(type: .headline, size: size)
+    }
+    
+    static func headline(size: CGSize) -> BPKSkeleton {
+        return BPKSkeleton(type: .headline, size: size)
+    }
+    
+    static func bodytext(size: CGSize = .zero) -> BPKSkeleton {
+        return size == .zero ?
+        BPKSkeleton(type: .bodytext) :
+        BPKSkeleton(type: .bodytext, size: size)
     }
 }
 
