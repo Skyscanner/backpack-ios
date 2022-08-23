@@ -45,26 +45,26 @@ public struct BPKSkeleton: View {
         case .image:
             RoundedRectangle(cornerRadius: style.cornerRadius)
                .fill(color)
-               .frame(width: size.imageSize.width, height: size.imageSize.height)
+               .frame(width: size.image.width, height: size.image.height)
                .clipped()
             
         case .headline:
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
-               .frame(width: size.headlineSize.width, height:  size.headlineSize.height)
+               .frame(width: size.headline.width, height:  size.headline.height)
                .clipped()
             
         case .circle:
             Circle()
                .fill(color)
-               .frame(width: size.circleDiameter.width, height:  size.circleDiameter.height)
+               .frame(width: size.circle.width, height:  size.circle.height)
                .clipped()
             
         case .bodytext:
             VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
-                makeTextRow(size: size.bodytextSize, multiplier: 0.86)
-                makeTextRow(size: size.bodytextSize, multiplier: 1.0)
-                makeTextRow(size: size.bodytextSize, multiplier: 0.57)
+                makeTextRow(size: size.bodytext, multiplier: 0.86)
+                makeTextRow(size: size.bodytext, multiplier: 1.0)
+                makeTextRow(size: size.bodytext, multiplier: 0.57)
             }
         }
     }

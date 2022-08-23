@@ -19,7 +19,7 @@
 import SwiftUI
 
 internal extension BPKSkeleton.Size {
-    var imageSize: CGSize {
+    var image: CGSize {
         switch self {
         case .custom(let customSize):
             return customSize;
@@ -29,7 +29,7 @@ internal extension BPKSkeleton.Size {
         
     }
     
-    var circleDiameter: CGSize {
+    var circle: CGSize {
         switch self {
         case .custom(let customSize):
             return customSize;
@@ -40,7 +40,7 @@ internal extension BPKSkeleton.Size {
         }
     }
     
-    var headlineSize: CGSize {
+    var headline: CGSize {
         switch self {
         case .custom(let customSize):
             return customSize;
@@ -53,7 +53,7 @@ internal extension BPKSkeleton.Size {
         }
     }
     
-    var bodytextSize: CGSize {
+    var bodytext: CGSize {
         switch self {
         case .custom(let customSize):
             return customSize;
