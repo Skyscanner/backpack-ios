@@ -48,7 +48,7 @@ class CardsViewController: UIViewController {
         card.configuration = configuration
         if backgroundColor != nil {
             card.backgroundColor = backgroundColor
-            label.textColor = BPKColor.textPrimaryColor
+            label.textColor = BPKColor.textPrimaryLightColor
         }
     }
 }
