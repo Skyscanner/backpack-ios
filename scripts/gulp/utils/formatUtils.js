@@ -35,13 +35,18 @@ const parseColor = (color) => {
   };
 };
 
-const isDynamicColor = (entity) => entity.value && entity.darkValue;
 const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${name.slice(1)}`
+
+const isSemanticColor = entity => entity.value && entity.darkValue;
+const isMarcommsColor = entity => entity.name.startsWith("marcomms")
+const hasNewSemanticSuffix = entity => entity.name.endsWith("Day") || entity.name.endsWith("Night");
 
 module.exports = {
   capitaliseFirstLetter,
   lowercaseFirstLetter,
   parseColor,
-  isDynamicColor,
+  isSemanticColor,
+  isMarcommsColor,
+  hasNewSemanticSuffix,
   formatPrefixedConstName
 }
