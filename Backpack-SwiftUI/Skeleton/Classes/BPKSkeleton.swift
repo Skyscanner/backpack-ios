@@ -24,12 +24,13 @@ public struct BPKSkeleton: View {
     private var size: BPKSkeleton.Size = .default
     private var style: BPKSkeleton.Style = .default
     private var color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
+    private let bodytextRowSpacing: CGFloat = BPKSpacing.md.value
 
     @State private var phase: CGFloat = 0
     let duration = 1.0
     let delay = 0.2
     
-    public init(
+    private init(
         type: BPKSkeleton.ViewType,
         size: BPKSkeleton.Size = .default,
         style: BPKSkeleton.Style = .default
@@ -61,7 +62,7 @@ public struct BPKSkeleton: View {
                .clipped()
             
         case .bodytext:
-            VStack(alignment: .leading, spacing: BPKSpacing.sm.value * 2.5) {
+            VStack(alignment: .leading, spacing: bodytextRowSpacing) {
                 makeTextRow(size: size.bodytext, multiplier: 0.86)
                 makeTextRow(size: size.bodytext, multiplier: 1.0)
                 makeTextRow(size: size.bodytext, multiplier: 0.57)
@@ -70,8 +71,8 @@ public struct BPKSkeleton: View {
     }
     
     private func makeTextRow(size: CGSize, multiplier: Double) -> some View {
-        let rowHeight = abs(size.height - BPKSpacing.sm.value * 5) / 3.0
-        return RoundedRectangle(cornerRadius: BPKCornerRadius.xs.value / 2)
+        let rowHeight = abs(size.height - bodytextRowSpacing * 2) / 3.0
+        return RoundedRectangle(cornerRadius: 2)
            .fill(color)
            .frame(width: size.width * multiplier, height: rowHeight)
            .clipped()
@@ -98,6 +99,6 @@ public extension BPKSkeleton {
 
 struct BPKSkeleton_Previews: PreviewProvider {
     static var previews: some View {
-        BPKSkeleton(type: .image, size: .default, style: .default)
+        BPKSkeleton.image()
     }
 }

@@ -17,7 +17,7 @@
  */
 
 extension BPKSkeleton {
-    public enum ViewType {
+    internal enum ViewType {
         case image, headline, circle, bodytext
     }
 }

@@ -24,7 +24,7 @@ internal extension BPKSkeleton.Size {
         case .custom(let customSize):
             return customSize;
         default:
-            return CGSize(width: BPKSpacing.xl.value * 3, height: BPKSpacing.xl.value * 3)
+            return CGSize(width: 96, height: 96)
         }
         
     }
@@ -36,7 +36,7 @@ internal extension BPKSkeleton.Size {
         case .small:
             return CGSize(width: BPKSpacing.xl.value, height: BPKSpacing.xl.value)
         default:
-            return CGSize(width: BPKSpacing.lg.value * 2, height: BPKSpacing.lg.value * 2)
+            return CGSize(width: 48, height: 48)
         }
     }
     
@@ -45,11 +45,11 @@ internal extension BPKSkeleton.Size {
         case .custom(let customSize):
             return customSize;
         case .small:
-            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.md.value)
+            return CGSize(width: 80, height: BPKSpacing.md.value)
         case .large:
-            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.xl.value)
+            return CGSize(width: 80, height: BPKSpacing.xl.value)
         default:
-            return CGSize(width: BPKSpacing.xxl.value * 2, height: BPKSpacing.base.value)
+            return CGSize(width: 80, height: BPKSpacing.base.value)
         }
     }
     
@@ -58,7 +58,7 @@ internal extension BPKSkeleton.Size {
         case .custom(let customSize):
             return customSize;
         default:
-            return CGSize(width: BPKSpacing.xxl.value * 5, height: BPKSpacing.sm.value * 11)
+            return CGSize(width: 200, height: 44)
         }
     }
 }

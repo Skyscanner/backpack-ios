@@ -33,7 +33,11 @@ public class BPKSkeleton: UIView {
         }
     }
     
-    public var size: BPKSkeletonSize = .default
+    public var size: BPKSkeletonSize = .default {
+        didSet {
+            updateSize()
+        }
+    }
     
     public var style: BPKSkeletonStyle = .default {
         didSet {
@@ -80,18 +84,9 @@ public class BPKSkeleton: UIView {
         }
     }
     
-    internal func setup() {
+    private func setup() {
         addSubview(skeletonView)
-        NSLayoutConstraint.activate([
-            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            skeletonView.topAnchor.constraint(equalTo: topAnchor),
-            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
-            skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
-        ])
-        
+        updateSize()
         updateStyle()
     }
     
@@ -105,6 +100,18 @@ public class BPKSkeleton: UIView {
         if type == .circle {
             skeletonView.layer.cornerRadius = min(viewSize.height, viewSize.width) / 2.0
         }
+    }
+    
+    private func updateSize() {
+        NSLayoutConstraint.activate([
+            skeletonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            skeletonView.topAnchor.constraint(equalTo: topAnchor),
+            skeletonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            skeletonView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            skeletonView.widthAnchor.constraint(equalToConstant: viewSize.width),
+            skeletonView.heightAnchor.constraint(equalToConstant: viewSize.height)
+        ])
     }
 
     public static func startShimmer(view: UIView) {

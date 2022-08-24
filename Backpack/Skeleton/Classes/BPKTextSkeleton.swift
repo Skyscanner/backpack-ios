@@ -23,7 +23,7 @@ public class BPKTextSkeleton: UIView {
     var textRows = [UIView]()
     var width: CGFloat = BPKSpacingXxl * 5
     var rowHeight: CGFloat = BPKSpacingMd
-    var rowSpacing: CGFloat = BPKSpacingSm * 2.5
+    var rowSpacing: CGFloat = BPKSpacingMd
     
     fileprivate let containerStackView: UIStackView = {
         let stack = UIStackView()
