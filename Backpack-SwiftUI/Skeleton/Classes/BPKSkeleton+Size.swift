@@ -48,7 +48,7 @@ internal extension BPKSkeleton.Size {
             return CGSize(width: 80, height: BPKSpacing.md.value)
         case .large:
             return CGSize(width: 80, height: BPKSpacing.xl.value)
-        default:
+        case .`default`:
             return CGSize(width: 80, height: BPKSpacing.base.value)
         }
     }
