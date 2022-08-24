@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.subtitleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.subtitleLabel.fontStyle = BPKFontStyleTextBodyDefault;
-    self.subtitleLabel.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint01 darkVariant:BPKColor.skyGrayTint02];
+    self.subtitleLabel.textColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint01 darkVariant:BPKColor.textSecondaryLightColor];
     [self.subtitleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:self.subtitleLabel];
 

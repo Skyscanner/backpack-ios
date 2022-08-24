@@ -198,7 +198,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = create()
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -209,7 +209,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeSmall>,
             NavContainer<BPKHorizontalNavigationSizeSmall>
         ) = create()
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -218,7 +218,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
     func testSelectedIndex() {
         let lightView = createWithSelectedIndex(2)
         let darkView = createWithSelectedIndex(2)
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -229,7 +229,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = create(selectedItemIndex: 0, showsSelectedBar: false)
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -240,7 +240,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = createWithIcons()
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -251,7 +251,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeSmall>,
             NavContainer<BPKHorizontalNavigationSizeSmall>
         ) = createWithIcons()
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -262,7 +262,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = createWithIcons()
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
         lightView.nav?.selectedColor = .bpk_erfoud
         darkView.nav?.selectedColor = .bpk_bagan
 
@@ -275,7 +275,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = createWithIcons(selectedItemIndex: 0, showsSelectedBar: true, width: 550.0)
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)
@@ -286,7 +286,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             NavContainer<BPKHorizontalNavigationSizeDefault>,
             NavContainer<BPKHorizontalNavigationSizeDefault>
         ) = createWithIcons(selectedItemIndex: 0, showsSelectedBar: true, width: 200.0)
-        darkView.backgroundColor = .bpk_black
+        darkView.backgroundColor = .bpk_backgroundDark
 
         BPKSnapshotVerifyViewLight(lightView)
         BPKSnapshotVerifyViewDark(darkView)

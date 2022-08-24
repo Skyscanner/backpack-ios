@@ -286,7 +286,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Dynamic colors
 - (UIColor *)scrimViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.backgroundColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.backgroundDarkColor];
 }
 @end
 
