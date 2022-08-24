@@ -23,13 +23,9 @@ public struct BPKSkeleton: View {
     private var type: BPKSkeleton.ViewType = .image
     private var size: BPKSkeleton.Size = .default
     private var style: BPKSkeleton.Style = .default
-    private var color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
+    private let color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
     private let bodytextRowSpacing: CGFloat = BPKSpacing.md.value
-
-    @State private var phase: CGFloat = 0
-    let duration = 1.0
-    let delay = 0.2
-    
+   
     private init(
         type: BPKSkeleton.ViewType,
         size: BPKSkeleton.Size = .default,
@@ -38,7 +34,6 @@ public struct BPKSkeleton: View {
         self.type = type
         self.style = style
         self.size = size
-
     }
     
     public var body: some View {

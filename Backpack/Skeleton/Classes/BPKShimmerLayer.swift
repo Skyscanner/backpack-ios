@@ -18,5 +18,9 @@
 
 import Foundation
 
-@objc
+/**
+ * The BPKShimmerLayer is used to find shimmer layer instance.
+ * So that we won't add shimmer layer repeatedly and won't remove other layers from parent view.
+ * How to avoid adding shimmer repeatedly: check static function startShimmer() in BPKSkeleton.swift
+ */
 public class BPKShimmerLayer: CAGradientLayer { }
