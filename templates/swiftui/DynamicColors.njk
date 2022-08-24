@@ -24,10 +24,15 @@ public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor
 
 /// Backpack Dynamic Colors
 public extension BPKColor {
+    private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
+    }
+    
     func darkVariant(_ darkVariant: BPKColor) -> BPKColor {
         BPKColor(value: dynamicColor(lightVariant: value, darkVariant: darkVariant.value))
     }
 {% for c in dynamicColor %}
     /// The `{{c.name}}` dynamic color from the Backpack palette.
-    static let {{c.name}} = {{c.value}}.darkVariant({{c.darkValue}})
+    static let {{c.name}} = BPKColor(red:{{c.value.r}}, green:{{c.value.g}}, blue:{{c.value.b}}, alpha:{{c.value.a}})
+        .darkVariant(BPKColor(red:{{c.darkValue.r}}, green:{{c.darkValue.g}}, blue:{{c.darkValue.b}}, alpha:{{c.darkValue.a}}))
 {% endfor %}}

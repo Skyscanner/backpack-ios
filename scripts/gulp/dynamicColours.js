@@ -17,21 +17,19 @@
  */
 
 const _ = require('lodash');
-const { isDynamicColor } = require('./utils/formatUtils');
+const { isSemanticColor, parseColor } = require('./utils/formatUtils');
 
 const dynamicColors = (properties) => _.chain(properties)
-  .filter((entity) => entity.type === 'color' && isDynamicColor(entity))
+  .filter((entity) => entity.type === 'color' && isSemanticColor(entity))
   .map(
     ({
       value,
-      originalValue,
       darkValue,
-      originalDarkValue,
       name,
       ...rest
     }) => ({
-      value: _.camelCase(originalValue),
-      darkValue: _.camelCase(originalDarkValue),
+      value: parseColor(value),
+      darkValue: parseColor(darkValue),
       name: name[0].toLowerCase() + name.slice(1),
       hex: value.toString(),
       darkHex: darkValue.toString(),
