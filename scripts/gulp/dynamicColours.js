@@ -24,9 +24,7 @@ const dynamicColors = (properties) => _.chain(properties)
   .map(
     ({
       value,
-      originalValue,
       darkValue,
-      originalDarkValue,
       name,
       ...rest
     }) => ({
