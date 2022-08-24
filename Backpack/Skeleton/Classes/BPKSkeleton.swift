@@ -52,26 +52,22 @@ public class BPKSkeleton: UIView {
         return view
     }()
     
-    public convenience init(
+    public init(
         type: BPKSkeletonType,
         size: BPKSkeletonSize = .default,
         style: BPKSkeletonStyle = .default
     ) {
-        self.init()
+        super.init(frame: .zero)
         self.type = type
         self.size = size
         self.style = style
         
-        updateType()
         setup()
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setup()
     }
     
     private func updateType() {
@@ -85,6 +81,7 @@ public class BPKSkeleton: UIView {
     }
     
     private func setup() {
+        updateType()
         addSubview(skeletonView)
         updateSize()
         updateStyle()

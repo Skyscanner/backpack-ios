@@ -20,9 +20,9 @@ import SwiftUI
 
 struct BPKShimmer: ViewModifier {
     @State private var phase: CGFloat = 0
-    var duration = 1.0
-    var bounce = false
-    var delay = 0.2
+    let duration = 1.0
+    let bounce = false
+    let delay = 0.2
 
     public func body(content: Content) -> some View {
         content
@@ -66,13 +66,7 @@ struct BPKShimmer: ViewModifier {
 }
 
 public extension View {
-    @ViewBuilder func shimmering(
-        animated: Bool = true, duration: Double = 1.0, delay: Double = 0.2, bounce: Bool = false
-    ) -> some View {
-        if animated {
-            modifier(BPKShimmer(duration: duration, bounce: bounce, delay: delay))
-        } else {
-            self
-        }
+    @ViewBuilder func shimmering() -> some View {
+        modifier(BPKShimmer())
     }
 }
