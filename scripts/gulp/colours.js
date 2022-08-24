@@ -22,7 +22,7 @@ const { isSemanticColor, isMarcommsColor, hasNewSemanticSuffix, hasOldSemanticSu
 const colors = (properties, filterColors) => {
   const colors = _.chain(properties)
     .filter((entity) => entity.type === 'color')
-    .filter(entry => !isSemanticColor(entry) && !hasNewSemanticSuffix(entry) && !isMarcommsColor(entry) && !hasOldSemanticSuffix)
+    .filter(entry => !isSemanticColor(entry) && !hasNewSemanticSuffix(entry) && !isMarcommsColor(entry) && !hasOldSemanticSuffix(entry))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
       return {
