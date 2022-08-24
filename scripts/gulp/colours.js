@@ -17,7 +17,7 @@
  */
 
 const _ = require('lodash');
-const { isSemanticColor, isMarcommsColor, hasNewSemanticSuffix, hasOldSemanticSuffix, parseColor } = require('./utils/formatUtils');
+const { isSemanticColor, isMarcommsColor, hasNewSemanticSuffix, parseColor } = require('./utils/formatUtils');
 
 const colors = (properties, filterColors) => {
   const colors = _.chain(properties)
