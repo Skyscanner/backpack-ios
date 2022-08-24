@@ -25,7 +25,6 @@ const colors = (properties, filterColors) => {
     .filter(entry => !isSemanticColor(entry) && !hasNewSemanticSuffix(entry) && !isMarcommsColor(entry))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
-      console.log(newName);
       return {
         value: parseColor(value),
         name: newName[0].toLowerCase() + newName.slice(1),
