@@ -206,7 +206,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Dynamic colors
 - (UIColor *)dialogContentViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.backgroundSecondaryDarkColor];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.backgroundSecondaryColor];
 }
 
 @end

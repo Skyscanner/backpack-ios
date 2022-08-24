@@ -39,7 +39,7 @@ const formatPrefixedConstName = (name) => `BPK${name.charAt(0).toUpperCase()}${n
 
 const isSemanticColor = entity => entity.value && entity.darkValue;
 const isMarcommsColor = entity => entity.name.startsWith("marcomms")
-const hasOldSemanticSuffix = entity => entity.name.endsWith("LightColor") || entity.name.endsWith("DarkColor");
+const hasOldSemanticSuffix = entity => entity.name.toLowerCase().endsWith("lightcolor") || entity.name.toLowerCase().endsWith("darkcolor");
 const hasNewSemanticSuffix = entity => entity.name.endsWith("Day") || entity.name.endsWith("Night");
 
 module.exports = {

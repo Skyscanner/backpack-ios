@@ -85,7 +85,7 @@ struct BPKChipAppearanceSets {
         normal: Colors(
             background: BPKColor.dynamicColor(
                 withLightVariant: BPKColor.white,
-                darkVariant: BPKColor.backgroundElevation03DarkColor
+                darkVariant: BPKColor.backgroundElevation03Color
             ),
             content: BPKColor.textPrimaryColor),
         selected: Colors(
