@@ -24,28 +24,36 @@
 @implementation UIColor(Backpack)
 
 
++ (UIColor *)bpk_backgroundAlternativeDarkColor {
+    return BPKColor.backgroundAlternativeDarkColor;
+}
+
++ (UIColor *)bpk_backgroundAlternativeLightColor {
+    return BPKColor.backgroundAlternativeLightColor;
+}
+
++ (UIColor *)bpk_backgroundAlternativeSecondaryDarkColor {
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)bpk_backgroundAlternativeSecondaryLightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundElevation02DarkColor {
+    return BPKColor.backgroundElevation02DarkColor;
+}
+
++ (UIColor *)bpk_backgroundElevation03DarkColor {
+    return BPKColor.backgroundElevation03DarkColor;
+}
+
 + (UIColor *)bpk_abisko {
     return BPKColor.abisko;
 }
 
 + (UIColor *)bpk_bagan {
     return BPKColor.bagan;
-}
-
-+ (UIColor *)bpk_black {
-    return BPKColor.black;
-}
-
-+ (UIColor *)bpk_blackTint01 {
-    return BPKColor.blackTint01;
-}
-
-+ (UIColor *)bpk_blackTint02 {
-    return BPKColor.blackTint02;
-}
-
-+ (UIColor *)bpk_blackTint03 {
-    return BPKColor.blackTint03;
 }
 
 + (UIColor *)bpk_blackTint04 {
@@ -160,10 +168,6 @@
     return BPKColor.skyGrayTint06;
 }
 
-+ (UIColor *)bpk_skyGrayTint07 {
-    return BPKColor.skyGrayTint07;
-}
-
 + (UIColor *)bpk_tochigi {
     return BPKColor.tochigi;
 }
@@ -172,13 +176,69 @@
     return BPKColor.valensole;
 }
 
-+ (UIColor *)bpk_white {
-    return BPKColor.white;
+
++ (UIColor *)bpk_backgroundDarkColor {
+    return BPKColor.backgroundAlternativeDarkColor;
 }
 
++ (UIColor *)bpk_backgroundElevation01DarkColor {
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)bpk_backgroundElevation01LightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundElevation02LightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundElevation03LightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundLightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_backgroundSecondaryDarkColor {
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)bpk_backgroundSecondaryLightColor {
+    return BPKColor.backgroundAlternativeLightColor;
+}
+
++ (UIColor *)bpk_backgroundTertiaryDarkColor {
+    return BPKColor.backgroundElevation02DarkColor;
+}
+
++ (UIColor *)bpk_backgroundTertiaryLightColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_black {
+    return BPKColor.backgroundAlternativeDarkColor;
+}
+
++ (UIColor *)bpk_blackTint01 {
+    return BPKColor.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)bpk_blackTint02 {
+    return BPKColor.backgroundElevation02DarkColor;
+}
+
++ (UIColor *)bpk_blackTint03 {
+    return BPKColor.backgroundElevation03DarkColor;
+}
 
 + (UIColor *)bpk_skyBlue {
     return BPKColor.primaryGradientLight;
+}
+
++ (UIColor *)bpk_skyGrayTint07 {
+    return BPKColor.backgroundAlternativeLightColor;
 }
 
 + (UIColor *)bpk_systemGreen {
@@ -189,12 +249,64 @@
     return BPKColor.panjin;
 }
 
++ (UIColor *)bpk_white {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_lineDarkColor {
+    return BPKColor.blackTint04;
+}
+
++ (UIColor *)bpk_lineLightColor {
+    return BPKColor.skyGrayTint05;
+}
+
++ (UIColor *)bpk_primaryDarkColor {
+    return BPKColor.skyBlueTint01;
+}
+
++ (UIColor *)bpk_primaryLightColor {
+    return BPKColor.primaryGradientLight;
+}
+
 + (UIColor *)bpk_shadowLgColor {
     return BPKColor.skyGray;
 }
 
 + (UIColor *)bpk_shadowSmColor {
     return BPKColor.skyGray;
+}
+
++ (UIColor *)bpk_textPrimaryDarkColor {
+    return BPKColor.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)bpk_textPrimaryLightColor {
+    return BPKColor.skyGray;
+}
+
++ (UIColor *)bpk_textQuaternaryDarkColor {
+    return BPKColor.blackTint06;
+}
+
++ (UIColor *)bpk_textQuaternaryLightColor {
+    return BPKColor.skyGrayTint03;
+}
+
++ (UIColor *)bpk_textSecondaryDarkColor {
+    return BPKColor.skyGrayTint04;
+}
+
++ (UIColor *)bpk_textSecondaryLightColor {
+    return BPKColor.skyGrayTint02;
+}
+
++ (UIColor *)bpk_textTertiaryDarkColor {
+    return BPKColor.blackTint06;
+}
+
++ (UIColor *)bpk_textTertiaryLightColor {
+    return BPKColor.skyGrayTint03;
 }
 
 + (UIColor *)bpk_touchableOverlayColor {

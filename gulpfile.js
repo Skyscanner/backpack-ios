@@ -33,7 +33,7 @@ const durations = require('./scripts/gulp/durations');
 const { spacingTokens } = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
-const { formatPrefixedConstName, parseColor } = require('./scripts/gulp/utils/formatUtils');
+const { formatPrefixedConstName, hasOldSemanticSuffix, parseColor } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
 const swiftUI = require('./scripts/gulp/generation/swiftui');
 const generateSvgIcons = require('./scripts/gulp/generation/iconSvgs');
@@ -57,7 +57,7 @@ const parseSwiftUITokens = (tokensData) => {
     ...spacingTokens.swiftui(properties),
     ...dynamicColors(properties),
     ...fontTokens.swiftui(properties),
-    ...colors(properties),
+    ...colors(properties, entry => !hasOldSemanticSuffix(entry)),
     ...shadows(properties, parseColor, getLegibleName),
   ])
     .groupBy(({ type }) => type)

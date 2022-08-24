@@ -26,28 +26,36 @@
 
 @implementation BPKColor
 
++ (UIColor *)backgroundAlternativeDarkColor {
+    return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeLightColor {
+    return [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeSecondaryDarkColor {
+    return [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1];
+}
+
++ (UIColor *)backgroundAlternativeSecondaryLightColor {
+    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+}
+
++ (UIColor *)backgroundElevation02DarkColor {
+    return [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1];
+}
+
++ (UIColor *)backgroundElevation03DarkColor {
+    return [UIColor colorWithRed:0.227 green:0.227 blue:0.235 alpha:1];
+}
+
 + (UIColor *)abisko {
     return [UIColor colorWithRed:0.353 green:0.282 blue:0.608 alpha:1];
 }
 
 + (UIColor *)bagan {
     return [UIColor colorWithRed:1.000 green:0.922 blue:0.816 alpha:1];
-}
-
-+ (UIColor *)black {
-    return [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
-}
-
-+ (UIColor *)blackTint01 {
-    return [UIColor colorWithRed:0.114 green:0.106 blue:0.125 alpha:1];
-}
-
-+ (UIColor *)blackTint02 {
-    return [UIColor colorWithRed:0.173 green:0.173 blue:0.180 alpha:1];
-}
-
-+ (UIColor *)blackTint03 {
-    return [UIColor colorWithRed:0.227 green:0.227 blue:0.235 alpha:1];
 }
 
 + (UIColor *)blackTint04 {
@@ -162,10 +170,6 @@
     return [UIColor colorWithRed:0.867 green:0.867 blue:0.898 alpha:1];
 }
 
-+ (UIColor *)skyGrayTint07 {
-    return [UIColor colorWithRed:0.945 green:0.949 blue:0.973 alpha:1];
-}
-
 + (UIColor *)tochigi {
     return [UIColor colorWithRed:0.882 green:0.867 blue:0.925 alpha:1];
 }
@@ -174,13 +178,69 @@
     return [UIColor colorWithRed:0.647 green:0.608 blue:0.784 alpha:1];
 }
 
-+ (UIColor *)white {
-    return [UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1];
+
++ (UIColor *)backgroundDarkColor {
+    return self.class.backgroundAlternativeDarkColor;
 }
 
++ (UIColor *)backgroundElevation01DarkColor {
+    return self.class.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)backgroundElevation01LightColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)backgroundElevation02LightColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)backgroundElevation03LightColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)backgroundLightColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)backgroundSecondaryDarkColor {
+    return self.class.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)backgroundSecondaryLightColor {
+    return self.class.backgroundAlternativeLightColor;
+}
+
++ (UIColor *)backgroundTertiaryDarkColor {
+    return self.class.backgroundElevation02DarkColor;
+}
+
++ (UIColor *)backgroundTertiaryLightColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)black {
+    return self.class.backgroundAlternativeDarkColor;
+}
+
++ (UIColor *)blackTint01 {
+    return self.class.backgroundAlternativeSecondaryDarkColor;
+}
+
++ (UIColor *)blackTint02 {
+    return self.class.backgroundElevation02DarkColor;
+}
+
++ (UIColor *)blackTint03 {
+    return self.class.backgroundElevation03DarkColor;
+}
 
 + (UIColor *)skyBlue {
     return self.class.primaryGradientLight;
+}
+
++ (UIColor *)skyGrayTint07 {
+    return self.class.backgroundAlternativeLightColor;
 }
 
 + (UIColor *)systemGreen {
@@ -191,12 +251,64 @@
     return self.class.panjin;
 }
 
++ (UIColor *)white {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)lineDarkColor {
+    return self.class.blackTint04;
+}
+
++ (UIColor *)lineLightColor {
+    return self.class.skyGrayTint05;
+}
+
++ (UIColor *)primaryDarkColor {
+    return self.class.skyBlueTint01;
+}
+
++ (UIColor *)primaryLightColor {
+    return self.class.primaryGradientLight;
+}
+
 + (UIColor *)shadowLgColor {
     return self.class.skyGray;
 }
 
 + (UIColor *)shadowSmColor {
     return self.class.skyGray;
+}
+
++ (UIColor *)textPrimaryDarkColor {
+    return self.class.backgroundAlternativeSecondaryLightColor;
+}
+
++ (UIColor *)textPrimaryLightColor {
+    return self.class.skyGray;
+}
+
++ (UIColor *)textQuaternaryDarkColor {
+    return self.class.blackTint06;
+}
+
++ (UIColor *)textQuaternaryLightColor {
+    return self.class.skyGrayTint03;
+}
+
++ (UIColor *)textSecondaryDarkColor {
+    return self.class.skyGrayTint04;
+}
+
++ (UIColor *)textSecondaryLightColor {
+    return self.class.skyGrayTint02;
+}
+
++ (UIColor *)textTertiaryDarkColor {
+    return self.class.blackTint06;
+}
+
++ (UIColor *)textTertiaryLightColor {
+    return self.class.skyGrayTint03;
 }
 
 + (UIColor *)touchableOverlayColor {
