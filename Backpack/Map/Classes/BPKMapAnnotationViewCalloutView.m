@@ -218,5 +218,12 @@ NS_ASSUME_NONNULL_BEGIN
     return BPKSpacingXxl * 5;
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self updateStyle];
+    }
+}
+
 @end
 NS_ASSUME_NONNULL_END
