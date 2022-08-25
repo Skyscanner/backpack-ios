@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
 
-    self.dotView.backgroundColor = BPKColor.skyBlue;
+    self.dotView.backgroundColor = BPKColor.coreAccentColor;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm / 2;
     self.dotView.layer.cornerRadius = self.annotationDotHeight / 2;
