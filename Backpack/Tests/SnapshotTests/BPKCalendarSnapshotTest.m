@@ -43,10 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     [super setUp];
     self.recordMode = NO;
-    self.date1 = [NSDate dateWithTimeIntervalSince1970:2175785688];
-    self.date2 = [NSDate dateWithTimeIntervalSince1970:2176044888];
-    self.date3 = [NSDate dateWithTimeIntervalSince1970:2177772888];
-    self.date4 = [NSDate dateWithTimeIntervalSince1970:2188140888];
+    self.date1 = [NSDate dateWithTimeIntervalSince1970:2175767888];
+    self.date2 = [NSDate dateWithTimeIntervalSince1970:2176026888];
+    self.date3 = [NSDate dateWithTimeIntervalSince1970:2177754888];
+    self.date4 = [NSDate dateWithTimeIntervalSince1970:2188122888];
     self.isColoringDates = NO;
     self.isShowingPrices = NO;
 }
