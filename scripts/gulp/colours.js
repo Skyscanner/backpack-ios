@@ -17,14 +17,14 @@
  */
 
 const _ = require('lodash');
-const { isDynamicColor, parseColor } = require('./utils/formatUtils');
+const { isSemanticColor, isMarcommsColor, hasNewSemanticSuffix, parseColor } = require('./utils/formatUtils');
 
 const colors = (properties, filterColors) => {
   const colors = _.chain(properties)
-    .filter((entity) => entity.type === 'color' && !isDynamicColor(entity))
+    .filter((entity) => entity.type === 'color')
+    .filter(entry => !isSemanticColor(entry) && !hasNewSemanticSuffix(entry) && !isMarcommsColor(entry))
     .map(({ value, name, ...rest }) => {
       const newName = name.replace('color', '');
-
       return {
         value: parseColor(value),
         name: newName[0].toLowerCase() + newName.slice(1),

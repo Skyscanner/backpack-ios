@@ -52,24 +52,8 @@
     return BPKColor.abisko;
 }
 
-+ (UIColor *)bpk_amberSpot {
-    return BPKColor.amberSpot;
-}
-
 + (UIColor *)bpk_bagan {
     return BPKColor.bagan;
-}
-
-+ (UIColor *)bpk_berry {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_blackAlpha20 {
-    return BPKColor.blackAlpha20;
-}
-
-+ (UIColor *)bpk_blackAlpha70 {
-    return BPKColor.blackAlpha70;
 }
 
 + (UIColor *)bpk_blackTint04 {
@@ -88,40 +72,12 @@
     return BPKColor.bunol;
 }
 
-+ (UIColor *)bpk_charcoal {
-    return BPKColor.charcoal;
-}
-
-+ (UIColor *)bpk_ecoGreen {
-    return BPKColor.ecoGreen;
-}
-
 + (UIColor *)bpk_erfoud {
     return BPKColor.erfoud;
 }
 
 + (UIColor *)bpk_glencoe {
     return BPKColor.glencoe;
-}
-
-+ (UIColor *)bpk_greenMuted {
-    return BPKColor.greenMuted;
-}
-
-+ (UIColor *)bpk_greenSpot {
-    return BPKColor.greenSpot;
-}
-
-+ (UIColor *)bpk_grey20 {
-    return BPKColor.grey20;
-}
-
-+ (UIColor *)bpk_grey30 {
-    return BPKColor.grey30;
-}
-
-+ (UIColor *)bpk_grey40 {
-    return BPKColor.grey40;
 }
 
 + (UIColor *)bpk_harbour {
@@ -132,28 +88,20 @@
     return BPKColor.hillier;
 }
 
++ (UIColor *)bpk_kolkata {
+    return BPKColor.kolkata;
+}
+
++ (UIColor *)bpk_monteverde {
+    return BPKColor.monteverde;
+}
+
 + (UIColor *)bpk_nara {
     return BPKColor.nara;
 }
 
-+ (UIColor *)bpk_nightBlue {
-    return BPKColor.nightBlue;
-}
-
-+ (UIColor *)bpk_nightGreenFill {
-    return BPKColor.nightGreenFill;
-}
-
-+ (UIColor *)bpk_nightPink {
-    return BPKColor.nightPink;
-}
-
-+ (UIColor *)bpk_nightSky {
-    return BPKColor.nightSky;
-}
-
-+ (UIColor *)bpk_nightYellowFill {
-    return BPKColor.nightYellowFill;
++ (UIColor *)bpk_panjin {
+    return BPKColor.panjin;
 }
 
 + (UIColor *)bpk_petra {
@@ -164,12 +112,24 @@
     return BPKColor.primaryGradientLight;
 }
 
++ (UIColor *)bpk_sagano {
+    return BPKColor.sagano;
+}
+
 + (UIColor *)bpk_skyBlueShade01 {
     return BPKColor.skyBlueShade01;
 }
 
 + (UIColor *)bpk_skyBlueShade02 {
     return BPKColor.skyBlueShade02;
+}
+
++ (UIColor *)bpk_skyBlueShade03 {
+    return BPKColor.skyBlueShade03;
+}
+
++ (UIColor *)bpk_skyBlueTint01 {
+    return BPKColor.skyBlueTint01;
 }
 
 + (UIColor *)bpk_skyBlueTint02 {
@@ -180,12 +140,32 @@
     return BPKColor.skyBlueTint03;
 }
 
++ (UIColor *)bpk_skyGray {
+    return BPKColor.skyGray;
+}
+
 + (UIColor *)bpk_skyGrayTint01 {
     return BPKColor.skyGrayTint01;
 }
 
++ (UIColor *)bpk_skyGrayTint02 {
+    return BPKColor.skyGrayTint02;
+}
+
 + (UIColor *)bpk_skyGrayTint03 {
     return BPKColor.skyGrayTint03;
+}
+
++ (UIColor *)bpk_skyGrayTint04 {
+    return BPKColor.skyGrayTint04;
+}
+
++ (UIColor *)bpk_skyGrayTint05 {
+    return BPKColor.skyGrayTint05;
+}
+
++ (UIColor *)bpk_skyGrayTint06 {
+    return BPKColor.skyGrayTint06;
 }
 
 + (UIColor *)bpk_tochigi {
@@ -194,30 +174,6 @@
 
 + (UIColor *)bpk_valensole {
     return BPKColor.valensole;
-}
-
-+ (UIColor *)bpk_marcommsBlueBright {
-    return BPKColor.marcommsBlueBright;
-}
-
-+ (UIColor *)bpk_marcommsBlueMuted {
-    return BPKColor.marcommsBlueMuted;
-}
-
-+ (UIColor *)bpk_marcommsGreenBright {
-    return BPKColor.marcommsGreenBright;
-}
-
-+ (UIColor *)bpk_marcommsPink {
-    return BPKColor.marcommsPink;
-}
-
-+ (UIColor *)bpk_marcommsPurple {
-    return BPKColor.marcommsPurple;
-}
-
-+ (UIColor *)bpk_marcommsYellow {
-    return BPKColor.marcommsYellow;
 }
 
 
@@ -261,22 +217,6 @@
     return BPKColor.backgroundAlternativeSecondaryLightColor;
 }
 
-+ (UIColor *)bpk_canvasContrastDay {
-    return BPKColor.backgroundAlternativeLightColor;
-}
-
-+ (UIColor *)bpk_canvasContrastNight {
-    return BPKColor.backgroundAlternativeSecondaryDarkColor;
-}
-
-+ (UIColor *)bpk_canvasDay {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_canvasNight {
-    return BPKColor.backgroundAlternativeDarkColor;
-}
-
 + (UIColor *)bpk_black {
     return BPKColor.backgroundAlternativeDarkColor;
 }
@@ -293,96 +233,8 @@
     return BPKColor.backgroundElevation03DarkColor;
 }
 
-+ (UIColor *)bpk_darkSky {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_grey10 {
-    return BPKColor.backgroundAlternativeLightColor;
-}
-
-+ (UIColor *)bpk_kolkata {
-    return BPKColor.amberSpot;
-}
-
-+ (UIColor *)bpk_monteverde {
-    return BPKColor.greenSpot;
-}
-
-+ (UIColor *)bpk_nightBerry {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_nightGreenSpot {
-    return BPKColor.greenSpot;
-}
-
-+ (UIColor *)bpk_nightGrey10 {
-    return BPKColor.backgroundAlternativeDarkColor;
-}
-
-+ (UIColor *)bpk_nightGrey20 {
-    return BPKColor.backgroundAlternativeSecondaryDarkColor;
-}
-
-+ (UIColor *)bpk_nightGrey25 {
-    return BPKColor.backgroundElevation02DarkColor;
-}
-
-+ (UIColor *)bpk_nightGrey30 {
-    return BPKColor.blackTint04;
-}
-
-+ (UIColor *)bpk_nightGrey40 {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_nightYellowSpot {
-    return BPKColor.erfoud;
-}
-
-+ (UIColor *)bpk_panjin {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_pinkMuted {
-    return BPKColor.harbour;
-}
-
-+ (UIColor *)bpk_sagano {
-    return BPKColor.greenMuted;
-}
-
 + (UIColor *)bpk_skyBlue {
     return BPKColor.primaryGradientLight;
-}
-
-+ (UIColor *)bpk_skyBlueShade03 {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_skyBlueTint01 {
-    return BPKColor.nightBlue;
-}
-
-+ (UIColor *)bpk_skyGray {
-    return BPKColor.charcoal;
-}
-
-+ (UIColor *)bpk_skyGrayTint02 {
-    return BPKColor.grey40;
-}
-
-+ (UIColor *)bpk_skyGrayTint04 {
-    return BPKColor.blackAlpha20;
-}
-
-+ (UIColor *)bpk_skyGrayTint05 {
-    return BPKColor.grey30;
-}
-
-+ (UIColor *)bpk_skyGrayTint06 {
-    return BPKColor.grey20;
 }
 
 + (UIColor *)bpk_skyGrayTint07 {
@@ -390,263 +242,47 @@
 }
 
 + (UIColor *)bpk_systemGreen {
-    return BPKColor.greenSpot;
+    return BPKColor.monteverde;
 }
 
 + (UIColor *)bpk_systemRed {
-    return BPKColor.berry;
+    return BPKColor.panjin;
 }
 
 + (UIColor *)bpk_white {
     return BPKColor.backgroundAlternativeSecondaryLightColor;
 }
 
-+ (UIColor *)bpk_whiteAlpha20 {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_whiteAlpha80 {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_yellowMuted {
-    return BPKColor.bagan;
-}
-
-+ (UIColor *)bpk_coreAccentDay {
-    return BPKColor.primaryGradientLight;
-}
-
-+ (UIColor *)bpk_coreAccentNight {
-    return BPKColor.nightBlue;
-}
-
-+ (UIColor *)bpk_coreEcoDay {
-    return BPKColor.ecoGreen;
-}
-
-+ (UIColor *)bpk_coreEcoNight {
-    return BPKColor.ecoGreen;
-}
-
-+ (UIColor *)bpk_corePrimaryDay {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_corePrimaryNight {
-    return BPKColor.nightSky;
-}
-
 + (UIColor *)bpk_lineDarkColor {
     return BPKColor.blackTint04;
 }
 
-+ (UIColor *)bpk_lineDay {
-    return BPKColor.grey30;
-}
-
 + (UIColor *)bpk_lineLightColor {
-    return BPKColor.grey30;
-}
-
-+ (UIColor *)bpk_lineNight {
-    return BPKColor.blackTint04;
-}
-
-+ (UIColor *)bpk_marcommsBerry {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_marcommsCharcoal {
-    return BPKColor.charcoal;
-}
-
-+ (UIColor *)bpk_marcommsDarkSky {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_marcommsEcoGreen {
-    return BPKColor.ecoGreen;
-}
-
-+ (UIColor *)bpk_marcommsGreenMuted {
-    return BPKColor.greenMuted;
-}
-
-+ (UIColor *)bpk_marcommsGrey40 {
-    return BPKColor.grey40;
-}
-
-+ (UIColor *)bpk_marcommsOrange {
-    return BPKColor.bunol;
-}
-
-+ (UIColor *)bpk_marcommsPinkMuted {
-    return BPKColor.harbour;
-}
-
-+ (UIColor *)bpk_marcommsSkyBlue {
-    return BPKColor.primaryGradientLight;
-}
-
-+ (UIColor *)bpk_marcommsWhite {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_marcommsYellowMuted {
-    return BPKColor.bagan;
+    return BPKColor.skyGrayTint05;
 }
 
 + (UIColor *)bpk_primaryDarkColor {
-    return BPKColor.nightBlue;
+    return BPKColor.skyBlueTint01;
 }
 
 + (UIColor *)bpk_primaryLightColor {
     return BPKColor.primaryGradientLight;
 }
 
-+ (UIColor *)bpk_scrimDay {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_scrimNight {
-    return BPKColor.blackAlpha70;
-}
-
 + (UIColor *)bpk_shadowLgColor {
-    return BPKColor.charcoal;
+    return BPKColor.skyGray;
 }
 
 + (UIColor *)bpk_shadowSmColor {
-    return BPKColor.charcoal;
-}
-
-+ (UIColor *)bpk_statusDangerFillDay {
-    return BPKColor.harbour;
-}
-
-+ (UIColor *)bpk_statusDangerFillNight {
-    return BPKColor.nightPink;
-}
-
-+ (UIColor *)bpk_statusDangerSpotDay {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_statusDangerSpotNight {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_statusSuccessFillDay {
-    return BPKColor.greenMuted;
-}
-
-+ (UIColor *)bpk_statusSuccessFillNight {
-    return BPKColor.nightGreenFill;
-}
-
-+ (UIColor *)bpk_statusSuccessSpotDay {
-    return BPKColor.greenSpot;
-}
-
-+ (UIColor *)bpk_statusSuccessSpotNight {
-    return BPKColor.greenSpot;
-}
-
-+ (UIColor *)bpk_statusWarningFillDay {
-    return BPKColor.bagan;
-}
-
-+ (UIColor *)bpk_statusWarningFillNight {
-    return BPKColor.nightYellowFill;
-}
-
-+ (UIColor *)bpk_statusWarningSpotDay {
-    return BPKColor.amberSpot;
-}
-
-+ (UIColor *)bpk_statusWarningSpotNight {
-    return BPKColor.erfoud;
-}
-
-+ (UIColor *)bpk_surfaceContrastDay {
-    return BPKColor.blackAlpha70;
-}
-
-+ (UIColor *)bpk_surfaceContrastNight {
-    return BPKColor.backgroundAlternativeSecondaryDarkColor;
-}
-
-+ (UIColor *)bpk_surfaceDefaultDay {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_surfaceDefaultNight {
-    return BPKColor.backgroundAlternativeSecondaryDarkColor;
-}
-
-+ (UIColor *)bpk_surfaceElevatedDay {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_surfaceElevatedNight {
-    return BPKColor.backgroundElevation02DarkColor;
-}
-
-+ (UIColor *)bpk_surfaceHighlightDay {
-    return BPKColor.grey20;
-}
-
-+ (UIColor *)bpk_surfaceHighlightNight {
-    return BPKColor.backgroundElevation02DarkColor;
-}
-
-+ (UIColor *)bpk_textDisabledDay {
-    return BPKColor.blackAlpha20;
-}
-
-+ (UIColor *)bpk_textDisabledNight {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_textErrorDay {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_textErrorNight {
-    return BPKColor.berry;
-}
-
-+ (UIColor *)bpk_textLinkDay {
-    return BPKColor.primaryGradientLight;
-}
-
-+ (UIColor *)bpk_textLinkNight {
-    return BPKColor.nightBlue;
+    return BPKColor.skyGray;
 }
 
 + (UIColor *)bpk_textPrimaryDarkColor {
     return BPKColor.backgroundAlternativeSecondaryLightColor;
 }
 
-+ (UIColor *)bpk_textPrimaryDay {
-    return BPKColor.charcoal;
-}
-
 + (UIColor *)bpk_textPrimaryLightColor {
-    return BPKColor.charcoal;
-}
-
-+ (UIColor *)bpk_textPrimaryNight {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_textPrimaryOnContrastDay {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
-}
-
-+ (UIColor *)bpk_textPrimaryOnContrastNight {
-    return BPKColor.backgroundAlternativeSecondaryLightColor;
+    return BPKColor.skyGray;
 }
 
 + (UIColor *)bpk_textQuaternaryDarkColor {
@@ -658,27 +294,11 @@
 }
 
 + (UIColor *)bpk_textSecondaryDarkColor {
-    return BPKColor.blackAlpha20;
-}
-
-+ (UIColor *)bpk_textSecondaryDay {
-    return BPKColor.grey40;
+    return BPKColor.skyGrayTint04;
 }
 
 + (UIColor *)bpk_textSecondaryLightColor {
-    return BPKColor.grey40;
-}
-
-+ (UIColor *)bpk_textSecondaryNight {
-    return BPKColor.blackAlpha20;
-}
-
-+ (UIColor *)bpk_textSecondaryOnContrastDay {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_textSecondaryOnContrastNight {
-    return BPKColor.blackTint06;
+    return BPKColor.skyGrayTint02;
 }
 
 + (UIColor *)bpk_textTertiaryDarkColor {
@@ -690,7 +310,7 @@
 }
 
 + (UIColor *)bpk_touchableOverlayColor {
-    return BPKColor.charcoal;
+    return BPKColor.skyGray;
 }
 
 
@@ -810,12 +430,20 @@
     return BPKColor.textLinkColor;
 }
 
++ (UIColor *)bpk_textOnDarkColor {
+    return BPKColor.textOnDarkColor;
+}
+
++ (UIColor *)bpk_textOnLightColor {
+    return BPKColor.textOnLightColor;
+}
+
 + (UIColor *)bpk_textPrimaryColor {
     return BPKColor.textPrimaryColor;
 }
 
-+ (UIColor *)bpk_textPrimaryOnContrastColor {
-    return BPKColor.textPrimaryOnContrastColor;
++ (UIColor *)bpk_textPrimaryInverseColor {
+    return BPKColor.textPrimaryInverseColor;
 }
 
 + (UIColor *)bpk_textQuaternaryColor {
@@ -824,10 +452,6 @@
 
 + (UIColor *)bpk_textSecondaryColor {
     return BPKColor.textSecondaryColor;
-}
-
-+ (UIColor *)bpk_textSecondaryOnContrastColor {
-    return BPKColor.textSecondaryOnContrastColor;
 }
 
 + (UIColor *)bpk_textTertiaryColor {
