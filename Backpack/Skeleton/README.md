@@ -2,17 +2,15 @@
 
 ## Usage
 
-`BPKSkeleton` contains the Backpack Skeleton component & Shimmer animation. It has 4 different types - image, circle, headline, bodytext.
+`BPKSkeleton` contains the Backpack Skeleton component & Shimmer animation. It has 4 different types - image, circle, headline, body text.
 
 Image has 2 styles: `default`(non-rounded), `rounded`. 1 default size, you also can pass custom size to `.custom(size:)`.
 Circle has 2 sizes: `small`, `default`, you also can pass custom size to `.custom(size:)`. We will choose the short side as the diameter while width != height.
 Headline has 3 sizes: `small`,` default`,` large`, you also can pass custom size to `.custom(size:)`.
-Bodytext has 1 size: `default`, you also can pass custom size to `.custom(size:)`.
-
+Body text has 1 size: `default`, you also can pass custom size to `.custom(size:)`.
 
 
 ### Swift
-
 
 ```swift
 import Backpack

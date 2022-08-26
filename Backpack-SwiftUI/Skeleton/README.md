@@ -35,7 +35,7 @@ BPKSkeleton.circle() // Default size
 BPKSkeleton.circle(size: .custom(size: CGSize(width: 120, height: 120)))
 ```
 
-### Bodytext skeleton
+### Body text skeleton
 
 Set the size to:
 * `.default`
