@@ -53,7 +53,7 @@ public class BPKTextSkeleton: UIView {
     private func setupSubviews() {
         textRows = [createTextRow(), createTextRow(), createTextRow()]
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = BPKSkeleton.bgColor
+        self.backgroundColor = BPKSkeletonConstants.backgroundColor
         
         self.addSubview(containerStackView)
         textRows.forEach {
@@ -74,7 +74,7 @@ public class BPKTextSkeleton: UIView {
     
     fileprivate func createTextRow() -> UIView {
         let textSkeleton = UIView()
-        textSkeleton.backgroundColor = BPKSkeleton.bgColor
+        textSkeleton.backgroundColor = BPKSkeletonConstants.backgroundColor
         textSkeleton.layer.cornerRadius = BPKCornerRadiusXs / 2.0
         return textSkeleton
     }

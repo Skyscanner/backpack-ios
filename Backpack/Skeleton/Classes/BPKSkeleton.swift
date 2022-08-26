@@ -20,13 +20,19 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public class BPKSkeleton: UIView {
-    static internal var bgColor: UIColor =
-        BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint06, darkVariant: BPKColor.blackTint02)
-    static internal var defaultColor: UIColor =
-        BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
-    private var customSize: CGSize = .zero
+enum BPKSkeletonConstants {
+    static let backgroundColor = BPKColor.dynamicColor(
+        withLightVariant: BPKColor.skyGrayTint06,
+        darkVariant: BPKColor.blackTint02
+    )
     
+    static let defaultColor = BPKColor.dynamicColor(
+        withLightVariant: BPKColor.white,
+        darkVariant: BPKColor.black
+    )
+}
+
+public class BPKSkeleton: UIView {
     public var type: BPKSkeletonType = .image {
         didSet {
             updateType()
@@ -115,13 +121,13 @@ public class BPKSkeleton: UIView {
         view.layer.sublayers?.filter { $0 is BPKShimmerLayer }.forEach { $0.removeFromSuperlayer() }
         
         let gradientLayer = BPKShimmerLayer()
-        let transperant = BPKSkeleton.defaultColor.withAlphaComponent(0).cgColor
-        let midColor = BPKSkeleton.defaultColor.withAlphaComponent(0.6).cgColor
+        let transparent = BPKSkeletonConstants.defaultColor.withAlphaComponent(0).cgColor
+        let midColor = BPKSkeletonConstants.defaultColor.withAlphaComponent(0.6).cgColor
         let duration = 1.0
         let delay = 0.2
-        
+            
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [transperant, midColor, transperant]
+        gradientLayer.colors = [transparent, midColor, transparent]
         gradientLayer.locations = [0, 0.5, 1]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)

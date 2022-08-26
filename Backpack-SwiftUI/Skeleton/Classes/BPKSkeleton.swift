@@ -20,9 +20,9 @@ import SwiftUI
 import Backpack_Common
 
 public struct BPKSkeleton: View {
-    private var type: BPKSkeleton.ViewType = .image
-    private var size: BPKSkeleton.Size = .default
-    private var style: BPKSkeleton.Style = .default
+    private let type: BPKSkeleton.ViewType
+    private let size: BPKSkeleton.Size
+    private let style: BPKSkeleton.Style
     private let color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
     private let bodytextRowSpacing: CGFloat = BPKSpacing.md.value
    

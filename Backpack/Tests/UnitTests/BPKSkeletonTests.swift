@@ -21,7 +21,7 @@ import Backpack
 
 class BPKSkeletonTest: XCTestCase {
     func testInitWithAllDefaultValues() {
-        let skeleton = BPKSkeleton()
+        let skeleton = BPKSkeleton(type: .image)
         XCTAssertEqual(skeleton.type, .image)
         XCTAssertEqual(skeleton.size, .default)
         XCTAssertEqual(skeleton.style, .default)

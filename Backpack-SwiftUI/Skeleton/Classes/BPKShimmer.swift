@@ -20,9 +20,9 @@ import SwiftUI
 
 struct BPKShimmer: ViewModifier {
     @State private var phase: CGFloat = 0
-    let duration = 1.0
-    let bounce = false
-    let delay = 0.2
+    private let duration = 1.0
+    private let bounce = false
+    private let delay = 0.2
 
     public func body(content: Content) -> some View {
         content

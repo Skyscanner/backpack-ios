@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class BPKCommonSkeleton: UIView {
+class BPKCommonSkeleton: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +33,7 @@ public class BPKCommonSkeleton: UIView {
     
     private func setupSubviews() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = BPKSkeleton.bgColor
+        self.backgroundColor = BPKSkeletonConstants.backgroundColor
         
         NSLayoutConstraint.activate([
             leadingAnchor.constraint(equalTo: leadingAnchor),
