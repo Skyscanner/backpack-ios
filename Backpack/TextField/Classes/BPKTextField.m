@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = BPKBorderWidthSm;
     self.layer.cornerRadius = BPKCornerRadiusXs;
-    self.layer.borderColor = [[BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05] CGColor];
+    self.layer.borderColor = [BPKColor.lineColor CGColor];
 }
 
 #pragma mark - Private
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupWithStyle:(BPKFontStyle)style {
     self.fontStyle = style;
     self.textColor = BPKColor.textPrimaryColor;
-    self.backgroundColor = BPKColor.backgroundTertiaryColor;
+    self.backgroundColor = BPKColor.surfaceDefaultColor;
 
     self.borderStyle = UITextBorderStyleRoundedRect;
 
