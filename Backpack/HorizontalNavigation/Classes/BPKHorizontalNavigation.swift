@@ -375,7 +375,7 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
     }
 
     private func updateBarColor() {
-        barView.backgroundColor = self.selectedColor ?? BPKColor.primaryColor
+        barView.backgroundColor = self.selectedColor ?? BPKColor.coreAccentColor
     }
 
     private func repopulateStackView() {
