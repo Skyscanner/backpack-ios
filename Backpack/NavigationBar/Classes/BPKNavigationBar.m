@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) BPKNavigationBarTitleView *titleView;
 
 // Background
-@property(nonatomic, strong, readonly) UIVisualEffectView *backgroundView;
+@property(nonatomic, strong, readonly) UIView *backgroundView;
 @property(nonatomic, strong, readonly) UIView *borderView;
 @property(nonatomic, strong, readonly) UIBlurEffect *backgroundEffect;
 @property(nonatomic, strong, readonly) UIColor *borderViewBackgroundColor;
@@ -170,9 +170,8 @@ NS_ASSUME_NONNULL_BEGIN
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
-            self.backgroundView.backgroundColor = BPKColor.clear;
+            self.backgroundView.backgroundColor = BPKColor.canvasColor;
             self.collapsed = YES;
-            self.backgroundView.effect = self.backgroundEffect;
         }
     } else {
         // Expanded state
@@ -191,7 +190,6 @@ NS_ASSUME_NONNULL_BEGIN
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
             self.backgroundView.backgroundColor = nil;
-            self.backgroundView.effect = nil;
 
             self.collapsed = NO;
         }
@@ -226,20 +224,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     return _largeTitleView;
-}
-
-- (UIBlurEffect *)backgroundEffect {
-    if (!_backgroundEffect) {
-#if __BPK_DARK_MODE_SUPPORTED
-        if (@available(iOS 13.0, *)) {
-            _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterial];
-            return _backgroundEffect;
-        }
-#endif
-        _backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    }
-
-    return _backgroundEffect;
 }
 
 - (BPKNavigationBarTitleView *)titleView {
@@ -363,7 +347,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIColor *)borderViewBackgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint01];
+    return [BPKColor dynamicColorWithLightVariant:BPKColor.surfaceHighlightColor darkVariant:BPKColor.textSecondaryColor];
 }
 
 @end

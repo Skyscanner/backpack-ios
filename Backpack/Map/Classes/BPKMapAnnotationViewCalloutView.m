@@ -106,27 +106,27 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (!self.annotationView.enabled) {
         fontStyle = BPKFontStyleTextLabel2;
-        backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.blackTint03];
+        backgroundColor = BPKColor.surfaceDefaultColor;
         contentBackgroundColor = BPKColor.clear;
-        contentColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint06];
+        contentColor = BPKColor.textDisabledColor;
         borderColor = BPKColor.clear;
     } else if (self.annotationView.selected) {
         fontStyle = BPKFontStyleTextHeading5;
-        backgroundColor = BPKColor.skyBlue;
-        contentBackgroundColor = BPKColor.white;
-        contentColor = BPKColor.skyBlue;
-        borderColor = BPKColor.skyBlue;
+        backgroundColor = BPKColor.coreAccentColor;
+        contentBackgroundColor = BPKColor.surfaceDefaultColor;
+        contentColor = BPKColor.coreAccentColor;
+        borderColor = BPKColor.coreAccentColor;
     } else if (self.annotationView.hasBeenSelected) {
         fontStyle = BPKFontStyleTextLabel2;
-        backgroundColor = BPKColor.skyBlueTint03;
+        backgroundColor = BPKColor.coreAccentColor;
         contentBackgroundColor = BPKColor.clear;
-        contentColor = BPKColor.skyBlue;
+        contentColor = [BPKColor.textPrimaryInverseColor colorWithAlphaComponent:0.8];
         borderColor = BPKColor.clear;
     } else {
         fontStyle = BPKFontStyleTextLabel2;
-        backgroundColor = BPKColor.skyBlue;
+        backgroundColor = BPKColor.coreAccentColor;
         contentBackgroundColor = BPKColor.clear;
-        contentColor = BPKColor.white;
+        contentColor = BPKColor.surfaceDefaultColor;
         borderColor = BPKColor.clear;
     }
 
@@ -216,6 +216,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)maximumWidth {
     return BPKSpacingXxl * 5;
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self updateStyle];
+    }
 }
 
 @end

@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
             forAnnotationViewWithReuseIdentifier: Self.reuseIdentifier
         )
         self.setupAnnotations()
+        self.mapView.showAnnotations(self.mapView.annotations, animated: false)
     }
 
     func setupAnnotations () {

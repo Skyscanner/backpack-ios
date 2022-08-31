@@ -32,19 +32,19 @@
 }
 
 + (UIColor *)positiveColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.monteverde darkVariant:BPKColor.glencoe];
+    return BPKColor.statusSuccessSpotColor;
 }
 
 + (UIColor *)positiveTitleColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
+    return BPKColor.textPrimaryInverseColor;
 }
 
 + (UIColor *)negativeColor {
-    return BPKColor.panjin;
+    return BPKColor.statusDangerSpotColor;
 }
 
 + (UIColor *)negativeTitleColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
+    return BPKColor.textPrimaryInverseColor;
 }
 
 + (UIColor *)noDataColor {
@@ -52,11 +52,11 @@
 }
 
 + (UIColor *)noDataTitleColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.white darkVariant:BPKColor.black];
+    return BPKColor.textPrimaryInverseColor;
 }
 
 + (UIColor *)neutralColor {
-    return BPKColor.erfoud;
+    return BPKColor.statusWarningSpotColor;
 }
 
 + (UIColor *)neutralTitleColor {

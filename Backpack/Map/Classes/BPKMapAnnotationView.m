@@ -78,8 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:self.dotView];
 
-    self.dotView.backgroundColor = BPKColor.skyBlue;
-    self.dotView.layer.borderColor = BPKColor.white.CGColor;
+    self.dotView.backgroundColor = BPKColor.coreAccentColor;
     self.dotView.layer.borderWidth = BPKSpacingSm / 2;
     self.dotView.layer.cornerRadius = self.annotationDotHeight / 2;
     [self updateAppearance];
@@ -126,6 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateAppearance {
     [self updateAccessibilityProperties];
     self.enabled = self.bpk_annotation.enabled;
+    self.dotView.layer.borderColor = BPKColor.surfaceDefaultColor.CGColor;
 
     BOOL shouldShowCallout = self.selected || self.bpk_annotation.alwaysShowCallout;
     if (shouldShowCallout) {
@@ -179,6 +179,7 @@ NS_ASSUME_NONNULL_BEGIN
     [super traitCollectionDidChange:previousTraitCollection];
 
     if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self updateAppearance];
         [self updateImage];
     }
 }
