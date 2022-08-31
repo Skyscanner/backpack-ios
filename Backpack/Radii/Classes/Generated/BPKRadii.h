@@ -22,11 +22,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * The Skyscanner large radius.
- */
-extern CGFloat const BPKCornerRadiusLg;
-
-/**
  * The Skyscanner medium radius.
  */
 extern CGFloat const BPKCornerRadiusMd;
@@ -45,6 +40,11 @@ extern CGFloat const BPKCornerRadiusSm;
  * The Skyscanner extra small radius.
  */
 extern CGFloat const BPKCornerRadiusXs;
+
+/**
+ * The Skyscanner large radius.
+ */
+extern CGFloat const BPKCornerRadiusLg;
 
 NS_ASSUME_NONNULL_END
 // clang-format on

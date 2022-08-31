@@ -33,6 +33,7 @@ public extension BPKColor {
     }
 {% for c in dynamicColor %}
     /// The `{{c.name}}` dynamic color from the Backpack palette.
+    {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
     static let {{c.name}} = BPKColor(red:{{c.value.r}}, green:{{c.value.g}}, blue:{{c.value.b}}, alpha:{{c.value.a}})
         .darkVariant(BPKColor(red:{{c.darkValue.r}}, green:{{c.darkValue.g}}, blue:{{c.darkValue.b}}, alpha:{{c.darkValue.a}}))
 {% endfor %}}

@@ -18,10 +18,10 @@
  */
 #import "BPKBorderWidth.h"
 
-CGFloat const BPKBorderWidthLg = 2;
+CGFloat const BPKBorderWidthXl = 3;
 
 CGFloat const BPKBorderWidthSm = 1;
 
-CGFloat const BPKBorderWidthXl = 3;
+CGFloat const BPKBorderWidthLg = 2;
 
 // clang-format on

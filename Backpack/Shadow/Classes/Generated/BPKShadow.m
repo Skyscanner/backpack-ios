@@ -54,22 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-+ (instancetype)shadowLg {
-    static dispatch_once_t shadowLgOnceToken;
-    static BPKShadow *shadowLg;
-
-    dispatch_once(&shadowLgOnceToken, ^{
-        UIColor *color = [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
-        shadowLg = [[BPKShadow alloc] initWithColor:color
-                                               offset:CGSizeMake(0, 4)
-                                              opacity:0.15
-                                               radius:16];
-
-    });
-
-    return shadowLg;
-}
-
 + (instancetype)shadowSm {
     static dispatch_once_t shadowSmOnceToken;
     static BPKShadow *shadowSm;
@@ -84,6 +68,22 @@ NS_ASSUME_NONNULL_BEGIN
     });
 
     return shadowSm;
+}
+
++ (instancetype)shadowLg {
+    static dispatch_once_t shadowLgOnceToken;
+    static BPKShadow *shadowLg;
+
+    dispatch_once(&shadowLgOnceToken, ^{
+        UIColor *color = [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+        shadowLg = [[BPKShadow alloc] initWithColor:color
+                                               offset:CGSizeMake(0, 4)
+                                              opacity:0.15
+                                               radius:16];
+
+    });
+
+    return shadowLg;
 }
 
 @end

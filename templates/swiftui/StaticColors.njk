@@ -23,5 +23,6 @@ public extension BPKColor {
     }
 {% for c in color %}
     /// The `{{c.name}}` color from the Backpack palette - rgb({{c.value.r255}}, {{c.value.g255}}, {{c.value.b255}})
+    {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
     static let {{c.name}} = BPKColor(red:{{c.value.r}}, green:{{c.value.g}}, blue:{{c.value.b}}, alpha:{{c.value.a}})
 {% endfor %}}
