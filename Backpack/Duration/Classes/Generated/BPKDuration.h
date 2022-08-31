@@ -30,9 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///-----------------------
 
 /**
- * `animationDurationBase` from the Backpack tokens.
+ * `animationDurationXs` from the Backpack tokens.
 */
-@property(nonatomic, class, readonly) NSTimeInterval animationDurationBase;
+@property(nonatomic, class, readonly) NSTimeInterval animationDurationXs;
 
 /**
  * `animationDurationSm` from the Backpack tokens.
@@ -40,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) NSTimeInterval animationDurationSm;
 
 /**
- * `animationDurationXs` from the Backpack tokens.
+ * `animationDurationBase` from the Backpack tokens.
 */
-@property(nonatomic, class, readonly) NSTimeInterval animationDurationXs;
+@property(nonatomic, class, readonly) NSTimeInterval animationDurationBase;
 
 
 @end

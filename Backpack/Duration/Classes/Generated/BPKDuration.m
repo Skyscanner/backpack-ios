@@ -20,16 +20,16 @@
 
 @implementation BPKDuration
 
-+ (NSTimeInterval)animationDurationBase {
-  return 0.4;
++ (NSTimeInterval)animationDurationXs {
+  return 0.05;
 }
 
 + (NSTimeInterval)animationDurationSm {
   return 0.2;
 }
 
-+ (NSTimeInterval)animationDurationXs {
-  return 0.05;
++ (NSTimeInterval)animationDurationBase {
+  return 0.4;
 }
 
 
