@@ -166,14 +166,8 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["With icons"].tap()
-            saveScreenshot(component: "chip", scenario: "with-icons", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Filled"].tap()
-            saveScreenshot(component: "chip", scenario: "filled", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Filled with background color"].tap()
-            saveScreenshot(component: "chip", scenario: "filled-background-color", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["On Dark"].tap()
+            saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 
