@@ -82,6 +82,9 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Secondary"].tap()
             saveScreenshot(component: "button", scenario: "secondary", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            app.tables.staticTexts["Secondary On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "secondaryOnDark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
             app.tables.staticTexts["Destructive"].tap()
             saveScreenshot(component: "button", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
@@ -90,6 +93,9 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
             app.tables.staticTexts["Link"].tap()
             saveScreenshot(component: "button", scenario: "link", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Link On Dark"].tap()
+            saveScreenshot(component: "button", scenario: "linkOnDark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
             app.tables.staticTexts["Primary On Dark"].tap()
             saveScreenshot(component: "button", scenario: "primaryOnDark", userInterfaceStyle: userInterfaceStyle)
@@ -265,7 +271,6 @@ class Screenshots: BackpackSnapshotTestCase {
 
         navigate(title: "Labels") {
             switchTab(title: "UIKit")
-            app.tables.staticTexts["UIKit"].tap()
             app.tables.staticTexts["Multiple font styles"].tap()
             saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
