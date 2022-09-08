@@ -30,21 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // swiftlint:disable indentation_width
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
-            NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
-        ]
-        
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
-            NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 34)
-        ]
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: Backpack.BPKColor.textPrimaryColor,
-            NSAttributedString.Key.font: BPKFontManager.sharedInstance().semiboldFont(withSize: 17)
-        ], for: .normal)
-        
         BPKAppearance.apply()
     }
     
