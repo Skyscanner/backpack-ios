@@ -70,6 +70,7 @@ const parseUIKitTokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
     ...dynamicColors(properties),
+    ...internalColors(properties),
     ...colors(properties),
     ...fontTokens.uikit(properties),
     ...spacingTokens.uikit(properties),

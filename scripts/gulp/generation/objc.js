@@ -41,6 +41,7 @@ const objectiveC = (generate) => {
 
   streams.push(generate('UIColor+Backpack.h.njk', rename('Color/Classes/Generated/UIColor+Backpack.h')));
   streams.push(generate('UIColor+Backpack.m.njk', rename('Color/Classes/Generated/UIColor+Backpack.m')));
+  streams.push(generate('BPKInternalColors.njk', rename('Color/Classes/Generated/BPKInternalColors.swift')));
   return streams;
 }
 
