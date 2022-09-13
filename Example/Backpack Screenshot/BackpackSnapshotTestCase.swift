@@ -27,7 +27,7 @@ class BackpackSnapshotTestCase: XCTestCase {
     //
     // For Example: `Set(["Nudger"])` will only take the
     // Nudger screenshots.
-    var runOnly: Set<String>? = ["Chips"]
+    var runOnly: Set<String>?
     
     override func setUp() {
         super.setUp()
