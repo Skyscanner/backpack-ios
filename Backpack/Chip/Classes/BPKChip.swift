@@ -76,6 +76,8 @@ public class BPKChip: UIControl {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
             tintLayer.opacity = isHighlighted ? 1 : 0
+            let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+            label.textColor = isHighlighted ? appearance.highlighted.content : colors.content
             CATransaction.commit()
         }
     }
