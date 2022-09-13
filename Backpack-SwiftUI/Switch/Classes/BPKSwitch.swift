@@ -57,7 +57,7 @@ public struct BPKSwitch<Content: View>: View {
         Toggle(isOn: $isOn) {
             content
         }
-        .toggleStyle(SwitchToggleStyle(tint: Color(.primaryColor)))
+        .toggleStyle(SwitchToggleStyle(tint: Color(.coreAccentColor)))
     }
 }
 
