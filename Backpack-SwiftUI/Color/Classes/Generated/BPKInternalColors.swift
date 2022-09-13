@@ -40,7 +40,7 @@ internal extension BPKColor {
     /// The `chipOnDarkOnBackgroundColor` internal color.
     
     static let chipOnDarkOnBackgroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
-        .darkVariant(BPKColor(red:0.043, green:0.071, blue:0.114, alpha:1))
+        .darkVariant(BPKColor(red:0.020, green:0.255, blue:0.518, alpha:1))
 
     /// The `chipDefaultNormalBackgroundColor` internal color.
     
