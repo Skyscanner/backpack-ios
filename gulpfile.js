@@ -32,6 +32,7 @@ const colors = require('./scripts/gulp/colours');
 const durations = require('./scripts/gulp/durations');
 const { spacingTokens } = require('./scripts/gulp/spacings');
 const dynamicColors = require('./scripts/gulp/dynamicColours');
+const internalColors = require('./scripts/gulp/internalColours');
 const getLegibleName = require('./scripts/gulp/utils/legibleName');
 const { formatPrefixedConstName, hasOldSemanticSuffix, parseColor } = require('./scripts/gulp/utils/formatUtils');
 const objectiveC = require('./scripts/gulp/generation/objc');
@@ -56,6 +57,7 @@ const parseSwiftUITokens = (tokensData) => {
     ...radiiTokens.swiftui(properties),
     ...spacingTokens.swiftui(properties),
     ...dynamicColors(properties),
+    ...internalColors(properties),
     ...fontTokens.swiftui(properties),
     ...colors(properties, entry => !hasOldSemanticSuffix(entry)),
     ...shadows(properties, parseColor, getLegibleName),
@@ -68,6 +70,7 @@ const parseUIKitTokens = (tokensData) => {
   const properties = tokensData.properties
   return _.chain([
     ...dynamicColors(properties),
+    ...internalColors(properties),
     ...colors(properties),
     ...fontTokens.uikit(properties),
     ...spacingTokens.uikit(properties),

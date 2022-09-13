@@ -39,9 +39,7 @@ struct ChipsGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Default", style: .default),
-                presentable("On Dark", style: .onDark),
-                presentable("Filled - Deprecated", style: .filled),
-                presentable("Outline - Deprecated", style: .outline)
+                presentable("On Dark", style: .onDark)
             ]
         ).groups()
     }
