@@ -19,6 +19,7 @@
 struct BPKChipAppearanceSets {
     struct AppearanceSet {
         let normal: Colors
+        let highlighted: Colors
         let selected: Colors
         let disabled: Colors
     }
@@ -32,6 +33,9 @@ struct BPKChipAppearanceSets {
         normal: Colors(
             background: BPKColor.chipOnDarkNormalBackgroundColor,
             content: BPKColor.textOnDarkColor),
+        highlighted: Colors(
+            background: BPKColor.chipOnDarkPressedBackgroundColor,
+            content: BPKColor.textPrimaryColor),
         selected: Colors(
             background: BPKColor.chipOnDarkOnBackgroundColor,
             content: BPKColor.textPrimaryColor),
@@ -46,6 +50,9 @@ struct BPKChipAppearanceSets {
             background: BPKColor.chipDefaultNormalBackgroundColor,
             content: BPKColor.textPrimaryColor
         ),
+        highlighted: Colors(
+            background: BPKColor.chipDefaultPressedBackgroundColor,
+            content: BPKColor.textPrimaryColor),
         selected: Colors(
             background: BPKColor.chipDefaultOnBackgroundColor,
             content: BPKColor.textOnDarkColor
