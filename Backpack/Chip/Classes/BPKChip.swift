@@ -176,6 +176,13 @@ public class BPKChip: UIControl {
         tintLayer.cornerRadius = self.bounds.height / 2.0
         self.layer.cornerRadius = self.bounds.height / 2.0
     }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
+            updateLookAndFeel()
+        }
+    }
 }
 
 // MARK: - Private API
