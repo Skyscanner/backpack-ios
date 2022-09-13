@@ -1,4 +1,4 @@
-# Badge
+# Spinner
  
 ## Usage
 
