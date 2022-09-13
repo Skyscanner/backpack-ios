@@ -19,8 +19,17 @@
 const _ = require('lodash');
 const { isSemanticColor, isPrivateColor, parseColor } = require('./utils/formatUtils');
 
-const dynamicColors = (properties) => _.chain(properties)
-  .filter((entity) => entity.type === 'color' && isSemanticColor(entity) && !isPrivateColor(entity))
+const internalColors = (properties) => _.chain(properties)
+  .filter((entity) => entity.type === 'color' && isSemanticColor(entity) && isPrivateColor(entity))
+  .map(
+    ({
+      name,
+      ...rest
+    }) => ({
+      name: name.replace('private', ''),
+      ...rest
+    })
+  )
   .map(
     ({
       value,
@@ -34,9 +43,9 @@ const dynamicColors = (properties) => _.chain(properties)
       hex: value.toString(),
       darkHex: darkValue.toString(),
       ...rest,
-      type: 'dynamicColor',
+      type: 'internalColor',
     }),
   )
   .value();
 
-module.exports = dynamicColors
+module.exports = internalColors
