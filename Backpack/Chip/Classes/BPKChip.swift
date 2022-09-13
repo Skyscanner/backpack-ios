@@ -73,7 +73,10 @@ public class BPKChip: UIControl {
     
     public override var isHighlighted: Bool {
         didSet {
-            updateLookAndFeel()
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
+            tintLayer.opacity = isHighlighted ? 1 : 0
+            CATransaction.commit()
         }
     }
     
@@ -86,7 +89,6 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if isHighlighted { return appearance.highlighted }
         if isSelected { return appearance.selected }
         return appearance.normal
     }
@@ -119,6 +121,14 @@ public class BPKChip: UIControl {
         stack.spacing = BPKSpacingIconText
         stack.isUserInteractionEnabled = false
         return stack
+    }()
+    
+    private lazy var tintLayer: CALayer = {
+        let layer = CALayer()
+        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+        layer.backgroundColor = appearance.highlighted.background.cgColor
+        layer.opacity = 0
+        return layer
     }()
     
     /**
@@ -159,6 +169,9 @@ public class BPKChip: UIControl {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
+        
+        tintLayer.frame = self.bounds
+        tintLayer.cornerRadius = self.bounds.height / 2.0
         self.layer.cornerRadius = self.bounds.height / 2.0
     }
 }
@@ -166,6 +179,7 @@ public class BPKChip: UIControl {
 // MARK: - Private API
 extension BPKChip {
     private func setup() {
+        layer.addSublayer(tintLayer)
         addSubview(containerStackView)
         
         isAccessibilityElement = true
