@@ -51,9 +51,9 @@ public class BPKChip: UIControl {
     }
     
     /**
-     * Style of the chip. Default is BPKChipStyleOutline.
+     * Style of the chip. Default is BPKChipStyleDefault.
      */
-    public var style: BPKChipStyle = .outline {
+    public var style: BPKChipStyle = .default {
         didSet {
             updateLookAndFeel()
         }
@@ -211,25 +211,6 @@ extension BPKChip {
         accessibilityLabel = title
         
         placeElements()
-        updateOutline()
-    }
-    
-    @available(*, deprecated, message: "Will be removed when outline style is removed")
-    private func updateOutline() {
-        if isSelected && isEnabled {
-            layer.borderWidth = 0
-            layer.borderColor = nil
-            return
-        }
-        
-        if style == .outline {
-            layer.borderWidth = 1
-            let borderColor = isEnabled ? outlineColor : disabledOutlineColor
-            layer.borderColor = borderColor.cgColor
-            return
-        }
-        layer.borderWidth = 0
-        layer.borderColor = nil
     }
     
     private func placeElements() {
@@ -264,14 +245,6 @@ extension BPKChip {
     
     private var chipVerticalSpacing: CGFloat {
         return BPKSpacingMd
-    }
-    
-    private var outlineColor: UIColor {
-        return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint03, darkVariant: BPKColor.blackTint06)
-    }
-
-    private var disabledOutlineColor: UIColor {
-        return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint05, darkVariant: BPKColor.blackTint06)
     }
 }
 

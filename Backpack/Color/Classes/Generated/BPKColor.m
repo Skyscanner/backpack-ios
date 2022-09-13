@@ -516,7 +516,7 @@
 
 + (NSString *)cacheKeyForColor:(UIColor *)color {
     const CGFloat *colors = CGColorGetComponents( color.CGColor );
-    return [NSString stringWithFormat:@"%.05f,%.05f,%.05f", colors[0], colors[1], colors[2]];
+    return [NSString stringWithFormat:@"%.05f,%.05f,%.05f,%.05f", colors[0], colors[1], colors[2], colors[3]];
 }
 
 + (NSCache<NSString *, UIColor *> *)dynamicColorsCache {

@@ -20,10 +20,6 @@ import Foundation
 
 @objc
 public enum BPKChipStyle: UInt {
-    @available(*, deprecated, message: "Will be removed in a future release")
-    case filled
-    @available(*, deprecated, message: "Will be removed in a future release")
-    case outline
     case `default`
     case onDark
 }
