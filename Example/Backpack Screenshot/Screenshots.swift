@@ -385,13 +385,11 @@ class Screenshots: BackpackSnapshotTestCase {
         navigate(title: "Skeleton") {
             switchTab(title: "UIKit")
             saveScreenshot(component: "skeleton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
 
         navigate(title: "Switches") {
             switchTab(title: "UIKit")
             saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
 
         navigate(title: "Tab bar controller") {
