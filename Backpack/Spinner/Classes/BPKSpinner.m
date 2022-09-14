@@ -105,6 +105,12 @@ NS_ASSUME_NONNULL_BEGIN
         return UIActivityIndicatorViewStyleLarge;
     case BPKSpinnerSizeSmall:
         return UIActivityIndicatorViewStyleMedium;
+    case BPKSpinnerSizeSm:
+        return UIActivityIndicatorViewStyleMedium;
+    case BPKSpinnerSizeLg:
+        return UIActivityIndicatorViewStyleLarge;
+    case BPKSpinnerSizeXl:
+        return UIActivityIndicatorViewStyleLarge;
     default:
         NSAssert(NO, @"Undefined size: %d", (int)size);
         break;
@@ -121,6 +127,12 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.skyGrayTint01;
     case BPKSpinnerStyleLight:
         return BPKColor.white;
+    case BPKSpinnerStyleTextPrimary:
+        return BPKColor.textPrimaryColor;
+    case BPKSpinnerStyleDisabled:
+        return BPKColor.textDisabledColor;
+    case BPKSpinnerStyleOnDarkSurface:
+        return BPKColor.textOnDarkColor;
     default:
         NSAssert(NO, @"Undefined style: %d", (int)style);
         break;

@@ -23,18 +23,24 @@
  * Enum values for specifying spinner size
  */
 typedef NS_ENUM(NSUInteger, BPKSpinnerSize) {
-    BPKSpinnerSizeDefault = 0,
-    BPKSpinnerSizeSmall = 1,
+    BPKSpinnerSizeDefault __deprecated_enum_msg("Use sm, lg or xl") = 0,
+    BPKSpinnerSizeSmall __deprecated_enum_msg("Use sm size") = 1,
+    BPKSpinnerSizeSm = 2,
+    BPKSpinnerSizeLg = 3,
+    BPKSpinnerSizeXl = 4
 };
 
 /**
  * Enum values for specifying spinner style
  */
 typedef NS_ENUM(NSUInteger, BPKSpinnerStyle) {
-    BPKSpinnerStylePrimary = 0,
-    BPKSpinnerStyleDark = 1,
-    BPKSpinnerStyleLight = 2,
-    BPKSpinnerStyleSecondary = 3,
+    BPKSpinnerStylePrimary __deprecated_enum_msg("Use textPrimary") = 0,
+    BPKSpinnerStyleDark __deprecated_enum_msg("Use textPrimary") = 1,
+    BPKSpinnerStyleLight __deprecated_enum_msg("Use onDarkSurface") = 2,
+    BPKSpinnerStyleSecondary __deprecated_enum_msg("Use textPrimary") = 3,
+    BPKSpinnerStyleTextPrimary = 4,
+    BPKSpinnerStyleDisabled = 5,
+    BPKSpinnerStyleOnDarkSurface = 6
 };
 
 NS_ASSUME_NONNULL_BEGIN
