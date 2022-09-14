@@ -58,7 +58,7 @@ internal extension BPKSkeleton.Size {
         case .custom(let customSize):
             return customSize;
         default:
-            return CGSize(width: 200, height: 40)
+            return CGSize(width: 200, height: BPKSpacing.xxl.value)
         }
     }
 }
