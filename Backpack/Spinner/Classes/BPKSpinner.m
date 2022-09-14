@@ -81,6 +81,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didChangeProperty {
     self.activityIndicatorViewStyle = [self.class styleForSpinnerSize:self.size];
     self.color = [self themeableColorForSpinnerStyle:self.style];
+    
+    if (self.size == BPKSpinnerSizeLg) {
+        self.transform = CGAffineTransformScale(self.transform, 0.8, 0.8);
+    } else {
+        self.transform = CGAffineTransformIdentity;
+    }
+    
     [self setNeedsDisplay];
 }
 
