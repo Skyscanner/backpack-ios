@@ -183,11 +183,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (UIColor *)defaultStarFilledColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.kolkata darkVariant:BPKColor.erfoud];
+    return BPKColor.statusWarningSpotColor;
 }
 
 + (UIColor *)defaultStarColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.blackTint05];
+    return BPKColor.textDisabledColor;
 }
 
 @end
