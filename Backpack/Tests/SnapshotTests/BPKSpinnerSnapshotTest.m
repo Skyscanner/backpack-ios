@@ -75,14 +75,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<BPKSpinner *> *)createAllSpinnerVariantsWithTheming:(BOOL)themed {
     return @[
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleSecondary size:BPKSpinnerSizeDefault themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleSecondary size:BPKSpinnerSizeSmall themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall themed:themed]
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleTextPrimary size:BPKSpinnerSizeSm themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDisabled size:BPKSpinnerSizeSm themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleOnDarkSurface size:BPKSpinnerSizeSm themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleTextPrimary size:BPKSpinnerSizeLg themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDisabled size:BPKSpinnerSizeLg themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleOnDarkSurface size:BPKSpinnerSizeLg themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleTextPrimary size:BPKSpinnerSizeXl themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDisabled size:BPKSpinnerSizeXl themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleOnDarkSurface size:BPKSpinnerSizeXl themed:themed],
     ];
 }
 

@@ -257,9 +257,10 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Spinners",
             tabs: [
-                .uikit(presentable: loadStoryboard(
-                    name: "Spinners",
-                    identifier: "SpinnersViewController"
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        SpinnersViewController()
+                    }
                 )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(SpinnerExampleView())
