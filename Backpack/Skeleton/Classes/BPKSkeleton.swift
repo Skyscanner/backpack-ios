@@ -145,6 +145,10 @@ public class BPKSkeleton: UIView {
         gradientLayer.add(gradientChangeAnimation, forKey: "shimmer")
         view.layer.addSublayer(gradientLayer)
     }
+    
+    public static func removeShimmer(view: UIView) {
+        view.layer.sublayers?.filter { $0 is BPKShimmerLayer }.forEach { $0.removeFromSuperlayer() }
+    }
 }
 
 extension BPKSkeleton {

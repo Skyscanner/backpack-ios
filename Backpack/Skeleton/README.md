@@ -32,4 +32,5 @@ let bodytext = BPKSkeleton(type: .bodytext)
 let custom = BPKSkeleton(type: .bodytext, size: .custom(size: CGSize(width: 260, height: 60)))
 
 BPKSkeleton.startShimmer(view: yourView) // Make sure call this after yourView rendered.
+BPKSkeleton.removeShimmer(view: yourView)
 ```

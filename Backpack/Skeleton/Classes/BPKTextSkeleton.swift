@@ -22,15 +22,14 @@ import UIKit
 public class BPKTextSkeleton: UIView {
     var textRows = [UIView]()
     var width: CGFloat = BPKSpacingXxl * 5
-    var rowHeight: CGFloat = BPKSpacingMd
-    var rowSpacing: CGFloat = BPKSpacingMd
     
     fileprivate let containerStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.backgroundColor = .clear
-        stack.spacing = BPKSpacingSm * 2.5
+        stack.spacing = BPKSpacingMd
+        stack.distribution = .fillEqually
         stack.isUserInteractionEnabled = false
         return stack
     }()
@@ -38,7 +37,6 @@ public class BPKTextSkeleton: UIView {
     public convenience init(size: CGSize) {
         self.init()
         self.width = size.width
-        self.rowHeight = abs(size.height - rowSpacing * 2) / 3.0
         setupSubviews()
     }
     
@@ -69,7 +67,7 @@ public class BPKTextSkeleton: UIView {
             textRows[1].widthAnchor.constraint(equalToConstant: width),
             textRows[0].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.86),
             textRows[2].widthAnchor.constraint(equalTo: textRows[1].widthAnchor, multiplier: 0.57)
-        ] + [0, 1, 2].map { textRows[$0].heightAnchor.constraint(equalToConstant: rowHeight) })
+        ])
     }
     
     fileprivate func createTextRow() -> UIView {
