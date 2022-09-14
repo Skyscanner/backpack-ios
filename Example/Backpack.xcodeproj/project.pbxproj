@@ -93,7 +93,6 @@
 		D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
 		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
-		D242176E252F6B5F00F449E4 /* Spinners.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D242176D252F6B5E00F449E4 /* Spinners.storyboard */; };
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
 		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
@@ -282,7 +281,6 @@
 		D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ratings.storyboard; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
 		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
-		D242176D252F6B5E00F449E4 /* Spinners.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spinners.storyboard; sourceTree = "<group>"; };
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
 		D24D602A22F84CEC002847D1 /* TextField.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextField.storyboard; sourceTree = "<group>"; };
@@ -935,7 +933,6 @@
 		793EC56D283615AF00D627F6 /* Spinner */ = {
 			isa = PBXGroup;
 			children = (
-				D242176D252F6B5E00F449E4 /* Spinners.storyboard */,
 				3AA018EE215BE26500838FBB /* SpinnersViewController.swift */,
 			);
 			path = Spinner;
@@ -1216,7 +1213,6 @@
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
 				D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */,
-				D242176E252F6B5F00F449E4 /* Spinners.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
 				D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */,

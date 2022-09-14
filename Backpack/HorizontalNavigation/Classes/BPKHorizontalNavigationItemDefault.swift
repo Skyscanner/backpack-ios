@@ -51,12 +51,12 @@ class BPKHorizontalNavigationItemDefault<
 
     private var contentColor: UIColor {
         if isSelected {
-            return selectedColor ?? .bpk_primary
-        } else {
-            switch appearance {
-            case .normal: return .bpk_textPrimary
-            case .alternate: return .bpk_skyGrayTint07
-            }
+            return selectedColor ?? .bpk_coreAccent
+        }
+        
+        switch appearance {
+        case .normal: return .bpk_textPrimary
+        case .alternate: return .bpk_skyGrayTint07
         }
     }
 

@@ -24,9 +24,9 @@ internal extension BPKSpinner.Style {
         case .textPrimary:
             return .textPrimaryColor
         case .disabled:
-            return .skyGrayTint04
+            return .textDisabledColor
         case .onDarkSurface:
-            return .white
+            return .textOnDarkColor
         }
     }
 }

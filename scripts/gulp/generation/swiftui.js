@@ -41,6 +41,11 @@ const swiftUI = (generate) => {
       destinationFolder: 'Color',
       generatedFileName: 'StaticColors',
       templateName: 'StaticColors'
+    },
+    {
+      destinationFolder: 'Color',
+      generatedFileName: 'InternalColors',
+      templateName: 'InternalColors'
     }
   ]
     .map(token => {

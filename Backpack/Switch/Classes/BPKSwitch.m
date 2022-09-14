@@ -56,12 +56,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateSwitchOnColor {
-    self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.primaryColor;
+    self.onTintColor = _primaryColor != nil ? _primaryColor : BPKColor.coreAccentColor;
 }
 
 - (void)setup {
-    self.tintColor = BPKColor.skyGrayTint06;
-    self.thumbTintColor = BPKColor.white;
+    self.tintColor = BPKColor.surfaceHighlightColor;
+    self.thumbTintColor = BPKColor.textOnDarkColor;
 
     [self updateSwitchOnColor];
     [self setNeedsDisplay];

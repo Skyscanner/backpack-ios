@@ -61,14 +61,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- * The Skyscanner large shadow.
- */
-+ (instancetype)shadowLg;
-
-/**
  * The Skyscanner small shadow.
  */
 + (instancetype)shadowSm;
+
+/**
+ * The Skyscanner large shadow.
+ */
++ (instancetype)shadowLg;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -9,7 +9,7 @@
 ```objective-c
 #import <Backpack/Spinner.h>
 
-BPKSpinner *spinner = [[BPKSpinner alloc] initWithSize:BPKSpinnerSizeDefault style:BPKSpinnerStylePrimary];
+BPKSpinner *spinner = [[BPKSpinner alloc] initWithSize:BPKSpinnerSizeSm style:BPKSpinnerStyleTextPrimary];
 // Position spinner with autolayout or other method
 ```
 
@@ -18,7 +18,7 @@ BPKSpinner *spinner = [[BPKSpinner alloc] initWithSize:BPKSpinnerSizeDefault sty
 ```swift
 import Backpack
 
-let spinner = BPKSpinner(size: .`default`, style: .primary)
+let spinner = BPKSpinner(size: .sm, style: .textPrimary)
 // Position spinner with autolayout or other method
 ```
 

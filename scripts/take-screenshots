@@ -4,4 +4,5 @@
 rm -rf screenshots
 
 cd Example && bundle exec fastlane snapshot
+cd ..
 mv screenshots/en-US/* screenshots/

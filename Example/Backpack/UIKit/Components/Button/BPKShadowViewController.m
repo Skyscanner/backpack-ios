@@ -47,7 +47,7 @@ const static NSInteger LabelTag = 72817;
         UIView *shadowView = self.shadowViews[i];
         BPKLabel *shadowLabel = [shadowView viewWithTag:LabelTag];
         shadowLabel.text = factoryMethods[i];
-        shadowLabel.textColor = [BPKColor skyGrayTint01];
+        shadowLabel.textColor = [BPKColor textPrimaryColor];
 
         SEL selector = NSSelectorFromString(factoryMethods[i]);
         NSAssert([BPKShadow respondsToSelector:selector], @"Expected BPKShadow to have factory method called %@", factoryMethods[i]);
@@ -55,6 +55,7 @@ const static NSInteger LabelTag = 72817;
         BPKShadow *shadow = [BPKShadow performSelector:selector];
         [shadow applyToLayer:shadowView.layer];
         shadowView.layer.cornerRadius = BPKCornerRadiusXs;
+        shadowView.backgroundColor = [BPKColor surfaceDefaultColor];
     }
 }
 

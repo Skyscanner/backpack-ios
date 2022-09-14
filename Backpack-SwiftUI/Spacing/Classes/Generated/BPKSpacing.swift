@@ -34,11 +34,11 @@ public extension BPKSpacing {
     /// The Skyscanner small spacing (4pt).
     static var sm: BPKSpacing { BPKSpacing(value: 4) }
 
-    /// The Skyscanner icon text spacing (8pt).
-    static var iconText: BPKSpacing { BPKSpacing(value: 8) }
-
     /// The Skyscanner medium spacing (8pt).
     static var md: BPKSpacing { BPKSpacing(value: 8) }
+
+    /// The Skyscanner icon text spacing (8pt).
+    static var iconText: BPKSpacing { BPKSpacing(value: 8) }
 
     /// The Skyscanner base spacing (16pt).
     static var base: BPKSpacing { BPKSpacing(value: 16) }

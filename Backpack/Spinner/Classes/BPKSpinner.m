@@ -81,6 +81,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didChangeProperty {
     self.activityIndicatorViewStyle = [self.class styleForSpinnerSize:self.size];
     self.color = [self themeableColorForSpinnerStyle:self.style];
+
+    if (self.size == BPKSpinnerSizeLg) {
+        self.transform = CGAffineTransformScale(self.transform, 0.8, 0.8);
+    } else {
+        self.transform = CGAffineTransformIdentity;
+    }
+
     [self setNeedsDisplay];
 }
 
@@ -105,6 +112,12 @@ NS_ASSUME_NONNULL_BEGIN
         return UIActivityIndicatorViewStyleLarge;
     case BPKSpinnerSizeSmall:
         return UIActivityIndicatorViewStyleMedium;
+    case BPKSpinnerSizeSm:
+        return UIActivityIndicatorViewStyleMedium;
+    case BPKSpinnerSizeLg:
+        return UIActivityIndicatorViewStyleLarge;
+    case BPKSpinnerSizeXl:
+        return UIActivityIndicatorViewStyleLarge;
     default:
         NSAssert(NO, @"Undefined size: %d", (int)size);
         break;
@@ -121,6 +134,12 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.skyGrayTint01;
     case BPKSpinnerStyleLight:
         return BPKColor.white;
+    case BPKSpinnerStyleTextPrimary:
+        return BPKColor.textPrimaryColor;
+    case BPKSpinnerStyleDisabled:
+        return BPKColor.textDisabledColor;
+    case BPKSpinnerStyleOnDarkSurface:
+        return BPKColor.textOnDarkColor;
     default:
         NSAssert(NO, @"Undefined style: %d", (int)style);
         break;

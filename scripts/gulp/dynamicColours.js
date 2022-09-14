@@ -17,10 +17,10 @@
  */
 
 const _ = require('lodash');
-const { isSemanticColor, parseColor } = require('./utils/formatUtils');
+const { isSemanticColor, isPrivateColor, parseColor } = require('./utils/formatUtils');
 
 const dynamicColors = (properties) => _.chain(properties)
-  .filter((entity) => entity.type === 'color' && isSemanticColor(entity))
+  .filter((entity) => entity.type === 'color' && isSemanticColor(entity) && !isPrivateColor(entity))
   .map(
     ({
       value,

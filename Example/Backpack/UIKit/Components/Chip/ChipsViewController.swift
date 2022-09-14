@@ -93,7 +93,7 @@ class ChipsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = BPKColor.surfaceDefaultColor
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
