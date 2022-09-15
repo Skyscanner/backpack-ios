@@ -22,111 +22,76 @@ import Backpack_SwiftUI
 
 struct SkeletonExampleView: View {
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                BPKText("Image Skeleton", style: .heading4)
+        HStack {
+            VStack(alignment: .leading, spacing: 16) {
+                Spacer()
+                BPKText("Image", style: .heading5)
                 makeImageSkeletonRow()
                 
-                BPKText("Headline Skeleton", style: .heading4)
+                BPKText("Headline", style: .heading5)
                 makeHeadlineSkeletonRow()
                 
-                BPKText("Circle Skeleton", style: .heading4)
+                BPKText("Circle", style: .heading5)
                 makeCircleSkeletonRow()
                 
-                BPKText("Body text Skeleton", style: .heading4)
+                BPKText("Bodytext", style: .heading5)
                 makeBodytextSkeletonRow()
+                Spacer()
             }
             .shimmering()
-            .padding()
+            Spacer()
         }
+        .padding()
     }
     
     private func makeImageSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
-            Spacer()
             VStack {
                 BPKSkeleton.image()
-                BPKText("Default")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Default", style: .caption)
             }
-            Spacer()
             VStack {
                 BPKSkeleton.image(style: .rounded)
-                BPKText("Rounded")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Rounded", style: .caption)
             }
-            Spacer()
-            VStack {
-                BPKSkeleton.image(size: .custom(size: CGSize(width: 120, height: 120)))
-                BPKText("Custom - 120")
-                    .foregroundColor(.textPrimaryColor)
-            }
-            Spacer()
         }
-        .padding()
     }
     
     private func makeHeadlineSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
-            Spacer()
             VStack {
                 BPKSkeleton.headline(size: .small)
-                BPKText("Small")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Small", style: .caption)
             }
-            Spacer()
             VStack {
                 BPKSkeleton.headline()
-                BPKText("Default")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Default", style: .caption)
             }
-            Spacer()
             VStack {
                 BPKSkeleton.headline(size: .large)
-                BPKText("Large")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Large", style: .caption)
             }
-            Spacer()
         }
-        .padding()
     }
     
     private func makeCircleSkeletonRow() -> some View {
         HStack(alignment: .bottom) {
-            Spacer()
             VStack {
                 BPKSkeleton.circle(size: .small)
-                BPKText("Small")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Small", style: .caption)
             }
-            Spacer()
             VStack {
                 BPKSkeleton.circle()
-                BPKText("Default")
-                    .foregroundColor(.textPrimaryColor)
-            }
-            Spacer()
-            VStack {
-                BPKSkeleton.circle(size: .custom(size: CGSize(width: 80, height: 80)))
-                BPKText("Custom - 80")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Default", style: .caption)
             }
         }
-        .padding()
     }
     
     private func makeBodytextSkeletonRow() -> some View {
         VStack {
             VStack {
                 BPKSkeleton.bodytext()
-                BPKText("Default")
-                    .foregroundColor(.textPrimaryColor)
-            }
-            Spacer()
-            VStack {
-                BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 280, height: 61)))
-                BPKText("Custom - W280, H61")
-                    .foregroundColor(.textPrimaryColor)
+                BPKText("Default", style: .caption)
             }
         }
     }

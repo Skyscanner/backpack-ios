@@ -33,9 +33,6 @@ class SkeletonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = BPKColor.canvasColor
-        
         setupView()
     }
     
@@ -45,6 +42,7 @@ class SkeletonViewController: UIViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = BPKColor.canvasColor
         view.addSubview(containerView)
         
         containerView.addArrangedSubview(generate(title: "Image"))
