@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.iconContainerView.layer.cornerRadius = iconContainerSize.width / 2.0;
 
     self.iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    self.iconImageView.tintColor = BPKColor.white;
+    self.iconImageView.tintColor = BPKColor.textPrimaryInverseColor;
 
     [self addSubview:self.iconContainerView];
     [self.iconContainerView addSubview:self.iconImageView];
