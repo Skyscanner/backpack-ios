@@ -28,11 +28,11 @@ struct SkeletonExampleView: View {
                 BPKText("Image", style: .heading5)
                 makeImageSkeletonRow()
                 
-                BPKText("Headline", style: .heading5)
-                makeHeadlineSkeletonRow()
-                
                 BPKText("Circle", style: .heading5)
                 makeCircleSkeletonRow()
+                
+                BPKText("Headline", style: .heading5)
+                makeHeadlineSkeletonRow()
                 
                 BPKText("Bodytext", style: .heading5)
                 makeBodytextSkeletonRow()
