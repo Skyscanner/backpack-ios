@@ -7,7 +7,7 @@
 
 | Style Options   | Border radius  |
 |  ----  | ----  |
-| `.rounded`  | 8 px |
+| `.rounded`  | 8 |
 | `.default`  | 0 |
 
 Set the custom size:
