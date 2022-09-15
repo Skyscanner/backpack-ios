@@ -43,7 +43,7 @@ class BPKBadgeSnapshotTest: XCTestCase {
     private func createViewWithTypes(andIcon icon: BPKBadge.Icon? = nil) -> UIView {
         let stackView = createStackView()
         let parentView = UIView(frame: .zero)
-        parentView.backgroundColor = BPKColor.skyGrayTint06
+        
         parentView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(stackView)
 

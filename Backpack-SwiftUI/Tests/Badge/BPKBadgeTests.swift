@@ -22,32 +22,30 @@ import SwiftUI
 
 class BPKBadgeTests: XCTestCase {
     
-    let styles: [BPKBadge.Style] = [
-        .normal,
-        .strong,
-        .success,
-        .warning,
-        .destructive,
-        .inverse,
-        .outline
+    let styles: [(BPKBadge.Style, BPKColor)] = [
+        (.normal, .surfaceDefaultColor),
+        (.strong, .surfaceDefaultColor),
+        (.success, .surfaceDefaultColor),
+        (.warning, .surfaceDefaultColor),
+        (.destructive, .surfaceDefaultColor),
+        (.inverse, .surfaceHighlightColor),
+        (.outline, .surfaceHighlightColor)
     ]
     
     private func testView(icon: BPKIcon? = nil) -> some View {
-        ZStack {
-            Color(.skyGrayTint06.darkVariant(.black))
-            VStack {
-                ForEach(styles, id: \.self) {
-                    BPKBadge("Test badge", icon: icon)
-                        .badgeStyle($0)
-                }
+        VStack(spacing: 0) {
+            ForEach(styles, id: \.0) {
+                BPKBadge("Test badge", icon: icon)
+                    .badgeStyle($0.0)
+                    .padding(4)
+                    .background($0.1)
             }
-            .padding()
         }
     }
-        
-    func test_allBadgesWithoutIcon() {
-        // Then
-        assertSnapshot(testView())
+
+func test_allBadgesWithoutIcon() {
+    // Then
+    assertSnapshot(testView())
     }
     
     func test_allBadgesWithIcon() {
