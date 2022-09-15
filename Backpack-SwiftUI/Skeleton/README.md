@@ -2,13 +2,17 @@
 
 ## Usage
 
-### Image skeleton
+### **Image skeleton**
 
-Set the border radius to:
-* `.rounded`
-* `.default`
+
+| Style Options   | Border radius  |
+|  ----  | ----  |
+| `.rounded`  |  border-radius: 8px |
+| `.default`  |  border-radius: 0 |
 
 Set the custom size:
+
+`// Default size: 96 * 96`
 * `.custom(size: CGSize(width: xxx, height: xxx))`
 
 ```swift
@@ -17,14 +21,18 @@ import Backpack_SwiftUI
 BPKSkeleton.image()
 BPKSkeleton.image(style: .rounded)
 BPKSkeleton.image(size: .custom(size: CGSize(width: 120, height: 120)))
-```
+```  
+  
 
-### Circle skeleton
+### **Circle skeleton**
 
 Set the size to:
-* `.small`
-* `.default`
-* `.custom(size: CGSize(width: xxx, height: xxx))` // We will choose the short side as the diameter while width != height
+
+|  Size Options   | Size  |
+|  ----  | ----  |
+| `.small`  |  diameter: 32 |
+| `.default`  |  diameter: 48 |
+| `.custom(size: CGSize(width: xxx, height: xxx))`  |  We will choose the short side as the diameter while width != height |
 
 
 ```swift
@@ -35,27 +43,15 @@ BPKSkeleton.circle() // Default size
 BPKSkeleton.circle(size: .custom(size: CGSize(width: 120, height: 120)))
 ```
 
-### Body text skeleton
 
-Set the size to:
-* `.default`
-* `.custom(size: CGSize(width: xxx, height: xxx))` 
+### **Headline skeleton**
 
-
-```swift
-import Backpack_SwiftUI
-
-BPKSkeleton.bodytext() // Default size
-BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 280, height: 61)))
-```
-
-### Headline skeleton
-
-Set the size to:
-* `.small`
-* `.default`
-* `.large`
-* `.custom(size: CGSize(width: xxx, height: xxx))` 
+|  Size Options   | Size  |
+|  ----  | ----  |
+| `.small`  |   size: 80 * 8 |
+| `.default`  |  size: 80 * 16 |
+| `.large`  |   size: 80 * 32 |
+| `.custom(size: CGSize(width: xxx, height: xxx))`  |  N/A|
 
 ```swift
 import Backpack_SwiftUI
@@ -66,7 +62,22 @@ BPKSkeleton.headline(size: .large)
 BPKSkeleton.headline(size: .custom(size: CGSize(width: 120, height: 120)))
 ```
 
-### Shimmer animation
+### **Body text skeleton**
+
+|  Size Options   | Size  |
+|  ----  | ----  |
+| `.default`  |  size: 200 * 40 |
+| `.custom(size: CGSize(width: xxx, height: xxx))`  |   N/A |
+
+
+```swift
+import Backpack_SwiftUI
+
+BPKSkeleton.bodytext() // Default size
+BPKSkeleton.bodytext(size: .custom(size: CGSize(width: 280, height: 61)))
+```
+
+### **Shimmer animation**
 
 ```swift
 import Backpack_SwiftUI
@@ -75,3 +86,4 @@ yourView {
 }
 .shimmering()
 ```
+
