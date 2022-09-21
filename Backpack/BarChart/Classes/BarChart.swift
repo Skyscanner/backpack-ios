@@ -103,7 +103,7 @@ public final class BPKBarChart: UIView {
     }
 
     lazy fileprivate var titleLabel: BPKLabel = {
-        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textHeading5)
+        let titleLabel: BPKLabel = BPKLabel(fontStyle: .textLabel2)
         titleLabel.text = title
         titleLabel.textColor = BPKColor.textSecondaryColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -112,16 +112,16 @@ public final class BPKBarChart: UIView {
 
     lazy fileprivate var dataKeyItem: BPKBarChartKeyItem = {
         let dataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem(text: dataKeyText)
-        dataKeyItem.backgroundColor = BPKColor.primaryColor
-        dataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        dataKeyItem.backgroundColor = BPKColor.corePrimaryColor
+        dataKeyItem.textColor = BPKColor.textOnDarkColor
         dataKeyItem.translatesAutoresizingMaskIntoConstraints = false
         return dataKeyItem
     }()
 
     lazy fileprivate var noDataKeyItem: BPKBarChartKeyItem = {
         let noDataKeyItem: BPKBarChartKeyItem = BPKBarChartKeyItem(text: noDataKeyText)
-        noDataKeyItem.backgroundColor = BPKColor.skyGrayTint03
-        noDataKeyItem.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        noDataKeyItem.backgroundColor = BPKColor.lineColor
+        noDataKeyItem.textColor = BPKColor.textPrimaryColor
         noDataKeyItem.translatesAutoresizingMaskIntoConstraints = false
         return noDataKeyItem
     }()
