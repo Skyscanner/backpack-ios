@@ -115,10 +115,7 @@ public final class BPKBarChartBar: UIControl {
 
     lazy fileprivate var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = BPKColor.dynamicColor(
-            withLightVariant: BPKColor.skyGrayTint06,
-            darkVariant: BPKColor.blackTint03
-        )
+        view.backgroundColor = BPKColor.surfaceHighlightColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = BPKSpacingMd
         return view
@@ -139,7 +136,7 @@ public final class BPKBarChartBar: UIControl {
     }()
 
     lazy fileprivate var titleLabel: BPKLabel = {
-        let view = BPKLabel(fontStyle: .textHeading5)
+        let view = BPKLabel(fontStyle: .textLabel2)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -150,12 +147,9 @@ public final class BPKBarChartBar: UIControl {
         return view
     }()
 
-    static fileprivate var noValueColor: UIColor = BPKColor.skyGrayTint03
-    static fileprivate var valueColor: UIColor = BPKColor.primaryColor
-    static fileprivate var selectedColor: UIColor = BPKColor.dynamicColor(
-        withLightVariant: BPKColor.monteverde,
-        darkVariant: BPKColor.glencoe
-    )
+    static fileprivate var noValueColor: UIColor = BPKColor.lineColor
+    static fileprivate var valueColor: UIColor = BPKColor.corePrimaryColor
+    static fileprivate var selectedColor: UIColor = BPKColor.coreAccentColor
 
     fileprivate func updateBarColor() {
         if isSelected {
@@ -166,7 +160,7 @@ public final class BPKBarChartBar: UIControl {
         }
 
         titleLabel.textColor = BPKColor.textPrimaryColor
-        subtitleLabel.textColor = BPKColor.textPrimaryColor
+        subtitleLabel.textColor = BPKColor.textSecondaryColor
         barView.backgroundColor = fillValue.map { _ in BPKBarChartBar.valueColor } ?? BPKBarChartBar.noValueColor
     }
 

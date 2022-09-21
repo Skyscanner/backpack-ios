@@ -43,11 +43,7 @@ internal final class BPKMiniFlareView: BPKFlareView {
     }
 
     fileprivate func setupViews() {
-        backgroundColor = BPKColor.dynamicColor(
-            withLightVariant: BPKColor.skyBlueShade02,
-            darkVariant: BPKColor.blackTint06
-        )
-
+        backgroundColor = BPKColor.coreAccentColor
         contentView.addSubview(label)
 
         cornerRadius = BPKSpacingSm
@@ -63,7 +59,7 @@ internal final class BPKMiniFlareView: BPKFlareView {
     lazy fileprivate var label: BPKLabel = {
         let label = BPKLabel(fontStyle: .textBodyDefault)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
+        label.textColor = BPKColor.textPrimaryInverseColor
         return label
     }()
 
