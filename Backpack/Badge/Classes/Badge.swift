@@ -79,7 +79,7 @@ public class BPKBadge: UIView {
         label.textColor = type.textColor
         
         if type == .outline {
-            layer.borderColor = BPKColor.white.cgColor
+            layer.borderColor = BPKColor.textOnDarkColor.cgColor
             layer.borderWidth = BPKBorderWidthSm
         }
         
@@ -127,25 +127,18 @@ public class BPKBadge: UIView {
         guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else { return }
         updateLookAndFeel()
     }
-    
-    func changeContent(color: UIColor) {
-        guard type == .outline else { return }
-        backgroundColor = BPKColor.clear
-        layer.borderColor = color.cgColor
-        label.textColor = color
-    }
 }
 
 fileprivate extension BPKBadgeType {
     var textColor: UIColor {
         switch self {
-        case .outline, .destructive:
-            return BPKColor.white
-        case .normal:
+        case .success, .warning, .destructive:
+            return BPKColor.textOnLightColor
+        case .outline, .strong:
+            return BPKColor.textOnDarkColor
+        case .normal, .inverse:
             return BPKColor.textPrimaryColor
-        case .strong:
-            return BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.skyGray)
-        default:
+        case .light:
             return BPKColor.skyGray
         }
     }
@@ -153,21 +146,21 @@ fileprivate extension BPKBadgeType {
     var backgroundColor: UIColor {
         switch self {
         case .success:
-            return BPKColor.glencoe
+            return BPKColor.statusSuccessFillColor
         case .warning:
-            return BPKColor.erfoud
+            return BPKColor.statusWarningFillColor
         case .destructive:
-            return BPKColor.panjin
+            return BPKColor.statusDangerFillColor
         case .light:
             return BPKColor.skyGrayTint07
         case .inverse:
-            return BPKColor.white
+            return BPKColor.surfaceDefaultColor
         case .outline:
-            return BPKColor.white.withAlphaComponent(0.2)
+            return BPKColor.white.withAlphaComponent(0)
         case .normal:
-            return BPKColor.dynamicColor(withLightVariant: BPKColor.skyGrayTint07, darkVariant: BPKColor.blackTint02)
+            return BPKColor.surfaceHighlightColor
         case .strong:
-            return  BPKColor.dynamicColor(withLightVariant: BPKColor.skyGray, darkVariant: BPKColor.white)
+            return BPKColor.corePrimaryColor
         }
     }
 }

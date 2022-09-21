@@ -19,40 +19,38 @@
 internal extension BPKBadge.Style {
     var backgroundColor: BPKColor {
         switch self {
-        case .normal:
-            return .skyGrayTint07.darkVariant(.blackTint02)
-        case .strong:
-            return .skyGray.darkVariant(.white)
         case .success:
-            return .glencoe
+            return BPKColor.statusSuccessFillColor
         case .warning:
-            return .erfoud
+            return BPKColor.statusWarningFillColor
         case .destructive:
-            return .panjin
+            return BPKColor.statusDangerFillColor
         case .inverse:
-            return .white
+            return BPKColor.surfaceDefaultColor
         case .outline:
-            return .clear
+            return BPKColor.white.withAlphaComponent(0)
+        case .normal:
+            return BPKColor.surfaceHighlightColor
+        case .strong:
+            return BPKColor.corePrimaryColor
         }
     }
     
     var foregroundColor: BPKColor {
         switch self {
-        case .normal:
-            return .textPrimaryColor
-        case .strong:
-            return .white.darkVariant(.skyGray)
-        case .destructive, .outline:
-            return .white
-        default:
-            return .skyGray
+        case .success, .warning, .destructive:
+            return BPKColor.textOnLightColor
+        case .outline, .strong:
+            return BPKColor.textOnDarkColor
+        case .normal, .inverse:
+            return BPKColor.textPrimaryColor
         }
     }
     
     var borderColor: BPKColor? {
         switch self {
         case .outline:
-            return .white
+            return BPKColor.textOnDarkColor
         default:
             return nil
         }
