@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (_fillColor != fillColor) {
         _fillColor = fillColor;
 
-        self.progressTintColor = self.fillColor != nil ? self.fillColor : BPKColor.skyBlue;
+        self.progressTintColor = self.fillColor != nil ? self.fillColor : BPKColor.coreAccentColor;
     }
 }
 
@@ -64,11 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setup {
     self.trackTintColor = [self.class backgroundColor];
-    self.progressTintColor = BPKColor.skyBlue;
+    self.progressTintColor = BPKColor.coreAccentColor;
 }
 
 + (UIColor *)backgroundColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint06 darkVariant:BPKColor.blackTint02];
+    return [BPKColor surfaceHighlightColor];
 }
 
 @end
