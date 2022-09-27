@@ -103,7 +103,7 @@ struct PrimaryOnLightBPKButtonColorSet: BPKButtonColorSet {
     var regular = BPKButtonColors(background: .buttonPrimaryOnLightNormalBackgroundColor, foreground: .textOnDarkColor)
     var highlighted = BPKButtonColors(background: .buttonPrimaryOnLightPressedBackgroundColor, foreground: .textOnDarkColor)
     var disabled = BPKButtonColors(background: .buttonPrimaryOnDisabledBackgroundColor, foreground: .buttonPrimaryOnDisabledForegroundColor)
-    var loading = BPKButtonColors(background: .buttonPrimaryOnLightPressedBackgroundColor, foreground: .textOnLightColor)
+    var loading = BPKButtonColors(background: .buttonPrimaryOnLightPressedBackgroundColor, foreground: .textOnDarkColor)
     
     init() {}
 }

@@ -33,16 +33,16 @@ public struct BPKSpinner: View {
     @State private var rotation: Double = 0
     
     private let size: BPKSpinner.Size
-    private let style: BPKSpinner.Style
+    private let foregroundColor: BPKColor
     
     private let timer = Timer.publish(every: 0.08, on: .main, in: .common).autoconnect()
     private let itemOpacities = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.65, 0.75, 0.85, 1]
     
     public init(_ size: BPKSpinner.Size = .sm, style: BPKSpinner.Style = .textPrimary) {
         self.size = size
-        self.style = style
+        self.foregroundColor = style.foregroundColor
     }
-    
+
     public var body: some View {
         ZStack {
             Circle()
@@ -52,7 +52,7 @@ public struct BPKSpinner: View {
             
             ForEach((0..<itemOpacities.count), id: \.self) { index in
                 LoadingCapsule(size: size)
-                    .foregroundColor(style.foregroundColor)
+                    .foregroundColor(foregroundColor)
                     .opacity(itemOpacities[index])
                     .rotationEffect(.degrees(Double(index) * degrees))
             }
@@ -66,6 +66,13 @@ public struct BPKSpinner: View {
     
     private var degrees: Double {
         return Double(360 / itemOpacities.count)
+    }
+}
+
+internal extension BPKSpinner {
+    init(_ size: BPKSpinner.Size = .sm, color: BPKColor) {
+        self.size = size
+        self.foregroundColor = color
     }
 }
 
