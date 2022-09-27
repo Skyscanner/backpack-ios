@@ -20,6 +20,12 @@ struct BPKButtonColors {
     let background: BPKColor
     let foreground: BPKColor
     
+    static let buttonDisabled = BPKButtonColors(background: .buttonDisabledBackgroundColor, foreground: .textDisabledColor)
+    static let buttonPrimaryOnDisabled = BPKButtonColors(
+        background: .buttonPrimaryOnDisabledBackgroundColor,
+        foreground: .buttonSecondaryOnDisabledForegroundColor
+    )
+    
     static func clear(withForeground foreground: BPKColor) -> BPKButtonColors {
         BPKButtonColors(background: .clear, foreground: foreground)
     }
