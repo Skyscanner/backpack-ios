@@ -185,29 +185,6 @@ public class BPKButtonAppearanceSets: NSObject {
     }
 }
 
-fileprivate extension UIColor {
-    static var pressedMonteverde: UIColor {
-        UIColor(red: 0, green: 0.416, blue: 0.38, alpha: 1)
-    }
-    
-    static var clear = BPKColor.clear
-    
-    static var primaryColor = BPKColor.skyBlue.darkVariant(.bpk.skyBlueTint01)
-    
-    static var destructiveColor: UIColor {
-        UIColor(red: 0.699, green: 0.182, blue: 0.269, alpha: 1)
-            .darkVariant(
-                UIColor(red: 0.972, green: 0.361, blue: 0.465, alpha: 1)
-            )
-    }
-    
-    static var bpk = BPKColor.self
-    
-    func darkVariant(_ dark: UIColor) -> UIColor {
-        BPKColor.dynamicColor(withLightVariant: self, darkVariant: dark)
-    }
-}
-
 fileprivate extension BPKButtonAppearance {
     static func with(background: UIColor, foreground: UIColor) -> BPKButtonAppearance {
         BPKButtonAppearance(
