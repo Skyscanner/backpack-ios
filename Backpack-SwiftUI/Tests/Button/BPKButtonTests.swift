@@ -55,7 +55,7 @@ class BPKButtonTests: XCTestCase {
     func testSecondaryOnDarkButton() {
         assertSnapshot(
             allStates(for: .secondaryOnDark)
-                .background(.blackTint01)
+                .background(.surfaceContrastColor)
         )
     }
     
@@ -74,14 +74,14 @@ class BPKButtonTests: XCTestCase {
     func testLinkOnDarkButton() {
         assertSnapshot(
             allStates(for: .linkOnDark)
-                .background(.blackTint01)
+                .background(.surfaceContrastColor)
         )
     }
     
     func testPrimaryOnDarkButton() {
         assertSnapshot(
             allStates(for: .primaryOnDark)
-                .background(.blackTint01)
+                .background(.surfaceContrastColor)
         )
     }
     

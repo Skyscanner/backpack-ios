@@ -20,12 +20,8 @@ struct BPKButtonColors {
     let background: BPKColor
     let foreground: BPKColor
     
-    static let staticDisabled = BPKButtonColors(background: .skyGrayTint06, foreground: .skyGrayTint04)
-    static let clearDisabled = BPKButtonColors(background: .clear, foreground: .skyGrayTint04.darkVariant(.blackTint03))
-    static let dynamicDisabled = BPKButtonColors(
-        background: .skyGrayTint06.darkVariant(.blackTint01),
-        foreground: .skyGrayTint04.darkVariant(.blackTint03)
-    )
+    static let buttonDisabled = BPKButtonColors(background: .buttonDisabledBackgroundColor, foreground: .textDisabledColor)
+    
     static func clear(withForeground foreground: BPKColor) -> BPKButtonColors {
         BPKButtonColors(background: .clear, foreground: foreground)
     }
