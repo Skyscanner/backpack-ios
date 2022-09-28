@@ -102,35 +102,45 @@ internal extension BPKColor {
     static let buttonPrimaryOnLightNormalBackgroundColor = BPKColor(red:0.020, green:0.125, blue:0.235, alpha:1)
         .darkVariant(BPKColor(red:0.020, green:0.125, blue:0.235, alpha:1))
 
+    /// The `buttonPrimaryOnLightDisabledForegroundColor` internal color.
+    
+    static let buttonPrimaryOnLightDisabledForegroundColor = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2)
+        .darkVariant(BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2))
+
+    /// The `buttonSecondaryOnDarkDisabledBackgroundColor` internal color.
+    
+    static let buttonSecondaryOnDarkDisabledBackgroundColor = BPKColor(red:0.043, green:0.067, blue:0.102, alpha:1)
+        .darkVariant(BPKColor(red:0.043, green:0.067, blue:0.102, alpha:1))
+
     /// The `buttonDestructiveNormalForegroundColor` internal color.
     
-    static let buttonDestructiveNormalForegroundColor = BPKColor(red:0.847, green:0.031, blue:0.373, alpha:1)
+    static let buttonDestructiveNormalForegroundColor = BPKColor(red:0.784, green:0.016, blue:0.337, alpha:1)
         .darkVariant(BPKColor(red:1.000, green:0.392, blue:0.612, alpha:1))
-
-    /// The `buttonSecondaryOnDisabledBackgroundColor` internal color.
-    
-    static let buttonSecondaryOnDisabledBackgroundColor = BPKColor(red:0.043, green:0.067, blue:0.102, alpha:1)
-        .darkVariant(BPKColor(red:0.043, green:0.067, blue:0.102, alpha:1))
 
     /// The `buttonPrimaryOnDarkNormalBackgroundColor` internal color.
     
     static let buttonPrimaryOnDarkNormalBackgroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
         .darkVariant(BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1))
 
+    /// The `buttonPrimaryOnDarkDisabledForegroundColor` internal color.
+    
+    static let buttonPrimaryOnDarkDisabledForegroundColor = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2)
+        .darkVariant(BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2))
+
     /// The `buttonSecondaryOnDarkPressedBackgroundColor` internal color.
     
     static let buttonSecondaryOnDarkPressedBackgroundColor = BPKColor(red:0.004, green:0.035, blue:0.075, alpha:1)
         .darkVariant(BPKColor(red:0.004, green:0.035, blue:0.075, alpha:1))
 
-    /// The `buttonPrimaryOnDisabledForegroundColor` internal color.
-    
-    static let buttonPrimaryOnDisabledForegroundColor = BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2)
-        .darkVariant(BPKColor(red:0.000, green:0.000, blue:0.000, alpha:0.2))
-
     /// The `buttonLinkPressedForegroundColor` internal color.
     
     static let buttonLinkPressedForegroundColor = BPKColor(red:0.082, green:0.275, blue:0.475, alpha:1)
         .darkVariant(BPKColor(red:0.820, green:0.969, blue:1.000, alpha:1))
+
+    /// The `buttonPrimaryOnLightDisabledBackgroundColor` internal color.
+    
+    static let buttonPrimaryOnLightDisabledBackgroundColor = BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1)
+        .darkVariant(BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1))
 
     /// The `buttonDestructiveNormalBackgroundColor` internal color.
     
@@ -152,6 +162,11 @@ internal extension BPKColor {
     static let buttonPrimaryPressedBackgroundColor = BPKColor(red:0.082, green:0.275, blue:0.475, alpha:1)
         .darkVariant(BPKColor(red:0.082, green:0.275, blue:0.475, alpha:1))
 
+    /// The `buttonPrimaryOnDarkDisabledBackgroundColor` internal color.
+    
+    static let buttonPrimaryOnDarkDisabledBackgroundColor = BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1)
+        .darkVariant(BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1))
+
     /// The `buttonLinkOnDarkPressedForegroundColor` internal color.
     
     static let buttonLinkOnDarkPressedForegroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.5019607843137255)
@@ -161,11 +176,6 @@ internal extension BPKColor {
     
     static let buttonLinkOnDarkNormalForegroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
         .darkVariant(BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1))
-
-    /// The `buttonPrimaryOnDisabledBackgroundColor` internal color.
-    
-    static let buttonPrimaryOnDisabledBackgroundColor = BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1)
-        .darkVariant(BPKColor(red:0.867, green:0.882, blue:0.894, alpha:1))
 
     /// The `buttonDisabledBackgroundColor` internal color.
     
@@ -177,15 +187,15 @@ internal extension BPKColor {
     static let buttonSecondaryOnDarkNormalBackgroundColor = BPKColor(red:0.141, green:0.200, blue:0.275, alpha:1)
         .darkVariant(BPKColor(red:0.141, green:0.200, blue:0.275, alpha:1))
 
+    /// The `buttonSecondaryOnDarkDisabledForegroundColor` internal color.
+    
+    static let buttonSecondaryOnDarkDisabledForegroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.2)
+        .darkVariant(BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.2))
+
     /// The `buttonPrimaryOnDarkPressedBackgroundColor` internal color.
     
     static let buttonPrimaryOnDarkPressedBackgroundColor = BPKColor(red:0.796, green:0.808, blue:0.824, alpha:1)
         .darkVariant(BPKColor(red:0.796, green:0.808, blue:0.824, alpha:1))
-
-    /// The `buttonSecondaryOnDisabledForegroundColor` internal color.
-    
-    static let buttonSecondaryOnDisabledForegroundColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.2)
-        .darkVariant(BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.2))
 
     /// The `skeletonShimmerStartEndColor` internal color.
     

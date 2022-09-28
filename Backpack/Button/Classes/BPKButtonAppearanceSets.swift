@@ -125,8 +125,8 @@ public class BPKButtonAppearanceSets: NSObject {
             background: BPKColor.buttonPrimaryOnDarkPressedBackgroundColor,
             foreground: BPKColor.textOnLightColor),
         disabledAppearance: .with(
-            background: BPKColor.buttonPrimaryOnDisabledBackgroundColor,
-            foreground: BPKColor.buttonPrimaryOnDisabledForegroundColor
+            background: BPKColor.buttonPrimaryOnDarkDisabledBackgroundColor,
+            foreground: BPKColor.buttonPrimaryOnDarkDisabledForegroundColor
         ),
         highlightedAppearance: .with(
             background: BPKColor.buttonPrimaryOnDarkPressedBackgroundColor,
@@ -142,8 +142,8 @@ public class BPKButtonAppearanceSets: NSObject {
             background: BPKColor.buttonSecondaryOnDarkPressedBackgroundColor,
             foreground: BPKColor.textOnDarkColor),
         disabledAppearance: .with(
-            background: BPKColor.buttonSecondaryOnDisabledBackgroundColor,
-            foreground: BPKColor.buttonSecondaryOnDisabledForegroundColor
+            background: BPKColor.buttonSecondaryOnDarkDisabledBackgroundColor,
+            foreground: BPKColor.buttonSecondaryOnDarkDisabledForegroundColor
         ),
         highlightedAppearance: .with(
             background: BPKColor.buttonSecondaryOnDarkPressedBackgroundColor,
@@ -158,7 +158,10 @@ public class BPKButtonAppearanceSets: NSObject {
         loading: .with(
             background: BPKColor.buttonPrimaryOnLightPressedBackgroundColor,
             foreground: BPKColor.textOnDarkColor),
-        disabledAppearance: disabledAppearance,
+        disabledAppearance: .with(
+            background: BPKColor.buttonPrimaryOnLightDisabledBackgroundColor,
+            foreground: BPKColor.buttonPrimaryOnLightDisabledForegroundColor
+        ),
         highlightedAppearance: .with(
             background: BPKColor.buttonPrimaryOnLightPressedBackgroundColor,
             foreground: BPKColor.textOnDarkColor

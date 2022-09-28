@@ -51,8 +51,8 @@ struct SecondaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
     var regular = BPKButtonColors(background: .buttonSecondaryOnDarkNormalBackgroundColor, foreground: .textOnDarkColor)
     var highlighted = BPKButtonColors(background: .buttonSecondaryOnDarkPressedBackgroundColor, foreground: .textOnDarkColor)
     var disabled = BPKButtonColors(
-        background: .buttonSecondaryOnDisabledBackgroundColor,
-        foreground: .buttonSecondaryOnDisabledForegroundColor)
+        background: .buttonSecondaryOnDarkDisabledBackgroundColor,
+        foreground: .buttonSecondaryOnDarkDisabledForegroundColor)
     
     init() {}
 }
@@ -92,7 +92,10 @@ struct LinkOnDarkBPKButtonColorSet: BPKButtonColorSet {
 struct PrimaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
     var regular = BPKButtonColors(background: .buttonPrimaryOnDarkNormalBackgroundColor, foreground: .textOnLightColor)
     var highlighted = BPKButtonColors(background: .buttonPrimaryOnDarkPressedBackgroundColor, foreground: .textOnLightColor)
-    var disabled = BPKButtonColors.buttonPrimaryOnDisabled
+    var disabled = BPKButtonColors(
+        background: .buttonPrimaryOnDarkDisabledBackgroundColor,
+        foreground: .buttonPrimaryOnDarkDisabledForegroundColor
+    )
     
     init() {}
 }
@@ -100,7 +103,10 @@ struct PrimaryOnDarkBPKButtonColorSet: BPKButtonColorSet {
 struct PrimaryOnLightBPKButtonColorSet: BPKButtonColorSet {
     var regular = BPKButtonColors(background: .buttonPrimaryOnLightNormalBackgroundColor, foreground: .textOnDarkColor)
     var highlighted = BPKButtonColors(background: .buttonPrimaryOnLightPressedBackgroundColor, foreground: .textOnDarkColor)
-    var disabled = BPKButtonColors.buttonPrimaryOnDisabled
+    var disabled = BPKButtonColors(
+        background: .buttonPrimaryOnLightDisabledBackgroundColor,
+        foreground: .buttonPrimaryOnLightDisabledForegroundColor
+    )
     
     init() {}
 }
