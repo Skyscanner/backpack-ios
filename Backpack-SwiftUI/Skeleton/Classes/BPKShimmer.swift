@@ -60,7 +60,7 @@ struct BPKShimmer: ViewModifier {
         }
         
         private func alpha(_ alpha: CGFloat) -> Color {
-            return Color(.white.withAlphaComponent(alpha).darkVariant(.black.withAlphaComponent(alpha)))
+            return Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
         }
     }
 }
