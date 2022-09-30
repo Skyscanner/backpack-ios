@@ -182,8 +182,8 @@ const BPKFontStyle fontStyle = BPKFontStyleTextHeading5;
     self.selectionLayer.fillColor = rangeColor.CGColor;
     self.samedayLayer.fillColor = BPKColor.clear.CGColor;
     self.samedayLayer.strokeColor = self.appearance.selectionColor.CGColor;
-    self.layer.borderColor = BPKColor.panjin.CGColor;
-    self.titleLabel.layer.borderColor = BPKColor.panjin.CGColor;
+    self.layer.borderColor = BPKColor.statusDangerSpotColor.CGColor;
+    self.titleLabel.layer.borderColor = BPKColor.statusDangerSpotColor.CGColor;
     UIColor *rangeTitleColor = [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 
     if (self.titleLabel.text) {

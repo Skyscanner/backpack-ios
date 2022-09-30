@@ -97,7 +97,7 @@ private struct CardButtonStyle: ButtonStyle {
         configuration.label
             .background(backgroundColor)
             .overlay(
-                Color(.skyGrayTint02)
+                Color(.surfaceContrastColor)
                     .opacity(configuration.isPressed ? 0.2 : 0)
                     .animation(.easeInOut)
             )

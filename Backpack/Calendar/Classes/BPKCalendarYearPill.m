@@ -42,7 +42,7 @@
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.numberOfLines = 1;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        self.backgroundColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.white];
+        self.backgroundColor = BPKColor.corePrimaryColor;
 
         [[BPKShadow shadowLg] applyToLayer:self.layer];
         [self addSubview:self.label];
@@ -66,8 +66,7 @@
     if (self.year != nil) {
         self.label.attributedText = [BPKFont attributedStringWithFontStyle:BPKFontStyleTextCaption
                                                                    content:[self.year stringValue]
-                                                                 textColor:[BPKColor dynamicColorWithLightVariant:BPKColor.white
-                                                                                                      darkVariant:BPKColor.skyGray]];
+                                                                 textColor:BPKColor.textOnDarkColor];
         [self.label sizeToFit];
     }
 }

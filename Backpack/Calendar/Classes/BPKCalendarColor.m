@@ -24,7 +24,7 @@
 @implementation BPKCalendarColor
 
 + (UIColor *)normalColor {
-    return BPKColor.backgroundColor;
+    return BPKColor.canvasColor;
 }
 
 + (UIColor *)normalTitleColor {
@@ -48,7 +48,7 @@
 }
 
 + (UIColor *)noDataColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint03 darkVariant:BPKColor.blackTint06];
+    return BPKColor.textDisabledColor;
 }
 
 + (UIColor *)noDataTitleColor {
@@ -60,7 +60,7 @@
 }
 
 + (UIColor *)neutralTitleColor {
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGray darkVariant:BPKColor.black];
+    return BPKColor.textOnLightColor;
 }
 
 @end

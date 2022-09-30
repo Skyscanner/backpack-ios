@@ -151,7 +151,7 @@ const BOOL BPKCardDefaultPaddedValue = YES;
 - (void)setupWithPadded:(BOOL)padded cornerStyle:(BPKCardCornerStyle)cornerStyle {
     self.configuration = [[BPKCardConfigurationContainer alloc] init];
     self.tintLayer = [CALayer layer];
-    self.tintLayer.backgroundColor = BPKColor.skyGrayTint02.CGColor;
+    self.tintLayer.backgroundColor = BPKColor.surfaceContrastColor.CGColor;
     self.tintLayer.opacity = 0;
     [self.layer addSublayer:self.tintLayer];
 

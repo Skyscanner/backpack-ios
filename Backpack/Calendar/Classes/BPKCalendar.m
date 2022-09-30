@@ -249,7 +249,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     appearance.separators = FSCalendarSeparatorNone;
     appearance.weekdayFont = weekdayTextAttributes[NSFontAttributeName];
     appearance.todayColor = BPKColor.clear;
-    appearance.weekdayTextColor = [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint02 darkVariant:BPKColor.white];
+    appearance.weekdayTextColor = BPKColor.textSecondaryColor;
     appearance.titleDefaultColor = BPKColor.textPrimaryColor;
     appearance.selectionColor = self.currentDateSelectedBackgroundColor;
     appearance.titleSelectionColor = self.currentDateSelectedContentColor;
@@ -599,7 +599,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
         return self.appearance.titleDefaultColor;
     }
 
-    return [BPKColor dynamicColorWithLightVariant:BPKColor.skyGrayTint04 darkVariant:BPKColor.skyGrayTint03];
+    return BPKColor.textDisabledColor;
 }
 
 - (nullable UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderDefaultColorForDate:(NSDate *)date {
