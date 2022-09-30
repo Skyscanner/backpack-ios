@@ -31,9 +31,9 @@ struct TokenCellsProvider {
     
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
-            PresentableCellDataSource(
+            PresentableCellDataSource.custom(
                 title: "Colors",
-                storyboard: .named("Main", on: "ColorsViewController"),
+                customController: { ContentUIHostingController(ColorTokensView()) },
                 showPresentable: show(presentable:)
             ),
             GroupCellDataSource(
