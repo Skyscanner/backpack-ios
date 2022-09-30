@@ -31,16 +31,6 @@ class ThemeRegistry: NSObject {
         let selectableCellAppearance =
         BPKTableViewSelectableCell.appearance(whenContainedInInstancesOf: [themeContainerUIViewClass])
         selectableCellAppearance.selectedColor = theme.primaryColor
-        
-        let colorCellAppearance =
-        ColorPreviewCollectionViewCell.appearance(whenContainedInInstancesOf: [themeContainerUIViewClass])
-        colorCellAppearance.primaryColor = theme.primaryColor
-        colorCellAppearance.skyGrayTint07 = theme.gray50
-        colorCellAppearance.skyGrayTint06 = theme.gray100
-        colorCellAppearance.skyGrayTint04 = theme.gray300
-        colorCellAppearance.skyGrayTint02 = theme.gray500
-        colorCellAppearance.skyGrayTint01 = theme.gray700
-        colorCellAppearance.skyGray = theme.gray900
     }
     
 }

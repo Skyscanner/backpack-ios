@@ -83,7 +83,6 @@
 		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
-		D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */; };
 		D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */; };
 		D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217701725ACCC5E00C0FD8C /* Presentable.swift */; };
 		D217702425ACCC9700C0FD8C /* EnrichablePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D217702325ACCC9700C0FD8C /* EnrichablePresentable.swift */; };
@@ -128,7 +127,6 @@
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
 		D2C4467023158479009E58A5 /* Panel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C4466F23158479009E58A5 /* Panel.storyboard */; };
 		D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C49DB623856A55008D41FB /* Calendar.storyboard */; };
-		D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */; };
 		D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CCB827243F538400788DEC /* BarCharts.storyboard */; };
 		D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB829243F544300788DEC /* BarChartViewController.swift */; };
 		D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */; };
@@ -271,7 +269,6 @@
 		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
-		D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationUITest.swift; sourceTree = "<group>"; };
 		D217701725ACCC5E00C0FD8C /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		D217702325ACCC9700C0FD8C /* EnrichablePresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrichablePresentable.swift; sourceTree = "<group>"; };
@@ -318,7 +315,6 @@
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
 		D2C4466F23158479009E58A5 /* Panel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Panel.storyboard; sourceTree = "<group>"; };
 		D2C49DB623856A55008D41FB /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
-		D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsViewController.swift; sourceTree = "<group>"; };
 		D2CCB827243F538400788DEC /* BarCharts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BarCharts.storyboard; sourceTree = "<group>"; };
 		D2CCB829243F544300788DEC /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		D2CD11E6215E4D83000CEA5C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
@@ -644,18 +640,8 @@
 			isa = PBXGroup;
 			children = (
 				793EC5532836140A00D627F6 /* Components */,
-				793EC5522836140400D627F6 /* Tokens */,
 			);
 			path = UIKit;
-			sourceTree = "<group>";
-		};
-		793EC5522836140400D627F6 /* Tokens */ = {
-			isa = PBXGroup;
-			children = (
-				D2C9CADE214685BC00AC30CF /* ColorsViewController.swift */,
-				D2161D512146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift */,
-			);
-			path = Tokens;
 			sourceTree = "<group>";
 		};
 		793EC5532836140A00D627F6 /* Components */ = {
@@ -1329,10 +1315,8 @@
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
 				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
 				D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */,
-				D2161D522146B8F40097D0B1 /* ColorPreviewCollectionViewCell.swift in Sources */,
 				7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */,
 				53B6DB5E27FC39B40042B7C0 /* CalendarGroups.swift in Sources */,
-				D2C9CADF214685BC00AC30CF /* ColorsViewController.swift in Sources */,
 				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,
 				D2297C2A232A7F3F006E00E0 /* RatingSelectorViewController.swift in Sources */,
 				53B6DB6827FC4D520042B7C0 /* HorizontalNavigationGroups.swift in Sources */,
