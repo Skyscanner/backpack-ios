@@ -54,13 +54,13 @@ struct BPKShimmer: ViewModifier {
             LinearGradient(gradient:
                 Gradient(stops: [
                     .init(color: alpha(1), location: phase),
-                    .init(color: alpha(0.4), location: phase + 0.1),
+                    .init(color: alpha(0.8), location: phase + 0.1),
                     .init(color: alpha(1), location: phase + 0.2)
                 ]), startPoint: .leading, endPoint: .trailing)
         }
         
         private func alpha(_ alpha: CGFloat) -> Color {
-            return Color(.white.withAlphaComponent(alpha).darkVariant(.black.withAlphaComponent(alpha)))
+            return Color(BPKColor.skeletonShimmerCenterColor.withAlphaComponent(alpha))
         }
     }
 }

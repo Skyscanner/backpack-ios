@@ -23,7 +23,7 @@ public struct BPKSkeleton: View {
     private let type: BPKSkeleton.ViewType
     private let size: BPKSkeleton.Size
     private let style: BPKSkeleton.Style
-    private let color: Color = Color(.skyGrayTint06.darkVariant(.blackTint02))
+    private let color = Color(BPKColor.surfaceHighlightColor)
     private let bodytextRowSpacing: CGFloat = BPKSpacing.md.value
    
     private init(
