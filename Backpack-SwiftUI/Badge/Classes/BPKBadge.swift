@@ -98,6 +98,30 @@ fileprivate extension View {
 
 struct BPKBadge_Previews: PreviewProvider {
     static var previews: some View {
-        BPKBadge("Success", icon: .return)
+        let styles: [(BPKBadge.Style, String, BPKIcon, Bool)] = [
+            (.normal, "Normal", .tickCircle, false),
+            (.strong, "Strong", .tickCircle, false),
+            (.success, "Success", .tickCircle, false),
+            (.warning, "Warning", .helpCircle, false),
+            (.destructive, "Critical", .exclamation, false),
+            (.inverse, "Inverse", .tickCircle, true),
+            (.outline, "Outline", .tickCircle, true)
+        ]
+        return Group {
+            ForEach([ColorScheme.light, ColorScheme.dark], id: \.self) { scheme in
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(styles, id: \.0) { style in
+                        BPKBadge(style.1, icon: style.2)
+                            .badgeStyle(style.0)
+                            .padding(10)
+                            .background(style.3 ? BPKColor.surfaceHighlightColor : BPKColor.surfaceDefaultColor)
+                        
+                    }
+                    
+                }
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(scheme)
+            }
+        }
     }
 }

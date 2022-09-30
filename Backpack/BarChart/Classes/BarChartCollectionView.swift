@@ -97,7 +97,7 @@ internal final class BPKBarChartCollectionView: UICollectionView {
 
     lazy fileprivate var selectedMarker: UIView = {
         let view = UIView()
-        view.backgroundColor = BPKColor.monteverde
+        view.backgroundColor = BPKColor.coreAccentColor
         view.layer.opacity = 0
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false

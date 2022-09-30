@@ -67,7 +67,14 @@ public struct BPKButton: View {
     public var body: some View {
         Button(action: action) {
             ZStack {
-                ButtonLoadingContentView(loading: loading, size: size)
+                ButtonLoadingContentView(
+                    loading: loading,
+                    size: size,
+                    style: style,
+                    colorProvider: ButtonColorProvider(
+                        colorSetFactory: DefaultButtonColorSetFactory()
+                    )
+                )
                 ButtonContentView(title: title, size: size, icon: icon)
                     .opacity(loading ? 0 : 1)
             }
@@ -117,12 +124,18 @@ public struct BPKButton: View {
 private struct ButtonLoadingContentView: View {
     let loading: Bool
     let size: BPKButton.Size
+    let style: BPKButton.Style
+    let colorProvider: ButtonColorProvider
     
     var body: some View {
         if loading {
-            BPKSpinner(spinnerSize, style: .disabled)
+            BPKSpinner(spinnerSize, color: spinnerColor)
                 .accessibilityHidden(true)
         }
+    }
+    
+    private var spinnerColor: BPKColor {
+        colorProvider.color(forStyle: style, currentState: .loading).foreground
     }
     
     private var spinnerSize: BPKSpinner.Size {

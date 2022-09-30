@@ -118,7 +118,7 @@ public class BPKSkeleton: UIView {
     }
 
     public static func startShimmer(view: UIView) {
-        view.layer.sublayers?.filter { $0 is BPKShimmerLayer }.forEach { $0.removeFromSuperlayer() }
+        BPKSkeleton.removeShimmer(view: view)
         
         let gradientLayer = BPKShimmerLayer()
         let transparent = BPKSkeletonConstants.defaultColor.withAlphaComponent(0).cgColor

@@ -67,7 +67,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
     """
     
     func testDialogViewNoButtons() {
-        let dialog = dialog(title: title, message: message, icon: .tick(.monteverde))
+        let dialog = dialog(title: title, message: message, icon: .tick(.accent))
         BPKSnapshotVerifyViewLight(wrap(dialog))
     }
     
@@ -75,7 +75,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
         let dialog = dialog(
             title: title,
             message: message,
-            icon: .lighting(.kolkata),
+            icon: .lighting(.warning),
             actions: [.continue, .skip]
         )
         BPKSnapshotVerifyViewLight(wrap(dialog))
@@ -152,11 +152,11 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
         let dialog = dialog(
             title: title,
             message: message,
-            icon: .lighting(.kolkata),
+            icon: .lighting(.warning),
             actions: [.continue, .skip]
         )
         let wrapper = wrap(dialog)
-        dialog.iconDefinition = .key(.panjin)
+        dialog.iconDefinition = .key(.danger)
         BPKSnapshotVerifyViewLight(wrapper)
     }
 }
@@ -193,7 +193,7 @@ private extension BPKDialogIconDefinition {
 }
 
 private extension UIColor {
-    static let monteverde = BPKColor.monteverde
-    static let kolkata = BPKColor.kolkata
-    static let panjin = BPKColor.panjin
+    static let accent = BPKColor.coreAccentColor
+    static let warning = BPKColor.statusWarningSpotColor
+    static let danger = BPKColor.statusDangerSpotColor
 }

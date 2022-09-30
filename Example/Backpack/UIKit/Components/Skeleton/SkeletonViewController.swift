@@ -30,60 +30,10 @@ class SkeletonViewController: UIViewController {
         stackView.spacing = BPKSpacingBase
         return stackView
     }()
-    
-    private lazy var imageRow: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .bottom
-        stackView.spacing = BPKSpacingBase
-        return stackView
-    }()
-    
-    private lazy var headlineRow: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .bottom
-        stackView.spacing = BPKSpacingBase
-        return stackView
-    }()
-    
-    private lazy var circleRow: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .bottom
-        stackView.spacing = BPKSpacingBase
-        return stackView
-    }()
-    
-    private lazy var bodytextRow: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .bottom
-        stackView.spacing = BPKSpacingLg
-        return stackView
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = BPKColor.dynamicColor(withLightVariant: BPKColor.white, darkVariant: BPKColor.black)
-        view.addSubview(containerView)
-        imageSkeletonRow()
-        circleSkeletonRow()
-        headlineSkeletonRow()
-        bodytextSkeletonRow()
-          
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingLg),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        setupView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,63 +41,98 @@ class SkeletonViewController: UIViewController {
         BPKSkeleton.startShimmer(view: containerView)
     }
     
-    private func imageSkeletonRow() {
-        let defaultImage = BPKSkeleton(type: .image)
-        let roundedImage = BPKSkeleton(type: .image, size: .default, style: .rounded)
-        let customImage = BPKSkeleton(type: .image, size: .custom(size: CGSize(width: 160, height: 160)))
-        let title = BPKLabel(fontStyle: .textHeading5)
-        title.text = "ImageSKeleton"
+    private func setupView() {
+        view.backgroundColor = BPKColor.canvasColor
+        view.addSubview(containerView)
         
-        imageRow.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addArrangedSubview(title)
-        containerView.addArrangedSubview(imageRow)
-        imageRow.addArrangedSubview(defaultImage)
-        imageRow.addArrangedSubview(roundedImage)
-        imageRow.addArrangedSubview(customImage)
+        containerView.addArrangedSubview(generate(title: "Image"))
+        containerView.addArrangedSubview(generateRow(type: .image))
+        
+        containerView.addArrangedSubview(generate(title: "Circle"))
+        containerView.addArrangedSubview(generateRow(type: .circle))
+        
+        containerView.addArrangedSubview(generate(title: "Headline"))
+        containerView.addArrangedSubview(generateRow(type: .headline))
+        
+        containerView.addArrangedSubview(generate(title: "BodyText"))
+        containerView.addArrangedSubview(generateRow(type: .bodytext))
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            containerView.topAnchor.constraint(
+                equalTo: view.readableContentGuide.topAnchor,
+                constant: BPKSpacingBase
+            ),
+            containerView.bottomAnchor.constraint(
+                equalTo: view.readableContentGuide.bottomAnchor,
+                constant: -BPKSpacingBase
+            )
+        ])
+    }
+}
+
+// MARK: Helper functions
+extension SkeletonViewController {
+    private func generateRow(type: BPKSkeletonType) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .bottom
+        stackView.spacing = BPKSpacingBase
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        generateSkeletons(
+            withType: type,
+            sizes: sizes(forType: type),
+            styles: styles(forType: type)
+        ).forEach(stackView.addArrangedSubview(_:))
+        
+        return stackView
     }
     
-    private func circleSkeletonRow() {
-        let defaultCircle = BPKSkeleton(type: .circle)
-        let small = BPKSkeleton(type: .circle, size: .small)
-        let customImage = BPKSkeleton(type: .circle, size: .custom(size: CGSize(width: 100, height: 120)))
-        let title = BPKLabel(fontStyle: .textHeading5)
-        title.text = "CircleSKeleton"
+    private func generate(title: String) -> BPKLabel {
+        let label = BPKLabel(fontStyle: .textHeading5)
+        label.text = title
         
-        circleRow.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addArrangedSubview(title)
-        containerView.addArrangedSubview(circleRow)
-        circleRow.addArrangedSubview(small)
-        circleRow.addArrangedSubview(defaultCircle)
-        circleRow.addArrangedSubview(customImage)
+        return label
     }
     
-    private func headlineSkeletonRow() {
-        let defaultImage = BPKSkeleton(type: .headline)
-        let small = BPKSkeleton(type: .headline, size: .small)
-        let large = BPKSkeleton(type: .headline, size: .large)
-        let custom = BPKSkeleton(type: .headline, size: .custom(size: CGSize(width: 88, height: 48)))
-        let title = BPKLabel(fontStyle: .textHeading5)
-        title.text = "HeadlineSKeleton"
+    private func generateSkeletons(
+        withType type: BPKSkeletonType,
+        sizes: [BPKSkeletonSize],
+        styles: [BPKSkeletonStyle]) -> [BPKSkeleton] {
+        var skeletons = [BPKSkeleton]()
         
-        headlineRow.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addArrangedSubview(title)
-        containerView.addArrangedSubview(headlineRow)
-        headlineRow.addArrangedSubview(small)
-        headlineRow.addArrangedSubview(defaultImage)
-        headlineRow.addArrangedSubview(large)
-        headlineRow.addArrangedSubview(custom)
+        sizes.forEach { size in
+            styles.forEach { style in
+                skeletons.append(BPKSkeleton(type: type, size: size, style: style))
+            }
+        }
+        
+        return skeletons
     }
     
-    private func bodytextSkeletonRow() {
-        let bodytext = BPKSkeleton(type: .bodytext)
-        let custom = BPKSkeleton(type: .bodytext, size: .custom(size: CGSize(width: 260, height: 60)))
-        let title = BPKLabel(fontStyle: .textHeading5)
-        title.text = "BodytextSKeleton"
-        
-        bodytextRow.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addArrangedSubview(title)
-        containerView.addArrangedSubview(bodytextRow)
-        bodytextRow.addArrangedSubview(bodytext)
-        bodytextRow.addArrangedSubview(custom)
+    private func sizes(forType type: BPKSkeletonType) -> [BPKSkeletonSize] {
+        switch type {
+        case .image:
+            return [.default]
+        case .headline:
+            return [.small, .default, .large]
+        case .circle:
+            return [.small, .default]
+        case .bodytext:
+            return [.default]
+        }
+    }
+    
+    private func styles(forType type: BPKSkeletonType) -> [BPKSkeletonStyle] {
+        switch type {
+        case .image:
+            return [.default, .rounded]
+        default:
+            return [.default]
+        }
     }
 }
