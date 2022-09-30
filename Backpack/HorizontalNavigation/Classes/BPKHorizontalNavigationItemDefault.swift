@@ -56,7 +56,7 @@ class BPKHorizontalNavigationItemDefault<
         
         switch appearance {
         case .normal: return .bpk_textPrimary
-        case .alternate: return .bpk_skyGrayTint07
+        case .alternate: return .bpk_textOnDark
         }
     }
 

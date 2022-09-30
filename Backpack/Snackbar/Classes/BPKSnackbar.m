@@ -111,7 +111,7 @@ static int const BPKSnackbarHeight = 60;
         self.titleLabel.textColor = BPKColor.white;
         self.textLabel.textColor = BPKColor.white;
         self.leftIconContainer.tintColor = BPKColor.white;
-        self.actionButton.linkContentColor = BPKColor.monteverde;
+        self.actionButton.linkContentColor = BPKColor.textOnDarkColor;
         [self.actionButton addTarget:self action:@selector(actionButtonDismissSnackbar) forControlEvents:UIControlEventTouchUpInside];
 
         [self addSubview:self.snackbarView];
@@ -166,7 +166,7 @@ static int const BPKSnackbarHeight = 60;
     self.titleLabel.text = title;
     self.textLabel.text = text;
     self.delegate = delegate;
-    self.snackbarView.backgroundColor = BPKColor.skyBlueShade02;
+    self.snackbarView.backgroundColor = BPKColor.corePrimaryColor;
     self.containerViewController = viewController;
 
     [self configureActionButton:button];
