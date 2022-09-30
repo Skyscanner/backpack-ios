@@ -21,15 +21,7 @@ import UIKit
 import SwiftUI
 
 enum BPKSkeletonConstants {
-    static let backgroundColor = BPKColor.dynamicColor(
-        withLightVariant: BPKColor.skyGrayTint06,
-        darkVariant: BPKColor.blackTint02
-    )
-    
-    static let defaultColor = BPKColor.dynamicColor(
-        withLightVariant: BPKColor.white,
-        darkVariant: BPKColor.black
-    )
+    static let backgroundColor = BPKColor.surfaceHighlightColor
 }
 
 public class BPKSkeleton: UIView {
@@ -120,34 +112,20 @@ public class BPKSkeleton: UIView {
     public static func startShimmer(view: UIView) {
         BPKSkeleton.removeShimmer(view: view)
         
-        let gradientLayer = BPKShimmerLayer()
-        let transparent = BPKSkeletonConstants.defaultColor.withAlphaComponent(0).cgColor
-        let midColor = BPKSkeletonConstants.defaultColor.withAlphaComponent(0.6).cgColor
-        let duration = 1.0
-        let delay = 0.2
-            
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [transparent, midColor, transparent]
-        gradientLayer.locations = [0, 0.5, 1]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.masksToBounds = true
+        let shimmer = BPKShimmerOverlayView()
+        shimmer.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(shimmer)
         
-        let gradientChangeAnimation = CABasicAnimation(keyPath: "locations")
-        gradientChangeAnimation.beginTime = CACurrentMediaTime() + delay
-        gradientChangeAnimation.duration = duration
-        gradientChangeAnimation.fillMode = .removed
-        gradientChangeAnimation.fromValue = [-0.6, -0.3, 0]
-        gradientChangeAnimation.toValue = [1.0, 1.3, 1.6]
-        gradientChangeAnimation.repeatCount = .infinity
-        gradientChangeAnimation.autoreverses = false
-        
-        gradientLayer.add(gradientChangeAnimation, forKey: "shimmer")
-        view.layer.addSublayer(gradientLayer)
+        NSLayoutConstraint.activate([
+            shimmer.topAnchor.constraint(equalTo: view.topAnchor),
+            shimmer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            shimmer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            shimmer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     public static func removeShimmer(view: UIView) {
-        view.layer.sublayers?.filter { $0 is BPKShimmerLayer }.forEach { $0.removeFromSuperlayer() }
+        view.subviews.filter { $0 is BPKShimmerOverlayView }.forEach { $0.removeFromSuperview() }
     }
 }
 
