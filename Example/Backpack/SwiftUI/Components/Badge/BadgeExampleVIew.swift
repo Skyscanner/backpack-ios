@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 struct BadgeExampleVIew: View {
     var body: some View {
         ZStack {
-            Color(.backgroundColor)
+            Color(.canvasColor)
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
@@ -31,8 +31,8 @@ struct BadgeExampleVIew: View {
                 makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
                 makeBadgeRow(text: "Warning", icon: .helpCircle, style: .warning)
                 makeBadgeRow(text: "Destructive", icon: .closeCircle, style: .destructive)
-                makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .skyGray)
-                makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .skyBlue)
+                makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
+                makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
                 Spacer()
             }
         }
@@ -42,7 +42,7 @@ struct BadgeExampleVIew: View {
         text: String,
         icon: Backpack_SwiftUI.BPKIcon,
         style: Backpack_SwiftUI.BPKBadge.Style,
-        background: Backpack_SwiftUI.BPKColor = .backgroundColor
+        background: Backpack_SwiftUI.BPKColor = .canvasColor
     ) -> some View {
         HStack {
             Spacer()

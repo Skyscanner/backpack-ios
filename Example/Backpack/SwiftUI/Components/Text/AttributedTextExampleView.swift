@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 struct AttributedTextExampleView: View {
     let items: [BPKAttributedText.Item] = [
         .init("This is a ", style: .heading2),
-        .init("BPKAttributedText ", style: .heading1, color: .abisko),
+        .init("BPKAttributedText ", style: .heading1, color: .statusDangerSpotColor),
         .init("Which supports ", style: .heading2),
         .init("multiple different font styles "),
         .init("You can simply create a ", style: .heading3),
@@ -31,7 +31,7 @@ struct AttributedTextExampleView: View {
         .init("and pass different ", style: .footnote),
         .init("items with different ", style: .label3),
         .init("font styles "),
-        .init("and colors.", color: .bunol)
+        .init("and colors.", color: .statusWarningSpotColor)
     ]
     
     var body: some View {

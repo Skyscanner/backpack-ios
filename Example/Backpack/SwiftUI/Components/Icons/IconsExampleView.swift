@@ -50,7 +50,7 @@ struct IconsExampleView: View {
                 ForEach(filtered, id: \.name) { icon in
                     VStack {
                         BPKIconView(icon, size: size)
-                            .foregroundColor(.primaryColor)
+                            .foregroundColor(.coreAccentColor)
                         BPKText(icon.name, style: .caption)
                     }
                 }

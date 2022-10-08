@@ -37,7 +37,7 @@ struct RadiusTokensView: View {
                 ForEach(radiusTokens, id: \.0) { token in
                     Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                         .padding(.lg)
-                        .background(.primaryColor)
+                        .background(.corePrimaryColor)
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: token.1))
                 }

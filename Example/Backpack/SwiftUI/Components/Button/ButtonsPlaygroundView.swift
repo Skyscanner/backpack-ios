@@ -72,7 +72,7 @@ struct ButtonsPlaygroundView: View {
         || buttonType == .secondaryOnDark
         || buttonType == .linkOnDark
         let isOnLightStyle = buttonType == .primaryOnLight
-        return isOnDarkStyle ? .black : isOnLightStyle ? .white : .backgroundColor
+        return isOnDarkStyle ? .black : isOnLightStyle ? .white : .canvasColor
     }
     
     private var stylesPicker: some View {
