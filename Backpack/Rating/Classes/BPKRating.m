@@ -237,15 +237,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateStyle {
     self.ratingBubble.ratingValue = self.ratingValue;
     if (self.ratingValue < 6.00) {
-        self.ratingBubble.backgroundColor = self.lowRatingColor ?: BPKColor.panjin;
+        self.ratingBubble.backgroundColor = self.lowRatingColor ?: BPKColor.statusDangerFillColor;
         self.textWrapper.title = self.title.lowRatingText;
         self.textWrapper.subtitle = self.subtitle.lowRatingText;
     } else if (self.ratingValue < 8.00) {
-        self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.kolkata;
+        self.ratingBubble.backgroundColor = self.mediumRatingColor ?: BPKColor.statusWarningFillColor;
         self.textWrapper.title = self.title.mediumRatingText;
         self.textWrapper.subtitle = self.subtitle.mediumRatingText;
     } else {
-        self.ratingBubble.backgroundColor = self.highRatingColor ?: BPKColor.monteverde;
+        self.ratingBubble.backgroundColor = self.highRatingColor ?: BPKColor.statusSuccessFillColor;
         self.textWrapper.title = self.title.highRatingText;
         self.textWrapper.subtitle = self.subtitle.highRatingText;
     }

@@ -30,13 +30,13 @@ internal extension BPKColor {
     
     static let chipOnDarkNormalBackgroundColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2),
-        darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
+        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `chipOnDarkPressedBackgroundColor` internal color.
     
     static let chipOnDarkPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.776, green: 0.800, blue: 0.831, alpha: 1),
-        darkVariant: UIColor(red: 0.000, green: 0.157, blue: 0.329, alpha: 1))
+        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
+        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
 
     /// The `chipOnDarkOnBackgroundColor` internal color.
     
@@ -47,8 +47,8 @@ internal extension BPKColor {
     /// The `chipDefaultNormalBackgroundColor` internal color.
     
     static let chipDefaultNormalBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.867, green: 0.867, blue: 0.898, alpha: 1),
-        darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
+        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
+        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 
     /// The `chipDefaultOnBackgroundColor` internal color.
     
@@ -59,19 +59,19 @@ internal extension BPKColor {
     /// The `chipDisabledBackgroundColor` internal color.
     
     static let chipDisabledBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1),
-        darkVariant: UIColor(red: 0.043, green: 0.067, blue: 0.102, alpha: 1))
+        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
+        darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `chipDefaultPressedBackgroundColor` internal color.
     
     static let chipDefaultPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.776, green: 0.800, blue: 0.831, alpha: 1),
-        darkVariant: UIColor(red: 0.000, green: 0.157, blue: 0.329, alpha: 1))
+        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
+        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
 
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
     static let buttonSecondaryPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.776, green: 0.800, blue: 0.831, alpha: 1),
+        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
         darkVariant: UIColor(red: 0.004, green: 0.035, blue: 0.075, alpha: 1))
 
     /// The `buttonLinkNormalForegroundColor` internal color.
@@ -125,8 +125,8 @@ internal extension BPKColor {
     /// The `buttonSecondaryOnDarkDisabledBackgroundColor` internal color.
     
     static let buttonSecondaryOnDarkDisabledBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.043, green: 0.067, blue: 0.102, alpha: 1),
-        darkVariant: UIColor(red: 0.043, green: 0.067, blue: 0.102, alpha: 1))
+        withLightVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1),
+        darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `buttonDestructiveNormalForegroundColor` internal color.
     
@@ -161,8 +161,8 @@ internal extension BPKColor {
     /// The `buttonPrimaryOnLightDisabledBackgroundColor` internal color.
     
     static let buttonPrimaryOnLightDisabledBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1),
-        darkVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1))
+        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
+        darkVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1))
 
     /// The `buttonDestructiveNormalBackgroundColor` internal color.
     
@@ -179,20 +179,20 @@ internal extension BPKColor {
     /// The `buttonDestructivePressedBackgroundColor` internal color.
     
     static let buttonDestructivePressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.906, green: 0.031, blue: 0.400, alpha: 1),
+        withLightVariant: UIColor(red: 0.784, green: 0.016, blue: 0.337, alpha: 1),
         darkVariant: UIColor(red: 1.000, green: 0.392, blue: 0.612, alpha: 1))
 
     /// The `buttonPrimaryPressedBackgroundColor` internal color.
     
     static let buttonPrimaryPressedBackgroundColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1),
-        darkVariant: UIColor(red: 0.082, green: 0.275, blue: 0.475, alpha: 1))
+        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
 
     /// The `buttonPrimaryOnDarkDisabledBackgroundColor` internal color.
     
     static let buttonPrimaryOnDarkDisabledBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1),
-        darkVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1))
+        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
+        darkVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1))
 
     /// The `buttonLinkOnDarkPressedForegroundColor` internal color.
     
@@ -209,8 +209,8 @@ internal extension BPKColor {
     /// The `buttonDisabledBackgroundColor` internal color.
     
     static let buttonDisabledBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.867, green: 0.882, blue: 0.894, alpha: 1),
-        darkVariant: UIColor(red: 0.043, green: 0.067, blue: 0.102, alpha: 1))
+        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
+        darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
     /// The `buttonSecondaryOnDarkNormalBackgroundColor` internal color.
     
@@ -227,8 +227,8 @@ internal extension BPKColor {
     /// The `buttonPrimaryOnDarkPressedBackgroundColor` internal color.
     
     static let buttonPrimaryOnDarkPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.796, green: 0.808, blue: 0.824, alpha: 1),
-        darkVariant: UIColor(red: 0.796, green: 0.808, blue: 0.824, alpha: 1))
+        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
+        darkVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1))
 
     /// The `skeletonShimmerStartEndColor` internal color.
     

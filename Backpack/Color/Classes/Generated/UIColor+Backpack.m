@@ -52,16 +52,8 @@
     return BPKColor.black;
 }
 
-+ (UIColor *)bpk_skyGrayTint02 {
-    return BPKColor.skyGrayTint02;
-}
-
 + (UIColor *)bpk_sagano {
     return BPKColor.sagano;
-}
-
-+ (UIColor *)bpk_skyGrayTint03 {
-    return BPKColor.skyGrayTint03;
 }
 
 + (UIColor *)bpk_skyGrayTint04 {
@@ -72,28 +64,12 @@
     return BPKColor.harbour;
 }
 
-+ (UIColor *)bpk_skyGrayTint05 {
-    return BPKColor.skyGrayTint05;
-}
-
-+ (UIColor *)bpk_skyGrayTint06 {
-    return BPKColor.skyGrayTint06;
-}
-
 + (UIColor *)bpk_blackTint01 {
     return BPKColor.blackTint01;
 }
 
 + (UIColor *)bpk_skyGrayTint07 {
     return BPKColor.skyGrayTint07;
-}
-
-+ (UIColor *)bpk_blackTint02 {
-    return BPKColor.blackTint02;
-}
-
-+ (UIColor *)bpk_abisko {
-    return BPKColor.abisko;
 }
 
 + (UIColor *)bpk_blackTint03 {
@@ -106,10 +82,6 @@
 
 + (UIColor *)bpk_white {
     return BPKColor.white;
-}
-
-+ (UIColor *)bpk_blackTint05 {
-    return BPKColor.blackTint05;
 }
 
 + (UIColor *)bpk_blackTint06 {
@@ -128,14 +100,6 @@
     return BPKColor.glencoe;
 }
 
-+ (UIColor *)bpk_tochigi {
-    return BPKColor.tochigi;
-}
-
-+ (UIColor *)bpk_petra {
-    return BPKColor.petra;
-}
-
 + (UIColor *)bpk_bagan {
     return BPKColor.bagan;
 }
@@ -148,49 +112,85 @@
     return BPKColor.skyBlueTint01;
 }
 
-+ (UIColor *)bpk_skyBlueTint02 {
-    return BPKColor.skyBlueTint02;
-}
-
-+ (UIColor *)bpk_bunol {
-    return BPKColor.bunol;
-}
-
-+ (UIColor *)bpk_skyBlueTint03 {
-    return BPKColor.skyBlueTint03;
-}
-
 + (UIColor *)bpk_skyGray {
     return BPKColor.skyGray;
 }
 
-+ (UIColor *)bpk_nara {
-    return BPKColor.nara;
++ (UIColor *)bpk_textQuaternaryDarkColor {
+    return BPKColor.textQuaternaryDarkColor;
 }
 
-+ (UIColor *)bpk_skyBlueShade01 {
-    return BPKColor.skyBlueShade01;
++ (UIColor *)bpk_textQuaternaryLightColor {
+    return BPKColor.textQuaternaryLightColor;
 }
 
-+ (UIColor *)bpk_skyBlueShade02 {
-    return BPKColor.skyBlueShade02;
+
++ (UIColor *)bpk_skyGrayTint02 {
+    return BPKColor.skyGrayTint01;
 }
 
++ (UIColor *)bpk_skyGrayTint03 {
+    return BPKColor.skyGrayTint01;
+}
+
++ (UIColor *)bpk_skyGrayTint05 {
+    return BPKColor.skyGrayTint04;
+}
+
++ (UIColor *)bpk_skyGrayTint06 {
+    return BPKColor.valensole;
+}
+
++ (UIColor *)bpk_blackTint02 {
+    return BPKColor.blackTint01;
+}
+
++ (UIColor *)bpk_abisko {
+    return BPKColor.skyBlueShade03;
+}
+
++ (UIColor *)bpk_blackTint05 {
+    return BPKColor.blackTint04;
+}
+
++ (UIColor *)bpk_tochigi {
+    return BPKColor.skyGrayTint07;
+}
+
++ (UIColor *)bpk_petra {
+    return BPKColor.erfoud;
+}
 
 + (UIColor *)bpk_skyBlue {
     return BPKColor.primaryGradientLight;
 }
 
++ (UIColor *)bpk_skyBlueTint02 {
+    return BPKColor.valensole;
+}
+
++ (UIColor *)bpk_bunol {
+    return BPKColor.kolkata;
+}
+
++ (UIColor *)bpk_skyBlueTint03 {
+    return BPKColor.valensole;
+}
+
++ (UIColor *)bpk_nara {
+    return BPKColor.bagan;
+}
+
++ (UIColor *)bpk_skyBlueShade01 {
+    return BPKColor.primaryGradientLight;
+}
+
++ (UIColor *)bpk_skyBlueShade02 {
+    return BPKColor.skyBlueShade03;
+}
+
 + (UIColor *)bpk_textPrimaryDarkColor {
     return BPKColor.white;
-}
-
-+ (UIColor *)bpk_textQuaternaryDarkColor {
-    return BPKColor.blackTint06;
-}
-
-+ (UIColor *)bpk_textQuaternaryLightColor {
-    return BPKColor.skyGrayTint03;
 }
 
 + (UIColor *)bpk_textPrimaryLightColor {
@@ -198,19 +198,19 @@
 }
 
 + (UIColor *)bpk_textTertiaryDarkColor {
-    return BPKColor.blackTint06;
+    return BPKColor.textQuaternaryDarkColor;
 }
 
 + (UIColor *)bpk_textSecondaryDarkColor {
-    return BPKColor.skyGrayTint04;
+    return BPKColor.blackTint06;
 }
 
 + (UIColor *)bpk_textSecondaryLightColor {
-    return BPKColor.skyGrayTint02;
+    return BPKColor.skyGrayTint01;
 }
 
 + (UIColor *)bpk_textTertiaryLightColor {
-    return BPKColor.skyGrayTint03;
+    return BPKColor.textQuaternaryLightColor;
 }
 
 + (UIColor *)bpk_backgroundElevation03DarkColor {
@@ -218,7 +218,7 @@
 }
 
 + (UIColor *)bpk_backgroundElevation02DarkColor {
-    return BPKColor.blackTint02;
+    return BPKColor.blackTint03;
 }
 
 + (UIColor *)bpk_lineDarkColor {
@@ -230,7 +230,7 @@
 }
 
 + (UIColor *)bpk_backgroundAlternativeSecondaryDarkColor {
-    return BPKColor.blackTint01;
+    return BPKColor.black;
 }
 
 + (UIColor *)bpk_backgroundLightColor {
@@ -254,7 +254,7 @@
 }
 
 + (UIColor *)bpk_lineLightColor {
-    return BPKColor.skyGrayTint05;
+    return BPKColor.skyGrayTint04;
 }
 
 + (UIColor *)bpk_backgroundElevation02LightColor {
@@ -266,7 +266,7 @@
 }
 
 + (UIColor *)bpk_backgroundTertiaryDarkColor {
-    return BPKColor.blackTint02;
+    return BPKColor.black;
 }
 
 + (UIColor *)bpk_backgroundSecondaryDarkColor {
@@ -286,7 +286,7 @@
 }
 
 + (UIColor *)bpk_backgroundAlternativeDarkColor {
-    return BPKColor.black;
+    return BPKColor.blackTint01;
 }
 
 + (UIColor *)bpk_primaryLightColor {
@@ -424,6 +424,10 @@
 
 + (UIColor *)bpk_backgroundElevation02Color {
     return BPKColor.backgroundElevation02Color;
+}
+
++ (UIColor *)bpk_lineOnDarkColor {
+    return BPKColor.lineOnDarkColor;
 }
 
 + (UIColor *)bpk_lineColor {

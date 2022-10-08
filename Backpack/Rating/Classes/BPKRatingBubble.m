@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUp {
     self.ratingBubbleLabel = [[BPKLabel alloc] initWithFrame:CGRectZero];
     self.ratingBubbleLabel.fontStyle = BPKFontStyleTextHeading5;
-    self.ratingBubbleLabel.textColor = BPKColor.white;
+    self.ratingBubbleLabel.textColor = BPKColor.textOnLightColor;
     self.ratingBubbleLabel.lineBreakMode = NSLineBreakByClipping;
     [self addSubview:self.ratingBubbleLabel];
 
