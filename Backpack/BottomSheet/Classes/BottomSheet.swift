@@ -80,7 +80,7 @@ public final class BPKBottomSheet: NSObject {
         appearance.cornerRadius = BPKCornerRadiusLg
         panel.surfaceView.appearance = appearance
 
-        panel.surfaceView.backgroundColor = BPKColor.surfaceDefaultColor
+        panel.surfaceView.backgroundColor = BPKColor.surfaceElevatedColor
         panel.surfaceView.grabberHandlePadding = BPKSpacingMd
         panel.surfaceView.grabberHandle.barColor = BPKColor.lineColor
         panel.surfaceView.grabberHandleSize = .init(width: Constants.grabberHandleWidth, height: BPKSpacingSm)
