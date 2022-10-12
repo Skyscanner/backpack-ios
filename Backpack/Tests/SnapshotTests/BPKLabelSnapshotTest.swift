@@ -23,7 +23,7 @@ import FBSnapshotTestCase
 class BPKLabelSnapshotTest: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        recordMode = true
     }
     
     private func createView(withStyles styles: [BPKFontStyle]) -> UIView {
