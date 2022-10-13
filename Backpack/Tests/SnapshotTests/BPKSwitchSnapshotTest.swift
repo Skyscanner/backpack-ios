@@ -40,7 +40,6 @@ class BPKSwitchSnapshotTest: XCTestCase {
     }
     
     func testSwitchWhenOff() {
-        
         assertSnapshot(matching: makeSwitch(), as: .image)
         assertSnapshot(matching: makeSwitch(), as: .image(traits: traitDarkMode))
     }
