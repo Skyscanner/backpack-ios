@@ -28,7 +28,7 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
 
     override func setUpWithError() throws {
         try? super.setUpWithError()
-        isRecording = true
+        isRecording = false
     }
     
     // MARK: State testing
