@@ -42,12 +42,18 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
         let label = "Edinburgh"
         
         let allStateViews = [
-            create(withLabel: label, alwaysShowCallout: false, previouslySelected: false, selected: false, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: false, previouslySelected: false, selected: true, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: true, previouslySelected: false, selected: false, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: true, previouslySelected: true, selected: false, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: true, previouslySelected: false, selected: true, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: true, previouslySelected: false, selected: false, enabled: false, icon: hasIcon)
+            create(withLabel: label, enabled: true, icon: hasIcon),
+            create(withLabel: label, selected: true, enabled: true, icon: hasIcon),
+            create(withLabel: label, alwaysShowCallout: true, enabled: true, icon: hasIcon),
+            create(withLabel: label, alwaysShowCallout: true, enabled: true, icon: hasIcon),
+            create(
+                withLabel: label,
+                alwaysShowCallout: true,
+                selected: true,
+                enabled: true,
+                icon: hasIcon
+            ),
+            create(withLabel: label, alwaysShowCallout: true, icon: hasIcon)
         ]
         
         allStateViews.forEach(stackView.addArrangedSubview(_:))
@@ -75,7 +81,6 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
         assertSnapshot(matching: exampleView, as: .image)
         assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
     }
-    
     
     // MARK: Long titles
     private func createWithLongTitle(hasIcon: Bool) -> UIView {
@@ -106,14 +111,13 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
     }
     
     // MARK: Util
-    // swiftlint:disable:next function_parameter_count
     private func create(
         withLabel label: String,
-        alwaysShowCallout: Bool,
-        previouslySelected: Bool,
-        selected: Bool,
-        enabled: Bool,
-        icon: Bool
+        alwaysShowCallout: Bool = false,
+        previouslySelected: Bool = false,
+        selected: Bool = false,
+        enabled: Bool = false,
+        icon: Bool = false
     ) -> UIView {
         let annotation = BPKMapAnnotation()
         annotation.title = label

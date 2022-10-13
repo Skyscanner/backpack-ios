@@ -17,15 +17,19 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
 
-class BPKSwitchSnapshotTest: FBSnapshotTestCase {
-    override func setUp() {
-        super.setUp()
-        recordMode = false
-    }
+import SnapshotTesting
+
+class BPKSwitchSnapshotTest: XCTestCase {
     
+    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        isRecording = false
+    }
+
     private func makeSwitch(withPrimaryColor color: UIColor? = nil, state: Bool = false) -> BPKSwitch {
         let bpkSwitch = BPKSwitch()
         if let color = color {
@@ -36,17 +40,18 @@ class BPKSwitchSnapshotTest: FBSnapshotTestCase {
     }
     
     func testSwitchWhenOff() {
-        BPKSnapshotVerifyViewLight(makeSwitch())
-        BPKSnapshotVerifyViewDark(makeSwitch())
+        
+        assertSnapshot(matching: makeSwitch(), as: .image)
+        assertSnapshot(matching: makeSwitch(), as: .image(traits: traitDarkMode))
     }
     
     func testSwitchWhenOn() {
-        BPKSnapshotVerifyViewLight(makeSwitch(state: true))
-        BPKSnapshotVerifyViewDark(makeSwitch(state: true))
+        assertSnapshot(matching: makeSwitch(state: true), as: .image)
+        assertSnapshot(matching: makeSwitch(state: true), as: .image(traits: traitDarkMode))
     }
     
     func testSwitchWhenOnWithTheme() {
-        BPKSnapshotVerifyViewLight(makeSwitch(withPrimaryColor: .orange, state: true))
-        BPKSnapshotVerifyViewDark(makeSwitch(withPrimaryColor: .orange, state: true))
+        assertSnapshot(matching: makeSwitch(withPrimaryColor: .orange, state: true), as: .image)
+        assertSnapshot(matching: makeSwitch(withPrimaryColor: .orange, state: true), as: .image(traits: traitDarkMode))
     }
 }
