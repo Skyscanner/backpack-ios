@@ -21,7 +21,7 @@ import Backpack
 
 import SnapshotTesting
 
-class BPKMapAnnotationSnapshotNewTest: XCTestCase {
+class BPKMapAnnotationSnapshotTest: XCTestCase {
     
     private let reuseIdentifier = "Annotation"
     private let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
