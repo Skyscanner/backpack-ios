@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
     static BPKShadow *shadowSm;
 
     dispatch_once(&shadowSmOnceToken, ^{
-        UIColor *color = [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+        UIColor *color = [UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1];
         shadowSm = [[BPKShadow alloc] initWithColor:color
                                                offset:CGSizeMake(0, 1)
                                               opacity:0.15
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
     static BPKShadow *shadowLg;
 
     dispatch_once(&shadowLgOnceToken, ^{
-        UIColor *color = [UIColor colorWithRed:0.067 green:0.071 blue:0.212 alpha:1];
+        UIColor *color = [UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1];
         shadowLg = [[BPKShadow alloc] initWithColor:color
                                                offset:CGSizeMake(0, 4)
                                               opacity:0.15

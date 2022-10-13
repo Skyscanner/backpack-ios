@@ -36,8 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarController {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
-    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textQuaternaryColor;
-    tabBarController.tabBar.tintColor = BPKColor.primaryColor;
+    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textSecondaryColor;
+    tabBarController.tabBar.tintColor = BPKColor.coreAccentColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:nil tag:1];
@@ -62,8 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createTabBarControllerWithIcons {
     BPKTabBarController *tabBarController = [[BPKTabBarController alloc] init];
-    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textQuaternaryColor;
-    tabBarController.tabBar.tintColor = BPKColor.primaryColor;
+    tabBarController.tabBar.unselectedItemTintColor = BPKColor.textSecondaryColor;
+    tabBarController.tabBar.tintColor = BPKColor.coreAccentColor;
 
     UIViewController *tabOne = [[UIViewController alloc] init];
     UITabBarItem *tabOneBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 1" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameKey] tag:1];
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
     [tabTwoBarItem addDot];
     UIViewController *tabThree = [[UIViewController alloc] init];
     UITabBarItem *tabThreeBarItem = [[UITabBarItem alloc] initWithTitle:@"Tab 3" image:[BPKIcon largeTemplateIconNamed:BPKLargeIconNameMap] tag:3];
-    tabThreeBarItem.badgeColor = BPKColor.panjin;
+    tabThreeBarItem.badgeColor = BPKColor.statusDangerSpotColor;
     tabThreeBarItem.badgeValue = @"42";
 
     UIViewController *tabFour = [[UIViewController alloc] init];

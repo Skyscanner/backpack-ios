@@ -27,12 +27,12 @@ struct ShadowTokensView: View {
         VStack(spacing: 24) {
             Text("Small")
                 .frame(width: 200, height: 200)
-                .background(.backgroundSecondaryColor)
+                .background(.surfaceDefaultColor)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
                 .shadow(.sm)
             Text("Large")
                 .frame(width: 200, height: 200)
-                .background(.backgroundSecondaryColor)
+                .background(.surfaceDefaultColor)
                 .clipShape(RoundedRectangle(cornerRadius: .lg))
                 .shadow(.lg)
         }

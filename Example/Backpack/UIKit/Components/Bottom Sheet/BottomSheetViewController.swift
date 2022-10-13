@@ -47,9 +47,8 @@ extension BottomSheetViewController {
         switch cell {
         case scrollViewBottomSheet:
             guard let content = BottomSheetScrollableContentViewController.make() else { return }
-
+            
             let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
-
             let sheet = BPKBottomSheet(
                 contentViewController: wrappedContent,
                 scrollViewToTrack: content.tableView

@@ -320,7 +320,7 @@ NS_ASSUME_NONNULL_BEGIN
         return BPKColor.clear;
     }
 
-    return BPKColor.abisko;
+    return BPKColor.coreEcoColor;
 }
 #pragma clang diagnostic pop
 
