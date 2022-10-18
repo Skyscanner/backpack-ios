@@ -322,6 +322,32 @@ NS_ASSUME_NONNULL_BEGIN
     BPKSnapshotVerifyViewDark(darkView, nil);
 }
 
+- (UIView *)createDividedSnapshotWithVerticalSolidLine {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:YES];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    firstInnerView.text = @"Lorem ipsum";
+    secondInnerView.text = @"dolor sit amet";
+    firstInnerView.backgroundColor = [BPKColor panjin];
+    secondInnerView.backgroundColor = [BPKColor monteverde];
+
+    dividedCard.orientation = UILayoutConstraintAxisVertical;
+    dividedCard.lineStyle = BPKCardDividerLineSolid;
+
+    [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
+    [self configureParentView:parentView forCard:dividedCard];
+    return parentView;
+}
+
+- (void)testDividedSnapshotVerticalSolidLine {
+    UIView *lightView = [self createDividedSnapshotWithVerticalSolidLine];
+    UIView *darkView = [self createDividedSnapshotWithVerticalSolidLine];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

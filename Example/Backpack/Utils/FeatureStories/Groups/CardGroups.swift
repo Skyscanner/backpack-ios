@@ -61,6 +61,16 @@ struct CardGroupsProvider {
                 presentableDevidedCard("With divider without padding") { cardVC in
                     cardVC.divisionDirection = .vertical
                     cardVC.padded = false
+                },
+                presentableDevidedCard("With solid divider with padding") { cardVC in
+                    cardVC.divisionDirection = .vertical
+                    cardVC.padded = true
+                    cardVC.dividerStyle = .solid
+                },
+                presentableDevidedCard("With solid divider without padding") { cardVC in
+                    cardVC.divisionDirection = .vertical
+                    cardVC.padded = false
+                    cardVC.dividerStyle = .solid
                 }
             ]
         ).groups()

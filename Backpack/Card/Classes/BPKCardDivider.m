@@ -36,17 +36,38 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.orientation = orientation;
+        self.lineStyle = BPKCardDividerLineSolid;
         [self setupViews];
     }
 
     return self;
 }
 
+- (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation lineStyle:(BPKCardDividerLineStyle)lineStyle {
+    self = [super initWithFrame:CGRectZero];
+
+    if (self) {
+        self.orientation = orientation;
+        self.lineStyle = lineStyle;
+        [self setupViews];
+    }
+
+    return self;
+}
+
+- (void)setLineStyle:(BPKCardDividerLineStyle)lineStyle {
+    _lineStyle = lineStyle;
+    self.dottedLine.lineDashPattern = lineStyle == BPKCardDividerLineDotted ? @[@5, @3] : nil;
+}
+
 - (void)setupViews {
     self.dottedLine = [[CAShapeLayer alloc] initWithLayer:self];
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
-    self.dottedLine.lineDashPattern = @[@5, @3];
+    
+    if (_lineStyle == BPKCardDividerLineDotted) {
+        self.dottedLine.lineDashPattern = @[@5, @3];
+    }
     [self.layer addSublayer:self.dottedLine];
     [self updateLineColor];
 }
