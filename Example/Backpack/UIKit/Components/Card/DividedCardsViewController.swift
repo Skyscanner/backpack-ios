@@ -25,6 +25,7 @@ class DividedCardsViewController: CardsViewController {
     #else
     var divisionDirection: UILayoutConstraintAxis = .horizontal
     #endif
+    var dividerStyle: BPKCardDividerLineStyle = .dotted
 
     override func setupCard() {
         let label1 = BPKLabel(fontStyle: .textBodyDefault)
@@ -41,5 +42,6 @@ class DividedCardsViewController: CardsViewController {
         dividedCard.isPadded = padded
         dividedCard.isSelected = selected
         dividedCard.orientation = divisionDirection
+        dividedCard.lineStyle = dividerStyle
     }
 }

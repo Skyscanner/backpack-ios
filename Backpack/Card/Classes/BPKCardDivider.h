@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BPKCard.h"
+#import "BPKCardDividerLineStyleValues.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,11 +35,24 @@ IB_DESIGNABLE @interface BPKCardDivider : UIView
 @property(nonatomic, assign) IBInspectable UILayoutConstraintAxis orientation;
 
 /**
- * Create a `BPKCardDivider` with orientation initially set.
+ * The line-style to apply to the divider.
+ */
+@property(nonatomic, assign) IBInspectable BPKCardDividerLineStyle lineStyle;
+
+/**
+ * Create a `BPKCardDivider` with orientation and line style initially set.
  *
  * @param orientation Whether the divider is for a vertical or horizontal layout.
  */
 - (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation NS_DESIGNATED_INITIALIZER;
+
+/**
+ * Create a `BPKCardDivider` with orientation and line style initially set.
+ *
+ * @param orientation Whether the divider is for a vertical or horizontal layout.
+ * @param lineStyle The line style for the divider.
+ */
+- (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation lineStyle:(BPKCardDividerLineStyle)lineStyle NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame

@@ -62,18 +62,35 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded {
-    return [self initWithPrimarySubview:primarySubview secondarySubview:secondarySubview padded:padded cornerStyle:BPKCardDefaultCornerStyle];
+    return [self initWithPrimarySubview:primarySubview
+                       secondarySubview:secondarySubview
+                                 padded:padded
+                            cornerStyle:BPKCardDefaultCornerStyle
+                              lineStyle:BPKCardDividerDefaultLineStyle];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
                       secondarySubview:(UIView *_Nullable)secondarySubview
                                 padded:(BOOL)padded
                            cornerStyle:(BPKCardCornerStyle)cornerStyle {
+    return [self initWithPrimarySubview:primarySubview
+                       secondarySubview:secondarySubview
+                                 padded:padded
+                            cornerStyle:BPKCardDefaultCornerStyle
+                              lineStyle:BPKCardDividerDefaultLineStyle];
+}
+
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded
+                           cornerStyle:(BPKCardCornerStyle)cornerStyle
+                             lineStyle:(BPKCardDividerLineStyle)lineStyle {
     self = [super initWithPadded:padded cornerStyle:cornerStyle];
 
     if (self) {
         self.primarySubview = primarySubview;
         self.secondarySubview = secondarySubview;
+        self.lineStyle = lineStyle;
         [self setupViewsWithPadded:padded];
     }
 
@@ -106,6 +123,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self.contentView insertArrangedSubview:self.secondarySubview atIndex:2];
 }
 
+- (void)setLineStyle:(BPKCardDividerLineStyle)lineStyle {
+    _lineStyle = lineStyle;
+    self.lineView.lineStyle = lineStyle;
+}
+
 #pragma mark - Private
 
 - (void)setupViewsWithPadded:(BOOL)padded {
@@ -115,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentView.alignment = UIStackViewAlignmentFill;
     self.padded = padded;
 
-    self.lineView = [[BPKCardDivider alloc] initWithOrientation:self.orientation];
+    self.lineView = [[BPKCardDivider alloc] initWithOrientation:self.orientation lineStyle:self.lineStyle];
 
     if (self.primarySubview != nil) {
         [self.contentView addArrangedSubview:self.primarySubview];

@@ -51,6 +51,11 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 @property(nonatomic, assign, nullable) UIView *secondarySubview;
 
 /**
+ * The line-style to apply to the divider.
+ */
+@property(nonatomic, assign) IBInspectable BPKCardDividerLineStyle lineStyle;
+
+/**
  * Create a `BPKDividedCard` with padded initially set.
  *
  * @param padded Whether the card should have padding or not.
@@ -77,7 +82,22 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
                       secondarySubview:(UIView *_Nullable)secondarySubview
                                 padded:(BOOL)padded
-                           cornerStyle:(BPKCardCornerStyle)cornerStyle NS_DESIGNATED_INITIALIZER;
+                           cornerStyle:(BPKCardCornerStyle)cornerStyle;
+
+/**
+ * Create a `BPKDividedCard` with two subviews.
+ *
+ * @param primarySubview The primary subview for the divided card.
+ * @param secondarySubview The secondary subview for the divided card.
+ * @param padded Whether the card should have padding or not.
+ * @param cornerStyle The style of the corners that should be applied to the card.
+ * @param lineStyle The style of the divider line that should be applied to the card.
+ */
+- (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
+                      secondarySubview:(UIView *_Nullable)secondarySubview
+                                padded:(BOOL)padded
+                           cornerStyle:(BPKCardCornerStyle)cornerStyle
+                             lineStyle:(BPKCardDividerLineStyle)lineStyle NS_DESIGNATED_INITIALIZER;
 
 /**
  * Create a `BPKDividedCard` with a given frame.
