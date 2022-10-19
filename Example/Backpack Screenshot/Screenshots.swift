@@ -166,6 +166,14 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "card", scenario: "with-divider-and-corner-style-large",
                            userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            app.tables.staticTexts["With solid divider with padding"].tap()
+            saveScreenshot(component: "card", scenario: "with-solid-divider-with-padding",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With solid divider without padding"].tap()
+            saveScreenshot(component: "card", scenario: "with-solid-divider-without-padding",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Chips") {

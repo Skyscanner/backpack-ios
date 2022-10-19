@@ -34,4 +34,4 @@ typedef NS_ENUM(NSUInteger, BPKCardDividerLineStyle) {
 /**
  * The default line-style that is applied to the divider card when none is specified.
  */
-FOUNDATION_EXPORT BPKCardDividerLineStyle const BPKCardDividerDefaultLinkStyle;
+FOUNDATION_EXPORT BPKCardDividerLineStyle const BPKCardDividerDefaultLineStyle;

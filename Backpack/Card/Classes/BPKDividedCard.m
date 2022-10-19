@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
                        secondarySubview:secondarySubview
                                  padded:padded
                             cornerStyle:BPKCardDefaultCornerStyle
-                              lineStyle:BPKCardDividerLineDotted];
+                              lineStyle:BPKCardDividerDefaultLineStyle];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
                        secondarySubview:secondarySubview
                                  padded:padded
                             cornerStyle:BPKCardDefaultCornerStyle
-                              lineStyle:BPKCardDividerLineDotted];
+                              lineStyle:BPKCardDividerDefaultLineStyle];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview

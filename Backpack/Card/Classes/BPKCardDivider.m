@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (self) {
         self.orientation = orientation;
-        self.lineStyle = BPKCardDividerLineSolid;
+        self.lineStyle = BPKCardDividerDefaultLineStyle;
         [self setupViews];
     }
 

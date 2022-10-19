@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setUp {
     [super setUp];
-    self.recordMode = NO;
+    self.recordMode = YES;
 }
 
 - (void)configureParentView:(UIView *)parentView forCard:(BPKCard *)card {
@@ -329,8 +329,8 @@ NS_ASSUME_NONNULL_BEGIN
     BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
     firstInnerView.text = @"Lorem ipsum";
     secondInnerView.text = @"dolor sit amet";
-    firstInnerView.backgroundColor = [BPKColor panjin];
-    secondInnerView.backgroundColor = [BPKColor monteverde];
+    firstInnerView.backgroundColor = [BPKColor statusDangerFillColor];
+    secondInnerView.backgroundColor = [BPKColor statusSuccessFillColor];
 
     dividedCard.orientation = UILayoutConstraintAxisVertical;
     dividedCard.lineStyle = BPKCardDividerLineSolid;
@@ -343,6 +343,32 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testDividedSnapshotVerticalSolidLine {
     UIView *lightView = [self createDividedSnapshotWithVerticalSolidLine];
     UIView *darkView = [self createDividedSnapshotWithVerticalSolidLine];
+
+    BPKSnapshotVerifyViewLight(lightView, nil);
+    BPKSnapshotVerifyViewDark(darkView, nil);
+}
+
+- (UIView *)createDividedSnapshotWithVerticalSolidLineWithoutPadding {
+    UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
+    BPKDividedCard *dividedCard = [[BPKDividedCard alloc] initWithPadded:NO];
+    BPKLabel *firstInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    BPKLabel *secondInnerView = [[BPKLabel alloc] initWithFontStyle:BPKFontStyleTextBodyDefault];
+    firstInnerView.text = @"Lorem ipsum";
+    secondInnerView.text = @"dolor sit amet";
+    firstInnerView.backgroundColor = [BPKColor statusDangerFillColor];
+    secondInnerView.backgroundColor = [BPKColor statusSuccessFillColor];
+
+    dividedCard.orientation = UILayoutConstraintAxisVertical;
+    dividedCard.lineStyle = BPKCardDividerLineSolid;
+
+    [self configureDividedCard:dividedCard firstInnerView:firstInnerView secondInnerView:secondInnerView];
+    [self configureParentView:parentView forCard:dividedCard];
+    return parentView;
+}
+
+- (void)testDividedSnapshotVerticalSolidLineWithouPadding {
+    UIView *lightView = [self createDividedSnapshotWithVerticalSolidLineWithoutPadding];
+    UIView *darkView = [self createDividedSnapshotWithVerticalSolidLineWithoutPadding];
 
     BPKSnapshotVerifyViewLight(lightView, nil);
     BPKSnapshotVerifyViewDark(darkView, nil);
