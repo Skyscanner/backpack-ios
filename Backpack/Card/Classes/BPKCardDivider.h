@@ -52,7 +52,7 @@ IB_DESIGNABLE @interface BPKCardDivider : UIView
  * @param orientation Whether the divider is for a vertical or horizontal layout.
  * @param lineStyle The line style for the divider.
  */
-- (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation lineStyle:(BPKCardDividerLineStyle)lineStyle  NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithOrientation:(UILayoutConstraintAxis)orientation lineStyle:(BPKCardDividerLineStyle)lineStyle NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame

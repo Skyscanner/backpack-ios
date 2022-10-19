@@ -62,14 +62,22 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview secondarySubview:(UIView *_Nullable)secondarySubview padded:(BOOL)padded {
-    return [self initWithPrimarySubview:primarySubview secondarySubview:secondarySubview padded:padded cornerStyle:BPKCardDefaultCornerStyle lineStyle: BPKCardDividerLineDotted];
+    return [self initWithPrimarySubview:primarySubview
+                       secondarySubview:secondarySubview
+                                 padded:padded
+                            cornerStyle:BPKCardDefaultCornerStyle
+                              lineStyle:BPKCardDividerLineDotted];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview
                       secondarySubview:(UIView *_Nullable)secondarySubview
                                 padded:(BOOL)padded
                            cornerStyle:(BPKCardCornerStyle)cornerStyle {
-    return [self initWithPrimarySubview:primarySubview secondarySubview:secondarySubview padded:padded cornerStyle:BPKCardDefaultCornerStyle lineStyle: BPKCardDividerLineDotted];
+    return [self initWithPrimarySubview:primarySubview
+                       secondarySubview:secondarySubview
+                                 padded:padded
+                            cornerStyle:BPKCardDefaultCornerStyle
+                              lineStyle:BPKCardDividerLineDotted];
 }
 
 - (instancetype)initWithPrimarySubview:(UIView *_Nullable)primarySubview

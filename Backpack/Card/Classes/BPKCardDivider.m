@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dottedLine = [[CAShapeLayer alloc] initWithLayer:self];
     self.dottedLine.lineWidth = 1;
     self.dottedLine.fillColor = nil;
-    
+
     if (_lineStyle == BPKCardDividerLineDotted) {
         self.dottedLine.lineDashPattern = @[@5, @3];
     }
