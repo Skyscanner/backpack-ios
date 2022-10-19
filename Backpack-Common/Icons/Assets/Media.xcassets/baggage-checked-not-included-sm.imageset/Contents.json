@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "baggage-checked-not-included-sm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
