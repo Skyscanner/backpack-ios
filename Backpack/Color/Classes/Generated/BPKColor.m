@@ -323,7 +323,7 @@
 
 + (UIColor *)canvasContrastColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.937 green:0.945 blue:0.949 alpha:1] 
-                                          darkVariant:[UIColor colorWithRed:0.075 green:0.114 blue:0.169 alpha:1]];
+                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
 }
 
 + (UIColor *)coreEcoColor {

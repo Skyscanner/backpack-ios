@@ -45,7 +45,7 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
             create(withLabel: label, enabled: true, icon: hasIcon),
             create(withLabel: label, selected: true, enabled: true, icon: hasIcon),
             create(withLabel: label, alwaysShowCallout: true, enabled: true, icon: hasIcon),
-            create(withLabel: label, alwaysShowCallout: true, enabled: true, icon: hasIcon),
+            create(withLabel: label, alwaysShowCallout: true, previouslySelected: true, enabled: true, icon: hasIcon),
             create(
                 withLabel: label,
                 alwaysShowCallout: true,
