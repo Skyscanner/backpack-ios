@@ -98,6 +98,7 @@ public class BPKChip: UIControl {
     private let label: BPKLabel = {
         let label = BPKLabel(fontStyle: .textFootnote)
         label.textAlignment = .center
+        label.baselineAdjustment = .alignBaselines
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -120,7 +121,7 @@ public class BPKChip: UIControl {
         let stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.alignment = .firstBaseline
+        stack.alignment = .center
         stack.spacing = BPKSpacingIconText
         stack.isUserInteractionEnabled = false
         return stack
