@@ -40,6 +40,7 @@ function buildDocsHtmlFiles() {
   mkdir -p "$outputDir/versions/latest"
 
   buildRedirectHTML "$outputDir/404.html"
+  buildRedirectHTML "$outputDir/index.html"
   buildLatestIndex $version
 }
 
