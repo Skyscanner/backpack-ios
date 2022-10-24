@@ -120,6 +120,7 @@ public class BPKChip: UIControl {
         let stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
+        stack.alignment = .firstBaseline
         stack.spacing = BPKSpacingIconText
         stack.isUserInteractionEnabled = false
         return stack
