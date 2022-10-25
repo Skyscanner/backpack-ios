@@ -1,5 +1,11 @@
 # Backpack/StarRating
 
+## All types
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-star-rating___docs_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-star-rating___docs_dm.png) |
+
 ## Usage
 
 `BPKStarRating` contains the Backpack Star rating component which is a view that's rendering star shaped items filled with color to indicate rating from 0.0 to 5.0. It supports three sizes considering the available `BPKIcon` sizes.

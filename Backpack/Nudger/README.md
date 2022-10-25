@@ -1,5 +1,11 @@
 # Backpack/Nudger
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-nudger___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-nudger___default_dm.png) |
+
 ## Usage
 
 `BPKNudger` contains the Backpack Nudger component. It's an adjustable control that allows a traveller to select a numerical value between a min/max determined by the consumer.

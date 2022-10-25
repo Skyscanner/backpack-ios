@@ -1,5 +1,11 @@
 # Backpack/Map
 
+## Map markers
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-map___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-map___default_dm.png) |
+
 ## Usage
 
 `BPKMapView` is a wrapper around `MKMapView`.

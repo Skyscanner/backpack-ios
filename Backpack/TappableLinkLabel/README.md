@@ -1,5 +1,17 @@
 # Backpack/TappableLinkLabel
 
+## With multiple links
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-tappable-link-label___multiple_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-tappable-link-label___multiple_dm.png) |
+
+## Alternate style
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-tappable-link-label___alternate-style_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-tappable-link-label___alternate-style_dm.png) |
+
 ## Usage
 
 `BPKTappableLinkLabel` is a view that renders flowing text that can include tappable links as part of its content.
