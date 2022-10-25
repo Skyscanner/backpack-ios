@@ -18,12 +18,12 @@
 
 import XCTest
 import Backpack
-import FBSnapshotTestCase
+import SnapshotTesting
 
-class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
+class BPKDialogViewSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     /// Needed to draw the shadow
@@ -68,7 +68,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
     
     func testDialogViewNoButtons() {
         let dialog = dialog(title: title, message: message, icon: .tick(.accent))
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithButtons() {
@@ -78,7 +78,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
             icon: .lighting(.warning),
             actions: [.continue, .skip]
         )
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithLargeCornerStyleAndFlareViewAndButtons() {
@@ -92,7 +92,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
             cornerStyle: .large
         )
         flare.backgroundView.backgroundColor = BPKColor.skyBlue
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithLargeCornerStyleAndFlareViewAndSmallButtons() {
@@ -107,7 +107,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
         )
         flare.backgroundView.backgroundColor = BPKColor.skyBlue
         dialog.buttonSize = .default
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithLargeCornerStyleAndTallFlareViewAndButtons() {
@@ -123,7 +123,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
         flare.backgroundView.backgroundColor = BPKColor.skyBlue
         flare.heightAnchor.constraint(equalToConstant: 280).isActive = true
         dialog.buttonSize = .default
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithNoIcon() {
@@ -134,7 +134,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
             actions: [.continue, .skip]
         )
         dialog.style = .alert
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testDialogViewWithNoIconAndNoTitle() {
@@ -145,7 +145,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
             actions: [.continue, .skip]
         )
         dialog.style = .alert
-        BPKSnapshotVerifyViewLight(wrap(dialog))
+        assertSnapshot(wrap(dialog))
     }
     
     func testChangingIconDefinitionAfterPresenting() {
@@ -157,7 +157,7 @@ class BPKDialogViewSnapshotTest: FBSnapshotTestCase {
         )
         let wrapper = wrap(dialog)
         dialog.iconDefinition = .key(.danger)
-        BPKSnapshotVerifyViewLight(wrapper)
+        assertSnapshot(wrapper)
     }
 }
 
