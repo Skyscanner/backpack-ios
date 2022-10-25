@@ -18,12 +18,12 @@
 
 import XCTest
 import Backpack
-import FBSnapshotTestCase
+import SnapshotTesting
 
-class BPKStarRatingSnapshotTest: FBSnapshotTestCase {
+class BPKStarRatingSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func createView(
@@ -74,10 +74,7 @@ class BPKStarRatingSnapshotTest: FBSnapshotTestCase {
     private let sizes: [BPKStarSize] = [.small, .large, .xLarge]
     
     func testStarRatingSizesRatingsAndRoundings() {
-        BPKSnapshotVerifyViewLight(
-            createView(ratings: ratings, roundings: roundings, sizes: sizes)
-        )
-        BPKSnapshotVerifyViewDark(
+        assertSnapshot(
             createView(ratings: ratings, roundings: roundings, sizes: sizes)
         )
     }
