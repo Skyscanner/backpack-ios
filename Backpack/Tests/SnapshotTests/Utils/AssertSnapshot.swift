@@ -24,7 +24,6 @@ import SnapshotTesting
 func assertSnapshot(
     _ view: UIView,
     modes: [UIUserInterfaceStyle] = [.light, .dark],
-    isRecording: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
