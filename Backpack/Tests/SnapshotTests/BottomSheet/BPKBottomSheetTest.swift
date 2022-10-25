@@ -27,7 +27,7 @@ class BPKBottomSheetTest: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        
+        isRecording = false
         sut = BottomSheetTestViewController()
     }
 
@@ -44,7 +44,7 @@ class BPKBottomSheetTest: XCTestCase {
         sut.moveBottomSheet(toState: .half, animated: false)
         
         // Then
-        assertSnapshot(matching: sut, as: .image)
+        assertSnapshot(sut.view)
     }
     
     func test_moveBottomSheet_toTip() {
@@ -55,7 +55,7 @@ class BPKBottomSheetTest: XCTestCase {
         sut.moveBottomSheet(toState: .tip, animated: false)
         
         // Then
-        assertSnapshot(matching: sut, as: .image)
+        assertSnapshot(sut.view)
     }
     
     func test_moveBottomSheet_toFull() {
@@ -66,6 +66,6 @@ class BPKBottomSheetTest: XCTestCase {
         sut.moveBottomSheet(toState: .full, animated: false)
         
         // Then
-        assertSnapshot(matching: sut, as: .image)
+        assertSnapshot(sut.view)
     }
 }
