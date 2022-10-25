@@ -1,4 +1,4 @@
-# Bar Chart
+# Backpack/BarChart
 
 ## Default
 
