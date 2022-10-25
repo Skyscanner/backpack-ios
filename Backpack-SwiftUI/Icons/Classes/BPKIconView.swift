@@ -20,9 +20,9 @@ import SwiftUI
 import Backpack_Common
 
 public struct BPKIconView: View {
-    @State var icon: BPKIcon
-    @State var size: BPKIcon.Size
-    
+    let icon: BPKIcon
+    let size: BPKIcon.Size
+
     public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
         self.icon = icon
         self.size = size
