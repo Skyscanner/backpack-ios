@@ -401,6 +401,11 @@
                                           darkVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1]];
 }
 
++ (UIColor *)textDisabledOnDarkColor {
+    return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255] 
+                                          darkVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:0.5019607843137255]];
+}
+
 + (UIColor *)textLinkColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.000 green:0.384 blue:0.890 alpha:1] 
                                           darkVariant:[UIColor colorWithRed:0.518 green:0.914 blue:1.000 alpha:1]];

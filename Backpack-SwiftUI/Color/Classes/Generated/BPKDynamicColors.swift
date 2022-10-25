@@ -117,6 +117,11 @@ public extension BPKColor {
     static let textOnLightColor = BPKColor(red:0.086, green:0.086, blue:0.086, alpha:1)
         .darkVariant(BPKColor(red:0.086, green:0.086, blue:0.086, alpha:1))
 
+    /// The `textDisabledOnDarkColor` dynamic color from the Backpack palette.
+    
+    static let textDisabledOnDarkColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.5019607843137255)
+        .darkVariant(BPKColor(red:1.000, green:1.000, blue:1.000, alpha:0.5019607843137255))
+
     /// The `textLinkColor` dynamic color from the Backpack palette.
     
     static let textLinkColor = BPKColor(red:0.000, green:0.384, blue:0.890, alpha:1)

@@ -663,6 +663,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * bpk_textOnLightColor;
 
 /**
+ * The `textDisabledOnDarkColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #ffffff80; background: linear-gradient(0.375turn, #ffffff80 49%, #ffffff80 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * bpk_textDisabledOnDarkColor;
+
+/**
  * The `textLinkColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #0062e3ff; background: linear-gradient(0.375turn, #0062e3ff 49%, #84e9ffff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
