@@ -20,24 +20,12 @@ import SwiftUI
 import Backpack_Common
 
 public struct BPKIconView: View {
-    @Binding var icon: BPKIcon
-    @Binding var size: BPKIcon.Size
-    
-    public init(_ icon: Binding<BPKIcon>, size: Binding<BPKIcon.Size> = .constant(.small)) {
-        self._icon = icon
-        self._size = size
-    }
-    
+    let icon: BPKIcon
+    let size: BPKIcon.Size
+
     public init(_ icon: BPKIcon, size: BPKIcon.Size = .small) {
-        self.init(.constant(icon), size: .constant(size))
-    }
-    
-    public init(_ icon: Binding<BPKIcon>, size: BPKIcon.Size = .small) {
-        self.init(icon, size: .constant(size))
-    }
-    
-    public init(_ icon: BPKIcon, size: Binding<BPKIcon.Size> = .constant(.small)) {
-        self.init(.constant(icon), size: size)
+        self.icon = icon
+        self.size = size
     }
 
     public var body: some View {
@@ -84,6 +72,6 @@ private extension Image {
 
 struct BPKIconView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKIconView(.constant(.account), size: .constant(.large))
+        BPKIconView(.account, size: .large)
     }
 }
