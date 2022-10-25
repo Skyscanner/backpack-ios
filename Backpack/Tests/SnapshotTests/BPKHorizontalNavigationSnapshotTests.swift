@@ -1,4 +1,3 @@
-// swiftlint:disable file_length
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -18,9 +17,9 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 
 @testable import Backpack
+import SnapshotTesting
 
 class NavContainer<Size: BPKHorizontalNavigationSize>: UIView {
     weak var nav: BPKHorizontalNavigation<Size>?
@@ -85,7 +84,7 @@ func displayHorizontalNavigation<Size: BPKHorizontalNavigationSize>(
 func createNav<Size: BPKHorizontalNavigationSize>(
     selectedItemIndex: Int = 0
 ) -> BPKHorizontalNavigation<Size> {
-    let nav = BPKHorizontalNavigation<Size>(
+    return BPKHorizontalNavigation<Size>(
         options: [
             .text("Flights", tag: 0),
             .text("Hotels", tag: 1),
@@ -93,8 +92,6 @@ func createNav<Size: BPKHorizontalNavigationSize>(
         ],
         selectedItemIndex: selectedItemIndex
     )
-
-    return nav
 }
 
 struct StoryIcon<Size: BPKHorizontalNavigationSize>: BPKHorizontalNavigationOptionIcon {
@@ -154,28 +151,17 @@ func create<Size: BPKHorizontalNavigationSize>(
     selectedItemIndex: Int = 0,
     showsSelectedBar: Bool = true,
     width: CGFloat = -1.0
-) -> (NavContainer<Size>, NavContainer<Size>) {
-    let (nav1, nav2): (BPKHorizontalNavigation<Size>, BPKHorizontalNavigation<Size>) = (
-        createNav(selectedItemIndex: selectedItemIndex),
-        createNav(selectedItemIndex: selectedItemIndex)
-    )
-    nav1.showsSelectedBar = showsSelectedBar
-    nav2.showsSelectedBar = showsSelectedBar
-
-    return (displayHorizontalNavigation(nav1, width: width), displayHorizontalNavigation(nav2, width: width))
+) -> NavContainer<Size> {
+    let nav: BPKHorizontalNavigation<Size> = createNav(selectedItemIndex: selectedItemIndex)
+    nav.showsSelectedBar = showsSelectedBar
+    return displayHorizontalNavigation(nav, width: width)
 }
 
 func createWithIcons<Size: BPKHorizontalNavigationSize>(
     selectedItemIndex: Int = 0, showsSelectedBar: Bool = true, width: CGFloat = -1.0
-) -> (NavContainer<Size>, NavContainer<Size>) {
-    let (nav1, nav2): (
-        BPKHorizontalNavigation<Size>, BPKHorizontalNavigation<Size>
-    ) = (
-        createNavWithIcons(selectedItemIndex: selectedItemIndex),
-        createNavWithIcons(selectedItemIndex: selectedItemIndex)
-    )
-
-    return (displayHorizontalNavigation(nav1, width: width), displayHorizontalNavigation(nav2, width: width))
+) -> NavContainer<Size> {
+    let nav: BPKHorizontalNavigation<Size> = createNavWithIcons(selectedItemIndex: selectedItemIndex)
+    return displayHorizontalNavigation(nav, width: width)
 }
 
 func createWithSelectedIndex(_ index: Int) -> UIView {
@@ -186,124 +172,75 @@ func createWithSelectedIndex(_ index: Int) -> UIView {
 typealias DefaultNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeDefault>
 typealias SmallNav = BPKHorizontalNavigation<BPKHorizontalNavigationSizeSmall>
 
-class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
+class BPKHorizontalNavigationSnapshotTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        recordMode = false
+        isRecording = true
     }
 
     func testDefault() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = create()
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = create()
+        assertSnapshot(testView)
     }
 
     func testSmall() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeSmall>,
-            NavContainer<BPKHorizontalNavigationSizeSmall>
-        ) = create()
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeSmall> = create()
+        assertSnapshot(testView)
     }
 
     func testSelectedIndex() {
-        let lightView = createWithSelectedIndex(2)
-        let darkView = createWithSelectedIndex(2)
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView = createWithSelectedIndex(2)
+        assertSnapshot(testView)
     }
 
     func testWithoutBar() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = create(selectedItemIndex: 0, showsSelectedBar: false)
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = create(
+            selectedItemIndex: 0,
+            showsSelectedBar: false
+        )
+        assertSnapshot(testView)
     }
 
     func testDefaultWithIcons() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = createWithIcons()
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons()
+        assertSnapshot(testView)
     }
 
     func testSmallWithIcons() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeSmall>,
-            NavContainer<BPKHorizontalNavigationSizeSmall>
-        ) = createWithIcons()
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeSmall> = createWithIcons()
+        assertSnapshot(testView)
     }
 
     func testWithTheming() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = createWithIcons()
-        darkView.backgroundColor = .bpk_backgroundDark
-        lightView.nav?.selectedColor = .bpk_erfoud
-        darkView.nav?.selectedColor = .bpk_bagan
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons()
+        testView.nav?.selectedColor = .bpk_erfoud
+        assertSnapshot(testView)
     }
 
     func testWide() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = createWithIcons(selectedItemIndex: 0, showsSelectedBar: true, width: 550.0)
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons(
+            selectedItemIndex: 0,
+            showsSelectedBar: true,
+            width: 550.0
+        )
+        assertSnapshot(testView)
     }
 
     func testNarrow() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = createWithIcons(selectedItemIndex: 0, showsSelectedBar: true, width: 200.0)
-        darkView.backgroundColor = .bpk_backgroundDark
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons(
+            selectedItemIndex: 0,
+            showsSelectedBar: true,
+            width: 200.0
+        )
+        assertSnapshot(testView)
     }
 
     func testWithAlternateAppearance() {
-        let (lightView, darkView): (
-            NavContainer<BPKHorizontalNavigationSizeDefault>,
-            NavContainer<BPKHorizontalNavigationSizeDefault>
-        ) = create()
-        darkView.backgroundColor = .bpk_skyGray
-        lightView.backgroundColor = .bpk_skyGray
-        lightView.nav?.appearance = .alternate
-        darkView.nav?.appearance = .alternate
-
-        BPKSnapshotVerifyViewLight(lightView)
-        BPKSnapshotVerifyViewDark(darkView)
+        let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = create()
+        testView.backgroundColor = .bpk_skyGray
+        testView.nav?.appearance = .alternate
+        assertSnapshot(testView)
     }
 
     func testWithCustomOptions() {
@@ -313,9 +250,7 @@ class BPKHorizontalNavigationSnapshotTests: FBSnapshotTestCase {
             .withBackground(title: "Car Hire", tag: 2)
         ], selectedItemIndex: 0)
         nav.showsSelectedBar = false
-        let container = displayHorizontalNavigation(nav)
-
-        FBSnapshotVerifyView(container)
+        assertSnapshot(displayHorizontalNavigation(nav))
     }
 
 }
