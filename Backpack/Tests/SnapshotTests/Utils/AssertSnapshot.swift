@@ -24,12 +24,12 @@ import SnapshotTesting
 func assertSnapshot(
     _ view: UIView,
     modes: [UIUserInterfaceStyle] = [.light, .dark],
+    isRecording: Bool = false,
     file: StaticString = #file,
     testName: String = #function,
     line: UInt = #line
 ) {
     let identifier: (UIUserInterfaceStyle) -> String = { mode in mode == .dark ? "dark-mode" : "light-mode" }
-    isRecording = false
     modes.forEach { mode in
         let styleTrait = UITraitCollection(userInterfaceStyle: mode)
         assertSnapshot(
