@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKButtonSnapshotTest: FBSnapshotTestCase {
+class BPKButtonSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     enum ButonTypes {
@@ -88,48 +88,39 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
     ]
     
     func testDefaultPrimary() {
-        BPKSnapshotVerifyViewLight(createViews(style: .primary))
-        BPKSnapshotVerifyViewDark(createViews(style: .primary))
+        assertSnapshot(createViews(style: .primary))
     }
     
     func testDefaultSecondary() {
-        BPKSnapshotVerifyViewLight(createViews(style: .secondary))
-        BPKSnapshotVerifyViewDark(createViews(style: .secondary))
+        assertSnapshot(createViews(style: .secondary))
     }
     
     func testDefaultDestructive() {
-        BPKSnapshotVerifyViewLight(createViews(style: .destructive))
-        BPKSnapshotVerifyViewDark(createViews(style: .destructive))
+        assertSnapshot(createViews(style: .destructive))
     }
     
     func testDefaultFeatured() {
-        BPKSnapshotVerifyViewLight(createViews(style: .featured))
-        BPKSnapshotVerifyViewDark(createViews(style: .featured))
+        assertSnapshot(createViews(style: .featured))
     }
     
     func testDefaultLink() {
-        BPKSnapshotVerifyViewLight(createViews(style: .link))
-        BPKSnapshotVerifyViewDark(createViews(style: .link))
+        assertSnapshot(createViews(style: .link))
     }
     
     func testDefaultPrimaryOnDark() {
-        BPKSnapshotVerifyViewLight(createViews(style: .primaryOnDark))
-        BPKSnapshotVerifyViewDark(createViews(style: .primaryOnDark))
+        assertSnapshot(createViews(style: .primaryOnDark))
     }
     
     func testDefaultPrimaryOnLight() {
-        BPKSnapshotVerifyViewLight(createViews(style: .primaryOnLight))
-        BPKSnapshotVerifyViewDark(createViews(style: .primaryOnLight))
+        assertSnapshot(createViews(style: .primaryOnLight))
     }
     
     func testDefaultSecondaryOnDark() {
-        BPKSnapshotVerifyViewLight(createViews(style: .secondaryOnDark))
-        BPKSnapshotVerifyViewDark(createViews(style: .secondaryOnDark))
+        assertSnapshot(createViews(style: .secondaryOnDark))
     }
     
     func testDefaultLinkOnDark() {
-        BPKSnapshotVerifyViewLight(createViews(style: .linkOnDark))
-        BPKSnapshotVerifyViewDark(createViews(style: .linkOnDark))
+        assertSnapshot(createViews(style: .linkOnDark))
     }
     
     func testBigButtonWithIconHasContentCentered() {
@@ -142,7 +133,7 @@ class BPKButtonSnapshotTest: FBSnapshotTestCase {
             button.widthAnchor.constraint(equalToConstant: 300).isActive = true
             return button
         }
-        BPKSnapshotVerifyViewLight(stack)
+        assertSnapshot(stack)
         
     }
 }
