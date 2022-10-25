@@ -1,4 +1,10 @@
-# Backpack/Badge
+# Badge
+
+## Default
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-badge___all_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-badge___all_dm.png) |
 
 ## Usage
 
