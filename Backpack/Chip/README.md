@@ -1,5 +1,17 @@
 # Backpack/Chip
 
+## Default
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___default_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___default_dm.png) |
+
+## OnDark
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-dark_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-dark_dm.png) |
+
 ## Installation
 
 In `Podfile` add
