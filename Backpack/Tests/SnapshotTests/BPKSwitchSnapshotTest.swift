@@ -40,17 +40,14 @@ class BPKSwitchSnapshotTest: XCTestCase {
     }
     
     func testSwitchWhenOff() {
-        assertSnapshot(matching: makeSwitch(), as: .image)
-        assertSnapshot(matching: makeSwitch(), as: .image(traits: traitDarkMode))
+        assertSnapshot(makeSwitch())
     }
     
     func testSwitchWhenOn() {
-        assertSnapshot(matching: makeSwitch(state: true), as: .image)
-        assertSnapshot(matching: makeSwitch(state: true), as: .image(traits: traitDarkMode))
+        assertSnapshot(makeSwitch(state: true))
     }
     
     func testSwitchWhenOnWithTheme() {
-        assertSnapshot(matching: makeSwitch(withPrimaryColor: .orange, state: true), as: .image)
-        assertSnapshot(matching: makeSwitch(withPrimaryColor: .orange, state: true), as: .image(traits: traitDarkMode))
+        assertSnapshot(makeSwitch(withPrimaryColor: .orange, state: true))
     }
 }
