@@ -90,7 +90,7 @@ public extension BPKColor {
     /// The `surfaceContrastColor` dynamic color from the Backpack palette.
     
     static let surfaceContrastColor = BPKColor(red:0.020, green:0.125, blue:0.235, alpha:1)
-        .darkVariant(BPKColor(red:0.075, green:0.114, blue:0.169, alpha:1))
+        .darkVariant(BPKColor(red:0.004, green:0.035, blue:0.075, alpha:1))
 
     /// The `surfaceDefaultColor` dynamic color from the Backpack palette.
     
