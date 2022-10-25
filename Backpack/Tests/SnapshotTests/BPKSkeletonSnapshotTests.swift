@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKSkeletonSnapshotTest: FBSnapshotTestCase {
+class BPKSkeletonSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func create(
@@ -39,65 +39,53 @@ class BPKSkeletonSnapshotTest: FBSnapshotTestCase {
     }
     
     func testImageSkeleton() {
-        BPKSnapshotVerifyViewLight(create())
-        BPKSnapshotVerifyViewDark(create())
+        assertSnapshot(create())
     }
     
     func testCustomSizeImageSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .image, size: .custom(size: CGSize(width: 111, height: 222))))
-        BPKSnapshotVerifyViewDark(create(type: .image, size: .custom(size: CGSize(width: 111, height: 222))))
+        assertSnapshot(create(type: .image, size: .custom(size: CGSize(width: 111, height: 222))))
     }
     
     func testRoundedImageSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .image, style: .rounded))
-        BPKSnapshotVerifyViewDark(create(type: .image, style: .rounded))
+        assertSnapshot(create(type: .image, style: .rounded))
     }
     
     func testShimmerSkeleton() {
         func enrich(_ skeleton: BPKSkeleton) {
             BPKSkeleton.startShimmer(view: skeleton)
         }
-        BPKSnapshotVerifyViewLight(create(enrich: enrich))
-        BPKSnapshotVerifyViewDark(create(enrich: enrich))
+        assertSnapshot(create(enrich: enrich))
     }
     
     func testSmallCircleSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .circle, size: .small, style: .default))
-        BPKSnapshotVerifyViewDark(create(type: .circle, size: .small, style: .default))
+        assertSnapshot(create(type: .circle, size: .small, style: .default))
     }
     
     func testDefaultCircleSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .circle))
-        BPKSnapshotVerifyViewDark(create(type: .circle))
+        assertSnapshot(create(type: .circle))
     }
     
     func testCustomSizeCircleSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .circle, size: .custom(size: CGSize(width: 88, height: 111))))
-        BPKSnapshotVerifyViewDark(create(type: .circle, size: .custom(size: CGSize(width: 88, height: 111))))
+        assertSnapshot(create(type: .circle, size: .custom(size: CGSize(width: 88, height: 111))))
     }
     
     func testSmallHeadlineSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .headline, size: .small, style: .default))
-        BPKSnapshotVerifyViewDark(create(type: .headline, size: .small, style: .default))
+        assertSnapshot(create(type: .headline, size: .small, style: .default))
     }
     
     func testDefaultHeadlineSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .headline))
-        BPKSnapshotVerifyViewDark(create(type: .headline))
+        assertSnapshot(create(type: .headline))
     }
     
     func testLargeHeadlineSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .headline, size: .large, style: .default))
-        BPKSnapshotVerifyViewDark(create(type: .headline, size: .large, style: .default))
+        assertSnapshot(create(type: .headline, size: .large, style: .default))
     }
     
     func testBodytextSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .bodytext))
-        BPKSnapshotVerifyViewDark(create(type: .bodytext))
+        assertSnapshot(create(type: .bodytext))
     }
     
     func testCustomSizeBodytextSkeleton() {
-        BPKSnapshotVerifyViewLight(create(type: .bodytext, size: .custom(size: CGSize(width: 280, height: 111))))
-        BPKSnapshotVerifyViewDark(create(type: .bodytext, size: .custom(size: CGSize(width: 280, height: 111))))
+        assertSnapshot(create(type: .bodytext, size: .custom(size: CGSize(width: 280, height: 111))))
     }
 }
