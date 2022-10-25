@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKToastSnapshotTest: FBSnapshotTestCase {
+class BPKToastSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func create(toastMode: BPKToastMode) -> UIView {
@@ -41,12 +41,10 @@ class BPKToastSnapshotTest: FBSnapshotTestCase {
     }
 
     func testToastWithTextMode() {
-        BPKSnapshotVerifyViewLight(create(toastMode: .text))
-        BPKSnapshotVerifyViewDark(create(toastMode: .text))
+        assertSnapshot(create(toastMode: .text))
     }
 
     func testToastWithDefaultMode() {
-        BPKSnapshotVerifyViewLight(create(toastMode: .indeterminate))
-        BPKSnapshotVerifyViewDark(create(toastMode: .indeterminate))
+        assertSnapshot(create(toastMode: .indeterminate))
     }
 }
