@@ -44,6 +44,10 @@ function buildDocsHtmlFiles() {
   buildLatestIndex $version
 }
 
+function copyDocsToLatest() {
+  cp -r "$outputDir/versions/$version/" "$outputDir/versions/latest"
+}
+
 outputDir="docs"
 version=$1
 
@@ -55,3 +59,4 @@ fi
 buildDocsHtmlFiles
 documentUIKit
 documentSwiftUI
+copyDocsToLatest
