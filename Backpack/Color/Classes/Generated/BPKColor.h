@@ -660,7 +660,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `textOnLightColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #161616ff; background: linear-gradient(0.375turn, #161616ff 49%, #161616ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #161616ff; background: linear-gradient(0.375turn, #161616ff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textOnLightColor;
 
@@ -723,7 +723,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The `textPrimaryInverseColor` dynamic color from the Backpack palette.
  *
- * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #161616ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+ * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * textPrimaryInverseColor;
 
