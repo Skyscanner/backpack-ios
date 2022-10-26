@@ -22,10 +22,16 @@ function documentSwiftUI() {
 }
 
 function buildRedirectHTML() {
-  echo '<!DOCTYPE html>
+  echo "<!DOCTYPE html>
   <html>
-    <meta http-equiv="refresh" content="0;url=/ios/versions/latest/index.html" />
-  </html>' >$1
+    <meta http-equiv=\"refresh\" content=\"0;url=/ios/versions/latest/index.html\" />
+    <script type=\"text/javascript\">
+      const iosDocsPath = (window.location + '').split('ios/versions/latest');
+      if (iosDocsPath.length > 1) {
+        window.location = \`/ios/versions/$version\${iosDocsPath[1]}\`;
+      }
+    </script>
+  </html>" > $1
 }
 
 function buildLatestIndex() {
