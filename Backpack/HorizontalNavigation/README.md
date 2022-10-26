@@ -1,5 +1,29 @@
 # Backpack/HorizontalNavigation
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___default_dm.png) |
+
+## Small
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___small_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___small_dm.png) |
+
+## With icons
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___with-icons_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___with-icons_dm.png) |
+
+## With no line
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___without-underline_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-horizontal-navigation___without-underline_dm.png) |
+
 ## Usage
 
 `BPKHorizontalNavigation` is a component similar to [Segmented Control](https://developer.apple.com/design/human-interface-guidelines/ios/controls/segmented-controls/). It shows two or more segments, each being a distinct option for travellers to switch between. Each option is defined with a string, and optionally a `BPKIcon` name too.

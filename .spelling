@@ -127,6 +127,7 @@ BpkTicket
 
 PrimaryOnDark
 PrimaryOnLight
+OnDark
 
 BpkText
 BpkAttributedText

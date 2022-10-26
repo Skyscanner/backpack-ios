@@ -1,5 +1,41 @@
 # Backpack/Calendar
 
+## Single date
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___single_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___single_dm.png) |
+
+## Date range
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___range_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___range_dm.png) |
+
+## Multiple dates
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___multiple_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___multiple_dm.png) |
+
+## Custom colours
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___custom-style_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___custom-style_dm.png) |
+
+## With prices
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___with-prices_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___with-prices_dm.png) |
+
+## Showing year pill
+
+| Day | Night |
+| --- | --- | 
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___pill_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-calendar___pill_dm.png) |
+
 ## Installation
 
 In `Podfile` add

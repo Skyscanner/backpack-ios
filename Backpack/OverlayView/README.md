@@ -1,5 +1,24 @@
 # Backpack/OverlayView
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___default_dm.png) |
+
+## Disabled tint
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___overlay-type-none_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___overlay-type-none_dm.png) |
+
+## Foreground content
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___foreground-content_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-overlay-view___foreground-content_dm.png) |
+
+
 ## Usage
 
 `BPKOverlayView` provides an easy way to place content either in-front or behind a tint layer. It ensures that, when placing text on a graphic, the text will be legible and accessible.

@@ -1,5 +1,11 @@
 # Backpack/ProgressBar
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-progress-bar___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-progress-bar___default_dm.png) |
+
 ## Usage
 
 `Backpack/ProgressBar` is a simple [`UIProgressView`](https://developer.apple.com/documentation/uikit/uiprogressview#) with Skyscanner styling applied.

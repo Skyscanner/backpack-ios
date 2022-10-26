@@ -1,5 +1,12 @@
 # Backpack/TextField
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-text-field___default_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-text-field___default_dm.png) |
+
+
 ## Usage
 
 `BPKTextField` contains the Backpack TextField component which is a subclass of `UITextField` with Skyscanner styles. It accepts a Backpack font style to set the desired size.

@@ -382,6 +382,10 @@
     return BPKColor.textOnLightColor;
 }
 
++ (UIColor *)bpk_textDisabledOnDarkColor {
+    return BPKColor.textDisabledOnDarkColor;
+}
+
 + (UIColor *)bpk_textLinkColor {
     return BPKColor.textLinkColor;
 }

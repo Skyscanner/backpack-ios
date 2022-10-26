@@ -1,5 +1,24 @@
 # Backpack/NavigationBar
 
+
+## Default
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_dm.png) |
+
+## Collapsed
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_dm.png) |
+
+## With buttons
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_dm.png) |
+
 ## Usage
 
 `BPKNavigationBar` is an implementation of parts of UIKit's UINavigationBar, specifically the large

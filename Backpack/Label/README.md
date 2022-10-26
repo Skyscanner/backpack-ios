@@ -1,5 +1,11 @@
 # Backpack/Label
 
+## Multiple font styles
+
+| Day | Night |
+| --- | --- |
+| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_dm.png) |
+
 ## Usage
 
 `BPKLabel` contains the Backpack Label component which is a subclass of `UILabel` with Skyscanner styles. It accepts a Backpack font style to set the desired size.
