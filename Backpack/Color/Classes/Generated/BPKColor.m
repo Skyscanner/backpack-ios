@@ -373,7 +373,7 @@
 
 + (UIColor *)surfaceContrastColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.020 green:0.125 blue:0.235 alpha:1] 
-                                          darkVariant:[UIColor colorWithRed:0.075 green:0.114 blue:0.169 alpha:1]];
+                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
 }
 
 + (UIColor *)surfaceDefaultColor {
@@ -398,7 +398,7 @@
 
 + (UIColor *)textOnLightColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1] 
-                                          darkVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1]];
+                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
 }
 
 + (UIColor *)textDisabledOnDarkColor {
@@ -443,7 +443,7 @@
 
 + (UIColor *)textPrimaryInverseColor {
     return [[self class] dynamicColorWithLightVariant:[UIColor colorWithRed:1.000 green:1.000 blue:1.000 alpha:1] 
-                                          darkVariant:[UIColor colorWithRed:0.086 green:0.086 blue:0.086 alpha:1]];
+                                          darkVariant:[UIColor colorWithRed:0.004 green:0.035 blue:0.075 alpha:1]];
 }
 
 + (UIColor *)scrimColor {
