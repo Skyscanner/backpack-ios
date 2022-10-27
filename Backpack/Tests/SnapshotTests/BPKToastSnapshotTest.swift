@@ -23,11 +23,12 @@ import SnapshotTesting
 class BPKToastSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = false
+        isRecording = true
     }
     
     private func create(toastMode: BPKToastMode) -> UIView {
         let parent = UIView(frame: UIScreen.main.bounds)
+        parent.translatesAutoresizingMaskIntoConstraints = false
         let toast = BPKToast.showAdded(
             to: parent,
             animated: false,
@@ -36,7 +37,10 @@ class BPKToastSnapshotTest: XCTestCase {
         toast.mode = toastMode
         toast.labelText = "Toast Title Text"
         toast.detailsLabelText = "Toast detail text"
-
+        NSLayoutConstraint.activate([
+            parent.heightAnchor.constraint(equalToConstant: 200),
+            parent.widthAnchor.constraint(equalToConstant: 200)
+        ])
         return parent
     }
 
