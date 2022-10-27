@@ -183,7 +183,7 @@ class BPKHorizontalNavigationSnapshotTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        isRecording = true
+        isRecording = false
     }
 
     func testDefault() {

@@ -34,12 +34,10 @@ class BottomSheetTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .bpk_backgroundSecondary
         bottomSheet.addPanel(toParent: self)
     }
     
-    func moveBottomSheet(toState state: BPKFloatingPanelPosition, animated: Bool = true) {
-        bottomSheet.move(to: state, animated: animated)
+    func moveBottomSheet(toState state: BPKFloatingPanelPosition) {
+        bottomSheet.move(to: state, animated: false)
     }
 }

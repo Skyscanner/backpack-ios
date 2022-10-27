@@ -27,7 +27,7 @@ class BPKBottomSheetTest: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        isRecording = false
+        isRecording = true
         sut = BottomSheetTestViewController()
     }
 
@@ -36,12 +36,19 @@ class BPKBottomSheetTest: XCTestCase {
         try super.tearDownWithError()
     }
     
+    private func constraintSut(toWidth width: CGFloat, height: CGFloat) {
+        sut.view.translatesAutoresizingMaskIntoConstraints = false
+        sut.view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        sut.view.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
     func test_moveBottomSheet_toHalf() {
         // Given
         sut.viewDidLoad()
+        constraintSut(toWidth: 300, height: 400)
         
         // When
-        sut.moveBottomSheet(toState: .half, animated: false)
+        sut.moveBottomSheet(toState: .half)
         
         // Then
         assertSnapshot(sut.view)
@@ -50,9 +57,10 @@ class BPKBottomSheetTest: XCTestCase {
     func test_moveBottomSheet_toTip() {
         // Given
         sut.viewDidLoad()
+        constraintSut(toWidth: 300, height: 150)
         
         // When
-        sut.moveBottomSheet(toState: .tip, animated: false)
+        sut.moveBottomSheet(toState: .tip)
         
         // Then
         assertSnapshot(sut.view)
@@ -61,9 +69,10 @@ class BPKBottomSheetTest: XCTestCase {
     func test_moveBottomSheet_toFull() {
         // Given
         sut.viewDidLoad()
+        constraintSut(toWidth: 300, height: 700)
         
         // When
-        sut.moveBottomSheet(toState: .full, animated: false)
+        sut.moveBottomSheet(toState: .full)
         
         // Then
         assertSnapshot(sut.view)

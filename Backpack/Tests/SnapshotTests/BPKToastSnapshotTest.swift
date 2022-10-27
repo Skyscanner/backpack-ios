@@ -23,7 +23,7 @@ import SnapshotTesting
 class BPKToastSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = true
+        isRecording = false
     }
     
     private func create(toastMode: BPKToastMode) -> UIView {
