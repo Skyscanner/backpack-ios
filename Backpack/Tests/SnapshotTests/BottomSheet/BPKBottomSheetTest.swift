@@ -27,7 +27,7 @@ class BPKBottomSheetTest: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        isRecording = true
+        isRecording = false
         sut = BottomSheetTestViewController()
     }
 
