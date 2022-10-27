@@ -1,5 +1,8 @@
 # Backpack/TappableLinkLabel
 
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKTappableLinkLabel.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/TappableLinkLabel)
+
 ## With multiple links
 
 | Day | Night |

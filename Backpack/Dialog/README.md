@@ -1,5 +1,8 @@
 # Backpack/Dialog
 
+[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKDialog.html)
+[![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/Dialog)
+
 ## Alert
 
 Alert dialogs fade in to the centre of the screen and can contain zero or more buttons. Used as a call to action.
