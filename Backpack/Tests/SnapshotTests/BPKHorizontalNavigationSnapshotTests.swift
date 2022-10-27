@@ -66,8 +66,8 @@ func displayHorizontalNavigation<Size: BPKHorizontalNavigationSize>(
     _ nav: BPKHorizontalNavigation<Size>,
     width: CGFloat = -1.0
 ) -> NavContainer<Size> {
-    let view = NavContainer(nav: nav, desiredWidth: width)
-    view.backgroundColor = .bpk_white
+    let container = NavContainer(nav: nav, desiredWidth: width)
+    container.translatesAutoresizingMaskIntoConstraints = false
 
     var fittingSize = nav.systemLayoutSizeFitting(CGSize(width: 1000, height: 1000))
 
@@ -75,10 +75,17 @@ func displayHorizontalNavigation<Size: BPKHorizontalNavigationSize>(
         fittingSize.width = width
     }
 
-    nav.frame = CGRect(origin: .zero, size: fittingSize)
-    view.frame = nav.frame
+    nav.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        nav.topAnchor.constraint(equalTo: container.topAnchor),
+        nav.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+        nav.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+        nav.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+        nav.widthAnchor.constraint(equalToConstant: fittingSize.width),
+        nav.heightAnchor.constraint(equalToConstant: fittingSize.height)
+    ])
 
-    return view
+    return container
 }
 
 func createNav<Size: BPKHorizontalNavigationSize>(
