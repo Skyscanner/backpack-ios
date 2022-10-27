@@ -1,5 +1,6 @@
 # Button
 
+[![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKButton.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Button)
 
@@ -57,7 +58,7 @@ BPKButton("Button title") {
 }
 ```
 
-### Styled `.secondary` Button.
+### Styled .secondary Button.
 
 ```swift 
 BPKButton("Button title") {
@@ -88,7 +89,7 @@ BPKButton(
 }
 ```
 
-### Button with `loading` state. 
+### Button with loading state. 
 
 Pass in a `@State` variable or use `.constant(true)` 
 
@@ -101,7 +102,7 @@ BPKButton(
 }
 ```
 
-### Button with `disabled` state. 
+### Button with disabled state. 
 
 Pass in a `@State` variable or use `.constant(true)` 
 
@@ -114,7 +115,7 @@ BPKButton(
 }
 ```
 
-### Button with `icon` only
+### Button with icon only
 > Pass in `accessibilityLabel` when creating a button with just an icon
 
 ```swift
@@ -126,7 +127,7 @@ BPKButton(
 }
 ```
 
-### Button with `large` size
+### Button with large size
 
 ```swift
 BPKButton(
