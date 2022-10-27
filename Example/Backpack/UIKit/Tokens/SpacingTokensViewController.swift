@@ -43,10 +43,22 @@ class SpacingTokensViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        setupConstraints()
+        displayTokens()
+    }
+    
+    private func displayTokens() {
+        spacingValues.map(spacingView(for:))
+            .forEach(verticalStackView.addArrangedSubview)
+    }
+    
+    private func setupViews() {
         view.backgroundColor = .systemBackground
-        let spacingViews = spacingValues.map(spacingView(for:))
-        spacingViews.forEach(verticalStackView.addArrangedSubview)
         view.addSubview(verticalStackView)
+    }
+    
+    private func setupConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: BPKSpacingLg),
@@ -54,30 +66,26 @@ class SpacingTokensViewController: UIViewController {
             verticalStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -BPKSpacingLg),
             verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor, constant: -BPKSpacingLg)
         ])
-        
     }
-
+    
     private func spacingView(for cornerRadius: (String, CGFloat)) -> UIView {
         let containerView = UIStackView()
         containerView.axis = .horizontal
-        
-        // separate content in opoosite sides
         containerView.distribution = .equalSpacing
-        
         containerView.spacing = BPKSpacingMd
-
+        
         let spacingView = UIView()
         spacingView.backgroundColor = BPKColor.coreAccentColor
-
+        
         let label = BPKLabel()
         label.text = "\(cornerRadius.0) = \(Int(cornerRadius.1))"
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             spacingView.widthAnchor.constraint(equalToConstant: cornerRadius.1),
             spacingView.heightAnchor.constraint(equalToConstant: BPKSpacingXl)
         ])
-
+        
         containerView.addArrangedSubview(spacingView)
         containerView.addArrangedSubview(label)
         return containerView

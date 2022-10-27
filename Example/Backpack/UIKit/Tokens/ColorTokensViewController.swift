@@ -79,10 +79,24 @@ class ColorTokensViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupConstraints()
+        displayTokens()
+    }
+    
+    private func displayTokens() {
+        colorTokens.tokens
+            .map(colorSection(section:))
+            .forEach(verticalStackView.addArrangedSubview)
+    }
+    
+    private func setupView() {
         view.backgroundColor = BPKColor.canvasColor
         view.addSubview(scrollView)
         scrollView.addSubview(verticalStackView)
-        
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -90,15 +104,11 @@ class ColorTokensViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             verticalStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            verticalStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -BPKSpacingLg),
+            scrollView.bottomAnchor.constraint(equalTo: verticalStackView.bottomAnchor, constant: BPKSpacingLg),
             verticalStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: BPKSpacingLg),
             verticalStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: BPKSpacingLg),
             verticalStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
-        
-        colorTokens.tokens
-            .map(colorSection(section:))
-            .forEach(verticalStackView.addArrangedSubview)
     }
     
     private func colorSection(section: Tokens.Section) -> UIView {
@@ -122,7 +132,7 @@ class ColorTokensViewController: UIViewController {
     private func tokenView(colorToken: Tokens.Section.Color) -> UIView {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let colorView = UIView()
         colorView.translatesAutoresizingMaskIntoConstraints = false
         colorView.layer.cornerRadius = BPKSpacingMd
@@ -145,8 +155,8 @@ class ColorTokensViewController: UIViewController {
             
             colorLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: BPKSpacingMd),
             colorLabel.leadingAnchor.constraint(equalTo: colorView.trailingAnchor, constant: BPKSpacingMd),
-            colorLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -BPKSpacingMd),
-            colorLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -BPKSpacingMd)
+            container.bottomAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: BPKSpacingMd),
+            container.trailingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: BPKSpacingMd)
         ])
         
         let card = BPKCard(padded: false)
@@ -158,17 +168,19 @@ class ColorTokensViewController: UIViewController {
 extension ColorTokensViewController {
     struct Tokens {
         let tokens: [Section]
-        
-        // swiftlint:disable:next nesting
-        struct Section {
-            let name: String
-            let colors: [Color]
-            
-            // swiftlint:disable:next nesting
-            struct Color {
-                let color: UIColor
-                let name: String
-            }
-        }
+    }
+}
+
+extension ColorTokensViewController.Tokens {
+    struct Section {
+        let name: String
+        let colors: [Color]
+    }
+}
+
+extension ColorTokensViewController.Tokens.Section {
+    struct Color {
+        let color: UIColor
+        let name: String
     }
 }

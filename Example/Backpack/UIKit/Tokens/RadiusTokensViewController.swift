@@ -40,20 +40,31 @@ class RadiusTokensViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupConstraints()
+        displayTokens()
+    }
+    
+    private func displayTokens() {
+        radiiValues.map(radiiView(for:))
+            .forEach(verticalStackView.addArrangedSubview)
+    }
+    
+    private func setupView() {
         view.backgroundColor = .systemBackground
-        let radiiViews = radiiValues.map(radiiView(for:))
-        radiiViews.forEach(verticalStackView.addArrangedSubview)
         view.addSubview(verticalStackView)
+    }
+    
+    private func setupConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: BPKSpacingLg),
             verticalStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: BPKSpacingLg),
-            verticalStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -BPKSpacingLg),
-            verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor, constant: -BPKSpacingLg)
+            safeArea.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: BPKSpacingLg),
+            safeArea.bottomAnchor.constraint(lessThanOrEqualTo: verticalStackView.bottomAnchor, constant: BPKSpacingLg)
         ])
-        
     }
-
+    
     private func radiiView(for cornerRadius: (String, CGFloat)) -> UIView {
         let view = UIView()
         view.backgroundColor = BPKColor.corePrimaryColor
@@ -67,10 +78,10 @@ class RadiusTokensViewController: UIViewController {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: BPKSpacingXl),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingLg),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -BPKSpacingLg),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -BPKSpacingXl)
+            view.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: BPKSpacingLg),
+            view.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: BPKSpacingXl)
         ])
-
+        
         return view
     }
 }
