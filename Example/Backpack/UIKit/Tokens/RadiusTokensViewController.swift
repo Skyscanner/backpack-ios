@@ -51,7 +51,7 @@ class RadiusTokensViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = BPKColor.canvasColor
         view.addSubview(verticalStackView)
     }
     

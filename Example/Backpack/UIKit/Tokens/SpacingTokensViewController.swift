@@ -54,7 +54,7 @@ class SpacingTokensViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = BPKColor.canvasColor
         view.addSubview(verticalStackView)
     }
     
