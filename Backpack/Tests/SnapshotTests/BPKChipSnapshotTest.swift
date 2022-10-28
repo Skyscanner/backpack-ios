@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKChipSnapshotTest: FBSnapshotTestCase {
+class BPKChipSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func create(
@@ -39,52 +39,45 @@ class BPKChipSnapshotTest: FBSnapshotTestCase {
     }
     
     func testChipUnselected() {
-        BPKSnapshotVerifyViewLight(create())
-        BPKSnapshotVerifyViewDark(create())
+        assertSnapshot(create())
     }
     
     func testChipSelected() {
         func enrich(_ chip: BPKChip) {
             chip.isSelected = true
         }
-        BPKSnapshotVerifyViewLight(create(enrich: enrich))
-        BPKSnapshotVerifyViewDark(create(enrich: enrich))
+        assertSnapshot(create(enrich: enrich))
     }
     
     func testChipWithSelectType() {
         func enrich(_ chip: BPKChip) {
             chip.type = .select
         }
-        BPKSnapshotVerifyViewLight(create(enrich: enrich))
-        BPKSnapshotVerifyViewDark(create(enrich: enrich))
+        assertSnapshot(create(enrich: enrich))
     }
     
     func testChipWithDismissType() {
         func enrich(_ chip: BPKChip) {
             chip.type = .dismiss
         }
-        BPKSnapshotVerifyViewLight(create(enrich: enrich))
-        BPKSnapshotVerifyViewDark(create(enrich: enrich))
+        assertSnapshot(create(enrich: enrich))
     }
     
     func testChipDisabled() {
         func enrich(_ chip: BPKChip) {
             chip.isEnabled = false
         }
-        BPKSnapshotVerifyViewLight(create(enrich: enrich))
-        BPKSnapshotVerifyViewDark(create(enrich: enrich))
+        assertSnapshot(create(enrich: enrich))
     }
     
     func testChipWithIcon() {
-        BPKSnapshotVerifyViewLight(create(icon: .map))
-        BPKSnapshotVerifyViewDark(create(icon: .map))
+        assertSnapshot(create(icon: .map))
     }
     
     func testChipSelectedWithIcon() {
         func enrich(_ chip: BPKChip) {
             chip.isSelected = true
         }
-        BPKSnapshotVerifyViewLight(create(icon: .map))
-        BPKSnapshotVerifyViewDark(create(icon: .map))
+        assertSnapshot(create(icon: .map))
     }
 }

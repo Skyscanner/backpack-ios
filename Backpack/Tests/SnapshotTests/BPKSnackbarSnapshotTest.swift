@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKSnackbarSnapshotTest: FBSnapshotTestCase {
+class BPKSnackbarSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func showSnackbar(
@@ -47,48 +47,41 @@ class BPKSnackbarSnapshotTest: FBSnapshotTestCase {
     }
     
     func testSnackbarWithText() {
-        BPKSnapshotVerifyViewLight(showSnackbar())
-        BPKSnapshotVerifyViewDark(showSnackbar())
+        assertSnapshot(showSnackbar())
     }
     
     func testSnackbarWithTextAndTitle() {
-        BPKSnapshotVerifyViewLight(showSnackbar(title: "Snackbar Title"))
-        BPKSnapshotVerifyViewDark(showSnackbar(title: "Snackbar Title"))
+        assertSnapshot(showSnackbar(title: "Snackbar Title"))
     }
     
     func testSnackbarWithTextAndRightButton() {
         let button = BPKSnackbarButton(title: "Button title")
-        BPKSnapshotVerifyViewLight(showSnackbar(button: button))
-        BPKSnapshotVerifyViewDark(showSnackbar(button: button))
+        assertSnapshot(showSnackbar(button: button))
     }
     
     func testSnackbarWithTextAndRightButtonIconOnly() {
         let icon = BPKIcon.makeSmallTemplateIcon(name: .close)
         let button = BPKSnackbarButton(icon: icon, accessibilityLabel: "close")
-        BPKSnapshotVerifyViewLight(showSnackbar(button: button))
-        BPKSnapshotVerifyViewDark(showSnackbar(button: button))
+        assertSnapshot(showSnackbar(button: button))
     }
     
     func testSnackbarWithTextAndRightButtonAndAccesoryIcon() {
         let leftIcon = BPKIcon.makeSmallTemplateIcon(name: .tickCircle)
         let buttonIcon = BPKIcon.makeSmallTemplateIcon(name: .close)
         let button = BPKSnackbarButton(icon: buttonIcon, accessibilityLabel: "close")
-        BPKSnapshotVerifyViewLight(showSnackbar(icon: leftIcon, button: button))
-        BPKSnapshotVerifyViewDark(showSnackbar(icon: leftIcon, button: button))
+        assertSnapshot(showSnackbar(icon: leftIcon, button: button))
     }
     
     func testSnackbarWithLongTextAndRightButton() {
         let text = "Descriptive text Descriptive text Descriptive text Descriptive text"
         let button = BPKSnackbarButton(title: "Button title")
-        BPKSnapshotVerifyViewLight(showSnackbar(text: text, button: button))
-        BPKSnapshotVerifyViewDark(showSnackbar(text: text, button: button))
+        assertSnapshot(showSnackbar(text: text, button: button))
     }
     
     func testSnackbarWithLongTextLongTitleAndRightButton() {
         let text = "Long text long text long text"
         let title = "Snackbar Title Snackbar Title Snackbar Title Snackbar Title"
         let button = BPKSnackbarButton(title: "Button title")
-        BPKSnapshotVerifyViewLight(showSnackbar(text: text, title: title, button: button))
-        BPKSnapshotVerifyViewDark(showSnackbar(text: text, title: title, button: button))
+        assertSnapshot(showSnackbar(text: text, title: title, button: button))
     }
 }

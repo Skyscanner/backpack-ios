@@ -18,12 +18,12 @@
 
 import XCTest
 import Backpack
-import FBSnapshotTestCase
+import SnapshotTesting
 
-class BPKLabelSnapshotTest: FBSnapshotTestCase {
+class BPKLabelSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func createView(withStyles styles: [BPKFontStyle]) -> UIView {
@@ -36,19 +36,16 @@ class BPKLabelSnapshotTest: FBSnapshotTestCase {
     
     func testLabelsWithRegularFontStyles() {
         let styles: [BPKFontStyle] = .regularStyles
-        BPKSnapshotVerifyViewLight(createView(withStyles: styles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: styles))
+        assertSnapshot(createView(withStyles: styles))
     }
     
     func testLabelsWithHeadingFontStyles() {
         let styles: [BPKFontStyle] = .headingStyles
-        BPKSnapshotVerifyViewLight(createView(withStyles: styles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: styles))
+        assertSnapshot(createView(withStyles: styles))
     }
     
     func testLabelsWithHeroFontStyles() {
         let styles: [BPKFontStyle] = .heroStyles
-        BPKSnapshotVerifyViewLight(createView(withStyles: styles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: styles))
+        assertSnapshot(createView(withStyles: styles))
     }
 }

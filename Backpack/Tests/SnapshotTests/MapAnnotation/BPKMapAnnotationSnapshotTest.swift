@@ -70,16 +70,12 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
     
     func testAllStates() {
         let exampleView = createAllStates(hasIcon: false)
-        
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
     
     func testAllStatesWithIcon() {
         let exampleView = createAllStates(hasIcon: true)
-        
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
     
     // MARK: Long titles
@@ -98,16 +94,12 @@ class BPKMapAnnotationSnapshotTest: XCTestCase {
     
     func testLongTitleCalloutViewWith() {
         let exampleView = createWithLongTitle(hasIcon: false)
-        
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
 
     func testLongTitleCalloutViewWithIcon() {
         let exampleView = createWithLongTitle(hasIcon: true)
-        
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
     
     // MARK: Util

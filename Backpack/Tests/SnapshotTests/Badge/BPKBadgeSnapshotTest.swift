@@ -61,24 +61,18 @@ class BPKBadgeSnapshotTest: XCTestCase {
 
     func testViewSnapshotWithTypes() {
         let exampleView = createViewWithTypes()
-
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
 
     func testViewSnapshotWithLeadingIcon() {
         let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.time)
         let exampleView = createViewWithTypes(andIcon: icon)
-
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
 
     func testViewSnapshotWithTrailingIcon() {
         let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.time)
         let exampleView = createViewWithTypes(andIcon: icon)
-
-        assertSnapshot(matching: exampleView, as: .image)
-        assertSnapshot(matching: exampleView, as: .image(traits: traitDarkMode))
+        assertSnapshot(exampleView)
     }
 }

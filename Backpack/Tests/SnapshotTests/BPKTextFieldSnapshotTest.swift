@@ -17,13 +17,13 @@
  */
 
 import XCTest
-import FBSnapshotTestCase
 import Backpack
+import SnapshotTesting
 
-class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
+class BPKTextFieldSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        recordMode = false
+        isRecording = false
     }
     
     private func createView(withStyles styles: [BPKFontStyle], textColor: UIColor? = nil) -> UIView {
@@ -36,22 +36,18 @@ class BPKTextFieldSnapshotTest: FBSnapshotTestCase {
     }
     
     func testTextFieldWithRegularFontStyles() {
-        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles))
+        assertSnapshot(createView(withStyles: .regularStyles))
     }
     
     func testTextFieldWithHeadingFontStyles() {
-        BPKSnapshotVerifyViewLight(createView(withStyles: .headingStyles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: .headingStyles))
+        assertSnapshot(createView(withStyles: .headingStyles))
     }
     
     func testTextFieldWithHeroFontStyles() {
-        BPKSnapshotVerifyViewLight(createView(withStyles: .heroStyles))
-        BPKSnapshotVerifyViewDark(createView(withStyles: .heroStyles))
+        assertSnapshot(createView(withStyles: .heroStyles))
     }
     
     func testTextFieldWithThemeApplied() {
-        BPKSnapshotVerifyViewDark(createView(withStyles: .regularStyles, textColor: .orange))
-        BPKSnapshotVerifyViewLight(createView(withStyles: .regularStyles, textColor: .orange))
+        assertSnapshot(createView(withStyles: .regularStyles, textColor: .orange))
     }
 }
