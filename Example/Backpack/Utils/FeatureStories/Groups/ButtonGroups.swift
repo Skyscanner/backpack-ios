@@ -25,7 +25,7 @@ struct ButtonGroupsProvider {
     private func presentable(
         _ title: String,
         style: BPKButtonStyle,
-        backgroundColor: UIColor = .systemBackground
+        backgroundColor: UIColor = BPKColor.canvasColor
     ) -> CellDataSource {
         func enrich(screen: BPKButtonsViewController) {
             screen.style = style

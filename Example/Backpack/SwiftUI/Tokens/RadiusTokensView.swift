@@ -35,10 +35,10 @@ struct RadiusTokensView: View {
         ScrollView {
             VStack {
                 ForEach(radiusTokens, id: \.0) { token in
-                    Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
+                    BPKText("\(token.0) = \(Int(token.1.value))")
+                        .foregroundColor(.white)
                         .padding(.lg)
                         .background(.corePrimaryColor)
-                        .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: token.1))
                 }
             }

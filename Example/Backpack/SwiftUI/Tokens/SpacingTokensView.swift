@@ -21,8 +21,10 @@ import Backpack_SwiftUI
 
 struct SpacingTokensView: View {
     let spacingTokens: [(String, BPKSpacing)] = [
+        ("BPKSpacingNone", .none),
         ("BPKSpacingSm", .sm),
         ("BPKSpacingMd", .md),
+        ("BPKSpacingIconText", .iconText),
         ("BPKSpacingBase", .base),
         ("BPKSpacingLg", .lg),
         ("BPKSpacingXl", .xl),
@@ -31,13 +33,12 @@ struct SpacingTokensView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
             ForEach(spacingTokens, id: \.0) { token in
                 HStack {
                     Color(.coreAccentColor)
                         .frame(
-                            maxWidth: token.1,
-                            maxHeight: .base)
+                            width: token.1,
+                            height: .xl)
                     Spacer()
                     Text("\(token.0) = \(token.1.value, specifier: "%.0f")")
                 }

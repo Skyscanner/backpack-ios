@@ -31,11 +31,7 @@ struct TokenCellsProvider {
     
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
-            PresentableCellDataSource.custom(
-                title: "Colors",
-                customController: { ContentUIHostingController(ColorTokensView()) },
-                showPresentable: show(presentable:)
-            ),
+            colorGroup,
             GroupCellDataSource(
                 title: "Gradients",
                 groups: SingleGroupProvider(
@@ -53,19 +49,71 @@ struct TokenCellsProvider {
                     ]).groups(),
                 showChildren: { showChildren(for: "Gradients", children: $0) }
             ),
-            PresentableCellDataSource.custom(
-                title: "Spacings",
-                customController: { ContentUIHostingController(SpacingTokensView()) },
-                showPresentable: show(presentable:)
-            ),
-            PresentableCellDataSource.custom(
-                title: "Radii",
-                customController: { ContentUIHostingController(RadiusTokensView()) },
-                showPresentable: show(presentable:)
-            ),
+            spacingGroup,
+            radiiGroup,
             shadowGroup
         ]
         return dataSources.map(\.cell)
+    }
+    
+    private var colorGroup: GroupCellDataSource {
+        GroupCellDataSource(
+            title: "Colors",
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    PresentableCellDataSource.custom(
+                        title: "SwiftUI",
+                        customController: { ContentUIHostingController(ColorTokensView()) },
+                        showPresentable: show(presentable:)
+                    ),
+                    PresentableCellDataSource.custom(
+                        title: "UIKit",
+                        customController: { ColorTokensViewController() },
+                        showPresentable: show(presentable:)
+                    )
+                ]).groups(),
+            showChildren: { showChildren(for: "Colors", children: $0) }
+        )
+    }
+    
+    private var spacingGroup: GroupCellDataSource {
+        GroupCellDataSource(
+            title: "Spacings",
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    PresentableCellDataSource.custom(
+                        title: "SwiftUI",
+                        customController: { ContentUIHostingController(SpacingTokensView()) },
+                        showPresentable: show(presentable:)
+                    ),
+                    PresentableCellDataSource.custom(
+                        title: "UIKit",
+                        customController: { SpacingTokensViewController() },
+                        showPresentable: show(presentable:)
+                    )
+                ]).groups(),
+            showChildren: { showChildren(for: "Spacings", children: $0) }
+        )
+    }
+    
+    private var radiiGroup: GroupCellDataSource {
+        GroupCellDataSource(
+            title: "Radii",
+            groups: SingleGroupProvider(
+                cellDataSources: [
+                    PresentableCellDataSource.custom(
+                        title: "SwiftUI",
+                        customController: { ContentUIHostingController(RadiusTokensView()) },
+                        showPresentable: show(presentable:)
+                    ),
+                    PresentableCellDataSource.custom(
+                        title: "UIKit",
+                        customController: { RadiusTokensViewController() },
+                        showPresentable: show(presentable:)
+                    )
+                ]).groups(),
+            showChildren: { showChildren(for: "Radii", children: $0) }
+        )
     }
     
     private var shadowGroup: GroupCellDataSource {
