@@ -7,62 +7,62 @@
 ## Default
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___default_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___default_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___default_dm.png" alt="" width="375" /> |
 
 ## Selected
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___selected_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___selected_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___selected_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___selected_dm.png" alt="" width="375" /> |
 
 ## Large corner style
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___corner-style-large_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___corner-style-large_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___corner-style-large_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___corner-style-large_dm.png" alt="" width="375" /> |
 
 ## Without padding
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___without-padding_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___without-padding_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___without-padding_dm.png" alt="" width="375" /> |
 
 ## With divider
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider_dm.png" alt="" width="375" /> |
 
 ## With divider arranged vertically
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-arranged-vertically_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-arranged-vertically_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-arranged-vertically_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-arranged-vertically_dm.png" alt="" width="375" /> |
 
 ## With divider and without padding
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-without-padding_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-without-padding_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-without-padding_dm.png" alt="" width="375" /> |
 
 ## With divider and with large corner style
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-and-corner-style-large_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-and-corner-style-large_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-and-corner-style-large_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-divider-and-corner-style-large_dm.png" alt="" width="375" /> |
 
 ## With solid divider
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-with-padding_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-with-padding_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-with-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-with-padding_dm.png" alt="" width="375" /> |
 
 ## With solid divider and without padding
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_dm.png" alt="" width="375" /> |
 
 
 ## Usage

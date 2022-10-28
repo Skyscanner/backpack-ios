@@ -8,7 +8,7 @@
 
 | Day | Night |
 | --- | --- |
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_dm.png) |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-label___multiple-font-styles_dm.png" alt="" width="375" /> |
 
 ## Usage
 

@@ -8,19 +8,19 @@
 
 | Day | Night |
 | --- | --- |
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_dm.png) |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height_dm.png" alt="" width="375" /> |
 
 ## Collapsed
 
 | Day | Night |
 | --- | --- |
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_dm.png) |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___collapsed_dm.png" alt="" width="375" /> |
 
 ## With buttons
 
 | Day | Night |
 | --- | --- |
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_lm.png) |![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_dm.png) |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-navigation-bar___full-height-with-buttons_dm.png" alt="" width="375" /> |
 
 ## Usage
 
