@@ -10,13 +10,13 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___primary_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___primary_dm.png" alt="" width="375" /> |
 
-## Primaryonlight
+## PrimaryOnLight
 
 | Day | Night |
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___primaryOnLight_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___primaryOnLight_dm.png" alt="" width="375" /> |
 
-## Primaryondark
+## PrimaryOnDark
 
 | Day | Night |
 | --- | --- |
@@ -28,7 +28,7 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___secondary_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___secondary_dm.png" alt="" width="375" /> |
 
-## Secondaryondark
+## SecondaryOnDark
 
 | Day | Night |
 | --- | --- |
@@ -52,7 +52,7 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___link_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-button___link_dm.png" alt="" width="375" /> |
 
-## Linkondark
+## LinkOnDark
 
 | Day | Night |
 | --- | --- |
