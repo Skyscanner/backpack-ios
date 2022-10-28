@@ -4,6 +4,12 @@
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKTextView.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/TextView)
 
+## Default
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-text-view___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-text-view___default_dm.png" alt="" width="375" /> |
+
 ## Usage
 
 `BPKTextView` contains the Backpack TextView component which is a subclass of `UITextView` with Skyscanner styles. It accepts a Backpack font style to set the desired size.

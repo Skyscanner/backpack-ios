@@ -9,24 +9,24 @@
 Alert dialogs fade in to the centre of the screen and can contain zero or more buttons. Used as a call to action.
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_dm.png" alt="" width="375" /> |
 
 ## Bottom sheet
 
 Bottom sheet dialogs slide up from the bottom of the screen and can contain zero or more buttons. Used for confirmation.
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_dm.png" alt="" width="375" /> |
 
 ## Flare view
 
 A dialog can be passed a BPKFlareView to show at the top.
 
 | Day | Night |
-| --- | --- | 
-| ![iPhone 8 simulator](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_lm.png)| ![iPhone 8 simulator - dark mode](https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_dm.png) |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_dm.png" alt="" width="375" /> |
 
 ## Usage 
 
