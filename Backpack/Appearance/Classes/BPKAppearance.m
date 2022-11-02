@@ -25,9 +25,26 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BPKAppearance
 
 + (void)apply {
-    [UITabBar appearance].tintColor = BPKColor.coreAccentColor;
-    [UITabBar appearance].unselectedItemTintColor = BPKColor.textSecondaryColor;
-    // TODO at a later stage: [UIView appearance].tintColor = BPKColor.primaryColor;
+    UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
+    [appearance configureWithDefaultBackground];
+    appearance.backgroundColor = BPKColor.surfaceDefaultColor;
+    appearance.selectionIndicatorTintColor = BPKColor.coreEcoColor;
+    
+    if (@available(iOS 15, *)) {
+        [UITabBar appearance].scrollEdgeAppearance = appearance;
+    }
+    
+    [BPKAppearance updateTabBarItemAppearance:appearance.compactInlineLayoutAppearance];
+    [BPKAppearance updateTabBarItemAppearance:appearance.inlineLayoutAppearance];
+    [BPKAppearance updateTabBarItemAppearance:appearance.stackedLayoutAppearance];
+    
+    [[UITabBar appearance] setStandardAppearance:appearance];
+}
+
++ (void)updateTabBarItemAppearance:(UITabBarItemAppearance *) appearance {
+    appearance.selected.iconColor = BPKColor.coreAccentColor;
+    appearance.normal.iconColor = BPKColor.textSecondaryColor;
+    appearance.normal.titleTextAttributes = @{NSForegroundColorAttributeName: BPKColor.textSecondaryColor};
 }
 
 @end
