@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
     UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
     [appearance configureWithDefaultBackground];
     appearance.backgroundColor = BPKColor.surfaceDefaultColor;
-    appearance.selectionIndicatorTintColor = BPKColor.coreEcoColor;
     
     if (@available(iOS 15, *)) {
         [UITabBar appearance].scrollEdgeAppearance = appearance;
