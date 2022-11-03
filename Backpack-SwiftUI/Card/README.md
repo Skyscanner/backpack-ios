@@ -73,20 +73,11 @@ BPKCard {
 ```swift
 BPKDividedCard {
     Text("PrimaryContent")
+        .padding()
 } secondaryContent: {
     Text("SecondaryContent")
+        .padding()
 }.onTapGesture {
     print("Card tapped!")
-}
-```
-**Set padded**
-```swift
-BPKDividedCard(
-    isPrimaryContentPadded: false,
-    isSecondaryContentPadded: false
-) {
-    Text("PrimaryContent")
-} secondaryContent: {
-    Text("SecondaryContent")
 }
 ```

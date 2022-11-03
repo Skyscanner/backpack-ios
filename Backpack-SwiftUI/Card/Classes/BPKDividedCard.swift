@@ -19,20 +19,14 @@
 import SwiftUI
 
 public struct BPKDividedCard<PrimaryContent, SecondaryContent>: View where PrimaryContent: View, SecondaryContent: View {
-    private var isPrimaryContentPadded: Bool
-    private var isSecondaryContentPadded: Bool
     private let primaryContent: PrimaryContent
     private let secondaryContent: SecondaryContent
     private var tapAction : () -> Void = {}
 
     public init(
-        isPrimaryContentPadded: Bool = true,
-        isSecondaryContentPadded: Bool = true,
         @ViewBuilder primaryContent: @escaping () -> PrimaryContent,
         @ViewBuilder secondaryContent: @escaping () -> SecondaryContent
     ) {
-        self.isPrimaryContentPadded = isPrimaryContentPadded
-        self.isSecondaryContentPadded = isSecondaryContentPadded
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
     }
@@ -41,11 +35,9 @@ public struct BPKDividedCard<PrimaryContent, SecondaryContent>: View where Prima
         BPKCard(padding: .none) {
             VStack(spacing: 0) {
                 primaryContent
-                    .padding(isPrimaryContentPadded ? .base : .none)
                 Color(BPKColor.lineColor)
                     .frame(height: 1)
                 secondaryContent
-                    .padding(isSecondaryContentPadded ? .base : .none)
             }
             .onTapGesture {
                 tapAction()
@@ -62,25 +54,14 @@ public struct BPKDividedCard<PrimaryContent, SecondaryContent>: View where Prima
 
 struct BPKDividedCard_Priviews: PreviewProvider {
     static var previews: some View {
-        VStack(spacing: 20) {
-            BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
-            } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
-            }
-            
-            BPKDividedCard(
-                isPrimaryContentPadded: false,
-                isSecondaryContentPadded: false
-            ) {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
-            } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
-            }
+        BPKDividedCard {
+            let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+            "Aenean commodo ligula eget dolor. Aenean massa."
+            Text(message)
+                .padding()
+        } secondaryContent: {
+            Text("Lorem ipsum dolor sit amet")
+                .padding()
         }
         .padding()
     }
