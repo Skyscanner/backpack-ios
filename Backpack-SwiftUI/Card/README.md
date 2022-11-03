@@ -12,7 +12,9 @@
 
 ## Usage
 
-### Basic card
+### BpkCard
+
+**Basic card**
 
 ```swift
 import Backpack_SwiftUI
@@ -21,7 +23,7 @@ BPKCard {
 }
 ```
 
-### Set padding
+**Set padding**
 Set the padding to:
 * `.small`
 * `.none`
@@ -32,7 +34,7 @@ BPKCard(padding: .none) {
 }
 ```
 
-### Set elevation
+**Set elevation**
 Set the elevation to:
 * `.default`
 * `.focus`
@@ -44,7 +46,7 @@ BPKCard(elevation: .focus) {
 }
 ```
 
-### Set corner radius
+**Set corner radius**
 Set the corner radius to:
 * `.small`
 * `.large`
@@ -56,11 +58,35 @@ BPKCard(cornerStyle: .large) {
 }
 ```
 
-### Set tap gesture
+**Set tap gesture**
 ```swift
 BPKCard {
     BPKText("You can tap me!")
 }.onTapGesture {
     print("Card tapped!")
+}
+```
+
+### BpkDividedCard
+
+**Default**
+```swift
+BPKDividedCard {
+    Text("PrimaryContent")
+} secondaryContent: {
+    Text("SecondaryContent")
+}.onTapGesture {
+    print("Card tapped!")
+}
+```
+**Set padded**
+```swift
+BPKDividedCard(
+    isPrimaryContentPadded: false,
+    isSecondaryContentPadded: false
+) {
+    Text("PrimaryContent")
+} secondaryContent: {
+    Text("SecondaryContent")
 }
 ```

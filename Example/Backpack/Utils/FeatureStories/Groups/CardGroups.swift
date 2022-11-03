@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import SwiftUI
 import Backpack
 
 struct CardGroupsProvider {
@@ -37,6 +38,17 @@ struct CardGroupsProvider {
             title: title,
             storyboard: .named("Cards", on: "DividedCardsViewController"),
             enrich: enrich,
+            showPresentable: showPresentable
+        )
+    }
+    
+    private func presentableCard<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: title,
+            customController: { ContentUIHostingController(view) },
             showPresentable: showPresentable
         )
     }
@@ -72,6 +84,15 @@ struct CardGroupsProvider {
                     cardVC.padded = false
                     cardVC.dividerStyle = .solid
                 }
+            ]
+        ).groups()
+    }
+    
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentableCard("Card", view: CardExampleView()),
+                presentableCard("DividedCard", view: DividedCardExampleView())
             ]
         ).groups()
     }

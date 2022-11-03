@@ -122,9 +122,7 @@ extension ComponentCellsProvider {
             title: "Cards",
             tabs: [
                 .uikit(groups: CardGroupsProvider(showPresentable: show(presentable:)).groups()),
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(CardExampleView())
-                }))
+                .swiftui(groups: CardGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Cards", tabs: $0) }
         )
