@@ -12,7 +12,7 @@
 
 ## Usage
 
-### BPKCard
+### `BPKCard`
 
 **Basic card**
 
@@ -67,7 +67,7 @@ BPKCard {
 }
 ```
 
-### BPKDividedCard
+### `BPKDividedCard`
 
 **Default**
 ```swift
