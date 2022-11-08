@@ -13,8 +13,7 @@ function analyze() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function runTests() {
@@ -25,8 +24,7 @@ function runTests() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty
+        ONLY_ACTIVE_ARCH=YES 2>&1
 }
 
 function check_modules() {
