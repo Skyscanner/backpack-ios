@@ -22,10 +22,6 @@ import SwiftUI
 
 class BPKDividedCardTests: XCTestCase {
 
-    func content(_ title: String) -> some View {
-        BPKText(title)
-    }
-
     func testDividedCardDefault() {
         assertSnapshot(
             BPKDividedCard
