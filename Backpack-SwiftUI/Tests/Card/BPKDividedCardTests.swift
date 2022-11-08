@@ -35,6 +35,22 @@ class BPKDividedCardTests: XCTestCase {
                     consectetuer adipiscing elit.
                     Aenean commodo ligula eget dolor.
                 """)
+            } secondaryContent: {
+                Text("Lorem ipsum dolor sit amet")
+            }
+                .padding()
+        )
+    }
+    
+    func testDividedCardWithPaddedContent() {
+        assertSnapshot(
+            BPKDividedCard
+            {
+                Text("""
+                    Lorem ipsum dolor sit amet,
+                    consectetuer adipiscing elit.
+                    Aenean commodo ligula eget dolor.
+                """)
                 .padding()
             } secondaryContent: {
                 Text("Lorem ipsum dolor sit amet")

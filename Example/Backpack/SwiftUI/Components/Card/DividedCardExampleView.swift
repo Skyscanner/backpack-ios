@@ -23,14 +23,24 @@ import Backpack_SwiftUI
 struct DividedCardExampleView: View {
     
     var body: some View {
-        BPKDividedCard {
-            let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-            "Aenean commodo ligula eget dolor. Aenean massa."
-            Text(message)
-                .padding()
-        } secondaryContent: {
-            Text("Lorem ipsum dolor sit amet")
-                .padding()
+        VStack(spacing: 20) {
+            BPKDividedCard {
+                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+                "Aenean commodo ligula eget dolor. Aenean massa."
+                Text(message)
+            } secondaryContent: {
+                Text("Lorem ipsum dolor sit amet")
+            }
+            
+            BPKDividedCard {
+                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+                "Aenean commodo ligula eget dolor. Aenean massa."
+                Text(message)
+                    .padding()
+            } secondaryContent: {
+                Text("Lorem ipsum dolor sit amet")
+                    .padding()
+            }
         }
         .padding()
     }
