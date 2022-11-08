@@ -30,13 +30,14 @@ class BPKDividedCardTests: XCTestCase {
         assertSnapshot(
             BPKDividedCard
             {
-                Text("""
+                BPKText("""
                     Lorem ipsum dolor sit amet,
                     consectetuer adipiscing elit.
                     Aenean commodo ligula eget dolor.
                 """)
+                .lineLimit(3)
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
             }
                 .padding()
         )
@@ -46,14 +47,15 @@ class BPKDividedCardTests: XCTestCase {
         assertSnapshot(
             BPKDividedCard
             {
-                Text("""
+                BPKText("""
                     Lorem ipsum dolor sit amet,
                     consectetuer adipiscing elit.
                     Aenean commodo ligula eget dolor.
                 """)
+                .lineLimit(3)
                 .padding()
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
                     .padding()
             }
                 .padding()

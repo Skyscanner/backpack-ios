@@ -27,18 +27,20 @@ struct DividedCardExampleView: View {
             BPKDividedCard {
                 let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
                 "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
+                BPKText(message)
+                    .lineLimit(3)
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
             }
             
             BPKDividedCard {
                 let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
                 "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
+                BPKText(message)
+                    .lineLimit(3)
                     .padding()
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
                     .padding()
             }
         }

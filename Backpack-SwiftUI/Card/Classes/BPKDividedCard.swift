@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-public struct BPKDividedCard<PrimaryContent, SecondaryContent>: View where PrimaryContent: View, SecondaryContent: View {
+public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View {
     private let primaryContent: PrimaryContent
     private let secondaryContent: SecondaryContent
-    private var tapAction : () -> Void = {}
+    private var tapAction: () -> Void = {}
 
     public init(
-        @ViewBuilder primaryContent: @escaping () -> PrimaryContent,
-        @ViewBuilder secondaryContent: @escaping () -> SecondaryContent
+        @ViewBuilder primaryContent: () -> PrimaryContent,
+        @ViewBuilder secondaryContent: () -> SecondaryContent
     ) {
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
@@ -58,18 +58,20 @@ struct BPKDividedCard_Priviews: PreviewProvider {
             BPKDividedCard {
                 let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
                 "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
+                BPKText(message)
+                    .lineLimit(3)
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
             }
             
             BPKDividedCard {
                 let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
                 "Aenean commodo ligula eget dolor. Aenean massa."
-                Text(message)
+                BPKText(message)
+                    .lineLimit(3)
                     .padding()
             } secondaryContent: {
-                Text("Lorem ipsum dolor sit amet")
+                BPKText("Lorem ipsum dolor sit amet")
                     .padding()
             }
         }
