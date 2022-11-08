@@ -14,7 +14,7 @@ function analyze() {
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
         ONLY_ACTIVE_ARCH=YES 2>&1 |
-        xcpretty && exit ${PIPESTATUS[0]}
+        xcpretty
 }
 
 function runTests() {
@@ -25,7 +25,8 @@ function runTests() {
         SWIFT_VERSION=$SWIFT \
         -sdk $BUILD_SDK \
         -destination "$(echo $DESTINATION)" \
-        ONLY_ACTIVE_ARCH=YES 2>&1
+        ONLY_ACTIVE_ARCH=YES 2>&1 |
+        xcpretty
 }
 
 function check_modules() {
