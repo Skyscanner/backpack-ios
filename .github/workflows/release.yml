@@ -15,27 +15,22 @@ jobs:
         statuses: write
         pull-requests: write
       uses: ./.github/workflows/_build.yml
-  Deploy:
-    name: Release to Cocoapods
+  Deploy-Commons:
+    name: Release Commons to Cocoapods
     runs-on: macos-11
     environment: Publishing
     needs: [Build]
     steps:
-
     - name: Checkout source code
       uses: actions/checkout@v3
       with:
         ref: main
-    
+
     - name: Set Ruby version
       uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
 
     - name: Bundle Install
       run: bundle install --jobs 4 --retry 3
-      
-    - name: Pod repo update
-      run: | 
-        bundle exec pod repo update
 
     - name: Publish Pods - Backpack Common
       run: |
@@ -46,6 +41,23 @@ jobs:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
 
+  Deploy-UIKit:
+    name: Release UIKit to Cocoapods
+    runs-on: macos-11
+    environment: Publishing
+    needs: [Build]
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+      with:
+        ref: main
+    
+    - name: Set Ruby version
+      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+    - name: Bundle Install
+      run: bundle install --jobs 4 --retry 3
+
     - name: Publish Pods - Backpack UIKit
       run: |
         set -eo pipefail
@@ -54,6 +66,23 @@ jobs:
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
+
+  Deploy-SwiftUI:
+    name: Release SwiftUI to Cocoapods
+    runs-on: macos-11
+    environment: Publishing
+    needs: [Build]
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+      with:
+        ref: main
+
+    - name: Set Ruby version
+      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
+    - name: Bundle Install
+      run: bundle install --jobs 4 --retry 3
 
     - name: Publish Pods - Backpack SwiftUI
       run: |
@@ -64,6 +93,12 @@ jobs:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         LIB_VERSION: ${{ github.event.release.tag_name }}
 
+  Deploy-Docs:
+    name: Release Backpack Docs
+    runs-on: macos-11
+    environment: Publishing
+    needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Commons]
+    steps:
     - name: Pod Install
       run: bundle exec pod install
       working-directory: Example
