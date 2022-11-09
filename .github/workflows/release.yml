@@ -97,7 +97,7 @@ jobs:
     name: Release Backpack Docs
     runs-on: macos-11
     environment: Publishing
-    needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Commons]
+    needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
     - name: Pod Install
       run: bundle exec pod install
