@@ -99,6 +99,14 @@ jobs:
     environment: Publishing
     needs: [Deploy-SwiftUI, Deploy-UIKit, Deploy-Common]
     steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+      with:
+        ref: main
+
+    - name: Set Ruby version
+      uses: ruby/setup-ruby@v1 # Sets ruby version via `.ruby-version`
+
     - name: Pod Install
       run: bundle exec pod install
       working-directory: Example
