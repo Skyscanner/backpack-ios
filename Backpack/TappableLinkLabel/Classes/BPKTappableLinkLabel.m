@@ -69,6 +69,11 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (void)setAccessibilityIdentifier:(nullable NSString *)accessibilityIdentifier {
+    [super setAccessibilityIdentifier:accessibilityIdentifier];
+    self.contentView.accessibilityIdentifier = accessibilityIdentifier;
+}
+
 - (void)setupWithStyle:(BPKFontStyle)style {
     _persistedLinks = [[NSMutableArray alloc] init];
     _fontStyle = style;
