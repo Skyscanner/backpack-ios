@@ -39,7 +39,7 @@ class BPKSpinnerSnapshotTest: XCTestCase {
     ]
     
     private func createView(themed: Bool = false) -> UIView {
-        let view = viewsInStack(withStyles: allStyles) { style in
+        viewsInStack(withStyles: allStyles) { style in
             viewsInStack(withStyles: allSizes) { size in
                 let spinner = BPKSpinner(style: style, size: size)
                 if themed {
@@ -49,8 +49,6 @@ class BPKSpinnerSnapshotTest: XCTestCase {
                 return spinner
             }
         }
-        
-        return view
     }
     
     func testSpinnerSizesNotThemed() {
