@@ -23,7 +23,7 @@ import SnapshotTesting
 class BPKSpinnerSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = true
+        isRecording = false
     }
     
     private var allStyles: [BPKSpinnerStyle] = [
