@@ -138,6 +138,49 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         assertSnapshot(snapshotView)
     }
     
+    func testCalendarWithRangeSelectionWithTheme() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationRange(
+            startSelectionHint: "",
+            endSelectionHint: "",
+            startSelectionState: "",
+            endSelectionState: "",
+            betweenSelectionState: "",
+            startAndEndSelectionState: "",
+            returnDatePrompt: ""
+        )
+        
+        // When
+        sut.selectedDates = [
+            BPKSimpleDate(date: date1, for: sut.gregorian),
+            BPKSimpleDate(date: date2, for: sut.gregorian)
+        ]
+        
+        sut.dateSelectedContentColor = BPKColor.statusDangerFillColor
+        sut.dateSelectedBackgroundColor = BPKColor.statusDangerFillColor
+        
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testCalendarWithMultipleSelection() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationMultiple(selectionHint: "", deselectionHint: "")
+        
+        // When
+        sut.selectedDates = [
+            BPKSimpleDate(date: date1, for: sut.gregorian),
+            BPKSimpleDate(date: date2, for: sut.gregorian)
+        ]
+        
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     // MARK: Helpers
     private func setupViews() {
         snapshotView = UIView()
