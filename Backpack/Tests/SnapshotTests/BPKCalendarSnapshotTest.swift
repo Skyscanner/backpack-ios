@@ -42,7 +42,7 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         isShowingPrices = false
         
         sut = BPKCalendar()
-        setupViews()
+        snapshotView = setupViews(calendar: sut)
     }
     
     override func tearDownWithError() throws {
@@ -209,15 +209,38 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
     
     func testCalendarWithPriceLabels() {
         // Given
-        sut = BPKCalendar(
+        let customCalendar = BPKCalendar(
             configuration: BPKCalendarPriceLabelConfiguration(),
             selectionConfiguration: BPKCalendarSelectionConfigurationSingle(selectionHint: "")
         )
+        
+        let customSnapshotView = setupViews(calendar: customCalendar)
 
         // When
-        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        customCalendar.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
         isShowingPrices = true
-        sut.delegate = self
+        customCalendar.delegate = self
+        customCalendar.reloadData()
+        
+        // Then
+        assertSnapshot(customSnapshotView)
+    }
+    
+    func testCalendarWithWholeMonthButton() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationRange(
+            startSelectionHint: "",
+            endSelectionHint: "",
+            startSelectionState: "",
+            endSelectionState: "",
+            betweenSelectionState: "",
+            startAndEndSelectionState: "",
+            returnDatePrompt: "",
+            andWholeMonthTitle: "Select whole month"
+        )
+        
+        // When
+        sut.selectWholeMonth(BPKSimpleDate(date: date1, for: sut.gregorian))
         sut.reloadData()
         
         // Then
@@ -225,26 +248,28 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
     }
     
     // MARK: Helpers
-    private func setupViews() {
-        snapshotView = UIView()
+    private func setupViews(calendar: BPKCalendar) -> UIView {
+        let snapshotView = UIView()
         snapshotView.backgroundColor = BPKColor.canvasColor
         
-        [sut, snapshotView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        [calendar, snapshotView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        snapshotView.addSubview(sut)
+        snapshotView.addSubview(calendar)
         
         let screenSize = CGSize(width: 375, height: 667) // iPhone 8 screen dimensions
         NSLayoutConstraint.activate([
             snapshotView.widthAnchor.constraint(equalToConstant: screenSize.width),
             snapshotView.heightAnchor.constraint(equalToConstant: screenSize.height),
             
-            sut.leadingAnchor.constraint(equalTo: snapshotView.leadingAnchor),
-            sut.topAnchor.constraint(equalTo: snapshotView.topAnchor),
-            sut.trailingAnchor.constraint(equalTo: snapshotView.trailingAnchor),
-            sut.bottomAnchor.constraint(equalTo: snapshotView.bottomAnchor)
+            calendar.leadingAnchor.constraint(equalTo: snapshotView.leadingAnchor),
+            calendar.topAnchor.constraint(equalTo: snapshotView.topAnchor),
+            calendar.trailingAnchor.constraint(equalTo: snapshotView.trailingAnchor),
+            calendar.bottomAnchor.constraint(equalTo: snapshotView.bottomAnchor)
         ])
         
         snapshotView.layoutIfNeeded()
+        
+        return snapshotView
     }
     
     // MARK: Calendar delegate
