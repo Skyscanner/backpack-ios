@@ -58,6 +58,65 @@ final class BPKCardSnapshotTest: XCTestCase {
         assertSnapshot(snapshotView)
     }
     
+    func testViewSnapshotWithoutElevation() {
+        // Given
+        let sut = BPKCard(padded: false, cornerStyle: .large)
+        sut.isElevated = false
+        
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        
+        // When
+        configure(card: sut, withInnerView: innerView)
+        let snapshotView = embed(card: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithPadded() {
+        // Given
+        let sut = BPKCard(padded: true)
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        
+        // When
+        configure(card: sut, withInnerView: innerView)
+        let snapshotView = embed(card: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithPaddedAndBackgroundColor() {
+        // Given
+        let sut = BPKCard(padded: true)
+        sut.backgroundColor = BPKColor.statusWarningFillColor
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        
+        // When
+        configure(card: sut, withInnerView: innerView)
+        let snapshotView = embed(card: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithPaddedAndLargeCornerStyle() {
+        // Given
+        let sut = BPKCard(padded: true, cornerStyle: .large)
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        
+        // When
+        configure(card: sut, withInnerView: innerView)
+        let snapshotView = embed(card: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     // MARK: Helpers
     private func configure(card: BPKCard, withInnerView innerView: UIView) {
         [innerView, card].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
