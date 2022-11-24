@@ -21,7 +21,7 @@
 #import <Backpack/SimpleDate.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
-@interface BPKCalendarSnapshotTest : FBSnapshotTestCase <BPKCalendarDelegate>
+@interface BPKCalendarSnapshotOldTest : FBSnapshotTestCase <BPKCalendarDelegate>
 
 @property NSDate *date1;
 @property NSDate *date2;
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  * There seems to be a bug in FBSnapshotTestCase regarding intristict content size handling.
  * We exposed the year pill to be able to snapshot test it separately as a workaround.
  */
-@implementation BPKCalendarSnapshotTest
+@implementation BPKCalendarSnapshotOldTest
 
 - (void)setUp {
     [super setUp];
