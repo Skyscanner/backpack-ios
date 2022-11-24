@@ -89,7 +89,7 @@ jobs:
         working-directory: Example
 
       - name: Install clang-format
-        run: brew install clang-format@14
+        run: brew install clang-format
 
       - name: Check pristine
         run: ./scripts/lint
