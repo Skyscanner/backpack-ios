@@ -20,7 +20,7 @@ import XCTest
 import Backpack
 import SnapshotTesting
 
-final class BPKCalendarSnapshotTest: XCTestCase {
+final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
     
     let date1 = Date(timeIntervalSince1970: 2175767888)
     let date2 = Date(timeIntervalSince1970: 2176026888)
@@ -55,10 +55,36 @@ final class BPKCalendarSnapshotTest: XCTestCase {
         // Given
         sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
         sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        sut.reloadData()
         
         // When
-        sut.reloadData()
         sut.selectedDates = []
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testCalendarWithSingleSelection() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        
+        // When
+        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testCalendarWithSingleSelectionAndCustomDisabledDates() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        sut.delegate = self
+        
+        // When
+        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        sut.reloadData()
         
         // Then
         assertSnapshot(snapshotView)
@@ -85,5 +111,24 @@ final class BPKCalendarSnapshotTest: XCTestCase {
         ])
         
         snapshotView.layoutIfNeeded()
+    }
+    
+    // MARK: Calendar delegate
+    func calendar(_ calendar: BPKCalendar, didChangeDateSelection dateList: [BPKSimpleDate]) {
+        // Empty on purpose.
+    }
+    
+    func calendar(_ calendar: BPKCalendar, isDateEnabled date: BPKSimpleDate) -> Bool {
+        if isColoringDates || isShowingPrices {
+            return true
+        }
+        
+        let nativeDate = date.date(for: sut.gregorian)
+        
+        if nativeDate.compare(date2) == .orderedDescending {
+            return false
+        }
+        
+        return true
     }
 }
