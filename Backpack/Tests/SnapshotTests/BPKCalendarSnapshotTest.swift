@@ -90,6 +90,18 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         assertSnapshot(snapshotView)
     }
     
+    func testCalendarWithSelectedDateInFuture() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        
+        // When
+        sut.selectedDates = [BPKSimpleDate(date: date4, for: sut.gregorian)]
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     func testCalendarWithRangeSelection() {
         // Given
         sut.selectionConfiguration = BPKCalendarSelectionConfigurationRange(
