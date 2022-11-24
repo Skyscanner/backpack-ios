@@ -21,11 +21,6 @@ import Backpack
 import SnapshotTesting
 
 final class BPKDividedCardSnapshotTest: XCTestCase {
-    override func setUpWithError() throws {
-        try? super.setUpWithError()
-        isRecording = false
-    }
-    
     private lazy var primaryInnerView: UIView = {
         let innerView = UIView()
         innerView.backgroundColor = BPKColor.statusSuccessFillColor
@@ -37,6 +32,11 @@ final class BPKDividedCardSnapshotTest: XCTestCase {
         innerView.backgroundColor = BPKColor.statusWarningFillColor
         return innerView
     }()
+    
+    override func setUpWithError() throws {
+        try? super.setUpWithError()
+        isRecording = false
+    }
     
     func testDividedSnapshotWithPaddedHorizontal() {
         // Given

@@ -21,6 +21,12 @@ import Backpack
 import SnapshotTesting
 
 final class BPKCardSnapshotTest: XCTestCase {
+    
+    private lazy var innerView: UIView = {
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        return innerView
+    }()
 
     override func setUpWithError() throws {
         try? super.setUpWithError()
@@ -30,8 +36,6 @@ final class BPKCardSnapshotTest: XCTestCase {
     func testViewSnapshotWithoutPadded() {
         // Given
         let sut = BPKCard(padded: false)
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -44,8 +48,6 @@ final class BPKCardSnapshotTest: XCTestCase {
     func testViewSnapshotWithoutPaddedAndLargeCornerStyle() {
         // Given
         let sut = BPKCard(padded: false, cornerStyle: .large)
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -60,9 +62,6 @@ final class BPKCardSnapshotTest: XCTestCase {
         let sut = BPKCard(padded: false, cornerStyle: .large)
         sut.isElevated = false
         
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
-        
         // When
         configure(card: sut, withInnerView: innerView)
         let snapshotView = embed(card: sut)
@@ -74,8 +73,6 @@ final class BPKCardSnapshotTest: XCTestCase {
     func testViewSnapshotWithPadded() {
         // Given
         let sut = BPKCard(padded: true)
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -89,8 +86,6 @@ final class BPKCardSnapshotTest: XCTestCase {
         // Given
         let sut = BPKCard(padded: true)
         sut.backgroundColor = BPKColor.statusWarningFillColor
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
         
         // When
         configure(card: sut, withInnerView: innerView)
@@ -103,8 +98,6 @@ final class BPKCardSnapshotTest: XCTestCase {
     func testViewSnapshotWithPaddedAndLargeCornerStyle() {
         // Given
         let sut = BPKCard(padded: true, cornerStyle: .large)
-        let innerView = UIView()
-        innerView.backgroundColor = BPKColor.statusSuccessFillColor
         
         // When
         configure(card: sut, withInnerView: innerView)
