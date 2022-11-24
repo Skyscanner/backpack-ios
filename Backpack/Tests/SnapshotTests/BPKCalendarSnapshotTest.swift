@@ -193,6 +193,37 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         assertSnapshot(snapshotView)
     }
     
+    func testCalendarWithCustomColorDates() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        isColoringDates = true
+        sut.delegate = self
+        
+        // When
+        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testCalendarWithPriceLabels() {
+        // Given
+        sut = BPKCalendar(
+            configuration: BPKCalendarPriceLabelConfiguration(),
+            selectionConfiguration: BPKCalendarSelectionConfigurationSingle(selectionHint: "")
+        )
+
+        // When
+        sut.selectedDates = [BPKSimpleDate(date: date1, for: sut.gregorian)]
+        isShowingPrices = true
+        sut.delegate = self
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     // MARK: Helpers
     private func setupViews() {
         snapshotView = UIView()
@@ -233,5 +264,45 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         }
         
         return true
+    }
+    
+    func calendar(_ calendar: BPKCalendar, cellDataFor date: BPKSimpleDate) -> Any? {
+        if !isColoringDates && !isShowingPrices {
+            return nil
+        }
+        
+        let calendar = sut.gregorian
+        let convertedDate = date.date(for: calendar)
+        
+        let startDate = calendar.startOfDay(for: date1)
+        let endDate = calendar.startOfDay(for: convertedDate)
+        
+        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+        
+        guard let day = components.day else { return nil }
+        
+        if day == 15 {
+            return nil
+        }
+        
+        if day == 18 {
+            return isShowingPrices
+            ? BPKCalendarPriceLabelCellData(price: "-", labelStyle: .noData)
+            : BPKCalendarTrafficLightCellData.normal
+        }
+        
+        if day % 2 == 0 {
+            return isShowingPrices
+            ? BPKCalendarPriceLabelCellData(price: "458.100₫", labelStyle: .positive)
+            : BPKCalendarTrafficLightCellData.positive
+        } else if day % 3 == 0 {
+            return isShowingPrices
+            ? BPKCalendarPriceLabelCellData(price: "113.884.400₫", labelStyle: .noData)
+            : BPKCalendarTrafficLightCellData.neutral
+        } else {
+            return isShowingPrices
+            ? BPKCalendarPriceLabelCellData(price: "This should truncate", labelStyle: .negative)
+            : BPKCalendarTrafficLightCellData.negative
+        }
     }
 }
