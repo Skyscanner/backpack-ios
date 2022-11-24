@@ -44,6 +44,20 @@ final class BPKCardSnapshotTest: XCTestCase {
         assertSnapshot(snapshotView)
     }
     
+    func testViewSnapshotWithoutPaddedAndLargeCornerStyle() {
+        // Given
+        let sut = BPKCard(padded: false, cornerStyle: .large)
+        let innerView = UIView()
+        innerView.backgroundColor = BPKColor.statusSuccessFillColor
+        
+        // When
+        configure(card: sut, withInnerView: innerView)
+        let snapshotView = embed(card: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
     // MARK: Helpers
     private func configure(card: BPKCard, withInnerView innerView: UIView) {
         [innerView, card].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
