@@ -105,6 +105,30 @@ final class BPKCalendarSnapshotTest: XCTestCase, BPKCalendarDelegate {
         // When
         sut.selectedDates = [
             BPKSimpleDate(date: date1, for: sut.gregorian),
+            BPKSimpleDate(date: date2, for: sut.gregorian)
+        ]
+        
+        sut.reloadData()
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testCalendarWithLongRangeSelection() {
+        // Given
+        sut.selectionConfiguration = BPKCalendarSelectionConfigurationRange(
+            startSelectionHint: "",
+            endSelectionHint: "",
+            startSelectionState: "",
+            endSelectionState: "",
+            betweenSelectionState: "",
+            startAndEndSelectionState: "",
+            returnDatePrompt: ""
+        )
+        
+        // When
+        sut.selectedDates = [
+            BPKSimpleDate(date: date1, for: sut.gregorian),
             BPKSimpleDate(date: date3, for: sut.gregorian)
         ]
         
