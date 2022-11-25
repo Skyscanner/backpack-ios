@@ -59,7 +59,6 @@ class IconsViewController: UICollectionViewController {
         )
         layout.estimatedItemSize = BPKIcon.concreteSizeForLargeIcon
     }
-
 }
 
 extension IconsViewController {
