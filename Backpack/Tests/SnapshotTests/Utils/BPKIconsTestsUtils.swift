@@ -25,7 +25,7 @@ struct BPKIconsTestsUtils {
     static let allSmallIcons = allIcons
         .filter { $0.hasSuffix("-sm") }
         .compactMap { BPKSmallIconName(String($0.dropLast(3))) }
-    
+        
     static let allLargeIcons = allIcons
         .filter { !$0.hasSuffix("-sm") }
         .compactMap { BPKLargeIconName($0) }
