@@ -72,7 +72,7 @@ const generateIconExampleTestsUtil = (uikitTemplatesFolder, swiftuiTemplatesFold
   generateFromTemplate(
     path.join(uikitTemplatesFolder, 'icons/BPKIconsExampleTestsUtil.njk'),
     { icons: iconsForExamples },
-    'BPKIconsTestsUtils.m',
+    'BPKIconsTestsUtils.swift',
     'Backpack/Tests/SnapshotTests/Utils'
   )
 

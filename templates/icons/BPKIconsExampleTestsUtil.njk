@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright © 2022 Skyscanner Ltd. All rights reserved.
+ * Copyright 2018 Skyscanner Ltd
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,21 @@
  * limitations under the License.
  */
 
-#import "BPKIconsTestsUtils.h"
+import Backpack
 
-@implementation BPKIconsTestsUtils
-
-+ (NSArray<NSString *> *)getAllIcons {
-    return @[
-        @"{{icons | join('",\n        @"') | safe}}"
-    ];
+// swiftlint:disable type_body_length
+// swiftlint:disable file_length
+struct BPKIconsTestsUtils {
+    
+    static let allSmallIcons = allIcons
+        .filter { $0.hasSuffix("-sm") }
+        .compactMap { BPKSmallIconName(String($0.dropLast(3))) }
+        
+    static let allLargeIcons = allIcons
+        .filter { !$0.hasSuffix("-sm") }
+        .compactMap { BPKLargeIconName($0) }
+    
+    static let allIcons: [String] = [
+        "{{icons | join('",\n        "') | safe}}"
+    ]
 }
-
-@end
