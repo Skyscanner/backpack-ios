@@ -47,7 +47,6 @@ class BPKProgressBarSnapshotTest: XCTestCase {
         let sut = BPKProgressBar()
         sut.translatesAutoresizingMaskIntoConstraints = false
 
-
         NSLayoutConstraint.activate([
             sut.widthAnchor.constraint(equalToConstant: 150)
         ])
