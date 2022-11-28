@@ -24,11 +24,11 @@
 
 #import "BPKSnapshotTest.h"
 
-@interface BPKOverlayViewSnapshotTest : FBSnapshotTestCase
+@interface BPKOverlayViewSnapshotOldTest : FBSnapshotTestCase
 @end
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKOverlayViewSnapshotTest
+@implementation BPKOverlayViewSnapshotOldTest
 
 + (CGRect)deviceFrame {
     // 375x812 = iPhone X dimensions.
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *)createBackgroundView {
     NSURL *url =
-        [[[NSBundle bundleForClass:[BPKOverlayViewSnapshotTest class]] resourceURL] URLByAppendingPathComponent:@"SnapshotTestImages.bundle"];
+        [[[NSBundle bundleForClass:[BPKOverlayViewSnapshotOldTest class]] resourceURL] URLByAppendingPathComponent:@"SnapshotTestImages.bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:url];
     UIImage *image = [UIImage imageNamed:@"pilanesburg-south-africa" inBundle:bundle compatibleWithTraitCollection:nil];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
