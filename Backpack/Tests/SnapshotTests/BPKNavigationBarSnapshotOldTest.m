@@ -22,14 +22,14 @@
 
 NSString *const CellIdentifier = @"CellId";
 
-@interface BPKNavigationBarSnapshotTest : FBSnapshotTestCase <UITableViewDelegate, UITableViewDataSource>
+@interface BPKNavigationBarSnapshotOldTest : FBSnapshotTestCase <UITableViewDelegate, UITableViewDataSource>
 @property(strong, nonatomic) UIViewController *containerVC;
 @property(strong, nonatomic) UITableView *tableView;
 @property(strong, nonatomic) BPKNavigationBar *navigationBar;
 @end
 
 NS_ASSUME_NONNULL_BEGIN
-@implementation BPKNavigationBarSnapshotTest
+@implementation BPKNavigationBarSnapshotOldTest
 
 - (void)setUp {
     [super setUp];
