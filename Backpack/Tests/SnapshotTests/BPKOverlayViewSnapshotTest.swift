@@ -51,12 +51,12 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
             BPKOverlayView(overlayType: .none, cornerStyle: .none),
             BPKOverlayView(overlayType: .tint, cornerStyle: .none),
             BPKOverlayView(overlayType: .tint, cornerStyle: .small),
-            BPKOverlayView(overlayType: .tint, cornerStyle: .large),
+            BPKOverlayView(overlayType: .tint, cornerStyle: .large)
         ]
         
-        overlayViews.forEach { overlay in
+        for overlay in overlayViews {
             guard let overlay = overlay else {
-                return
+                continue
             }
             
             if hasBackground {
@@ -74,6 +74,7 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
                 // This is a hack used to reorder the layers before they are captured by the snapshot library.
                 // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
                 // See
+                // swiftlint:disable:next line_length
                 // https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
                 let tintLayer = overlay.backgroundView.layer.sublayers?.first
                 overlay.backgroundView.layer.sublayers?[0].removeFromSuperlayer()
@@ -85,7 +86,10 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
                 overlay.foregroundView.addSubview(foregroundContent)
                 
                 NSLayoutConstraint.activate([
-                    foregroundContent.widthAnchor.constraint(equalTo: overlay.foregroundView.widthAnchor, constant: -BPKSpacingLg),
+                    foregroundContent.widthAnchor.constraint(
+                        equalTo: overlay.foregroundView.widthAnchor,
+                        constant: -BPKSpacingLg
+                    ),
                     foregroundContent.centerXAnchor.constraint(equalTo: overlay.foregroundView.centerXAnchor),
                     foregroundContent.centerYAnchor.constraint(equalTo: overlay.foregroundView.centerYAnchor),
                     overlay.foregroundView.heightAnchor.constraint(equalToConstant: 100),
