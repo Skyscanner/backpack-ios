@@ -5,10 +5,14 @@
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/Card)
 
 ## Default
-
+### `BPKCard`
 | Day | Night |
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_card___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_card___default_dm.png" alt="" width="375" /> |
+### `BPKDividedCard`
+| Day | Night |
+| --- | ----- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_divided-card___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_divided-card___default_dm.png" alt="" width="375" /> |
 
 ## Usage
 
@@ -24,6 +28,7 @@ BPKCard {
 ```
 
 **Set padding**
+
 Set the padding to:
 * `.small`
 * `.none`
@@ -35,6 +40,7 @@ BPKCard(padding: .none) {
 ```
 
 **Set elevation**
+
 Set the elevation to:
 * `.default`
 * `.focus`
@@ -47,6 +53,7 @@ BPKCard(elevation: .focus) {
 ```
 
 **Set corner radius**
+
 Set the corner radius to:
 * `.small`
 * `.large`
