@@ -32,11 +32,11 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
     }
     
     func testOverlayViewsWithForeground() {
-        assertSnapshot(createBackgroundView())
+        assertSnapshot(createTestViews(hasBackground: false, hasForeGround: true))
     }
     
     func testOverlayViewsWithBackgroundAndForeground() {
-        
+        assertSnapshot(createTestViews(hasBackground: true, hasForeGround: true))
     }
     
     // MARK: Helpers
@@ -44,6 +44,7 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
+        stackView.spacing = BPKSpacingMd
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let overlayViews = [
@@ -63,34 +64,37 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
                 stackView.addArrangedSubview(backgroundContent)
                 overlay.backgroundView.addSubview(backgroundContent)
                 
-//                NSLayoutConstraint.activate([
-//                    backgroundContent.topAnchor.constraint(equalTo: overlay.backgroundView.topAnchor),
-//                    backgroundContent.leadingAnchor.constraint(equalTo: overlay.backgroundView.leadingAnchor),
-//                    backgroundContent.trailingAnchor.constraint(equalTo: overlay.backgroundView.trailingAnchor),
-//                    backgroundContent.bottomAnchor.constraint(equalTo: overlay.backgroundView.bottomAnchor)
-//                ])
+                NSLayoutConstraint.activate([
+                    backgroundContent.topAnchor.constraint(equalTo: overlay.backgroundView.topAnchor),
+                    backgroundContent.leadingAnchor.constraint(equalTo: overlay.backgroundView.leadingAnchor),
+                    backgroundContent.trailingAnchor.constraint(equalTo: overlay.backgroundView.trailingAnchor),
+                    backgroundContent.bottomAnchor.constraint(equalTo: overlay.backgroundView.bottomAnchor)
+                ])
+                
+                // This is a hack used to reorder the layers before they are captured by the snapshot library.
+                // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
+                // See
+                // https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
+                let tintLayer = overlay.backgroundView.layer.sublayers?.first
+                overlay.backgroundView.layer.sublayers?[0].removeFromSuperlayer()
+                overlay.backgroundView.layer.insertSublayer(tintLayer!, at: 1)
             }
             
             if hasForeGround {
+                let foregroundContent = createForegroundView()
+                overlay.foregroundView.addSubview(foregroundContent)
                 
+                NSLayoutConstraint.activate([
+                    foregroundContent.widthAnchor.constraint(equalTo: overlay.foregroundView.widthAnchor, constant: -BPKSpacingLg),
+                    foregroundContent.centerXAnchor.constraint(equalTo: overlay.foregroundView.centerXAnchor),
+                    foregroundContent.centerYAnchor.constraint(equalTo: overlay.foregroundView.centerYAnchor),
+                    overlay.foregroundView.heightAnchor.constraint(equalToConstant: 100),
+                    overlay.foregroundView.widthAnchor.constraint(equalToConstant: 100)
+                ])
             }
             
-            
+            stackView.addArrangedSubview(overlay)
         }
-        
-        let parentView = UIView()
-        parentView.backgroundColor = BPKColor.canvasColor
-        parentView.translatesAutoresizingMaskIntoConstraints = false
-        parentView.addSubview(overlayView)
-        
-        NSLayoutConstraint.activate([
-            parentView.widthAnchor.constraint(equalToConstant: 200),
-            parentView.heightAnchor.constraint(equalToConstant: 500),
-            stackView.topAnchor.constraint(equalTo: parentView.topAnchor, constant: BPKSpacingBase),
-            stackView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: BPKSpacingBase),
-            stackView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -BPKSpacingBase),
-            stackView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: -BPKSpacingBase)
-        ])
         
         return stackView
     }
@@ -106,6 +110,17 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
         ])
         
         return view
+    }
+    
+    func createForegroundView() -> UIView {
+        let label = BPKLabel()
+        label.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.textColor = BPKColor.textOnDarkColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }
     
     private func image(named: String) -> UIImage? {
