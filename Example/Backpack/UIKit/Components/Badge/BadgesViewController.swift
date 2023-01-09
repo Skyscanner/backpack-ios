@@ -24,7 +24,7 @@ class BadgesViewController: UIViewController {
     fileprivate static var badgeTypes = [
         BPKBadgeType.success, BPKBadgeType.warning,
         BPKBadgeType.destructive, BPKBadgeType.strong,
-        BPKBadgeType.normal, BPKBadgeType.light,
+        BPKBadgeType.normal,
         BPKBadgeType.inverse, BPKBadgeType.outline
     ]
 

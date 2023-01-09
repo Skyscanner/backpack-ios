@@ -138,8 +138,6 @@ fileprivate extension BPKBadgeType {
             return BPKColor.textOnDarkColor
         case .normal, .inverse:
             return BPKColor.textPrimaryColor
-        case .light:
-            return BPKColor.skyGray
         }
     }
     
@@ -151,8 +149,6 @@ fileprivate extension BPKBadgeType {
             return BPKColor.statusWarningFillColor
         case .destructive:
             return BPKColor.statusDangerFillColor
-        case .light:
-            return BPKColor.skyGrayTint07
         case .inverse:
             return BPKColor.surfaceDefaultColor
         case .outline:
