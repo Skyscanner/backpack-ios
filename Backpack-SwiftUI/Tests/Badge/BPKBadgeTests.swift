@@ -29,7 +29,8 @@ class BPKBadgeTests: XCTestCase {
         (.warning, .surfaceDefaultColor),
         (.destructive, .surfaceDefaultColor),
         (.inverse, .surfaceHighlightColor),
-        (.outline, .surfaceHighlightColor)
+        (.outline, .surfaceHighlightColor),
+        (.brand, .surfaceDefaultColor)
     ]
     
     private func testView(icon: BPKIcon? = nil) -> some View {
@@ -43,9 +44,9 @@ class BPKBadgeTests: XCTestCase {
         }
     }
 
-func test_allBadgesWithoutIcon() {
-    // Then
-    assertSnapshot(testView())
+    func test_allBadgesWithoutIcon() {
+        // Then
+        assertSnapshot(testView())
     }
     
     func test_allBadgesWithIcon() {
