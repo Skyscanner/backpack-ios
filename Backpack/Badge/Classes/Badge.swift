@@ -140,6 +140,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.textPrimaryColor
         case .light:
             return BPKColor.skyGray
+        case .brand:
+            return BPKColor.textPrimaryInverseColor
         }
     }
     
@@ -161,6 +163,8 @@ fileprivate extension BPKBadgeType {
             return BPKColor.surfaceHighlightColor
         case .strong:
             return BPKColor.corePrimaryColor
+        case .brand:
+            return BPKColor.coreAccentColor
         }
     }
 }

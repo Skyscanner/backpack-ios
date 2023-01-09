@@ -19,24 +19,71 @@
 import UIKit
 import Backpack
 
+private struct BadgeExample {
+    let type: BPKBadgeType
+    let message: String
+    let showOverDarkBackground: Bool
+}
+
 class BadgesViewController: UIViewController {
-    @IBOutlet var badgeCollections: [BPKBadgeContainer]!
-    fileprivate static var badgeTypes = [
-        BPKBadgeType.success, BPKBadgeType.warning,
-        BPKBadgeType.destructive, BPKBadgeType.strong,
-        BPKBadgeType.normal, BPKBadgeType.light,
-        BPKBadgeType.inverse, BPKBadgeType.outline
+    private let badges: [BadgeExample] = [
+        BadgeExample(type: .normal, message: "Normal", showOverDarkBackground: false),
+        BadgeExample(type: .strong, message: "Strong", showOverDarkBackground: false),
+        BadgeExample(type: .success, message: "Success", showOverDarkBackground: false),
+        BadgeExample(type: .warning, message: "Warning", showOverDarkBackground: false),
+        BadgeExample(type: .destructive, message: "Critical", showOverDarkBackground: false),
+        BadgeExample(type: .inverse, message: "Inverse", showOverDarkBackground: true),
+        BadgeExample(type: .outline, message: "Outline", showOverDarkBackground: true),
+        BadgeExample(type: .brand, message: "Brand", showOverDarkBackground: false)
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
 
-        assert(badgeCollections.count == BadgesViewController.badgeTypes.count)
-
-        var iterator = 0
-        for badgeCollection in badgeCollections {
-            badgeCollection.badgeType = BadgesViewController.badgeTypes[iterator]
-            iterator += 1
+    private func setupView() {
+        let stack = UIStackView(frame: .zero)
+        stack.alignment = .center
+        stack.spacing = BPKSpacingMd
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        
+        badges.map(makeBadge(_:)).forEach(stack.addArrangedSubview(_:))
+        
+        view.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func makeBadge(_ badgeExample: BadgeExample) -> UIView {
+        let stack = UIStackView(frame: .zero)
+        stack.alignment = .fill
+        stack.distribution = .equalCentering
+        stack.spacing = BPKSpacingXl
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        stack.axis = .horizontal
+        
+        let badge = BPKBadge(
+            type: badgeExample.type,
+            message: badgeExample.message
+        )
+        let badgeWithIcon = BPKBadge(
+            type: badgeExample.type,
+            icon: .init(position: .leading, iconName: .tickCircle),
+            message: badgeExample.message
+        )
+        
+        if badgeExample.showOverDarkBackground {
+            stack.backgroundColor = BPKColor.corePrimaryColor
         }
+        stack.addArrangedSubview(badge)
+        stack.addArrangedSubview(badgeWithIcon)
+        return stack
     }
 }
