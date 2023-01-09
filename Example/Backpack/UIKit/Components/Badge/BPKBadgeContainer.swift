@@ -22,7 +22,7 @@ import Backpack
 class BPKBadgeContainer: UIView {
     var label: BPKLabel!
     var badges = [BPKBadge]()
-    let badgeMessages = ["Apples", "Bananas", "Strawberries"]
+    let badgeMessages = ["Apples", "Bananas"]
     var currentBadgeType = BPKBadgeType.success
     var badgesRequiringDarkBackground = [
         BPKBadgeType.light, BPKBadgeType.inverse,
@@ -91,18 +91,11 @@ class BPKBadgeContainer: UIView {
         badges.append(badge)
         
         let badgeWithLeadingIcon = BPKBadge(
-            icon: .init(position: .leading, iconName: .time),
+            icon: .init(iconName: .time),
             message: badgeMessages[1]
         )
         badgeWithLeadingIcon.type = currentBadgeType
         badges.append(badgeWithLeadingIcon)
-        
-        let badgeWithTrailingIcon = BPKBadge(
-            icon: .init(position: .trailing, iconName: .time),
-            message: badgeMessages[2]
-        )
-        badgeWithTrailingIcon.type = currentBadgeType
-        badges.append(badgeWithTrailingIcon)
     }
     
     func getLegibleName(badgeType: BPKBadgeType) -> String {

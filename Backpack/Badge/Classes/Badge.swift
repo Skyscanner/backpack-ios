@@ -97,11 +97,7 @@ public class BPKBadge: UIView {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
         guard let icon = icon else { return }
-        if icon.position == .leading {
-            containerStackView.insertArrangedSubview(iconView, at: 0)
-        } else {
-            containerStackView.addArrangedSubview(iconView)
-        }
+        containerStackView.insertArrangedSubview(iconView, at: 0)
     }
     
     private func setup() {
