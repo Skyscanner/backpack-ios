@@ -20,20 +20,10 @@ extension BPKBadge {
     @objcMembers
     @objc(BPKBadgeIcon)
     public class Icon: NSObject {
-        public init(position: Position, iconName: BPKSmallIconName) {
-            self.position = position
+        public init(iconName: BPKSmallIconName) {
             self.iconName = iconName
         }
         
-        let position: Position
         let iconName: BPKSmallIconName
-    }
-}
-
-extension BPKBadge.Icon {
-    
-    @objc(BPKBadgeIconPosition)
-    public enum Position: UInt {
-        case leading, trailing
     }
 }
