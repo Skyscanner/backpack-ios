@@ -75,7 +75,7 @@ class BadgesViewController: UIViewController {
         )
         let badgeWithIcon = BPKBadge(
             type: badgeExample.type,
-            icon: .init(position: .leading, iconName: .tickCircle),
+            icon: .init(iconName: .tickCircle),
             message: badgeExample.message
         )
         
