@@ -75,10 +75,10 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Badges",
             tabs: [
-                .uikit(presentable: loadStoryboard(
-                    name: "Badges",
-                    identifier: "BadgesViewController"
-                )),
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        BadgesViewController()
+                    })),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(BadgeExampleVIew())
                 }))

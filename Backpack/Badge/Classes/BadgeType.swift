@@ -21,9 +21,9 @@ public enum BPKBadgeType: UInt {
     case success
     case warning
     case destructive
-    case light
     case inverse
     case outline
     case normal
     case strong
+    case brand
 }

@@ -105,7 +105,8 @@ struct BPKBadge_Previews: PreviewProvider {
             (.warning, "Warning", .helpCircle, false),
             (.destructive, "Critical", .exclamation, false),
             (.inverse, "Inverse", .tickCircle, true),
-            (.outline, "Outline", .tickCircle, true)
+            (.outline, "Outline", .tickCircle, true),
+            (.brand, "Brand", .priceTag, false)
         ]
         return Group {
             ForEach([ColorScheme.light, ColorScheme.dark], id: \.self) { scheme in
