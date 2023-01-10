@@ -95,7 +95,6 @@
 		D2297C2B232A7F3F006E00E0 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */; };
 		D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */; };
 		D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D233F00E2162159E00A07D9B /* Cards.storyboard */; };
-		D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */; };
 		D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */; };
 		D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */; };
 		D24D602B22F84CEC002847D1 /* TextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24D602A22F84CEC002847D1 /* TextField.storyboard */; };
@@ -138,7 +137,6 @@
 		D2D624AC231586F600D8ED38 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D624AA231586F600D8ED38 /* PanelViewController.swift */; };
 		D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EB964B25C05DF600988978 /* MapViewController.swift */; };
 		D2EB965325C05E0800988978 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EB965225C05E0800988978 /* Map.storyboard */; };
-		D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2FF308F21903B2500E06F96 /* Badges.storyboard */; };
 		D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61ACE042306E238001C976E /* NavigationBarViewController.swift */; };
 		D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */; };
 		D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643B6DD2142C36C008AB669 /* GradientViewController.swift */; };
@@ -285,7 +283,6 @@
 		D2297C29232A7F3F006E00E0 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
 		D2297C2C232A7F5A006E00E0 /* Ratings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ratings.storyboard; sourceTree = "<group>"; };
 		D233F00E2162159E00A07D9B /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
-		D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKBadgeContainer.swift; sourceTree = "<group>"; };
 		D24A31D4219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewMasonryFlowLayout.swift; sourceTree = "<group>"; };
 		D24B548E22EA3E1D00ECD829 /* ProgressBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarViewController.swift; sourceTree = "<group>"; };
 		D24D602A22F84CEC002847D1 /* TextField.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextField.storyboard; sourceTree = "<group>"; };
@@ -330,7 +327,6 @@
 		D2D624AA231586F600D8ED38 /* PanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		D2EB964B25C05DF600988978 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D2EB965225C05E0800988978 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
-		D2FF308F21903B2500E06F96 /* Badges.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Badges.storyboard; sourceTree = "<group>"; };
 		D61ACE042306E238001C976E /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		D63915FE202CAAC8006E8329 /* BPKShadowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKShadowViewController.h; sourceTree = "<group>"; };
 		D63915FF202CAAC8006E8329 /* BPKShadowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKShadowViewController.m; sourceTree = "<group>"; };
@@ -704,8 +700,6 @@
 		793EC5542836141C00D627F6 /* Badge */ = {
 			isa = PBXGroup;
 			children = (
-				D23E2C12219204A800A15AAE /* BPKBadgeContainer.swift */,
-				D2FF308F21903B2500E06F96 /* Badges.storyboard */,
 				D26B8B85219EAC72006FE706 /* BadgesViewController.swift */,
 			);
 			path = Badge;
@@ -1210,7 +1204,6 @@
 				D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */,
 				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				D2297C2D232A7F5A006E00E0 /* Ratings.storyboard in Resources */,
-				D2FF309021903B2500E06F96 /* Badges.storyboard in Resources */,
 				D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */,
 				D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -1416,7 +1409,6 @@
 				D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */,
 				53B6DB6227FC3F170042B7C0 /* ChipGroups.swift in Sources */,
 				E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */,
-				D23E2C13219204A900A15AAE /* BPKBadgeContainer.swift in Sources */,
 				D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,
