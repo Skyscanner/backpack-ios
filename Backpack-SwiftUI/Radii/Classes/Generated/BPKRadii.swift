@@ -38,9 +38,6 @@ public extension BPKCornerRadius {
     /// The Skyscanner medium radius.
     static let md = BPKCornerRadius(value: 12)
 
-    /// The Skyscanner pill radius.
-    static let pill = BPKCornerRadius(value: 40)
-
     /// The Skyscanner small radius.
     static let sm = BPKCornerRadius(value: 8)
 
