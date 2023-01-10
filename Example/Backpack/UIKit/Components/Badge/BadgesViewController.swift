@@ -39,6 +39,7 @@ class BadgesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = BPKColor.canvasColor
         setupView()
     }
 
