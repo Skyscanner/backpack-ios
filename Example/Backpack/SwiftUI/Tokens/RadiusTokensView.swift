@@ -27,8 +27,7 @@ struct RadiusTokensView: View {
         ("BPKCornerRadiusXs", .xs),
         ("BPKCornerRadiusSm", .sm),
         ("BPKCornerRadiusMd", .md),
-        ("BPKCornerRadiusLg", .lg),
-        ("BPKCornerRadiusPill", .pill)
+        ("BPKCornerRadiusLg", .lg)
     ]
     
     var body: some View {
