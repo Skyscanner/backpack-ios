@@ -11,6 +11,8 @@ devices([
 #   "Apple TV 1080p"
 ])
 
+ios_version("15.2")
+
 languages([
   "en-US",
 #   "de-DE",
