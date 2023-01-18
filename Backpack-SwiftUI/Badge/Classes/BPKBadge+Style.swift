@@ -33,6 +33,8 @@ internal extension BPKBadge.Style {
             return BPKColor.surfaceHighlightColor
         case .strong:
             return BPKColor.corePrimaryColor
+        case .brand:
+            return BPKColor.coreAccentColor
         }
     }
     
@@ -44,6 +46,8 @@ internal extension BPKBadge.Style {
             return BPKColor.textOnDarkColor
         case .normal, .inverse:
             return BPKColor.textPrimaryColor
+        case .brand:
+            return BPKColor.textPrimaryInverseColor
         }
     }
     

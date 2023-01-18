@@ -34,8 +34,7 @@ class RadiusTokensViewController: UIViewController {
         ("BPKCornerRadiusXs", BPKCornerRadiusXs),
         ("BPKCornerRadiusSm", BPKCornerRadiusSm),
         ("BPKCornerRadiusMd", BPKCornerRadiusMd),
-        ("BPKCornerRadiusLg", BPKCornerRadiusLg),
-        ("BPKCornerRadiusPill", BPKCornerRadiusPill)
+        ("BPKCornerRadiusLg", BPKCornerRadiusLg)
     ]
     
     override func viewDidLoad() {
