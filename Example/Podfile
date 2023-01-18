@@ -29,5 +29,15 @@ post_install do |installer|
               config.build_settings['OTHER_CFLAGS'] = "$(inherited) -Qunused-arguments -Xanalyzer -analyzer-disable-all-checks"
           end
       end
+
+      # Fix SwiftUI previews
+      # https://github.com/CocoaPods/CocoaPods/issues/9275#issuecomment-923709000
+      if target.name == 'Backpack-SwiftUI'
+        target.build_configurations.each do |config|
+        if config.name == 'Debug'
+            config.build_settings["LD_RUNPATH_SEARCH_PATHS"] += " $(FRAMEWORK_SEARCH_PATHS)"
+        end
+      end
+    end
   end
 end
