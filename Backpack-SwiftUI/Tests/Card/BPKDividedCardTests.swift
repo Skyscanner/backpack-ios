@@ -21,19 +21,39 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKDividedCardTests: XCTestCase {
-
+        
+    private func primaryContent(title: String) -> some View {
+        VStack {
+            BPKText(title, style: .heading3)
+            BPKText("""
+                Lorem ipsum dolor sit amet,
+                consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor.
+            """).lineLimit(3)
+        }
+    }
+    
+    private func secondaryContent() -> some View {
+        BPKText("Lorem ipsum dolor sit amet")
+    }
+    
     func testDividedCardDefault() {
         assertSnapshot(
-            BPKDividedCard
-            {
-                BPKText("""
-                    Lorem ipsum dolor sit amet,
-                    consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor.
-                """)
-                .lineLimit(3)
+            BPKDividedCard {
+                primaryContent(title: "Default")
             } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
+                secondaryContent()
+            }
+                .padding()
+        )
+    }
+    
+    func testDividedCardWithoutElevation() {
+        assertSnapshot(
+            BPKDividedCard(isElevated: false) {
+                primaryContent(title: "Not Elevated")
+            } secondaryContent: {
+                secondaryContent()
             }
                 .padding()
         )
@@ -41,17 +61,11 @@ class BPKDividedCardTests: XCTestCase {
     
     func testDividedCardWithPaddedContent() {
         assertSnapshot(
-            BPKDividedCard
-            {
-                BPKText("""
-                    Lorem ipsum dolor sit amet,
-                    consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor.
-                """)
-                .lineLimit(3)
-                .padding()
+            BPKDividedCard {
+                primaryContent(title: "Padded")
+                    .padding()
             } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
+                secondaryContent()
                     .padding()
             }
                 .padding()

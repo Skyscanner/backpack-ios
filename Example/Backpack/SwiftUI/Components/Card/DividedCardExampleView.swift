@@ -22,25 +22,39 @@ import Backpack_SwiftUI
 
 struct DividedCardExampleView: View {
     
+    private func primaryContent(title: String) -> some View {
+        let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+            "Aenean commodo ligula eget dolor. Aenean massa."
+        return VStack {
+            BPKText(title, style: .heading3)
+            BPKText(message)
+                .lineLimit(3)
+        }
+    }
+    
+    private func secondaryContent() -> some View {
+        BPKText("Lorem ipsum dolor sit amet")
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
+                primaryContent(title: "Default")
             } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
+                secondaryContent()
+            }
+            
+            BPKDividedCard(isElevated: false) {
+                primaryContent(title: "Not Elevated")
+            } secondaryContent: {
+                secondaryContent()
             }
             
             BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
+                primaryContent(title: "Padded")
                     .padding()
             } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
+                secondaryContent()
                     .padding()
             }
         }

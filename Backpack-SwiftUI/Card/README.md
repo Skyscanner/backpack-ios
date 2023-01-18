@@ -86,3 +86,25 @@ BPKDividedCard {
     print("Card tapped!")
 }
 ```
+
+**Not Elevated**
+Elevation is enabled by default.
+```swift
+BPKDividedCard(isElevated: false) {
+    BPKText("PrimaryContent")
+} secondaryContent: {
+    BPKText("SecondaryContent")
+}
+```
+
+**Padded**
+```swift
+BPKDividedCard {
+    BPKText("PrimaryContent")
+        .padding()
+} secondaryContent: {
+    BPKText("SecondaryContent")
+        .padding()
+}
+```
+
