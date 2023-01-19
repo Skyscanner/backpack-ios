@@ -50,7 +50,7 @@ class BPKDividedCardTests: XCTestCase {
     
     func testDividedCardWithoutElevation() {
         assertSnapshot(
-            BPKDividedCard(isElevated: false) {
+            BPKDividedCard(elevation: .none) {
                 primaryContent(title: "Not Elevated")
             } secondaryContent: {
                 secondaryContent()

@@ -19,23 +19,23 @@
 import SwiftUI
 
 public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View {
-    private let isElevated: Bool
+    private let elevation: BPKCardElevation
     private let primaryContent: PrimaryContent
     private let secondaryContent: SecondaryContent
     private var tapAction: () -> Void = {}
 
     public init(
-        isElevated: Bool = true,
+        elevation: BPKCardElevation = .default,
         @ViewBuilder primaryContent: () -> PrimaryContent,
         @ViewBuilder secondaryContent: () -> SecondaryContent
     ) {
-        self.isElevated = isElevated
+        self.elevation = elevation
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
     }
 
     public var body: some View {
-        BPKCard(padding: .none, elevation: isElevated ? .default : .none) {
+        BPKCard(padding: .none, elevation: elevation) {
             VStack(spacing: 0) {
                 primaryContent
                 Color(BPKColor.lineColor)
@@ -79,7 +79,7 @@ struct BPKDividedCard_Priviews: PreviewProvider {
                 secondaryContent()
             }
             
-            BPKDividedCard(isElevated: false) {
+            BPKDividedCard(elevation: .none) {
                 primaryContent(title: "Not Elevated")
             } secondaryContent: {
                 secondaryContent()
