@@ -75,8 +75,7 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
 
       - name: Install sourcekitten
-        run: brew install sourcekitten
-
+        run: brew install sourcekitten@0.33.1
       - name: Build and verify docs (main)
         if: steps.extract_git_tag.outputs.GIT_TAG == '' && github.ref == 'refs/heads/main'
         run: ./scripts/build-docs pr_docs && rm -rf docs

@@ -115,7 +115,7 @@ jobs:
       working-directory: Example
 
     - name: Install sourcekitten
-      run: brew install sourcekitten
+      run: brew install sourcekitten@0.33.1
 
     - name: Build and verify docs (release)
       if: github.event.release.tag_name != ''
