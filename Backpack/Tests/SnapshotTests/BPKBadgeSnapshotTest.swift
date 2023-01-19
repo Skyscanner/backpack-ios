@@ -47,7 +47,7 @@ class BPKBadgeSnapshotTest: XCTestCase {
         parentView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(stackView)
 
-        let badges = [BPKBadgeType.light, .inverse, .outline, .success, .warning, .destructive, .strong, .normal]
+        let badges = [BPKBadgeType.inverse, .outline, .success, .warning, .destructive, .strong, .normal, .brand]
             .map { BPKBadge(type: $0, icon: icon, message: "Backpack rocks!") }
         badges.forEach(stackView.addArrangedSubview(_:))
         NSLayoutConstraint.activate([
@@ -64,14 +64,8 @@ class BPKBadgeSnapshotTest: XCTestCase {
         assertSnapshot(exampleView)
     }
 
-    func testViewSnapshotWithLeadingIcon() {
-        let icon = BPKBadge.Icon(position: .leading, iconName: BPKSmallIconName.time)
-        let exampleView = createViewWithTypes(andIcon: icon)
-        assertSnapshot(exampleView)
-    }
-
-    func testViewSnapshotWithTrailingIcon() {
-        let icon = BPKBadge.Icon(position: .trailing, iconName: BPKSmallIconName.time)
+    func testViewSnapshotWithIcon() {
+        let icon = BPKBadge.Icon(iconName: BPKSmallIconName.time)
         let exampleView = createViewWithTypes(andIcon: icon)
         assertSnapshot(exampleView)
     }
