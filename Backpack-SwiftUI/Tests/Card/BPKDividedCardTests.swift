@@ -39,36 +39,63 @@ class BPKDividedCardTests: XCTestCase {
     
     func testDividedCardDefault() {
         assertSnapshot(
-            BPKDividedCard {
-                primaryContent(title: "Default")
-            } secondaryContent: {
-                secondaryContent()
-            }
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard {
+                    primaryContent(title: "Default")
+                } secondaryContent: {
+                    secondaryContent()
+                }
                 .padding()
+            }
+        )
+    }
+    
+    func testDividedCardOnFocused() {
+        assertSnapshot(
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(elevation: .focus) {
+                    primaryContent(title: "Focused")
+                } secondaryContent: {
+                    secondaryContent()
+                }
+                .padding()
+            }
         )
     }
     
     func testDividedCardWithoutElevation() {
         assertSnapshot(
-            BPKDividedCard(elevation: .none) {
-                primaryContent(title: "Not Elevated")
-            } secondaryContent: {
-                secondaryContent()
-            }
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(elevation: .none) {
+                    primaryContent(title: "Not Elevated")
+                } secondaryContent: {
+                    secondaryContent()
+                }
                 .padding()
+            }
         )
     }
     
     func testDividedCardWithPaddedContent() {
         assertSnapshot(
-            BPKDividedCard {
-                primaryContent(title: "Padded")
-                    .padding()
-            } secondaryContent: {
-                secondaryContent()
-                    .padding()
-            }
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard {
+                    primaryContent(title: "Padded")
+                        .padding()
+                } secondaryContent: {
+                    secondaryContent()
+                        .padding()
+                }
                 .padding()
+            }
         )
     }
 }

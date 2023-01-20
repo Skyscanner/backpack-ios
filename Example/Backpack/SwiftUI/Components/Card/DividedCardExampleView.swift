@@ -36,29 +36,42 @@ struct DividedCardExampleView: View {
         BPKText("Lorem ipsum dolor sit amet")
     }
     
+    // swiftlint:disable closure_body_length
     var body: some View {
-        VStack(spacing: 20) {
-            BPKDividedCard {
-                primaryContent(title: "Default")
-            } secondaryContent: {
-                secondaryContent()
-            }
-            
-            BPKDividedCard(elevation: .none) {
-                primaryContent(title: "Not Elevated")
-            } secondaryContent: {
-                secondaryContent()
-            }
-            
-            BPKDividedCard {
-                primaryContent(title: "Padded")
-                    .padding()
-            } secondaryContent: {
-                secondaryContent()
-                    .padding()
+        ZStack {
+            Color(BPKColor.canvasContrastColor)
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 20) {
+                    BPKDividedCard {
+                        primaryContent(title: "Default")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .focus) {
+                        primaryContent(title: "Focused")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .none) {
+                        primaryContent(title: "Not Elevated")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard {
+                        primaryContent(title: "Padded")
+                            .padding()
+                    } secondaryContent: {
+                        secondaryContent()
+                            .padding()
+                    }
+                }
+                .padding()
             }
         }
-        .padding()
     }
 }
 

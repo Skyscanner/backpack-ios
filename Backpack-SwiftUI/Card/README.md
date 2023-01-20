@@ -87,10 +87,10 @@ BPKDividedCard {
 }
 ```
 
-**Not Elevated**
-Elevation is enabled by default.
+**Elevation**
+The same as `BPKCard`
 ```swift
-BPKDividedCard(isElevated: false) {
+BPKDividedCard(elevation: .focus) {
     BPKText("PrimaryContent")
 } secondaryContent: {
     BPKText("SecondaryContent")
