@@ -19,7 +19,7 @@ defaults:
 jobs:
   BuildDocs:
     name: Build Docs
-    runs-on: macos-11
+    runs-on: macos-latest
     permissions:
       statuses: write
       pull-requests: write
@@ -71,8 +71,8 @@ jobs:
         run: bundle exec pod install
         working-directory: Example
 
-      - name: Select Xcode 13
-        run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app
+      - name: Select Xcode 14
+        run: sudo xcode-select --switch /Applications/Xcode_14.2.app
 
       - name: Install sourcekitten
         run: brew install sourcekitten
