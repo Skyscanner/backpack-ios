@@ -3,8 +3,8 @@ set -e
 
 EXAMPLE_WORKSPACE="Example/Backpack.xcworkspace"
 SWIFT=${SWIFT:-'5.0'}
-BUILD_SDK=${BUILD_SDK:-'iphonesimulator15.2'}
-DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone 8"}
+BUILD_SDK=${BUILD_SDK:-'iphonesimulator16.2'}
+DESTINATION=${DESTINATION:-"platform=iOS Simulator,name=iPhone SE (3rd generation)"}
 
 function analyze() {
     xcodebuild analyze \

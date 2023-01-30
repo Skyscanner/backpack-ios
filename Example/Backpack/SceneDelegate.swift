@@ -47,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tokensProvider: TokenCellsProvider(navigator: presentableNavigator),
             componentsProvider: ComponentCellsProvider(
                 navigator: presentableNavigator,
-                toastDuration: isUITestRun ? 0.1 : 5
+                toastDuration: isUITestRun ? 1 : 5
             )
         ).create()
         let navigationController = UINavigationController(rootViewController: defaultController)
