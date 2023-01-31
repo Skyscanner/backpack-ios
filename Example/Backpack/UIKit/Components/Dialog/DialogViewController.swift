@@ -42,51 +42,6 @@ class DialogViewController: UIViewController {
         setupView()
     }
     
-    func dialog() {
-        // Image view
-        let image = UIImage(named: "dialog_image")
-        let imageView = UIImageView.init(image: image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Basic definition
-        let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
-        let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
-        
-        let dialogController = BPKDialogController(
-            title: "Title in here",
-            message: "Description",
-            imageView: imageView
-        )
-        
-        // Dialog buttons
-        let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured) {_ in
-            // Handle tap
-        }
-        
-        let skip = BPKDialogButtonAction(title: "Confirmation", style: .secondary) {_ in
-            // Handle tap
-        }
-        
-        let optionalLink = BPKDialogButtonAction(title: "Optional link", style: .link) {_ in
-            // Handle tap
-        }
-        
-        dialogController.addButtonAction(confirmation)
-        dialogController.addButtonAction(skip)
-        dialogController.addButtonAction(optionalLink)
-        
-        // Handling scrim tap
-        // If you don't set this, the dialog is not dismissed when tapping the scrim
-        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
-            print("Scrim tap \(didDismiss ? "dimissing" : "")")
-        }, shouldDismiss: true)
-        dialogController.scrimAction = scrimAction
-        
-        // Show the dialog
-        self.present(dialogController, animated: true)
-    }
-    
     @objc
     private func showDialog() {
         let message = "Description that goes two lines ideally, but sometimes it can go longer"
