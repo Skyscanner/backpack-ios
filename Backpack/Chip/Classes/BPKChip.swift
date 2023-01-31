@@ -94,6 +94,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
+        if type == .dismiss { return appearance.selected }
         if isSelected { return appearance.selected }
         return appearance.normal
     }
@@ -197,8 +198,7 @@ extension BPKChip {
         layer.addSublayer(tintLayer)
         addSubview(containerStackView)
         
-        isAccessibilityElement = true
-        accessibilityTraits = .button
+        updateAccessibility()
         
         trailingConstraint = containerStackView.trailingAnchor.constraint(
             equalTo: trailingAnchor,
@@ -238,7 +238,11 @@ extension BPKChip {
     }
     
     private func updateAccessibility() {
-        if isSelected {
+        isAccessibilityElement = true
+        accessibilityTraits = .button
+        
+        // A dismiss type chip can not be de-selected
+        if isSelected || type == .dismiss {
             accessibilityTraits.insert(.selected)
         } else {
             accessibilityTraits.remove(.selected)
@@ -278,7 +282,6 @@ extension BPKChip {
     }
 
     private var accessoryIcon: BPKSmallIconName? {
-        if type == .select { return .tick }
         if type == .dismiss { return .closeCircle }
         if type == .dropdown { return .chevronDown }
         return nil
