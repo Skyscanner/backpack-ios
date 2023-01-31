@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) UIView *scrimView;
 @property(nonatomic, strong) BPKDialogView *dialogView;
-@property(nullable, nonatomic, strong) BPKFlareView *flareView;
+@property(nullable, nonatomic, strong) UIView *graphicView;
 
 @property(nonatomic, strong) NSMutableArray<BPKDialogScrimAction *> *scrimActions;
 
@@ -56,14 +56,14 @@ NS_ASSUME_NONNULL_BEGIN
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
-    return [self initWithTitle:title message:message style:style iconDefinition:iconDefinition flareView:nil];
+    return [self initWithTitle:title message:message style:style iconDefinition:iconDefinition graphicView:nil];
 }
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                         style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                    flareView:(BPKFlareView *_Nullable)flareView {
+                    graphicView:(UIView *_Nullable)graphicView {
     self = [super init];
 
     if (self) {
@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.messageText = message;
         self.style = style;
         self.iconDefinition = iconDefinition;
-        self.flareView = flareView;
+        self.graphicView = graphicView;
         self.scrimActions = [NSMutableArray new];
         self.transitioningDelegate = self;
 
@@ -101,7 +101,13 @@ NS_ASSUME_NONNULL_BEGIN
                                     style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView {
-    return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition flareView:flareView];
+    return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition graphicView:flareView];
+}
+
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
+                                  message:(NSString *)message
+                                imageView:(UIImageView *_Nullable)imageView {
+    return [[self alloc] initWithTitle:title message:message style:BPKDialogControllerStyleAlert iconDefinition:nil graphicView:imageView];
 }
 
 - (void)setupViews {
@@ -119,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.dialogView = [[BPKDialogView alloc] initWithTitle:self.titleText
                                                    message:self.messageText
                                             iconDefinition:self.iconDefinition
-                                                 flareView:self.flareView];
+                                                 graphicView:self.graphicView];
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
     self.dialogView.delegate = self;
     self.dialogView.style = self.style;

@@ -113,6 +113,17 @@ NS_ASSUME_NONNULL_BEGIN
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView;
 
+/**
+ * Create an instance of the controller with an image at the top
+ *
+ * @param title The tile to display in the dialog.
+ * @param message The message to display in the body of the dialog.
+ * @param imageView the UIIMageView  to show at the top of the dialog.
+ */
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
+                                  message:(NSString *)message
+                                imageView:(UIImageView *_Nullable)imageView;
+
 // Protected
 
 /**

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKDialogView ()
 
 @property(nonatomic, strong, nullable) BPKDialogIconView *iconView;
-@property(nullable, nonatomic, strong) BPKFlareView *flareView;
+@property(nullable, nonatomic, strong) UIView *graphicView;
 
 @property(nonatomic, strong) UIView *backgroundView;
 @property(nonatomic, strong) BPKDialogContentView *contentView;
@@ -50,12 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                    flareView:(BPKFlareView *_Nullable)flareView {
+                    graphicView:(UIView *_Nullable)graphicView {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
     if (self) {
-        self.flareView = flareView;
+        self.graphicView = graphicView;
 
         [self setupViews];
         [self addViews];
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)hasFlareView {
-    return self.flareView != nil;
+    return self.graphicView != nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -126,8 +126,8 @@ NS_ASSUME_NONNULL_BEGIN
     [self.backgroundView addSubview:self.contentView];
 
     if (self.hasFlareView) {
-        self.flareView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.backgroundView addSubview:self.flareView];
+        self.graphicView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.backgroundView addSubview:self.graphicView];
     }
 }
 
@@ -152,7 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self setLayoutMargins];
 
     if (self.hasFlareView) {
-        [self setupFlareViewConstraints];
+        [self setupGraphicViewConstraints];
     }
 
     if (self.hasIcon) {
@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if (self.hasFlareView) {
-        self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.flareView.bottomAnchor constant:BPKSpacingBase];
+        self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.graphicView.bottomAnchor constant:BPKSpacingBase];
     } else {
         self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.backgroundView.layoutMarginsGuide.topAnchor];
     }
@@ -263,7 +263,7 @@ NS_ASSUME_NONNULL_BEGIN
     BPKAssertMainThread();
     if (iconDefinition != _iconDefinition) {
         // Can't show an icon and a flare view:
-        _iconDefinition = self.flareView == nil ? iconDefinition : nil;
+        _iconDefinition = self.graphicView == nil ? iconDefinition : nil;
         [self updateIconView];
         [self setLayoutMargins];
     }
@@ -305,18 +305,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Private methods
 
-- (void)setupFlareViewConstraints {
-    NSLayoutConstraint *flareViewDesiredHeight = [self.flareView.heightAnchor constraintEqualToConstant:300];
+- (void)setupGraphicViewConstraints {
+    NSLayoutConstraint *graphicViewDesiredHeight = [self.graphicView.heightAnchor constraintEqualToConstant:300];
     // Shrink height of flare before shrinking content
-    flareViewDesiredHeight.priority = UILayoutPriorityDefaultLow - 1;
+    graphicViewDesiredHeight.priority = UILayoutPriorityDefaultLow - 1;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.flareView.topAnchor constraintEqualToAnchor:self.backgroundView.topAnchor],
-        [self.flareView.trailingAnchor constraintEqualToAnchor:self.backgroundView.trailingAnchor],
-        [self.flareView.leadingAnchor constraintEqualToAnchor:self.backgroundView.leadingAnchor],
-        [self.flareView.heightAnchor constraintGreaterThanOrEqualToConstant:150.0],
-        [self.flareView.heightAnchor constraintLessThanOrEqualToConstant:300.0],
-        flareViewDesiredHeight,
+        [self.graphicView.topAnchor constraintEqualToAnchor:self.backgroundView.topAnchor],
+        [self.graphicView.trailingAnchor constraintEqualToAnchor:self.backgroundView.trailingAnchor],
+        [self.graphicView.leadingAnchor constraintEqualToAnchor:self.backgroundView.leadingAnchor],
+        [self.graphicView.heightAnchor constraintGreaterThanOrEqualToConstant:150.0],
+        [self.graphicView.heightAnchor constraintLessThanOrEqualToConstant:300.0],
+        graphicViewDesiredHeight,
     ]];
 }
 
