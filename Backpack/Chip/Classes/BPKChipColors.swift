@@ -25,17 +25,26 @@ struct BPKChipAppearanceSets {
     }
     
     struct Colors {
-        let background: UIColor
+        let background: UIColor?
         let content: UIColor
+        let stroke: UIColor?
+        
+        init(background: UIColor? = nil, content: UIColor, stroke: UIColor? = nil) {
+            self.background = background
+            self.content = content
+            self.stroke = stroke
+        }
     }
 
     private static let onDarkAppearance = AppearanceSet(
         normal: Colors(
             background: BPKColor.chipOnDarkNormalBackgroundColor,
-            content: BPKColor.textOnDarkColor),
+            content: BPKColor.textOnDarkColor,
+            stroke: BPKColor.lineOnDarkColor),
         highlighted: Colors(
             background: BPKColor.chipOnDarkPressedBackgroundColor,
-            content: BPKColor.textPrimaryColor),
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.surfaceDefaultColor),
         selected: Colors(
             background: BPKColor.chipOnDarkOnBackgroundColor,
             content: BPKColor.textPrimaryColor),
@@ -48,11 +57,13 @@ struct BPKChipAppearanceSets {
     private static let defaultAppearance = AppearanceSet(
         normal: Colors(
             background: BPKColor.chipDefaultNormalBackgroundColor,
-            content: BPKColor.textPrimaryColor
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.lineColor
         ),
         highlighted: Colors(
             background: BPKColor.chipDefaultPressedBackgroundColor,
-            content: BPKColor.textPrimaryColor),
+            content: BPKColor.textPrimaryColor,
+            stroke: BPKColor.corePrimaryColor),
         selected: Colors(
             background: BPKColor.chipDefaultOnBackgroundColor,
             content: BPKColor.textOnDarkColor

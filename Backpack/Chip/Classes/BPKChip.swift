@@ -78,6 +78,9 @@ public class BPKChip: UIControl {
             tintLayer.opacity = isHighlighted ? 1 : 0
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
             label.textColor = isHighlighted ? appearance.highlighted.content : colors.content
+            
+            updateOutlineStroke()
+            
             CATransaction.commit()
         }
     }
@@ -125,11 +128,14 @@ public class BPKChip: UIControl {
         return stack
     }()
     
+    private var trailingConstraint: NSLayoutConstraint?
+    
     private lazy var tintLayer: CALayer = {
         let layer = CALayer()
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-        layer.backgroundColor = appearance.highlighted.background.cgColor
+        layer.backgroundColor = appearance.highlighted.background?.cgColor
         layer.opacity = 0
+        
         return layer
     }()
     
@@ -173,8 +179,8 @@ public class BPKChip: UIControl {
         super.layoutSubviews()
         
         tintLayer.frame = self.bounds
-        tintLayer.cornerRadius = self.bounds.height / 2.0
-        self.layer.cornerRadius = self.bounds.height / 2.0
+        tintLayer.cornerRadius = BPKSpacingMd
+        self.layer.cornerRadius = BPKSpacingMd
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -194,9 +200,14 @@ extension BPKChip {
         isAccessibilityElement = true
         accessibilityTraits = .button
         
+        trailingConstraint = containerStackView.trailingAnchor.constraint(
+            equalTo: trailingAnchor,
+            constant: -chipTrailingSpacing
+        )
+                
         NSLayoutConstraint.activate([
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipHorizontalSpacing),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -chipHorizontalSpacing),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
+            trailingConstraint!,
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
         ])
@@ -213,14 +224,44 @@ extension BPKChip {
     
     private func updateLookAndFeel() {
         backgroundColor = colors.background
+        updateOutlineStroke()
+        
         iconView.image = icon.orNil(withColor: colors.content)
         label.textColor = colors.content
         accessoryIconView.image = accessoryIcon.orNil(withColor: colors.content)
-        accessibilityTraits = .button
+        
+        updateAccessibility()
+        placeElements()
+        
+        trailingConstraint?.constant = -chipTrailingSpacing
+        setNeedsUpdateConstraints()
+    }
+    
+    private func updateAccessibility() {
+        if isSelected {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
+        
+        if !isEnabled {
+            accessibilityTraits.insert(.notEnabled)
+        } else {
+            accessibilityTraits.remove(.notEnabled)
+        }
         
         accessibilityLabel = title
-        
-        placeElements()
+    }
+    
+    private func updateOutlineStroke() {
+        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+        let strokeColor = isHighlighted ? appearance.highlighted.stroke : colors.stroke
+        if let stroke = strokeColor {
+            layer.borderColor = stroke.cgColor
+            layer.borderWidth = 1
+        } else {
+            layer.borderWidth = 0
+        }
     }
     
     private func placeElements() {
@@ -239,6 +280,7 @@ extension BPKChip {
     private var accessoryIcon: BPKSmallIconName? {
         if type == .select { return .tick }
         if type == .dismiss { return .closeCircle }
+        if type == .dropdown { return .chevronDown }
         return nil
     }
 }
@@ -249,8 +291,12 @@ extension BPKChip {
         return BPKSpacingIconText
     }
     
-    private var chipHorizontalSpacing: CGFloat {
+    private var chipLeadingSpacing: CGFloat {
         return BPKSpacingBase
+    }
+    
+    private var chipTrailingSpacing: CGFloat {
+        return accessoryIcon != nil ? BPKSpacingMd : BPKSpacingBase
     }
     
     private var chipVerticalSpacing: CGFloat {

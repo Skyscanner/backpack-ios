@@ -20,5 +20,8 @@ import Foundation
 
 @objc
 public enum BPKChipType: UInt {
-    case option, select, dismiss
+    
+    @available(*, deprecated, message: "This chip type will be removed in the next major version")
+    case select
+    case option, dropdown, dismiss
 }

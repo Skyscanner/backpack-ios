@@ -46,9 +46,7 @@ internal extension BPKColor {
 
     /// The `chipDefaultNormalBackgroundColor` internal color.
     
-    static let chipDefaultNormalBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
-        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
+    static let chipDefaultNormalBackgroundColor = UIColor.clear
 
     /// The `chipDefaultOnBackgroundColor` internal color.
     
@@ -64,9 +62,7 @@ internal extension BPKColor {
 
     /// The `chipDefaultPressedBackgroundColor` internal color.
     
-    static let chipDefaultPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
-        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
+    static let chipDefaultPressedBackgroundColor = UIColor.clear
 
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
