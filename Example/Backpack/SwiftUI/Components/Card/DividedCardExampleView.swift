@@ -22,29 +22,56 @@ import Backpack_SwiftUI
 
 struct DividedCardExampleView: View {
     
+    private func primaryContent(title: String) -> some View {
+        let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+            "Aenean commodo ligula eget dolor. Aenean massa."
+        return VStack {
+            BPKText(title, style: .heading3)
+            BPKText(message)
+                .lineLimit(3)
+        }
+    }
+    
+    private func secondaryContent() -> some View {
+        BPKText("Lorem ipsum dolor sit amet")
+    }
+    
+    // swiftlint:disable closure_body_length
     var body: some View {
-        VStack(spacing: 20) {
-            BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-            }
-            
-            BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
-                    .padding()
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-                    .padding()
+        ZStack {
+            Color(BPKColor.canvasContrastColor)
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 20) {
+                    BPKDividedCard {
+                        primaryContent(title: "Default")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .focus) {
+                        primaryContent(title: "Focused")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .none) {
+                        primaryContent(title: "Not Elevated")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard {
+                        primaryContent(title: "Padded")
+                            .padding()
+                    } secondaryContent: {
+                        secondaryContent()
+                            .padding()
+                    }
+                }
+                .padding()
             }
         }
-        .padding()
     }
 }
 

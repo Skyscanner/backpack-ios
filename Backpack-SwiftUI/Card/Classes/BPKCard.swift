@@ -23,22 +23,6 @@ public struct BPKCard<Content: View>: View {
         case large, small
     }
 
-    public enum Elevation {
-        case `default`, focus, none
-
-        var shadow: BPKShadow? {
-            switch self {
-            case .none: return nil
-            case .focus: return .lg
-            case .`default`: return .sm
-            }
-        }
-
-        var backgroundColor: BPKColor {
-            self == .focus ? .surfaceElevatedColor : .surfaceDefaultColor
-        }
-    }
-
     public enum Padding {
         case none, small
 
@@ -47,16 +31,16 @@ public struct BPKCard<Content: View>: View {
         }
     }
 
-    private var elevation: Elevation
+    private let elevation: BPKCardElevation
     private let content: Content
-    private var padding: Padding
-    private var cornerStyle: CornerStyle
+    private let padding: Padding
+    private let cornerStyle: CornerStyle
     private var tapAction : () -> Void = {}
 
     public init(
         padding: Padding = .small,
         cornerStyle: CornerStyle = .small,
-        elevation: Elevation = .default,
+        elevation: BPKCardElevation = .default,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()

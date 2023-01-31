@@ -21,40 +21,81 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKDividedCardTests: XCTestCase {
-
+        
+    private func primaryContent(title: String) -> some View {
+        VStack {
+            BPKText(title, style: .heading3)
+            BPKText("""
+                Lorem ipsum dolor sit amet,
+                consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor.
+            """).lineLimit(3)
+        }
+    }
+    
+    private func secondaryContent() -> some View {
+        BPKText("Lorem ipsum dolor sit amet")
+    }
+    
     func testDividedCardDefault() {
         assertSnapshot(
-            BPKDividedCard
-            {
-                BPKText("""
-                    Lorem ipsum dolor sit amet,
-                    consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor.
-                """)
-                .lineLimit(3)
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-            }
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard {
+                    primaryContent(title: "Default")
+                } secondaryContent: {
+                    secondaryContent()
+                }
                 .padding()
+            }
+        )
+    }
+    
+    func testDividedCardOnFocused() {
+        assertSnapshot(
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(elevation: .focus) {
+                    primaryContent(title: "Focused")
+                } secondaryContent: {
+                    secondaryContent()
+                }
+                .padding()
+            }
+        )
+    }
+    
+    func testDividedCardWithoutElevation() {
+        assertSnapshot(
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard(elevation: .none) {
+                    primaryContent(title: "Not Elevated")
+                } secondaryContent: {
+                    secondaryContent()
+                }
+                .padding()
+            }
         )
     }
     
     func testDividedCardWithPaddedContent() {
         assertSnapshot(
-            BPKDividedCard
-            {
-                BPKText("""
-                    Lorem ipsum dolor sit amet,
-                    consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor.
-                """)
-                .lineLimit(3)
+            ZStack {
+                Color(BPKColor.canvasContrastColor)
+                    .ignoresSafeArea()
+                BPKDividedCard {
+                    primaryContent(title: "Padded")
+                        .padding()
+                } secondaryContent: {
+                    secondaryContent()
+                        .padding()
+                }
                 .padding()
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-                    .padding()
             }
-                .padding()
         )
     }
 }

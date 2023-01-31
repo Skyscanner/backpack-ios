@@ -86,3 +86,25 @@ BPKDividedCard {
     print("Card tapped!")
 }
 ```
+
+**Elevation**
+The same as `BPKCard`
+```swift
+BPKDividedCard(elevation: .focus) {
+    BPKText("PrimaryContent")
+} secondaryContent: {
+    BPKText("SecondaryContent")
+}
+```
+
+**Padded**
+```swift
+BPKDividedCard {
+    BPKText("PrimaryContent")
+        .padding()
+} secondaryContent: {
+    BPKText("SecondaryContent")
+        .padding()
+}
+```
+

@@ -19,20 +19,23 @@
 import SwiftUI
 
 public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View {
+    private let elevation: BPKCardElevation
     private let primaryContent: PrimaryContent
     private let secondaryContent: SecondaryContent
     private var tapAction: () -> Void = {}
 
     public init(
+        elevation: BPKCardElevation = .default,
         @ViewBuilder primaryContent: () -> PrimaryContent,
         @ViewBuilder secondaryContent: () -> SecondaryContent
     ) {
+        self.elevation = elevation
         self.primaryContent = primaryContent()
         self.secondaryContent = secondaryContent()
     }
 
     public var body: some View {
-        BPKCard(padding: .none) {
+        BPKCard(padding: .none, elevation: elevation) {
             VStack(spacing: 0) {
                 primaryContent
                 Color(BPKColor.lineColor)
@@ -53,29 +56,57 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
 }
 
 struct BPKDividedCard_Priviews: PreviewProvider {
+
+    private static func primaryContent(title: String) -> some View {
+        let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
+            "Aenean commodo ligula eget dolor. Aenean massa."
+        return VStack {
+            BPKText(title, style: .heading3)
+            BPKText(message)
+                .lineLimit(3)
+        }
+    }
+    
+    private static func secondaryContent() -> some View {
+        BPKText("Lorem ipsum dolor sit amet")
+    }
+    
+    // swiftlint:disable closure_body_length
     static var previews: some View {
-        VStack(spacing: 20) {
-            BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-            }
-            
-            BPKDividedCard {
-                let message = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-                "Aenean commodo ligula eget dolor. Aenean massa."
-                BPKText(message)
-                    .lineLimit(3)
-                    .padding()
-            } secondaryContent: {
-                BPKText("Lorem ipsum dolor sit amet")
-                    .padding()
+        ZStack {
+            Color(BPKColor.canvasContrastColor)
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 20) {
+                    BPKDividedCard {
+                        primaryContent(title: "Default")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .focus) {
+                        primaryContent(title: "Focused")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard(elevation: .none) {
+                        primaryContent(title: "Not Elevated")
+                    } secondaryContent: {
+                        secondaryContent()
+                    }
+                    
+                    BPKDividedCard {
+                        primaryContent(title: "Padded")
+                            .padding()
+                    } secondaryContent: {
+                        secondaryContent()
+                            .padding()
+                    }
+                }
+                .padding()
             }
         }
-        .padding()
     }
 }
 
