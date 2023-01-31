@@ -120,9 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param message The message to display in the body of the dialog.
  * @param imageView the UIIMageView  to show at the top of the dialog.
  */
-+ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
-                                  message:(NSString *)message
-                                imageView:(UIImageView *_Nullable)imageView;
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title message:(NSString *)message imageView:(UIImageView *_Nullable)imageView;
 
 // Protected
 

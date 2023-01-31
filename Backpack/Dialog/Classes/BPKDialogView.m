@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                    graphicView:(UIView *_Nullable)graphicView {
+                  graphicView:(UIView *_Nullable)graphicView {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
