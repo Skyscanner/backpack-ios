@@ -51,7 +51,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
         actions: [BPKDialogButtonAction] = [],
         cornerStyle: BPKDialogCornerStyle = .large
     ) -> BPKDialogView {
-        let dialog = BPKDialogView(title: title, message: message, iconDefinition: icon, flareView: flareView)
+        let dialog = BPKDialogView(title: title, message: message, iconDefinition: icon, graphicView: flareView)
         dialog.translatesAutoresizingMaskIntoConstraints = false
         dialog.widthAnchor.constraint(lessThanOrEqualToConstant: 320).isActive = true
         dialog.cornerStyle = cornerStyle
