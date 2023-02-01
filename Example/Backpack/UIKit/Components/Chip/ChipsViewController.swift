@@ -21,8 +21,6 @@ import Backpack
 
 struct ChipConfig {
     let title: String
-    let selected: Bool
-    let enabled: Bool
     let icon: BPKSmallIconName?
     let type: BPKChipType
 }
@@ -42,52 +40,23 @@ class ChipsViewController: UIViewController {
     private let chips: [ChipConfig] = [
         ChipConfig(
             title: "Option",
-            selected: false,
-            enabled: true,
             icon: nil,
             type: .option
         ),
         ChipConfig(
-            title: "Selected",
-            selected: true,
-            enabled: true,
+            title: "Dropdown",
             icon: nil,
-            type: .option
-        ),
-        ChipConfig(
-            title: "Disabled",
-            selected: false,
-            enabled: false,
-            icon: nil,
-            type: .option
-        ),
-        ChipConfig(
-            title: "With Icon Disabled",
-            selected: false,
-            enabled: false,
-            icon: .camera,
-            type: .option
-        ),
-        ChipConfig(
-            title: "Select",
-            selected: false,
-            enabled: true,
-            icon: .food,
-            type: .dropdown
-        ),
-        ChipConfig(
-            title: "Selected Select",
-            selected: true,
-            enabled: true,
-            icon: .beer,
             type: .dropdown
         ),
         ChipConfig(
             title: "Dismiss",
-            selected: false,
-            enabled: true,
-            icon: .cafe,
+            icon: nil,
             type: .dismiss
+        ),
+        ChipConfig(
+            title: "With icon",
+            icon: .deals,
+            type: .option
         )
     ]
 
@@ -95,7 +64,7 @@ class ChipsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = BPKColor.surfaceDefaultColor
         let stack = UIStackView()
-        stack.axis = .vertical
+        stack.axis = .horizontal
         stack.alignment = .center
         stack.spacing = BPKSpacingMd
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -104,13 +73,42 @@ class ChipsViewController: UIViewController {
             stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        stack.addArrangedSubview(createColumn(title: "Off", selected: false, enabled: true))
+        stack.addArrangedSubview(createColumn(title: "On", selected: true, enabled: true))
+        stack.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
+    }
+    
+    func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = BPKSpacingMd
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let titleLabel = BPKLabel(fontStyle: .textHeading5)
+        titleLabel.text = title
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        stack.addArrangedSubview(titleLabel)
+        
         chips.map {
             let chip = BPKChip(title: $0.title, icon: $0.icon)
-            chip.isEnabled = $0.enabled
+            chip.isEnabled = enabled
             chip.style = style
             chip.type = $0.type
-            chip.isSelected = $0.selected
+            chip.isSelected = selected
+            
+            // This chip version should not exist
+            // But we still want it to occupy the space
+            if $0.type == .dismiss && !selected {
+                chip.alpha = 0
+                chip.isUserInteractionEnabled  = false
+            }
+
             return chip
         }.forEach(stack.addArrangedSubview)
+        
+        return stack
     }
 }

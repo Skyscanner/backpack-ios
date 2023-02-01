@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+import Backpack
+
 struct ChipsGroupsProvider {
     let showPresentable: (Presentable) -> Void
     
@@ -34,6 +36,8 @@ struct ChipsGroupsProvider {
                 if style == .onImage {
                     controller.view.backgroundColor = BPKColor.surfaceDefaultColor
                 }
+                
+                controller.title = title
             },
             showPresentable: showPresentable
         )

@@ -303,6 +303,11 @@ extension BPKChip {
     }
     
     private var accessoryColor: UIColor {
+        if !isEnabled {
+            let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+            return appearance.disabled.content
+        }
+        
         if type == .dismiss && !isHighlighted {
             if style == .onDark {
                 return BPKColor.chipOnDarkOnDismissIconColor
