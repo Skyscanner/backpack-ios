@@ -231,23 +231,25 @@ extension BPKChip {
     }
     
     private func updateLookAndFeel() {
-        backgroundColor = colors.background
-        updateOutlineStroke()
-        
-        iconView.image = icon.orNil(withColor: colors.content)
-        label.textColor = colors.content
-        accessoryIconView.image = accessoryIcon.orNil(withColor: accessoryColor)
-        
-        updateAccessibility()
-        placeElements()
-        
-        trailingConstraint?.constant = -chipTrailingSpacing
-        setNeedsUpdateConstraints()
-        
-        if let shadow = shadow {
-            shadow.apply(to: self.layer)
-        } else {
-            self.layer.shadowOpacity = 0
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut]) {
+            self.backgroundColor = self.colors.background
+            self.updateOutlineStroke()
+            
+            self.iconView.image = self.icon.orNil(withColor: self.colors.content)
+            self.label.textColor = self.colors.content
+            self.accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
+            
+            self.updateAccessibility()
+            self.placeElements()
+            
+            self.trailingConstraint?.constant = -self.chipTrailingSpacing
+            self.setNeedsUpdateConstraints()
+            
+            if let shadow = self.shadow {
+                shadow.apply(to: self.layer)
+            } else {
+                self.layer.shadowOpacity = 0
+            }
         }
     }
     
