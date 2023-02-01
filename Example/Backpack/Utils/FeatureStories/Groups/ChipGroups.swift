@@ -30,6 +30,10 @@ struct ChipsGroupsProvider {
                 if style == .onDark {
                     controller.view.backgroundColor = BPKColor.black
                 }
+                
+                if style == .onImage {
+                    controller.view.backgroundColor = BPKColor.surfaceDefaultColor
+                }
             },
             showPresentable: showPresentable
         )
@@ -39,7 +43,8 @@ struct ChipsGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Default", style: .default),
-                presentable("On Dark", style: .onDark)
+                presentable("On Dark", style: .onDark),
+                presentable("On Image", style: .onImage)
             ]
         ).groups()
     }

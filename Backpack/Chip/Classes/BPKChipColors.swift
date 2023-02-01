@@ -25,11 +25,11 @@ struct BPKChipAppearanceSets {
     }
     
     struct Colors {
-        let background: UIColor?
+        let background: UIColor
         let content: UIColor
         let stroke: UIColor?
         
-        init(background: UIColor? = nil, content: UIColor, stroke: UIColor? = nil) {
+        init(background: UIColor, content: UIColor, stroke: UIColor? = nil) {
             self.background = background
             self.content = content
             self.stroke = stroke
@@ -38,16 +38,36 @@ struct BPKChipAppearanceSets {
 
     private static let onDarkAppearance = AppearanceSet(
         normal: Colors(
-            background: BPKColor.chipOnDarkNormalBackgroundColor,
+            background: BPKColor.clear,
             content: BPKColor.textOnDarkColor,
             stroke: BPKColor.lineOnDarkColor),
         highlighted: Colors(
-            background: BPKColor.chipOnDarkPressedBackgroundColor,
+            background: BPKColor.clear,
             content: BPKColor.textPrimaryColor,
-            stroke: BPKColor.surfaceDefaultColor),
+            stroke: BPKColor.chipOnDarkPressedStrokeColor),
         selected: Colors(
             background: BPKColor.chipOnDarkOnBackgroundColor,
-            content: BPKColor.textPrimaryColor),
+            content: BPKColor.textPrimaryColor
+        ),
+        disabled: Colors(
+            background: BPKColor.chipDisabledBackgroundColor,
+            content: BPKColor.textDisabledColor
+        )
+    )
+    
+    private static let onImageAppearance = AppearanceSet(
+        normal: Colors(
+            background: BPKColor.surfaceDefaultColor,
+            content: BPKColor.textPrimaryColor
+        ),
+        highlighted: Colors(
+            background: BPKColor.canvasContrastColor,
+            content: BPKColor.textPrimaryColor
+        ),
+        selected: Colors(
+            background: BPKColor.corePrimaryColor,
+            content: BPKColor.textOnDarkColor
+        ),
         disabled: Colors(
             background: BPKColor.chipDisabledBackgroundColor,
             content: BPKColor.textDisabledColor
@@ -56,16 +76,17 @@ struct BPKChipAppearanceSets {
 
     private static let defaultAppearance = AppearanceSet(
         normal: Colors(
-            background: BPKColor.chipDefaultNormalBackgroundColor,
+            background: BPKColor.clear,
             content: BPKColor.textPrimaryColor,
             stroke: BPKColor.lineColor
         ),
         highlighted: Colors(
-            background: BPKColor.chipDefaultPressedBackgroundColor,
+            background: BPKColor.clear,
             content: BPKColor.textPrimaryColor,
-            stroke: BPKColor.corePrimaryColor),
+            stroke: BPKColor.corePrimaryColor
+        ),
         selected: Colors(
-            background: BPKColor.chipDefaultOnBackgroundColor,
+            background: BPKColor.corePrimaryColor,
             content: BPKColor.textOnDarkColor
         ),
         disabled: Colors(
@@ -78,6 +99,7 @@ struct BPKChipAppearanceSets {
         switch style {
         case .`default`: return defaultAppearance
         case .onDark: return onDarkAppearance
+        case .onImage: return onImageAppearance
         }
     }
 }

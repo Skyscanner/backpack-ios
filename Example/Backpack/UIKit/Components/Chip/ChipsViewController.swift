@@ -73,14 +73,14 @@ class ChipsViewController: UIViewController {
             selected: false,
             enabled: true,
             icon: .food,
-            type: .select
+            type: .dropdown
         ),
         ChipConfig(
             title: "Selected Select",
             selected: true,
             enabled: true,
             icon: .beer,
-            type: .select
+            type: .dropdown
         ),
         ChipConfig(
             title: "Dismiss",

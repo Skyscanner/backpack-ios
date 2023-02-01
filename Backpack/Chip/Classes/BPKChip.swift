@@ -65,9 +65,21 @@ public class BPKChip: UIControl {
         }
     }
 
-    public override var isSelected: Bool {
+    // Internal state decoupled from the default `selected` boolean that is controlled by UIControl
+    private var chipSelected: Bool = false {
         didSet {
             updateLookAndFeel()
+        }
+    }
+    
+    public override var isSelected: Bool {
+        didSet {
+            // Dismissable chips cannot be 'unselected'
+            if type == .dismiss {
+                return chipSelected = true
+            }
+            
+            chipSelected = isSelected
         }
     }
     
@@ -75,12 +87,11 @@ public class BPKChip: UIControl {
         didSet {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
-            tintLayer.opacity = isHighlighted ? 1 : 0
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-            label.textColor = isHighlighted ? appearance.highlighted.content : colors.content
-            
-            updateOutlineStroke()
-            
+            let tintLayerColor =  chipSelected ? appearance.selected.background : appearance.highlighted.background
+            tintLayer.backgroundColor = tintLayerColor.cgColor
+            tintLayer.opacity = isHighlighted ? 1 : 0
+            updateLookAndFeel()
             CATransaction.commit()
         }
     }
@@ -94,8 +105,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if type == .dismiss { return appearance.selected }
-        if isSelected { return appearance.selected }
+        if chipSelected { return appearance.selected }
         return appearance.normal
     }
     
@@ -133,8 +143,6 @@ public class BPKChip: UIControl {
     
     private lazy var tintLayer: CALayer = {
         let layer = CALayer()
-        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-        layer.backgroundColor = appearance.highlighted.background?.cgColor
         layer.opacity = 0
         
         return layer
@@ -228,21 +236,28 @@ extension BPKChip {
         
         iconView.image = icon.orNil(withColor: colors.content)
         label.textColor = colors.content
-        accessoryIconView.image = accessoryIcon.orNil(withColor: colors.content)
+        accessoryIconView.image = accessoryIcon.orNil(withColor: accessoryColor)
         
         updateAccessibility()
         placeElements()
         
         trailingConstraint?.constant = -chipTrailingSpacing
         setNeedsUpdateConstraints()
+        
+        if let shadow = shadow {
+            shadow.apply(to: self.layer)
+        } else {
+            self.layer.shadowOpacity = 0
+        }
     }
     
     private func updateAccessibility() {
         isAccessibilityElement = true
         accessibilityTraits = .button
         
-        // A dismiss type chip can not be de-selected
-        if isSelected || type == .dismiss {
+        // Dismissable chips are not selected for VoiceOver
+        // And behave like a regular button
+        if chipSelected && type != .dismiss {
             accessibilityTraits.insert(.selected)
         } else {
             accessibilityTraits.remove(.selected)
@@ -284,6 +299,26 @@ extension BPKChip {
     private var accessoryIcon: BPKSmallIconName? {
         if type == .dismiss { return .closeCircle }
         if type == .dropdown { return .chevronDown }
+        return nil
+    }
+    
+    private var accessoryColor: UIColor {
+        if type == .dismiss && !isHighlighted {
+            if style == .onDark {
+                return BPKColor.chipOnDarkOnDismissIconColor
+            } else {
+                return BPKColor.textDisabledOnDarkColor
+            }
+        }
+        
+        return colors.content
+    }
+    
+    private var shadow: BPKShadow? {
+        if style == .onImage {
+            return BPKShadow.shadowSm()
+        }
+        
         return nil
     }
 }
