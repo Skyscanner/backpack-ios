@@ -23,11 +23,12 @@ struct ChipsGroupsProvider {
     
     private func presentable(
         _ title: String,
-        style: BPKChipStyle
+        style: BPKChipStyle,
+        titleColor: UIColor = BPKColor.textPrimaryColor
     ) -> CellDataSource {
         PresentableCellDataSource.customEnrichable(
             title: title,
-            customController: { ChipsViewController(style: style) },
+            customController: { ChipsViewController(style: style, titleColor: titleColor) },
             enrich: { controller in
                 if style == .onDark {
                     controller.view.backgroundColor = BPKColor.black
@@ -47,7 +48,7 @@ struct ChipsGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Default", style: .default),
-                presentable("On Dark", style: .onDark),
+                presentable("On Dark", style: .onDark, titleColor: BPKColor.textOnDarkColor),
                 presentable("On Image", style: .onImage)
             ]
         ).groups()

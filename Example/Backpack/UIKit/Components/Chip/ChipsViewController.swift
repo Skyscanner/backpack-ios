@@ -27,9 +27,11 @@ struct ChipConfig {
 
 class ChipsViewController: UIViewController {
     private var style: BPKChipStyle
+    private var titleColor: UIColor
 
-    init(style: BPKChipStyle) {
+    init(style: BPKChipStyle, titleColor: UIColor) {
         self.style = style
+        self.titleColor = titleColor
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -62,7 +64,17 @@ class ChipsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appearance = UINavigationBarAppearance()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
         view.backgroundColor = BPKColor.surfaceDefaultColor
+        
+        setupDemo()
+    }
+    
+    private func setupDemo() {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
@@ -79,7 +91,7 @@ class ChipsViewController: UIViewController {
         stack.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
     }
     
-    func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
+    private func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
@@ -88,6 +100,7 @@ class ChipsViewController: UIViewController {
         
         let titleLabel = BPKLabel(fontStyle: .textHeading5)
         titleLabel.text = title
+        titleLabel.textColor = titleColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         stack.addArrangedSubview(titleLabel)

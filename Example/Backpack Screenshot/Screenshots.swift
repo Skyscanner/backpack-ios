@@ -183,6 +183,10 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["On Dark"].tap()
             saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            
+            app.tables.staticTexts["On Image"].tap()
+            saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Dialogs") {
