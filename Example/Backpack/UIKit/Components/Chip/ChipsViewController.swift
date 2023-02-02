@@ -78,7 +78,7 @@ class ChipsViewController: UIViewController {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
-        stack.spacing = BPKSpacingMd
+        stack.spacing = BPKSpacingSm
         stack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stack)
         NSLayoutConstraint.activate([
@@ -94,7 +94,7 @@ class ChipsViewController: UIViewController {
     private func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.alignment = .center
+        stack.alignment = .leading
         stack.spacing = BPKSpacingMd
         stack.translatesAutoresizingMaskIntoConstraints = false
         
