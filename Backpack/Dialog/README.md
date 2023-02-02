@@ -46,7 +46,6 @@ let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKC
 let dialogController = BPKDialogController(
     title: "Title in here",
     message: "Description",
-    style: .alert,
     iconDefinition: icon,
     flareView: nil
 )
@@ -56,7 +55,7 @@ let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured
     // Handle tap
 }
 
-let skip = BPKDialogButtonAction(title: "Confirmation", style: .secondary) {_ in
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
     // Handle tap
 }
 
@@ -97,7 +96,6 @@ let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKC
 let dialogController = BPKDialogController(
     title: "Title in here",
     message: "Description",
-    style: .alert,
     iconDefinition: icon,
     flareView: flareView
 )
@@ -107,7 +105,7 @@ let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured
     // Handle tap
 }
 
-let skip = BPKDialogButtonAction(title: "Confirmation", style: .secondary) {_ in
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
     // Handle tap
 }
 
@@ -147,7 +145,8 @@ let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKC
 let dialogController = BPKDialogController(
     title: "Title in here",
     message: "Description",
-    imageView: imageView
+    imageView: imageView,
+    textAlignment: .left
 )
 
 // Dialog buttons
@@ -155,7 +154,7 @@ let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured
     // Handle tap
 }
 
-let skip = BPKDialogButtonAction(title: "Confirmation", style: .secondary) {_ in
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
     // Handle tap
 }
 
