@@ -23,7 +23,7 @@ import SnapshotTesting
 class BPKDialogViewSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = true
+        isRecording = false
     }
     
     /// Needed to draw the shadow
