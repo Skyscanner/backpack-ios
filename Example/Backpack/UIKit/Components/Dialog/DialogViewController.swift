@@ -59,7 +59,6 @@ class DialogViewController: UIViewController {
             dialogController = BPKDialogController(
                 title: dialogTitle,
                 message: message,
-                style: .alert,
                 iconDefinition: icon,
                 flareView: flareView
             )
@@ -79,7 +78,6 @@ class DialogViewController: UIViewController {
             dialogController = BPKDialogController(
                 title: dialogTitle,
                 message: message,
-                style: .alert,
                 iconDefinition: icon,
                 flareView: nil
             )

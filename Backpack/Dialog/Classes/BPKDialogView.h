@@ -21,7 +21,6 @@
 #import <Backpack/FlareView.h>
 
 #import "BPKDialogButtonAction.h"
-#import "BPKDialogControllerStyle.h"
 #import "BPKDialogCornerStyle.h"
 #import "BPKDialogViewDelegate.h"
 
@@ -42,11 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
  * The delegate of the view.
  */
 @property(nonatomic, weak) id<BPKDialogViewDelegate> delegate;
-
-/**
- * The style of the dialog.
- */
-@property(nonatomic, assign) BPKDialogControllerStyle style;
 
 /**
  * The size of the buttons. By default this is `BPKButtonSizeLarge`.

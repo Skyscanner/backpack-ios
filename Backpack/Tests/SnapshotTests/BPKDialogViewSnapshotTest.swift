@@ -23,7 +23,7 @@ import SnapshotTesting
 class BPKDialogViewSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = false
+        isRecording = true
     }
     
     /// Needed to draw the shadow
@@ -140,7 +140,6 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             icon: nil,
             actions: [.continue, .skip]
         )
-        dialog.style = .alert
         assertSnapshot(wrap(dialog))
     }
     
@@ -151,7 +150,6 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             icon: nil,
             actions: [.continue, .skip]
         )
-        dialog.style = .alert
         assertSnapshot(wrap(dialog))
     }
     
@@ -186,7 +184,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
 
 private extension BPKDialogButtonAction {
     static var skip: BPKDialogButtonAction {
-        BPKDialogButtonAction(title: "Skipz", style: .link) { _ in }
+        BPKDialogButtonAction(title: "Skipz", style: .secondary) { _ in }
     }
     
     static var `continue`: BPKDialogButtonAction {

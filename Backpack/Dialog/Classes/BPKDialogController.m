@@ -47,7 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
-                        style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 @end
 
@@ -55,11 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
-                        style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
     return [self initWithTitle:title
                        message:message
-                         style:style
                 iconDefinition:iconDefinition
                    graphicView:nil
                  textAlignment:NSTextAlignmentCenter];
@@ -67,7 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
-                        style:(BPKDialogControllerStyle)style
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                   graphicView:(UIView *_Nullable)graphicView
                 textAlignment:(NSTextAlignment)textAlignment {
@@ -77,7 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
         self.buttonSize = BPKButtonSizeLarge;
         self.titleText = title;
         self.messageText = message;
-        self.style = style;
         self.iconDefinition = iconDefinition;
         self.graphicView = graphicView;
         self.scrimActions = [NSMutableArray new];
@@ -99,19 +94,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
-                                    style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
-    return [[self alloc] initWithTitle:title message:message style:style iconDefinition:iconDefinition];
+    return [[self alloc] initWithTitle:title message:message iconDefinition:iconDefinition];
 }
 
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
-                                    style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView {
     return [[self alloc] initWithTitle:title
                                message:message
-                                 style:style
                         iconDefinition:iconDefinition
                            graphicView:flareView
                          textAlignment:NSTextAlignmentCenter];
@@ -123,7 +115,6 @@ NS_ASSUME_NONNULL_BEGIN
                             textAlignment:(NSTextAlignment)textAlignment {
     return [[self alloc] initWithTitle:title
                                message:message
-                                 style:BPKDialogControllerStyleAlert
                         iconDefinition:nil
                            graphicView:imageView
                          textAlignment:textAlignment];
@@ -148,7 +139,6 @@ NS_ASSUME_NONNULL_BEGIN
                                              textAlignment:self.textAlignment];
     self.dialogView.translatesAutoresizingMaskIntoConstraints = NO;
     self.dialogView.delegate = self;
-    self.dialogView.style = self.style;
     self.dialogView.accessibilityIdentifier = @"dialogView";
 }
 
@@ -172,16 +162,11 @@ NS_ASSUME_NONNULL_BEGIN
     ]];
 
     [self.dialogView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    if (self.style == BPKDialogControllerStyleBottomSheet) {
-        self.bottomAnchorConstraint = [self.dialogView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
-        self.bottomAnchorConstraint.active = YES;
-    } else if (self.style == BPKDialogControllerStyleAlert) {
-        [NSLayoutConstraint activateConstraints:@[
-            [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
-            [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor constant:BPKSpacingLg],
-            [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor constant:BPKSpacingLg]
-        ]];
-    }
+    [NSLayoutConstraint activateConstraints:@[
+        [self.dialogView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [self.dialogView.topAnchor constraintGreaterThanOrEqualToAnchor:self.view.layoutMarginsGuide.topAnchor constant:BPKSpacingLg],
+        [self.view.layoutMarginsGuide.bottomAnchor constraintGreaterThanOrEqualToAnchor:self.dialogView.bottomAnchor constant:BPKSpacingLg]
+    ]];
 }
 
 - (void)setCornerStyle:(BPKDialogCornerStyle)cornerStyle {
@@ -243,40 +228,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)_addPresentingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
-    if (self.style == BPKDialogControllerStyleBottomSheet) {
-        CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        self.bottomAnchorConstraint.constant = sheetSize.height;
-        [self.view layoutIfNeeded];
-
-        self.bottomAnchorConstraint.constant = 0.0;
-        [UIView addKeyframeWithRelativeStartTime:startTime
-                                relativeDuration:duration
-                                      animations:^{
-                                        [self.view layoutIfNeeded];
-                                      }];
-    } else {
-        self.dialogView.alpha = 0.0;
-        [UIView addKeyframeWithRelativeStartTime:startTime
-                                relativeDuration:duration
-                                      animations:^{
-                                        self.dialogView.alpha = 1.0;
-                                      }];
-    }
-}
-
-- (void)_addDismissingKeyFrameContentAnimationWithRelativeStartTime:(double)startTime relativeDuration:(double)duration {
-    if (self.style == BPKDialogControllerStyleBottomSheet) {
-        CGSize sheetSize = [self.dialogView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        self.bottomAnchorConstraint.constant = 0;
-        [self.view layoutIfNeeded];
-
-        self.bottomAnchorConstraint.constant = sheetSize.height;
-        [UIView addKeyframeWithRelativeStartTime:startTime
-                                relativeDuration:duration
-                                      animations:^{
-                                        [self.view layoutIfNeeded];
-                                      }];
-    }
+    self.dialogView.alpha = 0.0;
+    [UIView addKeyframeWithRelativeStartTime:startTime
+                            relativeDuration:duration
+                                  animations:^{
+                                    self.dialogView.alpha = 1.0;
+                                  }];
 }
 
 - (void)_setScrimAlpha:(double)scrimAlpha {

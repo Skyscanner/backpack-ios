@@ -134,11 +134,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setLayoutMargins {
-    CGFloat bottomMargin = BPKSpacingMd;
-    if (self.style == BPKDialogControllerStyleAlert && self.contentView.hasButtonActions) {
-        bottomMargin = self.hasIcon || self.hasGraphicView ? BPKSpacingLg : BPKSpacingBase;
-    }
-
     CGFloat topMargin = BPKSpacingBase;
     if (self.hasIcon) {
         CGSize iconViewSize = [[self.iconView class] viewSize];
@@ -147,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
         topMargin = 0.0;
     }
 
-    self.backgroundView.layoutMargins = UIEdgeInsetsMake(topMargin, BPKSpacingLg, bottomMargin, BPKSpacingLg);
+    self.backgroundView.layoutMargins = UIEdgeInsetsMake(topMargin, BPKSpacingLg, BPKSpacingLg, BPKSpacingLg);
 }
 
 - (void)setupConstraints {
@@ -287,14 +282,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *_Nullable)message {
     return self.contentView.description;
-}
-
-- (void)setStyle:(BPKDialogControllerStyle)style {
-    if (_style != style) {
-        _style = style;
-
-        [self setLayoutMargins];
-    }
 }
 
 #pragma mark - Other public methods
