@@ -53,7 +53,7 @@ Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests s
 
 ## Taking screenshots
 
-The _screenshots_ folder stores all of the screenshots we use on the [documentation site](https://backpack.github.io). If you change the appearance of a component you must update the screenshots accordingly. To do this, run:
+The _screenshots_ folder stores all of the screenshots we use on the [documentation site](https://skyscanner.design). If you change the appearance of a component you must update the screenshots accordingly. To do this, run:
 
 ```
 ./scripts/take-screenshots
