@@ -18,7 +18,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BPKDialogControllerStyle.h"
 #import "BPKDialogCornerStyle.h"
 #import "BPKDialogView.h"
 
@@ -43,11 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 
  */
 @interface BPKDialogController : UIViewController <BPKDialogViewDelegate, UIViewControllerTransitioningDelegate>
-
-/**
- * The style of the dialog.
- */
-@property(nonatomic, assign) BPKDialogControllerStyle style;
 
 /**
  * Add a button action to the dialog. For both styles
@@ -90,12 +84,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param title The tile to display in the dialog.
  * @param message The message to display in the body of the dialog.
- * @param style The style of the dialog.
  * @param iconDefinition the icon specification to show at the top of the dialog.
  */
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
-                                    style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition;
 
 /**
@@ -103,15 +95,25 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param title The tile to display in the dialog.
  * @param message The message to display in the body of the dialog.
- * @param style The style of the dialog.
  * @param iconDefinition the icon specification to show at the top of the dialog.
  * @param flareView the BPKFlareView to show at the top of the dialog.
  */
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
-                                    style:(BPKDialogControllerStyle)style
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView;
+
+/**
+ * Create an instance of the controller with an image at the top
+ *
+ * @param title The tile to display in the dialog.
+ * @param message The message to display in the body of the dialog.
+ * @param imageView the UIIMageView  to show at the top of the dialog.
+ */
++ (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
+                                  message:(NSString *)message
+                                imageView:(UIImageView *_Nullable)imageView
+                            textAlignment:(NSTextAlignment)textAlignment;
 
 // Protected
 

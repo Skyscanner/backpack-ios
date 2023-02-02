@@ -146,7 +146,6 @@
 		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
-		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
@@ -338,7 +337,6 @@
 		D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
-		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
@@ -750,7 +748,6 @@
 		793EC55A2836147000D627F6 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
 				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
 			);
 			path = Dialog;
@@ -1201,7 +1198,6 @@
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
-				D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
 				D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */,

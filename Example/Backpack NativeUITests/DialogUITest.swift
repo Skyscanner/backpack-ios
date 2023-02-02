@@ -31,12 +31,12 @@ class DialogUITest: BackpackUITestCase {
         app.tables.staticTexts["Dialogs"].tap()
         app.tables.staticTexts[story].tap()
 
-        app.buttons["Show"].tap()
+        app.buttons["Show dialog"].tap()
     }
 
     func testTapScrimToDismiss() {
         XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow(story: "With call to action")
+            navigateAndShow(story: "Success")
         }
 
         XCTAssertTrue(dialogScrimView.exists, "The scrim should have been shown")
@@ -56,7 +56,7 @@ class DialogUITest: BackpackUITestCase {
 
     func testTapScrimDoesNotDismissButtonDoes() {
         XCTContext.runActivity(named: "Navigate") { _ in
-            navigateAndShow(story: "Delete confirmation")
+            navigateAndShow(story: "Destructive")
         }
         XCTAssertTrue(dialogScrimView.exists, "The scrim should have been shown")
         XCTAssertTrue(dialogView.exists, "The dialog view should have been shown")
@@ -68,7 +68,7 @@ class DialogUITest: BackpackUITestCase {
 
         saveScreenshot(named: "Dialog Controller Error after scrim tap")
         XCTAssertTrue(dialogScrimView.exists, "The scrim should not have been removed by tapping")
-        XCTAssertTrue(dialogView.exists, "The dialog view shoudl not have been removed by tapping")
+        XCTAssertTrue(dialogView.exists, "The dialog view should not have been removed by tapping")
 
         XCTContext.runActivity(named: "Act 2") { _ in
             dialogView.buttons["Delete"].tap()
@@ -76,7 +76,7 @@ class DialogUITest: BackpackUITestCase {
 
         saveScreenshot(named: "Dialog Controller Error after delete tap")
         XCTAssertFalse(dialogScrimView.exists, "The scrim should not have been removed by tapping")
-        XCTAssertFalse(dialogView.exists, "The dialog view shoudl not have been removed by tapping")
+        XCTAssertFalse(dialogView.exists, "The dialog view should not have been removed by tapping")
 
     }
 }

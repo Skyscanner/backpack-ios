@@ -21,7 +21,6 @@
 #import <Backpack/FlareView.h>
 
 #import "BPKDialogButtonAction.h"
-#import "BPKDialogControllerStyle.h"
 #import "BPKDialogCornerStyle.h"
 #import "BPKDialogViewDelegate.h"
 
@@ -42,11 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
  * The delegate of the view.
  */
 @property(nonatomic, weak) id<BPKDialogViewDelegate> delegate;
-
-/**
- * The style of the dialog.
- */
-@property(nonatomic, assign) BPKDialogControllerStyle style;
 
 /**
  * The size of the buttons. By default this is `BPKButtonSizeLarge`.
@@ -81,12 +75,13 @@ NS_ASSUME_NONNULL_BEGIN
  * @param title The title to use.
  * @param message The message to use.
  * @param iconDefinition the icon to show at the top of the dialog.
- * @param flareView the BPKFlareView to show at the top of the dialog.
+ * @param graphicView the BPKFlareView to show at the top of the dialog.
  */
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                    flareView:(BPKFlareView *_Nullable)flareView NS_DESIGNATED_INITIALIZER;
+                  graphicView:(UIView *_Nullable)graphicView
+                textAlignment:(NSTextAlignment)textAlignment NS_DESIGNATED_INITIALIZER;
 
 /// :nodoc:
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
