@@ -50,7 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
-                  graphicView:(UIView *_Nullable)graphicView {
+                  graphicView:(UIView *_Nullable)graphicView
+                textAlignment:(NSTextAlignment)textAlignment {
     BPKAssertMainThread();
     self = [super initWithFrame:CGRectZero];
 
@@ -63,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 
         self.contentView.title = title;
         self.contentView.message = message;
+        self.contentView.textAlignment = textAlignment;
         self.iconDefinition = iconDefinition;
         self.buttonSize = BPKButtonSizeLarge;
     }
@@ -74,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self.iconDefinition != nil;
 }
 
-- (BOOL)hasFlareView {
+- (BOOL)hasGraphicView {
     return self.graphicView != nil;
 }
 
@@ -125,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.backgroundView];
     [self.backgroundView addSubview:self.contentView];
 
-    if (self.hasFlareView) {
+    if (self.hasGraphicView) {
         self.graphicView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.backgroundView addSubview:self.graphicView];
     }
@@ -134,14 +136,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLayoutMargins {
     CGFloat bottomMargin = BPKSpacingMd;
     if (self.style == BPKDialogControllerStyleAlert && self.contentView.hasButtonActions) {
-        bottomMargin = self.hasIcon || self.hasFlareView ? BPKSpacingLg : BPKSpacingBase;
+        bottomMargin = self.hasIcon || self.hasGraphicView ? BPKSpacingLg : BPKSpacingBase;
     }
 
     CGFloat topMargin = BPKSpacingBase;
     if (self.hasIcon) {
         CGSize iconViewSize = [[self.iconView class] viewSize];
         topMargin = iconViewSize.height / 2 + BPKSpacingBase;
-    } else if (self.hasFlareView) {
+    } else if (self.hasGraphicView) {
         topMargin = 0.0;
     }
 
@@ -151,7 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupConstraints {
     [self setLayoutMargins];
 
-    if (self.hasFlareView) {
+    if (self.hasGraphicView) {
         [self setupGraphicViewConstraints];
     }
 
@@ -163,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.backgroundViewTopConstraint = [self.backgroundView.topAnchor constraintEqualToAnchor:self.topAnchor];
     }
 
-    if (self.hasFlareView) {
+    if (self.hasGraphicView) {
         self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.graphicView.bottomAnchor constant:BPKSpacingBase];
     } else {
         self.contentViewTopConstraint = [self.contentView.topAnchor constraintEqualToAnchor:self.backgroundView.layoutMarginsGuide.topAnchor];

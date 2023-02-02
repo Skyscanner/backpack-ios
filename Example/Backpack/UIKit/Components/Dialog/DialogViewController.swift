@@ -61,7 +61,8 @@ class DialogViewController: UIViewController {
                 message: message,
                 style: .alert,
                 iconDefinition: icon,
-                flareView: flareView)
+                flareView: flareView
+            )
         } else if type == .image {
             let image = UIImage(named: "dialog_image")
             let imageView = UIImageView.init(image: image)
@@ -71,14 +72,17 @@ class DialogViewController: UIViewController {
             dialogController = BPKDialogController(
                 title: dialogTitle,
                 message: message,
-                imageView: imageView)
+                imageView: imageView,
+                textAlignment: .left
+            )
         } else {
             dialogController = BPKDialogController(
                 title: dialogTitle,
                 message: message,
                 style: .alert,
                 iconDefinition: icon,
-                flareView: nil)
+                flareView: nil
+            )
         }
         
         let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
