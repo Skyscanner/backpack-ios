@@ -20,15 +20,42 @@ import XCTest
 
 class ChipUITest: BackpackUITestCase {
     func testTapChipToSelect() {
+        // Navigate to chips
         let app = XCUIApplication()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Chips"].tap()
         tablesQuery.staticTexts["Default"].tap()
         
-        let optionButton = app.buttons["Option"]
-        optionButton.tap()
+        // Regular chip
+        // Given
+        let chipIdentifier = "chip_option_enabled_true_selected_false"
+        let optionButton = app.buttons[chipIdentifier]
+        
+        // When
         optionButton.tap()
         
-        app.buttons["Disabled"].tap()
+        // Then
+        XCTAssertTrue(optionButton.isSelected)
+        
+        // When
+        optionButton.tap()
+        
+        // Then
+        XCTAssertFalse(optionButton.isSelected)
+        
+        // Disabled chip
+        // Given
+        let disabledChipIdentifier = "chip_option_enabled_false_selected_false"
+        let disabledChip = app.buttons[disabledChipIdentifier]
+        
+        // Then
+        XCTAssertFalse(disabledChip.isEnabled)
+        XCTAssertFalse(disabledChip.isSelected)
+        
+        // When
+        disabledChip.tap()
+        
+        // Then
+        XCTAssertFalse(disabledChip.isSelected)
     }
 }

@@ -26,34 +26,16 @@ import UIKit
 // swiftlint:disable identifier_name
 internal extension BPKColor {
 
-    /// The `chipOnDarkNormalBackgroundColor` internal color.
+    /// The `chipOnDarkPressedStrokeColor` internal color.
     
-    static let chipOnDarkNormalBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.2),
-        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
-
-    /// The `chipOnDarkPressedBackgroundColor` internal color.
-    
-    static let chipOnDarkPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
-        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
+    static let chipOnDarkPressedStrokeColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 
     /// The `chipOnDarkOnBackgroundColor` internal color.
     
     static let chipOnDarkOnBackgroundColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1),
-        darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
-
-    /// The `chipDefaultNormalBackgroundColor` internal color.
-    
-    static let chipDefaultNormalBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
-        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
-
-    /// The `chipDefaultOnBackgroundColor` internal color.
-    
-    static let chipDefaultOnBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1),
         darkVariant: UIColor(red: 0.020, green: 0.255, blue: 0.518, alpha: 1))
 
     /// The `chipDisabledBackgroundColor` internal color.
@@ -62,11 +44,11 @@ internal extension BPKColor {
         withLightVariant: UIColor(red: 0.878, green: 0.890, blue: 0.898, alpha: 1),
         darkVariant: UIColor(red: 0.043, green: 0.071, blue: 0.114, alpha: 1))
 
-    /// The `chipDefaultPressedBackgroundColor` internal color.
+    /// The `chipOnDarkOnDismissIconColor` internal color.
     
-    static let chipDefaultPressedBackgroundColor = BPKColor.dynamicColor(
-        withLightVariant: UIColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1),
-        darkVariant: UIColor(red: 0.000, green: 0.169, blue: 0.357, alpha: 1))
+    static let chipOnDarkOnDismissIconColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1),
+        darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     

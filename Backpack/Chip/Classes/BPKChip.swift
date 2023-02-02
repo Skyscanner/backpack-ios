@@ -65,9 +65,21 @@ public class BPKChip: UIControl {
         }
     }
 
-    public override var isSelected: Bool {
+    // Internal state decoupled from the default `selected` boolean that is controlled by UIControl
+    private var chipSelected: Bool = false {
         didSet {
             updateLookAndFeel()
+        }
+    }
+    
+    public override var isSelected: Bool {
+        didSet {
+            // Dismissable chips cannot be 'unselected'
+            if type == .dismiss {
+                return chipSelected = true
+            }
+            
+            chipSelected = isSelected
         }
     }
     
@@ -75,9 +87,11 @@ public class BPKChip: UIControl {
         didSet {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
-            tintLayer.opacity = isHighlighted ? 1 : 0
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-            label.textColor = isHighlighted ? appearance.highlighted.content : colors.content
+            let tintLayerColor =  chipSelected ? appearance.selected.background : appearance.highlighted.background
+            tintLayer.backgroundColor = tintLayerColor.cgColor
+            tintLayer.opacity = isHighlighted ? 1 : 0
+            updateLookAndFeel()
             CATransaction.commit()
         }
     }
@@ -91,7 +105,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if isSelected { return appearance.selected }
+        if chipSelected { return appearance.selected }
         return appearance.normal
     }
     
@@ -125,11 +139,12 @@ public class BPKChip: UIControl {
         return stack
     }()
     
+    private var trailingConstraint: NSLayoutConstraint?
+    
     private lazy var tintLayer: CALayer = {
         let layer = CALayer()
-        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-        layer.backgroundColor = appearance.highlighted.background.cgColor
         layer.opacity = 0
+        
         return layer
     }()
     
@@ -173,8 +188,8 @@ public class BPKChip: UIControl {
         super.layoutSubviews()
         
         tintLayer.frame = self.bounds
-        tintLayer.cornerRadius = self.bounds.height / 2.0
-        self.layer.cornerRadius = self.bounds.height / 2.0
+        tintLayer.cornerRadius = BPKSpacingMd
+        self.layer.cornerRadius = BPKSpacingMd
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -191,12 +206,16 @@ extension BPKChip {
         layer.addSublayer(tintLayer)
         addSubview(containerStackView)
         
-        isAccessibilityElement = true
-        accessibilityTraits = .button
+        updateAccessibility()
         
+        trailingConstraint = containerStackView.trailingAnchor.constraint(
+            equalTo: trailingAnchor,
+            constant: -chipTrailingSpacing
+        )
+                
         NSLayoutConstraint.activate([
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipHorizontalSpacing),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -chipHorizontalSpacing),
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
+            trailingConstraint!,
             containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
         ])
@@ -212,15 +231,58 @@ extension BPKChip {
     }
     
     private func updateLookAndFeel() {
-        backgroundColor = colors.background
-        iconView.image = icon.orNil(withColor: colors.content)
-        label.textColor = colors.content
-        accessoryIconView.image = accessoryIcon.orNil(withColor: colors.content)
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut]) {
+            self.backgroundColor = self.colors.background
+            self.updateOutlineStroke()
+            
+            self.iconView.image = self.icon.orNil(withColor: self.colors.content)
+            self.label.textColor = self.colors.content
+            self.accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
+            
+            self.updateAccessibility()
+            self.placeElements()
+            
+            self.trailingConstraint?.constant = -self.chipTrailingSpacing
+            self.setNeedsUpdateConstraints()
+            
+            if let shadow = self.shadow {
+                shadow.apply(to: self.layer)
+            } else {
+                self.layer.shadowOpacity = 0
+            }
+        }
+    }
+    
+    private func updateAccessibility() {
+        isAccessibilityElement = true
         accessibilityTraits = .button
         
-        accessibilityLabel = title
+        // Dismissable chips are not selected for VoiceOver
+        // And behave like a regular button
+        if chipSelected && type != .dismiss {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
         
-        placeElements()
+        if !isEnabled {
+            accessibilityTraits.insert(.notEnabled)
+        } else {
+            accessibilityTraits.remove(.notEnabled)
+        }
+        
+        accessibilityLabel = title
+    }
+    
+    private func updateOutlineStroke() {
+        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+        let strokeColor = isHighlighted ? appearance.highlighted.stroke : colors.stroke
+        if let stroke = strokeColor {
+            layer.borderColor = stroke.cgColor
+            layer.borderWidth = 1
+        } else {
+            layer.borderWidth = 0
+        }
     }
     
     private func placeElements() {
@@ -237,8 +299,33 @@ extension BPKChip {
     }
 
     private var accessoryIcon: BPKSmallIconName? {
-        if type == .select { return .tick }
         if type == .dismiss { return .closeCircle }
+        if type == .dropdown { return .chevronDown }
+        return nil
+    }
+    
+    private var accessoryColor: UIColor {
+        if !isEnabled {
+            let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+            return appearance.disabled.content
+        }
+        
+        if type == .dismiss && !isHighlighted {
+            if style == .onDark {
+                return BPKColor.chipOnDarkOnDismissIconColor
+            } else {
+                return BPKColor.textDisabledOnDarkColor
+            }
+        }
+        
+        return colors.content
+    }
+    
+    private var shadow: BPKShadow? {
+        if style == .onImage {
+            return BPKShadow.shadowSm()
+        }
+        
         return nil
     }
 }
@@ -249,8 +336,12 @@ extension BPKChip {
         return BPKSpacingIconText
     }
     
-    private var chipHorizontalSpacing: CGFloat {
+    private var chipLeadingSpacing: CGFloat {
         return BPKSpacingBase
+    }
+    
+    private var chipTrailingSpacing: CGFloat {
+        return accessoryIcon != nil ? BPKSpacingMd : BPKSpacingBase
     }
     
     private var chipVerticalSpacing: CGFloat {

@@ -20,5 +20,5 @@ import Foundation
 
 @objc
 public enum BPKChipType: UInt {
-    case option, select, dismiss
+    case option, dropdown, dismiss
 }
