@@ -16,40 +16,50 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-dark_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-dark_dm.png" alt="" width="375" /> |
 
-## Installation
+## On Image
 
-In `Podfile` add
-
-```
-pod 'Backpack/Chip'
-```
-
-and then run `pod install`.
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-image_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-chip___on-image_dm.png" alt="" width="375" /> |
 
 ## Usage
 
-`Backpack/Chip` contains the Backpack Chip component in the class `BPKChip`. The chip is a simple padded control with a subtle outline and some text inside. It has two boolean properties, `selected` and `enabled`. `selected` is toggled when the user touches the chip.
-
-```objective-c
-#import <Backpack/Chip.h>
-
-BPKChip *chip = [[BPKChip alloc] init];
-chip.title = @"Some title";
-chip.enabled = NO;
-chip.backgroundTint = BPKColor.panjin;
-chip.iconName = BPKLargeIconNameMap;
-```
-
+Example of a Chip: 
 ```swift
-import Backpack
-
-let chip = BPKChip()
-chip.title = "Some title"
-chip.enabled = false
-chip.backgroundTint = BPKColor.panjin
-chip.iconName = .map
+let chip = BPKChip(title: "Chip text")
 ```
 
-### Appearance attributes
+Example of a selected Chip:
+```swift
+let chip = BPKChip(title: "Chip text")
+chip.isSelected = true
+```
 
-- `(UIColor)primaryColor`
+Example of a disabled Chip:
+```swift
+let chip = BPKChip(title: "Chip text")
+chip.isEnabled = false
+```
+
+Example of a Chip with leading icon:
+```swift
+let chip = BPKChip(title: "Chip text", icon: .deals)
+```
+
+Example of a Chip on dark background:
+```swift
+let chip = BPKChip(title: "Chip text")
+chip.style = .onDark
+```
+
+Example of a Chip on an image background:
+```swift
+let chip = BPKChip(title: "Chip text")
+chip.style = .onImage
+```
+
+Example of a Chip with a different semantic type:
+```swift
+let chip = BPKChip(title: "Chip text")
+chip.type = .dropdown
+```

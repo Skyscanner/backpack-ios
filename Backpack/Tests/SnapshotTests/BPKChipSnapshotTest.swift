@@ -49,9 +49,9 @@ class BPKChipSnapshotTest: XCTestCase {
         assertSnapshot(create(enrich: enrich))
     }
     
-    func testChipWithSelectType() {
+    func testChipWithDropdownType() {
         func enrich(_ chip: BPKChip) {
-            chip.type = .select
+            chip.type = .dropdown
         }
         assertSnapshot(create(enrich: enrich))
     }

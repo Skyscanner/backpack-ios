@@ -21,17 +21,17 @@ import Backpack
 
 struct ChipConfig {
     let title: String
-    let selected: Bool
-    let enabled: Bool
     let icon: BPKSmallIconName?
     let type: BPKChipType
 }
 
 class ChipsViewController: UIViewController {
     private var style: BPKChipStyle
+    private var titleColor: UIColor
 
-    init(style: BPKChipStyle) {
+    init(style: BPKChipStyle, titleColor: UIColor) {
         self.style = style
+        self.titleColor = titleColor
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,75 +42,88 @@ class ChipsViewController: UIViewController {
     private let chips: [ChipConfig] = [
         ChipConfig(
             title: "Option",
-            selected: false,
-            enabled: true,
             icon: nil,
             type: .option
         ),
         ChipConfig(
-            title: "Selected",
-            selected: true,
-            enabled: true,
+            title: "Dropdown",
             icon: nil,
-            type: .option
-        ),
-        ChipConfig(
-            title: "Disabled",
-            selected: false,
-            enabled: false,
-            icon: nil,
-            type: .option
-        ),
-        ChipConfig(
-            title: "With Icon Disabled",
-            selected: false,
-            enabled: false,
-            icon: .camera,
-            type: .option
-        ),
-        ChipConfig(
-            title: "Select",
-            selected: false,
-            enabled: true,
-            icon: .food,
-            type: .select
-        ),
-        ChipConfig(
-            title: "Selected Select",
-            selected: true,
-            enabled: true,
-            icon: .beer,
-            type: .select
+            type: .dropdown
         ),
         ChipConfig(
             title: "Dismiss",
-            selected: false,
-            enabled: true,
-            icon: .cafe,
+            icon: nil,
             type: .dismiss
+        ),
+        ChipConfig(
+            title: "With icon",
+            icon: .deals,
+            type: .option
         )
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appearance = UINavigationBarAppearance()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
         view.backgroundColor = BPKColor.surfaceDefaultColor
+        
+        setupDemo()
+    }
+    
+    private func setupDemo() {
         let stack = UIStackView()
-        stack.axis = .vertical
+        stack.axis = .horizontal
         stack.alignment = .center
-        stack.spacing = BPKSpacingMd
+        stack.spacing = BPKSpacingSm
         stack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stack)
         NSLayoutConstraint.activate([
             stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        stack.addArrangedSubview(createColumn(title: "Off", selected: false, enabled: true))
+        stack.addArrangedSubview(createColumn(title: "On", selected: true, enabled: true))
+        stack.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
+    }
+    
+    private func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .leading
+        stack.spacing = BPKSpacingMd
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let titleLabel = BPKLabel(fontStyle: .textHeading5)
+        titleLabel.text = title
+        titleLabel.textColor = titleColor
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        stack.addArrangedSubview(titleLabel)
+        
         chips.map {
             let chip = BPKChip(title: $0.title, icon: $0.icon)
-            chip.isEnabled = $0.enabled
+            chip.isEnabled = enabled
             chip.style = style
             chip.type = $0.type
-            chip.isSelected = $0.selected
+            chip.isSelected = selected
+            
+            chip.accessibilityIdentifier = "chip_\($0.title.lowercased())_enabled_\(enabled)_selected_\(selected)"
+            
+            // This chip version should not exist
+            // But we still want it to occupy the space
+            if $0.type == .dismiss && !selected {
+                chip.alpha = 0
+                chip.isUserInteractionEnabled  = false
+            }
+
             return chip
         }.forEach(stack.addArrangedSubview)
+        
+        return stack
     }
 }
