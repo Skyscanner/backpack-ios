@@ -55,11 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTitle:(NSString *_Nullable)title
                       message:(NSString *)message
                iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition {
-    return [self initWithTitle:title
-                       message:message
-                iconDefinition:iconDefinition
-                   graphicView:nil
-                 textAlignment:NSTextAlignmentCenter];
+    return [self initWithTitle:title message:message iconDefinition:iconDefinition graphicView:nil textAlignment:NSTextAlignmentCenter];
 }
 
 - (instancetype)initWithTitle:(NSString *_Nullable)title
@@ -102,22 +98,14 @@ NS_ASSUME_NONNULL_BEGIN
                                   message:(NSString *)message
                            iconDefinition:(BPKDialogIconDefinition *_Nullable)iconDefinition
                                 flareView:(BPKFlareView *_Nullable)flareView {
-    return [[self alloc] initWithTitle:title
-                               message:message
-                        iconDefinition:iconDefinition
-                           graphicView:flareView
-                         textAlignment:NSTextAlignmentCenter];
+    return [[self alloc] initWithTitle:title message:message iconDefinition:iconDefinition graphicView:flareView textAlignment:NSTextAlignmentCenter];
 }
 
 + (instancetype)dialogControllerWithTitle:(NSString *_Nullable)title
                                   message:(NSString *)message
                                 imageView:(UIImageView *_Nullable)imageView
                             textAlignment:(NSTextAlignment)textAlignment {
-    return [[self alloc] initWithTitle:title
-                               message:message
-                        iconDefinition:nil
-                           graphicView:imageView
-                         textAlignment:textAlignment];
+    return [[self alloc] initWithTitle:title message:message iconDefinition:nil graphicView:imageView textAlignment:textAlignment];
 }
 
 - (void)setupViews {

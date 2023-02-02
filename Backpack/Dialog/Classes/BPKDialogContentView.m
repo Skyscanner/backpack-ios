@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.descriptionLabel.text = description;
 }
 
--(void)setTextAlignment:(NSTextAlignment)textAlignment {
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
     BPKAssertMainThread();
     self.titleLabel.textAlignment = textAlignment;
     self.descriptionLabel.textAlignment = textAlignment;
