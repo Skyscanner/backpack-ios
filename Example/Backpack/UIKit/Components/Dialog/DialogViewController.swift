@@ -85,11 +85,13 @@ class DialogViewController: UIViewController {
             )
         }
         
-        let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
-            print("Scrim tap \(didDismiss ? "dimissing" : "")")
-        }, shouldDismiss: true)
-        dialogController.scrimAction = scrimAction
-        
+        if type != .destructive {
+            let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
+                print("Scrim tap \(didDismiss ? "dimissing" : "")")
+            }, shouldDismiss: true)
+            dialogController.scrimAction = scrimAction
+        }
+
         dialogActions.forEach(dialogController.addButtonAction)
         
         self.present(dialogController, animated: true, completion: nil)

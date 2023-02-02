@@ -47,11 +47,18 @@ class BPKDialogViewSnapshotTest: XCTestCase {
         title: String?,
         message: String,
         icon: BPKDialogIconDefinition?,
-        flareView: BPKFlareView? = nil,
+        graphicView: UIView? = nil,
         actions: [BPKDialogButtonAction] = [],
-        cornerStyle: BPKDialogCornerStyle = .large
+        cornerStyle: BPKDialogCornerStyle = .large,
+        textAlignmnet: NSTextAlignment = .center
     ) -> BPKDialogView {
-        let dialog = BPKDialogView(title: title, message: message, iconDefinition: icon, graphicView: flareView)
+        let dialog = BPKDialogView(
+            title: title,
+            message: message,
+            iconDefinition: icon,
+            graphicView: graphicView,
+            textAlignment: textAlignmnet
+        )
         dialog.translatesAutoresizingMaskIntoConstraints = false
         dialog.widthAnchor.constraint(lessThanOrEqualToConstant: 320).isActive = true
         dialog.cornerStyle = cornerStyle
@@ -87,7 +94,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             title: title,
             message: message,
             icon: nil,
-            flareView: flare,
+            graphicView: flare,
             actions: [.continue, .skip],
             cornerStyle: .large
         )
@@ -101,7 +108,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             title: title,
             message: message,
             icon: nil,
-            flareView: flare,
+            graphicView: flare,
             actions: [.continue, .skip],
             cornerStyle: .large
         )
@@ -116,7 +123,7 @@ class BPKDialogViewSnapshotTest: XCTestCase {
             title: title,
             message: message,
             icon: nil,
-            flareView: flare,
+            graphicView: flare,
             actions: [.continue, .skip],
             cornerStyle: .large
         )
@@ -158,6 +165,22 @@ class BPKDialogViewSnapshotTest: XCTestCase {
         let wrapper = wrap(dialog)
         dialog.iconDefinition = .key(.danger)
         assertSnapshot(wrapper)
+    }
+    
+    func testDialogWithImageView() {
+        let imageView = UIImageView()
+        let dialog = dialog(
+            title: title,
+            message: message,
+            icon: nil,
+            graphicView: imageView,
+            actions: [.continue, .skip],
+            cornerStyle: .default,
+            textAlignmnet: .left
+        )
+        imageView.backgroundColor = BPKColor.skyBlue
+        imageView.heightAnchor.constraint(equalToConstant: 280).isActive = true
+        assertSnapshot(wrap(dialog))
     }
 }
 
