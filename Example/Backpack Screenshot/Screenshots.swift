@@ -207,7 +207,7 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Destructive"].tap()
             app.buttons[showButtonText].tap()
             saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
+            app.buttons["Delete"].tap()
             tapBackButton()
             
             app.tables.staticTexts["Flare"].tap()
