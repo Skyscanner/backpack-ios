@@ -112,6 +112,8 @@ class ChipsViewController: UIViewController {
             chip.type = $0.type
             chip.isSelected = selected
             
+            chip.accessibilityIdentifier = "chip_\($0.title.lowercased())_enabled_\(enabled)_selected_\(selected)"
+            
             // This chip version should not exist
             // But we still want it to occupy the space
             if $0.type == .dismiss && !selected {
