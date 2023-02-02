@@ -64,7 +64,8 @@ struct ComponentCellsProvider {
             tappableLinkLabels(),
             textField(),
             textViews(),
-            toasts(duration: toastDuration)
+            toasts(duration: toastDuration),
+            pageIndicators()
         ]
         return dataSources.map(\.cell)
     }
@@ -322,6 +323,19 @@ extension ComponentCellsProvider {
                 toastDuration: duration
             ).groups(),
             showChildren: { showChildren(title: "Toasts", children: $0) }
+        )
+    }
+    private func pageIndicators() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Page indicators",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        PageIndicatorViewController()
+                    }
+                ))
+            ],
+            showChildren: { showComponent(title: "Page indicators", tabs: $0) }
         )
     }
 }
