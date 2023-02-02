@@ -91,11 +91,6 @@ class ChipsViewController: UIViewController {
         stack.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
     }
     
-    func chippy() {
-let chip = BPKChip(title: "Chip text")
-chip.type = .dropdown
-    }
-    
     private func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
         let stack = UIStackView()
         stack.axis = .vertical
