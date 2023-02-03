@@ -37,19 +37,7 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-    
-    /**
-     * The primary color of the reciever. This is used to control the
-     * selected background colour.
-     *
-     * @warning This is not intended to be used directly, it exists to support theming only.
-     */
-    public var primaryColor: UIColor? {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
-    
+        
     /**
      * Style of the chip. Default is BPKChipStyleDefault.
      */
@@ -64,22 +52,10 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-
-    // Internal state decoupled from the default `selected` boolean that is controlled by UIControl
-    private var chipSelected: Bool = false {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
     
     public override var isSelected: Bool {
         didSet {
-            // Dismissable chips cannot be 'unselected'
-            if type == .dismiss {
-                return chipSelected = true
-            }
-            
-            chipSelected = isSelected
+            updateLookAndFeel()
         }
     }
     
@@ -88,7 +64,7 @@ public class BPKChip: UIControl {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-            let tintLayerColor =  chipSelected ? appearance.selected.background : appearance.highlighted.background
+            let tintLayerColor =  isSelected ? appearance.selected.background : appearance.highlighted.background
             tintLayer.backgroundColor = tintLayerColor.cgColor
             tintLayer.opacity = isHighlighted ? 1 : 0
             updateLookAndFeel()
@@ -105,7 +81,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if chipSelected { return appearance.selected }
+        if isSelected || type == .dismiss { return appearance.selected }
         return appearance.normal
     }
     
@@ -135,6 +111,7 @@ public class BPKChip: UIControl {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = BPKSpacingIconText
+        stack.alignment = .center
         stack.isUserInteractionEnabled = false
         return stack
     }()
@@ -216,8 +193,10 @@ extension BPKChip {
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
             trailingConstraint!,
-            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
+            containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            heightAnchor.constraint(equalToConstant: BPKSpacingXl),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor)
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)
@@ -225,31 +204,31 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
-        if isEnabled {
-            isSelected.toggle()
-        }
+        guard isEnabled else { return }
+        guard type != .dismiss else { return }
+                
+        isSelected.toggle()
     }
     
     private func updateLookAndFeel() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut]) {
-            self.backgroundColor = self.colors.background
-            self.updateOutlineStroke()
-            
-            self.iconView.image = self.icon.orNil(withColor: self.colors.content)
-            self.label.textColor = self.colors.content
-            self.accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
-            
-            self.updateAccessibility()
-            self.placeElements()
-            
-            self.trailingConstraint?.constant = -self.chipTrailingSpacing
-            self.setNeedsUpdateConstraints()
-            
-            if let shadow = self.shadow {
-                shadow.apply(to: self.layer)
-            } else {
-                self.layer.shadowOpacity = 0
-            }
+        updateOutlineStroke()
+        backgroundColor = self.colors.background
+        label.textColor = self.colors.content
+
+        iconView.image = self.icon.orNil(withColor: self.colors.content)
+        
+        accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
+        
+        updateAccessibility()
+        placeElements()
+        
+        trailingConstraint?.constant = -self.chipTrailingSpacing
+        setNeedsUpdateConstraints()
+        
+        if let shadow = self.shadow {
+            shadow.apply(to: layer)
+        } else {
+            layer.shadowOpacity = 0
         }
     }
     
@@ -257,9 +236,7 @@ extension BPKChip {
         isAccessibilityElement = true
         accessibilityTraits = .button
         
-        // Dismissable chips are not selected for VoiceOver
-        // And behave like a regular button
-        if chipSelected && type != .dismiss {
+        if isSelected && type != .dismiss {
             accessibilityTraits.insert(.selected)
         } else {
             accessibilityTraits.remove(.selected)
@@ -342,10 +319,6 @@ extension BPKChip {
     
     private var chipTrailingSpacing: CGFloat {
         return accessoryIcon != nil ? BPKSpacingMd : BPKSpacingBase
-    }
-    
-    private var chipVerticalSpacing: CGFloat {
-        return BPKSpacingMd
     }
 }
 
