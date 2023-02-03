@@ -53,11 +53,6 @@ public class BPKChip: UIControl {
         }
     }
     
-    /**
-     *  Set this to false, if you want to manipulate the selected state yourself by setting the `isSelected` value.
-     */
-    public var isAutomaticSelectionEnabled: Bool = true
-
     public override var isSelected: Bool {
         didSet {
             updateLookAndFeel()
@@ -210,7 +205,6 @@ extension BPKChip {
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
         guard isEnabled else { return }
-        guard isAutomaticSelectionEnabled else { return }
         guard type != .dismiss else { return }
                 
         isSelected.toggle()
