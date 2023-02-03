@@ -64,22 +64,15 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-
-    // Internal state decoupled from the default `selected` boolean that is controlled by UIControl
-    private var chipSelected: Bool = false {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
     
+    /**
+     *  Set this to false, if you want to manipulate the selected state yourself by setting the `isSelected` value.
+     */
+    public var isAutomaticSelectionEnabled: Bool = true
+
     public override var isSelected: Bool {
         didSet {
-            // Dismissable chips cannot be 'unselected'
-            if type == .dismiss {
-                return chipSelected = true
-            }
-            
-            chipSelected = isSelected
+            updateLookAndFeel()
         }
     }
     
@@ -88,7 +81,7 @@ public class BPKChip: UIControl {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-            let tintLayerColor =  chipSelected ? appearance.selected.background : appearance.highlighted.background
+            let tintLayerColor =  isSelected ? appearance.selected.background : appearance.highlighted.background
             tintLayer.backgroundColor = tintLayerColor.cgColor
             tintLayer.opacity = isHighlighted ? 1 : 0
             updateLookAndFeel()
@@ -105,7 +98,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if chipSelected { return appearance.selected }
+        if isSelected { return appearance.selected }
         return appearance.normal
     }
     
@@ -225,31 +218,32 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
-        if isEnabled {
-            isSelected.toggle()
-        }
+        guard isEnabled else { return }
+        guard isAutomaticSelectionEnabled else { return }
+        guard type != .dismiss else { return }
+                
+        isSelected.toggle()
     }
     
     private func updateLookAndFeel() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut]) {
-            self.backgroundColor = self.colors.background
-            self.updateOutlineStroke()
-            
-            self.iconView.image = self.icon.orNil(withColor: self.colors.content)
-            self.label.textColor = self.colors.content
-            self.accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
-            
-            self.updateAccessibility()
-            self.placeElements()
-            
-            self.trailingConstraint?.constant = -self.chipTrailingSpacing
-            self.setNeedsUpdateConstraints()
-            
-            if let shadow = self.shadow {
-                shadow.apply(to: self.layer)
-            } else {
-                self.layer.shadowOpacity = 0
-            }
+        updateOutlineStroke()
+        backgroundColor = self.colors.background
+        label.textColor = self.colors.content
+
+        iconView.image = self.icon.orNil(withColor: self.colors.content)
+        
+        accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
+        
+        updateAccessibility()
+        placeElements()
+        
+        trailingConstraint?.constant = -self.chipTrailingSpacing
+        setNeedsUpdateConstraints()
+        
+        if let shadow = self.shadow {
+            shadow.apply(to: layer)
+        } else {
+            layer.shadowOpacity = 0
         }
     }
     
@@ -257,9 +251,7 @@ extension BPKChip {
         isAccessibilityElement = true
         accessibilityTraits = .button
         
-        // Dismissable chips are not selected for VoiceOver
-        // And behave like a regular button
-        if chipSelected && type != .dismiss {
+        if isSelected {
             accessibilityTraits.insert(.selected)
         } else {
             accessibilityTraits.remove(.selected)
