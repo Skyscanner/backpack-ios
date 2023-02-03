@@ -86,7 +86,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if isSelected { return appearance.selected }
+        if isSelected || type == .dismiss { return appearance.selected }
         return appearance.normal
     }
     
