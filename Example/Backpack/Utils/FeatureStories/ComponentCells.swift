@@ -333,7 +333,10 @@ extension ComponentCellsProvider {
                     generateViewController: {
                         PageIndicatorViewController()
                     }
-                ))
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PageIndicatorExampleView())
+                }))
             ],
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
         )
