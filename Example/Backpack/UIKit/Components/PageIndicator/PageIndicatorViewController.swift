@@ -19,7 +19,7 @@
 
 import Foundation
 import Backpack
-// swiftlint:disable all
+
 class PageIndicatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +28,22 @@ class PageIndicatorViewController: UIViewController {
     }
     
     private func createView() {
-        let defaultPageIndicator = BPKPageIndicator(variant: .default,
-                                                    currentIndex: 0,
-                                                    totalIndicators: 3,
-                                                    indicatorLabel: "")
+        let defaultPageIndicator = BPKPageIndicator(
+            variant: .default,
+            currentIndex: 0,
+            totalIndicators: 3,
+            indicatorLabel: "Accessibility label for default page indicator."
+        )
         
         let imageBackground = UIImageView(image: UIImage(named: "dialog_image")!)
         imageBackground.isUserInteractionEnabled = true
         
-        let overImagePageIndicator = BPKPageIndicator(variant: .overImage,
-                                                      currentIndex: 0,
-                                                      totalIndicators: 3,
-                                                      indicatorLabel: "")
+        let overImagePageIndicator = BPKPageIndicator(
+            variant: .overImage,
+            currentIndex: 0,
+            totalIndicators: 3,
+            indicatorLabel: "Accessibility label for over image page indicator."
+        )
         overImagePageIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         imageBackground.addSubview(overImagePageIndicator)
@@ -57,7 +61,10 @@ class PageIndicatorViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             overImagePageIndicator.centerXAnchor.constraint(equalTo: imageBackground.centerXAnchor),
-            overImagePageIndicator.bottomAnchor.constraint(equalTo: imageBackground.bottomAnchor, constant: -BPKSpacingBase)
+            overImagePageIndicator.bottomAnchor.constraint(
+                equalTo: imageBackground.bottomAnchor,
+                constant: -BPKSpacingBase
+            )
         ])
     }
 }

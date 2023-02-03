@@ -24,7 +24,11 @@ public final class BPKPageIndicator: UIView {
     }
     
     //    This is a label for screen readers on the indicators themselves
-    public let indicatorLabel: String
+    public var indicatorLabel: String {
+        didSet {
+            pageControl.accessibilityLabel = indicatorLabel
+        }
+    }
     
     //    Switches between default and overImage style
     public let variant: Variant
