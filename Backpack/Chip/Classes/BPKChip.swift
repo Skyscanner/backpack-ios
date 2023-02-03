@@ -37,19 +37,7 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-    
-    /**
-     * The primary color of the reciever. This is used to control the
-     * selected background colour.
-     *
-     * @warning This is not intended to be used directly, it exists to support theming only.
-     */
-    public var primaryColor: UIColor? {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
-    
+        
     /**
      * Style of the chip. Default is BPKChipStyleDefault.
      */
