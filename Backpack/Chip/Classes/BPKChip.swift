@@ -242,7 +242,7 @@ extension BPKChip {
         isAccessibilityElement = true
         accessibilityTraits = .button
         
-        if isSelected {
+        if isSelected && type != .dismiss {
             accessibilityTraits.insert(.selected)
         } else {
             accessibilityTraits.remove(.selected)
