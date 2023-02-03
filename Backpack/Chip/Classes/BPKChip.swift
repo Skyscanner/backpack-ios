@@ -116,6 +116,7 @@ public class BPKChip: UIControl {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = BPKSpacingIconText
+        stack.alignment = .center
         stack.isUserInteractionEnabled = false
         return stack
     }()
@@ -197,8 +198,10 @@ extension BPKChip {
         NSLayoutConstraint.activate([
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
             trailingConstraint!,
-            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
+            containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            heightAnchor.constraint(equalToConstant: BPKSpacingXl),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor)
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)
@@ -322,10 +325,6 @@ extension BPKChip {
     
     private var chipTrailingSpacing: CGFloat {
         return accessoryIcon != nil ? BPKSpacingMd : BPKSpacingBase
-    }
-    
-    private var chipVerticalSpacing: CGFloat {
-        return BPKSpacingMd
     }
 }
 
