@@ -42,6 +42,7 @@ struct ComponentCellsProvider {
             button(),
             calendar(),
             card(),
+            cardButton(),
             carousel(),
             chips(),
             flare(),
@@ -128,6 +129,13 @@ extension ComponentCellsProvider {
                 .swiftui(groups: CardGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Cards", tabs: $0) }
+        )
+    }
+    private func cardButton() -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: "Card Button",
+            customController: { CardButtonsViewController() },
+            showPresentable: show(presentable:)
         )
     }
     private func chips() -> CellDataSource {
