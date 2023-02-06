@@ -92,7 +92,8 @@ struct CardGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentableCard("Card", view: CardExampleView()),
-                presentableCard("DividedCard", view: DividedCardExampleView())
+                presentableCard("DividedCard", view: DividedCardExampleView()),
+                presentableCard("CardWrapper", view: CardWrapperExampleView())
             ]
         ).groups()
     }

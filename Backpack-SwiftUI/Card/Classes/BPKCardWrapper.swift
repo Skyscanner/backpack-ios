@@ -52,32 +52,50 @@ struct BPKCardWrapper_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKCardWrapper(backgroundColor: .coreAccentColor) {
-                HStack(spacing: 0) {
-                    BPKIconView(.priceTag)
-                    BPKText("Hot deal", style: .caption)
+                HStack(spacing: 5) {
+                    BPKIconView(.flag)
+                    BPKText("BPKCard", style: .caption)
                         .foregroundColor(.white)
-                        .padding(.sm)
                     Spacer()
                 }
                 .foregroundColor(.white)
-                .padding(.sm)
+                .padding(.md)
             } card: {
-                BPKCard {
-                    Text("It's me!")
+                BPKCard(elevation: .none) {
+                    Text("Card Content")
                 }
-                .onTapGesture {
-                    print("ddd")
+            }
+            
+            BPKCardWrapper(backgroundColor: .corePrimaryColor) {
+                HStack(spacing: 5) {
+                    BPKIconView(.flag)
+                    BPKText("PrimaryColor", style: .caption)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .foregroundColor(.white)
+                .padding(.md)
+            } card: {
+                BPKCard(elevation: .none) {
+                    Text("Card Content")
                 }
             }
             
             BPKCardWrapper(backgroundColor: .coreAccentColor) {
-                BPKText("Divide card eh")
+                HStack(spacing: 5) {
+                    BPKIconView(.flag)
+                    BPKText("BPKDividedCard", style: .caption)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .foregroundColor(.white)
+                .padding(.md)
             } card: {
-                BPKDividedCard(primaryContent: {
-                    Text("Primary")
-                }, secondaryContent: {
-                    Text("Secondary")
-                })
+                BPKDividedCard {
+                    Text("Primary Content")
+                } secondaryContent: {
+                    Text("Secondary Content")
+                }
             }
         }
         .padding()

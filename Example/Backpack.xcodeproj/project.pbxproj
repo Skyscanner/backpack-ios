@@ -83,6 +83,7 @@
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BA6D80B5298A4A1600209D53 /* CardWrapperExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */; };
 		BA97B096290FCDFD00AE4172 /* DividedCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */; };
 		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -270,6 +271,7 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardWrapperExampleView.swift; sourceTree = "<group>"; };
 		BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedCardExampleView.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			children = (
 				538B6EC12832B4D10084C721 /* CardExampleView.swift */,
 				BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */,
+				BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -1346,6 +1349,7 @@
 				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
 				3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */,
 				D2CD11E7215E4D83000CEA5C /* CardsViewController.swift in Sources */,
+				BA6D80B5298A4A1600209D53 /* CardWrapperExampleView.swift in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
 				797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
