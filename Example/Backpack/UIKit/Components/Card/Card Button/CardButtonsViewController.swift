@@ -25,6 +25,13 @@ private struct CardButtonSampleRow {
 }
 
 private struct CardButtonSample {
+    enum Icon {
+        case share
+        case unsaved
+        case saved
+    }
+
+    let icon: Icon
     let backgroundColor: UIColor
     let size: BPKCardButtonSize
     let style: BPKCardButtonStyle
@@ -33,34 +40,120 @@ private struct CardButtonSample {
 final class CardButtonsViewController: UIViewController {
     private let sampleButtons: [CardButtonSampleRow] = [
         CardButtonSampleRow(
-            title: "Size: default.\tStyle:[default, contained, onDark]",
+            title: "Size: default \tStyle:[default, contained, onDark]",
             cardButtons: [
                 CardButtonSample(
+                    icon: .share,
                     backgroundColor: BPKColor.surfaceDefaultColor,
                     size: .default,
                     style: .default),
                 CardButtonSample(
+                    icon: .share,
                     backgroundColor: BPKColor.surfaceHighlightColor,
                     size: .default,
                     style: .contained),
                 CardButtonSample(
+                    icon: .share,
                     backgroundColor: BPKColor.black,
                     size: .default,
                     style: .onDark)
             ]
         ),
         CardButtonSampleRow(
-            title: "Size: small.\tStyle:[default, contained, onDark]",
+            title: "Size: small.",
             cardButtons: [
                 CardButtonSample(
+                    icon: .share,
                     backgroundColor: BPKColor.surfaceDefaultColor,
                     size: .small,
                     style: .default),
                 CardButtonSample(
+                    icon: .share,
                     backgroundColor: BPKColor.surfaceHighlightColor,
                     size: .small,
                     style: .contained),
                 CardButtonSample(
+                    icon: .share,
+                    backgroundColor: BPKColor.black,
+                    size: .small,
+                    style: .onDark)
+            ]
+        ),
+        CardButtonSampleRow(
+            title: "Size: default. Checked: false",
+            cardButtons: [
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.surfaceDefaultColor,
+                    size: .default,
+                    style: .default),
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.surfaceHighlightColor,
+                    size: .default,
+                    style: .contained),
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.black,
+                    size: .default,
+                    style: .onDark)
+            ]
+        ),
+        CardButtonSampleRow(
+            title: "Size: small. Checked: false",
+            cardButtons: [
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.surfaceDefaultColor,
+                    size: .small,
+                    style: .default),
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.surfaceHighlightColor,
+                    size: .small,
+                    style: .contained),
+                CardButtonSample(
+                    icon: .unsaved,
+                    backgroundColor: BPKColor.black,
+                    size: .small,
+                    style: .onDark)
+            ]
+        ),
+        CardButtonSampleRow(
+            title: "Size: default. Checked: true",
+            cardButtons: [
+                CardButtonSample(
+                    icon: .saved,
+                    backgroundColor: BPKColor.surfaceDefaultColor,
+                    size: .default,
+                    style: .default),
+                CardButtonSample(
+                    icon: .saved,
+                    backgroundColor: BPKColor.surfaceHighlightColor,
+                    size: .default,
+                    style: .contained),
+                CardButtonSample(
+                    icon: .saved,
+                    backgroundColor: BPKColor.black,
+                    size: .default,
+                    style: .onDark)
+            ]
+        ),
+        CardButtonSampleRow(
+            title: "Size: small. Checked: true",
+            cardButtons: [
+                CardButtonSample(
+                    icon: .saved,
+                    backgroundColor: BPKColor.surfaceDefaultColor,
+                    size: .small,
+                    style: .default),
+                CardButtonSample(
+                    icon: .saved,
+                    backgroundColor: BPKColor.surfaceHighlightColor,
+                    size: .small,
+                    style: .contained),
+                CardButtonSample(
+                    icon: .saved,
                     backgroundColor: BPKColor.black,
                     size: .small,
                     style: .onDark)
@@ -78,8 +171,8 @@ final class CardButtonsViewController: UIViewController {
 
     private func setupView() {
         let stack = UIStackView(frame: .zero)
-        stack.alignment = .center
-        stack.spacing = BPKSpacingMd
+        stack.alignment = .leading
+        stack.spacing = BPKSpacingSm
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         
@@ -92,7 +185,7 @@ final class CardButtonsViewController: UIViewController {
             let horizontalStack = UIStackView()
             horizontalStack.axis = .horizontal
             row.cardButtons.forEach {
-                let cardButton = makeCardButton($0)
+                let cardButton = makeCardButtonWithContainer($0)
                 horizontalStack.addArrangedSubview(cardButton)
             }
             stack.addArrangedSubview(horizontalStack)
@@ -114,39 +207,50 @@ final class CardButtonsViewController: UIViewController {
             )
         ])
     }
-    
-    private func makeCardButton(_ cardButtonParams: CardButtonSample) -> UIView {
-        let cardButton = BPKShareCardButton(
-            accessibilityLabel: "",
-            style: cardButtonParams.style,
-            size: cardButtonParams.size,
-            onClick: {}
-        )
-        cardButton.translatesAutoresizingMaskIntoConstraints = false
 
+    private func makeCardButton(_ cardButtonParams: CardButtonSample) -> UIView {
+        let cardButton: UIView
+        switch cardButtonParams.icon {
+        case .share:
+            cardButton = BPKShareCardButton(
+                accessibilityLabel: "",
+                style: cardButtonParams.style,
+                size: cardButtonParams.size,
+                onClick: {}
+            )
+        case .unsaved:
+            cardButton = BPKSaveCardButton(
+                checked: false,
+                accessibilityLabel: "",
+                style: cardButtonParams.style,
+                size: cardButtonParams.size,
+                onCheckedChange: { _ in }
+            )
+        case .saved:
+            cardButton = BPKSaveCardButton(
+                checked: true,
+                accessibilityLabel: "",
+                style: cardButtonParams.style,
+                size: cardButtonParams.size,
+                onCheckedChange: { _ in }
+            )
+        }
+        cardButton.translatesAutoresizingMaskIntoConstraints = false
+        return cardButton
+    }
+
+    private func makeCardButtonWithContainer(_ cardButtonParams: CardButtonSample) -> UIView {
+        let cardButton = makeCardButton(cardButtonParams)
         let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = cardButtonParams.backgroundColor
         container.addSubview(cardButton)
-
         NSLayoutConstraint.activate([
-            cardButton.topAnchor.constraint(
-                equalTo: container.topAnchor,
-                constant: BPKSpacingBase
-            ),
-            cardButton.bottomAnchor.constraint(
-                equalTo: container.bottomAnchor,
-                constant: -BPKSpacingBase
-            ),
-            cardButton.leadingAnchor.constraint(
-                equalTo: container.leadingAnchor,
-                constant: BPKSpacingXl
-            ),
-            cardButton.trailingAnchor.constraint(
-                equalTo: container.trailingAnchor,
-                constant: -BPKSpacingXl
-            )
+            cardButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            cardButton.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            container.widthAnchor.constraint(equalToConstant: BPKSpacingXl * 2),
+            container.heightAnchor.constraint(equalToConstant: BPKSpacingXl * 2)
         ])
-
         return container
     }
 }
