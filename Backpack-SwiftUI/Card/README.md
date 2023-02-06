@@ -115,7 +115,7 @@ BPKDividedCard {
 
 ### `BPKCardWrapper`
 
-**With BPKCard**
+**Wrap a card**
 ```swift
 BPKCardWrapper(backgroundColor: .coreAccentColor) {
     BPKText("Header")
@@ -126,7 +126,7 @@ BPKCardWrapper(backgroundColor: .coreAccentColor) {
 }
 ```
 
-**With BPKDividedCard**
+**Wrap a divided card**
 ```swift
 BPKCardWrapper(backgroundColor: .coreAccentColor) {
     BPKText("Header")
