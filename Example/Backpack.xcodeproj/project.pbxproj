@@ -157,6 +157,7 @@
 		E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA122F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift */; };
 		E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */; };
 		E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */; };
+		F09C0315298D5EAB002F14FB /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C0314298D5EAB002F14FB /* CarouselViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +351,7 @@
 		E397BEA322F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBottomSectionVIewController.swift; sourceTree = "<group>"; };
 		E397BEA522F5FFDD00C8EC04 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Backpack_Native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F09C0314298D5EAB002F14FB /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -655,6 +657,7 @@
 		793EC5532836140A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F09C0313298D5E8F002F14FB /* Carousel */,
 				0E844AF5289141AA004C5865 /* Skeleton */,
 				793EC56F283615C900D627F6 /* Text view */,
 				793EC56E283615BD00D627F6 /* Gradient */,
@@ -1065,6 +1068,14 @@
 			path = "Bottom Sheet";
 			sourceTree = "<group>";
 		};
+		F09C0313298D5E8F002F14FB /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				F09C0314298D5EAB002F14FB /* CarouselViewController.swift */,
+			);
+			path = Carousel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1291,6 +1302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F09C0315298D5EAB002F14FB /* CarouselViewController.swift in Sources */,
 				D219C1E02163918B00C9968D /* DividedCardsViewController.swift in Sources */,
 				E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,

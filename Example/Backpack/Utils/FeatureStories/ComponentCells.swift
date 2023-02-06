@@ -42,6 +42,7 @@ struct ComponentCellsProvider {
             button(),
             calendar(),
             card(),
+            carousel(),
             chips(),
             flare(),
             dialog(),
@@ -322,6 +323,17 @@ extension ComponentCellsProvider {
                 toastDuration: duration
             ).groups(),
             showChildren: { showChildren(title: "Toasts", children: $0) }
+        )
+    }
+    private func carousel() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Carousel",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: { CarouselViewController() }
+                ))
+            ],
+            showChildren: { showComponent(title: "Carousel", tabs: $0) }
         )
     }
 }
