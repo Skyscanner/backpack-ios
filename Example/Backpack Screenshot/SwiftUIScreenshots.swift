@@ -104,6 +104,9 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["DividedCard"].tap()
             saveScreenshot(component: "divided-card", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            app.tables.staticTexts["CardWrapper"].tap()
+            saveScreenshot(component: "card-wrapper", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
         
         navigate(title: "Badges") {

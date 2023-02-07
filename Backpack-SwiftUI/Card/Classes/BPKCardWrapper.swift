@@ -24,6 +24,8 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
     private let header: HeaderContent
     private let card: WrappedContent
 
+    private let lineWidth = 2.0
+    
     public init(
         backgroundColor: BPKColor,
         @ViewBuilder header: () -> HeaderContent,
@@ -38,13 +40,13 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
         VStack(spacing: 0) {
             header
             card
+                .overlay(RoundedRectangle(cornerRadius: .sm)
+                        .stroke(Color(backgroundColor), lineWidth: lineWidth))
         }
         .background(backgroundColor)
-        .cornerRadius(8)
-        .overlay(
-            RoundedRectangle(cornerRadius: .sm)
-                .stroke(Color(backgroundColor), lineWidth: 2)
-        )
+        .cornerRadius(BPKCornerRadius.sm.value)
+        .overlay(RoundedRectangle(cornerRadius: .sm)
+                .stroke(Color(backgroundColor), lineWidth: lineWidth))
     }
 }
 
