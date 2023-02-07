@@ -20,7 +20,7 @@ BPKShareCardButton
 ```swift
 import Backpack
 
-let cardButton = BPKShareCardButton(
+let shareButton = BPKShareCardButton(
     accessibilityLabel: "",
     style: .default,
     size: .default,
@@ -28,4 +28,12 @@ let cardButton = BPKShareCardButton(
 )
 ```
 
-// SONIC-1376: Add sample for SaveCardButton
+```swift
+let saveButton = BPKSaveCardButton(
+    checked: false,
+    accessibilityLabel: "",
+    style: .default,
+    size: .default,
+    onCheckedChange: { _ in }
+)
+```
