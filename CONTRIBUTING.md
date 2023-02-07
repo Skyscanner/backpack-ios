@@ -68,7 +68,7 @@ It's possible to take only a subset of the screenshots which greatly speeds up t
 To do this follow the following steps:
 
 
-1. In `Screenshots.swift` change the `runOnly` property per the guide.
+1. In `Example/Backpack Screenshot/BackpackSnapshotTestCase.swift` change the `runOnly` property per the guide in the comment.
 2. Run the screenshots as above
 3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
 
