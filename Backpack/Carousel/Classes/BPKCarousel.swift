@@ -25,7 +25,7 @@ public final class BPKCarousel: UIView {
     private let images: [UIImage]
     private let currentImage: Int?
     private let onImageChanged: ((Int) -> Void)?
-    private let reuseIdentifier = String(describing: BPKCarouselCell.self)
+    private let reuseIdentifier = String(describing: BPKCarouselImageCell.self)
 
     private var selectedRow: Int? {
         guard let cell = collectionView.visibleCells.first else { return nil }
@@ -46,7 +46,7 @@ public final class BPKCarousel: UIView {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.register(BPKCarouselCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(BPKCarouselImageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false

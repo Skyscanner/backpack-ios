@@ -23,7 +23,7 @@ enum TapDirection {
     case next
 }
 
-final class BPKCarouselCell: UICollectionViewCell {
+final class BPKCarouselImageCell: UICollectionViewCell {
     
     private var imageChangeTapped: ((TapDirection) -> Void)?
     

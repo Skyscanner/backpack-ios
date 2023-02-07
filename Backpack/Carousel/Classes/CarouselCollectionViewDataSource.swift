@@ -18,7 +18,9 @@
 
 import Foundation
 
-enum CarouselSection { case main }
+enum CarouselSection {
+    case main
+}
 
 final class CarouselCollectionViewDataSource: UICollectionViewDiffableDataSource<CarouselSection, CarouselViewModel> {
     
@@ -29,7 +31,7 @@ final class CarouselCollectionViewDataSource: UICollectionViewDiffableDataSource
         super.init(collectionView: collectionView) { (collectionView, indexPath, viewModel) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: reuseIdentifier,
-                for: indexPath) as? BPKCarouselCell
+                for: indexPath) as? BPKCarouselImageCell
 
             cell?.setup(with: viewModel)
             return cell
