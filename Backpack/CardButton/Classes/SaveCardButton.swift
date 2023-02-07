@@ -18,8 +18,6 @@
 
 import UIKit
 
-@objcMembers
-@objc
 public class BPKSaveCardButton: UIButton {
 
     public var checked: Bool = false {

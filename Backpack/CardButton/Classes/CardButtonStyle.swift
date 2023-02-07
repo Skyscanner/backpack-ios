@@ -16,8 +16,7 @@
  * limitations under the License.
  */
 
-@objc
-public enum BPKCardButtonStyle: UInt {
+public enum BPKCardButtonStyle {
     case `default`
     case contained
     case onDark

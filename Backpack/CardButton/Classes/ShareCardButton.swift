@@ -18,8 +18,6 @@
 
 import UIKit
 
-@objcMembers
-@objc
 public class BPKShareCardButton: UIButton {
 
     public var style: BPKCardButtonStyle = .default {

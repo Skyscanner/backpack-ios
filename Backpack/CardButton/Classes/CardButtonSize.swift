@@ -16,8 +16,7 @@
  * limitations under the License.
  */
 
-@objc
-public enum BPKCardButtonSize: UInt {
+public enum BPKCardButtonSize {
     case `default`
     case small
 }
