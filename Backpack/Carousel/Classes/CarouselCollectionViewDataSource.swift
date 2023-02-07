@@ -22,24 +22,24 @@ enum CarouselSection {
     case main
 }
 
-final class CarouselCollectionViewDataSource: UICollectionViewDiffableDataSource<CarouselSection, CarouselViewModel> {
+final class CarouselCollectionViewDataSource: UICollectionViewDiffableDataSource<CarouselSection, UIView> {
     
     private let reuseIdentifier: String
     
     init(collectionView: UICollectionView, reuseIdentifier: String) {
         self.reuseIdentifier = reuseIdentifier
-        super.init(collectionView: collectionView) { (collectionView, indexPath, viewModel) -> UICollectionViewCell? in
+        super.init(collectionView: collectionView) { (collectionView, indexPath, view) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: reuseIdentifier,
                 for: indexPath) as? BPKCarouselImageCell
 
-            cell?.setup(with: viewModel)
+            cell?.setup(with: view)
             return cell
         }
     }
 
-    func render(with viewModel: [CarouselViewModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<CarouselSection, CarouselViewModel>()
+    func render(with viewModel: [UIView]) {
+        var snapshot = NSDiffableDataSourceSnapshot<CarouselSection, UIView>()
         snapshot.appendSections([CarouselSection.main])
         snapshot.appendItems(viewModel, toSection: CarouselSection.main)
         apply(snapshot, animatingDifferences: false)

@@ -21,20 +21,35 @@ import UIKit
 import Backpack
 
 final class CarouselViewController: UIViewController {
-
-    private lazy var images = [
-        UIImage(named: "dialog_flare")!,
-        UIImage(named: "dialog_image")!,
-        UIImage(named: "pilanesburg-south-africa")!
-    ]
+    
+    private lazy var imageViewOne: UIImageView = {
+        let image = UIImage(named: "dialog_flare")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    private lazy var imageViewTwo: UIImageView = {
+        let image = UIImage(named: "dialog_image")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    private lazy var imageViewThree: UIImageView = {
+        let image = UIImage(named: "pilanesburg-south-africa")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
         
     private lazy var onImageChanged: ((Int) -> Void)? = { [weak self] selectedRowIndex in
         self?.displayedIndexLabel.text = "\(selectedRowIndex)"
     }
     
     private lazy var carousel = BPKCarousel(
-        images: images,
-        currentImage: 1,
+        images: [imageViewOne, imageViewTwo, imageViewThree],
+//        currentImage: 1,
         onImageChanged: onImageChanged
     )
     

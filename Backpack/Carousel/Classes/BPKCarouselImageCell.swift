@@ -25,75 +25,36 @@ enum TapDirection {
 
 final class BPKCarouselImageCell: UICollectionViewCell {
     
-    private var imageChangeTapped: ((TapDirection) -> Void)?
-    
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
-    private lazy var displayPreviousImageButton: UIControl = {
-        let button = UIControl()
-        button.addTarget(self, action: #selector(tappedDisplayPreviousImage), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var displayNextImageButton: UIControl = {
-        let button = UIControl()
-        button.addTarget(self, action: #selector(tappedDisplayNextImage), for: .touchUpInside)
-        return button
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        [
-            imageView,
-            displayPreviousImageButton,
-            displayNextImageButton
-        ].forEach {
-            contentView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
+        contentView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [
-                imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                
-                displayPreviousImageButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-                displayPreviousImageButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                displayPreviousImageButton.trailingAnchor.constraint(equalTo: contentView.centerXAnchor),
-                displayPreviousImageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                
-                displayNextImageButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-                displayNextImageButton.leadingAnchor.constraint(equalTo: contentView.centerXAnchor),
-                displayNextImageButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                displayNextImageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+                containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             ]
         )
+        layoutIfNeeded()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setup(with viewModel: CarouselViewModel) {
-        imageView.image = viewModel.image
-        imageChangeTapped = viewModel.imageChangeTapped
-    }
-    
-    @objc
-    private func tappedDisplayNextImage() {
-        imageChangeTapped?(.next)
-    }
-    
-    @objc
-    private func tappedDisplayPreviousImage() {
-        imageChangeTapped?(.previous)
+    public func setup(with view: UIView) {
+        containerView.subviews.forEach { $0.removeFromSuperview() }
+        containerView.addSubview(view)
+        view.frame = containerView.frame
     }
 }

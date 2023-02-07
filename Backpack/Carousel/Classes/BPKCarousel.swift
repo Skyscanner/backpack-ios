@@ -21,12 +21,13 @@ import Foundation
 @objcMembers
 @objc
 public final class BPKCarousel: UIView {
-
-    private let images: [UIImage]
+    
+    private var initialLayoutComplete = false
+    private let images: [UIView]
     private let currentImage: Int?
     private let onImageChanged: ((Int) -> Void)?
     private let reuseIdentifier = String(describing: BPKCarouselImageCell.self)
-
+    
     private var selectedRow: Int? {
         guard let cell = collectionView.visibleCells.first else { return nil }
         return collectionView.indexPath(for: cell)?.row
@@ -61,12 +62,8 @@ public final class BPKCarousel: UIView {
         return layout
     }()
     
-    private lazy var imageChangeTapped: ((TapDirection) -> Void)? = { [weak self] direction in
-        self?.scrollImageOnTap(with: direction)
-    }
-    
     public init(
-        images: [UIImage],
+        images: [UIView],
         currentImage: Int? = nil,
         onImageChanged: ((Int) -> Void)? = nil
     ) {
@@ -74,37 +71,9 @@ public final class BPKCarousel: UIView {
         self.currentImage = currentImage
         self.onImageChanged = onImageChanged
         super.init(frame: .zero)
-        setupViews()
         
-        let viewModels = images.map {
-            CarouselViewModel(
-                image: $0,
-                imageChangeTapped: imageChangeTapped
-            )
-        }
-        collectionViewDatasource.render(with: viewModels)
-    }
-    
-    private func scrollImageOnTap(with direction: TapDirection) {
-        guard let selectedRow = selectedRow else { return }
-        switch direction {
-        case .previous:
-            guard selectedRow > 0 else { return }
-            scrollTo(row: selectedRow - 1)
-        case .next:
-            let rowToDisplay = images.count > (selectedRow + 1) ? selectedRow + 1 : 0
-            scrollTo(row: rowToDisplay)
-        }
-    }
-    
-    private func scrollTo(row: Int, animated: Bool = true) {
-        let indexPath = IndexPath(row: row, section: 0)
-        collectionView.selectItem(
-            at: indexPath,
-            animated: animated,
-            scrollPosition: .centeredHorizontally
-        )
-        onImageChanged?(row)
+        setupViews()
+        collectionViewDatasource.render(with: images)
     }
     
     required init?(coder: NSCoder) {
@@ -129,8 +98,8 @@ public final class BPKCarousel: UIView {
                 
                 tempPageIndicator.widthAnchor.constraint(equalToConstant: 150), // TO BE REPLACED
                 tempPageIndicator.heightAnchor.constraint(equalToConstant: 30), // TO BE REPLACED
-                // BPKSpacingMd is 8 but no value for 6?
-                tempPageIndicator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingMd),
+                
+                tempPageIndicator.bottomAnchor.constraint(equalTo: bottomAnchor),
                 tempPageIndicator.centerXAnchor.constraint(equalTo: centerXAnchor)
             ]
         )
@@ -145,6 +114,36 @@ public final class BPKCarousel: UIView {
         super.layoutSubviews()
         if let currentImageRow = currentImage {
             scrollTo(row: currentImageRow, animated: false)
+        }
+        initialLayoutComplete = true
+    }
+}
+
+// MARK: Scroll handling
+extension BPKCarousel {
+    private func scrollTo(row: Int, animated: Bool = true) {
+        let indexPath = IndexPath(row: row, section: 0)
+        collectionView.selectItem(
+            at: indexPath,
+            animated: animated,
+            scrollPosition: .centeredHorizontally
+        )
+        onImageChanged?(row)
+    }
+    
+    /// Handling scrolling:
+    /// - to beginning when attempting to scroll past last item
+    /// - to end when attempting to scroll before the first item
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Need to wait for initial scroll from init to complete before handling scrolling
+        guard initialLayoutComplete else { return }
+        let offset: CGFloat = 70.0
+        
+        let contentOffsetX = scrollView.contentOffset.x
+        if contentOffsetX >= (scrollView.contentSize.width - scrollView.bounds.width) + offset {
+            scrollTo(row: 0)
+        } else if contentOffsetX <= -offset {
+            scrollTo(row: images.count - 1)
         }
     }
 }
