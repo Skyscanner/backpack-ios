@@ -20,15 +20,15 @@ import UIKit
 
 public class BPKShareCardButton: UIButton {
 
-    public var style: BPKCardButtonStyle = .default {
-        didSet { render() }
+    public var style: BPKCardButtonStyle {
+        didSet { updateLookAndFeel() }
     }
 
-    public var size: BPKCardButtonSize = .default {
-        didSet { render() }
+    public var size: BPKCardButtonSize {
+        didSet { updateLookAndFeel() }
     }
 
-    public var onClick: () -> Void = {}
+    public let onClick: () -> Void
 
     private let viewConfigurator = CardButtonViewConfigurator(
         icons: CardButtonViewConfigurator.CardButtonIcons(
@@ -47,32 +47,29 @@ public class BPKShareCardButton: UIButton {
         )
     )
 
-    private lazy var containedBackgroundCircle: UIView = {
-        viewConfigurator.createContainedBackgroundCircle()
-    }()
+    private let containedBackgroundCircle: UIView
 
-    public convenience init(
+    public init(
         accessibilityLabel: String,
         style: BPKCardButtonStyle = .default,
         size: BPKCardButtonSize = .default,
         onClick: @escaping () -> Void
     ) {
-        self.init(frame: .zero)
-        self.accessibilityLabel = accessibilityLabel
         self.style = style
         self.size = size
         self.onClick = onClick
-        render()
+        self.containedBackgroundCircle = viewConfigurator.createContainedBackgroundCircle()
+
+        super.init(frame: .zero)
+        self.accessibilityLabel = accessibilityLabel
+
+        setup()
+        updateLookAndFeel()
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func setup() {
@@ -85,7 +82,7 @@ public class BPKShareCardButton: UIButton {
         viewConfigurator.configureSizeConstraints(self)
     }
 
-    private func render() {
+    private func updateLookAndFeel() {
         viewConfigurator.configureButtonImages(
             self,
             style: style,
@@ -107,6 +104,6 @@ public class BPKShareCardButton: UIButton {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        render()
+        updateLookAndFeel()
     }
 }

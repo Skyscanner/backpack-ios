@@ -24,26 +24,24 @@ public class BPKSaveCardButton: UIButton {
         didSet {
             viewConfigurator.icons = checked ? Self.checkedIcons : Self.uncheckedIcons
             viewConfigurator.colors = checked ? Self.checkedColor : Self.uncheckedColor
-            render()
+            updateLookAndFeel()
             onCheckedChange(checked)
         }
     }
 
-    public var style: BPKCardButtonStyle = .default {
-        didSet { render() }
+    public var style: BPKCardButtonStyle {
+        didSet { updateLookAndFeel() }
     }
 
-    public var size: BPKCardButtonSize = .default {
-        didSet { render() }
+    public var size: BPKCardButtonSize {
+        didSet { updateLookAndFeel() }
     }
 
-    public var onCheckedChange: (Bool) -> Void = { _ in }
+    public let onCheckedChange: (Bool) -> Void
 
     private var viewConfigurator: CardButtonViewConfigurator
 
-    private lazy var containedBackgroundCircle: UIView = {
-        viewConfigurator.createContainedBackgroundCircle()
-    }()
+    private let containedBackgroundCircle: UIView
 
     public init(
         checked: Bool,
@@ -60,11 +58,13 @@ public class BPKSaveCardButton: UIButton {
         self.style = style
         self.size = size
         self.onCheckedChange = onCheckedChange
+        self.containedBackgroundCircle = viewConfigurator.createContainedBackgroundCircle()
+
         super.init(frame: .zero)
         self.accessibilityLabel = accessibilityLabel
 
         setup()
-        render()
+        updateLookAndFeel()
     }
 
     @available(*, unavailable)
@@ -76,7 +76,7 @@ public class BPKSaveCardButton: UIButton {
         viewConfigurator.configureSizeConstraints(self)
     }
 
-    private func render() {
+    private func updateLookAndFeel() {
         viewConfigurator.configureButtonImages(
             self,
             style: style,
@@ -93,7 +93,7 @@ public class BPKSaveCardButton: UIButton {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        render()
+        updateLookAndFeel()
     }
 }
 
