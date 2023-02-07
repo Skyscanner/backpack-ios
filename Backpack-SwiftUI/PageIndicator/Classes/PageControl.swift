@@ -23,7 +23,6 @@ struct PageControl: UIViewRepresentable {
     let variant: BPKPageIndicator.Variant
     @Binding var currentIndex: Int
     @Binding var totalIndicators: Int
-    @Binding var indicatorLabel: String
     
     func makeUIView(context: Context) -> UIPageControl {
         UIPageControl()

@@ -40,26 +40,17 @@ public final class BPKPageIndicator: UIView {
         }
     }
     
-    //    This is a label for screen readers on the indicators themselves
-    public var indicatorLabel: String {
-        didSet {
-            pageControl.accessibilityLabel = indicatorLabel
-        }
-    }
-    
     //    Switches between default and overImage style
     public let variant: Variant
     
     public init(
         variant: Variant,
         currentIndex: Int,
-        totalIndicators: Int,
-        indicatorLabel: String
+        totalIndicators: Int
     ) {
         self.variant = variant
         self.currentIndex = currentIndex
         self.totalIndicators = totalIndicators
-        self.indicatorLabel = indicatorLabel
         
         super.init(frame: .zero)
         setupPageControl()
@@ -77,7 +68,6 @@ public final class BPKPageIndicator: UIView {
         
         pageControl.currentPage = currentIndex
         pageControl.numberOfPages = totalIndicators
-        pageControl.accessibilityLabel = indicatorLabel
         
         switch variant {
         case .`default`:

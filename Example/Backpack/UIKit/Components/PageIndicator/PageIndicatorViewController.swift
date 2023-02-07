@@ -31,8 +31,7 @@ class PageIndicatorViewController: UIViewController {
         let defaultPageIndicator = BPKPageIndicator(
             variant: .default,
             currentIndex: 0,
-            totalIndicators: 3,
-            indicatorLabel: "Accessibility label for default page indicator."
+            totalIndicators: 3
         )
         
         let imageBackground = UIImageView(image: UIImage(named: "dialog_image")!)
@@ -41,8 +40,7 @@ class PageIndicatorViewController: UIViewController {
         let overImagePageIndicator = BPKPageIndicator(
             variant: .overImage,
             currentIndex: 0,
-            totalIndicators: 3,
-            indicatorLabel: "Accessibility label for over image page indicator."
+            totalIndicators: 3
         )
         overImagePageIndicator.translatesAutoresizingMaskIntoConstraints = false
         

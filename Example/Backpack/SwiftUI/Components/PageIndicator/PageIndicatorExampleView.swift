@@ -26,8 +26,7 @@ struct PageIndicatorExampleView: View {
             BPKPageIndicator(
                 variant: .default,
                 currentIndex: 0,
-                totalIndicators: 3,
-                indicatorLabel: ""
+                totalIndicators: 3
             )
             
             ZStack(alignment: .bottom) {
@@ -36,8 +35,7 @@ struct PageIndicatorExampleView: View {
                 BPKPageIndicator(
                     variant: .overImage,
                     currentIndex: 0,
-                    totalIndicators: 3,
-                    indicatorLabel: ""
+                    totalIndicators: 3
                 )
                 .padding(BPKSpacingBase)
             }

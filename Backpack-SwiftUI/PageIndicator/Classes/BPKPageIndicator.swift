@@ -32,22 +32,17 @@ public struct BPKPageIndicator: View {
     //    This is the total number of indicators to be available
     @State public var totalIndicators: Int
     
-    //    This is a label for screen readers on the indicators themselves
-    @State public var indicatorLabel: String
-    
-    public init(variant: Variant, currentIndex: Int, totalIndicators: Int, indicatorLabel: String) {
+    public init(variant: Variant, currentIndex: Int, totalIndicators: Int) {
         self.variant = variant
         self.currentIndex = currentIndex
         self.totalIndicators = totalIndicators
-        self.indicatorLabel = indicatorLabel
     }
     
     public var body: some View {
         PageControl(
             variant: variant,
             currentIndex: $currentIndex,
-            totalIndicators: $totalIndicators,
-            indicatorLabel: $indicatorLabel
+            totalIndicators: $totalIndicators
         )
     }
 }
@@ -57,8 +52,7 @@ struct BPKPageIndicator_Previews: PreviewProvider {
         BPKPageIndicator(
             variant: .default,
             currentIndex: 0,
-            totalIndicators: 3,
-            indicatorLabel: ""
+            totalIndicators: 3
         )
     }
 }
