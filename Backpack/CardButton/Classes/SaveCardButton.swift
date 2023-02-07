@@ -24,7 +24,6 @@ public class BPKSaveCardButton: UIButton {
 
     public var checked: Bool = false {
         didSet {
-            // SONIC-1376 add check/uncheck animation
             viewConfigurator.icons = checked ? Self.checkedIcons : Self.uncheckedIcons
             viewConfigurator.colors = checked ? Self.checkedColor : Self.uncheckedColor
             render()
@@ -97,6 +96,46 @@ public class BPKSaveCardButton: UIButton {
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         render()
+    }
+}
+
+extension BPKSaveCardButton {
+    public func setChecked(_ newValue: Bool, animated: Bool) {
+        guard animated, let imageView = imageView else {
+            checked = newValue
+            return
+        }
+        if newValue {
+            // Update icon color before animation starts
+            checked = true
+            // 1. resize to 30px
+            // 2. wait
+            // 3. resize back to 24px
+            let transformBefore = imageView.transform
+            UIView.animate(
+                withDuration: BPKDuration.animationDurationSm,
+                delay: 0,
+                options: UIView.AnimationOptions([.beginFromCurrentState, .curveEaseOut])
+            ) {
+                imageView.transform = CGAffineTransformMakeScale(1.25, 1.25)
+            }
+            UIView.animate(
+                withDuration: BPKDuration.animationDurationSm,
+                delay: BPKDuration.animationDurationSm * 2,
+                options: UIView.AnimationOptions([.beginFromCurrentState, .curveEaseIn])
+            ) {
+                imageView.transform = transformBefore
+            }
+        } else {
+            // return to default state with transition
+            UIView.transition(
+                with: self,
+                duration: BPKDuration.animationDurationSm,
+                options: .transitionCrossDissolve
+            ) {
+                self.checked = newValue
+            }
+        }
     }
 }
 

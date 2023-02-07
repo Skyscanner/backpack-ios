@@ -190,7 +190,7 @@ final class CardButtonsViewController: UIViewController {
             }
             stack.addArrangedSubview(horizontalStack)
         }
-        
+
         view.addSubview(stack)
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(
@@ -219,21 +219,29 @@ final class CardButtonsViewController: UIViewController {
                 onClick: {}
             )
         case .unsaved:
-            cardButton = BPKSaveCardButton(
+            let saveButton = BPKSaveCardButton(
                 checked: false,
                 accessibilityLabel: "",
                 style: cardButtonParams.style,
                 size: cardButtonParams.size,
                 onCheckedChange: { _ in }
             )
+            saveButton.addAction(UIAction(title: "tapped", handler: { _ in
+                saveButton.setChecked(!saveButton.checked, animated: true)
+            }), for: .primaryActionTriggered)
+            cardButton = saveButton
         case .saved:
-            cardButton = BPKSaveCardButton(
+            let saveButton = BPKSaveCardButton(
                 checked: true,
                 accessibilityLabel: "",
                 style: cardButtonParams.style,
                 size: cardButtonParams.size,
                 onCheckedChange: { _ in }
             )
+            saveButton.addAction(UIAction(title: "tapped", handler: { _ in
+                saveButton.setChecked(!saveButton.checked, animated: true)
+            }), for: .primaryActionTriggered)
+            cardButton = saveButton
         }
         cardButton.translatesAutoresizingMaskIntoConstraints = false
         return cardButton
@@ -241,13 +249,19 @@ final class CardButtonsViewController: UIViewController {
 
     private func makeCardButtonWithContainer(_ cardButtonParams: CardButtonSample) -> UIView {
         let cardButton = makeCardButton(cardButtonParams)
+        let container = makeContainer(subview: cardButton)
+        container.backgroundColor = cardButtonParams.backgroundColor
+
+        return container
+    }
+
+    private func makeContainer(subview: UIView) -> UIView {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = cardButtonParams.backgroundColor
-        container.addSubview(cardButton)
+        container.addSubview(subview)
         NSLayoutConstraint.activate([
-            cardButton.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            cardButton.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            subview.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            subview.centerYAnchor.constraint(equalTo: container.centerYAnchor),
             container.widthAnchor.constraint(equalToConstant: BPKSpacingXl * 2),
             container.heightAnchor.constraint(equalToConstant: BPKSpacingXl * 2)
         ])
