@@ -200,6 +200,7 @@ BPKSmallIconName const BPKSmallIconNameNews = @"news";
 BPKSmallIconName const BPKSmallIconNameNight = @"night";
 BPKSmallIconName const BPKSmallIconNameNotAllowed = @"not-allowed";
 BPKSmallIconName const BPKSmallIconNameOnsen = @"onsen";
+BPKSmallIconName const BPKSmallIconNameOrigin = @"origin";
 BPKSmallIconName const BPKSmallIconNamePaid = @"paid";
 BPKSmallIconName const BPKSmallIconNamePaperclip = @"paperclip";
 BPKSmallIconName const BPKSmallIconNameParking = @"parking";

@@ -200,6 +200,7 @@ BPKLargeIconName const BPKLargeIconNameNews = @"news";
 BPKLargeIconName const BPKLargeIconNameNight = @"night";
 BPKLargeIconName const BPKLargeIconNameNotAllowed = @"not-allowed";
 BPKLargeIconName const BPKLargeIconNameOnsen = @"onsen";
+BPKLargeIconName const BPKLargeIconNameOrigin = @"origin";
 BPKLargeIconName const BPKLargeIconNamePaid = @"paid";
 BPKLargeIconName const BPKLargeIconNamePaperclip = @"paperclip";
 BPKLargeIconName const BPKLargeIconNameParking = @"parking";

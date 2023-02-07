@@ -200,6 +200,7 @@ BPKIconName const BPKIconNameNews = @"news";
 BPKIconName const BPKIconNameNight = @"night";
 BPKIconName const BPKIconNameNotAllowed = @"not-allowed";
 BPKIconName const BPKIconNameOnsen = @"onsen";
+BPKIconName const BPKIconNameOrigin = @"origin";
 BPKIconName const BPKIconNamePaid = @"paid";
 BPKIconName const BPKIconNamePaperclip = @"paperclip";
 BPKIconName const BPKIconNameParking = @"parking";

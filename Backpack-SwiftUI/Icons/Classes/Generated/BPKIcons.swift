@@ -198,6 +198,7 @@ public extension BPKIcon {
     static let night = BPKIcon(name: "night")
     static let notAllowed = BPKIcon(name: "not-allowed")
     static let onsen = BPKIcon(name: "onsen")
+    static let origin = BPKIcon(name: "origin")
     static let paid = BPKIcon(name: "paid")
     static let paperclip = BPKIcon(name: "paperclip")
     static let parking = BPKIcon(name: "parking")
