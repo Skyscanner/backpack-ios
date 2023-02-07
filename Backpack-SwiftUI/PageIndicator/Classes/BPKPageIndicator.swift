@@ -18,41 +18,48 @@
 
 import SwiftUI
 
-public struct BPKPageIndicator: View {
+public struct BPKPageIndicator: UIViewRepresentable {
     public enum Variant {
         case `default`, overImage
     }
     
-    //    Switches between default and overImage style
     public let variant: Variant
+    @Binding public var currentIndex: Int
+    @Binding public var totalIndicators: Int
     
-    //    This sets the current highlighted indicator
-    @State public var currentIndex: Int
-    
-    //    This is the total number of indicators to be available
-    @State public var totalIndicators: Int
-    
-    public init(variant: Variant, currentIndex: Int, totalIndicators: Int) {
+    public init(
+        variant: Variant = .default,
+        currentIndex: Binding<Int>,
+        totalIndicators: Binding<Int>
+    ) {
         self.variant = variant
-        self.currentIndex = currentIndex
-        self.totalIndicators = totalIndicators
+        _currentIndex = currentIndex
+        _totalIndicators = totalIndicators
     }
     
-    public var body: some View {
-        PageControl(
-            variant: variant,
-            currentIndex: $currentIndex,
-            totalIndicators: $totalIndicators
-        )
+    public func makeUIView(context: Context) -> UIPageControl {
+        UIPageControl()
+    }
+    
+    public func updateUIView(_ uiView: UIPageControl, context: Context) {
+        uiView.isUserInteractionEnabled = false
+        uiView.numberOfPages = totalIndicators
+        uiView.currentPage = currentIndex
+        
+        switch variant {
+        case .`default`:
+            uiView.currentPageIndicatorTintColor = BPKColor.textSecondaryColor.value
+            uiView.pageIndicatorTintColor = BPKColor.lineColor.value
+        case .overImage:
+            uiView.currentPageIndicatorTintColor = BPKColor.textOnDarkColor.value
+            uiView.pageIndicatorTintColor = BPKColor.lineOnDarkColor.value
+        }
     }
 }
 
+
 struct BPKPageIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        BPKPageIndicator(
-            variant: .default,
-            currentIndex: 0,
-            totalIndicators: 3
-        )
+        BPKPageIndicator(currentIndex: .constant(0), totalIndicators: .constant(3))
     }
 }

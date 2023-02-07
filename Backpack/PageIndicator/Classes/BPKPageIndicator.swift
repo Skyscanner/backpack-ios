@@ -44,7 +44,7 @@ public final class BPKPageIndicator: UIView {
     public let variant: Variant
     
     public init(
-        variant: Variant,
+        variant: Variant = .default,
         currentIndex: Int,
         totalIndicators: Int
     ) {
@@ -54,6 +54,7 @@ public final class BPKPageIndicator: UIView {
         
         super.init(frame: .zero)
         setupPageControl()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -77,7 +78,9 @@ public final class BPKPageIndicator: UIView {
             pageControl.currentPageIndicatorTintColor = BPKColor.textOnDarkColor
             pageControl.pageIndicatorTintColor = BPKColor.lineOnDarkColor
         }
-        
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             pageControl.leadingAnchor.constraint(equalTo: leadingAnchor),
             pageControl.trailingAnchor.constraint(equalTo: trailingAnchor),

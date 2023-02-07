@@ -29,13 +29,11 @@ class PageIndicatorViewController: UIViewController {
     
     private func createView() {
         let defaultPageIndicator = BPKPageIndicator(
-            variant: .default,
             currentIndex: 0,
             totalIndicators: 3
         )
         
         let imageBackground = UIImageView(image: UIImage(named: "dialog_image")!)
-        imageBackground.isUserInteractionEnabled = true
         
         let overImagePageIndicator = BPKPageIndicator(
             variant: .overImage,

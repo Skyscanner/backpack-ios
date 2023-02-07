@@ -21,12 +21,15 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct PageIndicatorExampleView: View {
+    @State var currentIndex: Int = 0
+    @State var totalIndicators: Int = 3
+    
     var body: some View {
         VStack(spacing: BPKSpacingBase) {
             BPKPageIndicator(
                 variant: .default,
-                currentIndex: 0,
-                totalIndicators: 3
+                currentIndex: $currentIndex,
+                totalIndicators: $totalIndicators
             )
             
             ZStack(alignment: .bottom) {
@@ -34,8 +37,8 @@ struct PageIndicatorExampleView: View {
                 
                 BPKPageIndicator(
                     variant: .overImage,
-                    currentIndex: 0,
-                    totalIndicators: 3
+                    currentIndex: $currentIndex,
+                    totalIndicators: $totalIndicators
                 )
                 .padding(BPKSpacingBase)
             }
