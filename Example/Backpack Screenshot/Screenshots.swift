@@ -176,6 +176,10 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        navigate(title: "Card Button") {
+            saveScreenshot(component: "cardButton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
+
         navigate(title: "Chips") {
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)

@@ -40,7 +40,7 @@ private struct CardButtonSample {
 final class CardButtonsViewController: UIViewController {
     private let sampleButtons: [CardButtonSampleRow] = [
         CardButtonSampleRow(
-            title: "Size: default \tStyle:[default, contained, onDark]",
+            title: "Size: default",
             cardButtons: [
                 CardButtonSample(
                     icon: .share,
@@ -171,11 +171,21 @@ final class CardButtonsViewController: UIViewController {
 
     private func setupView() {
         let stack = UIStackView(frame: .zero)
-        stack.alignment = .leading
+        stack.alignment = .center
         stack.spacing = BPKSpacingSm
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        
+
+        let titleStack = UIStackView()
+        titleStack.spacing = BPKSpacingBase
+        titleStack.distribution = .equalCentering
+        ["default", "contained", "onDark"].forEach { text in
+            let styleLabelDefault = BPKLabel()
+            styleLabelDefault.text = text
+            titleStack.addArrangedSubview(styleLabelDefault)
+        }
+        stack.addArrangedSubview(titleStack)
+
         sampleButtons.forEach { row in
             let label = BPKLabel()
             label.numberOfLines = 0
@@ -183,7 +193,7 @@ final class CardButtonsViewController: UIViewController {
             stack.addArrangedSubview(label)
 
             let horizontalStack = UIStackView()
-            horizontalStack.axis = .horizontal
+            horizontalStack.distribution = .equalCentering
             row.cardButtons.forEach {
                 let cardButton = makeCardButtonWithContainer($0)
                 horizontalStack.addArrangedSubview(cardButton)
