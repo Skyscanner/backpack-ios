@@ -826,8 +826,9 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param lightVariant The color used in light mode, or on systems that don't support dark-mode.
  * @param darkVariant The color used in dark mode.
+ * @deprecated Please use only available BPKColors.
  */
-+ (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant;
++ (UIColor *)dynamicColorWithLightVariant:(UIColor *)lightVariant darkVariant:(UIColor *)darkVariant __deprecated_msg("Please use only available BPKColors");
 
 @end
 NS_ASSUME_NONNULL_END
