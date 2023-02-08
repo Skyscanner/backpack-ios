@@ -79,6 +79,7 @@ private struct CardButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .frame(maxWidth: .infinity)
             .background(backgroundColor)
             .overlay(
                 Color(.surfaceContrastColor)
