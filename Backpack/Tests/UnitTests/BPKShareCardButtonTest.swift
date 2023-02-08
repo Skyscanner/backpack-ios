@@ -26,8 +26,7 @@ class BPKShareCardButtonTest: XCTestCase {
 
         // When
         let shareCardButton = BPKShareCardButton(
-            accessibilityLabel: stubAccessibilityLabel,
-            onClick: {}
+            accessibilityLabel: stubAccessibilityLabel
         )
 
         // Then

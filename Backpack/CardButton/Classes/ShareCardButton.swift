@@ -28,8 +28,6 @@ public class BPKShareCardButton: UIButton {
         didSet { updateLookAndFeel() }
     }
 
-    public let onClick: () -> Void
-
     private let viewConfigurator = CardButtonViewConfigurator(
         icons: CardButtonViewConfigurator.CardButtonIcons(
             smallIcon: .shareiOS,
@@ -52,12 +50,10 @@ public class BPKShareCardButton: UIButton {
     public init(
         accessibilityLabel: String,
         style: BPKCardButtonStyle = .default,
-        size: BPKCardButtonSize = .default,
-        onClick: @escaping () -> Void
+        size: BPKCardButtonSize = .default
     ) {
         self.style = style
         self.size = size
-        self.onClick = onClick
         self.containedBackgroundCircle = viewConfigurator.createContainedBackgroundCircle()
 
         super.init(frame: .zero)
@@ -73,12 +69,6 @@ public class BPKShareCardButton: UIButton {
     }
 
     private func setup() {
-        addTarget(
-            self,
-            action: #selector(primaryActionTriggered),
-            for: .primaryActionTriggered
-        )
-
         viewConfigurator.configureSizeConstraints(self)
     }
 
@@ -95,11 +85,6 @@ public class BPKShareCardButton: UIButton {
             style: style,
             size: size
         )
-    }
-
-    @objc
-    private func primaryActionTriggered() {
-        onClick()
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

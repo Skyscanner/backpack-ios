@@ -110,8 +110,7 @@ final class CardButtonsViewController: UIViewController {
             cardButton = BPKShareCardButton(
                 accessibilityLabel: "",
                 style: cardButtonParams.style,
-                size: cardButtonParams.size,
-                onClick: {}
+                size: cardButtonParams.size
             )
         case .unsaved:
             let saveButton = BPKSaveCardButton(

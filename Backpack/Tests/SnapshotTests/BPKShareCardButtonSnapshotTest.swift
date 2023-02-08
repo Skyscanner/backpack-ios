@@ -53,8 +53,7 @@ class BPKShareCardButtonSnapshotTest: XCTestCase {
             let cardButton = BPKShareCardButton(
                 accessibilityLabel: "",
                 style: style,
-                size: size,
-                onClick: {}
+                size: size
             )
             cardButton.backgroundColor = buttonBackgroundColor(for: style)
             return cardButton
