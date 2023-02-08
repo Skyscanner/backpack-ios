@@ -22,8 +22,6 @@ public class BPKSaveCardButton: UIButton {
 
     public var checked: Bool {
         didSet {
-            viewConfigurator.icons = checked ? Self.checkedIcons : Self.uncheckedIcons
-            viewConfigurator.colors = checked ? Self.checkedColor : Self.uncheckedColor
             updateLookAndFeel()
             onCheckedChange?(checked)
         }
@@ -39,8 +37,7 @@ public class BPKSaveCardButton: UIButton {
 
     public var onCheckedChange: ((Bool) -> Void)?
 
-    private let viewConfigurator: CardButtonViewConfigurator
-
+    private let viewConfigurator = CardButtonViewConfigurator()
     private let containedBackgroundCircle: UIView
 
     public init(
@@ -50,10 +47,6 @@ public class BPKSaveCardButton: UIButton {
         size: BPKCardButtonSize = .default,
         onCheckedChange: ((Bool) -> Void)? = nil
     ) {
-        self.viewConfigurator = CardButtonViewConfigurator(
-            icons: checked ? Self.checkedIcons : Self.uncheckedIcons,
-            colors: checked ? Self.checkedColor : Self.uncheckedColor
-        )
         self.checked = checked
         self.style = style
         self.size = size
@@ -73,22 +66,95 @@ public class BPKSaveCardButton: UIButton {
     }
 
     private func setup() {
-        viewConfigurator.configureSizeConstraints(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: viewConfigurator.widthHeight),
+            heightAnchor.constraint(equalToConstant: viewConfigurator.widthHeight)
+        ])
     }
 
     private func updateLookAndFeel() {
-        viewConfigurator.configureButtonImages(
-            self,
-            style: style,
-            size: size
-        )
+        updateButtonImages()
+        updateBackgroundCircleView()
+    }
 
-        viewConfigurator.setupButtonBackground(
-            self,
-            containedBackgroundCircle: containedBackgroundCircle,
-            style: style,
-            size: size
-        )
+    private func updateButtonImages() {
+        let icons = checked ? Self.checkedIcons : Self.uncheckedIcons
+
+        switch size {
+        case .default:
+            let largeIconNormal = BPKIcon.makeLargeIcon(
+                name: icons.defaultIcon,
+                color: normalIconColor(style: style, checked: checked)
+            )
+            setImage(largeIconNormal, for: .normal)
+
+            let largeIconHighlighted = BPKIcon.makeLargeIcon(
+                name: icons.defaultIconHighlighted,
+                color: highlightedIconColor(style: style, checked: checked)
+            )
+            setImage(largeIconHighlighted, for: .highlighted)
+        case .small:
+            let smallIconNormal = BPKIcon.makeSmallIcon(
+                name: icons.smallIcon,
+                color: normalIconColor(style: style, checked: checked)
+            )
+            setImage(smallIconNormal, for: .normal)
+
+            let smallIconHighlighted = BPKIcon.makeSmallIcon(
+                name: icons.smallIconHighlighted,
+                color: highlightedIconColor(style: style, checked: checked)
+            )
+            setImage(smallIconHighlighted, for: .highlighted)
+        }
+    }
+
+    private func normalIconColor(style: BPKCardButtonStyle, checked: Bool) -> UIColor {
+        let colors = checked ? Self.checkedColor : Self.uncheckedColor
+
+        switch style {
+        case .onDark:
+            return colors.iconColorOnDark
+        case .contained:
+            return colors.iconColorContained
+        case .default:
+            return colors.iconColorDefault
+        }
+    }
+
+    private func highlightedIconColor(style: BPKCardButtonStyle, checked: Bool) -> UIColor {
+        let colors = checked ? Self.checkedColor : Self.uncheckedColor
+
+        switch style {
+        case .onDark:
+            return colors.highlightedIconColorOnDark
+        case .contained:
+            return colors.highlightedIconColorContained
+        case .default:
+            return colors.highlightedIconColorDefault
+        }
+    }
+
+    private func updateBackgroundCircleView() {
+        if viewConfigurator.shouldAddButtonBackground(style: style) {
+            if containedBackgroundCircle.superview == nil {
+                addSubview(containedBackgroundCircle)
+                let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
+                containedBackgroundCircle.layer.cornerRadius = circleSize / 2
+
+                NSLayoutConstraint.activate([
+                    containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
+                    containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
+                    containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
+                    containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
+                ])
+                imageView.map { bringSubviewToFront($0) }
+            }
+        } else {
+            if containedBackgroundCircle.superview != nil {
+                containedBackgroundCircle.removeFromSuperview()
+            }
+        }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -137,22 +203,38 @@ extension BPKSaveCardButton {
     }
 }
 
-extension BPKSaveCardButton {
+private extension BPKSaveCardButton {
 
-    static private let uncheckedIcons = CardButtonViewConfigurator.CardButtonIcons(
+    private struct Icons {
+        let smallIcon: BPKSmallIconName
+        let smallIconHighlighted: BPKSmallIconName
+        let defaultIcon: BPKLargeIconName
+        let defaultIconHighlighted: BPKLargeIconName
+    }
+
+    private struct Colors {
+        let iconColorOnDark: UIColor
+        let iconColorContained: UIColor
+        let iconColorDefault: UIColor
+        let highlightedIconColorOnDark: UIColor
+        let highlightedIconColorContained: UIColor
+        let highlightedIconColorDefault: UIColor
+    }
+
+    static private let uncheckedIcons = Icons(
         smallIcon: .heartOutline,
         smallIconHighlighted: .heart,
         defaultIcon: .heartOutline,
         defaultIconHighlighted: .heart
     )
-    static private let checkedIcons = CardButtonViewConfigurator.CardButtonIcons(
+    static private let checkedIcons = Icons(
         smallIcon: .heart,
         smallIconHighlighted: .heart,
         defaultIcon: .heart,
         defaultIconHighlighted: .heart
     )
 
-    static private let uncheckedColor = CardButtonViewConfigurator.CardButtonColor(
+    static private let uncheckedColor = Colors(
         iconColorOnDark: BPKColor.textOnDarkColor,
         iconColorContained: BPKColor.textPrimaryColor,
         iconColorDefault: BPKColor.textPrimaryColor,
@@ -161,7 +243,7 @@ extension BPKSaveCardButton {
         highlightedIconColorDefault: BPKColor.textPrimaryColor
     )
 
-    static private let checkedColor = CardButtonViewConfigurator.CardButtonColor(
+    static private let checkedColor = Colors(
         iconColorOnDark: BPKColor.textOnDarkColor,
         iconColorContained: BPKColor.coreAccentColor,
         iconColorDefault: BPKColor.coreAccentColor,

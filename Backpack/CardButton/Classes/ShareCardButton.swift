@@ -28,23 +28,7 @@ public class BPKShareCardButton: UIButton {
         didSet { updateLookAndFeel() }
     }
 
-    private let viewConfigurator = CardButtonViewConfigurator(
-        icons: CardButtonViewConfigurator.CardButtonIcons(
-            smallIcon: .shareiOS,
-            smallIconHighlighted: .shareiOS,
-            defaultIcon: .shareiOS,
-            defaultIconHighlighted: .shareiOS
-        ),
-        colors: CardButtonViewConfigurator.CardButtonColor(
-            iconColorOnDark: BPKColor.textOnDarkColor,
-            iconColorContained: BPKColor.textPrimaryColor,
-            iconColorDefault: BPKColor.textPrimaryColor,
-            highlightedIconColorOnDark: BPKColor.textDisabledOnDarkColor,
-            highlightedIconColorContained: BPKColor.textLinkColor,
-            highlightedIconColorDefault: BPKColor.textLinkColor
-        )
-    )
-
+    private let viewConfigurator = CardButtonViewConfigurator()
     private let containedBackgroundCircle: UIView
 
     public init(
@@ -69,22 +53,89 @@ public class BPKShareCardButton: UIButton {
     }
 
     private func setup() {
-        viewConfigurator.configureSizeConstraints(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: viewConfigurator.widthHeight),
+            heightAnchor.constraint(equalToConstant: viewConfigurator.widthHeight)
+        ])
     }
 
     private func updateLookAndFeel() {
-        viewConfigurator.configureButtonImages(
-            self,
-            style: style,
-            size: size
-        )
+        updateButtonImages()
+        updateBackgroundCircleView()
+    }
 
-        viewConfigurator.setupButtonBackground(
-            self,
-            containedBackgroundCircle: containedBackgroundCircle,
-            style: style,
-            size: size
-        )
+    private func updateButtonImages() {
+        switch size {
+        case .default:
+            let largeIconNormal = BPKIcon.makeLargeIcon(
+                name: .shareiOS,
+                color: normalIconColor(style: style)
+            )
+            setImage(largeIconNormal, for: .normal)
+
+            let largeIconHighlighted = BPKIcon.makeLargeIcon(
+                name: .shareiOS,
+                color: highlightedIconColor(style: style)
+            )
+            setImage(largeIconHighlighted, for: .highlighted)
+        case .small:
+            let smallIconNormal = BPKIcon.makeSmallIcon(
+                name: .shareiOS,
+                color: normalIconColor(style: style)
+            )
+            setImage(smallIconNormal, for: .normal)
+
+            let smallIconHighlighted = BPKIcon.makeSmallIcon(
+                name: .shareiOS,
+                color: highlightedIconColor(style: style)
+            )
+            setImage(smallIconHighlighted, for: .highlighted)
+        }
+    }
+
+    private func normalIconColor(style: BPKCardButtonStyle) -> UIColor {
+        switch style {
+        case .onDark:
+            return BPKColor.textOnDarkColor
+        case .contained:
+            return BPKColor.textPrimaryColor
+        case .default:
+            return BPKColor.textPrimaryColor
+        }
+    }
+
+    private func highlightedIconColor(style: BPKCardButtonStyle) -> UIColor {
+        switch style {
+        case .onDark:
+            return BPKColor.textDisabledOnDarkColor
+        case .contained:
+            return BPKColor.textLinkColor
+        case .default:
+            return BPKColor.textLinkColor
+        }
+    }
+
+    private func updateBackgroundCircleView() {
+        if viewConfigurator.shouldAddButtonBackground(style: style) {
+            if containedBackgroundCircle.superview == nil {
+                addSubview(containedBackgroundCircle)
+                let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
+                containedBackgroundCircle.layer.cornerRadius = circleSize / 2
+
+                NSLayoutConstraint.activate([
+                    containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
+                    containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
+                    containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
+                    containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
+                ])
+                imageView.map { bringSubviewToFront($0) }
+            }
+        } else {
+            if containedBackgroundCircle.superview != nil {
+                containedBackgroundCircle.removeFromSuperview()
+            }
+        }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
