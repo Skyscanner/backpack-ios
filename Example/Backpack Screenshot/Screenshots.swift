@@ -183,47 +183,42 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["On Dark"].tap()
             saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            
+            app.tables.staticTexts["On Image"].tap()
+            saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Dialogs") {
-            app.tables.staticTexts["With call to action"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "with-cta", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
-            app.tables.staticTexts["Warning"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
-            app.tables.staticTexts["With no title"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "no-title", userInterfaceStyle: userInterfaceStyle)
-            tapDialogScrimView()
-            tapBackButton()
-            app.tables.staticTexts["Delete confirmation"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "delete-confirmation", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Delete"].tap()
-            tapBackButton()
+            let showButtonText = "Show dialog"
+            
             app.tables.staticTexts["Success"].tap()
-            app.buttons["Show"].tap()
+            app.buttons[showButtonText].tap()
             saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
-            app.tables.staticTexts["With no icon"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "no-icon", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Got it"].tap()
+            
+            app.tables.staticTexts["Warning"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
             tapBackButton()
-            app.tables.staticTexts["With no icon and no title"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "no-title-no-icon", userInterfaceStyle: userInterfaceStyle)
-            app.buttons["Got it"].tap()
+            
+            app.tables.staticTexts["Destructive"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Delete"].tap()
             tapBackButton()
-            app.tables.cells.staticTexts["In-app messaging"].tap()
-            app.buttons["Show"].tap()
-            saveScreenshot(component: "dialog", scenario: "in-app-messaging", userInterfaceStyle: userInterfaceStyle)
+            
+            app.tables.staticTexts["Flare"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
+            tapDialogScrimView()
+            tapBackButton()
+            
+            app.tables.staticTexts["Image"].tap()
+            app.buttons[showButtonText].tap()
+            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
             tapDialogScrimView()
             tapBackButton()
         }
@@ -433,6 +428,11 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Docs"].tap()
             app.buttons["Show Toast"].tap()
             saveScreenshot(component: "toast", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Page indicators") {
+            saveScreenshot(component: "page indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }

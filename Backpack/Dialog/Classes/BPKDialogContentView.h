@@ -61,6 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, readonly, assign) BOOL hasTitle;
 
+/**
+ * Set the alignment of the text in the content view, this will change how the title and message align
+ */
+@property(nonatomic, assign) NSTextAlignment textAlignment;
+
 - (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 

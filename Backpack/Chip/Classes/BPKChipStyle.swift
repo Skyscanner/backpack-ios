@@ -20,6 +20,5 @@ import Foundation
 
 @objc
 public enum BPKChipStyle: UInt {
-    case `default`
-    case onDark
+    case `default`, onDark, onImage
 }

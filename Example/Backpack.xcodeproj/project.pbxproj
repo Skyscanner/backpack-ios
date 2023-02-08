@@ -83,6 +83,8 @@
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AA617E40298D6AE30089E51A /* PageIndicatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */; };
+		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
 		BA6D80B5298A4A1600209D53 /* CardWrapperExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */; };
 		BA97B096290FCDFD00AE4172 /* DividedCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */; };
 		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
@@ -110,9 +112,6 @@
 		D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */; };
 		D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */; };
 		D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D278358C22EA2A81004C79CF /* ProgressBar.storyboard */; };
-		D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */; };
-		D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */; };
-		D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE9292193159C00C877EA /* Chips.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
 		D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D282E865259E04F3000AD77E /* TextFieldsViewController.swift */; };
 		D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28443E922FC42A30066F88B /* FlareViewViewController.swift */; };
@@ -150,7 +149,6 @@
 		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
-		D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
 		D6FA3DB4224E220D00CFA094 /* UIWindow+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */; };
 		D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */; };
@@ -271,6 +269,8 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorExampleView.swift; sourceTree = "<group>"; };
+		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
 		BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardWrapperExampleView.swift; sourceTree = "<group>"; };
 		BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedCardExampleView.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,9 +299,6 @@
 		D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerStoryViewController.swift; sourceTree = "<group>"; };
 		D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelMultiFontStyleViewController.swift; sourceTree = "<group>"; };
 		D278358C22EA2A81004C79CF /* ProgressBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProgressBar.storyboard; sourceTree = "<group>"; };
-		D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipSelectorViewController.swift; sourceTree = "<group>"; };
-		D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		D27EE9292193159C00C877EA /* Chips.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chips.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
 		D282E865259E04F3000AD77E /* TextFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsViewController.swift; sourceTree = "<group>"; };
 		D28443E922FC42A30066F88B /* FlareViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareViewViewController.swift; sourceTree = "<group>"; };
@@ -346,7 +343,6 @@
 		D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
-		D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dialogs.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		D6FA3DB3224E220D00CFA094 /* UIWindow+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Utility.swift"; sourceTree = "<group>"; };
 		D6FC4E572625DBF6000BA351 /* NudgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgerViewController.swift; sourceTree = "<group>"; };
@@ -642,6 +638,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA617E3E298D6ABD0089E51A /* PageIndicator */,
 				0E8EEFC728A23C1D008BA7A3 /* Skeleton */,
 				7928F7D3286EDAB100D8B9E8 /* Spinner */,
 				7914E3AA286AB03C00EB9F90 /* Badge */,
@@ -666,6 +663,7 @@
 		793EC5532836140A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AAF235D8298BF775003D8507 /* PageIndicator */,
 				0E844AF5289141AA004C5865 /* Skeleton */,
 				793EC56F283615C900D627F6 /* Text view */,
 				793EC56E283615BD00D627F6 /* Gradient */,
@@ -751,9 +749,6 @@
 		793EC5592836145200D627F6 /* Chip */ = {
 			isa = PBXGroup;
 			children = (
-				D27E883F2199A5D000C962BF /* ChipPreviewCollectionViewCell.swift */,
-				D27EE9292193159C00C877EA /* Chips.storyboard */,
-				D279B4BB23295116000F5898 /* ChipSelectorViewController.swift */,
 				D27EE92B2193163900C877EA /* ChipsViewController.swift */,
 			);
 			path = Chip;
@@ -762,7 +757,6 @@
 		793EC55A2836147000D627F6 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				D6DC0AF4216BBAE10003AC5D /* Dialogs.storyboard */,
 				D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */,
 			);
 			path = Dialog;
@@ -966,6 +960,22 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA617E3E298D6ABD0089E51A /* PageIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */,
+			);
+			path = PageIndicator;
+			sourceTree = "<group>";
+		};
+		AAF235D8298BF775003D8507 /* PageIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */,
+			);
+			path = PageIndicator;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -1198,7 +1208,6 @@
 				60CE0F9B2189FC5000309211 /* Switches.storyboard in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */,
-				D27EE92A2193159C00C877EA /* Chips.storyboard in Resources */,
 				D2C4467023158479009E58A5 /* Panel.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
@@ -1214,7 +1223,6 @@
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
 				D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */,
 				58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */,
-				D6DC0AF5216BBAE10003AC5D /* Dialogs.storyboard in Resources */,
 				D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */,
 				D2EB965325C05E0800988978 /* Map.storyboard in Resources */,
 				D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */,
@@ -1343,7 +1351,6 @@
 				532BE2A428340BDA0023B0CF /* SwitchExampleView.swift in Sources */,
 				53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */,
 				D217701825ACCC5E00C0FD8C /* Presentable.swift in Sources */,
-				D27E88402199A5D000C962BF /* ChipPreviewCollectionViewCell.swift in Sources */,
 				53E075BE27FCBE8C0033147C /* RootViewControllerFactory.swift in Sources */,
 				793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */,
 				D28443EB22FC42A30066F88B /* FlareViewViewController.swift in Sources */,
@@ -1372,7 +1379,6 @@
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
 				796DE9F12834840D00D07664 /* ButtonsExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
-				D279B4BC23295117000F5898 /* ChipSelectorViewController.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
@@ -1384,6 +1390,7 @@
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
+				AA617E40298D6AE30089E51A /* PageIndicatorExampleView.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
 				7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */,
@@ -1396,6 +1403,7 @@
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
+				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
