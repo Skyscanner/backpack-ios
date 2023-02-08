@@ -49,13 +49,7 @@ class BPKShareCardButtonSnapshotTest: XCTestCase {
     }
 
     private func createCardButtons() -> UIView {
-        let stackView = createStackView()
-        let parentView = UIView(frame: .zero)
-        
-        parentView.translatesAutoresizingMaskIntoConstraints = false
-        parentView.addSubview(stackView)
-
-        buttonStylesAndSizes.map { (style, size) in
+        viewsInStack(withStyles: buttonStylesAndSizes) { (style, size) in
             let cardButton = BPKShareCardButton(
                 accessibilityLabel: "",
                 style: style,
@@ -64,26 +58,7 @@ class BPKShareCardButtonSnapshotTest: XCTestCase {
             )
             cardButton.backgroundColor = buttonBackgroundColor(for: style)
             return cardButton
-        }.forEach(stackView.addArrangedSubview(_:))
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: parentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-            parentView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            parentView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
-        ])
-        return parentView
-    }
-
-    private func createStackView() -> UIStackView {
-        let stackView = UIStackView(frame: .zero)
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.distribution = .equalCentering
-        stackView.spacing = BPKSpacingMd
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-
-        return stackView
+        }
     }
 
     func testShareCardButtonSnapshot() {
