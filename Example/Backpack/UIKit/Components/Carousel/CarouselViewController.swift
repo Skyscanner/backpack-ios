@@ -49,7 +49,7 @@ final class CarouselViewController: UIViewController {
     
     private lazy var carousel = BPKCarousel(
         images: [imageViewOne, imageViewTwo, imageViewThree],
-//        currentImage: 1,
+        currentImage: 1,
         onImageChanged: onImageChanged
     )
     

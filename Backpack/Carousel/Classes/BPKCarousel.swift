@@ -76,6 +76,7 @@ public final class BPKCarousel: UIView {
         collectionViewDatasource.render(with: images)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -108,7 +109,7 @@ public final class BPKCarousel: UIView {
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let selectedRow = selectedRow else { return }
         onImageChanged?(selectedRow)
-    }
+    }// TODO: selected row is not correct when scrolling back / forward from edges
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -128,7 +129,6 @@ extension BPKCarousel {
             animated: animated,
             scrollPosition: .centeredHorizontally
         )
-        onImageChanged?(row)
     }
     
     /// Handling scrolling:
