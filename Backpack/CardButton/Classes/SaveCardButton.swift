@@ -39,7 +39,7 @@ public class BPKSaveCardButton: UIButton {
 
     public let onCheckedChange: (Bool) -> Void
 
-    private var viewConfigurator: CardButtonViewConfigurator
+    private let viewConfigurator: CardButtonViewConfigurator
 
     private let containedBackgroundCircle: UIView
 
