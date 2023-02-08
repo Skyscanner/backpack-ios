@@ -23,8 +23,6 @@ import SnapshotTesting
 
 class BPKShareCardButtonSnapshotTest: XCTestCase {
     
-    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
-    
     override func setUp() {
         super.setUp()
         isRecording = false

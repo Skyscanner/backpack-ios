@@ -22,8 +22,6 @@ import Backpack
 import SnapshotTesting
 
 class BPKSaveCardButtonSnapshotTest: XCTestCase {
-    
-    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
 
     override func setUp() {
         super.setUp()
