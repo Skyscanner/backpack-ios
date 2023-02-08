@@ -117,8 +117,7 @@ final class CardButtonsViewController: UIViewController {
                 checked: false,
                 accessibilityLabel: "",
                 style: cardButtonParams.style,
-                size: cardButtonParams.size,
-                onCheckedChange: { _ in }
+                size: cardButtonParams.size
             )
             saveButton.addAction(UIAction(title: "tapped", handler: { _ in
                 saveButton.setChecked(!saveButton.checked, animated: true)
@@ -129,8 +128,7 @@ final class CardButtonsViewController: UIViewController {
                 checked: true,
                 accessibilityLabel: "",
                 style: cardButtonParams.style,
-                size: cardButtonParams.size,
-                onCheckedChange: { _ in }
+                size: cardButtonParams.size
             )
             saveButton.addAction(UIAction(title: "tapped", handler: { _ in
                 saveButton.setChecked(!saveButton.checked, animated: true)

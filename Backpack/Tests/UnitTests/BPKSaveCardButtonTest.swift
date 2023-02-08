@@ -22,18 +22,15 @@ import Backpack
 class BPKSaveCardButtonTest: XCTestCase {
     func testInitWithDefaultStyleAndSize() {
         // Given
-        let stubChecked = false
         let stubAccessibilityLabel = "test accessibilityLabel"
 
         // When
         let saveCardButton = BPKSaveCardButton(
-            checked: stubChecked,
-            accessibilityLabel: stubAccessibilityLabel,
-            onCheckedChange: { _ in }
+            accessibilityLabel: stubAccessibilityLabel
         )
 
         // Then
-        XCTAssertEqual(saveCardButton.checked, stubChecked)
+        XCTAssertEqual(saveCardButton.checked, false)
         XCTAssertEqual(saveCardButton.accessibilityLabel, stubAccessibilityLabel)
         XCTAssertEqual(saveCardButton.style, .default)
         XCTAssertEqual(saveCardButton.size, .default)
@@ -65,8 +62,7 @@ class BPKSaveCardButtonTest: XCTestCase {
         // Given
         let saveCardButton = BPKSaveCardButton(
             checked: false,
-            accessibilityLabel: "",
-            onCheckedChange: { _ in }
+            accessibilityLabel: ""
         )
 
         saveCardButton.setChecked(true, animated: false)

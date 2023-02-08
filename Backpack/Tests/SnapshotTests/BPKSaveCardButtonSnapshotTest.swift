@@ -54,8 +54,7 @@ class BPKSaveCardButtonSnapshotTest: XCTestCase {
                 checked: checked,
                 accessibilityLabel: "",
                 style: style,
-                size: size,
-                onCheckedChange: { _ in }
+                size: size
             )
             cardButton.backgroundColor = buttonBackgroundColor(for: style)
             return cardButton

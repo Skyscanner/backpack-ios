@@ -20,12 +20,12 @@ import UIKit
 
 public class BPKSaveCardButton: UIButton {
 
-    public var checked: Bool = false {
+    public var checked: Bool {
         didSet {
             viewConfigurator.icons = checked ? Self.checkedIcons : Self.uncheckedIcons
             viewConfigurator.colors = checked ? Self.checkedColor : Self.uncheckedColor
             updateLookAndFeel()
-            onCheckedChange(checked)
+            onCheckedChange?(checked)
         }
     }
 
@@ -37,18 +37,18 @@ public class BPKSaveCardButton: UIButton {
         didSet { updateLookAndFeel() }
     }
 
-    public let onCheckedChange: (Bool) -> Void
+    public var onCheckedChange: ((Bool) -> Void)?
 
     private let viewConfigurator: CardButtonViewConfigurator
 
     private let containedBackgroundCircle: UIView
 
     public init(
-        checked: Bool,
+        checked: Bool = false,
         accessibilityLabel: String,
         style: BPKCardButtonStyle = .default,
         size: BPKCardButtonSize = .default,
-        onCheckedChange: @escaping (Bool) -> Void
+        onCheckedChange: ((Bool) -> Void)? = nil
     ) {
         self.viewConfigurator = CardButtonViewConfigurator(
             icons: checked ? Self.checkedIcons : Self.uncheckedIcons,
