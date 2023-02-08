@@ -83,6 +83,8 @@
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AA617E40298D6AE30089E51A /* PageIndicatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */; };
+		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
 		BA97B096290FCDFD00AE4172 /* DividedCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */; };
 		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -266,6 +268,8 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorExampleView.swift; sourceTree = "<group>"; };
+		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
 		BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedCardExampleView.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
@@ -631,6 +635,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA617E3E298D6ABD0089E51A /* PageIndicator */,
 				0E8EEFC728A23C1D008BA7A3 /* Skeleton */,
 				7928F7D3286EDAB100D8B9E8 /* Spinner */,
 				7914E3AA286AB03C00EB9F90 /* Badge */,
@@ -655,6 +660,7 @@
 		793EC5532836140A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AAF235D8298BF775003D8507 /* PageIndicator */,
 				0E844AF5289141AA004C5865 /* Skeleton */,
 				793EC56F283615C900D627F6 /* Text view */,
 				793EC56E283615BD00D627F6 /* Gradient */,
@@ -951,6 +957,22 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA617E3E298D6ABD0089E51A /* PageIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */,
+			);
+			path = PageIndicator;
+			sourceTree = "<group>";
+		};
+		AAF235D8298BF775003D8507 /* PageIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */,
+			);
+			path = PageIndicator;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -1364,6 +1386,7 @@
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
+				AA617E40298D6AE30089E51A /* PageIndicatorExampleView.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
 				7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */,
@@ -1376,6 +1399,7 @@
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
+				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
