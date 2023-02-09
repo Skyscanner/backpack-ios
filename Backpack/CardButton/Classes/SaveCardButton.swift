@@ -159,6 +159,7 @@ public class BPKSaveCardButton: UIButton {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else { return }
         updateLookAndFeel()
     }
 }
