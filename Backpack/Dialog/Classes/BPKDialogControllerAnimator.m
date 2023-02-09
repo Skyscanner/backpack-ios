@@ -75,12 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
             delay:0.0
             options:0
             animations:^{
-              if (dialogController && dialogController.style == BPKDialogControllerStyleAlert) {
-                  dialogController.view.alpha = 0.0;
-              } else if (dialogController && dialogController.style == BPKDialogControllerStyleBottomSheet) {
-                  [dialogController _setScrimAlpha:0.0];
-                  [dialogController _addDismissingKeyFrameContentAnimationWithRelativeStartTime:0.6 relativeDuration:0.4];
-              }
+              dialogController.view.alpha = 0.0;
             }
             completion:^(BOOL finished) {
               [transitionContext completeTransition:YES];

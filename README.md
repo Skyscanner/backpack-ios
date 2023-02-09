@@ -32,7 +32,7 @@ pod 'Backpack-SwiftUI'
 
 ## Documentation
 
-To learn more about the available Backpack components on iOS head over the [Backpack documentation site](https://backpack.github.io/) or check out the [reference documentation](https://backpack.github.io/ios).
+To learn more about the available Backpack components on iOS head over the [Backpack documentation site](https://skyscanner.design/) or check out the [reference documentation](https://backpack.github.io/ios).
 
 ## Contributing to Backpack
 
@@ -40,7 +40,7 @@ Please see the [Contributing guide][0] for instructions on contributing to this 
 
 ## Our Principles
 
-We follow a set of principles that are stated in the [Backpack documentation site](https://backpack.github.io/using/principles)
+We follow a set of principles that are stated in the [Backpack documentation site](https://skyscanner.design/latest/getting-started/backpack-in-code/principles.html)
 
 ## License
 

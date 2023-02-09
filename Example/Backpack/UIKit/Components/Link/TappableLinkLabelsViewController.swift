@@ -97,7 +97,7 @@ class TappableLinkLabelsViewController: UIViewController, BPKTappableLinkLabelDe
             tappableLink.numberOfLines = 3
 
             if linkType == .web {
-                tappableLink.addLink(to: URL(string: "https://backpack.github.io/")!, with: firstRange)
+                tappableLink.addLink(to: URL(string: "https://skyscanner.design/")!, with: firstRange)
 
                 if linkCount == .double {
                     tappableLink.addLink(to: URL(string: "https://www.skyscanner.net/")!, with: secondRange)

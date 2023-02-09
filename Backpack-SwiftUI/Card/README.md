@@ -14,6 +14,11 @@
 | --- | ----- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_divided-card___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_divided-card___default_dm.png" alt="" width="375" /> |
 
+### `BPKCardWrapper`
+| Day | Night |
+| --- | ----- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_card-wrapper___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_card-wrapper___default_dm.png" alt="" width="375" /> |
+
 ## Usage
 
 ### `BPKCard`
@@ -108,3 +113,28 @@ BPKDividedCard {
 }
 ```
 
+### `BPKCardWrapper`
+
+**Wrap a card**
+```swift
+BPKCardWrapper(backgroundColor: .coreAccentColor) {
+    BPKText("Header")
+} card: {
+    BPKCard(elevation: .none) {
+        Text("Card Content")
+    }
+}
+```
+
+**Wrap a divided card**
+```swift
+BPKCardWrapper(backgroundColor: .coreAccentColor) {
+    BPKText("Header")
+} card: {
+    BPKDividedCard {
+        Text("Primary Content")
+    } secondaryContent: {
+        Text("Secondary Content")
+    }
+}
+```

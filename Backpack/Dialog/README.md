@@ -4,92 +4,175 @@
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/uikit/Classes/BPKDialog.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack/Dialog)
 
-## Alert
-
-Alert dialogs fade in to the centre of the screen and can contain zero or more buttons. Used as a call to action.
+## Success
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___with-cta_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___success_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___success_dm.png" alt="" width="375" /> |
 
-## Bottom sheet
-
-Bottom sheet dialogs slide up from the bottom of the screen and can contain zero or more buttons. Used for confirmation.
+## Warning
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___delete-confirmation_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___warning_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___warning_dm.png" alt="" width="375" /> |
 
-## Flare view
-
-A dialog can be passed a BPKFlareView to show at the top.
+## Destructive
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___in-app-messaging_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___destructive_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___destructive_dm.png" alt="" width="375" /> |
+
+## Flare
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___flare_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___flare_dm.png" alt="" width="375" /> |
+
+## Image
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___image_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-dialog___image_dm.png" alt="" width="375" /> |
 
 ## Usage 
 
-`BPKDialogController` contains the Backpack Dialog component.
-
-
-### Objective-C
-
-```objective-c
-#import <Backpack/Dialog.h>
-
-...
-
-BPKDialogScrimAction *scrimAction = [BPKDialogScrimAction actionWithHandler:^(BOOL didDismiss) {
-    //
-} shouldDismiss:YES];
-
-BPKDialogButtonAction *mainAction = [BPKDialogButtonAction actionWithTitle:@"Continue" style:BPKButtonStylePrimary handler:^{
-    //
-}];
-
-BPKDialogButtonAction *skipAction = [BPKDialogButtonAction actionWithTitle:@"Skip" style:BPKButtonStylePrimary handler:^{
-    //
-}];
-
-[[BPKDialogIconDefinition alloc] initWithIcon:[BPKIcon templateIconNamed:BPKIconNameTick size:BPKIconSizeLarge]
-                          iconBackgroundColor:BPKColor.green500];
-BPKDialogController *dialogController = [BPKDialogController dialogControllerWithTitle:@"You are going to Tokyo!"
-                                                                               message:@"Your flight is all booked. Why not check out some hotels now?"
-                                                                                 style:BPKDialogControllerStyleAlert
-                                                                        iconDefinition:iconDefinition];
-
-dialogController.scrimAction = scrimAction;
-[dialogController addButtonAction:mainAction];
-[dialogController addButtonAction:skipAction];
-
-[self presentViewController:dialogController animated:YES completion:nil];
-```
-
-### Swift:
+Example of a success dialog with three buttons
 
 ```swift
-let iconTemplate = BPKIcon.makeTemplateIcon(name: .tick, color: BPKColor.white, size: .large)
-let iconDefinition = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.green500)
-let dialogController  = BPKDialogController(title: "You are going to Tokyo!",
-                                          message: "Your flight is all booked. Why not check out some hotels now?",
-                                          style: .alert,
-                                          iconDefinition: iconDefinition
+// Basic definition
+let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
+let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
 
-let mainAction = BPKDialogButtonAction(title: "Continue", style: .primary) {
-    print("Primary was tapped, action: \($0)")
-}
-let skipAction = BPKDialogButtonAction(title: "Skip", style: .link) {
-    print("Skip was tapped, action: \($0)")
+let dialogController = BPKDialogController(
+    title: "Title in here",
+    message: "Description",
+    iconDefinition: icon,
+    flareView: nil
+)
+
+// Dialog buttons
+let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured) {_ in
+    // Handle tap
 }
 
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
+    // Handle tap
+}
+
+let optionalLink = BPKDialogButtonAction(title: "Optional link", style: .link) {_ in
+    // Handle tap
+}
+
+dialogController.addButtonAction(confirmation)
+dialogController.addButtonAction(skip)
+dialogController.addButtonAction(optionalLink)
+
+// Handling scrim tap
+// If you don't set this, the dialog is not dismissed when tapping the scrim
 let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
     print("Scrim tap \(didDismiss ? "dimissing" : "")")
 }, shouldDismiss: true)
-
-dialogController.addButtonAction(mainAction)
-dialogController.addButtonAction(skipAction)
 dialogController.scrimAction = scrimAction
 
-self.present(dialogController, animated: true, completion: nil)
+// Show the dialog
+self.present(dialogController, animated: true)
+```
+
+
+Example of a flare dialog
+
+```swift
+// Flare view
+let flareView = BPKFlareView(frame: .zero)
+let image = UIImage(named: "dialog_flare")
+let imageView = UIImageView.init(image: image)
+imageView.contentMode = .scaleAspectFill
+imageView.translatesAutoresizingMaskIntoConstraints = false
+
+// Basic definition
+let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
+let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
+
+let dialogController = BPKDialogController(
+    title: "Title in here",
+    message: "Description",
+    iconDefinition: icon,
+    flareView: flareView
+)
+
+// Dialog buttons
+let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured) {_ in
+    // Handle tap
+}
+
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
+    // Handle tap
+}
+
+let optionalLink = BPKDialogButtonAction(title: "Optional link", style: .link) {_ in
+    // Handle tap
+}
+
+dialogController.addButtonAction(confirmation)
+dialogController.addButtonAction(skip)
+dialogController.addButtonAction(optionalLink)
+
+// Handling scrim tap
+// If you don't set this, the dialog is not dismissed when tapping the scrim
+let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
+    print("Scrim tap \(didDismiss ? "dimissing" : "")")
+}, shouldDismiss: true)
+dialogController.scrimAction = scrimAction
+
+// Show the dialog
+self.present(dialogController, animated: true)
+```
+
+
+Example of an image dialog
+
+```swift
+// Image view
+let image = UIImage(named: "dialog_image")
+let imageView = UIImageView.init(image: image)
+imageView.contentMode = .scaleAspectFill
+imageView.translatesAutoresizingMaskIntoConstraints = false
+
+// Basic definition
+let iconTemplate = BPKIcon.makeLargeTemplateIcon(name: .tick)
+let icon = BPKDialogIconDefinition(icon: iconTemplate, iconBackgroundColor: BPKColor.coreAccentColor)
+
+let dialogController = BPKDialogController(
+    title: "Title in here",
+    message: "Description",
+    imageView: imageView,
+    textAlignment: .left
+)
+
+// Dialog buttons
+let confirmation = BPKDialogButtonAction(title: "Confirmation", style: .featured) {_ in
+    // Handle tap
+}
+
+let skip = BPKDialogButtonAction(title: "Skip", style: .secondary) {_ in
+    // Handle tap
+}
+
+let optionalLink = BPKDialogButtonAction(title: "Optional link", style: .link) {_ in
+    // Handle tap
+}
+
+dialogController.addButtonAction(confirmation)
+dialogController.addButtonAction(skip)
+dialogController.addButtonAction(optionalLink)
+
+// Handling scrim tap
+// If you don't set this, the dialog is not dismissed when tapping the scrim
+let scrimAction = BPKDialogScrimAction(handler: { (didDismiss) in
+    print("Scrim tap \(didDismiss ? "dimissing" : "")")
+}, shouldDismiss: true)
+dialogController.scrimAction = scrimAction
+
+// Show the dialog
+self.present(dialogController, animated: true)
 ```

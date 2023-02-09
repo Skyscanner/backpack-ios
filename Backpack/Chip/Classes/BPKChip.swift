@@ -37,19 +37,7 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-    
-    /**
-     * The primary color of the reciever. This is used to control the
-     * selected background colour.
-     *
-     * @warning This is not intended to be used directly, it exists to support theming only.
-     */
-    public var primaryColor: UIColor? {
-        didSet {
-            updateLookAndFeel()
-        }
-    }
-    
+        
     /**
      * Style of the chip. Default is BPKChipStyleDefault.
      */
@@ -64,7 +52,7 @@ public class BPKChip: UIControl {
             updateLookAndFeel()
         }
     }
-
+    
     public override var isSelected: Bool {
         didSet {
             updateLookAndFeel()
@@ -75,9 +63,11 @@ public class BPKChip: UIControl {
         didSet {
             CATransaction.begin()
             CATransaction.setAnimationDuration(isHighlighted ? 0.2 : 0)
-            tintLayer.opacity = isHighlighted ? 1 : 0
             let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-            label.textColor = isHighlighted ? appearance.highlighted.content : colors.content
+            let tintLayerColor =  isSelected ? appearance.selected.background : appearance.highlighted.background
+            tintLayer.backgroundColor = tintLayerColor.cgColor
+            tintLayer.opacity = isHighlighted ? 1 : 0
+            updateLookAndFeel()
             CATransaction.commit()
         }
     }
@@ -91,7 +81,7 @@ public class BPKChip: UIControl {
     private var colors: BPKChipAppearanceSets.Colors {
         let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
         if !isEnabled { return appearance.disabled }
-        if isSelected { return appearance.selected }
+        if isSelected || type == .dismiss { return appearance.selected }
         return appearance.normal
     }
     
@@ -121,15 +111,17 @@ public class BPKChip: UIControl {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = BPKSpacingIconText
+        stack.alignment = .center
         stack.isUserInteractionEnabled = false
         return stack
     }()
     
+    private var trailingConstraint: NSLayoutConstraint?
+    
     private lazy var tintLayer: CALayer = {
         let layer = CALayer()
-        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
-        layer.backgroundColor = appearance.highlighted.background.cgColor
         layer.opacity = 0
+        
         return layer
     }()
     
@@ -173,8 +165,8 @@ public class BPKChip: UIControl {
         super.layoutSubviews()
         
         tintLayer.frame = self.bounds
-        tintLayer.cornerRadius = self.bounds.height / 2.0
-        self.layer.cornerRadius = self.bounds.height / 2.0
+        tintLayer.cornerRadius = BPKSpacingMd
+        self.layer.cornerRadius = BPKSpacingMd
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -191,14 +183,20 @@ extension BPKChip {
         layer.addSublayer(tintLayer)
         addSubview(containerStackView)
         
-        isAccessibilityElement = true
-        accessibilityTraits = .button
+        updateAccessibility()
         
+        trailingConstraint = containerStackView.trailingAnchor.constraint(
+            equalTo: trailingAnchor,
+            constant: -chipTrailingSpacing
+        )
+                
         NSLayoutConstraint.activate([
-            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipHorizontalSpacing),
-            containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -chipHorizontalSpacing),
-            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: chipVerticalSpacing),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chipVerticalSpacing)
+            containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
+            trailingConstraint!,
+            containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            heightAnchor.constraint(equalToConstant: BPKSpacingXl),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor)
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)
@@ -206,21 +204,62 @@ extension BPKChip {
     
     @objc
     private func handleSingleTap(sender: UITapGestureRecognizer) {
-        if isEnabled {
-            isSelected.toggle()
-        }
+        guard isEnabled else { return }
+        guard type != .dismiss else { return }
+                
+        isSelected.toggle()
     }
     
     private func updateLookAndFeel() {
-        backgroundColor = colors.background
-        iconView.image = icon.orNil(withColor: colors.content)
-        label.textColor = colors.content
-        accessoryIconView.image = accessoryIcon.orNil(withColor: colors.content)
+        updateOutlineStroke()
+        backgroundColor = self.colors.background
+        label.textColor = self.colors.content
+
+        iconView.image = self.icon.orNil(withColor: self.colors.content)
+        
+        accessoryIconView.image = self.accessoryIcon.orNil(withColor: self.accessoryColor)
+        
+        updateAccessibility()
+        placeElements()
+        
+        trailingConstraint?.constant = -self.chipTrailingSpacing
+        setNeedsUpdateConstraints()
+        
+        if let shadow = self.shadow {
+            shadow.apply(to: layer)
+        } else {
+            layer.shadowOpacity = 0
+        }
+    }
+    
+    private func updateAccessibility() {
+        isAccessibilityElement = true
         accessibilityTraits = .button
         
-        accessibilityLabel = title
+        if isSelected && type != .dismiss {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
         
-        placeElements()
+        if !isEnabled {
+            accessibilityTraits.insert(.notEnabled)
+        } else {
+            accessibilityTraits.remove(.notEnabled)
+        }
+        
+        accessibilityLabel = title
+    }
+    
+    private func updateOutlineStroke() {
+        let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+        let strokeColor = isHighlighted ? appearance.highlighted.stroke : colors.stroke
+        if let stroke = strokeColor {
+            layer.borderColor = stroke.cgColor
+            layer.borderWidth = 1
+        } else {
+            layer.borderWidth = 0
+        }
     }
     
     private func placeElements() {
@@ -237,8 +276,33 @@ extension BPKChip {
     }
 
     private var accessoryIcon: BPKSmallIconName? {
-        if type == .select { return .tick }
         if type == .dismiss { return .closeCircle }
+        if type == .dropdown { return .chevronDown }
+        return nil
+    }
+    
+    private var accessoryColor: UIColor {
+        if !isEnabled {
+            let appearance = BPKChipAppearanceSets.appearance(fromStyle: style)
+            return appearance.disabled.content
+        }
+        
+        if type == .dismiss && !isHighlighted {
+            if style == .onDark {
+                return BPKColor.chipOnDarkOnDismissIconColor
+            } else {
+                return BPKColor.textDisabledOnDarkColor
+            }
+        }
+        
+        return colors.content
+    }
+    
+    private var shadow: BPKShadow? {
+        if style == .onImage {
+            return BPKShadow.shadowSm()
+        }
+        
         return nil
     }
 }
@@ -249,12 +313,12 @@ extension BPKChip {
         return BPKSpacingIconText
     }
     
-    private var chipHorizontalSpacing: CGFloat {
+    private var chipLeadingSpacing: CGFloat {
         return BPKSpacingBase
     }
     
-    private var chipVerticalSpacing: CGFloat {
-        return BPKSpacingMd
+    private var chipTrailingSpacing: CGFloat {
+        return accessoryIcon != nil ? BPKSpacingMd : BPKSpacingBase
     }
 }
 

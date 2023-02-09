@@ -37,7 +37,7 @@ class BPKTappableLinkLabelSnapshotTest: XCTestCase {
             let label = BPKTappableLinkLabel(fontStyle: style)
             label.text = "Backpack Rocks"
             label.addLink(
-                to: URL(string: "https://backpack.github.io/")!,
+                to: URL(string: "https://skyscanner.design/")!,
                 with: NSRange(location: 0, length: 8)
             )
             if let color = textColor { label.textColor = color }

@@ -124,8 +124,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self.trailingAnchor constraintEqualToAnchor:self.descriptionLabel.trailingAnchor],
 
         [self.buttonStackView.topAnchor constraintEqualToAnchor:self.descriptionLabel.bottomAnchor constant:BPKSpacingLg],
-        [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:BPKSpacingMd],
-        [self.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor constant:BPKSpacingMd],
+        [self.buttonStackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.buttonStackView.trailingAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.buttonStackView.bottomAnchor]
     ]];
 }
@@ -173,6 +173,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setMessage:(NSString *_Nullable)description {
     BPKAssertMainThread();
     self.descriptionLabel.text = description;
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    BPKAssertMainThread();
+    self.titleLabel.textAlignment = textAlignment;
+    self.descriptionLabel.textAlignment = textAlignment;
 }
 
 - (NSString *_Nullable)message {
