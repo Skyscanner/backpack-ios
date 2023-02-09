@@ -387,6 +387,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameNotAllowed;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameOnsen;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameOrigin;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePaid;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNamePaperclip;

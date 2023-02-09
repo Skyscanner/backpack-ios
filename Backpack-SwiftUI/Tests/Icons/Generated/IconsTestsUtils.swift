@@ -203,6 +203,7 @@ extension BPKIconViewTests {
         .night,
         .notAllowed,
         .onsen,
+        .origin,
         .paid,
         .paperclip,
         .parking,

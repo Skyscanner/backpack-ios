@@ -387,6 +387,8 @@ FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameNotAllowed;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameOnsen;
 /// :nodoc:
+FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNameOrigin;
+/// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePaid;
 /// :nodoc:
 FOUNDATION_EXPORT BPKLargeIconName const BPKLargeIconNamePaperclip;

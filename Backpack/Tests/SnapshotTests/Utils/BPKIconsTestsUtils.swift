@@ -393,6 +393,8 @@ struct BPKIconsTestsUtils {
         "not-allowed",
         "onsen-sm",
         "onsen",
+        "origin-sm",
+        "origin",
         "paid-sm",
         "paid",
         "paperclip-sm",
