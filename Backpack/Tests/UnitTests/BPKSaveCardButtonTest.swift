@@ -93,4 +93,22 @@ class BPKSaveCardButtonTest: XCTestCase {
         saveCardButton.style = .onDark
         XCTAssertEqual(saveCardButton.subviews.count, subViewCountWithoutCircle)
     }
+
+    func testSelectedAccessibilityTraitsUpdate() {
+        // Given
+        let saveCardButton = BPKSaveCardButton(
+            checked: false,
+            accessibilityLabel: ""
+        )
+        XCTAssertFalse(saveCardButton.accessibilityTraits.contains(.selected))
+
+        // When
+        saveCardButton.checked = true
+
+        // Then
+        XCTAssertTrue(saveCardButton.accessibilityTraits.contains(.selected))
+
+        saveCardButton.setChecked(false, animated: true)
+        XCTAssertFalse(saveCardButton.accessibilityTraits.contains(.selected))
+    }
 }

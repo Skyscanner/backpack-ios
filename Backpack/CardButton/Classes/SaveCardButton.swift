@@ -76,6 +76,7 @@ public class BPKSaveCardButton: UIButton {
     private func updateLookAndFeel() {
         updateButtonImages()
         updateBackgroundCircleView()
+        updateAccessibilityTraits()
     }
 
     private func updateButtonImages() {
@@ -140,6 +141,14 @@ public class BPKSaveCardButton: UIButton {
             containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         imageView.map { bringSubviewToFront($0) }
+    }
+
+    private func updateAccessibilityTraits() {
+        if checked {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
