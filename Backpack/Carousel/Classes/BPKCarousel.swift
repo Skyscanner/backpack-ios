@@ -22,11 +22,25 @@ import Foundation
 @objc
 public final class BPKCarousel: UIView {
     
+    public var images: [UIView] {
+        didSet {
+            collectionViewDatasource.render(with: images)
+            pageIndicator.totalIndicators = images.count
+        }
+    }
+    
+    public var currentImage: Int? {
+        didSet {
+            guard let currentImage = currentImage else { return }
+            scrollTo(row: currentImage, animated: true)
+            updateSelected(index: currentImage)
+        }
+    }
+    
+    public var onImageChanged: ((Int) -> Void)?
+    
     private var initialLayoutComplete = false
     private let offset: CGFloat = 70.0
-    private let images: [UIView]
-    private let currentImage: Int?
-    private let onImageChanged: ((Int) -> Void)?
     private let reuseIdentifier = String(describing: BPKCarouselImageCell.self)
     
     private var selectedRow: Int {
