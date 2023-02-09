@@ -136,25 +136,26 @@ public class BPKSaveCardButton: UIButton {
     }
 
     private func updateBackgroundCircleView() {
-        if viewConfigurator.shouldAddButtonBackground(style: style) {
-            if containedBackgroundCircle.superview == nil {
-                addSubview(containedBackgroundCircle)
-                let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
-                containedBackgroundCircle.layer.cornerRadius = circleSize / 2
-
-                NSLayoutConstraint.activate([
-                    containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
-                    containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
-                    containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
-                    containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
-                ])
-                imageView.map { bringSubviewToFront($0) }
-            }
-        } else {
-            if containedBackgroundCircle.superview != nil {
+        let wasAdded = containedBackgroundCircle.superview != nil
+        guard viewConfigurator.shouldAddButtonBackground(style: style) else {
+            if wasAdded {
                 containedBackgroundCircle.removeFromSuperview()
             }
+            return
         }
+
+        guard !wasAdded else { return }
+        addSubview(containedBackgroundCircle)
+        let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
+        containedBackgroundCircle.layer.cornerRadius = circleSize / 2
+
+        NSLayoutConstraint.activate([
+            containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
+            containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
+            containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        imageView.map { bringSubviewToFront($0) }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -77,4 +77,20 @@ class BPKSaveCardButtonTest: XCTestCase {
         saveCardButton.setChecked(false, animated: true)
         XCTAssertFalse(saveCardButton.checked)
     }
+
+    func testExtraSubviewInContainedStyle() {
+        // Given
+        let saveCardButton = BPKSaveCardButton(
+            accessibilityLabel: "",
+            style: .default
+        )
+        saveCardButton.layoutIfNeeded() // To get the accurate subviews.count
+        let subViewCountWithoutCircle = saveCardButton.subviews.count
+
+        saveCardButton.style = .contained
+        XCTAssertEqual(saveCardButton.subviews.count, subViewCountWithoutCircle + 1)
+
+        saveCardButton.style = .onDark
+        XCTAssertEqual(saveCardButton.subviews.count, subViewCountWithoutCircle)
+    }
 }

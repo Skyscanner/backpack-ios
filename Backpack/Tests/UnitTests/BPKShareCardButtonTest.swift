@@ -34,4 +34,20 @@ class BPKShareCardButtonTest: XCTestCase {
         XCTAssertEqual(shareCardButton.style, .default)
         XCTAssertEqual(shareCardButton.size, .default)
     }
+
+    func testExtraSubviewInContainedStyle() {
+        // Given
+        let shareCardButton = BPKShareCardButton(
+            accessibilityLabel: "",
+            style: .default
+        )
+        shareCardButton.layoutIfNeeded() // To get the accurate subviews.count
+        let subViewCountWithoutCircle = shareCardButton.subviews.count
+
+        shareCardButton.style = .contained
+        XCTAssertEqual(shareCardButton.subviews.count, subViewCountWithoutCircle + 1)
+
+        shareCardButton.style = .onDark
+        XCTAssertEqual(shareCardButton.subviews.count, subViewCountWithoutCircle)
+    }
 }
