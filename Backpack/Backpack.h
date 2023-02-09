@@ -43,7 +43,6 @@
 #import "OverlayView.h"
 #import "Panel.h"
 #import "ProgressBar.h"
-#import "Rating.h"
 #import "SimpleDate.h"
 #import "Snackbar.h"
 #import "Spinner.h"

@@ -224,9 +224,9 @@ extension ComponentCellsProvider {
         )
     }
     private func ratings() -> CellDataSource {
-        PresentableCellDataSource(
+        PresentableCellDataSource.custom(
             title: "Rating",
-            storyboard: .named("Ratings", on: "RatingsViewController"),
+            customController: { RatingsViewController() },
             showPresentable: show(presentable:)
         )
     }

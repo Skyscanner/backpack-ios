@@ -86,11 +86,6 @@ typedef NS_ENUM(NSInteger, BPKGrayColor) { BPKGrayColor50, BPKGrayColor100, BPKG
     BPKProgressBar *progressBarAppearance = [BPKProgressBar appearanceWhenContainedInInstancesOfClasses:@[class]];
     progressBarAppearance.fillColor = theme.progressBarPrimaryColor;
 
-    BPKRating *ratingAppearance = [BPKRating appearanceWhenContainedInInstancesOfClasses:@[class]];
-    ratingAppearance.lowRatingColor = theme.ratingLowColor;
-    ratingAppearance.mediumRatingColor = theme.ratingMediumColor;
-    ratingAppearance.highRatingColor = theme.ratingHighColor;
-
     BPKHorizontalNavigationObjc *horizontalNavAppearance = [BPKHorizontalNavigationObjc appearanceWhenContainedInInstancesOfClasses:@[class]];
     horizontalNavAppearance.selectedColor = theme.horiontalNavigationSelectedColor;
 }
