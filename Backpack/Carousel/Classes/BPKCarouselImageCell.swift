@@ -18,11 +18,6 @@
 
 import Foundation
 
-enum TapDirection {
-    case previous
-    case next
-}
-
 final class BPKCarouselImageCell: UICollectionViewCell {
     
     private lazy var containerView: UIView = {
