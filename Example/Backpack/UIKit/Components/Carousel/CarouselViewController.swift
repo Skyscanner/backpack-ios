@@ -22,33 +22,14 @@ import Backpack
 
 final class CarouselViewController: UIViewController {
     
-    private lazy var imageViewOne: UIImageView = {
-        let image = UIImage(named: "dialog_flare")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    private lazy var imageViewTwo: UIImageView = {
-        let image = UIImage(named: "dialog_image")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    private lazy var imageViewThree: UIImageView = {
-        let image = UIImage(named: "pilanesburg-south-africa")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-        
-    private lazy var onImageChanged: ((Int) -> Void)? = { [weak self] selectedRowIndex in
-        self?.displayedIndexLabel.text = "\(selectedRowIndex)"
-    }
+    private let images = [
+        CarouselViewController.createImageView(with: "dialog_flare"),
+        CarouselViewController.createImageView(with: "dialog_image"),
+        CarouselViewController.createImageView(with: "pilanesburg-south-africa")
+    ]
     
     private lazy var carousel = BPKCarousel(
-        images: [imageViewOne, imageViewTwo, imageViewThree],
+        images: images,
         currentImage: 1,
         onImageChanged: onImageChanged
     )
@@ -65,6 +46,10 @@ final class CarouselViewController: UIViewController {
         label.textColor = BPKColor.textPrimaryColor
         return label
     }()
+    
+    private lazy var onImageChanged: ((Int) -> Void)? = { [weak self] selectedRowIndex in
+        self?.displayedIndexLabel.text = "\(selectedRowIndex)"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,5 +81,12 @@ final class CarouselViewController: UIViewController {
                 displayedIndexLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20)
             ]
         )
+    }
+    
+    private static func createImageView(with imageName: String) -> UIImageView {
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }
 }

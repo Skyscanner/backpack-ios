@@ -18,8 +18,6 @@
 
 import Foundation
 
-@objcMembers
-@objc
 public final class BPKCarousel: UIView {
     
     public var images: [UIView] {
