@@ -42,6 +42,7 @@ struct ComponentCellsProvider {
             button(),
             calendar(),
             card(),
+            carousel(),
             chips(),
             flare(),
             dialog(),
@@ -52,6 +53,7 @@ struct ComponentCellsProvider {
             nudger(),
             overlayViews(),
             mapView(),
+            pageIndicators(),
             panels(),
             progressBar(),
             ratings(),
@@ -64,8 +66,7 @@ struct ComponentCellsProvider {
             tappableLinkLabels(),
             textField(),
             textViews(),
-            toasts(duration: toastDuration),
-            pageIndicators()
+            toasts(duration: toastDuration)
         ]
         return dataSources.map(\.cell)
     }
@@ -339,6 +340,18 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
+        )
+    }
+    
+    private func carousel() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Carousel",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: { CarouselViewController() }
+                ))
+            ],
+            showChildren: { showComponent(title: "Carousel", tabs: $0) }
         )
     }
 }
