@@ -156,6 +156,11 @@ public final class BPKPrice: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
+        lineThroughTextLabel.isHidden = lineThroughText == nil
+        leadingTextLabel.isHidden = leadingText == nil
+        trailingTextLabel.isHidden = trailingText == nil
+        separatorLabel.isHidden = lineThroughTextLabel.isHidden || leadingTextLabel.isHidden
+        
         switch alignment {
         case .left:
             containerStackView.alignment = .leading

@@ -28,12 +28,26 @@ class BPKPriceSnapshotTest: XCTestCase {
         isRecording = false
     }
     
-    private func createView(alignment: BPKPrice.Alignment, size: BPKPrice.Size) -> UIView {
+    private func createView(
+        price: String = "£1830",
+        leadingText: String? = "App only deal",
+        lineThroughText: String? = "£2033",
+        trailingText: String? = "per day",
+        alignment: BPKPrice.Alignment = .left,
+        size: BPKPrice.Size = .large
+    ) -> UIView {
         let parentView = UIView(frame: .zero)
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
         parentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let price = createPrice(alignment: alignment, size: size)
+        let price = createPrice(
+            price: price,
+            leadingText: leadingText,
+            lineThroughText: lineThroughText,
+            trailingText: trailingText,
+            alignment: alignment,
+            size: size
+        )
         
         price.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(price)
@@ -48,17 +62,23 @@ class BPKPriceSnapshotTest: XCTestCase {
         return parentView
     }
     
-    private func createPrice(alignment: BPKPrice.Alignment, size: BPKPrice.Size) -> BPKPrice {
-        let price = BPKPrice(
-            price: "£1830",
-            leadingText: "App only deal",
-            lineThroughText: "£2033",
-            trailingText: "per day",
+    // swiftlint:disable function_parameter_count
+    private func createPrice(
+        price: String,
+        leadingText: String?,
+        lineThroughText: String?,
+        trailingText: String?,
+        alignment: BPKPrice.Alignment,
+        size: BPKPrice.Size
+    ) -> BPKPrice {
+        return BPKPrice(
+            price: price,
+            leadingText: leadingText,
+            lineThroughText: lineThroughText,
+            trailingText: trailingText,
             alignment: alignment,
             size: size
         )
-
-        return price
     }
     
     func testViewSnapshotWithLeftAndLarge() {
@@ -78,6 +98,26 @@ class BPKPriceSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithRightAndSmall() {
         let exampleView = createView(alignment: .right, size: .small)
+        assertSnapshot(exampleView)
+    }
+    
+    func testViewSnapshotWithNoLineThroughText() {
+        let exampleView = createView(lineThroughText: nil)
+        assertSnapshot(exampleView)
+    }
+    
+    func testViewSnapshotWithNoLeadingText() {
+        let exampleView = createView(leadingText: nil)
+        assertSnapshot(exampleView)
+    }
+    
+    func testViewSnapshotWithNoTrailingText() {
+        let exampleView = createView(trailingText: nil)
+        assertSnapshot(exampleView)
+    }
+    
+    func testViewSnapshotWithPriceOnly() {
+        let exampleView = createView(leadingText: nil, lineThroughText: nil, trailingText: nil)
         assertSnapshot(exampleView)
     }
 }
