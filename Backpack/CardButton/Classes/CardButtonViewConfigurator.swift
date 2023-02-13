@@ -34,7 +34,7 @@ final class CardButtonViewConfigurator {
         switch style {
         case .contained:
             return true
-        case .default, .onDark:
+        default:
             return false
         }
     }
