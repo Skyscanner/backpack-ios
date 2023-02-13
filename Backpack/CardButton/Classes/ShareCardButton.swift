@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class BPKShareCardButton: UIButton {
+public class BPKShareCardButton: UIButton, CardButtonProtocol {
 
     public var style: BPKCardButtonStyle {
         didSet { updateLookAndFeel() }
@@ -28,8 +28,7 @@ public class BPKShareCardButton: UIButton {
         didSet { updateLookAndFeel() }
     }
 
-    private let viewConfigurator = CardButtonViewConfigurator()
-    private let containedBackgroundCircle: UIView
+    let containedBackgroundCircle = UIView()
 
     public init(
         accessibilityLabel: String,
@@ -38,7 +37,6 @@ public class BPKShareCardButton: UIButton {
     ) {
         self.style = style
         self.size = size
-        self.containedBackgroundCircle = viewConfigurator.createContainedBackgroundCircle()
 
         super.init(frame: .zero)
         self.accessibilityLabel = accessibilityLabel
@@ -50,14 +48,6 @@ public class BPKShareCardButton: UIButton {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setup() {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: viewConfigurator.widthHeight),
-            heightAnchor.constraint(equalToConstant: viewConfigurator.widthHeight)
-        ])
     }
 
     private func updateLookAndFeel() {
@@ -114,29 +104,6 @@ public class BPKShareCardButton: UIButton {
         case .default:
             return BPKColor.textLinkColor
         }
-    }
-
-    private func updateBackgroundCircleView() {
-        let wasAdded = containedBackgroundCircle.superview != nil
-        guard viewConfigurator.shouldAddButtonBackground(style: style) else {
-            if wasAdded {
-                containedBackgroundCircle.removeFromSuperview()
-            }
-            return
-        }
-
-        guard !wasAdded else { return }
-        addSubview(containedBackgroundCircle)
-        let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
-        containedBackgroundCircle.layer.cornerRadius = circleSize / 2
-
-        NSLayoutConstraint.activate([
-            containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-        imageView.map { bringSubviewToFront($0) }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

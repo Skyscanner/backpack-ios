@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class BPKSaveCardButton: UIButton {
+public class BPKSaveCardButton: UIButton, CardButtonProtocol {
 
     public var checked: Bool {
         didSet {
@@ -37,8 +37,7 @@ public class BPKSaveCardButton: UIButton {
 
     public var onCheckedChange: ((Bool) -> Void)?
 
-    private let viewConfigurator = CardButtonViewConfigurator()
-    private let containedBackgroundCircle: UIView
+    let containedBackgroundCircle = UIView()
 
     public init(
         checked: Bool = false,
@@ -51,7 +50,6 @@ public class BPKSaveCardButton: UIButton {
         self.style = style
         self.size = size
         self.onCheckedChange = onCheckedChange
-        self.containedBackgroundCircle = viewConfigurator.createContainedBackgroundCircle()
 
         super.init(frame: .zero)
         self.accessibilityLabel = accessibilityLabel
@@ -63,14 +61,6 @@ public class BPKSaveCardButton: UIButton {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setup() {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: viewConfigurator.widthHeight),
-            heightAnchor.constraint(equalToConstant: viewConfigurator.widthHeight)
-        ])
     }
 
     private func updateLookAndFeel() {
@@ -118,29 +108,6 @@ public class BPKSaveCardButton: UIButton {
     private func highlightedIconColor(style: BPKCardButtonStyle, checked: Bool) -> UIColor {
         let appearanceSet = Self.appearance(from: style)
         return checked ? appearanceSet.highlighted.iconColorChecked : appearanceSet.highlighted.iconColor
-    }
-
-    private func updateBackgroundCircleView() {
-        let wasAdded = containedBackgroundCircle.superview != nil
-        guard viewConfigurator.shouldAddButtonBackground(style: style) else {
-            if wasAdded {
-                containedBackgroundCircle.removeFromSuperview()
-            }
-            return
-        }
-
-        guard !wasAdded else { return }
-        addSubview(containedBackgroundCircle)
-        let circleSize = viewConfigurator.buttonBackgroundSize(size: size)
-        containedBackgroundCircle.layer.cornerRadius = circleSize / 2
-
-        NSLayoutConstraint.activate([
-            containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-        imageView.map { bringSubviewToFront($0) }
     }
 
     private func updateAccessibilityTraits() {
