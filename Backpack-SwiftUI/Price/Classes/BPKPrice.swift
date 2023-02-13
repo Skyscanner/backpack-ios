@@ -19,6 +19,54 @@
 import SwiftUI
 import Backpack_Common
 
+private struct VerticalPriceStack: View {
+    private let price: String
+    private let trailingText: String?
+    private let fontStyle: BPKFontStyle
+    private let accessoryFontStyle: BPKFontStyle
+    
+    init(price: String, trailingText: String?, fontStyle: BPKFontStyle, accessoryFontStyle: BPKFontStyle) {
+        self.price = price
+        self.trailingText = trailingText
+        self.fontStyle = fontStyle
+        self.accessoryFontStyle = accessoryFontStyle
+    }
+    
+    var body: some View {
+        VStack(alignment: .trailing) {
+            BPKText(price, style: fontStyle)
+            if let trailingText = trailingText {
+                BPKText(trailingText, style: accessoryFontStyle)
+                    .foregroundColor(.textSecondaryColor)
+            }
+        }
+    }
+}
+
+private struct HorizontalPriceStack: View {
+    private let price: String
+    private let trailingText: String?
+    private let fontStyle: BPKFontStyle
+    private let accessoryFontStyle: BPKFontStyle
+    
+    init(price: String, trailingText: String?, fontStyle: BPKFontStyle, accessoryFontStyle: BPKFontStyle) {
+        self.price = price
+        self.trailingText = trailingText
+        self.fontStyle = fontStyle
+        self.accessoryFontStyle = accessoryFontStyle
+    }
+    
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: BPKSpacing.sm.value) {
+            BPKText(price, style: fontStyle)
+            if let trailingText = trailingText {
+                BPKText(trailingText, style: accessoryFontStyle)
+                    .foregroundColor(.textSecondaryColor)
+            }
+        }
+    }
+}
+
 public struct BPKPrice: View {
     public enum Size {
         case large, small
@@ -28,24 +76,24 @@ public struct BPKPrice: View {
         case leading, trailing
     }
     
-    public let price: String
-    public let leadingText: String?
-    public let lineThroughText: String?
-    public let trailingText: String?
-    public let alignment: Alignment
-    public let size: Size
+    private let price: String?
+    private let leadingText: String?
+    private let previousPrice: String?
+    private let trailingText: String?
+    private let alignment: Alignment
+    private let size: Size
     
     public init(
-        price: String,
+        price: String?,
         leadingText: String? = nil,
-        lineThroughText: String? = nil,
+        previousPrice: String? = nil,
         trailingText: String? = nil,
         alignment: Alignment = .leading,
         size: Size
     ) {
         self.price = price
         self.leadingText = leadingText
-        self.lineThroughText = lineThroughText
+        self.previousPrice = previousPrice
         self.trailingText = trailingText
         self.alignment = alignment
         self.size = size
@@ -54,46 +102,41 @@ public struct BPKPrice: View {
     public var body: some View {
         VStack(alignment: mapAlignment(), spacing: BPKSpacing.none.value) {
             HStack(spacing: BPKSpacing.sm.value) {
-                if let lineThroughText = lineThroughText {
-                    BPKText(lineThroughText, style: footnoteOrCaptionFontStyle())
+                if let previousPrice = previousPrice {
+                    accessoryText(previousPrice)
                         .strikethrough(true)
-                        .foregroundColor(.textSecondaryColor)
                 }
                 
-                if lineThroughText != nil && leadingText != nil {
-                    BPKText("•", style: footnoteOrCaptionFontStyle())
-                        .foregroundColor(.textSecondaryColor)
+                if previousPrice != nil && leadingText != nil {
+                    accessoryText("•")
                 }
                 
                 if let leadingText = leadingText {
-                    BPKText(leadingText, style: footnoteOrCaptionFontStyle())
-                        .foregroundColor(.textSecondaryColor)
+                    accessoryText(leadingText)
                 }
             }
             
-            if alignment == .trailing && size == .small {
-                VStack(alignment: .trailing) {
-                    BPKText(price, style: size == .large ? .heading2 : .heading4)
-                    
-                    if let trailingText = trailingText {
-                        BPKText(trailingText, style: footnoteOrCaptionFontStyle())
-                            .foregroundColor(.textSecondaryColor)
-                    }
-                }
-            } else {
-                HStack(alignment: .firstTextBaseline, spacing: BPKSpacing.sm.value) {
-                    BPKText(price, style: size == .large ? .heading2 : .heading4)
-                    if let trailingText = trailingText {
-                        BPKText(trailingText, style: footnoteOrCaptionFontStyle())
-                            .foregroundColor(.textSecondaryColor)
-                    }
-                }
+            if let price = price, alignment == .trailing && size == .small {
+                VerticalPriceStack(price: price,
+                                   trailingText: trailingText,
+                                   fontStyle: .heading4,
+                                   accessoryFontStyle: accessoryFontStyle())
+            } else if let price = price {
+                HorizontalPriceStack(price: price,
+                                     trailingText: trailingText,
+                                     fontStyle: .heading2,
+                                     accessoryFontStyle: accessoryFontStyle())
             }
             
         }
     }
     
-    private func footnoteOrCaptionFontStyle() -> BPKFontStyle {
+    private func accessoryText(_ text: String) -> BPKText {
+        return BPKText(text, style: accessoryFontStyle())
+            .foregroundColor(.textSecondaryColor)
+    }
+    
+    private func accessoryFontStyle() -> BPKFontStyle {
         return size == .large ? .footnote : .caption
     }
     
@@ -112,7 +155,7 @@ struct BPKPrice_Previews: PreviewProvider {
         BPKPrice(
             price: "£1830",
             leadingText: "App only deal",
-            lineThroughText: "£2030",
+            previousPrice: "£2030",
             trailingText: "per day",
             alignment: .leading,
             size: .large

@@ -31,7 +31,7 @@ class BPKPriceSnapshotTest: XCTestCase {
     private func createView(
         price: String = "£1830",
         leadingText: String? = "App only deal",
-        lineThroughText: String? = "£2033",
+        previousPrice: String? = "£2033",
         trailingText: String? = "per day",
         alignment: BPKPrice.Alignment = .leading,
         size: BPKPrice.Size = .large
@@ -40,10 +40,10 @@ class BPKPriceSnapshotTest: XCTestCase {
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
         parentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let price = createPrice(
+        let price = BPKPrice(
             price: price,
             leadingText: leadingText,
-            lineThroughText: lineThroughText,
+            previousPrice: previousPrice,
             trailingText: trailingText,
             alignment: alignment,
             size: size
@@ -60,25 +60,6 @@ class BPKPriceSnapshotTest: XCTestCase {
         ])
         
         return parentView
-    }
-    
-    // swiftlint:disable function_parameter_count
-    private func createPrice(
-        price: String,
-        leadingText: String?,
-        lineThroughText: String?,
-        trailingText: String?,
-        alignment: BPKPrice.Alignment,
-        size: BPKPrice.Size
-    ) -> BPKPrice {
-        return BPKPrice(
-            price: price,
-            leadingText: leadingText,
-            lineThroughText: lineThroughText,
-            trailingText: trailingText,
-            alignment: alignment,
-            size: size
-        )
     }
     
     func testViewSnapshotWithLeadingAndLarge() {
@@ -101,8 +82,8 @@ class BPKPriceSnapshotTest: XCTestCase {
         assertSnapshot(exampleView)
     }
     
-    func testViewSnapshotWithNoLineThroughText() {
-        let exampleView = createView(lineThroughText: nil)
+    func testViewSnapshotWithNoPreviousPrice() {
+        let exampleView = createView(previousPrice: nil)
         assertSnapshot(exampleView)
     }
     
@@ -117,7 +98,7 @@ class BPKPriceSnapshotTest: XCTestCase {
     }
     
     func testViewSnapshotWithPriceOnly() {
-        let exampleView = createView(leadingText: nil, lineThroughText: nil, trailingText: nil)
+        let exampleView = createView(leadingText: nil, previousPrice: nil, trailingText: nil)
         assertSnapshot(exampleView)
     }
 }

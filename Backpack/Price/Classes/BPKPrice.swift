@@ -28,96 +28,48 @@ public final class BPKPrice: UIView {
         case leading, trailing
     }
     
-    public let price: String
-    public let leadingText: String?
-    public let lineThroughText: String?
-    public let alignment: Alignment
-    public let size: Size
-    public let trailingText: String?
+    public var price: String?
+    public var leadingText: String?
+    public var previousPrice: String?
+    public var trailingText: String?
     
-    private lazy var strikeThroughTextAttributes: [NSAttributedString.Key: Any] = {
-        [
-            .foregroundColor: BPKColor.textSecondaryColor,
-            .font: BPKFont.makeFont(fontStyle: footnoteOrCaptionFontStyle()),
-            .strikethroughStyle: NSUnderlineStyle.single.rawValue,
-            .strikethroughColor: BPKColor.textSecondaryColor
-        ]
-    }()
+    public var alignment: Alignment {
+        didSet {
+            updateAlignmentPositioning()
+        }
+    }
     
-    private lazy var priceLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: size == .large ? .textHeading2 : .textHeading4)
-        return label
-    }()
-    
-    private lazy var trailingTextLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: footnoteOrCaptionFontStyle())
-        label.textColor = BPKColor.textSecondaryColor
-        return label
-    }()
-    
-    private lazy var lineThroughTextLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: footnoteOrCaptionFontStyle())
-        label.textColor = BPKColor.textSecondaryColor
-        return label
-    }()
-    
-    private lazy var separatorLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: footnoteOrCaptionFontStyle())
-        label.textColor = BPKColor.textSecondaryColor
-        return label
-    }()
-    
-    private lazy var leadingTextLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: footnoteOrCaptionFontStyle())
-        label.textColor = BPKColor.textSecondaryColor
-        return label
-    }()
-    
-    private lazy var topTextStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [lineThroughTextLabel, separatorLabel, leadingTextLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = BPKSpacingSm
-        return stackView
-    }()
-    
-    private lazy var priceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [priceLabel, trailingTextLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = BPKSpacingSm
-        stackView.alignment = .firstBaseline
-        return stackView
-    }()
-    
-    private lazy var containerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [topTextStackView, priceStackView])
-        stackView.axis = .vertical
-        return stackView
-    }()
+    public var size: Size {
+        didSet {
+            updateAlignmentPositioning()
+        }
+    }
+        
+    private let priceLabel = BPKLabel()
+    private let trailingTextLabel = BPKLabel()
+    private let previousPriceLabel = BPKLabel()
+    private let separatorLabel = BPKLabel()
+    private let leadingTextLabel = BPKLabel()
+    private let topTextStackView = UIStackView()
+    private let priceStackView = UIStackView()
+    private let containerStackView = UIStackView()
     
     public init(
-        price: String,
+        price: String? = nil,
         leadingText: String? = nil,
-        lineThroughText: String? = nil,
+        previousPrice: String? = nil,
         trailingText: String? = nil,
         alignment: Alignment = .leading,
         size: Size = .large
     ) {
         self.price = price
         self.leadingText = leadingText
-        self.lineThroughText = lineThroughText
+        self.previousPrice = previousPrice
         self.trailingText = trailingText
         self.alignment = alignment
         self.size = size
         
         super.init(frame: .zero)
-        
-        leadingTextLabel.text = leadingText
-        separatorLabel.text = "•"
-        priceLabel.text = price
-        trailingTextLabel.text = trailingText
-        
-        lineThroughTextLabel.text = lineThroughText
-        applyLineThroughStyling()
         
         setupView()
         setupConstraints()
@@ -129,6 +81,20 @@ public final class BPKPrice: UIView {
     }
     
     private func setupView() {
+        stylePriceLabel()
+        styleAccessoryLabels()
+        styleTopTextStackView()
+        stylePriceStackView()
+        styleContainerStackView()
+        
+        leadingTextLabel.text = leadingText
+        separatorLabel.text = "•"
+        priceLabel.text = price
+        trailingTextLabel.text = trailingText
+        
+        previousPriceLabel.text = previousPrice
+        applyLineThroughStyling()
+        
         [
             priceStackView,
             containerStackView
@@ -136,24 +102,12 @@ public final class BPKPrice: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        lineThroughTextLabel.isHidden = lineThroughText == nil
+        previousPriceLabel.isHidden = previousPrice == nil
         leadingTextLabel.isHidden = leadingText == nil
         trailingTextLabel.isHidden = trailingText == nil
-        separatorLabel.isHidden = lineThroughTextLabel.isHidden || leadingTextLabel.isHidden
+        separatorLabel.isHidden = previousPriceLabel.isHidden || leadingTextLabel.isHidden
         
-        switch alignment {
-        case .leading:
-            containerStackView.alignment = .leading
-            priceStackView.axis = .horizontal
-            priceStackView.spacing = BPKSpacingSm
-        case .trailing:
-            containerStackView.alignment = .trailing
-            
-            if size == .small {
-                priceStackView.axis = .vertical
-                priceStackView.spacing = BPKSpacingNone
-            }
-        }
+        updateAlignmentPositioning()
         
         containerStackView.addSubview(priceStackView)
         addSubview(containerStackView)
@@ -168,16 +122,82 @@ public final class BPKPrice: UIView {
         ])
     }
     
-    private func footnoteOrCaptionFontStyle() -> BPKFontStyle {
+    private func updateAlignmentPositioning() {
+        switch alignment {
+        case .leading:
+            containerStackView.alignment = .leading
+            priceStackView.axis = .horizontal
+            priceStackView.spacing = BPKSpacingSm
+        case .trailing:
+            containerStackView.alignment = .trailing
+            
+            if size == .small {
+                priceStackView.axis = .vertical
+                priceStackView.spacing = BPKSpacingNone
+            }
+        }
+    }
+    
+    private func accessoryFontStyle() -> BPKFontStyle {
         return size == .large ? .textFootnote : .textCaption
     }
     
     private func applyLineThroughStyling() {
-        guard let lineThroughText = lineThroughText else {
-            lineThroughTextLabel.attributedText = nil
+        guard let previousPrice = previousPrice else {
+            previousPriceLabel.attributedText = nil
             return
         }
-        let attributedString = NSAttributedString(string: lineThroughText, attributes: strikeThroughTextAttributes)
-        lineThroughTextLabel.attributedText = attributedString
+        let attributedString = NSAttributedString(string: previousPrice, attributes: strikeThroughTextAttributes())
+        previousPriceLabel.attributedText = attributedString
+    }
+    
+    private func stylePriceLabel() {
+        priceLabel.fontStyle = size == .large ? .textHeading2 : .textHeading4
+        priceLabel.textColor = BPKColor.textPrimaryColor
+    }
+    
+    private func styleAccessoryLabels() {
+        [
+            trailingTextLabel,
+            previousPriceLabel,
+            separatorLabel,
+            leadingTextLabel
+        ].forEach {
+            $0.fontStyle = accessoryFontStyle()
+            $0.textColor = BPKColor.textSecondaryColor
+        }
+    }
+    
+    private func styleTopTextStackView() {
+        [previousPriceLabel, separatorLabel, leadingTextLabel].forEach {
+            topTextStackView.addArrangedSubview($0)
+        }
+        topTextStackView.axis = .horizontal
+        topTextStackView.spacing = BPKSpacingSm
+    }
+    
+    private func stylePriceStackView() {
+        [priceLabel, trailingTextLabel].forEach {
+            priceStackView.addArrangedSubview($0)
+        }
+        priceStackView.axis = .horizontal
+        priceStackView.spacing = BPKSpacingSm
+        priceStackView.alignment = .firstBaseline
+    }
+    
+    private func styleContainerStackView() {
+        [topTextStackView, priceStackView].forEach {
+            containerStackView.addArrangedSubview($0)
+        }
+        containerStackView.axis = .vertical
+    }
+    
+    private func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {
+        [
+            .foregroundColor: BPKColor.textSecondaryColor,
+            .font: BPKFont.makeFont(fontStyle: accessoryFontStyle()),
+            .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+            .strikethroughColor: BPKColor.textSecondaryColor
+        ]
     }
 }
