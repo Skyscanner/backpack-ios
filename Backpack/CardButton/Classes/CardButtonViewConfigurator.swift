@@ -24,7 +24,7 @@ final class CardButtonViewConfigurator {
 
     func createContainedBackgroundCircle() -> UIView {
         let circle = UIView()
-        circle.backgroundColor = BPKColor.textDisabledOnDarkColor.withAlphaComponent(0.5)
+        circle.backgroundColor = BPKColor.textDisabledOnDarkColor
         circle.isUserInteractionEnabled = false
         circle.translatesAutoresizingMaskIntoConstraints = false
         return circle
