@@ -54,7 +54,8 @@ final class CarouselPageViewController: UIPageViewController {
     }
     
     func set(images: [UIView], animated: Bool = true) {
-        resetCarouselImages()
+        pages.removeAll()
+        
         images.forEach {
             let contentController = CarouselContentViewController()
             pages.append(contentController)
@@ -72,16 +73,7 @@ final class CarouselPageViewController: UIPageViewController {
             animated: animated,
             completion: nil
         )
-    }
-    
-    private func resetCarouselImages() {
-        setViewControllers(
-            [UIViewController()],
-            direction: .forward,
-            animated: false,
-            completion: nil
-        )
-        pages.removeAll()
+        carouselDelegate?.onImageChange(index: index)
     }
 }
 
@@ -90,7 +82,11 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
-        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
+        guard
+            let viewControllerIndex = pages.firstIndex(of: viewController),
+            pages.count > 1
+        else { return nil }
+        
         let previousIndex = viewControllerIndex - 1
         guard previousIndex >= 0 else { return pages.last }
         guard pages.count > previousIndex else { return nil }
@@ -101,7 +97,11 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
-        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
+        guard
+            let viewControllerIndex = pages.firstIndex(of: viewController),
+            pages.count > 1
+        else { return nil }
+        
         let nextIndex = viewControllerIndex + 1
         guard nextIndex < pages.count else { return pages.first }
         guard pages.count > nextIndex else { return nil }

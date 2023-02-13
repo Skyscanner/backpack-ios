@@ -19,8 +19,28 @@
 import Foundation
 
 final class CarouselContentViewController: UIViewController {
-    func render(view: UIView) {
+    
+    private var carouselView: UIView = {
+        let view = UIView()
         view.clipsToBounds = true
-        self.view = view
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.clipsToBounds = true
+        view.addSubview(carouselView)
+        NSLayoutConstraint.activate([
+            carouselView.topAnchor.constraint(equalTo: view.topAnchor),
+            carouselView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            carouselView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            carouselView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    func render(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        carouselView = view
     }
 }
