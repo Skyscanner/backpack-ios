@@ -36,10 +36,10 @@ final class PriceExampleViewController: UIViewController {
         view.addSubview(stackView)
         
         [
-            ("Left and large", createPrice(alignment: .left, size: .large)),
-            ("Left and small", createPrice(alignment: .left, size: .small)),
-            ("Right and large", createPrice(alignment: .right, size: .large)),
-            ("Right and small", createPrice(alignment: .right, size: .small))
+            ("Left and large", createPrice(alignment: .leading, size: .large)),
+            ("Left and small", createPrice(alignment: .leading, size: .small)),
+            ("Right and large", createPrice(alignment: .trailing, size: .large)),
+            ("Right and small", createPrice(alignment: .trailing, size: .small))
         ].forEach {
             let label = BPKLabel(fontStyle: .textHeading5)
             label.text = $0.0

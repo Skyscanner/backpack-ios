@@ -25,29 +25,29 @@ public struct BPKPrice: View {
     }
     
     public enum Alignment {
-        case left, right
+        case leading, trailing
     }
     
-    @Binding public var price: String
-    @Binding public var leadingText: String?
-    @Binding public var lineThroughText: String?
-    @Binding public var trailingText: String?
-    @Binding public var alignment: Alignment
+    public let price: String
+    public let leadingText: String?
+    public let lineThroughText: String?
+    public let trailingText: String?
+    public let alignment: Alignment
     public let size: Size
     
     public init(
-        price: Binding<String>,
-        leadingText: Binding<String?> = .constant(nil),
-        lineThroughText: Binding<String?> = .constant(nil),
-        trailingText: Binding<String?> = .constant(nil),
-        alignment: Binding<Alignment> = .constant(.left),
+        price: String,
+        leadingText: String? = nil,
+        lineThroughText: String? = nil,
+        trailingText: String? = nil,
+        alignment: Alignment = .leading,
         size: Size
     ) {
-        self._price = price
-        self._leadingText = leadingText
-        self._lineThroughText = lineThroughText
-        self._trailingText = trailingText
-        self._alignment = alignment
+        self.price = price
+        self.leadingText = leadingText
+        self.lineThroughText = lineThroughText
+        self.trailingText = trailingText
+        self.alignment = alignment
         self.size = size
     }
     
@@ -71,7 +71,7 @@ public struct BPKPrice: View {
                 }
             }
             
-            if alignment == .right && size == .small {
+            if alignment == .trailing && size == .small {
                 VStack(alignment: .trailing) {
                     BPKText(price, style: size == .large ? .heading2 : .heading4)
                     
@@ -99,9 +99,9 @@ public struct BPKPrice: View {
     
     private func mapAlignment() -> HorizontalAlignment {
         switch alignment {
-        case .left:
+        case .leading:
             return .leading
-        case .right:
+        case .trailing:
             return .trailing
         }
     }
@@ -110,11 +110,11 @@ public struct BPKPrice: View {
 struct BPKPrice_Previews: PreviewProvider {
     static var previews: some View {
         BPKPrice(
-            price: .constant("£1830"),
-            leadingText: .constant("App only deal"),
-            lineThroughText: .constant("£2030"),
-            trailingText: .constant("per day"),
-            alignment: .constant(.left),
+            price: "£1830",
+            leadingText: "App only deal",
+            lineThroughText: "£2030",
+            trailingText: "per day",
+            alignment: .leading,
             size: .large
         )
     }

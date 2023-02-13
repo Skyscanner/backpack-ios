@@ -25,35 +25,15 @@ public final class BPKPrice: UIView {
     }
     
     public enum Alignment {
-        case left, right
+        case leading, trailing
     }
     
-    public var price: String {
-        didSet {
-            priceLabel.text = price
-        }
-    }
-    
-    public var leadingText: String? {
-        didSet {
-            leadingTextLabel.text = leadingText
-        }
-    }
-    
-    public var lineThroughText: String? {
-        didSet {
-            applyLineThroughStyling()
-        }
-    }
-    
-    public var alignment: Alignment
+    public let price: String
+    public let leadingText: String?
+    public let lineThroughText: String?
+    public let alignment: Alignment
     public let size: Size
-    
-    public var trailingText: String? {
-        didSet {
-            trailingTextLabel.text = trailingText
-        }
-    }
+    public let trailingText: String?
     
     private lazy var strikeThroughTextAttributes: [NSAttributedString.Key: Any] = {
         [
@@ -119,7 +99,7 @@ public final class BPKPrice: UIView {
         leadingText: String? = nil,
         lineThroughText: String? = nil,
         trailingText: String? = nil,
-        alignment: Alignment = .left,
+        alignment: Alignment = .leading,
         size: Size = .large
     ) {
         self.price = price
@@ -162,11 +142,11 @@ public final class BPKPrice: UIView {
         separatorLabel.isHidden = lineThroughTextLabel.isHidden || leadingTextLabel.isHidden
         
         switch alignment {
-        case .left:
+        case .leading:
             containerStackView.alignment = .leading
             priceStackView.axis = .horizontal
             priceStackView.spacing = BPKSpacingSm
-        case .right:
+        case .trailing:
             containerStackView.alignment = .trailing
             
             if size == .small {

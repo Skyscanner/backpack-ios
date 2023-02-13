@@ -33,7 +33,7 @@ class BPKPriceSnapshotTest: XCTestCase {
         leadingText: String? = "App only deal",
         lineThroughText: String? = "£2033",
         trailingText: String? = "per day",
-        alignment: BPKPrice.Alignment = .left,
+        alignment: BPKPrice.Alignment = .leading,
         size: BPKPrice.Size = .large
     ) -> UIView {
         let parentView = UIView(frame: .zero)
@@ -81,23 +81,23 @@ class BPKPriceSnapshotTest: XCTestCase {
         )
     }
     
-    func testViewSnapshotWithLeftAndLarge() {
-        let exampleView = createView(alignment: .left, size: .large)
+    func testViewSnapshotWithLeadingAndLarge() {
+        let exampleView = createView(alignment: .leading, size: .large)
         assertSnapshot(exampleView)
     }
     
-    func testViewSnapshotWithLeftAndSmall() {
-        let exampleView = createView(alignment: .left, size: .small)
+    func testViewSnapshotWithLeadingAndSmall() {
+        let exampleView = createView(alignment: .leading, size: .small)
         assertSnapshot(exampleView)
     }
     
-    func testViewSnapshotWithRightAndLarge() {
-        let exampleView = createView(alignment: .right, size: .large)
+    func testViewSnapshotWithTrailingAndLarge() {
+        let exampleView = createView(alignment: .trailing, size: .large)
         assertSnapshot(exampleView)
     }
     
-    func testViewSnapshotWithRightAndSmall() {
-        let exampleView = createView(alignment: .right, size: .small)
+    func testViewSnapshotWithTrailingAndSmall() {
+        let exampleView = createView(alignment: .trailing, size: .small)
         assertSnapshot(exampleView)
     }
     

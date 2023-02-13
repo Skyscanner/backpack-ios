@@ -42,14 +42,14 @@ struct PriceExampleView: View {
             HStack {
                 BPKText("Right and large", style: .heading5)
                 Spacer()
-                makePrice(alignment: .right)
+                makePrice(alignment: .trailing)
             }
             .padding([.leading, .trailing], BPKSpacing.base.value)
             
             HStack {
                 BPKText("Right and small", style: .heading5)
                 Spacer()
-                makePrice(alignment: .right, size: .small)
+                makePrice(alignment: .trailing, size: .small)
             }
             .padding([.leading, .trailing], BPKSpacing.base.value)
         }
@@ -60,15 +60,15 @@ struct PriceExampleView: View {
         lineThroughText: String? = "£2033",
         leadingText: String? = "App only deal",
         trailingText: String? = "per day",
-        alignment: Backpack_SwiftUI.BPKPrice.Alignment = .left,
+        alignment: Backpack_SwiftUI.BPKPrice.Alignment = .leading,
         size: Backpack_SwiftUI.BPKPrice.Size = .large
     ) -> Backpack_SwiftUI.BPKPrice {
         BPKPrice(
-            price: .constant(price),
-            leadingText: .constant(leadingText),
-            lineThroughText: .constant(lineThroughText),
-            trailingText: .constant(trailingText),
-            alignment: .constant(alignment), size: size
+            price: price,
+            leadingText: leadingText,
+            lineThroughText: lineThroughText,
+            trailingText: trailingText,
+            alignment: alignment, size: size
         )
     }
 }
