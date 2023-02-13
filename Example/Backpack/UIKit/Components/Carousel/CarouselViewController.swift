@@ -28,59 +28,51 @@ final class CarouselViewController: UIViewController {
         CarouselViewController.createImageView(with: "pilanesburg-south-africa")
     ]
     
-    private lazy var carousel = BPKCarousel(
-        images: images,
-        currentImage: 1,
-        onImageChanged: onImageChanged
-    )
+    private let carousel: BPKCarousel = {
+        let carousel = BPKCarousel()
+        carousel.translatesAutoresizingMaskIntoConstraints = false
+        return carousel
+    }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = BPKLabel(fontStyle: .textCaption)
         label.textColor = BPKColor.textPrimaryColor
         label.text = "Currently selected index:"
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var displayedIndexLabel: UILabel = {
+    private let displayedIndexLabel: UILabel = {
         let label = BPKLabel(fontStyle: .textCaption)
         label.textColor = BPKColor.textPrimaryColor
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private lazy var onImageChanged: ((Int) -> Void)? = { [weak self] selectedRowIndex in
-        self?.displayedIndexLabel.text = "\(selectedRowIndex)"
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BPKColor.canvasColor
         setupConstraints()
+        carousel.delegate = self
+        carousel.set(images: images)
     }
     
     private func setupConstraints() {
-        [
-        carousel,
-        descriptionLabel,
-        displayedIndexLabel
-        ].forEach {
-            view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-
-        NSLayoutConstraint.activate(
-            [
-                carousel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-                carousel.heightAnchor.constraint(equalToConstant: 300),
-                
-                descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                descriptionLabel.topAnchor.constraint(equalTo: carousel.bottomAnchor, constant: 20),
-                
-                displayedIndexLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                displayedIndexLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20)
-            ]
-        )
+        [carousel, descriptionLabel, displayedIndexLabel]
+            .forEach { view.addSubview($0) }
+        
+        NSLayoutConstraint.activate([
+            carousel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            carousel.heightAnchor.constraint(equalToConstant: 300),
+            
+            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: carousel.bottomAnchor, constant: 20),
+            
+            displayedIndexLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            displayedIndexLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20)
+        ])
     }
     
     private static func createImageView(with imageName: String) -> UIImageView {
@@ -88,5 +80,11 @@ final class CarouselViewController: UIViewController {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFill
         return imageView
+    }
+}
+
+extension CarouselViewController: BPKCarouselDelegate {
+    func onImageChange(index: Int) {
+        displayedIndexLabel.text = "\(index)"
     }
 }

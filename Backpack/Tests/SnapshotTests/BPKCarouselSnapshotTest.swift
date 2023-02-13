@@ -41,19 +41,19 @@ class BPKCarouselSnapshotTest: XCTestCase {
         let exampleView = createView(with: imageViews)
         assertSnapshot(exampleView)
     }
-    
+
     func testViewSnapshotWithThreeImages() {
         let imageViews = createImageViews(count: 3)
         let exampleView = createView(with: imageViews)
         assertSnapshot(exampleView)
     }
-    
+
     func testViewSnapshotWithSecondSelected() {
         let imageViews = createImageViews(count: 3)
         let exampleView = createView(with: imageViews, currentImage: 1)
         assertSnapshot(exampleView)
     }
-    
+
     func testViewSnapshotWithThirdSelected() {
         let imageViews = createImageViews(count: 3)
         let exampleView = createView(with: imageViews, currentImage: 2)
@@ -65,7 +65,7 @@ class BPKCarouselSnapshotTest: XCTestCase {
 extension BPKCarouselSnapshotTest {
     private func createImageViews(count: Int) -> [UIImageView] {
         var imageViews = [UIImageView]()
-        for index in 0..<min(count, imageNames.count) {
+        for index in 0..<count {
             let image = image(named: imageNames[index])
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFill
@@ -78,21 +78,21 @@ extension BPKCarouselSnapshotTest {
         let parentView = UIView(frame: .zero)
         parentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let carousel = BPKCarousel(images: images, currentImage: currentImage)
+        let carousel = BPKCarousel()
+        carousel.set(images: images)
+        carousel.setCurrentImage(index: currentImage)
         parentView.addSubview(carousel)
         carousel.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint.activate(
-            [
-                parentView.heightAnchor.constraint(equalToConstant: 250),
-                parentView.widthAnchor.constraint(equalToConstant: 300),
-                
-                carousel.topAnchor.constraint(equalTo: parentView.topAnchor),
-                carousel.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-                carousel.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-                carousel.bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
-            ]
-        )
+        NSLayoutConstraint.activate([
+            parentView.heightAnchor.constraint(equalToConstant: 250),
+            parentView.widthAnchor.constraint(equalToConstant: 300),
+            
+            carousel.topAnchor.constraint(equalTo: parentView.topAnchor),
+            carousel.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            carousel.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+            carousel.bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+        ])
         return parentView
     }
     
