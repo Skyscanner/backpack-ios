@@ -49,7 +49,7 @@ final class RatingsViewController: UIViewController {
 
     private let sizes = [BPKRatingSize.default, BPKRatingSize.large]
     private let titles = ["1,532 reviews", nil]
-    private let scalesTypeAndVisibility = [
+    private let visibilityAndScalesType = [
         (true, BPKRatingScale.zeroToFive),
         (true, BPKRatingScale.zeroToTen),
         (false, BPKRatingScale.zeroToFive)
@@ -58,7 +58,7 @@ final class RatingsViewController: UIViewController {
     private func setupView() {
         sizes.forEach { size in
             titles.forEach { (subtitle: String?) in
-                scalesTypeAndVisibility.forEach { (showScale: Bool, scale: BPKRatingScale) in
+                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
                     let rating = BPKRating(
                         accessibilityLabel: "",
                         title: "Excellent",
@@ -75,7 +75,7 @@ final class RatingsViewController: UIViewController {
 
         sizes.forEach { size in
             titles.forEach { (subtitle: String?) in
-                scalesTypeAndVisibility.forEach { (showScale: Bool, scale: BPKRatingScale) in
+                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
                     let starRating = BPKStarRating()
                     starRating.rating = 4.5
                     let rating = BPKRating(

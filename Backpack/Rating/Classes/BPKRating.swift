@@ -99,6 +99,7 @@ public class BPKRating: UIView {
         label.textColor = BPKColor.textSecondaryColor
         return label
     }()
+    private var titleViewBottomConstraint: NSLayoutConstraint?
 
     // MARK: - Init
     public init(
@@ -186,6 +187,7 @@ public class BPKRating: UIView {
 
         updateSize()
         ratingValueLabel.text = displayedValue(from: value, scale: ratingScale)
+        updateCustomTitleViewBottomConstraintIfNeeded()
     }
 
     private func updateSize() {
@@ -228,5 +230,34 @@ public class BPKRating: UIView {
 
     private func displayedScale(from scale: BPKRatingScale) -> String {
         return String(format: "/%.0f", scale.range.upperBound)
+    }
+
+    // When size=large and custom subtitleLabel is hidden,
+    // horizontalStackView's alignment = .lastBaseline doesn't work.
+    // To avoid the customTitleView being below the ratingValueLabel's baseline,
+    // an extra constraint is needed to pin the view's bottom to the ratingValueLabel's baseline
+    private func updateCustomTitleViewBottomConstraintIfNeeded() {
+        let isShowingCustomTitleView = titleView != titleLabel
+        let isLargeSize = size == .large
+        let isSubtitleLabelHidden = subtitleLabel.isHidden
+        let isAddedToSuperView = titleView.superview != nil
+
+        if isShowingCustomTitleView && isSubtitleLabelHidden &&
+            isLargeSize && isAddedToSuperView {
+            if titleViewBottomConstraint == nil {
+                titleViewBottomConstraint = titleView.bottomAnchor.constraint(
+                    lessThanOrEqualTo: ratingValueLabel.lastBaselineAnchor
+                )
+                titleViewBottomConstraint?.priority = .required
+            }
+            NSLayoutConstraint.activate([titleViewBottomConstraint!])
+        } else {
+            if
+                let titleViewBottomConstraint = titleViewBottomConstraint,
+                titleViewBottomConstraint.isActive
+            {
+                NSLayoutConstraint.deactivate([titleViewBottomConstraint])
+            }
+        }
     }
 }
