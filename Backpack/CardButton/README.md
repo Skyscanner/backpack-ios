@@ -22,8 +22,7 @@ import Backpack
 let shareButton = BPKShareCardButton(
     accessibilityLabel: "",
     style: .default,
-    size: .default,
-    onClick: {}
+    size: .default
 )
 ```
 
