@@ -26,5 +26,77 @@ class BPKRatingSnapshotTest: XCTestCase {
         isRecording = false
     }
 
-    // SONIC-1385: BPKRating snapshot
+    private let sizes = [BPKRatingSize.default, BPKRatingSize.large]
+    private let subtitles = ["1,532 reviews", nil]
+    private let visibilityAndScalesType = [
+        (true, BPKRatingScale.zeroToFive),
+        (true, BPKRatingScale.zeroToTen),
+        (false, BPKRatingScale.zeroToFive)
+    ]
+    private let showCustomTitleViews = [false, true]
+
+    struct BPKRatingParameter {
+        let scale: BPKRatingScale
+        let size: BPKRatingSize
+        let subtitle: String?
+        let showScale: Bool
+        let showCustomTitleView: Bool
+    }
+
+    private func createRatingStackView() -> UIView {
+        var styles: [BPKRatingParameter] = []
+        sizes.forEach { size in
+            subtitles.forEach { (subtitle: String?) in
+                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
+                    showCustomTitleViews.forEach { (showCustomTitleView: Bool) in
+                        let parameter = BPKRatingParameter(
+                            scale: scale,
+                            size: size,
+                            subtitle: subtitle,
+                            showScale: showScale,
+                            showCustomTitleView: showCustomTitleView)
+                        styles.append(parameter)
+                    }
+                }
+            }
+        }
+
+        return viewsInStack(
+            withStyles: styles,
+            backgroundColor: BPKColor.surfaceDefaultColor
+        ) { style in
+            createRating(style)
+        }
+    }
+
+    private func createRating(_ parameter: BPKRatingParameter) -> BPKRating {
+        if parameter.showCustomTitleView {
+            let starRating = BPKStarRating()
+            starRating.rating = 4.5
+            return BPKRating(
+                accessibilityLabel: "",
+                value: 4.5,
+                ratingScale: parameter.scale,
+                size: parameter.size,
+                subtitle: parameter.subtitle,
+                showScale: parameter.showScale,
+                titleView: starRating
+            )
+        } else {
+            return BPKRating(
+                accessibilityLabel: "",
+                title: "Excellent",
+                value: 4.5,
+                ratingScale: parameter.scale,
+                size: parameter.size,
+                subtitle: parameter.subtitle,
+                showScale: parameter.showScale
+            )
+        }
+    }
+
+    func testBPKRatingSnapshot() {
+        let ratingsStackView = createRatingStackView()
+        assertSnapshot(ratingsStackView)
+    }
 }
