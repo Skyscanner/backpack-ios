@@ -48,12 +48,12 @@ class BPKSaveCardButtonTest: XCTestCase {
         )
 
         // When
-        saveCardButton.checked = true
+        saveCardButton.setChecked(true, animated: false)
         // Then
         XCTAssertTrue(onCheckedChangeLastCalledValue)
 
         // When
-        saveCardButton.checked = false
+        saveCardButton.setChecked(false, animated: false)
         // Then
         XCTAssertFalse(onCheckedChangeLastCalledValue)
     }
@@ -103,7 +103,7 @@ class BPKSaveCardButtonTest: XCTestCase {
         XCTAssertFalse(saveCardButton.accessibilityTraits.contains(.selected))
 
         // When
-        saveCardButton.checked = true
+        saveCardButton.setChecked(true, animated: false)
 
         // Then
         XCTAssertTrue(saveCardButton.accessibilityTraits.contains(.selected))

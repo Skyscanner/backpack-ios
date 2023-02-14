@@ -20,7 +20,7 @@ import UIKit
 
 public class BPKSaveCardButton: UIButton, CardButtonProtocol {
 
-    public var checked: Bool {
+    public private(set) var checked: Bool {
         didSet {
             updateLookAndFeel()
             onCheckedChange?(checked)
