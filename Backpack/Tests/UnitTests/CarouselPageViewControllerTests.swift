@@ -27,6 +27,7 @@ final class CarouselPageViewControllerTests: XCTestCase {
     private let pageFour = UIViewController()
     
     private var pages = [UIViewController]()
+    private let carouselViewController = CarouselPageViewController()
         
     override func tearDown() {
         pages = []
@@ -39,10 +40,10 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne, pageTwo, pageThree, pageFour]
         
         // When
-        let sut = viewControllerAfter(lastDisplayed: pageTwo, pages: pages)
+        let vcAfter = carouselViewController.viewControllerAfter(lastDisplayed: pageTwo, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, pageThree)
+        XCTAssertEqual(vcAfter, pageThree)
     }
     
     func testGivenOnePage_whenLastDisplayedPageOne_thenViewControllerAfterIsNil() {
@@ -50,10 +51,10 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne]
         
         // When
-        let sut = viewControllerAfter(lastDisplayed: pageOne, pages: pages)
+        let vcAfter = carouselViewController.viewControllerAfter(lastDisplayed: pageOne, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, nil)
+        XCTAssertEqual(vcAfter, nil)
     }
     
     func testGivenFourPages_whenLastDisplayedPageFour_thenViewControllerAfterIsPageOne() {
@@ -61,10 +62,10 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne, pageTwo, pageThree, pageFour]
         
         // When
-        let sut = viewControllerAfter(lastDisplayed: pageFour, pages: pages)
+        let vcAfter = carouselViewController.viewControllerAfter(lastDisplayed: pageFour, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, pageOne)
+        XCTAssertEqual(vcAfter, pageOne)
     }
     
     // MARK: viewControllerBefore
@@ -73,10 +74,10 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne, pageTwo, pageThree, pageFour]
         
         // When
-        let sut = viewControllerBefore(lastDisplayed: pageTwo, pages: pages)
+        let vcBefore = carouselViewController.viewControllerBefore(lastDisplayed: pageTwo, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, pageOne)
+        XCTAssertEqual(vcBefore, pageOne)
     }
     
     func testGivenOnePage_whenLastDisplayedPageOne_thenViewControllerBeforeIsNil() {
@@ -84,10 +85,10 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne]
         
         // When
-        let sut = viewControllerBefore(lastDisplayed: pageOne, pages: pages)
+        let vcBefore = carouselViewController.viewControllerBefore(lastDisplayed: pageOne, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, nil)
+        XCTAssertEqual(vcBefore, nil)
     }
     
     func testGivenFourPages_whenLastDisplayedPageOne_thenViewControllerBeforeIsPageFour() {
@@ -95,9 +96,9 @@ final class CarouselPageViewControllerTests: XCTestCase {
         pages = [pageOne, pageTwo, pageThree, pageFour]
         
         // When
-        let sut = viewControllerBefore(lastDisplayed: pageOne, pages: pages)
+        let vcBefore = carouselViewController.viewControllerBefore(lastDisplayed: pageOne, pages: pages)
         
         // Then
-        XCTAssertEqual(sut, pageFour)
+        XCTAssertEqual(vcBefore, pageFour)
     }
 }

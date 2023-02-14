@@ -75,11 +75,39 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         viewControllerBefore(lastDisplayed: viewController, pages: pages)
     }
     
+    func viewControllerBefore(
+        lastDisplayed viewController: UIViewController,
+        pages: [UIViewController]
+    ) -> UIViewController? {
+        guard
+            let viewControllerIndex = pages.firstIndex(of: viewController),
+            pages.count > 1
+        else { return nil }
+        
+        let previousIndex = viewControllerIndex - 1
+        guard previousIndex >= 0 else { return pages.last }
+        return pages[previousIndex]
+    }
+
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
         viewControllerAfter(lastDisplayed: viewController, pages: pages)
+    }
+    
+    func viewControllerAfter(
+        lastDisplayed viewController: UIViewController,
+        pages: [UIViewController])
+    -> UIViewController? {
+        guard
+            let viewControllerIndex = pages.firstIndex(of: viewController),
+            pages.count > 1
+        else { return nil }
+        
+        let nextIndex = viewControllerIndex + 1
+        guard nextIndex < pages.count else { return pages.first }
+        return pages[nextIndex]
     }
 }
 
@@ -96,32 +124,4 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
         else { return }
         carouselDelegate?.onImageChange(index: index)
     }
-}
-
-func viewControllerBefore(
-    lastDisplayed viewController: UIViewController,
-    pages: [UIViewController]
-) -> UIViewController? {
-    guard
-        let viewControllerIndex = pages.firstIndex(of: viewController),
-        pages.count > 1
-    else { return nil }
-    
-    let previousIndex = viewControllerIndex - 1
-    guard previousIndex >= 0 else { return pages.last }
-    return pages[previousIndex]
-}
-
-func viewControllerAfter(
-    lastDisplayed viewController: UIViewController,
-    pages: [UIViewController])
--> UIViewController? {
-    guard
-        let viewControllerIndex = pages.firstIndex(of: viewController),
-        pages.count > 1
-    else { return nil }
-    
-    let nextIndex = viewControllerIndex + 1
-    guard nextIndex < pages.count else { return pages.first }
-    return pages[nextIndex]
 }
