@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class BPKShareCardButton: UIButton, CardButtonProtocol {
+public class BPKShareCardButton: UIButton {
 
     public var style: BPKCardButtonStyle {
         didSet { updateLookAndFeel() }
@@ -28,7 +28,7 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
         didSet { updateLookAndFeel() }
     }
 
-    let backgroundCircle = UIView()
+    private let backgroundCircle = CardButtonBackgroundView()
 
     public init(
         accessibilityLabel: String,
@@ -50,9 +50,17 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func setup() {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: size.buttonWidthHeight),
+            heightAnchor.constraint(equalToConstant: size.buttonWidthHeight)
+        ])
+    }
+
     private func updateLookAndFeel() {
         updateButtonImages()
-        updateBackgroundCircleView()
+        backgroundCircle.updateLookAndFeel(size: size, style: style, parentButton: self)
     }
 
     private func updateButtonImages() {

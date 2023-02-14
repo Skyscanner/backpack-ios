@@ -28,4 +28,7 @@ public enum BPKCardButtonSize {
             return BPKIcon.concreteSizeForSmallIcon.width + BPKSpacingBase
         }
     }
+
+    // CardButton Required a larger hit area of at least 48px
+    var buttonWidthHeight: CGFloat { BPKSpacingLg * 2 }
 }

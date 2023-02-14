@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class BPKSaveCardButton: UIButton, CardButtonProtocol {
+public class BPKSaveCardButton: UIButton {
 
     public private(set) var checked: Bool {
         didSet {
@@ -37,7 +37,7 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
 
     public var onCheckedChange: ((Bool) -> Void)?
 
-    let backgroundCircle = UIView()
+    private let backgroundCircle = CardButtonBackgroundView()
 
     public init(
         checked: Bool = false,
@@ -63,9 +63,17 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func setup() {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalToConstant: size.buttonWidthHeight),
+            heightAnchor.constraint(equalToConstant: size.buttonWidthHeight)
+        ])
+    }
+
     private func updateLookAndFeel() {
         updateButtonImages()
-        updateBackgroundCircleView()
+        backgroundCircle.updateLookAndFeel(size: size, style: style, parentButton: self)
         updateAccessibilityTraits()
     }
 
