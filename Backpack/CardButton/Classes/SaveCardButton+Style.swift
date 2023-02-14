@@ -27,7 +27,7 @@ internal extension BPKSaveCardButton {
         let defaultIconSelected: BPKLargeIconName
     }
 
-    static let IconSet = Icons(
+    static let iconSet = Icons(
         smallIcon: .heartOutline,
         smallIconHighlighted: .heart,
         smallIconSelected: .heart,

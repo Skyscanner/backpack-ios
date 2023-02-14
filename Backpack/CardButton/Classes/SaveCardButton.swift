@@ -74,7 +74,7 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
     }
 
     private func updateButtonImages() {
-        let icons = Self.IconSet
+        let icons = Self.iconSet
         let colorSet = Self.colorSet(from: style)
 
         switch size {
