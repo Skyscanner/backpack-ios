@@ -55,6 +55,7 @@ struct ComponentCellsProvider {
             mapView(),
             pageIndicators(),
             panels(),
+            price(),
             progressBar(),
             ratings(),
             snackbar(),
@@ -352,6 +353,23 @@ extension ComponentCellsProvider {
                 ))
             ],
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
+        )
+    }
+    
+    private func price() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Price",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        PriceExampleViewController()
+                    }
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PriceExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Price", tabs: $0) }
         )
     }
 }
