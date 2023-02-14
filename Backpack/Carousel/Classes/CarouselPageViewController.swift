@@ -30,11 +30,7 @@ final class CarouselPageViewController: UIPageViewController {
         return index
     }
     
-    override init(
-        transitionStyle style: UIPageViewController.TransitionStyle,
-        navigationOrientation: UIPageViewController.NavigationOrientation,
-        options: [UIPageViewController.OptionsKey: Any]? = nil
-    ) {
+    init() {
         super.init(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal,
@@ -44,7 +40,7 @@ final class CarouselPageViewController: UIPageViewController {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -55,18 +51,12 @@ final class CarouselPageViewController: UIPageViewController {
     
     func set(images: [UIView], animated: Bool = true) {
         pages.removeAll()
-        
-        images.forEach {
-            let contentController = CarouselContentViewController()
-            pages.append(contentController)
-            contentController.render(view: $0)
-        }
+        images.forEach { pages.append(CarouselContentViewController(view: $0)) }
         setCurrentImage(index: 0, animated: animated)
     }
     
     func setCurrentImage(index: Int, animated: Bool = true) {
-        let availableRange = 0...(pages.count - 1)
-        guard availableRange.contains(index) else { return }
+        guard pages.indices.contains(index) else { return }
         setViewControllers(
             [pages[index]],
             direction: .forward,
@@ -82,30 +72,14 @@ extension CarouselPageViewController: UIPageViewControllerDataSource {
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
-        guard
-            let viewControllerIndex = pages.firstIndex(of: viewController),
-            pages.count > 1
-        else { return nil }
-        
-        let previousIndex = viewControllerIndex - 1
-        guard previousIndex >= 0 else { return pages.last }
-        guard pages.count > previousIndex else { return nil }
-        return pages[previousIndex]
+        viewControllerBefore(lastDisplayed: viewController, pages: pages)
     }
     
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
-        guard
-            let viewControllerIndex = pages.firstIndex(of: viewController),
-            pages.count > 1
-        else { return nil }
-        
-        let nextIndex = viewControllerIndex + 1
-        guard nextIndex < pages.count else { return pages.first }
-        guard pages.count > nextIndex else { return nil }
-        return pages[nextIndex]
+        viewControllerAfter(lastDisplayed: viewController, pages: pages)
     }
 }
 
@@ -122,4 +96,32 @@ extension CarouselPageViewController: UIPageViewControllerDelegate {
         else { return }
         carouselDelegate?.onImageChange(index: index)
     }
+}
+
+func viewControllerBefore(
+    lastDisplayed viewController: UIViewController,
+    pages: [UIViewController]
+) -> UIViewController? {
+    guard
+        let viewControllerIndex = pages.firstIndex(of: viewController),
+        pages.count > 1
+    else { return nil }
+    
+    let previousIndex = viewControllerIndex - 1
+    guard previousIndex >= 0 else { return pages.last }
+    return pages[previousIndex]
+}
+
+func viewControllerAfter(
+    lastDisplayed viewController: UIViewController,
+    pages: [UIViewController])
+-> UIViewController? {
+    guard
+        let viewControllerIndex = pages.firstIndex(of: viewController),
+        pages.count > 1
+    else { return nil }
+    
+    let nextIndex = viewControllerIndex + 1
+    guard nextIndex < pages.count else { return pages.first }
+    return pages[nextIndex]
 }

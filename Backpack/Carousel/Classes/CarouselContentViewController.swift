@@ -27,6 +27,12 @@ final class CarouselContentViewController: UIViewController {
         return view
     }()
     
+    init(view: UIView) {
+        super.init(nibName: nil, bundle: nil)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        carouselView = view
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.clipsToBounds = true
@@ -39,8 +45,8 @@ final class CarouselContentViewController: UIViewController {
         ])
     }
     
-    func render(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        carouselView = view
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
