@@ -54,7 +54,7 @@ extension CardButtonProtocol where Self: UIButton {
 
         guard !wasAdded else { return }
         addSubview(backgroundCircle)
-        let circleSize = buttonBackgroundSize(size: size)
+        let circleSize = size.backgroundCircleSize
         backgroundCircle.layer.cornerRadius = circleSize / 2
 
         NSLayoutConstraint.activate([
@@ -66,14 +66,4 @@ extension CardButtonProtocol where Self: UIButton {
         imageView.map { bringSubviewToFront($0) }
     }
 
-    // MARK: - Private helpers
-
-    private func buttonBackgroundSize(size: BPKCardButtonSize) -> CGFloat {
-        switch size {
-        case .default:
-            return BPKIcon.concreteSizeForLargeIcon.width + BPKSpacingBase
-        case .small:
-            return BPKIcon.concreteSizeForSmallIcon.width + BPKSpacingBase
-        }
-    }
 }
