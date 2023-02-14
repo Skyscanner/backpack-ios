@@ -37,7 +37,7 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
 
     public var onCheckedChange: ((Bool) -> Void)?
 
-    let containedBackgroundCircle = UIView()
+    let backgroundCircle = UIView()
 
     public init(
         checked: Bool = false,

@@ -28,7 +28,7 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
         didSet { updateLookAndFeel() }
     }
 
-    let containedBackgroundCircle = UIView()
+    let backgroundCircle = UIView()
 
     public init(
         accessibilityLabel: String,

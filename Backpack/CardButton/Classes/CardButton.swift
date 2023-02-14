@@ -23,7 +23,7 @@ internal protocol CardButtonProtocol {
     var size: BPKCardButtonSize { get }
     var style: BPKCardButtonStyle { get }
 
-    var containedBackgroundCircle: UIView { get }
+    var backgroundCircle: UIView { get }
 }
 
 extension CardButtonProtocol where Self: UIButton {
@@ -40,41 +40,33 @@ extension CardButtonProtocol where Self: UIButton {
     }
 
     func updateBackgroundCircleView() {
-        containedBackgroundCircle.backgroundColor = BPKColor.textDisabledOnDarkColor
-        containedBackgroundCircle.isUserInteractionEnabled = false
-        containedBackgroundCircle.translatesAutoresizingMaskIntoConstraints = false
+        backgroundCircle.backgroundColor = BPKColor.textDisabledOnDarkColor
+        backgroundCircle.isUserInteractionEnabled = false
+        backgroundCircle.translatesAutoresizingMaskIntoConstraints = false
 
-        let wasAdded = containedBackgroundCircle.superview != nil
-        guard shouldAddButtonBackground(style: style) else {
+        let wasAdded = backgroundCircle.superview != nil
+        guard style.hasBackgroundCircle() else {
             if wasAdded {
-                containedBackgroundCircle.removeFromSuperview()
+                backgroundCircle.removeFromSuperview()
             }
             return
         }
 
         guard !wasAdded else { return }
-        addSubview(containedBackgroundCircle)
+        addSubview(backgroundCircle)
         let circleSize = buttonBackgroundSize(size: size)
-        containedBackgroundCircle.layer.cornerRadius = circleSize / 2
+        backgroundCircle.layer.cornerRadius = circleSize / 2
 
         NSLayoutConstraint.activate([
-            containedBackgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
-            containedBackgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containedBackgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
+            backgroundCircle.widthAnchor.constraint(equalToConstant: circleSize),
+            backgroundCircle.heightAnchor.constraint(equalToConstant: circleSize),
+            backgroundCircle.centerXAnchor.constraint(equalTo: centerXAnchor),
+            backgroundCircle.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         imageView.map { bringSubviewToFront($0) }
     }
 
     // MARK: - Private helpers
-    private func shouldAddButtonBackground(style: BPKCardButtonStyle) -> Bool {
-        switch style {
-        case .contained:
-            return true
-        default:
-            return false
-        }
-    }
 
     private func buttonBackgroundSize(size: BPKCardButtonSize) -> CGFloat {
         switch size {

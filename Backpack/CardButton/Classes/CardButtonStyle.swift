@@ -20,4 +20,13 @@ public enum BPKCardButtonStyle {
     case `default`
     case contained
     case onDark
+
+    func hasBackgroundCircle() -> Bool {
+        switch self {
+        case .contained:
+            return true
+        default:
+            return false
+        }
+    }
 }
