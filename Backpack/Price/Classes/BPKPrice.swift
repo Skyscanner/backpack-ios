@@ -50,9 +50,27 @@ public final class BPKPrice: UIView {
     private let previousPriceLabel = BPKLabel()
     private let separatorLabel = BPKLabel()
     private let leadingTextLabel = BPKLabel()
-    private let topTextStackView = UIStackView()
-    private let priceStackView = UIStackView()
-    private let containerStackView = UIStackView()
+    
+    private let topTextStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = BPKSpacingSm
+        return stackView
+    }()
+    
+    private let priceStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = BPKSpacingSm
+        stackView.alignment = .firstBaseline
+        return stackView
+    }()
+    
+    private let containerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
     
     public init(
         price: String? = nil,
@@ -81,11 +99,20 @@ public final class BPKPrice: UIView {
     }
     
     private func setupView() {
+        [previousPriceLabel, separatorLabel, leadingTextLabel].forEach {
+            topTextStackView.addArrangedSubview($0)
+        }
+        
+        [priceLabel, trailingTextLabel].forEach {
+            priceStackView.addArrangedSubview($0)
+        }
+        
+        [topTextStackView, priceStackView].forEach {
+            containerStackView.addArrangedSubview($0)
+        }
+        
         stylePriceLabel()
         styleAccessoryLabels()
-        styleTopTextStackView()
-        stylePriceStackView()
-        styleContainerStackView()
         
         leadingTextLabel.text = leadingText
         separatorLabel.text = "•"
@@ -166,30 +193,6 @@ public final class BPKPrice: UIView {
             $0.fontStyle = accessoryFontStyle()
             $0.textColor = BPKColor.textSecondaryColor
         }
-    }
-    
-    private func styleTopTextStackView() {
-        [previousPriceLabel, separatorLabel, leadingTextLabel].forEach {
-            topTextStackView.addArrangedSubview($0)
-        }
-        topTextStackView.axis = .horizontal
-        topTextStackView.spacing = BPKSpacingSm
-    }
-    
-    private func stylePriceStackView() {
-        [priceLabel, trailingTextLabel].forEach {
-            priceStackView.addArrangedSubview($0)
-        }
-        priceStackView.axis = .horizontal
-        priceStackView.spacing = BPKSpacingSm
-        priceStackView.alignment = .firstBaseline
-    }
-    
-    private func styleContainerStackView() {
-        [topTextStackView, priceStackView].forEach {
-            containerStackView.addArrangedSubview($0)
-        }
-        containerStackView.axis = .vertical
     }
     
     private func strikeThroughTextAttributes() -> [NSAttributedString.Key: Any] {

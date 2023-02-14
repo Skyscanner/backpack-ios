@@ -76,7 +76,7 @@ public struct BPKPrice: View {
         case leading, trailing
     }
     
-    private let price: String?
+    private let price: String
     private let leadingText: String?
     private let previousPrice: String?
     private let trailingText: String?
@@ -84,7 +84,7 @@ public struct BPKPrice: View {
     private let size: Size
     
     public init(
-        price: String?,
+        price: String,
         leadingText: String? = nil,
         previousPrice: String? = nil,
         trailingText: String? = nil,
