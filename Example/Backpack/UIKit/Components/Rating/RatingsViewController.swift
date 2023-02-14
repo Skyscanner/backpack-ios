@@ -25,6 +25,8 @@ final class RatingsViewController: UIViewController {
         let showScale: Bool
     }
 
+    private let showCustomTitleView: Bool
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,10 +42,18 @@ final class RatingsViewController: UIViewController {
         return stack
     }()
 
+    init(showCustomTitleView: Bool) {
+        self.showCustomTitleView = showCustomTitleView
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BPKColor.surfaceDefaultColor
-        title = "Rating"
         setupView()
     }
 
@@ -59,34 +69,13 @@ final class RatingsViewController: UIViewController {
         sizes.forEach { size in
             titles.forEach { (subtitle: String?) in
                 visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
-                    let rating = BPKRating(
-                        accessibilityLabel: "",
-                        title: "Excellent",
-                        value: 4.5,
-                        ratingScale: scale,
+                    let rating = createRating(
+                        title: title,
+                        scale: scale,
                         size: size,
                         subtitle: subtitle,
-                        showScale: showScale
-                    )
-                    stack.addArrangedSubview(rating)
-                }
-            }
-        }
+                        showScale: showScale)
 
-        sizes.forEach { size in
-            titles.forEach { (subtitle: String?) in
-                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
-                    let starRating = BPKStarRating()
-                    starRating.rating = 4.5
-                    let rating = BPKRating(
-                        accessibilityLabel: "",
-                        value: 4.5,
-                        ratingScale: scale,
-                        size: size,
-                        subtitle: subtitle,
-                        showScale: showScale,
-                        titleView: starRating
-                    )
                     stack.addArrangedSubview(rating)
                 }
             }
@@ -95,6 +84,38 @@ final class RatingsViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(stack)
         setupConstraints()
+    }
+
+    private func createRating(
+        title: String?,
+        scale: BPKRatingScale,
+        size: BPKRatingSize,
+        subtitle: String?,
+        showScale: Bool
+    ) -> BPKRating {
+        if showCustomTitleView {
+            let starRating = BPKStarRating()
+            starRating.rating = 4.5
+            return BPKRating(
+                accessibilityLabel: "",
+                value: 4.5,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale,
+                titleView: starRating
+            )
+        } else {
+            return BPKRating(
+                accessibilityLabel: "",
+                title: "Excellent",
+                value: 4.5,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale
+            )
+        }
     }
 
     private func setupConstraints() {

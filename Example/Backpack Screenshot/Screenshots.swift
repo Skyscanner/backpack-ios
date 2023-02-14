@@ -344,8 +344,12 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Rating") {
-            saveScreenshot(component: "rating", scenario: "default",
-                           userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["BPKRating: title text"].tap()
+            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["BPKRating: custom titleView"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Snackbar") {

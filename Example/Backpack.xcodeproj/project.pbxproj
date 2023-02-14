@@ -10,6 +10,7 @@
 		006034DBB76C671434F6252A /* Pods_Backpack_Native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC7CA36756032862B5D581 /* Pods_Backpack_Native.framework */; };
 		0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E844AF6289141C2004C5865 /* SkeletonViewController.swift */; };
 		0E8EEFC928A23C3E008BA7A3 /* SkeletonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8EEFC828A23C3E008BA7A3 /* SkeletonExampleView.swift */; };
+		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
@@ -183,6 +184,7 @@
 		0E8EEFC828A23C3E008BA7A3 /* SkeletonExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonExampleView.swift; sourceTree = "<group>"; };
 		0F386FFD6327F785FBB09093 /* Pods-Backpack-Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.debug.xcconfig"; sourceTree = "<group>"; };
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
+		17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGroupsProvider.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
 		3AA018EE215BE26500838FBB /* SpinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnersViewController.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				53B6DB6527FC47290042B7C0 /* DialogGroups.swift */,
 				53B6DB6727FC4D520042B7C0 /* HorizontalNavigationGroups.swift */,
 				53B6DB6127FC3F170042B7C0 /* ChipGroups.swift */,
+				17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */,
 				53B6DB6927FC73A90042B7C0 /* LabelGroups.swift */,
 				53E075A827FC97C60033147C /* ToastGroups.swift */,
 				53E075A427FC780C0033147C /* NavBarGroups.swift */,
@@ -1394,6 +1397,7 @@
 				D2B4FC472538A88900070BEC /* OverlayViewsSelectorViewController.swift in Sources */,
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
+				17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */,
 				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
 				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
