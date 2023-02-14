@@ -17,54 +17,75 @@
  */
 
 internal extension BPKSaveCardButton {
-
+    
     struct Icons {
         let smallIcon: BPKSmallIconName
         let smallIconHighlighted: BPKSmallIconName
-        let smallIconSelected: BPKSmallIconName
         let defaultIcon: BPKLargeIconName
         let defaultIconHighlighted: BPKLargeIconName
-        let defaultIconSelected: BPKLargeIconName
     }
-
-    static let iconSet = Icons(
+    
+    static let uncheckedIcons = Icons(
         smallIcon: .heartOutline,
         smallIconHighlighted: .heart,
-        smallIconSelected: .heart,
         defaultIcon: .heartOutline,
-        defaultIconHighlighted: .heart,
-        defaultIconSelected: .heart
+        defaultIconHighlighted: .heart
     )
-
-    struct ColorSet {
-        let normal: UIColor
-        let highlighted: UIColor
-        let selected: UIColor
+    static let checkedIcons = Icons(
+        smallIcon: .heart,
+        smallIconHighlighted: .heart,
+        defaultIcon: .heart,
+        defaultIconHighlighted: .heart
+    )
+    
+    struct AppearanceSet {
+        let normal: Colors
+        let highlighted: Colors
     }
-
-    static let defaultColorSet = ColorSet(
-        normal: BPKColor.textPrimaryColor,
-        highlighted: BPKColor.textPrimaryColor,
-        selected: BPKColor.coreAccentColor
+    
+    struct Colors {
+        let iconColor: UIColor
+        let iconColorChecked: UIColor
+    }
+    
+    static let defaultAppearanceSet = AppearanceSet(
+        normal: Colors(
+            iconColor: BPKColor.textPrimaryColor,
+            iconColorChecked: BPKColor.coreAccentColor
+        ),
+        highlighted: Colors(
+            iconColor: BPKColor.textPrimaryColor,
+            iconColorChecked: BPKColor.coreAccentColor
+        )
     )
-
-    static let containedColorSet = ColorSet(
-        normal: BPKColor.textPrimaryColor,
-        highlighted: BPKColor.textPrimaryColor,
-        selected: BPKColor.coreAccentColor
+    
+    static let containedAppearanceSet = AppearanceSet(
+        normal: Colors(
+            iconColor: BPKColor.textPrimaryColor,
+            iconColorChecked: BPKColor.coreAccentColor
+        ),
+        highlighted: Colors(
+            iconColor: BPKColor.textPrimaryColor,
+            iconColorChecked: BPKColor.coreAccentColor
+        )
     )
-
-    static let onDarkColorSet = ColorSet(
-        normal: BPKColor.textOnDarkColor,
-        highlighted: BPKColor.textOnDarkColor,
-        selected: BPKColor.textOnDarkColor
+    
+    static let onDarkAppearanceSet = AppearanceSet(
+        normal: Colors(
+            iconColor: BPKColor.textOnDarkColor,
+            iconColorChecked: BPKColor.textOnDarkColor
+        ),
+        highlighted: Colors(
+            iconColor: BPKColor.textOnDarkColor,
+            iconColorChecked: BPKColor.textOnDarkColor
+        )
     )
-
-    static func colorSet(from style: BPKCardButtonStyle) -> ColorSet {
+    
+    static func appearance(from style: BPKCardButtonStyle) -> AppearanceSet {
         switch style {
-        case .`default`: return defaultColorSet
-        case .onDark: return onDarkColorSet
-        case .contained: return containedColorSet
+        case .`default`: return defaultAppearanceSet
+        case .onDark: return onDarkAppearanceSet
+        case .contained: return containedAppearanceSet
         }
     }
 }

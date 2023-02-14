@@ -21,11 +21,7 @@ import UIKit
 public class BPKSaveCardButton: UIButton, CardButtonProtocol {
 
     public var checked: Bool {
-        get {
-            isSelected
-        }
-        set {
-            isSelected = newValue
+        didSet {
             updateLookAndFeel()
             onCheckedChange?(checked)
         }
@@ -50,12 +46,12 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
         size: BPKCardButtonSize = .default,
         onCheckedChange: ((Bool) -> Void)? = nil
     ) {
+        self.checked = checked
         self.style = style
         self.size = size
         self.onCheckedChange = onCheckedChange
 
         super.init(frame: .zero)
-        self.checked = checked
         self.accessibilityLabel = accessibilityLabel
 
         setup()
@@ -74,47 +70,44 @@ public class BPKSaveCardButton: UIButton, CardButtonProtocol {
     }
 
     private func updateButtonImages() {
-        let icons = Self.iconSet
-        let colorSet = Self.colorSet(from: style)
+        let icons = checked ? Self.checkedIcons : Self.uncheckedIcons
 
         switch size {
         case .default:
             let largeIconNormal = BPKIcon.makeLargeIcon(
                 name: icons.defaultIcon,
-                color: colorSet.normal
+                color: normalIconColor(style: style, checked: checked)
             )
             setImage(largeIconNormal, for: .normal)
 
             let largeIconHighlighted = BPKIcon.makeLargeIcon(
                 name: icons.defaultIconHighlighted,
-                color: colorSet.highlighted
+                color: highlightedIconColor(style: style, checked: checked)
             )
             setImage(largeIconHighlighted, for: .highlighted)
-
-            let largeIconSelected = BPKIcon.makeLargeIcon(
-                name: icons.defaultIconSelected,
-                color: colorSet.selected
-            )
-            setImage(largeIconSelected, for: .selected)
         case .small:
             let smallIconNormal = BPKIcon.makeSmallIcon(
                 name: icons.smallIcon,
-                color: colorSet.normal
+                color: normalIconColor(style: style, checked: checked)
             )
             setImage(smallIconNormal, for: .normal)
 
             let smallIconHighlighted = BPKIcon.makeSmallIcon(
                 name: icons.smallIconHighlighted,
-                color: colorSet.highlighted
+                color: highlightedIconColor(style: style, checked: checked)
             )
             setImage(smallIconHighlighted, for: .highlighted)
-
-            let smallIconSelected = BPKIcon.makeSmallIcon(
-                name: icons.smallIconSelected,
-                color: colorSet.selected
-            )
-            setImage(smallIconSelected, for: .selected)
         }
+    }
+
+    private func normalIconColor(style: BPKCardButtonStyle, checked: Bool) -> UIColor {
+        let appearanceSet = Self.appearance(from: style)
+        return checked ? appearanceSet.normal.iconColorChecked : appearanceSet.normal.iconColor
+    }
+
+    private func highlightedIconColor(style: BPKCardButtonStyle, checked: Bool) -> UIColor {
+        let appearanceSet = Self.appearance(from: style)
+        return checked ? appearanceSet.highlighted.iconColorChecked : appearanceSet.highlighted.iconColor
     }
 
     private func updateAccessibilityTraits() {
