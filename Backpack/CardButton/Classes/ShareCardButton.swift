@@ -56,36 +56,20 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
     }
 
     private func updateButtonImages() {
-        switch size {
-        case .default:
-            let largeIconNormal = BPKIcon.makeLargeIcon(
-                name: .shareiOS,
-                color: normalIconColor(style: style)
-            )
-            setImage(largeIconNormal, for: .normal)
-
-            let largeIconHighlighted = BPKIcon.makeLargeIcon(
-                name: .shareiOS,
-                color: highlightedIconColor(style: style)
-            )
-            setImage(largeIconHighlighted, for: .highlighted)
-        case .small:
-            let smallIconNormal = BPKIcon.makeSmallIcon(
-                name: .shareiOS,
-                color: normalIconColor(style: style)
-            )
-            setImage(smallIconNormal, for: .normal)
-
-            let smallIconHighlighted = BPKIcon.makeSmallIcon(
-                name: .shareiOS,
-                color: highlightedIconColor(style: style)
-            )
-            setImage(smallIconHighlighted, for: .highlighted)
-        }
+        setImage(size.normalIcon(style.normalIconColor), for: .normal)
+        setImage(size.highlightedIcon(style.highlightedIconColor), for: .highlighted)
     }
 
-    private func normalIconColor(style: BPKCardButtonStyle) -> UIColor {
-        switch style {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else { return }
+        updateLookAndFeel()
+    }
+}
+
+fileprivate extension BPKCardButtonStyle {
+    var normalIconColor: UIColor {
+        switch self {
         case .onDark:
             return BPKColor.textOnDarkColor
         case .contained:
@@ -95,8 +79,8 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
         }
     }
 
-    private func highlightedIconColor(style: BPKCardButtonStyle) -> UIColor {
-        switch style {
+    var highlightedIconColor: UIColor {
+        switch self {
         case .onDark:
             return BPKColor.textDisabledOnDarkColor
         case .contained:
@@ -105,10 +89,36 @@ public class BPKShareCardButton: UIButton, CardButtonProtocol {
             return BPKColor.textLinkColor
         }
     }
+}
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        guard traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle else { return }
-        updateLookAndFeel()
+fileprivate extension BPKCardButtonSize {
+    func normalIcon(_ color: UIColor) -> UIImage {
+        switch self {
+        case .default:
+            return BPKIcon.makeLargeIcon(
+                name: .shareiOS,
+                color: color
+            )
+        case .small:
+            return BPKIcon.makeSmallIcon(
+                name: .shareiOS,
+                color: color
+            )
+        }
+    }
+
+    func highlightedIcon(_ color: UIColor) -> UIImage {
+        switch self {
+        case .default:
+            return BPKIcon.makeLargeIcon(
+                name: .shareiOS,
+                color: color
+            )
+        case .small:
+            return BPKIcon.makeSmallIcon(
+                name: .shareiOS,
+                color: color
+            )
+        }
     }
 }
