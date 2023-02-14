@@ -65,7 +65,8 @@ struct ComponentCellsProvider {
             textField(),
             textViews(),
             toasts(duration: toastDuration),
-            pageIndicators()
+            pageIndicators(),
+            price()
         ]
         return dataSources.map(\.cell)
     }
@@ -339,6 +340,23 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
+        )
+    }
+    
+    private func price() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Price",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        PriceExampleViewController()
+                    }
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PriceExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Price", tabs: $0) }
         )
     }
 }

@@ -83,7 +83,9 @@
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA53992C299687B20008D407 /* PriceExampleView.swift */; };
 		AA617E40298D6AE30089E51A /* PageIndicatorExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */; };
+		AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */; };
 		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
 		BA6D80B5298A4A1600209D53 /* CardWrapperExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */; };
 		BA97B096290FCDFD00AE4172 /* DividedCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */; };
@@ -269,7 +271,9 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AA53992C299687B20008D407 /* PriceExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceExampleView.swift; sourceTree = "<group>"; };
 		AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorExampleView.swift; sourceTree = "<group>"; };
+		AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleViewController.swift; sourceTree = "<group>"; };
 		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
 		BA6D80B4298A4A1600209D53 /* CardWrapperExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardWrapperExampleView.swift; sourceTree = "<group>"; };
 		BA97B095290FCDFD00AE4172 /* DividedCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividedCardExampleView.swift; sourceTree = "<group>"; };
@@ -638,6 +642,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA53992B299687A00008D407 /* Price */,
 				AA617E3E298D6ABD0089E51A /* PageIndicator */,
 				0E8EEFC728A23C1D008BA7A3 /* Skeleton */,
 				7928F7D3286EDAB100D8B9E8 /* Spinner */,
@@ -663,6 +668,7 @@
 		793EC5532836140A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AA7CFD8A29965EE20023C12B /* Price */,
 				AAF235D8298BF775003D8507 /* PageIndicator */,
 				0E844AF5289141AA004C5865 /* Skeleton */,
 				793EC56F283615C900D627F6 /* Text view */,
@@ -962,12 +968,28 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		AA53992B299687A00008D407 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				AA53992C299687B20008D407 /* PriceExampleView.swift */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
 		AA617E3E298D6ABD0089E51A /* PageIndicator */ = {
 			isa = PBXGroup;
 			children = (
 				AA617E3F298D6AE30089E51A /* PageIndicatorExampleView.swift */,
 			);
 			path = PageIndicator;
+			sourceTree = "<group>";
+		};
+		AA7CFD8A29965EE20023C12B /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */,
+			);
+			path = Price;
 			sourceTree = "<group>";
 		};
 		AAF235D8298BF775003D8507 /* PageIndicator */ = {
@@ -1367,6 +1389,7 @@
 				794337AB283C829100797D1C /* Tab.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
+				AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,
 				53B6DB5C27FC39AC0042B7C0 /* ButtonGroups.swift in Sources */,
 				53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */,
@@ -1404,6 +1427,7 @@
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
 				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
+				AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
