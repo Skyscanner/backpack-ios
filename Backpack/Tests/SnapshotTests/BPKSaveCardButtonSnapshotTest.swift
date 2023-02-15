@@ -30,11 +30,11 @@ class BPKSaveCardButtonSnapshotTest: XCTestCase {
     
     private let buttonStylesAndSizes: [(BPKCardButtonStyle, BPKCardButtonSize)] = [
         (.default, .default),
-        (.default, .small),
+        (.default, .large),
         (.contained, .default),
-        (.contained, .small),
+        (.contained, .large),
         (.onDark, .default),
-        (.onDark, .small)
+        (.onDark, .large)
     ]
 
     private func buttonBackgroundColor(for style: BPKCardButtonStyle) -> UIColor {

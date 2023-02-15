@@ -81,7 +81,7 @@ public class BPKSaveCardButton: UIButton {
         let icons = checked ? Self.checkedIcons : Self.uncheckedIcons
 
         switch size {
-        case .default:
+        case .large:
             let largeIconNormal = BPKIcon.makeLargeIcon(
                 name: icons.defaultIcon,
                 color: normalIconColor(style: style, checked: checked)
@@ -93,7 +93,7 @@ public class BPKSaveCardButton: UIButton {
                 color: highlightedIconColor(style: style, checked: checked)
             )
             setImage(largeIconHighlighted, for: .highlighted)
-        case .small:
+        case .default:
             let smallIconNormal = BPKIcon.makeSmallIcon(
                 name: icons.smallIcon,
                 color: normalIconColor(style: style, checked: checked)

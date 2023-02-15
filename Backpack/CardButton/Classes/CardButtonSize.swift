@@ -18,14 +18,14 @@
 
 public enum BPKCardButtonSize {
     case `default`
-    case small
+    case large
 
     var backgroundCircleSize: CGFloat {
         switch self {
         case .default:
-            return BPKIcon.concreteSizeForLargeIcon.width + BPKSpacingBase
-        case .small:
             return BPKIcon.concreteSizeForSmallIcon.width + BPKSpacingBase
+        case .large:
+            return BPKIcon.concreteSizeForLargeIcon.width + BPKSpacingBase
         }
     }
 

@@ -23,11 +23,11 @@ final class CardButtonsViewController: UIViewController {
 
     private let sampleButtons: [Row] = [
         Row.shareButtonRow(size: .default),
-        Row.shareButtonRow(size: .small),
+        Row.shareButtonRow(size: .large),
         Row.saveButtonRow(size: .default, checked: false),
-        Row.saveButtonRow(size: .small, checked: false),
+        Row.saveButtonRow(size: .large, checked: false),
         Row.saveButtonRow(size: .default, checked: true),
-        Row.saveButtonRow(size: .small, checked: true)
+        Row.saveButtonRow(size: .large, checked: true)
     ]
 
     private let scrollView: UIScrollView = {
