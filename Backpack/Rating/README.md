@@ -8,10 +8,44 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___with-title-text_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___with-title-text_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___with-custom-title-view_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-rating___with-custom-title-view_dm.png" alt="" width="375" /> |
 
-// SONIC-1385: Screenshot
 
 ## Usage
 
-// SONIC-1385: README
+The BPKRating component supports two different sizes, as defined by the `BPKRatingSize` enum. 
+It also includes two rating scales, defined in `BPKRatingScale`. 
+An optional subtitle is available, which will be hidden if it is set to nil. 
+The visibility of the rating scale (either /5 or /10) is controlled by the `showScale` property. 
+If a titleView is provided, the title string will be ignored.
+
+
+BPKRating
+```swift
+import Backpack
+let ratingWithTitle = BPKRating(
+    accessibilityLabel: "",
+    title: "Excellent",
+    value: 4.5,
+)
+
+let starRating = BPKStarRating()
+starRating.rating = 4.5
+let ratingWithCustomView = BPKRating(
+    accessibilityLabel: "",
+    value: 4.5,
+    titleView: starRating
+)
+
+let ratingWithAllPossibleArguments = BPKRating(
+    accessibilityLabel: "",
+    title: "Excellent",
+    value: 4.5,
+    ratingScale: .zeroToTen,
+    size: .large,
+    subtitle: "1,532 reviews",
+    showScale: false,
+)
+
+```
