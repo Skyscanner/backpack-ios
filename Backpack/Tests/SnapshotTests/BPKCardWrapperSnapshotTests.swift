@@ -68,7 +68,6 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
         // Then
         assertSnapshot(snapshotView)
     }
-    
 }
     
 // MARK: Helpers
@@ -99,30 +98,21 @@ extension BPKCardWrapperSnapshotTests {
     }
     
     private func createHeader(title: String) -> UIView {
-        let header = UIStackView()
-        header.axis = .horizontal
-        header.distribution = .fill
-        header.alignment = .center
-        header.spacing = BPKSpacingMd
-        header.translatesAutoresizingMaskIntoConstraints = false
-        header.isLayoutMarginsRelativeArrangement = true
-        header.layoutMargins = UIEdgeInsets(
-            top: BPKSpacingMd,
-            left: BPKSpacingMd,
-            bottom: BPKSpacingMd,
-            right: BPKSpacingMd)
-        
-        let iconView = UIImageView()
-        iconView.contentMode = .scaleToFill
-        iconView.image =  BPKIcon.makeSmallIcon(name: .flag, color: .white)
-        iconView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        header.addArrangedSubview(iconView)
-        
+        let header = UIView()
+
         let label = BPKLabel(fontStyle: .textBodyDefault)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = title
         label.textColor = .white
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        header.addArrangedSubview(label)
+        header.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: BPKSpacingMd),
+            label.topAnchor.constraint(equalTo: header.topAnchor, constant: BPKSpacingMd),
+            
+            label.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -BPKSpacingMd),
+            label.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -BPKSpacingMd)
+        ])
         
         return header
     }
@@ -131,7 +121,6 @@ extension BPKCardWrapperSnapshotTests {
         let label = BPKLabel(fontStyle: .textBodyDefault)
         label.text = text
         label.numberOfLines = 0
-        label.textAlignment = .natural
         
         return label
     }
