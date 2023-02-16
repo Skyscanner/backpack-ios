@@ -99,4 +99,44 @@ class BPKRatingSnapshotTest: XCTestCase {
         let ratingsStackView = createRatingStackView()
         assertSnapshot(ratingsStackView)
     }
+
+    func testBPKRatingTitleViewConstraintUpdateAfterSetTitleView() {
+        // Given
+        let rating = BPKRating(
+            accessibilityLabel: "",
+            title: "Excellent",
+            value: 3.99,
+            size: .large
+        )
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        rating.backgroundColor = BPKColor.canvasColor
+
+        // When
+        let starRating = BPKStarRating()
+        starRating.rating = 3.99
+        rating.titleView = rating
+
+        // Then
+        assertSnapshot(rating)
+    }
+
+    func testBPKRatingTitleConstraintUpdateAfterSetTitle() {
+        // Given
+        let starRating = BPKStarRating()
+        starRating.rating = 2.101
+        let rating = BPKRating(
+            accessibilityLabel: "",
+            value: 2.101,
+            size: .large,
+            titleView: starRating
+        )
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        rating.backgroundColor = BPKColor.canvasColor
+
+        // When
+        rating.title = "Skyscanner"
+
+        // Then
+        assertSnapshot(rating)
+    }
 }

@@ -37,7 +37,10 @@ public class BPKRating: UIView {
     }
 
     public var titleView: UIView {
-        didSet { updateLookAndFeel() }
+        didSet {
+            setupTitleViewConstraint()
+            updateLookAndFeel()
+        }
     }
 
     public var title: String {
@@ -68,12 +71,14 @@ public class BPKRating: UIView {
         horizontalStack.alignment = .lastBaseline
         return horizontalStack
     }()
+
     private let ratingValueAndScaleStackView: UIStackView = {
         let horizontalStack = UIStackView()
         horizontalStack.axis = .horizontal
         horizontalStack.alignment = .lastBaseline
         return horizontalStack
     }()
+
     private let titleSubtitleStackView: UIStackView = {
         let verticalStack = UIStackView()
         verticalStack.axis = .vertical
@@ -83,21 +88,25 @@ public class BPKRating: UIView {
     }()
 
     private let ratingValueLabel = BPKLabel(fontStyle: .textLabel1)
+
     private let ratingScaleLabel: BPKLabel = {
         let label = BPKLabel(fontStyle: .textCaption)
         label.textColor = BPKColor.textSecondaryColor
         return label
     }()
+
     private let titleLabel: BPKLabel = {
         let label = BPKLabel(fontStyle: .textLabel1)
         label.textColor = BPKColor.textPrimaryColor
         return label
     }()
+
     private let subtitleLabel: BPKLabel = {
         let label = BPKLabel(fontStyle: .textBodyDefault)
         label.textColor = BPKColor.textSecondaryColor
         return label
     }()
+
     private var titleViewBottomConstraint: NSLayoutConstraint?
 
     // MARK: - Init
@@ -178,6 +187,14 @@ public class BPKRating: UIView {
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+        setupTitleViewConstraint()
+    }
+
+    private func setupTitleViewConstraint() {
+        titleViewBottomConstraint = titleView.bottomAnchor.constraint(
+            lessThanOrEqualTo: ratingValueLabel.lastBaselineAnchor
+        )
+        titleViewBottomConstraint?.priority = .required
     }
 
     private func updateLookAndFeel() {
@@ -189,7 +206,7 @@ public class BPKRating: UIView {
 
         updateSize()
         ratingValueLabel.text = ratingScale.displayedValue(from: value)
-        updateCustomTitleViewBottomConstraintIfNeeded()
+        updateCustomTitleViewBottomConstraint()
     }
 
     private func updateSize() {
@@ -219,7 +236,7 @@ public class BPKRating: UIView {
     // horizontalStackView's alignment = .lastBaseline doesn't work.
     // To avoid the customTitleView being below the ratingValueLabel's baseline,
     // an extra constraint is needed to pin the view's bottom to the ratingValueLabel's baseline
-    private func updateCustomTitleViewBottomConstraintIfNeeded() {
+    private func updateCustomTitleViewBottomConstraint() {
         let isShowingCustomTitleView = titleView != titleLabel
         let isLargeSize = size == .large
         let isSubtitleLabelHidden = subtitleLabel.isHidden
@@ -227,20 +244,9 @@ public class BPKRating: UIView {
 
         if isShowingCustomTitleView && isSubtitleLabelHidden &&
             isLargeSize && isAddedToSuperView {
-            if titleViewBottomConstraint == nil {
-                titleViewBottomConstraint = titleView.bottomAnchor.constraint(
-                    lessThanOrEqualTo: ratingValueLabel.lastBaselineAnchor
-                )
-                titleViewBottomConstraint?.priority = .required
-            }
-            NSLayoutConstraint.activate([titleViewBottomConstraint!])
+            titleViewBottomConstraint?.isActive = true
         } else {
-            if
-                let titleViewBottomConstraint = titleViewBottomConstraint,
-                titleViewBottomConstraint.isActive
-            {
-                NSLayoutConstraint.deactivate([titleViewBottomConstraint])
-            }
+            titleViewBottomConstraint?.isActive = false
         }
     }
 }
