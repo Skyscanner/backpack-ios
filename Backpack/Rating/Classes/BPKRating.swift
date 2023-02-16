@@ -184,11 +184,11 @@ public class BPKRating: UIView {
         subtitleLabel.isHidden = subtitleLabel.text == nil
         ratingScaleLabel.isHidden = !showScale
         if showScale {
-            ratingScaleLabel.text = displayedScale(from: ratingScale)
+            ratingScaleLabel.text = ratingScale.displayedScale()
         }
 
         updateSize()
-        ratingValueLabel.text = displayedValue(from: value, scale: ratingScale)
+        ratingValueLabel.text = ratingScale.displayedValue(from: value)
         updateCustomTitleViewBottomConstraintIfNeeded()
     }
 
@@ -213,25 +213,6 @@ public class BPKRating: UIView {
             titleSubtitleStackView.spacing = .zero
             titleSubtitleStackView.alignment = .leading
         }
-    }
-
-    private func displayedValue(from value: Float, scale: BPKRatingScale) -> String {
-        let clampedValue: Float
-        let valueWithinRange = scale.range.contains(value)
-        if !valueWithinRange {
-            if value < scale.range.lowerBound {
-                clampedValue = scale.range.lowerBound
-            } else {
-                clampedValue = scale.range.upperBound
-            }
-        } else {
-            clampedValue = value
-        }
-        return String(format: "%.1f", clampedValue)
-    }
-
-    private func displayedScale(from scale: BPKRatingScale) -> String {
-        return String(format: "/%.0f", scale.range.upperBound)
     }
 
     // When size=large and custom subtitleLabel is hidden,
