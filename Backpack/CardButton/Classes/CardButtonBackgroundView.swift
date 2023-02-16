@@ -49,8 +49,6 @@ internal class CardButtonBackgroundView: UIView {
 
         parentButton.imageView.map { bringSubviewToFront($0) }
         parentButton.sendSubviewToBack(self)
-
-        print("parentButton.subviews: \(parentButton.subviews)")
     }
 
     private func updateSizeAndPositionConstraints(

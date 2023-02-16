@@ -31,6 +31,7 @@ internal extension BPKSaveCardButton {
         defaultIcon: .heartOutline,
         defaultIconHighlighted: .heart
     )
+    
     static let checkedIcons = Icons(
         smallIcon: .heart,
         smallIconHighlighted: .heart,
