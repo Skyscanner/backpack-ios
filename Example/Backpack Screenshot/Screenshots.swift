@@ -174,6 +174,9 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "card", scenario: "with-solid-divider-without-padding",
                            userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            app.tables.staticTexts["Card wrapper"].tap()
+            saveScreenshot(component: "card-wrapper", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Chips") {

@@ -64,6 +64,11 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_dm.png" alt="" width="375" /> |
 
+## Card wrapper
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___default_dm.png" alt="" width="375" /> |
 
 ## Usage
 
@@ -78,6 +83,9 @@ Use the `isElevated` property to enable or disable shadows on the card.
 If using a `Button` or `Link` configuration, ensure that the accessibilityLabel used describes the whole content of the card and the same action.
 
 Do not use `Button` or `Link` configurations if the card has multiple actions or if the copy is long.
+
+`BPKCardWrapper` contains the Backpack Card Wrapper component. It can have 2 subviews and will add the appropriate constraints automatically when `init(header:card:backgroundColor:)` is called. It's axis is vertical.
+
 
 ### Objective-C
 
@@ -128,3 +136,14 @@ let dividedCard = BPKDividedCard(
 // dividedCard.padded = false
 dividedCard.orientation = .vertical
 ```
+
+**`BPKCardWrapper`**
+
+```swift
+let cardWrapper = BPKCardWrapper(
+    header: myHeader,
+    card: myCard,
+    backgroundColor: BPKColor.coreAccentColor
+)
+```
+

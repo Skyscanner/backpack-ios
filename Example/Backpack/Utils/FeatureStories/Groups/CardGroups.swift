@@ -83,7 +83,12 @@ struct CardGroupsProvider {
                     cardVC.divisionDirection = .vertical
                     cardVC.padded = false
                     cardVC.dividerStyle = .solid
-                }
+                },
+                PresentableCellDataSource.custom(
+                    title: "Card wrapper",
+                    customController: { CardWrappersViewController() },
+                    showPresentable: showPresentable
+                )
             ]
         ).groups()
     }
