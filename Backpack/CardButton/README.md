@@ -13,6 +13,8 @@
 
 Backpack Card button consists of 2 classes: `BPKSaveCardButton` & `BPKShareCardButton`. It supports 3 different styles defined in `BPKCardButtonStyle` and 2 sizes defined in `BPKCardButtonSize`
 
+Make sure you provide a localized accessibility label that matches the function of the button.
+
 ### Swift
 
 BPKShareCardButton 
@@ -20,7 +22,7 @@ BPKShareCardButton
 import Backpack
 
 let shareButton = BPKShareCardButton(
-    accessibilityLabel: "",
+    accessibilityLabel: NSLocalizedString("Share", comment: ""),
     style: .default,
     size: .default
 )
@@ -29,7 +31,7 @@ let shareButton = BPKShareCardButton(
 ```swift
 let saveButton = BPKSaveCardButton(
     checked: false,
-    accessibilityLabel: "",
+    accessibilityLabel: NSLocalizedString("Save", comment: ""),
     style: .default,
     size: .default,
     onCheckedChange: { _ in }
