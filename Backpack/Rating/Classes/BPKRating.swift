@@ -23,9 +23,11 @@ public class BPKRating: UIView {
     public var value: Float {
         didSet { updateLookAndFeel() }
     }
+
     public var ratingScale: BPKRatingScale {
         didSet { updateLookAndFeel() }
     }
+
     public var size: BPKRatingSize {
         didSet { updateLookAndFeel() }
     }
@@ -33,6 +35,7 @@ public class BPKRating: UIView {
     public var showScale: Bool {
         didSet { updateLookAndFeel() }
     }
+
     public var titleView: UIView {
         didSet { updateLookAndFeel() }
     }
@@ -79,11 +82,7 @@ public class BPKRating: UIView {
         return verticalStack
     }()
 
-    private let ratingValueLabel: BPKLabel = {
-        let label = BPKLabel(fontStyle: .textLabel1)
-        label.textColor = BPKColor.textPrimaryColor
-        return label
-    }()
+    private let ratingValueLabel = BPKLabel(fontStyle: .textLabel1)
     private let ratingScaleLabel: BPKLabel = {
         let label = BPKLabel(fontStyle: .textCaption)
         label.textColor = BPKColor.textSecondaryColor
@@ -150,20 +149,23 @@ public class BPKRating: UIView {
         updateLookAndFeel()
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
 
     private func setup() {
         addSubview(horizontalStackView)
-        horizontalStackView.addArrangedSubview(ratingValueAndScaleStackView)
-        horizontalStackView.addArrangedSubview(titleSubtitleStackView)
-
-        ratingValueAndScaleStackView.addArrangedSubview(ratingValueLabel)
-        ratingValueAndScaleStackView.addArrangedSubview(ratingScaleLabel)
-
-        titleSubtitleStackView.addArrangedSubview(titleView)
-        titleSubtitleStackView.addArrangedSubview(subtitleLabel)
+        
+        [
+            ratingValueAndScaleStackView,
+            titleSubtitleStackView
+        ].forEach(horizontalStackView.addArrangedSubview(_:))
+        [
+            ratingValueLabel,
+            ratingScaleLabel
+        ].forEach(ratingValueAndScaleStackView.addArrangedSubview(_:))
+        [titleView, subtitleLabel].forEach(titleSubtitleStackView.addArrangedSubview(_:))
 
         setupConstraints()
     }
