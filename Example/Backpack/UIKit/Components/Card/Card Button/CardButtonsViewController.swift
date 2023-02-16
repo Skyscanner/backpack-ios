@@ -108,14 +108,14 @@ final class CardButtonsViewController: UIViewController {
         switch cardButtonParams.icon {
         case .share:
             cardButton = BPKShareCardButton(
-                accessibilityLabel: "",
+                accessibilityLabel: "Share",
                 style: cardButtonParams.style,
                 size: cardButtonParams.size
             )
         case .unsaved:
             let saveButton = BPKSaveCardButton(
                 checked: false,
-                accessibilityLabel: "",
+                accessibilityLabel: "Save",
                 style: cardButtonParams.style,
                 size: cardButtonParams.size
             )
@@ -126,7 +126,7 @@ final class CardButtonsViewController: UIViewController {
         case .saved:
             let saveButton = BPKSaveCardButton(
                 checked: true,
-                accessibilityLabel: "",
+                accessibilityLabel: "Save",
                 style: cardButtonParams.style,
                 size: cardButtonParams.size
             )
