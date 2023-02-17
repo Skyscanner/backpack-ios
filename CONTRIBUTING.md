@@ -68,13 +68,13 @@ It's possible to take only a subset of the screenshots which greatly speeds up t
 To do this follow the following steps:
 
 
-1. In `Screenshots.swift` change the `runOnly` property per the guide.
+1. In `Example/Backpack Screenshot/BackpackSnapshotTestCase.swift` change the `runOnly` property per the guide in the comment.
 2. Run the screenshots as above
 3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
 
 ### Snapshot testing
 
-Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `self.recordMode = NO` to `self.recordMode = YES` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `recordMode` afterwards otherwise the tests will fail.
+Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` afterwards otherwise the tests will fail.
 
 ## Git
 
