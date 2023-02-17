@@ -23,11 +23,11 @@ public class BPKCardWrapper: UIView {
 
     private let lineWidth: CGFloat = 2
 
-    public let header: UIView
+    private let header: UIView
 
-    public let card: BPKCard
+    private let card: BPKCard
 
-    private lazy var stactView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.alignment = .fill
@@ -72,18 +72,18 @@ public class BPKCardWrapper: UIView {
     }
     
     private func setup() {
-        self.addSubview(stactView)
-        stactView.addArrangedSubview(header)
-        stactView.addArrangedSubview(card)
+        self.addSubview(stackView)
+        stackView.addArrangedSubview(header)
+        stackView.addArrangedSubview(card)
         
         layer.cornerRadius = card.layer.cornerRadius
         layer.masksToBounds = true
         layer.addSublayer(borderLayer)
         
         NSLayoutConstraint.activate([
-            stactView.topAnchor.constraint(equalTo: topAnchor),
-            stactView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stactView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: lineWidth),
-            stactView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: lineWidth),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
     }
 }
