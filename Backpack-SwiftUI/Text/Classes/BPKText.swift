@@ -39,6 +39,7 @@ public struct BPKText: View {
     
     private var textColor = Color(BPKColor.textPrimaryColor)
     private var lineLimit: Int? = 1
+    private var strikethrough: Bool = false
     
     public init(_ text: String, style: BPKFontStyle = .bodyDefault) {
         self.text = text
@@ -47,6 +48,7 @@ public struct BPKText: View {
     
     public var body: some View {
         Text(text)
+            .strikethrough(strikethrough)
             .font(style: style)
             .foregroundColor(textColor)
             .lineLimit(lineLimit)
@@ -72,6 +74,15 @@ public struct BPKText: View {
     public func lineLimit(_ number: Int?) -> BPKText {
         var view = self
         view.lineLimit = number
+        return view
+    }
+    
+    /// Sets the strikethrough of the text.
+    /// - Parameter active: When true a line will be added in the middle of the text.
+    /// - Returns: A BPKText that has a line through the text if active is true.
+    public func strikethrough(_ active: Bool) -> BPKText {
+        var view = self
+        view.strikethrough = active
         return view
     }
 }

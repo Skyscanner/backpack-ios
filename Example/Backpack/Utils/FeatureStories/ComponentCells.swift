@@ -42,6 +42,8 @@ struct ComponentCellsProvider {
             button(),
             calendar(),
             card(),
+            cardButton(),
+            carousel(),
             chips(),
             flare(),
             dialog(),
@@ -52,7 +54,9 @@ struct ComponentCellsProvider {
             nudger(),
             overlayViews(),
             mapView(),
+            pageIndicators(),
             panels(),
+            price(),
             progressBar(),
             ratings(),
             snackbar(),
@@ -64,8 +68,7 @@ struct ComponentCellsProvider {
             tappableLinkLabels(),
             textField(),
             textViews(),
-            toasts(duration: toastDuration),
-            pageIndicators()
+            toasts(duration: toastDuration)
         ]
         return dataSources.map(\.cell)
     }
@@ -126,6 +129,13 @@ extension ComponentCellsProvider {
                 .swiftui(groups: CardGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Cards", tabs: $0) }
+        )
+    }
+    private func cardButton() -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: "Card Button",
+            customController: { CardButtonsViewController() },
+            showPresentable: show(presentable:)
         )
     }
     private func chips() -> CellDataSource {
@@ -339,6 +349,35 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
+        )
+    }
+    
+    private func carousel() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Carousel",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: { CarouselViewController() }
+                ))
+            ],
+            showChildren: { showComponent(title: "Carousel", tabs: $0) }
+        )
+    }
+    
+    private func price() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Price",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        PriceExampleViewController()
+                    }
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PriceExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Price", tabs: $0) }
         )
     }
 }

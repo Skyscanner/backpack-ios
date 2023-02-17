@@ -176,6 +176,10 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        navigate(title: "Card Button") {
+            saveScreenshot(component: "cardButton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
+
         navigate(title: "Chips") {
             app.tables.staticTexts["Default"].tap()
             saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -424,6 +428,11 @@ class Screenshots: BackpackSnapshotTestCase {
         
         navigate(title: "Page indicators") {
             saveScreenshot(component: "page indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Price") {
+            saveScreenshot(component: "Price", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }
