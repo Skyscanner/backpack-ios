@@ -23,7 +23,10 @@ import UIKit
 public class BPKBadge: UIView {
     public var message: String? {
         get { label.text }
-        set { label.text = newValue }
+        set {
+            label.text = newValue
+            accessibilityLabel = newValue
+        }
     }
     
     public var type: BPKBadgeType = .success {
@@ -115,6 +118,8 @@ public class BPKBadge: UIView {
         ])
         
         updateLookAndFeel()
+        
+        self.isAccessibilityElement = true
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

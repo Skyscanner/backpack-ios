@@ -41,6 +41,8 @@ public struct BPKBadge: View {
             .background(style.backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: .xs))
             .outline(style.borderColor, cornerRadius: .xs)
+            .accessibilityElement()
+            .accessibilityLabel(title)
     }
     
     /// Sets the style of the badge
