@@ -99,7 +99,7 @@ public class BPKBadge: UIView {
     private func placeElements() {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
-        guard let _ = icon else { return }
+        if icon == nil { return }
         containerStackView.insertArrangedSubview(iconView, at: 0)
     }
     
