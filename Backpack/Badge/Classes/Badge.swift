@@ -99,12 +99,14 @@ public class BPKBadge: UIView {
     private func placeElements() {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
-        guard let icon = icon else { return }
+        guard let _ = icon else { return }
         containerStackView.insertArrangedSubview(iconView, at: 0)
     }
     
     private func setup() {
         addSubview(containerStackView)
+        
+        isAccessibilityElement = true
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
@@ -118,8 +120,6 @@ public class BPKBadge: UIView {
         ])
         
         updateLookAndFeel()
-        
-        self.isAccessibilityElement = true
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
