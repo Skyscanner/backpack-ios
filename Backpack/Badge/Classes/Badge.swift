@@ -23,7 +23,10 @@ import UIKit
 public class BPKBadge: UIView {
     public var message: String? {
         get { label.text }
-        set { label.text = newValue }
+        set {
+            label.text = newValue
+            accessibilityLabel = newValue
+        }
     }
     
     public var type: BPKBadgeType = .success {
@@ -96,12 +99,14 @@ public class BPKBadge: UIView {
     private func placeElements() {
         removeStackViewSubviews()
         containerStackView.addArrangedSubview(label)
-        guard let icon = icon else { return }
+        if icon == nil { return }
         containerStackView.insertArrangedSubview(iconView, at: 0)
     }
     
     private func setup() {
         addSubview(containerStackView)
+        
+        isAccessibilityElement = true
         
         layer.cornerRadius = BPKCornerRadiusXs
         layer.masksToBounds = true
