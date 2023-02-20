@@ -94,7 +94,6 @@ public class BPKCardWrapper: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
         updateLookAndFeel()
     }
     
@@ -114,7 +113,8 @@ public class BPKCardWrapper: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: lineWidth),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)
+        ])
     }
     
     private func updateLookAndFeel() {
