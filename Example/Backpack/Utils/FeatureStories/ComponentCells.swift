@@ -36,6 +36,7 @@ struct ComponentCellsProvider {
 
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
+            floatingNotification(),
             badge(),
             barChart(),
             bottomSheet(),
@@ -45,6 +46,7 @@ struct ComponentCellsProvider {
             carousel(),
             chips(),
             flare(),
+            floatingNotification(),
             dialog(),
             horizontalNavigation(),
             icon(),
@@ -370,6 +372,18 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
+        )
+    }
+    
+    private func floatingNotification() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Floating notification",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: { FloatingNotificationViewController() }
+                ))
+            ],
+            showChildren: { showComponent(title: "Floating notification", tabs: $0) }
         )
     }
 }
