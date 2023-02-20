@@ -18,6 +18,12 @@
 
 final class RatingsViewController: UIViewController {
 
+    enum TitleType {
+        case stringLabel
+        case starRating
+        case imageView
+    }
+
     private struct RatingInputs {
         let ratingScale: BPKRatingScale
         let size: BPKRatingSize
@@ -25,7 +31,7 @@ final class RatingsViewController: UIViewController {
         let showScale: Bool
     }
 
-    private let showCustomTitleView: Bool
+    private let titleType: TitleType
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -42,8 +48,8 @@ final class RatingsViewController: UIViewController {
         return stack
     }()
 
-    init(showCustomTitleView: Bool) {
-        self.showCustomTitleView = showCustomTitleView
+    init(titleType: TitleType) {
+        self.titleType = titleType
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -93,7 +99,19 @@ final class RatingsViewController: UIViewController {
         subtitle: String?,
         showScale: Bool
     ) -> BPKRating {
-        if showCustomTitleView {
+        switch titleType {
+        case .stringLabel:
+            return BPKRating(
+                accessibilityLabel: "",
+                title: "Excellent",
+                value: 4.5,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale
+            )
+
+        case .starRating:
             let starRating = BPKStarRating()
             starRating.rating = 4.5
             return BPKRating(
@@ -105,15 +123,22 @@ final class RatingsViewController: UIViewController {
                 showScale: showScale,
                 titleView: starRating
             )
-        } else {
+        case .imageView:
+            let imageView = UIImageView(image: UIImage(named: "backpack-logo-horizontal"))
+            imageView.contentMode = .scaleAspectFit
+            NSLayoutConstraint.activate([
+                imageView.heightAnchor.constraint(equalToConstant: BPKIcon.concreteSizeForLargeIcon.height),
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 60/13)
+            ])
+
             return BPKRating(
                 accessibilityLabel: "",
-                title: "Excellent",
                 value: 4.5,
                 ratingScale: scale,
                 size: size,
                 subtitle: subtitle,
-                showScale: showScale
+                showScale: showScale,
+                titleView: imageView
             )
         }
     }

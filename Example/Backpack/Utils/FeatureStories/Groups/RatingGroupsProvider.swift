@@ -23,11 +23,11 @@ struct RatingGroupsProvider {
 
     private func presentable(
         _ title: String,
-        showCustomTitleView: Bool
+        titleType: RatingsViewController.TitleType
     ) -> CellDataSource {
         PresentableCellDataSource.customEnrichable(
             title: title,
-            customController: { RatingsViewController(showCustomTitleView: showCustomTitleView) },
+            customController: { RatingsViewController(titleType: titleType) },
             enrich: { controller in
                 controller.title = title
             },
@@ -38,8 +38,9 @@ struct RatingGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("BPKRating: title text", showCustomTitleView: false),
-                presentable("BPKRating: custom titleView", showCustomTitleView: true)
+                presentable("BPKRating: title text", titleType: .stringLabel),
+                presentable("BPKRating: titleView - BPKStarRating", titleType: .starRating),
+                presentable("BPKRating: titleView - ImageView", titleType: .imageView)
             ]
         ).groups()
     }
