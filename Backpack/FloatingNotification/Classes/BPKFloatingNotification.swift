@@ -19,28 +19,16 @@
 import Foundation
 import UIKit
 
-/**
- To display a FloatingNotification
- - call init(displayOn parent: UIView) and inject the view controller's view
- - call render(with viewModel: FloatingNotificationViewModel) and inject a valid FloatingNotificationViewModel
- - The FloatingNotification only requires a textMessage to display, the rest is optional
- - To display a button it needs to have a title and an action
- */
-
 public final class BPKFloatingNotification: UIView {
     
-    // pass in duration
-    // test with iPad
-    // check spacing
-    // test with long text for each case
     private struct Constants {
         static let buttonHeight: CGFloat = 20.0
         static let maxWidth: CGFloat = 400.0
         static let startBottomConstraint: CGFloat = 30.0
     }
     
-    private var onButtonTap: (() -> Void)? // test
-    private var onDismissal: (() -> Void)? // test
+    private var onButtonTap: (() -> Void)?
+    private var onDismissal: (() -> Void)?
     
     private var bottomConstraint = NSLayoutConstraint()
     private let animator = FloatingNotificationAnimator()
@@ -95,6 +83,7 @@ public final class BPKFloatingNotification: UIView {
     public init() {
         super.init(frame: .zero)
         animator.delegate = self
+        alpha = 0
         backgroundColor = BPKColor.corePrimaryColor
         layer.cornerRadius = BPKCornerRadiusMd
         translatesAutoresizingMaskIntoConstraints = false
@@ -146,9 +135,12 @@ public final class BPKFloatingNotification: UIView {
     }
     
     private func renderNext() {
-        guard let nextViewModel = notificationsQueue.first else { return }
-        render(viewModel: nextViewModel)
-        animator.animate(hideAfter: nextViewModel.hideAfter)
+        if let nextViewModel = notificationsQueue.first, !animator.isNotificationDisplayed {
+            render(viewModel: nextViewModel)
+            animator.animateUp(hideAfter: nextViewModel.hideAfter)
+        } else if animator.isNotificationDisplayed {
+            animator.animateDownNow()
+        }
     }
     
     private func render(viewModel: FloatingNotificationViewModel) {

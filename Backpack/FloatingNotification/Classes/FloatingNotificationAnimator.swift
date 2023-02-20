@@ -1,9 +1,20 @@
-//
-//  FloatingNotificationAnimator.swift
-//  Backpack
-//
-//  Created by Pontus Ekhem on 17/02/2023.
-//
+/*
+ * Backpack - Skyscanner's Design System
+ *
+ * Copyright 2018 Skyscanner Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import Foundation
 
@@ -14,83 +25,48 @@ protocol FloatingNotificationAnimatorDelegate: AnyObject {
 }
 
 final class FloatingNotificationAnimator {
-
+    
     weak var delegate: FloatingNotificationAnimatorDelegate?
     private var upAnimator = UIViewPropertyAnimator()
     private var downAnimator = UIViewPropertyAnimator()
-    private let animationDuration: TimeInterval = 3// 0.5
-    private var hideAfter: TimeInterval = 4.0
+    private let animationDuration: TimeInterval = 0.5
+    private(set) var isNotificationDisplayed = false
     
-    private var isRunningAnimation = false
-    private var shouldReanimate = false
-    
-    func animate(hideAfter: TimeInterval) {
-        self.hideAfter = hideAfter
-        prepareUpAnimation()
-        prepareDownAnimation()
+    func animateUp(hideAfter: TimeInterval) {
+        prepareUpAnimation(hideAfter: hideAfter)
     }
     
-    private func interceptAnimationIfRequired() {
-        if isRunningAnimation {
-            print("isRunning 2: \(upAnimator.isRunning)")
-            if upAnimator.isRunning == false {
-                shouldReanimate = true
-//                upAnimator.stopAnimation(false)
-                upAnimator.pauseAnimation() // test
-                upAnimator.stopAnimation(true)
-                downAnimator.pauseAnimation()
-                downAnimator.startAnimation()
-            }
-        }// what if DOWN animator?
+    func animateDownNow() {
+        if upAnimator.isRunning {
+            upAnimator.isReversed = true
+        } else {
+            upAnimator.stopAnimation(true)
+            downAnimator.pauseAnimation()
+            downAnimator.startAnimation()
+        }
     }
     
-    // test intercepting during animation
-    
-    private func prepareUpAnimation() {
+    private func prepareUpAnimation(hideAfter: TimeInterval) {
         upAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
-        interceptAnimationIfRequired()
-        guard !isRunningAnimation else { return }
-            
         upAnimator.addAnimations { [weak self] in
             self?.delegate?.upAnimation()
         }
         upAnimator.addCompletion { [weak self] _ in
-            guard let self = self else { return }
-            self.prepareDownAnimation()
-            self.downAnimator.startAnimation(afterDelay: self.hideAfter)
+            self?.prepareDownAnimation(hideAfter: hideAfter)
         }
-        isRunningAnimation = true
+        isNotificationDisplayed = true
         upAnimator.startAnimation()
-        print("isRunning: \(upAnimator.isRunning)")
     }
     
-    private func prepareDownAnimation() {
+    private func prepareDownAnimation(hideAfter: TimeInterval) {
         downAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
-        
         downAnimator.addAnimations { [weak self] in
             self?.delegate?.downAnimation()
         }
-        
         downAnimator.addCompletion { [weak self] _ in
+            self?.isNotificationDisplayed = false
             self?.delegate?.animationDidFinish()
-            self?.isRunningAnimation = false
-            
-            if self?.shouldReanimate == true {
-                self?.shouldReanimate = false
-                self?.downAnimator.stopAnimation(true)
-                self?.upAnimator.stopAnimation(true)
-                self?.prepareUpAnimation()
-            }
         }
+        downAnimator.startAnimation(afterDelay: hideAfter)
     }
-}
-
-struct FloatingNotificationViewModel {
-    let parentView: UIView
-    let text: String
-    let buttonTitle: String?
-    let onTap: (() -> Void)?
-    let iconName: BPKIconName?
-    let hideAfter: Double
-    let didDismiss: (() -> Void)?
 }
