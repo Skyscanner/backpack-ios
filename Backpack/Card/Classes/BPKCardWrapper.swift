@@ -27,7 +27,11 @@ public class BPKCardWrapper: UIView {
 
     private let card: BPKCard
     
-    private var color: UIColor
+    private var color: UIColor {
+        didSet {
+            updateColor()
+        }
+    }
     
     public override var backgroundColor: UIColor? {
         get {
@@ -82,6 +86,7 @@ public class BPKCardWrapper: UIView {
         setup()
     }
     
+    @available(*, unavailable)
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -90,10 +95,9 @@ public class BPKCardWrapper: UIView {
         super.layoutSubviews()
         
         backgroundLayer.frame = bounds
-        backgroundLayer.backgroundColor = color.cgColor
-        
         borderLayer.frame = bounds
-        borderLayer.borderColor = color.cgColor
+        
+        updateColor()
     }
     
     private func setup() {
@@ -116,6 +120,11 @@ public class BPKCardWrapper: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: lineWidth),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
+    }
+    
+    private func updateColor() {
+        backgroundLayer.backgroundColor = color.cgColor
+        borderLayer.borderColor = color.cgColor
     }
     
     private func updateShadows() {

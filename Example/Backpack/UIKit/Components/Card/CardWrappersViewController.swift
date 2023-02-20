@@ -42,7 +42,7 @@ class CardWrappersViewController: UIViewController {
         )
         wrapper.elevation = elevation
         wrapper.translatesAutoresizingMaskIntoConstraints = false
-        wrapper.backgroundColor = BPKColor.corePrimaryColor
+
         view.addSubview(wrapper)
                 
         NSLayoutConstraint.activate([
