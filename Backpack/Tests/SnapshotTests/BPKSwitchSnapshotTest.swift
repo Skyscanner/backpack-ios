@@ -23,8 +23,6 @@ import SnapshotTesting
 
 class BPKSwitchSnapshotTest: XCTestCase {
     
-    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
-    
     override func setUpWithError() throws {
         try super.setUpWithError()
         isRecording = false

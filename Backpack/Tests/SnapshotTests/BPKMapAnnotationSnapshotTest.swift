@@ -24,7 +24,6 @@ import SnapshotTesting
 class BPKMapAnnotationSnapshotTest: XCTestCase {
     
     private let reuseIdentifier = "Annotation"
-    private let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
 
     override func setUpWithError() throws {
         try? super.setUpWithError()

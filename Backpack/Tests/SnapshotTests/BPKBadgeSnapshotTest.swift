@@ -23,8 +23,6 @@ import SnapshotTesting
 
 class BPKBadgeSnapshotTest: XCTestCase {
     
-    let traitDarkMode = UITraitCollection(userInterfaceStyle: .dark)
-    
     override func setUp() {
         super.setUp()
         isRecording = false
