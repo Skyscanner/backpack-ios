@@ -29,7 +29,7 @@ public class BPKCardWrapper: UIView {
     
     private var color: UIColor {
         didSet {
-            updateColor()
+            updateLookAndFeel()
         }
     }
     
@@ -44,7 +44,7 @@ public class BPKCardWrapper: UIView {
     
     public var elevation: BPKCardElevation = .default {
         didSet {
-            updateShadows()
+            updateLookAndFeel()
         }
     }
 
@@ -55,6 +55,7 @@ public class BPKCardWrapper: UIView {
         view.distribution = .fill
         view.isUserInteractionEnabled = false
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
 
         return view
     }()
@@ -94,26 +95,20 @@ public class BPKCardWrapper: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundLayer.frame = bounds
-        borderLayer.frame = bounds
-        
-        updateColor()
+        updateLookAndFeel()
     }
     
     private func setup() {
         layer.addSublayer(backgroundLayer)
-        backgroundLayer.cornerRadius = card.layer.cornerRadius
 
-        addSubview(stackView)
         stackView.addArrangedSubview(header)
         stackView.addArrangedSubview(card)
-        stackView.layer.cornerRadius = card.layer.cornerRadius
-        stackView.layer.masksToBounds = true
+        
+        addSubview(stackView)
 
         layer.addSublayer(borderLayer)
-        borderLayer.cornerRadius = card.layer.cornerRadius
 
-        updateShadows()
+        updateLookAndFeel()
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
@@ -122,16 +117,21 @@ public class BPKCardWrapper: UIView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
     }
     
-    private func updateColor() {
+    private func updateLookAndFeel() {
+        stackView.layer.cornerRadius = card.layer.cornerRadius
+
+        backgroundLayer.frame = bounds
         backgroundLayer.backgroundColor = color.cgColor
+        backgroundLayer.cornerRadius = card.layer.cornerRadius
+
+        borderLayer.frame = bounds
         borderLayer.borderColor = color.cgColor
-    }
-    
-    private func updateShadows() {
-        guard let shadow = elevation.shadow else {
+        borderLayer.cornerRadius = card.layer.cornerRadius
+        
+        if let shadow = elevation.shadow {
+            shadow.apply(to: layer)
+        } else {
             layer.shadowOpacity = 0
-            return
         }
-        shadow.apply(to: layer)
     }
 }
