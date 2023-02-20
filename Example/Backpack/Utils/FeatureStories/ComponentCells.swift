@@ -238,10 +238,13 @@ extension ComponentCellsProvider {
         )
     }
     private func ratings() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Rating",
-            groups: RatingGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Rating", children: $0) }
+            tabs: [
+                .uikit(groups: RatingGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: RatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Rating", tabs: $0) }
         )
     }
     private func snackbar() -> CellDataSource {

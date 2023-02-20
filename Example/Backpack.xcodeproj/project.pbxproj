@@ -12,6 +12,7 @@
 		0E8EEFC928A23C3E008BA7A3 /* SkeletonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8EEFC828A23C3E008BA7A3 /* SkeletonExampleView.swift */; };
 		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
 		1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750EB6229915230005226DF /* CardButtonsViewController.swift */; };
+		17DD297529A3EDA700FC1354 /* RatingExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DD297429A3EDA700FC1354 /* RatingExampleView.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
@@ -191,6 +192,7 @@
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGroupsProvider.swift; sourceTree = "<group>"; };
 		1750EB6229915230005226DF /* CardButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardButtonsViewController.swift; sourceTree = "<group>"; };
+		17DD297429A3EDA700FC1354 /* RatingExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingExampleView.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
 		3AA018EE215BE26500838FBB /* SpinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnersViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +420,14 @@
 			);
 			name = "Card Button";
 			path = "Card/Card Button";
+			sourceTree = "<group>";
+		};
+		17DD297329A3ED9200FC1354 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				17DD297429A3EDA700FC1354 /* RatingExampleView.swift */,
+			);
+			path = Rating;
 			sourceTree = "<group>";
 		};
 		5307FFC3282B26330081B16E /* Icons */ = {
@@ -667,6 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				5346071A29C1CCC900BBD044 /* Overlay */,
+				17DD297329A3ED9200FC1354 /* Rating */,
 				AA53992B299687A00008D407 /* Price */,
 				AA617E3E298D6ABD0089E51A /* PageIndicator */,
 				0E8EEFC728A23C1D008BA7A3 /* Skeleton */,
@@ -1223,7 +1234,7 @@
 				ORGANIZATIONNAME = "Skyscanner Ltd";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = U9XKRL39B6;
+						DevelopmentTeam = V32K83YLKK;
 						LastSwiftMigration = 1200;
 					};
 					D297B8F223B90379008D094A = {
@@ -1472,6 +1483,7 @@
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
 				53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */,
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,
+				17DD297529A3EDA700FC1354 /* RatingExampleView.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,
 				D217702425ACCC9700C0FD8C /* EnrichablePresentable.swift in Sources */,
 				5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */,
@@ -1673,7 +1685,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = U9XKRL39B6;
+				DEVELOPMENT_TEAM = V32K83YLKK;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1687,7 +1699,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "dennisli.org.skyscanner.Backpack-Example";
 				PRODUCT_NAME = "Backpack-Native";
 				SWIFT_OBJC_BRIDGING_HEADER = "Backpack/Backpack Native-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1707,7 +1719,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = U9XKRL39B6;
+				DEVELOPMENT_TEAM = V32K83YLKK;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Backpack/Backpack-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1721,7 +1733,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.skyscanner.Backpack-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "dennisli.org.skyscanner.Backpack-Example";
 				PRODUCT_NAME = "Backpack-Native";
 				SWIFT_OBJC_BRIDGING_HEADER = "Backpack/Backpack Native-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
