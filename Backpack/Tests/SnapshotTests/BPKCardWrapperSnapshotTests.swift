@@ -31,7 +31,11 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
         // Given
         let sut = BPKCardWrapper(
             header: createHeader(title: "BPKCard"),
-            card: createCard(isDivided: false),
+            card: createCard(
+                isDivided: false,
+                cornerStyle: .small,
+                isPadded: true
+            ),
             backgroundColor: BPKColor.coreAccentColor)
         
         // When
@@ -41,12 +45,53 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
         assertSnapshot(snapshotView)
     }
     
-    func testViewSnapshotWithPrimaryColor() {
+    func testViewSnapshotWithCardAndPrimaryColor() {
         // Given
         let sut = BPKCardWrapper(
-            header: createHeader(title: "PrimaryColor"),
-            card: createCard(isDivided: false),
+            header: createHeader(title: "Primary color"),
+            card: createCard(
+                isDivided: false,
+                cornerStyle: .small,
+                isPadded: true
+            ),
             backgroundColor: BPKColor.corePrimaryColor)
+        
+        // When
+        let snapshotView = embed(wrapper: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithCardNotElevated() {
+        // Given
+        let sut = BPKCardWrapper(
+            header: createHeader(title: "Not elevated"),
+            card: createCard(
+                isDivided: false,
+                cornerStyle: .small,
+                isPadded: true
+            ),
+            backgroundColor: BPKColor.coreAccentColor)
+        sut.elevation = .none
+        
+        // When
+        let snapshotView = embed(wrapper: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithCardAndCorneStyleLarge() {
+        // Given
+        let sut = BPKCardWrapper(
+            header: createHeader(title: "Corner style large"),
+            card: createCard(
+                isDivided: false,
+                cornerStyle: .large,
+                isPadded: true
+            ),
+            backgroundColor: BPKColor.coreAccentColor)
         
         // When
         let snapshotView = embed(wrapper: sut)
@@ -59,7 +104,29 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
         // Given
         let sut = BPKCardWrapper(
             header: createHeader(title: "BPKDividedCard"),
-            card: createCard(isDivided: true),
+            card: createCard(
+                isDivided: true,
+                cornerStyle: .small,
+                isPadded: true
+            ),
+            backgroundColor: BPKColor.coreAccentColor)
+        
+        // When
+        let snapshotView = embed(wrapper: sut)
+        
+        // Then
+        assertSnapshot(snapshotView)
+    }
+    
+    func testViewSnapshotWithDividedCardAndNotPadded() {
+        // Given
+        let sut = BPKCardWrapper(
+            header: createHeader(title: "BPKDividedCard not padded"),
+            card: createCard(
+                isDivided: true,
+                cornerStyle: .small,
+                isPadded: false
+            ),
             backgroundColor: BPKColor.coreAccentColor)
         
         // When
@@ -72,7 +139,11 @@ final class BPKCardWrapperSnapshotTests: XCTestCase {
     
 // MARK: Helpers
 extension BPKCardWrapperSnapshotTests {
-    private func createCard(isDivided: Bool) -> BPKCard {
+    private func createCard(
+        isDivided: Bool,
+        cornerStyle: BPKCardCornerStyle,
+        isPadded: Bool
+    ) -> BPKCard {
         let label1 = createContectLabel(text: """
             Lorem ipsum dolor sit amet,
             consectetuer adipiscing elit.
@@ -87,13 +158,16 @@ extension BPKCardWrapperSnapshotTests {
             card.lineStyle = .solid
             card.orientation = .vertical
             card.isElevated = false
-            card.isPadded = true
+            card.cornerStyle = cornerStyle
+            card.isPadded = isPadded
             return card
         }
         
         let card = BPKCard(padded: true)
-        card.isElevated = false
         card.subview = label1
+        card.isElevated = false
+        card.cornerStyle = cornerStyle
+        card.isPadded = isPadded
         return card
     }
     

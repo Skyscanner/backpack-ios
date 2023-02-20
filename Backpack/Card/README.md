@@ -64,11 +64,41 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card___with-solid-divider-without-padding_dm.png" alt="" width="375" /> |
 
-## Card wrapper
+## Card wrapper default
 
 | Day | Night |
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___default_dm.png" alt="" width="375" /> |
+
+## Card wrapper with primary color
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-primary-color_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-primary-color_dm.png" alt="" width="375" /> |
+
+## Card wrapper not elevated
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___not-elevated_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___not-elevated_dm.png" alt="" width="375" /> |
+
+## Wrapper with corner style large
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-corner-style-large_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-corner-style-large_dm.png" alt="" width="375" /> |
+
+## Wrapper with divided card
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-divided-card_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-divided-card_dm.png" alt="" width="375" /> |
+
+## Wrapper with divided card not padded
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-divided-card-not-padded_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-card-wrapper___with-divided-card-not-padded_dm.png" alt="" width="375" /> |
 
 ## Usage
 
@@ -86,6 +116,7 @@ Do not use `Button` or `Link` configurations if the card has multiple actions or
 
 `BPKCardWrapper` contains the Backpack Card Wrapper component. It can have 2 subviews and will add the appropriate constraints automatically when `init(header:card:backgroundColor:)` is called. It's axis is vertical.
 
+Use the `elevation` property to set the shadows on the wrapper. It can be `.default`, `.focus`, and `.none`.
 
 ### Objective-C
 

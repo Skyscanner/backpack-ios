@@ -42,6 +42,17 @@ struct CardGroupsProvider {
         )
     }
     
+    private func presentableCardWrapper(
+        _ title: String,
+        enrich: @escaping (CardWrappersViewController) -> Void
+    ) -> CellDataSource {
+        PresentableCellDataSource.customEnrichable(
+            title: title,
+            customController: { CardWrappersViewController() },
+            enrich: enrich,
+            showPresentable: showPresentable)
+    }
+    
     private func presentableCard<Content: View>(
         _ title: String,
         view: Content
@@ -84,11 +95,23 @@ struct CardGroupsProvider {
                     cardVC.padded = false
                     cardVC.dividerStyle = .solid
                 },
-                PresentableCellDataSource.custom(
-                    title: "Card wrapper",
-                    customController: { CardWrappersViewController() },
-                    showPresentable: showPresentable
-                )
+                presentableCardWrapper("Wrapper default", enrich: { _ in }),
+                presentableCardWrapper("Wrapper with primary color", enrich: { wrapperVC in
+                    wrapperVC.backgroundColor = BPKColor.corePrimaryColor
+                }),
+                presentableCardWrapper("Wrapper not elevated", enrich: { wrapperVC in
+                    wrapperVC.elevation = .none
+                }),
+                presentableCardWrapper("Wrapper with corner style large", enrich: { wrapperVC in
+                    wrapperVC.cornerStyle = .large
+                }),
+                presentableCardWrapper("Wrapper with divided card", enrich: { wrapperVC in
+                    wrapperVC.isCardDivided = true
+                }),
+                presentableCardWrapper("Wrapper with divided card not padded", enrich: { wrapperVC in
+                    wrapperVC.isCardDivided = true
+                    wrapperVC.isPadded = false
+                })
             ]
         ).groups()
     }

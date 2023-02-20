@@ -21,15 +21,11 @@ import Backpack
 
 class CardWrappersViewController: UIViewController {
     
-    private lazy var containerView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = BPKSpacingBase
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    public var isCardDivided: Bool = false
+    public var elevation: BPKCardElevation = .default
+    public var isPadded: Bool = true
+    public var cornerStyle: BPKCardCornerStyle = .small
+    public var backgroundColor: UIColor = BPKColor.coreAccentColor
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,34 +34,29 @@ class CardWrappersViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = BPKColor.canvasColor
-        view.addSubview(containerView)
         
-        containerView.addArrangedSubview(BPKCardWrapper(
-            header: header(title: "BPKCard"),
-            card: card(isDivided: false),
-            backgroundColor: BPKColor.coreAccentColor
-        ))
-        
-        containerView.addArrangedSubview(BPKCardWrapper(
-            header: header(title: "PrimaryColor"),
-            card: card(isDivided: false),
-            backgroundColor: BPKColor.corePrimaryColor
-        ))
-        
-        containerView.addArrangedSubview(BPKCardWrapper(
-            header: header(title: "BPKDividedCard"),
-            card: card(isDivided: true),
-            backgroundColor: BPKColor.coreAccentColor
-        ))
-        
+        let wrapper = BPKCardWrapper(
+            header: createHeader(),
+            card: createCard(),
+            backgroundColor: backgroundColor
+        )
+        wrapper.elevation = elevation
+        wrapper.translatesAutoresizingMaskIntoConstraints = false
+        wrapper.backgroundColor = BPKColor.corePrimaryColor
+        view.addSubview(wrapper)
+                
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            wrapper.leadingAnchor.constraint(
+                equalTo: view.readableContentGuide.leadingAnchor,
+                constant: BPKSpacingBase),
+            wrapper.trailingAnchor.constraint(
+                equalTo: view.readableContentGuide.trailingAnchor,
+                constant: -BPKSpacingBase),
+            wrapper.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
-    private func card(isDivided: Bool) -> BPKCard {
+    private func createCard() -> BPKCard {
         let label1 = BPKLabel(fontStyle: .textBodyDefault)
         label1.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
             "Aenean commodo ligula eget dolor. Aenean massa."
@@ -75,23 +66,26 @@ class CardWrappersViewController: UIViewController {
         label2.text = "Lorem ipsum dolor sit amet."
         label2.numberOfLines = 0
         
-        if isDivided {
+        if isCardDivided {
             let card = BPKDividedCard()
             card.setSubviews(primarySubview: label1, secondarySubview: label2)
             card.lineStyle = .solid
             card.orientation = .vertical
             card.isElevated = false
-            card.isPadded = true
+            card.isPadded = isPadded
+            card.cornerStyle = cornerStyle
             return card
         }
         
         let card = BPKCard(padded: true)
-        card.isElevated = false
         card.subview = label1
+        card.isElevated = false
+        card.isPadded = isPadded
+        card.cornerStyle = cornerStyle
         return card
     }
     
-    private func header(title: String) -> UIView {
+    private func createHeader() -> UIView {
         let header = UIStackView()
         header.axis = .horizontal
         header.distribution = .fill
@@ -112,7 +106,7 @@ class CardWrappersViewController: UIViewController {
         header.addArrangedSubview(iconView)
         
         let label = BPKLabel(fontStyle: .textBodyDefault)
-        label.text = title
+        label.text = "Header"
         label.textColor = .white
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         header.addArrangedSubview(label)

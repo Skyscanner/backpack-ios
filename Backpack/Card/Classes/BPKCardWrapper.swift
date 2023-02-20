@@ -26,6 +26,23 @@ public class BPKCardWrapper: UIView {
     private let header: UIView
 
     private let card: BPKCard
+    
+    private var color: UIColor
+    
+    public override var backgroundColor: UIColor? {
+        get {
+            return color
+        }
+        set {
+            color = newValue ?? color
+        }
+    }
+    
+    public var elevation: BPKCardElevation = .default {
+        didSet {
+            updateShadows()
+        }
+    }
 
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
@@ -46,6 +63,12 @@ public class BPKCardWrapper: UIView {
         return layer
     }()
     
+    private lazy var backgroundLayer: CALayer = {
+        let layer = CALayer()
+        layer.masksToBounds = true
+        return layer
+    }()
+    
     public init(
         header: UIView,
         card: BPKCard,
@@ -53,8 +76,8 @@ public class BPKCardWrapper: UIView {
     ) {
         self.header = header
         self.card = card
+        self.color = backgroundColor
         super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
         
         setup()
     }
@@ -66,24 +89,40 @@ public class BPKCardWrapper: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
+        backgroundLayer.frame = bounds
+        backgroundLayer.backgroundColor = color.cgColor
+        
         borderLayer.frame = bounds
-        borderLayer.borderColor = self.backgroundColor?.cgColor
-        borderLayer.cornerRadius = card.layer.cornerRadius
+        borderLayer.borderColor = color.cgColor
     }
     
     private func setup() {
-        self.addSubview(stackView)
+        layer.addSublayer(backgroundLayer)
+        backgroundLayer.cornerRadius = card.layer.cornerRadius
+
+        addSubview(stackView)
         stackView.addArrangedSubview(header)
         stackView.addArrangedSubview(card)
-        
-        layer.cornerRadius = card.layer.cornerRadius
-        layer.masksToBounds = true
+        stackView.layer.cornerRadius = card.layer.cornerRadius
+        stackView.layer.masksToBounds = true
+
         layer.addSublayer(borderLayer)
-        
+        borderLayer.cornerRadius = card.layer.cornerRadius
+
+        updateShadows()
+
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: lineWidth),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -lineWidth)])
+    }
+    
+    private func updateShadows() {
+        guard let shadow = elevation.shadow else {
+            layer.shadowOpacity = 0
+            return
+        }
+        shadow.apply(to: layer)
     }
 }
