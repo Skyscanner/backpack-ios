@@ -76,12 +76,11 @@ final class RatingsViewController: UIViewController {
             titles.forEach { (subtitle: String?) in
                 visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
                     let rating = createRating(
-                        title: title,
                         scale: scale,
                         size: size,
                         subtitle: subtitle,
-                        showScale: showScale)
-
+                        showScale: showScale
+                    )
                     stack.addArrangedSubview(rating)
                 }
             }
@@ -93,30 +92,37 @@ final class RatingsViewController: UIViewController {
     }
 
     private func createRating(
-        title: String?,
+        value: Float = 4.5,
         scale: BPKRatingScale,
         size: BPKRatingSize,
         subtitle: String?,
         showScale: Bool
     ) -> BPKRating {
+        let title = titleType == .stringLabel ? "Excellent" : nil
+        let accessibilityLabel = accessibilityLabel(
+            value: value,
+            title: title,
+            scale: scale,
+            subtitle: subtitle
+        )
+
         switch titleType {
         case .stringLabel:
             return BPKRating(
-                accessibilityLabel: "",
-                title: "Excellent",
-                value: 4.5,
+                accessibilityLabel: accessibilityLabel,
+                title: title ?? "",
+                value: value,
                 ratingScale: scale,
                 size: size,
                 subtitle: subtitle,
                 showScale: showScale
             )
-
         case .starRating:
             let starRating = BPKStarRating()
             starRating.rating = 4.5
             return BPKRating(
-                accessibilityLabel: "",
-                value: 4.5,
+                accessibilityLabel: accessibilityLabel,
+                value: value,
                 ratingScale: scale,
                 size: size,
                 subtitle: subtitle,
@@ -124,23 +130,26 @@ final class RatingsViewController: UIViewController {
                 titleView: starRating
             )
         case .imageView:
-            let imageView = UIImageView(image: UIImage(named: "backpack-logo-horizontal"))
-            imageView.contentMode = .scaleAspectFit
-            NSLayoutConstraint.activate([
-                imageView.heightAnchor.constraint(equalToConstant: BPKIcon.concreteSizeForLargeIcon.height),
-                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 60/13)
-            ])
-
             return BPKRating(
-                accessibilityLabel: "",
-                value: 4.5,
+                accessibilityLabel: accessibilityLabel,
+                value: value,
                 ratingScale: scale,
                 size: size,
                 subtitle: subtitle,
                 showScale: showScale,
-                titleView: imageView
+                titleView: createLogoImageView()
             )
         }
+    }
+
+    private func createLogoImageView() -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: "backpack-logo-horizontal"))
+        imageView.contentMode = .scaleAspectFit
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: BPKIcon.concreteSizeForLargeIcon.height),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 60/13)
+        ])
+        return imageView
     }
 
     private func setupConstraints() {
@@ -165,5 +174,33 @@ final class RatingsViewController: UIViewController {
                 constant: -BPKSpacingBase * 2
             )
         ])
+    }
+
+    private func accessibilityLabel(
+        value: Float,
+        title: String? = nil,
+        scale: BPKRatingScale,
+        subtitle: String?
+    ) -> String {
+        var accessibilityLabel = ""
+
+        if let title = title {
+            accessibilityLabel += "Rated \(title), "
+        }
+
+        let scaleString: String
+        switch scale {
+        case .zeroToTen:
+            scaleString = "10"
+        case .zeroToFive:
+            scaleString = "5"
+        }
+        accessibilityLabel += "\(value) out of \(scaleString). "
+
+        if let subtitle = subtitle {
+            accessibilityLabel += "Based on \(subtitle)"
+        }
+
+        return accessibilityLabel
     }
 }

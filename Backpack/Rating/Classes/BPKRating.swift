@@ -128,6 +128,8 @@ public class BPKRating: UIView {
 
         self.title = title
         self.subtitle = subtitle
+
+        self.isAccessibilityElement = true
         self.accessibilityLabel = accessibilityLabel
 
         setup()
@@ -152,6 +154,7 @@ public class BPKRating: UIView {
         super.init(frame: .zero)
 
         self.subtitle = subtitle
+        self.isAccessibilityElement = true
         self.accessibilityLabel = accessibilityLabel
 
         setup()
