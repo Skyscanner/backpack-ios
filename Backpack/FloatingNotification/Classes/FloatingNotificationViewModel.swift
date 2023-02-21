@@ -18,12 +18,100 @@
 
 import Foundation
 
-struct FloatingNotificationViewModel {
+public struct FloatingNotificationViewModel {
     let parentView: UIView
-    let text: String
-    let buttonTitle: String?
-    let onTap: (() -> Void)?
+    let title: String
+    let hideAfter: TimeInterval
+    let action: FloatingNotificationAction?
     let iconName: BPKIconName?
-    let hideAfter: Double
     let didDismiss: (() -> Void)?
+    
+    public init(
+        parentView: UIView,
+        title: String,
+        hideAfter: TimeInterval,
+        action: FloatingNotificationAction? = nil,
+        iconName: BPKIconName? = nil,
+        didDismiss: (() -> Void)? = nil
+    ) {
+        self.parentView = parentView
+        self.title = title
+        self.hideAfter = hideAfter
+        self.action = action
+        self.iconName = iconName
+        self.didDismiss = didDismiss
+    }
+    
+    public static func titleOnly(
+        parentView: UIView,
+        title: String,
+        hideAfter: TimeInterval = 4.0,
+        didDismiss: (() -> Void)? = nil
+    ) -> FloatingNotificationViewModel {
+        FloatingNotificationViewModel(
+            parentView: parentView,
+            title: title,
+            hideAfter: hideAfter,
+            didDismiss: didDismiss
+        )
+    }
+    
+    public static func titleWithAction(
+        parentView: UIView,
+        title: String,
+        hideAfter: TimeInterval = 4.0,
+        action: FloatingNotificationAction,
+        didDismiss: (() -> Void)? = nil
+    ) -> FloatingNotificationViewModel {
+        FloatingNotificationViewModel(
+            parentView: parentView,
+            title: title,
+            hideAfter: hideAfter,
+            action: action,
+            didDismiss: didDismiss
+        )
+    }
+    
+    public static func titleWithIcon(
+        parentView: UIView,
+        title: String,
+        hideAfter: TimeInterval = 4.0,
+        iconName: BPKIconName,
+        didDismiss: (() -> Void)? = nil
+    ) -> FloatingNotificationViewModel {
+        FloatingNotificationViewModel(
+            parentView: parentView,
+            title: title,
+            hideAfter: hideAfter,
+            iconName: iconName,
+            didDismiss: didDismiss
+        )
+    }
+    
+    public static func titleWithIconAndAction(
+        parentView: UIView,
+        title: String,
+        hideAfter: TimeInterval = 4.0,
+        iconName: BPKIconName,
+        action: FloatingNotificationAction,
+        didDismiss: (() -> Void)? = nil
+    ) -> FloatingNotificationViewModel {
+        FloatingNotificationViewModel(
+            parentView: parentView,
+            title: title,
+            hideAfter: hideAfter,
+            action: action,
+            iconName: iconName,
+            didDismiss: didDismiss
+        )
+    }
+    
+    public struct FloatingNotificationAction {
+        let title: String
+        let action: (() -> Void)
+        
+        public static func action(title: String, action: @escaping (() -> Void)) -> FloatingNotificationAction {
+            FloatingNotificationAction(title: title, action: action)
+        }
+    }
 }

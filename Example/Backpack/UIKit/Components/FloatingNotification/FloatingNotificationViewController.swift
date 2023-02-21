@@ -93,39 +93,44 @@ final class FloatingNotificationViewController: UIViewController {
     
     @objc
     private func justTextButtonTapped() {
-        floatingNotification.show(presentOn: view, text: "Saved")
+        floatingNotification.show(.titleOnly(parentView: view, title: "Saved"))
     }
     
     @objc
     private func textWithIconButtonTapped() {
-        floatingNotification.show(presentOn: view, text: "Saved", iconName: .heart)
+        floatingNotification.show(.titleWithIcon(parentView: view, title: "Saved", iconName: .heart))
     }
     
     @objc
     private func withActionButtonTapped() {
         floatingNotification.show(
-            presentOn: view,
-            text: "Saved",
-            buttonTitle: "View"
-        ) {
-            print("Tapped button")
-        } didDismiss: {
-            print("Did dismiss")
-        }
+            .titleWithAction(
+                parentView: view,
+                title: "Saved",
+                action: .action(
+                    title: "View",
+                    action: {
+                        print("Tapped button")
+                    }
+                )))
     }
     
     @objc
     private func withIconAndActionButtonTapped() {
         floatingNotification.show(
-            presentOn: view,
-            text: "Saved",
-            buttonTitle: "View",
-            onTap: {
-                print("Tapped button")
-            }, iconName: .heart,
-            didDismiss: {
-                print("Did dismiss")
-            })
+            .titleWithIconAndAction(
+                parentView: view,
+                title: "Saved",
+                iconName: .heart,
+                action: .action(
+                    title: "View",
+                    action: {
+                        print("Tapped button")
+                    }
+                ), didDismiss: {
+                    print("Did dismiss")
+                }
+            ))
     }
     
     private static func makeButton(with title: String) -> BPKButton {

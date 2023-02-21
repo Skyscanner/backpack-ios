@@ -36,43 +36,43 @@ public final class BPKFloatingNotification: UIView {
     
     // MARK: Subviews
     private let stackView: UIStackView = {
-        let result = UIStackView()
-        result.distribution = .fillProportionally
-        result.alignment = .center
-        result.axis = .horizontal
-        result.spacing = BPKSpacingMd
-        result.translatesAutoresizingMaskIntoConstraints = false
-        return result
+        let stackView = UIStackView()
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .top
+        stackView.axis = .horizontal
+        stackView.spacing = BPKSpacingMd
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private let iconView: BPKIconView = {
-        let result = BPKIconView(iconName: .none, size: .small)
-        result.tintColor = BPKColor.textOnDarkColor
-        result.isAccessibilityElement = false
-        result.translatesAutoresizingMaskIntoConstraints = false
-        result.setContentHuggingPriority(.required, for: .horizontal)
-        result.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return result
+        let iconView = BPKIconView(iconName: .none, size: .small)
+        iconView.tintColor = BPKColor.textOnDarkColor
+        iconView.isAccessibilityElement = false
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.setContentHuggingPriority(.required, for: .horizontal)
+        iconView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return iconView
     }()
     
     private let messageLabel: BPKLabel = {
-        let result = BPKLabel()
-        result.fontStyle = .textFootnote
-        result.textColor = BPKColor.textOnDarkColor
-        result.textAlignment = .natural
-        result.numberOfLines = 0
-        result.lineBreakMode = .byWordWrapping
-        result.translatesAutoresizingMaskIntoConstraints = false
-        result.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        return result
+        let label = BPKLabel()
+        label.fontStyle = .textFootnote
+        label.textColor = BPKColor.textOnDarkColor
+        label.textAlignment = .natural
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        return label
     }()
     
     private let button: BPKButton = {
-        let result = BPKButton(size: .default, style: .primary)
-        result.translatesAutoresizingMaskIntoConstraints = false
-        result.setContentHuggingPriority(.required, for: .horizontal)
-        result.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return result
+        let button = BPKButton(size: .default, style: .primary)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setContentHuggingPriority(.required, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return button
     }()
     
     // MARK: Initialisation
@@ -98,25 +98,7 @@ public final class BPKFloatingNotification: UIView {
     }
     
     // MARK: Animation & rendering
-    public func show(
-        presentOn parentView: UIView,
-        text: String,
-        buttonTitle: String? = nil,
-        onTap: (() -> Void)? = nil,
-        iconName: BPKIconName? = nil,
-        hideAfter: TimeInterval = 4.0,
-        didDismiss: (() -> Void)? = nil
-    ) {
-        let viewModel = FloatingNotificationViewModel(
-            parentView: parentView,
-            text: text,
-            buttonTitle: buttonTitle,
-            onTap: onTap,
-            iconName: iconName,
-            hideAfter: hideAfter,
-            didDismiss: didDismiss
-        )
-        
+    public func show(_ viewModel: FloatingNotificationViewModel) {
         notificationsQueue.append(viewModel)
         renderNext()
     }
@@ -133,13 +115,13 @@ public final class BPKFloatingNotification: UIView {
     private func render(viewModel: FloatingNotificationViewModel) {
         viewModel.parentView.addSubview(self)
         iconView.iconName = viewModel.iconName
-        messageLabel.text = viewModel.text
-        button.title = viewModel.buttonTitle
-        onButtonTap = viewModel.onTap
+        messageLabel.text = viewModel.title
+        button.title = viewModel.action?.title
+        onButtonTap = viewModel.action?.action
         onDismissal = viewModel.didDismiss
         
         iconView.isHidden = viewModel.iconName == nil
-        button.isHidden = viewModel.buttonTitle == nil && viewModel.onTap == nil
+        button.isHidden = viewModel.action == nil
         
         setupConstraints(relativeTo: viewModel.parentView)
         viewModel.parentView.layoutIfNeeded()
