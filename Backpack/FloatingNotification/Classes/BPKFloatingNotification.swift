@@ -86,6 +86,7 @@ public final class BPKFloatingNotification: UIView {
         layer.cornerRadius = BPKCornerRadiusMd
         translatesAutoresizingMaskIntoConstraints = false
         addSubviews()
+        BPKShadow.shadowLg().apply(to: layer)
     }
     
     required init?(coder: NSCoder) {
