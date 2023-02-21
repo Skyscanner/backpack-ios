@@ -85,9 +85,7 @@ public final class BPKFloatingNotification: UIView {
         backgroundColor = BPKColor.corePrimaryColor
         layer.cornerRadius = BPKCornerRadiusMd
         translatesAutoresizingMaskIntoConstraints = false
-        
         addSubviews()
-        setupIntialConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -97,16 +95,6 @@ public final class BPKFloatingNotification: UIView {
     private func addSubviews() {
         [iconView, messageLabel, button].forEach { stackView.addArrangedSubview($0) }
         addSubview(stackView)
-    }
-    
-    private func setupIntialConstraints() {
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingBase),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingBase),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase)
-        ])
     }
     
     // MARK: Animation & rendering
@@ -158,14 +146,23 @@ public final class BPKFloatingNotification: UIView {
     }
 
     private func setupConstraints(relativeTo parent: UIView) {
+        constraints.forEach { removeConstraint($0) }
+        
         bottomConstraint = bottomAnchor.constraint(
             equalTo: parent.safeAreaLayoutGuide.bottomAnchor,
             constant: Constants.startBottomConstraint
         )
         
-        var constraints = [bottomConstraint]
+        var constraints = [
+            bottomConstraint,
+            button.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingBase),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingBase),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase)
+        ]
         if traitCollection.userInterfaceIdiom == .pad {
-            constraints.append(widthAnchor.constraint(lessThanOrEqualToConstant: Constants.maxWidth))
+            constraints.append(widthAnchor.constraint(equalToConstant: Constants.maxWidth))
             constraints.append(centerXAnchor.constraint(equalTo: parent.centerXAnchor))
         } else {
             constraints.append(leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: BPKSpacingBase))

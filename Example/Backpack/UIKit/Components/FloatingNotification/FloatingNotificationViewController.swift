@@ -103,7 +103,11 @@ final class FloatingNotificationViewController: UIViewController {
     
     @objc
     private func withActionButtonTapped() {
-        floatingNotification.show(presentOn: view, text: "Saved", buttonTitle: "View") {
+        floatingNotification.show(
+            presentOn: view,
+            text: "Saved",
+            buttonTitle: "View"
+        ) {
             print("Tapped button")
         } didDismiss: {
             print("Did dismiss")
