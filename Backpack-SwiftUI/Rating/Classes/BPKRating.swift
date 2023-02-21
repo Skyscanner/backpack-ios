@@ -45,12 +45,12 @@ public struct BPKRating: View {
             if size == .large {
                 VStack(alignment: .leading, spacing: .zero) {
                     titleViewBuilder()
-                    subtitleView()
+                    subtitleView
                 }
             } else if size == .default {
                 HStack(alignment: .center, spacing: BPKSpacing.md.value) {
                     titleViewBuilder()
-                    subtitleView()
+                    subtitleView
                 }
             }
         }.accessibilityLabel(accessibilityLabel)
@@ -98,15 +98,19 @@ public struct BPKRating: View {
         }
     }
 
-    private func subtitleView() -> BPKText? {
-        guard let subtitle = subtitle else {
-            return nil
-
+    @ViewBuilder
+    private var subtitleView: some View {
+        if let subtitle = subtitle {
+            BPKText(
+                subtitle,
+                style: size.fontStyle.subtitleLabelFontStyle
+            )
+            .foregroundColor(.textSecondaryColor)
+            .lineLimit(1)
+            .fixedSize()
+        } else {
+            EmptyView()
         }
-        return BPKText(
-            subtitle,
-            style: size.fontStyle.subtitleLabelFontStyle
-        ).foregroundColor(.textSecondaryColor)
     }
 }
 
