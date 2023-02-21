@@ -94,6 +94,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Rating") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["BPKRating: title text"].tap()
+            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["BPKRating: titleView image"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
         
         navigate(title: "Switches") {
             switchTab(title: "SwiftUI")
