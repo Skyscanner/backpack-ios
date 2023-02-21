@@ -116,8 +116,12 @@ final class FloatingNotificationViewController: UIViewController {
             presentOn: view,
             text: "Saved",
             buttonTitle: "View",
-            iconName: .heart
-        ) { }
+            onTap: {
+                print("Tapped button")
+            }, iconName: .heart,
+            didDismiss: {
+                print("Did dismiss")
+            })
     }
     
     private static func makeButton(with title: String) -> BPKButton {

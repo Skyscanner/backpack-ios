@@ -64,15 +64,11 @@ public final class BPKFloatingNotification: UIView {
         result.lineBreakMode = .byWordWrapping
         result.translatesAutoresizingMaskIntoConstraints = false
         result.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//        result.preferredMaxLayoutWidth = 250 - why do we need this, check with Jeff
         return result
     }()
     
-    private lazy var button: BPKButton = {
-        let size = CGRect(x: 0, y: 0, width: Constants.buttonHeight, height: Constants.buttonHeight)
-        let result = BPKButton(frame: size)
-        result.titleLabel?.fontStyle = .textLabel2
-        result.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    private let button: BPKButton = {
+        let result = BPKButton(size: .default, style: .primary)
         result.translatesAutoresizingMaskIntoConstraints = false
         result.setContentHuggingPriority(.required, for: .horizontal)
         result.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -82,6 +78,8 @@ public final class BPKFloatingNotification: UIView {
     // MARK: Initialisation
     public init() {
         super.init(frame: .zero)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        
         animator.delegate = self
         alpha = 0
         backgroundColor = BPKColor.corePrimaryColor
@@ -111,6 +109,7 @@ public final class BPKFloatingNotification: UIView {
         ])
     }
     
+    // MARK: Animation & rendering
     public func show(
         presentOn parentView: UIView,
         text: String,
@@ -165,7 +164,6 @@ public final class BPKFloatingNotification: UIView {
         )
         
         var constraints = [bottomConstraint]
-        
         if traitCollection.userInterfaceIdiom == .pad {
             constraints.append(widthAnchor.constraint(lessThanOrEqualToConstant: Constants.maxWidth))
             constraints.append(centerXAnchor.constraint(equalTo: parent.centerXAnchor))
@@ -173,10 +171,7 @@ public final class BPKFloatingNotification: UIView {
             constraints.append(leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: BPKSpacingBase))
             constraints.append(trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -BPKSpacingBase))
         }
-        
         NSLayoutConstraint.activate(constraints)
-        setNeedsLayout()
-        layoutIfNeeded()
     }
     
     @objc

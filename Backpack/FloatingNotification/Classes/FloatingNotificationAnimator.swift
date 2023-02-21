@@ -24,7 +24,7 @@ protocol FloatingNotificationAnimatorDelegate: AnyObject {
     func animationDidFinish()
 }
 
-final class FloatingNotificationAnimator {
+final class FloatingNotificationAnimator: NSObject {
     
     weak var delegate: FloatingNotificationAnimatorDelegate?
     private var upAnimator = UIViewPropertyAnimator()
@@ -37,13 +37,14 @@ final class FloatingNotificationAnimator {
     }
     
     func animateDownNow() {
-        if upAnimator.isRunning {
-            upAnimator.isReversed = true
-        } else {
-            upAnimator.stopAnimation(true)
-            downAnimator.pauseAnimation()
-            downAnimator.startAnimation()
-        }
+        upAnimator.stopAnimation(true)
+        downAnimator.stopAnimation(true)
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(prepareDownAnimation),
+            object: nil
+        )
+        prepareDownAnimation()
     }
     
     private func prepareUpAnimation(hideAfter: TimeInterval) {
@@ -52,13 +53,14 @@ final class FloatingNotificationAnimator {
             self?.delegate?.upAnimation()
         }
         upAnimator.addCompletion { [weak self] _ in
-            self?.prepareDownAnimation(hideAfter: hideAfter)
+            self?.perform(#selector(self?.prepareDownAnimation), with: nil, afterDelay: hideAfter)
         }
         isNotificationDisplayed = true
         upAnimator.startAnimation()
     }
     
-    private func prepareDownAnimation(hideAfter: TimeInterval) {
+    @objc
+    private func prepareDownAnimation() {
         downAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
         downAnimator.addAnimations { [weak self] in
             self?.delegate?.downAnimation()
@@ -67,6 +69,6 @@ final class FloatingNotificationAnimator {
             self?.isNotificationDisplayed = false
             self?.delegate?.animationDidFinish()
         }
-        downAnimator.startAnimation(afterDelay: hideAfter)
+        downAnimator.startAnimation()
     }
 }
