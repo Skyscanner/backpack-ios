@@ -30,39 +30,37 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
         isRecording = false
     }
     
-    // iPad as well!
-    // RTL is wrong in snapshots
-    
+    // MARK: iPhoneSE screen size
     func testViewSnapshotWithJustText() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleOnly(parentView: parent, title: "Test"))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
     
     func testViewSnapshotWithIconAndText() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithIcon(parentView: parent, title: "Saved", iconName: .heart))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithTextAndButton() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithAction(
             parentView: parent,
             title: "Saved",
             action: .action(title: "View", action: { })
         ))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithTextIconAndButton() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithIconAndAction(
             parentView: parent,
@@ -71,40 +69,40 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
             action: .action(title: "View", action: { }),
             didDismiss: { }
         ))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithJustLongText() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleOnly(parentView: parent, title: longTitle))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithIconAndLongText() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithIcon(parentView: parent, title: longTitle, iconName: .heart))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithLongTextAndButton() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithAction(
             parentView: parent,
             title: longTitle,
             action: .action(title: "View", action: { })
         ))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithLongTextIconAndButton() {
-        let parent = createPhoneParent()
+        let parent = createParent(for: .iPhoneSE())
         let notification = BPKFloatingNotification()
         notification.show(.titleWithIconAndAction(
             parentView: parent,
@@ -113,17 +111,77 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
             action: .action(title: "View", action: { }),
             didDismiss: { }
         ))
-        sleep(2)
+        sleep(1)
         assertSnapshot(parent)
     }
 
-    private func createPhoneParent() -> UIView {
-        let parentView = UIView(frame: .zero)
-        parentView.translatesAutoresizingMaskIntoConstraints = false
+    // MARK: iPad screen size
+    func testViewSnapshotWithJustLongTextForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let notification = BPKFloatingNotification()
+        notification.show(.titleOnly(parentView: parent, title: longTitle))
+        sleep(1)
+        assertSnapshot(parent)
+    }
 
+    func testViewSnapshotWithIconAndLongTextForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let notification = BPKFloatingNotification()
+        notification.show(.titleWithIcon(parentView: parent, title: longTitle, iconName: .heart))
+        sleep(1)
+        assertSnapshot(parent)
+    }
+
+    func testViewSnapshotWithLongTextAndButtonForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let notification = BPKFloatingNotification()
+        notification.show(.titleWithAction(
+            parentView: parent,
+            title: longTitle,
+            action: .action(title: "View", action: { })
+        ))
+        sleep(1)
+        assertSnapshot(parent)
+    }
+
+    func testViewSnapshotWithLongTextIconAndButtonForiPad() {
+        let parent = createParent(for: .iPadAir())
+        print(parent.frame)
+        let notification = BPKFloatingNotification()
+        notification.show(.titleWithIconAndAction(
+            parentView: parent,
+            title: longTitle,
+            iconName: .heart,
+            action: .action(title: "View", action: { }),
+            didDismiss: { }
+        ))
+        sleep(1)
+        assertSnapshot(parent)
+    }
+    
+    // MARK: Helpers
+    private enum DeviceSize {
+        case iPhoneSE(height: CGFloat = 667, width: CGFloat = 375)
+        case iPadAir(height: CGFloat = 1180, width: CGFloat = 820)
+    }
+    
+    private func createParent(for deviceSize: DeviceSize) -> UIView {
+        switch deviceSize {
+        case .iPhoneSE(let height, let width):
+            return view(with: height, width: width)
+        case .iPadAir(let height, let width):
+            return view(with: height, width: width)
+        }
+    }
+    
+    private func view(with height: CGFloat, width: CGFloat) -> UIView {
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let parentView = UIView(frame: frame)
+        parentView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            parentView.heightAnchor.constraint(equalToConstant: 667),
-            parentView.widthAnchor.constraint(equalToConstant: 375)
+            parentView.heightAnchor.constraint(equalToConstant: height),
+            parentView.widthAnchor.constraint(equalToConstant: width)
         ])
         return parentView
     }
