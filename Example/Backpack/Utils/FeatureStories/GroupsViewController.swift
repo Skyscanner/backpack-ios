@@ -29,14 +29,6 @@ class GroupsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        // SONIC-1385: remove testing selection
-//        let ratingIndexPath = IndexPath(row: 18, section: 1)
-//        tableView(tableView, didSelectRowAt: ratingIndexPath)
-//    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
