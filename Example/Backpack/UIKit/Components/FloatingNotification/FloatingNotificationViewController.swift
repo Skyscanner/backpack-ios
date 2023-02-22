@@ -103,33 +103,28 @@ final class FloatingNotificationViewController: UIViewController {
     
     @objc
     private func withActionButtonTapped() {
+        let action = { print("Tapped button") }
+        
         floatingNotification.show(
             .titleWithAction(
                 parentView: view,
                 title: "Saved",
-                action: .action(
-                    title: "View",
-                    action: {
-                        print("Tapped button")
-                    }
-                )))
+                action: .action(title: "View", action: action)
+            ))
     }
     
     @objc
     private func withIconAndActionButtonTapped() {
+        let action = { print("Tapped button") }
+        let didDismiss = { print("Did dismiss") }
+        
         floatingNotification.show(
             .titleWithIconAndAction(
                 parentView: view,
                 title: "Saved",
                 iconName: .heart,
-                action: .action(
-                    title: "View",
-                    action: {
-                        print("Tapped button")
-                    }
-                ), didDismiss: {
-                    print("Did dismiss")
-                }
+                action: .action(title: "View", action: action),
+                didDismiss: didDismiss
             ))
     }
     

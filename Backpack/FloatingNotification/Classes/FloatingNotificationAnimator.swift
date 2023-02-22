@@ -32,8 +32,11 @@ final class FloatingNotificationAnimator: NSObject {
     private let animationDuration: TimeInterval = 0.5
     private(set) var isNotificationDisplayed = false
     
-    func animateUp(hideAfter: TimeInterval) {
-        prepareUpAnimation(hideAfter: hideAfter)
+    func animateUp(hideAfter: TimeInterval, shouldAnimateDownAutomatically: Bool) {
+        prepareUpAnimation(
+            hideAfter: hideAfter,
+            shouldAnimateDownAutomatically: shouldAnimateDownAutomatically
+        )
     }
     
     func animateDownNow() {
@@ -47,16 +50,20 @@ final class FloatingNotificationAnimator: NSObject {
         prepareDownAnimation()
     }
     
-    private func prepareUpAnimation(hideAfter: TimeInterval) {
+    private func prepareUpAnimation(hideAfter: TimeInterval, shouldAnimateDownAutomatically: Bool) {
         upAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
         upAnimator.addAnimations { [weak self] in
             self?.delegate?.upAnimation()
         }
-        upAnimator.addCompletion { [weak self] _ in
-            self?.perform(#selector(self?.prepareDownAnimation), with: nil, afterDelay: hideAfter)
+        
+        if shouldAnimateDownAutomatically {
+            upAnimator.addCompletion { [weak self] _ in
+                self?.perform(#selector(self?.prepareDownAnimation), with: nil, afterDelay: hideAfter)
+            }
         }
-        isNotificationDisplayed = true
+
         upAnimator.startAnimation()
+        isNotificationDisplayed = true
     }
     
     @objc

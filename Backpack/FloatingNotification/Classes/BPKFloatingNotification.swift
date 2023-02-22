@@ -85,17 +85,28 @@ public final class BPKFloatingNotification: UIView {
         backgroundColor = BPKColor.corePrimaryColor
         layer.cornerRadius = BPKCornerRadiusMd
         translatesAutoresizingMaskIntoConstraints = false
-        addSubviews()
-        BPKShadow.shadowLg().apply(to: layer)
+        setup()
+        setUpAccessibility()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubviews() {
+    @available(*, unavailable)
+    override public init(frame: CGRect) {
+        fatalError("init(frame: CGRect) has not been implemented")
+    }
+    
+    private func setup() {
         [iconView, messageLabel, button].forEach { stackView.addArrangedSubview($0) }
         addSubview(stackView)
+        BPKShadow.shadowLg().apply(to: layer)
     }
     
     // MARK: Animation & rendering
@@ -107,7 +118,9 @@ public final class BPKFloatingNotification: UIView {
     private func renderNext() {
         if let nextViewModel = notificationsQueue.first, !animator.isNotificationDisplayed {
             render(viewModel: nextViewModel)
-            animator.animateUp(hideAfter: nextViewModel.hideAfter)
+            animator.animateUp(
+                hideAfter: nextViewModel.hideAfter,
+                shouldAnimateDownAutomatically: !UIAccessibility.isVoiceOverRunning)
         } else if animator.isNotificationDisplayed {
             animator.animateDownNow()
         }
@@ -135,18 +148,24 @@ public final class BPKFloatingNotification: UIView {
             equalTo: parent.safeAreaLayoutGuide.bottomAnchor,
             constant: Constants.startBottomConstraint
         )
-        
+
         var constraints = [
             bottomConstraint,
+            messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.buttonHeight),
+            iconView.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
             button.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingBase),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingBase),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -BPKSpacingBase),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase)
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase),
+            centerXAnchor.constraint(equalTo: parent.centerXAnchor)
         ]
-        if traitCollection.userInterfaceIdiom == .pad {
+        
+        let largeScreenWidth = Constants.maxWidth + (BPKSpacingBase * 2)
+        let isLargeScreen = parent.bounds.width > largeScreenWidth
+        
+        if isLargeScreen {
             constraints.append(widthAnchor.constraint(equalToConstant: Constants.maxWidth))
-            constraints.append(centerXAnchor.constraint(equalTo: parent.centerXAnchor))
         } else {
             constraints.append(leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: BPKSpacingBase))
             constraints.append(trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -BPKSpacingBase))
@@ -157,6 +176,40 @@ public final class BPKFloatingNotification: UIView {
     @objc
     private func buttonTapped() {
         onButtonTap?()
+    }
+}
+
+// MARK: Accessibility
+extension BPKFloatingNotification {
+    private func setUpAccessibility() {
+        guard UIAccessibility.isVoiceOverRunning else { return }
+        NotificationCenter.default.addObserver(
+            forName: UIAccessibility.elementFocusedNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] (notification: Notification) in
+            self?.accessibilityElementChanged(notification)
+        }
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapLabel))
+        messageLabel.addGestureRecognizer(tap)
+        messageLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc
+    private func accessibilityElementChanged(_ notification: Notification) {
+        guard
+            let focusedView = notification.userInfo?[UIAccessibility.focusedElementUserInfoKey] as? UIView,
+            focusedView != button,
+            focusedView != messageLabel,
+            animator.isNotificationDisplayed
+        else { return }
+        animator.animateDownNow()
+    }
+    
+    @objc
+    private func didTapLabel() {
+        animator.animateDownNow()
     }
 }
 
