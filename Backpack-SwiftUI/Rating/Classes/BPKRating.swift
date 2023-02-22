@@ -53,7 +53,9 @@ public struct BPKRating: View {
                     subtitleView
                 }
             }
-        }.accessibilityLabel(accessibilityLabel)
+        }
+        .accessibilityElement()
+        .accessibilityLabel(accessibilityLabel)
     }
 
     public init(
