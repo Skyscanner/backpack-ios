@@ -55,7 +55,7 @@ public class BPKRating: UIView {
     }
     public var subtitle: String? {
         get {
-            subtitleLabel.text ?? ""
+            subtitleLabel.text
         }
         set {
             subtitleLabel.text = newValue
@@ -201,7 +201,6 @@ public class BPKRating: UIView {
     }
 
     private func updateLookAndFeel() {
-        subtitleLabel.isHidden = subtitleLabel.text == nil
         ratingScaleLabel.isHidden = !showScale
         if showScale {
             ratingScaleLabel.text = ratingScale.displayedScale()
@@ -242,7 +241,7 @@ public class BPKRating: UIView {
     private func updateCustomTitleViewBottomConstraint() {
         let isShowingCustomTitleView = titleView != titleLabel
         let isLargeSize = size == .large
-        let isSubtitleLabelHidden = subtitleLabel.isHidden
+        let isSubtitleLabelHidden = subtitleLabel.text == nil
         let isAddedToSuperView = titleView.superview != nil
 
         if isShowingCustomTitleView && isSubtitleLabelHidden &&
