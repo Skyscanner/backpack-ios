@@ -143,9 +143,7 @@ public final class BPKFloatingNotification: UIView {
         
         iconView.isHidden = viewModel.iconName == nil
         button.isHidden = viewModel.action == nil
-        
         setupConstraints(relativeTo: viewModel.parentView)
-        viewModel.parentView.layoutIfNeeded()
     }
 
     private func setupConstraints(relativeTo parent: UIView) {
@@ -178,6 +176,7 @@ public final class BPKFloatingNotification: UIView {
             constraints.append(trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -BPKSpacingBase))
         }
         NSLayoutConstraint.activate(constraints)
+        parent.layoutIfNeeded()
     }
     
     @objc
