@@ -93,19 +93,19 @@ final class FloatingNotificationViewController: UIViewController {
     
     @objc
     private func justTextButtonTapped() {
-        floatingNotification.show(.titleOnly(parentView: view, title: "Saved"))
+        BPKFloatingNotification.show(.titleOnly(parentView: view, title: "Saved"))
     }
     
     @objc
     private func textWithIconButtonTapped() {
-        floatingNotification.show(.titleWithIcon(parentView: view, title: "Saved", iconName: .heart))
+        BPKFloatingNotification.show(.titleWithIcon(parentView: view, title: "Saved", iconName: .heart))
     }
     
     @objc
     private func withActionButtonTapped() {
         let action = { print("Tapped button") }
         
-        floatingNotification.show(
+        BPKFloatingNotification.show(
             .titleWithAction(
                 parentView: view,
                 title: "Saved",
@@ -118,7 +118,7 @@ final class FloatingNotificationViewController: UIViewController {
         let action = { print("Tapped button") }
         let didDismiss = { print("Did dismiss") }
         
-        floatingNotification.show(
+        BPKFloatingNotification.show(
             .titleWithIconAndAction(
                 parentView: view,
                 title: "Saved",

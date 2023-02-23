@@ -33,26 +33,35 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
     // MARK: iPhoneSE screen size
     func testViewSnapshotWithJustText() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleOnly(parentView: parent, title: "Test"))
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Test",
+            hideAfter: 0
+        )
+        BPKFloatingNotification.show(viewModel)
         sleep(1)
         assertSnapshot(parent)
     }
     
     func testViewSnapshotWithIconAndText() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIcon(parentView: parent, title: "Saved", iconName: .heart))
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Test",
+            hideAfter: 0,
+            iconName: .heart
+        )
+        BPKFloatingNotification.show(viewModel)
         sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithTextAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithAction(
+        BPKFloatingNotification.show(.titleWithAction(
             parentView: parent,
             title: "Saved",
+            hideAfter: 0,
             action: .action(title: "View", action: { })
         ))
         sleep(1)
@@ -61,10 +70,10 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
 
     func testViewSnapshotWithTextIconAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIconAndAction(
+        BPKFloatingNotification.show(.titleWithIconAndAction(
             parentView: parent,
             title: "Saved",
+            hideAfter: 0,
             iconName: .heart,
             action: .action(title: "View", action: { }),
             didDismiss: { }
@@ -75,26 +84,30 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
 
     func testViewSnapshotWithJustLongText() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleOnly(parentView: parent, title: longTitle))
+        BPKFloatingNotification.show(.titleOnly(parentView: parent, title: longTitle, hideAfter: 0))
         sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithIconAndLongText() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIcon(parentView: parent, title: longTitle, iconName: .heart))
+        BPKFloatingNotification.show(
+            .titleWithIcon(
+                parentView: parent,
+                title: longTitle,
+                hideAfter: 0,
+                iconName: .heart
+            ))
         sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithLongTextAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithAction(
+        BPKFloatingNotification.show(.titleWithAction(
             parentView: parent,
             title: longTitle,
+            hideAfter: 0,
             action: .action(title: "View", action: { })
         ))
         sleep(1)
@@ -103,10 +116,10 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
 
     func testViewSnapshotWithLongTextIconAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIconAndAction(
+        BPKFloatingNotification.show(.titleWithIconAndAction(
             parentView: parent,
             title: longTitle,
+            hideAfter: 0,
             iconName: .heart,
             action: .action(title: "View", action: { }),
             didDismiss: { }
@@ -118,26 +131,30 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
     // MARK: iPad screen size
     func testViewSnapshotWithJustLongTextForiPad() {
         let parent = createParent(for: .iPadAir())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleOnly(parentView: parent, title: longTitle))
+        BPKFloatingNotification.show(.titleOnly(parentView: parent, title: longTitle, hideAfter: 0))
         sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithIconAndLongTextForiPad() {
         let parent = createParent(for: .iPadAir())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIcon(parentView: parent, title: longTitle, iconName: .heart))
+        BPKFloatingNotification.show(
+            .titleWithIcon(
+                parentView: parent,
+                title: longTitle,
+                hideAfter: 0,
+                iconName: .heart
+            ))
         sleep(1)
         assertSnapshot(parent)
     }
 
     func testViewSnapshotWithLongTextAndButtonForiPad() {
         let parent = createParent(for: .iPadAir())
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithAction(
+        BPKFloatingNotification.show(.titleWithAction(
             parentView: parent,
             title: longTitle,
+            hideAfter: 0,
             action: .action(title: "View", action: { })
         ))
         sleep(1)
@@ -146,11 +163,10 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
 
     func testViewSnapshotWithLongTextIconAndButtonForiPad() {
         let parent = createParent(for: .iPadAir())
-        print(parent.frame)
-        let notification = BPKFloatingNotification()
-        notification.show(.titleWithIconAndAction(
+        BPKFloatingNotification.show(.titleWithIconAndAction(
             parentView: parent,
             title: longTitle,
+            hideAfter: 0,
             iconName: .heart,
             action: .action(title: "View", action: { }),
             didDismiss: { }

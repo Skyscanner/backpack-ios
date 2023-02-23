@@ -27,12 +27,17 @@ public final class BPKFloatingNotification: UIView {
         static let startBottomConstraint: CGFloat = 30.0
     }
     
+    private static var notificationsQueue = [FloatingNotificationViewModel]()
+    private static let notification: BPKFloatingNotification = {
+        let notification = BPKFloatingNotification()
+        notification.translatesAutoresizingMaskIntoConstraints = false
+        return notification
+    }()
+        
+    private let animator = FloatingNotificationAnimator()
     private var onButtonTap: (() -> Void)?
     private var onDismissal: (() -> Void)?
-    
     private var bottomConstraint = NSLayoutConstraint()
-    private let animator = FloatingNotificationAnimator()
-    private var notificationsQueue = [FloatingNotificationViewModel]()
     
     // MARK: Subviews
     private let stackView: UIStackView = {
@@ -59,7 +64,6 @@ public final class BPKFloatingNotification: UIView {
         let label = BPKLabel()
         label.fontStyle = .textFootnote
         label.textColor = BPKColor.textOnDarkColor
-        label.textAlignment = .natural
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -86,11 +90,14 @@ public final class BPKFloatingNotification: UIView {
         layer.cornerRadius = BPKCornerRadiusMd
         translatesAutoresizingMaskIntoConstraints = false
         setup()
+        
         setUpAccessibility()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setUpAccessibility),
+            name: UIAccessibility.voiceOverStatusDidChangeNotification,
+            object: nil
+        )
     }
     
     @available(*, unavailable)
@@ -110,13 +117,13 @@ public final class BPKFloatingNotification: UIView {
     }
     
     // MARK: Animation & rendering
-    public func show(_ viewModel: FloatingNotificationViewModel) {
+    public static func show(_ viewModel: FloatingNotificationViewModel) {
         notificationsQueue.append(viewModel)
-        renderNext()
+        notification.renderNext()
     }
     
     private func renderNext() {
-        if let nextViewModel = notificationsQueue.first, !animator.isNotificationDisplayed {
+        if let nextViewModel = BPKFloatingNotification.notificationsQueue.first, !animator.isNotificationDisplayed {
             render(viewModel: nextViewModel)
             animator.animateUp(
                 hideAfter: nextViewModel.hideAfter,
@@ -148,7 +155,7 @@ public final class BPKFloatingNotification: UIView {
             equalTo: parent.safeAreaLayoutGuide.bottomAnchor,
             constant: Constants.startBottomConstraint
         )
-
+        
         var constraints = [
             bottomConstraint,
             messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.buttonHeight),
@@ -181,19 +188,28 @@ public final class BPKFloatingNotification: UIView {
 
 // MARK: Accessibility
 extension BPKFloatingNotification {
+    @objc
     private func setUpAccessibility() {
-        guard UIAccessibility.isVoiceOverRunning else { return }
-        NotificationCenter.default.addObserver(
-            forName: UIAccessibility.elementFocusedNotification,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] (notification: Notification) in
-            self?.accessibilityElementChanged(notification)
+        if UIAccessibility.isVoiceOverRunning {
+            NotificationCenter.default.addObserver(
+                forName: UIAccessibility.elementFocusedNotification,
+                object: nil,
+                queue: OperationQueue.main
+            ) { [weak self] (notification: Notification) in
+                self?.accessibilityElementChanged(notification)
+            }
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didTapLabel))
+            messageLabel.addGestureRecognizer(tap)
+            messageLabel.isUserInteractionEnabled = true
+        } else {
+            NotificationCenter.default.removeObserver(
+                self,
+                name: UIAccessibility.elementFocusedNotification,
+                object: nil
+            )
+            messageLabel.gestureRecognizers?.removeAll()
         }
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapLabel))
-        messageLabel.addGestureRecognizer(tap)
-        messageLabel.isUserInteractionEnabled = true
     }
     
     @objc
@@ -233,7 +249,9 @@ extension BPKFloatingNotification: FloatingNotificationAnimatorDelegate {
     
     func animationDidFinish() {
         onDismissal?()
-        notificationsQueue.removeFirst()
+        if BPKFloatingNotification.notificationsQueue.count > 0 {
+            BPKFloatingNotification.notificationsQueue.removeFirst()
+        }
         renderNext()
     }
 }
