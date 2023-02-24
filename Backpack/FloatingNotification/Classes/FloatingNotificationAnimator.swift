@@ -18,72 +18,45 @@
 
 import Foundation
 
-protocol FloatingNotificationAnimatorDelegate: AnyObject {
-    func upAnimation()
-    func downAnimation()
-    func animationDidFinish()
-}
-
-final class FloatingNotificationAnimator: NSObject {
+final class FloatingNotificationAnimator {
     
-    weak var delegate: FloatingNotificationAnimatorDelegate?
     private var upAnimator = UIViewPropertyAnimator()
     private var downAnimator = UIViewPropertyAnimator()
     private let animationDuration: TimeInterval = 0.5
-    private(set) var isNotificationDisplayed = false
     
-    func animateUp(hideAfter: TimeInterval, shouldAnimateDownAutomatically: Bool) {
-        prepareUpAnimation(
-            hideAfter: hideAfter,
-            shouldAnimateDownAutomatically: shouldAnimateDownAutomatically
-        )
-    }
-    
-    func animateDownNow() {
-        upAnimator.stopAnimation(true)
-        downAnimator.stopAnimation(true)
-        NSObject.cancelPreviousPerformRequests(
-            withTarget: self,
-            selector: #selector(prepareDownAnimation),
-            object: nil
-        )
-        prepareDownAnimation()
-    }
-    
-    private func prepareUpAnimation(hideAfter: TimeInterval, shouldAnimateDownAutomatically: Bool) {
+    func animateUp(
+        notification: FloatingNotificationView,
+        displayedBottomConstraintConstant: CGFloat
+    ) {
         upAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
-        upAnimator.addAnimations { [weak self] in
-            self?.delegate?.upAnimation()
+        upAnimator.addAnimations {
+            notification.alpha = 1
+            notification.bottomConstraint.constant = displayedBottomConstraintConstant
+            notification.superview?.layoutIfNeeded()
+            UIAccessibility.post(notification: .layoutChanged, argument: notification.messageLabel)
         }
-        
-        if shouldAnimateDownAutomatically {
-            upAnimator.addCompletion { [weak self] _ in
-                self?.perform(#selector(self?.prepareDownAnimation), with: nil, afterDelay: hideAfter)
-            }
-        }
-
         upAnimator.startAnimation()
-        isNotificationDisplayed = isRunningTest() ? false : true
     }
-    
-    @objc
-    private func prepareDownAnimation() {
+
+    func animatedDown(
+        _ notification: FloatingNotificationView,
+        hiddenBottomConstraintConstant: CGFloat,
+        completion: (() -> Void)?
+    ) {
+        upAnimator.stopAnimation(true)
+        downAnimator.stopAnimation(false)
+        downAnimator.finishAnimation(at: .current)
+        
         downAnimator = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut)
-        downAnimator.addAnimations { [weak self] in
-            self?.delegate?.downAnimation()
+        
+        downAnimator.addAnimations {
+            notification.alpha = 0
+            notification.bottomConstraint.constant = hiddenBottomConstraintConstant
+            notification.superview?.layoutIfNeeded()
         }
-        downAnimator.addCompletion { [weak self] _ in
-            self?.isNotificationDisplayed = false
-            self?.delegate?.animationDidFinish()
+        downAnimator.addCompletion { _ in
+            completion?()
         }
         downAnimator.startAnimation()
-    }
-    
-    // Need to handle running tests due to the notification being a singleton
-    // and the completion block for the up animation not being called in tests reliably
-    private func isRunningTest() -> Bool {
-        let isRunningTest = NSClassFromString("XCTest") != nil
-        if isRunningTest { delegate?.animationDidFinish() }
-        return isRunningTest
     }
 }

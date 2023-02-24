@@ -36,7 +36,6 @@ struct ComponentCellsProvider {
 
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
-            floatingNotification(),
             badge(),
             barChart(),
             bottomSheet(),

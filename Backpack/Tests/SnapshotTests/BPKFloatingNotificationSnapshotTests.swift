@@ -17,7 +17,7 @@
  */
 
 import XCTest
-import Backpack
+@testable import Backpack
 
 import SnapshotTesting
 
@@ -38,8 +38,7 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
             title: "Test",
             hideAfter: 0
         )
-        BPKFloatingNotification.show(viewModel)
-        sleep(1)
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
     
@@ -51,131 +50,196 @@ final class BPKFloatingNotificationSnapshotTest: XCTestCase {
             hideAfter: 0,
             iconName: .heart
         )
-        BPKFloatingNotification.show(viewModel)
-        sleep(1)
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithTextAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(.titleWithAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: "Saved",
             hideAfter: 0,
             action: .action(title: "View", action: { })
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithTextIconAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(.titleWithIconAndAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: "Saved",
             hideAfter: 0,
-            iconName: .heart,
             action: .action(title: "View", action: { }),
+            iconName: .heart,
             didDismiss: { }
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithJustLongText() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(.titleOnly(parentView: parent, title: longTitle, hideAfter: 0))
-        sleep(1)
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: longTitle,
+            hideAfter: 0
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithIconAndLongText() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(
-            .titleWithIcon(
-                parentView: parent,
-                title: longTitle,
-                hideAfter: 0,
-                iconName: .heart
-            ))
-        sleep(1)
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: longTitle,
+            hideAfter: 0,
+            iconName: .heart
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithLongTextAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(.titleWithAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: longTitle,
             hideAfter: 0,
             action: .action(title: "View", action: { })
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithLongTextIconAndButton() {
         let parent = createParent(for: .iPhoneSE())
-        BPKFloatingNotification.show(.titleWithIconAndAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: longTitle,
             hideAfter: 0,
-            iconName: .heart,
             action: .action(title: "View", action: { }),
+            iconName: .heart,
             didDismiss: { }
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     // MARK: iPad screen size
+    func testViewSnapshotWithJustTextForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Test",
+            hideAfter: 0
+        )
+        _ = notification(for: viewModel)
+        assertSnapshot(parent)
+    }
+    
+    func testViewSnapshotWithIconAndTextForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Test",
+            hideAfter: 0,
+            iconName: .heart
+        )
+        _ = notification(for: viewModel)
+        assertSnapshot(parent)
+    }
+    
+    func testViewSnapshotWithTextAndButtonForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Saved",
+            hideAfter: 0,
+            action: .action(title: "View", action: { })
+        )
+        _ = notification(for: viewModel)
+        assertSnapshot(parent)
+    }
+    
+    func testViewSnapshotWithTextIconAndButtonForiPad() {
+        let parent = createParent(for: .iPadAir())
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: "Saved",
+            hideAfter: 0,
+            action: .action(title: "View", action: { }),
+            iconName: .heart,
+            didDismiss: { }
+        )
+        _ = notification(for: viewModel)
+        assertSnapshot(parent)
+    }
+    
     func testViewSnapshotWithJustLongTextForiPad() {
         let parent = createParent(for: .iPadAir())
-        BPKFloatingNotification.show(.titleOnly(parentView: parent, title: longTitle, hideAfter: 0))
-        sleep(1)
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: longTitle,
+            hideAfter: 0
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithIconAndLongTextForiPad() {
         let parent = createParent(for: .iPadAir())
-        BPKFloatingNotification.show(
-            .titleWithIcon(
-                parentView: parent,
-                title: longTitle,
-                hideAfter: 0,
-                iconName: .heart
-            ))
-        sleep(1)
+        let viewModel = FloatingNotificationViewModel(
+            parentView: parent,
+            title: longTitle,
+            hideAfter: 0,
+            iconName: .heart
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithLongTextAndButtonForiPad() {
         let parent = createParent(for: .iPadAir())
-        BPKFloatingNotification.show(.titleWithAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: longTitle,
             hideAfter: 0,
             action: .action(title: "View", action: { })
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
-
+    
     func testViewSnapshotWithLongTextIconAndButtonForiPad() {
         let parent = createParent(for: .iPadAir())
-        BPKFloatingNotification.show(.titleWithIconAndAction(
+        let viewModel = FloatingNotificationViewModel(
             parentView: parent,
             title: longTitle,
             hideAfter: 0,
-            iconName: .heart,
             action: .action(title: "View", action: { }),
+            iconName: .heart,
             didDismiss: { }
-        ))
-        sleep(1)
+        )
+        _ = notification(for: viewModel)
         assertSnapshot(parent)
     }
     
     // MARK: Helpers
+    private func notification(
+        for viewModel: FloatingNotificationViewModel
+    ) -> FloatingNotificationView {
+        let notification = FloatingNotificationView(
+            viewModel,
+            hiddenBottomConstraintConstant: -BPKSpacingLg,
+            shouldAnimateDown: { _ in })
+        notification.alpha = 1
+        return notification
+    }
+    
     private enum DeviceSize {
         case iPhoneSE(height: CGFloat = 667, width: CGFloat = 375)
         case iPadAir(height: CGFloat = 1180, width: CGFloat = 820)

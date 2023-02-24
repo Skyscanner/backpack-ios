@@ -22,16 +22,20 @@ import Backpack
 
 final class FloatingNotificationViewController: UIViewController {
     
-    private let floatingNotification: BPKFloatingNotification = {
-        let notification = BPKFloatingNotification()
-        notification.translatesAutoresizingMaskIntoConstraints = false
-        return notification
-    }()
-    
     private let justTextButton = FloatingNotificationViewController.makeButton(with: "Just text")
     private let textWithIconButton = FloatingNotificationViewController.makeButton(with: "Text with icon")
     private let withActionButton = FloatingNotificationViewController.makeButton(with: "With action")
     private let withIconAndActionButton = FloatingNotificationViewController.makeButton(with: "With icon and action")
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
+        stackView.axis = .vertical
+        stackView.spacing = BPKSpacingLg
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,41 +54,15 @@ final class FloatingNotificationViewController: UIViewController {
             textWithIconButton,
             withActionButton,
             withIconAndActionButton
-        ].forEach { view.addSubview($0) }
+        ].forEach { stackView.addArrangedSubview($0) }
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            justTextButton.topAnchor.constraint(
+            stackView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: BPKSpacingLg
             ),
-            justTextButton.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: BPKSpacingLg
-            ),
-            
-            textWithIconButton.topAnchor.constraint(
-                equalTo: justTextButton.bottomAnchor,
-                constant: BPKSpacingLg
-            ),
-            textWithIconButton.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: BPKSpacingLg
-            ),
-            
-            withActionButton.topAnchor.constraint(
-                equalTo: textWithIconButton.bottomAnchor,
-                constant: BPKSpacingLg
-            ),
-            withActionButton.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: BPKSpacingLg
-            ),
-            
-            withIconAndActionButton.topAnchor.constraint(
-                equalTo: withActionButton.bottomAnchor,
-                constant: BPKSpacingLg
-            ),
-            withIconAndActionButton.leadingAnchor.constraint(
+            stackView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: BPKSpacingLg
             )
@@ -95,16 +73,16 @@ final class FloatingNotificationViewController: UIViewController {
     private func justTextButtonTapped() {
         BPKFloatingNotification.show(.titleOnly(parentView: view, title: "Saved"))
     }
-    
+
     @objc
     private func textWithIconButtonTapped() {
         BPKFloatingNotification.show(.titleWithIcon(parentView: view, title: "Saved", iconName: .heart))
     }
-    
+
     @objc
     private func withActionButtonTapped() {
         let action = { print("Tapped button") }
-        
+
         BPKFloatingNotification.show(
             .titleWithAction(
                 parentView: view,
