@@ -45,11 +45,11 @@ final class CarouselPageViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = self
         delegate = self
     }
     
     func set(images: [UIView], animated: Bool = true) {
-        dataSource = images.count > 1 ? self : nil
         pages.removeAll()
         images.forEach { pages.append(CarouselContentViewController(view: $0)) }
         setCurrentImage(index: 0, animated: animated)
