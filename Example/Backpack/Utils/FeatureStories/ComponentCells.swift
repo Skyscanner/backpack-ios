@@ -235,10 +235,10 @@ extension ComponentCellsProvider {
         )
     }
     private func ratings() -> CellDataSource {
-        PresentableCellDataSource(
+        GroupCellDataSource(
             title: "Rating",
-            storyboard: .named("Ratings", on: "RatingsViewController"),
-            showPresentable: show(presentable:)
+            groups: RatingGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChildren: { showChildren(title: "Rating", children: $0) }
         )
     }
     private func snackbar() -> CellDataSource {

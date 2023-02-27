@@ -371,20 +371,14 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Rating") {
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "rating", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["BPKRating: title text"].tap()
+            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["With subtitles"].tap()
-            saveScreenshot(component: "rating", scenario: "subtitles", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["BPKRating: titleView - BPKStarRating"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-star-rating", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Sizes"].tap()
-            saveScreenshot(component: "rating", scenario: "sizes", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Vertical layout"].tap()
-            saveScreenshot(component: "rating", scenario: "vertical", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
-            app.tables.staticTexts["Pill layout with subtitles"].tap()
-            saveScreenshot(component: "rating", scenario: "pill", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["BPKRating: titleView - ImageView"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-image-view", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 

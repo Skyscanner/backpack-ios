@@ -25,77 +25,118 @@ class BPKRatingSnapshotTest: XCTestCase {
         super.setUp()
         isRecording = false
     }
-    
-    private let allLayouts: [BPKRatingLayout] = [
-        .vertical,
-        .horizontal,
-        .horizontalPill
+
+    private let sizes = [BPKRatingSize.default, BPKRatingSize.large]
+    private let subtitles = ["1,532 reviews", nil]
+    private let visibilityAndScalesType = [
+        (true, BPKRatingScale.zeroToFive),
+        (true, BPKRatingScale.zeroToTen),
+        (false, BPKRatingScale.zeroToFive)
     ]
-    
-    private let sizes: [BPKRatingSize] = [
-        .large,
-        .base,
-        .small,
-        .extraSmall
-    ]
-    
-    private func titleDefinition(_ title: String, theme: UIColor? = nil) -> BPKRatingTextDefinition {
-        BPKRatingTextDefinition(
-            highRatingText: title,
-            mediumRatingText: title,
-            lowRatingText: title
-        )
+    private let showCustomTitleViews = [false, true]
+
+    struct BPKRatingParameter {
+        let scale: BPKRatingScale
+        let size: BPKRatingSize
+        let subtitle: String?
+        let showScale: Bool
+        let showCustomTitleView: Bool
     }
-    
-    private func applyTheme(to rating: BPKRating) {
-        rating.lowRatingColor = .purple
-        rating.mediumRatingColor = .orange
-        rating.highRatingColor = .cyan
-    }
-    
-    private func createView(
-        ratings: [CGFloat],
-        title: String,
-        subtitle: String? = nil,
-        themed: Bool = false
-    ) -> UIView {
-        viewsInStack(withStyles: sizes) { size in
-            viewsInStack(withStyles: ratings) { rating in
-                viewsInStack(withStyles: allLayouts, axis: .horizontal) { layout in
-                    let view = BPKRating()
-                    view.title = titleDefinition(title)
-                    view.ratingValue = rating
-                    if let subtitle = subtitle {
-                        view.subtitle = titleDefinition(subtitle)
+
+    private func createRatingStackView() -> UIView {
+        var styles: [BPKRatingParameter] = []
+        sizes.forEach { size in
+            subtitles.forEach { (subtitle: String?) in
+                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
+                    showCustomTitleViews.forEach { (showCustomTitleView: Bool) in
+                        let parameter = BPKRatingParameter(
+                            scale: scale,
+                            size: size,
+                            subtitle: subtitle,
+                            showScale: showScale,
+                            showCustomTitleView: showCustomTitleView)
+                        styles.append(parameter)
                     }
-                    view.layout = layout
-                    view.size = size
-                    if themed {
-                        applyTheme(to: view)
-                    }
-                    return view
                 }
             }
         }
+
+        return viewsInStack(
+            withStyles: styles,
+            backgroundColor: BPKColor.surfaceDefaultColor
+        ) { style in
+            createRating(style)
+        }
     }
-    
-    func testRating() {
-        assertSnapshot(createView(ratings: [1, 7, 9], title: "Regular"))
+
+    private func createRating(_ parameter: BPKRatingParameter) -> BPKRating {
+        if parameter.showCustomTitleView {
+            let starRating = BPKStarRating()
+            starRating.rating = 4.5
+            return BPKRating(
+                accessibilityLabel: "",
+                value: 4.5,
+                ratingScale: parameter.scale,
+                size: parameter.size,
+                subtitle: parameter.subtitle,
+                showScale: parameter.showScale,
+                titleView: starRating
+            )
+        } else {
+            return BPKRating(
+                accessibilityLabel: "",
+                title: "Excellent",
+                value: 4.5,
+                ratingScale: parameter.scale,
+                size: parameter.size,
+                subtitle: parameter.subtitle,
+                showScale: parameter.showScale
+            )
+        }
     }
-    
-    func testRatingOutOfRange() {
-        assertSnapshot(createView(ratings: [-1, 11], title: "Capped"))
+
+    func testBPKRatingSnapshot() {
+        let ratingsStackView = createRatingStackView()
+        assertSnapshot(ratingsStackView)
     }
-    
-    func testRatingWithSubtitle() {
-        assertSnapshot(createView(ratings: [1, 7, 9], title: "With Subtitle", subtitle: "Subtitle"))
+
+    func testBPKRatingTitleViewConstraintUpdateAfterSetTitleView() {
+        // Given
+        let rating = BPKRating(
+            accessibilityLabel: "",
+            title: "Excellent",
+            value: 3.99,
+            size: .large
+        )
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        rating.backgroundColor = BPKColor.canvasColor
+
+        // When
+        let starRating = BPKStarRating()
+        starRating.rating = 3.99
+        rating.titleView = rating
+
+        // Then
+        assertSnapshot(rating)
     }
-    
-    func testRatingWithTheme() {
-        assertSnapshot(createView(ratings: [1, 7, 9], title: "With Theme", themed: true))
-    }
-    
-    func testRatingWithThemeWithSubtitle() {
-        assertSnapshot(createView(ratings: [1, 7, 9], title: "With Theme", subtitle: "Subtitle", themed: true))
+
+    func testBPKRatingTitleConstraintUpdateAfterSetTitle() {
+        // Given
+        let starRating = BPKStarRating()
+        starRating.rating = 2.101
+        let rating = BPKRating(
+            accessibilityLabel: "",
+            value: 2.101,
+            size: .large,
+            titleView: starRating
+        )
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        rating.backgroundColor = BPKColor.canvasColor
+
+        // When
+        rating.title = "Skyscanner"
+
+        // Then
+        assertSnapshot(rating)
     }
 }

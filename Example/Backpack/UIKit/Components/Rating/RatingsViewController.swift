@@ -16,75 +16,191 @@
  * limitations under the License.
  */
 
-import Backpack.Rating
+final class RatingsViewController: UIViewController {
 
-class RatingsViewController: UIViewController {
-    @IBOutlet var ratings: [BPKRating]!
-    var showSubtitle: Bool = false
-    var showDifferentSizes: Bool = false
-    var layout: BPKRatingLayout = .horizontal
+    enum TitleType {
+        case stringLabel
+        case starRating
+        case imageView
+    }
 
-    static let titleTextDefinition = BPKRatingTextDefinition(
-        highRatingText: "High title",
-        mediumRatingText: "Medium title",
-        lowRatingText: "Low title"
-    )
+    private struct RatingInputs {
+        let ratingScale: BPKRatingScale
+        let size: BPKRatingSize
+        let subtitle: String?
+        let showScale: Bool
+    }
 
-    static let subtitleTextDefinition = BPKRatingTextDefinition(
-        highRatingText: "High subtitle",
-        mediumRatingText: "Medium subtitle",
-        lowRatingText: "Low subtitle"
-    )
+    private let titleType: TitleType
 
-    fileprivate static var ratingData = [
-        (
-            ratingValue: 3.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 3 out of 10. Low title.", size: BPKRatingSize.large
-        ),
-        (
-            ratingValue: 5.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 5.9 out of 10. Low title.", size: BPKRatingSize.large
-        ),
-        (
-            ratingValue: 6.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 6.0 out of 10. Medium title.", size: BPKRatingSize.base
-        ),
-        (
-            ratingValue: 7.9, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 7.9 out of 10. Medium title.", size: BPKRatingSize.small
-        ),
-        (
-            ratingValue: 8.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 8 out of 10. High title.", size: BPKRatingSize.extraSmall
-        ),
-        (
-            ratingValue: 10.0, titleDefinition: titleTextDefinition, subtitleDefinition: subtitleTextDefinition,
-            accessibilityLabel: "Rated 10 out of 10. High title.", size: BPKRatingSize.extraSmall
-        )
-    ]
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+
+    private let stack: UIStackView = {
+        let stack = UIStackView(frame: .zero)
+        stack.alignment = .leading
+        stack.spacing = BPKSpacingSm
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        return stack
+    }()
+
+    init(titleType: TitleType) {
+        self.titleType = titleType
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        assert(
-            ratings.count == RatingsViewController.ratingData.count,
-            "The number of rating components does not match the data"
-        )
-        self.setupRatings()
+        view.backgroundColor = BPKColor.surfaceDefaultColor
+        setupView()
     }
 
-    func setupRatings() {
-        for index in 0...RatingsViewController.ratingData.count - 1 {
-            ratings[index].ratingValue = RatingsViewController.ratingData[index].ratingValue
-            ratings[index].title = RatingsViewController.ratingData[index].titleDefinition
-            ratings[index].accessibilityLabel = RatingsViewController.ratingData[index].accessibilityLabel
-            ratings[index].layout = layout
-            if showSubtitle {
-                ratings[index].subtitle = RatingsViewController.ratingData[index].subtitleDefinition
-            }
-            if showDifferentSizes {
-                ratings[index].size = RatingsViewController.ratingData[index].size
+    private let sizes = [BPKRatingSize.default, BPKRatingSize.large]
+    private let titles = ["1,532 reviews", nil]
+    private let visibilityAndScalesType = [
+        (true, BPKRatingScale.zeroToFive),
+        (true, BPKRatingScale.zeroToTen),
+        (false, BPKRatingScale.zeroToFive)
+    ]
+
+    private func setupView() {
+        sizes.forEach { size in
+            titles.forEach { (subtitle: String?) in
+                visibilityAndScalesType.forEach { (showScale: Bool, scale: BPKRatingScale) in
+                    let rating = createRating(
+                        scale: scale,
+                        size: size,
+                        subtitle: subtitle,
+                        showScale: showScale
+                    )
+                    stack.addArrangedSubview(rating)
+                }
             }
         }
+
+        view.addSubview(scrollView)
+        scrollView.addSubview(stack)
+        setupConstraints()
+    }
+
+    private func createRating(
+        value: Float = 4.5,
+        scale: BPKRatingScale,
+        size: BPKRatingSize,
+        subtitle: String?,
+        showScale: Bool
+    ) -> BPKRating {
+        let title = titleType == .stringLabel ? "Excellent" : nil
+        let accessibilityLabel = accessibilityLabel(
+            value: value,
+            title: title,
+            scale: scale,
+            subtitle: subtitle
+        )
+
+        switch titleType {
+        case .stringLabel:
+            return BPKRating(
+                accessibilityLabel: accessibilityLabel,
+                title: title ?? "",
+                value: value,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale
+            )
+        case .starRating:
+            let starRating = BPKStarRating()
+            starRating.rating = 4.5
+            return BPKRating(
+                accessibilityLabel: accessibilityLabel,
+                value: value,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale,
+                titleView: starRating
+            )
+        case .imageView:
+            return BPKRating(
+                accessibilityLabel: accessibilityLabel,
+                value: value,
+                ratingScale: scale,
+                size: size,
+                subtitle: subtitle,
+                showScale: showScale,
+                titleView: createLogoImageView()
+            )
+        }
+    }
+
+    private func createLogoImageView() -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: "backpack-logo-horizontal"))
+        imageView.contentMode = .scaleAspectFit
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: BPKIcon.concreteSizeForLargeIcon.height),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 60/13)
+        ])
+        return imageView
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            stack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stack.leadingAnchor.constraint(
+                equalTo: scrollView.leadingAnchor,
+                constant: BPKSpacingBase
+            ),
+            stack.trailingAnchor.constraint(
+                equalTo: scrollView.trailingAnchor,
+                constant: -BPKSpacingBase
+            ),
+            stack.widthAnchor.constraint(
+                equalTo: view.widthAnchor,
+                constant: -BPKSpacingBase * 2
+            )
+        ])
+    }
+
+    private func accessibilityLabel(
+        value: Float,
+        title: String? = nil,
+        scale: BPKRatingScale,
+        subtitle: String?
+    ) -> String {
+        var accessibilityLabel = ""
+
+        if let title = title {
+            accessibilityLabel += "Rated \(title), "
+        }
+
+        let scaleString: String
+        switch scale {
+        case .zeroToTen:
+            scaleString = "10"
+        case .zeroToFive:
+            scaleString = "5"
+        }
+        accessibilityLabel += "\(value) out of \(scaleString). "
+
+        if let subtitle = subtitle {
+            accessibilityLabel += "Based on \(subtitle)"
+        }
+
+        return accessibilityLabel
     }
 }
