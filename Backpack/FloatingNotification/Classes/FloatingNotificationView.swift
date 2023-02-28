@@ -88,7 +88,10 @@ final class FloatingNotificationView: UIView {
         setUpAccessibility()
     
         render(viewModel: viewModel)
-        setupConstraints(relativeTo: viewModel.parentView)
+        setupConstraints(
+            relativeTo: viewModel.parentView,
+            shouldDisplayButton: viewModel.action != nil
+        )
     }
     
     deinit {
@@ -123,12 +126,17 @@ final class FloatingNotificationView: UIView {
         button.isHidden = viewModel.action == nil
     }
 
-    private func setupConstraints(relativeTo parent: UIView) {
+    private func setupConstraints(
+        relativeTo parent: UIView,
+        shouldDisplayButton: Bool
+    ) {
         bottomConstraint = bottomAnchor.constraint(
             equalTo: parent.safeAreaLayoutGuide.bottomAnchor,
             constant: hiddenBottomConstraintConstant
         )
         
+        let stackViewTrailingConstant = shouldDisplayButton ? 0 : -BPKSpacingBase
+                
         var constraints = [
             bottomConstraint,
             messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: buttonHeight),
@@ -136,7 +144,7 @@ final class FloatingNotificationView: UIView {
             button.heightAnchor.constraint(equalToConstant: buttonHeight),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: BPKSpacingBase),
             stackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingBase),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: stackViewTrailingConstant),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingBase),
             centerXAnchor.constraint(equalTo: parent.centerXAnchor)
         ]

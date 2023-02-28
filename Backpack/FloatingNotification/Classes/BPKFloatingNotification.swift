@@ -31,12 +31,11 @@ public final class BPKFloatingNotification: NSObject {
     public static func show(_ viewModel: FloatingNotificationViewModel) {
         if let notification = currentNotification {
             clearPendingDownAnimation(for: notification)
-            animator.animatedDown(
+            animator.animateDown(
                 notification,
                 hiddenBottomConstraintConstant: Constants.hiddenBottomConstraintConstant
             ) {
-                currentNotification?.onDismissal?()
-                currentNotification = nil
+                removeNotification()
                 animateUp(with: viewModel)
             }
         } else {
@@ -64,13 +63,18 @@ public final class BPKFloatingNotification: NSObject {
     
     @objc
     private static func animateDown(_ notification: FloatingNotificationView) {
-        animator.animatedDown(
+        animator.animateDown(
             notification,
             hiddenBottomConstraintConstant: Constants.hiddenBottomConstraintConstant
         ) {
-            currentNotification?.onDismissal?()
-            currentNotification = nil
+            removeNotification()
         }
+    }
+    
+    private static func removeNotification() {
+        currentNotification?.onDismissal?()
+        currentNotification?.removeFromSuperview()
+        currentNotification = nil
     }
     
     private static func clearPendingDownAnimation(for notification: FloatingNotificationView) {
