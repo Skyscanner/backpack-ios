@@ -38,7 +38,7 @@ final class FloatingNotificationAnimator {
         upAnimator.startAnimation()
     }
 
-    func animatedDown(
+    func animateDown(
         _ notification: FloatingNotificationView,
         hiddenBottomConstraintConstant: CGFloat,
         completion: (() -> Void)?
