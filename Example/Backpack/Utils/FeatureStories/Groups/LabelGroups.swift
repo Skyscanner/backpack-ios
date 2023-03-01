@@ -21,11 +21,14 @@ struct LabelGroupsProvider {
     
     private func presentable(
         _ title: String,
-        on storyboardIdentifier: String
+        screenType: ScreenType
     ) -> CellDataSource {
-        PresentableCellDataSource(
+        PresentableCellDataSource.customEnrichable(
             title: title,
-            storyboard: .named("Labels", on: storyboardIdentifier),
+            customController: { LabelViewController(items: screenType.items) },
+            enrich: { controller in
+                controller.title = title
+            },
             showPresentable: showPresentable
         )
     }
@@ -33,10 +36,49 @@ struct LabelGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Default", on: "LabelsViewController"),
-                presentable("Performance", on: "LabelsPerformanceViewController"),
-                presentable("Multiple font styles", on: "LabelMultiFontStyleViewController")
+                presentable("Body", screenType: .body),
+                presentable("Heading", screenType: .heading),
+                presentable("Hero", screenType: .hero)
             ]
         ).groups()
+    }
+}
+
+fileprivate extension LabelGroupsProvider {
+    enum ScreenType {
+        case body, heading, hero
+        
+        var items: [(BPKFontStyle, String)] {
+            switch self {
+            case .body:
+                return [
+                    (.textSubheading, "Subheading"),
+                    (.textBodyLongform, "Body Longform"),
+                    (.textBodyDefault, "Body default"),
+                    (.textFootnote, "Footnote"),
+                    (.textCaption, "Caption"),
+                    (.textLabel1, "Label 1"),
+                    (.textLabel2, "Label 2"),
+                    (.textLabel3, "Label 3")
+                ]
+                
+            case .heading:
+                return [
+                    (.textHeading1, "Heading 1"),
+                    (.textHeading2, "Heading 2"),
+                    (.textHeading3, "Heading 3"),
+                    (.textHeading4, "Heading 4"),
+                    (.textHeading5, "Heading 5")
+                ]
+            case .hero:
+                return [
+                    (.textHero1, "Hero 1"),
+                    (.textHero2, "Hero 2"),
+                    (.textHero3, "Hero 3"),
+                    (.textHero4, "Hero 4"),
+                    (.textHero5, "Hero 5")
+                ]
+            }
+        }
     }
 }

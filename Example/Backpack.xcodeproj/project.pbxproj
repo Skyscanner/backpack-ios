@@ -83,6 +83,7 @@
 		797FA4F428312782006E2A87 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F328312782006E2A87 /* AttributedTextExampleView.swift */; };
 		797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F528312A00006E2A87 /* TextGroups.swift */; };
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
+		79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5129229AEFEB600D0997A /* LabelViewController.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA53992C299687B20008D407 /* PriceExampleView.swift */; };
@@ -113,7 +114,6 @@
 		D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B8B85219EAC72006FE706 /* BadgesViewController.swift */; };
 		D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26E5A0A25A787060064D9F1 /* GroupsViewController.swift */; };
 		D270C066243B61C60036A040 /* TabBarControllerStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */; };
-		D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */; };
 		D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D278358C22EA2A81004C79CF /* ProgressBar.storyboard */; };
 		D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EE92B2193163900C877EA /* ChipsViewController.swift */; };
 		D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D282E865259E04F3000AD77E /* TextFieldsViewController.swift */; };
@@ -146,10 +146,7 @@
 		D649E8EE212F0B6500B25A9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D649E8ED212F0B6500B25A9E /* Localizable.strings */; };
 		D6517B4B216DF63700D85FF9 /* DialogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6517B4A216DF63700D85FF9 /* DialogUITest.swift */; };
 		D686A73A24128DA3000EDCCC /* BackpackUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */; };
-		D690703A215A39D30088C97B /* Labels.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6907039215A39D30088C97B /* Labels.storyboard */; };
-		D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */; };
 		D698E64F219C528100D03060 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D698E64E219C528100D03060 /* CalendarViewController.swift */; };
-		D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */; };
 		D6D164A02153934500FFB667 /* Buttons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D1649F2153934500FFB667 /* Buttons.storyboard */; };
 		D6D6BB6421958C3200312C1C /* Gradients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D6BB6321958C3200312C1C /* Gradients.storyboard */; };
 		D6DC0AF8216BBB2D0003AC5D /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */; };
@@ -274,6 +271,7 @@
 		797FA4F328312782006E2A87 /* AttributedTextExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextExampleView.swift; sourceTree = "<group>"; };
 		797FA4F528312A00006E2A87 /* TextGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGroups.swift; sourceTree = "<group>"; };
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
+		79F5129229AEFEB600D0997A /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA53992C299687B20008D407 /* PriceExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceExampleView.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 		D26B8B85219EAC72006FE706 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		D26E5A0A25A787060064D9F1 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		D270C065243B61C60036A040 /* TabBarControllerStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerStoryViewController.swift; sourceTree = "<group>"; };
-		D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelMultiFontStyleViewController.swift; sourceTree = "<group>"; };
 		D278358C22EA2A81004C79CF /* ProgressBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProgressBar.storyboard; sourceTree = "<group>"; };
 		D27EE92B2193163900C877EA /* ChipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewController.swift; sourceTree = "<group>"; };
 		D282E865259E04F3000AD77E /* TextFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsViewController.swift; sourceTree = "<group>"; };
@@ -345,10 +342,7 @@
 		D6517B49216DF63600D85FF9 /* Backpack NativeUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Backpack NativeUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D6517B4A216DF63700D85FF9 /* DialogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogUITest.swift; sourceTree = "<group>"; };
 		D686A73924128DA3000EDCCC /* BackpackUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackUITestCase.swift; sourceTree = "<group>"; };
-		D6907039215A39D30088C97B /* Labels.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Labels.storyboard; sourceTree = "<group>"; };
-		D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsPerformanceViewController.swift; sourceTree = "<group>"; };
 		D698E64E219C528100D03060 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsViewController.swift; sourceTree = "<group>"; };
 		D6D1649F2153934500FFB667 /* Buttons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Buttons.storyboard; sourceTree = "<group>"; };
 		D6D6BB6321958C3200312C1C /* Gradients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gradients.storyboard; sourceTree = "<group>"; };
 		D6DC0AF6216BBB2C0003AC5D /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
@@ -799,10 +793,7 @@
 		793EC55C2836148700D627F6 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				D6907039215A39D30088C97B /* Labels.storyboard */,
-				D27396F822CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift */,
-				D690703F215A4F2C0088C97B /* LabelsPerformanceViewController.swift */,
-				D6B8CEB5217786F100BA52E8 /* LabelsViewController.swift */,
+				79F5129229AEFEB600D0997A /* LabelViewController.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -1266,7 +1257,6 @@
 				D278358D22EA2A81004C79CF /* ProgressBar.storyboard in Resources */,
 				D2C4467023158479009E58A5 /* Panel.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				D690703A215A39D30088C97B /* Labels.storyboard in Resources */,
 				D2B4FC3F2538A87600070BEC /* OverlayView.storyboard in Resources */,
 				E38947D222F5CB3300A357DB /* BottomSheet.storyboard in Resources */,
 				D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */,
@@ -1375,6 +1365,7 @@
 				E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
+				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
@@ -1392,8 +1383,6 @@
 				D6391600202CAAC8006E8329 /* BPKShadowViewController.m in Sources */,
 				D6FC4E582625DBF6000BA351 /* NudgerViewController.swift in Sources */,
 				E397BEA222F5F59000C8EC04 /* BottomSheetScrollableContentViewController.swift in Sources */,
-				D6B8CEB6217786F100BA52E8 /* LabelsViewController.swift in Sources */,
-				D27396F922CA5C9D002E9E40 /* LabelMultiFontStyleViewController.swift in Sources */,
 				7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */,
 				53B6DB5E27FC39B40042B7C0 /* CalendarGroups.swift in Sources */,
 				E397BEA422F5FCE500C8EC04 /* BottomSheetBottomSectionVIewController.swift in Sources */,
@@ -1429,7 +1418,6 @@
 				53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */,
 				D28784932250FCBD00353E32 /* ThemeHelpers.swift in Sources */,
 				79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */,
-				D6907040215A4F2C0088C97B /* LabelsPerformanceViewController.swift in Sources */,
 				53B6DB6027FC3A030042B7C0 /* CardGroups.swift in Sources */,
 				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */,
