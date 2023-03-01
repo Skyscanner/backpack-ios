@@ -21,11 +21,14 @@ struct LabelGroupsProvider {
     
     private func presentable(
         _ title: String,
-        on storyboardIdentifier: String
+        screenType: ScreenType
     ) -> CellDataSource {
-        PresentableCellDataSource(
+        PresentableCellDataSource.customEnrichable(
             title: title,
-            storyboard: .named("Labels", on: storyboardIdentifier),
+            customController: { LabelViewController(items: screenType.items) },
+            enrich: { controller in
+                controller.title = title
+            },
             showPresentable: showPresentable
         )
     }
@@ -33,10 +36,30 @@ struct LabelGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Default", on: "LabelsViewController"),
-                presentable("Performance", on: "LabelsPerformanceViewController"),
-                presentable("Multiple font styles", on: "LabelMultiFontStyleViewController")
+                presentable("Body", screenType: .body)
             ]
         ).groups()
+    }
+}
+
+fileprivate extension LabelGroupsProvider {
+    enum ScreenType {
+        case body
+        
+        var items: [(BPKFontStyle, String)] {
+            switch self {
+            case .body:
+                return [
+                    (.textSubheading, "Subheading"),
+                    (.textBodyLongform, "Body Longform"),
+                    (.textBodyDefault, "Body default"),
+                    (.textFootnote, "Footnote"),
+                    (.textCaption, "Caption"),
+                    (.textLabel1, "Label 1"),
+                    (.textLabel2, "Label 2"),
+                    (.textLabel3, "Label 3")
+                ]
+            }
+        }
     }
 }
