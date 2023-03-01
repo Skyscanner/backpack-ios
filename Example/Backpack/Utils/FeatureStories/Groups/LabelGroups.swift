@@ -36,7 +36,9 @@ struct LabelGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Body", screenType: .body)
+                presentable("Body", screenType: .body),
+                presentable("Heading", screenType: .heading),
+                presentable("Hero", screenType: .hero)
             ]
         ).groups()
     }
@@ -44,7 +46,7 @@ struct LabelGroupsProvider {
 
 fileprivate extension LabelGroupsProvider {
     enum ScreenType {
-        case body
+        case body, heading, hero
         
         var items: [(BPKFontStyle, String)] {
             switch self {
@@ -58,6 +60,23 @@ fileprivate extension LabelGroupsProvider {
                     (.textLabel1, "Label 1"),
                     (.textLabel2, "Label 2"),
                     (.textLabel3, "Label 3")
+                ]
+                
+            case .heading:
+                return [
+                    (.textHeading1, "Heading 1"),
+                    (.textHeading2, "Heading 2"),
+                    (.textHeading3, "Heading 3"),
+                    (.textHeading4, "Heading 4"),
+                    (.textHeading5, "Heading 5")
+                ]
+            case .hero:
+                return [
+                    (.textHero1, "Hero 1"),
+                    (.textHero2, "Hero 2"),
+                    (.textHero3, "Hero 3"),
+                    (.textHero4, "Hero 4"),
+                    (.textHero5, "Hero 5")
                 ]
             }
         }
