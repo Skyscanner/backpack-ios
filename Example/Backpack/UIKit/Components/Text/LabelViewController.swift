@@ -50,6 +50,11 @@ class LabelViewController: UIViewController {
     }
     
     private func setup() {
+let label = BPKLabel(fontStyle: .textLabel1)
+label.textColor = BPKColor.textSecondaryColor
+label.text = "Label 1"
+        
+        
         view.addSubview(stackView)
         
         items.forEach { labelConfig in
