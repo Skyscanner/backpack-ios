@@ -301,8 +301,14 @@ class Screenshots: BackpackSnapshotTestCase {
 
         navigate(title: "Labels") {
             switchTab(title: "UIKit")
-            app.tables.staticTexts["Multiple font styles"].tap()
-            saveScreenshot(component: "label", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["Body"].tap()
+            saveScreenshot(component: "label", scenario: "body", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Heading"].tap()
+            saveScreenshot(component: "label", scenario: "heading", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Hero"].tap()
+            saveScreenshot(component: "label", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 
