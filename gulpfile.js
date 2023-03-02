@@ -59,7 +59,7 @@ const parseSwiftUITokens = (tokensData) => {
     ...dynamicColors(properties),
     ...internalColors(properties),
     ...fontTokens.swiftui(properties),
-    ...colors(properties, entry => !hasOldSemanticSuffix(entry)),
+    ...colors(properties, entry => (!hasOldSemanticSuffix(entry) && !entry.deprecated)),
     ...shadows(properties, parseColor, getLegibleName),
   ])
     .groupBy(({ type }) => type)
