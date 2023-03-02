@@ -22,7 +22,7 @@ import Backpack
 
 class LabelViewController: UIViewController {
     
-    let items: [(BPKFontStyle, String)]
+    private let items: [(BPKFontStyle, String)]
     
     private let stackView: UIStackView = {
         let view = UIStackView()
