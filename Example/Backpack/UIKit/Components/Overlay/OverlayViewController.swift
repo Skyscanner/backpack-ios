@@ -28,6 +28,7 @@ class OverlayViewController: UIViewController {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = BPKSpacingBase
+        view.distribution = .equalSpacing
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -50,15 +51,16 @@ class OverlayViewController: UIViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: BPKSpacingBase),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -BPKSpacingBase)
         ])
         
         setupOverlays()
     }
     
     private func setupOverlays() {
-        let levels: [BPKOverlay.OverlayLevel] = [.low, .medium, .high]
+        let levels: [BPKOverlay.OverlayLevel] = [.off, .low, .medium, .high]
         
         levels.forEach { level in
             let innerStackView = UIStackView()
@@ -84,8 +86,8 @@ class OverlayViewController: UIViewController {
             stackView.addArrangedSubview(innerStackView)
             
             NSLayoutConstraint.activate([
-                overlay.widthAnchor.constraint(equalToConstant: 150),
-                overlay.heightAnchor.constraint(equalToConstant: 150)
+                overlay.widthAnchor.constraint(equalToConstant: 110),
+                overlay.heightAnchor.constraint(equalToConstant: 110)
             ])
         }
     }
