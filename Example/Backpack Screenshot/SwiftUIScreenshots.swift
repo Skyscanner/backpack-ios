@@ -57,12 +57,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
         navigate(title: "Labels") {
             switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "text", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["Body"].tap()
+            saveScreenshot(component: "text", scenario: "body", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
             
-            app.tables.staticTexts["Multiple font styles"].tap()
-            saveScreenshot(component: "text", scenario: "multiple-font-styles", userInterfaceStyle: userInterfaceStyle)
+            app.tables.staticTexts["Heading"].tap()
+            saveScreenshot(component: "text", scenario: "heading", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Hero"].tap()
+            saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
