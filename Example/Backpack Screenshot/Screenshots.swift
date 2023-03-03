@@ -343,18 +343,25 @@ class Screenshots: BackpackSnapshotTestCase {
                            userInterfaceStyle: userInterfaceStyle)
         }
 
-        navigate(title: "Overlay views") {
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "overlay-view", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        navigate(title: "Overlay") {
+            app.tables.staticTexts["Solid"].tap()
+            saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Overlay type none"].tap()
-            saveScreenshot(component: "overlay-view", scenario: "overlay-type-none", userInterfaceStyle: userInterfaceStyle)
+            
+            app.tables.staticTexts["Top"].tap()
+            saveScreenshot(component: "overlay", scenario: "top", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Corner style large"].tap()
-            saveScreenshot(component: "overlay-view", scenario: "corner-style-large", userInterfaceStyle: userInterfaceStyle)
+            
+            app.tables.staticTexts["Bottom"].tap()
+            saveScreenshot(component: "overlay", scenario: "bottom", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
-            app.tables.staticTexts["Foreground content"].tap()
-            saveScreenshot(component: "overlay-view", scenario: "foreground-content", userInterfaceStyle: userInterfaceStyle)
+            
+            app.tables.staticTexts["Left"].tap()
+            saveScreenshot(component: "overlay", scenario: "left", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Right"].tap()
+            saveScreenshot(component: "overlay", scenario: "right", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
 
