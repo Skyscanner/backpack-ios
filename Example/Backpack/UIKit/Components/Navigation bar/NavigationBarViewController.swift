@@ -44,14 +44,13 @@ class NavigationBarViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         navigationController?.navigationBar.isHidden = false
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.title = "Title"
-
+        view.backgroundColor = BPKColor.canvasColor
         navigationButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         
         if showBackbutton {
