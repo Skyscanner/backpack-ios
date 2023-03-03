@@ -312,7 +312,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.titleView.heightAnchor constraintEqualToConstant:BPKNavigationBarTitleHeight],
 
         // Left Button
-        [self.leftButton.leadingAnchor constraintEqualToAnchor:self.titleView.leadingAnchor constant:BPKSpacingBase],
+        [self.leftButton.leadingAnchor constraintEqualToAnchor:self.titleView.leadingAnchor constant:BPKSpacingMd],
         [self.leftButton.centerYAnchor constraintEqualToAnchor:self.titleView.centerYAnchor],
 
         // Right Button
