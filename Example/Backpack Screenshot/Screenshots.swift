@@ -467,5 +467,10 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "Price", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "Carousel") {
+            saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
