@@ -122,7 +122,7 @@ private extension BPKOverlay {
     }
     
     var baseColor: UIColor {
-        return BPKColor.textPrimaryColor
+        return BPKColor.textOnLightColor
     }
     
     var colors: [CGColor] {
