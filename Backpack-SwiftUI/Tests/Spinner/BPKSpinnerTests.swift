@@ -24,7 +24,7 @@ class BPKSpinnerTests: XCTestCase {
 
     private func testView(icon: BPKIcon? = nil) -> some View {
         ZStack {
-            Color(.skyGrayTint06.darkVariant(.black))
+            Color(.canvasContrastColor)
             VStack {
                 HStack {
                     BPKSpinner(.sm, style: .textPrimary)
