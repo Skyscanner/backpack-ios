@@ -16,7 +16,7 @@ import Backpack
 
 final class CarouselExampleViewController: UIViewController {
     
-    private let imagesNames = [
+    private let imageNames = [
         "example_image",
         "example_image_two"
     ]
@@ -32,7 +32,7 @@ final class CarouselExampleViewController: UIViewController {
         
         setupConstraints()
         carousel.delegate = self
-        carousel.set(images: imagesNames.map { createImageView(with: $0) })
+        carousel.set(images: imageNames.map { createImageView(with: $0) })
     }
     
     private func setupConstraints() {
