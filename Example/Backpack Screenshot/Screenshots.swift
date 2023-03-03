@@ -322,18 +322,18 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Navigation bars") {
-            app.tables.staticTexts["Default"].tap()
-            saveScreenshot(component: "navigation-bar", scenario: "full-height",
-                           userInterfaceStyle: userInterfaceStyle)
-            app.swipeUp()
-            saveScreenshot(component: "navigation-bar", scenario: "collapsed",
+            app.tables.staticTexts["Large - no back button"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "large-simple",
                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
-            app.tables.staticTexts["With buttons"].tap()
-            saveScreenshot(component: "navigation-bar", scenario: "full-height-with-buttons",
+            
+            app.tables.staticTexts["Large - with back button"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "large-back-button",
                            userInterfaceStyle: userInterfaceStyle)
-            app.swipeUp()
-            saveScreenshot(component: "navigation-bar", scenario: "collapsed-with-buttons",
+            app.buttons["NavigateBack"].tap()
+            
+            app.tables.staticTexts["Collapsed - simple"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "collapsed-simple",
                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
         }

@@ -21,8 +21,10 @@ import UIKit
 import Backpack
 
 class NavigationBarViewController: UIViewController {
-    var showButtons: Bool = false
-    var showHeaders: Bool = false
+    var showBackbutton: Bool = true
+    var showRightButton: Bool = true
+    var collapsed: Bool = false
+    var interactive: Bool = false
     
     private static let CellIdentifier = "CellIdentifier"
 
@@ -34,6 +36,10 @@ class NavigationBarViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.isHidden = true
+        
+        if collapsed {
+            tableView.scrollToRow(at: IndexPath(item: 10, section: 0), at: .top, animated: false)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,20 +50,24 @@ class NavigationBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.title = "Explore"
+        navigationBar.title = "Title"
 
         navigationButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
-
-        if self.showButtons {
+        
+        if showBackbutton {
             // Left button setup
             navigationBar.leftButton.isHidden = false
-            navigationBar.leftButton.title = "Back"
+            navigationBar.leftButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .chevronLeft))
+            navigationBar.leftButton.contentColor = BPKColor.textPrimaryColor
+            navigationBar.leftButton.accessibilityLabel = "Back"
             navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
-
+        }
+        
+        if showRightButton {
             // Right button setup
             navigationBar.rightButton.isHidden = false
-            navigationBar.rightButton.title = "Done"
-            navigationBar.rightButton.setImage(BPKIcon.makeSmallTemplateIcon(name: .tickCircle))
+            navigationBar.rightButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .settings))
+            navigationBar.rightButton.contentColor = BPKColor.textPrimaryColor
             navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
         }
 
@@ -65,8 +75,10 @@ class NavigationBarViewController: UIViewController {
             UITableViewCell.self,
             forCellReuseIdentifier: NavigationBarViewController.CellIdentifier
         )
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isHidden = !interactive
 
         navigationBar.setUp(for: tableView)
         #if swift(>=4.2)
@@ -111,32 +123,6 @@ extension NavigationBarViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .bpk_backgroundSecondary
-        let label = BPKLabel(fontStyle: .textBodyDefault)
-        label.text = "Header \(section)"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if !showHeaders {
-            return 0
-        }
-        
-        return BPKSpacingXl
     }
 }
 
