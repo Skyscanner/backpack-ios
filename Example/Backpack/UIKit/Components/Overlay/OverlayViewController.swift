@@ -71,7 +71,7 @@ class OverlayViewController: UIViewController {
             let overlay = BPKOverlay(withType: self.type, andLevel: level)
             overlay.translatesAutoresizingMaskIntoConstraints = false
             
-            let image = UIImageView(image: UIImage(named: "dialog_image"))
+            let image = UIImageView(image: UIImage(named: "overlay_example"))
             overlay.setBackground(view: image)
             
             overlay.clipsToBounds = true
