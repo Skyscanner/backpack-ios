@@ -171,7 +171,9 @@ open class Snapshot: NSObject {
             let image = screenshot.image
             #endif
 
-            guard var simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
+            var simulator = "iPhone"
+        
+            guard let screenshotsDir = screenshotsDirectory else { return }
 
             do {
                 // The simulator name contains "Clone X of " inside the screenshot file when running parallelized UI Tests on concurrent devices
