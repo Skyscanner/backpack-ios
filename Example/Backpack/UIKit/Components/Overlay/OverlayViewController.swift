@@ -52,7 +52,7 @@ class OverlayViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: BPKSpacingBase)
         ])
         
         setupOverlays()
@@ -100,8 +100,8 @@ class OverlayViewController: UIViewController {
         let overlay = BPKOverlayView(withType: self.type, andLevel: level)
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
-        let image = UIImageView(image: UIImage(named: "overlay_example"))
-        overlay.setBackground(view: image)
+        let imageView = UIImageView(image: UIImage(named: "overlay_example"))
+        overlay.setImageView(imageView)
         
         overlay.clipsToBounds = true
         overlay.layer.cornerRadius = BPKCornerRadiusLg

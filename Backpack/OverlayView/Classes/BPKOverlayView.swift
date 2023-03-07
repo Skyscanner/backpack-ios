@@ -57,7 +57,7 @@ public class BPKOverlayView: UIView {
         overlay.updateBounds(withParentBounds: self.bounds)
     }
         
-    public func setBackground(view: UIImageView?) {
+    public func setImageView(_ view: UIImageView?) {
         if let backgroundView = self.backgroundView {
             backgroundView.removeFromSuperview()
         }
