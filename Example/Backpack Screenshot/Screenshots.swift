@@ -363,6 +363,10 @@ class Screenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Right"].tap()
             saveScreenshot(component: "overlay", scenario: "right", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+            
+            app.tables.staticTexts["Vignette"].tap()
+            saveScreenshot(component: "overlay", scenario: "vignette", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
 
         navigate(title: "Panels") {
