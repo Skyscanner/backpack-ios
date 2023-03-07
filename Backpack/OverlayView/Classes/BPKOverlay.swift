@@ -19,4 +19,12 @@
 protocol BPKOverlay {
     func getLayer() -> CALayer
     func updateBounds(withParentBounds bounds: CGRect)
+    
+    var baseColor: UIColor { get }
+}
+
+extension BPKOverlay {
+    var baseColor: UIColor {
+        return BPKColor.textOnLightColor
+    }
 }

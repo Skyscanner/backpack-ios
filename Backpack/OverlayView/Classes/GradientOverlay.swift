@@ -56,10 +56,6 @@ class GradientOverlay: BPKOverlay {
         tintLayer.endPoint = endPoint
     }
     
-    var baseColor: UIColor {
-        return BPKColor.textOnLightColor
-    }
-    
     private var colors: [CGColor] {
         switch type {
         case .solid:

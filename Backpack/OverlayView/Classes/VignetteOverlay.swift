@@ -41,10 +41,6 @@ class VignetteOverlay: BPKOverlay {
         vignetteLayer.shadowPath = shadowPath
     }
     
-    var baseColor: UIColor {
-        return BPKColor.textOnLightColor
-    }
-    
     private func setupLayer() {
         vignetteLayer.shadowColor = baseColor.cgColor
     }
