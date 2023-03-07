@@ -22,7 +22,7 @@ import Backpack
 
 class OverlayViewController: UIViewController {
     
-    private let type: BPKOverlay.OverlayType
+    private let type: BPKOverlayView.OverlayType
     
     private let stackView: UIStackView = {
         let view = UIStackView()
@@ -33,7 +33,7 @@ class OverlayViewController: UIViewController {
         return view
     }()
     
-    init(type: BPKOverlay.OverlayType) {
+    init(type: BPKOverlayView.OverlayType) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,34 +51,38 @@ class OverlayViewController: UIViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: BPKSpacingBase),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -BPKSpacingBase)
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
         setupOverlays()
     }
     
     private func setupOverlays() {
-        let levels: [BPKOverlay.OverlayLevel] = [.off, .low, .medium, .high]
+        let levels: [BPKOverlayView.OverlayLevel] = [.off, .low, .medium, .high]
         
         levels.forEach { level in
+            if type != .solid && level == .off {
+                return
+            }
+            
+            if type == .vignette && level != .low {
+                return
+            }
+            
             let innerStackView = UIStackView()
             innerStackView.translatesAutoresizingMaskIntoConstraints = false
             innerStackView.axis = .vertical
             innerStackView.spacing = BPKSpacingSm
             
-            let overlay = BPKOverlay(withType: self.type, andLevel: level)
-            overlay.translatesAutoresizingMaskIntoConstraints = false
-            
-            let image = UIImageView(image: UIImage(named: "overlay_example"))
-            overlay.setBackground(view: image)
-            
-            overlay.clipsToBounds = true
-            overlay.layer.cornerRadius = BPKCornerRadiusLg
+            let overlay = getOverlayView(level)
             
             let label = BPKLabel(fontStyle: .textCaption)
             label.text = "\(self.type) / \(level)"
+            
+            if type == .vignette {
+                label.text = "\(self.type)"
+            }
             
             innerStackView.addArrangedSubview(overlay)
             innerStackView.addArrangedSubview(label)
@@ -91,9 +95,22 @@ class OverlayViewController: UIViewController {
             ])
         }
     }
+    
+    private func getOverlayView(_ level: BPKOverlayView.OverlayLevel) -> UIView {
+        let overlay = BPKOverlayView(withType: self.type, andLevel: level)
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        
+        let image = UIImageView(image: UIImage(named: "overlay_example"))
+        overlay.setBackground(view: image)
+        
+        overlay.clipsToBounds = true
+        overlay.layer.cornerRadius = BPKCornerRadiusLg
+        
+        return overlay
+    }
 }
 
-extension BPKOverlay.OverlayType: CustomStringConvertible {
+extension BPKOverlayView.OverlayType: CustomStringConvertible {
     public var description: String {
         switch self {
         case .solid:
@@ -106,11 +123,13 @@ extension BPKOverlay.OverlayType: CustomStringConvertible {
             return "Left"
         case .right:
             return "Right"
+        case .vignette:
+            return "Vignette"
         }
     }
 }
 
-extension BPKOverlay.OverlayLevel: CustomStringConvertible {
+extension BPKOverlayView.OverlayLevel: CustomStringConvertible {
     public var description: String {
         switch self {
         case .off:

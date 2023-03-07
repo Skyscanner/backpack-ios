@@ -23,7 +23,7 @@ struct OverlayGroupsProvider {
     
     private func presentable(
         _ title: String,
-        type: BPKOverlay.OverlayType
+        type: BPKOverlayView.OverlayType
     ) -> CellDataSource {
         PresentableCellDataSource.customEnrichable(
             title: title,
@@ -42,7 +42,8 @@ struct OverlayGroupsProvider {
                 presentable("Top", type: .top),
                 presentable("Bottom", type: .bottom),
                 presentable("Left", type: .left),
-                presentable("Right", type: .right)
+                presentable("Right", type: .right),
+                presentable("Vignette", type: .vignette)
             ]
         ).groups()
     }

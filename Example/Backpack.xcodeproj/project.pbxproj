@@ -85,7 +85,7 @@
 		79A0416528311D5C00A852B1 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A0416428311D5C00A852B1 /* TextExampleView.swift */; };
 		79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5129229AEFEB600D0997A /* LabelViewController.swift */; };
 		79F63C0229B0695C00FB19A9 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F63C0129B0695C00FB19A9 /* OverlayViewController.swift */; };
-		79F63C0429B078D600FB19A9 /* OverlayGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F63C0329B078D600FB19A9 /* OverlayGroups.swift */; };
+		79F63C0429B078D600FB19A9 /* OverlayGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA53992C299687B20008D407 /* PriceExampleView.swift */; };
@@ -272,7 +272,7 @@
 		79A0416428311D5C00A852B1 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		79F5129229AEFEB600D0997A /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		79F63C0129B0695C00FB19A9 /* OverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
-		79F63C0329B078D600FB19A9 /* OverlayGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayGroups.swift; sourceTree = "<group>"; };
+		79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayGroupsProvider.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA53992C299687B20008D407 /* PriceExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceExampleView.swift; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 				53E075B227FC9BBB0033147C /* SingleGroupProvider.swift */,
 				53E075B427FC9BD30033147C /* HomeGroupsProvider.swift */,
 				797FA4F528312A00006E2A87 /* TextGroups.swift */,
-				79F63C0329B078D600FB19A9 /* OverlayGroups.swift */,
+				79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -1407,7 +1407,7 @@
 				532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */,
 				79F63C0229B0695C00FB19A9 /* OverlayViewController.swift in Sources */,
 				794337AB283C829100797D1C /* Tab.swift in Sources */,
-				79F63C0429B078D600FB19A9 /* OverlayGroups.swift in Sources */,
+				79F63C0429B078D600FB19A9 /* OverlayGroupsProvider.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
 				AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */,
