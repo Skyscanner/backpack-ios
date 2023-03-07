@@ -18,15 +18,14 @@
 
 import SwiftUI
 
-public struct BPKRating: View {
+public struct BPKRating<Content: View>: View {
 
-    private let accessibilityLabel: String
     private let value: Float
     private let ratingScale: Scale
     private let size: Size
     private let subtitle: String?
     private let showScale: Bool
-    @ViewBuilder private var titleViewBuilder: () -> AnyView
+    @ViewBuilder private var titleViewBuilder: () -> Content
 
     public var body: some View {
         HStack(alignment: .lastTextBaseline, spacing: BPKSpacing.md.value) {
@@ -55,19 +54,16 @@ public struct BPKRating: View {
             }
         }
         .accessibilityElement()
-        .accessibilityLabel(accessibilityLabel)
     }
 
     public init(
-        accessibilityLabel: String,
         value: Float,
         ratingScale: Scale = .zeroToFive,
         size: Size = .default,
         subtitle: String? = nil,
         showScale: Bool = true,
-        @ViewBuilder titleViewBuilder: @escaping () -> AnyView
+        @ViewBuilder titleViewBuilder: @escaping () -> Content
     ) {
-        self.accessibilityLabel = accessibilityLabel
         self.value = value
         self.ratingScale = ratingScale
         self.size = size
@@ -76,29 +72,6 @@ public struct BPKRating: View {
         self.titleViewBuilder = titleViewBuilder
     }
 
-    public init(
-        accessibilityLabel: String,
-        title: String,
-        value: Float,
-        ratingScale: Scale = .zeroToFive,
-        size: Size = .default,
-        subtitle: String? = nil,
-        showScale: Bool = true
-    ) {
-        self.accessibilityLabel = accessibilityLabel
-        self.value = value
-        self.ratingScale = ratingScale
-        self.size = size
-        self.subtitle = subtitle
-        self.showScale = showScale
-
-        self.titleViewBuilder = {
-            AnyView(
-                BPKText(title, style: size.fontStyle.titleLabelFontStyle)
-                    .foregroundColor(.textPrimaryColor)
-            )
-        }
-    }
 
     @ViewBuilder
     private var subtitleView: some View {
@@ -115,11 +88,32 @@ public struct BPKRating: View {
         }
     }
 }
+extension BPKRating where Content == BPKText {
+    public init(
+        title: String,
+        value: Float,
+        ratingScale: Scale = .zeroToFive,
+        size: Size = .default,
+        subtitle: String? = nil,
+        showScale: Bool = true
+    ) {
+        self.value = value
+        self.ratingScale = ratingScale
+        self.size = size
+        self.subtitle = subtitle
+        self.showScale = showScale
+
+        self.titleViewBuilder = {
+            BPKText(title, style: size.fontStyle.titleLabelFontStyle)
+                .foregroundColor(.textPrimaryColor)
+        }
+    }
+
+}
 
 struct BPKRating_Previews: PreviewProvider {
     static var previews: some View {
-        BPKRating(
-            accessibilityLabel: "Rated Excellent, 4.5 out of 5, Based on 1,532 reviews",
+        BPKRating<BPKText>(
             title: "Excellent",
             value: 4.5,
             size: .large,

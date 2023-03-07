@@ -18,6 +18,7 @@
 
 import Backpack
 import SwiftUI
+import Backpack_SwiftUI
 
 struct RatingGroupsProvider {
     let showPresentable: (Presentable) -> Void
@@ -60,8 +61,8 @@ struct RatingGroupsProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("BPKRating: title text", view: RatingExampleView(titleType: .stringLabel)),
-                presentable("BPKRating: titleView image", view: RatingExampleView(titleType: .image))
+                presentable("BPKRating: title text", view: RatingExampleViewWithTitle()),
+                presentable("BPKRating: titleView image", view: RatingExampleViewWithImage())
             ]
         ).groups()
     }

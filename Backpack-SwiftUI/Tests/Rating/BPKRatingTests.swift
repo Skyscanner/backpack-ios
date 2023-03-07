@@ -22,40 +22,38 @@ import SwiftUI
 
 class BPKRatingTests: XCTestCase {
     
-    let sizes: [BPKRating.Size] = [.default, .large]
-    let subtitles = ["1,532 reviews", nil]
-    let scaleAndVisible: [(BPKRating.Scale, Bool)] = [
-        (scale: .zeroToFive, showScale: true),
-        (scale: .zeroToTen, showScale: true),
-        (scale: .zeroToFive, showScale: false)
+    private let isDefaultSizes = [true, false]
+    private let subtitles = ["1,532 reviews", nil]
+    private let showScaleAndShowZeroToFive: [(showScale: Bool, showZeroToFive: Bool)] = [
+        (showScale: true, showZeroToFive: true),
+        (showScale: true, showZeroToFive: false),
+        (showScale: false, showZeroToFive: true)
     ]
+    private let value: Float = 4.5
     
     private func ratings(withTitleView: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: BPKSpacing.sm.value) {
-            ForEach(sizes, id: \.self) { size in
+            ForEach(isDefaultSizes, id: \.self) { isDefaultSize in
                 ForEach(self.subtitles, id: \.self) { subtitle in
-                    ForEach(0..<self.scaleAndVisible.count, id: \.self) { count in
-                        let (scale, showScale) = self.scaleAndVisible[count]
+                    ForEach(self.showScaleAndShowZeroToFive.indices, id: \.self) { index in
+
+                        let (showScale, showZeroToFive) = self.showScaleAndShowZeroToFive[index]
                         if withTitleView {
                             BPKRating(
-                                accessibilityLabel: "",
-                                value: 4.5,
-                                ratingScale: scale,
-                                size: size,
+                                value: self.value,
+                                ratingScale: showZeroToFive ? .zeroToFive: .zeroToTen,
+                                size: isDefaultSize ? .default: .large,
                                 subtitle: subtitle,
                                 showScale: showScale
                             ) {
-                                AnyView(
-                                    BPKIconView(.account, size: .large)
-                                )
+                                BPKIconView(.account, size: .large)
                             }
                         } else {
                             BPKRating(
-                                accessibilityLabel: "",
                                 title: "Excellent",
-                                value: 4.5,
-                                ratingScale: scale,
-                                size: size,
+                                value: self.value,
+                                ratingScale: showZeroToFive ? .zeroToFive: .zeroToTen,
+                                size: isDefaultSize ? .default: .large,
                                 subtitle: subtitle,
                                 showScale: showScale
                             )
