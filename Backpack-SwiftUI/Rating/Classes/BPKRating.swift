@@ -33,7 +33,7 @@ public struct BPKRating<Content: View>: View {
                 BPKText(
                     ratingScale.displayedValue(from: value),
                     style: size.fontStyle.ratingValueLabelFontStyle
-                ).foregroundColor(.textPrimaryColor)
+                )
                 if showScale {
                     BPKText(
                         ratingScale.displayedScale(),
@@ -105,7 +105,6 @@ extension BPKRating where Content == BPKText {
 
         self.titleViewBuilder = {
             BPKText(title, style: size.fontStyle.titleLabelFontStyle)
-                .foregroundColor(.textPrimaryColor)
         }
     }
 
