@@ -47,7 +47,7 @@ class BPKRatingTests: XCTestCase {
                                 showScale: showScale
                             ) {
                                 BPKIconView(.account, size: .large)
-                            }
+                            }.fixedSize()
                         } else {
                             BPKRating(
                                 title: "Excellent",
@@ -56,7 +56,7 @@ class BPKRatingTests: XCTestCase {
                                 size: isDefaultSize ? .default: .large,
                                 subtitle: subtitle,
                                 showScale: showScale
-                            )
+                            ).fixedSize()
                         }
                     }
                 }

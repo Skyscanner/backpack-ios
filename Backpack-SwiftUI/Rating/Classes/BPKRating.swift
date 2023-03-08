@@ -33,23 +33,24 @@ public struct BPKRating<Content: View>: View {
                 BPKText(
                     ratingScale.displayedValue(from: value),
                     style: size.fontStyle.ratingValueLabelFontStyle
-                )
+                ).layoutPriority(4)
                 if showScale {
                     BPKText(
                         ratingScale.displayedScale(),
                         style: size.fontStyle.ratingScaleLabelFontStyle
                     ).foregroundColor(.textSecondaryColor)
+                        .layoutPriority(3)
                 }
             }
             if size == .large {
                 VStack(alignment: .leading, spacing: .zero) {
-                    titleViewBuilder()
-                    subtitleView
+                    titleViewBuilder().layoutPriority(2)
+                    subtitleView.layoutPriority(1)
                 }
             } else if size == .default {
                 HStack(alignment: .center, spacing: BPKSpacing.md.value) {
-                    titleViewBuilder()
-                    subtitleView
+                    titleViewBuilder().layoutPriority(2)
+                    subtitleView.layoutPriority(1)
                 }
             }
         }
@@ -81,8 +82,6 @@ public struct BPKRating<Content: View>: View {
                 style: size.fontStyle.subtitleLabelFontStyle
             )
             .foregroundColor(.textSecondaryColor)
-            .lineLimit(1)
-            .fixedSize()
         } else {
             EmptyView()
         }
