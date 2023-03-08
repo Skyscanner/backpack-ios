@@ -10,7 +10,7 @@ target 'Backpack-Native' do
   pod 'Backpack', :path => '../', :testspecs => ['UnitTests', 'SnapshotTests']
   pod 'Backpack-SwiftUI', :path => '../', :testspecs => ['Tests']
   pod 'Backpack-Fonts', :path => '../Backpack-Fonts'
-  pod 'Backpack-Common', :path => '../'
+  pod 'Backpack-Common', :path => '../', :testspecs => ['Tests']
   pod 'SwiftLint', '~> 0.43.1'
   pod 'AppCenter', '~> 4.2.0'
   pod 'AppCenter/Distribute', '~> 4.2.0'

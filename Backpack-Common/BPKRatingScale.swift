@@ -29,7 +29,7 @@ public enum BPKRatingScale {
         }
     }
 
-    func displayedValue(from value: Float) -> String {
+    public func displayedValue(from value: Float) -> String {
         let clampedValue: Float
         let valueWithinRange = range.contains(value)
         if !valueWithinRange {
@@ -44,7 +44,7 @@ public enum BPKRatingScale {
         return String(format: "%.1f", clampedValue)
     }
 
-    func displayedScale() -> String {
+    public func displayedScale() -> String {
         return String(format: "/%.0f", range.upperBound)
     }
 }

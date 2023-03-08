@@ -48,38 +48,4 @@ extension BPKRating {
             }
         }
     }
-
-    public enum Scale {
-        case zeroToFive
-        case zeroToTen
-
-        private var range: ClosedRange<Float> {
-            switch self {
-            case .zeroToFive:
-                return 0...Float(5)
-            case .zeroToTen:
-                return 0...Float(10)
-            }
-        }
-
-        func displayedValue(from value: Float) -> String {
-            let clampedValue: Float
-            let valueWithinRange = range.contains(value)
-            if !valueWithinRange {
-                if value < range.lowerBound {
-                    clampedValue = range.lowerBound
-                } else {
-                    clampedValue = range.upperBound
-                }
-            } else {
-                clampedValue = value
-            }
-            return String(format: "%.1f", clampedValue)
-        }
-
-        func displayedScale() -> String {
-            return String(format: "/%.0f", range.upperBound)
-        }
-    }
-
 }

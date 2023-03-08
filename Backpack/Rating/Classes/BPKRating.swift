@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 import UIKit
+import Backpack_Common
 
 public class BPKRating: UIView {
 
