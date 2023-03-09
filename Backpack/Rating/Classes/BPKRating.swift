@@ -177,7 +177,8 @@ public class BPKRating: UIView {
             ratingValueLabel,
             ratingScaleLabel
         ].forEach(ratingValueAndScaleStackView.addArrangedSubview(_:))
-        [titleView, subtitleLabel].forEach(titleSubtitleStackView.addArrangedSubview(_:))
+
+        updateTitleSubtitleStackViewSubviews()
 
         setupConstraints()
     }
@@ -208,6 +209,8 @@ public class BPKRating: UIView {
 
         updateSize()
         ratingValueLabel.text = ratingScale.displayedValue(from: value)
+
+        updateTitleSubtitleStackViewSubviews()
         updateCustomTitleViewBottomConstraint()
     }
 
@@ -231,6 +234,14 @@ public class BPKRating: UIView {
             titleSubtitleStackView.axis = .vertical
             titleSubtitleStackView.spacing = .zero
             titleSubtitleStackView.alignment = .leading
+        }
+    }
+
+    private func updateTitleSubtitleStackViewSubviews() {
+        let stackViewChildrenDidChange = titleSubtitleStackView.arrangedSubviews != [titleView, subtitleLabel]
+        if stackViewChildrenDidChange {
+            titleSubtitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            [titleView, subtitleLabel].forEach(titleSubtitleStackView.addArrangedSubview(_:))
         }
     }
 

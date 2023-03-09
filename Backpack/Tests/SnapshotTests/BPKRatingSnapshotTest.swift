@@ -114,7 +114,7 @@ class BPKRatingSnapshotTest: XCTestCase {
         // When
         let starRating = BPKStarRating()
         starRating.rating = 3.99
-        rating.titleView = rating
+        rating.titleView = starRating
 
         // Then
         assertSnapshot(rating)
@@ -135,6 +135,28 @@ class BPKRatingSnapshotTest: XCTestCase {
 
         // When
         rating.title = "Skyscanner"
+
+        // Then
+        assertSnapshot(rating)
+    }
+
+    func testBPKRatingTitleConstraintUpdateAfterSetASecondTitleView() {
+        // Given
+        let starRating = BPKStarRating()
+        starRating.rating = 2.101
+        let rating = BPKRating(
+            accessibilityLabel: "",
+            value: 2.101,
+            size: .large,
+            titleView: starRating
+        )
+        rating.translatesAutoresizingMaskIntoConstraints = false
+        rating.backgroundColor = BPKColor.canvasColor
+
+        // When
+        let secondStarRating = BPKStarRating()
+        secondStarRating.rating = 3
+        rating.titleView = secondStarRating
 
         // Then
         assertSnapshot(rating)
