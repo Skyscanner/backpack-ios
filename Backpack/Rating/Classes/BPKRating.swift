@@ -238,8 +238,8 @@ public class BPKRating: UIView {
     }
 
     private func updateTitleSubtitleStackViewSubviews() {
-        let titleViewUpdated = titleSubtitleStackView.arrangedSubviews != [titleView, subtitleLabel]
-        if titleViewUpdated {
+        let stackViewChildrenDidChange = titleSubtitleStackView.arrangedSubviews != [titleView, subtitleLabel]
+        if stackViewChildrenDidChange {
             titleSubtitleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
             [titleView, subtitleLabel].forEach(titleSubtitleStackView.addArrangedSubview(_:))
         }
