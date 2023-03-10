@@ -37,7 +37,7 @@ public class BPKOverlay: UIView {
     }
     
     public init(overlayType: BPKOverlayType = .solidLow, content: UIView, foregroundContent: UIView? = nil) {
-        self.overlay = overlayType.value
+        self.overlay = overlayType.overlay
         self.content = content
         self.foregroundContent = foregroundContent
         super.init(frame: .zero)

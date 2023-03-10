@@ -31,7 +31,7 @@ public enum BPKOverlayType {
 }
 
 extension BPKOverlayType {
-    var value: CALayer {
+    var overlay: CALayer {
         switch self {
         case .solidLow:
             return GradientOverlay(type: .solid, level: .low)
