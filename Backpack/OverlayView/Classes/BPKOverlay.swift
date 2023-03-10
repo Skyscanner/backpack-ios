@@ -16,15 +16,55 @@
  * limitations under the License.
  */
 
-protocol BPKOverlay {
-    func getLayer() -> CALayer
-    func updateBounds(withParentBounds bounds: CGRect)
+public enum BPKOverlayType {
+    case solidLow, solidMedium, solidHigh
     
-    var baseColor: UIColor { get }
+    case topLow, topMedium, topHigh
+    
+    case bottomLow, bottomMedium, bottomHigh
+    
+    case leftLow, leftMedium, leftHigh
+    
+    case rightLow, rightMedium, rightHigh
+    
+    case vignette
 }
 
-extension BPKOverlay {
-    var baseColor: UIColor {
-        return BPKColor.textOnLightColor
+extension BPKOverlayType {
+    var value: Overlay {
+        switch self {
+        case .solidLow:
+            return GradientOverlay(type: .solid, level: .low)
+        case .solidMedium:
+            return GradientOverlay(type: .solid, level: .medium)
+        case .solidHigh:
+            return GradientOverlay(type: .solid, level: .high)
+        case .topLow:
+            return GradientOverlay(type: .top, level: .low)
+        case .topMedium:
+            return GradientOverlay(type: .top, level: .medium)
+        case .topHigh:
+            return GradientOverlay(type: .top, level: .high)
+        case .bottomLow:
+            return GradientOverlay(type: .bottom, level: .low)
+        case .bottomMedium:
+            return GradientOverlay(type: .bottom, level: .high)
+        case .bottomHigh:
+            return GradientOverlay(type: .bottom, level: .high)
+        case .leftLow:
+            return GradientOverlay(type: .left, level: .low)
+        case .leftMedium:
+            return GradientOverlay(type: .left, level: .medium)
+        case .leftHigh:
+            return GradientOverlay(type: .left, level: .high)
+        case .rightLow:
+            return GradientOverlay(type: .right, level: .low)
+        case .rightMedium:
+            return GradientOverlay(type: .right, level: .medium)
+        case .rightHigh:
+            return GradientOverlay(type: .right, level: .high)
+        case .vignette:
+            return VignetteOverlay()
+        }
     }
 }

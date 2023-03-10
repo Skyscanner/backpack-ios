@@ -19,29 +19,15 @@
 import Foundation
 
 public class BPKOverlayView: UIView {
-    public enum OverlayType {
-        case solid, top, bottom, left, right, vignette
-    }
-    
-    public enum OverlayLevel {
-        case off, low, medium, high
-    }
-        
-    private var overlay: BPKOverlay
+    private var overlay: Overlay
     private var backgroundView: UIView?
     
-    public init(withType type: OverlayType, andLevel level: OverlayLevel) {
-        if type == .vignette {
-            self.overlay = VignetteOverlay()
-        } else {
-            self.overlay = GradientOverlay(type: type, overlayLevel: level)
-        }
-        
+    public init(overlayType: BPKOverlayType) {
+        self.overlay = overlayType.value
         super.init(frame: .zero)
-        
-        layer.addSublayer(overlay.getLayer())
+        setup()
     }
-    
+        
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not available")
@@ -50,6 +36,10 @@ public class BPKOverlayView: UIView {
     @available(*, unavailable)
     override init(frame: CGRect) {
         fatalError("init(frame:) is not available")
+    }
+    
+    private func setup() {
+        layer.addSublayer(overlay.getLayer())
     }
     
     public override func layoutSubviews() {

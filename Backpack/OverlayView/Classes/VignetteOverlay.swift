@@ -18,7 +18,7 @@
 
 import CoreGraphics
 
-class VignetteOverlay: BPKOverlay {
+class VignetteOverlay: Overlay {
     
     private let vignetteLayer: CAShapeLayer = {
         let shadowLayer = CAShapeLayer()

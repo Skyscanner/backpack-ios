@@ -22,7 +22,7 @@ import Backpack
 
 class OverlayViewController: UIViewController {
     
-    private let type: BPKOverlayView.OverlayType
+    private let types: [BPKOverlayType]
     
     private let stackView: UIStackView = {
         let view = UIStackView()
@@ -33,8 +33,8 @@ class OverlayViewController: UIViewController {
         return view
     }()
     
-    init(type: BPKOverlayView.OverlayType) {
-        self.type = type
+    init(types: [BPKOverlayType]) {
+        self.types = types
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,45 +59,39 @@ class OverlayViewController: UIViewController {
     }
     
     private func setupOverlays() {
-        let levels: [BPKOverlayView.OverlayLevel] = [.off, .low, .medium, .high]
+//        let levels: [BPKOverlayLevel] = [.off, .low, .medium, .high]
         
-        levels.forEach { level in
-            if type != .solid && level == .off {
-                return
-            }
-            
-            if type == .vignette && level != .low {
-                return
-            }
-            
-            let innerStackView = UIStackView()
-            innerStackView.translatesAutoresizingMaskIntoConstraints = false
-            innerStackView.axis = .vertical
-            innerStackView.spacing = BPKSpacingSm
-            
-            let overlay = getOverlayView(level)
-            
-            let label = BPKLabel(fontStyle: .textCaption)
-            label.text = "\(self.type) / \(level)"
-            
-            if type == .vignette {
-                label.text = "\(self.type)"
-            }
-            
-            innerStackView.addArrangedSubview(overlay)
-            innerStackView.addArrangedSubview(label)
-            
-            stackView.addArrangedSubview(innerStackView)
-            
-            NSLayoutConstraint.activate([
-                overlay.widthAnchor.constraint(equalToConstant: 110),
-                overlay.heightAnchor.constraint(equalToConstant: 110)
-            ])
-        }
+//        levels.forEach { level in
+//            if type != .solid && level == .off {
+//                return
+//           }
+//
+//            let innerStackView = UIStackView()
+//            innerStackView.translatesAutoresizingMaskIntoConstraints = false
+//            innerStackView.axis = .vertical
+//            innerStackView.spacing = BPKSpacingSm
+//
+//            let overlay = getOverlayView(level)
+//
+//            let label = BPKLabel(fontStyle: .textCaption)
+//            label.text = "\(self.type) / \(level)"
+//
+//            innerStackView.addArrangedSubview(overlay)
+//            innerStackView.addArrangedSubview(label)
+//
+//            stackView.addArrangedSubview(innerStackView)
+//
+//            NSLayoutConstraint.activate([
+//                overlay.widthAnchor.constraint(equalToConstant: 110),
+//                overlay.heightAnchor.constraint(equalToConstant: 110)
+//            ])
+//        }
     }
     
-    private func getOverlayView(_ level: BPKOverlayView.OverlayLevel) -> UIView {
-        let overlay = BPKOverlayView(withType: self.type, andLevel: level)
+    private func getOverlayView() -> UIView {
+        let overlay = BPKOverlayView(overlayType: .leftLow)
+        
+        let overlayVignette = BPKOverlayView(overlayType: .vignette)
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
         let imageView = UIImageView(image: UIImage(named: "overlay_example"))
@@ -107,39 +101,5 @@ class OverlayViewController: UIViewController {
         overlay.layer.cornerRadius = BPKCornerRadiusLg
         
         return overlay
-    }
-}
-
-extension BPKOverlayView.OverlayType: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .solid:
-            return "Solid"
-        case .top:
-            return "Top"
-        case .bottom:
-            return "Bottom"
-        case .left:
-            return "Left"
-        case .right:
-            return "Right"
-        case .vignette:
-            return "Vignette"
-        }
-    }
-}
-
-extension BPKOverlayView.OverlayLevel: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .off:
-            return "Off"
-        case .low:
-            return "Low"
-        case .medium:
-            return "Medium"
-        case .high:
-            return "High"
-        }
     }
 }

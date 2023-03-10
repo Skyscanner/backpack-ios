@@ -22,12 +22,12 @@ struct OverlayGroupsProvider {
     let showPresentable: (Presentable) -> Void
     
     private func presentable(
-        _ title: String,
-        type: BPKOverlayView.OverlayType
+        _ title: String
+//        type: BPKOverlayType
     ) -> CellDataSource {
         PresentableCellDataSource.customEnrichable(
             title: title,
-            customController: { OverlayViewController(type: type) },
+            customController: { OverlayViewController(types: []) },
             enrich: { controller in
                 controller.title = title
             },
@@ -38,12 +38,12 @@ struct OverlayGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Solid", type: .solid),
-                presentable("Top", type: .top),
-                presentable("Bottom", type: .bottom),
-                presentable("Left", type: .left),
-                presentable("Right", type: .right),
-                presentable("Vignette", type: .vignette)
+//                presentable("Solid", type: .solid),
+//                presentable("Top", type: .top),
+//                presentable("Bottom", type: .bottom),
+//                presentable("Left", type: .left),
+//                presentable("Right", type: .right)
+//                presentable("Vignette", type: .vignette)
             ]
         ).groups()
     }

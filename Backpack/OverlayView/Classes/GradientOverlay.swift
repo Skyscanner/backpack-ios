@@ -18,10 +18,17 @@
 
 import CoreGraphics
 
-class GradientOverlay: BPKOverlay {
+class GradientOverlay: Overlay {
+    enum OverlayType {
+        case solid, top, bottom, left, right
+    }
+
+    enum OverlayLevel {
+        case off, low, medium, high
+    }
     
-    private let type: BPKOverlayView.OverlayType
-    private let level: BPKOverlayView.OverlayLevel
+    private let type: OverlayType
+    private let level: OverlayLevel
     
     private let tintLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
@@ -30,7 +37,7 @@ class GradientOverlay: BPKOverlay {
         return gradientLayer
     }()
     
-    init(type: BPKOverlayView.OverlayType, overlayLevel level: BPKOverlayView.OverlayLevel) {
+    init(type: OverlayType, level: OverlayLevel) {
         self.type = type
         self.level = level
 
@@ -46,10 +53,6 @@ class GradientOverlay: BPKOverlay {
     }
     
     private func setupLayer() {
-        guard let startPoint = startPoint, let endPoint = endPoint else {
-            return
-        }
-        
         tintLayer.colors = colors
         tintLayer.locations = [0, 1]
         tintLayer.startPoint = startPoint
@@ -73,7 +76,7 @@ class GradientOverlay: BPKOverlay {
 }
 
 fileprivate extension GradientOverlay {
-    var startPoint: CGPoint? {
+    var startPoint: CGPoint {
         switch type {
         case .solid:
             return CGPoint(x: 0, y: 0)
@@ -85,12 +88,10 @@ fileprivate extension GradientOverlay {
             return CGPoint(x: 0, y: 0)
         case .right:
             return CGPoint(x: 1, y: 0)
-        default:
-            return nil
         }
     }
     
-    var endPoint: CGPoint? {
+    var endPoint: CGPoint {
         switch type {
         case .solid:
             return CGPoint(x: 1, y: 1)
@@ -102,8 +103,6 @@ fileprivate extension GradientOverlay {
             return CGPoint(x: 1, y: 0)
         case .right:
             return CGPoint(x: 0, y: 0)
-        default:
-            return nil
         }
     }
     
