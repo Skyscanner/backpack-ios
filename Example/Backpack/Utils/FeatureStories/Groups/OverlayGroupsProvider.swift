@@ -35,6 +35,14 @@ struct OverlayGroupsProvider {
         )
     }
     
+    private func foregroundPresentable() -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: "Foreground example",
+            customController: { OverlayForegroundViewController() },
+            showPresentable: showPresentable
+        )
+    }
+    
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
@@ -43,7 +51,8 @@ struct OverlayGroupsProvider {
                 presentable("Bottom", types: [.bottomLow, .bottomMedium, .bottomHigh]),
                 presentable("Left", types: [.leftLow, .leftMedium, .leftHigh]),
                 presentable("Right", types: [.rightLow, .rightMedium, .rightHigh]),
-                presentable("Vignette", types: [.vignette])
+                presentable("Vignette", types: [.vignette]),
+                foregroundPresentable()
             ]
         ).groups()
     }
