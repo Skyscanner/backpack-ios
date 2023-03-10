@@ -16,55 +16,60 @@
  * limitations under the License.
  */
 
-public enum BPKOverlayType {
-    case solidLow, solidMedium, solidHigh
-    
-    case topLow, topMedium, topHigh
-    
-    case bottomLow, bottomMedium, bottomHigh
-    
-    case leftLow, leftMedium, leftHigh
-    
-    case rightLow, rightMedium, rightHigh
-    
-    case vignette
-}
+import UIKit
 
-extension BPKOverlayType {
-    var value: Overlay {
-        switch self {
-        case .solidLow:
-            return GradientOverlay(type: .solid, level: .low)
-        case .solidMedium:
-            return GradientOverlay(type: .solid, level: .medium)
-        case .solidHigh:
-            return GradientOverlay(type: .solid, level: .high)
-        case .topLow:
-            return GradientOverlay(type: .top, level: .low)
-        case .topMedium:
-            return GradientOverlay(type: .top, level: .medium)
-        case .topHigh:
-            return GradientOverlay(type: .top, level: .high)
-        case .bottomLow:
-            return GradientOverlay(type: .bottom, level: .low)
-        case .bottomMedium:
-            return GradientOverlay(type: .bottom, level: .high)
-        case .bottomHigh:
-            return GradientOverlay(type: .bottom, level: .high)
-        case .leftLow:
-            return GradientOverlay(type: .left, level: .low)
-        case .leftMedium:
-            return GradientOverlay(type: .left, level: .medium)
-        case .leftHigh:
-            return GradientOverlay(type: .left, level: .high)
-        case .rightLow:
-            return GradientOverlay(type: .right, level: .low)
-        case .rightMedium:
-            return GradientOverlay(type: .right, level: .medium)
-        case .rightHigh:
-            return GradientOverlay(type: .right, level: .high)
-        case .vignette:
-            return VignetteOverlay()
+public class BPKOverlay: UIView {
+
+    private let content: UIView
+    private let overlay: Overlay
+    private let foregroundContent: UIView?
+    
+    public init(overlayType: BPKOverlayType = .solidLow, content: UIView, foregroundContent: UIView? = nil) {
+        self.overlay = overlayType.value
+        self.content = content
+        self.foregroundContent = foregroundContent
+        super.init(frame: .zero)
+        
+        setupViews()
+        setupConstraints()
+    }
+        
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not available")
+    }
+    
+    @available(*, unavailable)
+    override init(frame: CGRect) {
+        fatalError("init(frame:) is not available")
+    }
+    
+    private func setupViews() {
+        addSubview(content)
+        
+        layer.addSublayer(overlay.getLayer())
+        
+        if let foregroundContent = foregroundContent {
+            addSubview(foregroundContent)
         }
+    }
+    
+    private func setupConstraints() {
+        content.translatesAutoresizingMaskIntoConstraints = false
+        foregroundContent?.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            content.leadingAnchor.constraint(equalTo: leadingAnchor),
+            content.topAnchor.constraint(equalTo: topAnchor),
+            content.trailingAnchor.constraint(equalTo: trailingAnchor),
+            content.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+//        setNeedsLayout()
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        overlay.updateBounds(withParentBounds: self.bounds)
     }
 }
