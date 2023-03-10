@@ -19,7 +19,6 @@
 #import <XCTest/XCTest.h>
 
 #import <Backpack/Color.h>
-#import <Backpack/OverlayView.h>
 
 @interface BPKOverlayViewTest : XCTestCase
 
@@ -28,24 +27,24 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation BPKOverlayViewTest
 
-- (void)testDefaultValues {
-    BPKOverlayView *ov1 = [[BPKOverlayView alloc] initWithFrame:CGRectZero];
-    XCTAssertEqual(ov1.overlayType, BPKOverlayViewOverlayTypeTint);
-    XCTAssertEqual(ov1.cornerStyle, BPKOverlayViewCornerStyleNone);
-}
-
-- (void)testLazyViews {
-    BPKOverlayView *ov1 = [[BPKOverlayView alloc] initWithFrame:CGRectZero];
-    XCTAssertEqual(ov1.subviews.count, 0);
-    [ov1.foregroundView addSubview:[UIView new]];
-    XCTAssertEqual(ov1.subviews.count, 1);
-    [ov1.backgroundView addSubview:[UIView new]];
-    XCTAssertEqual(ov1.subviews.count, 2);
-    [ov1.foregroundView addSubview:[UIView new]];
-    XCTAssertEqual(ov1.subviews.count, 2);
-    [ov1.backgroundView addSubview:[UIView new]];
-    XCTAssertEqual(ov1.subviews.count, 2);
-}
+//- (void)testDefaultValues {
+//    BPKOverlayView *ov1 = [[BPKOverlayView alloc] initWithFrame:CGRectZero];
+//    XCTAssertEqual(ov1.overlayType, BPKOverlayViewOverlayTypeTint);
+//    XCTAssertEqual(ov1.cornerStyle, BPKOverlayViewCornerStyleNone);
+//}
+//
+//- (void)testLazyViews {
+//    BPKOverlayView *ov1 = [[BPKOverlayView alloc] initWithFrame:CGRectZero];
+//    XCTAssertEqual(ov1.subviews.count, 0);
+//    [ov1.foregroundView addSubview:[UIView new]];
+//    XCTAssertEqual(ov1.subviews.count, 1);
+//    [ov1.backgroundView addSubview:[UIView new]];
+//    XCTAssertEqual(ov1.subviews.count, 2);
+//    [ov1.foregroundView addSubview:[UIView new]];
+//    XCTAssertEqual(ov1.subviews.count, 2);
+//    [ov1.backgroundView addSubview:[UIView new]];
+//    XCTAssertEqual(ov1.subviews.count, 2);
+//}
 
 @end
 

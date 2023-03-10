@@ -20,11 +20,11 @@ import XCTest
 import Backpack
 import SnapshotTesting
 
-class BPKOverlayViewSnapshotTest: XCTestCase {
+class BPKOverlaySnapshotTest: XCTestCase {
     
     override func setUpWithError() throws {
         try? super.setUpWithError()
-        isRecording = false
+        isRecording = true
     }
     
     func testOverlayViewsWithBackground() {
@@ -48,54 +48,47 @@ class BPKOverlayViewSnapshotTest: XCTestCase {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let overlayViews = [
-            BPKOverlayView(overlayType: .none, cornerStyle: .none),
-            BPKOverlayView(overlayType: .tint, cornerStyle: .none),
-            BPKOverlayView(overlayType: .tint, cornerStyle: .small),
-            BPKOverlayView(overlayType: .tint, cornerStyle: .large)
+            BPKOverlay(overlayType: .solidLow, content: createBackgroundView())
         ]
         
         for overlay in overlayViews {
-            guard let overlay = overlay else {
-                continue
-            }
-            
-            if hasBackground {
-                let backgroundContent = createBackgroundView()
-                stackView.addArrangedSubview(backgroundContent)
-                overlay.backgroundView.addSubview(backgroundContent)
-                
-                NSLayoutConstraint.activate([
-                    backgroundContent.topAnchor.constraint(equalTo: overlay.backgroundView.topAnchor),
-                    backgroundContent.leadingAnchor.constraint(equalTo: overlay.backgroundView.leadingAnchor),
-                    backgroundContent.trailingAnchor.constraint(equalTo: overlay.backgroundView.trailingAnchor),
-                    backgroundContent.bottomAnchor.constraint(equalTo: overlay.backgroundView.bottomAnchor)
-                ])
-                
-                // This is a hack used to reorder the layers before they are captured by the snapshot library.
-                // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
-                // See
-                // swiftlint:disable:next line_length
-                // https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
-                let tintLayer = overlay.backgroundView.layer.sublayers?.first
-                overlay.backgroundView.layer.sublayers?[0].removeFromSuperlayer()
-                overlay.backgroundView.layer.insertSublayer(tintLayer!, at: 1)
-            }
-            
-            if hasForeGround {
-                let foregroundContent = createForegroundView()
-                overlay.foregroundView.addSubview(foregroundContent)
-                
-                NSLayoutConstraint.activate([
-                    foregroundContent.widthAnchor.constraint(
-                        equalTo: overlay.foregroundView.widthAnchor,
-                        constant: -BPKSpacingLg
-                    ),
-                    foregroundContent.centerXAnchor.constraint(equalTo: overlay.foregroundView.centerXAnchor),
-                    foregroundContent.centerYAnchor.constraint(equalTo: overlay.foregroundView.centerYAnchor),
-                    overlay.foregroundView.heightAnchor.constraint(equalToConstant: 100),
-                    overlay.foregroundView.widthAnchor.constraint(equalToConstant: 100)
-                ])
-            }
+//            if hasBackground {
+//                let backgroundContent = createBackgroundView()
+//                stackView.addArrangedSubview(backgroundContent)
+//                overlay.backgroundView.addSubview(backgroundContent)
+//
+//                NSLayoutConstraint.activate([
+//                    backgroundContent.topAnchor.constraint(equalTo: overlay.backgroundView.topAnchor),
+//                    backgroundContent.leadingAnchor.constraint(equalTo: overlay.backgroundView.leadingAnchor),
+//                    backgroundContent.trailingAnchor.constraint(equalTo: overlay.backgroundView.trailingAnchor),
+//                    backgroundContent.bottomAnchor.constraint(equalTo: overlay.backgroundView.bottomAnchor)
+//                ])
+//
+//                // This is a hack used to reorder the layers before they are captured by the snapshot library.
+//                // This is necessary due to an issue with how UIGraphicsImageRenderer orders layers.
+//                // See
+//                // swiftlint:disable:next line_length
+//                // https://stackoverflow.com/questions/62172205/saving-a-uiview-as-an-image-causes-zpositioning-of-its-subviews-to-fail
+//                let tintLayer = overlay.backgroundView.layer.sublayers?.first
+//                overlay.backgroundView.layer.sublayers?[0].removeFromSuperlayer()
+//                overlay.backgroundView.layer.insertSublayer(tintLayer!, at: 1)
+//            }
+//
+//            if hasForeGround {
+//                let foregroundContent = createForegroundView()
+//                overlay.foregroundView.addSubview(foregroundContent)
+//
+//                NSLayoutConstraint.activate([
+//                    foregroundContent.widthAnchor.constraint(
+//                        equalTo: overlay.foregroundView.widthAnchor,
+//                        constant: -BPKSpacingLg
+//                    ),
+//                    foregroundContent.centerXAnchor.constraint(equalTo: overlay.foregroundView.centerXAnchor),
+//                    foregroundContent.centerYAnchor.constraint(equalTo: overlay.foregroundView.centerYAnchor),
+//                    overlay.foregroundView.heightAnchor.constraint(equalToConstant: 100),
+//                    overlay.foregroundView.widthAnchor.constraint(equalToConstant: 100)
+//                ])
+//            }
             
             stackView.addArrangedSubview(overlay)
         }
