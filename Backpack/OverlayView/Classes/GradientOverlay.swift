@@ -18,7 +18,7 @@
 
 import CoreGraphics
 
-class GradientOverlay: Overlay {
+final class GradientOverlay: CAGradientLayer {
     enum OverlayType {
         case solid, top, bottom, left, right
     }
@@ -27,57 +27,53 @@ class GradientOverlay: Overlay {
         case off, low, medium, high
     }
     
-    private let type: OverlayType
-    private let level: OverlayLevel
-    
-    private let tintLayer: CAGradientLayer = {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.masksToBounds = true
-        
-        return gradientLayer
-    }()
+    private let overlayType: OverlayType
+    private let overlayLevel: OverlayLevel
+    private let baseColor = BPKColor.textOnLightColor
     
     init(type: OverlayType, level: OverlayLevel) {
-        self.type = type
-        self.level = level
+        self.overlayType = type
+        self.overlayLevel = level
+        
+        super.init()
 
-        setupLayer()
+        initGradient()
     }
     
-    func getLayer() -> CALayer {
-        return tintLayer
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func updateBounds(withParentBounds bounds: CGRect) {
-        tintLayer.frame = bounds
-    }
-    
-    private func setupLayer() {
-        tintLayer.colors = colors
-        tintLayer.locations = [0, 1]
-        tintLayer.startPoint = startPoint
-        tintLayer.endPoint = endPoint
-    }
-    
-    private var colors: [CGColor] {
-        switch type {
-        case .solid:
-            return [
-                baseColor.withAlphaComponent(opacity).cgColor,
-                baseColor.withAlphaComponent(opacity).cgColor
-            ]
-        default:
-            return [
-                baseColor.withAlphaComponent(opacity).cgColor,
-                baseColor.withAlphaComponent(0).cgColor
-            ]
-        }
+    private func initGradient() {
+        masksToBounds = true
+        shouldRasterize = true
+        
+        colors = gradientColors
+        locations = [0, 1]
+        startPoint = gradientStartPoint
+        endPoint = gradientEndPoint
     }
 }
 
 fileprivate extension GradientOverlay {
-    var startPoint: CGPoint {
-        switch type {
+    var gradientColors: [CGColor] {
+        switch overlayType {
+        case .solid:
+            return [
+                baseColor.withAlphaComponent(gradientOpacity).cgColor,
+                baseColor.withAlphaComponent(gradientOpacity).cgColor
+            ]
+        default:
+            return [
+                baseColor.withAlphaComponent(gradientOpacity).cgColor,
+                baseColor.withAlphaComponent(0).cgColor
+            ]
+        }
+    }
+    
+    var gradientStartPoint: CGPoint {
+        switch overlayType {
         case .solid:
             return CGPoint(x: 0, y: 0)
         case .top:
@@ -91,8 +87,8 @@ fileprivate extension GradientOverlay {
         }
     }
     
-    var endPoint: CGPoint {
-        switch type {
+    var gradientEndPoint: CGPoint {
+        switch overlayType {
         case .solid:
             return CGPoint(x: 1, y: 1)
         case .top:
@@ -106,8 +102,8 @@ fileprivate extension GradientOverlay {
         }
     }
     
-    var opacity: CGFloat {
-        switch (type, level) {
+    var gradientOpacity: CGFloat {
+        switch (overlayType, overlayLevel) {
         case (_, .off):
             return 0
         case (_, .low):

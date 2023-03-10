@@ -21,8 +21,20 @@ import UIKit
 public class BPKOverlay: UIView {
 
     private let content: UIView
-    private let overlay: Overlay
+    private let overlay: CALayer
     private let foregroundContent: UIView?
+        
+    override open var bounds: CGRect {
+        didSet {
+            overlay.frame = bounds
+        }
+    }
+    
+    override open var frame: CGRect {
+        didSet {
+            overlay.frame = bounds
+        }
+    }
     
     public init(overlayType: BPKOverlayType = .solidLow, content: UIView, foregroundContent: UIView? = nil) {
         self.overlay = overlayType.value
@@ -46,7 +58,8 @@ public class BPKOverlay: UIView {
     
     private func setupViews() {
         addSubview(content)
-        content.layer.addSublayer(overlay.getLayer())
+    
+        content.layer.addSublayer(overlay)
         
         if let foregroundContent = foregroundContent {
             addSubview(foregroundContent)
@@ -63,12 +76,5 @@ public class BPKOverlay: UIView {
             content.trailingAnchor.constraint(equalTo: trailingAnchor),
             content.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
-//        setNeedsLayout()
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        overlay.updateBounds(withParentBounds: self.bounds)
     }
 }
