@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import CoreGraphics
+import QuartzCore
 
 final class GradientOverlay: CAGradientLayer {
     enum OverlayType {
