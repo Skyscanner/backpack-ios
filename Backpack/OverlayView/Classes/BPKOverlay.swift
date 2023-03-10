@@ -46,8 +46,7 @@ public class BPKOverlay: UIView {
     
     private func setupViews() {
         addSubview(content)
-        
-        layer.addSublayer(overlay.getLayer())
+        content.layer.addSublayer(overlay.getLayer())
         
         if let foregroundContent = foregroundContent {
             addSubview(foregroundContent)
