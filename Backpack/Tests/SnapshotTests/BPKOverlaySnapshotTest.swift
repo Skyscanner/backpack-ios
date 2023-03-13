@@ -62,7 +62,7 @@ class BPKOverlaySnapshotTest: XCTestCase {
         for type in types {
             let content = createBackgroundView()
             
-            let overlay = BPKOverlay(overlayType: type, content: content)
+            let overlay = BPKOverlay(content: content, overlayType: type)
             
             NSLayoutConstraint.activate([
                 overlay.widthAnchor.constraint(equalToConstant: 200),
@@ -76,7 +76,7 @@ class BPKOverlaySnapshotTest: XCTestCase {
             let content = createBackgroundView()
             let foregroundContent = createForegroundView()
             
-            let overlay = BPKOverlay(overlayType: type, content: content, foregroundContent: foregroundContent)
+            let overlay = BPKOverlay(content: content, overlayType: type, foregroundContent: foregroundContent)
             
             NSLayoutConstraint.activate([
                 overlay.widthAnchor.constraint(equalToConstant: 200),
