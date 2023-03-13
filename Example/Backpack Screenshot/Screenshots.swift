@@ -200,7 +200,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Card Button") {
-            saveScreenshot(component: "cardButton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "card-button", scenario: "all", userInterfaceStyle: userInterfaceStyle)
         }
 
         navigate(title: "Chips") {
