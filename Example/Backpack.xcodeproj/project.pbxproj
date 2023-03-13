@@ -12,6 +12,7 @@
 		0E8EEFC928A23C3E008BA7A3 /* SkeletonExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8EEFC828A23C3E008BA7A3 /* SkeletonExampleView.swift */; };
 		17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */; };
 		1750EB6329915230005226DF /* CardButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750EB6229915230005226DF /* CardButtonsViewController.swift */; };
+		2976A1DE29BF418F008B0E58 /* BPKFlightLegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976A1DD29BF418F008B0E58 /* BPKFlightLegViewController.swift */; };
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
@@ -190,6 +191,7 @@
 		11F0F39D8252943CD3B0C19D /* Pods-Backpack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack_Example/Pods-Backpack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		17068B89299C0106000EA7F4 /* RatingGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingGroupsProvider.swift; sourceTree = "<group>"; };
 		1750EB6229915230005226DF /* CardButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardButtonsViewController.swift; sourceTree = "<group>"; };
+		2976A1DD29BF418F008B0E58 /* BPKFlightLegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPKFlightLegViewController.swift; sourceTree = "<group>"; };
 		3A7D2D45214AB9F400ECBD5B /* BPKButtonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPKButtonsViewController.h; sourceTree = "<group>"; };
 		3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPKButtonsViewController.m; sourceTree = "<group>"; };
 		3AA018EE215BE26500838FBB /* SpinnersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnersViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +418,21 @@
 			);
 			name = "Card Button";
 			path = "Card/Card Button";
+			sourceTree = "<group>";
+		};
+		2976A1DB29BF3D01008B0E58 /* Flight */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flight;
+			sourceTree = "<group>";
+		};
+		2976A1DC29BF415D008B0E58 /* Flight Leg */ = {
+			isa = PBXGroup;
+			children = (
+				2976A1DD29BF418F008B0E58 /* BPKFlightLegViewController.swift */,
+			);
+			path = "Flight Leg";
 			sourceTree = "<group>";
 		};
 		5307FFC3282B26330081B16E /* Icons */ = {
@@ -681,6 +698,7 @@
 		793EC5532836140A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2976A1DB29BF3D01008B0E58 /* Flight */,
 				F00CA3D7299D532E0027ACE7 /* FloatingNotification */,
 				F00F15672993F1B900213F0D /* Carousel */,
 				AA7CFD8A29965EE20023C12B /* Price */,
@@ -702,6 +720,7 @@
 				793EC5622836150600D627F6 /* Snackbar */,
 				793EC561283614F500D627F6 /* Toast */,
 				793EC560283614D000D627F6 /* Overlay */,
+				2976A1DC29BF415D008B0E58 /* Flight Leg */,
 				793EC55F283614BE00D627F6 /* Rating */,
 				793EC55E283614AE00D627F6 /* Panel */,
 				793EC55D283614A600D627F6 /* Link */,
@@ -1416,6 +1435,7 @@
 				794337AB283C829100797D1C /* Tab.swift in Sources */,
 				53B6DB6427FC463F0042B7C0 /* FlareGroups.swift in Sources */,
 				53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */,
+				2976A1DE29BF418F008B0E58 /* BPKFlightLegViewController.swift in Sources */,
 				AA53992D299687B20008D407 /* PriceExampleView.swift in Sources */,
 				D2B4FC482538A88900070BEC /* OverlayViewsViewController.swift in Sources */,
 				53B6DB5C27FC39AC0042B7C0 /* ButtonGroups.swift in Sources */,

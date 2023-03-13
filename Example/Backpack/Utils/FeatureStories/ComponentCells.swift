@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// swiftlint:disable file_length
 
 import Foundation
 
@@ -45,6 +46,7 @@ struct ComponentCellsProvider {
             cardButton(),
             carousel(),
             chips(),
+            flightLeg(),
             flare(),
             floatingNotification(),
             dialog(),
@@ -373,6 +375,18 @@ extension ComponentCellsProvider {
                 .swiftui(groups: PriceGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
+        )
+    }
+    
+    private func flightLeg() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Flight Leg",
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: { BPKFlightLegViewController() }
+                ))
+            ],
+            showChildren: { showComponent(title: "Flight Leg", tabs: $0) }
         )
     }
     
