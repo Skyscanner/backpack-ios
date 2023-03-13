@@ -369,11 +369,7 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Price",
             tabs: [
-                .uikit(presentable: CustomPresentable(
-                    generateViewController: {
-                        PriceExampleViewController()
-                    }
-                )),
+                .uikit(groups: PriceGroupsProvider(showPresentable: show(presentable:)).groups()),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
                     ContentUIHostingController(PriceExampleView())
                 }))

@@ -17,12 +17,26 @@
  * limitations under the License.
  */
 
-import Foundation
+import UIKit
+import Backpack
 
 final class PriceExampleViewController: UIViewController {
+    
+    public var size: BPKPrice.Size
+    
+    init(size: BPKPrice.Size) {
+        self.size = size
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = BPKColor.surfaceDefaultColor
+        view.backgroundColor = BPKColor.canvasColor
         createView()
     }
     
@@ -35,21 +49,15 @@ final class PriceExampleViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        [
-            ("Leading and large", createPrice(alignment: .leading, size: .large)),
-            ("Leading and small", createPrice(alignment: .leading, size: .small)),
-            ("Trailing and large", createPrice(alignment: .trailing, size: .large)),
-            ("Trailing and small", createPrice(alignment: .trailing, size: .small))
-        ].forEach {
-            let label = BPKLabel(fontStyle: .textHeading5)
-            label.text = $0.0
-            
-            let rowStackView = UIStackView(arrangedSubviews: [label, $0.1])
-            rowStackView.axis = .horizontal
-            rowStackView.distribution = .equalCentering
-            
-            stackView.addArrangedSubview(rowStackView)
-        }
+        stackView.addArrangedSubview(createRow())
+        stackView.addArrangedSubview(createRow(trailingText: "per day"))
+        stackView.addArrangedSubview(createRow(previousPrice: "£2033", trailingText: "per day"))
+        stackView.addArrangedSubview(createRow(leadingText: "App ony deal", trailingText: "per day"))
+        stackView.addArrangedSubview(createRow(
+            leadingText: "App only deal",
+            previousPrice: "£2033",
+            trailingText: "per day")
+        )
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
@@ -57,17 +65,30 @@ final class PriceExampleViewController: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-    
-    func createPrice(alignment: BPKPrice.Alignment, size: BPKPrice.Size) -> BPKPrice {
-        let price = BPKPrice(
-            price: "£1830",
-            leadingText: "App only deal",
-            previousPrice: "£2033",
-            trailingText: "per day",
-            alignment: alignment,
-            size: size
-        )
-        price.translatesAutoresizingMaskIntoConstraints = false
-        return price
+        
+    private func createRow(
+        leadingText: String? = nil,
+        previousPrice: String? = nil,
+        trailingText: String? = nil) -> UIView {
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.alignment = .top
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+            [BPKPrice.Alignment.leading, BPKPrice.Alignment.trailing].forEach { alignment in
+                // Price only
+                let priceView = BPKPrice(
+                    price: "£1830",
+                    leadingText: leadingText,
+                    previousPrice: previousPrice,
+                    trailingText: trailingText,
+                    alignment: alignment,
+                    size: size
+                )
+                priceView.translatesAutoresizingMaskIntoConstraints = false
+                stackView.addArrangedSubview(priceView)
+            }
+            
+            return stackView
     }
 }
