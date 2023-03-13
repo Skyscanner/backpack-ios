@@ -99,10 +99,6 @@ public final class BPKPrice: UIView {
     }
     
     private func setupView() {
-        [previousPriceLabel, separatorLabel, leadingTextLabel].forEach {
-            topTextStackView.addArrangedSubview($0)
-        }
-        
         [priceLabel, trailingTextLabel].forEach {
             priceStackView.addArrangedSubview($0)
         }
@@ -157,11 +153,24 @@ public final class BPKPrice: UIView {
             priceStackView.spacing = BPKSpacingSm
         case .trailing:
             containerStackView.alignment = .trailing
-            
-            if size == .small {
-                priceStackView.axis = .vertical
-                priceStackView.spacing = BPKSpacingNone
-            }
+            priceStackView.axis = .vertical
+            priceStackView.spacing = BPKSpacingNone
+        }
+        
+        // Top labels change order when alignment is trailing.
+        var topLabels = [previousPriceLabel, separatorLabel, leadingTextLabel]
+        
+        if alignment == .trailing {
+            topLabels.reverse()
+        }
+        
+        topTextStackView.arrangedSubviews.forEach {
+            topTextStackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+        
+        topLabels.forEach {
+            topTextStackView.addArrangedSubview($0)
         }
     }
     
