@@ -76,7 +76,6 @@ final class PriceExampleViewController: UIViewController {
             stackView.translatesAutoresizingMaskIntoConstraints = false
         
             [BPKPrice.Alignment.leading, BPKPrice.Alignment.trailing].forEach { alignment in
-                // Price only
                 let priceView = BPKPrice(
                     price: "£1830",
                     leadingText: leadingText,
