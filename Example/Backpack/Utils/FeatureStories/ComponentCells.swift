@@ -375,7 +375,7 @@ extension ComponentCellsProvider {
                     }
                 )),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(PriceExampleView())
+                    ContentUIHostingController(PriceExampleView(size: .small))
                 }))
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
