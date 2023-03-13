@@ -37,7 +37,7 @@ class OverlayForegroundViewController: UIViewController {
         foregroundContent.textColor = BPKColor.white
         foregroundContent.translatesAutoresizingMaskIntoConstraints = false
         
-        let overlay = BPKOverlay(overlayType: .bottomMedium, content: content, foregroundContent: foregroundContent)
+        let overlay = BPKOverlay(content: content, overlayType: .bottomMedium, foregroundContent: foregroundContent)
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
         overlay.clipsToBounds = true

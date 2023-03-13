@@ -84,7 +84,7 @@ class OverlayViewController: UIViewController {
     
     private func getOverlayView(_ overlayType: BPKOverlayType) -> UIView {
         let imageView = UIImageView(image: UIImage(named: "overlay_example"))
-        let overlay = BPKOverlay(overlayType: overlayType, content: imageView)
+        let overlay = BPKOverlay(content: imageView, overlayType: overlayType)
         overlay.translatesAutoresizingMaskIntoConstraints = false
         
         overlay.clipsToBounds = true
