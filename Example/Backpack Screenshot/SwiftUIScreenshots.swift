@@ -130,7 +130,14 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")
-            saveScreenshot(component: "Price", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            
+            app.tables.staticTexts["Small"].tap()
+            saveScreenshot(component: "price", scenario: "small", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Large"].tap()
+            saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
     }
 }
