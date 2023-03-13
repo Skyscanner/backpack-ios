@@ -25,9 +25,9 @@ class BPKAttributedTextTests: XCTestCase {
         let items: [BPKAttributedText.Item] = [
             .init("Hello Backpack ", style: .heading1),
             .init("have an "),
-            .init("Amazing day! ", style: .heading3, color: .abisko),
+            .init("Amazing day! ", style: .heading3, color: .coreAccentColor),
             .init("Working with multiple "),
-            .init("Font styles is pretty neat!", style: .heading3, color: .primaryColor)
+            .init("Font styles is pretty neat!", style: .heading3, color: .coreEcoColor)
         ]
         
         assertSnapshot(BPKAttributedText(items: items)

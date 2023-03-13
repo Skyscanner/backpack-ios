@@ -34,9 +34,13 @@ struct NavBarGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Default") { _ in },
-                presentable("With buttons") { $0.showButtons = true },
-                presentable("With headers") { $0.showHeaders = true }
+                presentable("Interactive example") { $0.interactive = true },
+                presentable("Large - no back button") { $0.showBackbutton = false },
+                presentable("Large - with back button") { _ in },
+                presentable("Collapsed - simple") {
+                    $0.showRightButton = false
+                    $0.collapsed = true
+                }
             ]
         ).groups()
     }

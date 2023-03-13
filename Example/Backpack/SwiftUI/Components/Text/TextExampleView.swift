@@ -21,44 +21,28 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct TextExampleView: View {
-    let styles = BPKTextContentExample.allFontStyles
+    let items: [(Backpack_SwiftUI.BPKFontStyle, String)]
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ForEach(0..<styles.count, id: \.self) { index in
-                    BPKText(styles[index].1, style: styles[index].0)
+                ForEach(0..<items.count, id: \.self) { index in
+                    HStack {
+                        BPKText(items[index].1, style: items[index].0)
+                        Spacer()
+                    }
                 }
             }
+            .padding()
         }
     }
 }
 
-private struct BPKTextContentExample {
-    static let allFontStyles: [(Backpack_SwiftUI.BPKFontStyle, String)] = [
-        (.hero1, "Hero 1"),
-        (.hero2, "Hero 2"),
-        (.hero3, "Hero 3"),
-        (.hero4, "Hero 4"),
-        (.hero5, "Hero 5"),
-        (.heading1, "Heading 1"),
-        (.heading2, "Heading 2"),
-        (.heading3, "Heading 3"),
-        (.heading4, "Heading 4"),
-        (.heading5, "Heading 5"),
-        (.subheading, "Subheading"),
-        (.bodyLongform, "Body long form"),
-        (.bodyDefault, "Body default"),
-        (.footnote, "Footnote"),
-        (.caption, "Caption"),
-        (.label1, "Label 1"),
-        (.label2, "Label 2"),
-        (.label3, "Label 3")
-    ]
-}
-
 struct TextExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        TextExampleView()
+        TextExampleView(items: [
+            (.bodyLongform, "Body long form"),
+            (.bodyDefault, "Body default")
+        ])
     }
 }
