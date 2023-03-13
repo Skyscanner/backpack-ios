@@ -35,6 +35,26 @@ struct PriceGroupsProvider {
         )
     }
     
+    private func presentablePrice<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: title,
+            customController: { ContentUIHostingController(view) },
+            showPresentable: showPresentable
+        )
+    }
+        
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentablePrice("Small", view: PriceExampleView(size: .small)),
+                presentablePrice("Large", view: PriceExampleView(size: .large))
+            ]
+        ).groups()
+    }
+    
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
