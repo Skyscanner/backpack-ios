@@ -370,7 +370,7 @@ extension ComponentCellsProvider {
             title: "Price",
             tabs: [
                 .uikit(groups: PriceGroupsProvider(showPresentable: show(presentable:)).groups()),
-                .swiftui(groups: PriceGroupsSwiftUIProvider(showPresentable: show(presentable:)).swiftUIGroups())
+                .swiftui(groups: PriceGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Price", tabs: $0) }
         )
