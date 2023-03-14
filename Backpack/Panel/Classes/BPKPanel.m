@@ -114,6 +114,10 @@ const BOOL BPKPanelDefaultPaddedValue = YES;
     [view.topAnchor constraintEqualToAnchor:self.layoutMarginsGuide.topAnchor].active = YES;
     [self.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:view.trailingAnchor].active = YES;
     [self.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:view.bottomAnchor].active = YES;
+    if (!_padded) {
+        view.layer.masksToBounds = YES;
+        view.layer.cornerRadius = BPKCornerRadiusMd;
+    }
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
