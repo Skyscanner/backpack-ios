@@ -39,10 +39,42 @@ final class GradientOverlay: CAGradientLayer {
 
         initGradient()
     }
+
+    override public init(layer: Any) {
+        self.overlayType = .solid
+        self.overlayLevel = .low
+        super.init(layer: layer)
+    }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required public init?(coder aDecoder: NSCoder) {
+        self.overlayType = .solid
+        self.overlayLevel = .low
+        super.init(coder: aDecoder)
+        initGradient()
+    }
+        
+    override public var shadowOffset: CGSize {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    override public var shadowOpacity: Float {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    override public var shadowRadius: CGFloat {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    override public var shadowColor: CGColor? {
+        didSet {
+            setNeedsLayout()
+        }
     }
     
     private func initGradient() {
