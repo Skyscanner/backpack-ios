@@ -207,10 +207,10 @@ extension ComponentCellsProvider {
         )
     }
     private func overlayViews() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Overlay views",
-            storyboard: .named("OverlayView", on: "OverlayViewViewController"),
-            showPresentable: show(presentable:)
+        GroupCellDataSource(
+            title: "Overlay",
+            groups: OverlayGroupsProvider(showPresentable: show(presentable:)).groups(),
+            showChildren: { showChildren(title: "Overlay", children: $0) }
         )
     }
     private func mapView() -> CellDataSource {

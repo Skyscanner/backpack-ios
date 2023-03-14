@@ -40,7 +40,6 @@
 #import "Map.h"
 #import "NavigationBar.h"
 #import "Nudger.h"
-#import "OverlayView.h"
 #import "Panel.h"
 #import "ProgressBar.h"
 #import "SimpleDate.h"
