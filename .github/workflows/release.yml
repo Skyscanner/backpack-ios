@@ -131,3 +131,10 @@ jobs:
         keep_files: true
         external_repository: backpack/ios
         publish_branch: main
+  
+  SupernovaPublish:
+    runs-on: ubuntu-latest
+    environment: Publishing
+    steps:
+      - name: Update Supernova docs
+        run: supernova publish-documentation --apiKey=${{ secrets.SUPERNOVA_API_KEY }} --designSystemid=${{ secrets.SUPERNOVA_DESIGN_SYSTEM_ID }}

@@ -102,32 +102,23 @@ public struct BPKPrice: View {
     public var body: some View {
         VStack(alignment: mapAlignment(), spacing: BPKSpacing.none.value) {
             HStack(spacing: BPKSpacing.sm.value) {
-                if let previousPrice = previousPrice {
-                    accessoryText(previousPrice)
-                        .strikethrough(true)
-                }
-                
-                if previousPrice != nil && leadingText != nil {
-                    accessoryText("•")
-                }
-                
-                if let leadingText = leadingText {
-                    accessoryText(leadingText)
+                ForEach(topLabels(), id: \.self) { item in
+                    accessoryText(item)
+                        .strikethrough(item == previousPrice)
                 }
             }
             
-            if let price = price, alignment == .trailing && size == .small {
+            if alignment == .trailing {
                 VerticalPriceStack(price: price,
                                    trailingText: trailingText,
-                                   fontStyle: .heading4,
+                                   fontStyle: priceFontStyle(),
                                    accessoryFontStyle: accessoryFontStyle())
-            } else if let price = price {
+            } else if alignment == .leading {
                 HorizontalPriceStack(price: price,
                                      trailingText: trailingText,
-                                     fontStyle: .heading2,
+                                     fontStyle: priceFontStyle(),
                                      accessoryFontStyle: accessoryFontStyle())
             }
-            
         }
     }
     
@@ -138,6 +129,28 @@ public struct BPKPrice: View {
     
     private func accessoryFontStyle() -> BPKFontStyle {
         return size == .large ? .footnote : .caption
+    }
+    
+    private func priceFontStyle() -> BPKFontStyle {
+        return size == .large ? .heading2 : .heading4
+    }
+    
+    private func topLabels() -> [String] {
+        var items = [String]()
+        
+        if let previousPrice = previousPrice {
+            items.append(previousPrice)
+        }
+        
+        if previousPrice != nil && leadingText != nil {
+            items.append("•")
+        }
+        
+        if let leadingText = leadingText {
+            items.append(leadingText)
+        }
+        
+        return alignment == .trailing ? items.reversed() : items
     }
     
     private func mapAlignment() -> HorizontalAlignment {
