@@ -483,5 +483,11 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "Floating notification") {
+            app.buttons["With icon and action"].tap()
+            saveScreenshot(component: "floating-notification", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
