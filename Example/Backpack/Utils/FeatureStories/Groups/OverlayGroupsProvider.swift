@@ -17,6 +17,7 @@
  */
 
 import Backpack
+import SwiftUI
 
 struct OverlayGroupsProvider {
     let showPresentable: (Presentable) -> Void
@@ -55,5 +56,35 @@ struct OverlayGroupsProvider {
                 foregroundPresentable()
             ]
         ).groups()
+    }
+    
+    private func presentable<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: title,
+            customController: {
+                let controller = ContentUIHostingController(view)
+                controller.title = title
+                return controller
+            },
+            showPresentable: showPresentable
+        )
+    }
+    
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentable("Solid", view: SolidOverlayExampleView()),
+                presentable("Top", view: LinearOverlayExampleView(direction: .top)),
+                presentable("Bottom", view: LinearOverlayExampleView(direction: .bottom)),
+                presentable("Leading", view: LinearOverlayExampleView(direction: .leading)),
+                presentable("Trailing", view: LinearOverlayExampleView(direction: .trailing)),
+                presentable("Vignette", view: VignetteOverlayExampleView()),
+                presentable("Foreground example", view: ForegroundOverlayExampleView())
+            ]
+        )
+        .groups()
     }
 }

@@ -44,7 +44,7 @@ class Screenshots: BackpackSnapshotTestCase {
        app = createApp()
        setupSnapshot(app)
        app.launch()
-       captureAllScreenshots()
+    //    captureAllScreenshots()
     }
 
     func testDarkModeScreenshots() {
@@ -52,7 +52,7 @@ class Screenshots: BackpackSnapshotTestCase {
        app.launchArguments.append("FORCE_DARK_MODE")
        setupSnapshot(app)
        app.launch()
-       captureAllScreenshots(userInterfaceStyle: .dark)
+    //    captureAllScreenshots(userInterfaceStyle: .dark)
     }
 
     func captureAllScreenshots(userInterfaceStyle: UIUserInterfaceStyle = .light) {
@@ -344,6 +344,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Overlay") {
+            switchTab(title: "UIKit")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
