@@ -50,6 +50,11 @@ struct OverlayModifier: ViewModifier {
 }
 
 public extension View {
+
+    /// Applies an overlay to the view.
+    ///
+    /// - Parameter type: The type of overlay to apply.
+    /// - Returns: A view with the overlay applied.
     func bpkOverlay(_ type: BPKOverlayType) -> some View {
         self.modifier(OverlayModifier(type: type))
     }
