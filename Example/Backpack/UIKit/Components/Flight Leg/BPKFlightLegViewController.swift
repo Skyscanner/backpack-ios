@@ -24,16 +24,52 @@ import UIKit
 import Backpack
 
 class BPKFlightLegViewController: UIViewController {
+    private let departureArrivalTime: BPKLabel // heading5
+    //private let nextDayArrival: BPKLabel // caption <-
+    private let flightDescription: BPKLabel
+    
+    private let stopsInfo: BPKLabel // hug
+    //private let highlightStopsInfo //
+    private let duration: BPKLabel // hug
+    //private let operatedBy: BPKLabel //
+    //private let warning: BPKLabel //
     private let carrierLogo: BPKLargeIconView
     
     init() {
+        self.departureArrivalTime = BPKLabel(fontStyle: .textHeading5)
+        departureArrivalTime.text = "19:50 - 22:45"
+        
+        self.flightDescription = BPKLabel(fontStyle: .textCaption)
+        flightDescription.text = "LHR-SIN, SwissAir"
+        
+        self.stopsInfo = BPKLabel(fontStyle: .textLabel3)
+        stopsInfo.text = "Direct"
+        
+        self.duration = BPKLabel(fontStyle: .textCaption)
+        duration.text = "7h 55m"
+        
         self.carrierLogo = BPKLargeIconView(iconName: .airline)
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let horizontalStack: UIStackView = {
+        let stack = UIStackView(frame: .zero)
+        stack.alignment = .leading
+        stack.spacing = BPKSpacingBase
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        return stack
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +78,52 @@ class BPKFlightLegViewController: UIViewController {
     }
     
     private func setupView() {
-        let stack = UIStackView(frame: .zero)
-        stack.alignment = .center
-        stack.spacing = BPKSpacingMd
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        view.addSubview(stack)
-        stack.addArrangedSubview(carrierLogo)
+        horizontalStack.addArrangedSubview(setupCarrierLogoStackView(logo: carrierLogo))
+        horizontalStack.addArrangedSubview(
+            setupFlightStackView(components: [departureArrivalTime, flightDescription]))
+        horizontalStack.addArrangedSubview(setupDurationStackView(components: [stopsInfo, duration]))
+        
+        view.addSubview(horizontalStack)
         
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            //horizontalStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            horizontalStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            horizontalStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            horizontalStack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
+    }
+    
+    private func setupCarrierLogoStackView(logo: BPKLargeIconView) -> UIView {
+        let logoView = UIStackView()
+        logoView.alignment = .leading
+        logoView.addArrangedSubview(logo)
+        
+//        let containerView = UIView()
+//        containerView.translatesAutoresizingMaskIntoConstraints = false
+//        containerView.addSubview(logoView)
+//
+//        NSLayoutConstraint.activate([
+//            logoView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: BPKSpacingSm),
+//            logoView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+//        ])
+        return logoView//containerView
+    }
+    
+    private func setupFlightStackView(components: [BPKLabel]) -> UIView {
+        let verticalStackView = UIStackView()
+        verticalStackView.alignment = .leading
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.axis = .vertical
+        components.forEach(verticalStackView.addArrangedSubview(_:))
+        return verticalStackView
+    }
+    
+    private func setupDurationStackView(components: [BPKLabel]) -> UIView {
+        let verticalStackView = UIStackView()
+        verticalStackView.alignment = .trailing
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.axis = .vertical
+        components.forEach(verticalStackView.addArrangedSubview(_:))
+        return verticalStackView
     }
 }
