@@ -107,6 +107,7 @@ public final class BPKFlightLeg: UIView {
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         carrierLogoIcon.iconName = carrierLogo
+        carrierLogoIcon.tintColor = BPKColor.textPrimaryColor
         carrierLogoStackView.addArrangedSubview(carrierLogoIcon)
         verticalStackView.addSubview(carrierLogoStackView)
         
