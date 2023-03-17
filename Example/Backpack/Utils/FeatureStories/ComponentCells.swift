@@ -207,10 +207,13 @@ extension ComponentCellsProvider {
         )
     }
     private func overlayViews() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Overlay",
-            groups: OverlayGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Overlay", children: $0) }
+            tabs: [
+                .uikit(groups: OverlayGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: OverlayGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Overlay", tabs: $0) }
         )
     }
     private func mapView() -> CellDataSource {

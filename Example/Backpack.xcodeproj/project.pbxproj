@@ -18,6 +18,7 @@
 		5307FFC2282B07D40081B16E /* BPKIconsExampleUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */; };
 		532BE2A428340BDA0023B0CF /* SwitchExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */; };
 		532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */; };
+		5346071C29C1CCDA00BBD044 /* OverlayExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346071B29C1CCDA00BBD044 /* OverlayExampleView.swift */; };
 		537ED1A5282C36E700032105 /* IconsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1A4282C36E700032105 /* IconsExampleView.swift */; };
 		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B6EC12832B4D10084C721 /* CardExampleView.swift */; };
@@ -199,6 +200,7 @@
 		5307FFC1282B07D40081B16E /* BPKIconsExampleUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKIconsExampleUtil.swift; sourceTree = "<group>"; };
 		532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchExampleView.swift; sourceTree = "<group>"; };
 		532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlaygroundView.swift; sourceTree = "<group>"; };
+		5346071B29C1CCDA00BBD044 /* OverlayExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayExampleView.swift; sourceTree = "<group>"; };
 		537ED1A4282C36E700032105 /* IconsExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsExampleView.swift; sourceTree = "<group>"; };
 		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		538B6EC12832B4D10084C721 /* CardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExampleView.swift; sourceTree = "<group>"; };
@@ -435,6 +437,14 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		5346071A29C1CCC900BBD044 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				5346071B29C1CCDA00BBD044 /* OverlayExampleView.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
 		5390DB5B29098CD700F0F790 /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +666,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5346071A29C1CCC900BBD044 /* Overlay */,
 				AA53992B299687A00008D407 /* Price */,
 				AA617E3E298D6ABD0089E51A /* PageIndicator */,
 				0E8EEFC728A23C1D008BA7A3 /* Skeleton */,
@@ -1407,6 +1418,7 @@
 				BA6D80B5298A4A1600209D53 /* CardWrapperExampleView.swift in Sources */,
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
 				797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */,
+				5346071C29C1CCDA00BBD044 /* OverlayExampleView.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,

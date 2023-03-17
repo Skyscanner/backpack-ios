@@ -344,6 +344,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
 
         navigate(title: "Overlay") {
+            switchTab(title: "UIKit")
             app.tables.staticTexts["Solid"].tap()
             saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
