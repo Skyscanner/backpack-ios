@@ -112,7 +112,7 @@ extension BPKRating where Content == BPKText {
 
 struct BPKRating_Previews: PreviewProvider {
     static var previews: some View {
-        BPKRating<BPKText>(
+        BPKRating(
             title: "Excellent",
             value: 4.5,
             size: .large,

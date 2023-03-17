@@ -38,6 +38,9 @@ struct RatingExampleViewWithTitle: View {
                     ForEach(showScaleAndShowZeroToFive.indices, id: \.self) { index in
 
                         let (showScale, showZeroToFive) = showScaleAndShowZeroToFive[index]
+                        let scale = showZeroToFive ? "5" : "10"
+                        let subtitleAccessibilityLabel = subtitle != nil ? "Base on \(subtitles)" : ""
+                        let accessibilityLabel = "Rated Excellent, 4.5 out of \(scale). \(subtitleAccessibilityLabel)"
                         BPKRating(
                             title: title,
                             value: value,
@@ -45,7 +48,7 @@ struct RatingExampleViewWithTitle: View {
                             size: isDefaultSize ? .default: .large,
                             subtitle: subtitle,
                             showScale: showScale
-                        )
+                        ).accessibilityLabel(accessibilityLabel)
                     }
                 }
             }

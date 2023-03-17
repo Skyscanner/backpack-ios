@@ -8,13 +8,13 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_rating___with-title-text_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_rating___with-title-text_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_rating___with-title-text_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_rating___with-title-text_dm.png" alt="" width="375" /> |
 
 ## Using Title View
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_rating___with-custom-title-view-image_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone%208-swiftui_rating___with-custom-title-view-image_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_rating___with-custom-title-view-image_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_rating___with-custom-title-view-image_dm.png" alt="" width="375" /> |
 
 ## Usage
 
@@ -22,21 +22,20 @@
 
 ```swift
 BPKRating(
-    accessibilityLabel: "Rated Excellent, 4.5 out of 5. Base on 1,532 reviews",
     title: "Excellent",
     value: 4.5,
     ratingScale: .zeroToFive,
     size: .default,
     subtitle: "1,532 reviews",
     showScale: true
-)
+).accessibilityLabel("Rated Excellent, 4.5 out of 5. Base on 1,532 reviews")
 ```
+it's a must to have `.accessibilityLabel("")`
 
 ### with default parameters
 
-```swift 
+```swift
 BPKRating(
-    accessibilityLabel: "Rated Excellent, 4.5 out of 5.",
     title: "Excellent",
     value: 4.5
 )
@@ -47,19 +46,16 @@ BPKRating(
 
 ```swift
 BPKRating(
-    accessibilityLabel: "4.5 out of 5. Base on 1,532 reviews",
     value: 4.5,
     ratingScale: .zeroToFive,
     size: .default,
     subtitle: "1,532 reviews",
     showScale: true
 ) {
-    AnyView(
-        Image("backpack-logo-horizontal")
-            .resizable()
-            .frame(width: 110, height: 24)
-            .aspectRatio(contentMode: .fit)
-    )
-}
+    Image("backpack-logo-horizontal")
+        .resizable()
+        .frame(width: 110, height: 24)
+        .aspectRatio(contentMode: .fit)
+}.accessibilityLabel("4.5 out of 5. Base on 1,532 reviews")
 ```
-
+it's a must to have `.accessibilityLabel("")`
