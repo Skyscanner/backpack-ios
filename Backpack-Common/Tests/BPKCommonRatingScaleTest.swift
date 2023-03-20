@@ -18,11 +18,11 @@
 import XCTest
 @testable import Backpack_Common
 
-class BPKRatingScaleTest: XCTestCase {
+class BPKCommonRatingScaleTest: XCTestCase {
 
     func testDisplayValueWithinBound() {
         // Given
-        let scale = BPKRatingScale.zeroToFive
+        let scale = BPKCommonRatingScale.zeroToFive
         // When
         let result = scale.displayedValue(from: 2)
         // Then
@@ -30,7 +30,7 @@ class BPKRatingScaleTest: XCTestCase {
     }
     func testDisplayValueBelowBound() {
         // Given
-        let scale = BPKRatingScale.zeroToFive
+        let scale = BPKCommonRatingScale.zeroToFive
         // When
         let result = scale.displayedValue(from: -10)
         // Then
@@ -39,7 +39,7 @@ class BPKRatingScaleTest: XCTestCase {
 
     func testDisplayValueAboveBound() {
         // Given
-        let scale = BPKRatingScale.zeroToFive
+        let scale = BPKCommonRatingScale.zeroToFive
         // When
         let result = scale.displayedValue(from: 10)
         // Then
@@ -48,7 +48,7 @@ class BPKRatingScaleTest: XCTestCase {
 
     func testDisplayValueAboveBoundZeroToTen() {
         // Given
-        let scale = BPKRatingScale.zeroToTen
+        let scale = BPKCommonRatingScale.zeroToTen
         // When
         let result = scale.displayedValue(from: 100)
         // Then
@@ -57,7 +57,7 @@ class BPKRatingScaleTest: XCTestCase {
 
     func testDisplayValueRoundDownToOneDecimal() {
         // Given
-        let scale = BPKRatingScale.zeroToTen
+        let scale = BPKCommonRatingScale.zeroToTen
         // When
         let result = scale.displayedValue(from: 2.33333)
         // Then
@@ -66,7 +66,7 @@ class BPKRatingScaleTest: XCTestCase {
 
     func testDisplayValueRoundUpToOneDecimal() {
         // Given
-        let scale = BPKRatingScale.zeroToTen
+        let scale = BPKCommonRatingScale.zeroToTen
         // When
         let result = scale.displayedValue(from: 2.66666)
         // Then

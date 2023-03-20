@@ -18,7 +18,6 @@
 
 import XCTest
 import Backpack
-import Backpack_Common
 import SnapshotTesting
 
 class BPKRatingSnapshotTest: XCTestCase {

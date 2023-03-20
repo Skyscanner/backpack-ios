@@ -17,12 +17,11 @@
  */
 
 import SwiftUI
-import Backpack_Common
 
 public struct BPKRating<Content: View>: View {
 
     private let value: Float
-    private let ratingScale: BPKRatingScale
+    private let ratingScale: Scale
     private let size: Size
     private let subtitle: String?
     private let showScale: Bool
@@ -60,7 +59,7 @@ public struct BPKRating<Content: View>: View {
 
     public init(
         value: Float,
-        ratingScale: BPKRatingScale = .zeroToFive,
+        ratingScale: Scale = .zeroToFive,
         size: Size = .default,
         subtitle: String? = nil,
         showScale: Bool = true,
@@ -92,7 +91,7 @@ extension BPKRating where Content == BPKText {
     public init(
         title: String,
         value: Float,
-        ratingScale: BPKRatingScale = .zeroToFive,
+        ratingScale: Scale = .zeroToFive,
         size: Size = .default,
         subtitle: String? = nil,
         showScale: Bool = true

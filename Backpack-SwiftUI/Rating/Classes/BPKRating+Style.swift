@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Backpack_Common
 
 extension BPKRating {
 
@@ -46,6 +47,29 @@ extension BPKRating {
                     subtitleLabelFontStyle: .bodyDefault
                 )
             }
+        }
+    }
+
+    // A local enum wrapper to avoid the need for importing Backpack_Common when using BPKRating
+    public enum Scale {
+        case zeroToFive
+        case zeroToTen
+
+        private var commonScale: BPKCommonRatingScale {
+            switch self {
+            case .zeroToTen:
+                return .zeroToTen
+            case .zeroToFive:
+                return .zeroToFive
+            }
+        }
+
+        public func displayedValue(from value: Float) -> String {
+            return commonScale.displayedValue(from: value)
+        }
+
+        public func displayedScale() -> String {
+            return commonScale.displayedScale()
         }
     }
 }

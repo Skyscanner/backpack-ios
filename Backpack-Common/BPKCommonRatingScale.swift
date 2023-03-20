@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-public enum BPKRatingScale {
+public enum BPKCommonRatingScale {
     case zeroToFive
     case zeroToTen
 
