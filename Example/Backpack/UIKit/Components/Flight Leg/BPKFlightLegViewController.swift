@@ -16,45 +16,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable trailing_whitespace
-// swiftlint:disable comment_spacing
+
 import Foundation
 import UIKit
 import Backpack
 
 class BPKFlightLegViewController: UIViewController {
-    private let departureArrivalTime: BPKLabel // heading5
-    //private let nextDayArrival: BPKLabel // caption <-
-    private let flightDescription: BPKLabel
+    private let samplteAttributedDefaultDescription: NSAttributedString = {
+        let fontAttribute: [NSAttributedString.Key: Any] = [.font: BPKFont.makeFont(fontStyle: .textCaption)]
+        return NSAttributedString(string: "LHR-SIN, SwissAir", attributes: fontAttribute)
+    }()
     
-    private let stopsInfo: BPKLabel // hug
-    //private let highlightStopsInfo //
-    private let duration: BPKLabel // hug
-    //private let operatedBy: BPKLabel //
-    //private let warning: BPKLabel //
-    private let carrierLogo: BPKLargeIconView
-    
-    init() {
-        self.departureArrivalTime = BPKLabel(fontStyle: .textHeading5)
-        departureArrivalTime.text = "19:50 - 22:45"
+    private let sampleAttributedCompleteDescription: NSAttributedString = {
+        let fontAttribute: [NSAttributedString.Key: Any] = [.font: BPKFont.makeFont(fontStyle: .textCaption)]
+        let highlightAttribute: [NSAttributedString.Key: Any] = [
+            .backgroundColor: BPKColor.statusDangerFillColor,
+            .font: BPKFont.makeFont(fontStyle: .textCaption)
+        ]
+        let originAirportString = NSMutableAttributedString(string: "LHR", attributes: highlightAttribute)
+        let remainingString = NSAttributedString(string: "-SIN, SwissAir", attributes: fontAttribute)
         
-        self.flightDescription = BPKLabel(fontStyle: .textCaption)
-        flightDescription.text = "LHR-SIN, SwissAir"
-        
-        self.stopsInfo = BPKLabel(fontStyle: .textLabel3)
-        stopsInfo.text = "Direct"
-        
-        self.duration = BPKLabel(fontStyle: .textCaption)
-        duration.text = "7h 55m"
-        
-        self.carrierLogo = BPKLargeIconView(iconName: .airline)
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+        originAirportString.append(remainingString)
+        return originAirportString
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,34 +53,69 @@ class BPKFlightLegViewController: UIViewController {
         stackView.spacing = BPKSpacingBase
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        stackView.addArrangedSubview(createFlightLeg())
+        stackView.addArrangedSubview(createHeader("Basic Flight Leg"))
+        stackView.addArrangedSubview(createFlightLeg(
+            departureArrivalTime: "19:51 - 22:45",
+            flightDescription: samplteAttributedDefaultDescription,
+            stopsInfo: "Direct",
+            duration: "7h 55m",
+            carrierLogo: .airline
+        ))
+        
+        stackView.addArrangedSubview(createHeader("Complete Flight Leg"))
+        stackView.addArrangedSubview(createFlightLeg(
+            departureArrivalTime: "19:53 - 22:45",
+            nextDayArrival: "+2",
+            flightDescription: sampleAttributedCompleteDescription,
+            stopsInfo: "2 stops",
+            highlightStopsInfo: true,
+            duration: "7h 55m",
+            operatedBy: "Operated by WestJet",
+            warning: "Change airports in London",
+            carrierLogo: .airlineMultiple
+        ))
         
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            stackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: BPKSpacingBase),
+            stackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -BPKSpacingBase)
         ])
     }
     
     private func createFlightLeg(
-        airportHighlight: [Int]? = nil,
-        operatedBy: BPKLabel? = nil,
-        nextDayArrival: BPKLabel? = nil,
-        stops: BPKLabel? = nil,
-        changeAirports: BPKLabel? = nil,
-        nonBrandedAirline: Bool? = nil,
-        multipleAirlines: Bool? = nil) -> BPKFlightLeg {
-            
+        departureArrivalTime: String,
+        nextDayArrival: String? = nil,
+        flightDescription: NSAttributedString,
+        stopsInfo: String,
+        highlightStopsInfo: Bool = false,
+        duration: String,
+        operatedBy: String? = nil,
+        warning: String? = nil,
+        carrierLogo: BPKIconName
+    ) -> BPKFlightLeg {
+        
         return BPKFlightLeg(
-            departureArrivalTime: "19:50 - 22:45",
-            flightDescription: "LHR-SIN, SwissAir",
-            stopsInfo: "Direct",
-            duration: "7h 55m",
-            carrierLogo: .airline
+            departureArrivalTime: departureArrivalTime,
+            nextDayArrival: nextDayArrival,
+            flightDescription: flightDescription,
+            stopsInfo: stopsInfo,
+            highlightStopsInfo: highlightStopsInfo,
+            duration: duration,
+            operatedBy: operatedBy,
+            warning: warning,
+            carrierLogo: carrierLogo
         )
     }
     
+    private func createHeader(_ text: String) -> BPKLabel {
+        let label = BPKLabel(fontStyle: .textHeading4)
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
 }

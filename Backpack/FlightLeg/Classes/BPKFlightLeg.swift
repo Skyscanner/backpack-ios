@@ -21,23 +21,31 @@ import UIKit
 
 public final class BPKFlightLeg: UIView {
     private var departureArrivalTime: String
-    private var flightDescription: String
+    private var nextDayArrival: String?
+    private var flightDescription: NSAttributedString
     private var stopsInfo: String
+    private var highlightStopsInfo: Bool = false
     private var duration: String
+    private var operatedBy: String?
+    private var warning: String?
     private var carrierLogo: BPKIconName
     
     private let departureArrivalTimeLabel = BPKLabel()
+    private let nextDayArrivalLabel = BPKLabel()
     private let flightDescriptionLabel = BPKLabel()
     private let stopsInfoLabel = BPKLabel()
+    private let highlightStopsInfoDefaultValue = false
     private let durationLabel = BPKLabel()
+    private let operatedByLabel = BPKLabel()
+    private let warningLabel = BPKLabel()
     private let carrierLogoIcon = BPKLargeIconView()
     
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.spacing = BPKSpacingBase
-        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
         return stackView
     }()
     
@@ -64,21 +72,36 @@ public final class BPKFlightLeg: UIView {
         return verticalStackView
     }()
     
+    private let supplementaryDepartureArrivalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     public init(
         departureArrivalTime: String,
-        flightDescription: String,
+        nextDayArrival: String?,
+        flightDescription: NSAttributedString,
         stopsInfo: String,
+        highlightStopsInfo: Bool,
         duration: String,
+        operatedBy: String?,
+        warning: String?,
         carrierLogo: BPKIconName
     ) {
         self.departureArrivalTime = departureArrivalTime
+        self.nextDayArrival = nextDayArrival
         self.flightDescription = flightDescription
         self.stopsInfo = stopsInfo
+        self.highlightStopsInfo = highlightStopsInfo
         self.duration = duration
+        self.operatedBy = operatedBy
+        self.warning = warning
         self.carrierLogo = carrierLogo
         
         super.init(frame: .zero)
-        
         setupView()
     }
     
@@ -125,19 +148,44 @@ public final class BPKFlightLeg: UIView {
         departureArrivalTimeLabel.fontStyle = .textHeading5
         departureArrivalTimeLabel.textColor = BPKColor.textPrimaryColor
         departureArrivalTimeLabel.text = departureArrivalTime
+        supplementaryDepartureArrivalStackView.addArrangedSubview(departureArrivalTimeLabel)
+
+        if nextDayArrival != nil {
+            nextDayArrivalLabel.fontStyle = .textCaption
+            nextDayArrivalLabel.textColor = BPKColor.textPrimaryColor
+            nextDayArrivalLabel.text = nextDayArrival
+            supplementaryDepartureArrivalStackView.addArrangedSubview(nextDayArrivalLabel)
+        }
+        flightStackView.addArrangedSubview(supplementaryDepartureArrivalStackView)
         
         flightDescriptionLabel.fontStyle = .textCaption
         flightDescriptionLabel.textColor = BPKColor.textPrimaryColor
-        flightDescriptionLabel.text = flightDescription
+        flightDescriptionLabel.attributedText = flightDescription
+        flightStackView.addArrangedSubview(flightDescriptionLabel)
         
-        [departureArrivalTimeLabel, flightDescriptionLabel].forEach(flightStackView.addArrangedSubview(_:))
+        if operatedBy != nil {
+            operatedByLabel.fontStyle = .textCaption
+            operatedByLabel.textColor = BPKColor.textPrimaryColor
+            operatedByLabel.text = operatedBy
+            flightStackView.addArrangedSubview(operatedByLabel)
+
+        }
+        
+        if warning != nil {
+            warningLabel.fontStyle = .textLabel3
+            warningLabel.textColor = BPKColor.textErrorColor
+            warningLabel.text = warning
+            flightStackView.addArrangedSubview(warningLabel)
+        }
+        
         return flightStackView
     }
     
     private func setupDurationStackView() -> UIView {
+        
         stopsInfoLabel.fontStyle = .textLabel3
-        stopsInfoLabel.textColor = BPKColor.textPrimaryColor
         stopsInfoLabel.text = stopsInfo
+        stopsInfoLabel.textColor = highlightStopsInfo ? BPKColor.textErrorColor : BPKColor.textPrimaryColor
         
         durationLabel.fontStyle = .textCaption
         durationLabel.textColor = BPKColor.textPrimaryColor
