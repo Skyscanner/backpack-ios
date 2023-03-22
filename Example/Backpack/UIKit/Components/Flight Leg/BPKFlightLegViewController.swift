@@ -22,22 +22,17 @@ import UIKit
 import Backpack
 
 class BPKFlightLegViewController: UIViewController {
-    private let samplteAttributedDefaultDescription: NSAttributedString = {
-        let fontAttribute: [NSAttributedString.Key: Any] = [.font: BPKFont.makeFont(fontStyle: .textCaption)]
-        return NSAttributedString(string: "LHR-SIN, SwissAir", attributes: fontAttribute)
+    private let defaultDescription: NSAttributedString = {
+        return NSAttributedString(string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes())
     }()
     
-    private let sampleAttributedCompleteDescription: NSAttributedString = {
-        let fontAttribute: [NSAttributedString.Key: Any] = [.font: BPKFont.makeFont(fontStyle: .textCaption)]
-        let highlightAttribute: [NSAttributedString.Key: Any] = [
-            .backgroundColor: BPKColor.statusDangerFillColor,
-            .font: BPKFont.makeFont(fontStyle: .textCaption)
-        ]
-        let originAirportString = NSMutableAttributedString(string: "LHR", attributes: highlightAttribute)
-        let remainingString = NSAttributedString(string: "-SIN, SwissAir", attributes: fontAttribute)
+    private let highlightedDescription: NSAttributedString = {
+        let flightDescriptionString = NSMutableAttributedString(
+            string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes())
+        let range = (flightDescriptionString.string as NSString).range(of: "SIN")
+        flightDescriptionString.addAttributes(BPKFlightLeg.airportHighlightAttributes(), range: range)
         
-        originAirportString.append(remainingString)
-        return originAirportString
+        return flightDescriptionString
     }()
     
     override func viewDidLoad() {
@@ -54,26 +49,10 @@ class BPKFlightLegViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.addArrangedSubview(createHeader("Basic Flight Leg"))
-        stackView.addArrangedSubview(createFlightLeg(
-            departureArrivalTime: "19:51 - 22:45",
-            flightDescription: samplteAttributedDefaultDescription,
-            stopsInfo: "Direct",
-            duration: "7h 55m",
-            carrierLogo: .airline
-        ))
+        stackView.addArrangedSubview(createSampleFlightLeg())
         
         stackView.addArrangedSubview(createHeader("Complete Flight Leg"))
-        stackView.addArrangedSubview(createFlightLeg(
-            departureArrivalTime: "19:53 - 22:45",
-            nextDayArrival: "+2",
-            flightDescription: sampleAttributedCompleteDescription,
-            stopsInfo: "2 stops",
-            highlightStopsInfo: true,
-            duration: "7h 55m",
-            operatedBy: "Operated by WestJet",
-            warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
-        ))
+        stackView.addArrangedSubview(createCompleteFlightLeg())
         
         view.addSubview(stackView)
         
@@ -109,6 +88,30 @@ class BPKFlightLegViewController: UIViewController {
             operatedBy: operatedBy,
             warning: warning,
             carrierLogo: carrierLogo
+        )
+    }
+    
+    private func createSampleFlightLeg() -> UIView {
+        return createFlightLeg(
+            departureArrivalTime: "19:51 - 22:45",
+            flightDescription: defaultDescription,
+            stopsInfo: "Direct",
+            duration: "7h 55m",
+            carrierLogo: .airline
+        )
+    }
+    
+    private func createCompleteFlightLeg() -> UIView {
+        return createFlightLeg(
+            departureArrivalTime: "19:53 - 22:45",
+            nextDayArrival: "+2",
+            flightDescription: highlightedDescription,
+            stopsInfo: "2 stops",
+            highlightStopsInfo: true,
+            duration: "7h 55m",
+            operatedBy: "Operated by WestJet",
+            warning: "Change airports in London",
+            carrierLogo: .airlineMultiple
         )
     }
     
