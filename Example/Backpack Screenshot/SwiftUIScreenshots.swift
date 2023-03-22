@@ -166,5 +166,10 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "Panels") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
     }
 }
