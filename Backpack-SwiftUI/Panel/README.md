@@ -12,4 +12,34 @@
 ## Usage
 
 ```swift
+import SwiftUI
+import Backpack_SwiftUI
+
+struct PanelExampleView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: BPKSpacing.md.value) {
+            BPKText("Default", style: .heading4)
+            BPKPanel() {
+                exampleContent
+            }
+            
+            BPKText("No padding", style: .heading4)
+            BPKPanel(padding: false) {
+                exampleContent
+            }
+            Spacer()
+        }
+        .padding(.base)
+    }
+    
+    private var exampleContent: some View {
+        VStack {
+            BPKText("Content")
+                .foregroundColor(.textOnLightColor)
+        }
+        .frame(maxWidth: .greatestFiniteMagnitude)
+        .padding()
+        .background(.statusWarningFillColor)
+    }
+}
 ```
