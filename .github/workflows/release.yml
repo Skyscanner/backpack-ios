@@ -137,4 +137,4 @@ jobs:
     environment: Publishing
     steps:
       - name: Update Supernova docs
-        run: supernova publish-documentation --apiKey=${{ secrets.SUPERNOVA_API_KEY }} --designSystemid=${{ secrets.SUPERNOVA_DESIGN_SYSTEM_ID }}
+        run: npx @supernovaio/cli publish-documentation --apiKey=${{ secrets.SUPERNOVA_API_KEY }} --designSystemId=${{ secrets.SUPERNOVA_DESIGN_SYSTEM_ID }}

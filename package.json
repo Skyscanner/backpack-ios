@@ -24,7 +24,6 @@
     "@babel/preset-env": "^7.15.6",
     "@skyscanner/bpk-foundations-ios": "^6.0.0",
     "@skyscanner/bpk-svgs": "^16.3.0",
-    "@supernovaio/cli": "^0.9.14",
     "babel-eslint": "^10.1.0",
     "danger": "^11.0.2",
     "eslint_d": "^11.1.0",
