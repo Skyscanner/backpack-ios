@@ -158,7 +158,6 @@ public final class BPKFlightLeg: UIView {
     }
     
     private func setupCarrierLogo() -> UIView {
-        
         let verticalStackView = UIView()
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -223,6 +222,7 @@ public final class BPKFlightLeg: UIView {
         durationLabel.text = duration
         
         [stopsInfoLabel, durationLabel].forEach(trailingStackView.addArrangedSubview(_:))
+        trailingStackView.spacing = BPKSpacingSm
         return trailingStackView
     }
 }
