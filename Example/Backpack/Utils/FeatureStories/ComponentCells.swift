@@ -224,10 +224,18 @@ extension ComponentCellsProvider {
         )
     }
     private func panels() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Panels",
-            storyboard: .named("Panel", on: "PanelsViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "Panel",
+                    identifier: "PanelsViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PanelExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Panels", tabs: $0) }
         )
     }
     private func progressBar() -> CellDataSource {
@@ -355,7 +363,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
         )
     }
-    
     private func carousel() -> CellDataSource {
         ComponentCellDataSource(
             title: "Carousel",
@@ -367,7 +374,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
         )
     }
-    
     private func price() -> CellDataSource {
         ComponentCellDataSource(
             title: "Price",
@@ -378,7 +384,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Price", tabs: $0) }
         )
     }
-    
     private func floatingNotification() -> CellDataSource {
         ComponentCellDataSource(
             title: "Floating notification",

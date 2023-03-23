@@ -66,6 +66,7 @@
 		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
 		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
+		79033CD529CAC88300127CDC /* PanelExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79033CD429CAC88300127CDC /* PanelExampleView.swift */; };
 		7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */; };
 		7928F7D5286EDAB100D8B9E8 /* SpinnerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */; };
 		793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */; };
@@ -256,6 +257,7 @@
 		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
 		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
+		79033CD429CAC88300127CDC /* PanelExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelExampleView.swift; sourceTree = "<group>"; };
 		7914E3AB286AB05600EB9F90 /* BadgeExampleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeExampleVIew.swift; sourceTree = "<group>"; };
 		7928F7D4286EDAB100D8B9E8 /* SpinnerExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerExampleView.swift; sourceTree = "<group>"; };
 		793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCellDataSource.swift; sourceTree = "<group>"; };
@@ -590,6 +592,14 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		79033CD329CAC87000127CDC /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				79033CD429CAC88300127CDC /* PanelExampleView.swift */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
 		7914E3AA286AB03C00EB9F90 /* Badge */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +676,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79033CD329CAC87000127CDC /* Panel */,
 				5346071A29C1CCC900BBD044 /* Overlay */,
 				AA53992B299687A00008D407 /* Price */,
 				AA617E3E298D6ABD0089E51A /* PageIndicator */,
@@ -1384,6 +1395,7 @@
 				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
+				79033CD529CAC88300127CDC /* PanelExampleView.swift in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
 				3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */,
 				53E075A927FC97C60033147C /* ToastGroups.swift in Sources */,
