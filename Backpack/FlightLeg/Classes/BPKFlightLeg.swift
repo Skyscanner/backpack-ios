@@ -36,12 +36,6 @@ public final class BPKFlightLeg: UIView {
         departureArrtvalTimeLabel.textColor = BPKColor.textPrimaryColor
         return departureArrtvalTimeLabel
     }()
-    private let nextDayArrivalLabel: BPKLabel = {
-        let nextDayArrivalLabel = BPKLabel()
-        nextDayArrivalLabel.fontStyle = .textCaption
-        nextDayArrivalLabel.textColor = BPKColor.textPrimaryColor
-        return nextDayArrivalLabel
-    }()
     private let flightDescriptionLabel: BPKLabel = {
         let flightDescriptionLabel = BPKLabel()
         flightDescriptionLabel.fontStyle = .textCaption
@@ -182,14 +176,20 @@ public final class BPKFlightLeg: UIView {
     }
     
     private func setupFlightStackView() -> UIView {
-        departureArrivalTimeLabel.text = departureArrivalTime
-        flightTimeStackView.addArrangedSubview(departureArrivalTimeLabel)
+        let departureArrivalTimeAttributes: [NSAttributedString.Key: Any] =
+            [.font: BPKFont.makeFont(fontStyle: .textHeading5)]
+        let departureArrivalTimeString = NSMutableAttributedString(
+            string: departureArrivalTime, attributes: departureArrivalTimeAttributes)
         
         if nextDayArrival != nil {
-            nextDayArrivalLabel.text = nextDayArrival
-            flightTimeStackView.addArrangedSubview(nextDayArrivalLabel)
+            let nextDayArrivalAttributes: [NSAttributedString.Key: Any] =
+            [.font: BPKFont.makeFont(fontStyle: .textCaption), .baselineOffset: 4]
+            let nextDayArrivalString = NSMutableAttributedString(
+                string: nextDayArrival ?? "", attributes: nextDayArrivalAttributes)
+            departureArrivalTimeString.append(nextDayArrivalString)
         }
-        middleStackView.addArrangedSubview(flightTimeStackView)
+        departureArrivalTimeLabel.attributedText = departureArrivalTimeString
+        middleStackView.addArrangedSubview(departureArrivalTimeLabel)
         
         flightDescriptionLabel.attributedText = flightDescription
         middleStackView.addArrangedSubview(flightDescriptionLabel)
