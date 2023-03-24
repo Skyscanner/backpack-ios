@@ -59,6 +59,7 @@ public final class BPKFlightLeg: UIView {
         let operatedByLabel = BPKLabel()
         operatedByLabel.fontStyle = .textCaption
         operatedByLabel.textColor = BPKColor.textPrimaryColor
+        operatedByLabel.numberOfLines = 0
         return operatedByLabel
     }()
     private let warningLabel: BPKLabel = {
@@ -208,7 +209,11 @@ public final class BPKFlightLeg: UIView {
     }
     
     public static func airportHighlightAttributes() -> [NSAttributedString.Key: Any] {
-        return [.backgroundColor: BPKColor.statusDangerFillColor, .font: BPKFont.makeFont(fontStyle: .textCaption)]
+        return [
+            .backgroundColor: BPKColor.statusDangerFillColor,
+            .font: BPKFont.makeFont(fontStyle: .textCaption),
+            .foregroundColor: BPKColor.textOnLightColor
+        ]
     }
     
     public static func descriptionDefaultAttributes() -> [NSAttributedString.Key: Any] {
