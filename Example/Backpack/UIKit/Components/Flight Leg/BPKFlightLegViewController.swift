@@ -44,7 +44,7 @@ class BPKFlightLegViewController: UIViewController {
     private func setupView() {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering
+        stackView.distribution = .fillProportionally
         stackView.spacing = BPKSpacingBase
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -53,7 +53,7 @@ class BPKFlightLegViewController: UIViewController {
         
         stackView.addArrangedSubview(createHeader("Complete Flight Leg"))
         stackView.addArrangedSubview(createCompleteFlightLeg())
-        
+
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -106,7 +106,7 @@ class BPKFlightLegViewController: UIViewController {
             departureArrivalTime: "19:53 - 22:45",
             nextDayArrival: "+2",
             flightDescription: highlightedDescription,
-            stopsInfo: "2 stops",
+            stopsInfo: "2 Stops",
             highlightStopsInfo: true,
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
