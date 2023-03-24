@@ -23,7 +23,7 @@ import SnapshotTesting
 class BPKRatingSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = false
+        isRecording = true
     }
 
     private let sizes = [BPKRatingSize.default, BPKRatingSize.large]
