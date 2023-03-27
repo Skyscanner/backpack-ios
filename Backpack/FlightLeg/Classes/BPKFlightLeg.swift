@@ -76,7 +76,7 @@ public final class BPKFlightLeg: UIView {
     }()
     private let carrierLogoIcon: BPKLargeIconView = {
         let carrierLogoIcon = BPKLargeIconView()
-        carrierLogoIcon.tintColor = BPKColor.textPrimaryColor
+        carrierLogoIcon.tintColor = BPKColor.textOnLightColor
         return carrierLogoIcon
     }()
     
@@ -93,6 +93,9 @@ public final class BPKFlightLeg: UIView {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.cornerRadius = BPKCornerRadiusXs
+        stackView.spacing = BPKSpacingSm
+        stackView.backgroundColor = BPKColor.textOnDarkColor
         return stackView
     }()
     
