@@ -73,6 +73,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             flightLeg.leadingAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.leadingAnchor, constant: BPKSpacingBase),
             flightLeg.trailingAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.trailingAnchor, constant: -BPKSpacingBase),
             flightLeg.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+            parentView.widthAnchor.constraint(equalToConstant: 375)
         ])
 
         return parentView
