@@ -53,7 +53,13 @@ class BPKFlightLegViewController: UIViewController {
         
         stackView.addArrangedSubview(createHeader("Complete Flight Leg"))
         stackView.addArrangedSubview(createCompleteFlightLeg())
+        
+        stackView.addArrangedSubview(createHeader("Complete Flight Leg /w Long Desc"))
+        stackView.addArrangedSubview(createCompleteFlightLegWithLongDescription())
 
+        stackView.addArrangedSubview(createHeader("Complete Flight Leg /w Long Stops"))
+        stackView.addArrangedSubview(createCompleteFlightLegWithLongStopsInfo())
+        
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
@@ -93,7 +99,7 @@ class BPKFlightLegViewController: UIViewController {
     
     private func createSampleFlightLeg() -> UIView {
         return createFlightLeg(
-            departureArrivalTime: "19:51 - 22:45",
+            departureArrivalTime: "19:50 - 22:45",
             flightDescription: defaultDescription,
             stopsInfo: "Direct",
             duration: "7h 55m",
@@ -103,10 +109,39 @@ class BPKFlightLegViewController: UIViewController {
     
     private func createCompleteFlightLeg() -> UIView {
         return createFlightLeg(
-            departureArrivalTime: "19:53 - 22:45",
+            departureArrivalTime: "19:50 - 22:45",
             nextDayArrival: "+2",
             flightDescription: highlightedDescription,
             stopsInfo: "2 Stops",
+            highlightStopsInfo: true,
+            duration: "7h 55m",
+            operatedBy: "Operated by WestJet",
+            warning: "Change airports in London",
+            carrierLogo: .airlineMultiple
+        )
+    }
+    
+    private func createCompleteFlightLegWithLongDescription() -> UIView {
+        return createFlightLeg(
+            departureArrivalTime: "19:50 - 22:45",
+            nextDayArrival: "+2",
+            flightDescription: highlightedDescription,
+            stopsInfo: "2 Stops",
+            highlightStopsInfo: true,
+            duration: "7h 55m",
+            operatedBy: "Operated by WestJet Operated by WestJet Operated" +
+            "by WestJet Operated by WestJet Operated by WestJet",
+            warning: "Change airports in London",
+            carrierLogo: .airlineMultiple
+        )
+    }
+    
+    private func createCompleteFlightLegWithLongStopsInfo() -> UIView {
+        return createFlightLeg(
+            departureArrivalTime: "19:50 - 22:45",
+            nextDayArrival: "+2",
+            flightDescription: highlightedDescription,
+            stopsInfo: "2 Zwischenlandungen",
             highlightStopsInfo: true,
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
