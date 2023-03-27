@@ -23,7 +23,7 @@ import SnapshotTesting
 final class BPKFlightLegSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = false
+        isRecording = true
     }
     
     private static let defaultDescription: NSAttributedString =
@@ -75,8 +75,6 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             flightLeg.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
         ])
 
-        print("dennis: \(flightLeg.frame)")
-        
         return parentView
     }
     
