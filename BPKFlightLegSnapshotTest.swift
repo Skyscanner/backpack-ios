@@ -23,7 +23,7 @@ import SnapshotTesting
 final class BPKFlightLegSnapshotTest: XCTestCase {
     override func setUp() {
         super.setUp()
-        isRecording = true
+        isRecording = false
     }
     
     private static let defaultDescription: NSAttributedString =
