@@ -34,21 +34,18 @@ public final class BPKFlightLeg: UIView {
         let departureArrtvalTimeLabel = BPKLabel()
         departureArrtvalTimeLabel.fontStyle = .textHeading5
         departureArrtvalTimeLabel.textColor = BPKColor.textPrimaryColor
-        departureArrtvalTimeLabel.lineBreakMode = .byWordWrapping
         return departureArrtvalTimeLabel
     }()
     private let flightDescriptionLabel: BPKLabel = {
         let flightDescriptionLabel = BPKLabel()
         flightDescriptionLabel.fontStyle = .textCaption
         flightDescriptionLabel.textColor = BPKColor.textPrimaryColor
-        flightDescriptionLabel.lineBreakMode = .byWordWrapping
         return flightDescriptionLabel
     }()
     private let stopsInfoLabel: BPKLabel = {
         let stopsInfoLabel = BPKLabel()
         stopsInfoLabel.fontStyle = .textLabel3
         stopsInfoLabel.textColor = BPKColor.textPrimaryColor
-        stopsInfoLabel.lineBreakMode = .byWordWrapping
         return stopsInfoLabel
     }()
     private let highlightStopsInfoDefaultValue = false
@@ -56,7 +53,6 @@ public final class BPKFlightLeg: UIView {
         let durationLabel = BPKLabel()
         durationLabel.fontStyle = .textCaption
         durationLabel.textColor = BPKColor.textPrimaryColor
-        durationLabel.lineBreakMode = .byWordWrapping
         return durationLabel
     }()
     private let operatedByLabel: BPKLabel = {
@@ -64,19 +60,17 @@ public final class BPKFlightLeg: UIView {
         operatedByLabel.fontStyle = .textCaption
         operatedByLabel.textColor = BPKColor.textPrimaryColor
         operatedByLabel.numberOfLines = 0
-        operatedByLabel.lineBreakMode = .byWordWrapping
         return operatedByLabel
     }()
     private let warningLabel: BPKLabel = {
         let warningLabel = BPKLabel()
         warningLabel.fontStyle = .textLabel3
         warningLabel.textColor = BPKColor.textErrorColor
-        warningLabel.lineBreakMode = .byWordWrapping
         return warningLabel
     }()
     private let carrierLogoIcon: BPKLargeIconView = {
         let carrierLogoIcon = BPKLargeIconView()
-        carrierLogoIcon.tintColor = BPKColor.textOnLightColor
+        carrierLogoIcon.tintColor = BPKColor.textPrimaryColor
         return carrierLogoIcon
     }()
     
@@ -93,9 +87,6 @@ public final class BPKFlightLeg: UIView {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.layer.cornerRadius = BPKCornerRadiusXs
-        stackView.spacing = BPKSpacingSm
-        stackView.backgroundColor = BPKColor.textOnDarkColor
         return stackView
     }()
     
