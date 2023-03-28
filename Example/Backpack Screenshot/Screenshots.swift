@@ -492,7 +492,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
       
         navigate(title: "Flight Leg") {
-            saveScreenshot(component: "flight leg", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "flight-leg", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }
