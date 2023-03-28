@@ -113,6 +113,33 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Overlay") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Solid"].tap()
+            saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Top"].tap()
+            saveScreenshot(component: "overlay", scenario: "top", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Bottom"].tap()
+            saveScreenshot(component: "overlay", scenario: "bottom", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Leading"].tap()
+            saveScreenshot(component: "overlay", scenario: "leading", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Trailing"].tap()
+            saveScreenshot(component: "overlay", scenario: "trailing", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Vignette"].tap()
+            saveScreenshot(component: "overlay", scenario: "vignette", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Badges") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "badge", scenario: "default", userInterfaceStyle: userInterfaceStyle)
@@ -138,6 +165,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Large"].tap()
             saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+        }
+        
+        navigate(title: "Panels") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
     }
 }

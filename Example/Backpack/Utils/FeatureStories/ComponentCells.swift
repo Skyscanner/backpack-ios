@@ -209,10 +209,13 @@ extension ComponentCellsProvider {
         )
     }
     private func overlayViews() -> CellDataSource {
-        PresentableCellDataSource(
-            title: "Overlay views",
-            storyboard: .named("OverlayView", on: "OverlayViewViewController"),
-            showPresentable: show(presentable:)
+        ComponentCellDataSource(
+            title: "Overlay",
+            tabs: [
+                .uikit(groups: OverlayGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(groups: OverlayGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Overlay", tabs: $0) }
         )
     }
     private func mapView() -> CellDataSource {
@@ -223,10 +226,18 @@ extension ComponentCellsProvider {
         )
     }
     private func panels() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Panels",
-            storyboard: .named("Panel", on: "PanelsViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "Panel",
+                    identifier: "PanelsViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(PanelExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Panels", tabs: $0) }
         )
     }
     private func progressBar() -> CellDataSource {
@@ -354,7 +365,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Page indicators", tabs: $0) }
         )
     }
-    
     private func carousel() -> CellDataSource {
         ComponentCellDataSource(
             title: "Carousel",
@@ -366,7 +376,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
         )
     }
-    
     private func price() -> CellDataSource {
         ComponentCellDataSource(
             title: "Price",
@@ -377,7 +386,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Price", tabs: $0) }
         )
     }
-    
     private func flightLeg() -> CellDataSource {
         ComponentCellDataSource(
             title: "Flight Leg",
@@ -389,7 +397,6 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Flight Leg", tabs: $0) }
         )
     }
-    
     private func floatingNotification() -> CellDataSource {
         ComponentCellDataSource(
             title: "Floating notification",
