@@ -14,4 +14,4 @@ find ./Backpack -name "*.[hm]" -exec clang-format -i {} \+
 
 checkPristine "Formatter failed to format some files."
 
-bundle exec pod lib lint --allow-warnings --skip-tests
+bundle exec pod lib lint --allow-warnings --skip-tests --include-podspecs=Backpack-Common.podspec
