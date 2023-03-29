@@ -24,7 +24,7 @@ public final class BPKFlightLeg: UIView {
     private let nextDayArrival: String?
     private let flightDescription: NSAttributedString
     private let stopsInfo: String
-    private var highlightStopsInfo: Bool = false
+    private let highlightStopsInfo: Bool
     private let duration: String
     private let operatedBy: String?
     private let warning: String?
@@ -127,7 +127,7 @@ public final class BPKFlightLeg: UIView {
         nextDayArrival: String?,
         flightDescription: NSAttributedString,
         stopsInfo: String,
-        highlightStopsInfo: Bool,
+        highlightStopsInfo: Bool = false,
         duration: String,
         operatedBy: String?,
         warning: String?,
