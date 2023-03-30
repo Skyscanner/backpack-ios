@@ -23,14 +23,14 @@ import Backpack
 
 class BPKFlightLegViewController: UIViewController {
     private let defaultDescription: NSAttributedString = {
-        return NSAttributedString(string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes())
+        NSAttributedString(string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes)
     }()
     
     private let highlightedDescription: NSAttributedString = {
         let flightDescriptionString = NSMutableAttributedString(
-            string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes())
+            string: "LHR-SIN, SwissAir", attributes: BPKFlightLeg.descriptionDefaultAttributes)
         let range = (flightDescriptionString.string as NSString).range(of: "SIN")
-        flightDescriptionString.addAttributes(BPKFlightLeg.airportHighlightAttributes(), range: range)
+        flightDescriptionString.addAttributes(BPKFlightLeg.airportHighlightAttributes, range: range)
         
         return flightDescriptionString
     }()

@@ -88,40 +88,6 @@ public final class BPKFlightLeg: UIView {
         return stackView
     }()
     
-    private let leadingStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .leading
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.layer.cornerRadius = BPKCornerRadiusXs
-        stackView.spacing = BPKSpacingSm
-        stackView.backgroundColor = BPKColor.textOnDarkColor
-        return stackView
-    }()
-    
-    private let middleStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .leading
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private let trailingStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .trailing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private let flightTimeStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .leading
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        return stackView
-    }()
-    
     public init(
         departureArrivalTime: String,
         nextDayArrival: String?,
@@ -145,6 +111,7 @@ public final class BPKFlightLeg: UIView {
         
         super.init(frame: .zero)
         setupView()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -155,7 +122,9 @@ public final class BPKFlightLeg: UIView {
         containerStackView.addArrangedSubview(createCarrierLogo())
         containerStackView.addArrangedSubview(createFlightStackView())
         containerStackView.addArrangedSubview(createDurationStackView())
-        
+    }
+    
+    private func setupConstraints() {
         addSubview(containerStackView)
         
         NSLayoutConstraint.activate([
@@ -167,6 +136,13 @@ public final class BPKFlightLeg: UIView {
     }
     
     private func createCarrierLogo() -> UIView {
+        let leadingStackView = UIStackView()
+        leadingStackView.alignment = .leading
+        leadingStackView.translatesAutoresizingMaskIntoConstraints = false
+        leadingStackView.layer.cornerRadius = BPKCornerRadiusXs
+        leadingStackView.spacing = BPKSpacingSm
+        leadingStackView.backgroundColor = BPKColor.textOnDarkColor
+        
         let verticalStackView = UIView()
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -184,6 +160,10 @@ public final class BPKFlightLeg: UIView {
     }
     
     private func createFlightStackView() -> UIView {
+        let middleStackView = UIStackView()
+        middleStackView.alignment = .leading
+        middleStackView.translatesAutoresizingMaskIntoConstraints = false
+        middleStackView.axis = .vertical
         
         departureArrivalTimeLabel.attributedText = createCompleteDepartureArrivalTimeLabel()
         middleStackView.addArrangedSubview(departureArrivalTimeLabel)
@@ -221,19 +201,24 @@ public final class BPKFlightLeg: UIView {
         return departureArrivalTimeString
     }
     
-    public static func airportHighlightAttributes() -> [NSAttributedString.Key: Any] {
-        return [
+    public static var airportHighlightAttributes: [NSAttributedString.Key: Any] {
+        [
             .backgroundColor: BPKColor.statusDangerFillColor,
             .font: BPKFont.makeFont(fontStyle: .textCaption),
             .foregroundColor: BPKColor.textOnLightColor
         ]
     }
     
-    public static func descriptionDefaultAttributes() -> [NSAttributedString.Key: Any] {
-        return [.font: BPKFont.makeFont(fontStyle: .textCaption)]
+    public static var descriptionDefaultAttributes: [NSAttributedString.Key: Any] {
+        [.font: BPKFont.makeFont(fontStyle: .textCaption)]
     }
     
     private func createDurationStackView() -> UIView {
+        let trailingStackView = UIStackView()
+        trailingStackView.alignment = .trailing
+        trailingStackView.translatesAutoresizingMaskIntoConstraints = false
+        trailingStackView.axis = .vertical
+    
         stopsInfoLabel.text = stopsInfo
         stopsInfoLabel.textColor = highlightStopsInfo ? BPKColor.textErrorColor : BPKColor.textPrimaryColor
         
