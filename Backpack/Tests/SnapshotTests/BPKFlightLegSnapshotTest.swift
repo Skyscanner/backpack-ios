@@ -70,8 +70,14 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
         
         NSLayoutConstraint.activate([
             flightLeg.topAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.topAnchor),
-            flightLeg.leadingAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.leadingAnchor, constant: BPKSpacingBase),
-            flightLeg.trailingAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.trailingAnchor, constant: -BPKSpacingBase),
+            flightLeg.leadingAnchor.constraint(
+                equalTo: parentView.safeAreaLayoutGuide.leadingAnchor,
+                constant: BPKSpacingBase
+            ),
+            flightLeg.trailingAnchor.constraint(
+                equalTo: parentView.safeAreaLayoutGuide.trailingAnchor,
+                constant: -BPKSpacingBase
+            ),
             flightLeg.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
             parentView.widthAnchor.constraint(equalToConstant: 375)
         ])
