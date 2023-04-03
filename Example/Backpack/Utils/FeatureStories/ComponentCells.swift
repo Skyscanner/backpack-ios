@@ -329,10 +329,15 @@ extension ComponentCellsProvider {
         )
     }
     private func textField() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Text fields",
-            storyboard: .named("TextField", on: "TextFieldViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "TextField", identifier: "TextFieldViewController")),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(TextFieldExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Text Fields", tabs: $0) }
         )
     }
     private func textViews() -> CellDataSource {

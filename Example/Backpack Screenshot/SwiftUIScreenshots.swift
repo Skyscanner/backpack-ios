@@ -165,6 +165,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        navigate(title: "Text fields") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")
             
