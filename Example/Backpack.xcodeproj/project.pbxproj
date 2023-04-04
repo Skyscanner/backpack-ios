@@ -21,6 +21,7 @@
 		532BE2A428340BDA0023B0CF /* SwitchExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */; };
 		532E03572831B64000DA9FC0 /* ButtonsPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */; };
 		5346071C29C1CCDA00BBD044 /* OverlayExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346071B29C1CCDA00BBD044 /* OverlayExampleView.swift */; };
+		53524A0329DB4C6100DF7EB2 /* NudgerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53524A0229DB4C6100DF7EB2 /* NudgerExampleView.swift */; };
 		537ED1A5282C36E700032105 /* IconsExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1A4282C36E700032105 /* IconsExampleView.swift */; };
 		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		538B6EC22832B4D10084C721 /* CardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538B6EC12832B4D10084C721 /* CardExampleView.swift */; };
@@ -207,6 +208,7 @@
 		532BE2A328340BDA0023B0CF /* SwitchExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchExampleView.swift; sourceTree = "<group>"; };
 		532E03562831B64000DA9FC0 /* ButtonsPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlaygroundView.swift; sourceTree = "<group>"; };
 		5346071B29C1CCDA00BBD044 /* OverlayExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayExampleView.swift; sourceTree = "<group>"; };
+		53524A0229DB4C6100DF7EB2 /* NudgerExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudgerExampleView.swift; sourceTree = "<group>"; };
 		537ED1A4282C36E700032105 /* IconsExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsExampleView.swift; sourceTree = "<group>"; };
 		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		538B6EC12832B4D10084C721 /* CardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExampleView.swift; sourceTree = "<group>"; };
@@ -462,6 +464,14 @@
 			path = Overlay;
 			sourceTree = "<group>";
 		};
+		53524A0129DB4C6100DF7EB2 /* Nudger */ = {
+			isa = PBXGroup;
+			children = (
+				53524A0229DB4C6100DF7EB2 /* NudgerExampleView.swift */,
+			);
+			path = Nudger;
+			sourceTree = "<group>";
+		};
 		5390DB5B29098CD700F0F790 /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,6 +701,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				53524A0129DB4C6100DF7EB2 /* Nudger */,
 				79033CD329CAC87000127CDC /* Panel */,
 				5346071A29C1CCC900BBD044 /* Overlay */,
 				17DD297329A3ED9200FC1354 /* Rating */,
@@ -1504,6 +1515,7 @@
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */,
+				53524A0329DB4C6100DF7EB2 /* NudgerExampleView.swift in Sources */,
 				7914E3AC286AB05600EB9F90 /* BadgeExampleVIew.swift in Sources */,
 				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
 				AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */,

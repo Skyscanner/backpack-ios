@@ -181,5 +181,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+        
+        navigate(title: "Nudger") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "nudger", scenario: "default",
+                           userInterfaceStyle: userInterfaceStyle)
+        }
     }
 }
