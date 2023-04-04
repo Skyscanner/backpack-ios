@@ -24,7 +24,6 @@ public struct BPKNudger: View {
     @State private var canDecrement = true
     @Binding private var value: Int
 
-    private let accessibilityLabel: String
     private var minValue: Int
     private var maxValue: Int
     private var step: Int
@@ -40,12 +39,11 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
-    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1, accessibilityLabel: String) {
+    public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
         minValue = min
         maxValue = max
         self.step = step
         self._value = value
-        self.accessibilityLabel = accessibilityLabel
     }
 
     public var body: some View {
@@ -53,12 +51,12 @@ public struct BPKNudger: View {
             BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
                 .buttonStyle(.secondary)
             BPKText("\(value)", style: .heading5)
+                .frame(minWidth: minWidth)
             BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
                 .buttonStyle(.secondary)
         }
         .accessibilityElement()
-        .accessibilityValue("\(value)")
-        .accessibilityLabel(accessibilityLabel)
+        .accessibilityValue(Text(String(value)))
         .accessibilityAdjustableAction { direction in
             switch direction {
             case .increment: increment()
@@ -74,6 +72,15 @@ public struct BPKNudger: View {
         }
     }
 
+    private var minWidth: CGFloat {
+        // Reserve space for 2 digits. 9 is one of the widest digits
+        // in Relative so 99 is one of the widest two digit numbers possible
+        let width = "99".size(withAttributes: [NSAttributedString.Key.font: BPKFontStyle.heading5.font]).width
+
+        // Round the value up to the nearest value that aligns to our spacing grid:
+        return ceil(width / BPKSpacing.md.value) * BPKSpacing.md.value
+    }
+    
     private func updateButtonStates() {
         canIncrement = value < maxValue
         canDecrement = value > minValue
@@ -81,13 +88,11 @@ public struct BPKNudger: View {
 
     private func increment() {
         value = min(value + step, maxValue)
-        UIAccessibility.post(notification: .announcement, argument: "\(value)")
         updateButtonStates()
     }
 
     private func decrement() {
         value = max(value - step, minValue)
-        UIAccessibility.post(notification: .announcement, argument: "\(value)")
         updateButtonStates()
     }
 }
@@ -95,9 +100,9 @@ public struct BPKNudger: View {
 struct BPKNudger_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            BPKNudger(value: .constant(0), min: 0, max: 10, accessibilityLabel: "")
-            BPKNudger(value: .constant(5), min: 0, max: 10, accessibilityLabel: "")
-            BPKNudger(value: .constant(10), min: 0, max: 10, accessibilityLabel: "")
+            BPKNudger(value: .constant(0), min: 0, max: 10)
+            BPKNudger(value: .constant(5), min: 0, max: 10)
+            BPKNudger(value: .constant(10), min: 0, max: 10)
         }
     }
 }

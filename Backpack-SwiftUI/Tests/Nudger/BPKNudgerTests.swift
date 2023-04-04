@@ -24,19 +24,19 @@ class BPKNudgerTests: XCTestCase {
     
     func test_validValue() {
         assertSnapshot(
-            BPKNudger(value: .constant(1), min: 0, max: 10, step: 1, accessibilityLabel: "")
+            BPKNudger(value: .constant(1), min: 0, max: 10, step: 1)
         )
     }
 
     func test_smallerValue() {
         assertSnapshot(
-            BPKNudger(value: .constant(0), min: 1, max: 10, step: 1, accessibilityLabel: "")
+            BPKNudger(value: .constant(0), min: 1, max: 10, step: 1)
         )
     }
 
     func test_biggerValue() {
         assertSnapshot(
-            BPKNudger(value: .constant(11), min: 1, max: 10, step: 1, accessibilityLabel: "")
+            BPKNudger(value: .constant(11), min: 1, max: 10, step: 1)
         )
     }
 }
