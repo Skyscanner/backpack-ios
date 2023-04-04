@@ -17,5 +17,6 @@ an adjustable control that allows a user to select a numerical value between a m
 ```swift
 @State var value = 0
 
-BPKNudger(value: $value, min: 1, max: 10, step: 1, accessibilityLabel: "")
+BPKNudger(value: $value, min: 1, max: 10, step: 1)
+    .accessibilityLabel("Passenger")
 ```
