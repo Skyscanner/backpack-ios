@@ -56,8 +56,16 @@ public struct BPKNudger: View {
             BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
                 .buttonStyle(.secondary)
         }
+        .accessibilityElement()
         .accessibilityValue("\(value)")
         .accessibilityLabel(accessibilityLabel)
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: increment()
+            case .decrement: decrement()
+            @unknown default: break
+            }
+        }
         .onAppear {
             if value < minValue || value > maxValue {
                 value = max(min(value, maxValue), minValue)
