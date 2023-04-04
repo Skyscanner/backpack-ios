@@ -43,9 +43,9 @@ public class BPKRating: UIView {
         }
     }
 
-    public var title: String {
+    public var title: String? {
         get {
-            titleLabel.text ?? ""
+            titleLabel.text
         }
         set {
             titleLabel.text = newValue
@@ -112,7 +112,7 @@ public class BPKRating: UIView {
     // MARK: - Init
     public init(
         accessibilityLabel: String,
-        title: String,
+        title: String?,
         value: Float,
         ratingScale: BPKRatingScale = .zeroToFive,
         size: BPKRatingSize = .default,
