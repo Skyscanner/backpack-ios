@@ -24,12 +24,6 @@ BPKTextField(text: $text)
 BPKTextField("Placeholder", text: $text)
 ```
 
-### Changing the text style
-
-```swift
-BPKTextField(text: $text, style: .hero5)
-```
-
 ### Changing the State
     
 ```swift

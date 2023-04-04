@@ -29,7 +29,6 @@ public struct BPKTextField: View {
     
     @Binding private var text: String
     private let placeholder: String
-    private let style: BPKFontStyle
     private var state: State = .default
 
     /// Creates a `BPKTextField`.
@@ -37,20 +36,17 @@ public struct BPKTextField: View {
     /// - Parameters:
     ///   - placeholder: The placeholder text to display when the text field is empty.
     ///   - text: The text to display in the text field.
-    ///   - style: The style of the text field. Defaults to `bodyDefault`.
     public init(
         placeholder: String = "",
-        _ text: Binding<String>,
-        style: BPKFontStyle = .bodyDefault
+        _ text: Binding<String>
     ) {
         self.placeholder = placeholder
         self._text = text
-        self.style = style
     }
     
     public var body: some View {
         TextField(placeholder, text: $text)
-            .font(style: style)
+            .font(style: .bodyDefault)
             .foregroundColor(state.textColor)
             .padding(.md)
             .background(.surfaceDefaultColor)
