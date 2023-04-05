@@ -28,7 +28,7 @@ public final class BPKFlightLeg: UIView {
     private let duration: String
     private let operatedBy: String?
     private let warning: String?
-    private let carrierLogo: BPKIconName
+    private let carrierLogo: UIImage?
     
     private let departureArrivalTimeLabel: BPKLabel = {
         let departureArrtvalTimeLabel = BPKLabel()
@@ -73,8 +73,8 @@ public final class BPKFlightLeg: UIView {
         warningLabel.lineBreakMode = .byWordWrapping
         return warningLabel
     }()
-    private let carrierLogoIcon: BPKLargeIconView = {
-        let carrierLogoIcon = BPKLargeIconView()
+    private let carrierLogoIcon: UIImageView = {
+        let carrierLogoIcon = UIImageView()
         carrierLogoIcon.tintColor = BPKColor.textOnLightColor
         return carrierLogoIcon
     }()
@@ -97,7 +97,7 @@ public final class BPKFlightLeg: UIView {
         duration: String,
         operatedBy: String?,
         warning: String?,
-        carrierLogo: BPKIconName
+        carrierLogo: UIImage?
     ) {
         self.departureArrivalTime = departureArrivalTime
         self.nextDayArrival = nextDayArrival
@@ -146,7 +146,7 @@ public final class BPKFlightLeg: UIView {
         let verticalStackView = UIView()
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        carrierLogoIcon.iconName = carrierLogo
+        carrierLogoIcon.image = carrierLogo
         leadingStackView.addArrangedSubview(carrierLogoIcon)
         verticalStackView.addSubview(leadingStackView)
         
@@ -154,7 +154,10 @@ public final class BPKFlightLeg: UIView {
             leadingStackView.topAnchor.constraint(equalTo: verticalStackView.topAnchor, constant: BPKSpacingSm),
             leadingStackView.bottomAnchor.constraint(equalTo: verticalStackView.bottomAnchor),
             leadingStackView.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor),
-            leadingStackView.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor)
+            leadingStackView.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor),
+            
+            carrierLogoIcon.widthAnchor.constraint(equalToConstant: 24),
+            carrierLogoIcon.heightAnchor.constraint(equalToConstant: 24)
         ])
         return verticalStackView
     }

@@ -81,7 +81,7 @@ class BPKFlightLegViewController: UIViewController {
         duration: String,
         operatedBy: String? = nil,
         warning: String? = nil,
-        carrierLogo: BPKIconName
+        carrierLogo: UIImage? = nil
     ) -> BPKFlightLeg {
         
         return BPKFlightLeg(
@@ -103,7 +103,7 @@ class BPKFlightLegViewController: UIViewController {
             flightDescription: defaultDescription,
             stopsInfo: "Direct",
             duration: "7h 55m",
-            carrierLogo: .airline
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airline, color: .bpk_black)
         )
     }
     
@@ -117,7 +117,7 @@ class BPKFlightLegViewController: UIViewController {
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
     }
     
@@ -132,7 +132,7 @@ class BPKFlightLegViewController: UIViewController {
             operatedBy: "Operated by WestJet Operated by WestJet Operated" +
             "by WestJet Operated by WestJet Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
     }
     
@@ -146,7 +146,7 @@ class BPKFlightLegViewController: UIViewController {
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
     }
     

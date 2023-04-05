@@ -47,7 +47,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
         duration: String = "7h 55m",
         operatedBy: String? = nil,
         warning: String? = nil,
-        carrierLogo: BPKIconName = .airline
+        carrierLogo: UIImage? = BPKIcon.makeLargeIcon(name: .airline, color: .bpk_black)
     ) -> UIView {
         let parentView = UIView(frame: .zero)
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
@@ -106,7 +106,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             highlightStopsInfo: true,
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airline
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airline, color: .bpk_black)
         )
         assertSnapshot(flightLegStackView)
     }
@@ -121,7 +121,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             duration: "7h 55m",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
         assertSnapshot(flightLegStackView)
     }
@@ -137,7 +137,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             operatedBy: "Operated by WestJet Operated by WestJet Operated" +
             "by WestJet Operated by WestJet Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
         assertSnapshot(flightLegStackView)
     }
@@ -152,7 +152,7 @@ final class BPKFlightLegSnapshotTest: XCTestCase {
             duration: "نس 10د",
             operatedBy: "Operated by WestJet",
             warning: "Change airports in London",
-            carrierLogo: .airlineMultiple
+            carrierLogo: BPKIcon.makeLargeIcon(name: .airlineMultiple, color: .bpk_black)
         )
         assertSnapshot(flightLegStackView)
     }
