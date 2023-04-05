@@ -20,6 +20,8 @@ import Foundation
 import UIKit
 
 public final class BPKFlightLeg: UIView {
+    private let airlineLogoSize = 24.0
+    
     private let departureArrivalTime: String
     private let nextDayArrival: String?
     private let flightDescription: NSAttributedString
@@ -156,8 +158,8 @@ public final class BPKFlightLeg: UIView {
             leadingStackView.leadingAnchor.constraint(equalTo: verticalStackView.leadingAnchor),
             leadingStackView.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor),
             
-            carrierLogoIcon.widthAnchor.constraint(equalToConstant: 24),
-            carrierLogoIcon.heightAnchor.constraint(equalToConstant: 24)
+            carrierLogoIcon.widthAnchor.constraint(equalToConstant: airlineLogoSize),
+            carrierLogoIcon.heightAnchor.constraint(equalToConstant: airlineLogoSize)
         ])
         return verticalStackView
     }
