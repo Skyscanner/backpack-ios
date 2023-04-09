@@ -30,7 +30,7 @@ struct RatingExampleViewWithTitle: View {
     ]
     private let title = "Excellent"
     private let value: Float = 4.5
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: BPKSpacing.sm.value) {
             ForEach(isDefaultSizes, id: \.self) { isDefaultSize in
@@ -49,7 +49,6 @@ struct RatingExampleViewWithTitle: View {
                             subtitle: subtitle,
                             showScale: showScale
                         ).accessibilityLabel(accessibilityLabel)
-
                     }
                 }
             }
