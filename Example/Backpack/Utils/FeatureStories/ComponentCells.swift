@@ -149,17 +149,27 @@ extension ComponentCellsProvider {
         )
     }
     private func flare() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Flare views",
-            groups: FlareGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Flare views", children: $0) }
+            tabs: [
+                .uikit(groups: FlareGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(FlareExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Flare views", tabs: $0) }
         )
     }
     private func dialog() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Dialogs",
-            groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Dialogs", children: $0) }
+            tabs: [
+                .uikit(groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(DialogExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Dialogs", tabs: $0) }
         )
     }
     private func horizontalNavigation() -> CellDataSource {

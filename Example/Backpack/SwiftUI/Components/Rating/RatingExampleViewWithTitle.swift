@@ -54,19 +54,7 @@ struct RatingExampleViewWithTitle: View {
                     }
                 }
             }
-            BPKButton("Show it") {
-                withAnimation {
-                    isPresenting = true
-                }
-            }
         }
-        .bpkSuccessDialog(
-            presented: $isPresenting,
-            title: "Title in here",
-            text: "Description that goes two lines ideally, but sometimes it can go longer",
-            confirmButton: .init(title: "Confirmation", action: {}),
-            secondaryButton: .init(title: "Skip", action: {})
-        )
     }
 }
 
