@@ -24,7 +24,6 @@ public struct BPKButton: View {
     private let icon: Icon?
     private let size: BPKButton.Size
     private var style: BPKButton.Style = .primary
-    private var stretches = false
     private var accessibilityLabel: String
     private let action: () -> Void
     
@@ -103,18 +102,11 @@ public struct BPKButton: View {
             style: style,
             size: size,
             iconOnly: isIconOnly,
-            streches: stretches,
             getCurrentState: currentState(isPressed:),
             colorProvider: ButtonColorProvider(
                 colorSetFactory: DefaultButtonColorSetFactory()
             )
         )
-    }
-    
-    public func stretchable() -> BPKButton {
-        var result = self
-        result.stretches = true
-        return result
     }
     
     private func currentState(isPressed: Bool) -> BPKButton.CurrentState {
