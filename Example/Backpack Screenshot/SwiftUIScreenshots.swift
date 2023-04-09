@@ -204,7 +204,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.buttons["Continue"].tap()
             _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
         }
-
+        
         navigate(title: "Flare views") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
