@@ -18,26 +18,21 @@
 
 import SwiftUI
 
-public struct BPKFlareView<Content: View>: View {
-    public enum Size {
-        case small, medium, large
-        
-        var flareHeight: CGFloat {
-            switch self {
-            case .small: return 8
-            case .medium: return 16
-            case .large: return 24
-            }
-        }
-    }
-    
-    private let size: Size
+/// A view that clips its content to a shape with a flare at one end.
+public struct BPKFlareView<Content: View>: View {    
+    private let size: BPKFlareSize
     private var roundedCorners: Bool
     private let direction: BPKFlareDirection
     @ViewBuilder private let content: Content
     
+    /// Creates a view that clips its content to a shape with a flare at one end.
+    /// - Parameters:
+    ///   - size: The size of the flare. Default is `.medium`.
+    ///   - roundedCorners: Whether to round the corners of the shape. Default is `true`.
+    ///   - direction: The direction of the flare. Default is `.bottom`.
+    ///   - content: The content to clip to the shape.
     public init(
-        size: Size = .medium,
+        size: BPKFlareSize = .medium,
         roundedCorners: Bool = true,
         direction: BPKFlareDirection = .bottom,
         content: () -> Content
@@ -60,6 +55,20 @@ public struct BPKFlareView<Content: View>: View {
     }
 }
 
+/// The size of the flare.
+public enum BPKFlareSize {
+    case small, medium, large
+    
+    var flareHeight: CGFloat {
+        switch self {
+        case .small: return 8
+        case .medium: return 16
+        case .large: return 24
+        }
+    }
+}
+
+/// The direction of the flare.
 public enum BPKFlareDirection {
     case top, bottom
     

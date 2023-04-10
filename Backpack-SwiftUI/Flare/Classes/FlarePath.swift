@@ -18,11 +18,16 @@
 
 import SwiftUI
 
+/// A custom shape that creates a path with a flare at one end.
 struct FlarePath: Shape {
+    /// The height of the flare.
     let flareHeight: CGFloat
+    /// The corner radius of the rounded rectangle.
     let cornerRadius: BPKSpacing
+    /// The direction of the flare.
     let direction: BPKFlareDirection
     
+    /// Creates a path with a flare at one end.
     func path(in rect: CGRect) -> Path {
         let size = rect.size
         return Path { path in
@@ -35,10 +40,16 @@ struct FlarePath: Shape {
         }
     }
     
+    /// Appends a flare to the path.
+    /// - Parameters:
+    ///   - path: The path to append the flare to.
+    ///   - size: The size of the bounding rectangle of the path.
+    ///   - flareHeight: The height of the flare.
     private func appendFlare(to path: inout Path, size: CGSize, flareHeight: CGFloat) {
         let BPKFlareVectorHeight = 56.0 // The height of the original flare vector
         let BPKFlareVectorWidth = 230.0 // The width of the original flare vector
         
+        // The scale factor to adjust the size of the flare
         let scale = direction.scaleFactor * (flareHeight / BPKFlareVectorHeight)
         
         let startPointX = (size.width - scale * BPKFlareVectorWidth) / 2.0
