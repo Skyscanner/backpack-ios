@@ -111,9 +111,9 @@ public class BPKRating: UIView {
 
     // MARK: - Init
     public init(
-        accessibilityLabel: String,
-        title: String?,
-        value: Float,
+        accessibilityLabel: String = "",
+        title: String? = nil,
+        value: Float = 0.0,
         ratingScale: BPKRatingScale = .zeroToFive,
         size: BPKRatingSize = .default,
         subtitle: String? = nil,
