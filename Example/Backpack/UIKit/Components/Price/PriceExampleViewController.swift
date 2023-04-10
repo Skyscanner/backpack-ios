@@ -76,14 +76,11 @@ final class PriceExampleViewController: UIViewController {
             stackView.translatesAutoresizingMaskIntoConstraints = false
         
             [BPKPrice.Alignment.leading, BPKPrice.Alignment.trailing].forEach { alignment in
-                let priceView = BPKPrice(
-                    price: "£1830",
-                    leadingText: leadingText,
-                    previousPrice: previousPrice,
-                    trailingText: trailingText,
-                    alignment: alignment,
-                    size: size
-                )
+                let priceView = BPKPrice(alignment: alignment, size: size)
+                priceView.price = "£1830"
+                priceView.leadingText = leadingText
+                priceView.previousPrice = previousPrice
+                priceView.trailingText = trailingText
                 priceView.translatesAutoresizingMaskIntoConstraints = false
                 stackView.addArrangedSubview(priceView)
             }

@@ -111,12 +111,9 @@ public class BPKRating: UIView {
 
     // MARK: - Init
     public init(
-        accessibilityLabel: String,
-        title: String?,
-        value: Float,
+        value: Float = 0.0,
         ratingScale: BPKRatingScale = .zeroToFive,
         size: BPKRatingSize = .default,
-        subtitle: String? = nil,
         showScale: Bool = true
     ) {
         self.value = value
@@ -126,11 +123,7 @@ public class BPKRating: UIView {
         self.titleView = titleLabel
         super.init(frame: .zero)
 
-        self.title = title
-        self.subtitle = subtitle
-
         self.isAccessibilityElement = true
-        self.accessibilityLabel = accessibilityLabel
 
         setup()
         updateLookAndFeel()

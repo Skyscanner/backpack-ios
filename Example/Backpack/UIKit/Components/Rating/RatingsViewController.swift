@@ -108,15 +108,19 @@ final class RatingsViewController: UIViewController {
 
         switch titleType {
         case .stringLabel:
-            return BPKRating(
-                accessibilityLabel: accessibilityLabel,
-                title: title ?? "",
+            let view = BPKRating(
                 value: value,
                 ratingScale: scale,
                 size: size,
-                subtitle: subtitle,
                 showScale: showScale
             )
+            if let title {
+                view.title = title
+            }
+            if let subtitle {
+                view.subtitle = subtitle
+            }
+            return view
         case .starRating:
             let starRating = BPKStarRating()
             starRating.rating = 4.5
