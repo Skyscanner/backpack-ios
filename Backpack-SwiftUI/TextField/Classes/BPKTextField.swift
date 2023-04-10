@@ -50,6 +50,7 @@ public struct BPKTextField: View {
             .foregroundColor(state.textColor)
             .padding(.md)
             .background(.surfaceDefaultColor)
+            .clipShape(RoundedRectangle(cornerRadius: .sm))
             .outline(state.borderColor, cornerRadius: .sm)
             .overlay(accessory)
             .disabled(state.isDisabled)
@@ -60,17 +61,19 @@ public struct BPKTextField: View {
             Spacer()
             if let icon = state.icon {
                 if case let .clear(accessibilityLabel, action) = state {
-                    BPKIconView(icon.icon)
-                        .foregroundColor(icon.color)
+                    Button(action: action) {
+                        BPKIconView(icon.icon)
+                            .foregroundColor(icon.color)
+                    }
                         .accessibilityLabel(accessibilityLabel)
-                        .onTapGesture(perform: action)
                 } else {
                     BPKIconView(icon.icon)
                         .foregroundColor(icon.color)
+                        .accessibilityHidden(true)
                 }
             }
         }
-        .padding(.md)
+        .padding(.trailing, .md)
     }
     
     public func inputState(_ state: State) -> BPKTextField {
@@ -102,5 +105,6 @@ struct BPKTextField_Previews: PreviewProvider {
                 .inputState(.valid)
         }
         .padding()
+        .background(.coreEcoColor)
     }
 }
