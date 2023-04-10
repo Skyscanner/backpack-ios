@@ -28,10 +28,21 @@ public final class BPKPrice: UIView {
         case leading, trailing
     }
     
-    public var price: String?
-    public var leadingText: String?
-    public var previousPrice: String?
-    public var trailingText: String?
+    public var price: String? {
+        didSet { priceLabel.text = price }
+    }
+    
+    public var leadingText: String? {
+        didSet { leadingTextLabel.text = leadingText }
+    }
+    
+    public var previousPrice: String? {
+        didSet { previousPriceLabel.text = previousPrice }
+    }
+    
+    public var trailingText: String? {
+        didSet { trailingTextLabel.text = trailingText }
+    }
     
     public var alignment: Alignment {
         didSet {
