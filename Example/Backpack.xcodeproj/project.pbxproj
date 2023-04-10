@@ -28,6 +28,7 @@
 		5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */; };
 		5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */; };
 		5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB602909940700F0F790 /* ColorTokensViewController.swift */; };
+		539CBD7129E4742D000871E0 /* FlareExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539CBD7029E4742D000871E0 /* FlareExampleView.swift */; };
 		53B5822127DA3CF4004101A3 /* CalendarUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B5822027DA3CF3004101A3 /* CalendarUITest.swift */; };
 		53B6DB5927FB6F930042B7C0 /* ComponentCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */; };
 		53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B6DB5827FB6F930042B7C0 /* TokenCells.swift */; };
@@ -215,6 +216,7 @@
 		5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensViewController.swift; sourceTree = "<group>"; };
 		5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensViewController.swift; sourceTree = "<group>"; };
 		5390DB602909940700F0F790 /* ColorTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensViewController.swift; sourceTree = "<group>"; };
+		539CBD7029E4742D000871E0 /* FlareExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareExampleView.swift; sourceTree = "<group>"; };
 		53B5822027DA3CF3004101A3 /* CalendarUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUITest.swift; sourceTree = "<group>"; };
 		53B6DB5727FB6F930042B7C0 /* ComponentCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCells.swift; sourceTree = "<group>"; };
 		53B6DB5827FB6F930042B7C0 /* TokenCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCells.swift; sourceTree = "<group>"; };
@@ -482,6 +484,14 @@
 			path = Tokens;
 			sourceTree = "<group>";
 		};
+		539CBD6F29E4742D000871E0 /* Flare */ = {
+			isa = PBXGroup;
+			children = (
+				539CBD7029E4742D000871E0 /* FlareExampleView.swift */,
+			);
+			path = Flare;
+			sourceTree = "<group>";
+		};
 		53B6DB5627FB6F930042B7C0 /* FeatureStories */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +711,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				539CBD6F29E4742D000871E0 /* Flare */,
 				53524A0129DB4C6100DF7EB2 /* Nudger */,
 				79033CD329CAC87000127CDC /* Panel */,
 				5346071A29C1CCC900BBD044 /* Overlay */,
@@ -1490,6 +1501,7 @@
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
 				796DE9F12834840D00D07664 /* ButtonsExampleView.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
+				539CBD7129E4742D000871E0 /* FlareExampleView.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
 				D26E5A0C25A787060064D9F1 /* GroupsViewController.swift in Sources */,
 				5390DB612909940700F0F790 /* ColorTokensViewController.swift in Sources */,
