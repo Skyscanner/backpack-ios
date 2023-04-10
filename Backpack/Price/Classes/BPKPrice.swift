@@ -63,7 +63,7 @@ public final class BPKPrice: UIView {
     public var size: Size {
         didSet { stylePriceLabel() }
     }
-        
+    
     private let priceLabel = BPKLabel()
     private let trailingTextLabel = BPKLabel()
     private let previousPriceLabel = BPKLabel()
@@ -93,18 +93,7 @@ public final class BPKPrice: UIView {
         return stackView
     }()
     
-    public init(
-        price: String? = nil,
-        leadingText: String? = nil,
-        previousPrice: String? = nil,
-        trailingText: String? = nil,
-        alignment: Alignment = .leading,
-        size: Size = .large
-    ) {
-        self.price = price
-        self.leadingText = leadingText
-        self.previousPrice = previousPrice
-        self.trailingText = trailingText
+    public init(alignment: Alignment = .leading, size: Size = .large) {
         self.alignment = alignment
         self.size = size
         
@@ -118,7 +107,7 @@ public final class BPKPrice: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     
+    
     private func setupView() {
         [priceLabel, trailingTextLabel].forEach {
             priceStackView.addArrangedSubview($0)
