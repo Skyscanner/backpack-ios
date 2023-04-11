@@ -18,6 +18,13 @@
 
 import SwiftUI
 
+/// View modifier that adds a dialog to the view hierarchy.
+///
+/// - Parameters:
+///   - isPresented: A binding to a boolean value that determines whether the dialog is presented.
+///   - dialogContent: The content of the dialog.
+///   - onTouchOutside: A callback that is called when the scrim is tapped.
+/// - Returns: A view with the dialog added.
 struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     @ViewBuilder let dialogContent: DialogContent

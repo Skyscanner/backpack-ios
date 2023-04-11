@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+/// View that displays a list of buttons in a vertical stack for use in a dialog.
 struct DialogActionsView: View {
     let buttons: [BPKDialogButton]
     

@@ -19,6 +19,7 @@
 import SwiftUI
 
 public extension View {
+    /// Displays a success dialog with a title, text and a list of buttons.
     func bpkSuccessDialog(
         presented: Binding<Bool>,
         title: String,
@@ -45,6 +46,7 @@ public extension View {
         }, onTouchOutside: onTouchOutside))
     }
     
+    /// Displays a warning dialog with a title, text and a list of buttons.
     func bpkWarningDialog(
         presented: Binding<Bool>,
         title: String,
@@ -71,6 +73,7 @@ public extension View {
         }, onTouchOutside: onTouchOutside))
     }
     
+    /// Displays a destructive dialog with a title, text and a list of buttons.
     func bpkDestructiveDialog(
         presented: Binding<Bool>,
         title: String,
@@ -93,6 +96,7 @@ public extension View {
         }, onTouchOutside: onTouchOutside))
     }
     
+    /// Displays a dialog with an image, title, text and a list of buttons.
     func bpkImageDialog(
         presented: Binding<Bool>,
         image: Image,
@@ -119,6 +123,7 @@ public extension View {
         }, onTouchOutside: onTouchOutside))
     }
     
+    /// Displays a dialog with an image with a flare, title, text and a list of buttons.
     func bpkFlareDialog(
         presented: Binding<Bool>,
         image: Image,

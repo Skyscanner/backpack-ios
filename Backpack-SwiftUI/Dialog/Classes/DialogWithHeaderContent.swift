@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+/// Dialog that can display a custom header view.
 struct DialogWithHeaderContent<HeaderView: View>: View {
     let textContent: DialogTextContent
     let actions: DialogActionsView

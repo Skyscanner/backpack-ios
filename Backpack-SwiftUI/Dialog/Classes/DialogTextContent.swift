@@ -18,12 +18,19 @@
 
 import SwiftUI
 
+/// A view that renders a text content for a dialog.
 struct DialogTextContent: View {
     private let title: String
     private let text: String
     private let contentAlignment: HorizontalAlignment
     private var spacing: CGFloat = BPKSpacing.base.value
     
+    /// Creates a new instance of `DialogTextContent`.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the dialog.
+    ///   - text: The text of the dialog.
+    ///   - contentAlignment: The alignment of the content.
     init(title: String, text: String, contentAlignment: HorizontalAlignment) {
         self.title = title
         self.text = text

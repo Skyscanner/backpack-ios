@@ -16,11 +16,18 @@
  * limitations under the License.
  */
 
+/// A button to be used in a dialog.
 public struct BPKDialogButton {
     let title: String
     let action: () -> Void
     let style: BPKButton.Style
     
+    /// Creates a new instance of `BPKDialogButton`. The button styling will be
+    /// managed by the dialog.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the button.
+    ///   - action: The action to be performed when the button is tapped.
     public init(_ title: String, action: @escaping () -> Void) {
         self.title = title
         self.action = action
