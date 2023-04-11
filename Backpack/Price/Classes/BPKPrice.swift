@@ -29,33 +29,41 @@ public final class BPKPrice: UIView {
     }
     
     public var price: String? {
-        didSet { priceLabel.text = price }
+        didSet {
+            priceLabel.text = price
+            updateViews()
+        }
     }
     
     public var leadingText: String? {
-        didSet { leadingTextLabel.text = leadingText }
+        didSet {
+            leadingTextLabel.text = leadingText
+            updateViews()
+        }
     }
     
     public var previousPrice: String? {
-        didSet { previousPriceLabel.text = previousPrice }
+        didSet {
+            previousPriceLabel.text = previousPrice
+            updateViews()
+        }
     }
     
     public var trailingText: String? {
-        didSet { trailingTextLabel.text = trailingText }
+        didSet {
+            trailingTextLabel.text = trailingText
+            updateViews()
+        }
     }
     
     public var alignment: Alignment {
-        didSet {
-            updateAlignmentPositioning()
-        }
+        didSet { updateAlignmentPositioning() }
     }
     
     public var size: Size {
-        didSet {
-            updateAlignmentPositioning()
-        }
+        didSet { stylePriceLabel() }
     }
-        
+    
     private let priceLabel = BPKLabel()
     private let trailingTextLabel = BPKLabel()
     private let previousPriceLabel = BPKLabel()
@@ -74,27 +82,18 @@ public final class BPKPrice: UIView {
         stackView.axis = .horizontal
         stackView.spacing = BPKSpacingSm
         stackView.alignment = .firstBaseline
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    public init(
-        price: String? = nil,
-        leadingText: String? = nil,
-        previousPrice: String? = nil,
-        trailingText: String? = nil,
-        alignment: Alignment = .leading,
-        size: Size = .large
-    ) {
-        self.price = price
-        self.leadingText = leadingText
-        self.previousPrice = previousPrice
-        self.trailingText = trailingText
+    public init(alignment: Alignment = .leading, size: Size = .large) {
         self.alignment = alignment
         self.size = size
         
@@ -118,6 +117,12 @@ public final class BPKPrice: UIView {
             containerStackView.addArrangedSubview($0)
         }
         
+        updateViews()
+        containerStackView.addSubview(priceStackView)
+        addSubview(containerStackView)
+    }
+    
+    private func updateViews() {
         stylePriceLabel()
         styleAccessoryLabels()
         
@@ -129,22 +134,12 @@ public final class BPKPrice: UIView {
         previousPriceLabel.text = previousPrice
         applyLineThroughStyling()
         
-        [
-            priceStackView,
-            containerStackView
-        ].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
         previousPriceLabel.isHidden = previousPrice == nil
         leadingTextLabel.isHidden = leadingText == nil
         trailingTextLabel.isHidden = trailingText == nil
         separatorLabel.isHidden = previousPriceLabel.isHidden || leadingTextLabel.isHidden
         
         updateAlignmentPositioning()
-        
-        containerStackView.addSubview(priceStackView)
-        addSubview(containerStackView)
     }
     
     private func setupConstraints() {

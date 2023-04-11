@@ -40,23 +40,20 @@ class BPKPriceSnapshotTest: XCTestCase {
         parentView.backgroundColor = BPKColor.surfaceDefaultColor
         parentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let price = BPKPrice(
-            price: price,
-            leadingText: leadingText,
-            previousPrice: previousPrice,
-            trailingText: trailingText,
-            alignment: alignment,
-            size: size
-        )
+        let priceView = BPKPrice(alignment: alignment, size: size)
+        priceView.price = price
+        priceView.leadingText = leadingText
+        priceView.previousPrice = previousPrice
+        priceView.trailingText = trailingText
         
-        price.translatesAutoresizingMaskIntoConstraints = false
-        parentView.addSubview(price)
+        priceView.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(priceView)
         
         NSLayoutConstraint.activate([
-            price.topAnchor.constraint(equalTo: parentView.topAnchor),
-            price.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-            price.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-            price.bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+            priceView.topAnchor.constraint(equalTo: parentView.topAnchor),
+            priceView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            priceView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+            priceView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
         ])
         
         return parentView
