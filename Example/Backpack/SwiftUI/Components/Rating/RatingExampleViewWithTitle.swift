@@ -32,7 +32,7 @@ struct RatingExampleViewWithTitle: View {
     private let value: Float = 4.5
 
     var body: some View {
-        VStack(alignment: .leading, spacing: BPKSpacing.sm.value) {
+        VStack(alignment: .leading, spacing: .sm) {
             ForEach(isDefaultSizes, id: \.self) { isDefaultSize in
                 ForEach(subtitles, id: \.self) { subtitle in
                     ForEach(showScaleAndShowZeroToFive.indices, id: \.self) { index in

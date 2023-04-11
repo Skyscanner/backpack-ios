@@ -58,7 +58,7 @@ public struct BPKBadge: View {
     }
     
     private var content: some View {
-        HStack(spacing: BPKSpacing.sm.value) {
+        HStack(spacing: .sm) {
             if let icon = icon {
                 BPKIconView(icon, size: .small)
                     .foregroundColor(style.foregroundColor)

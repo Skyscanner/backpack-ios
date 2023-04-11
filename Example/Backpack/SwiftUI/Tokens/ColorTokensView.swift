@@ -86,7 +86,7 @@ struct ColorTokensView: View {
             Color(BPKColor.canvasColor)
                 .ignoresSafeArea()
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: BPKSpacing.base.value) {
+                LazyVStack(alignment: .leading, spacing: .base) {
                     ForEach(ColorTokens.backpackTokens.tokens) { item in
                         BPKText(item.name, style: .heading3)
                         ForEach(item.colors) { color in

@@ -28,7 +28,7 @@ public struct BPKRating<Content: View>: View {
     @ViewBuilder private var titleViewBuilder: () -> Content
 
     public var body: some View {
-        HStack(alignment: .lastTextBaseline, spacing: BPKSpacing.md.value) {
+        HStack(alignment: .lastTextBaseline, spacing: .md) {
             HStack(alignment: .lastTextBaseline, spacing: .zero) {
                 BPKText(
                     ratingScale.displayedValue(from: value),
@@ -48,7 +48,7 @@ public struct BPKRating<Content: View>: View {
                     subtitleView.layoutPriority(1)
                 }
             } else if size == .default {
-                HStack(alignment: .center, spacing: BPKSpacing.md.value) {
+                HStack(alignment: .center, spacing: .md) {
                     titleViewBuilder().layoutPriority(2)
                     subtitleView.layoutPriority(1)
                 }
