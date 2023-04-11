@@ -83,15 +83,15 @@ class BPKRatingSnapshotTest: XCTestCase {
                 titleView: starRating
             )
         } else {
-            return BPKRating(
-                accessibilityLabel: "",
-                title: "Excellent",
+            let view = BPKRating(
                 value: 4.5,
                 ratingScale: parameter.scale,
                 size: parameter.size,
-                subtitle: parameter.subtitle,
                 showScale: parameter.showScale
             )
+            view.title = "Excellent"
+            view.subtitle = parameter.subtitle
+            return view
         }
     }
 
@@ -102,12 +102,8 @@ class BPKRatingSnapshotTest: XCTestCase {
 
     func testBPKRatingTitleViewConstraintUpdateAfterSetTitleView() {
         // Given
-        let rating = BPKRating(
-            accessibilityLabel: "",
-            title: "Excellent",
-            value: 3.99,
-            size: .large
-        )
+        let rating = BPKRating(value: 3.99, size: .large)
+        rating.title = "Excellent"
         rating.translatesAutoresizingMaskIntoConstraints = false
         rating.backgroundColor = BPKColor.canvasColor
 

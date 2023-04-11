@@ -182,9 +182,21 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Flare views") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Panels") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Nudger") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "nudger", scenario: "default",
+                           userInterfaceStyle: userInterfaceStyle)
         }
     }
 }

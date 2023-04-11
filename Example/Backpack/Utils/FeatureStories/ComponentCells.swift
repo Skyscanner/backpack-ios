@@ -149,10 +149,15 @@ extension ComponentCellsProvider {
         )
     }
     private func flare() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Flare views",
-            groups: FlareGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Flare views", children: $0) }
+            tabs: [
+                .uikit(groups: FlareGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(FlareExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Flare views", tabs: $0) }
         )
     }
     private func dialog() -> CellDataSource {
@@ -202,10 +207,18 @@ extension ComponentCellsProvider {
         )
     }
     private func nudger() -> CellDataSource {
-        PresentableCellDataSource.custom(
+        ComponentCellDataSource(
             title: "Nudger",
-            customController: { NudgerViewController() },
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        NudgerViewController()
+                    })),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NudgerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Nudger", tabs: $0) }
         )
     }
     private func overlayViews() -> CellDataSource {
