@@ -175,7 +175,7 @@ private struct ButtonContentView: View {
     }
     
     private func content(withIcon icon: BPKButton.Icon, title: String) -> some View {
-        HStack(spacing: BPKSpacing.md.value) {
+        HStack(spacing: .md) {
             if icon.position == .leading {
                 content(withIcon: icon)
                 content(withTitle: title)

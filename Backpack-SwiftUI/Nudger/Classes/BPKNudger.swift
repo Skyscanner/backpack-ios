@@ -47,7 +47,7 @@ public struct BPKNudger: View {
     }
 
     public var body: some View {
-        HStack(spacing: BPKSpacing.md.value) {
+        HStack(spacing: .md) {
             BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
                 .buttonStyle(.secondary)
             BPKText("\(value)", style: .heading5)
