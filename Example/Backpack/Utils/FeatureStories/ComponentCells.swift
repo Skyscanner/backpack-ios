@@ -212,10 +212,18 @@ extension ComponentCellsProvider {
         )
     }
     private func nudger() -> CellDataSource {
-        PresentableCellDataSource.custom(
+        ComponentCellDataSource(
             title: "Nudger",
-            customController: { NudgerViewController() },
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: CustomPresentable(
+                    generateViewController: {
+                        NudgerViewController()
+                    })),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(NudgerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Nudger", tabs: $0) }
         )
     }
     private func overlayViews() -> CellDataSource {
