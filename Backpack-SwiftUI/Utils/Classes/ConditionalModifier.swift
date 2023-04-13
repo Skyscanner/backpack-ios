@@ -18,20 +18,13 @@
 
 import SwiftUI
 
-struct DialogImageView: View {
-    let image: Image
-    
-    var body: some View {
-        image
-            .resizable()
-            .scaledToFit()
-            .clipped()
-            .accessibilityHidden(true)
-    }
-}
-
-struct DialogImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        DialogImageView(image: Image(""))
+extension View {
+    @ViewBuilder
+    func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
     }
 }

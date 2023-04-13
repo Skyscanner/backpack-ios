@@ -22,23 +22,21 @@ public extension View {
     /// Displays a success dialog with a title, text and a list of buttons.
     func bpkSuccessDialog(
         presented: Binding<Bool>,
+        icon: BPKIcon,
         title: String,
         text: String,
         confirmButton: BPKDialogButton,
-        secondaryButton: BPKDialogButton? = nil,
-        linkButton: BPKDialogButton? = nil,
+        secondaryActions: BPKDialogSecondaryActions? = nil,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
-        if let secondaryButton {
-            buttons.append(BPKDialogButton(button: secondaryButton, style: .secondary))
-        }
-        if let linkButton {
-            buttons.append(BPKDialogButton(button: linkButton, style: .link))
+        if let secondaryActions {
+            buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
+            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
-                icon: .tick,
+                icon: icon,
                 iconColor: .coreAccentColor,
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
@@ -49,23 +47,21 @@ public extension View {
     /// Displays a warning dialog with a title, text and a list of buttons.
     func bpkWarningDialog(
         presented: Binding<Bool>,
+        icon: BPKIcon,
         title: String,
         text: String,
         confirmButton: BPKDialogButton,
-        secondaryButton: BPKDialogButton? = nil,
-        linkButton: BPKDialogButton? = nil,
+        secondaryActions: BPKDialogSecondaryActions? = nil,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
-        if let secondaryButton {
-            buttons.append(BPKDialogButton(button: secondaryButton, style: .secondary))
-        }
-        if let linkButton {
-            buttons.append(BPKDialogButton(button: linkButton, style: .link))
+        if let secondaryActions {
+            buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
+            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
-                icon: .alertAdd,
+                icon: icon,
                 iconColor: .statusWarningSpotColor,
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
@@ -76,6 +72,7 @@ public extension View {
     /// Displays a destructive dialog with a title, text and a list of buttons.
     func bpkDestructiveDialog(
         presented: Binding<Bool>,
+        icon: BPKIcon,
         title: String,
         text: String,
         confirmButton: BPKDialogButton,
@@ -88,7 +85,7 @@ public extension View {
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
-                icon: .trash,
+                icon: icon,
                 iconColor: .statusDangerSpotColor,
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
@@ -103,16 +100,13 @@ public extension View {
         title: String,
         text: String,
         confirmButton: BPKDialogButton,
-        secondaryButton: BPKDialogButton? = nil,
-        linkButton: BPKDialogButton? = nil,
+        secondaryActions: BPKDialogSecondaryActions? = nil,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
-        if let secondaryButton {
-            buttons.append(BPKDialogButton(button: secondaryButton, style: .secondary))
-        }
-        if let linkButton {
-            buttons.append(BPKDialogButton(button: linkButton, style: .link))
+        if let secondaryActions {
+            buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
+            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
@@ -130,16 +124,13 @@ public extension View {
         title: String,
         text: String,
         confirmButton: BPKDialogButton,
-        secondaryButton: BPKDialogButton? = nil,
-        linkButton: BPKDialogButton? = nil,
+        secondaryActions: BPKDialogSecondaryActions? = nil,
         onTouchOutside: (() -> Void)? = nil
     ) -> some View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
-        if let secondaryButton {
-            buttons.append(BPKDialogButton(button: secondaryButton, style: .secondary))
-        }
-        if let linkButton {
-            buttons.append(BPKDialogButton(button: linkButton, style: .link))
+        if let secondaryActions {
+            buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
+            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
@@ -159,6 +150,7 @@ struct BPKDialog_Previews: PreviewProvider {
         Color(.canvasColor)
             .bpkSuccessDialog(
                 presented: .constant(true),
+                icon: .tick,
                 title: "Title in here",
                 text: "Description that goes two lines ideally, but sometimes it can go longer",
                 confirmButton: .init("Delete", action: {})

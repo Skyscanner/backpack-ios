@@ -21,79 +21,42 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKDialogTests: XCTestCase {
-    private var backgroundView: some View {
-        Color(.canvasColor)
-            .frame(width: 500, height: 400)
-    }
-    
-    func test_successDialog() {
-        assertSnapshot(
-            backgroundView
-                .bpkSuccessDialog(
-                    presented: .constant(true),
-                    title: "Title in here",
-                    text: "Description that goes two lines ideally, but sometimes it can go longer",
-                    confirmButton: BPKDialogButton("Confirmation") {},
-                    secondaryButton: BPKDialogButton("Skip") {},
-                    linkButton: BPKDialogButton("Link optional") {}
-                )
+    private func textContent(_ contentAlignment: HorizontalAlignment) -> DialogTextContent {
+        DialogTextContent(
+            title: "Title in here",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
+            contentAlignment: contentAlignment
         )
     }
     
-    func test_warningDialog() {
+    private var actions: DialogActionsView {
+        DialogActionsView(buttons: [
+            BPKDialogButton("Confirmation") {},
+            BPKDialogButton("Confirmation") {}
+        ])
+    }
+    
+    func test_iconDialog() {
         assertSnapshot(
-            backgroundView
-                .bpkWarningDialog(
-                    presented: .constant(true),
-                    title: "Title in here",
-                    text: "Description that goes two lines ideally, but sometimes it can go longer",
-                    confirmButton: BPKDialogButton("Confirmation") {},
-                    secondaryButton: BPKDialogButton("Skip") {},
-                    linkButton: BPKDialogButton("Link optional") {}
-                )
+            DialogWithIconContent(
+                icon: .tick,
+                iconColor: .coreAccentColor,
+                textContent: textContent(.center),
+                actions: actions
+            )
+            .frame(width: 400)
         )
     }
     
-    func test_destructiveDialog() {
+    func test_customHeaderDialog() {
         assertSnapshot(
-            backgroundView
-                .bpkDestructiveDialog(
-                    presented: .constant(true),
-                    title: "Delete",
-                    text: "Description that goes two lines ideally, but sometimes it can go longer",
-                    confirmButton: BPKDialogButton("Delete") {},
-                    linkButton: BPKDialogButton("Cancel") {}
-                )
-        )
-    }
-    
-    func test_imageDialog() {
-        assertSnapshot(
-            backgroundView
-                .bpkImageDialog(
-                    presented: .constant(true),
-                    image: Image("dialog_image", bundle: TestsBundle.bundle),
-                    title: "Title in here",
-                    text: "Description that goes two lines ideally, but sometimes it can go longer",
-                    confirmButton: BPKDialogButton("Confirmation") {},
-                    secondaryButton: BPKDialogButton("Skip") {},
-                    linkButton: BPKDialogButton("Link optional") {}
-                )
-        )
-    }
-    
-    func test_flareDialog() {
-        assertSnapshot(
-            backgroundView
-                .bpkFlareDialog(
-                    presented: .constant(true),
-                    image: Image("dialog_flare", bundle: TestsBundle.bundle),
-                    title: "Title in here",
-                    text: "Description that goes two lines ideally, but sometimes it can go longer",
-                    confirmButton: BPKDialogButton("Confirmation") {},
-                    secondaryButton: BPKDialogButton("Skip") {},
-                    linkButton: BPKDialogButton("Link optional") {}
-                )
+            DialogWithHeaderContent(
+                textContent: textContent(.leading),
+                actions: actions
+            ) {
+                DialogImageView(image: Image("dialog_image", bundle: TestsBundle.bundle))
+            }
+                .frame(width: 400)
         )
     }
 }

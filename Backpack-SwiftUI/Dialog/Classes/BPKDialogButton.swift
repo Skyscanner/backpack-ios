@@ -46,3 +46,13 @@ public struct BPKDialogButton {
         self.style = style
     }
 }
+
+public struct BPKDialogSecondaryActions {
+    let secondaryButton: BPKDialogButton
+    let linkButton: BPKDialogButton
+    
+    public init(secondaryButton: BPKDialogButton, linkButton: BPKDialogButton) {
+        self.secondaryButton = secondaryButton
+        self.linkButton = linkButton
+    }
+}

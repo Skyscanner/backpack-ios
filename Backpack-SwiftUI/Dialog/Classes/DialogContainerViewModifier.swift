@@ -30,35 +30,40 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @ViewBuilder let dialogContent: DialogContent
     let onTouchOutside: (() -> Void)?
     
+    @State private var controller: UIViewController?
+    
     func body(content: Content) -> some View {
-        ZStack {
-            content
-            ZStack {
+        content
+            .onChange(of: isPresented) { _ in
                 if isPresented {
-                    ZStack {
-                        DialogScrimBackground()
-                            .onTapGesture { onTouchOutside?() }
-                        HStack {
-                            Spacer(minLength: .lg)
-                            dialogContent
-                            Spacer(minLength: .lg)
+                    showDialogWithContent {
+                        ZStack {
+                            Color(.scrimColor)
+                                .ignoresSafeArea()
+                                .onTapGesture { onTouchOutside?() }
+                            HStack {
+                                Spacer(minLength: .lg)
+                                dialogContent
+                                    .frame(maxWidth: 400)
+                                Spacer(minLength: .lg)
+                            }
                         }
-                        .frame(maxWidth: 400)
                     }
+                } else {
+                    controller?.dismiss(animated: true)
                 }
             }
-        }
+    }
+    
+    private func showDialogWithContent<Content: View>(_ content: () -> Content) {
+        let controller = UIHostingController(rootView: content())
+        controller.view.backgroundColor = .clear
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .overFullScreen
+        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+        self.controller = controller
     }
 }
-
-fileprivate struct DialogScrimBackground: View {
-    var body: some View {
-        Color(BPKColor.scrimColor)
-            .edgesIgnoringSafeArea(.all)
-            .transition(.opacity)
-    }
-}
-
 
 struct DialogContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {

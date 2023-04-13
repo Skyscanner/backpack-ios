@@ -22,7 +22,7 @@ struct CurrentStateButtonStyle: ButtonStyle {
     let style: BPKButton.Style
     let size: BPKButton.Size
     let iconOnly: Bool
-    let streches: Bool
+    let matchesParentWidth: Bool
     let getCurrentState: (_ isPressed: Bool) -> BPKButton.CurrentState
     let colorProvider: ButtonColorProvider
     
@@ -50,7 +50,7 @@ struct CurrentStateButtonStyle: ButtonStyle {
         
         configuration.label
             .frame(width: width, height: height)
-            .frame(maxWidth: streches ? .infinity : nil)
+            .frame(maxWidth: matchesParentWidth ? .infinity : nil)
             .padding([.leading, .trailing], sidesPadding)
             .background(background)
             .foregroundColor(foreground)

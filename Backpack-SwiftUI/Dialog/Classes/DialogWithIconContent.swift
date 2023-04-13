@@ -58,6 +58,7 @@ fileprivate struct DialogIconHeaderView: View {
         .frame(width: 64, height: 64)
         .background(.surfaceDefaultColor)
         .clipShape(Circle())
+        .accessibilityHidden(true)
     }
 }
 
