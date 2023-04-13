@@ -74,7 +74,6 @@ public struct BPKTextField: View {
                 }
             }
         }
-        .padding(.trailing, .md)
     }
     
     public func inputState(_ state: State) -> BPKTextField {
