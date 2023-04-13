@@ -45,20 +45,21 @@ public struct BPKTextField: View {
     }
     
     public var body: some View {
-        TextField(placeholder, text: $text)
-            .font(style: .bodyDefault)
-            .foregroundColor(state.textColor)
-            .padding(.md)
-            .background(.surfaceDefaultColor)
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
-            .outline(state.borderColor, cornerRadius: .sm)
-            .overlay(accessory)
-            .disabled(state.isDisabled)
+        HStack {
+            TextField(placeholder, text: $text)
+                .font(style: .bodyDefault)
+                .foregroundColor(state.textColor)
+                .disabled(state.isDisabled)
+            accessory
+        }
+        .padding(.md)
+        .background(.surfaceDefaultColor)
+        .clipShape(RoundedRectangle(cornerRadius: .sm))
+        .outline(state.borderColor, cornerRadius: .sm)
     }
     
     private var accessory: some View {
         HStack {
-            Spacer()
             if let icon = state.icon {
                 if case let .clear(accessibilityLabel, action) = state {
                     Button(action: action) {

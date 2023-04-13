@@ -21,22 +21,23 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct TextFieldExampleView: View {
-    @State var text = "Value"
+    @State var text1 = ""
+    @State var text2 = "Value"
     @State var validationFieldText = ""
     
     var body: some View {
         ScrollView {
             VStack {
-                BPKTextField(.constant(""))
-                BPKTextField(placeholder: "Placeholder", .constant(""))
-                BPKTextField($text)
-                BPKTextField($text)
+                BPKTextField($text2)
+                BPKTextField(placeholder: "Placeholder", $text2)
+                BPKTextField($text1)
+                BPKTextField($text1)
                     .inputState(.disabled)
-                BPKTextField($text)
-                    .inputState(text.isEmpty ? .default : .clear(accessibilityLabel: "Clear Field") { text = "" })
-                BPKTextField($text)
+                BPKTextField($text1)
+                    .inputState(text1.isEmpty ? .default : .clear(accessibilityLabel: "Clear Field") { text1 = "" })
+                BPKTextField($text1)
                     .inputState(.valid)
-                BPKTextField($text)
+                BPKTextField($text1)
                     .inputState(.error)
                 BPKTextField(placeholder: "At least 6 characters", $validationFieldText)
                     .inputState(validateState())
