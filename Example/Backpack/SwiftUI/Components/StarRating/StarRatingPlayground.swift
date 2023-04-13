@@ -22,6 +22,7 @@ import Backpack_SwiftUI
 
 struct StarRatingPlayground: View {
     @State var rating: Float = 3.5
+    @State var hotelRating: Int = 3
     @State var maxRating: Int = 5
     @State var size: BPKStarRatingSize = .small
     @State var rounding: Backpack_SwiftUI.BPKStarRating.Rounding = .down
@@ -62,25 +63,13 @@ struct StarRatingPlayground: View {
                 rating = selectedRating
             }
             BPKText("Hotel Rating", style: .heading3)
-            BPKHotelStarRating(
-                rating: $rating,
-                maxRating: maxRating,
-                size: size
-            )
+            BPKHotelStarRating(rating: $hotelRating, size: size)
         }
     }
     
     private var controls: some View {
         VStack {
-            HStack {
-                BPKText("Rating:")
-                Slider(value: $rating, in: 0...Float(maxRating), step: 0.1)
-            }
-            HStack {
-                BPKText("Max. stars:")
-                Spacer()
-                BPKNudger(value: $maxRating, min: 1, max: 12)
-            }
+            starHandles
             HStack {
                 BPKText("Size:")
                 Picker("Size", selection: $size) {
@@ -97,6 +86,25 @@ struct StarRatingPlayground: View {
                     Text("Nearest").tag(Backpack_SwiftUI.BPKStarRating.Rounding.nearest)
                 }
                 .pickerStyle(SegmentedPickerStyle())
+            }
+        }
+    }
+    
+    private var starHandles: some View {
+        VStack {
+            HStack {
+                BPKText("Rating:")
+                Slider(value: $rating, in: 0...Float(maxRating), step: 0.1)
+            }
+            HStack {
+                BPKText("Max. stars:")
+                Spacer()
+                BPKNudger(value: $maxRating, min: 1, max: 12)
+            }
+            HStack {
+                BPKText("Hotel stars:")
+                Spacer()
+                BPKNudger(value: $hotelRating, min: 1, max: 12)
             }
         }
     }

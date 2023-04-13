@@ -22,6 +22,8 @@ import Backpack_SwiftUI
 
 struct StarRatingExampleView: View {
     @State var rating: Float = 3.3
+    @State var hotelRating: Int = 3
+    
     var body: some View {
         VStack {
             staticStars
@@ -71,17 +73,10 @@ struct StarRatingExampleView: View {
     var hotelStars: some View {
         VStack {
             BPKText("Hotel Rating", style: .heading3)
-            BPKHotelStarRating(
-                rating: $rating,
-                maxRating: 5
-            )
-            .accessibilityLabel("Stars")
-            BPKHotelStarRating(
-                rating: $rating,
-                maxRating: 5,
-                size: .large
-            )
-            .accessibilityLabel("Stars")
+            BPKHotelStarRating(rating: $hotelRating)
+                .accessibilityLabel("Stars")
+            BPKHotelStarRating(rating: $hotelRating, size: .large)
+                .accessibilityLabel("Stars")
         }
     }
 }

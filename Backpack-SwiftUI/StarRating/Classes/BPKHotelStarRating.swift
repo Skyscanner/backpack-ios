@@ -20,47 +20,31 @@ import SwiftUI
 
 /// A view that displays a star rating based on a rating value.
 public struct BPKHotelStarRating: View {
-    @Binding private var rating: Float
-    private let maxRating: Int
+    @Binding private var rating: Int
     private let size: BPKStarRatingSize
     
     /// Initializes a new `BPKHotelStarRating` instance.
     /// - Parameters:
     ///   - rating: A binding to the current rating value.
-    ///   - maxRating: The maximum rating value allowed.
     ///   Represents the number of stars to display.
     ///   - size: The size of the star rating, defaults to `.small`.
     public init(
-        rating: Binding<Float>,
-        maxRating: Int,
+        rating: Binding<Int>,
         size: BPKStarRatingSize = .small
     ) {
         self._rating = rating
-        self.maxRating = maxRating
         self.size = size
     }
     
     public var body: some View {
         HStack(spacing: 0) {
-            ForEach(0..<maxRating, id: \.self) { index in
-                if let star = starType(for: index) {
-                    BPKStarView(type: star, size: size.starSize)
-                        .accessibilityHidden(true)
-                }
+            ForEach(0..<rating, id: \.self) { index in
+                BPKStarView(type: .full, size: size.starSize)
+                    .accessibilityHidden(true)
             }
         }
         .accessibilityElement()
-        .accessibilityValue(Text(String(coercedRating)))
-    }
-    
-    private func starType(for index: Int) -> BPKStarView.StarType? {
-        let clamped = max(0, min(coercedRating - Float(index), 1))
-        guard clamped >= 1 else { return nil }
-        return .full
-    }
-    
-    private var coercedRating: Float {
-        floor(max(0, min(Float(maxRating), rating)))
+        .accessibilityValue(Text(String(rating)))
     }
 }
 
@@ -68,13 +52,11 @@ struct BPKHotelStarRating_Previews: PreviewProvider {
     static var previews: some View {
         VStack(alignment: .leading) {
             BPKText("Small", style: .heading3)
-            BPKHotelStarRating(rating: .constant(3), maxRating: 5)
-            BPKHotelStarRating(rating: .constant(3.5), maxRating: 5)
-            BPKHotelStarRating(rating: .constant(4), maxRating: 5)
+            BPKHotelStarRating(rating: .constant(3))
+            BPKHotelStarRating(rating: .constant(4))
             BPKText("Large", style: .heading3)
-            BPKHotelStarRating(rating: .constant(3), maxRating: 5, size: .large)
-            BPKHotelStarRating(rating: .constant(3.5), maxRating: 5, size: .large)
-            BPKHotelStarRating(rating: .constant(4), maxRating: 5, size: .large)
+            BPKHotelStarRating(rating: .constant(3), size: .large)
+            BPKHotelStarRating(rating: .constant(4), size: .large)
         }
     }
 }

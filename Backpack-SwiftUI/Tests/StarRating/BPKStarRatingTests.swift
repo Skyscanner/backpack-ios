@@ -22,7 +22,7 @@ import SwiftUI
 
 class BPKStarRatingTests: XCTestCase {
     func test_hotelStars() {
-        assertSnapshot(BPKHotelStarRating(rating: .constant(3.5), maxRating: 5))
+        assertSnapshot(BPKHotelStarRating(rating: .constant(3)))
     }
     
     func test_zeroStars() {
