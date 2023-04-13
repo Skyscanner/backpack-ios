@@ -20,7 +20,7 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct RatingExampleViewWithTitle: View {
-    
+
     private let isDefaultSizes = [true, false]
     private let subtitles = ["1,532 reviews", nil]
     private let showScaleAndShowZeroToFive: [(showScale: Bool, showZeroToFive: Bool)] = [
@@ -30,14 +30,13 @@ struct RatingExampleViewWithTitle: View {
     ]
     private let title = "Excellent"
     private let value: Float = 4.5
-    @State var isPresenting = true
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: BPKSpacing.sm.value) {
             ForEach(isDefaultSizes, id: \.self) { isDefaultSize in
                 ForEach(subtitles, id: \.self) { subtitle in
                     ForEach(showScaleAndShowZeroToFive.indices, id: \.self) { index in
-                        
+
                         let (showScale, showZeroToFive) = showScaleAndShowZeroToFive[index]
                         let scale = showZeroToFive ? "5" : "10"
                         let subtitleAccessibilityLabel = subtitle != nil ? "Base on \(subtitles)" : ""
@@ -50,7 +49,6 @@ struct RatingExampleViewWithTitle: View {
                             subtitle: subtitle,
                             showScale: showScale
                         ).accessibilityLabel(accessibilityLabel)
-                        
                     }
                 }
             }
