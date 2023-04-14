@@ -289,6 +289,8 @@ public class BPKHorizontalNavigation<Size: BPKHorizontalNavigationSize>: UIContr
             heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             bottomAnchor.constraint(equalTo: barView.bottomAnchor)
         ])
+        
+        self.accessibilityTraits.insert(.tabBar)
 
         repopulateStackView()
         self.selectedItemIndex = selectedItemIndex

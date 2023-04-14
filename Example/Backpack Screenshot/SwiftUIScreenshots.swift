@@ -165,6 +165,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        navigate(title: "Text fields") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")
             
@@ -175,6 +180,34 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             app.tables.staticTexts["Large"].tap()
             saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
+        }
+        
+        navigate(title: "Dialogs") {
+            switchTab(title: "SwiftUI")
+            app.buttons["Open Success"].tap()
+            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Warning"].waitForExistence(timeout: 1)
+            app.buttons["Open Warning"].tap()
+            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Destructive"].waitForExistence(timeout: 1)
+            app.buttons["Open Destructive"].tap()
+            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Delete"].tap()
+            
+            _ = app.buttons["Open Flare"].waitForExistence(timeout: 1)
+            app.buttons["Open Flare"].tap()
+            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
+            app.buttons["Open Image"].tap()
+            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
         }
         
         navigate(title: "Flare views") {

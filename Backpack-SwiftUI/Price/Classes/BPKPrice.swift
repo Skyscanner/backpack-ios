@@ -57,7 +57,7 @@ private struct HorizontalPriceStack: View {
     }
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: BPKSpacing.sm.value) {
+        HStack(alignment: .firstTextBaseline, spacing: .sm) {
             BPKText(price, style: fontStyle)
             if let trailingText = trailingText {
                 BPKText(trailingText, style: accessoryFontStyle)
@@ -100,8 +100,8 @@ public struct BPKPrice: View {
     }
     
     public var body: some View {
-        VStack(alignment: mapAlignment(), spacing: BPKSpacing.none.value) {
-            HStack(spacing: BPKSpacing.sm.value) {
+        VStack(alignment: mapAlignment(), spacing: BPKSpacing.none) {
+            HStack(spacing: .sm) {
                 ForEach(topLabels(), id: \.self) { item in
                     accessoryText(item)
                         .strikethrough(item == previousPrice)

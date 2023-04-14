@@ -15,16 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import SwiftUI
-
-public struct BPKSpacing {
-    public let value: CGFloat
-    
-    private init(value: CGFloat) {
-        self.value = value
-    }
-}
 
 public extension BPKSpacing {
     
@@ -51,44 +41,4 @@ public extension BPKSpacing {
 
     /// The Skyscanner extra extra large spacing (40pt).
     static var xxl: BPKSpacing { BPKSpacing(value: 40) }
-}
-
-public extension View {
-    func padding(_ spacing: BPKSpacing) -> some View {
-        padding(spacing.value)
-    }
-
-    func padding(_ edge: Edge.Set, _ spacing: BPKSpacing) -> some View {
-        padding(edge, spacing.value)
-    }
-
-    func frame(
-        minWidth: BPKSpacing? = nil,
-        idealWidth: BPKSpacing? = nil,
-        maxWidth: BPKSpacing? = nil,
-        minHeight: BPKSpacing? = nil,
-        idealHeight: BPKSpacing? = nil,
-        maxHeight: BPKSpacing? = nil,
-        alignment: Alignment = .center
-    ) -> some View {
-        frame(
-            minWidth: minWidth?.value,
-            idealWidth: idealWidth?.value,
-            maxWidth: maxWidth?.value,
-            minHeight: minHeight?.value,
-            idealHeight: idealHeight?.value,
-            maxHeight: maxHeight?.value,
-            alignment: alignment
-        )
-    }
-    
-    func frame(width: BPKSpacing? = nil, height: BPKSpacing? = nil, alignment: Alignment = .center) -> some View {
-        frame(width: width?.value, height: height?.value, alignment: alignment)
-    }
-}
-
-public extension Spacer {
-    init(minLength: BPKSpacing) {
-        self.init(minLength: minLength.value)
-    }
 }
