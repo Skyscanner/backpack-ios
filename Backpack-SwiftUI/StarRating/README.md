@@ -19,6 +19,22 @@ To use the star rating component in your code you will need to bind the `rating`
 BPKStarRating(rating: $rating, maxRating: 5)
 ```
 
+### Interactive star rating
+
+```swift
+@State var rating: Float = 3.5
+BPKStarRating(rating: $rating, maxRating: 5) { selectedRating in
+    rating = selectedRating
+}
+```
+
+### Hotel star rating
+
+```swift
+@State var hotelRating: Int = 3
+BPKHotelStarRating(rating: $hotelRating)
+```
+
 ### Star rating with Large size
 
 ```swift
