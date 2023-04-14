@@ -317,10 +317,13 @@ extension ComponentCellsProvider {
         )
     }
     private func starRatings() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Star ratings",
-            storyboard: .named("StarRatings", on: "StarRatingsViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "StarRatings", identifier: "StarRatingsViewController")),
+                .swiftui(groups: StarRatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Star ratings", tabs: $0) }
         )
     }
     private func switches() -> CellDataSource {

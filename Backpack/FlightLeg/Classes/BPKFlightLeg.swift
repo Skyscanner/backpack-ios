@@ -30,7 +30,11 @@ public final class BPKFlightLeg: UIView {
     private let duration: String
     private let operatedBy: String?
     private let warning: String?
-    private let carrierLogo: UIImage?
+    public var carrierLogo: UIImage? {
+        didSet {
+            carrierLogoIcon.image = carrierLogo
+        }
+    }
     
     private let departureArrivalTimeLabel: BPKLabel = {
         let departureArrtvalTimeLabel = BPKLabel()
