@@ -48,8 +48,8 @@ struct DialogExampleView: View {
         .bpkSuccessDialog(
             presented: $presentingSuccessDialog,
             icon: .tick,
-            title: "Success Dialog!",
-            text: "You have successfully completed this task. You can now continue to the next step.",
+            title: "Title in here",
+            text: "Desription that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
@@ -60,8 +60,8 @@ struct DialogExampleView: View {
         .bpkWarningDialog(
             presented: $presentingWarningDialog,
             icon: .alertAdd,
-            title: "Warning Dialog!",
-            text: "You have not completed this task. Continuing will result in losing your progress.",
+            title: "Title in here",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
             confirmButton: confirmButton,
             secondaryActions: BPKDialogSecondaryActions(
                 secondaryButton: secondaryButton,
@@ -72,10 +72,10 @@ struct DialogExampleView: View {
         .bpkDestructiveDialog(
             presented: $presentingDestructiveDialog,
             icon: .trash,
-            title: "Destructive Dialog!",
-            text: "You're about to delete this item. This action cannot be undone.",
-            confirmButton: confirmButton,
-            linkButton: linkButton,
+            title: "Title in here",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: BPKDialogButton("Delete", action: dismissDialogs),
+            linkButton: BPKDialogButton("Cancel", action: dismissDialogs),
             onTouchOutside: dismissDialogs
         )
         .bpkImageDialog(
@@ -105,15 +105,15 @@ struct DialogExampleView: View {
     }
     
     private var confirmButton: BPKDialogButton {
-        BPKDialogButton("Continue", action: dismissDialogs)
+        BPKDialogButton("Confirmation", action: dismissDialogs)
     }
     
     private var secondaryButton: BPKDialogButton {
-        BPKDialogButton("Cancel", action: dismissDialogs)
+        BPKDialogButton("Skip", action: dismissDialogs)
     }
     
     private var linkButton: BPKDialogButton {
-        BPKDialogButton("Learn more", action: dismissDialogs)
+        BPKDialogButton("Link opitonal", action: dismissDialogs)
     }
     
     private func dismissDialogs() {

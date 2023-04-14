@@ -32,7 +32,9 @@ public extension View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
         if let secondaryActions {
             buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
-            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
+            if let linkButton = secondaryActions.linkButton {
+                buttons.append(BPKDialogButton(button: linkButton, style: .link))
+            }
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
@@ -57,7 +59,9 @@ public extension View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
         if let secondaryActions {
             buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
-            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
+            if let linkButton = secondaryActions.linkButton {
+                buttons.append(BPKDialogButton(button: linkButton, style: .link))
+            }
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
@@ -106,7 +110,9 @@ public extension View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
         if let secondaryActions {
             buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
-            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
+            if let linkButton = secondaryActions.linkButton {
+                buttons.append(BPKDialogButton(button: linkButton, style: .link))
+            }
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
@@ -130,7 +136,9 @@ public extension View {
         var buttons = [BPKDialogButton(button: confirmButton, style: .featured)]
         if let secondaryActions {
             buttons.append(BPKDialogButton(button: secondaryActions.secondaryButton, style: .secondary))
-            buttons.append(BPKDialogButton(button: secondaryActions.linkButton, style: .link))
+            if let linkButton = secondaryActions.linkButton {
+                buttons.append(BPKDialogButton(button: linkButton, style: .link))
+            }
         }
         return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(

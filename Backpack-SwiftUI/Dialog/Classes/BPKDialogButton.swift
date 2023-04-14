@@ -49,10 +49,15 @@ public struct BPKDialogButton {
 
 public struct BPKDialogSecondaryActions {
     let secondaryButton: BPKDialogButton
-    let linkButton: BPKDialogButton
+    let linkButton: BPKDialogButton?
     
     public init(secondaryButton: BPKDialogButton, linkButton: BPKDialogButton) {
         self.secondaryButton = secondaryButton
         self.linkButton = linkButton
+    }
+    
+    public init(secondaryButton: BPKDialogButton) {
+        self.secondaryButton = secondaryButton
+        linkButton = nil
     }
 }

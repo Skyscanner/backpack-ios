@@ -60,8 +60,17 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
         controller.view.backgroundColor = .clear
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .overFullScreen
-        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+
+        rootViewController?.present(controller, animated: true)
         self.controller = controller
+    }
+    
+    private var rootViewController: UIViewController? {
+        UIApplication.shared
+            .windows
+            .filter {$0.isKeyWindow}
+            .first?
+            .rootViewController
     }
 }
 
