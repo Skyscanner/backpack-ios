@@ -161,10 +161,15 @@ extension ComponentCellsProvider {
         )
     }
     private func dialog() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Dialogs",
-            groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Dialogs", children: $0) }
+            tabs: [
+                .uikit(groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(DialogExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Dialogs", tabs: $0) }
         )
     }
     private func horizontalNavigation() -> CellDataSource {
