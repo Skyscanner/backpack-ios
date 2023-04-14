@@ -37,6 +37,7 @@
 		535068C629E965CB0054FB8C /* PanelExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535068AD29E965CB0054FB8C /* PanelExampleView.swift */; };
 		535068C729E965CB0054FB8C /* FlareExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535068AF29E965CB0054FB8C /* FlareExampleView.swift */; };
 		535068C829E965CB0054FB8C /* PriceExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535068B129E965CB0054FB8C /* PriceExampleView.swift */; };
+		5350691129E979670054FB8C /* ChipExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5350691029E979670054FB8C /* ChipExampleView.swift */; };
 		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */; };
 		5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */; };
@@ -228,6 +229,7 @@
 		535068AD29E965CB0054FB8C /* PanelExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelExampleView.swift; sourceTree = "<group>"; };
 		535068AF29E965CB0054FB8C /* FlareExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlareExampleView.swift; sourceTree = "<group>"; };
 		535068B129E965CB0054FB8C /* PriceExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleView.swift; sourceTree = "<group>"; };
+		5350691029E979670054FB8C /* ChipExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipExampleView.swift; sourceTree = "<group>"; };
 		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensViewController.swift; sourceTree = "<group>"; };
 		5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensViewController.swift; sourceTree = "<group>"; };
@@ -547,13 +549,6 @@
 			path = Badge;
 			sourceTree = "<group>";
 		};
-		535068A929E965CB0054FB8C /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		535068AA29E965CB0054FB8C /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +579,14 @@
 				535068B129E965CB0054FB8C /* PriceExampleView.swift */,
 			);
 			path = Price;
+			sourceTree = "<group>";
+		};
+		5350690F29E979500054FB8C /* Chip */ = {
+			isa = PBXGroup;
+			children = (
+				5350691029E979670054FB8C /* ChipExampleView.swift */,
+			);
+			path = Chip;
 			sourceTree = "<group>";
 		};
 		5390DB5B29098CD700F0F790 /* Tokens */ = {
@@ -758,10 +761,10 @@
 				535068A729E965CB0054FB8C /* Badge */,
 				5350689229E965CA0054FB8C /* Button */,
 				5350688829E965CA0054FB8C /* Card */,
+				5350690F29E979500054FB8C /* Chip */,
 				5350689929E965CA0054FB8C /* Dialog */,
 				535068AE29E965CB0054FB8C /* Flare */,
 				5350689D29E965CB0054FB8C /* Icons */,
-				535068A929E965CB0054FB8C /* New Group */,
 				5350689029E965CA0054FB8C /* Nudger */,
 				535068AA29E965CB0054FB8C /* Overlay */,
 				5350689729E965CA0054FB8C /* PageIndicator */,
@@ -1530,6 +1533,7 @@
 				D2D624AB231586F600D8ED38 /* PanelSelectorViewController.swift in Sources */,
 				F00CA3D9299D53450027ACE7 /* FloatingNotificationViewController.swift in Sources */,
 				535068BA29E965CB0054FB8C /* SkeletonExampleView.swift in Sources */,
+				5350691129E979670054FB8C /* ChipExampleView.swift in Sources */,
 				0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */,
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,

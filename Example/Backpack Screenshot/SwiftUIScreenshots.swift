@@ -182,6 +182,20 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Chips") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["On Dark"].tap()
+            saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["On Image"].tap()
+            saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Dialogs") {
             switchTab(title: "SwiftUI")
             app.buttons["Open Success"].tap()
