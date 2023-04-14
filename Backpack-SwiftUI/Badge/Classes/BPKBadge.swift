@@ -58,7 +58,7 @@ public struct BPKBadge: View {
     }
     
     private var content: some View {
-        HStack(spacing: BPKSpacing.sm.value) {
+        HStack(spacing: .sm) {
             if let icon = icon {
                 BPKIconView(icon, size: .small)
                     .foregroundColor(style.foregroundColor)
@@ -66,34 +66,6 @@ public struct BPKBadge: View {
         
             BPKText(title, style: .caption)
                 .foregroundColor(style.foregroundColor)
-        }
-    }
-}
-
-// Helper functions to apply the outline style
-fileprivate struct Outline: ViewModifier {
-    let color: BPKColor
-    let cornerRadius: BPKCornerRadius
-    
-    func body(content: Content) -> some View {
-        return content
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color(color))
-            )
-    }
-}
-
-fileprivate extension View {
-    @ViewBuilder
-    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius) -> some View {
-        if let color = color {
-            ModifiedContent(
-                content: self,
-                modifier: Outline(color: color, cornerRadius: cornerRadius)
-            )
-        } else {
-            self
         }
     }
 }

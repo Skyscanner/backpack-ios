@@ -34,7 +34,7 @@ internal extension BPKSkeleton.Size {
         case .custom(let customSize):
             return customSize;
         case .small:
-            return CGSize(width: BPKSpacing.xl.value, height: BPKSpacing.xl.value)
+            return CGSize(width: .xl, height: .xl)
         default:
             return CGSize(width: 48, height: 48)
         }

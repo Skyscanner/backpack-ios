@@ -109,7 +109,7 @@ struct PriceExampleView: View {
                     )
                 }
             }
-            .padding([.leading, .trailing], BPKSpacing.base.value)
+            .padding([.leading, .trailing], .base)
             Spacer()
         }
     }
