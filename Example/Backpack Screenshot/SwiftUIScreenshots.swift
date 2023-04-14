@@ -226,5 +226,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "nudger", scenario: "default",
                            userInterfaceStyle: userInterfaceStyle)
         }
+        
+        navigate(title: "Star ratings") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Star rating"].tap()
+            saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
