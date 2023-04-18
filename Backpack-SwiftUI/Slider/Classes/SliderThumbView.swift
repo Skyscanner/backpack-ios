@@ -18,16 +18,28 @@
  
 import SwiftUI
 
-public struct ExampleComponent: View {
-    @State var content: String
-
-    public var body: some View {
-        Text(content)
+struct SliderThumbView: View {
+    let size: CGFloat
+    let offset: CGFloat
+    let onDrag: (DragGesture.Value) -> Void
+    
+    var body: some View {
+        Circle()
+            .fill(Color(.coreAccentColor))
+            .frame(width: size, height: size)
+            .shadow(.sm)
+            .offset(x: offset)
+            .highPriorityGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { value in
+                        onDrag(value)
+                    }
+            )
     }
 }
 
-struct ExampleComponent_Previews: PreviewProvider {
+struct SliderThumbView_Previews: PreviewProvider {
     static var previews: some View {
-        ExampleComponent(content: "Testing!")
+        SliderThumbView(size: 20, offset: 0) { _ in }
     }
 }

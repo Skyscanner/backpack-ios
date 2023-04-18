@@ -64,6 +64,7 @@ struct ComponentCellsProvider {
             ratings(),
             snackbar(),
             skeleton(),
+            sliders(),
             spinners(),
             starRatings(),
             switches(),
@@ -276,6 +277,12 @@ extension ComponentCellsProvider {
             storyboard: .named("Snackbar", on: "SnackbarViewController"),
             showPresentable: show(presentable:)
         )
+    }
+    private func sliders() -> CellDataSource {
+        PresentableCellDataSource.custom(
+            title: "Slider",
+            customController: { ContentUIHostingController(SliderExampleView()) },
+            showPresentable: show(presentable:))
     }
     private func skeleton() -> CellDataSource {
         ComponentCellDataSource(
