@@ -40,11 +40,31 @@ struct ChipButtonStyle: ButtonStyle {
         }
         switch style {
         case .`default`:
-            return isPressed ? .corePrimaryColor : selected ? .corePrimaryColor : .lineColor
+            if selected || isPressed {
+                return .corePrimaryColor
+            }
+            
+            return .lineColor
         case .onDark:
-            return isPressed ? .chipOnDarkPressedStrokeColor : selected ? .surfaceDefaultColor : .lineOnDarkColor
+            if selected {
+                return .surfaceDefaultColor
+            }
+            
+            if isPressed {
+                return .chipOnDarkPressedStrokeColor
+            }
+            
+            return .lineOnDarkColor
         case .onImage:
-            return isPressed ? .canvasContrastColor : selected ? .corePrimaryColor : .surfaceDefaultColor
+            if selected {
+                return .corePrimaryColor
+            }
+            
+            if isPressed {
+                return .canvasContrastColor
+            }
+            
+            return .surfaceDefaultColor
         }
     }
     
@@ -54,11 +74,15 @@ struct ChipButtonStyle: ButtonStyle {
         }
         switch style {
         case .`default`:
-            return isPressed ? .clear : selected ? .corePrimaryColor : .clear
+            return selected ? .corePrimaryColor : .clear
         case .onDark:
-            return isPressed ? .clear : selected ? .chipOnDarkOnBackgroundColor : .clear
+            return selected ? .chipOnDarkOnBackgroundColor : .clear
         case .onImage:
-            return isPressed ? .canvasContrastColor : selected ? .corePrimaryColor : .surfaceDefaultColor
+            if selected { return .corePrimaryColor }
+
+            if isPressed {  return .canvasContrastColor }
+
+            return .surfaceDefaultColor
         }
     }
     
@@ -67,12 +91,10 @@ struct ChipButtonStyle: ButtonStyle {
             return .textDisabledColor
         }
         switch style {
-        case .`default`:
-            return isPressed ? .textPrimaryColor : selected ? .textOnDarkColor : .textPrimaryColor
+        case .`default`, .onImage:
+            return selected ? .textOnDarkColor : .textPrimaryColor
         case .onDark:
-            return isPressed ? .textOnDarkColor : selected ? .textPrimaryColor : .textOnDarkColor
-        case .onImage:
-            return isPressed ? .textPrimaryColor : selected ? .textOnDarkColor : .textPrimaryColor
+            return selected ? .textPrimaryColor : .textOnDarkColor
         }
     }
 }
