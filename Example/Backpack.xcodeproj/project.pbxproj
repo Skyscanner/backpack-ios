@@ -54,6 +54,8 @@
 		53E075BB27FC9FD30033147C /* CustomPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BA27FC9FD30033147C /* CustomPresentable.swift */; };
 		53E075BE27FCBE8C0033147C /* RootViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */; };
 		53E93D3E29EEA4F400209E48 /* SliderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E93D3D29EEA4F400209E48 /* SliderExampleView.swift */; };
+		53E93D4029EEBCB300209E48 /* SliderPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E93D3F29EEBCB300209E48 /* SliderPlayground.swift */; };
+		53E93D4229EEF20E00209E48 /* SliderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E93D4129EEF20E00209E48 /* SliderGroups.swift */; };
 		58CFF14722D3837900C45B0B /* StarRatings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CFF14622D3837900C45B0B /* StarRatings.storyboard */; };
 		58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -243,6 +245,8 @@
 		53E075BA27FC9FD30033147C /* CustomPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentable.swift; sourceTree = "<group>"; };
 		53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerFactory.swift; sourceTree = "<group>"; };
 		53E93D3D29EEA4F400209E48 /* SliderExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderExampleView.swift; sourceTree = "<group>"; };
+		53E93D3F29EEBCB300209E48 /* SliderPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlayground.swift; sourceTree = "<group>"; };
+		53E93D4129EEF20E00209E48 /* SliderGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderGroups.swift; sourceTree = "<group>"; };
 		54DDBEECFBF1FCED05A9179D /* Pods-Backpack Native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.debug.xcconfig"; sourceTree = "<group>"; };
 		58CFF14622D3837900C45B0B /* StarRatings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StarRatings.storyboard; sourceTree = "<group>"; };
 		58CFF14822D383C300C45B0B /* StarRatingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingsViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +526,7 @@
 				53E075A427FC780C0033147C /* NavBarGroups.swift */,
 				53E075A627FC95D70033147C /* MapGroups.swift */,
 				53B6DB5F27FC3A030042B7C0 /* CardGroups.swift */,
+				53E93D4129EEF20E00209E48 /* SliderGroups.swift */,
 				53B6DB5B27FC39AC0042B7C0 /* ButtonGroups.swift */,
 				53E075B227FC9BBB0033147C /* SingleGroupProvider.swift */,
 				53E075B427FC9BD30033147C /* HomeGroupsProvider.swift */,
@@ -557,6 +562,7 @@
 		53E93D3C29EEA4F400209E48 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
+				53E93D3F29EEBCB300209E48 /* SliderPlayground.swift */,
 				53E93D3D29EEA4F400209E48 /* SliderExampleView.swift */,
 			);
 			path = Slider;
@@ -1512,6 +1518,7 @@
 				0E844AF7289141C2004C5865 /* SkeletonViewController.swift in Sources */,
 				53E075B327FC9BBB0033147C /* SingleGroupProvider.swift in Sources */,
 				796DE9F12834840D00D07664 /* ButtonsExampleView.swift in Sources */,
+				53E93D4229EEF20E00209E48 /* SliderGroups.swift in Sources */,
 				53E075B727FC9C010033147C /* PresentableNavigator.swift in Sources */,
 				539CBD7129E4742D000871E0 /* FlareExampleView.swift in Sources */,
 				7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */,
@@ -1565,6 +1572,7 @@
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,
 				53E075AF27FC9B160033147C /* GroupCellDataSource.swift in Sources */,
 				79CE553329BB05DD00CC89D3 /* OverlayForegroundViewController.swift in Sources */,
+				53E93D4029EEBCB300209E48 /* SliderPlayground.swift in Sources */,
 				BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */,
 				794E1FF0280A829D00B965FF /* SpacingTokensView.swift in Sources */,
 				53E075B127FC9B290033147C /* PresentableCellDataSource.swift in Sources */,

@@ -26,29 +26,23 @@ struct SliderExampleView: View {
     @State var selectedValue: Float = 20
     
     var body: some View {
-        VStack {
-            BPKText("\(selectedRange.lowerBound), \(selectedRange.upperBound)")
-            BPKRangeSlider(
-                selectedRange: $selectedRange,
-                sliderBounds: -50...50
-            )
-            .trailingAccessibility(label: "Trailing")
-            .leadingAccessibility(label: "Leading")
-            .frame(width: 200)
-            BPKRangeSlider(
-                selectedRange: $selectedRange,
-                sliderBounds: -50...50
-            )
-            .trailingAccessibility(label: "Trailing")
-            .leadingAccessibility(label: "Leading")
-            
-            BPKText("\(selectedValue)")
+        VStack(alignment: .leading) {
+            BPKText("Standard")
             BPKSlider(
-                currentValue: $selectedValue,
+                value: $selectedValue,
                 sliderBounds: -50...50
             )
-            .frame(width: 200)
-        }.padding()
+            
+            BPKText("Range")
+            BPKRangeSlider(
+                selectedRange: $selectedRange,
+                sliderBounds: -50...50,
+                minSpacing: 5
+            )
+            .trailingAccessibility(label: "Trailing")
+            .leadingAccessibility(label: "Leading")
+        }
+        .padding()
     }
 }
 

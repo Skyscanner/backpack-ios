@@ -18,24 +18,37 @@
  
 import SwiftUI
 
+/// A view that displays a horizontal slider with two thumbs.
 public struct BPKRangeSlider: View {
     @Binding private var selectedRange: ClosedRange<Float>
     private let sliderBounds: ClosedRange<Float>
     private let step: Float
+    private let minSpacing: Float
     
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
     private var trailingAccessibilityLabel = ""
     private var leadingAccessibilityLabel = ""
     
+    /// Creates a new instance of `BPKRangeSlider`.
+    ///
+    /// If the selected range is outside the bounds of the slider, it will be clamped to the bounds.
+    ///
+    /// - Parameters:
+    ///   - selectedRange: Binding of the selected range of the slider.
+    ///   - sliderBounds: The bounds of the slider.
+    ///   - step: The step size of the slider. Defaults to 1.
+    ///   - minSpacing: The minimum spacing between the two thumbs. Defaults to 0.
     public init(
         selectedRange: Binding<ClosedRange<Float>>,
         sliderBounds: ClosedRange<Float>,
-        step: Float = 1
+        step: Float = 1,
+        minSpacing: Float = 0
     ) {
         self._selectedRange = selectedRange
         self.sliderBounds = sliderBounds
         self.step = step
+        self.minSpacing = minSpacing
     }
     
     public var body: some View {
@@ -62,7 +75,6 @@ public struct BPKRangeSlider: View {
             Capsule()
                 .fill(Color(.lineColor))
                 .frame(width: sliderSize.width, height: sliderHeight)
-            ZStack {
                 Rectangle()
                     .fill(Color(.coreAccentColor))
                     .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
@@ -97,16 +109,17 @@ public struct BPKRangeSlider: View {
                     @unknown default: break
                     }
                 }
-            }
         }
     }
     
+    /// Sets the accessibility label for the trailing thumb.
     public func trailingAccessibility(label: String) -> BPKRangeSlider {
         var result = self
         result.trailingAccessibilityLabel = label
         return result
     }
     
+    /// Sets the accessibility label for the leading thumb.
     public func leadingAccessibility(label: String) -> BPKRangeSlider {
         var result = self
         result.leadingAccessibilityLabel = label
@@ -135,28 +148,32 @@ public struct BPKRangeSlider: View {
     
     private func handleTrailingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
         let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
-            value: value,
-            sliderSize: sliderSize,
+            xLocation: value.location.x,
+            sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
             sliderBounds: sliderBounds,
             step: step
         )
-        let greaterThanLowerBound = roundedValue >= selectedRange.lowerBound
-        let smallerThanUpperBound = roundedValue <= sliderBounds.upperBound
-        if greaterThanLowerBound && smallerThanUpperBound {
+        let isGreaterThanLeadingThumb = roundedValue >= selectedRange.lowerBound
+        let isSmallerThanUpperBound = roundedValue <= sliderBounds.upperBound
+        let isWithinMinSpacing = roundedValue - selectedRange.lowerBound - minSpacing >= 0
+        if isGreaterThanLeadingThumb && isSmallerThanUpperBound && isWithinMinSpacing {
             $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...roundedValue
         }
     }
     
     private func handleLeadingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
         let roundedValue = BPKSliderHelpers.calculateNewValueFromDrag(
-            value: value,
-            sliderSize: sliderSize,
+            xLocation: value.location.x,
+            sliderWidth: sliderSize.width,
             thumbSize: thumbSize,
             sliderBounds: sliderBounds,
             step: step
         )
-        if roundedValue <= selectedRange.upperBound && roundedValue >= sliderBounds.lowerBound {
+        let isSmallerThanTrailingThumb = roundedValue <= selectedRange.upperBound
+        let isGreaterThanLowerBound = roundedValue >= sliderBounds.lowerBound
+        let isWithinMinSpacing = selectedRange.upperBound - roundedValue - minSpacing >= 0
+        if isSmallerThanTrailingThumb && isGreaterThanLowerBound && isWithinMinSpacing {
             $selectedRange.wrappedValue = roundedValue...$selectedRange.wrappedValue.upperBound
         }
     }
@@ -208,7 +225,8 @@ struct BPKRangeSlider_Previews: PreviewProvider {
         BPKRangeSlider(
             selectedRange: .constant(30...70),
             sliderBounds: 0...100,
-            step: 1
+            step: 1,
+            minSpacing: 10
         )
     }
 }

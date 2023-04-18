@@ -279,10 +279,13 @@ extension ComponentCellsProvider {
         )
     }
     private func sliders() -> CellDataSource {
-        PresentableCellDataSource.custom(
+        ComponentCellDataSource(
             title: "Slider",
-            customController: { ContentUIHostingController(SliderExampleView()) },
-            showPresentable: show(presentable:))
+            tabs: [
+                .swiftui(groups: SliderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Slider", tabs: $0) }
+        )
     }
     private func skeleton() -> CellDataSource {
         ComponentCellDataSource(

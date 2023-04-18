@@ -15,30 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import SwiftUI
 
 struct BPKSliderHelpers {
+    
+    /// Calculates the new value for the slider based on the drag gesture.
     static func calculateNewValueFromDrag(
-        value: DragGesture.Value,
-        sliderSize: CGSize,
+        xLocation: CGFloat,
+        sliderWidth: CGFloat,
         thumbSize: CGFloat,
         sliderBounds: ClosedRange<Float>,
         step: Float
     ) -> Float {
-        let sliderWidth = sliderSize.width
-        let adjustedThumbPosition = value.location.x - (thumbSize / 2 + sliderWidth / 2)
+        let adjustedThumbPosition = xLocation - thumbSize / 2 + sliderWidth / 2
         let percentageForPosition = adjustedThumbPosition / sliderWidth
         let newValue = Self.valueForPercentage(Float(percentageForPosition), sliderBounds: sliderBounds)
         return round(newValue / step) * step
     }
 
+    /// Calculates the relative percentage of a value in the slider.
     static func percentageOfValue(value: Float, sliderBounds: ClosedRange<Float>) -> Float {
         let lowerBound = sliderBounds.lowerBound
         let upperBound = sliderBounds.upperBound
         return (value - lowerBound) / (upperBound - lowerBound)
     }
 
+    /// Calculates the value for a given percentage in the slider.
     static func valueForPercentage(_ percentage: Float, sliderBounds: ClosedRange<Float>) -> Float {
         let lowerBound = sliderBounds.lowerBound
         let upperBound = sliderBounds.upperBound
