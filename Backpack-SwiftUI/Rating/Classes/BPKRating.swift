@@ -36,6 +36,11 @@ public struct BPKRating<Content: View>: View {
                 ).layoutPriority(4)
                 if showScale {
                     BPKText(
+                        "/",
+                        style: size.fontStyle.ratingScaleLabelFontStyle
+                    ).foregroundColor(.textSecondaryColor)
+                        .layoutPriority(3)
+                    BPKText(
                         ratingScale.displayedScale(),
                         style: size.fontStyle.ratingScaleLabelFontStyle
                     ).foregroundColor(.textSecondaryColor)

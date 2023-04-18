@@ -95,6 +95,13 @@ public class BPKRating: UIView {
         return label
     }()
 
+    private let ratingScaleSlashLabel: BPKLabel = {
+        let label = BPKLabel(fontStyle: .textCaption)
+        label.textColor = BPKColor.textSecondaryColor
+        label.text = "/"
+        return label
+    }()
+
     private let titleLabel: BPKLabel = {
         let label = BPKLabel(fontStyle: .textLabel1)
         label.textColor = BPKColor.textPrimaryColor
@@ -168,6 +175,7 @@ public class BPKRating: UIView {
         ].forEach(horizontalStackView.addArrangedSubview(_:))
         [
             ratingValueLabel,
+            ratingScaleSlashLabel,
             ratingScaleLabel
         ].forEach(ratingValueAndScaleStackView.addArrangedSubview(_:))
 
@@ -196,6 +204,7 @@ public class BPKRating: UIView {
 
     private func updateLookAndFeel() {
         ratingScaleLabel.isHidden = !showScale
+        ratingScaleSlashLabel.isHidden = !showScale
         if showScale {
             ratingScaleLabel.text = ratingScale.displayedScale()
         }
@@ -211,6 +220,7 @@ public class BPKRating: UIView {
         switch size {
         case .default:
             ratingValueLabel.fontStyle = .textLabel1
+            ratingScaleSlashLabel.fontStyle = .textCaption
             ratingScaleLabel.fontStyle = .textCaption
             titleLabel.fontStyle = .textLabel1
             subtitleLabel.fontStyle = .textCaption
@@ -220,6 +230,7 @@ public class BPKRating: UIView {
             titleSubtitleStackView.alignment = .lastBaseline
         case .large:
             ratingValueLabel.fontStyle = .textHero5
+            ratingScaleSlashLabel.fontStyle = .textBodyDefault
             ratingScaleLabel.fontStyle = .textBodyDefault
             titleLabel.fontStyle = .textHeading5
             subtitleLabel.fontStyle = .textBodyDefault

@@ -20,11 +20,11 @@ import XCTest
 
 class HorizontalNavigationUITest: BackpackUITestCase {
     lazy var flightsOption: XCUIElement = {
-        return app.buttons["Flights"]
+        return app.buttons["Flights"].firstMatch
     }()
 
     lazy var hotelsOption: XCUIElement = {
-        return app.buttons["Hotels"]
+        return app.buttons["Hotels"].firstMatch
     }()
 
     func navigateAndShow() {

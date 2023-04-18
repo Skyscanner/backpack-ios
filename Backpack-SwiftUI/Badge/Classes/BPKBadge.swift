@@ -70,34 +70,6 @@ public struct BPKBadge: View {
     }
 }
 
-// Helper functions to apply the outline style
-fileprivate struct Outline: ViewModifier {
-    let color: BPKColor
-    let cornerRadius: BPKCornerRadius
-    
-    func body(content: Content) -> some View {
-        return content
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color(color))
-            )
-    }
-}
-
-fileprivate extension View {
-    @ViewBuilder
-    func outline(_ color: BPKColor?, cornerRadius: BPKCornerRadius) -> some View {
-        if let color = color {
-            ModifiedContent(
-                content: self,
-                modifier: Outline(color: color, cornerRadius: cornerRadius)
-            )
-        } else {
-            self
-        }
-    }
-}
-
 struct BPKBadge_Previews: PreviewProvider {
     static var previews: some View {
         let styles: [(BPKBadge.Style, String, BPKIcon, Bool)] = [

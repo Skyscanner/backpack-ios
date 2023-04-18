@@ -45,6 +45,6 @@ public enum BPKCommonRatingScale {
     }
 
     public func displayedScale() -> String {
-        return String(format: "/%.0f", range.upperBound)
+        return String(format: "%.0f", range.upperBound)
     }
 }

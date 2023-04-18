@@ -162,10 +162,15 @@ extension ComponentCellsProvider {
         )
     }
     private func dialog() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Dialogs",
-            groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Dialogs", children: $0) }
+            tabs: [
+                .uikit(groups: DialogGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(DialogExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Dialogs", tabs: $0) }
         )
     }
     private func horizontalNavigation() -> CellDataSource {
@@ -319,10 +324,13 @@ extension ComponentCellsProvider {
         )
     }
     private func starRatings() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Star ratings",
-            storyboard: .named("StarRatings", on: "StarRatingsViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "StarRatings", identifier: "StarRatingsViewController")),
+                .swiftui(groups: StarRatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Star ratings", tabs: $0) }
         )
     }
     private func switches() -> CellDataSource {
@@ -352,10 +360,15 @@ extension ComponentCellsProvider {
         )
     }
     private func textField() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Text fields",
-            storyboard: .named("TextField", on: "TextFieldViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "TextField", identifier: "TextFieldViewController")),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(TextFieldExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Text Fields", tabs: $0) }
         )
     }
     private func textViews() -> CellDataSource {
