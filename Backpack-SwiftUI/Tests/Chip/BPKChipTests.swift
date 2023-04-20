@@ -80,7 +80,6 @@ class BPKChipTests: XCTestCase {
     }
     
     func test_chipDismissable() {
-        let viewModel = BPKDismissableChip.DismissableChipViewModel()
         assertSnapshot(
             VStack {
                 BPKDismissableChip("Dismiss") {}
