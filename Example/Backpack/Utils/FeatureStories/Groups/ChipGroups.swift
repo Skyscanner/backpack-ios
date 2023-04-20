@@ -73,7 +73,7 @@ struct ChipsGroupsProvider {
                 presentable(
                     "On Dark",
                     view: ChipExampleView(style: .onDark)
-                        .background(.canvasContrastColor)
+                        .background(.black)
                 ),
                 presentable(
                     "On Image",

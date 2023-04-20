@@ -37,6 +37,7 @@ struct ChipExampleView: View {
         HStack {
             VStack(alignment: .leading) {
                 BPKText("Off", style: .heading5)
+                    .foregroundColor(style == .onDark ? .textOnDarkColor : .textPrimaryColor)
                 BPKChip("Option", selected: optionOffSelected, style: style) {
                     optionOffSelected.toggle()
                 }
@@ -53,6 +54,7 @@ struct ChipExampleView: View {
             
             VStack(alignment: .leading) {
                 BPKText("On", style: .heading5)
+                    .foregroundColor(style == .onDark ? .textOnDarkColor : .textPrimaryColor)
                 BPKChip("Option", selected: optionOnSelected, style: style) {
                     optionOnSelected.toggle()
                 }
@@ -69,8 +71,8 @@ struct ChipExampleView: View {
             
             VStack(alignment: .leading) {
                 BPKText("Disabled", style: .heading5)
-                BPKChip("Option", style: style) {
-                }
+                    .foregroundColor(style == .onDark ? .textOnDarkColor : .textPrimaryColor)
+                BPKChip("Option", style: style) {}
                 .disabled(true)
                 BPKDropdownChip("Dropdown", style: style) {
                 }
