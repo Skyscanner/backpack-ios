@@ -19,22 +19,12 @@
 import SwiftUI
 
 public struct BPKDismissableChip: View {
-    class DismissableChipViewModel: ObservableObject {
-        @Published var isPressed = false
-        
-        func onPressed(_ isPressed: Bool) {
-            if self.isPressed != isPressed {
-                self.isPressed.toggle()
-            }
-        }
-    }
-    
     let text: String
     let icon: BPKIcon?
     let style: BPKChipStyle
     let onClick: () -> Void
     
-    @ObservedObject private var viewModel = DismissableChipViewModel()
+    @State private var isPressed = false
     
     public init(
         _ text: String,
@@ -49,48 +39,39 @@ public struct BPKDismissableChip: View {
     }
     
     public var body: some View {
-        Button(action: onClick) {
-            HStack(spacing: .md) {
-                if let icon {
-                    BPKIconView(icon)
-                }
-                Text(text)
-                    .font(style: .footnote)
-                BPKIconView(.closeCircle)
-                    .foregroundColor(accessoryViewColor)
+        HStack(spacing: .md) {
+            if let icon {
+                BPKIconView(icon)
             }
-            .padding(.trailing, .md)
-            .padding(.leading, .base)
+            Text(text)
+                .font(style: .footnote)
+            BPKIconView(.closeCircle)
+                .foregroundColor(accessoryViewColor)
         }
-        .buttonStyle(
-            DismissableChipButtonStyle(style: style) {
-                viewModel.onPressed($0)
+        .gesture(DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                isPressed = true
+            }
+            .onEnded { _ in
+                onClick()
+                isPressed = false
             }
         )
+        .padding(.trailing, .md)
+        .padding(.leading, .base)
+        .frame(minHeight: .xl)
+        .background(backgroundColor)
+        .foregroundColor(foregroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: .sm))
+        .if(style == .onImage) { $0.shadow(.sm) }
     }
     
     private var accessoryViewColor: BPKColor {
         switch style {
-        case .`default`: return viewModel.isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
-        case .onDark: return viewModel.isPressed ? .textPrimaryColor : .chipOnDarkOnDismissIconColor
-        case .onImage: return viewModel.isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
+        case .`default`: return isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
+        case .onDark: return isPressed ? .textPrimaryColor : .chipOnDarkOnDismissIconColor
+        case .onImage: return isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
         }
-    }
-}
-
-fileprivate struct DismissableChipButtonStyle: ButtonStyle {
-    let style: BPKChipStyle
-    let onPressed: (Bool) -> Void
-    
-    func makeBody(configuration: Self.Configuration) -> some View {
-        onPressed(configuration.isPressed)
-        return configuration.label
-            .padding(.vertical, 7)
-            .fixedSize(horizontal: true, vertical: false)
-            .background(backgroundColor)
-            .foregroundColor(foregroundColor)
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
-            .if(style == .onImage) { $0.shadow(.sm) }
     }
     
     private var backgroundColor: BPKColor {
