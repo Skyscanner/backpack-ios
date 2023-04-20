@@ -64,6 +64,9 @@ public struct BPKDismissableChip: View {
         .foregroundColor(foregroundColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
         .if(style == .onImage) { $0.shadow(.sm) }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(text)
+        .accessibilityAddTraits(.isButton)
     }
     
     private var accessoryViewColor: BPKColor {
