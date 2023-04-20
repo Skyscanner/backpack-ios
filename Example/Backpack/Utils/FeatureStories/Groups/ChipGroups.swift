@@ -17,6 +17,7 @@
  */
 
 import Backpack
+import SwiftUI
 
 struct ChipsGroupsProvider {
     let showPresentable: (Presentable) -> Void
@@ -44,12 +45,49 @@ struct ChipsGroupsProvider {
         )
     }
     
+    private func presentable<Content: View>(
+        _ title: String,
+        view: Content
+    ) -> CellDataSource {
+        PresentableCellDataSource.customEnrichable(
+            title: title,
+            customController: { ContentUIHostingController(view) },
+            enrich: { controller in
+                controller.title = title
+            },
+            showPresentable: showPresentable
+        )
+    }
+    
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Default", style: .default),
                 presentable("On Dark", style: .onDark, titleColor: BPKColor.textOnDarkColor),
                 presentable("On Image", style: .onImage)
+            ]
+        ).groups()
+    }
+    
+    func swiftUIGroups() -> [Components.Group] {
+        SingleGroupProvider(
+            cellDataSources: [
+                presentable("Default", view: ChipExampleView(style: .default)),
+                presentable(
+                    "On Dark",
+                    view: ChipExampleView(style: .onDark)
+                        .background(.black)
+                ),
+                presentable(
+                    "On Image",
+                    view: ZStack {
+                        Image("canadian_rockies_canada")
+                            .resizable()
+                            .scaledToFit()
+                            .clipped()
+                        ChipExampleView(style: .onImage)
+                    }
+                )
             ]
         ).groups()
     }
