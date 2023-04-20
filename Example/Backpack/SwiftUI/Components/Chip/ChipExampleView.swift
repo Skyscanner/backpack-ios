@@ -22,67 +22,68 @@ import Backpack_SwiftUI
 
 struct ChipExampleView: View {
     let style: Backpack_SwiftUI.BPKChipStyle
-    @State var optionSelected = false
-    @State var dropdownSelected = false
-    @State var disabled = false
+    
+    @State private var optionOffSelected = false
+    @State private var optionOnSelected = true
+    
+    @State private var dropdownOffSelected = false
+    @State private var dropdownOnSelected = true
+    
+    @State private var withIconOffSelected = false
+    @State private var withIconOnSelected = true
     
     // swiftlint:disable closure_body_length
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                BPKChip("Option", style: style) {
-                    optionSelected.toggle()
+        HStack {
+            VStack(alignment: .leading) {
+                BPKText("Off", style: .heading5)
+                BPKChip("Option", selected: optionOffSelected, style: style) {
+                    optionOffSelected.toggle()
                 }
-                Spacer()
-                BPKChip("Option", selected: true, style: style) {
-                    optionSelected.toggle()
+                BPKDropdownChip("Dropdown", selected: dropdownOffSelected, style: style) {
+                    dropdownOffSelected.toggle()
                 }
-                Spacer()
+                Rectangle()
+                    .fill(.clear)
+                    .frame(height: .xl)
+                BPKChip("With icon", icon: .deals, selected: withIconOffSelected, style: style) {
+                    withIconOffSelected.toggle()
+                }
+            }
+            
+            VStack(alignment: .leading) {
+                BPKText("On", style: .heading5)
+                BPKChip("Option", selected: optionOnSelected, style: style) {
+                    optionOnSelected.toggle()
+                }
+                BPKDropdownChip("Dropdown", selected: dropdownOnSelected, style: style) {
+                    dropdownOnSelected.toggle()
+                }
+                BPKDismissableChip("Dismiss") {
+                    
+                }
+                BPKChip("With icon", icon: .deals, selected: withIconOnSelected, style: style) {
+                    withIconOnSelected.toggle()
+                }
+            }
+            
+            VStack(alignment: .leading) {
+                BPKText("Disabled", style: .heading5)
                 BPKChip("Option", style: style) {
-                    optionSelected.toggle()
                 }
                 .disabled(true)
-                Spacer()
-            }
-            HStack {
-                Spacer()
                 BPKDropdownChip("Dropdown", style: style) {
-                    dropdownSelected.toggle()
-                }
-                Spacer()
-                BPKDropdownChip("Dropdown", selected: true, style: style) {
-                    dropdownSelected.toggle()
-                }
-                Spacer()
-                BPKDropdownChip("Dropdown", style: style) {
-                    dropdownSelected.toggle()
                 }
                 .disabled(true)
-                Spacer()
-            }
-            HStack {
-                BPKDismissableChip("Dismiss", style: style) {
-                    disabled.toggle()
-                }
-            }
-            HStack {
-                Spacer()
+                Rectangle()
+                    .fill(.clear)
+                    .frame(height: .xl)
                 BPKChip("With icon", icon: .deals, style: style) {
-                    optionSelected.toggle()
-                }
-                Spacer()
-                BPKChip("With icon", icon: .deals, selected: true, style: style) {
-                    optionSelected.toggle()
-                }
-                Spacer()
-                BPKChip("With icon", icon: .deals, selected: optionSelected, style: style) {
-                    optionSelected.toggle()
                 }
                 .disabled(true)
-                Spacer()
             }
         }
+        .padding()
     }
 }
 

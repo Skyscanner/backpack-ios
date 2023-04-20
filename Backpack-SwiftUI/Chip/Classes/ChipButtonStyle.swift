@@ -25,7 +25,7 @@ struct ChipButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(.vertical, 7)
+            .frame(minHeight: .xl)
             .fixedSize(horizontal: true, vertical: false)
             .background(backgroundColor(configuration.isPressed))
             .foregroundColor(foregroundColor(configuration.isPressed))
