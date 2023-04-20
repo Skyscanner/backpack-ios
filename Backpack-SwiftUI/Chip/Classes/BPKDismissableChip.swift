@@ -80,7 +80,7 @@ public struct BPKDismissableChip: View {
     private var backgroundColor: BPKColor {
         switch style {
         case .`default`: return .corePrimaryColor
-        case .onDark: return .chipOnDarkOnBackgroundColor
+        case .onDark: return .surfaceDefaultColor
         case .onImage: return .corePrimaryColor
         }
     }

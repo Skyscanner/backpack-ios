@@ -59,7 +59,7 @@ struct ChipExampleView: View {
                 BPKDropdownChip("Dropdown", selected: dropdownOnSelected, style: style) {
                     dropdownOnSelected.toggle()
                 }
-                BPKDismissableChip("Dismiss") {
+                BPKDismissableChip("Dismiss", style: style) {
                     
                 }
                 BPKChip("With icon", icon: .deals, selected: withIconOnSelected, style: style) {
