@@ -86,6 +86,9 @@
 		764D0038237DDD7600FE60AC /* Snackbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764D0037237DDD7600FE60AC /* Snackbar.storyboard */; };
 		764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */; };
 		764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764D003B237DE51000FE60AC /* SnackbarViewController.swift */; };
+		7904384529F11DC7006CD8E0 /* SliderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384329F11DC7006CD8E0 /* SliderExampleView.swift */; };
+		7904384629F11DC7006CD8E0 /* SliderPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384429F11DC7006CD8E0 /* SliderPlayground.swift */; };
+		7904384A29F11EA8006CD8E0 /* SliderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904384929F11EA7006CD8E0 /* SliderGroups.swift */; };
 		793B9748283B6F57009A5164 /* ComponentCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */; };
 		793C2D5527852B640055AB9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5427852B640055AB9A /* AppDelegate.swift */; };
 		793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C2D5627852B9A0055AB9A /* SceneDelegate.swift */; };
@@ -288,6 +291,9 @@
 		764D0037237DDD7600FE60AC /* Snackbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Snackbar.storyboard; sourceTree = "<group>"; };
 		764D0039237DE4E300FE60AC /* SnackbarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarSelectorViewController.swift; sourceTree = "<group>"; };
 		764D003B237DE51000FE60AC /* SnackbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarViewController.swift; sourceTree = "<group>"; };
+		7904384329F11DC7006CD8E0 /* SliderExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderExampleView.swift; sourceTree = "<group>"; };
+		7904384429F11DC7006CD8E0 /* SliderPlayground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderPlayground.swift; sourceTree = "<group>"; };
+		7904384929F11EA7006CD8E0 /* SliderGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderGroups.swift; sourceTree = "<group>"; };
 		793B9747283B6F57009A5164 /* ComponentCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCellDataSource.swift; sourceTree = "<group>"; };
 		793C2D5427852B640055AB9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		793C2D5627852B9A0055AB9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -631,6 +637,7 @@
 		53E075AA27FC9A5F0033147C /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				7904384929F11EA7006CD8E0 /* SliderGroups.swift */,
 				53B6DB5D27FC39B40042B7C0 /* CalendarGroups.swift */,
 				53B6DB6327FC463F0042B7C0 /* FlareGroups.swift */,
 				53B6DB6527FC47290042B7C0 /* DialogGroups.swift */,
@@ -750,6 +757,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		7904384229F11DC7006CD8E0 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				7904384329F11DC7006CD8E0 /* SliderExampleView.swift */,
+				7904384429F11DC7006CD8E0 /* SliderPlayground.swift */,
+			);
+			path = Slider;
+			sourceTree = "<group>";
+		};
 		793EC54B2836137000D627F6 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +790,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7904384229F11DC7006CD8E0 /* Slider */,
 				53C661EB29EA0DAA00BF1A62 /* Badge */,
 				53C6620429EA0DAB00BF1A62 /* Button */,
 				53C661F329EA0DAA00BF1A62 /* Card */,
@@ -1533,6 +1550,7 @@
 				D263EA8C22B7B5D400569757 /* ThemeRegistry.swift in Sources */,
 				797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */,
 				53C6622329EA0DAB00BF1A62 /* ButtonsExampleView.swift in Sources */,
+				7904384629F11DC7006CD8E0 /* SliderPlayground.swift in Sources */,
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
@@ -1581,8 +1599,10 @@
 				D261F26C22C0E6B600A4A476 /* TappableLinkLabelsViewController.swift in Sources */,
 				764D003A237DE4E300FE60AC /* SnackbarSelectorViewController.swift in Sources */,
 				53C6621A29EA0DAB00BF1A62 /* DividedCardExampleView.swift in Sources */,
+				7904384529F11DC7006CD8E0 /* SliderExampleView.swift in Sources */,
 				D643B6DE2142C36C008AB669 /* GradientViewController.swift in Sources */,
 				17068B8A299C0106000EA7F4 /* RatingGroupsProvider.swift in Sources */,
+				7904384A29F11EA8006CD8E0 /* SliderGroups.swift in Sources */,
 				AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */,
 				53C6621429EA0DAB00BF1A62 /* FlareExampleView.swift in Sources */,
 				AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */,

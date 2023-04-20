@@ -241,6 +241,13 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
                            userInterfaceStyle: userInterfaceStyle)
         }
         
+        navigate(title: "Slider") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Sliders"].tap()
+            saveScreenshot(component: "slider", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Star ratings") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Star rating"].tap()
