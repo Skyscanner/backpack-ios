@@ -49,9 +49,12 @@ struct ChipsGroupsProvider {
         _ title: String,
         view: Content
     ) -> CellDataSource {
-        PresentableCellDataSource.custom(
+        PresentableCellDataSource.customEnrichable(
             title: title,
             customController: { ContentUIHostingController(view) },
+            enrich: { controller in
+                controller.title = title
+            },
             showPresentable: showPresentable
         )
     }
