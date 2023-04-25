@@ -358,16 +358,20 @@
     return BPKColor.statusWarningFillColor;
 }
 
-+ (UIColor *)bpk_surfaceContrastColor {
-    return BPKColor.surfaceContrastColor;
-}
-
 + (UIColor *)bpk_surfaceDefaultColor {
     return BPKColor.surfaceDefaultColor;
 }
 
++ (UIColor *)bpk_surfaceContrastColor {
+    return BPKColor.surfaceContrastColor;
+}
+
 + (UIColor *)bpk_surfaceElevatedColor {
     return BPKColor.surfaceElevatedColor;
+}
+
++ (UIColor *)bpk_surfaceSubtleColor {
+    return BPKColor.surfaceSubtleColor;
 }
 
 + (UIColor *)bpk_surfaceHighlightColor {

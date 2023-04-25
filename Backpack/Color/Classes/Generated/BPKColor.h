@@ -623,13 +623,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * statusWarningFillColor;
 
 /**
- * The `surfaceContrastColor` dynamic color from the Backpack palette.
- *
- * <div style="width: 100px; height: 100px; background-color: #05203cff; background: linear-gradient(0.375turn, #05203cff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
-*/
-@property(nonatomic, class, readonly) UIColor * surfaceContrastColor;
-
-/**
  * The `surfaceDefaultColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #131d2bff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
@@ -637,11 +630,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, class, readonly) UIColor * surfaceDefaultColor;
 
 /**
+ * The `surfaceContrastColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #05203cff; background: linear-gradient(0.375turn, #05203cff 49%, #010913ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * surfaceContrastColor;
+
+/**
  * The `surfaceElevatedColor` dynamic color from the Backpack palette.
  *
  * <div style="width: 100px; height: 100px; background-color: #ffffffff; background: linear-gradient(0.375turn, #ffffffff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
 */
 @property(nonatomic, class, readonly) UIColor * surfaceElevatedColor;
+
+/**
+ * The `surfaceSubtleColor` dynamic color from the Backpack palette.
+ *
+ * <div style="width: 100px; height: 100px; background-color: #e3f0ffff; background: linear-gradient(0.375turn, #e3f0ffff 49%, #243346ff 50%); box-shadow: 0px 1px 3px 0px rgba(37,32,31,.3); border-radius: 6px;"></div>
+*/
+@property(nonatomic, class, readonly) UIColor * surfaceSubtleColor;
 
 /**
  * The `surfaceHighlightColor` dynamic color from the Backpack palette.
