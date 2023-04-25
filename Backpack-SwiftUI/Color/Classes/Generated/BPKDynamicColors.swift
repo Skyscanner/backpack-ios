@@ -88,19 +88,24 @@ public extension BPKColor {
     static let statusWarningFillColor = BPKColor(red:1.000, green:0.969, blue:0.812, alpha:1)
         .darkVariant(BPKColor(red:0.984, green:0.945, blue:0.733, alpha:1))
 
-    /// The `surfaceContrastColor` dynamic color from the Backpack palette.
-    
-    static let surfaceContrastColor = BPKColor(red:0.020, green:0.125, blue:0.235, alpha:1)
-        .darkVariant(BPKColor(red:0.004, green:0.035, blue:0.075, alpha:1))
-
     /// The `surfaceDefaultColor` dynamic color from the Backpack palette.
     
     static let surfaceDefaultColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
         .darkVariant(BPKColor(red:0.075, green:0.114, blue:0.169, alpha:1))
 
+    /// The `surfaceContrastColor` dynamic color from the Backpack palette.
+    
+    static let surfaceContrastColor = BPKColor(red:0.020, green:0.125, blue:0.235, alpha:1)
+        .darkVariant(BPKColor(red:0.004, green:0.035, blue:0.075, alpha:1))
+
     /// The `surfaceElevatedColor` dynamic color from the Backpack palette.
     
     static let surfaceElevatedColor = BPKColor(red:1.000, green:1.000, blue:1.000, alpha:1)
+        .darkVariant(BPKColor(red:0.141, green:0.200, blue:0.275, alpha:1))
+
+    /// The `surfaceSubtleColor` dynamic color from the Backpack palette.
+    
+    static let surfaceSubtleColor = BPKColor(red:0.890, green:0.941, blue:1.000, alpha:1)
         .darkVariant(BPKColor(red:0.141, green:0.200, blue:0.275, alpha:1))
 
     /// The `surfaceHighlightColor` dynamic color from the Backpack palette.
