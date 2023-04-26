@@ -273,6 +273,7 @@ extension BPKIconViewTests {
         .unlock,
         .unmute,
         .upgrade,
+        .upload,
         .useLocation,
         .view,
         .virus,

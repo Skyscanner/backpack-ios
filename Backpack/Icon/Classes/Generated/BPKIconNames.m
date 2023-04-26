@@ -273,6 +273,7 @@ BPKIconName const BPKIconNameUndo = @"undo";
 BPKIconName const BPKIconNameUnlock = @"unlock";
 BPKIconName const BPKIconNameUnmute = @"unmute";
 BPKIconName const BPKIconNameUpgrade = @"upgrade";
+BPKIconName const BPKIconNameUpload = @"upload";
 BPKIconName const BPKIconNameUseLocation = @"use-location";
 BPKIconName const BPKIconNameView = @"view";
 BPKIconName const BPKIconNameVirus = @"virus";
