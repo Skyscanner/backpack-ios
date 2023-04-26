@@ -533,6 +533,8 @@ struct BPKIconsTestsUtils {
         "unmute",
         "upgrade-sm",
         "upgrade",
+        "upload-sm",
+        "upload",
         "use-location-sm",
         "use-location",
         "view-sm",

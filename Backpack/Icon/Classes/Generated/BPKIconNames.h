@@ -533,6 +533,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameUnmute;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUpgrade;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameUpload;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameUseLocation;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameView;
