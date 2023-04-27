@@ -131,6 +131,13 @@ IB_DESIGNABLE @interface BPKDividedCard : BPKCard
  */
 - (void)setOrientation:(UILayoutConstraintAxis)orientation;
 
+/**
+ * Set the distribution used in the Divided Card
+ *
+ * @param distribution The distribution to use.
+ */
+- (void)setDistribution:(UIStackViewDistribution)distribution;
+
 /// :nodoc:
 - (void)addSubview:(UIView *)view __attribute__((unavailable("To add subviews to a divided BPKCard, use `setPrimarySubview:secondarySubview:` or "
                                                              "`initWithPrimarySubview:secondarySubview:padded:`")));
