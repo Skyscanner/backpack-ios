@@ -271,6 +271,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     [self.calendarWrapperView addSubview:self.calendarView];
 
     self.calendarWeekdayView = [[FSCalendarWeekdayView alloc] initWithFrame:CGRectZero];
+    self.calendarWeekdayView.accessibilityElementsHidden = YES;
     self.calendarWeekdayView.calendar = self.calendarView;
     [self addSubview:self.calendarWeekdayView];
 
