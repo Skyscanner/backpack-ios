@@ -74,6 +74,7 @@ CGFloat const BPKBaselineOffset = -5.0;
 - (void)configureAppearance {
     [super configureAppearance];
     self.titleLabel.textAlignment = NSTextAlignmentNatural;
+    self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 }
 
 - (void)layoutSubviews {
