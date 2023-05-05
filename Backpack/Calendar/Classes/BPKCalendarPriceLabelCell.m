@@ -92,7 +92,7 @@
     NSString *accessibilityLabel = [super defaultAccessibilityLabelForDate:date formatter:formatter];
 
     if (self.priceLabelCellData.price != nil) {
-        accessibilityLabel = [NSString stringWithFormat:@"%@ %@", accessibilityLabel, self.priceLabelCellData.price];
+        accessibilityLabel = [NSString stringWithFormat:@"%@, %@", accessibilityLabel, self.priceLabelCellData.price];
     }
 
     return accessibilityLabel;
