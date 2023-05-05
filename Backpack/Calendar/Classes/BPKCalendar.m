@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NSString *const CellReuseId = @"cell";
 NSString *const HeaderReuseId = @"header";
-NSString *const HeaderDateFormat = @"MMMM";
+NSString *const HeaderDateFormat = @"MMMM YYYY";
 CGFloat const BPKCalendarDefaultCellHeight = 44;
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
