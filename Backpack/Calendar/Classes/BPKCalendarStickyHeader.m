@@ -104,6 +104,7 @@ CGFloat const BPKBaselineOffset = 2.0;
                                                                    content:self.titleLabel.text
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
+    self.titleLabel.accessibilityLabel = [[BPKCalendarStickyHeader formatter] stringFromDate:month];
 
     BPKCalendar *calendar = [self bpkCalendar];
     if (!calendar) {
