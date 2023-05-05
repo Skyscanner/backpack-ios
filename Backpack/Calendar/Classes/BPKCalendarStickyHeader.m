@@ -89,6 +89,7 @@ CGFloat const BPKBaselineOffset = 2.0;
         [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
         [self.titleLabel.heightAnchor constraintEqualToConstant:BPKSpacingLg * 2],
+        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
         [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor constant:BPKBaselineOffset],
         [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
     ]];
@@ -113,7 +114,6 @@ CGFloat const BPKBaselineOffset = 2.0;
     BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
     self.selectMonthButton.enabled = [calendar isWholeMonthButtonEnabledForMonth:simpleMonth];
     [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
-    self.selectMonthButton.accessibilityLabel = calendar.wholeMonthTitle;
 }
 
 #pragma mark - Actions
