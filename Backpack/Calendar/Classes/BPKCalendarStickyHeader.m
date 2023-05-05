@@ -22,6 +22,7 @@
 #import <Backpack/Calendar.h>
 #import <Backpack/Font.h>
 #import <Backpack/SimpleDate.h>
+#import <Backpack/Spacing.h>
 
 #import "BPKCalendarAppearance.h"
 
@@ -41,7 +42,7 @@
 
 @implementation BPKCalendarStickyHeader
 
-CGFloat const BPKBaselineOffset = -5.0;
+CGFloat const BPKBaselineOffset = 2.0;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -87,8 +88,8 @@ CGFloat const BPKBaselineOffset = -5.0;
     [NSLayoutConstraint activateConstraints:@[
         [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
-
-        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.lastBaselineAnchor constant:BPKBaselineOffset],
+        [self.titleLabel.heightAnchor constraintEqualToConstant:BPKSpacingLg * 2],
+        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor constant:BPKBaselineOffset],
         [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
     ]];
 }
