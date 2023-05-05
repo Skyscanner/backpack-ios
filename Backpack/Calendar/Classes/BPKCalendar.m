@@ -218,7 +218,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     self.isSelectingWholeMonth = NO;
     self.dateFormatter = [NSDateFormatter new];
     self.dateFormatter.locale = self.locale;
-    self.dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    self.dateFormatter.dateStyle = NSDateFormatterFullStyle;
 
     // We use a wrapper view here to prevent the calendar cells being rendered over the week days
     self.calendarWrapperView = [UIView new];
