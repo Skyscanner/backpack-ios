@@ -29,18 +29,18 @@ final class CalendarUITest: BackpackUITestCase {
         let app = XCUIApplication()
         goToPreselectedDatesCalendar(app)
         
-        XCTAssertTrue(app.cells["March 12, 2020, Selected as departure date"].isSelected)
-        XCTAssertTrue(app.cells["March 20, 2020, Selected as return date"].isSelected)
+        XCTAssertTrue(app.cells["Thursday, March 12, 2020, Selected as departure date"].isSelected)
+        XCTAssertTrue(app.cells["Friday, March 20, 2020, Selected as return date"].isSelected)
         
         let collectionViewsQuery = app.collectionViews
-        collectionViewsQuery.cells["March 10, 2020"].staticTexts["10"].tap()
-        collectionViewsQuery.cells["March 24, 2020"].staticTexts["24"].tap()
+        collectionViewsQuery.cells["Tuesday, March 10, 2020"].staticTexts["10"].tap()
+        collectionViewsQuery.cells["Tuesday, March 24, 2020"].staticTexts["24"].tap()
         
-        XCTAssertTrue(app.cells["March 10, 2020, Selected as departure date"].isSelected)
-        XCTAssertTrue(app.cells["March 24, 2020, Selected as return date"].isSelected)
+        XCTAssertTrue(app.cells["Tuesday, March 10, 2020, Selected as departure date"].isSelected)
+        XCTAssertTrue(app.cells["Tuesday, March 24, 2020, Selected as return date"].isSelected)
         
-        XCTAssertFalse(app.cells["March 12, 2020, Between departure and return date"].isSelected)
-        XCTAssertFalse(app.cells["March 20, 2020, Between departure and return date"].isSelected)
+        XCTAssertFalse(app.cells["Thursday, March 12, 2020, Between departure and return date"].isSelected)
+        XCTAssertFalse(app.cells["Friday, March 20, 2020, Between departure and return date"].isSelected)
     }
 
     func testCanSelectDifferentDatesOnSingleSelectionCalendar() {
@@ -51,13 +51,13 @@ final class CalendarUITest: BackpackUITestCase {
         
         let collectionViewsQuery = app.collectionViews
         
-        collectionViewsQuery.cells["March 1, 2020"].staticTexts["1"].tap()
-        XCTAssertTrue(app.cells["March 1, 2020"].isSelected)
-        XCTAssertFalse(app.cells["April 1, 2020"].isSelected)
+        collectionViewsQuery.cells["Sunday, March 1, 2020"].staticTexts["1"].tap()
+        XCTAssertTrue(app.cells["Sunday, March 1, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Wednesday, April 1, 2020"].isSelected)
         
-        collectionViewsQuery.cells["April 1, 2020"].staticTexts["1"].tap()
-        XCTAssertTrue(app.cells["April 1, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 1, 2020"].isSelected)
+        collectionViewsQuery.cells["Wednesday, April 1, 2020"].staticTexts["1"].tap()
+        XCTAssertTrue(app.cells["Wednesday, April 1, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Sunday, March 1, 2020"].isSelected)
     }
     
     func testCanSelectMultipleDatesOnMultiSelectionCalendar() {
@@ -66,36 +66,36 @@ final class CalendarUITest: BackpackUITestCase {
         
         app.buttons["Multiple"].tap()
         
-        XCTAssertFalse(app.cells["March 1, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 3, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 16, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 10, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 13, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Sunday, March 1, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Tuesday, March 3, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Monday, March 16, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Tuesday, March 10, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Friday, March 13, 2020"].isSelected)
         
         let collectionViewsQuery = app.collectionViews
-        collectionViewsQuery.cells["March 1, 2020"].staticTexts["1"].tap()
-        collectionViewsQuery.cells["March 3, 2020"].staticTexts["3"].tap()
-        collectionViewsQuery.cells["March 16, 2020"].staticTexts["16"].tap()
-        collectionViewsQuery.cells["March 10, 2020"].staticTexts["10"].tap()
-        collectionViewsQuery.cells["March 13, 2020"].staticTexts["13"].tap()
+        collectionViewsQuery.cells["Sunday, March 1, 2020"].staticTexts["1"].tap()
+        collectionViewsQuery.cells["Tuesday, March 3, 2020"].staticTexts["3"].tap()
+        collectionViewsQuery.cells["Monday, March 16, 2020"].staticTexts["16"].tap()
+        collectionViewsQuery.cells["Tuesday, March 10, 2020"].staticTexts["10"].tap()
+        collectionViewsQuery.cells["Friday, March 13, 2020"].staticTexts["13"].tap()
         
-        XCTAssertTrue(app.cells["March 1, 2020"].isSelected)
-        XCTAssertTrue(app.cells["March 3, 2020"].isSelected)
-        XCTAssertTrue(app.cells["March 16, 2020"].isSelected)
-        XCTAssertTrue(app.cells["March 10, 2020"].isSelected)
-        XCTAssertTrue(app.cells["March 13, 2020"].isSelected)
+        XCTAssertTrue(app.cells["Sunday, March 1, 2020"].isSelected)
+        XCTAssertTrue(app.cells["Tuesday, March 3, 2020"].isSelected)
+        XCTAssertTrue(app.cells["Monday, March 16, 2020"].isSelected)
+        XCTAssertTrue(app.cells["Tuesday, March 10, 2020"].isSelected)
+        XCTAssertTrue(app.cells["Friday, March 13, 2020"].isSelected)
         
-        collectionViewsQuery.cells["March 1, 2020"].staticTexts["1"].tap()
-        collectionViewsQuery.cells["March 3, 2020"].staticTexts["3"].tap()
-        collectionViewsQuery.cells["March 16, 2020"].staticTexts["16"].tap()
-        collectionViewsQuery.cells["March 10, 2020"].staticTexts["10"].tap()
-        collectionViewsQuery.cells["March 13, 2020"].staticTexts["13"].tap()
+        collectionViewsQuery.cells["Sunday, March 1, 2020"].staticTexts["1"].tap()
+        collectionViewsQuery.cells["Tuesday, March 3, 2020"].staticTexts["3"].tap()
+        collectionViewsQuery.cells["Monday, March 16, 2020"].staticTexts["16"].tap()
+        collectionViewsQuery.cells["Tuesday, March 10, 2020"].staticTexts["10"].tap()
+        collectionViewsQuery.cells["Friday, March 13, 2020"].staticTexts["13"].tap()
         
-        XCTAssertFalse(app.cells["March 1, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 3, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 16, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 10, 2020"].isSelected)
-        XCTAssertFalse(app.cells["March 13, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Sunday, March 1, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Tuesday, March 3, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Monday, March 16, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Tuesday, March 10, 2020"].isSelected)
+        XCTAssertFalse(app.cells["Friday, March 13, 2020"].isSelected)
     }
     
     func testCanSelectWholeMonth() {
@@ -107,7 +107,7 @@ final class CalendarUITest: BackpackUITestCase {
         let collectionViewsQuery = app.collectionViews
         collectionViewsQuery.buttons["Select whole month"].firstMatch.tap()
         
-        XCTAssertTrue(app.cells["February 1, 2020, Selected as departure date"].isSelected)
-        XCTAssertTrue(app.cells["February 29, 2020, Selected as return date"].isSelected)
+        XCTAssertTrue(app.cells["Saturday, February 1, 2020, Selected as departure date"].isSelected)
+        XCTAssertTrue(app.cells["Saturday, February 29, 2020, Selected as return date"].isSelected)
     }
 }
