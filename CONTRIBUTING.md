@@ -236,14 +236,10 @@ public var type: BPKChipType = .option {
 
 
 ## Releasing
-<details>
-    <summary>Releasing</summary>
-
 > Backpack team only
 
 To issue a new release:
 * Publish draft release
-</details>
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
