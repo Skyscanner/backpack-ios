@@ -268,6 +268,7 @@ public extension BPKIcon {
     static let unlock = BPKIcon(name: "unlock")
     static let unmute = BPKIcon(name: "unmute")
     static let upgrade = BPKIcon(name: "upgrade")
+    static let upload = BPKIcon(name: "upload")
     static let useLocation = BPKIcon(name: "use-location")
     static let view = BPKIcon(name: "view")
     static let virus = BPKIcon(name: "virus")

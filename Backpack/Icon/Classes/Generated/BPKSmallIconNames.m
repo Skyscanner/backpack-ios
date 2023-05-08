@@ -270,6 +270,7 @@ BPKSmallIconName const BPKSmallIconNameUndo = @"undo";
 BPKSmallIconName const BPKSmallIconNameUnlock = @"unlock";
 BPKSmallIconName const BPKSmallIconNameUnmute = @"unmute";
 BPKSmallIconName const BPKSmallIconNameUpgrade = @"upgrade";
+BPKSmallIconName const BPKSmallIconNameUpload = @"upload";
 BPKSmallIconName const BPKSmallIconNameUseLocation = @"use-location";
 BPKSmallIconName const BPKSmallIconNameView = @"view";
 BPKSmallIconName const BPKSmallIconNameVirus = @"virus";

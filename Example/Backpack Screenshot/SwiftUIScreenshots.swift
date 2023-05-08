@@ -94,6 +94,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "button", scenario: "primaryOnLight", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Rating") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["BPKRating: title text"].tap()
+            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["BPKRating: titleView image"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
         
         navigate(title: "Switches") {
             switchTab(title: "SwiftUI")
@@ -155,6 +165,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
+        navigate(title: "Text fields") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")
             
@@ -167,9 +182,77 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Chips") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "chip", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["On Dark"].tap()
+            saveScreenshot(component: "chip", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["On Image"].tap()
+            saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Dialogs") {
+            switchTab(title: "SwiftUI")
+            app.buttons["Open Success"].tap()
+            saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Warning"].waitForExistence(timeout: 1)
+            app.buttons["Open Warning"].tap()
+            saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Destructive"].waitForExistence(timeout: 1)
+            app.buttons["Open Destructive"].tap()
+            saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Delete"].tap()
+            
+            _ = app.buttons["Open Flare"].waitForExistence(timeout: 1)
+            app.buttons["Open Flare"].tap()
+            saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            
+            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
+            app.buttons["Open Image"].tap()
+            saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Confirmation"].tap()
+            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
+        }
+        
+        navigate(title: "Flare views") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Panels") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Nudger") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "nudger", scenario: "default",
+                           userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Slider") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Sliders"].tap()
+            saveScreenshot(component: "slider", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Star ratings") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Star rating"].tap()
+            saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
     }
 }

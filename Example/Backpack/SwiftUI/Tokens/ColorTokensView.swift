@@ -67,7 +67,8 @@ struct ColorTokens {
             .init(color: .surfaceDefaultColor, name: ".surfaceDefaultColor"),
             .init(color: .surfaceElevatedColor, name: ".surfaceElevatedColor"),
             .init(color: .surfaceContrastColor, name: ".surfaceContrastColor"),
-            .init(color: .surfaceHighlightColor, name: ".surfaceHighlightColor")
+            .init(color: .surfaceHighlightColor, name: ".surfaceHighlightColor"),
+            .init(color: .surfaceSubtleColor, name: ".surfaceSubtleColor")
         ]),
         .init(name: "Canvas", colors: [
             .init(color: .canvasColor, name: ".canvasColor"),
@@ -86,7 +87,7 @@ struct ColorTokensView: View {
             Color(BPKColor.canvasColor)
                 .ignoresSafeArea()
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: BPKSpacing.base.value) {
+                LazyVStack(alignment: .leading, spacing: .base) {
                     ForEach(ColorTokens.backpackTokens.tokens) { item in
                         BPKText(item.name, style: .heading3)
                         ForEach(item.colors) { color in

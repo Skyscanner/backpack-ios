@@ -15,36 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Backpack_Common
 
+// A local enum wrapper to avoid the need for importing Backpack_Common when using BPKRating
 public enum BPKRatingScale {
     case zeroToFive
     case zeroToTen
 
-    private var range: ClosedRange<Float> {
+    private var commonScale: BPKCommonRatingScale {
         switch self {
-        case .zeroToFive:
-            return 0...Float(5)
         case .zeroToTen:
-            return 0...Float(10)
+            return .zeroToTen
+        case .zeroToFive:
+            return .zeroToFive
         }
     }
 
-    func displayedValue(from value: Float) -> String {
-        let clampedValue: Float
-        let valueWithinRange = range.contains(value)
-        if !valueWithinRange {
-            if value < range.lowerBound {
-                clampedValue = range.lowerBound
-            } else {
-                clampedValue = range.upperBound
-            }
-        } else {
-            clampedValue = value
-        }
-        return String(format: "%.1f", clampedValue)
+    public func displayedValue(from value: Float) -> String {
+        return commonScale.displayedValue(from: value)
     }
 
-    func displayedScale() -> String {
-        return String(format: "/%.0f", range.upperBound)
+    public func displayedScale() -> String {
+        return commonScale.displayedScale()
     }
 }

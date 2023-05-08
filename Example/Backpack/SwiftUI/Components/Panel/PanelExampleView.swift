@@ -22,7 +22,7 @@ import Backpack_SwiftUI
 
 struct PanelExampleView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: BPKSpacing.md.value) {
+        VStack(alignment: .leading, spacing: .md) {
             BPKText("Default", style: .heading4)
             BPKPanel() {
                 exampleContent

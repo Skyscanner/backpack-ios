@@ -16,6 +16,7 @@ PODS:
     - MBProgressHUD (~> 1.2.0)
     - TTTAttributedLabel (~> 2.0.0)
   - Backpack-Common (1.0)
+  - Backpack-Common/Tests (1.0)
   - Backpack-Fonts (0.0.1)
   - Backpack-SwiftUI (1.0):
     - Backpack-Common
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - AppCenter/Distribute (~> 4.2.0)
   - Backpack (from `../`)
   - Backpack-Common (from `../`)
+  - Backpack-Common/Tests (from `../`)
   - Backpack-Fonts (from `../Backpack-Fonts`)
   - Backpack-SwiftUI (from `../`)
   - Backpack-SwiftUI/Tests (from `../`)
@@ -80,9 +82,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
   Backpack: e5f5dca8cef64bd1626b21fee94e06a3dbef60ee
-  Backpack-Common: cdd325d7f97b6d83e9e25ee25557f3173fa2a0ba
+  Backpack-Common: cd375986447ca5f60fda52609fd6e1eccecfdc45
   Backpack-Fonts: 89f9d18aeeb0f6fb026e301261d3af3ee6a8ec6d
-  Backpack-SwiftUI: 3b3fffa24593c763cc9d06ee28587a6690236bc9
+  Backpack-SwiftUI: afea012165673e5449d63b15adbf024aa58b8204
   FloatingPanel: 3cee815e9ded75b632543fa73ab655a1ef941452
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -91,6 +93,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: ea26c5da027030355562c1c24bfc4072ffa61f16
+PODFILE CHECKSUM: 3114be19f5e43c4b883feedb83baa4431fa9217b
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

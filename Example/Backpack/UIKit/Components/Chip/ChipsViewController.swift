@@ -75,6 +75,21 @@ class ChipsViewController: UIViewController {
     }
     
     private func setupDemo() {
+        if style == .onImage {
+            let backgroundImageView = UIImageView(image: UIImage(named: "canadian_rockies_canada"))
+            backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundImageView.contentMode = .scaleAspectFit
+            backgroundImageView.clipsToBounds = true
+            
+            view.addSubview(backgroundImageView)
+            
+            NSLayoutConstraint.activate([
+                backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                backgroundImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+        }
+        
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center

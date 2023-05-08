@@ -128,6 +128,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.lineView.lineStyle = lineStyle;
 }
 
+- (void)setDistribution:(UIStackViewDistribution)distribution {
+    self.contentView.distribution = distribution;
+}
+
 #pragma mark - Private
 
 - (void)setupViewsWithPadded:(BOOL)padded {
