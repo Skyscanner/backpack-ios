@@ -57,7 +57,7 @@ jobs:
 
       - name: NPM ci
         if: steps.cache_node_modules.outputs.cache-hit != 'true'
-        run: nvm use && npm ci
+        run: nvm install 18 && nvm use 18 && npm ci
 
       - name: Run NPM build
         run: npm run build
