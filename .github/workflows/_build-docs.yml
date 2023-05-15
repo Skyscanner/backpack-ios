@@ -3,15 +3,6 @@ name: Build-Docs
 on:
   workflow_call:
 
-# For details on the macOS enviornment see https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
-#
-# We try to align the versions of tools with what is already available on the image to reduce the time it takes to run our CI.
-# At the time of writing(October 2020) these are:
-#
-# Node: 12.18.4 (Set via .nvmrc)
-# Bundler: 2.2.3 (Installed below)
-#
-
 defaults:
   run:
     shell: bash -l {0}
@@ -24,11 +15,8 @@ jobs:
       statuses: write
       pull-requests: write
     steps:
-      # Checkout the repo
       - uses: actions/checkout@v3
 
-      # If a different version of bundler has been used, CI will fail with a very unhelpful error message at `bundle install`.
-      # This is hopefully somewhat more helpful:
       - name: Verify Bundler Version
         run: if [[ $(cat Gemfile.lock | sed -n '/BUNDLED WITH/{n;p;}' | sed '/^$/d;s/[[:blank:]]//g') != "2.2.3" ]]; then echo "Error - Gemfile.lock should be bundled with bundler 2.2.3"; exit 64; fi
 
