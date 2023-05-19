@@ -22,7 +22,7 @@ We use both Ruby and Node in this project. To manage these language runtimes we 
 
 With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
 
-Use the most recent stable version of Xcode, however the project should work with old versions of the same major.
+Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L131), however the project should work with old versions of the same major. 
 
 ### Code style
 
@@ -44,7 +44,7 @@ Given that you have a compatible environment as stated above you can now setup t
 If you want to add a new component, we will need the following:
 
 - Design (Figma file)
-- UIKit and SwiftUI component
+- UIKit or SwiftUI component
 - Accessibility
 - Stories
 - Tests (unit & snapshot)
@@ -52,7 +52,7 @@ If you want to add a new component, we will need the following:
 
 ### Design
 
-Figma is the preferred format for non-technical folks. We’d appreciate if you could provide an exact match of your component in Figma format together with folders for each state e.g. disabled, expanded etc.
+Figma is the preferred format for non-technical folks. We’d appreciate if you could provide an exact match of your component in Figma format together with examples for each state e.g. disabled, expanded etc.
 
 ### UIKit and SwiftUI component
 
@@ -72,11 +72,12 @@ For SwiftUI the root folder will be `Backpack-SwiftUI`. The structure is otherwi
 ### Accessibility
 Our design system tries to deliver accessible components. When designing your component make sure the accessibility of your component is considered.
 
-At a mimimum you should consider the following
+At a mimimum you should make sure your component meets the following criteria:
 
 * Colour contrast meets AA standard
 * Required accessibility labels are passed to the component
 * Screen readers can interact with the component
+* The component can scale when the font-size increases
 
 ### Stories
 Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants. 
