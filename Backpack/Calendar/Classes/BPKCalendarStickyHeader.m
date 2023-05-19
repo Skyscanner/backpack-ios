@@ -22,6 +22,7 @@
 #import <Backpack/Calendar.h>
 #import <Backpack/Font.h>
 #import <Backpack/SimpleDate.h>
+#import <Backpack/Spacing.h>
 
 #import "BPKCalendarAppearance.h"
 
@@ -41,7 +42,7 @@
 
 @implementation BPKCalendarStickyHeader
 
-CGFloat const BPKBaselineOffset = -5.0;
+CGFloat const BPKBaselineOffset = 2.0;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -74,6 +75,7 @@ CGFloat const BPKBaselineOffset = -5.0;
 - (void)configureAppearance {
     [super configureAppearance];
     self.titleLabel.textAlignment = NSTextAlignmentNatural;
+    self.titleLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 }
 
 - (void)layoutSubviews {
@@ -86,8 +88,9 @@ CGFloat const BPKBaselineOffset = -5.0;
     [NSLayoutConstraint activateConstraints:@[
         [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
-
-        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.lastBaselineAnchor constant:BPKBaselineOffset],
+        [self.titleLabel.heightAnchor constraintEqualToConstant:BPKSpacingLg * 2],
+        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
+        [self.selectMonthButton.centerYAnchor constraintEqualToAnchor:self.titleLabel.centerYAnchor constant:BPKBaselineOffset],
         [self.selectMonthButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
     ]];
 }
@@ -101,6 +104,7 @@ CGFloat const BPKBaselineOffset = -5.0;
                                                                    content:self.titleLabel.text
                                                                  textColor:appearance.headerTitleColor];
     self.titleLabel.attributedText = monthText;
+    self.titleLabel.accessibilityLabel = [[BPKCalendarStickyHeader formatter] stringFromDate:month];
 
     BPKCalendar *calendar = [self bpkCalendar];
     if (!calendar) {
@@ -111,7 +115,6 @@ CGFloat const BPKBaselineOffset = -5.0;
     BPKSimpleDate *simpleMonth = [BPKSimpleDate simpleDatesFromDates:@[month] forCalendar:calendar.gregorian].firstObject;
     self.selectMonthButton.enabled = [calendar isWholeMonthButtonEnabledForMonth:simpleMonth];
     [self.selectMonthButton setTitle:calendar.wholeMonthTitle];
-    self.selectMonthButton.accessibilityLabel = calendar.wholeMonthTitle;
 }
 
 #pragma mark - Actions
