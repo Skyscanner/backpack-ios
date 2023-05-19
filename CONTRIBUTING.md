@@ -1,8 +1,30 @@
-# Contributing
+# Contributing to Backpack
+You want to help us enable Skyscanner to create beautiful, coherent products at scale? That's awesome! ❤️
 
-In this document we describe how to setup this repository for development and the release process.
+## Table of contents
 
-## Code style
+* [Prerequisites](#prerequisites)
+* [Getting started](#getting-started)
+* [Adding a new component](#adding-a-new-component)
+* [How we review Backpack contributions](#how-we-review-backpack-contributions)
+* [How to](#how-to)
+
+## Prerequisites
+
+### Licence
+By contributing your code, you agree to license your contribution under the terms of the [APLv2](./LICENSE).
+
+All files are released with the Apache 2.0 licence.
+
+### Environment
+
+We use both Ruby and Node in this project. To manage these language runtimes we recommend using [`rbenv`][0] and [`nvm`][1] respectively. You should ensure you have these installed or some other means of handling Ruby and Node versions. The required ruby version is specified in `.ruby-version` and the Node version is in `.nvmrc`.
+
+With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
+
+Use the version of Xcode specified in [our build pipeline](https://github.com/Skyscanner/backpack-ios/blob/main/.github/workflows/_build.yml#L131), however the project should work with old versions of the same major. 
+
+### Code style
 
 **All new components should be written in Swift.**
 
@@ -10,48 +32,78 @@ Please follow the [New York Times Objective-C style-guide](https://github.com/NY
 
 Wrap all Objective-C in `NS_ASSUME_NONNULL_BEGIN` and `NS_ASSUME_NONNULL_END` blocks. Make sure to annotate any types that are nullable correctly.
 
-## How we review Backpack contributions
-
-Please see the [code review guidelines](https://github.com/Skyscanner/backpack/blob/main/CODE_REVIEW_GUIDELINES.md).
-
-## Environment
-
-We use both Ruby and Node in this project. To manage these language runtimes we recommend using [`rbenv`][0] and [`nvm`][1] respectively. You should ensure you have these installed or some other means of handling Ruby and Node versions. The required ruby version is specified in `.ruby-version` and the Node version is in `.nvmrc`.
-
-With `rbenv` use `rbenv install` to install the project's version of Ruby. For `nvm` use `nvm use`. Also ensure you install `bundler` for Ruby with `gem install bundler`.
-
-Use the most recent stable version of Xcode, however the project should work with old versions of the same major.
-
-## Setup
-
+## Getting started
 Given that you have a compatible environment as stated above you can now setup the project.
 
 - `bundle install` to install ruby dependencies
 - `npm install` to install npm dependencies
-- If you work for Skyscanner, [configure relative](#relative-font) (optional).
 - `(cd Example && bundle exec pod install)` To setup the example project.
 - `open Example/Backpack.xcworkspace` to open the example project
 
-## Relative Font
+## Adding a new component
+If you want to add a new component, we will need the following:
 
-> Skyscanner employees only
+- Design (Figma file)
+- UIKit or SwiftUI component
+- Accessibility
+- Stories
+- Tests (unit & snapshot)
+- Documentation (Including main `REAMDE.md`)
 
-Our fonts can only be used by Skyscanner employees. If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
+### Design
 
-To use our `Skyscanner Relative` font-face in the example app do the following:
+Figma is the preferred format for non-technical folks. We’d appreciate if you could provide an exact match of your component in Figma format together with examples for each state e.g. disabled, expanded etc.
 
-- Make sure you're connected to the VPN.
-- If you've already done a `pod install`, delete `Example/Pods`.
-- Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
-- Setup the project as [above](#setup).
+### UIKit and SwiftUI component
 
-During pod install, fonts will be downloaded and made available to the project automatically.
+Make sure that when you contribute you are considering a UIKit and a SwiftUI version of your component. The UIKit component should live in the Backpack folder. A SwiftUI component needs to be located in Backpack-SwiftUI.
 
-## Testing
+A component folder structure is setup as follows. Please take a look at the setup of existing components for examples. 
+
+* Backpack
+    - {ComponentName}
+        - Classes
+            - BPK{ComponentName.swift}
+            - {Any supporting swift files}
+        - README.md
+
+For SwiftUI the root folder will be `Backpack-SwiftUI`. The structure is otherwise the same.
+
+### Accessibility
+Our design system tries to deliver accessible components. When designing your component make sure the accessibility of your component is considered.
+
+At a mimimum you should make sure your component meets the following criteria:
+
+* Colour contrast meets AA standard
+* Required accessibility labels are passed to the component
+* Screen readers can interact with the component
+* The component can scale when the font-size increases
+
+### Stories
+Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants. 
+
+### Tests
+Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
+
+### Documentation
+See our design system documentation at [skyscanner.design](https://www.skyscanner.design).
+
+## How we review Backpack contributions
+
+Please see the [code review guidelines](https://github.com/Skyscanner/backpack/blob/main/CODE_REVIEW_GUIDELINES.md).
+
+## How to
+
+<details>
+    <summary>Testing</summary>
 
 Tests can be run as usual from Xcode(Product -> Test or cmd+U). Snapshot tests should be run on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7).
+</details>
 
-## Taking screenshots
+<details>
+    <summary>Documentation screenshots</summary>
+
+### Taking screenshots
 
 The _screenshots_ folder stores all of the screenshots we use on the [documentation site](https://skyscanner.design). If you change the appearance of a component you must update the screenshots accordingly. To do this, run:
 
@@ -71,23 +123,38 @@ To do this follow the following steps:
 1. In `Example/Backpack Screenshot/BackpackSnapshotTestCase.swift` change the `runOnly` property per the guide in the comment.
 2. Run the screenshots as above
 3. Note that all other screenshots will be deleted in the process, so make sure you only commit the ones you generated not the deletions.
+</details>
 
-### Snapshot testing
+<details>
+    <summary>Snapshot testing</summary>
 
 Snapshot tests are used to capture images of components under different configurations. When you add or change a snapshot test, test images will need to be recaptured. To do this, change `isRecording = false` to `isRecording = true` in the relevant test file and re-run the tests on the [device specified for CI](https://github.com/Skyscanner/backpack-ios/blob/main/scripts/ci#L7). This will update the images on disk. Remember to revert `isRecording` afterwards otherwise the tests will fail.
+</details>
 
-## Git
+## And finally..
 
-Please submit your requested changes as a pull request to the `main` branch. If your branch becomes out of date and conflicts need to be resolved with `main` use `git rebase`, do not merge `main` into your feature branch.
+If you have any questions at all, don't hesitate to get in touch. We love to talk all things Backpack and we look forward to seeing your contribution!
 
-Please add the correct label to your PR:
 
-* major, A breaking change or new component
-* minor, A non-breaking change
-* patch, A fixed bug or updates to documentation
-* skip-changelog, The change you made should not end up in the release changelog
+## Skyscanner employees
 
-Write your commit messages using imperative mood and in general follow the rules in [How to Write a Good Commit Message](https://chris.beams.io/posts/git-commit/)
+<details>
+    <summary>Relative font</summary>
+
+Our fonts can only be used by Skyscanner employees. If you don't work for Skyscanner don't worry - the Example app will still work just fine with iOS system font too!
+
+To use our `Skyscanner Relative` font-face in the example app do the following:
+
+- Make sure you're connected to the VPN.
+- If you've already done a `pod install`, delete `Example/Pods`.
+- Set the environment variable using `export BPK_USE_RELATIVE=1`. (Put this in your `.bashrc`/`.zshrc` for convenience.)
+- Setup the project as [above](#setup).
+
+During pod install, fonts will be downloaded and made available to the project automatically.
+</details>
+
+<details>
+    <summary>Upgrading Xcode / iOS</summary>
 
 ## Upgrading Xcode/iOS
 
@@ -97,12 +164,13 @@ As new versions of Xcode and iOS are released, we have to upgrade both to stay u
 
 1. Change the value of `runs-on` in [`ci.yml`](./.github/workflows/ci.yml#26). The new value should be on of the [available environments](https://github.com/actions/virtual-environments/tree/main/images/macos) in GitHub Actions.
 1. Update the `BUILD_SDK` variable in [`Rakefile`](./Rakefile#5) to the new build SDK we should use.
-1. Update `correctMajorVersion` and `correctMinorVersion` in [`BPKSnapshotTest.`](./Example/SnapshotTests/BPKSnapshotTest.h).
+1. Update `correctMajorVersion` and `correctMinorVersion` in [`BPKSnapshotTest`](./Example/SnapshotTests/BPKSnapshotTest.h).
 1. Update `expectedMajorVersion` and `expectedMinorVersion` in [`BPKSnapshotTest.swift`](./Example/SnapshotTests/BPKSnapshotTest.swift#26).
 1. Run all snapshot tests.
 1. **Review the failing snapshots thoroughly.** Most likely, all snapshots will have changed, **but** the diffs should be miniscule and mostly to do with changes in Apple's fonts.
 1. **Run all snapshot tests in record mode.** At the time of writing this involves manually setting `recordMode` in every test case, we should have a better method than this, but alas we don't :(
 1. Manually test the example app with the new version.
+</details>
 
 ## Experimental changes
 
@@ -169,16 +237,14 @@ public var type: BPKChipType = .option {
 
 
 ## Releasing
-
 > Backpack team only
 
 To issue a new release:
-
 * Publish draft release
+
+The release workflow will also trigger our design docs publish. If successful, you should see your component changes at [skyscanner.design](https://skyscanner.design).
+
+ > Note: Don't forget that new components need to be added manually!
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
-
- The release workflow will also trigger our design docs publish. If successful, you should see your component changes at [skyscanner.design](https://skyscanner.design).
-
- > Note: Don't forget that new components need to be added manually!
