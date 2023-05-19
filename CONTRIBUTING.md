@@ -83,7 +83,7 @@ At a mimimum you should make sure your component meets the following criteria:
 Each component needs to be visually documented in our example app. Make sure to add a new entry and showcase your component in each of its different states and variants. 
 
 ### Tests
-Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. 
+Our components need to be well tested. We require all business logic to be covered by unit tests. The component and all of its types and states need to be captured in Snapshot tests. Please review existing components to learn how we set up these tests.
 
 ### Documentation
 See our design system documentation at [skyscanner.design](https://www.skyscanner.design).
@@ -241,6 +241,10 @@ public var type: BPKChipType = .option {
 
 To issue a new release:
 * Publish draft release
+
+The release workflow will also trigger our design docs publish. If successful, you should see your component changes at [skyscanner.design](https://skyscanner.design).
+
+ > Note: Don't forget that new components need to be added manually!
 
 [0]: https://github.com/rbenv/rbenv
 [1]: https://github.com/creationix/nvm
