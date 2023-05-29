@@ -31,7 +31,7 @@ public final class BPKCarousel: UIView {
     }()
     
     private let pageIndicator: BPKPageIndicator = {
-        let pageIndicator = BPKPageIndicator(currentIndex: 0, totalIndicators: 0)
+        let pageIndicator = BPKPageIndicator(variant: .overImage, currentIndex: 0, totalIndicators: 0)
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         return pageIndicator
     }()

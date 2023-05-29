@@ -23,9 +23,10 @@ import Backpack
 final class CarouselViewController: UIViewController {
     
     private let images = [
-        CarouselViewController.createImageView(with: "dialog_flare"),
-        CarouselViewController.createImageView(with: "dialog_image"),
-        CarouselViewController.createImageView(with: "pilanesburg-south-africa")
+        CarouselViewController.createImageView(with: "carousel_placeholder_1"),
+        CarouselViewController.createImageView(with: "carousel_placeholder_2"),
+        CarouselViewController.createImageView(with: "carousel_placeholder_3"),
+        CarouselViewController.createImageView(with: "carousel_placeholder_4")
     ]
     
     private let carousel: BPKCarousel = {
@@ -33,22 +34,7 @@ final class CarouselViewController: UIViewController {
         carousel.translatesAutoresizingMaskIntoConstraints = false
         return carousel
     }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = BPKLabel(fontStyle: .textCaption)
-        label.textColor = BPKColor.textPrimaryColor
-        label.text = "Currently selected index:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let displayedIndexLabel: UILabel = {
-        let label = BPKLabel(fontStyle: .textCaption)
-        label.textColor = BPKColor.textPrimaryColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = BPKColor.canvasColor
@@ -58,20 +44,13 @@ final class CarouselViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        [carousel, descriptionLabel, displayedIndexLabel]
-            .forEach { view.addSubview($0) }
+        view.addSubview(carousel)
         
         NSLayoutConstraint.activate([
             carousel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            carousel.heightAnchor.constraint(equalToConstant: 300),
-            
-            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: carousel.bottomAnchor, constant: 20),
-            
-            displayedIndexLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            displayedIndexLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20)
+            carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: BPKSpacingBase),
+            carousel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -BPKSpacingBase),
+            carousel.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
     
@@ -85,6 +64,6 @@ final class CarouselViewController: UIViewController {
 
 extension CarouselViewController: BPKCarouselDelegate {
     func onImageChange(index: Int) {
-        displayedIndexLabel.text = "\(index)"
+        print("New index: \(index)")
     }
 }
