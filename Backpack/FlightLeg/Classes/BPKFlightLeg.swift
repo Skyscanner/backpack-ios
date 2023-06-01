@@ -81,6 +81,7 @@ public final class BPKFlightLeg: UIView {
     }()
     private let carrierLogoIcon: UIImageView = {
         let carrierLogoIcon = UIImageView()
+        carrierLogoIcon.contentMode = .scaleAspectFit
         carrierLogoIcon.tintColor = BPKColor.textOnLightColor
         return carrierLogoIcon
     }()
