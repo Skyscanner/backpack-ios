@@ -22,19 +22,21 @@ import Backpack_SwiftUI
 
 struct BadgeExampleVIew: View {
     var body: some View {
-        ZStack {
-            Color(.canvasColor)
-                .ignoresSafeArea()
-            VStack(spacing: 0) {
-                makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
-                makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
-                makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
-                makeBadgeRow(text: "Warning", icon: .helpCircle, style: .warning)
-                makeBadgeRow(text: "Critical", icon: .closeCircle, style: .destructive)
-                makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
-                makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
-                makeBadgeRow(text: "Brand", icon: .priceTag, style: .brand)
-                Spacer()
+        ScrollView {
+            ZStack {
+                Color(.canvasColor)
+                    .ignoresSafeArea()
+                VStack(spacing: 0) {
+                    makeBadgeRow(text: "Normal", icon: .tickCircle, style: .normal)
+                    makeBadgeRow(text: "Strong", icon: .tickCircle, style: .strong)
+                    makeBadgeRow(text: "Success", icon: .tickCircle, style: .success)
+                    makeBadgeRow(text: "Warning", icon: .helpCircle, style: .warning)
+                    makeBadgeRow(text: "Critical", icon: .closeCircle, style: .destructive)
+                    makeBadgeRow(text: "Inverse", icon: .tickCircle, style: .inverse, background: .corePrimaryColor)
+                    makeBadgeRow(text: "Outline", icon: .tickCircle, style: .outline, background: .corePrimaryColor)
+                    makeBadgeRow(text: "Brand", icon: .priceTag, style: .brand)
+                    Spacer()
+                }
             }
         }
     }
