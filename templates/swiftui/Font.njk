@@ -19,7 +19,7 @@
 import UIKit
 
 public struct BPKFontStyle {
-    public let font: UIFont
+    public let font: Font
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
 }
