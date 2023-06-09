@@ -16,7 +16,7 @@
  * limitations under the License.
  */
  
-import UIKit
+import SwiftUI
 
 public struct BPKFontStyle {
     public let font: Font
