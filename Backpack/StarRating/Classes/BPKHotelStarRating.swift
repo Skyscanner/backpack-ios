@@ -20,7 +20,7 @@
 import Foundation
 import UIKit
 
-public class BPKHotelStarRating: UIView {
+public class BPKHotelStarRating: UIStackView {
     
     public var rating: Int {
         didSet {
@@ -36,14 +36,6 @@ public class BPKHotelStarRating: UIView {
         }
     }
     
-    private var stackView: UIStackView = {
-        let view = UIStackView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        
-        return view
-    }()
-    
     public init(size: BPKStarSize = .small, rating: Int = 0) {
         self.size = size
         self.rating = rating
@@ -58,8 +50,7 @@ public class BPKHotelStarRating: UIView {
         setup()
     }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    public required init(coder: NSCoder) {
         self.size = .small
         self.rating = 0
         super.init(coder: coder)
@@ -67,20 +58,14 @@ public class BPKHotelStarRating: UIView {
     }
     
     private func setup() {
-        addSubview(stackView)
+        translatesAutoresizingMaskIntoConstraints = false
+        axis = .horizontal
         updateLookAndFeel()
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
     }
     
     private func updateLookAndFeel() {
-        stackView.arrangedSubviews.forEach { view in
-            stackView.removeArrangedSubview(view)
+        arrangedSubviews.forEach { view in
+            removeArrangedSubview(view)
             view.removeFromSuperview()
         }
         
@@ -89,7 +74,7 @@ public class BPKHotelStarRating: UIView {
         for _ in Range(1...rating) {
             let star = BPKStar(size: size)
             star.state = .full
-            stackView.addArrangedSubview(star)
+            addArrangedSubview(star)
         }
     }
 }
