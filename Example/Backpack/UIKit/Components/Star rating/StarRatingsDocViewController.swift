@@ -27,6 +27,10 @@ class StarRatingsDocViewController: UIViewController {
     @IBOutlet weak var largeRating: BPKStarRating!
     @IBOutlet weak var extraLargeRatingTitle: BPKLabel!
     @IBOutlet weak var extraLargeRating: BPKStarRating!
+    
+    @IBOutlet weak var smallHotelStarRating: BPKHotelStarRating!
+    @IBOutlet weak var largeHotelStarRating: BPKHotelStarRating!
+    @IBOutlet weak var extraLargeHotelStarRating: BPKHotelStarRating!
 
     override func viewDidLoad() {
         // Setup titles
@@ -43,5 +47,13 @@ class StarRatingsDocViewController: UIViewController {
         smallRating.size = .small
         largeRating.size = .large
         extraLargeRating.size = .xLarge
+        
+        // Setup hotel star rating
+        smallHotelStarRating.rating = 5
+        smallHotelStarRating.size = .small
+        largeHotelStarRating.rating = 3
+        largeHotelStarRating.size = .large
+        extraLargeHotelStarRating.rating = 3
+        extraLargeHotelStarRating.size = .xLarge
     }
 }
