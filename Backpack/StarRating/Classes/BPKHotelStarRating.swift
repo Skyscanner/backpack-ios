@@ -79,7 +79,10 @@ public class BPKHotelStarRating: UIView {
     }
     
     private func updateLookAndFeel() {
-        stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        stackView.arrangedSubviews.forEach { view in
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
         
         guard rating > 0 else { return }
         
