@@ -15,6 +15,8 @@
 `BPKStarRating` contains the Backpack Star rating component which is a view that's rendering star shaped items filled with color to indicate rating from 0.0 to 5.0. It supports three sizes considering the available `BPKIcon` sizes.
 By default `userInteractionEnabled` is set to `NO` but we can change this value to `YES` to allow the users to change the rating value by tapping the component
 
+`BPKStarRating` is a component that's rendering filled satr shaped items. The number of stars depends on the value of the rating attribute. It also supports three sizes, but it doesn't support changing rating by tapping.
+
 ### Rating Rounding
 
 Use `StarRatingRounding` to adjust how rating values fill in the stars
@@ -108,6 +110,26 @@ let starRating = BPKStarRating(size: .xLarge)
 starRating.rounding = .up
 starRating.rating = 2.5
 // Position button with autolayout or other method
+```
+
+### Hotel Star Rating
+Small stars
+
+```swift
+import Backpack
+
+let hotelStarRating = BPKHotelStarRating(size: .small, rating: 5)
+```
+
+Large stars and Extra Large stars
+
+```swift
+import Backpack
+
+let hotelStarRating = BPKHotelStarRating(size: .large, rating: 5)
+// Size and rating can be changed.
+hotelStarRating.size = .xLarge
+hotelStarRating.rating = 3
 ```
 
 ### Appearance attributes
