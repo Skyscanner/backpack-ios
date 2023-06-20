@@ -68,7 +68,7 @@ const TEXT_STYLE_MAP_SWIFTUI = {
     BPKFontStyleTextHeading4: ".title3",
     BPKFontStyleTextHeading3: ".title3",
     BPKFontStyleTextHeading2: ".title2",
-    BPKFontStyleTextHeading1: ".title1",
+    BPKFontStyleTextHeading1: ".title",
 
     BPKFontStyleTextSubheading: ".subheadline",
     BPKFontStyleTextBodyLongform: ".body",
@@ -79,7 +79,7 @@ const TEXT_STYLE_MAP_SWIFTUI = {
     BPKFontStyleTextLabel1: ".body",
 
     BPKFontStyleTextFootnote: ".footnote",
-    BPKFontStyleTextCaption: ".caption1",
+    BPKFontStyleTextCaption: ".caption",
 }
 
 const convertFontWeight = (weightMap, weightString) => {

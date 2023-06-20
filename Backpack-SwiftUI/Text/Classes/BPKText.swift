@@ -20,10 +20,8 @@ import SwiftUI
 
 extension Text {
     func font(style: BPKFontStyle) -> some View {
-        let font = style.font
-        return self.font(Font(font))
+        return self.font(style.font)
             .tracking(style.letterSpacing)
-            .lineSpacing(style.lineHeight - font.lineHeight)
     }
 }
 

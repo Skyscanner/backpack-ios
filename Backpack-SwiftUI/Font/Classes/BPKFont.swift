@@ -17,7 +17,6 @@
  */
 
 import SwiftUI
-import UIKit
 
 public struct BPKFont {
     static var fontDefinition: BPKFontDefinition?
@@ -27,37 +26,12 @@ public struct BPKFont {
     }
 }
 
-extension UIFont {
-    static func customOrDefault(
-        _ name: String?,
-        size: CGFloat,
-        weight: Weight,
-        relativeTo textSyle: UIFont.TextStyle,
-        fontProvider: (String, CGFloat) -> UIFont? = UIFont.init
-    ) -> UIFont {
-        guard let name = name, let font = fontProvider(name, size) else {
-            return UIFontMetrics(forTextStyle: textSyle)
-                .scaledFont(for: .systemFont(ofSize: size, weight: weight))
-        }
-            
-        return  UIFontMetrics(forTextStyle: textSyle).scaledFont(for: font)
+extension Font {
+    static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
+        return .custom(BPKFont.fontDefinition?.regularFontFace ?? "", size: size, relativeTo: textStyle)
     }
     
-    static func regular(size: CGFloat, textStyle: UIFont.TextStyle) -> UIFont {
-        return .customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
-            size: size,
-            weight: .regular,
-            relativeTo: textStyle
-        )
-    }
-    
-    static func semibold(size: CGFloat, textStyle: UIFont.TextStyle) -> UIFont {
-        return .customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
-            size: size,
-            weight: .semibold,
-            relativeTo: textStyle
-        )
+    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+        return .custom(BPKFont.fontDefinition?.semiboldFontFace ?? "", size: size, relativeTo: textStyle)
     }
 }

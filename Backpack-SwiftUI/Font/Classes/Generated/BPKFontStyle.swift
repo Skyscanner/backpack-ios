@@ -16,10 +16,10 @@
  * limitations under the License.
  */
  
-import UIKit
+import SwiftUI
 
 public struct BPKFontStyle {
-    public let font: UIFont
+    public let font: Font
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
 }
@@ -42,7 +42,7 @@ public extension BPKFontStyle {
 
     /// Represents font size 12 with weight regular.
     static let caption = BPKFontStyle(
-        font: .regular(size:12, textStyle: .caption1),
+        font: .regular(size:12, textStyle: .caption),
         letterSpacing: 0,
         lineHeight: 16
     )
@@ -56,7 +56,7 @@ public extension BPKFontStyle {
 
     /// Represents font size 40 with weight semibold.
     static let heading1 = BPKFontStyle(
-        font: .semibold(size:40, textStyle: .title1),
+        font: .semibold(size:40, textStyle: .title),
         letterSpacing: 0,
         lineHeight: 48
     )
