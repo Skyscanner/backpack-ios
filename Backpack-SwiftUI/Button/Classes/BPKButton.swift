@@ -174,7 +174,7 @@ private struct ButtonContentView: View {
     
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: fontStyle)
+            .font(style: fontStyle, fixed: true)
             .lineLimit(1)
     }
     

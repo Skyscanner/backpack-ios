@@ -29,10 +29,24 @@ fileprivate struct ScaledFont: ViewModifier {
     }
 }
 
+fileprivate struct FixedFont: ViewModifier {
+    var style: BPKFontStyle
+    
+    func body(content: Content) -> some View {
+        return content.font(Font(style.font))
+            .lineSpacing(style.lineHeight - style.font.lineHeight)
+    }
+}
+
 extension Text {
-    func font(style: BPKFontStyle) -> some View {
+    func font(style: BPKFontStyle, fixed: Bool = false) -> some View {
         return self
             .tracking(style.letterSpacing)
-            .modifier(ScaledFont(style: style))
+            .if(fixed, transform: { item in
+                item.modifier(FixedFont(style: style))
+            })
+            .if(!fixed, transform: { item in
+                item.modifier(ScaledFont(style: style))
+            })
     }
 }
