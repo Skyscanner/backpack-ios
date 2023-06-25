@@ -26,7 +26,7 @@ class FontTests: XCTestCase {
         let mockFont = Font.system(size: anySize, weight: .regular).italic()
         let systemFont = Font.system(size: anySize)
         
-        let sut = Font.customOrDefault("some font", size: anySize, textStyle: .body) { _,_,_ in
+        let sut = Font.customOrDefault("some font", size: anySize, weight: .regular, textStyle: .body) { _,_,_ in
             mockFont
         }
         
@@ -36,9 +36,9 @@ class FontTests: XCTestCase {
     
     func testUsesFontWhenFontByNameIsFound() {
         let anySize: CGFloat = 1
-        let systemFont = Font.custom("", size: anySize, relativeTo: .body)
+        let systemFont = Font.system(size: anySize, weight: .regular)
         
-        let sut = Font.customOrDefault("some font", size: anySize, textStyle: .body) { _,_,_ in
+        let sut = Font.customOrDefault("some font", size: anySize, weight: .regular, textStyle: .body) { _,_,_ in
             nil
         }
         
