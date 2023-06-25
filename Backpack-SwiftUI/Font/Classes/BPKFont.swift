@@ -27,11 +27,24 @@ public struct BPKFont {
 }
 
 extension Font {
+    static func customOrDefault(
+        _ name: String?,
+        size: CGFloat,
+        textStyle: TextStyle,
+        fontProvider: (String, CGFloat, TextStyle) -> Font? = Font.custom(_:size:relativeTo:)
+    ) -> Font {
+        guard let name = name, let font = fontProvider(name, size, textStyle) else {
+            return .custom("", size: size, relativeTo: textStyle)
+        }
+        
+        return font
+    }
+    
     static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
-        return .custom(BPKFont.fontDefinition?.regularFontFace ?? "", size: size, relativeTo: textStyle)
+        return customOrDefault(BPKFont.fontDefinition?.regularFontFace, size: size, textStyle: textStyle)
     }
     
     static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
-        return .custom(BPKFont.fontDefinition?.semiboldFontFace ?? "", size: size, relativeTo: textStyle)
+        return customOrDefault(BPKFont.fontDefinition?.semiboldFontFace, size: size, textStyle: textStyle)
     }
 }
