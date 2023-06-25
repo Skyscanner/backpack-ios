@@ -18,6 +18,7 @@
 
 import XCTest
 import SwiftUI
+import SnapshotTesting
 @testable import Backpack_SwiftUI
 
 class BPKTextTests: XCTestCase {
@@ -41,5 +42,21 @@ class BPKTextTests: XCTestCase {
         assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
                         .foregroundColor(.primaryColor)
         )
+    }
+        
+    func test_dynamicType() {
+        let accessibilityLarge = UITraitCollection(preferredContentSizeCategory: .accessibilityLarge)
+        let extraSmall = UITraitCollection(preferredContentSizeCategory: .extraSmall)
+        
+        let sut = VStack {
+            BPKText("Heading 1", style: .heading1)
+            BPKText("Body default", style: .bodyDefault)
+        }
+        
+        let view: UIView = UIHostingController(rootView: sut).view
+        
+        assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize), named: "dynamic_type_default")
+        assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: accessibilityLarge), named: "dynamic_type_a11y_large")
+        assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: extraSmall), named: "dynamic_type_extra_small")
     }
 }
