@@ -24,7 +24,8 @@ fileprivate extension Text {
     /// We do not include the custom linespacing, as this will not make sense for
     /// a view that combines multiple different styles.
     func font(style: BPKFontStyle) -> Text {
-        return self.font(style.font)
+        // TODODOOD
+        return self.font(Font(style.font))
             .tracking(style.letterSpacing)
     }
     

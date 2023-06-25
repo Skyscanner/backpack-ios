@@ -26,26 +26,32 @@ public struct BPKFont {
     }
 }
 
-extension Font {
+extension UIFont {
     static func customOrDefault(
         _ name: String?,
         size: CGFloat,
         weight: Weight,
-        textStyle: TextStyle,
-        fontProvider: (String, CGFloat, TextStyle) -> Font? = Font.custom(_:size:relativeTo:)
-    ) -> Font {
-        guard let name = name, let font = fontProvider(name, size, textStyle) else {
-            return .system(size: size, weight: weight)
+        fontProvider: (String, CGFloat) -> UIFont? = UIFont.init
+    ) -> UIFont {
+        guard let name = name, let font = fontProvider(name, size) else {
+            return .systemFont(ofSize: size, weight: weight)
         }
-        
         return font
     }
     
-    static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
-        return customOrDefault(BPKFont.fontDefinition?.regularFontFace, size: size, weight: .regular, textStyle: textStyle)
+    static func regular(size: CGFloat) -> UIFont {
+        return .customOrDefault(
+            BPKFont.fontDefinition?.regularFontFace,
+            size: size,
+            weight: .regular
+        )
     }
     
-    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
-        return customOrDefault(BPKFont.fontDefinition?.semiboldFontFace, size: size, weight: .semibold, textStyle: textStyle)
+    static func semibold(size: CGFloat) -> UIFont {
+        return .customOrDefault(
+            BPKFont.fontDefinition?.semiboldFontFace,
+            size: size,
+            weight: .semibold
+        )
     }
 }

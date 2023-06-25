@@ -37,7 +37,7 @@ public struct BPKBadge: View {
         content
             .padding([.leading, .trailing], .md)
             .padding([.top, .bottom], .sm)
-            .frame(height: 24)
+//            .frame(height: 24)
             .background(style.backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: .xs))
             .outline(style.borderColor, cornerRadius: .xs)

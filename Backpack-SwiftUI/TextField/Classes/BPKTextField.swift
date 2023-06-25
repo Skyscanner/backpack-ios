@@ -85,7 +85,8 @@ public struct BPKTextField: View {
 
 fileprivate extension TextField {
     func font(style: BPKFontStyle) -> some View {
-        self.font(style.font)
+        // TODO CCOCOCO
+        self.font(Font(style.font))
     }
 }
 

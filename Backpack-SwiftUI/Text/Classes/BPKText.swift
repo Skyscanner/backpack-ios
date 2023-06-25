@@ -18,13 +18,6 @@
 
 import SwiftUI
 
-extension Text {
-    func font(style: BPKFontStyle) -> some View {
-        return self.font(style.font)
-            .tracking(style.letterSpacing)
-    }
-}
-
 /// A view that displays one or more lines of text
 /// By default the color of BPKText is set to `BPKColor.textPrimary` with a lineLimit of 1
 ///
