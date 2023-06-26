@@ -25,6 +25,9 @@ class BPKNavigationBarSnapshotTest: XCTestCase {
     var sut: BPKNavigationBar!
     var tableView: UITableView!
     var containerView: UIViewController!
+    var imageView: UIImageView!
+    
+    var imageTopConstraint: NSLayoutConstraint!
     
     let cellIdentifier = "TestCell"
     
@@ -43,6 +46,8 @@ class BPKNavigationBarSnapshotTest: XCTestCase {
         tableView.dataSource = self
         
         containerView = UIViewController()
+        
+        imageView = UIImageView()
         
         setupView()
     }
@@ -115,15 +120,59 @@ class BPKNavigationBarSnapshotTest: XCTestCase {
         assertSnapshot(matching: containerView, as: .image(traits: rtlTrait))
     }
     
+    func testNavBarExpandedWithStyleOnImage() {
+        // When
+        sut.style = .onImage
+        sut.leftButton.title = "Back"
+        sut.leftButton.isHidden = false
+        sut.rightButton.title = "Done"
+        sut.rightButton.isHidden = false
+        
+        imageView.isHidden = false
+        imageTopConstraint.constant = 0
+        tableView.backgroundColor = .clear
+        
+        // Then
+        assertSnapshot(matching: containerView, as: .image(traits: lightTrait))
+        assertSnapshot(matching: containerView, as: .image(traits: darkTrait))
+        assertSnapshot(matching: containerView, as: .image(traits: rtlTrait))
+    }
+    
+    func testNavBarCollapsedWithStyleOnImage() {
+        
+        // Given
+        let indexPath = IndexPath(item: 249, section: 0)
+        
+        // When
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        sut.style = .onImage
+        sut.leftButton.title = "Back"
+        sut.leftButton.isHidden = false
+        sut.rightButton.title = "Done"
+        sut.rightButton.isHidden = false
+        
+        imageView.isHidden = false
+        tableView.backgroundColor = .clear
+        
+        // Then
+        assertSnapshot(matching: containerView, as: .image(traits: lightTrait))
+        assertSnapshot(matching: containerView, as: .image(traits: darkTrait))
+        assertSnapshot(matching: containerView, as: .image(traits: rtlTrait))
+    }
+    
     // MARK: Helpers
     private func setupView() {
-        [tableView, sut].forEach {
+        [imageView, tableView, sut].forEach {
             $0!.translatesAutoresizingMaskIntoConstraints = false
             containerView.view.addSubview($0!)
         }
         
         // The sut is set with a topAnchor, to simulate the safearea spacing on notched devices.
         NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: containerView.view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: containerView.view.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: containerView.view.bottomAnchor),
+
             sut.leadingAnchor.constraint(equalTo: containerView.view.leadingAnchor),
             sut.trailingAnchor.constraint(equalTo: containerView.view.trailingAnchor),
             sut.topAnchor.constraint(equalTo: containerView.view.topAnchor, constant: BPKSpacingLg),
@@ -134,7 +183,19 @@ class BPKNavigationBarSnapshotTest: XCTestCase {
             tableView.bottomAnchor.constraint(equalTo: containerView.view.bottomAnchor)
         ])
         
+        imageTopConstraint = imageView.topAnchor.constraint(equalTo: containerView.view.topAnchor,
+            constant: BPKSpacingLg)
+        imageTopConstraint.isActive = true
+
         containerView.view.backgroundColor = BPKColor.canvasColor
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.isHidden = true
+        if let bundlePath = Bundle(for: Self.self).path(forResource: "SnapshotTestImages", ofType: "bundle") {
+            let bundle = Bundle(path: bundlePath)
+            let image = UIImage(named: "navigation_bar_image", in: bundle, compatibleWith: nil)
+            imageView.image = image
+        }
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         

@@ -25,12 +25,22 @@ class NavigationBarViewController: UIViewController {
     var showRightButton: Bool = true
     var collapsed: Bool = false
     var interactive: Bool = false
+    var isOnImage: Bool = false
     
     private static let CellIdentifier = "CellIdentifier"
 
     @IBOutlet weak var navigationButton: UIButton!
     @IBOutlet weak var navigationBar: BPKNavigationBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    private var imageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        let image = UIImage(named: "navigation_bar_image")
+        imageView.image = image
+        return imageView
+    }()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,26 +59,30 @@ class NavigationBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationBar.leftButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .chevronLeft))
+        navigationBar.leftButton.accessibilityLabel = "Back"
+        navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+        navigationBar.leftButton.isHidden = !showBackbutton
+
+        navigationBar.rightButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .settings))
+        navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
+        navigationBar.rightButton.isHidden = !showRightButton
+        
+        if isOnImage {
+            imageView.frame = view.bounds
+            view.insertSubview(imageView, at: 0)
+            tableView.backgroundColor = .clear
+        } else {
+            navigationBar.leftButton.contentColor = BPKColor.textPrimaryColor
+            navigationBar.rightButton.contentColor = BPKColor.textPrimaryColor
+        }
+        
+        navigationBar.style = isOnImage ? .onImage : .default
+        
         navigationBar.title = "Title"
         view.backgroundColor = BPKColor.canvasColor
         navigationButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
-        
-        if showBackbutton {
-            // Left button setup
-            navigationBar.leftButton.isHidden = false
-            navigationBar.leftButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .chevronLeft))
-            navigationBar.leftButton.contentColor = BPKColor.textPrimaryColor
-            navigationBar.leftButton.accessibilityLabel = "Back"
-            navigationBar.leftButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
-        }
-        
-        if showRightButton {
-            // Right button setup
-            navigationBar.rightButton.isHidden = false
-            navigationBar.rightButton.setImage(BPKIcon.makeLargeTemplateIcon(name: .settings))
-            navigationBar.rightButton.contentColor = BPKColor.textPrimaryColor
-            navigationBar.rightButton.addTarget(self, action: #selector(rightButtonPressed), for: .touchUpInside)
-        }
 
         tableView.register(
             UITableViewCell.self,
@@ -112,6 +126,11 @@ extension NavigationBarViewController: UITableViewDataSource {
         }
 
         cell.textLabel?.text = "Hello \(indexPath.row)"
+        
+        if isOnImage {
+            cell.backgroundColor = .clear
+            cell.textLabel?.textColor = BPKColor.textOnDarkColor
+        }
 
         return cell
     }
@@ -140,3 +159,5 @@ extension NavigationBarViewController: UITableViewDelegate {
         }
     }
 }
+
+extension BPKThemeContainer: UIAppearanceContainer { }

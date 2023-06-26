@@ -21,6 +21,14 @@
 
 @class BPKNavigationBarButton;
 
+/**
+ * Enum values for navigationBar style
+ */
+typedef NS_ENUM(NSUInteger, BPKNavigationBarStyle) {
+    BPKNavigationBarStyleDefault = 0,
+    BPKNavigationBarStyleOnImage = 1,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 /**
  * A navigation bar component similar to `UINavigationBar` from UIKit implementing
@@ -41,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
  * The title text to display in the navigation bar
  */
 @property(nonatomic, copy) NSString *title;
+
+/**
+ * The style of navigation bar to use
+ */
+@property(nonatomic) BPKNavigationBarStyle style;
 
 /**
  * Set the color of the large title. When `nil` the
