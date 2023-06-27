@@ -35,7 +35,7 @@ extension Font {
         fontProvider: (String, CGFloat, TextStyle) -> Font? = Font.custom(_:size:relativeTo:)
     ) -> Font {
         guard let name, let font = fontProvider(name, size, textStyle) else {
-            return .custom("", size: size, relativeTo: textStyle)
+            return fontProvider("", size, textStyle)!
         }
             
         return font
@@ -50,12 +50,32 @@ extension Font {
         )
     }
     
-    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+    static func regularFixed(size: CGFloat) -> Font {
         return customOrDefault(
             BPKFont.fontDefinition?.regularFontFace,
+            size: size,
+            weight: .regular,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+            }
+    }
+    
+    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.semiboldFontFace,
             size: size,
             weight: .semibold,
             textStyle: textStyle
         )
+    }
+    
+    static func semiboldFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.semiboldFontFace,
+            size: size,
+            weight: .semibold,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+            }
     }
 }
