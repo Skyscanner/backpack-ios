@@ -53,13 +53,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         services: [Analytics.self, Crashes.self, Distribute.self])
         return true
     }
-    
-    func enumerateFonts() {
-        for fontFamily in UIFont.familyNames {
-            print("Font family name = \(fontFamily as String)")
-            for fontName in UIFont.fontNames(forFamilyName: fontFamily as String) {
-                print("- Font name = \(fontName)")
-            }
-        }
-    }
 }
