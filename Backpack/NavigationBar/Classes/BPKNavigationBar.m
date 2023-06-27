@@ -265,7 +265,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_leftButton) {
         _leftButton = [[BPKNavigationBarButton alloc] init];
         _leftButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _leftButton.contentColor = BPKColor.textPrimaryColor;
         _leftButton.title = @"";
         _leftButton.imagePosition = BPKButtonImagePositionLeading;
         _leftButton.hidden = YES;
@@ -277,7 +276,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_rightButton) {
         _rightButton = [[BPKNavigationBarButton alloc] init];
         _rightButton.translatesAutoresizingMaskIntoConstraints = NO;
-        _rightButton.contentColor = BPKColor.textPrimaryColor;
         _rightButton.title = @"";
         _rightButton.hidden = YES;
     }
