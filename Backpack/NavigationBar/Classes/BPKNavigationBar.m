@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
-            
+
             self.collapsed = YES;
             [self updateAppearance];
         }
@@ -356,7 +356,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateAppearance {
     self.backgroundView.backgroundColor = self.backgroundViewColor;
-    
+
     self.leftButton.linkContentColor = self.contentColor;
     self.rightButton.linkContentColor = self.contentColor;
     self.titleView.titleLabel.textColor = self.contentColor;
