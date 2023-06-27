@@ -357,7 +357,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.leftButton.linkContentColor = self.contentColor;
     self.rightButton.linkContentColor = self.contentColor;
-    self.titleView.titleLabel.textColor = self.contentColor;
 
     if (self.largeTitleTextColor) {
         self.largeTitleView.titleLabel.textColor = self.largeTitleTextColor;
