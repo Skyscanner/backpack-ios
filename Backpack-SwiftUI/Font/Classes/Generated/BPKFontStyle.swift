@@ -21,8 +21,6 @@ import SwiftUI
 
 public struct BPKFontStyle {
     public let font: Font
-    public let uiFont: UIFont
-    public let textStyle: UIFont.TextStyle
     public let letterSpacing: CGFloat
     public let lineHeight: CGFloat
 }
@@ -32,8 +30,6 @@ public extension BPKFontStyle {
     /// Represents font size 16 with weight regular.
     static let bodyDefault = BPKFontStyle(
         font: .regular(size:16, textStyle:.body),
-        uiFont: .regular(size:16),
-        textStyle: .body,
         letterSpacing: 0,
         lineHeight: 24
     )
@@ -41,8 +37,6 @@ public extension BPKFontStyle {
     /// Represents font size 20 with weight regular.
     static let bodyLongform = BPKFontStyle(
         font: .regular(size:20, textStyle:.body),
-        uiFont: .regular(size:20),
-        textStyle: .body,
         letterSpacing: 0,
         lineHeight: 28
     )
@@ -50,8 +44,6 @@ public extension BPKFontStyle {
     /// Represents font size 12 with weight regular.
     static let caption = BPKFontStyle(
         font: .regular(size:12, textStyle:.caption),
-        uiFont: .regular(size:12),
-        textStyle: .caption1,
         letterSpacing: 0,
         lineHeight: 16
     )
@@ -59,8 +51,6 @@ public extension BPKFontStyle {
     /// Represents font size 14 with weight regular.
     static let footnote = BPKFontStyle(
         font: .regular(size:14, textStyle:.footnote),
-        uiFont: .regular(size:14),
-        textStyle: .footnote,
         letterSpacing: 0,
         lineHeight: 20
     )
@@ -68,8 +58,6 @@ public extension BPKFontStyle {
     /// Represents font size 40 with weight semibold.
     static let heading1 = BPKFontStyle(
         font: .semibold(size:40, textStyle:.title),
-        uiFont: .semibold(size:40),
-        textStyle: .title1,
         letterSpacing: 0,
         lineHeight: 48
     )
@@ -77,8 +65,6 @@ public extension BPKFontStyle {
     /// Represents font size 32 with weight semibold.
     static let heading2 = BPKFontStyle(
         font: .semibold(size:32, textStyle:.title2),
-        uiFont: .semibold(size:32),
-        textStyle: .title2,
         letterSpacing: 0,
         lineHeight: 40
     )
@@ -86,8 +72,6 @@ public extension BPKFontStyle {
     /// Represents font size 24 with weight semibold.
     static let heading3 = BPKFontStyle(
         font: .semibold(size:24, textStyle:.title3),
-        uiFont: .semibold(size:24),
-        textStyle: .title3,
         letterSpacing: 0,
         lineHeight: 28
     )
@@ -95,8 +79,6 @@ public extension BPKFontStyle {
     /// Represents font size 20 with weight semibold.
     static let heading4 = BPKFontStyle(
         font: .semibold(size:20, textStyle:.title3),
-        uiFont: .semibold(size:20),
-        textStyle: .title3,
         letterSpacing: 0,
         lineHeight: 24
     )
@@ -104,8 +86,6 @@ public extension BPKFontStyle {
     /// Represents font size 16 with weight semibold.
     static let heading5 = BPKFontStyle(
         font: .semibold(size:16, textStyle:.title3),
-        uiFont: .semibold(size:16),
-        textStyle: .title3,
         letterSpacing: 0,
         lineHeight: 20
     )
@@ -113,8 +93,6 @@ public extension BPKFontStyle {
     /// Represents font size 120 with weight semibold.
     static let hero1 = BPKFontStyle(
         font: .semibold(size:120, textStyle:.largeTitle),
-        uiFont: .semibold(size:120),
-        textStyle: .largeTitle,
         letterSpacing: -2,
         lineHeight: 120
     )
@@ -122,8 +100,6 @@ public extension BPKFontStyle {
     /// Represents font size 96 with weight semibold.
     static let hero2 = BPKFontStyle(
         font: .semibold(size:96, textStyle:.largeTitle),
-        uiFont: .semibold(size:96),
-        textStyle: .largeTitle,
         letterSpacing: -2,
         lineHeight: 96
     )
@@ -131,8 +107,6 @@ public extension BPKFontStyle {
     /// Represents font size 76 with weight semibold.
     static let hero3 = BPKFontStyle(
         font: .semibold(size:76, textStyle:.largeTitle),
-        uiFont: .semibold(size:76),
-        textStyle: .largeTitle,
         letterSpacing: -2,
         lineHeight: 84
     )
@@ -140,8 +114,6 @@ public extension BPKFontStyle {
     /// Represents font size 64 with weight semibold.
     static let hero4 = BPKFontStyle(
         font: .semibold(size:64, textStyle:.largeTitle),
-        uiFont: .semibold(size:64),
-        textStyle: .largeTitle,
         letterSpacing: -2,
         lineHeight: 72
     )
@@ -149,8 +121,6 @@ public extension BPKFontStyle {
     /// Represents font size 48 with weight semibold.
     static let hero5 = BPKFontStyle(
         font: .semibold(size:48, textStyle:.largeTitle),
-        uiFont: .semibold(size:48),
-        textStyle: .largeTitle,
         letterSpacing: -2,
         lineHeight: 56
     )
@@ -158,8 +128,6 @@ public extension BPKFontStyle {
     /// Represents font size 16 with weight semibold.
     static let label1 = BPKFontStyle(
         font: .semibold(size:16, textStyle:.body),
-        uiFont: .semibold(size:16),
-        textStyle: .body,
         letterSpacing: 0,
         lineHeight: 24
     )
@@ -167,8 +135,6 @@ public extension BPKFontStyle {
     /// Represents font size 14 with weight semibold.
     static let label2 = BPKFontStyle(
         font: .semibold(size:14, textStyle:.body),
-        uiFont: .semibold(size:14),
-        textStyle: .body,
         letterSpacing: 0,
         lineHeight: 20
     )
@@ -176,8 +142,6 @@ public extension BPKFontStyle {
     /// Represents font size 12 with weight semibold.
     static let label3 = BPKFontStyle(
         font: .semibold(size:12, textStyle:.body),
-        uiFont: .semibold(size:12),
-        textStyle: .body,
         letterSpacing: 0,
         lineHeight: 16
     )
@@ -185,8 +149,6 @@ public extension BPKFontStyle {
     /// Represents font size 24 with weight regular.
     static let subheading = BPKFontStyle(
         font: .regular(size:24, textStyle:.subheadline),
-        uiFont: .regular(size:24),
-        textStyle: .subheadline,
         letterSpacing: 0,
         lineHeight: 32
     )

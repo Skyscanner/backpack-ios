@@ -23,7 +23,7 @@ fileprivate struct ScaledFont: ViewModifier {
     
     func body(content: Content) -> some View {
         return content.font(style.font)
-            .lineSpacing(style.lineHeight - style.uiFont.lineHeight)
+            .lineSpacing(style.lineHeight - style.lineHeight)
     }
 }
 
@@ -31,8 +31,8 @@ fileprivate struct FixedFont: ViewModifier {
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {
-        return content.font(.custom("", fixedSize: 12))
-            .lineSpacing(style.lineHeight - style.uiFont.lineHeight)
+        return content.font(style.font)
+            .lineSpacing(style.lineHeight - style.lineHeight)
     }
 }
 

@@ -59,33 +59,3 @@ extension Font {
         )
     }
 }
-
-extension UIFont {
-    static func customOrDefault(
-        _ name: String?,
-        size: CGFloat,
-        weight: Weight,
-        fontProvider: (String, CGFloat) -> UIFont? = UIFont.init
-    ) -> UIFont {
-        guard let name = name, let font = fontProvider(name, size) else {
-            return .systemFont(ofSize: size, weight: weight)
-        }
-        return font
-    }
-    
-    static func regular(size: CGFloat) -> UIFont {
-        return .customOrDefault(
-            BPKFont.fontDefinition?.regularFontFace,
-            size: size,
-            weight: .regular
-        )
-    }
-    
-    static func semibold(size: CGFloat) -> UIFont {
-        return .customOrDefault(
-            BPKFont.fontDefinition?.semiboldFontFace,
-            size: size,
-            weight: .semibold
-        )
-    }
-}
