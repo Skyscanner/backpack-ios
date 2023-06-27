@@ -70,6 +70,9 @@ public struct BPKNudger: View {
             }
             updateButtonStates()
         }
+        .onChange(of: value, perform: { _ in
+            updateButtonStates()
+        })
     }
 
     private var minWidth: CGFloat {

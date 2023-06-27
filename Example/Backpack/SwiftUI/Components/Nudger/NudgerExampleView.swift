@@ -24,8 +24,13 @@ struct NudgerExampleView: View {
     @State private var value = 0
     
     var body: some View {
-        BPKNudger(value: $value, min: 1, max: 10, step: 1)
-            .accessibilityLabel("Passengers")
+        VStack {
+            BPKNudger(value: $value, min: 1, max: 10, step: 1)
+                .accessibilityLabel("Passengers")
+            BPKNudgerRow(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
+            BPKNudgerRow(title: "Rooms", value: $value, min: 1, max: 10)
+        }
+        .padding()
     }
 }
 
