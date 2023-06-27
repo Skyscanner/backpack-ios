@@ -19,13 +19,11 @@
 import SwiftUI
 
 fileprivate struct ScaledFont: ViewModifier {
-    @Environment(\.sizeCategory) var sizeCategory
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {
-        let scaledFont = UIFontMetrics(forTextStyle: style.textStyle).scaledFont(for: style.font)
-        return content.font(Font(scaledFont))
-            .lineSpacing(style.lineHeight - style.font.lineHeight)
+        return content.font(style.font)
+            .lineSpacing(style.lineHeight - style.uiFont.lineHeight)
     }
 }
 
@@ -33,8 +31,8 @@ fileprivate struct FixedFont: ViewModifier {
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {
-        return content.font(Font(style.font))
-            .lineSpacing(style.lineHeight - style.font.lineHeight)
+        return content.font(.custom("", fixedSize: 12))
+            .lineSpacing(style.lineHeight - style.uiFont.lineHeight)
     }
 }
 
