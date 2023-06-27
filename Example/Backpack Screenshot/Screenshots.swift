@@ -341,11 +341,174 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "navigation-bar", scenario: "large-onImage",
                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
-            
+
             app.tables.staticTexts["Collapsed - onImage"].tap()
             saveScreenshot(component: "navigation-bar", scenario: "collapsed-onImage",
-                           userInterfaceStyle: userInterfaceStyle)
+                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
+        }
+
+        navigate(title: "Nudger") {
+            saveScreenshot(component: "nudger", scenario: "default",
+                           userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Overlay") {
+            switchTab(title: "UIKit")
+            app.tables.staticTexts["Solid"].tap()
+            saveScreenshot(component: "overlay", scenario: "solid", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Top"].tap()
+            saveScreenshot(component: "overlay", scenario: "top", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Bottom"].tap()
+            saveScreenshot(component: "overlay", scenario: "bottom", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Left"].tap()
+            saveScreenshot(component: "overlay", scenario: "left", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Right"].tap()
+            saveScreenshot(component: "overlay", scenario: "right", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Vignette"].tap()
+            saveScreenshot(component: "overlay", scenario: "vignette", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Panels") {
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "panel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Without padding"].tap()
+            saveScreenshot(component: "panel", scenario: "without-padding", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Elevated"].tap()
+            saveScreenshot(component: "panel", scenario: "elevated", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Progress bar") {
+            app.buttons["Increase"].tap()
+            app.buttons["Increase"].tap()
+            saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Rating") {
+            app.tables.staticTexts["BPKRating: title text"].tap()
+            saveScreenshot(component: "rating", scenario: "with-title-text", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["BPKRating: titleView - BPKStarRating"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-star-rating", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["BPKRating: titleView - ImageView"].tap()
+            saveScreenshot(component: "rating", scenario: "with-custom-title-view-image-view", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Snackbar") {
+            app.tables.staticTexts["With text"].tap()
+            saveScreenshot(component: "snack-bar", scenario: "with-text", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With text and button"].tap()
+            saveScreenshot(component: "snack-bar", scenario: "with-text-and-button",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["With text and icon only button"].tap()
+            saveScreenshot(component: "snack-bar", scenario: "with-text-and-icon-only-button",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Spinners") {
+            saveScreenshot(component: "spinner", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Star ratings") {
+            app.tables.staticTexts["Docs"].tap()
+            saveScreenshot(component: "star-rating", scenario: "docs", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Skeleton") {
+            switchTab(title: "UIKit")
+            saveScreenshot(component: "skeleton", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Switches") {
+            switchTab(title: "UIKit")
+            saveScreenshot(component: "switch", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Tab bar controller") {
+            saveScreenshot(component: "tab-bar-controller", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Tappable link labels") {
+            app.tables.staticTexts["Text with single link"].tap()
+            saveScreenshot(component: "tappable-link-label", scenario: "single", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Text with multiple links"].tap()
+            saveScreenshot(component: "tappable-link-label", scenario: "multiple", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Alternate style"].tap()
+            saveScreenshot(component: "tappable-link-label", scenario: "alternate-style",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Link with custom color"].tap()
+            saveScreenshot(component: "tappable-link-label", scenario: "custom-color",
+                           userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Text fields") {
+            saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Text views") {
+            saveScreenshot(component: "text-view", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Toasts") {
+            app.tables.staticTexts["Docs"].tap()
+            app.buttons["Show Toast"].tap()
+            saveScreenshot(component: "toast", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Page indicators") {
+            saveScreenshot(component: "page indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Price") {
+            app.tables.staticTexts["Small"].tap()
+            saveScreenshot(component: "price", scenario: "small", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Large"].tap()
+            saveScreenshot(component: "price", scenario: "large", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Floating notification") {
+            app.buttons["With icon and action"].tap()
+            saveScreenshot(component: "floating-notification", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+      
+        navigate(title: "Flight Leg") {
+            saveScreenshot(component: "flight-leg", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Carousel") {
+            saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
         }
     }
 }
