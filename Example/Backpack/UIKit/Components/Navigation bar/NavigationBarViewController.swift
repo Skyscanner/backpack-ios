@@ -34,11 +34,9 @@ class NavigationBarViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var imageView: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
+        let imageView = UIImageView(image: UIImage(named: "navigation_bar_image"))
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        let image = UIImage(named: "navigation_bar_image")
-        imageView.image = image
         return imageView
     }()
 
