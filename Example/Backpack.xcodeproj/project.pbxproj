@@ -55,6 +55,8 @@
 		53C6622729EA0DAB00BF1A62 /* DialogExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620C29EA0DAB00BF1A62 /* DialogExampleView.swift */; };
 		53C6622829EA0DAB00BF1A62 /* TextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */; };
 		53C6622929EA0DAB00BF1A62 /* AttributedTextExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */; };
+		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
+		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
 		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
@@ -111,7 +113,6 @@
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A12A09DE2A49471F0047DD16 /* ChipGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */; };
-		A1B2DC012A4307B900DE6980 /* ChipGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */; };
 		AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */; };
 		AAD90D0229D58F8D0003E133 /* BPKFlightLegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */; };
 		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
@@ -255,6 +256,8 @@
 		53C6620C29EA0DAB00BF1A62 /* DialogExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogExampleView.swift; sourceTree = "<group>"; };
 		53C6620E29EA0DAB00BF1A62 /* TextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExampleView.swift; sourceTree = "<group>"; };
 		53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTextExampleView.swift; sourceTree = "<group>"; };
+		53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectRailExampleView.swift; sourceTree = "<group>"; };
+		53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowFactory.swift; sourceTree = "<group>"; };
 		53E075A427FC780C0033147C /* NavBarGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarGroups.swift; sourceTree = "<group>"; };
 		53E075A627FC95D70033147C /* MapGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGroups.swift; sourceTree = "<group>"; };
@@ -318,7 +321,6 @@
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupProvider.swift; sourceTree = "<group>"; };
-		A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupExampleView.swift; sourceTree = "<group>"; };
 		AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleViewController.swift; sourceTree = "<group>"; };
 		AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKFlightLegViewController.swift; sourceTree = "<group>"; };
 		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
@@ -636,6 +638,15 @@
 				53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		53C7F0B42A4C615D003A8740 /* SingleSelect */ = {
+			isa = PBXGroup;
+			children = (
+				53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */,
+				53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */,
+			);
+			path = SingleSelect;
 			sourceTree = "<group>";
 		};
 		53E075AA27FC9A5F0033147C /* Groups */ = {
@@ -1134,7 +1145,7 @@
 		A1B2DBFF2A43077E00DE6980 /* ChipGroup */ = {
 			isa = PBXGroup;
 			children = (
-				A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */,
+				53C7F0B42A4C615D003A8740 /* SingleSelect */,
 			);
 			path = ChipGroup;
 			sourceTree = "<group>";
@@ -1606,6 +1617,7 @@
 				AAD90D0229D58F8D0003E133 /* BPKFlightLegViewController.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
+				53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */,
 				5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */,
 				53C6621F29EA0DAB00BF1A62 /* StarRatingPlayground.swift in Sources */,
 				8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */,
@@ -1621,6 +1633,7 @@
 				53C6621429EA0DAB00BF1A62 /* FlareExampleView.swift in Sources */,
 				AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */,
 				793C2D5727852B9A0055AB9A /* SceneDelegate.swift in Sources */,
+				53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				53C6622129EA0DAB00BF1A62 /* BPKIconsExampleUtil.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
@@ -1640,7 +1653,6 @@
 				E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */,
 				53C6621929EA0DAB00BF1A62 /* CardWrapperExampleView.swift in Sources */,
 				A12A09DE2A49471F0047DD16 /* ChipGroupProvider.swift in Sources */,
-				A1B2DC012A4307B900DE6980 /* ChipGroupExampleView.swift in Sources */,
 				D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,

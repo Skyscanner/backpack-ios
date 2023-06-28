@@ -39,12 +39,8 @@ struct ChipGroupProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Default - Single Select", view: ChipGroupExampleView(style: .default)),
-                presentable(
-                    "On Dark - Single Select",
-                    view: ChipGroupExampleView(style: .onDark)
-                        .background(.black)
-                )
+                presentable("Rail - Single Select", view: ChipGroupSingleSelectRailExampleView()),
+                presentable("Wrap - Single Select", view: ChipGroupSingleSelectWrapExampleView())
             ]
         ).groups()
     }
