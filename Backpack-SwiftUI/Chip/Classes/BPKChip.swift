@@ -48,7 +48,7 @@ public struct BPKChip: View {
                     BPKIconView(icon)
                 }
                 Text(text)
-                    .font(style: .footnote)
+                    .font(style: .footnote, fixed: true)
             }
             .padding(.horizontal, .base)
         }
