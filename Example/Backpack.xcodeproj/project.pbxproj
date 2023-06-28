@@ -110,6 +110,8 @@
 		79F63C0429B078D600FB19A9 /* OverlayGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */; };
 		8071379C25AF7974009869D1 /* BottomSheetPersistentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A12A09DE2A49471F0047DD16 /* ChipGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */; };
+		A1B2DC012A4307B900DE6980 /* ChipGroupExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */; };
 		AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */; };
 		AAD90D0229D58F8D0003E133 /* BPKFlightLegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */; };
 		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
@@ -315,6 +317,8 @@
 		79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayGroupsProvider.swift; sourceTree = "<group>"; };
 		8071379B25AF7974009869D1 /* BottomSheetPersistentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPersistentViewController.swift; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupProvider.swift; sourceTree = "<group>"; };
+		A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupExampleView.swift; sourceTree = "<group>"; };
 		AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleViewController.swift; sourceTree = "<group>"; };
 		AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKFlightLegViewController.swift; sourceTree = "<group>"; };
 		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
@@ -656,6 +660,7 @@
 				797FA4F528312A00006E2A87 /* TextGroups.swift */,
 				79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */,
 				79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */,
+				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -790,6 +795,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A1B2DBFF2A43077E00DE6980 /* ChipGroup */,
 				7904384229F11DC7006CD8E0 /* Slider */,
 				53C661EB29EA0DAA00BF1A62 /* Badge */,
 				53C6620429EA0DAB00BF1A62 /* Button */,
@@ -1123,6 +1129,14 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		A1B2DBFF2A43077E00DE6980 /* ChipGroup */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2DC002A4307B900DE6980 /* ChipGroupExampleView.swift */,
+			);
+			path = ChipGroup;
 			sourceTree = "<group>";
 		};
 		AA7CFD8A29965EE20023C12B /* Price */ = {
@@ -1625,6 +1639,8 @@
 				53B6DB6227FC3F170042B7C0 /* ChipGroups.swift in Sources */,
 				E38E82EC24165A40004273E9 /* BottomSheetContentViewController.swift in Sources */,
 				53C6621929EA0DAB00BF1A62 /* CardWrapperExampleView.swift in Sources */,
+				A12A09DE2A49471F0047DD16 /* ChipGroupProvider.swift in Sources */,
+				A1B2DC012A4307B900DE6980 /* ChipGroupExampleView.swift in Sources */,
 				D24B548F22EA3E1E00ECD829 /* ProgressBarViewController.swift in Sources */,
 				60CE0F992189F99200309211 /* SwitchesViewController.swift in Sources */,
 				58CFF14922D383C300C45B0B /* StarRatingsViewController.swift in Sources */,
