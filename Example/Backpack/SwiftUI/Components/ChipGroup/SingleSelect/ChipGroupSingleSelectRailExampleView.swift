@@ -34,12 +34,9 @@ struct ChipGroupSingleSelectRailExampleView: View {
     
     var body: some View {
         VStack {
-            BPKText("Rail", style: .heading5)
-            VStack {
-                defaultChip
-                onDarkChip
-                onImageChip
-            }
+            defaultChip
+            onDarkChip
+            onImageChip
         }
         .padding()
     }

@@ -155,11 +155,11 @@ extension ComponentCellsProvider {
     }
     private func chipGroup() -> CellDataSource {
         ComponentCellDataSource(
-            title: "ChipGroup",
+            title: "Chip Group",
             tabs: [
                 .swiftui(groups: ChipGroupProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
-            showChildren: { showComponent(title: "ChipGroup", tabs: $0) }
+            showChildren: { showComponent(title: "Chip Group", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
