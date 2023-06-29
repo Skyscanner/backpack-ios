@@ -19,10 +19,12 @@
 import SwiftUI
 
 fileprivate struct ScaledFont: ViewModifier {
+    // This makes the font update when dynamic type changes
+    @Environment(\.sizeCategory) var sizeCategory
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {
-        return content.font(style.font)
+        return content.font(style.scaledFont())
             .lineSpacing(style.lineHeight - style.lineHeight)
     }
 }
@@ -31,7 +33,7 @@ fileprivate struct FixedFont: ViewModifier {
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {
-        return content.font(style.fontFixed)
+        return content.font(style.font())
             .lineSpacing(style.lineHeight - style.lineHeight)
     }
 }
@@ -46,5 +48,25 @@ extension Text {
             .if(!fixed, transform: { item in
                 item.modifier(ScaledFont(style: style))
             })
+    }
+}
+
+extension BPKFontStyle {
+    func scaledFont() -> Font {
+        let scaledValue = UIFontMetrics(forTextStyle: textStyle).scaledValue(for: size)
+        return font(size: scaledValue)
+    }
+    
+    func font() -> Font {
+        return font(size: size)
+    }
+    
+    private func font(size: CGFloat) -> Font {
+        switch style {
+        case .regular:
+            return Font.regular(size: size)
+        case .semibold:
+            return Font.semibold(size: size)
+        }
     }
 }

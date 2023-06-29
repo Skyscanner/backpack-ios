@@ -25,7 +25,7 @@ class FontTests: XCTestCase {
         let anySize: CGFloat = 1
         let mockFont = Font.system(size: anySize).italic()
         let systemFont = Font.system(size: anySize)
-        let sut = Font.customOrDefault("some font", size: anySize, weight: .regular, textStyle: .body) { _,_,_ in
+        let sut = Font.customOrDefault("some font", size: anySize, weight: .regular) { _,_ in
             mockFont
         }
         XCTAssertEqual(mockFont, sut)
