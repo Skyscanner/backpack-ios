@@ -36,7 +36,7 @@ class BPKTextDynamicTypeTests: XCTestCase {
             (.bodyDefault, "Body default"),
             (.caption, "Caption"),
             (.footnote, "Footnote")
-        ]).frame(width: 600, height: 360)
+        ]).frame(width: 700, height: 500)
 
         let view: UIView = UIHostingController(rootView: sut).view
 
