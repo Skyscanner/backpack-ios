@@ -336,6 +336,16 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "navigation-bar", scenario: "collapsed-simple",
                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
+            
+            app.tables.staticTexts["Large - onImage"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "large-onImage",
+                           userInterfaceStyle: userInterfaceStyle)
+            app.buttons["NavigateBack"].tap()
+
+            app.tables.staticTexts["Collapsed - onImage"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "collapsed-onImage",
+                            userInterfaceStyle: userInterfaceStyle)
+            app.buttons["NavigateBack"].tap()
         }
 
         navigate(title: "Nudger") {
