@@ -31,28 +31,51 @@ extension Font {
         _ name: String?,
         size: CGFloat,
         weight: Weight,
-        fontProvider: (String, CGFloat) -> Font = Font.custom(_:size:)
+        textStyle: TextStyle,
+        fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
     ) -> Font {
         guard let name else {
-            return .system(size: size, weight: weight)
+            return fontProvider("", size, textStyle)
         }
             
-        return fontProvider(name, size)
+        return fontProvider(name, size, textStyle)
     }
     
-    static func regular(size: CGFloat) -> Font {
+    static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
         return customOrDefault(
             BPKFont.fontDefinition?.regularFontFace,
             size: size,
-            weight: .regular
+            weight: .regular,
+            textStyle: textStyle
         )
     }
     
-    static func semibold(size: CGFloat) -> Font {
+    static func regularFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.regularFontFace,
+            size: size,
+            weight: .regular,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+            }
+    }
+    
+    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
         return customOrDefault(
             BPKFont.fontDefinition?.semiboldFontFace,
             size: size,
-            weight: .semibold
+            weight: .semibold,
+            textStyle: textStyle
         )
+    }
+    
+    static func semiboldFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.semiboldFontFace,
+            size: size,
+            weight: .semibold,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+            }
     }
 }
