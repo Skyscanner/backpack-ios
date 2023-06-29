@@ -88,7 +88,7 @@ extension ComponentCellsProvider {
                         BadgesViewController()
                     })),
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(BadgeExampleVIew())
+                    ContentUIHostingController(BadgeExampleView())
                 }))
             ],
             showChildren: { showComponent(title: "Badges", tabs: $0) }
