@@ -32,13 +32,13 @@ extension Font {
         size: CGFloat,
         weight: Weight,
         textStyle: TextStyle,
-        fontProvider: (String, CGFloat, TextStyle) -> Font? = Font.custom(_:size:relativeTo:)
+        fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
     ) -> Font {
-        guard let name, let font = fontProvider(name, size, textStyle) else {
-            return fontProvider("", size, textStyle)!
+        guard let name else {
+            return fontProvider("", size, textStyle)
         }
             
-        return font
+        return fontProvider(name, size, textStyle)
     }
     
     static func regular(size: CGFloat, textStyle: TextStyle) -> Font {

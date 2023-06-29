@@ -18,25 +18,17 @@
  
 import XCTest
 @testable import Backpack_SwiftUI
+import SwiftUI
 
 class FontTests: XCTestCase {
     func testUsesDefaultFontWhenFontByNameNotFound() {
         let anySize: CGFloat = 1
-        let mockFont = UIFont.italicSystemFont(ofSize: anySize)
-        let systemFont = UIFont.systemFont(ofSize: anySize)
-        let sut = UIFont.customOrDefault("some font", size: anySize, weight: .regular) { _,_ in
+        let mockFont = Font.system(size: anySize).italic()
+        let systemFont = Font.system(size: anySize)
+        let sut = Font.customOrDefault("some font", size: anySize, weight: .regular, textStyle: .body) { _,_,_ in
             mockFont
         }
         XCTAssertEqual(mockFont, sut)
         XCTAssertNotEqual(systemFont, sut)
-    }
-    
-    func testUsesFontWhenFontByNameIsFound() {
-        let anySize: CGFloat = 1
-        let systemFont = UIFont.systemFont(ofSize: anySize)
-        let sut = UIFont.customOrDefault("some font", size: anySize, weight: .regular) { _,_ in
-            nil
-        }
-        XCTAssertEqual(systemFont, sut)
     }
 }
