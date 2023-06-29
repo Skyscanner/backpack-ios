@@ -4,7 +4,7 @@ platform :ios, '14.0'
 use_frameworks!
 ensure_bundler! '> 2.0'
 
-install! 'cocoapods', disable_input_output_paths: true
+install! 'cocoapods', disable_input_output_paths: true, :deterministic_uuids => false
 
 target 'Backpack-Native' do
   pod 'Backpack', :path => '../', :testspecs => ['UnitTests', 'SnapshotTests']
@@ -24,6 +24,10 @@ post_install do |installer|
 
   puts 'Removing static analyzer support'
   installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+      end
+      
       if target.name == "FSCalendar"
           target.build_configurations.each do |config|
               config.build_settings['OTHER_CFLAGS'] = "$(inherited) -Qunused-arguments -Xanalyzer -analyzer-disable-all-checks"
