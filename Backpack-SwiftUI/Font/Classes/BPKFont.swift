@@ -35,7 +35,11 @@ extension Font {
         fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
     ) -> Font {
         guard let name else {
-            return fontProvider("", size, textStyle)
+            if weight == .semibold {
+                return fontProvider("HelveticaNeue-Medium", size, textStyle)
+            }
+            
+            return fontProvider("HelveticaNeue", size, textStyle)
         }
             
         return fontProvider(name, size, textStyle)
