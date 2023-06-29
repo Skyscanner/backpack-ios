@@ -4,7 +4,7 @@ platform :ios, '14.0'
 use_frameworks!
 ensure_bundler! '> 2.0'
 
-install! 'cocoapods', disable_input_output_paths: true, :deterministic_uuids => false
+install! 'cocoapods', disable_input_output_paths: true
 
 target 'Backpack-Native' do
   pod 'Backpack', :path => '../', :testspecs => ['UnitTests', 'SnapshotTests']
