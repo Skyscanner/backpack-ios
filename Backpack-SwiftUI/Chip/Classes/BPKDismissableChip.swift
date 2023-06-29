@@ -44,7 +44,7 @@ public struct BPKDismissableChip: View {
                 BPKIconView(icon)
             }
             Text(text)
-                .font(style: .footnote)
+                .font(style: .footnote, fixed: true)
             BPKIconView(.closeCircle)
                 .foregroundColor(accessoryViewColor)
         }
