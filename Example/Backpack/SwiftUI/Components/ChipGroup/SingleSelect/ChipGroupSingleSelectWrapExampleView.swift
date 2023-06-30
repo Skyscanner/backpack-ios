@@ -56,8 +56,8 @@ struct ChipGroupSingleSelectWrapExampleView: View {
             style: .onDark,
             selectedIndex: $selectedChip,
             type: .wrap) { _ in }
-            .background(.surfaceContrastColor)
             .padding()
+            .background(.surfaceContrastColor)
     }
     
     var onImageChip: some View {
