@@ -40,6 +40,7 @@ private struct VerticalPriceStack: View {
                     .foregroundColor(.textSecondaryColor)
             }
         }
+        .sizeCategory(.large)
     }
 }
 

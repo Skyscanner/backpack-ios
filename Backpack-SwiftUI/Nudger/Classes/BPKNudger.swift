@@ -71,6 +71,7 @@ public struct BPKNudger: View {
             }
             updateButtonStates()
         }
+        .sizeCategory(.large)
     }
     
     private func updateButtonStates() {
