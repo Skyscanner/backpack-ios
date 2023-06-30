@@ -40,7 +40,6 @@ private struct VerticalPriceStack: View {
                     .foregroundColor(.textSecondaryColor)
             }
         }
-        .sizeCategory(.large)
     }
 }
 
@@ -121,6 +120,7 @@ public struct BPKPrice: View {
                                      accessoryFontStyle: accessoryFontStyle())
             }
         }
+        .sizeCategory(.large)
     }
     
     private func accessoryText(_ text: String) -> BPKText {
