@@ -36,7 +36,7 @@ public struct BPKSingleSelectChipGroup: View {
     ) {
         self.chips = chips
         self.style = style
-        _selectedIndex = selectedIndex
+        self._selectedIndex = selectedIndex
         self.type = type
         self.onItemClick = onItemClick
     }
