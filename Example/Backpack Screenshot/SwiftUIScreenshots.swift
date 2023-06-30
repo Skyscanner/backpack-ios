@@ -196,6 +196,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
+        navigate(title: "Chip Group") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Rail - Single Select"].tap()
+            saveScreenshot(component: "chip-group", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Wrap - Single Select"].tap()
+            saveScreenshot(component: "chip-group", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
         navigate(title: "Dialogs") {
             switchTab(title: "SwiftUI")
             app.buttons["Open Success"].tap()

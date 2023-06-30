@@ -46,6 +46,7 @@ struct ComponentCellsProvider {
             cardButton(),
             carousel(),
             chips(),
+            chipGroup(),
             flightLeg(),
             flare(),
             floatingNotification(),
@@ -150,6 +151,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: ChipsGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Chips", tabs: $0) }
+        )
+    }
+    private func chipGroup() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Chip Group",
+            tabs: [
+                .swiftui(groups: ChipGroupProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Chip Group", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
