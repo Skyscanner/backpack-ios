@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) UIView *borderView;
 @property(nonatomic, strong, readonly) UIBlurEffect *backgroundEffect;
 @property(nonatomic, strong, readonly) UIColor *borderViewBackgroundColor;
+@property(nonatomic, strong, readonly) UIColor *contentColor;
+@property(nonatomic, strong, readonly) UIColor *backgroundViewColor;
 
 // Constraints
 @property(nonatomic, strong) NSLayoutConstraint *heightConstraint;
@@ -93,16 +95,19 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
+- (void)setStyle:(BPKNavigationBarStyle)style {
+    BPKAssertMainThread();
+    if (style != _style) {
+        _style = style;
+        [self updateAppearance];
+    }
+}
+
 - (void)setLargeTitleTextColor:(UIColor *_Nullable)largeTitleTextColor {
     BPKAssertMainThread();
     if (largeTitleTextColor != _largeTitleTextColor) {
         _largeTitleTextColor = largeTitleTextColor;
-
-        if (_largeTitleTextColor) {
-            self.largeTitleView.titleLabel.textColor = _largeTitleTextColor;
-        } else {
-            self.largeTitleView.titleLabel.textColor = BPKColor.textPrimaryColor;
-        }
+        [self updateAppearance];
     }
 }
 
@@ -170,8 +175,9 @@ NS_ASSUME_NONNULL_BEGIN
             scrollView.scrollIndicatorInsets = scrollView.contentInset;
             self.titleView.showsContent = YES;
             self.borderView.alpha = 1.0;
-            self.backgroundView.backgroundColor = BPKColor.canvasColor;
+
             self.collapsed = YES;
+            [self updateAppearance];
         }
     } else {
         // Expanded state
@@ -189,9 +195,9 @@ NS_ASSUME_NONNULL_BEGIN
         if (self.isCollapsed) {
             self.titleView.showsContent = NO;
             self.borderView.alpha = 0.0;
-            self.backgroundView.backgroundColor = nil;
 
             self.collapsed = NO;
+            [self updateAppearance];
         }
 
         self.largeTitleView.titleLabel.font = [self.largeTitleView.titleLabel.font fontWithSize:[self fontSizeForScrollOffset:adjustedYOffset]];
@@ -239,7 +245,6 @@ NS_ASSUME_NONNULL_BEGIN
     if (!_backgroundView) {
         _backgroundView = [[UIVisualEffectView alloc] initWithEffect:nil];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        _backgroundView.backgroundColor = BPKColor.clear;
     }
 
     return _backgroundView;
@@ -288,6 +293,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self addSubview:self.titleView];
     [self addSubview:self.leftButton];
     [self addSubview:self.rightButton];
+    [self updateAppearance];
 
     self.heightConstraint = [self.heightAnchor constraintEqualToConstant:BPKNavigationBarExpandedFullHeight];
 
@@ -346,8 +352,35 @@ NS_ASSUME_NONNULL_BEGIN
     return (UIViewController *)responder;
 }
 
+- (void)updateAppearance {
+    self.backgroundView.backgroundColor = self.backgroundViewColor;
+
+    self.leftButton.linkContentColor = self.contentColor;
+    self.rightButton.linkContentColor = self.contentColor;
+
+    if (self.largeTitleTextColor) {
+        self.largeTitleView.titleLabel.textColor = self.largeTitleTextColor;
+    } else {
+        self.largeTitleView.titleLabel.textColor = self.contentColor;
+    }
+}
+
 - (UIColor *)borderViewBackgroundColor {
     return [BPKColor dynamicColorWithLightVariant:BPKColor.surfaceHighlightColor darkVariant:BPKColor.textSecondaryColor];
+}
+
+- (UIColor *)contentColor {
+    if (!self.collapsed && self.style == BPKNavigationBarStyleOnImage) {
+        return BPKColor.textOnDarkColor;
+    }
+    return BPKColor.textPrimaryColor;
+}
+
+- (UIColor *)backgroundViewColor {
+    if (self.collapsed) {
+        return BPKColor.canvasColor;
+    }
+    return BPKColor.clear;
 }
 
 @end
