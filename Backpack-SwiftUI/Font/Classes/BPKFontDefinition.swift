@@ -29,3 +29,11 @@ public struct BPKRelativeFontDefinition: BPKFontDefinition {
     
     public init() {}
 }
+
+public struct FallbackFontDefinition: BPKFontDefinition {
+    public var fontFamily = "Helvetica Neue"
+    public var regularFontFace = "HelveticaNeue"
+    public var semiboldFontFace = "HelveticaNeue-Medium"
+    
+    public init() {}
+}

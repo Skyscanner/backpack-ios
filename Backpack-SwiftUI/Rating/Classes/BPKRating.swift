@@ -60,6 +60,7 @@ public struct BPKRating<Content: View>: View {
             }
         }
         .accessibilityElement()
+        .sizeCategory(.large)
     }
 
     public init(

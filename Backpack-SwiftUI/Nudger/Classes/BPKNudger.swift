@@ -27,6 +27,7 @@ public struct BPKNudger: View {
     private var minValue: Int
     private var maxValue: Int
     private var step: Int
+    private let minWidth: CGFloat = BPKSpacing.lg.value
     
     /// Creates a `BPKNudger`.
     /// - Parameters:
@@ -70,15 +71,7 @@ public struct BPKNudger: View {
             }
             updateButtonStates()
         }
-    }
-
-    private var minWidth: CGFloat {
-        // Reserve space for 2 digits. 9 is one of the widest digits
-        // in Relative so 99 is one of the widest two digit numbers possible
-        let width = "99".size(withAttributes: [NSAttributedString.Key.font: BPKFontStyle.heading5.font]).width
-
-        // Round the value up to the nearest value that aligns to our spacing grid:
-        return ceil(width / BPKSpacing.md.value) * BPKSpacing.md.value
+        .sizeCategory(.large)
     }
     
     private func updateButtonStates() {

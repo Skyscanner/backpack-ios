@@ -57,6 +57,31 @@ const WEIGHT_MAP_SWIFTUI = {
     700: 'semibold'
 };
 
+const TEXT_STYLE_MAP_SWIFTUI = {
+    BPKFontStyleTextHero1: ".largeTitle",
+    BPKFontStyleTextHero2: ".largeTitle",
+    BPKFontStyleTextHero3: ".largeTitle",
+    BPKFontStyleTextHero4: ".largeTitle",
+    BPKFontStyleTextHero5: ".largeTitle",
+
+    BPKFontStyleTextHeading5: ".title3",
+    BPKFontStyleTextHeading4: ".title3",
+    BPKFontStyleTextHeading3: ".title3",
+    BPKFontStyleTextHeading2: ".title2",
+    BPKFontStyleTextHeading1: ".title",
+
+    BPKFontStyleTextSubheading: ".subheadline",
+    BPKFontStyleTextBodyLongform: ".body",
+    BPKFontStyleTextBodyDefault: ".body",
+
+    BPKFontStyleTextLabel3: ".body",
+    BPKFontStyleTextLabel2: ".body",
+    BPKFontStyleTextLabel1: ".body",
+
+    BPKFontStyleTextFootnote: ".footnote",
+    BPKFontStyleTextCaption: ".caption",
+}
+
 const convertFontWeight = (weightMap, weightString) => {
     const weight = weightMap[weightString.trim()];
     if (!weight) {
@@ -166,13 +191,26 @@ const uikitFonts = properties => fonts(properties, fontProps => {
 
     const swiftuiFonts = properties => fonts(properties, fontProps => {
         const swiftUIName = (name) => lowercaseFirstLetter(name.replace('text', ''))
+
+        const textStyleValueForName = (name) => {
+            const enumValue = TEXT_STYLE_MAP_SWIFTUI[name];
+            if (typeof enumValue !== 'string') {
+                throw new Error(
+                    `No font enum value found for \`${name}\` in \`TEXT_STYLE_MAP_SWIFTUI\`. Every font variant MUST have a value in this object`,
+                );
+            }
+            return enumValue;
+        };
+        const enumName = `BPKFontStyle${_.upperFirst(fontProps.key)}`;
+        
         return {
             name: swiftUIName(fontProps.key),
             size: Number.parseInt(fontProps.sizeProp[0].value, 10),
             weight: convertFontWeight(WEIGHT_MAP_SWIFTUI, fontProps.weightProp[0].value),
             type: 'font',
             lineHeight: lineHeightFor(fontProps.lineHeightProp[0]),
-            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0])
+            letterSpacing: letterSpacingFor(fontProps.letterSpacingProp[0]),
+            textStyle: textStyleValueForName(enumName)
         };
     })
 

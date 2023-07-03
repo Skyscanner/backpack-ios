@@ -120,6 +120,7 @@ public struct BPKPrice: View {
                                      accessoryFontStyle: accessoryFontStyle())
             }
         }
+        .sizeCategory(.large)
     }
     
     private func accessoryText(_ text: String) -> BPKText {

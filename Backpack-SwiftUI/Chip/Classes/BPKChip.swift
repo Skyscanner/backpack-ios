@@ -61,6 +61,7 @@ public struct BPKChip: View {
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
         .disabled(disabled)
+        .sizeCategory(.large)
     }
     
     public func disabled(_ disabled: Bool) -> BPKChip {
