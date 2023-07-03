@@ -44,7 +44,7 @@ public struct BPKDismissableChip: View {
                 BPKIconView(icon)
             }
             Text(text)
-                .font(style: .footnote, fixed: true)
+                .font(style: .footnote)
             BPKIconView(.closeCircle)
                 .foregroundColor(accessoryViewColor)
         }
@@ -67,6 +67,7 @@ public struct BPKDismissableChip: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(text)
         .accessibilityAddTraits(.isButton)
+        .sizeCategory(.large)
     }
     
     private var accessoryViewColor: BPKColor {

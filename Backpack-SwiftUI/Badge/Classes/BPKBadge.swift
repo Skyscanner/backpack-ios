@@ -43,6 +43,7 @@ public struct BPKBadge: View {
             .outline(style.borderColor, cornerRadius: .xs)
             .accessibilityElement()
             .accessibilityLabel(title)
+            .sizeCategory(.large)
     }
     
     /// Sets the style of the badge

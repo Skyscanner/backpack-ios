@@ -174,8 +174,9 @@ private struct ButtonContentView: View {
     
     private func content(withTitle title: String) -> some View {
         Text(title)
-            .font(style: fontStyle, fixed: true)
+            .font(style: fontStyle)
             .lineLimit(1)
+            .sizeCategory(.large)
     }
     
     private var iconSize: BPKIcon.Size {

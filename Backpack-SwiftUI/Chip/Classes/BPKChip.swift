@@ -48,7 +48,7 @@ public struct BPKChip: View {
                     BPKIconView(icon)
                 }
                 Text(text)
-                    .font(style: .footnote, fixed: true)
+                    .font(style: .footnote)
             }
             .padding(.horizontal, .base)
         }
@@ -61,6 +61,7 @@ public struct BPKChip: View {
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
         .disabled(disabled)
+        .sizeCategory(.large)
     }
     
     public func disabled(_ disabled: Bool) -> BPKChip {
