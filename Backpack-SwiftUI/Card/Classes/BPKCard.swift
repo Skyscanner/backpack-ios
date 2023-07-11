@@ -58,7 +58,6 @@ public struct BPKCard<Content: View>: View {
             content
                 .padding(padding.value)
         }
-        .accessibilityHidden(true)
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
             backgroundColor: elevation.backgroundColor
