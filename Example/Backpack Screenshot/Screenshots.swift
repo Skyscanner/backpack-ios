@@ -481,7 +481,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
         
         navigate(title: "Page indicators") {
-            saveScreenshot(component: "page indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "page-indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
