@@ -24,14 +24,14 @@ public struct BPKSectionHeader: View {
     let style: Style
     let button: BPKButton?
 
-    init(title: String, description: String? = nil, style: Style = .default) {
+    public init(title: String, description: String? = nil, style: Style = .default) {
         self.title = title
         self.description = description
         self.style = style
         self.button = nil
     }
 
-    init(title: String, description: String? = nil, style: Style = .default, @ViewBuilder button: () -> BPKButton) {
+    public init(title: String, description: String? = nil, style: Style = .default, @ViewBuilder button: () -> BPKButton) {
         self.title = title
         self.description = description
         self.style = style
@@ -42,21 +42,24 @@ public struct BPKSectionHeader: View {
         HStack {
             VStack(alignment: .leading) {
                 BPKText(title, style: .heading3)
+                    .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
+                        .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
                 }
             }
-            .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
+
             Spacer()
             if let button = button {
-                button
+                button.buttonStyle(style == .default ? .primary : .primaryOnDark)
             }
         }
         .background(style == .default ? .canvasColor : .surfaceContrastColor)
     }
 
-    enum Style {
+    public enum Style {
         case `default`
         case onDark
     }
 }
+

@@ -17,8 +17,8 @@
  */
 
 import XCTest
-import SwiftUI
-@testable import Backpack_SwiftUI
+import SnapshotTesting
+import Backpack_SwiftUI
 
 class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderDefault() {
