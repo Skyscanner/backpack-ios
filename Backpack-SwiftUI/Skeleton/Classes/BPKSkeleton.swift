@@ -47,13 +47,13 @@ public struct BPKSkeleton: View {
         case .headline:
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
                .fill(color)
-               .frame(width: size.headline.width, height:  size.headline.height)
+               .frame(width: size.headline.width, height: size.headline.height)
                .clipped()
             
         case .circle:
             Circle()
                .fill(color)
-               .frame(width: size.circle.width, height:  size.circle.height)
+               .frame(width: size.circle.width, height: size.circle.height)
                .clipped()
             
         case .bodytext:

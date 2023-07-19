@@ -99,4 +99,3 @@ class BPKDividedCardTests: XCTestCase {
         )
     }
 }
-

@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// A control that displays an editable text interface.
-/// 
+///
 /// Use `inputState(_ state: State)` to change the state of the text field.
 public struct BPKTextField: View {
     struct Icon {

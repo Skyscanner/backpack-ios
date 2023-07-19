@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct BPKPanel<Content: View>: View {    
+public struct BPKPanel<Content: View>: View {
     private let content: Content
     private let padding: Bool
 
@@ -49,7 +49,7 @@ struct BPKPanel_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color(BPKColor.canvasColor)
-            VStack(spacing: 40){
+            VStack(spacing: 40) {
                 BPKPanel() {
                     BPKText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet sagittis tellus, quis pharetra massa. Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. Nullam ut tellus sed tortor eleifend accumsan sed nec enim. Nullam nec rhoncus nulla. Fusce placerat blandit semper.")
                         .lineLimit(nil)

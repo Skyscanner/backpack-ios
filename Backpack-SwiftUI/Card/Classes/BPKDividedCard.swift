@@ -109,4 +109,3 @@ struct BPKDividedCard_Priviews: PreviewProvider {
         }
     }
 }
-

@@ -68,7 +68,7 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     private var rootViewController: UIViewController? {
         UIApplication.shared
             .windows
-            .filter {$0.isKeyWindow}
+            .filter { $0.isKeyWindow }
             .first?
             .rootViewController
     }
@@ -80,6 +80,7 @@ struct DialogContainerViewModifier_Previews: PreviewProvider {
             .modifier(DialogContainerViewModifier(isPresented: .constant(true)) {
                 BPKText("This is the content of a dialog!")
                     .background(.surfaceDefaultColor)
-        } onTouchOutside: {})
+        } onTouchOutside: {
+            })
     }
 }

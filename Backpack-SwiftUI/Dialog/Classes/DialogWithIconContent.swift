@@ -42,7 +42,7 @@ struct DialogWithIconContent: View {
     }
 }
 
-fileprivate struct DialogIconHeaderView: View {
+private struct DialogIconHeaderView: View {
     let icon: BPKIcon
     let color: BPKColor
     

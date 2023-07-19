@@ -65,7 +65,7 @@ public struct BPKSingleSelectChipGroup: View {
                 style: style) {
                     selectedIndex = index
                     onItemClick(index)
-                }
+            }
         }
     }
 }

@@ -229,7 +229,6 @@ public extension VStack {
     }
 }
 
-
 public extension LazyVStack {
 
     /// Creates an instance that arranges its children in a vertical line.

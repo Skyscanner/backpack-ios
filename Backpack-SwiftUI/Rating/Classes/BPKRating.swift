@@ -79,7 +79,6 @@ public struct BPKRating<Content: View>: View {
         self.titleViewBuilder = titleViewBuilder
     }
 
-
     @ViewBuilder
     private var subtitleView: some View {
         if let subtitle = subtitle {
