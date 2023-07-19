@@ -463,11 +463,11 @@ extension ComponentCellsProvider {
     }
     private func sectionHeader() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Section Header",
+            title: "Section header",
             tabs: [
                 .swiftui(groups: SectionHeaderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
-            showChildren: { showComponent(title: "Section Header", tabs: $0) }
+            showChildren: { showComponent(title: "Section header", tabs: $0) }
         )
     }
 }

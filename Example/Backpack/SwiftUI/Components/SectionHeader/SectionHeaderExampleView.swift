@@ -26,10 +26,18 @@ struct SectionHeaderExampleView: View {
         ZStack {
             Color(BPKColor.surfaceHighlightColor)
             VStack(alignment: .leading, spacing: .base) {
-                BPKSectionHeader(title: "Section title", style: style)
-                BPKSectionHeader(title: "Section title", description: "Description about a section", style: style)
-                BPKSectionHeader(title: "Section title", description: "Description about a section", style: style) {
-                    BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+                BPKSectionHeader(title: "Section title", style: style, accessibilityLabel: "Section header")
+                BPKSectionHeader(
+                    title: "Section title",
+                    description: "Description about a section",
+                    style: style,
+                    accessibilityLabel: "Section header")
+                BPKSectionHeader(
+                    title: "Section title",
+                    description: "Description about a section",
+                    style: style,
+                    accessibilityLabel: "Section header") {
+                        BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
                 }
             }
             .padding()
