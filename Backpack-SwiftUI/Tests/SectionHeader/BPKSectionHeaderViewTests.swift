@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderDefault() {
         assertSnapshot(
-            BPKSectionHeader(title: "Section title")
+            BPKSectionHeader(title: "Section title", accessibilityLabel: "Section header")
                 .padding()
         )
     }
@@ -31,7 +31,8 @@ class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderWithDescription() {
         assertSnapshot(
             BPKSectionHeader(title: "Section title",
-                             description: "Description about this section")
+                             description: "Description about this section",
+                            accessibilityLabel: "Section header")
             .padding()
         )
     }
@@ -39,8 +40,9 @@ class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderWithDescriptionAndButton() {
         assertSnapshot(
             BPKSectionHeader(title: "Section title",
-                           description: "Description about this section") {
-                               BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+                             description: "Description about this section",
+                             accessibilityLabel: "Section header") {
+                                 BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
                            }
                 .padding()
         )
@@ -49,9 +51,10 @@ class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderWithDescriptionAndButtonOnDark() {
         assertSnapshot(
             BPKSectionHeader(title: "Section title",
-                           description: "Description about this section",
-                           style: .onDark) {
-                               BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+                             description: "Description about this section",
+                             style: .onDark,
+                             accessibilityLabel: "Section header") {
+                                 BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
                            }
                 .padding()
         )
