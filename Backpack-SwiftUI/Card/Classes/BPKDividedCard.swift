@@ -55,7 +55,7 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
     }
 }
 
-struct BPKDividedCard_Priviews: PreviewProvider {
+struct BPKDividedCard_Previews: PreviewProvider {
 
     private static func primaryContent(title: String) -> some View {
         let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +

@@ -77,6 +77,7 @@ public enum BPKFlareDirection {
     }
 }
 
+// swiftlint:disable closure_body_length
 struct BPKFlareView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

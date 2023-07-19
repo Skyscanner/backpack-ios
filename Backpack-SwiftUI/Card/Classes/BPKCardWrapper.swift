@@ -40,16 +40,19 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
         VStack(spacing: 0) {
             header
             card
-                .overlay(RoundedRectangle(cornerRadius: .sm)
+                .overlay(
+                    RoundedRectangle(cornerRadius: .sm)
                         .stroke(Color(backgroundColor), lineWidth: lineWidth))
         }
         .background(backgroundColor)
         .cornerRadius(BPKCornerRadius.sm.value)
-        .overlay(RoundedRectangle(cornerRadius: .sm)
+        .overlay(
+            RoundedRectangle(cornerRadius: .sm)
                 .stroke(Color(backgroundColor), lineWidth: lineWidth))
     }
 }
 
+// swiftlint:disable closure_body_length
 struct BPKCardWrapper_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

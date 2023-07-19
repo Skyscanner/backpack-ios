@@ -21,6 +21,7 @@ import UIKit
 /// Backpack Internal Colors
 /// These colors are internal on purpose and can only be used by Backpack components
 /// Do not use these colors in your own designs.
+// swiftlint:disable identifier_name
 internal extension BPKColor {
     private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))

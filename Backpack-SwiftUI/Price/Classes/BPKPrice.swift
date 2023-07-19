@@ -109,15 +109,17 @@ public struct BPKPrice: View {
             }
             
             if alignment == .trailing {
-                VerticalPriceStack(price: price,
-                                   trailingText: trailingText,
-                                   fontStyle: priceFontStyle(),
-                                   accessoryFontStyle: accessoryFontStyle())
+                VerticalPriceStack(
+                    price: price,
+                    trailingText: trailingText,
+                    fontStyle: priceFontStyle(),
+                    accessoryFontStyle: accessoryFontStyle())
             } else if alignment == .leading {
-                HorizontalPriceStack(price: price,
-                                     trailingText: trailingText,
-                                     fontStyle: priceFontStyle(),
-                                     accessoryFontStyle: accessoryFontStyle())
+                HorizontalPriceStack(
+                    price: price,
+                    trailingText: trailingText,
+                    fontStyle: priceFontStyle(),
+                    accessoryFontStyle: accessoryFontStyle())
             }
         }
         .sizeCategory(.large)
