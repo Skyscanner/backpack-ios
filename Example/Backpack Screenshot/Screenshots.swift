@@ -176,27 +176,6 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
             app.tables.staticTexts["Wrapper default"].tap()
             saveScreenshot(component: "card-wrapper", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with primary color"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-primary-color", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper not elevated"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "not-elevated", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with corner style large"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-corner-style-large", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with divided card"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-divided-card", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with divided card not padded"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-divided-card-not-padded", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
 
         navigate(title: "Card Button") {
