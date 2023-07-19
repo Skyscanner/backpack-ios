@@ -57,13 +57,18 @@ class CardWrappersViewController: UIViewController {
     }
     
     private func createCard() -> BPKCard {
-        let label1 = BPKLabel(fontStyle: .textBodyDefault)
-        label1.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-            "Aenean commodo ligula eget dolor. Aenean massa."
+        let label1 = BPKLabel(fontStyle: .textHeading5)
+        label1.text = "Let's explore"
         label1.numberOfLines = 0
         
         let label2 = BPKLabel(fontStyle: .textBodyDefault)
-        label2.text = "Lorem ipsum dolor sit amet."
+        label2.text = """
+        It's your world and we'll help you
+        explore it. Find the best prices across
+        millions of flights, hotels and car hire
+        options to create your perfect trip.
+        """
+        
         label2.numberOfLines = 0
         
         if isCardDivided {
@@ -77,8 +82,15 @@ class CardWrappersViewController: UIViewController {
             return card
         }
         
+        let cardContent = UIStackView()
+        cardContent.axis = .vertical
+        cardContent.spacing = BPKSpacingMd
+        cardContent.translatesAutoresizingMaskIntoConstraints = false
+        cardContent.addArrangedSubview(label1)
+        cardContent.addArrangedSubview(label2)
+        
         let card = BPKCard(padded: true)
-        card.subview = label1
+        card.subview = cardContent
         card.isElevated = false
         card.isPadded = isPadded
         card.cornerStyle = cornerStyle
@@ -95,19 +107,13 @@ class CardWrappersViewController: UIViewController {
         header.isLayoutMarginsRelativeArrangement = true
         header.layoutMargins = UIEdgeInsets(
             top: BPKSpacingMd,
-            left: BPKSpacingMd,
+            left: BPKSpacingBase,
             bottom: BPKSpacingMd,
-            right: BPKSpacingMd)
-        
-        let iconView = UIImageView()
-        iconView.contentMode = .scaleToFill
-        iconView.image =  BPKIcon.makeSmallIcon(name: .flag, color: .white)
-        iconView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        header.addArrangedSubview(iconView)
-        
-        let label = BPKLabel(fontStyle: .textBodyDefault)
-        label.text = "Header"
-        label.textColor = .white
+            right: BPKSpacingBase)
+                
+        let label = BPKLabel(fontStyle: .textLabel1)
+        label.text = "Wrapper title"
+        label.textColor = BPKColor.textPrimaryInverseColor
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         header.addArrangedSubview(label)
         
