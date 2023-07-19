@@ -43,10 +43,11 @@ class BPKSectionHeaderViewTests: XCTestCase {
             BPKSectionHeader(
                 title: "Section title",
                 description: "Description about this section",
-                accessibilityLabel: "Section header") {
-                    BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
-                }
-                .padding()
+                accessibilityLabel: "Section header"
+            ) {
+                BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+            }
+            .padding()
         )
     }
 
@@ -56,10 +57,11 @@ class BPKSectionHeaderViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section",
                 style: .onDark,
-                accessibilityLabel: "Section header") {
-                    BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
-                }
-                .padding()
+                accessibilityLabel: "Section header"
+            ) {
+                BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+            }
+            .padding()
         )
     }
 }
