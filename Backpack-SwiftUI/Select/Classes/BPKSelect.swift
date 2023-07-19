@@ -20,7 +20,6 @@ import SwiftUI
 
 struct CustomPickerStyle: ViewModifier {
     var labelText: String
-    var width: CGFloat
     var textColor: BPKColor
     
     func body(content: Content) -> some View {
@@ -33,9 +32,7 @@ struct CustomPickerStyle: ViewModifier {
                         labelText
                     )
                     .foregroundColor(textColor)
-                    
                     Spacer()
-                   
                     Image(systemName: "triangle.fill")
                         .resizable()
                         .foregroundColor(.textPrimaryColor)
@@ -46,20 +43,15 @@ struct CustomPickerStyle: ViewModifier {
             .frame(height: .lg)
         }
         .padding(.md)
-        .background(.surfaceDefaultColor)
-        .clipShape(RoundedRectangle(cornerRadius: .sm))
-        .frame(maxWidth: width, alignment: .leading)
     }
 }
 
 extension View {
     func customPickerStyle(labelText: String,
-                           width: CGFloat,
                            textColor: BPKColor) -> some View {
         self.modifier(
             CustomPickerStyle(
                 labelText: labelText,
-                width: width,
                 textColor: textColor
             )
         )
@@ -94,12 +86,13 @@ public struct BPKSelect: View {
                     Text(t)
                 }
             }
-            .disabled(state.isDisabled)
             .customPickerStyle(
                 labelText: selection,
-                width: .infinity,
                 textColor: state.textColor
             )
+            .background(.surfaceDefaultColor)
+            .clipShape(RoundedRectangle(cornerRadius: .sm))
+            .disabled(state.isDisabled)
             .outline(state.borderColor, cornerRadius: .sm)
         }
     }
