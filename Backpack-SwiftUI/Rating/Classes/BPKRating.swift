@@ -26,7 +26,8 @@ public struct BPKRating<Content: View>: View {
     private let subtitle: String?
     private let showScale: Bool
     @ViewBuilder private var titleViewBuilder: () -> Content
-
+    
+    // swiftlint:disable closure_body_length
     public var body: some View {
         HStack(alignment: .lastTextBaseline, spacing: .md) {
             HStack(alignment: .lastTextBaseline, spacing: .zero) {
@@ -78,7 +79,6 @@ public struct BPKRating<Content: View>: View {
         self.showScale = showScale
         self.titleViewBuilder = titleViewBuilder
     }
-
 
     @ViewBuilder
     private var subtitleView: some View {

@@ -21,9 +21,9 @@ import XCTest
 
 class RadiiTests: XCTestCase {
     func testSpacingsHaveCorrectValues() {
-        XCTAssertEqual(BPKCornerRadius.lg.value, 24);
-        XCTAssertEqual(BPKCornerRadius.md.value, 12);
-        XCTAssertEqual(BPKCornerRadius.sm.value, 8);
-        XCTAssertEqual(BPKCornerRadius.xs.value, 4);
+        XCTAssertEqual(BPKCornerRadius.lg.value, 24)
+        XCTAssertEqual(BPKCornerRadius.md.value, 12)
+        XCTAssertEqual(BPKCornerRadius.sm.value, 8)
+        XCTAssertEqual(BPKCornerRadius.xs.value, 4)
     }
 }

@@ -50,7 +50,7 @@ struct BPKStarView: View {
 
 struct BPKStarView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack{
+        VStack {
             HStack {
                 BPKText("Large", style: .heading3)
                 BPKStarView(type: .empty, size: .large)

@@ -24,7 +24,6 @@ struct ColorExampleToken: Identifiable {
     let color: Backpack_SwiftUI.BPKColor
     let name: String
     
-    // swiftlint:disable:next identifier_name
     let id = UUID()
 }
 
@@ -32,7 +31,6 @@ struct ColorSection: Identifiable {
     let name: String
     let colors: [ColorExampleToken]
     
-    // swiftlint:disable:next identifier_name
     let id = UUID()
 }
 

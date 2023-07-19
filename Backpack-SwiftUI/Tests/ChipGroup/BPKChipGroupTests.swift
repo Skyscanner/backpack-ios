@@ -20,6 +20,7 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
+// swiftlint:disable closure_body_length
 class BPKChipGroupTests: XCTestCase {
     func test_singleSelect_railChips_default() {
         assertSnapshot(

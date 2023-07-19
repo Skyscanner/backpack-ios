@@ -22,7 +22,7 @@ internal extension BPKSkeleton.Size {
     var image: CGSize {
         switch self {
         case .custom(let customSize):
-            return customSize;
+            return customSize
         default:
             return CGSize(width: 96, height: 96)
         }
@@ -32,7 +32,7 @@ internal extension BPKSkeleton.Size {
     var circle: CGSize {
         switch self {
         case .custom(let customSize):
-            return customSize;
+            return customSize
         case .small:
             return CGSize(width: .xl, height: .xl)
         default:
@@ -43,7 +43,7 @@ internal extension BPKSkeleton.Size {
     var headline: CGSize {
         switch self {
         case .custom(let customSize):
-            return customSize;
+            return customSize
         case .small:
             return CGSize(width: 80, height: BPKSpacing.md.value)
         case .large:
@@ -56,7 +56,7 @@ internal extension BPKSkeleton.Size {
     var bodytext: CGSize {
         switch self {
         case .custom(let customSize):
-            return customSize;
+            return customSize
         default:
             return CGSize(width: 200, height: BPKSpacing.xxl.value)
         }

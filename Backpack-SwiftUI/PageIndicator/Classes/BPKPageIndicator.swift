@@ -57,7 +57,6 @@ public struct BPKPageIndicator: UIViewRepresentable {
     }
 }
 
-
 struct BPKPageIndicator_Previews: PreviewProvider {
     static var previews: some View {
         BPKPageIndicator(currentIndex: .constant(0), totalIndicators: .constant(3))
