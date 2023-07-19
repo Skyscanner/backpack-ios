@@ -29,6 +29,7 @@ BPKIconName const BPKIconNameAccountCircle = @"account-circle";
 BPKIconName const BPKIconNameAccount = @"account";
 BPKIconName const BPKIconNameAddCircle = @"add-circle";
 BPKIconName const BPKIconNameAdult = @"adult";
+BPKIconName const BPKIconNameAi = @"ai";
 BPKIconName const BPKIconNameAircon = @"aircon";
 BPKIconName const BPKIconNameAircraft = @"aircraft";
 BPKIconName const BPKIconNameAirlineMultiple = @"airline--multiple";

@@ -27,6 +27,7 @@ public extension BPKIcon {
     static let account = BPKIcon(name: "account")
     static let addCircle = BPKIcon(name: "add-circle")
     static let adult = BPKIcon(name: "adult")
+    static let ai = BPKIcon(name: "ai")
     static let aircon = BPKIcon(name: "aircon")
     static let aircraft = BPKIcon(name: "aircraft")
     static let airlineMultiple = BPKIcon(name: "airline--multiple")

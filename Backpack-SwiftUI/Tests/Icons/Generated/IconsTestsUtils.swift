@@ -32,6 +32,7 @@ extension BPKIconViewTests {
         .account,
         .addCircle,
         .adult,
+        .ai,
         .aircon,
         .aircraft,
         .airlineMultiple,
