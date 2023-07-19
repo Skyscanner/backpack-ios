@@ -18,19 +18,15 @@
 
 import SwiftUI
 
-public struct BPKSelectState {
+extension BPKSelect {
     
-    /// The state of the text field.
+    /// The state of the Selector.
     public enum State {
         /// The default state.
         case `default`
-        /// Disables the text field.
+        /// Disables the selector.
         case disabled
-        /// Adds a clear button to the text field. The action is called when the button is tapped.
-        case clear(accessibilityLabel: String, action: () -> Void)
-        /// Adds a valid icon to the text field.
-        case valid
-        /// Adds an error icon to the text field and changes the border color to error.
+        /// Changes the border color to error.
         case error
         
         var borderColor: BPKColor {
@@ -54,19 +50,5 @@ public struct BPKSelectState {
             default: return .textPrimaryColor
             }
         }
-        
-        var icon: BPKTextField.Icon? {
-            switch self {
-            case .clear: return BPKTextField.Icon(icon: .closeCircle, color: .textSecondaryColor)
-            case .valid: return BPKTextField.Icon(icon: .tickCircle, color: .statusSuccessSpotColor)
-            case .error: return BPKTextField.Icon(icon: .exclamationCircle, color: .statusDangerSpotColor)
-            default: return nil
-            }
-        }
     }
-}
-
-extension BPKTextField {
-    
-    
 }

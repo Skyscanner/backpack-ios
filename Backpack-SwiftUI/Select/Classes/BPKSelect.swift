@@ -21,6 +21,7 @@ import SwiftUI
 struct CustomPickerStyle: ViewModifier {
     var labelText: String
     var width: CGFloat
+    var textColor: BPKColor
     
     func body(content: Content) -> some View {
         Menu {
@@ -28,69 +29,117 @@ struct CustomPickerStyle: ViewModifier {
         } label: {
             HStack {
                 if let labelText = labelText {
-                    BPKText(labelText)
+                    BPKText(
+                        labelText
+                    )
+                    .foregroundColor(textColor)
+                    
                     Spacer()
+                   
                     Image(systemName: "triangle.fill")
                         .resizable()
-                        .frame(width: 12, height: 8)
+                        .foregroundColor(.textPrimaryColor)
+                        .frame(width: 8, height: 5)
                         .rotationEffect(.degrees(180))
                 }
             }
+            .frame(height: .lg)
         }
         .padding(.md)
         .background(.surfaceDefaultColor)
         .clipShape(RoundedRectangle(cornerRadius: .sm))
-//        .outline(.black, cornerRadius: .sm)
         .frame(maxWidth: width, alignment: .leading)
     }
 }
 
 extension View {
-    func customPickerStyle(labelText: String, width: CGFloat) -> some View {
-        self.modifier(CustomPickerStyle(labelText: labelText, width: width))
+    func customPickerStyle(labelText: String,
+                           width: CGFloat,
+                           textColor: BPKColor) -> some View {
+        self.modifier(
+            CustomPickerStyle(
+                labelText: labelText,
+                width: width,
+                textColor: textColor
+            )
+        )
     }
 }
 
 public struct BPKSelect: View {
     
-    @State private var selection: String
+    @SwiftUI.State private var selection: String
     private let options: [String]
-    //    private var state: BPKFieldSet.State = .default
+    private let title: String
+    private var state: State = .default
     
     public init(
+        placeholder: String,
         options: [String]
     ) {
         self.options = options
         if let selectedText = options.first {
             self.selection = selectedText
         } else {
-            self.selection = "Default"
+            self.selection = ""
         }
+        self.title = placeholder
     }
     
     public var body: some View {
         VStack {
             
-            Picker("Flavor", selection: $selection) {
+            Picker(title, selection: $selection) {
                 ForEach(options, id: \.self) { t in
                     Text(t)
                 }
             }
+            .disabled(state.isDisabled)
             .customPickerStyle(
                 labelText: selection,
-                width: .infinity)
+                width: .infinity,
+                textColor: state.textColor
+            )
+            .outline(state.borderColor, cornerRadius: .sm)
         }
+    }
+    
+    public func inputState(_ state: State) -> BPKSelect {
+        var result = self
+        result.state = state
+        return result
     }
 }
 
 struct BPKSelect_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
+            BPKText("Breakfast Choices", style: .heading1)
             BPKSelect(
-                options: ["What", "will", "You choose for breakfast?"]
+                placeholder: "Breakfast Choices",
+                options: ["Porridge",
+                          "Eggs",
+                          "Swift UI"]
             )
+            BPKSelect(
+                placeholder: "Empty List",
+                options: []
+            )
+            BPKSelect(
+                placeholder: "Disabled Choices",
+                options: ["This Picker is Disabled",
+                          "You must eat",
+                          "Porridge"]
+            ).inputState(.disabled)
+            BPKSelect(
+                placeholder: "Bad Choices",
+                options: ["Eat Metal",
+                          "Or Cement ",
+                          "Maybe some Java?"]
+            ).inputState(.error)
         }
         .padding()
-        .background(.coreEcoColor)
+        .background(.canvasContrastColor)
+        .outline(.surfaceHighlightColor, cornerRadius: .sm)
     }
 }
