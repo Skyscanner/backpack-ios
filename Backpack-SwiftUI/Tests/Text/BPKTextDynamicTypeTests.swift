@@ -41,7 +41,10 @@ class BPKTextDynamicTypeTests: XCTestCase {
         let view: UIView = UIHostingController(rootView: sut).view
 
         categories.forEach { category in
-            assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize, traits: .init(preferredContentSizeCategory: category.0)), named: "dynamic_type_\(category.1)")
+            assertSnapshot(
+                matching: view,
+                as: .image(size: view.intrinsicContentSize, traits: .init(preferredContentSizeCategory: category.0)),
+                named: "dynamic_type_\(category.1)")
         }
     }
     

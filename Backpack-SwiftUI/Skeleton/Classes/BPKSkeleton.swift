@@ -68,9 +68,9 @@ public struct BPKSkeleton: View {
     private func makeTextRow(size: CGSize, multiplier: Double) -> some View {
         let rowHeight = abs(size.height - bodytextRowSpacing * 2) / 3.0
         return RoundedRectangle(cornerRadius: 2)
-           .fill(color)
-           .frame(width: size.width * multiplier, height: rowHeight)
-           .clipped()
+            .fill(color)
+            .frame(width: size.width * multiplier, height: rowHeight)
+            .clipped()
     }
 }
 

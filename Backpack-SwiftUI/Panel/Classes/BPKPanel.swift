@@ -45,7 +45,7 @@ public struct BPKPanel<Content: View>: View {
     }
 }
 
-// swiftlint:disable closure_body_length
+// swiftlint:disable line_length
 struct BPKPanel_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

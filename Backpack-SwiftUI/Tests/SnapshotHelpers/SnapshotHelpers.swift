@@ -21,6 +21,7 @@ import SwiftUI
 import XCTest
 import SnapshotTesting
 
+// swiftlint:disable line_length
 func assertSnapshot<V: View>(
     _ view: V,
     modes: [UIUserInterfaceStyle] = [.light, .dark],

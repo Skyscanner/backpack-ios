@@ -241,7 +241,11 @@ public extension LazyVStack {
     ///   - pinnedViews: The set of views that should remain visible when the
     ///     stack is scrolled.
     ///   - content: A view builder that creates the children of this stack.
-    init(alignment: HorizontalAlignment = .center, spacing: BPKSpacing, pinnedViews: PinnedScrollableViews = .init(), @ViewBuilder content: () -> Content) {
+    init(
+        alignment: HorizontalAlignment = .center,
+        spacing: BPKSpacing,
+        pinnedViews: PinnedScrollableViews = .init(),
+        @ViewBuilder content: () -> Content) {
         self.init(alignment: alignment, spacing: spacing.value, pinnedViews: pinnedViews, content: content)
     }
 }
@@ -258,7 +262,11 @@ public extension LazyHStack {
     ///   - pinnedViews: The set of views that should remain visible when the
     ///     stack is scrolled.
     ///   - content: A view builder that creates the children of this stack.
-    init(alignment: VerticalAlignment = .center, spacing: BPKSpacing, pinnedViews: PinnedScrollableViews = .init(), @ViewBuilder content: () -> Content) {
+    init(
+        alignment: VerticalAlignment = .center,
+        spacing: BPKSpacing,
+        pinnedViews: PinnedScrollableViews = .init(),
+        @ViewBuilder content: () -> Content) {
         self.init(alignment: alignment, spacing: spacing.value, pinnedViews: pinnedViews, content: content)
     }
 }
