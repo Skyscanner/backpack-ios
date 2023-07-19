@@ -23,6 +23,8 @@ identifier_name:
     - lg
     - xs
     - ai
+    - x
+    - y
 
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:

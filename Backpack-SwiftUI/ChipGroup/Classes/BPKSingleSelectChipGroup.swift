@@ -82,6 +82,7 @@ public extension BPKSingleSelectChipGroup {
     }
 }
 
+// swiftlint:disable closure_body_length
 struct BPKChipGroup_Previews: PreviewProvider {
     
     static var previews: some View {

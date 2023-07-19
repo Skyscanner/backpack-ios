@@ -40,21 +40,21 @@ public struct BPKSkeleton: View {
         switch type {
         case .image:
             RoundedRectangle(cornerRadius: style.cornerRadius)
-               .fill(color)
-               .frame(width: size.image.width, height: size.image.height)
-               .clipped()
+                .fill(color)
+                .frame(width: size.image.width, height: size.image.height)
+                .clipped()
             
         case .headline:
             RoundedRectangle(cornerRadius: BPKCornerRadius.xs)
-               .fill(color)
-               .frame(width: size.headline.width, height: size.headline.height)
-               .clipped()
+                .fill(color)
+                .frame(width: size.headline.width, height: size.headline.height)
+                .clipped()
             
         case .circle:
             Circle()
-               .fill(color)
-               .frame(width: size.circle.width, height: size.circle.height)
-               .clipped()
+                .fill(color)
+                .frame(width: size.circle.width, height: size.circle.height)
+                .clipped()
             
         case .bodytext:
             VStack(alignment: .leading, spacing: bodytextRowSpacing) {

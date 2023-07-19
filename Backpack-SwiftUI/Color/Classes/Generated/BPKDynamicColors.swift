@@ -18,8 +18,9 @@
 
 import UIKit
 
-@available(*, deprecated, message: "Please use only available BPKColors")
 // swiftlint:disable bpk_use_colour_token
+
+@available(*, deprecated, message: "Please use only available BPKColors")
 public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
     UIColor { $0.userInterfaceStyle == .dark ? darkVariant : lightVariant }
 }
