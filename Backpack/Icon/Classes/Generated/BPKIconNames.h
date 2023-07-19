@@ -45,6 +45,8 @@ FOUNDATION_EXPORT BPKIconName const BPKIconNameAddCircle;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAdult;
 /// :nodoc:
+FOUNDATION_EXPORT BPKIconName const BPKIconNameAi;
+/// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAircon;
 /// :nodoc:
 FOUNDATION_EXPORT BPKIconName const BPKIconNameAircraft;

@@ -29,6 +29,7 @@ BPKLargeIconName const BPKLargeIconNameAccountCircle = @"account-circle";
 BPKLargeIconName const BPKLargeIconNameAccount = @"account";
 BPKLargeIconName const BPKLargeIconNameAddCircle = @"add-circle";
 BPKLargeIconName const BPKLargeIconNameAdult = @"adult";
+BPKLargeIconName const BPKLargeIconNameAi = @"ai";
 BPKLargeIconName const BPKLargeIconNameAircon = @"aircon";
 BPKLargeIconName const BPKLargeIconNameAircraft = @"aircraft";
 BPKLargeIconName const BPKLargeIconNameAirlineMultiple = @"airline--multiple";
