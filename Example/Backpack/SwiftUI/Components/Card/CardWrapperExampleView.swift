@@ -21,51 +21,24 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CardWrapperExampleView: View {
-    
-    private func header(title: String) -> some View {
-        HStack(spacing: 5) {
-            BPKIconView(.flag)
-            BPKText(title, style: .caption)
-                .foregroundColor(.white)
-            Spacer()
-        }
-        .foregroundColor(.white)
-        .padding(.md)
-    }
-    
-    private func content() -> some View {
-        let message =  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. " +
-            "Aenean commodo ligula eget dolor. Aenean massa."
-        return BPKText(message).lineLimit(3)
-    }
-
     var body: some View {
         VStack {
             BPKCardWrapper(backgroundColor: .coreAccentColor) {
-                header(title: "BPKCard")
+                HStack {
+                    BPKText("Wrapper title", style: .label1)
+                        .foregroundColor(.textPrimaryInverseColor)
+                    Spacer()
+                }
+                .padding([.leading, .trailing], .base)
+                .padding([.top, .bottom], .md)
             } card: {
                 BPKCard(elevation: .none) {
-                    content()
-                }
-            }
-            
-            BPKCardWrapper(backgroundColor: .corePrimaryColor) {
-                header(title: "PrimaryColor")
-            } card: {
-                BPKCard(elevation: .none) {
-                    content()
-                }
-            }
-            
-            BPKCardWrapper(backgroundColor: .coreAccentColor) {
-                header(title: "BPKDividedCard")
-            } card: {
-                BPKDividedCard(elevation: .none) {
-                    content()
-                        .padding()
-                } secondaryContent: {
-                    BPKText("Lorem ipsum dolor sit amet")
-                        .padding()
+                    VStack(alignment: .leading, spacing: .md) {
+                        BPKText("Let's explore", style: .heading5)
+                        // swiftlint:disable:next line_length
+                        BPKText("It's your world and we'll help you explore it. Find the best prices across millions of flights, hotels and car hire options to create your perfect trip.")
+                            .lineLimit(nil)
+                    }
                 }
             }
         }
@@ -75,6 +48,8 @@ struct CardWrapperExampleView: View {
 
 struct CardWrapperExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        CardWrapperExampleView()
+        ForEach(ColorScheme.allCases, id: \.self) {
+            CardWrapperExampleView().preferredColorScheme($0)
+        }
     }
 }
