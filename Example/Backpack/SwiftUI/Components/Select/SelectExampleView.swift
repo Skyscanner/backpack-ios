@@ -28,12 +28,24 @@ struct SelectExampleView: View {
     var body: some View {
         ScrollView {
             VStack {
-                BPKSelect(placeholder: "Breakfast Choices", options: goodChoices)
-                BPKSelect(placeholder: "Empty List", options: [])
-                BPKSelect(placeholder: "Disabled Choices", options: disabledChoices)
-                    .inputState(.disabled)
-                BPKSelect(placeholder: "Bad Choices", options: badChoices)
-                    .inputState(.error)
+                BPKSelect(placeholder: "Breakfast Choices", options: goodChoices, selectedIndex: 0) { index in
+                    print("index: \(index)")
+                }
+                BPKSelect(placeholder: "Empty List", options: [], selectedIndex: 0) { index in
+                    print("index: \(index)")
+                }
+                BPKSelect(placeholder: "Disabled Choices", options: disabledChoices, selectedIndex: 1) { index in
+                    print("index: \(index)")
+                }
+                .inputState(.disabled)
+                BPKSelect(placeholder: "Bad Choices", options: badChoices, selectedIndex: 2) { index in
+                    print("index: \(index)")
+                }
+                .inputState(.error)
+                BPKSelect(placeholder: "Out Of Bounds", options: badChoices, selectedIndex: 99) { index in
+                    print("index: \(index)")
+                }
+                .inputState(.error)
             }
             .padding()
             .background(.canvasContrastColor)

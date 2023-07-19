@@ -23,7 +23,10 @@ import SwiftUI
 class BPKSelectTests: XCTestCase {
     func test_defaultSettings() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Patagonia", "Nike"])
+                                 options: ["Patagonia", "Nike"],
+                                 selectedIndex: 0,
+                                 onSelectionChange: { _ in }
+                                )
             .frame(width: 300))
     }
 }

@@ -60,40 +60,50 @@ extension View {
 
 public struct BPKSelect: View {
     
-    @SwiftUI.State private var selection: String
+    @SwiftUI.State private var selectedIndex: Int
+
     private let options: [String]
     private let title: String
     private var state: State = .default
+    private let onSelectionChange: (Int) -> Void
+    
+    private var indexIdentifiableOptions: [IdentifiableString] {
+        options.enumerated().map { (index, element) in
+            IdentifiableString(string: element, id: index)
+        }
+    }
     
     public init(
         placeholder: String,
-        options: [String]
+        options: [String],
+        selectedIndex: Int,
+        onSelectionChange: @escaping (Int) -> Void
     ) {
         self.options = options
-        if let selectedText = options.first {
-            self.selection = selectedText
-        } else {
-            self.selection = ""
-        }
+        self.selectedIndex = selectedIndex
         self.title = placeholder
+        self.onSelectionChange = onSelectionChange
     }
     
     public var body: some View {
         VStack {
             
-            Picker(title, selection: $selection) {
-                ForEach(options, id: \.self) { t in
-                    Text(t)
+            Picker(title, selection: $selectedIndex) {
+                ForEach(indexIdentifiableOptions) { t in
+                    Text(t.string)
                 }
             }
             .customPickerStyle(
-                labelText: selection,
+                labelText: selectedIndex < options.count ? options[selectedIndex] : "",
                 textColor: state.textColor
             )
             .background(.surfaceDefaultColor)
             .clipShape(RoundedRectangle(cornerRadius: .sm))
             .disabled(state.isDisabled)
             .outline(state.borderColor, cornerRadius: .sm)
+            .onChange(of: selectedIndex) { tag in
+                onSelectionChange(tag)
+            }
         }
     }
     
@@ -112,27 +122,49 @@ struct BPKSelect_Previews: PreviewProvider {
                 placeholder: "Breakfast Choices",
                 options: ["Porridge",
                           "Eggs",
-                          "Swift UI"]
-            )
+                          "Swift UI"],
+                selectedIndex: 99) { index in
+                    
+                }
             BPKSelect(
                 placeholder: "Empty List",
-                options: []
-            )
+                options: [],
+                selectedIndex: 99) { index in
+                    
+                }
             BPKSelect(
                 placeholder: "Disabled Choices",
                 options: ["This Picker is Disabled",
                           "You must eat",
-                          "Porridge"]
-            ).inputState(.disabled)
+                          "Porridge"],
+                selectedIndex: 99) { index in
+                    
+                }
+            .inputState(.disabled)
             BPKSelect(
                 placeholder: "Bad Choices",
                 options: ["Eat Metal",
                           "Or Cement ",
-                          "Maybe some Java?"]
-            ).inputState(.error)
+                          "Maybe some Java?"],
+                selectedIndex: 99) { index in
+                    
+                }.inputState(.error)
+            BPKSelect(
+                placeholder: "Out Of Bounds",
+                options: ["Selected Index Fail"],
+                selectedIndex: 99) { index in
+                    
+                }.inputState(.error)
         }
         .padding()
         .background(.canvasContrastColor)
         .outline(.surfaceHighlightColor, cornerRadius: .sm)
+    }
+}
+
+extension BPKSelect {
+    private struct IdentifiableString: Identifiable {
+        let string: String
+        let id: Int
     }
 }
