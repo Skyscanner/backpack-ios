@@ -25,7 +25,12 @@ public struct BPKSectionHeader: View {
     let button: BPKButton?
     let accessibilityLabel: String
 
-    public init(title: String, description: String? = nil, style: Style = .default, accessibilityLabel: String) {
+    public init(
+        title: String,
+        description: String? = nil,
+        style: Style = .default,
+        accessibilityLabel: String
+    ) {
         self.title = title
         self.description = description
         self.style = style
@@ -33,7 +38,13 @@ public struct BPKSectionHeader: View {
         self.accessibilityLabel = accessibilityLabel
     }
 
-    public init(title: String, description: String? = nil, style: Style = .default, accessibilityLabel: String, @ViewBuilder button: () -> BPKButton) {
+    public init(
+        title: String,
+        description: String? = nil,
+        style: Style = .default,
+        accessibilityLabel: String,
+        @ViewBuilder button: () -> BPKButton
+    ) {
         self.title = title
         self.description = description
         self.style = style
@@ -66,4 +77,3 @@ public struct BPKSectionHeader: View {
         case onDark
     }
 }
-
