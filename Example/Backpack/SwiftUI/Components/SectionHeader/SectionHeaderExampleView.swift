@@ -35,7 +35,7 @@ struct SectionHeaderExampleView: View {
                     title: "Section title",
                     description: "Description about this section",
                     style: style) {
-                        BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") {
+                        BPKButton(icon: .addCircle, accessibilityLabel: "Add item") {
                             print("Tap add button")
                         }
                 }
