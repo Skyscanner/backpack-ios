@@ -19,26 +19,22 @@
 import SwiftUI
 
 struct CustomPickerStyle: ViewModifier {
-    var labelText: String
-    var textColor: BPKColor
+    let labelText: String
+    let textColor: BPKColor
     
     func body(content: Content) -> some View {
         Menu {
             content
         } label: {
             HStack {
-                if let labelText = labelText {
-                    BPKText(
-                        labelText
-                    )
+                BPKText(labelText)
                     .foregroundColor(textColor)
-                    Spacer()
-                    Image(systemName: "triangle.fill")
-                        .resizable()
-                        .foregroundColor(.textPrimaryColor)
-                        .frame(width: 8, height: 5)
-                        .rotationEffect(.degrees(180))
-                }
+                Spacer()
+                Image(systemName: "triangle.fill")
+                    .resizable()
+                    .foregroundColor(textColor)
+                    .frame(width: 8, height: 5)
+                    .rotationEffect(.degrees(180))
             }
             .frame(height: .lg)
         }
@@ -120,41 +116,39 @@ struct BPKSelect_Previews: PreviewProvider {
             BPKText("Breakfast Choices", style: .heading1)
             BPKSelect(
                 placeholder: "Breakfast Choices",
-                options: ["Porridge",
-                          "Eggs",
-                          "Swift UI"],
-                selectedIndex: 99) { index in
-                    
-                }
+                options: [
+                    "Porridge",
+                    "Eggs",
+                    "Swift UI"
+                ],
+                selectedIndex: 99) { _ in }
             BPKSelect(
                 placeholder: "Empty List",
                 options: [],
-                selectedIndex: 99) { index in
-                    
-                }
+                selectedIndex: 99) { _ in }
             BPKSelect(
                 placeholder: "Disabled Choices",
-                options: ["This Picker is Disabled",
-                          "You must eat",
-                          "Porridge"],
-                selectedIndex: 99) { index in
-                    
-                }
-            .inputState(.disabled)
+                options: [
+                    "This Picker is Disabled",
+                    "You must eat",
+                    "Porridge"
+                ],
+                selectedIndex: 99) { _ in }
+                .inputState(.disabled)
             BPKSelect(
                 placeholder: "Bad Choices",
-                options: ["Eat Metal",
-                          "Or Cement ",
-                          "Maybe some Java?"],
-                selectedIndex: 99) { index in
-                    
-                }.inputState(.error)
+                options: [
+                    "Eat Metal",
+                    "Or Cement ",
+                    "Maybe some Java?"
+                ],
+                selectedIndex: 99) { _ in }.inputState(.error)
             BPKSelect(
                 placeholder: "Out Of Bounds",
-                options: ["Selected Index Fail"],
-                selectedIndex: 99) { index in
-                    
-                }.inputState(.error)
+                options: [
+                    "Selected Index Fail"
+                ],
+                selectedIndex: 99) { _ in }.inputState(.error)
         }
         .padding()
         .background(.canvasContrastColor)

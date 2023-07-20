@@ -33,22 +33,16 @@ extension BPKSelect {
             switch self {
             case .disabled: return .surfaceHighlightColor
             case .error: return .statusDangerSpotColor
-            default: return .lineColor
+            case .`default`: return .lineColor
             }
         }
         
         var isDisabled: Bool {
-            switch self {
-            case .disabled: return true
-            default: return false
-            }
+            self == .disabled
         }
         
         var textColor: BPKColor {
-            switch self {
-            case .disabled: return .textDisabledColor
-            default: return .textPrimaryColor
-            }
+            self == .disabled ? .textDisabledColor : .textPrimaryColor
         }
     }
 }
