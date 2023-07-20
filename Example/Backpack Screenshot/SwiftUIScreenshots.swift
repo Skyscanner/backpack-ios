@@ -234,6 +234,21 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
         }
         
+        navigate(title: "Bottom sheet") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Bottom Sheet with header"].tap()
+            app.buttons["Show bottom sheet"].tap()
+            saveScreenshot(component: "bittom-sheet", scenario: "regular", userInterfaceStyle: userInterfaceStyle)
+            app.swipeDown()
+            tapBackButton()
+
+            app.tables.staticTexts["Bottom Sheet with a scroll view"].tap()
+            app.buttons["Show bottom sheet"].tap()
+            saveScreenshot(component: "bittom-sheet", scenario: "fullsize", userInterfaceStyle: userInterfaceStyle)
+            app.swipeDown()
+            tapBackButton()
+        }
+        
         navigate(title: "Flare views") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "flare-view", scenario: "all", userInterfaceStyle: userInterfaceStyle)
