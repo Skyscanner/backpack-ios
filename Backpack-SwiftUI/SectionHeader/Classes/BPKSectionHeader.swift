@@ -23,32 +23,27 @@ public struct BPKSectionHeader: View {
     let description: String?
     let style: Style
     let button: BPKButton?
-    let accessibilityLabel: String
 
     public init(
         title: String,
         description: String? = nil,
-        style: Style = .default,
-        accessibilityLabel: String
+        style: Style = .default
     ) {
         self.title = title
         self.description = description
         self.style = style
         self.button = nil
-        self.accessibilityLabel = accessibilityLabel
     }
 
     public init(
         title: String,
         description: String? = nil,
         style: Style = .default,
-        accessibilityLabel: String,
         @ViewBuilder button: () -> BPKButton
     ) {
         self.title = title
         self.description = description
         self.style = style
-        self.accessibilityLabel = accessibilityLabel
         self.button = button()
     }
 
@@ -57,6 +52,7 @@ public struct BPKSectionHeader: View {
             VStack(alignment: .leading) {
                 BPKText(title, style: .heading3)
                     .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
+                    .accessibilityAddTraits(.isHeader)
                 if let description = description {
                     BPKText(description, style: .bodyDefault)
                         .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
@@ -69,7 +65,6 @@ public struct BPKSectionHeader: View {
             }
         }
         .background(style == .default ? .canvasColor : .surfaceContrastColor)
-        .accessibilityLabel(accessibilityLabel)
     }
 
     public enum Style {

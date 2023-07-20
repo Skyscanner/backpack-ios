@@ -23,7 +23,7 @@ import Backpack_SwiftUI
 class BPKSectionHeaderViewTests: XCTestCase {
     func testSectionHeaderDefault() {
         assertSnapshot(
-            BPKSectionHeader(title: "Section title", accessibilityLabel: "Section header")
+            BPKSectionHeader(title: "Section title")
                 .padding()
         )
     }
@@ -32,8 +32,7 @@ class BPKSectionHeaderViewTests: XCTestCase {
         assertSnapshot(
             BPKSectionHeader(
                 title: "Section title",
-                description: "Description about this section",
-                accessibilityLabel: "Section header")
+                description: "Description about this section")
             .padding()
         )
     }
@@ -42,8 +41,7 @@ class BPKSectionHeaderViewTests: XCTestCase {
         assertSnapshot(
             BPKSectionHeader(
                 title: "Section title",
-                description: "Description about this section",
-                accessibilityLabel: "Section header"
+                description: "Description about this section"
             ) {
                 BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
             }
@@ -56,8 +54,7 @@ class BPKSectionHeaderViewTests: XCTestCase {
             BPKSectionHeader(
                 title: "Section title",
                 description: "Description about this section",
-                style: .onDark,
-                accessibilityLabel: "Section header"
+                style: .onDark
             ) {
                 BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
             }
