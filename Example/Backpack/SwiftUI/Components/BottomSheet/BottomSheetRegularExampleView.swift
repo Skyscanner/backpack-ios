@@ -39,11 +39,11 @@ struct BottomSheetRegularExampleView: View {
             isPresented: $showBottomSheet,
             isClosable: true,
             closeButtonAccessibilityLabel: "Close button",
-            title: "title",
+            title: "Title",
             action: BPKBottomSheetAction(
-                title: "Add",
+                title: "Action",
                 action: {
-                    print("Add button tapped")
+                    print("Action button tapped")
                 }
             )
         ) { content }

@@ -42,9 +42,9 @@ class BPKBottomSheetTests: XCTestCase {
                 isPresented: .constant(true),
                 isClosable: true,
                 closeButtonAccessibilityLabel: "Close botton",
-                title: "title",
+                title: "Title",
                 contentMode: .regular,
-                action: BPKBottomSheetAction(title: "Add", action: {}),
+                action: BPKBottomSheetAction(title: "Action", action: {}),
                 content: {
                     Spacer()
                     BPKText("This this bottom sheet content")
