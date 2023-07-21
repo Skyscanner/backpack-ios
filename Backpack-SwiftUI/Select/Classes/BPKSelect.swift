@@ -56,6 +56,9 @@ extension View {
 
 public struct BPKSelect: View {
     
+    // The State we bind aginst cannot be optional, or the Picker selection changes are not observed
+    // This hack allows the consumer to pass in nil, and we use this to display the placeholder.
+    let integerRepresentingNil = -1
     @SwiftUI.State private var selectedIndex: Int
 
     private let options: [String]
@@ -63,20 +66,29 @@ public struct BPKSelect: View {
     private var state: State = .default
     private let onSelectionChange: (Int) -> Void
     
-    private var indexIdentifiableOptions: [IdentifiableString] {
-        options.enumerated().map { (index, element) in
-            IdentifiableString(string: element, id: index)
+    func labelText(_ index: Int) -> String {
+        
+        // If nil is passed in by consumer we display the title
+        guard index != integerRepresentingNil else {
+            return title
         }
+
+        // If an out of bounds integer is passed in by consumer we display the title
+        return index < options.count ? options[index] : title
     }
     
     public init(
         placeholder: String,
         options: [String],
-        selectedIndex: Int,
+        selectedIndex: Int?,
         onSelectionChange: @escaping (Int) -> Void
     ) {
         self.options = options
-        self.selectedIndex = selectedIndex
+        if let selectedIndexValue = selectedIndex {
+            self.selectedIndex = selectedIndexValue
+        } else {
+            self.selectedIndex = integerRepresentingNil
+        }
         self.title = placeholder
         self.onSelectionChange = onSelectionChange
     }
@@ -85,12 +97,12 @@ public struct BPKSelect: View {
         VStack {
             
             Picker(title, selection: $selectedIndex) {
-                ForEach(indexIdentifiableOptions) { t in
-                    Text(t.string)
+                ForEach(0..<options.count, id:\.self) { index in
+                    Text(options[index])
                 }
             }
             .customPickerStyle(
-                labelText: selectedIndex < options.count ? options[selectedIndex] : "",
+                labelText: labelText(selectedIndex),
                 textColor: state.textColor
             )
             .background(.surfaceDefaultColor)
@@ -111,54 +123,66 @@ public struct BPKSelect: View {
 }
 
 struct BPKSelect_Previews: PreviewProvider {
+    static var goodChoices = ["Porridge", "Eggs", "Swift UI"]
+    static var disabledChoices = ["This Picker is Disabled", "You must eat", "Porridge"]
+    static var badChoices = ["Eat Metal", "Or Cement ", "Maybe some Java?"]
+    
+    static var disabled: BPKSelect {
+    BPKSelect(
+        placeholder: "Disabled",
+        options: [],
+        selectedIndex: 0) { index in print("index: \(index)") }
+        .inputState(.disabled)
+    }
+    
+    static var error: BPKSelect {
+    BPKSelect(
+        placeholder: "Error",
+        options: badChoices,
+        selectedIndex: 0) { index in print("index: \(index)") }
+        .inputState(.error)
+    }
+    
+    static var goodChoicesNoSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: nil) { index in print("index: \(index)") }
+    }
+    
+    static var goodChoicesIndexSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: 1) { index in print("index: \(index)") }
+    }
+    
+    static var goodChoicesOutOfBoundsSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: 99) { index in print("index: \(index)") }
+    }
+    
     static var previews: some View {
         VStack {
-            BPKText("Breakfast Choices", style: .heading1)
-            BPKSelect(
-                placeholder: "Breakfast Choices",
-                options: [
-                    "Porridge",
-                    "Eggs",
-                    "Swift UI"
-                ],
-                selectedIndex: 99) { _ in }
-            BPKSelect(
-                placeholder: "Empty List",
-                options: [],
-                selectedIndex: 99) { _ in }
-            BPKSelect(
-                placeholder: "Disabled Choices",
-                options: [
-                    "This Picker is Disabled",
-                    "You must eat",
-                    "Porridge"
-                ],
-                selectedIndex: 99) { _ in }
-                .inputState(.disabled)
-            BPKSelect(
-                placeholder: "Bad Choices",
-                options: [
-                    "Eat Metal",
-                    "Or Cement ",
-                    "Maybe some Java?"
-                ],
-                selectedIndex: 99) { _ in }.inputState(.error)
-            BPKSelect(
-                placeholder: "Out Of Bounds",
-                options: [
-                    "Selected Index Fail"
-                ],
-                selectedIndex: 99) { _ in }.inputState(.error)
+            BPKText("No Selection")
+            goodChoicesNoSelection
+            
+            BPKText("Index Selection")
+            goodChoicesIndexSelection
+            
+            BPKText("Out Of Bounds Selection")
+            goodChoicesOutOfBoundsSelection
+            
+            BPKText("Disabled")
+            disabled
+            
+            BPKText("Error")
+            error
         }
         .padding()
         .background(.canvasContrastColor)
         .outline(.surfaceHighlightColor, cornerRadius: .sm)
-    }
-}
-
-extension BPKSelect {
-    private struct IdentifiableString: Identifiable {
-        let string: String
-        let id: Int
     }
 }

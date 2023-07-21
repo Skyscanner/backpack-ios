@@ -24,28 +24,54 @@ struct SelectExampleView: View {
     @State var goodChoices = ["Porridge", "Eggs", "Swift UI"]
     @State var disabledChoices = ["This Picker is Disabled", "You must eat", "Porridge"]
     @State var badChoices = ["Eat Metal", "Or Cement ", "Maybe some Java?"]
+    @State var selectionOne: Int? = 0
+    @State var selectionTwo: Int?
+    
+    var disabled: BPKSelect {
+    BPKSelect(
+        placeholder: "Empty List",
+        options: [],
+        selectedIndex: 0) { index in print("index: \(index)") }
+        .inputState(.disabled)
+    }
+    
+    var error: BPKSelect {
+    BPKSelect(
+        placeholder: "Empty List",
+        options: badChoices,
+        selectedIndex: 0) { index in print("index: \(index)") }
+        .inputState(.error)
+    }
+    
+    var goodChoicesNoSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: nil) { index in print("index: \(index)") }
+    }
+    
+    var goodChoicesIndexSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: 1) { index in print("index: \(index)") }
+    }
+    
+    var goodChoicesOutOfBoundsSelection: BPKSelect {
+        BPKSelect(
+            placeholder: "Breakfast Choices",
+            options: goodChoices,
+            selectedIndex: 99) { index in print("index: \(index)") }
+    }
     
     var body: some View {
         ScrollView {
             VStack {
-                BPKSelect(placeholder: "Breakfast Choices", options: goodChoices, selectedIndex: 0) { index in
-                    print("index: \(index)")
-                }
-                BPKSelect(placeholder: "Empty List", options: [], selectedIndex: 0) { index in
-                    print("index: \(index)")
-                }
-                BPKSelect(placeholder: "Disabled Choices", options: disabledChoices, selectedIndex: 1) { index in
-                    print("index: \(index)")
-                }
-                .inputState(.disabled)
-                BPKSelect(placeholder: "Bad Choices", options: badChoices, selectedIndex: 2) { index in
-                    print("index: \(index)")
-                }
-                .inputState(.error)
-                BPKSelect(placeholder: "Out Of Bounds", options: badChoices, selectedIndex: 99) { index in
-                    print("index: \(index)")
-                }
-                .inputState(.error)
+                goodChoicesNoSelection
+                goodChoicesIndexSelection
+                goodChoicesOutOfBoundsSelection
+                disabled
+                error
             }
             .padding()
             .background(.canvasContrastColor)
