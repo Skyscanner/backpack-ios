@@ -54,49 +54,57 @@ extension View {
     }
 }
 
+extension Binding where Value == Int? {
+    
+    private static let integerRepresentingNil = -1
+    
+    // The State we bind aginst for the Picker component cannot be optional,
+    //  or the Picker selection changes are not observed
+    // We pass this to the Picker to allow the consumer to pass in an Optional Int Binding
+    fileprivate var optionalPickerBinding: Binding<Int> {
+        .init(
+            get: {
+                self.wrappedValue ?? Binding.integerRepresentingNil
+            }, set: {
+                self.wrappedValue = $0
+            }
+        )
+    }
+}
+
 public struct BPKSelect: View {
     
-    // The State we bind aginst cannot be optional, or the Picker selection changes are not observed
-    // This hack allows the consumer to pass in nil, and we use this to display the placeholder.
-    let integerRepresentingNil = -1
-    @SwiftUI.State private var selectedIndex: Int
+    @Binding private var selectedIndex: Int?
 
     private let options: [String]
     private let title: String
     private var state: State = .default
-    private let onSelectionChange: (Int) -> Void
     
-    func labelText(_ index: Int) -> String {
+    func labelText(_ index: Int?) -> String {
         
         // If nil is passed in by consumer we display the title
-        guard index != integerRepresentingNil else {
+        guard let anIndex = index else {
             return title
         }
 
         // If an out of bounds integer is passed in by consumer we display the title
-        return index < options.count ? options[index] : title
+        return anIndex < options.count ? options[anIndex] : title
     }
     
     public init(
         placeholder: String,
         options: [String],
-        selectedIndex: Int?,
-        onSelectionChange: @escaping (Int) -> Void
+        selectedIndex: Binding<Int?>
     ) {
-        self.options = options
-        if let selectedIndexValue = selectedIndex {
-            self.selectedIndex = selectedIndexValue
-        } else {
-            self.selectedIndex = integerRepresentingNil
-        }
         self.title = placeholder
-        self.onSelectionChange = onSelectionChange
+        self.options = options
+        _selectedIndex = selectedIndex
     }
     
     public var body: some View {
         VStack {
             
-            Picker(title, selection: $selectedIndex) {
+            Picker(title, selection: $selectedIndex.optionalPickerBinding) {
                 ForEach(0..<options.count, id:\.self) { index in
                     Text(options[index])
                 }
@@ -109,9 +117,6 @@ public struct BPKSelect: View {
             .clipShape(RoundedRectangle(cornerRadius: .sm))
             .disabled(state.isDisabled)
             .outline(state.borderColor, cornerRadius: .sm)
-            .onChange(of: selectedIndex) { tag in
-                onSelectionChange(tag)
-            }
         }
     }
     
@@ -131,7 +136,7 @@ struct BPKSelect_Previews: PreviewProvider {
     BPKSelect(
         placeholder: "Disabled",
         options: [],
-        selectedIndex: 0) { index in print("index: \(index)") }
+        selectedIndex: .constant(0))
         .inputState(.disabled)
     }
     
@@ -139,7 +144,7 @@ struct BPKSelect_Previews: PreviewProvider {
     BPKSelect(
         placeholder: "Error",
         options: badChoices,
-        selectedIndex: 0) { index in print("index: \(index)") }
+        selectedIndex: .constant(0))
         .inputState(.error)
     }
     
@@ -147,21 +152,21 @@ struct BPKSelect_Previews: PreviewProvider {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: nil) { index in print("index: \(index)") }
+            selectedIndex: .constant(nil))
     }
     
     static var goodChoicesIndexSelection: BPKSelect {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: 1) { index in print("index: \(index)") }
+            selectedIndex: .constant(1))
     }
     
     static var goodChoicesOutOfBoundsSelection: BPKSelect {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: 99) { index in print("index: \(index)") }
+            selectedIndex: .constant(99))
     }
     
     static var previews: some View {

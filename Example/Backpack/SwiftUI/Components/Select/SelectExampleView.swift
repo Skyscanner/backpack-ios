@@ -24,14 +24,17 @@ struct SelectExampleView: View {
     @State var goodChoices = ["Porridge", "Eggs", "Swift UI"]
     @State var disabledChoices = ["This Picker is Disabled", "You must eat", "Porridge"]
     @State var badChoices = ["Eat Metal", "Or Cement ", "Maybe some Java?"]
-    @State var selectionOne: Int? = 0
-    @State var selectionTwo: Int?
+    @State var disabledSelection: Int? = 0
+    @State var errorSelection: Int? = 0
+    @State var selectionStartsNil: Int?
+    @State var inBoundsSelection: Int? = 1
+    @State var outOfBoundsSelection: Int? = 99
     
     var disabled: BPKSelect {
     BPKSelect(
         placeholder: "Empty List",
         options: [],
-        selectedIndex: 0) { index in print("index: \(index)") }
+        selectedIndex: $disabledSelection)
         .inputState(.disabled)
     }
     
@@ -39,7 +42,7 @@ struct SelectExampleView: View {
     BPKSelect(
         placeholder: "Empty List",
         options: badChoices,
-        selectedIndex: 0) { index in print("index: \(index)") }
+        selectedIndex: $errorSelection)
         .inputState(.error)
     }
     
@@ -47,28 +50,31 @@ struct SelectExampleView: View {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: nil) { index in print("index: \(index)") }
+            selectedIndex: $selectionStartsNil)
     }
     
-    var goodChoicesIndexSelection: BPKSelect {
+    var goodChoicesInBoundsSelection: BPKSelect {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: 1) { index in print("index: \(index)") }
+            selectedIndex: $inBoundsSelection)
     }
     
     var goodChoicesOutOfBoundsSelection: BPKSelect {
         BPKSelect(
             placeholder: "Breakfast Choices",
             options: goodChoices,
-            selectedIndex: 99) { index in print("index: \(index)") }
+            selectedIndex: $outOfBoundsSelection)
     }
     
     var body: some View {
         ScrollView {
             VStack {
                 goodChoicesNoSelection
-                goodChoicesIndexSelection
+                    .onChange(of: selectionStartsNil) { index in
+                    print("Good Choices changed: \(index)")
+                    }
+                goodChoicesInBoundsSelection
                 goodChoicesOutOfBoundsSelection
                 disabled
                 error
