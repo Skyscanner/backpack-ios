@@ -72,7 +72,7 @@ struct SelectExampleView: View {
             VStack {
                 goodChoicesNoSelection
                     .onChange(of: selectionStartsNil) { index in
-                        print("Selection changed: \(index != nil ? String(describing: index) : "nil")")
+                        print("Selection changed: \(index.map(String.init) ?? "nil")")
                     }
                 goodChoicesInBoundsSelection
                 goodChoicesOutOfBoundsSelection

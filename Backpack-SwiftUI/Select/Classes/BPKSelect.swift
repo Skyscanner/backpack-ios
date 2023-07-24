@@ -20,7 +20,8 @@ import SwiftUI
 
 struct CustomPickerStyle: ViewModifier {
     let labelText: String
-    let textColor: BPKColor
+    let pickerState: BPKSelect.State
+    private let verticalPadding: CGFloat = 12
     
     func body(content: Content) -> some View {
         Menu {
@@ -28,63 +29,40 @@ struct CustomPickerStyle: ViewModifier {
         } label: {
             HStack {
                 BPKText(labelText)
-                    .foregroundColor(textColor)
-                Spacer()
+                    .foregroundColor(pickerState.textColor)
+                Spacer(minLength: .sm)
                 BPKIconView(.arrowDown)
-                  .foregroundColor(textColor)
+                  .foregroundColor(pickerState.textColor)
             }
         }
-        .padding(.md)
+        .padding(.horizontal, .base)
+        .padding(.vertical, verticalPadding)
+        .background(.surfaceDefaultColor)
+        .clipShape(RoundedRectangle(cornerRadius: .xs))
+        .disabled(pickerState.isDisabled)
+        .outline(pickerState.borderColor, cornerRadius: .xs)
     }
 }
 
 extension View {
-    func customPickerStyle(labelText: String,
-                           textColor: BPKColor) -> some View {
-        self.modifier(
-            CustomPickerStyle(
-                labelText: labelText,
-                textColor: textColor
-            )
-        )
-    }
-}
-
-extension Binding where Value == Int? {
-    
-    private static let integerRepresentingNil = -1
-    
-    // The State we bind aginst for the Picker component cannot be optional,
-    //  or the Picker selection changes are not observed
-    // We pass this to the Picker to allow the consumer to pass in an Optional Int Binding
-    fileprivate var unwrappedPickerBinding: Binding<Int> {
-        .init(
-            get: {
-                self.wrappedValue ?? Binding.integerRepresentingNil
-            }, set: {
-                self.wrappedValue = $0
-            }
-        )
+    func bpkPickerStyle(_ pickerStlye: CustomPickerStyle) -> some View {
+        self.modifier(pickerStlye)
     }
 }
 
 public struct BPKSelect: View {
-    
     @Binding private var selectedIndex: Int?
 
     private let options: [String]
-    private let title: String
+    private let placeholder: String
     private var state: State = .default
     
-    func labelText(_ index: Int?) -> String {
-        
-        // If nil is passed in by consumer we display the title
-        guard let anIndex = index else {
-            return title
+    var labelText: String {
+        // If nil or invalid value is passed in by consumer we display the placeholder
+        guard let selectedIndex, options.indices.contains(selectedIndex) else {
+            return placeholder
         }
-
-        // If an out of bounds integer is passed in by consumer we display the title
-        return anIndex < options.count ? options[anIndex] : title
+        return options[selectedIndex]
     }
     
     public init(
@@ -92,28 +70,24 @@ public struct BPKSelect: View {
         options: [String],
         selectedIndex: Binding<Int?>
     ) {
-        self.title = placeholder
+        self.placeholder = placeholder
         self.options = options
         _selectedIndex = selectedIndex
     }
     
     public var body: some View {
-        VStack {
-            
-            Picker(title, selection: $selectedIndex.unwrappedPickerBinding) {
-                ForEach(0..<options.count, id:\.self) { index in
-                    Text(options[index])
-                }
+        Picker(placeholder, selection: $selectedIndex) {
+            ForEach(0..<options.count, id:\.self) { index in
+                Text(options[index])
+                    .tag(Optional(index))
             }
-            .customPickerStyle(
-                labelText: labelText(selectedIndex),
-                textColor: state.textColor
-            )
-            .background(.surfaceDefaultColor)
-            .clipShape(RoundedRectangle(cornerRadius: .sm))
-            .disabled(state.isDisabled)
-            .outline(state.borderColor, cornerRadius: .sm)
         }
+        .bpkPickerStyle(
+            CustomPickerStyle(
+                labelText: labelText,
+                pickerState: state
+            )
+        )
     }
     
     public func inputState(_ state: State) -> BPKSelect {
