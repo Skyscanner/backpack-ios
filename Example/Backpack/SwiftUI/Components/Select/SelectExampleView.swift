@@ -21,9 +21,9 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct SelectExampleView: View {
-    @State var goodChoices = ["Porridge", "Eggs", "Swift UI"]
-    @State var disabledChoices = ["This Picker is Disabled", "You must eat", "Porridge"]
-    @State var badChoices = ["Eat Metal", "Or Cement ", "Maybe some Java?"]
+    @State var goodChoices = ["Item 1", "Item 2", "Item 3"]
+    @State var disabledChoices = ["Item 1", "Item 2", "Item 3"]
+    @State var badChoices = ["Item 1", "Item 2", "Item 3"]
     @State var disabledSelection: Int? = 0
     @State var errorSelection: Int? = 0
     @State var selectionStartsNil: Int?
@@ -32,7 +32,7 @@ struct SelectExampleView: View {
     
     var disabled: BPKSelect {
     BPKSelect(
-        placeholder: "Empty List",
+        placeholder: "Disabled List",
         options: [],
         selectedIndex: $disabledSelection)
         .inputState(.disabled)
@@ -40,7 +40,7 @@ struct SelectExampleView: View {
     
     var error: BPKSelect {
     BPKSelect(
-        placeholder: "Empty List",
+        placeholder: "List Error State",
         options: badChoices,
         selectedIndex: $errorSelection)
         .inputState(.error)
@@ -48,21 +48,21 @@ struct SelectExampleView: View {
     
     var goodChoicesNoSelection: BPKSelect {
         BPKSelect(
-            placeholder: "Breakfast Choices",
+            placeholder: "Placeholder",
             options: goodChoices,
             selectedIndex: $selectionStartsNil)
     }
     
     var goodChoicesInBoundsSelection: BPKSelect {
         BPKSelect(
-            placeholder: "Breakfast Choices",
+            placeholder: "Placeholder",
             options: goodChoices,
             selectedIndex: $inBoundsSelection)
     }
     
     var goodChoicesOutOfBoundsSelection: BPKSelect {
         BPKSelect(
-            placeholder: "Breakfast Choices",
+            placeholder: "Placeholder",
             options: goodChoices,
             selectedIndex: $outOfBoundsSelection)
     }
@@ -72,7 +72,7 @@ struct SelectExampleView: View {
             VStack {
                 goodChoicesNoSelection
                     .onChange(of: selectionStartsNil) { index in
-                    print("Good Choices changed: \(index)")
+                        print("Selection changed: \(index != nil ? String(describing: index) : "nil")")
                     }
                 goodChoicesInBoundsSelection
                 goodChoicesOutOfBoundsSelection

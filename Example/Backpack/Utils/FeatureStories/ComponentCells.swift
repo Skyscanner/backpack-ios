@@ -299,7 +299,7 @@ extension ComponentCellsProvider {
                     ContentUIHostingController(SelectExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Select Breakfast", tabs: $0) }
+            showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
         )
     }
     private func snackbar() -> CellDataSource {
