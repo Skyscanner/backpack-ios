@@ -30,13 +30,9 @@ struct CustomPickerStyle: ViewModifier {
                 BPKText(labelText)
                     .foregroundColor(textColor)
                 Spacer()
-                Image(systemName: "triangle.fill")
-                    .resizable()
-                    .foregroundColor(textColor)
-                    .frame(width: 8, height: 5)
-                    .rotationEffect(.degrees(180))
+                BPKIconView(.arrowDown)
+                  .foregroundColor(textColor)
             }
-            .frame(height: .lg)
         }
         .padding(.md)
     }
@@ -61,7 +57,7 @@ extension Binding where Value == Int? {
     // The State we bind aginst for the Picker component cannot be optional,
     //  or the Picker selection changes are not observed
     // We pass this to the Picker to allow the consumer to pass in an Optional Int Binding
-    fileprivate var optionalPickerBinding: Binding<Int> {
+    fileprivate var unwrappedPickerBinding: Binding<Int> {
         .init(
             get: {
                 self.wrappedValue ?? Binding.integerRepresentingNil
@@ -104,7 +100,7 @@ public struct BPKSelect: View {
     public var body: some View {
         VStack {
             
-            Picker(title, selection: $selectedIndex.optionalPickerBinding) {
+            Picker(title, selection: $selectedIndex.unwrappedPickerBinding) {
                 ForEach(0..<options.count, id:\.self) { index in
                     Text(options[index])
                 }
