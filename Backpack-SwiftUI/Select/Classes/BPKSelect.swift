@@ -32,7 +32,7 @@ struct CustomPickerStyle: ViewModifier {
                     .foregroundColor(pickerState.textColor)
                 Spacer(minLength: .sm)
                 BPKIconView(.arrowDown)
-                  .foregroundColor(pickerState.textColor)
+                    .foregroundColor(pickerState.textColor)
             }
         }
         .padding(.horizontal, .base)
@@ -77,7 +77,7 @@ public struct BPKSelect: View {
     
     public var body: some View {
         Picker(placeholder, selection: $selectedIndex) {
-            ForEach(0..<options.count, id:\.self) { index in
+            ForEach(0..<options.count, id: \.self) { index in
                 Text(options[index])
                     .tag(Optional(index))
             }
