@@ -51,10 +51,6 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         isPresented ? 0 : maxHeight
     }
     
-    private var isFullSize: Bool {
-        contentMode == .fullSize
-    }
-    
     private var handle: some View {
         RoundedRectangle(cornerRadius: Constants.cornerRadius)
             .fill(Color(BPKColor.lineColor))
@@ -62,7 +58,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     }
     
     private var header: some View {
-        HStack {
+        HStack(alignment: .center) {
             if isClosable, let closeButtonAccessibilityLabel = closeButtonAccessibilityLabel {
                 BPKIconView(.close, size: .large)
                     .onTapGesture {
@@ -115,7 +111,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 }
 
                 VStack {
-                    if isFullSize {
+                    if contentMode == .fullSize {
                         handle.padding(.md)
                     } else {
                         header
