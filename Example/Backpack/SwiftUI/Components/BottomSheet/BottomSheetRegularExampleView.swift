@@ -32,21 +32,23 @@ struct BottomSheetRegularExampleView: View {
     }
     
     var body: some View {
-        BPKButton("Show bottom sheet") {
-            showBottomSheet.toggle()
+        GeometryReader { geometry in
+            BPKButton("Show bottom sheet") {
+                showBottomSheet.toggle()
+            }
+            .bpkCloseableBottomSheet(
+                isPresented: $showBottomSheet,
+                maxHeight: geometry.size.height,
+                closeButtonAccessibilityLabel: "Close button",
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: {
+                        print("Action button tapped")
+                    }
+                )
+            ) { content }
         }
-        .bpkBottomSheet(
-            isPresented: $showBottomSheet,
-            isClosable: true,
-            closeButtonAccessibilityLabel: "Close button",
-            title: "Title",
-            action: BPKBottomSheetAction(
-                title: "Action",
-                action: {
-                    print("Action button tapped")
-                }
-            )
-        ) { content }
     }
 }
 

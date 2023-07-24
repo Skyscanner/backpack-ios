@@ -40,7 +40,7 @@ struct BPKBottomSheetContent<BottomSheetContent: View>: View {
     @ViewBuilder let content: BottomSheetContent
     
     init(
-        isPresented: Binding<Bool> = .constant(false),
+        isPresented: Binding<Bool>,
         isClosable: Bool,
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
@@ -64,10 +64,12 @@ struct BPKBottomSheetContent<BottomSheetContent: View>: View {
     private var header: some View {
         HStack {
             if isClosable {
-                BPKIconView(.close)
-                    .onTapGesture {
+                BPKButton(
+                    icon: .close,
+                    accessibilityLabel: closeButtonAccessibilityLabel ?? "") {
                         isPresented.toggle()
                     }
+                    .buttonStyle(.link)
             }
             Spacer()
             if let title = title {
@@ -85,15 +87,23 @@ struct BPKBottomSheetContent<BottomSheetContent: View>: View {
     
     var body: some View {
         VStack {
-            isFullSize ? nil : header
+            if !isFullSize {
+                header
+            }
             content
         }
+        .background(.canvasColor)
     }
 }
 
 struct BPKBottomSheetRegular_Previews: PreviewProvider {
     static var previews: some View {
-        BPKBottomSheetContent(isClosable: false) {
+        BPKBottomSheetContent(
+            isPresented: .constant(true),
+            isClosable: true,
+            title: "Title",
+            action: BPKBottomSheetAction(title: "Action", action: {})
+        ) {
             BPKText("Bottom sheet content")
         }
     }

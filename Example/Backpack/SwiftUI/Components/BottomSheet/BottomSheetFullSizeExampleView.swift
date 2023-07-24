@@ -30,13 +30,18 @@ struct BottomSheetFullSizeExampleView: View {
     }
     
     var body: some View {
-        BPKButton("Show bottom sheet") {
-            showBottomSheet.toggle()
+        GeometryReader { geometry in
+            BPKButton("Show bottom sheet") {
+                showBottomSheet.toggle()
+            }
+            .bpkBottomSheet(
+                isPresented: $showBottomSheet,
+                maxHeight: geometry.size.height,
+                bottomSheetContent: {
+                    content
+                }
+            )
         }
-        .bpkBottomSheet(
-            isPresented: $showBottomSheet,
-            contentMode: .fullSize
-        ) { content }
     }
 }
 

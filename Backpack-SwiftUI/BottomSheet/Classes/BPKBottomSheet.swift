@@ -19,36 +19,61 @@
 import SwiftUI
 
 public extension View {
+    
     func bpkBottomSheet<BottomSheetContent: View>(
-        isPresented: Binding<Bool> = .constant(false),
-        isClosable: Bool = true,
-        closeButtonAccessibilityLabel: String? = nil,
-        title: String? = nil,
-        action: BPKBottomSheetAction? = nil,
-        contentMode: BPKBottomSheetContentMode = .regular,
+        isPresented: Binding<Bool>,
+        maxHeight: CGFloat,
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) -> some View {
         modifier(
             BottomSheetContainerViewModifier(
                 isPresented: isPresented,
+                maxHeight: maxHeight,
+                contentMode: .fullSize,
                 bottomSheetContent: {
                     BPKBottomSheetContent(
                         isPresented: isPresented,
-                        isClosable: isClosable,
+                        isClosable: false,
+                        contentMode: .fullSize
+                    ) { bottomSheetContent() }
+                }
+            )
+        )
+    }
+    
+    func bpkCloseableBottomSheet<BottomSheetContent: View>(
+        isPresented: Binding<Bool>,
+        maxHeight: CGFloat,
+        closeButtonAccessibilityLabel: String,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        @ViewBuilder bottomSheetContent: () -> BottomSheetContent
+    ) -> some View {
+        modifier(
+            BottomSheetContainerViewModifier(
+                isPresented: isPresented,
+                maxHeight: maxHeight,
+                contentMode: .regular,
+                bottomSheetContent: {
+                    BPKBottomSheetContent(
+                        isPresented: isPresented,
+                        isClosable: true,
                         closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                         title: title,
-                        contentMode: contentMode,
                         action: action) { bottomSheetContent() }
-                })
+                }
+            )
         )
     }
 }
 
 struct BPKBottomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        Button("Show bottom sheet") {}
-            .bpkBottomSheet(isPresented: .constant(true), isClosable: false) {
-            Text("Bottom sheet content")
+        VStack {
+            BPKButton("Show closeable bottom sheet") {}
+                .bpkBottomSheet(isPresented: .constant(true), maxHeight: 400) {
+                    BPKText("Bottom sheet content")
+                }
         }
     }
 }

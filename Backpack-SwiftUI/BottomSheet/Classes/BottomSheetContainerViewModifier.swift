@@ -18,36 +18,90 @@
 
 import SwiftUI
 
+fileprivate enum Constants {
+    static let radius: CGFloat = BPKSpacing.lg.value
+    static let cornerRadius: CGFloat = BPKSpacing.md.value
+    static let snapRatio: CGFloat = 0.5
+}
+
 struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
+    
+    let maxHeight: CGFloat
+    let contentMode: BPKBottomSheetContentMode
+    
     @ViewBuilder let bottomSheetContent: BottomSheetContent
     
+    @GestureState private var translation: CGFloat = 0
+
+    private var offset: CGFloat {
+        isPresented ? 0 : maxHeight
+    }
+    
+    private var handle: some View {
+        RoundedRectangle(cornerRadius: Constants.cornerRadius)
+            .fill(Color(BPKColor.lineColor))
+            .frame(width: BPKSpacing.xxl, height: BPKSpacing.sm)
+    }
+    
     func body(content: Content) -> some View {
-        content
-            .sheet(isPresented: $isPresented) {
-                if #available(iOS 16.0, *) {
-                    VStack {
-                        bottomSheetContent
-                            .presentationDetents([.large])
-                            .presentationDragIndicator(.visible)
+        GeometryReader { geometry in
+            ZStack {
+                content
+
+                if isPresented {
+                    Color.black.opacity(0.7)
+                }
+
+                VStack {
+                    if contentMode == .fullSize {
+                        handle.padding(.md)
                     }
-                } else {
                     bottomSheetContent
                 }
+                .frame(width: geometry.size.width, height: maxHeight, alignment: .top)
+                .background(BPKColor.surfaceDefaultColor)
+                .cornerRadius(Constants.radius)
+                .frame(height: geometry.size.height, alignment: .bottom)
+                .offset(y: max(offset + translation, 0))
+                .animation(.interactiveSpring(), value: isPresented)
+                .animation(.interactiveSpring(), value: translation)
+                .gesture(
+                    DragGesture()
+                        .updating($translation) { value, state, _ in
+                            state = value.translation.height
+                        }
+                        .onEnded { value in
+                            let snapDistance = self.maxHeight * Constants.snapRatio
+                            guard abs(value.translation.height) > snapDistance else {
+                                return
+                            }
+                            isPresented = false
+                        }
+                )
             }
+        }
+        .ignoresSafeArea()
     }
 }
 
 struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
         BPKButton("Show bottom sheet", action: {})
-            .modifier(
-                BottomSheetContainerViewModifier(
-                    isPresented: .constant(true),
-                    bottomSheetContent: {
-                        BPKText("Hello")
+        .modifier(
+            BottomSheetContainerViewModifier(
+                isPresented: .constant(true),
+                maxHeight: 400,
+                contentMode: .fullSize,
+                bottomSheetContent: {
+                    VStack {
+                        Spacer()
+                        BPKText("Bottom sheet content")
+                        Spacer()
                     }
-                )
+                    
+                }
             )
+        )
     }
 }
