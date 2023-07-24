@@ -30,13 +30,8 @@ public extension View {
                 isPresented: isPresented,
                 maxHeight: maxHeight,
                 contentMode: .fullSize,
-                bottomSheetContent: {
-                    BPKBottomSheetContent(
-                        isPresented: isPresented,
-                        isClosable: false,
-                        contentMode: .fullSize
-                    ) { bottomSheetContent() }
-                }
+                isClosable: false,
+                bottomSheetContent: { bottomSheetContent() }
             )
         )
     }
@@ -45,8 +40,8 @@ public extension View {
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
         closeButtonAccessibilityLabel: String,
-        title: String? = nil,
-        action: BPKBottomSheetAction? = nil,
+        title: String,
+        action: BPKBottomSheetAction,
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) -> some View {
         modifier(
@@ -54,14 +49,11 @@ public extension View {
                 isPresented: isPresented,
                 maxHeight: maxHeight,
                 contentMode: .regular,
-                bottomSheetContent: {
-                    BPKBottomSheetContent(
-                        isPresented: isPresented,
-                        isClosable: true,
-                        closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                        title: title,
-                        action: action) { bottomSheetContent() }
-                }
+                isClosable: true,
+                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                title: title,
+                action: action,
+                bottomSheetContent: { bottomSheetContent() }
             )
         )
     }

@@ -24,13 +24,26 @@ fileprivate enum Constants {
     static let snapRatio: CGFloat = 0.5
 }
 
+public struct BPKBottomSheetAction {
+    var title: String
+    var action: () -> Void
+    
+    public init(title: String, action: @escaping () -> Void) {
+        self.title = title
+        self.action = action
+    }
+}
+
 struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     
     let maxHeight: CGFloat
     let contentMode: BPKBottomSheetContentMode
-    
-    @ViewBuilder let bottomSheetContent: BottomSheetContent
+    let isClosable: Bool
+    let closeButtonAccessibilityLabel: String?
+    let title: String?
+    let action: BPKBottomSheetAction?
+    let bottomSheetContent: BottomSheetContent
     
     @GestureState private var translation: CGFloat = 0
 
@@ -38,10 +51,58 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         isPresented ? 0 : maxHeight
     }
     
+    private var isFullSize: Bool {
+        contentMode == .fullSize
+    }
+    
     private var handle: some View {
         RoundedRectangle(cornerRadius: Constants.cornerRadius)
             .fill(Color(BPKColor.lineColor))
             .frame(width: BPKSpacing.xxl, height: BPKSpacing.sm)
+    }
+    
+    private var header: some View {
+        HStack {
+            if isClosable, let closeButtonAccessibilityLabel = closeButtonAccessibilityLabel {
+                BPKIconView(.close, size: .large)
+                    .onTapGesture {
+                        isPresented.toggle()
+                    }
+                    .accessibilityLabel(closeButtonAccessibilityLabel)
+                    .accessibilityAddTraits(.isButton)
+            }
+            Spacer()
+            if let title = title {
+                BPKText(title, style: .heading5)
+            }
+            Spacer()
+            if let action = action {
+                BPKButton(action.title, action: action.action)
+                    .buttonStyle(.link)
+            }
+        }
+        .padding(.vertical, .md)
+        .padding(.horizontal, .base)
+    }
+    
+    init(
+        isPresented: Binding<Bool>,
+        maxHeight: CGFloat,
+        contentMode: BPKBottomSheetContentMode,
+        isClosable: Bool,
+        closeButtonAccessibilityLabel: String? = nil,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
+        @ViewBuilder bottomSheetContent: () -> BottomSheetContent
+    ) {
+        self._isPresented = isPresented
+        self.maxHeight = maxHeight
+        self.contentMode = contentMode
+        self.isClosable = isClosable
+        self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
+        self.title = title
+        self.action = action
+        self.bottomSheetContent = bottomSheetContent()
     }
     
     func body(content: Content) -> some View {
@@ -54,14 +115,16 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 }
 
                 VStack {
-                    if contentMode == .fullSize {
+                    if isFullSize {
                         handle.padding(.md)
+                    } else {
+                        header
                     }
                     bottomSheetContent
                 }
                 .frame(width: geometry.size.width, height: maxHeight, alignment: .top)
                 .background(BPKColor.surfaceDefaultColor)
-                .cornerRadius(Constants.radius)
+                .cornerRadius(radius: Constants.radius, corners: [.topLeft, .topRight])
                 .frame(height: geometry.size.height, alignment: .bottom)
                 .offset(y: max(offset + translation, 0))
                 .animation(.interactiveSpring(), value: isPresented)
@@ -92,16 +155,14 @@ struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
             BottomSheetContainerViewModifier(
                 isPresented: .constant(true),
                 maxHeight: 400,
-                contentMode: .fullSize,
+                contentMode: .regular,
+                isClosable: true,
+                closeButtonAccessibilityLabel: "Close button",
+                title: "Title",
+                action: BPKBottomSheetAction(title: "Action", action: {}),
                 bottomSheetContent: {
-                    VStack {
-                        Spacer()
-                        BPKText("Bottom sheet content")
-                        Spacer()
-                    }
-                    
-                }
-            )
+                    BPKText("Bottom sheet content")
+                })
         )
     }
 }
