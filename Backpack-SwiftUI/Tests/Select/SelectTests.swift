@@ -23,27 +23,24 @@ import SwiftUI
 class BPKSelectTests: XCTestCase {
     func test_defaultSettings() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Patagonia", "Nike"],
-                                 selectedIndex: 0,
-                                 onSelectionChange: { _ in }
+                                 options: ["Item 1", "Item 2"],
+                                 selectedIndex: .constant(0)
                                 )
             .frame(width: 300))
     }
     
     func test_selectSecondItem() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Patagonia", "Nike"],
-                                 selectedIndex: 1,
-                                 onSelectionChange: { _ in }
+                                 options: ["Item 1", "Item 2"],
+                                 selectedIndex: .constant(1)
                                 )
             .frame(width: 300))
     }
     
     func test_selectOutOfBoundsItem() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Patagonia", "Nike"],
-                                 selectedIndex: 666,
-                                 onSelectionChange: { _ in }
+                                 options: ["Item 1", "Item 2"],
+                                 selectedIndex: .constant(666)
                                 )
             .frame(width: 300))
     }
@@ -51,26 +48,23 @@ class BPKSelectTests: XCTestCase {
     func test_emptyOptions() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
                                  options: [],
-                                 selectedIndex: 0,
-                                 onSelectionChange: { _ in }
+                                 selectedIndex: .constant(0)
                                 )
             .frame(width: 300))
     }
     
     func test_errorState() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Error"],
-                                 selectedIndex: 0,
-                                 onSelectionChange: { _ in }
+                                 options: ["Item 1", "Item 2"],
+                                 selectedIndex: .constant(0)
                                 ).inputState(.error)
             .frame(width: 300))
     }
     
     func test_disabledState() {
         assertSnapshot(BPKSelect(placeholder: "Backpacks",
-                                 options: ["Disabled"],
-                                 selectedIndex: 0,
-                                 onSelectionChange: { _ in }
+                                 options: ["Item 1", "Item 2"],
+                                 selectedIndex: .constant(0)
                                 ).inputState(.disabled)
             .frame(width: 300))
     }
