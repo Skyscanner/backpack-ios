@@ -34,6 +34,17 @@ BPKSelect(placeholder: "Placeholder",
           selectedIndex: $selection)
 ```
 
+### Observe the Selection
+    
+```swift
+BPKSelect(placeholder: "Placeholder",
+          options: choices,
+          selectedIndex: $selection)
+          .onChange(of: selection) { index in
+                        print("Selection changed: \(index)")
+                    }
+```
+
 ### Changing the State
     
 ```swift
@@ -41,5 +52,4 @@ BPKSelect(placeholder: "List Error State",
           options: badChoices,
           selectedIndex: $errorSelection)
           .inputState(.error)
-    }
 ```
