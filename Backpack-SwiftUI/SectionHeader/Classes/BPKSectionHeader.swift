@@ -66,9 +66,4 @@ public struct BPKSectionHeader: View {
         }
         .background(style == .default ? .canvasColor : .surfaceContrastColor)
     }
-
-    public enum Style {
-        case `default`
-        case onDark
-    }
 }
