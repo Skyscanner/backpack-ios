@@ -35,6 +35,7 @@ struct ComponentCellsProvider {
         navigator.present(title: title, tabs: tabs)
     }
 
+    // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
             badge(),
