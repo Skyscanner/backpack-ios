@@ -35,6 +35,7 @@ struct ComponentCellsProvider {
         navigator.present(title: title, tabs: tabs)
     }
 
+    // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
             badge(),
@@ -64,6 +65,7 @@ struct ComponentCellsProvider {
             progressBar(),
             ratings(),
             sectionHeader(),
+            select(),
             snackbar(),
             skeleton(),
             sliders(),
@@ -288,6 +290,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: RatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Rating", tabs: $0) }
+        )
+    }
+    private func select() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Select",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SelectExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
         )
     }
     private func snackbar() -> CellDataSource {
