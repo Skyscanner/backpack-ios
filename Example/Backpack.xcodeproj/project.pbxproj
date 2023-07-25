@@ -116,6 +116,8 @@
 		AA7CFD8C29965EE20023C12B /* PriceExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */; };
 		AAD90D0229D58F8D0003E133 /* BPKFlightLegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */; };
 		AAF235DA298BF788003D8507 /* PageIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */; };
+		B3E50A2B2A618A400083FBFE /* SectionHeaderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */; };
+		B3E50A2D2A618AD10083FBFE /* SectionHeaderGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50A2C2A618AD10083FBFE /* SectionHeaderGroups.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
 		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
@@ -324,6 +326,8 @@
 		AA7CFD8B29965EE20023C12B /* PriceExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceExampleViewController.swift; sourceTree = "<group>"; };
 		AAD90D0129D58F8D0003E133 /* BPKFlightLegViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKFlightLegViewController.swift; sourceTree = "<group>"; };
 		AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorViewController.swift; sourceTree = "<group>"; };
+		B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderExampleView.swift; sourceTree = "<group>"; };
+		B3E50A2C2A618AD10083FBFE /* SectionHeaderGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderGroups.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
 		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
@@ -672,6 +676,7 @@
 				79F63C0329B078D600FB19A9 /* OverlayGroupsProvider.swift */,
 				79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */,
 				A12A09DD2A49471F0047DD16 /* ChipGroupProvider.swift */,
+				B3E50A2C2A618AD10083FBFE /* SectionHeaderGroups.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -821,6 +826,7 @@
 				53C6620729EA0DAB00BF1A62 /* Panel */,
 				53C661ED29EA0DAA00BF1A62 /* Price */,
 				53C661E229EA0DAA00BF1A62 /* Rating */,
+				B3E50A292A6187D50083FBFE /* SectionHeader */,
 				53C661F929EA0DAA00BF1A62 /* Skeleton */,
 				53C661E729EA0DAA00BF1A62 /* Spinner */,
 				53C661FB29EA0DAB00BF1A62 /* StarRating */,
@@ -1172,6 +1178,14 @@
 				AAF235D9298BF788003D8507 /* PageIndicatorViewController.swift */,
 			);
 			path = PageIndicator;
+			sourceTree = "<group>";
+		};
+		B3E50A292A6187D50083FBFE /* SectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */,
+			);
+			path = SectionHeader;
 			sourceTree = "<group>";
 		};
 		C92ADAF91733A08AB077E3E3 /* Pods */ = {
@@ -1579,6 +1593,7 @@
 				764D003C237DE51000FE60AC /* SnackbarViewController.swift in Sources */,
 				53E075AC27FC9AB00033147C /* CellsDataSource.swift in Sources */,
 				794E1FF6280A8A0000B965FF /* ContentUIHostingController.swift in Sources */,
+				B3E50A2D2A618AD10083FBFE /* SectionHeaderGroups.swift in Sources */,
 				53C6621829EA0DAB00BF1A62 /* OverlayExampleView.swift in Sources */,
 				537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */,
 				79F63C0229B0695C00FB19A9 /* OverlayViewController.swift in Sources */,
@@ -1611,6 +1626,7 @@
 				53C6622529EA0DAB00BF1A62 /* PanelExampleView.swift in Sources */,
 				D24A31D5219B147A009B75E4 /* UICollectionViewMasonryFlowLayout.swift in Sources */,
 				53C6621C29EA0DAB00BF1A62 /* PageIndicatorExampleView.swift in Sources */,
+				B3E50A2B2A618A400083FBFE /* SectionHeaderExampleView.swift in Sources */,
 				760E41E72334EBDC00A0CE8D /* StarRatingsDocViewController.swift in Sources */,
 				53E075B527FC9BD30033147C /* HomeGroupsProvider.swift in Sources */,
 				53C6621629EA0DAB00BF1A62 /* PriceExampleView.swift in Sources */,

@@ -63,6 +63,7 @@ struct ComponentCellsProvider {
             price(),
             progressBar(),
             ratings(),
+            sectionHeader(),
             snackbar(),
             skeleton(),
             sliders(),
@@ -458,6 +459,15 @@ extension ComponentCellsProvider {
                 ))
             ],
             showChildren: { showComponent(title: "Floating notification", tabs: $0) }
+        )
+    }
+    private func sectionHeader() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Section header",
+            tabs: [
+                .swiftui(groups: SectionHeaderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Section header", tabs: $0) }
         )
     }
 }
