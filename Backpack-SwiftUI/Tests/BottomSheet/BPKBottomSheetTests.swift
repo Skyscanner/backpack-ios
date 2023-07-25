@@ -23,35 +23,34 @@ import SwiftUI
 class BPKBottomSheetTests: XCTestCase {
     func test_fullSize_bottom_sheet() {
         assertSnapshot(
-            BPKBottomSheetContent(
-                isPresented: .constant(true),
-                isClosable: false,
-                contentMode: .fullSize,
-                content: {
-                    Spacer()
-                    BPKText("This this bottom sheet content")
-                    Spacer()
-                })
-            .frame(width: 300, height: 300)
+            BPKButton("Show bottom sheet", action: {})
+                .bpkBottomSheet(
+                    isPresented: .constant(true),
+                    maxHeight: 400,
+                    bottomSheetContent: {
+                        Spacer()
+                        BPKText("This this bottom sheet content")
+                        Spacer()
+                    })
+                .frame(width: 300, height: 500)
         )
     }
     
     func test_regular_bottom_sheet() {
         assertSnapshot(
-            BPKBottomSheetContent(
-                isPresented: .constant(true),
-                isClosable: true,
-                closeButtonAccessibilityLabel: "Close botton",
-                title: "Title",
-                contentMode: .regular,
-                action: BPKBottomSheetAction(title: "Action", action: {}),
-                content: {
-                    Spacer()
-                    BPKText("This this bottom sheet content")
-                    Spacer()
-                }
-            )
-            .frame(width: 300, height: 300)
+            BPKButton("Show bottom sheet", action: {})
+                .bpkCloseableBottomSheet(
+                    isPresented: .constant(true),
+                    maxHeight: 400,
+                    closeButtonAccessibilityLabel: "Close botton",
+                    title: "Title",
+                    action: BPKBottomSheetAction(title: "Action", action: {}),
+                    bottomSheetContent: {
+                        Spacer()
+                        BPKText("This this bottom sheet content")
+                        Spacer()
+                    })
+                .frame(width: 300, height: 500)
         )
     }
 }
