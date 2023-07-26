@@ -53,4 +53,20 @@ class BPKBottomSheetTests: XCTestCase {
                 .frame(width: 300, height: 500)
         )
     }
+    
+    func test_minHeight_bottom_sheet() {
+        assertSnapshot(
+            BPKButton("Show bottom sheet", action: {})
+                .bpkBottomSheet(
+                    isPresented: .constant(true),
+                    maxHeight: 400,
+                    minHeight: 200,
+                    bottomSheetContent: {
+                        Spacer()
+                        BPKText("This this bottom sheet content")
+                        Spacer()
+                    })
+                .frame(width: 300, height: 500)
+        )
+    }
 }

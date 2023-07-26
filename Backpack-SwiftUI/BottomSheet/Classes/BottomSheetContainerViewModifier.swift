@@ -38,6 +38,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     @Binding var isPresented: Bool
     
     let maxHeight: CGFloat
+    let minHeight: CGFloat?
     let contentMode: BPKBottomSheetContentMode
     let isClosable: Bool
     let closeButtonAccessibilityLabel: String?
@@ -45,11 +46,9 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     let action: BPKBottomSheetAction?
     let bottomSheetContent: BottomSheetContent
     
-    @GestureState private var translation: CGFloat = 0
-
-    private var offset: CGFloat {
-        isPresented ? 0 : maxHeight
-    }
+    @GestureState var translation: CGFloat = 0
+    
+    @State var offset: CGFloat = 0
     
     private var handle: some View {
         RoundedRectangle(cornerRadius: Constants.cornerRadius)
@@ -84,6 +83,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     init(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
+        minHeight: CGFloat? = nil,
         contentMode: BPKBottomSheetContentMode,
         isClosable: Bool,
         closeButtonAccessibilityLabel: String? = nil,
@@ -93,12 +93,14 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     ) {
         self._isPresented = isPresented
         self.maxHeight = maxHeight
+        self.minHeight = minHeight
         self.contentMode = contentMode
         self.isClosable = isClosable
         self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
         self.title = title
         self.action = action
         self.bottomSheetContent = bottomSheetContent()
+        self._offset = isPresented.wrappedValue ? .init(initialValue: minHeight ?? 0) : .init(initialValue: maxHeight)
     }
     
     func body(content: Content) -> some View {
@@ -122,43 +124,65 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 .background(BPKColor.surfaceDefaultColor)
                 .cornerRadius(radius: Constants.radius, corners: [.topLeft, .topRight])
                 .frame(height: geometry.size.height, alignment: .bottom)
-                .offset(y: max(offset + translation, 0))
+                .offset(y: offset + translation)
                 .animation(.interactiveSpring(), value: isPresented)
-                .animation(.interactiveSpring(), value: translation)
+                .animation(.interactiveSpring(), value: offset)
                 .gesture(
                     DragGesture()
-                        .updating($translation) { value, state, _ in
+                        .updating($translation, body: { value, state, _ in
+                            if offset == 0, value.translation.height < 0 { return }
                             state = value.translation.height
-                        }
-                        .onEnded { value in
-                            let snapDistance = self.maxHeight * Constants.snapRatio
-                            guard abs(value.translation.height) > snapDistance else {
-                                return
+                        })
+                        .onEnded({ value in
+                            var snapDistance = maxHeight * Constants.snapRatio
+
+                            if let minHeight = minHeight {
+                                if offset != 0 {
+                                    snapDistance = minHeight * Constants.snapRatio
+                                }
+                                offset = value.translation.height > 0 ? maxHeight - minHeight : 0
                             }
-                            isPresented = false
-                        }
+
+                            if value.translation.height > snapDistance {
+                                isPresented = false
+                            }
+                        })
                 )
             }
         }
         .ignoresSafeArea()
+        .onChange(of: isPresented) { value in
+            withAnimation {
+                guard value else {
+                    offset = maxHeight
+                    return
+                }
+
+                if let minHeight = minHeight {
+                    offset = maxHeight - minHeight
+                } else {
+                    offset = 0
+                }
+            }
+        }
     }
 }
 
 struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
         BPKButton("Show bottom sheet", action: {})
-        .modifier(
-            BottomSheetContainerViewModifier(
-                isPresented: .constant(true),
-                maxHeight: 400,
-                contentMode: .regular,
-                isClosable: true,
-                closeButtonAccessibilityLabel: "Close button",
-                title: "Title",
-                action: BPKBottomSheetAction(title: "Action", action: {}),
-                bottomSheetContent: {
-                    BPKText("Bottom sheet content")
-                })
-        )
+            .modifier(
+                BottomSheetContainerViewModifier(
+                    isPresented: .constant(true),
+                    maxHeight: 400,
+                    contentMode: .regular,
+                    isClosable: true,
+                    closeButtonAccessibilityLabel: "Close button",
+                    title: "Title",
+                    action: BPKBottomSheetAction(title: "Action", action: {}),
+                    bottomSheetContent: {
+                        BPKText("Bottom sheet content")
+                    })
+            )
     }
 }

@@ -41,7 +41,11 @@ struct BottomSheetProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Bottom Sheet with a scroll view", view: BottomSheetFullSizeExampleView()),
-                presentable("Bottom Sheet with header", view: BottomSheetRegularExampleView())
+                presentable("Bottom Sheet with header", view: BottomSheetRegularExampleView()),
+                presentable(
+                    "Bottom Sheet with different heights",
+                    view: BottomSheetFullSizeExampleView(minHeight: 300)
+                )
             ]
         ).groups()
     }

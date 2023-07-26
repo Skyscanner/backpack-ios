@@ -23,10 +23,16 @@ import Backpack_SwiftUI
 struct BottomSheetFullSizeExampleView: View {
     @State private var showBottomSheet = false
     
+    var minHeight: CGFloat?
+    
     var content: some View {
         List(0..<20) {
             BPKText("\($0) row item")
         }
+    }
+    
+    init(minHeight: CGFloat? = nil) {
+        self.minHeight = minHeight
     }
     
     var body: some View {
@@ -37,6 +43,7 @@ struct BottomSheetFullSizeExampleView: View {
             .bpkBottomSheet(
                 isPresented: $showBottomSheet,
                 maxHeight: geometry.size.height,
+                minHeight: minHeight,
                 bottomSheetContent: {
                     content
                 }

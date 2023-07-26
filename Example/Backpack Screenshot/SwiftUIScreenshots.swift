@@ -247,6 +247,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "bittom-sheet", scenario: "fullsize", userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
             tapBackButton()
+            
+            app.tables.staticTexts["Bottom Sheet with different heights"].tap()
+            app.buttons["Show bottom sheet"].tap()
+            saveScreenshot(component: "bittom-sheet", scenario: "minHeight", userInterfaceStyle: userInterfaceStyle)
+            app.swipeDown()
+            tapBackButton()
         }
         
         navigate(title: "Flare views") {
