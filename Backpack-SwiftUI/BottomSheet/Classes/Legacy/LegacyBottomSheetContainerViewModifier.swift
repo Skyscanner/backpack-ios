@@ -32,7 +32,6 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     let bottomSheetContent: BottomSheetContent
     
     @GestureState var translation: CGFloat = 0
-    
     @State var offset: CGFloat = 0
     
     var minHeight: CGFloat {
@@ -81,36 +80,49 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         if isClosable || title != nil || action != nil {
             BottomSheetHeader(
                 closeAction: headerCloseAction,
-                title: title,
+//                title: title,
+                title: "\(offset)",
                 action: action
             )
         }
     }
     
-    func body(content: Content) -> some View {
-        GeometryReader { geometry in
-            ZStack {
-                content
-                if isPresented {
-                    Color(BPKColor.scrimColor)
+    private var scrim: some View {
+        Color(isPresented ? BPKColor.scrimColor : BPKColor.clear)
+            .onTapGesture {
+                if isClosable {
+                    isPresented.toggle()
                 }
+            }
+    }
+    
+    func body(content: Content) -> some View {
+        let currentSize = max(maxHeight - offset - translation, minHeight)
+        let verticalOffset = currentSize - translation < minHeight ? translation : 0
+        ZStack {
+            content
+            scrim
+            VStack {
+                Spacer()
                 VStack(spacing: BPKSpacing.none) {
                     ZStack(alignment: .top) {
-                        handle
-                            .padding(.top, .md)
+                        handle.padding(.top, .md)
                         header
                     }
                     bottomSheetContent
+                        .frame(minHeight: minHeight)
+                        .frame(height: currentSize)
+                        .frame(width: .infinity)
                 }
-                .frame(width: geometry.size.width, height: maxHeight, alignment: .top)
-                .background(BPKColor.surfaceDefaultColor)
+                .background(BPKColor.skyBlue)
                 .clipShape(.bottomSheet)
-                .frame(height: geometry.size.height, alignment: .bottom)
-                .offset(y: offset + translation)
+                .offset(y: isPresented ? verticalOffset : maxHeight)
                 .animation(.interactiveSpring(), value: isPresented)
                 .animation(.interactiveSpring(), value: offset)
+                .animation(.interactiveSpring(), value: translation)
                 .gesture(dragGesture)
             }
+            
         }
         .ignoresSafeArea()
         .onChange(of: isPresented, perform: onPresentedChanged)
@@ -123,17 +135,19 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 state = value.translation.height
             })
             .onEnded({ value in
-                var snapDistance = maxHeight * snapRatio
+                var snapDistance = minHeight
                 
                 if contentMode == .regular {
                     if offset != 0 {
                         snapDistance = minHeight * snapRatio
                     }
-                    offset = value.translation.height > 0 ? maxHeight - minHeight : 0
+                    offset = value.translation.height > 0 ? minHeight : 0
                 }
                 
                 if value.translation.height > snapDistance {
-                    isPresented = false
+                    withAnimation {
+                        isPresented = false
+                    }
                 }
             })
     }
@@ -146,7 +160,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
             }
             
             if contentMode == .regular {
-                offset = maxHeight - minHeight
+                offset = minHeight
             } else {
                 offset = 0
             }
@@ -207,14 +221,19 @@ struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
             .modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: .constant(true),
-                    maxHeight: 600,
+                    maxHeight: 300,
                     contentMode: .regular,
                     isClosable: true,
                     closeButtonAccessibilityLabel: "Close button",
                     title: "Title",
                     action: BPKBottomSheetAction(title: "Action", action: {}),
                     bottomSheetContent: {
-                        BPKText("Bottom sheet content")
+                        VStack {
+                            BPKText("Bottom sheet content")
+                            Spacer()
+                            BPKButton("tese") {}
+                                .padding()
+                        }
                     })
             )
     }

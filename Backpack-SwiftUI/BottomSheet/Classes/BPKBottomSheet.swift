@@ -24,6 +24,8 @@ public extension View {
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
         contentMode: BPKBottomSheetContentMode = .regular,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) -> some View {
         modifier(
@@ -32,19 +34,20 @@ public extension View {
                 maxHeight: maxHeight,
                 contentMode: contentMode,
                 isClosable: false,
+                title: title,
+                action: action,
                 bottomSheetContent: { bottomSheetContent() }
             )
         )
     }
     
-    // swiftlint:disable:next function_parameter_count
     func bpkCloseableBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
         contentMode: BPKBottomSheetContentMode = .regular,
         closeButtonAccessibilityLabel: String,
-        title: String,
-        action: BPKBottomSheetAction,
+        title: String? = nil,
+        action: BPKBottomSheetAction? = nil,
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) -> some View {
         modifier(

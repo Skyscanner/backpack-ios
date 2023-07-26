@@ -44,6 +44,7 @@ struct BottomSheetNotCloseableExampleView: View {
                 isPresented: $showBottomSheet,
                 maxHeight: geometry.size.height,
                 contentMode: contentMode,
+                title: "Some Title",
                 bottomSheetContent: {
                     content
                 }
