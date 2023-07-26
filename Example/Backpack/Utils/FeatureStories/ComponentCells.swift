@@ -66,6 +66,7 @@ struct ComponentCellsProvider {
             snackbar(),
             skeleton(),
             sliders(),
+            snippets(),
             spinners(),
             starRatings(),
             switches(),
@@ -303,6 +304,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: SliderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Slider", tabs: $0) }
+        )
+    }
+    private func snippets() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Snippet",
+            tabs: [
+                .swiftui(groups: SnippetGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Snippet", tabs: $0) }
         )
     }
     private func skeleton() -> CellDataSource {
