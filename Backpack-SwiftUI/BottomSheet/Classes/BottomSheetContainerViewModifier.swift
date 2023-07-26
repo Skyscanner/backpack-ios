@@ -19,7 +19,7 @@
 import SwiftUI
 import Foundation
 
-fileprivate enum Constants {
+private enum Constants {
     static let radius: CGFloat = BPKSpacing.lg.value
     static let cornerRadius: CGFloat = BPKSpacing.md.value
     static let snapRatio: CGFloat = 0.5
@@ -101,7 +101,8 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         self.title = title
         self.action = action
         self.bottomSheetContent = bottomSheetContent()
-        self._offset = isPresented.wrappedValue ? .init(initialValue: minHeight ?? 0) : .init(initialValue: maxHeight)
+        _offset = isPresented.wrappedValue ? .init(initialValue: minHeight) :
+            .init(initialValue: maxHeight)
     }
     
     func body(content: Content) -> some View {
@@ -129,42 +130,46 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 .offset(y: offset + translation)
                 .animation(.interactiveSpring(), value: isPresented)
                 .animation(.interactiveSpring(), value: offset)
-                .gesture(
-                    DragGesture()
-                        .updating($translation, body: { value, state, _ in
-                            if offset == 0, value.translation.height < 0 { return }
-                            state = value.translation.height
-                        })
-                        .onEnded({ value in
-                            var snapDistance = maxHeight * Constants.snapRatio
-
-                            if contentMode == .regular {
-                                if offset != 0 {
-                                    snapDistance = minHeight * Constants.snapRatio
-                                }
-                                offset = value.translation.height > 0 ? maxHeight - minHeight : 0
-                            }
-
-                            if value.translation.height > snapDistance {
-                                isPresented = false
-                            }
-                        })
-                )
+                .gesture(dragGesture)
             }
         }
         .ignoresSafeArea()
-        .onChange(of: isPresented) { value in
-            withAnimation {
-                guard value else {
-                    offset = maxHeight
-                    return
-                }
+        .onChange(of: isPresented, perform: onPresentedChanged)
+    }
+    
+    private var dragGesture: some Gesture {
+        DragGesture()
+            .updating($translation, body: { value, state, _ in
+                if offset == 0, value.translation.height < 0 { return }
+                state = value.translation.height
+            })
+            .onEnded({ value in
+                var snapDistance = maxHeight * Constants.snapRatio
 
                 if contentMode == .regular {
-                    offset = maxHeight - minHeight
-                } else {
-                    offset = 0
+                    if offset != 0 {
+                        snapDistance = minHeight * Constants.snapRatio
+                    }
+                    offset = value.translation.height > 0 ? maxHeight - minHeight : 0
                 }
+
+                if value.translation.height > snapDistance {
+                    isPresented = false
+                }
+            })
+    }
+    
+    private func onPresentedChanged(_ value: Bool) {
+        withAnimation {
+            guard value else {
+                offset = maxHeight
+                return
+            }
+
+            if contentMode == .regular {
+                offset = maxHeight - minHeight
+            } else {
+                offset = 0
             }
         }
     }

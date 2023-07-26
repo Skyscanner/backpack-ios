@@ -37,6 +37,7 @@ public extension View {
         )
     }
     
+    // swiftlint:disable:next function_parameter_count
     func bpkCloseableBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
