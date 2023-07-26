@@ -40,11 +40,21 @@ struct BottomSheetProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
-                presentable("Bottom Sheet with a scroll view", view: BottomSheetFullSizeExampleView()),
-                presentable("Bottom Sheet with header", view: BottomSheetRegularExampleView()),
                 presentable(
-                    "Bottom Sheet with different heights",
-                    view: BottomSheetFullSizeExampleView(minHeight: 300)
+                    "Default Bottom Sheet",
+                    view: BottomSheetNotCloseableExampleView(contentMode: .fullSize)
+                ),
+                presentable(
+                    "Default Closeable Bottom Sheet",
+                    view: BottomSheetCloseableExampleView(contentMode: .fullSize)
+                ),
+                presentable(
+                    "Modal Bottom Sheet",
+                    view: BottomSheetNotCloseableExampleView(contentMode: .regular)
+                ),
+                presentable(
+                    "Modal Closeable Bottom Sheet",
+                    view: BottomSheetCloseableExampleView(contentMode: .regular)
                 )
             ]
         ).groups()

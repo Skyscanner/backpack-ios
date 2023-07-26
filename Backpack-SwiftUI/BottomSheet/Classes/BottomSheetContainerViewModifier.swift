@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import Foundation
 
 fileprivate enum Constants {
     static let radius: CGFloat = BPKSpacing.lg.value
@@ -37,8 +38,7 @@ public struct BPKBottomSheetAction {
 struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     
-    let maxHeight: CGFloat
-    let minHeight: CGFloat?
+    var maxHeight: CGFloat = UIScreen.main.bounds.height
     let contentMode: BPKBottomSheetContentMode
     let isClosable: Bool
     let closeButtonAccessibilityLabel: String?
@@ -49,6 +49,10 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     @GestureState var translation: CGFloat = 0
     
     @State var offset: CGFloat = 0
+    
+    var minHeight: CGFloat {
+        maxHeight * 0.5
+    }
     
     private var handle: some View {
         RoundedRectangle(cornerRadius: Constants.cornerRadius)
@@ -76,14 +80,12 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                     .buttonStyle(.link)
             }
         }
-        .padding(.vertical, .md)
         .padding(.horizontal, .base)
     }
     
     init(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
-        minHeight: CGFloat? = nil,
         contentMode: BPKBottomSheetContentMode,
         isClosable: Bool,
         closeButtonAccessibilityLabel: String? = nil,
@@ -93,7 +95,6 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     ) {
         self._isPresented = isPresented
         self.maxHeight = maxHeight
-        self.minHeight = minHeight
         self.contentMode = contentMode
         self.isClosable = isClosable
         self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
@@ -109,15 +110,16 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                 content
 
                 if isPresented {
-                    Color.black.opacity(0.7)
+                    Color(BPKColor.scrimColor)
                 }
 
-                VStack {
-                    if contentMode == .fullSize {
-                        handle.padding(.md)
-                    } else {
+                VStack(spacing: .sm) {
+                    handle.padding(.top, .md)
+                    
+                    if isClosable || title != nil || action != nil {
                         header
                     }
+                    
                     bottomSheetContent
                 }
                 .frame(width: geometry.size.width, height: maxHeight, alignment: .top)
@@ -136,7 +138,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                         .onEnded({ value in
                             var snapDistance = maxHeight * Constants.snapRatio
 
-                            if let minHeight = minHeight {
+                            if contentMode == .regular {
                                 if offset != 0 {
                                     snapDistance = minHeight * Constants.snapRatio
                                 }
@@ -158,7 +160,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
                     return
                 }
 
-                if let minHeight = minHeight {
+                if contentMode == .regular {
                     offset = maxHeight - minHeight
                 } else {
                     offset = 0
@@ -174,7 +176,7 @@ struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
             .modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: .constant(true),
-                    maxHeight: 400,
+                    maxHeight: 600,
                     contentMode: .regular,
                     isClosable: true,
                     closeButtonAccessibilityLabel: "Close button",

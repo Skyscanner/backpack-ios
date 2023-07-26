@@ -236,21 +236,28 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         
         navigate(title: "Bottom sheet") {
             switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Bottom Sheet with header"].tap()
+            app.tables.staticTexts["Default Bottom Sheet"].tap()
             app.buttons["Show bottom sheet"].tap()
-            saveScreenshot(component: "bittom-sheet", scenario: "regular", userInterfaceStyle: userInterfaceStyle)
-            app.swipeDown()
-            tapBackButton()
-
-            app.tables.staticTexts["Bottom Sheet with a scroll view"].tap()
-            app.buttons["Show bottom sheet"].tap()
-            saveScreenshot(component: "bittom-sheet", scenario: "fullsize", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "bittom-sheet", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
             tapBackButton()
             
-            app.tables.staticTexts["Bottom Sheet with different heights"].tap()
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default Closeable Bottom Sheet"].tap()
             app.buttons["Show bottom sheet"].tap()
-            saveScreenshot(component: "bittom-sheet", scenario: "minHeight", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "bittom-sheet", scenario: "default-closeable", userInterfaceStyle: userInterfaceStyle)
+            app.swipeDown()
+            tapBackButton()
+
+            app.tables.staticTexts["Modal Bottom Sheet"].tap()
+            app.buttons["Show bottom sheet"].tap()
+            saveScreenshot(component: "bittom-sheet", scenario: "modal", userInterfaceStyle: userInterfaceStyle)
+            app.swipeDown()
+            tapBackButton()
+            
+            app.tables.staticTexts["Modal Closeable Bottom Sheet"].tap()
+            app.buttons["Show bottom sheet"].tap()
+            saveScreenshot(component: "bittom-sheet", scenario: "modal-closeable", userInterfaceStyle: userInterfaceStyle)
             app.swipeDown()
             tapBackButton()
         }

@@ -20,19 +20,21 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct BottomSheetFullSizeExampleView: View {
+struct BottomSheetCloseableExampleView: View {
     @State private var showBottomSheet = false
     
-    var minHeight: CGFloat?
+    var contentMode: BPKBottomSheetContentMode
     
-    var content: some View {
-        List(0..<20) {
-            BPKText("\($0) row item")
-        }
+    init(contentMode: BPKBottomSheetContentMode) {
+        self.contentMode = contentMode
     }
     
-    init(minHeight: CGFloat? = nil) {
-        self.minHeight = minHeight
+    var content: some View {
+        VStack {
+            Spacer()
+            BPKText("Bottom sheet content")
+            Spacer()
+        }
     }
     
     var body: some View {
@@ -40,20 +42,25 @@ struct BottomSheetFullSizeExampleView: View {
             BPKButton("Show bottom sheet") {
                 showBottomSheet.toggle()
             }
-            .bpkBottomSheet(
+            .bpkCloseableBottomSheet(
                 isPresented: $showBottomSheet,
                 maxHeight: geometry.size.height,
-                minHeight: minHeight,
-                bottomSheetContent: {
-                    content
-                }
-            )
+                contentMode: contentMode,
+                closeButtonAccessibilityLabel: "Close button",
+                title: "Title",
+                action: BPKBottomSheetAction(
+                    title: "Action",
+                    action: {
+                        print("Action button tapped")
+                    }
+                )
+            ) { content }
         }
     }
 }
 
-struct BottomSheetFullSizeExampleView_Previews: PreviewProvider {
+struct BottomSheetRegularExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetFullSizeExampleView()
+        BottomSheetNotCloseableExampleView(contentMode: .fullSize)
     }
 }

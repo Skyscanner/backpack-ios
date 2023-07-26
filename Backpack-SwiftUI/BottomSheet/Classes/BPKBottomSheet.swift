@@ -23,15 +23,14 @@ public extension View {
     func bpkBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
-        minHeight: CGFloat? = nil,
+        contentMode: BPKBottomSheetContentMode = .regular,
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) -> some View {
         modifier(
             BottomSheetContainerViewModifier(
                 isPresented: isPresented,
                 maxHeight: maxHeight,
-                minHeight: minHeight,
-                contentMode: .fullSize,
+                contentMode: contentMode,
                 isClosable: false,
                 bottomSheetContent: { bottomSheetContent() }
             )
@@ -41,7 +40,7 @@ public extension View {
     func bpkCloseableBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
         maxHeight: CGFloat,
-        minHeight: CGFloat? = nil,
+        contentMode: BPKBottomSheetContentMode = .regular,
         closeButtonAccessibilityLabel: String,
         title: String,
         action: BPKBottomSheetAction,
@@ -51,8 +50,7 @@ public extension View {
             BottomSheetContainerViewModifier(
                 isPresented: isPresented,
                 maxHeight: maxHeight,
-                minHeight: minHeight,
-                contentMode: .regular,
+                contentMode: contentMode,
                 isClosable: true,
                 closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
                 title: title,

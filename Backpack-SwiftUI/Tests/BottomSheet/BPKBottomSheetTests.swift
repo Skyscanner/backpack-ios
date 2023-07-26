@@ -21,12 +21,13 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKBottomSheetTests: XCTestCase {
-    func test_fullSize_bottom_sheet() {
+    func test_default_bottom_sheet() {
         assertSnapshot(
             BPKButton("Show bottom sheet", action: {})
                 .bpkBottomSheet(
                     isPresented: .constant(true),
-                    maxHeight: 400,
+                    maxHeight: 700,
+                    contentMode: .fullSize,
                     bottomSheetContent: {
                         Spacer()
                         BPKText("This this bottom sheet content")
@@ -36,31 +37,15 @@ class BPKBottomSheetTests: XCTestCase {
         )
     }
     
-    func test_regular_bottom_sheet() {
+    func test_closeable_bottom_sheet() {
         assertSnapshot(
             BPKButton("Show bottom sheet", action: {})
                 .bpkCloseableBottomSheet(
                     isPresented: .constant(true),
-                    maxHeight: 400,
+                    maxHeight: 700,
                     closeButtonAccessibilityLabel: "Close botton",
                     title: "Title",
                     action: BPKBottomSheetAction(title: "Action", action: {}),
-                    bottomSheetContent: {
-                        Spacer()
-                        BPKText("This this bottom sheet content")
-                        Spacer()
-                    })
-                .frame(width: 300, height: 500)
-        )
-    }
-    
-    func test_minHeight_bottom_sheet() {
-        assertSnapshot(
-            BPKButton("Show bottom sheet", action: {})
-                .bpkBottomSheet(
-                    isPresented: .constant(true),
-                    maxHeight: 400,
-                    minHeight: 200,
                     bottomSheetContent: {
                         Spacer()
                         BPKText("This this bottom sheet content")

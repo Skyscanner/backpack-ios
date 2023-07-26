@@ -20,14 +20,18 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct BottomSheetRegularExampleView: View {
+struct BottomSheetNotCloseableExampleView: View {
     @State private var showBottomSheet = false
     
+    var contentMode: BPKBottomSheetContentMode
+    
+    init(contentMode: BPKBottomSheetContentMode) {
+        self.contentMode = contentMode
+    }
+    
     var content: some View {
-        VStack {
-            Spacer()
-            BPKText("Bottom sheet content")
-            Spacer()
+        List(0..<20) {
+            BPKText("\($0) row item")
         }
     }
     
@@ -36,24 +40,20 @@ struct BottomSheetRegularExampleView: View {
             BPKButton("Show bottom sheet") {
                 showBottomSheet.toggle()
             }
-            .bpkCloseableBottomSheet(
+            .bpkBottomSheet(
                 isPresented: $showBottomSheet,
                 maxHeight: geometry.size.height,
-                closeButtonAccessibilityLabel: "Close button",
-                title: "Title",
-                action: BPKBottomSheetAction(
-                    title: "Action",
-                    action: {
-                        print("Action button tapped")
-                    }
-                )
-            ) { content }
+                contentMode: contentMode,
+                bottomSheetContent: {
+                    content
+                }
+            )
         }
     }
 }
 
-struct BottomSheetRegularExampleView_Previews: PreviewProvider {
+struct BottomSheetFullSizeExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetFullSizeExampleView()
+        BottomSheetNotCloseableExampleView(contentMode: .fullSize)
     }
 }
