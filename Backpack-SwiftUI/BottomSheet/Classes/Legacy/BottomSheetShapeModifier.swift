@@ -18,9 +18,9 @@
 
 import SwiftUI
 
-struct CornerRadiusShape: Shape {
-    var radius = CGFloat.infinity
-    var corners = UIRectCorner.allCorners
+struct BottomSheetShape: Shape {
+    let radius: CGFloat
+    let corners: UIRectCorner
     
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(
@@ -32,18 +32,8 @@ struct CornerRadiusShape: Shape {
     }
 }
 
-struct CornerRadiusStyle: ViewModifier {
-    var radius: CGFloat
-    var corners: UIRectCorner
-    
-    func body(content: Content) -> some View {
-        content
-            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
-    }
-}
-
-extension View {
-    func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
-        ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
+extension Shape where Self == BottomSheetShape {
+    static var bottomSheet: BottomSheetShape {
+        BottomSheetShape(radius: BPKCornerRadius.lg.value, corners: [.topLeft, .topRight])
     }
 }
