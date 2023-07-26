@@ -47,18 +47,6 @@ BPKSnippet(
 )
 ```
 
-### Section header with a title, description and trailing button. 
-
-```swift 
-BPKSectionHeader(
-    title: "Section title",
-    description: "Description about this section") {
-        BPKButton(icon: .addCircle, accessibilityLabel: "Add item") {
-            print("Tap add button")
-        }
-}
-```
-
 ### Snippet with action to be performed on tap
 Optionally, Snippet can also perform an action on tap, passing in the `onClick` closure argument:
 
