@@ -292,5 +292,15 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Section header") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "section-header", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["On Dark"].tap()
+            saveScreenshot(component: "section-header", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }

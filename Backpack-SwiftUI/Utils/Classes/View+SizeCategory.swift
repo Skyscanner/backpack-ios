@@ -18,6 +18,8 @@
 
 import SwiftUI
 
+// swiftlint:disable line_length
+
 // Created by MMP0
 // https://gist.github.com/MMP0/2c1b581ad071c4279806ed5ad995a18a
 public extension View {

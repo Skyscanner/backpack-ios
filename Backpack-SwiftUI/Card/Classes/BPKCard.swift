@@ -58,7 +58,6 @@ public struct BPKCard<Content: View>: View {
             content
                 .padding(padding.value)
         }
-        .accessibilityHidden(true)
         .buttonStyle(CardButtonStyle(
             cornerRadius: cornerRadius,
             backgroundColor: elevation.backgroundColor
@@ -94,7 +93,7 @@ private struct CardButtonStyle: ButtonStyle {
 
 struct BPKCard_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(spacing: 40){
+        VStack(spacing: 40) {
             BPKCard() {
                 BPKText("Default")
             }

@@ -22,36 +22,42 @@ import SwiftUI
 
 class BPKTextFieldTests: XCTestCase {
     func test_defaultSettings() {
-        assertSnapshot(BPKTextField(.constant("Value"))
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant("Value"))
+                .frame(width: 300))
     }
 
     func test_emptyField() {
-        assertSnapshot(BPKTextField(.constant(""))
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant(""))
+                .frame(width: 300))
     }
 
     func test_disabledField() {
-        assertSnapshot(BPKTextField(.constant("Value"))
-                        .inputState(.disabled)
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant("Value"))
+                .inputState(.disabled)
+                .frame(width: 300))
     }
 
     func test_clearableField() {
-        assertSnapshot(BPKTextField(.constant("Value"))
-                        .inputState(.clear(accessibilityLabel: "Clear") { })
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant("Value"))
+                .inputState(.clear(accessibilityLabel: "Clear") { })
+                .frame(width: 300))
     }
 
     func test_validField() {
-        assertSnapshot(BPKTextField(.constant("Value"))
-                        .inputState(.valid)
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant("Value"))
+                .inputState(.valid)
+                .frame(width: 300))
     }
 
     func test_errorField() {
-        assertSnapshot(BPKTextField(.constant("Value"))
-                        .inputState(.error)
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKTextField(.constant("Value"))
+                .inputState(.error)
+                .frame(width: 300))
     }
 }

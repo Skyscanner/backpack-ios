@@ -20,6 +20,7 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
+// swiftlint:disable closure_body_length
 class BPKRatingTests: XCTestCase {
     
     private let isDefaultSizes = [true, false]

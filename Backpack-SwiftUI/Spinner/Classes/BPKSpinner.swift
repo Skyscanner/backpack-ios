@@ -58,7 +58,7 @@ public struct BPKSpinner: View {
             }
             .rotationEffect(.degrees(rotation))
         }
-        .onReceive(timer) { input in
+        .onReceive(timer) { _ in
             rotation += degrees
             rotation = rotation.truncatingRemainder(dividingBy: 360)
         }

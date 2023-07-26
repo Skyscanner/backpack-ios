@@ -22,7 +22,8 @@ import SwiftUI
 
 class BPKSkeletonTests: XCTestCase {
     
-    private func testView() -> some View {
+    // swiftlint:disable closure_body_length
+    private func sutView() -> some View {
         ZStack {
             Color(.clear.darkVariant(.black))
             VStack {
@@ -39,7 +40,8 @@ class BPKSkeletonTests: XCTestCase {
                     BPKSkeleton.circle(size: .small)
                     BPKSkeleton.circle(size: .large) // Should be the same as .default
                     BPKSkeleton.circle(size: .custom(size: CGSize(width: 111, height: 111)))
-                    BPKSkeleton.circle(size: .custom(size: CGSize(width: 111, height: 222))) // Should be the same as above
+                    // Should be the same as above
+                    BPKSkeleton.circle(size: .custom(size: CGSize(width: 111, height: 222)))
                 }
                 
                 Group {
@@ -62,11 +64,11 @@ class BPKSkeletonTests: XCTestCase {
         
     func test_allSkeletonsWithoutShimmer() {
         // Then
-        assertSnapshot(testView())
+        assertSnapshot(sutView())
     }
     
     func test_allSkeletonsWithShimmer() {
         // Then
-        assertSnapshot(testView().shimmering())
+        assertSnapshot(sutView().shimmering())
     }
 }

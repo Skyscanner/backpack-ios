@@ -38,7 +38,7 @@ public struct BPKHotelStarRating: View {
     
     public var body: some View {
         HStack(spacing: 0) {
-            ForEach(0..<rating, id: \.self) { index in
+            ForEach(0..<rating, id: \.self) { _ in
                 BPKStarView(type: .full, size: size.starSize)
                     .accessibilityHidden(true)
             }

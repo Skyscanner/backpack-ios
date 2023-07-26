@@ -61,7 +61,7 @@ extension Font {
             weight: .regular,
             textStyle: .body) { name, size, _ in
                 Font.custom(name, fixedSize: size)
-            }
+        }
     }
     
     static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
@@ -80,6 +80,6 @@ extension Font {
             weight: .semibold,
             textStyle: .body) { name, size, _ in
                 Font.custom(name, fixedSize: size)
-            }
+        }
     }
 }

@@ -37,7 +37,7 @@ public struct BPKIconView: View {
     }
     
     private var shouldAutoMirror: Bool {
-        BPKAutoMirrorIconNames.items.firstIndex(of: icon.name) != nil
+        BPKAutoMirrorIconNames.items.contains(icon.name)
     }
 }
 
@@ -61,14 +61,12 @@ private extension BPKIcon.Size {
     }
 }
 
-
 private extension Image {
     init(icon: BPKIcon, size: BPKIcon.Size = .small) {
         let iconName = "\(icon.name)-\(size.suffix)"
         self.init(iconName, bundle: BPKCommonBundle.iconsBundle)
     }
 }
-
 
 struct BPKIconView_Previews: PreviewProvider {
     static var previews: some View {

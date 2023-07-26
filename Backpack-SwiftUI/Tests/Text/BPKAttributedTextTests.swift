@@ -30,8 +30,6 @@ class BPKAttributedTextTests: XCTestCase {
             .init("Font styles is pretty neat!", style: .heading3, color: .coreEcoColor)
         ]
         
-        assertSnapshot(BPKAttributedText(items: items)
-                        .frame(width: 300)
-        )
+        assertSnapshot(BPKAttributedText(items: items).frame(width: 300))
     }
 }

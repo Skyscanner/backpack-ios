@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-fileprivate struct ScaledFont: ViewModifier {
+private struct ScaledFont: ViewModifier {
     var style: BPKFontStyle
     
     func body(content: Content) -> some View {

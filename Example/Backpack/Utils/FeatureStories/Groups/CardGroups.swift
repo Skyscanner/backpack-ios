@@ -74,7 +74,7 @@ struct CardGroupsProvider {
                 presentableCard("Without padding") { $0.padded = false },
                 presentableCard("Selected") { $0.selected = true },
                 presentableCard("Corner style large") { $0.cornerStyle = .large },
-                presentableCard("Background color") { $0.backgroundColor = BPKColor.skyBlueTint01 },
+                presentableCard("Background color") { $0.backgroundColor = BPKColor.statusWarningFillColor },
                 presentableDevidedCard("With divider") { $0.divisionDirection = .horizontal },
                 presentableDevidedCard("With divider and corner style large") { cardVC in
                     cardVC.divisionDirection = .horizontal
@@ -96,21 +96,8 @@ struct CardGroupsProvider {
                     cardVC.dividerStyle = .solid
                 },
                 presentableCardWrapper("Wrapper default", enrich: { _ in }),
-                presentableCardWrapper("Wrapper with primary color", enrich: { wrapperVC in
-                    wrapperVC.backgroundColor = BPKColor.corePrimaryColor
-                }),
-                presentableCardWrapper("Wrapper not elevated", enrich: { wrapperVC in
-                    wrapperVC.elevation = .none
-                }),
-                presentableCardWrapper("Wrapper with corner style large", enrich: { wrapperVC in
-                    wrapperVC.cornerStyle = .large
-                }),
                 presentableCardWrapper("Wrapper with divided card", enrich: { wrapperVC in
                     wrapperVC.isCardDivided = true
-                }),
-                presentableCardWrapper("Wrapper with divided card not padded", enrich: { wrapperVC in
-                    wrapperVC.isCardDivided = true
-                    wrapperVC.isPadded = false
                 })
             ]
         ).groups()

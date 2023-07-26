@@ -17,6 +17,7 @@
  */
 
 public extension BPKIcon {
-    {% for icon in icons -%}static let {% if icon.name == "return" -%}`{{icon.name}}`{% else -%}{{icon.name}}{% endif %} = BPKIcon(name: "{{icon.file}}")
+    {% for icon in icons -%}
+    static let {% if icon.name == "return" -%}`{{icon.name}}`{% else -%}{{icon.name}}{% endif %} = BPKIcon(name: "{{icon.file}}")
     {% endfor %}
 }

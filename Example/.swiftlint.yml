@@ -15,12 +15,28 @@ trailing_whitespace:
 indentation_width:
   include_comments: false
 
+identifier_name:
+  excluded:
+    - id
+    - sm
+    - md
+    - lg
+    - xs
+    - xl
+    - ai
+    - x
+    - y
+    - up
+    - sp
+
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:
   - Pods
   - "Backpack\ Screenshot/"
 included:
   - ../Backpack
+  - ../Backpack-SwiftUI
+  - ../Backpack-Common
   - ./
 
 custom_rules:
