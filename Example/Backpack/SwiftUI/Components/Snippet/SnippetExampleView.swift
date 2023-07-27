@@ -25,24 +25,30 @@ struct SnippetExampleView: View {
     
     var body: some View {
         ScrollView {
-            BPKSnippet(
-                image: Image("dialog_image"),
-                accessibilityLabel: "London at dawn",
-                headline: "Headline Text",
-                description: "Subheading",
-                bodyText: "Body Text",
-                imageOrientation: imageOrientation,
-                onClick: {
-                    print("Clicked Snippet")
-                }
-            )
-            .padding()
+            snippet
         }
+    }
+    
+    var snippet: some View {
+        BPKSnippet(
+            image: Image("dialog_image"),
+            accessibilityLabel: "London at dawn",
+            headline: "Headline Text",
+            description: "Subheading",
+            bodyText: "Body Text",
+            imageOrientation: imageOrientation,
+            onClick: {
+                print("Clicked Snippet")
+            }
+        )
+        .padding()
     }
 }
 
 struct SnippetExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        SnippetExampleView()
+        SnippetExampleView(imageOrientation: .landscape)
+        SnippetExampleView(imageOrientation: .square)
+        SnippetExampleView(imageOrientation: .portrait)
     }
 }

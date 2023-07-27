@@ -47,17 +47,15 @@ public struct BPKSnippet: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: .md) {
-            RoundedRectangle(cornerRadius: .md, style: .continuous)
-                .foregroundColor(.clear)
-                .background(
-                    image
-                        .resizable()
-                        .background(.surfaceHighlightColor)
-                        .aspectRatio(contentMode: .fill)
-                        .accessibilityLabel(accessibilityLabel)
-                )
-                .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
+            GeometryReader { geo in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .background(.surfaceHighlightColor)
+                    .frame(width: geo.size.width)
+            }
+            .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
+            .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
             if let headline {
                 BPKText(headline, style: .heading4)
                     .lineLimit(2)
