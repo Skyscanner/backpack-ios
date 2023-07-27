@@ -58,19 +58,19 @@ public struct BPKSnippet: View {
             .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
             if let headline {
                 BPKText(headline, style: .heading4)
-                    .lineLimit(2)
+                    .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
             }
             if let description {
                 BPKText(description, style: .subheading)
+                    .lineLimit(nil)
                     .padding(.bottom, .xl)
             }
             if let bodyText {
                 BPKText(bodyText, style: .bodyDefault)
-                    .lineLimit(5)
+                    .lineLimit(nil)
             }
         }
-        .frame(maxWidth: .infinity)
         .onTapGesture {
             onClick?()
         }

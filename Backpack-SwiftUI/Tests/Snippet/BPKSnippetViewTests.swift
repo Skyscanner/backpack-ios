@@ -59,6 +59,22 @@ class BPKSnippetViewTests: XCTestCase {
         )
     }
 
+    func testSnippetWithLongDescription() {
+        assertSnapshot(
+            BPKSnippet(
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                accessibilityLabel: "City at dawn",
+                headline: "Headline Text",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
+                "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+                bodyText: "Body Text"
+            )
+            .frame(width: 375)
+            .padding()
+        )
+    }
+
     func testSnippetWithLongBodyText() {
         assertSnapshot(
             BPKSnippet(
