@@ -32,6 +32,18 @@ class BPKSnippetViewTests: XCTestCase {
             .padding()
         )
     }
+    
+    func testSnippetNoImageWithHeadline() {
+        assertSnapshot(
+            BPKSnippet(
+                image: Image("", bundle: TestsBundle.bundle),
+                accessibilityLabel: "City at dawn",
+                headline: "Headline Text"
+            )
+            .frame(width: 375)
+            .padding()
+        )
+    }
 
     func testSnippetWithHeadline() {
         assertSnapshot(
