@@ -21,9 +21,6 @@ import SwiftUI
 struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     
-    private let snapRatio: CGFloat = 0.5
-    
-    var maxHeight: CGFloat = UIScreen.main.bounds.height
     let contentMode: BPKBottomSheetContentMode
     let isClosable: Bool
     let closeButtonAccessibilityLabel: String?
@@ -31,22 +28,8 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     let action: BPKBottomSheetAction?
     let bottomSheetContent: BottomSheetContent
     
-    @GestureState var translation: CGFloat = 0
-    @State var offset: CGFloat = 0
-    
-    var minHeight: CGFloat {
-        maxHeight * 0.5
-    }
-    
-    private var handle: some View {
-        Color(BPKColor.lineColor)
-            .clipShape(Capsule())
-            .frame(width: BPKSpacing.xxl, height: BPKSpacing.sm)
-    }
-    
     init(
         isPresented: Binding<Bool>,
-        maxHeight: CGFloat,
         contentMode: BPKBottomSheetContentMode,
         isClosable: Bool,
         closeButtonAccessibilityLabel: String? = nil,
@@ -55,15 +38,30 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         @ViewBuilder bottomSheetContent: () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
-        self.maxHeight = maxHeight
         self.contentMode = contentMode
         self.isClosable = isClosable
         self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
         self.title = title
         self.action = action
         self.bottomSheetContent = bottomSheetContent()
-        _offset = isPresented.wrappedValue ? .init(initialValue: minHeight) :
-            .init(initialValue: maxHeight)
+    }
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+            scrim
+            switch contentMode {
+            case .large:
+                GeometryReader { proxy in
+                    contentWithMode(.large(maxHeight: maxHeight(forProxy: proxy)))
+                }
+            case .medium:
+                GeometryReader { proxy in
+                    let maxHeight = maxHeight(forProxy: proxy)
+                    contentWithMode(.medium(minHeight: maxHeight / 2, maxHeight: maxHeight))
+                }
+            }
+        }
     }
     
     private var headerCloseAction: BPKBottomSheetAction? {
@@ -80,161 +78,65 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         if isClosable || title != nil || action != nil {
             BottomSheetHeader(
                 closeAction: headerCloseAction,
-//                title: title,
-                title: "\(offset)",
+                title: title,
                 action: action
             )
         }
     }
     
+    @ViewBuilder
     private var scrim: some View {
-        Color(isPresented ? BPKColor.scrimColor : BPKColor.clear)
-            .onTapGesture {
-                if isClosable {
+        if isPresented {
+            Color(BPKColor.scrimColor)
+                .onTapGesture {
                     isPresented.toggle()
                 }
-            }
-    }
-    
-    func body(content: Content) -> some View {
-        let currentSize = max(maxHeight - offset - translation, minHeight)
-        let verticalOffset = currentSize - translation < minHeight ? translation : 0
-        ZStack {
-            content
-            scrim
-            VStack {
-                Spacer()
-                VStack(spacing: BPKSpacing.none) {
-                    ZStack(alignment: .top) {
-                        handle.padding(.top, .md)
-                        header
-                    }
-                    bottomSheetContent
-                        .frame(minHeight: minHeight)
-                        .frame(height: currentSize)
-                        .frame(width: .infinity)
-                }
-                .background(BPKColor.skyBlue)
-                .clipShape(.bottomSheet)
-                .offset(y: isPresented ? verticalOffset : maxHeight)
-                .animation(.interactiveSpring(), value: isPresented)
-                .animation(.interactiveSpring(), value: offset)
-                .animation(.interactiveSpring(), value: translation)
-                .gesture(dragGesture)
-            }
-            
-        }
-        .ignoresSafeArea()
-        .onChange(of: isPresented, perform: onPresentedChanged)
-    }
-    
-    private var dragGesture: some Gesture {
-        DragGesture()
-            .updating($translation, body: { value, state, _ in
-                if offset == 0, value.translation.height < 0 { return }
-                state = value.translation.height
-            })
-            .onEnded({ value in
-                var snapDistance = minHeight
-                
-                if contentMode == .regular {
-                    if offset != 0 {
-                        snapDistance = minHeight * snapRatio
-                    }
-                    offset = value.translation.height > 0 ? minHeight : 0
-                }
-                
-                if value.translation.height > snapDistance {
-                    withAnimation {
-                        isPresented = false
-                    }
-                }
-            })
-    }
-    
-    private func onPresentedChanged(_ value: Bool) {
-        withAnimation {
-            guard value else {
-                offset = maxHeight
-                return
-            }
-            
-            if contentMode == .regular {
-                offset = minHeight
-            } else {
-                offset = 0
-            }
+                .ignoresSafeArea()
         }
     }
-}
-
-private struct BottomSheetHeader: View {
-    let closeAction: BPKBottomSheetAction?
-    let title: String?
-    let action: BPKBottomSheetAction?
     
-    @ViewBuilder
-    private var closeButtonView: some View {
-        if let closeAction {
+    private func contentWithMode(_ mode: BottomSheetContentViewContentMode) -> some View {
+        VStack {
             Spacer()
-                .overlay(
-                    BPKIconView(.close, size: .large)
-                        .onTapGesture(perform: closeAction.action)
-                        .accessibilityLabel(closeAction.title)
-                        .accessibilityAddTraits(.isButton),
-                    alignment: .leading
-                )
-        } else {
-            Spacer()
+            LegacyBottomSheetContentView(
+                isPresented: $isPresented,
+                contentMode: mode,
+                header: { header },
+                bottomSheetContent: { bottomSheetContent }
+            )
         }
+        .ignoresSafeArea(edges: .bottom)
     }
     
-    @ViewBuilder
-    private var actionView: some View {
-        if let action {
-            Spacer()
-                .overlay(
-                    BPKButton(action.title, action: action.action)
-                        .buttonStyle(.link),
-                    alignment: .trailing
-                )
-        } else {
-            Spacer()
-        }
-    }
-    
-    var body: some View {
-        HStack {
-            closeButtonView
-            if let title {
-                BPKText(title, style: .heading5)
-            }
-            actionView
-        }
-        .padding(.lg)
+    private func maxHeight(forProxy proxy: GeometryProxy) -> CGFloat {
+        proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
     }
 }
 
 struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
+        
         BPKButton("Show bottom sheet", action: {})
             .modifier(
                 BottomSheetContainerViewModifier(
                     isPresented: .constant(true),
-                    maxHeight: 300,
-                    contentMode: .regular,
+                    contentMode: .medium,
                     isClosable: true,
                     closeButtonAccessibilityLabel: "Close button",
                     title: "Title",
                     action: BPKBottomSheetAction(title: "Action", action: {}),
                     bottomSheetContent: {
                         VStack {
-                            BPKText("Bottom sheet content")
+                            BPKText("Bottom sheet content", style: .heading2)
+                            BPKText("Bottom sheet content", style: .heading4)
+                            BPKText("Bottom sheet content dfgdfg dfgntasd asdasd sdd  asd asd asd adsasda")
+                                .lineLimit(nil)
                             Spacer()
-                            BPKButton("tese") {}
+                            BPKButton("Make Payment") {}
                                 .padding()
                         }
                     })
             )
+        
     }
 }

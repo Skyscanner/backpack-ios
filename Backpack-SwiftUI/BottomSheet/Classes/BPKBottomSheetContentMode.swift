@@ -17,9 +17,13 @@
  */
 
 public enum BPKBottomSheetContentMode {
-    /// Child node would fill the entire sheet
-    case fullSize
+    /// The sheet shows in full screen
+    /// Sheet is expansible
+    /// Use `Spacer` in your content to define expansion behaviour
+    case large
     
-    /// Child node would fill the sheet, after the header where the title and action would be
-    case regular
+    /// The sheet shows at half the screen
+    /// Sheet is expansible
+    /// Use `Spacer` in your content to define expansion behaviour
+    case medium
 }

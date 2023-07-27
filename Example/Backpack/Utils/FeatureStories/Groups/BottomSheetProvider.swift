@@ -42,19 +42,19 @@ struct BottomSheetProvider {
             cellDataSources: [
                 presentable(
                     "Default Bottom Sheet",
-                    view: BottomSheetNotCloseableExampleView(contentMode: .fullSize)
+                    view: BottomSheetNotCloseableExampleView(contentMode: .large)
                 ),
                 presentable(
                     "Default Closeable Bottom Sheet",
-                    view: BottomSheetCloseableExampleView(contentMode: .fullSize)
+                    view: BottomSheetCloseableExampleView(contentMode: .large)
                 ),
                 presentable(
                     "Modal Bottom Sheet",
-                    view: BottomSheetNotCloseableExampleView(contentMode: .regular)
+                    view: BottomSheetNotCloseableExampleView(contentMode: .medium)
                 ),
                 presentable(
                     "Modal Closeable Bottom Sheet",
-                    view: BottomSheetCloseableExampleView(contentMode: .regular)
+                    view: BottomSheetCloseableExampleView(contentMode: .medium)
                 )
             ]
         ).groups()

@@ -36,13 +36,12 @@ struct BottomSheetNotCloseableExampleView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             BPKButton("Show bottom sheet") {
                 showBottomSheet.toggle()
             }
             .bpkBottomSheet(
                 isPresented: $showBottomSheet,
-                maxHeight: geometry.size.height,
                 contentMode: contentMode,
                 title: "Some Title",
                 bottomSheetContent: {
@@ -55,6 +54,6 @@ struct BottomSheetNotCloseableExampleView: View {
 
 struct BottomSheetFullSizeExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetNotCloseableExampleView(contentMode: .fullSize)
+        BottomSheetNotCloseableExampleView(contentMode: .large)
     }
 }

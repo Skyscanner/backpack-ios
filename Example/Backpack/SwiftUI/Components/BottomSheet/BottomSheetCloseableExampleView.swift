@@ -38,29 +38,26 @@ struct BottomSheetCloseableExampleView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            BPKButton("Show bottom sheet") {
-                showBottomSheet.toggle()
-            }
-            .bpkCloseableBottomSheet(
-                isPresented: $showBottomSheet,
-                maxHeight: geometry.size.height,
-                contentMode: contentMode,
-                closeButtonAccessibilityLabel: "Close button",
-                title: "Title",
-                action: BPKBottomSheetAction(
-                    title: "Action",
-                    action: {
-                        print("Action button tapped")
-                    }
-                )
-            ) { content }
+        BPKButton("Show bottom sheet") {
+            showBottomSheet.toggle()
         }
+        .bpkCloseableBottomSheet(
+            isPresented: $showBottomSheet,
+            contentMode: contentMode,
+            closeButtonAccessibilityLabel: "Close button",
+            title: "Title",
+            action: BPKBottomSheetAction(
+                title: "Action",
+                action: {
+                    print("Action button tapped")
+                }
+            )
+        ) { content }
     }
 }
 
 struct BottomSheetRegularExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetNotCloseableExampleView(contentMode: .fullSize)
+        BottomSheetNotCloseableExampleView(contentMode: .large)
     }
 }
