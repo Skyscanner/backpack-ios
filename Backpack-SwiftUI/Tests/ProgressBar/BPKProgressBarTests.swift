@@ -24,28 +24,28 @@ class BPKProgressBarTests: XCTestCase {
     
     func test_small_progress_bar() throws {
         assertSnapshot(
-            BPKProgressBar(max: 100, stepped: false, size: .small, value: .constant(50))
+            BPKProgressBar(max: 3, stepped: false, size: .small, value: 1.5)
                 .frame(width: 200)
         )
     }
 
     func test_large_progress_bar() throws {
         assertSnapshot(
-            BPKProgressBar(max: 100, stepped: false, size: .large, value: .constant(50))
+            BPKProgressBar(max: 3, stepped: false, size: .large, value: 1.5)
                 .frame(width: 200)
         )
     }
 
     func test_small_stepped_progress_bar() throws {
         assertSnapshot(
-            BPKProgressBar(max: 100, stepped: true, size: .small, value: .constant(50))
+            BPKProgressBar(max: 3, stepped: true, size: .small, value: 1.5)
                 .frame(width: 200)
         )
     }
 
     func test_large_stepped_progress_bar() throws {
         assertSnapshot(
-            BPKProgressBar(max: 100, stepped: true, size: .large, value: .constant(50))
+            BPKProgressBar(max: 3, stepped: true, size: .large, value: 1.5)
                 .frame(width: 200)
         )
     }
