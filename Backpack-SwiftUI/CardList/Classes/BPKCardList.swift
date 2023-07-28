@@ -33,7 +33,7 @@ public struct BPKCardList<Content: View>: View {
         description: String?,
         sectionHeaderButton: Action?,
         layout: LayoutWithSectionHeaderButton,
-        initiallyShownCards: Int,
+        initiallyShownCards: Int = 3,
         totalElements: Int,
         @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
     ) {
@@ -50,7 +50,7 @@ public struct BPKCardList<Content: View>: View {
         title: String,
         description: String?,
         layout: Layout,
-        initiallyShownCards: Int,
+        initiallyShownCards: Int = 3,
         totalElements: Int,
         @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
     ) {
@@ -106,7 +106,9 @@ public struct BPKCardList<Content: View>: View {
         switch layout {
         case .rail:
             ScrollView(.horizontal) {
-                cardsContent()
+                HStack {
+                    cardsContent()
+                }
             }
         case .stack:
             VStack {
