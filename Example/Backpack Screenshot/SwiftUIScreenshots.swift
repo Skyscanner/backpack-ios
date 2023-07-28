@@ -169,6 +169,25 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+
+        navigate(title: "Bottom sheet") {
+            switchTab(title: "SwiftUI")
+            app.buttons["Show closable bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "closable", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+            
+            app.buttons["Show large bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "large", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+
+            app.buttons["Show medium bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "medium", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+            
+            app.buttons["Show fit content bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "content-fit", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+        }
         
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")

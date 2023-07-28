@@ -106,10 +106,15 @@ extension ComponentCellsProvider {
         )
     }
     private func bottomSheet() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Bottom sheet",
-            storyboard: .named("BottomSheet", on: "BottomSheetViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BottomSheetExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Bottom sheet", tabs: $0) }
         )
     }
     private func button() -> CellDataSource {
