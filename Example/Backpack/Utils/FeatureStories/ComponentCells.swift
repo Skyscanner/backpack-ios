@@ -110,7 +110,9 @@ extension ComponentCellsProvider {
             title: "Bottom sheet",
             tabs: [
                 .uikit(presentable: loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")),
-                .swiftui(groups: BottomSheetProvider(showPresentable: show(presentable:)).swiftUIGroups())
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BottomSheetExampleView())
+                }))
             ],
             showChildren: { showComponent(title: "Bottom sheet", tabs: $0) }
         )

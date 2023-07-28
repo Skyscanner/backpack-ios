@@ -21,61 +21,35 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKBottomSheetTests: XCTestCase {
-    func test_default_bottom_sheet_medium() {
+    func test_bottomSheetHeader_titleOnly() {
         assertSnapshot(
-            Color(BPKColor.surfaceDefaultColor)
-                .frame(width: 300, height: 500)
-                .bpkBottomSheet(
-                    isPresented: .constant(true),
-                    contentMode: .medium,
-                    bottomSheetContent: {
-                        BPKText("This this bottom sheet content")
-                    })
+            BottomSheetHeader(closeAction: nil, title: "Title Here", action: nil)
+                .frame(width: 300)
         )
     }
     
-    func test_closeable_bottom_sheet_medium() {
+    func test_bottomSheetHeader_titleAndAction() {
         assertSnapshot(
-            Color(BPKColor.surfaceDefaultColor)
-                .frame(width: 300, height: 500)
-                .bpkCloseableBottomSheet(
-                    isPresented: .constant(true),
-                    contentMode: .medium,
-                    closeButtonAccessibilityLabel: "Close botton",
-                    title: "Title",
-                    action: BPKBottomSheetAction(title: "Action", action: {}),
-                    bottomSheetContent: {
-                        BPKText("This this bottom sheet content")
-                    })
+            BottomSheetHeader(closeAction: nil, title: "Title Here", action: .init(title: "Do Action", action: {}))
+                .frame(width: 300)
         )
     }
     
-    func test_default_bottom_sheet_large() {
+    func test_bottomSheetHeader_titleClosable() {
         assertSnapshot(
-            Color(BPKColor.surfaceDefaultColor)
-                .frame(width: 300, height: 500)
-                .bpkBottomSheet(
-                    isPresented: .constant(true),
-                    contentMode: .large,
-                    bottomSheetContent: {
-                        BPKText("This this bottom sheet content")
-                    })
+            BottomSheetHeader(closeAction: .init(title: "a11y label", action: {}), title: "Title Here", action: nil)
+                .frame(width: 300)
         )
     }
     
-    func test_closeable_bottom_sheet_large() {
+    func test_bottomSheetHeader() {
         assertSnapshot(
-            Color(BPKColor.surfaceDefaultColor)
-                .frame(width: 300, height: 500)
-                .bpkCloseableBottomSheet(
-                    isPresented: .constant(true),
-                    contentMode: .large,
-                    closeButtonAccessibilityLabel: "Close botton",
-                    title: "Title",
-                    action: BPKBottomSheetAction(title: "Action", action: {}),
-                    bottomSheetContent: {
-                        BPKText("This this bottom sheet content")
-                    })
+            BottomSheetHeader(
+                closeAction: .init(title: "a11y", action: {}),
+                title: "Title Here",
+                action: .init(title: "Do Action", action: {})
+            )
+            .frame(width: 300)
         )
     }
 }

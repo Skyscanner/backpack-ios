@@ -18,15 +18,17 @@
 
 import SwiftUI
 
-struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
+struct LegacyBottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
+    
+    @State private var controller: UIViewController?
     
     let contentMode: BPKBottomSheetContentMode
     let isClosable: Bool
     let closeButtonAccessibilityLabel: String?
     let title: String?
     let action: BPKBottomSheetAction?
-    let bottomSheetContent: BottomSheetContent
+    let bottomSheetContent: () -> BottomSheetContent
     
     init(
         isPresented: Binding<Bool>,
@@ -35,7 +37,7 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
-        @ViewBuilder bottomSheetContent: () -> BottomSheetContent
+        @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) {
         self._isPresented = isPresented
         self.contentMode = contentMode
@@ -43,25 +45,38 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         self.closeButtonAccessibilityLabel = closeButtonAccessibilityLabel
         self.title = title
         self.action = action
-        self.bottomSheetContent = bottomSheetContent()
+        self.bottomSheetContent = bottomSheetContent
     }
     
     func body(content: Content) -> some View {
-        ZStack {
-            content
-            scrim
-            switch contentMode {
-            case .large:
-                GeometryReader { proxy in
-                    contentWithMode(.large(maxHeight: maxHeight(forProxy: proxy)))
-                }
-            case .medium:
-                GeometryReader { proxy in
-                    let maxHeight = maxHeight(forProxy: proxy)
-                    contentWithMode(.medium(minHeight: maxHeight / 2, maxHeight: maxHeight))
+        content
+            .onChange(of: isPresented) { _ in
+                if isPresented {
+                    showDialogWithContent {
+                        ZStack {
+                            scrim
+                            switch contentMode {
+                            case .large:
+                                GeometryReader { proxy in
+                                    contentWithMode(.large(maxHeight: maxHeight(forProxy: proxy)))
+                                }
+                            case .medium:
+                                GeometryReader { proxy in
+                                    let maxHeight = maxHeight(forProxy: proxy)
+                                    contentWithMode(.medium(minHeight: maxHeight / 2, maxHeight: maxHeight))
+                                }
+                            case .fitContent:
+                                GeometryReader { proxy in
+                                    let maxHeight = maxHeight(forProxy: proxy)
+                                    contentWithMode(.fitContent(offset: maxHeight))
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    controller?.dismiss(animated: true)
                 }
             }
-        }
     }
     
     private var headerCloseAction: BPKBottomSheetAction? {
@@ -95,14 +110,14 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
         }
     }
     
-    private func contentWithMode(_ mode: BottomSheetContentViewContentMode) -> some View {
+    private func contentWithMode(_ mode: LegacyBottomSheetContentViewContentMode) -> some View {
         VStack {
             Spacer()
             LegacyBottomSheetContentView(
                 isPresented: $isPresented,
                 contentMode: mode,
                 header: { header },
-                bottomSheetContent: { bottomSheetContent }
+                bottomSheetContent: bottomSheetContent
             )
         }
         .ignoresSafeArea(edges: .bottom)
@@ -111,16 +126,34 @@ struct BottomSheetContainerViewModifier<BottomSheetContent: View>: ViewModifier 
     private func maxHeight(forProxy proxy: GeometryProxy) -> CGFloat {
         proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
     }
+    
+    private func showDialogWithContent<Content: View>(_ content: () -> Content) {
+        let controller = UIHostingController(rootView: content())
+        controller.view.backgroundColor = .clear
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .overFullScreen
+
+        rootViewController?.present(controller, animated: true)
+        self.controller = controller
+    }
+    
+    private var rootViewController: UIViewController? {
+        UIApplication.shared
+            .windows
+            .filter { $0.isKeyWindow }
+            .first?
+            .rootViewController
+    }
 }
 
-struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
+struct LegacyBottomSheetContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
         
         BPKButton("Show bottom sheet", action: {})
             .modifier(
-                BottomSheetContainerViewModifier(
+                LegacyBottomSheetContainerViewModifier(
                     isPresented: .constant(true),
-                    contentMode: .medium,
+                    contentMode: .fitContent,
                     isClosable: true,
                     closeButtonAccessibilityLabel: "Close button",
                     title: "Title",
@@ -131,7 +164,7 @@ struct BottomSheetContainerViewModifier_Previews: PreviewProvider {
                             BPKText("Bottom sheet content", style: .heading4)
                             BPKText("Bottom sheet content dfgdfg dfgntasd asdasd sdd  asd asd asd adsasda")
                                 .lineLimit(nil)
-                            Spacer()
+                            
                             BPKButton("Make Payment") {}
                                 .padding()
                         }

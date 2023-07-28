@@ -26,4 +26,9 @@ public enum BPKBottomSheetContentMode {
     /// Sheet is expansible
     /// Use `Spacer` in your content to define expansion behaviour
     case medium
+    
+    /// The sheet resizes to fit its content
+    /// Sheet is not expansible
+    /// Usage of `Spacer` in your content is not recommended
+    case fitContent
 }

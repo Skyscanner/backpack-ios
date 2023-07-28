@@ -5,43 +5,41 @@
 [![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKBottomSheet.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/BPKBottomSheet)
 
-## Default Bottom Sheet
+## Large Bottom Sheet
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___default_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___large_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___large_dm.png" alt="" width="375" /> |
 
-## Default Closeable Bottom Sheet
+## Medium Bottom Sheet
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___default-closeable_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___default-closeable_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___medium_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___medium_dm.png" alt="" width="375" /> |
 
  
-## Modal Bottom Sheet
+## Content Fit Bottom Sheet
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___modal_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___modal_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___content-fit_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___content-fit_dm.png" alt="" width="375" /> |
 
 ## Modal Closeable Bottom Sheet
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___modal-closeable_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bittom-sheet___modal-closeable_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___closable_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_bottom-sheet___closable_dm.png" alt="" width="375" /> |
 
 ## Usage
 
 `BPKBottomSheet` works as a `ViewModifier` that can be applied to any SwiftUI `View`.
 It's presented by binding the `isPresented` property to a `Binding<Bool>`.
 
-The default bottom sheet can be set or dragged to any height.
+The `medium` bottom sheet can be dragged to full screen.
 
-The closeable bottom sheet can have a header with close icon, title and any action you want. All of them are optional to set.
+You can close the bottom sheet by dragging the handle, tapping the close icon or by tapping the scrim.
 
-You can close the bottom sheet by dragging the handle, tapping the close icon, or swiping to dismiss.
-
-### Default Bottom Sheet
+### Large Bottom Sheet
 
 ```swift
 BPKButton("Show bottom sheet") {
@@ -49,15 +47,12 @@ BPKButton("Show bottom sheet") {
 }
 .bpkBottomSheet(
     isPresented: $showBottomSheet,
-    maxHeight: 600,
-    contentMode: .fullSize,
-    bottomSheetContent: {
+    contentMode: .large) {
         content
     }
-)
 ```
 
-### Default Closeable Bottom Sheet
+### Closeable Bottom Sheet
 
 ```swift
 BPKButton("Show bottom sheet") {
@@ -65,20 +60,13 @@ BPKButton("Show bottom sheet") {
 }
 .bpkCloseableBottomSheet(
     isPresented: $showBottomSheet,
-    maxHeight: 600,
-    contentMode: .fullSize,
-    closeButtonAccessibilityLabel: "Close button",
-    title: "Title",
-    action: BPKBottomSheetAction(
-        title: "Action",
-        action: {
-            print("Action button tapped")
-        }
-    )
-) { content }
+    contentMode: .medium,
+    closeButtonAccessibilityLabel: "Close button") {
+        content
+    }
 ```
 
-### Modal Bottom Sheet
+### Content Fit Bottom Sheet
 
 ```swift
 BPKButton("Show bottom sheet") {
@@ -86,32 +74,7 @@ BPKButton("Show bottom sheet") {
 }
 .bpkBottomSheet(
     isPresented: $showBottomSheet,
-    maxHeight: 600,
-    contentMode: .regular,
-    bottomSheetContent: {
+    contentMode: .contentFit) {
         content
     }
-)
-```
-
-
-### Modal Closeable Bottom Sheet
-
-```swift
-BPKButton("Show bottom sheet") {
-    showBottomSheet.toggle()
-}
-.bpkCloseableBottomSheet(
-    isPresented: $showBottomSheet,
-    maxHeight: 600,
-    contentMode: .regular,
-    closeButtonAccessibilityLabel: "Close button",
-    title: "Title",
-    action: BPKBottomSheetAction(
-        title: "Action",
-        action: {
-            print("Action button tapped")
-        }
-    )
-) { content }
 ```

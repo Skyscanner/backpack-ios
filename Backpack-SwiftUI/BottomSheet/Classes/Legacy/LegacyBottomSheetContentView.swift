@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-enum BottomSheetContentViewContentMode {
+enum LegacyBottomSheetContentViewContentMode {
     case large(maxHeight: CGFloat)
     case medium(minHeight: CGFloat, maxHeight: CGFloat)
+    case fitContent(offset: CGFloat)
 
     var minHeight: CGFloat {
         switch self {
@@ -28,6 +29,8 @@ enum BottomSheetContentViewContentMode {
             return height
         case .medium(let height, _):
             return height
+        case .fitContent:
+            return 0
         }
     }
     
@@ -37,6 +40,17 @@ enum BottomSheetContentViewContentMode {
             return height
         case .medium(_, let height):
             return height
+        case .fitContent:
+            return 0
+        }
+    }
+    
+    var offset: CGFloat {
+        switch self {
+        case .fitContent(let offset):
+            return offset
+        default:
+            return maxHeight
         }
     }
 }
@@ -48,7 +62,7 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
     @GestureState var translation: CGFloat = 0
     @State var offset: CGFloat
     
-    let contentMode: BottomSheetContentViewContentMode
+    let contentMode: LegacyBottomSheetContentViewContentMode
     
     let minHeight: CGFloat
     let maxHeight: CGFloat
@@ -58,7 +72,7 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
     
     init(
         isPresented: Binding<Bool>,
-        contentMode: BottomSheetContentViewContentMode,
+        contentMode: LegacyBottomSheetContentViewContentMode,
         header: @escaping () -> Header,
         bottomSheetContent: @escaping () -> Content
     ) {
@@ -67,7 +81,7 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
         self.contentMode = contentMode
         minHeight = contentMode.minHeight
         maxHeight = contentMode.maxHeight
-        offset = maxHeight
+        offset = contentMode.offset
         self.header = header
         self.bottomSheetContent = bottomSheetContent
     }
@@ -100,6 +114,9 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
     
     private func verticalOffset(currentSize: CGFloat) -> CGFloat {
         guard isPresented else {
+            if case let .fitContent(offset) = contentMode {
+                return offset
+            }
             return maxHeight + minHeight
         }
         guard currentSize - translation < minHeight else { return 0 }
@@ -119,7 +136,7 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
                 state = value.translation.height
             })
             .onEnded({ value in
-                var snapDistance = minHeight
+                var snapDistance = maxHeight * snapRatio
                 if case .medium = contentMode {
                     if offset != 0 {
                         snapDistance = minHeight * snapRatio
@@ -138,7 +155,7 @@ struct LegacyBottomSheetContentView<Header: View, Content: View>: View {
     private func onPresentedChanged(_ value: Bool) {
         withAnimation {
             guard value else {
-                offset = maxHeight
+                offset = contentMode.offset
                 return
             }
             if case .medium = contentMode {
@@ -187,10 +204,28 @@ struct BottomSheetContentView_Previews: PreviewProvider {
         )
     }
     
+    private static var fit: some View {
+        LegacyBottomSheetContentView(
+            isPresented: .constant(false),
+            contentMode: .fitContent(offset: 200),
+            header: {
+                BPKText("Fitted")
+                    .padding()
+            },
+            bottomSheetContent: {
+                VStack {
+                    BPKText("Hi")
+                    BPKText("Hi again")
+                }
+            }
+        )
+    }
+    
     static var previews: some View {
         ZStack {
             large
             medium
+            fit
         }
     }
 }

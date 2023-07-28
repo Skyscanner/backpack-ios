@@ -19,45 +19,55 @@
 import SwiftUI
 
 public extension View {
-    
+
+    /// Presents a bottom sheet.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to whether the bottom sheet should be shown.
+    ///   - contentMode: The content mode of the bottom sheet. Defaults to `.medium`.
+    ///   - closeButtonAccessibilityLabel: The accessibility label for the close button.
+    ///         If `nil`, the close button will not be shown.
+    ///   - title: The title of the bottom sheet. If `nil`, the title will not be shown.
+    ///   - action: The action button of the bottom sheet. If `nil`, the action button will not be shown.
+    ///   - bottomSheetContent: The content of the bottom sheet.
+    ///
+    /// - Note: For iOS 16 users and above, the bottom sheet will be presented using
+    ///         SwiftUI's native `BottomSheet` view.
+    ///         For iOS 15 users and below, the bottom sheet will be presented using a custom implementation.
+    @ViewBuilder
     func bpkBottomSheet<BottomSheetContent: View>(
         isPresented: Binding<Bool>,
         contentMode: BPKBottomSheetContentMode = .medium,
+        closeButtonAccessibilityLabel: String? = nil,
         title: String? = nil,
         action: BPKBottomSheetAction? = nil,
         @ViewBuilder bottomSheetContent: @escaping () -> BottomSheetContent
     ) -> some View {
-        modifier(
-            BottomSheetContainerViewModifier(
-                isPresented: isPresented,
-                contentMode: contentMode,
-                isClosable: false,
-                title: title,
-                action: action,
-                bottomSheetContent: { bottomSheetContent() }
+        if #available(iOS 16.0, *) {
+            modifier(
+                BottomSheetContainerViewModifier(
+                    isPresented: isPresented,
+                    contentMode: contentMode,
+                    isClosable: closeButtonAccessibilityLabel != nil,
+                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                    title: title,
+                    action: action,
+                    bottomSheetContent: bottomSheetContent
+                )
             )
-        )
-    }
-    
-    func bpkCloseableBottomSheet<BottomSheetContent: View>(
-        isPresented: Binding<Bool>,
-        contentMode: BPKBottomSheetContentMode = .medium,
-        closeButtonAccessibilityLabel: String,
-        title: String? = nil,
-        action: BPKBottomSheetAction? = nil,
-        @ViewBuilder bottomSheetContent: () -> BottomSheetContent
-    ) -> some View {
-        modifier(
-            BottomSheetContainerViewModifier(
-                isPresented: isPresented,
-                contentMode: contentMode,
-                isClosable: true,
-                closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
-                title: title,
-                action: action,
-                bottomSheetContent: { bottomSheetContent() }
+        } else {
+            modifier(
+                LegacyBottomSheetContainerViewModifier(
+                    isPresented: isPresented,
+                    contentMode: contentMode,
+                    isClosable: closeButtonAccessibilityLabel != nil,
+                    closeButtonAccessibilityLabel: closeButtonAccessibilityLabel,
+                    title: title,
+                    action: action,
+                    bottomSheetContent: bottomSheetContent
+                )
             )
-        )
+        }
     }
 }
 
@@ -65,8 +75,13 @@ struct BPKBottomSheet_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKButton("Show closeable bottom sheet") {}
-                .bpkBottomSheet(isPresented: .constant(true)) {
-                    BPKText("Bottom sheet content")
+                .bpkBottomSheet(
+                    isPresented: .constant(true),
+                    contentMode: .fitContent, closeButtonAccessibilityLabel: "asd", title: "Hello",
+                    action: BPKBottomSheetAction(
+                        title: "Action",
+                        action: {})) {
+                            BPKText("Bottom sheet content")
                 }
         }
     }
