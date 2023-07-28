@@ -69,6 +69,7 @@ struct ComponentCellsProvider {
             snackbar(),
             skeleton(),
             sliders(),
+            snippets(),
             spinners(),
             starRatings(),
             switches(),
@@ -106,10 +107,15 @@ extension ComponentCellsProvider {
         )
     }
     private func bottomSheet() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Bottom sheet",
-            storyboard: .named("BottomSheet", on: "BottomSheetViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BottomSheetExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Bottom sheet", tabs: $0) }
         )
     }
     private func button() -> CellDataSource {
@@ -317,6 +323,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: SliderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Slider", tabs: $0) }
+        )
+    }
+    private func snippets() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Snippet",
+            tabs: [
+                .swiftui(groups: SnippetGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Snippet", tabs: $0) }
         )
     }
     private func skeleton() -> CellDataSource {
