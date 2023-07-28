@@ -283,7 +283,12 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
-
+        
+        navigate(title: "Progress bar") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Section header") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()
