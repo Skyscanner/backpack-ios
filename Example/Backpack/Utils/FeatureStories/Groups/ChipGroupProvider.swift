@@ -40,7 +40,9 @@ struct ChipGroupProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable("Rail - Single Select", view: ChipGroupSingleSelectRailExampleView()),
-                presentable("Wrap - Single Select", view: ChipGroupSingleSelectWrapExampleView())
+                presentable("Wrap - Single Select", view: ChipGroupSingleSelectWrapExampleView()),
+                presentable("Rail - Multi Select", view: ChipGroupMultipleSelectRailExampleView()),
+                presentable("Wrap - Multi Select", view: ChipGroupMultipleSelectWrapExampleView())
             ]
         ).groups()
     }

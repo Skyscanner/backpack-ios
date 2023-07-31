@@ -22,16 +22,18 @@ import SwiftUI
 
 // swiftlint:disable closure_body_length
 class BPKChipGroupTests: XCTestCase {
+    let singleChips: [BPKSingleSelectChipGroup.ChipItem] = [
+        .init(text: "Barcelona"),
+        .init(text: "Tokio", icon: .city),
+        .init(text: "London"),
+        .init(text: "Shenzhen")
+    ]
+    
     func test_singleSelect_railChips_default() {
         assertSnapshot(
             VStack {
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .default,
                     selectedIndex: .constant(1),
                     type: .rail,
@@ -40,12 +42,7 @@ class BPKChipGroupTests: XCTestCase {
                 .padding()
                 
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .onDark,
                     selectedIndex: .constant(1),
                     type: .rail,
@@ -55,12 +52,7 @@ class BPKChipGroupTests: XCTestCase {
                 .background(.surfaceContrastColor)
                 
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .onImage,
                     selectedIndex: .constant(1),
                     type: .rail,
@@ -77,12 +69,7 @@ class BPKChipGroupTests: XCTestCase {
         assertSnapshot(
             VStack {
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .default,
                     selectedIndex: .constant(1),
                     type: .wrap,
@@ -91,12 +78,7 @@ class BPKChipGroupTests: XCTestCase {
                 .padding()
                 
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .onDark,
                     selectedIndex: .constant(1),
                     type: .wrap,
@@ -106,16 +88,115 @@ class BPKChipGroupTests: XCTestCase {
                 .background(.surfaceContrastColor)
                 
                 BPKSingleSelectChipGroup(
-                    chips: [
-                        .init(text: "Barcelona"),
-                        .init(text: "Tokio", icon: .city),
-                        .init(text: "London"),
-                        .init(text: "Shenzhen")
-                    ],
+                    chips: singleChips,
                     style: .onImage,
                     selectedIndex: .constant(1),
                     type: .wrap,
                     onItemClick: { _ in }
+                )
+                .padding()
+                .background(.statusSuccessSpotColor)
+                
+            }
+            .frame(width: 350)
+        )
+    }
+    
+    let multiselectChips: [BPKMultiSelectChipGroup.ChipItem] = [
+        .init(text: "Barcelona", selected: false, onClick: {}),
+        .init(text: "Tokio", icon: .city, selected: true, onClick: {}),
+        .init(text: "London", selected: true, onClick: {}),
+        .init(text: "Shenzhen", selected: false, onClick: {})
+    ]
+    
+    func test_multipleSelect_railChips_default() {
+        assertSnapshot(
+            VStack {
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .default,
+                    type: .rail(stickyChip: nil)
+                )
+                .padding()
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onDark,
+                    type: .rail(stickyChip: nil)
+                )
+                .padding()
+                .background(.surfaceContrastColor)
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onImage,
+                    type: .rail(stickyChip: nil)
+                )
+                .padding()
+                .background(.statusSuccessSpotColor)
+            }
+            .frame(width: 300)
+        )
+    }
+    
+    func test_multipleSelect_railWithStickyChips_default() {
+        let sticky = BPKMultiSelectChipGroup.StickyChipItem(
+            accessibilityLabel: "",
+            icon: .filter,
+            selected: false,
+            onClick: {}
+        )
+        assertSnapshot(
+            VStack {
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .default,
+                    type: .rail(stickyChip: sticky)
+                )
+                .padding()
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onDark,
+                    type: .rail(stickyChip: sticky)
+                )
+                .padding()
+                .background(.surfaceContrastColor)
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onImage,
+                    type: .rail(stickyChip: sticky)
+                )
+                .padding()
+                .background(.statusSuccessSpotColor)
+            }
+            .frame(width: 300)
+        )
+    }
+    
+    func test_multipleSelect_wrapChips_onDark() {
+        assertSnapshot(
+            VStack {
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .default,
+                    type: .wrap
+                )
+                .padding()
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onDark,
+                    type: .wrap
+                )
+                .padding()
+                .background(.surfaceContrastColor)
+                
+                BPKMultiSelectChipGroup(
+                    chips: multiselectChips,
+                    style: .onImage,
+                    type: .wrap
                 )
                 .padding()
                 .background(.statusSuccessSpotColor)

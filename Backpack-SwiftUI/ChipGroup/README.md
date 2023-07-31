@@ -19,7 +19,10 @@
 
 ## Usage
 
-Create ChipItems that used in the BPKSingleSelectChipGroup
+### Single Select
+
+Create ChipItems to be used in the group.
+
 ```swift
 let chips: [BPKSingleSelectChipGroup.ChipItem] = [
     .init(text: "Shenzhen", icon: .city),
@@ -32,55 +35,110 @@ let chips: [BPKSingleSelectChipGroup.ChipItem] = [
 ]
 ```
 
-Single line group without default selected item: 
+#### Single line group
+
 ```swift
+@State var selectedIndex: Int? = nil
 BPKSingleSelectChipGroup(
     chips: chips,
-    selectedIndex: .constant(nil)
+    selectedIndex: selectedIndex,
+    type: .rail
 ) {
     print("Chip item tapped")
 }
 ```
 
-Single line group with specific selected item: 
-```swift
-BPKSingleSelectChipGroup(
-    chips: chips,
-    selectedIndex: .constant(2)
-) {
-    print("Chip item tapped")
-}
-```
+#### Single line group on dark background: 
 
-Single line group on dark background: 
 ```swift
 BPKSingleSelectChipGroup(
     chips: chips,
     style: .onDark,
-    selectedIndex: .constant(2)
+    selectedIndex: selectedIndex
 ) {
     print("Chip item tapped")
 }
 ```
 
-Single line group on an image background: 
+#### Single line group on an image background: 
+
 ```swift
 BPKSingleSelectChipGroup(
     chips: chips,
     style: .onImage,
-    selectedIndex: .constant(2)
+    selectedIndex: selectedIndex
 ) {
     print("Chip item tapped")
 }
 ```
 
-Multiple lines of chips group 
+#### Multiple lines of chips group 
+
 ```swift
 BPKSingleSelectChipGroup(
     chips: chips,
-    selectedIndex: .constant(2),
+    selectedIndex: selectedIndex,
     type: .wrap
 ) {
     print("Chip item tapped")
 }
+```
+
+### Multiple Select
+
+Create ChipItems to be used in the group.
+
+```swift
+@State var chips: [BPKMultiSelectChipGroup.ChipItem] = [
+    .init(text: "Shenzhen", icon: .city, selected: true),
+    .init(text: "London", icon: .city, selected: true),
+    .init(text: "Edinburgh", selected: false),
+    .init(text: "Manchester", selected: false),
+    .init(text: "Belfast", selected: false),
+]
+```
+
+#### Single line group
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    type: .rail(stickyChip: nil)
+)
+```
+
+#### Single line group on dark background: 
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    style: .onDark
+)
+```
+
+#### Single line group on an image background: 
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    style: .onImage
+)
+```
+
+#### Single line group with a sticky chip: 
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    type: .rail(stickyChip: .init(accessibilityLabel: "Filters", icon: .filter, selected: false))
+)
+```
+
+#### Multiple lines of chips group 
+
+```swift
+BPKMultiSelectChipGroup(
+    chips: chips,
+    type: .wrap
+)
 ```
