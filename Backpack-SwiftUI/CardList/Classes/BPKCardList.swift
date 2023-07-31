@@ -21,8 +21,8 @@ import SwiftUI
 public struct BPKCardList<Content: View>: View {
     private let title: String
     private let description: String?
-    private let sectionHeaderButton: Action?
-    private let layout: Layout
+    private let sectionHeaderButton: BPKCardListAction?
+    private let layout: BPKCardListLayout
     private let initiallyShownCards: Int
     private let totalElements: Int
     private let cardForIndex: (_ index: Int) -> Content
@@ -31,8 +31,8 @@ public struct BPKCardList<Content: View>: View {
     public init(
         title: String,
         description: String?,
-        sectionHeaderButton: Action?,
-        layout: LayoutWithSectionHeaderButton,
+        sectionHeaderButton: BPKCardListAction,
+        layout: BPKCardListLayoutWithSectionHeaderButton,
         initiallyShownCards: Int = 3,
         totalElements: Int,
         @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
@@ -49,7 +49,7 @@ public struct BPKCardList<Content: View>: View {
     public init(
         title: String,
         description: String?,
-        layout: Layout,
+        layout: BPKCardListLayout,
         initiallyShownCards: Int = 3,
         totalElements: Int,
         @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
@@ -69,9 +69,7 @@ public struct BPKCardList<Content: View>: View {
 
             if totalElements > 0 {
                 cardsLayout {
-                    ForEach(0 ..< cardsShown, id: \.self) { index in
-                        cardForIndex(index)
-                    }
+                    ForEach(0 ..< cardsShown, id: \.self, content: cardForIndex)
                 }
             }
         }
@@ -106,9 +104,10 @@ public struct BPKCardList<Content: View>: View {
         switch layout {
         case .rail:
             ScrollView(.horizontal) {
-                HStack {
+                HStack(spacing: .base) {
                     cardsContent()
                 }
+                .padding(.base)
             }
         case .stack:
             VStack {

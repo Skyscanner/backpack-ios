@@ -18,8 +18,6 @@
 
 import SwiftUI
 
-extension BPKCardList {
-    public enum ActionStyle {
-        case `default`, onDark
-    }
+public enum BPKCardListActionStyle {
+    case `default`, onDark
 }

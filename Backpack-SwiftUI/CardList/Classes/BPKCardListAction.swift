@@ -18,16 +18,14 @@
 
 import SwiftUI
 
-extension BPKCardList {
-    public struct Action {
-        let title: String
-        let action: () -> Void
-        let style: ActionStyle
+public struct BPKCardListAction {
+    let title: String
+    let style: BPKCardListActionStyle
+    let action: () -> Void
 
-        public init(title: String, style: ActionStyle = .default, action: @escaping () -> Void) {
-            self.title = title
-            self.style = style
-            self.action = action
-        }
+    public init(title: String, style: BPKCardListActionStyle = .default, action: @escaping () -> Void) {
+        self.title = title
+        self.style = style
+        self.action = action
     }
 }

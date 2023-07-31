@@ -18,13 +18,11 @@
 
 import SwiftUI
 
-extension BPKCardList {
-    public enum AccessoryType {
-        case expand(String, String)
-        case button(Action)
-    }
+public enum BPKCardListAccessory {
+    case expand(String, String)
+    case button(BPKCardListAction)
+}
 
-    public enum AccessoryTypeWithSectionHeaderButton {
-        case expand(String, String)
-    }
+public enum BPKCardListAccessoryWithHeaderButton {
+    case expand(String, String)
 }

@@ -18,26 +18,24 @@
 
 import SwiftUI
 
-extension BPKCardList {
-    public enum Layout {
-        case rail
-        case stack(AccessoryType?)
-    }
+public enum BPKCardListLayout {
+    case rail
+    case stack(BPKCardListAccessory?)
+}
 
-    public enum LayoutWithSectionHeaderButton {
-        case rail
-        case stack(AccessoryTypeWithSectionHeaderButton?)
+public enum BPKCardListLayoutWithSectionHeaderButton {
+    case rail
+    case stack(BPKCardListAccessoryWithHeaderButton?)
 
-        var layout: Layout {
-            switch self {
-            case .rail:
-                return .rail
-            case .stack(let accessoryType):
-                if let accessoryType, case .expand(let expandingText, let collapsingText) = accessoryType {
-                    return .stack(.expand(expandingText, collapsingText))
-                } else {
-                    return .stack(nil)
-                }
+    var layout: BPKCardListLayout {
+        switch self {
+        case .rail:
+            return .rail
+        case .stack(let accessoryType):
+            if let accessoryType, case .expand(let expandingText, let collapsingText) = accessoryType {
+                return .stack(.expand(expandingText, collapsingText))
+            } else {
+                return .stack(nil)
             }
         }
     }
