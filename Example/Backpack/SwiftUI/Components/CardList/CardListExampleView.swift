@@ -66,10 +66,10 @@ struct CardListExampleView: View {
     }
 
     private var sectionHeaderButton: BPKCardListAction? {
-        guard showSectionHeaderButton, case .stack(let accessory) = layout else {
+        guard showSectionHeaderButton else {
             return nil
         }
-        if case .button = accessory {
+        if case .stack(let accessory) = layout, case .button = accessory {
             return nil
         }
         return .init(title: "Test button") {

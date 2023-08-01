@@ -38,6 +38,10 @@ struct CardListGroupsProvider {
                     view: CardListExampleView(layout: .rail, totalElements: 12)
                 ),
                 presentable(
+                    "Rail - Section Header & 12 total elements",
+                    view: CardListExampleView(layout: .rail, showSectionHeaderButton: true, totalElements: 12)
+                ),
+                presentable(
                     "Stack - 3 initial, 12 total elements",
                     view: CardListExampleView(layout: .stack(nil), totalElements: 12)
                 ),
@@ -48,7 +52,16 @@ struct CardListGroupsProvider {
                 presentable(
                     "Stack - Accessory Button",
                     view: CardListExampleView(layout: .stack(.button(.example)), totalElements: 12)
+                ),
+                presentable(
+                    "Stack - Section Expand & Header Button",
+                    view: CardListExampleView(
+                        layout: .stack(.expand("Show more", "Show less")),
+                        showSectionHeaderButton: true,
+                        totalElements: 12
+                    )
                 )
+
             ]
         ).groups()
     }
@@ -66,7 +79,7 @@ struct CardListGroupsProvider {
 }
 
 fileprivate extension BPKCardListAction {
-    static let example = BPKCardListAction(title: "Action button", style: .onDark) {
+    static let example = BPKCardListAction(title: "Action button") {
         print("Action button pressed")
     }
 }

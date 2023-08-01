@@ -64,9 +64,8 @@ public struct BPKCardList<Content: View>: View {
     }
 
     public var body: some View {
-        VStack {
-            BPKSectionHeader(title: title, description: description)
-
+        VStack(alignment: .leading, spacing: .base) {
+            sectionHeader
             if totalElements > 0 {
                 cardsLayout {
                     ForEach(0 ..< cardsShown, id: \.self, content: cardForIndex)
@@ -84,6 +83,17 @@ public struct BPKCardList<Content: View>: View {
         }
     }
 
+    private var sectionHeader: BPKSectionHeader {
+        if let sectionHeaderButton {
+            BPKSectionHeader(title: title, description: description) {
+                BPKButton(sectionHeaderButton.title, action: sectionHeaderButton.action)
+                    .buttonStyle((sectionHeaderButton.style == .default) ? .primary : .primaryOnDark)
+            }
+        } else {
+            BPKSectionHeader(title: title, description: description)
+        }
+    }
+
     @ViewBuilder private var accessoryView: some View {
         if case .stack(let accessory) = layout, let accessory {
             switch accessory {
@@ -96,6 +106,7 @@ public struct BPKCardList<Content: View>: View {
                 ) {
                     showingAllCards.toggle()
                 }
+                .buttonStyle(.link)
             }
         }
     }
@@ -110,7 +121,7 @@ public struct BPKCardList<Content: View>: View {
                 .padding(.base)
             }
         case .stack:
-            VStack {
+            Group {
                 cardsContent()
                 accessoryView
             }
