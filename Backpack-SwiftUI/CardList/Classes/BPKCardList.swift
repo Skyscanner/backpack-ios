@@ -66,6 +66,7 @@ public struct BPKCardList<Content: View>: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: .base) {
             sectionHeader
+                .padding()
             if totalElements > 0 {
                 cardsLayout {
                     ForEach(0 ..< cardsShown, id: \.self, content: cardForIndex)
@@ -100,13 +101,17 @@ public struct BPKCardList<Content: View>: View {
             case .button(let button):
                 BPKButton(button.title, action: button.action)
                     .buttonStyle((button.style == .default) ? .primary : .primaryOnDark)
+                    .stretchable()
             case .expand(let expandingText, let collapsingText):
                 BPKButton(
                     (showingAllCards) ? collapsingText : expandingText
                 ) {
-                    showingAllCards.toggle()
+                    withAnimation {
+                        showingAllCards.toggle()
+                    }
                 }
                 .buttonStyle(.link)
+                .stretchable()
             }
         }
     }
@@ -118,13 +123,13 @@ public struct BPKCardList<Content: View>: View {
                 HStack(spacing: .base) {
                     cardsContent()
                 }
-                .padding(.base)
+                .padding(.horizontal)
             }
         case .stack:
-            Group {
-                cardsContent()
-                accessoryView
-            }
+            cardsContent()
+                .padding(.horizontal)
+            accessoryView
+                .padding(.horizontal)
         }
     }
 }

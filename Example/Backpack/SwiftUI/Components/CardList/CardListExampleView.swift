@@ -26,42 +26,42 @@ struct CardListExampleView: View {
     let layout: BPKCardListLayout
     let showSectionHeaderButton: Bool
     let totalElements: Int
+    let contentType: ContentType
 
     init(
         initiallyShownCards: Int = 3,
         layout: BPKCardListLayout,
         showSectionHeaderButton: Bool = false,
-        totalElements: Int
+        totalElements: Int,
+        contentType: ContentType = .snippet
     ) {
         self.initiallyShownCards = initiallyShownCards
         self.layout = layout
         self.showSectionHeaderButton = showSectionHeaderButton
         self.totalElements = totalElements
+        self.contentType = contentType
     }
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: .base) {
-                if let sectionHeaderButton {
-                    BPKCardList(
-                        title: "Section title",
-                        description: "Description about this section (optional)",
-                        sectionHeaderButton: sectionHeaderButton,
-                        layout: BPKCardListLayoutWithSectionHeaderButton(layout: layout),
-                        initiallyShownCards: initiallyShownCards,
-                        totalElements: 9,
-                        cardForIndex: content(index:))
-                } else {
-                    BPKCardList(
-                        title: "Section title",
-                        description: "Description about this section (optional)",
-                        layout: layout,
-                        initiallyShownCards: initiallyShownCards,
-                        totalElements: 9,
-                        cardForIndex: content(index:))
-                }
+            if let sectionHeaderButton {
+                BPKCardList(
+                    title: "Section title",
+                    description: "Description about this section (optional)",
+                    sectionHeaderButton: sectionHeaderButton,
+                    layout: BPKCardListLayoutWithSectionHeaderButton(layout: layout),
+                    initiallyShownCards: initiallyShownCards,
+                    totalElements: 9,
+                    cardForIndex: content(index:))
+            } else {
+                BPKCardList(
+                    title: "Section title",
+                    description: "Description about this section (optional)",
+                    layout: layout,
+                    initiallyShownCards: initiallyShownCards,
+                    totalElements: 9,
+                    cardForIndex: content(index:))
             }
-            .padding()
         }
     }
 
@@ -77,7 +77,20 @@ struct CardListExampleView: View {
         }
     }
 
-    private func content(index: Int) -> some View {
+    @ViewBuilder private func content(index: Int) -> some View {
+        if contentType == .location {
+            locationContent(index: index)
+        } else {
+            switch layout {
+            case .rail:
+                railSnippet(index: index)
+            case .stack:
+                stackSnippet(index: index)
+            }
+        }
+    }
+
+    private func railSnippet(index: Int) -> some View {
         BPKSnippet(
             image: Image("dialog_image"),
             accessibilityLabel: "London at dawn",
@@ -86,6 +99,36 @@ struct CardListExampleView: View {
             bodyText: "Body Text \(index)",
             imageOrientation: .square)
         .frame(width: 281)
+    }
+
+    private func stackSnippet(index: Int) -> some View {
+        BPKSnippet(
+            image: Image("dialog_image"),
+            accessibilityLabel: "London at dawn",
+            headline: "Headline Text \(index)",
+            description: "Subheading \(index)",
+            bodyText: "Body Text \(index)",
+            imageOrientation: .square)
+    }
+
+    private func locationContent(index: Int) -> some View {
+        BPKCard(padding: .none) {
+            HStack {
+                Image("carousel_placeholder_\(index % 4 + 1)")
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
+                VStack {
+                    Text("Location \(index)")
+                }
+                Spacer()
+            }
+        }
+        .frame(height: 90)
+    }
+
+    enum ContentType {
+        case snippet
+        case location
     }
 }
 
