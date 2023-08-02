@@ -10,7 +10,7 @@ defaults:
 jobs:
   Setup:
     name: Install Dependencies
-    runs-on: macos-latest
+    runs-on: m1max
     permissions:
       statuses: write
       pull-requests: write
