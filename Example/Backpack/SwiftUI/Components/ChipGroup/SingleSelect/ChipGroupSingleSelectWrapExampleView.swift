@@ -19,6 +19,7 @@
 
 import SwiftUI
 import Backpack_SwiftUI
+import MapKit
 
 struct ChipGroupSingleSelectWrapExampleView: View {
     @State var selectedChip: Int?
@@ -61,13 +62,20 @@ struct ChipGroupSingleSelectWrapExampleView: View {
     }
     
     var onImageChip: some View {
-        BPKSingleSelectChipGroup(
-            chips: chips,
-            style: .onImage,
-            selectedIndex: $selectedChip,
-            type: .wrap) { _ in }
-            .padding()
-            .background(.statusSuccessSpotColor)
+        ZStack {
+            let coordsRegion = MKCoordinateRegion(
+                center: .init(latitude: 36.7, longitude: -04.4),
+                span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5)
+            )
+            Map(coordinateRegion: .constant(coordsRegion))
+                .frame(height: 150)
+            BPKSingleSelectChipGroup(
+                chips: chips,
+                style: .onImage,
+                selectedIndex: $selectedChip,
+                type: .wrap) { _ in }
+                .padding()
+        }
     }
 }
 
