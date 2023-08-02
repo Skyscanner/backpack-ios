@@ -37,6 +37,8 @@ public struct BPKProgressBar: View {
     let size: Size
     let value: Float
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     public init(max: Int, stepped: Bool, size: Size, value: Float) {
         self.max = max
         self.stepped = stepped
@@ -85,7 +87,9 @@ public struct BPKProgressBar: View {
             /// iOS 16 adds support for leading and trailing semantics rather than left-right
             /// but XCode 15 is needed to use that feature.
             /// Update API to leading and trailing when XCode 15 is used in CI
-            let corners: UIRectCorner = value == Float(max) ? .allCorners : [.topLeft, .bottomLeft]
+            let corners: UIRectCorner = value == Float(max) ? .allCorners
+            : layoutDirection == .leftToRight ? [.topLeft, .bottomLeft]
+            : [.topRight, .bottomRight]
             let cornerSize = size.height.value / 2
             Rectangle()
                 .clipShape(
