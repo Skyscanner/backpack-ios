@@ -86,12 +86,12 @@ public struct BPKCardList<Content: View>: View {
 
     private var sectionHeader: BPKSectionHeader {
         if let sectionHeaderButton {
-            BPKSectionHeader(title: title, description: description) {
+            return BPKSectionHeader(title: title, description: description) {
                 BPKButton(sectionHeaderButton.title, action: sectionHeaderButton.action)
                     .buttonStyle((sectionHeaderButton.style == .default) ? .primary : .primaryOnDark)
             }
         } else {
-            BPKSectionHeader(title: title, description: description)
+            return BPKSectionHeader(title: title, description: description)
         }
     }
 
