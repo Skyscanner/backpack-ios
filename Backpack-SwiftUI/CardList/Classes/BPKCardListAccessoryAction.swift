@@ -19,37 +19,18 @@
 import SwiftUI
 
 public extension BPKCardListLayout {
-    struct SectionHeaderAction {
-        let icon: BPKIcon
-        let accessibilityLabel: String
-        let style: BPKCardListActionStyle
-        let action: () -> Void
-
-        public init(
-            icon: BPKIcon,
-            accessibilityLabel: String,
-            style: BPKCardListActionStyle = .default,
-            action: @escaping () -> Void
-        ) {
-            self.icon = icon
-            self.accessibilityLabel = accessibilityLabel
-            self.style = style
-            self.action = action
-        }
-    }
-
     struct AccessoryAction {
         let title: String
         let icon: BPKButton.Icon?
         let accessibilityLabel: String
-        let style: BPKCardListActionStyle
+        let style: ActionStyle
         let action: () -> Void
 
         public init(
             title: String,
             icon: BPKButton.Icon?,
             accessibilityLabel: String,
-            style: BPKCardListActionStyle = .default,
+            style: ActionStyle = .default,
             action: @escaping () -> Void
         ) {
             self.title = title
