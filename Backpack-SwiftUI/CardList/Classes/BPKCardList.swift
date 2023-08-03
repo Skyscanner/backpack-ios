@@ -53,36 +53,28 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     }
 
     private func railLayout(with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?) -> some View {
-        VStack(alignment: .leading, spacing: .base) {
-            sectionHeader(with: sectionHeaderButton)
-
-            if elements.count > 0 {
-                ScrollView(.horizontal) {
-                    HStack(spacing: .base) {
-                        ForEach(elements) { index in
-                            cardForElement(index)
-                        }
+        cardListSkeleton(with: sectionHeaderButton) {
+            ScrollView(.horizontal) {
+                HStack(spacing: .base) {
+                    ForEach(elements) { index in
+                        cardForElement(index)
                     }
-                    .padding(.horizontal)
                 }
+                .padding(.horizontal)
             }
         }
     }
 
     private func stackLayout(with accessory: BPKCardListLayout.Accessory?) -> some View {
-        VStack(alignment: .leading, spacing: .base) {
-            sectionHeader(with: accessory?.sectionHeaderButton)
-
-            if elements.count > 0 {
-                let cardsShown = (showingAllCards) ? elements.count : min(initiallyShownCards, elements.count)
-                let filteredCards = elements[0..<cardsShown]
-                ForEach(filteredCards) { element in
-                    cardForElement(element)
-                }
-                    .padding(.horizontal)
-                accessoryView(accessory: accessory)
-                    .padding(.horizontal)
+        cardListSkeleton(with: accessory?.sectionHeaderButton) {
+            let cardsShown = (showingAllCards) ? elements.count : min(initiallyShownCards, elements.count)
+            let filteredCards = elements[0..<cardsShown]
+            ForEach(filteredCards) { element in
+                cardForElement(element)
             }
+                .padding(.horizontal)
+            accessoryView(accessory: accessory)
+                .padding(.horizontal)
         }
     }
 
@@ -99,6 +91,18 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         } else {
             return BPKSectionHeader(title: title, description: description)
                 .padding()
+        }
+    }
+
+    private func cardListSkeleton<LayoutContent: View>(
+        with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?,
+        @ViewBuilder andContent content: () -> LayoutContent) -> some View {
+        VStack(alignment: .leading, spacing: .base) {
+            sectionHeader(with: sectionHeaderButton)
+
+            if elements.count > 0 {
+                content()
+            }
         }
     }
 
