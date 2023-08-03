@@ -19,24 +19,6 @@
 import SwiftUI
 
 public enum BPKCardListLayout {
-    case rail
-    case stack(BPKCardListAccessory?)
-}
-
-public enum BPKCardListLayoutWithSectionHeaderButton {
-    case rail
-    case stack(BPKCardListAccessoryWithHeaderButton?)
-
-    var layout: BPKCardListLayout {
-        switch self {
-        case .rail:
-            return .rail
-        case .stack(let accessoryType):
-            if let accessoryType, case .expand(let expandingText, let collapsingText) = accessoryType {
-                return .stack(.expand(expandingText, collapsingText))
-            } else {
-                return .stack(nil)
-            }
-        }
-    }
+    case rail(SectionHeaderAction? = nil)
+    case stack(Accessory? = nil)
 }

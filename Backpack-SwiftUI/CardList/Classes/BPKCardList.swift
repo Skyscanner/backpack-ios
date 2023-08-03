@@ -18,118 +18,110 @@
 
 import SwiftUI
 
-public struct BPKCardList<Content: View>: View {
+public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let title: String
     private let description: String?
-    private let sectionHeaderButton: BPKCardListAction?
     private let layout: BPKCardListLayout
     private let initiallyShownCards: Int
-    private let totalElements: Int
-    private let cardForIndex: (_ index: Int) -> Content
+    private let elements: [Element]
+    private let cardForElement: (_ element: Element) -> Content
     @State private var showingAllCards = false
-
-    public init(
-        title: String,
-        description: String?,
-        sectionHeaderButton: BPKCardListAction,
-        layout: BPKCardListLayoutWithSectionHeaderButton,
-        initiallyShownCards: Int = 3,
-        totalElements: Int,
-        @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
-    ) {
-        self.title = title
-        self.description = description
-        self.sectionHeaderButton = sectionHeaderButton
-        self.layout = layout.layout
-        self.initiallyShownCards = initiallyShownCards
-        self.totalElements = totalElements
-        self.cardForIndex = cardForIndex
-    }
 
     public init(
         title: String,
         description: String?,
         layout: BPKCardListLayout,
         initiallyShownCards: Int = 3,
-        totalElements: Int,
-        @ViewBuilder cardForIndex: @escaping (_: Int) -> Content
+        elements: [Element],
+        @ViewBuilder cardForElement: @escaping (_: Element) -> Content
     ) {
         self.title = title
         self.description = description
-        self.sectionHeaderButton = nil
         self.layout = layout
         self.initiallyShownCards = initiallyShownCards
-        self.totalElements = totalElements
-        self.cardForIndex = cardForIndex
+        self.elements = elements
+        self.cardForElement = cardForElement
     }
 
     public var body: some View {
+        switch layout {
+        case .rail(let sectionHeaderButton):
+            railLayout(with: sectionHeaderButton)
+        case .stack(let accessory):
+            stackLayout(with: accessory)
+        }
+    }
+
+    private func railLayout(with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?) -> some View {
         VStack(alignment: .leading, spacing: .base) {
-            sectionHeader
-                .padding()
-            if totalElements > 0 {
-                cardsLayout {
-                    ForEach(0 ..< cardsShown, id: \.self, content: cardForIndex)
+            sectionHeader(with: sectionHeaderButton)
+
+            if elements.count > 0 {
+                ScrollView(.horizontal) {
+                    HStack(spacing: .base) {
+                        ForEach(elements) { index in
+                            cardForElement(index)
+                        }
+                    }
+                    .padding(.horizontal)
                 }
             }
         }
     }
 
-    private var cardsShown: Int {
-        switch layout {
-        case .rail:
-            return totalElements
-        case .stack:
-            return (showingAllCards) ? totalElements : min(initiallyShownCards, totalElements)
+    private func stackLayout(with accessory: BPKCardListLayout.Accessory?) -> some View {
+        VStack(alignment: .leading, spacing: .base) {
+            sectionHeader(with: accessory?.sectionHeaderButton)
+
+            if elements.count > 0 {
+                let cardsShown = (showingAllCards) ? elements.count : min(initiallyShownCards, elements.count)
+                let filteredCards = elements[0..<cardsShown]
+                ForEach(filteredCards) { element in
+                    cardForElement(element)
+                }
+                    .padding(.horizontal)
+                accessoryView(accessory: accessory)
+                    .padding(.horizontal)
+            }
         }
     }
 
-    private var sectionHeader: BPKSectionHeader {
+    private func sectionHeader(with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?) -> some View {
         if let sectionHeaderButton {
             return BPKSectionHeader(title: title, description: description) {
-                BPKButton(sectionHeaderButton.title, action: sectionHeaderButton.action)
-                    .buttonStyle((sectionHeaderButton.style == .default) ? .primary : .primaryOnDark)
+                BPKButton(
+                    icon: sectionHeaderButton.icon,
+                    accessibilityLabel: sectionHeaderButton.accessibilityLabel,
+                    action: sectionHeaderButton.action)
+                .buttonStyle((sectionHeaderButton.style == .default) ? .primary : .primaryOnDark)
             }
+            .padding()
         } else {
             return BPKSectionHeader(title: title, description: description)
+                .padding()
         }
     }
 
-    @ViewBuilder private var accessoryView: some View {
-        if case .stack(let accessory) = layout, let accessory {
-            switch accessory {
-            case .button(let button):
-                BPKButton(button.title, action: button.action)
-                    .buttonStyle((button.style == .default) ? .primary : .primaryOnDark)
-                    .stretchable()
-            case .expand(let expandingText, let collapsingText):
-                BPKButton(
-                    (showingAllCards) ? collapsingText : expandingText
-                ) {
-                    withAnimation {
-                        showingAllCards.toggle()
-                    }
-                }
-                .buttonStyle(.link)
-                .stretchable()
-            }
+    @ViewBuilder private func accessoryView(accessory: BPKCardListLayout.Accessory?) -> some View {
+        if case .footerButton(let button) = accessory {
+            BPKButton(
+                button.title,
+                icon: button.icon,
+                action: button.action
+            )
+            .buttonStyle((button.style == .default) ? .primary : .primaryOnDark)
+            .stretchable()
         }
-    }
-
-    @ViewBuilder private func cardsLayout(cardsContent: () -> some View) -> some View {
-        switch layout {
-        case .rail:
-            ScrollView(.horizontal) {
-                HStack(spacing: .base) {
-                    cardsContent()
+        if case .expand(let expandingText, let collapsingText, _) = accessory {
+            BPKButton(
+                (showingAllCards) ? collapsingText : expandingText
+            ) {
+                withAnimation {
+                    showingAllCards.toggle()
                 }
-                .padding(.horizontal)
             }
-        case .stack:
-            cardsContent()
-                .padding(.horizontal)
-            accessoryView
-                .padding(.horizontal)
+            .buttonStyle(.link)
+            .stretchable()
         }
     }
 }

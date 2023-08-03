@@ -22,15 +22,19 @@ import SwiftUI
 import Backpack_SwiftUI
 
 class BPKCardListViewTests: XCTestCase {
+    private let testElements: [TestElement] = (0..<12).map { index in
+        TestElement(id: index)
+    }
+
     func testCardListRail() {
         assertSnapshot(
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                layout: .rail,
+                layout: .rail(),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -40,13 +44,16 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                sectionHeaderButton: .init(title: "Action", action: {
-                    print("Section header action pressed")
-                }),
-                layout: .rail,
+                layout: .rail(
+                    .init(
+                        icon: .addCircle,
+                        accessibilityLabel: "Add item") {
+                            print("Tap add button")
+                    }
+                ),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -56,10 +63,10 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                layout: .stack(nil),
+                layout: .stack(),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -70,18 +77,18 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .stack(
-                    .button(
+                    .footerButton(
                         .init(
-                            title: "Action",
-                            action: {
-                                print("Section header action pressed")
-                            }
-                        )
+                            title: "Add item",
+                            icon: .init(icon: .addCircle, position: .trailing),
+                            accessibilityLabel: "Add item") {
+                                print("Tap add button")
+                        }
                     )
                 ),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -93,8 +100,8 @@ class BPKCardListViewTests: XCTestCase {
                 description: "Description about this section (optional)",
                 layout: .stack(.expand("Show more", "Show less")),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -104,13 +111,18 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                sectionHeaderButton: .init(title: "Action", action: {
-                    print("Section header action pressed")
-                }),
-                layout: .stack(nil),
+                layout: .stack(
+                    .sectionHeaderButton(
+                        .init(
+                            icon: .addCircle,
+                            accessibilityLabel: "Add item") {
+                                print("Tap add button")
+                        }
+                    )
+                ),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
@@ -122,24 +134,28 @@ class BPKCardListViewTests: XCTestCase {
                 description: "Description about this section (optional)",
                 layout: .stack(.expand("Show more", "Show less")),
                 initiallyShownCards: 2,
-                totalElements: 4,
-                cardForIndex: locationContent(index:))
+                elements: Array(testElements[0..<4]),
+                cardForElement: locationContent(element:))
             .padding()
         )
     }
 
-    private func locationContent(index: Int) -> some View {
+    private func locationContent(element: TestElement) -> some View {
         BPKCard(padding: .none) {
             HStack {
-                Image("carousel_placeholder_\(index % 4 + 1)", bundle: TestsBundle.bundle)
+                Image("carousel_placeholder_\(element.id % 4 + 1)", bundle: TestsBundle.bundle)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                 VStack {
-                    Text("Location \(index)")
+                    Text("Location \(element.id)")
                 }
                 Spacer()
             }
         }
         .frame(height: 90)
+    }
+
+    private struct TestElement: Identifiable {
+        let id: Int
     }
 }

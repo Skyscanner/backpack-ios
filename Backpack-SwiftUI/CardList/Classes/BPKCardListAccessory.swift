@@ -18,11 +18,21 @@
 
 import SwiftUI
 
-public enum BPKCardListAccessory {
-    case expand(String, String)
-    case button(BPKCardListAction)
-}
-
-public enum BPKCardListAccessoryWithHeaderButton {
-    case expand(String, String)
+extension BPKCardListLayout {
+    public enum Accessory {
+        case sectionHeaderButton(SectionHeaderAction)
+        case expand(String, String, SectionHeaderAction? = nil)
+        case footerButton(AccessoryAction)
+        
+        var sectionHeaderButton: SectionHeaderAction? {
+            switch self {
+            case .expand(_, _, let sectionHeaderAction):
+                return sectionHeaderAction
+            case .sectionHeaderButton(let sectionHeaderAction):
+                return sectionHeaderAction
+            default:
+                return nil
+            }
+        }
+    }
 }

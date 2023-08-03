@@ -31,19 +31,19 @@ struct CardListGroupsProvider {
             cellDataSources: [
                 presentable(
                     "Rail - 5 total elements",
-                    view: CardListExampleView(layout: .rail, totalElements: 5)
+                    view: CardListExampleView(layout: .rail(), totalElements: 5)
                 ),
                 presentable(
                     "Rail - 12 total elements",
-                    view: CardListExampleView(layout: .rail, totalElements: 12)
+                    view: CardListExampleView(layout: .rail(), totalElements: 12)
                 ),
                 presentable(
                     "Rail - 12 total elements & Section Header Button",
-                    view: CardListExampleView(layout: .rail, showSectionHeaderButton: true, totalElements: 12)
+                    view: CardListExampleView(layout: .rail(.example), totalElements: 12)
                 ),
                 presentable(
                     "Stack - 3 initial, 12 total elements",
-                    view: CardListExampleView(layout: .stack(nil), totalElements: 12)
+                    view: CardListExampleView(layout: .stack(), totalElements: 12)
                 ),
                 presentable(
                     "Stack - Accessory Expand",
@@ -51,13 +51,12 @@ struct CardListGroupsProvider {
                 ),
                 presentable(
                     "Stack - Accessory Button",
-                    view: CardListExampleView(layout: .stack(.button(.example)), totalElements: 12)
+                    view: CardListExampleView(layout: .stack(.footerButton(.example)), totalElements: 12)
                 ),
                 presentable(
                     "Stack - Accessory Expand & Section Header Button",
                     view: CardListExampleView(
-                        layout: .stack(.expand("Show more", "Show less")),
-                        showSectionHeaderButton: true,
+                        layout: .stack(.expand("Show more", "Show less", .example)),
                         totalElements: 12
                     )
                 )
@@ -78,8 +77,19 @@ struct CardListGroupsProvider {
     }
 }
 
-fileprivate extension BPKCardListAction {
-    static let example = BPKCardListAction(title: "Action button") {
-        print("Action button pressed")
+fileprivate extension BPKCardListLayout.SectionHeaderAction {
+    static let example = BPKCardListLayout.SectionHeaderAction(
+        icon: .addCircle,
+        accessibilityLabel: "Add item") {
+            print("Tap add button")
+    }
+}
+
+fileprivate extension BPKCardListLayout.AccessoryAction {
+    static let example = BPKCardListLayout.AccessoryAction(
+        title: "Add item",
+        icon: .init(icon: .addCircle, position: .trailing),
+        accessibilityLabel: "Add item") {
+            print("Tap add button")
     }
 }

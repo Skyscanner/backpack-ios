@@ -24,101 +24,77 @@ import Backpack_SwiftUI
 struct CardListExampleView: View {
     let initiallyShownCards: Int
     let layout: BPKCardListLayout
-    let showSectionHeaderButton: Bool
-    let totalElements: Int
+    let elements: [TestElement]
     let contentType: ContentType
 
     init(
         initiallyShownCards: Int = 3,
         layout: BPKCardListLayout,
-        showSectionHeaderButton: Bool = false,
         totalElements: Int,
         contentType: ContentType = .snippet
     ) {
         self.initiallyShownCards = initiallyShownCards
         self.layout = layout
-        self.showSectionHeaderButton = showSectionHeaderButton
-        self.totalElements = totalElements
+        self.elements = (0..<totalElements).map { index in
+            TestElement(id: index)
+        }
         self.contentType = contentType
     }
 
     var body: some View {
         ScrollView {
-            if let sectionHeaderButton {
-                BPKCardList(
-                    title: "Section title",
-                    description: "Description about this section (optional)",
-                    sectionHeaderButton: sectionHeaderButton,
-                    layout: BPKCardListLayoutWithSectionHeaderButton(layout: layout),
-                    initiallyShownCards: initiallyShownCards,
-                    totalElements: 9,
-                    cardForIndex: content(index:))
-            } else {
-                BPKCardList(
-                    title: "Section title",
-                    description: "Description about this section (optional)",
-                    layout: layout,
-                    initiallyShownCards: initiallyShownCards,
-                    totalElements: 9,
-                    cardForIndex: content(index:))
-            }
+            BPKCardList(
+                title: "Section title",
+                description: "Description about this section (optional)",
+                layout: layout,
+                initiallyShownCards: initiallyShownCards,
+                elements: elements,
+                cardForElement: content(element:))
         }
     }
 
-    private var sectionHeaderButton: BPKCardListAction? {
-        guard showSectionHeaderButton else {
-            return nil
-        }
-        if case .stack(let accessory) = layout, case .button = accessory {
-            return nil
-        }
-        return .init(title: "Test button") {
-            print("Section header button tapped")
-        }
-    }
-
-    @ViewBuilder private func content(index: Int) -> some View {
+    @ViewBuilder private func content(element: TestElement) -> some View {
         if contentType == .location {
-            locationContent(index: index)
+            locationContent(element: element)
         } else {
             switch layout {
             case .rail:
-                railSnippet(index: index)
+                railSnippet(element: element)
             case .stack:
-                stackSnippet(index: index)
+                stackSnippet(element: element)
             }
         }
     }
 
-    private func railSnippet(index: Int) -> some View {
+    private func railSnippet(element: TestElement) -> some View {
         BPKSnippet(
             image: Image("dialog_image"),
             accessibilityLabel: "London at dawn",
-            headline: "Headline Text \(index)",
-            description: "Subheading \(index)",
-            bodyText: "Body Text \(index)",
+            headline: "Headline Text \(element.id)",
+            description: "Subheading \(element.id)",
+            bodyText: "Body Text \(element.id)",
             imageOrientation: .square)
         .frame(width: 281)
     }
 
-    private func stackSnippet(index: Int) -> some View {
+    private func stackSnippet(element: TestElement) -> some View {
         BPKSnippet(
             image: Image("dialog_image"),
             accessibilityLabel: "London at dawn",
-            headline: "Headline Text \(index)",
-            description: "Subheading \(index)",
-            bodyText: "Body Text \(index)",
+            headline: "Headline Text \(element.id)",
+            description: "Subheading \(element.id)",
+            bodyText: "Body Text \(element.id)",
             imageOrientation: .square)
     }
 
-    private func locationContent(index: Int) -> some View {
+    private func locationContent(element: TestElement) -> some View {
         BPKCard(padding: .none) {
             HStack {
-                Image("carousel_placeholder_\(index % 4 + 1)")
+                Image("carousel_placeholder_\(element.id % 4 + 1)")
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                 VStack {
-                    Text("Location \(index)")
+                    Text("Location \(element.id)")
                 }
                 Spacer()
             }
@@ -130,29 +106,17 @@ struct CardListExampleView: View {
         case snippet
         case location
     }
+
+    struct TestElement: Identifiable {
+        let id: Int
+    }
 }
 
 struct CardListExampleView_Previews: PreviewProvider {
     static var previews: some View {
         CardListExampleView(
-            layout: .rail,
-            showSectionHeaderButton: false,
+            layout: .rail(),
             totalElements: 9
         )
-    }
-}
-
-fileprivate extension BPKCardListLayoutWithSectionHeaderButton {
-    init(layout: BPKCardListLayout) {
-        switch layout {
-        case .rail:
-            self = .rail
-        case .stack(let accessory):
-            if case .expand(let expandingText, let collapsingText) = accessory {
-                self = .stack(.expand(expandingText, collapsingText))
-            } else {
-                self = .stack(nil)
-            }
-        }
     }
 }
