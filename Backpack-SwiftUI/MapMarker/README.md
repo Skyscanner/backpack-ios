@@ -1,9 +1,9 @@
 # Backpack-SwiftUI/MapMarker
 
 [![Cocoapods](https://img.shields.io/cocoapods/v/Backpack-SwiftUI.svg?style=flat)](hhttps://cocoapods.org/pods/Backpack-SwiftUI)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue) Price Marker](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPriceMapMarker.html)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue) Pointer Marker](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPointerMapMarker.html)
-[![class reference](https://img.shields.io/badge/Class%20reference-iOS-blue) Poi Marker](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPoiMapMarker.html)
+[![Price Marker reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPriceMapMarker.html)
+[![Pointer Marker reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPointerMapMarker.html)
+[![Poi Marker reference](https://img.shields.io/badge/Class%20reference-iOS-blue)](https://backpack.github.io/ios/versions/latest/swiftui/Structs/BPKPoiMapMarker.html)
 [![view on Github](https://img.shields.io/badge/Source%20code-GitHub-lightgrey)](https://github.com/Skyscanner/backpack-ios/tree/main/Backpack-SwiftUI/MapMarker)
 
 | Day | Night |
