@@ -54,10 +54,14 @@
     return [self.calendar fs_numberOfDaysInMonth:month];
 }
 
-- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate {
+- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate toMaxDate:(NSDate *)maxDate {
     NSDate *firstDay = [self firstValidDayOfMonth:month fromMinDate:minDate];
     NSDate *lastDay = [self lastDayOfMonth:month];
-
+    NSComparisonResult compareDate = [lastDay compare:maxDate];
+    if (compareDate == NSOrderedDescending) {
+        lastDay = maxDate;
+    }
+    
     NSArray<NSDate *> *dateList = @[firstDay, lastDay];
     return [BPKSimpleDate simpleDatesFromDates:dateList forCalendar:self.calendar];
 }
