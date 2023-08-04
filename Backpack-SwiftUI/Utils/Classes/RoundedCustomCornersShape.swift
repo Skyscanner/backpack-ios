@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct BottomSheetShape: Shape {
+struct RoundedCustomCornersShape: Shape {
     let radius: CGFloat
     let corners: UIRectCorner
     
@@ -32,8 +32,8 @@ struct BottomSheetShape: Shape {
     }
 }
 
-extension Shape where Self == BottomSheetShape {
-    static var bottomSheet: BottomSheetShape {
-        BottomSheetShape(radius: BPKCornerRadius.lg.value, corners: [.topLeft, .topRight])
+extension Shape where Self == RoundedCustomCornersShape {
+    static var bottomSheet: RoundedCustomCornersShape {
+        RoundedCustomCornersShape(radius: BPKCornerRadius.lg.value, corners: [.topLeft, .topRight])
     }
 }

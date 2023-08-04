@@ -287,10 +287,18 @@ extension ComponentCellsProvider {
         )
     }
     private func progressBar() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Progress bar",
-            storyboard: .named("ProgressBar", on: "ProgressBarViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "ProgressBar",
+                    identifier: "ProgressBarViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ProgressBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Progress bar", tabs: $0) }
         )
     }
     private func ratings() -> CellDataSource {

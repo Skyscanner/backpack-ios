@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDate *)firstValidDayOfMonth:(NSDate *)month fromMinDate:(NSDate *)minDate;
 - (NSDate *)lastDayOfMonth:(NSDate *)month;
-- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate;
+- (NSArray<BPKSimpleDate *> *)dateListForMonth:(NSDate *)month fromMinDate:(NSDate *)minDate toMaxDate:(NSDate *)maxDate;
 
 @end
 
