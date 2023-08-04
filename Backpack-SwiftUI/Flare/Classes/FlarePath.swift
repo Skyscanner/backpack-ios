@@ -26,7 +26,7 @@ struct FlarePath: Shape {
     let cornerRadius: BPKSpacing
     /// The direction of the flare.
     let direction: BPKFlareDirection
-
+    
     /// Creates a path with a flare at one end.
     func path(in rect: CGRect) -> Path {
         let size = rect.size
