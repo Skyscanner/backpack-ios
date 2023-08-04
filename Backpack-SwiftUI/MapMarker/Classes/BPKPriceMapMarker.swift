@@ -124,17 +124,6 @@ public struct BPKPoiMapMarker: View {
         case focused
         case disabled
         
-        var fontStyle: BPKFontStyle {
-            switch self {
-            case .default:
-                return .label2
-            case .focused:
-                return .label1
-            case .disabled:
-                return .label2
-            }
-        }
-        
         var foregroundColor: BPKColor {
             switch self {
             case .default:
@@ -162,9 +151,15 @@ public struct BPKPoiMapMarker: View {
     let icon: BPKIcon
     
     public var body: some View {
-        BPKIconView(icon)
-            .background(state.backgroundColor)
-            .clipShape(BPKPOIMapMarkerShape())
+        ZStack {
+            Color(state.backgroundColor)
+                .frame(width: 26, height: 32)
+                .clipShape(BPKPOIMapMarkerShape())
+                
+            BPKIconView(icon)
+                .foregroundColor(state.foregroundColor)
+                .padding(.bottom, 6)
+        }
     }
 }
 
@@ -174,37 +169,23 @@ struct BPKPOIMapMarkerShape: Shape {
     func path(in rect: CGRect) -> Path {
         let size = rect.size
         return Path { path in
-            let contentRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            path.addRoundedRect(
-                in: contentRect,
-                cornerSize: CGSize(width: 5, height: 5))
+            path.addRelativeArc(
+                center: .init(x: size.width / 2, y: size.width / 2),
+                radius: size.width / 2,
+                startAngle: .degrees(30),
+                delta: .degrees(-240)
+            )
+
+            let courvePoint: CGFloat = 3
+            let startPoint = CGPoint(x: size.width / 2, y: size.height - courvePoint)
+
+            path.addRelativeArc(
+                center: startPoint,
+                radius: courvePoint,
+                startAngle: .degrees(120),
+                delta: .degrees(-60)
+            )
         }
-    }
-    
-    /// Appends a flare to the path.
-    /// - Parameters:
-    ///   - path: The path to append the flare to.
-    ///   - size: The size of the bounding rectangle of the path.
-    ///   - flareHeight: The height of the flare.
-    private func appendFlare(to path: inout Path, size: CGSize, flareHeight: CGFloat) {
-        
-        // The scale factor to adjust the size of the flare
-        
-        let startPointY = size.height - flareHeight
-        
-        let centerPoint = (size.width / 2)
-        path.move(to: CGPoint(x: centerPoint - 8, y: startPointY))
-        
-        let courvePoint: CGFloat = 2
-        path.addLine(to: CGPoint(x: centerPoint - courvePoint, y: size.height - courvePoint / 2))
-        
-        let center = CGPoint(x: centerPoint + courvePoint, y: size.height - courvePoint / 2)
-        let curveCenter1 = CGPoint(x: centerPoint - courvePoint / 2, y: startPointY + flareHeight)
-        let curveCenter2 = CGPoint(x: centerPoint + courvePoint / 2, y: startPointY + flareHeight)
-        path.addCurve(to: center, control1: curveCenter1, control2: curveCenter2)
-        
-        path.addLine(to: CGPoint(x: centerPoint + 8, y: startPointY))
-        
     }
 }
 
@@ -232,61 +213,44 @@ struct BPKFlareViewMap<Content: View>: View {
     
     var body: some View {
         content
-            .clipShape(
-                FlarePath(
-                    flareHeight: 6,
-                    cornerRadius: .sm,
-                    direction: direction
-                )
-            )
+            .clipShape(FlarePath())
     }
     
     struct FlarePath: Shape {
-        /// The height of the flare.
-        let flareHeight: CGFloat
-        /// The corner radius of the rounded rectangle.
-        let cornerRadius: BPKSpacing
-        /// The direction of the flare.
-        let direction: BPKFlareDirection
+        let flareSize = CGSize(width: 16, height: 6)
+        let cornerRadius = BPKSpacing.sm
         
-        /// Creates a path with a flare at one end.
         func path(in rect: CGRect) -> Path {
             let size = rect.size
             return Path { path in
-                let contentTop = direction == .top ? flareHeight : 0
-                let contentBottom = direction == .top ? size.height : size.height - flareHeight
-                
-                let contentRect = CGRect(x: 0, y: contentTop, width: size.width, height: contentBottom - contentTop)
                 path.addRoundedRect(
-                    in: contentRect,
+                    in: CGRect(
+                        origin: .zero,
+                        size: CGSize(width: size.width, height: size.height - flareSize.height)
+                    ),
                     cornerSize: CGSize(width: cornerRadius.value, height: cornerRadius.value))
-                appendFlare(to: &path, size: size, flareHeight: flareHeight)
+                appendFlare(
+                    to: &path,
+                    startPoint: CGPoint(x: size.width / 2, y: size.height),
+                    flareSize: flareSize
+                )
             }
         }
-
-        /// Appends a flare to the path.
-        /// - Parameters:
-        ///   - path: The path to append the flare to.
-        ///   - size: The size of the bounding rectangle of the path.
-        ///   - flareHeight: The height of the flare.
-        private func appendFlare(to path: inout Path, size: CGSize, flareHeight: CGFloat) {
-            
-            // The scale factor to adjust the size of the flare
-            
-            let startPointY = size.height - flareHeight
-            
-            let centerPoint = (size.width / 2)
-            path.move(to: CGPoint(x: centerPoint - 8, y: startPointY))
+        
+        private func appendFlare(to path: inout Path, startPoint: CGPoint, flareSize: CGSize) {
+            let startPointY = startPoint.y - flareSize.height
+            let centerPoint = startPoint.x
+            path.move(to: CGPoint(x: centerPoint - flareSize.width / 2, y: startPointY))
             
             let courvePoint: CGFloat = 2
-            path.addLine(to: CGPoint(x: centerPoint - courvePoint, y: size.height - courvePoint / 2))
+            path.addLine(to: CGPoint(x: centerPoint - courvePoint, y: startPoint.y - courvePoint / 2))
             
-            let center = CGPoint(x: centerPoint + courvePoint, y: size.height - courvePoint / 2)
-            let curveCenter1 = CGPoint(x: centerPoint - courvePoint / 2, y: startPointY + flareHeight)
-            let curveCenter2 = CGPoint(x: centerPoint + courvePoint / 2, y: startPointY + flareHeight)
+            let center = CGPoint(x: centerPoint + courvePoint, y: startPoint.y - courvePoint / 2)
+            let curveCenter1 = CGPoint(x: centerPoint - courvePoint / 2, y: startPointY + flareSize.height)
+            let curveCenter2 = CGPoint(x: centerPoint + courvePoint / 2, y: startPointY + flareSize.height)
             path.addCurve(to: center, control1: curveCenter1, control2: curveCenter2)
             
-            path.addLine(to: CGPoint(x: centerPoint + 8, y: startPointY))
+            path.addLine(to: CGPoint(x: centerPoint + flareSize.width / 2, y: startPointY))
         }
     }
 }
@@ -305,6 +269,12 @@ struct BPKPriceMapMarker_Previews: PreviewProvider {
     }
     
     static var previews: some View {
+        VStack {
+            BPKPoiMapMarker(state: .default, icon: .landmark)
+            BPKPoiMapMarker(state: .default, icon: .landmark)
+            BPKPoiMapMarker(state: .default, icon: .landmark)
+            Spacer()
+        }
         Map(
             coordinateRegion: .constant(.init(
                 center: .init(latitude: 51.5, longitude: -0.1),
