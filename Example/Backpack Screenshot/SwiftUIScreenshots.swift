@@ -284,6 +284,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
 
+        navigate(title: "Map") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "map-markers", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
         navigate(title: "Section header") {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Default"].tap()

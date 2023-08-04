@@ -16,9 +16,24 @@
  * limitations under the License.
  */
 
-import XCTest
 import SwiftUI
-@testable import Backpack_SwiftUI
 
-class BPKPriceMapMarker: XCTestCase {
+public struct BPKPointerMapMarker: View {
+    public init() {}
+    
+    public var body: some View {
+        Circle()
+            .stroke(Color(.surfaceDefaultColor), lineWidth: 2)
+            .background(
+                Circle()
+                    .foregroundColor(.coreAccentColor)
+            )
+            .frame(width: .base, height: .base)
+    }
+}
+
+struct BPKPointerMapMarker_Previews: PreviewProvider {
+    static var previews: some View {
+        BPKPointerMapMarker()
+    }
 }
