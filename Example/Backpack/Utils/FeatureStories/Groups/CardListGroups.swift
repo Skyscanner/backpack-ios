@@ -39,7 +39,7 @@ struct CardListGroupsProvider {
                 ),
                 presentable(
                     "Rail - 12 total elements & Section Header Button",
-                    view: CardListExampleView(layout: .rail(.example), totalElements: 12)
+                    view: CardListExampleView(layout: .rail(sectionHeaderAction: .example), totalElements: 12)
                 ),
                 presentable(
                     "Stack - 3 initial, 12 total elements",
@@ -47,16 +47,26 @@ struct CardListGroupsProvider {
                 ),
                 presentable(
                     "Stack - Accessory Expand",
-                    view: CardListExampleView(layout: .stack(.expand("Show more", "Show less")), totalElements: 12)
+                    view: CardListExampleView(layout: .stack(
+                        accessory: .expand(
+                            expandText: "Show more",
+                            collapseText: "Show less")
+                    ), totalElements: 12)
                 ),
                 presentable(
                     "Stack - Accessory Button",
-                    view: CardListExampleView(layout: .stack(.footerButton(.example)), totalElements: 12)
+                    view: CardListExampleView(layout: .stack(accessory: .footerButton(.example)), totalElements: 12)
                 ),
                 presentable(
                     "Stack - Accessory Expand & Section Header Button",
                     view: CardListExampleView(
-                        layout: .stack(.expand("Show more", "Show less", .example)),
+                        layout: .stack(
+                            accessory: .expand(
+                                expandText: "Show more",
+                                collapseText: "Show less",
+                                sectionHeaderButton: .example
+                            )
+                        ),
                         totalElements: 12
                     )
                 )

@@ -45,7 +45,7 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .rail(
-                    .init(
+                    sectionHeaderAction: .init(
                         icon: .addCircle,
                         accessibilityLabel: "Add item") {
                             print("Tap add button")
@@ -71,13 +71,13 @@ class BPKCardListViewTests: XCTestCase {
         )
     }
 
-    func testCardListStackWithButtonAccessory() {
+    func testCardListStackWithFooterButtonAccessory() {
         assertSnapshot(
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .stack(
-                    .footerButton(
+                    accessory: .footerButton(
                         .init(
                             title: "Add item",
                             icon: .init(icon: .addCircle, position: .trailing),
@@ -98,7 +98,7 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                layout: .stack(.expand("Show more", "Show less")),
+                layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
                 initiallyShownCards: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
@@ -112,7 +112,7 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .stack(
-                    .sectionHeaderButton(
+                    accessory: .sectionHeaderButton(
                         .init(
                             icon: .addCircle,
                             accessibilityLabel: "Add item") {
@@ -132,7 +132,17 @@ class BPKCardListViewTests: XCTestCase {
             BPKCardList(
                 title: "Section title",
                 description: "Description about this section (optional)",
-                layout: .stack(.expand("Show more", "Show less")),
+                layout: .stack(
+                    accessory: .expand(
+                        expandText: "Show more",
+                        collapseText: "Show less",
+                        sectionHeaderButton: .init(
+                            icon: .addCircle,
+                            accessibilityLabel: "Add item") {
+                                print("Tap add button")
+                        }
+                    )
+                ),
                 initiallyShownCards: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))

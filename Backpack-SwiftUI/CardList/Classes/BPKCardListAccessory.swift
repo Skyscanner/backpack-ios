@@ -21,7 +21,7 @@ import SwiftUI
 extension BPKCardListLayout {
     public enum Accessory {
         case sectionHeaderButton(SectionHeaderAction)
-        case expand(String, String, SectionHeaderAction? = nil)
+        case expand(expandText: String, collapseText: String, sectionHeaderButton: SectionHeaderAction? = nil)
         case footerButton(AccessoryAction)
         
         var sectionHeaderButton: SectionHeaderAction? {
