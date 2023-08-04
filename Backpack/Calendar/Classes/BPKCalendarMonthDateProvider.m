@@ -61,7 +61,7 @@
     if (compareDate == NSOrderedDescending) {
         lastDay = maxDate;
     }
-    
+
     NSArray<NSDate *> *dateList = @[firstDay, lastDay];
     return [BPKSimpleDate simpleDatesFromDates:dateList forCalendar:self.calendar];
 }

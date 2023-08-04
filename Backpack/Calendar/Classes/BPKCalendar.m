@@ -436,7 +436,7 @@ CGFloat const BPKCalendarDefaultCellHeight = 44;
     NSDate *date = [month dateForCalendar:self.gregorian];
     NSDate *minDate = [self.minDate dateForCalendar:self.gregorian];
     NSDate *maxDate = [self.maxDate dateForCalendar:self.gregorian];
-    
+
     NSArray<BPKSimpleDate *> *selectedDates = [self.dateProvider dateListForMonth:date fromMinDate:minDate toMaxDate:maxDate];
 
     BOOL previousMultiSelectionConfiguration = self.calendarView.allowsMultipleSelection;
