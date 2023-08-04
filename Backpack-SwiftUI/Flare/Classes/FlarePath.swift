@@ -22,10 +22,18 @@ import SwiftUI
 struct FlarePath: Shape {
     /// The height of the flare.
     let flareHeight: CGFloat
+    let flareWidth: CGFloat
     /// The corner radius of the rounded rectangle.
     let cornerRadius: BPKSpacing
     /// The direction of the flare.
     let direction: BPKFlareDirection
+    
+    init(flareHeight: CGFloat, flareWidth: CGFloat = 1, cornerRadius: BPKSpacing, direction: BPKFlareDirection) {
+        self.flareHeight = flareHeight
+        self.flareWidth = flareWidth
+        self.cornerRadius = cornerRadius
+        self.direction = direction
+    }
     
     /// Creates a path with a flare at one end.
     func path(in rect: CGRect) -> Path {
@@ -84,6 +92,8 @@ struct FlarePath: Shape {
 struct FlarePath_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
+            Color(.coreAccentColor)
+                .clipShape(FlarePath(flareHeight: 20, flareWidth: 2, cornerRadius: .xxl, direction: .bottom))
             Color(.coreAccentColor)
                 .clipShape(FlarePath(flareHeight: 20, cornerRadius: .xxl, direction: .bottom))
             Color(.coreAccentColor)
