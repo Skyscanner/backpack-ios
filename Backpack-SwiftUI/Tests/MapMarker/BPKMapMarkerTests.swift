@@ -71,9 +71,9 @@ class BPKMapMarkerTests: XCTestCase {
         )
     }
 
-    func test_disabledPoiMapMarker() {
+    func test_viewedPoiMapMarker() {
         assertSnapshot(
-            BPKPoiMapMarker(state: .disabled, icon: .landmark)
+            BPKPoiMapMarker(state: .viewed, icon: .landmark)
                 .padding()
         )
     }

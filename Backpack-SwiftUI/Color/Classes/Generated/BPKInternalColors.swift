@@ -49,6 +49,11 @@ internal extension BPKColor {
     static let chipOnDarkOnDismissIconColor = BPKColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1)
         .darkVariant(BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
+    /// The `mapMarkerViewedForegroundColor` internal color.
+    
+    static let mapMarkerViewedForegroundColor = BPKColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8)
+        .darkVariant(BPKColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.8))
+
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
     static let buttonSecondaryPressedBackgroundColor = BPKColor(red: 0.761, green: 0.788, blue: 0.804, alpha: 1)

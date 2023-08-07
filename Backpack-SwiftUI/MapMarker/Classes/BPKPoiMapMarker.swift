@@ -22,15 +22,15 @@ public struct BPKPoiMapMarker: View {
     public enum State {
         case `default`
         case focused
-        case disabled
+        case viewed
         
         var foregroundColor: BPKColor {
             switch self {
             case .default:
                 return .surfaceDefaultColor
-            case .focused:
+            case .viewed:
                 return .coreEcoColor
-            case .disabled:
+            case .focused:
                 return .statusSuccessSpotColor
             }
         }
@@ -39,10 +39,24 @@ public struct BPKPoiMapMarker: View {
             switch self {
             case .default:
                 return .statusSuccessSpotColor
-            case .focused:
+            case .viewed:
                 return .statusSuccessFillColor
-            case .disabled:
+            case .focused:
                 return .surfaceDefaultColor
+            }
+        }
+        
+        var markerSize: CGSize {
+            switch self {
+            case .focused: return CGSize(width: 32, height: 40)
+            default: return CGSize(width: 26, height: 32)
+            }
+        }
+        
+        var topPadding: CGFloat {
+            switch self {
+            case .focused: return BPKSpacing.md.value
+            default: return 6
             }
         }
     }
@@ -50,39 +64,45 @@ public struct BPKPoiMapMarker: View {
     private let state: State
     private let icon: BPKIcon
     
+    private let focusedStrokeWidth: CGFloat = 1
+    
     public init(state: State, icon: BPKIcon) {
         self.state = state
         self.icon = icon
     }
     
     public var body: some View {
-        if state == .disabled {
-            ZStack {
-                Color(state.backgroundColor)
-                    .frame(width: 32, height: 40)
-                    .clipShape(MarkerShape())
+        if state == .focused {
+            poiMarker {
+                markerShapeView
                     .overlay(
                         MarkerShape()
-                            .stroke(Color(.statusSuccessSpotColor), lineWidth: 1)
+                            .stroke(Color(state.foregroundColor), lineWidth: focusedStrokeWidth)
                     )
-                BPKIconView(icon)
-                    .foregroundColor(state.foregroundColor)
-                    .padding(.bottom, .md)
-                
             }
-            .shadow(.sm)
         } else {
-            ZStack {
-                Color(state.backgroundColor)
-                    .frame(width: 26, height: 32)
-                    .clipShape(MarkerShape())
-                
-                BPKIconView(icon)
-                    .foregroundColor(state.foregroundColor)
-                    .padding(.bottom, 6)
-            }
-            .shadow(.sm)
+            poiMarker { markerShapeView }
         }
+    }
+    
+    private func poiMarker<IconView: View>(withIcon content: () -> IconView) -> some View {
+        ZStack(alignment: .top) {
+            content()
+            iconView
+                .padding(.top, state.topPadding)
+        }
+        .shadow(.sm)
+    }
+    
+    private var iconView: some View {
+        BPKIconView(icon)
+            .foregroundColor(state.foregroundColor)
+    }
+    
+    private var markerShapeView: some View {
+        Color(state.backgroundColor)
+            .frame(width: state.markerSize.width, height: state.markerSize.height)
+            .clipShape(MarkerShape())
     }
 }
 
@@ -90,8 +110,8 @@ struct BPKPoiMapMarker_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKPoiMapMarker(state: .default, icon: .landmark)
+            BPKPoiMapMarker(state: .viewed, icon: .landmark)
             BPKPoiMapMarker(state: .focused, icon: .landmark)
-            BPKPoiMapMarker(state: .disabled, icon: .landmark)
         }
     }
 }

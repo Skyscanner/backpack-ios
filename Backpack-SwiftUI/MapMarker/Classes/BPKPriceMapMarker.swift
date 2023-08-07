@@ -27,13 +27,9 @@ public struct BPKPriceMapMarker: View {
         
         var fontStyle: BPKFontStyle {
             switch self {
-            case .default:
-                return .label2
             case .focused:
                 return .label1
-            case .viewed:
-                return .label2
-            case .disabled:
+            default:
                 return .label2
             }
         }
@@ -45,8 +41,7 @@ public struct BPKPriceMapMarker: View {
             case .focused:
                 return .coreAccentColor
             case .viewed:
-                return .init(value: .white.withAlphaComponent(0.8))
-                    .darkVariant(.init(value: .black.withAlphaComponent(0.8)))
+                return .mapMarkerViewedForegroundColor
             case .disabled:
                 return .textDisabledColor
             }
@@ -54,14 +49,17 @@ public struct BPKPriceMapMarker: View {
         
         var backgroundColor: BPKColor {
             switch self {
-            case .default:
+            case .default, .viewed:
                 return .coreAccentColor
-            case .focused:
+            case .focused, .disabled:
                 return .surfaceDefaultColor
-            case .viewed:
-                return .coreAccentColor
-            case .disabled:
-                return .surfaceDefaultColor
+            }
+        }
+        
+        var flareColor: BPKColor {
+            switch self {
+            case .focused: return foregroundColor
+            default: return backgroundColor
             }
         }
     }
@@ -69,42 +67,33 @@ public struct BPKPriceMapMarker: View {
     private let state: State
     private let price: String
     
+    private let flareHeight: CGFloat = 6
+    
     public init(state: State, price: String) {
         self.state = state
         self.price = price
     }
     
     public var body: some View {
-        content
-            .clipShape(MarkerShape())
+        labelView
+            .if(state == .focused) { label in
+                label.overlay(
+                    MarkerShape(flareHeight: flareHeight)
+                        .stroke(Color(state.foregroundColor), lineWidth: BPKSpacing.sm.value)
+                )
+            }
+            .clipShape(MarkerShape(flareHeight: flareHeight))
             .shadow(.sm)
     }
     
-    @ViewBuilder
-    private var content: some View {
-        if case .focused = state {
-            VStack(spacing: BPKSpacing.none) {
-                BPKText(price, style: state.fontStyle)
-                    .foregroundColor(state.foregroundColor)
-                    .clipShape(RoundedRectangle(cornerRadius: .xs))
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, .md)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: .xs)
-                            .stroke(Color(.coreAccentColor), lineWidth: 4)
-                    )
-                    .background(state.backgroundColor)
-                Color(.coreAccentColor)
-                    .frame(width: 16, height: 6)
-            }
-        } else {
-            BPKText(price, style: state.fontStyle)
-                .foregroundColor(state.foregroundColor)
-                .padding(.bottom, 6)
-                .padding(.vertical, 4)
-                .padding(.horizontal, .md)
-                .background(state.backgroundColor)
-        }
+    private var labelView: some View {
+        BPKText(price, style: state.fontStyle)
+            .foregroundColor(state.foregroundColor)
+            .padding(.vertical, .sm)
+            .padding(.horizontal, .md)
+            .background(state.backgroundColor)
+            .padding(.bottom, flareHeight)
+            .background(state.flareColor)
     }
 }
 

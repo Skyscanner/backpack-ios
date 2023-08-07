@@ -70,7 +70,7 @@ struct MapMarkerExampleView: View {
                     coordinate: .init(latitude: 51.53, longitude: -0.04)
                 ),
                 Annotation(
-                    marker: .poi(.landmark, .disabled),
+                    marker: .poi(.landmark, .viewed),
                     coordinate: .init(latitude: 51.51, longitude: -0.04)
                 )
             ]) { item in

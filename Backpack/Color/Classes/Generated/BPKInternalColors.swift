@@ -50,6 +50,12 @@ internal extension BPKColor {
         withLightVariant: UIColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1),
         darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
+    /// The `mapMarkerViewedForegroundColor` internal color.
+    
+    static let mapMarkerViewedForegroundColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8),
+        darkVariant: UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.8))
+
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
     static let buttonSecondaryPressedBackgroundColor = BPKColor.dynamicColor(

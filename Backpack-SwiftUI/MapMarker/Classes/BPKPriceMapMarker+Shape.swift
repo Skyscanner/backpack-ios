@@ -20,8 +20,12 @@ import SwiftUI
 
 extension BPKPriceMapMarker {
     struct MarkerShape: Shape {
-        let flareSize = CGSize(width: 16, height: 6)
-        let cornerRadius = BPKSpacing.sm
+        private let flareSize: CGSize
+        private let cornerRadius = BPKSpacing.sm
+        
+        init(flareHeight: CGFloat) {
+            flareSize = CGSize(width: BPKSpacing.base.value, height: flareHeight)
+        }
         
         func path(in rect: CGRect) -> Path {
             let size = rect.size
@@ -61,6 +65,6 @@ extension BPKPriceMapMarker {
 struct BPKPriceMapMarkerShape_Previews: PreviewProvider {
     static var previews: some View {
         Color(.coreAccentColor)
-            .clipShape(BPKPriceMapMarker.MarkerShape())
+            .clipShape(BPKPriceMapMarker.MarkerShape(flareHeight: 6))
     }
 }
