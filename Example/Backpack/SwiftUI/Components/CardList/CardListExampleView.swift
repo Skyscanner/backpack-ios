@@ -22,18 +22,18 @@ import SwiftUI
 import Backpack_SwiftUI
 
 struct CardListExampleView: View {
-    let initiallyShownCards: Int
+    let initiallyShownCardsCount: Int
     let layout: BPKCardListLayout
     let elements: [TestElement]
     let contentType: ContentType
 
     init(
-        initiallyShownCards: Int = 3,
+        initiallyShownCardsCount: Int = 3,
         layout: BPKCardListLayout,
         totalElements: Int,
         contentType: ContentType = .snippet
     ) {
-        self.initiallyShownCards = initiallyShownCards
+        self.initiallyShownCardsCount = initiallyShownCardsCount
         self.layout = layout
         self.elements = (0..<totalElements).map { index in
             TestElement(id: index)
@@ -47,7 +47,7 @@ struct CardListExampleView: View {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: layout,
-                initiallyShownCards: initiallyShownCards,
+                initiallyShownCardsCount: initiallyShownCardsCount,
                 elements: elements,
                 cardForElement: content(element:))
         }

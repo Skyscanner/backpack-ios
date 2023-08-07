@@ -22,7 +22,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
     private let title: String
     private let description: String?
     private let layout: BPKCardListLayout
-    private let initiallyShownCards: Int
+    private let initiallyShownCardsCount: Int
     private let elements: [Element]
     private let cardForElement: (_ element: Element) -> Content
     @State private var showingAllCards = false
@@ -31,80 +31,83 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         title: String,
         description: String?,
         layout: BPKCardListLayout,
-        initiallyShownCards: Int = 3,
+        initiallyShownCardsCount: Int = 3,
         elements: [Element],
         @ViewBuilder cardForElement: @escaping (_: Element) -> Content
     ) {
         self.title = title
         self.description = description
         self.layout = layout
-        self.initiallyShownCards = initiallyShownCards
+        self.initiallyShownCardsCount = initiallyShownCardsCount
         self.elements = elements
         self.cardForElement = cardForElement
     }
 
     public var body: some View {
         switch layout {
-        case .rail(let sectionHeaderButton):
-            railLayout(with: sectionHeaderButton)
+        case .rail(let sectionHeaderAction):
+            railLayout(with: sectionHeaderAction)
         case .stack(let accessory):
             stackLayout(with: accessory)
         }
     }
 
-    private func railLayout(with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?) -> some View {
-        cardListSkeleton(with: sectionHeaderButton) {
+    private func railLayout(with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?) -> some View {
+        cardListSkeleton(with: sectionHeaderAction) {
             ScrollView(.horizontal) {
                 HStack(spacing: .base) {
                     ForEach(elements) { index in
                         cardForElement(index)
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, .base)
             }
         }
+    }
+
+    private var filteredCards: ArraySlice<Element> {
+        let cardsShown = (showingAllCards) ? elements.count : min(initiallyShownCardsCount, elements.count)
+        return elements[0..<cardsShown]
     }
 
     private func stackLayout(with accessory: BPKCardListLayout.Accessory?) -> some View {
-        cardListSkeleton(with: accessory?.sectionHeaderButton) {
-            let cardsShown = (showingAllCards) ? elements.count : min(initiallyShownCards, elements.count)
-            let filteredCards = elements[0..<cardsShown]
+        cardListSkeleton(with: accessory?.sectionHeaderAction) {
             ForEach(filteredCards) { element in
                 cardForElement(element)
             }
-                .padding(.horizontal)
+            .padding(.horizontal, .base)
             accessoryView(accessory: accessory)
-                .padding(.horizontal)
+                .padding(.horizontal, .base)
         }
     }
 
-    private func sectionHeader(with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?) -> some View {
-        if let sectionHeaderButton {
+    private func sectionHeader(with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?) -> some View {
+        if let sectionHeaderAction {
             return BPKSectionHeader(title: title, description: description) {
                 BPKButton(
-                    icon: sectionHeaderButton.icon,
-                    accessibilityLabel: sectionHeaderButton.accessibilityLabel,
-                    action: sectionHeaderButton.action)
-                .buttonStyle((sectionHeaderButton.style == .default) ? .primary : .primaryOnDark)
+                    icon: sectionHeaderAction.icon,
+                    accessibilityLabel: sectionHeaderAction.accessibilityLabel,
+                    action: sectionHeaderAction.action)
+                .buttonStyle((sectionHeaderAction.style == .default) ? .primary : .primaryOnDark)
             }
-            .padding()
+            .padding(.base)
         } else {
             return BPKSectionHeader(title: title, description: description)
-                .padding()
+                .padding(.base)
         }
     }
 
     private func cardListSkeleton<LayoutContent: View>(
-        with sectionHeaderButton: BPKCardListLayout.SectionHeaderAction?,
+        with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?,
         @ViewBuilder andContent content: () -> LayoutContent) -> some View {
-        VStack(alignment: .leading, spacing: .base) {
-            sectionHeader(with: sectionHeaderButton)
+            VStack(alignment: .leading, spacing: .base) {
+                sectionHeader(with: sectionHeaderAction)
 
-            if elements.count > 0 {
-                content()
+                if elements.count > 0 {
+                    content()
+                }
             }
         }
-    }
 
     @ViewBuilder private func accessoryView(accessory: BPKCardListLayout.Accessory?) -> some View {
         if case .footerButton(let button) = accessory {

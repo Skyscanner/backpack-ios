@@ -24,7 +24,7 @@ extension BPKCardListLayout {
         case expand(expandText: String, collapseText: String, sectionHeaderButton: SectionHeaderAction? = nil)
         case footerButton(AccessoryAction)
         
-        var sectionHeaderButton: SectionHeaderAction? {
+        var sectionHeaderAction: SectionHeaderAction? {
             switch self {
             case .expand(_, _, let sectionHeaderAction):
                 return sectionHeaderAction

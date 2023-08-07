@@ -32,7 +32,7 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .rail(),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -51,7 +51,7 @@ class BPKCardListViewTests: XCTestCase {
                             print("Tap add button")
                     }
                 ),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -64,7 +64,7 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .stack(),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -86,7 +86,7 @@ class BPKCardListViewTests: XCTestCase {
                         }
                     )
                 ),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -99,7 +99,7 @@ class BPKCardListViewTests: XCTestCase {
                 title: "Section title",
                 description: "Description about this section (optional)",
                 layout: .stack(accessory: .expand(expandText: "Show more", collapseText: "Show less")),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -120,7 +120,7 @@ class BPKCardListViewTests: XCTestCase {
                         }
                     )
                 ),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
@@ -143,7 +143,7 @@ class BPKCardListViewTests: XCTestCase {
                         }
                     )
                 ),
-                initiallyShownCards: 2,
+                initiallyShownCardsCount: 2,
                 elements: Array(testElements[0..<4]),
                 cardForElement: locationContent(element:))
             .padding()
