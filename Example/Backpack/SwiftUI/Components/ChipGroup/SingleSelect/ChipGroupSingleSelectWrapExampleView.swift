@@ -22,7 +22,7 @@ import Backpack_SwiftUI
 import MapKit
 
 struct ChipGroupSingleSelectWrapExampleView: View {
-    @State var selectedChip: Int?
+    @State var selectedChip: Int? = 1
     
     let chips: [BPKSingleSelectChipGroup.ChipItem] = [
         .init(text: "Shenzhen", icon: .city),
