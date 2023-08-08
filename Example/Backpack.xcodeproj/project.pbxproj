@@ -65,6 +65,7 @@
 		53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */; };
 		53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */; };
 		53D4614E29E574EB0061C222 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */; };
 		53D7FBB527F715AF00DEE588 /* UIWindowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */; };
 		53E075A527FC780C0033147C /* NavBarGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A427FC780C0033147C /* NavBarGroups.swift */; };
 		53E075A727FC95D70033147C /* MapGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E075A627FC95D70033147C /* MapGroups.swift */; };
@@ -274,6 +275,7 @@
 		53C6620F29EA0DAB00BF1A62 /* AttributedTextExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTextExampleView.swift; sourceTree = "<group>"; };
 		53C7F0B52A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectRailExampleView.swift; sourceTree = "<group>"; };
 		53C7F0B62A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipGroupSingleSelectWrapExampleView.swift; sourceTree = "<group>"; };
+		53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerExampleView.swift; sourceTree = "<group>"; };
 		53D7FBB427F715AF00DEE588 /* UIWindowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowFactory.swift; sourceTree = "<group>"; };
 		53E075A427FC780C0033147C /* NavBarGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarGroups.swift; sourceTree = "<group>"; };
 		53E075A627FC95D70033147C /* MapGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGroups.swift; sourceTree = "<group>"; };
@@ -700,6 +702,14 @@
 			path = SingleSelect;
 			sourceTree = "<group>";
 		};
+		53D6396D2A7D46DC007EF376 /* MapMarker */ = {
+			isa = PBXGroup;
+			children = (
+				53D6396E2A7D46ED007EF376 /* MapMarkerExampleView.swift */,
+			);
+			path = MapMarker;
+			sourceTree = "<group>";
+		};
 		53E075AA27FC9A5F0033147C /* Groups */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,6 +869,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				53D6396D2A7D46DC007EF376 /* MapMarker */,
 				5346243E2A7437AF0059A0B5 /* ProgressBar */,
 				A17006532A5BBEE900134458 /* BottomSheet */,
 				A1B2DBFF2A43077E00DE6980 /* ChipGroup */,
@@ -1699,6 +1710,7 @@
 				AAD90D0229D58F8D0003E133 /* BPKFlightLegViewController.swift in Sources */,
 				D2EB964C25C05DF600988978 /* MapViewController.swift in Sources */,
 				D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */,
+				53D6396F2A7D46ED007EF376 /* MapMarkerExampleView.swift in Sources */,
 				53C7F0BA2A4C615D003A8740 /* ChipGroupSingleSelectWrapExampleView.swift in Sources */,
 				5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */,
 				53C6621F29EA0DAB00BF1A62 /* StarRatingPlayground.swift in Sources */,

@@ -283,6 +283,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Map") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "map-markers", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
         
         navigate(title: "Progress bar") {
             switchTab(title: "SwiftUI")

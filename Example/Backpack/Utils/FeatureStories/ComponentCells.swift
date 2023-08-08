@@ -260,10 +260,15 @@ extension ComponentCellsProvider {
         )
     }
     private func mapView() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Map",
-            groups: MapGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Navigation bars", children: $0) }
+            tabs: [
+                .uikit(groups: MapGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(MapMarkerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Map Markers", tabs: $0) }
         )
     }
     private func panels() -> CellDataSource {
