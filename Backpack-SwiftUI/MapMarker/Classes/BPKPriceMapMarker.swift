@@ -19,51 +19,6 @@
 import SwiftUI
 
 public struct BPKPriceMapMarker: View {
-    public enum State {
-        case `default`
-        case focused
-        case viewed
-        case disabled
-        
-        var fontStyle: BPKFontStyle {
-            switch self {
-            case .focused:
-                return .label1
-            default:
-                return .label2
-            }
-        }
-        
-        var foregroundColor: BPKColor {
-            switch self {
-            case .default:
-                return .textPrimaryInverseColor
-            case .focused:
-                return .coreAccentColor
-            case .viewed:
-                return .mapMarkerViewedForegroundColor
-            case .disabled:
-                return .textDisabledColor
-            }
-        }
-        
-        var backgroundColor: BPKColor {
-            switch self {
-            case .default, .viewed:
-                return .coreAccentColor
-            case .focused, .disabled:
-                return .surfaceDefaultColor
-            }
-        }
-        
-        var flareColor: BPKColor {
-            switch self {
-            case .focused: return foregroundColor
-            default: return backgroundColor
-            }
-        }
-    }
-    
     private let state: State
     private let price: String
     

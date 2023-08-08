@@ -19,48 +19,6 @@
 import SwiftUI
 
 public struct BPKPoiMapMarker: View {
-    public enum State {
-        case `default`
-        case focused
-        case viewed
-        
-        var foregroundColor: BPKColor {
-            switch self {
-            case .default:
-                return .surfaceDefaultColor
-            case .viewed:
-                return .coreEcoColor
-            case .focused:
-                return .statusSuccessSpotColor
-            }
-        }
-        
-        var backgroundColor: BPKColor {
-            switch self {
-            case .default:
-                return .statusSuccessSpotColor
-            case .viewed:
-                return .statusSuccessFillColor
-            case .focused:
-                return .surfaceDefaultColor
-            }
-        }
-        
-        var markerSize: CGSize {
-            switch self {
-            case .focused: return CGSize(width: 32, height: 40)
-            default: return CGSize(width: 26, height: 32)
-            }
-        }
-        
-        var topPadding: CGFloat {
-            switch self {
-            case .focused: return BPKSpacing.md.value
-            default: return 6
-            }
-        }
-    }
-    
     private let state: State
     private let icon: BPKIcon
     
