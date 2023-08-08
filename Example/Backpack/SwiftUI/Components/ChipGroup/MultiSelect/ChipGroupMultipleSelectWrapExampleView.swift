@@ -27,9 +27,9 @@ struct ChipGroupMultipleSelectWrapExampleView: View {
     }
     
     @State var chipsData = [
-        ChipData(name: "Shenzhen", selected: false),
+        ChipData(name: "Shenzhen", selected: true),
         ChipData(name: "London", selected: false),
-        ChipData(name: "Edinburgh", selected: false),
+        ChipData(name: "Edinburgh", selected: true),
         ChipData(name: "Manchester", selected: false),
         ChipData(name: "Belfast", selected: false),
         ChipData(name: "Glasgow", selected: false)
