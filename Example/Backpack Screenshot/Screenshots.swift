@@ -112,7 +112,7 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "calendar", scenario: "single", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Range"].tap()
             app.cells.element(boundBy: 25).tap()
-            app.cells.element(boundBy: 32).tap()
+            app.cells.element(boundBy: 30).tap()
             saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Multiple"].tap()
             app.cells.element(boundBy: 25).tap()
