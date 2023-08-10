@@ -15,8 +15,17 @@
 an adjustable control that allows a user to select a numerical value between a min/max determined by the consumer.
 
 ```swift
-@State var value = 0
-
-BPKNudger(value: $value, min: 1, max: 10, step: 1)
-    .accessibilityLabel("Passenger")
+struct NudgerExampleView: View {
+    @State private var value = 0
+    
+    var body: some View {
+        VStack {
+            BPKNudger(value: $value, min: 1, max: 10, step: 1)
+                .accessibilityLabel("Passengers")
+            BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
+            BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
+        }
+        .padding()
+    }
+}
 ```
