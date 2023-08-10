@@ -27,8 +27,8 @@ struct NudgerExampleView: View {
         VStack {
             BPKNudger(value: $value, min: 1, max: 10, step: 1)
                 .accessibilityLabel("Passengers")
-            BPKNudgerRow(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
-            BPKNudgerRow(title: "Rooms", value: $value, min: 1, max: 10)
+            BPKNudger(title: "Adults", subtitle: "Aged 16+", value: $value, min: 1, max: 10)
+            BPKNudger(title: "Rooms", value: $value, min: 1, max: 10)
         }
         .padding()
     }

@@ -23,6 +23,9 @@ public struct BPKNudger: View {
     @State private var canIncrement = true
     @State private var canDecrement = true
     @Binding private var value: Int
+    
+    private let title: String?
+    private let subtitle: String?
 
     private var minValue: Int
     private var maxValue: Int
@@ -41,14 +44,37 @@ public struct BPKNudger: View {
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
     public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+        self.title = nil
+        self.subtitle = nil
+        
         minValue = min
         maxValue = max
+        self.step = step
+        self._value = value
+    }
+    
+    public init(title: String, subtitle: String? = nil, value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+        self.title = title
+        self.subtitle = subtitle
+        self.minValue = min
+        self.maxValue = max
         self.step = step
         self._value = value
     }
 
     public var body: some View {
         HStack(spacing: .md) {
+            if let title {
+                VStack(alignment: .leading) {
+                    BPKText(title, style: .heading5)
+                    
+                    if let subtitle {
+                        BPKText(subtitle)
+                            .foregroundColor(.textSecondaryColor)
+                    }
+                }
+                Spacer()
+            }
             BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
                 .buttonStyle(.secondary)
             BPKText("\(value)", style: .heading5)
@@ -56,7 +82,7 @@ public struct BPKNudger: View {
             BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
                 .buttonStyle(.secondary)
         }
-        .accessibilityElement()
+        .accessibilityElement(children: .combine)
         .accessibilityValue(Text(String(value)))
         .accessibilityAdjustableAction { direction in
             switch direction {
