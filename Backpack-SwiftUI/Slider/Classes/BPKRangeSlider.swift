@@ -70,6 +70,7 @@ public struct BPKRangeSlider: View {
         }
     }
     
+    // swiftlint:disable closure_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
         ZStack {
             Capsule()

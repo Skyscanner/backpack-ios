@@ -176,6 +176,7 @@ private struct ButtonContentView: View {
         Text(title)
             .font(style: fontStyle)
             .lineLimit(1)
+            .sizeCategory(.large)
     }
     
     private var iconSize: BPKIcon.Size {

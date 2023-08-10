@@ -32,6 +32,7 @@ struct ChipButtonStyle: ButtonStyle {
             .clipShape(RoundedRectangle(cornerRadius: .sm))
             .outline(outlineColor(configuration.isPressed), cornerRadius: .sm)
             .if(style == .onImage) { $0.shadow(.sm) }
+            .sizeCategory(.large)
     }
     
     private func outlineColor(_ isPressed: Bool) -> BPKColor {
@@ -80,7 +81,7 @@ struct ChipButtonStyle: ButtonStyle {
         case .onImage:
             if selected { return .corePrimaryColor }
 
-            if isPressed {  return .canvasContrastColor }
+            if isPressed { return .canvasContrastColor }
 
             return .surfaceDefaultColor
         }

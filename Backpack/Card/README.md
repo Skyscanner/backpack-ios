@@ -64,41 +64,11 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card___with-solid-divider-without-padding_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card___with-solid-divider-without-padding_dm.png" alt="" width="375" /> |
 
-## Card wrapper default
+## Card Wrapper
 
 | Day | Night |
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___default_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___default_dm.png" alt="" width="375" /> |
-
-## Card wrapper with primary color
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-primary-color_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-primary-color_dm.png" alt="" width="375" /> |
-
-## Card wrapper not elevated
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___not-elevated_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___not-elevated_dm.png" alt="" width="375" /> |
-
-## Wrapper with corner style large
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-corner-style-large_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-corner-style-large_dm.png" alt="" width="375" /> |
-
-## Wrapper with divided card
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-divided-card_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-divided-card_dm.png" alt="" width="375" /> |
-
-## Wrapper with divided card not padded
-
-| Day | Night |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-divided-card-not-padded_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-card-wrapper___with-divided-card-not-padded_dm.png" alt="" width="375" /> |
 
 ## Usage
 

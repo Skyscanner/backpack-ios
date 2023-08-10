@@ -31,7 +31,7 @@ class BPKStarRatingTests: XCTestCase {
 
     func test_halfStar() {
         assertSnapshot(BPKStarRating(rating: .constant(2.5), maxRating: 5))
-    } 
+    }
 
     func test_fullStars() {
         assertSnapshot(BPKStarRating(rating: .constant(5), maxRating: 5))

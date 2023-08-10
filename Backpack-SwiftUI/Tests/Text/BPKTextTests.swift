@@ -18,18 +18,21 @@
 
 import XCTest
 import SwiftUI
+import SnapshotTesting
 @testable import Backpack_SwiftUI
 
 class BPKTextTests: XCTestCase {
     func test_defaultSettings() {
-        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
-                        .frame(width: 300))
+        assertSnapshot(
+            BPKText("Hello Backpack, I hope you're having a great day!")
+                .frame(width: 300))
     }
     
     func test_multiLine() {
-        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
-                        .lineLimit(2)
-                        .frame(width: 300)
+        assertSnapshot(
+            BPKText("Hello Backpack, I hope you're having a great day!")
+                .lineLimit(2)
+                .frame(width: 300)
         )
     }
     
@@ -38,8 +41,9 @@ class BPKTextTests: XCTestCase {
     }
     
     func test_customColor() {
-        assertSnapshot(BPKText("Hello Backpack, I hope you're having a great day!")
-                        .foregroundColor(.primaryColor)
+        assertSnapshot(
+            BPKText("Hello Backpack, I hope you're having a great day!")
+                .foregroundColor(.primaryColor)
         )
     }
 }

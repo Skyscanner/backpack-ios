@@ -175,7 +175,7 @@ const BPKFontStyle fontStyle = BPKFontStyleTextHeading5;
 - (void)configureAppearance {
     [super configureAppearance];
 
-    UIColor *rangeColor = BPKColor.surfaceHighlightColor;
+    UIColor *rangeColor = BPKColor.surfaceSubtleColor;
     UIColor *selectedColor = self.preferredTitleSelectionColor ?: self.appearance.titleColors[@(FSCalendarCellStateSelected)];
     UIColor *color = self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:self.appearance.titleColors];
 

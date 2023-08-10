@@ -18,6 +18,8 @@
 
 import UIKit
 
+// swiftlint:disable bpk_use_colour_token
+
 @available(*, deprecated, message: "Please use only available BPKColors")
 public func dynamicColor(lightVariant: UIColor, darkVariant: UIColor) -> UIColor {
     UIColor { $0.userInterfaceStyle == .dark ? darkVariant : lightVariant }
@@ -35,6 +37,6 @@ public extension BPKColor {
 {% for c in dynamicColor %}
     /// The `{{c.name}}` dynamic color from the Backpack palette.
     {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
-    static let {{c.name}} = BPKColor(red:{{c.value.r}}, green:{{c.value.g}}, blue:{{c.value.b}}, alpha:{{c.value.a}})
-        .darkVariant(BPKColor(red:{{c.darkValue.r}}, green:{{c.darkValue.g}}, blue:{{c.darkValue.b}}, alpha:{{c.darkValue.a}}))
+    static let {{c.name}} = BPKColor(red: {{c.value.r}}, green: {{c.value.g}}, blue: {{c.value.b}}, alpha: {{c.value.a}})
+        .darkVariant(BPKColor(red: {{c.darkValue.r}}, green: {{c.darkValue.g}}, blue: {{c.darkValue.b}}, alpha: {{c.darkValue.a}}))
 {% endfor %}}

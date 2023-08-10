@@ -119,6 +119,7 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
     func test_dateListForMonth_whenMinDateIsPreviousToMonth() throws {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 5, day: 2)
+        let maxDate = BPKSimpleDate(year: 2022, month: 7, day: 30)
         let sut = givenCalendarPresenter()
         let expectedFirst = BPKSimpleDate(year: 2022, month: 6, day: 1)
         let expectedLast = BPKSimpleDate(year: 2022, month: 6, day: 30)
@@ -127,7 +128,11 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
         let month = date(from: "2022/06/01")
         
         // Then
-        let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
+        let dateList = sut.dateList(
+            forMonth: month,
+            fromMinDate: minDate.date(for: calendar),
+            toMaxDate: maxDate.date(for: calendar)
+        )
         let firstDay = try XCTUnwrap(dateList.first)
         XCTAssertEqual(firstDay, expectedFirst)
         let lastDay = try XCTUnwrap(dateList.last)
@@ -137,6 +142,7 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
     func test_dateListForMonth_whenMinDateIsInTheMonth() throws {
         // Given
         let minDate = BPKSimpleDate(year: 2022, month: 6, day: 15)
+        let maxDate = BPKSimpleDate(year: 2022, month: 7, day: 30)
         let sut = givenCalendarPresenter()
         let expectedLast = BPKSimpleDate(year: 2022, month: 6, day: 30)
         
@@ -144,7 +150,11 @@ final class BPKCalendarMonthDateProviderTests: XCTestCase {
         let month = date(from: "2022/06/01")
         
         // Then
-        let dateList = sut.dateList(forMonth: month, fromMinDate: minDate.date(for: calendar))
+        let dateList = sut.dateList(
+            forMonth: month,
+            fromMinDate: minDate.date(for: calendar),
+            toMaxDate: maxDate.date(for: calendar)
+        )
         let firstDay = try XCTUnwrap(dateList.first)
         XCTAssertEqual(firstDay, minDate)
         let lastDay = try XCTUnwrap(dateList.last)

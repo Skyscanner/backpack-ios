@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// A control that displays an editable text interface.
-/// 
+///
 /// Use `inputState(_ state: State)` to change the state of the text field.
 public struct BPKTextField: View {
     struct Icon {
@@ -85,7 +85,7 @@ public struct BPKTextField: View {
 
 fileprivate extension TextField {
     func font(style: BPKFontStyle) -> some View {
-        self.font(Font(style.font))
+        self.font(style.font)
     }
 }
 

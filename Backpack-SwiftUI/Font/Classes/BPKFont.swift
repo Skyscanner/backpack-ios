@@ -26,32 +26,60 @@ public struct BPKFont {
     }
 }
 
-extension UIFont {
+extension Font {
     static func customOrDefault(
         _ name: String?,
         size: CGFloat,
         weight: Weight,
-        fontProvider: (String, CGFloat) -> UIFont? = UIFont.init
-    ) -> UIFont {
-        guard let name = name, let font = fontProvider(name, size) else {
-            return .systemFont(ofSize: size, weight: weight)
+        textStyle: TextStyle,
+        fontProvider: (String, CGFloat, TextStyle) -> Font = Font.custom(_:size:relativeTo:)
+    ) -> Font {
+        guard let name else {
+            if weight == .semibold {
+                return fontProvider("HelveticaNeue-Medium", size, textStyle)
+            }
+            
+            return fontProvider("HelveticaNeue", size, textStyle)
         }
-        return font
+            
+        return fontProvider(name, size, textStyle)
     }
     
-    static func regular(size: CGFloat) -> UIFont {
-        return .customOrDefault(
+    static func regular(size: CGFloat, textStyle: TextStyle) -> Font {
+        return customOrDefault(
             BPKFont.fontDefinition?.regularFontFace,
             size: size,
-            weight: .regular
+            weight: .regular,
+            textStyle: textStyle
         )
     }
     
-    static func semibold(size: CGFloat) -> UIFont {
-        return .customOrDefault(
+    static func regularFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.regularFontFace,
+            size: size,
+            weight: .regular,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+        }
+    }
+    
+    static func semibold(size: CGFloat, textStyle: TextStyle) -> Font {
+        return customOrDefault(
             BPKFont.fontDefinition?.semiboldFontFace,
             size: size,
-            weight: .semibold
+            weight: .semibold,
+            textStyle: textStyle
         )
+    }
+    
+    static func semiboldFixed(size: CGFloat) -> Font {
+        return customOrDefault(
+            BPKFont.fontDefinition?.semiboldFontFace,
+            size: size,
+            weight: .semibold,
+            textStyle: .body) { name, size, _ in
+                Font.custom(name, fixedSize: size)
+        }
     }
 }

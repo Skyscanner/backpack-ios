@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// A view that clips its content to a shape with a flare at one end.
-public struct BPKFlareView<Content: View>: View {    
+public struct BPKFlareView<Content: View>: View {
     private let size: BPKFlareSize
     private var roundedCorners: Bool
     private let direction: BPKFlareDirection
@@ -77,6 +77,7 @@ public enum BPKFlareDirection {
     }
 }
 
+// swiftlint:disable closure_body_length
 struct BPKFlareView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

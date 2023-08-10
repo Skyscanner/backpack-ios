@@ -18,6 +18,9 @@
 
 import UIKit
 
+// swiftlint:disable identifier_name
+// swiftlint:disable line_length
+
 /// Backpack Internal Colors
 /// These colors are internal on purpose and can only be used by Backpack components
 /// Do not use these colors in your own designs.
@@ -25,10 +28,9 @@ internal extension BPKColor {
     private init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         self.init(value: UIColor(red: red, green: green, blue: blue, alpha: alpha))
     }
-
 {% for c in internalColor %}
     /// The `{{c.name}}` internal color.
     {% if c.deprecated %}@available(*, deprecated, message: "This colour will be removed in the next major version"){% endif %}
-    static let {{c.name}} = BPKColor(red:{{c.value.r}}, green:{{c.value.g}}, blue:{{c.value.b}}, alpha:{{c.value.a}})
-        .darkVariant(BPKColor(red:{{c.darkValue.r}}, green:{{c.darkValue.g}}, blue:{{c.darkValue.b}}, alpha:{{c.darkValue.a}}))
+    static let {{c.name}} = BPKColor(red: {{c.value.r}}, green: {{c.value.g}}, blue: {{c.value.b}}, alpha: {{c.value.a}})
+        .darkVariant(BPKColor(red: {{c.darkValue.r}}, green: {{c.darkValue.g}}, blue: {{c.darkValue.b}}, alpha: {{c.darkValue.a}}))
 {% endfor %}}

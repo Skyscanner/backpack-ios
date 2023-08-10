@@ -20,7 +20,6 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-
 class PriceTests: XCTestCase {
     struct PriceTest: Identifiable {
         let id = UUID()

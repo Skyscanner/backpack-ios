@@ -67,6 +67,7 @@ public struct BPKDismissableChip: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(text)
         .accessibilityAddTraits(.isButton)
+        .sizeCategory(.large)
     }
     
     private var accessoryViewColor: BPKColor {

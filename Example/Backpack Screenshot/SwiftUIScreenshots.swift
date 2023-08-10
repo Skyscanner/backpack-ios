@@ -169,6 +169,25 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "text-field", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
+
+        navigate(title: "Bottom sheet") {
+            switchTab(title: "SwiftUI")
+            app.buttons["Show closable bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "closable", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+            
+            app.buttons["Show large bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "large", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+
+            app.buttons["Show medium bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "medium", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+            
+            app.buttons["Show fit content bottom sheet"].tap()
+            saveScreenshot(component: "bottom-sheet", scenario: "content-fit", userInterfaceStyle: userInterfaceStyle)
+            app.buttons["Action"].tap()
+        }
         
         navigate(title: "Price") {
             switchTab(title: "SwiftUI")
@@ -193,6 +212,16 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             
             app.tables.staticTexts["On Image"].tap()
             saveScreenshot(component: "chip", scenario: "on-image", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Chip Group") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Rail - Single Select"].tap()
+            saveScreenshot(component: "chip-group", scenario: "rail", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Wrap - Single Select"].tap()
+            saveScreenshot(component: "chip-group", scenario: "wrap", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
@@ -252,6 +281,26 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             switchTab(title: "SwiftUI")
             app.tables.staticTexts["Star rating"].tap()
             saveScreenshot(component: "star-rating", scenario: "all", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+
+        navigate(title: "Map") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "map-markers", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Progress bar") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+        
+        navigate(title: "Section header") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Default"].tap()
+            saveScreenshot(component: "section-header", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["On Dark"].tap()
+            saveScreenshot(component: "section-header", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }

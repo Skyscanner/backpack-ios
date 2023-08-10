@@ -51,6 +51,8 @@ struct BPKIconsTestsUtils {
         "add-circle",
         "adult-sm",
         "adult",
+        "ai-sm",
+        "ai",
         "aircon-sm",
         "aircon",
         "aircraft-sm",

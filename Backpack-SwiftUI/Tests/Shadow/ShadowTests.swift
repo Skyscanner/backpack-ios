@@ -34,7 +34,7 @@ class ShadowTests: XCTestCase {
         let small = BPKShadow(color: .shadowSmColor, radius: 3, offset: .y(1), opacity: 0.15)
         let large = BPKShadow(color: .shadowLgColor, radius: 16, offset: .y(4), opacity: 0.15)
         
-        XCTAssertEqual(BPKShadow.lg, large);
-        XCTAssertEqual(BPKShadow.sm, small);
+        XCTAssertEqual(BPKShadow.lg, large)
+        XCTAssertEqual(BPKShadow.sm, small)
     }
 }

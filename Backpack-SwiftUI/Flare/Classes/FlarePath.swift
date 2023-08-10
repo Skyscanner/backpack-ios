@@ -35,7 +35,9 @@ struct FlarePath: Shape {
             let contentBottom = direction == .top ? size.height : size.height - flareHeight
             
             let contentRect = CGRect(x: 0, y: contentTop, width: size.width, height: contentBottom - contentTop)
-            path.addRoundedRect(in: contentRect, cornerSize: CGSize(width: cornerRadius.value, height: cornerRadius.value))
+            path.addRoundedRect(
+                in: contentRect,
+                cornerSize: CGSize(width: cornerRadius.value, height: cornerRadius.value))
             appendFlare(to: &path, size: size, flareHeight: flareHeight)
         }
     }

@@ -40,6 +40,16 @@ struct NavBarGroupsProvider {
                 presentable("Collapsed - simple") {
                     $0.showRightButton = false
                     $0.collapsed = true
+                },
+                presentable("Interactive example - onImage") {
+                    $0.interactive = true
+                    $0.isOnImage = true
+                },
+                presentable("Large - onImage") { $0.isOnImage = true },
+                presentable("Collapsed - onImage") {
+                    $0.showRightButton = false
+                    $0.collapsed = true
+                    $0.isOnImage = true
                 }
             ]
         ).groups()

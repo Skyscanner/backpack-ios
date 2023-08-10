@@ -18,8 +18,6 @@
 
 import Backpack_SwiftUI
 
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
 extension BPKIconViewTests {
     static let allIcons: [Backpack_SwiftUI.BPKIcon] = [
         .accessibility,
@@ -32,6 +30,7 @@ extension BPKIconViewTests {
         .account,
         .addCircle,
         .adult,
+        .ai,
         .aircon,
         .aircraft,
         .airlineMultiple,

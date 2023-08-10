@@ -16,12 +16,11 @@
  * limitations under the License.
  */
 
-import Foundation 
+import Foundation
 
 @objc
 public class BPKCommonBundle: NSObject {
-    @objc
-    public static var iconsBundle: Bundle {
+    @objc public static var iconsBundle: Bundle {
         guard
             let url = Bundle(for: BPKCommonBundle.self).resourceURL?.appendingPathComponent("Icons.bundle"),
             let bundle = Bundle(url: url)

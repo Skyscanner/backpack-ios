@@ -22,6 +22,19 @@
 | --- | --- |
 | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-simple_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-simple_dm.png" alt="" width="375" /> |
 
+## Large - with style `onImage`
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___large-onImage_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___large-onImage_dm.png" alt="" width="375" /> |
+
+## Collapsed - with style `onImage`
+
+| Day | Night |
+| --- | --- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-onImage_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-navigation-bar___collapsed-onImage_dm.png" alt="" width="375" /> |
+
+
 ## Usage
 
 `BPKNavigationBar` is an implementation of parts of UIKit's UINavigationBar, specifically the large
@@ -30,6 +43,8 @@ the navigation bar tracks the state of the scroll view.
 
 `largeTitleTextColor` can be used to adjust the colour of the large title and `largeTitleLayoutMargins` can be used to adjust
 the layout position of the large title.
+
+`style` can be set to `.default` or `.onImage`. When the style is set to `.onImage`, the navigation bar will be transparent when expanded.
 
 ### Objective-C
 
@@ -104,3 +119,5 @@ if !decelerate {
 ### Appearance attributes
 
 - `(UIColor *)largeTitleTextColor`
+
+- `(BPKNavigationBarStyle) style`

@@ -35,6 +35,7 @@ struct ComponentCellsProvider {
         navigator.present(title: title, tabs: tabs)
     }
 
+    // swiftlint:disable:next function_body_length
     func cells() -> [Components.Cell] {
         let dataSources: [CellDataSource] = [
             badge(),
@@ -46,6 +47,7 @@ struct ComponentCellsProvider {
             cardButton(),
             carousel(),
             chips(),
+            chipGroup(),
             flightLeg(),
             flare(),
             floatingNotification(),
@@ -62,9 +64,12 @@ struct ComponentCellsProvider {
             price(),
             progressBar(),
             ratings(),
+            sectionHeader(),
+            select(),
             snackbar(),
             skeleton(),
             sliders(),
+            snippets(),
             spinners(),
             starRatings(),
             switches(),
@@ -102,10 +107,15 @@ extension ComponentCellsProvider {
         )
     }
     private func bottomSheet() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Bottom sheet",
-            storyboard: .named("BottomSheet", on: "BottomSheetViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(name: "BottomSheet", identifier: "BottomSheetViewController")),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(BottomSheetExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Bottom sheet", tabs: $0) }
         )
     }
     private func button() -> CellDataSource {
@@ -150,6 +160,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: ChipsGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Chips", tabs: $0) }
+        )
+    }
+    private func chipGroup() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Chip Group",
+            tabs: [
+                .swiftui(groups: ChipGroupProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Chip Group", tabs: $0) }
         )
     }
     private func flare() -> CellDataSource {
@@ -241,10 +260,15 @@ extension ComponentCellsProvider {
         )
     }
     private func mapView() -> CellDataSource {
-        GroupCellDataSource(
+        ComponentCellDataSource(
             title: "Map",
-            groups: MapGroupsProvider(showPresentable: show(presentable:)).groups(),
-            showChildren: { showChildren(title: "Navigation bars", children: $0) }
+            tabs: [
+                .uikit(groups: MapGroupsProvider(showPresentable: show(presentable:)).groups()),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(MapMarkerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Map Markers", tabs: $0) }
         )
     }
     private func panels() -> CellDataSource {
@@ -263,10 +287,18 @@ extension ComponentCellsProvider {
         )
     }
     private func progressBar() -> CellDataSource {
-        PresentableCellDataSource(
+        ComponentCellDataSource(
             title: "Progress bar",
-            storyboard: .named("ProgressBar", on: "ProgressBarViewController"),
-            showPresentable: show(presentable:)
+            tabs: [
+                .uikit(presentable: loadStoryboard(
+                    name: "ProgressBar",
+                    identifier: "ProgressBarViewController"
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(ProgressBarExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Progress bar", tabs: $0) }
         )
     }
     private func ratings() -> CellDataSource {
@@ -277,6 +309,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: RatingGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Rating", tabs: $0) }
+        )
+    }
+    private func select() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Select",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SelectExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Select Pickers", tabs: $0) }
         )
     }
     private func snackbar() -> CellDataSource {
@@ -293,6 +336,15 @@ extension ComponentCellsProvider {
                 .swiftui(groups: SliderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Slider", tabs: $0) }
+        )
+    }
+    private func snippets() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Snippet",
+            tabs: [
+                .swiftui(groups: SnippetGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Snippet", tabs: $0) }
         )
     }
     private func skeleton() -> CellDataSource {
@@ -448,6 +500,15 @@ extension ComponentCellsProvider {
                 ))
             ],
             showChildren: { showComponent(title: "Floating notification", tabs: $0) }
+        )
+    }
+    private func sectionHeader() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Section header",
+            tabs: [
+                .swiftui(groups: SectionHeaderGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Section header", tabs: $0) }
         )
     }
 }

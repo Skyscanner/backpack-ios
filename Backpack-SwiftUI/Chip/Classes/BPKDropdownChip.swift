@@ -63,6 +63,7 @@ public struct BPKDropdownChip: View {
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
         .disabled(disabled)
+        .sizeCategory(.large)
     }
     
     public func disabled(_ disabled: Bool) -> BPKDropdownChip {

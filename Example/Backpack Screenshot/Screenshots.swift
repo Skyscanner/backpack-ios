@@ -112,7 +112,7 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "calendar", scenario: "single", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Range"].tap()
             app.cells.element(boundBy: 25).tap()
-            app.cells.element(boundBy: 32).tap()
+            app.cells.element(boundBy: 30).tap()
             saveScreenshot(component: "calendar", scenario: "range", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Multiple"].tap()
             app.cells.element(boundBy: 25).tap()
@@ -176,27 +176,6 @@ class Screenshots: BackpackSnapshotTestCase {
             tapBackButton()
             app.tables.staticTexts["Wrapper default"].tap()
             saveScreenshot(component: "card-wrapper", scenario: "default", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with primary color"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-primary-color", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper not elevated"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "not-elevated", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with corner style large"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-corner-style-large", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with divided card"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-divided-card", userInterfaceStyle: userInterfaceStyle)
-            
-            tapBackButton()
-            app.tables.staticTexts["Wrapper with divided card not padded"].tap()
-            saveScreenshot(component: "card-wrapper", scenario: "with-divided-card-not-padded", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
         }
 
         navigate(title: "Card Button") {
@@ -336,6 +315,16 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "navigation-bar", scenario: "collapsed-simple",
                            userInterfaceStyle: userInterfaceStyle)
             app.buttons["NavigateBack"].tap()
+            
+            app.tables.staticTexts["Large - onImage"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "large-onImage",
+                           userInterfaceStyle: userInterfaceStyle)
+            app.buttons["NavigateBack"].tap()
+
+            app.tables.staticTexts["Collapsed - onImage"].tap()
+            saveScreenshot(component: "navigation-bar", scenario: "collapsed-onImage",
+                            userInterfaceStyle: userInterfaceStyle)
+            app.buttons["NavigateBack"].tap()
         }
 
         navigate(title: "Nudger") {
@@ -471,7 +460,7 @@ class Screenshots: BackpackSnapshotTestCase {
         }
         
         navigate(title: "Page indicators") {
-            saveScreenshot(component: "page indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            saveScreenshot(component: "page-indicator", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
         
@@ -498,6 +487,20 @@ class Screenshots: BackpackSnapshotTestCase {
         
         navigate(title: "Carousel") {
             saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
+        
+        navigate(title: "Snippet") {
+            app.tables.staticTexts["Landscape"].tap()
+            saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Square"].tap()
+            saveScreenshot(component: "snippet", scenario: "square", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Portrait"].tap()
+            saveScreenshot(component: "snippet", scenario: "portrait", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }
