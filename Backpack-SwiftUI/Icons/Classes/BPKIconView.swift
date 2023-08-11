@@ -70,6 +70,9 @@ private extension Image {
 
 struct BPKIconView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKIconView(.account, size: .large)
+        VStack {
+            BPKIconView(.account, size: .large)
+            BPKIconView(BPKIcon(name: "account"), size: .small)
+        }
     }
 }

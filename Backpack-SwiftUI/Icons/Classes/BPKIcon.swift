@@ -22,4 +22,8 @@ public struct BPKIcon {
     public enum Size {
         case large, small
     }
+
+    public init(name: String) {
+        self.name = name
+    }
 }
