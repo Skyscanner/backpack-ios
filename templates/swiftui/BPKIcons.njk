@@ -16,8 +16,21 @@
  * limitations under the License.
  */
 
+// swiftlint:disable file_length
 public extension BPKIcon {
     {% for icon in icons -%}
     static let {% if icon.name == "return" -%}`{{icon.name}}`{% else -%}{{icon.name}}{% endif %} = BPKIcon(name: "{{icon.file}}")
     {% endfor %}
+}
+
+internal extension BPKIcon {
+    // swiftlint:disable function_body_length cyclomatic_complexity
+    static func named(_ iconName: String) -> BPKIcon? {
+        switch iconName {
+        {% for icon in icons -%}
+        case "{{icon.file}}": return .{{icon.name}}
+        {% endfor %}
+        default: return nil
+        }
+    }
 }
