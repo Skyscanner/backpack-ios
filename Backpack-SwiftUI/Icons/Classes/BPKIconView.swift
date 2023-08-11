@@ -72,7 +72,9 @@ struct BPKIconView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             BPKIconView(.account, size: .large)
-            BPKIconView(BPKIcon(name: "account"), size: .small)
+            if let icon = BPKIcon.named("account--add") {
+                BPKIconView(icon)
+            }
         }
     }
 }
