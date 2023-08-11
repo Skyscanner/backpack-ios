@@ -23,6 +23,9 @@ public struct BPKNudger: View {
     @State private var canIncrement = true
     @State private var canDecrement = true
     @Binding private var value: Int
+    
+    private let title: String?
+    private let subtitle: String?
 
     private var minValue: Int
     private var maxValue: Int
@@ -41,23 +44,63 @@ public struct BPKNudger: View {
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
     public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+        self.title = nil
+        self.subtitle = nil
+        
         minValue = min
         maxValue = max
+        self.step = step
+        self._value = value
+    }
+    
+    /// Creates a `BPKNudger`.
+    /// - Parameters:
+    ///   - title: The value of the `BPKNudger` title label
+    ///   - subtitle: The value of the `BPKNudger` subtitle label
+    ///     Optional, when not set, the title will vertically center
+    ///   - value: The value of the `BPKNudger`.
+    ///     Must be between `min` and `max`.
+    ///     If changed, the value will be clamped to be between `min` and `max`.
+    ///   - min: The minimum value of the `BPKNudger`.
+    ///     Must be less than `max`.
+    ///   - max: The maximum value of the `BPKNudger`.
+    ///     Must be greater than `min`.
+    ///   - step: The step value of the `BPKNudger`.
+    ///     Defaults to `1`.
+    public init(title: String, subtitle: String? = nil, value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+        self.title = title
+        self.subtitle = subtitle
+        self.minValue = min
+        self.maxValue = max
         self.step = step
         self._value = value
     }
 
     public var body: some View {
         HStack(spacing: .md) {
-            BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
-                .buttonStyle(.secondary)
-            BPKText("\(value)", style: .heading5)
-                .frame(minWidth: minWidth)
-            BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
-                .buttonStyle(.secondary)
+            if let title {
+                VStack(alignment: .leading) {
+                    BPKText(title, style: .heading5)
+                    
+                    if let subtitle {
+                        BPKText(subtitle)
+                            .foregroundColor(.textSecondaryColor)
+                    }
+                }
+                Spacer()
+            }
+            Group {
+                BPKButton(icon: .minus, accessibilityLabel: "", enabled: $canDecrement, action: decrement)
+                    .buttonStyle(.secondary)
+                BPKText("\(value)", style: .heading5)
+                    .frame(minWidth: minWidth)
+                BPKButton(icon: .plus, accessibilityLabel: "", enabled: $canIncrement, action: increment)
+                    .buttonStyle(.secondary)
+            }
+            .accessibilityElement(children: .ignore)
         }
-        .accessibilityElement()
-        .accessibilityValue(Text(String(value)))
+        .accessibilityElement(children: .combine)
+        .accessibilityValue(Text("\(value)"))
         .accessibilityAdjustableAction { direction in
             switch direction {
             case .increment: increment()
@@ -71,6 +114,9 @@ public struct BPKNudger: View {
             }
             updateButtonStates()
         }
+        .onChange(of: value, perform: { _ in
+            updateButtonStates()
+        })
         .sizeCategory(.large)
     }
     
