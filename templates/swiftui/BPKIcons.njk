@@ -28,7 +28,7 @@ internal extension BPKIcon {
     static func named(_ iconName: String) -> BPKIcon? {
         switch iconName {
         {% for icon in icons -%}
-        case "{{icon.name}}": return .{{icon.name}}
+        case "{{icon.file}}": return .{{icon.name}}
         {% endfor %}
         default: return nil
         }

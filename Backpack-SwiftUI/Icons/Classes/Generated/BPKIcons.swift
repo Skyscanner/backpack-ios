@@ -299,186 +299,186 @@ internal extension BPKIcon {
     static func named(_ iconName: String) -> BPKIcon? {
         switch iconName {
         case "accessibility": return .accessibility
-        case "accountAdd": return .accountAdd
-        case "accountFemale": return .accountFemale
-        case "accountIdCard": return .accountIdCard
-        case "accountName": return .accountName
-        case "accountPermit": return .accountPermit
-        case "accountCircle": return .accountCircle
+        case "account--add": return .accountAdd
+        case "account--female": return .accountFemale
+        case "account--id-card": return .accountIdCard
+        case "account--name": return .accountName
+        case "account--permit": return .accountPermit
+        case "account-circle": return .accountCircle
         case "account": return .account
-        case "addCircle": return .addCircle
+        case "add-circle": return .addCircle
         case "adult": return .adult
         case "ai": return .ai
         case "aircon": return .aircon
         case "aircraft": return .aircraft
-        case "airlineMultiple": return .airlineMultiple
+        case "airline--multiple": return .airlineMultiple
         case "airline": return .airline
         case "airports": return .airports
-        case "alertActive": return .alertActive
-        case "alertAdd": return .alertAdd
-        case "alertExpired": return .alertExpired
-        case "alertRemove": return .alertRemove
-        case "arrowDown": return .arrowDown
-        case "arrowLeft": return .arrowLeft
-        case "arrowRight": return .arrowRight
-        case "arrowUp": return .arrowUp
+        case "alert--active": return .alertActive
+        case "alert--add": return .alertAdd
+        case "alert--expired": return .alertExpired
+        case "alert--remove": return .alertRemove
+        case "arrow-down": return .arrowDown
+        case "arrow-left": return .arrowLeft
+        case "arrow-right": return .arrowRight
+        case "arrow-up": return .arrowUp
         case "award": return .award
-        case "babyCarriage": return .babyCarriage
-        case "baggageAdd": return .baggageAdd
-        case "baggageRemove": return .baggageRemove
-        case "baggageCabinAdd": return .baggageCabinAdd
-        case "baggageCabinNotIncluded": return .baggageCabinNotIncluded
-        case "baggageCabin": return .baggageCabin
-        case "baggageCheckedAdd": return .baggageCheckedAdd
-        case "baggageCheckedNotIncluded": return .baggageCheckedNotIncluded
-        case "baggageChecked": return .baggageChecked
-        case "baggageCross": return .baggageCross
-        case "baggageGeneric": return .baggageGeneric
-        case "baggageTick": return .baggageTick
+        case "baby-carriage": return .babyCarriage
+        case "baggage--add": return .baggageAdd
+        case "baggage--remove": return .baggageRemove
+        case "baggage-cabin-add": return .baggageCabinAdd
+        case "baggage-cabin-not-included": return .baggageCabinNotIncluded
+        case "baggage-cabin": return .baggageCabin
+        case "baggage-checked-add": return .baggageCheckedAdd
+        case "baggage-checked-not-included": return .baggageCheckedNotIncluded
+        case "baggage-checked": return .baggageChecked
+        case "baggage-cross": return .baggageCross
+        case "baggage-generic": return .baggageGeneric
+        case "baggage-tick": return .baggageTick
         case "baggage": return .baggage
         case "bar": return .bar
         case "beach": return .beach
         case "beer": return .beer
-        case "breakfastCross": return .breakfastCross
-        case "breakfastTick": return .breakfastTick
+        case "breakfast-cross": return .breakfastCross
+        case "breakfast-tick": return .breakfastTick
         case "bus": return .bus
         case "business": return .business
         case "cafe": return .cafe
         case "calendar": return .calendar
-        case "callBack": return .callBack
+        case "call-back": return .callBack
         case "camera": return .camera
-        case "camperVan": return .camperVan
-        case "carDoor": return .carDoor
-        case "carWash": return .carWash
-        case "carsFlexible": return .carsFlexible
+        case "camper-van": return .camperVan
+        case "car-door": return .carDoor
+        case "car-wash": return .carWash
+        case "cars-flexible": return .carsFlexible
         case "cars": return .cars
-        case "centerLocation": return .centerLocation
+        case "center-location": return .centerLocation
         case "chart": return .chart
         case "chauffeur": return .chauffeur
-        case "chevronDown": return .chevronDown
-        case "chevronLeft": return .chevronLeft
-        case "chevronRight": return .chevronRight
-        case "chevronUp": return .chevronUp
-        case "childSeat": return .childSeat
+        case "chevron-down": return .chevronDown
+        case "chevron-left": return .chevronLeft
+        case "chevron-right": return .chevronRight
+        case "chevron-up": return .chevronUp
+        case "child-seat": return .childSeat
         case "child": return .child
-        case "cityCenter": return .cityCenter
+        case "city-center": return .cityCenter
         case "city": return .city
-        case "cleanPolicy": return .cleanPolicy
+        case "clean-policy": return .cleanPolicy
         case "clean": return .clean
-        case "cleaningMedical": return .cleaningMedical
+        case "cleaning-medical": return .cleaningMedical
         case "cloakroom": return .cloakroom
-        case "closeCircle": return .closeCircle
+        case "close-circle": return .closeCircle
         case "close": return .close
         case "collapse": return .collapse
-        case "contentCopy": return .contentCopy
-        case "contentEvent": return .contentEvent
-        case "contentGuides": return .contentGuides
+        case "content--copy": return .contentCopy
+        case "content--event": return .contentEvent
+        case "content--guides": return .contentGuides
         case "currency": return .currency
         case "data": return .data
         case "deals": return .deals
         case "depart": return .depart
-        case "deviceMid": return .deviceMid
-        case "deviceWide": return .deviceWide
+        case "device-mid": return .deviceMid
+        case "device-wide": return .deviceWide
         case "direct": return .direct
-        case "documentCsv": return .documentCsv
-        case "documentPdf": return .documentPdf
+        case "document-csv": return .documentCsv
+        case "document-pdf": return .documentPdf
         case "download": return .download
         case "duration": return .duration
-        case "ecoLeaf": return .ecoLeaf
+        case "eco-leaf": return .ecoLeaf
         case "edit": return .edit
         case "education": return .education
         case "electric": return .electric
-        case "endCall": return .endCall
+        case "end-call": return .endCall
         case "estimated": return .estimated
-        case "exclamationCircle": return .exclamationCircle
+        case "exclamation-circle": return .exclamationCircle
         case "exclamation": return .exclamation
         case "expand": return .expand
         case "explore": return .explore
-        case "faceBlank": return .faceBlank
-        case "faceHappy": return .faceHappy
-        case "faceSad": return .faceSad
-        case "faceId": return .faceId
-        case "faceMask": return .faceMask
+        case "face--blank": return .faceBlank
+        case "face--happy": return .faceHappy
+        case "face--sad": return .faceSad
+        case "face-id": return .faceId
+        case "face-mask": return .faceMask
         case "family": return .family
-        case "fastTrack": return .fastTrack
-        case "fastTrain": return .fastTrain
+        case "fast-track": return .fastTrack
+        case "fast-train": return .fastTrain
         case "filter": return .filter
         case "fingerprint": return .fingerprint
         case "flag": return .flag
         case "flask": return .flask
-        case "flightFlexible": return .flightFlexible
-        case "flightLanding": return .flightLanding
-        case "flightTakeoff": return .flightTakeoff
+        case "flight-flexible": return .flightFlexible
+        case "flight-landing": return .flightLanding
+        case "flight-takeoff": return .flightTakeoff
         case "flight": return .flight
         case "food": return .food
-        case "gearsAutomaticCircle": return .gearsAutomaticCircle
-        case "gearsAutomatic": return .gearsAutomatic
-        case "gearsManualCircle": return .gearsManualCircle
-        case "gearsManual": return .gearsManual
+        case "gears-automatic-circle": return .gearsAutomaticCircle
+        case "gears-automatic": return .gearsAutomatic
+        case "gears-manual-circle": return .gearsManualCircle
+        case "gears-manual": return .gearsManual
         case "globe": return .globe
-        case "gridLayout": return .gridLayout
+        case "grid-layout": return .gridLayout
         case "headset": return .headset
-        case "healthFitness": return .healthFitness
-        case "heartOutline": return .heartOutline
+        case "health-fitness": return .healthFitness
+        case "heart--outline": return .heartOutline
         case "heart": return .heart
-        case "helpCircle": return .helpCircle
+        case "help-circle": return .helpCircle
         case "help": return .help
         case "hide": return .hide
-        case "hotelFlexible": return .hotelFlexible
-        case "hotelsDisabledFacilities": return .hotelsDisabledFacilities
-        case "hotelsJacuzzi": return .hotelsJacuzzi
-        case "hotelsPetsAllowed": return .hotelsPetsAllowed
-        case "hotelsSmoking": return .hotelsSmoking
+        case "hotel-flexible": return .hotelFlexible
+        case "hotels--disabled-facilities": return .hotelsDisabledFacilities
+        case "hotels--jacuzzi": return .hotelsJacuzzi
+        case "hotels--pets-allowed": return .hotelsPetsAllowed
+        case "hotels--smoking": return .hotelsSmoking
         case "hotels": return .hotels
         case "infant": return .infant
-        case "informationLanguageAlert": return .informationLanguageAlert
-        case "informationLanguageQuestion": return .informationLanguageQuestion
-        case "informationLanguage": return .informationLanguage
-        case "informationCircle": return .informationCircle
+        case "information--language-alert": return .informationLanguageAlert
+        case "information--language-question": return .informationLanguageQuestion
+        case "information--language": return .informationLanguage
+        case "information-circle": return .informationCircle
         case "information": return .information
         case "insurance": return .insurance
         case "key": return .key
         case "keypad": return .keypad
         case "landmark": return .landmark
         case "language": return .language
-        case "legroomExtra": return .legroomExtra
-        case "legroomNormal": return .legroomNormal
-        case "legroomReduced": return .legroomReduced
+        case "legroom--extra": return .legroomExtra
+        case "legroom--normal": return .legroomNormal
+        case "legroom--reduced": return .legroomReduced
         case "leisure": return .leisure
         case "lightning": return .lightning
         case "list": return .list
         case "location": return .location
         case "lock": return .lock
         case "logout": return .logout
-        case "longArrowDown": return .longArrowDown
-        case "longArrowLeft": return .longArrowLeft
-        case "longArrowRight": return .longArrowRight
-        case "longArrowUp": return .longArrowUp
+        case "long-arrow-down": return .longArrowDown
+        case "long-arrow-left": return .longArrowLeft
+        case "long-arrow-right": return .longArrowRight
+        case "long-arrow-up": return .longArrowUp
         case "lounge": return .lounge
         case "luggageall": return .luggageall
         case "mail": return .mail
         case "map": return .map
         case "meal": return .meal
         case "media": return .media
-        case "menuHorizontal": return .menuHorizontal
-        case "menuVertical": return .menuVertical
+        case "menu--horizontal": return .menuHorizontal
+        case "menu--vertical": return .menuVertical
         case "menu": return .menu
         case "mileage": return .mileage
         case "minus": return .minus
         case "mobile": return .mobile
         case "money": return .money
-        case "multipleBookings": return .multipleBookings
+        case "multiple-bookings": return .multipleBookings
         case "music": return .music
         case "mute": return .mute
-        case "nativeAndroidBack": return .nativeAndroidBack
-        case "nativeAndroidClose": return .nativeAndroidClose
-        case "nativeAndroidForward": return .nativeAndroidForward
-        case "nativeiOsClose": return .nativeiOsClose
+        case "native-android--back": return .nativeAndroidBack
+        case "native-android--close": return .nativeAndroidClose
+        case "native-android--forward": return .nativeAndroidForward
+        case "native-ios-close": return .nativeiOsClose
         case "navigation": return .navigation
-        case "newWindow": return .newWindow
+        case "new-window": return .newWindow
         case "news": return .news
         case "night": return .night
-        case "notAllowed": return .notAllowed
+        case "not-allowed": return .notAllowed
         case "onsen": return .onsen
         case "origin": return .origin
         case "paid": return .paid
@@ -486,64 +486,64 @@ internal extension BPKIcon {
         case "parking": return .parking
         case "passport": return .passport
         case "pause": return .pause
-        case "paymentCard": return .paymentCard
+        case "payment-card": return .paymentCard
         case "petrol": return .petrol
-        case "phoneCall": return .phoneCall
+        case "phone-call": return .phoneCall
         case "picture": return .picture
         case "pin": return .pin
-        case "planeSeat": return .planeSeat
+        case "plane-seat": return .planeSeat
         case "play": return .play
         case "plus": return .plus
         case "policy": return .policy
         case "powerplug": return .powerplug
         case "ppe": return .ppe
-        case "priceAlerts": return .priceAlerts
-        case "priceTag": return .priceTag
+        case "price-alerts": return .priceAlerts
+        case "price-tag": return .priceTag
         case "print": return .print
-        case "recentSearches": return .recentSearches
+        case "recent-searches": return .recentSearches
         case "redo": return .redo
         case "refresh": return .refresh
         case "return": return .return
         case "room": return .room
         case "scales": return .scales
         case "search": return .search
-        case "selfService": return .selfService
-        case "sendMessage": return .sendMessage
+        case "self-service": return .selfService
+        case "send-message": return .sendMessage
         case "services": return .services
         case "settings": return .settings
-        case "shareAndroid": return .shareAndroid
-        case "shareiOs": return .shareiOs
+        case "share--android": return .shareAndroid
+        case "share--ios": return .shareiOs
         case "share": return .share
-        case "singleBooking": return .singleBooking
-        case "socialDistancing": return .socialDistancing
-        case "socialLike": return .socialLike
-        case "sortDown": return .sortDown
-        case "sortUp": return .sortUp
+        case "single-booking": return .singleBooking
+        case "social-distancing": return .socialDistancing
+        case "social-like": return .socialLike
+        case "sort-down": return .sortDown
+        case "sort-up": return .sortUp
         case "sort": return .sort
         case "speaker": return .speaker
-        case "starHalf": return .starHalf
-        case "starOutline": return .starOutline
+        case "star-half": return .starHalf
+        case "star-outline": return .starOutline
         case "star": return .star
         case "stops": return .stops
-        case "swapHorizontal": return .swapHorizontal
-        case "swapVertical": return .swapVertical
+        case "swap--horizontal": return .swapHorizontal
+        case "swap--vertical": return .swapVertical
         case "swap": return .swap
         case "taxi": return .taxi
-        case "thumbsDown": return .thumbsDown
-        case "thumbsUp": return .thumbsUp
-        case "tickCircle": return .tickCircle
+        case "thumbs-down": return .thumbsDown
+        case "thumbs-up": return .thumbsUp
+        case "tick-circle": return .tickCircle
         case "tick": return .tick
-        case "ticketFlexible": return .ticketFlexible
+        case "ticket-flexible": return .ticketFlexible
         case "ticket": return .ticket
         case "time": return .time
         case "toilets": return .toilets
         case "train": return .train
-        case "transmissionAutomatic": return .transmissionAutomatic
-        case "transmissionManual": return .transmissionManual
+        case "transmission-automatic": return .transmissionAutomatic
+        case "transmission-manual": return .transmissionManual
         case "trash": return .trash
-        case "trendDown": return .trendDown
-        case "trendSteady": return .trendSteady
-        case "trendWillRise": return .trendWillRise
+        case "trend--down": return .trendDown
+        case "trend--steady": return .trendSteady
+        case "trend--will-rise": return .trendWillRise
         case "trend": return .trend
         case "trips": return .trips
         case "undo": return .undo
@@ -551,26 +551,26 @@ internal extension BPKIcon {
         case "unmute": return .unmute
         case "upgrade": return .upgrade
         case "upload": return .upload
-        case "useLocation": return .useLocation
+        case "use-location": return .useLocation
         case "view": return .view
         case "virus": return .virus
         case "wallet": return .wallet
-        case "weatherClear": return .weatherClear
-        case "weatherCloudy": return .weatherCloudy
-        case "weatherFog": return .weatherFog
-        case "weatherPartlyCloudy": return .weatherPartlyCloudy
-        case "weatherRain": return .weatherRain
-        case "weatherSnow": return .weatherSnow
-        case "weatherThunderstorm": return .weatherThunderstorm
-        case "weatherTornado": return .weatherTornado
-        case "weatherWind": return .weatherWind
+        case "weather--clear": return .weatherClear
+        case "weather--cloudy": return .weatherCloudy
+        case "weather--fog": return .weatherFog
+        case "weather--partly-cloudy": return .weatherPartlyCloudy
+        case "weather--rain": return .weatherRain
+        case "weather--snow": return .weatherSnow
+        case "weather--thunderstorm": return .weatherThunderstorm
+        case "weather--tornado": return .weatherTornado
+        case "weather--wind": return .weatherWind
         case "weather": return .weather
         case "wifi": return .wifi
-        case "windowReduce": return .windowReduce
+        case "window--reduce": return .windowReduce
         case "window": return .window
-        case "worldAmer": return .worldAmer
-        case "worldApac": return .worldApac
-        case "worldEmea": return .worldEmea
+        case "world--amer": return .worldAmer
+        case "world--apac": return .worldApac
+        case "world--emea": return .worldEmea
         
         default: return nil
         }
