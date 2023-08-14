@@ -30,12 +30,12 @@ struct CardListGroupsProvider {
         SingleGroupProvider(
             cellDataSources: [
                 presentable(
-                    "Rail - 5 total elements",
-                    view: CardListExampleView(layout: .rail(), totalElements: 5)
+                    "Rail - 3 total elements",
+                    view: CardListExampleView(layout: .rail(), totalElements: 3)
                 ),
                 presentable(
-                    "Rail - 12 total elements",
-                    view: CardListExampleView(layout: .rail(), totalElements: 12)
+                    "Rail - 9 total elements",
+                    view: CardListExampleView(layout: .rail(), totalElements: 9)
                 ),
                 presentable(
                     "Rail - 12 total elements & Section Header Button",
@@ -51,11 +51,11 @@ struct CardListGroupsProvider {
                         accessory: .expand(
                             expandText: "Show more",
                             collapseText: "Show less")
-                    ), totalElements: 12)
+                    ), totalElements: 9)
                 ),
                 presentable(
                     "Stack - Accessory Button",
-                    view: CardListExampleView(layout: .stack(accessory: .footerButton(.example)), totalElements: 12)
+                    view: CardListExampleView(layout: .stack(accessory: .footerButton(.example)), totalElements: 9)
                 ),
                 presentable(
                     "Stack - Accessory Expand & Section Header Button",
@@ -67,7 +67,7 @@ struct CardListGroupsProvider {
                                 sectionHeaderButton: .example
                             )
                         ),
-                        totalElements: 12
+                        totalElements: 9
                     )
                 )
 

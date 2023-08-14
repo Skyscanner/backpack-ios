@@ -306,7 +306,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
 
         navigate(title: "Card list") {
             switchTab(title: "SwiftUI")
-            app.tables.staticTexts["Rail - 5 total elements"].tap()
+            app.tables.staticTexts["Rail - 3 total elements"].tap()
             saveScreenshot(component: "card-list", scenario: "rail-5-elements", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
             app.tables.staticTexts["Rail - 12 total elements & Section Header Button"].tap()

@@ -24,28 +24,36 @@ import Backpack_SwiftUI
 struct CardListExampleView: View {
     let initiallyShownCardsCount: Int
     let layout: BPKCardListLayout
-    let elements: [TestElement]
-    let contentType: ContentType
+    let elements: [Location]
+
+    private let title: String
+    private let description: String
 
     init(
         initiallyShownCardsCount: Int = 3,
         layout: BPKCardListLayout,
-        totalElements: Int,
-        contentType: ContentType = .snippet
+        totalElements: Int
     ) {
         self.initiallyShownCardsCount = initiallyShownCardsCount
         self.layout = layout
-        self.elements = (0..<totalElements).map { index in
-            TestElement(id: index)
+        let maxElements = min(totalElements, 9)
+        self.elements = Array(Location.placeholders.prefix(upTo: maxElements))
+        switch layout {
+        case .rail:
+            title = "Must-visit spots"
+            description = "Check out these world-famous destinations perfect for visiting in spring."
+        case .stack:
+            title = "Popular right now"
+            description = "Other travellers are loving these destinations. " +
+            "Search flights, hotels and car hire and join them on the adventure."
         }
-        self.contentType = contentType
     }
 
     var body: some View {
         ScrollView {
             BPKCardList(
-                title: "Section title",
-                description: "Description about this section (optional)",
+                title: title,
+                description: description,
                 layout: layout,
                 initiallyShownCardsCount: initiallyShownCardsCount,
                 elements: elements,
@@ -53,63 +61,119 @@ struct CardListExampleView: View {
         }
     }
 
-    @ViewBuilder private func content(element: TestElement) -> some View {
-        if contentType == .location {
-            locationContent(element: element)
-        } else {
-            switch layout {
-            case .rail:
-                railSnippet(element: element)
-            case .stack:
-                stackSnippet(element: element)
-            }
+    @ViewBuilder private func content(element: Location) -> some View {
+        switch layout {
+        case .rail:
+            railCard(element: element)
+        case .stack:
+            stackCard(element: element)
         }
     }
 
-    private func railSnippet(element: TestElement) -> some View {
-        BPKSnippet(
-            image: Image("dialog_image"),
-            accessibilityLabel: "London at dawn",
-            headline: "Headline Text \(element.id)",
-            description: "Subheading \(element.id)",
-            bodyText: "Body Text \(element.id)",
-            imageOrientation: .square)
-        .frame(width: 281)
-    }
-
-    private func stackSnippet(element: TestElement) -> some View {
-        BPKSnippet(
-            image: Image("dialog_image"),
-            accessibilityLabel: "London at dawn",
-            headline: "Headline Text \(element.id)",
-            description: "Subheading \(element.id)",
-            bodyText: "Body Text \(element.id)",
-            imageOrientation: .square)
-    }
-
-    private func locationContent(element: TestElement) -> some View {
+    private func stackCard(element: Location) -> some View {
         BPKCard(padding: .none) {
             HStack {
-                Image("carousel_placeholder_\(element.id % 4 + 1)")
+                Image(element.imageName)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
-                VStack {
-                    Text("Location \(element.id)")
+                VStack(alignment: .leading) {
+                    BPKText(element.name, style: .heading5)
+                    BPKText("Flights・Hotels・Car hire", style: .footnote)
+                        .foregroundColor(.coreAccentColor)
                 }
+                .padding(.base)
                 Spacer()
             }
         }
-        .frame(height: 90)
+        .frame(height: 88)
     }
 
-    enum ContentType {
-        case snippet
-        case location
+    private func railCard(element: Location) -> some View {
+        BPKSnippet(
+            image: Image(element.imageName),
+            accessibilityLabel: element.name,
+            headline: element.name,
+            description: element.description,
+            imageOrientation: .landscape)
+        .frame(width: 281)
     }
 
-    struct TestElement: Identifiable {
+    struct Location: Identifiable {
         let id: Int
+        let imageName: String
+        let name: String
+        let description: String?
     }
+}
+
+extension CardListExampleView.Location {
+    static let placeholders: [CardListExampleView.Location] = [
+        .init(
+            id: 1,
+            imageName: "Amsterdam",
+            name: "Amsterdam",
+            description: "Fall in love with this artistic metropolis by boat or foot."),
+        .init(
+            id: 2,
+            imageName: "London-TowerBridge",
+            name: "London",
+            description: "Watch the city come alive in bloom as the warmer climes approach."),
+        .init(
+            id: 3,
+            imageName: "Dublin-TempleBar",
+            name: "Dublin",
+            description: "Immerse yourself in the rich history and culture of the Irish capital."),
+        .init(
+            id: 4,
+            imageName: "Paris",
+            name: "Paris",
+            description: nil),
+        .init(
+            id: 5,
+            imageName: "Mallorca-Palma",
+            name: "Mallorca",
+            description: nil),
+        .init(
+            id: 6,
+            imageName: "Alicante",
+            name: "Alicante",
+            description: nil),
+        .init(
+            id: 7,
+            imageName: "Barcelona-CasaBatllo",
+            name: "Barcelona",
+            description: nil),
+        .init(
+            id: 8,
+            imageName: "Berlin-Fernsehturm",
+            name: "Berlin",
+            description: nil),
+        .init(
+            id: 9,
+            imageName: "London-SaintPancrasStation",
+            name: "London",
+            description: "Watch the city come alive in bloom as the warmer climes approach."),
+        .init(
+            id: 10,
+            imageName: "Paris",
+            name: "Paris",
+            description: nil),
+        .init(
+            id: 11,
+            imageName: "Mallorca-Palma",
+            name: "Mallorca",
+            description: nil),
+        .init(
+            id: 12,
+            imageName: "Alicante",
+            name: "Alicante",
+            description: nil),
+        .init(
+            id: 13,
+            imageName: "Barcelona-CasaBatllo",
+            name: "Barcelona",
+            description: nil)
+    ]
 }
 
 struct CardListExampleView_Previews: PreviewProvider {
