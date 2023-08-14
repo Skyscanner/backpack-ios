@@ -49,6 +49,20 @@ class BPKSectionHeaderViewTests: XCTestCase {
         )
     }
 
+    func testSectionHeaderWithLongDescriptionAndButton() {
+        assertSnapshot(
+            BPKSectionHeader(
+                title: "Popular right now",
+                description: "Other travellers are loving these destinations. " +
+                "Search flights, hotels and car hire and join them on the adventure."
+            ) {
+                BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
+            }
+            .padding()
+            .frame(width: 375)
+        )
+    }
+
     func testSectionHeaderWithDescriptionAndButtonOnDark() {
         assertSnapshot(
             BPKSectionHeader(
