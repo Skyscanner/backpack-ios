@@ -88,7 +88,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                     icon: sectionHeaderAction.icon,
                     accessibilityLabel: sectionHeaderAction.accessibilityLabel,
                     action: sectionHeaderAction.action)
-                .buttonStyle((sectionHeaderAction.style == .default) ? .primary : .primaryOnDark)
+                .buttonStyle(.primary)
             }
             .padding(.base)
         } else {
@@ -116,7 +116,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                 icon: button.icon,
                 action: button.action
             )
-            .buttonStyle((button.style == .default) ? .primary : .primaryOnDark)
+            .buttonStyle(.primary)
             .stretchable()
         }
         if case .expand(let expandingText, let collapsingText, _) = accessory {

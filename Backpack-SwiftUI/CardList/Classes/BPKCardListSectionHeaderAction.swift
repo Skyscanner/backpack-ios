@@ -22,18 +22,15 @@ public extension BPKCardListLayout {
     struct SectionHeaderAction {
         let icon: BPKIcon
         let accessibilityLabel: String
-        let style: ActionStyle
         let action: () -> Void
 
         public init(
             icon: BPKIcon,
             accessibilityLabel: String,
-            style: ActionStyle = .default,
             action: @escaping () -> Void
         ) {
             self.icon = icon
             self.accessibilityLabel = accessibilityLabel
-            self.style = style
             self.action = action
         }
     }
