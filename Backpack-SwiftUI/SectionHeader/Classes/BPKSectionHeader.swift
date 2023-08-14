@@ -48,7 +48,7 @@ public struct BPKSectionHeader: View {
     }
 
     public var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: .sm) {
                 BPKText(title, style: .heading3)
                     .foregroundColor(style == .default ? .textPrimaryColor : .textOnDarkColor)
