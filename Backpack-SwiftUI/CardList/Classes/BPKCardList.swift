@@ -54,8 +54,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
 
     private func railLayout(with sectionHeaderAction: BPKCardListLayout.SectionHeaderAction?) -> some View {
         cardListSkeleton(with: sectionHeaderAction) {
-            ScrollView(.horizontal) {
-                HStack(spacing: .base) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: .base) {
                     ForEach(elements) { index in
                         cardForElement(index)
                     }
@@ -121,7 +121,8 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
         }
         if case .expand(let expandingText, let collapsingText, _) = accessory {
             BPKButton(
-                (showingAllCards) ? collapsingText : expandingText
+                (showingAllCards) ? collapsingText : expandingText,
+                icon: .trailing(icon: BPKIcon(name: (showingAllCards) ? "chevron-up" : "chevron-down"))
             ) {
                 withAnimation {
                     showingAllCards.toggle()
