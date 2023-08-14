@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "London-TowerBridge.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "carousel_placeholder_1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
