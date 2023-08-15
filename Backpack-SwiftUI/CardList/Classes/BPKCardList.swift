@@ -61,6 +61,7 @@ public struct BPKCardList<Element: Identifiable, Content: View>: View {
                     }
                 }
                 .padding(.horizontal, .base)
+                .padding(.vertical, .sm)
             }
         }
     }
