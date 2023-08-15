@@ -65,6 +65,5 @@ public struct BPKSectionHeader: View {
                 button.buttonStyle(style == .default ? .primary : .primaryOnDark)
             }
         }
-        .background(style == .default ? .canvasColor : .surfaceContrastColor)
     }
 }
