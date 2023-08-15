@@ -294,7 +294,7 @@ public extension BPKIcon {
     
 }
 
-internal extension BPKIcon {
+public extension BPKIcon {
     // swiftlint:disable function_body_length cyclomatic_complexity
     static func named(_ iconName: String) -> BPKIcon? {
         switch iconName {
