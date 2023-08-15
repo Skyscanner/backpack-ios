@@ -27,10 +27,14 @@ struct SectionHeaderExampleView: View {
             Color(BPKColor.surfaceHighlightColor)
             VStack(alignment: .leading, spacing: .base) {
                 BPKSectionHeader(title: "Section title", style: style)
+                .background(style == .default ? .canvasColor : .surfaceContrastColor)
+
                 BPKSectionHeader(
                     title: "Section title",
                     description: "Description about this section",
                     style: style)
+                .background(style == .default ? .canvasColor : .surfaceContrastColor)
+
                 BPKSectionHeader(
                     title: "Section title",
                     description: "Description about this section",
@@ -39,6 +43,7 @@ struct SectionHeaderExampleView: View {
                             print("Tap add button")
                         }
                 }
+                .background(style == .default ? .canvasColor : .surfaceContrastColor)
             }
             .padding()
         }

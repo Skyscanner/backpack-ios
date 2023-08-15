@@ -72,6 +72,7 @@ class BPKSectionHeaderViewTests: XCTestCase {
             ) {
                 BPKButton(icon: .addCircle, accessibilityLabel: "sectionHeaderButton") { }
             }
+            .background(.surfaceContrastColor)
             .padding()
         )
     }
