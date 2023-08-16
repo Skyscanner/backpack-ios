@@ -71,10 +71,12 @@ public struct BPKSnippet: View {
                     .lineLimit(nil)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
         .onTapGesture {
             onClick?()
         }
-        .accessibilityElement(children: .contain)
+       
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {
