@@ -74,6 +74,7 @@ public struct BPKSnippet: View {
         .onTapGesture {
             onClick?()
         }
+        .accessibilityElement(children: .contain)
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {

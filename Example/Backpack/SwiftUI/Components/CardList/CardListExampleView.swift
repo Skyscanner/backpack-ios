@@ -90,7 +90,7 @@ struct CardListExampleView: View {
 
     private func railCard(element: Location) -> some View {
         BPKSnippet(
-            image: Image(element.imageName),
+            image: Image(decorative: element.imageName),
             accessibilityLabel: element.name,
             headline: element.name,
             description: element.description,
