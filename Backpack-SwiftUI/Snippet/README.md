@@ -30,8 +30,7 @@ If you don't specify an `imageOrientation` parameter it will use the `.landscape
 
 ```swift
 BPKSnippet(
-    image: Image("dialog_image", bundle: TestsBundle.bundle),
-    accessibilityLabel: "City at dawn"
+    image: Image("dialog_image", bundle: TestsBundle.bundle)
 )
 ```
 
@@ -40,7 +39,6 @@ BPKSnippet(
 ```swift 
 BPKSnippet(
     image: Image("dialog_image", bundle: TestsBundle.bundle),
-    accessibilityLabel: "City at dawn",
     headline: "Headline Text",
     description: "Description",
     bodyText: "Body Text"
@@ -53,7 +51,6 @@ Optionally, Snippet can also perform an action on tap, passing in the `onClick` 
 ```swift 
 BPKSnippet(
     image: Image("dialog_image", bundle: TestsBundle.bundle),
-    accessibilityLabel: "City at dawn",
     onClick: {
         print("Do some action here")
     }

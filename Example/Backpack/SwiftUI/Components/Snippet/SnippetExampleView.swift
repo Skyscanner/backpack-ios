@@ -32,7 +32,6 @@ struct SnippetExampleView: View {
     var snippet: some View {
         BPKSnippet(
             image: Image("dialog_image"),
-            accessibilityLabel: "London at dawn",
             headline: "Headline Text",
             description: "Subheading",
             bodyText: "Body Text",
