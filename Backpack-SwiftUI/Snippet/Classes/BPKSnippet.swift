@@ -20,7 +20,6 @@ import SwiftUI
 
 public struct BPKSnippet: View {
     let image: Image
-    let accessibilityLabel: String
     let headline: String?
     let description: String?
     let bodyText: String?
@@ -29,7 +28,6 @@ public struct BPKSnippet: View {
     
     public init(
         image: Image,
-        accessibilityLabel: String,
         headline: String? = nil,
         description: String? = nil,
         bodyText: String? = nil,
@@ -37,7 +35,6 @@ public struct BPKSnippet: View {
         onClick: (() -> Void)? = nil
     ) {
         self.image = image
-        self.accessibilityLabel = accessibilityLabel
         self.headline = headline
         self.description = description
         self.bodyText = bodyText
@@ -71,9 +68,12 @@ public struct BPKSnippet: View {
                     .lineLimit(nil)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
         .onTapGesture {
             onClick?()
         }
+       
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {
@@ -92,7 +92,6 @@ struct BPKSnippet_Previews: PreviewProvider {
     static var previews: some View {
         BPKSnippet(
             image: Image("dialog_image"),
-            accessibilityLabel: "Image of London at dawn",
             headline: "Headline Text?",
             description: "Description",
             bodyText: "Body Text"

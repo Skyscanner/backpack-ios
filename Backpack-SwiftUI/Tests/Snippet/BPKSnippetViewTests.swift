@@ -25,8 +25,7 @@ class BPKSnippetViewTests: XCTestCase {
     func testSnippetDefault() {
         assertSnapshot(
             BPKSnippet(
-                image: Image("dialog_image", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn"
+                image: Image("dialog_image", bundle: TestsBundle.bundle)
             )
             .frame(width: 375)
             .padding()
@@ -37,7 +36,6 @@ class BPKSnippetViewTests: XCTestCase {
         assertSnapshot(
             BPKSnippet(
                 image: Image("", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn",
                 headline: "Headline Text"
             )
             .frame(width: 375)
@@ -49,7 +47,6 @@ class BPKSnippetViewTests: XCTestCase {
         assertSnapshot(
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn",
                 headline: "Headline Text"
             )
             .frame(width: 375)
@@ -61,7 +58,6 @@ class BPKSnippetViewTests: XCTestCase {
         assertSnapshot(
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn",
                 headline: "Headline Text",
                 description: "Description",
                 bodyText: "Body Text"
@@ -75,7 +71,6 @@ class BPKSnippetViewTests: XCTestCase {
         assertSnapshot(
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn",
                 headline: "Headline Text",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
                 "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
@@ -91,7 +86,6 @@ class BPKSnippetViewTests: XCTestCase {
         assertSnapshot(
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                accessibilityLabel: "City at dawn",
                 headline: "Headline Text",
                 description: "Description",
                 bodyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +

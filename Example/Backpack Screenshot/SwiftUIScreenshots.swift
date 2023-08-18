@@ -303,5 +303,27 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "section-header", scenario: "on-dark", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Card list") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Rail - 3 total elements"].tap()
+            saveScreenshot(component: "card-list", scenario: "rail-3-elements", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Rail - 12 total elements & Section Header Button"].tap()
+            saveScreenshot(component: "card-list", scenario: "rail-12-elements-with-section-header-button", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Stack - 3 initial, 12 total elements"].tap()
+            saveScreenshot(component: "card-list", scenario: "stack-3-to-12-elements", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Stack - Accessory Expand"].tap()
+            saveScreenshot(component: "card-list", scenario: "stack-accessory-expand", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Stack - Accessory Button"].tap()
+            saveScreenshot(component: "card-list", scenario: "stack-accessory-button", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            app.tables.staticTexts["Stack - Accessory Expand & Section Header Button"].tap()
+            saveScreenshot(component: "card-list", scenario: "stack-accessory-expand-with-section-header-button", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
