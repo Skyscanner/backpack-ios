@@ -24,8 +24,6 @@ public struct BPKDismissableChip: View {
     let style: BPKChipStyle
     let onClick: () -> Void
     
-    @State private var isPressed = false
-    
     public init(
         _ text: String,
         icon: BPKIcon? = nil,
@@ -48,15 +46,6 @@ public struct BPKDismissableChip: View {
             BPKIconView(.closeCircle)
                 .foregroundColor(accessoryViewColor)
         }
-        .gesture(DragGesture(minimumDistance: 0)
-            .onChanged { _ in
-                isPressed = true
-            }
-            .onEnded { _ in
-                onClick()
-                isPressed = false
-            }
-        )
         .padding(.trailing, .md)
         .padding(.leading, .base)
         .frame(minHeight: .xl)
@@ -68,13 +57,14 @@ public struct BPKDismissableChip: View {
         .accessibilityLabel(text)
         .accessibilityAddTraits(.isButton)
         .sizeCategory(.large)
+        .onTapGesture(perform: onClick)
     }
     
     private var accessoryViewColor: BPKColor {
         switch style {
-        case .`default`: return isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
-        case .onDark: return isPressed ? .textPrimaryColor : .chipOnDarkOnDismissIconColor
-        case .onImage: return isPressed ? .textOnDarkColor : .textDisabledOnDarkColor
+        case .`default`: return .textDisabledOnDarkColor
+        case .onDark: return .chipOnDarkOnDismissIconColor
+        case .onImage: return .textDisabledOnDarkColor
         }
     }
     
