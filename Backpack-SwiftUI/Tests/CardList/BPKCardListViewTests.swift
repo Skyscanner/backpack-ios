@@ -177,7 +177,7 @@ class BPKCardListViewTests: XCTestCase {
 
     private func locationRailCard(element: TestLocation) -> some View {
         BPKSnippet(
-            image: Image(element.imageName, bundle: TestsBundle.bundle),
+            image: Image(systemName: "heart.fill"),
             headline: element.name,
             description: element.description,
             imageOrientation: .landscape)
