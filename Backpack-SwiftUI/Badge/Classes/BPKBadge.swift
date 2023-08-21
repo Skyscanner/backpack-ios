@@ -37,13 +37,15 @@ public struct BPKBadge: View {
         content
             .padding([.leading, .trailing], .md)
             .padding([.top, .bottom], .sm)
-            .frame(height: 24)
+            .frame(minHeight: 24)
             .background(style.backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: .xs))
             .outline(style.borderColor, cornerRadius: .xs)
             .accessibilityElement()
             .accessibilityLabel(title)
-            .sizeCategory(.large)
+            .if(!BPKFont.enableDynamicType, transform: {
+                $0.sizeCategory(.large)
+            })
     }
     
     /// Sets the style of the badge

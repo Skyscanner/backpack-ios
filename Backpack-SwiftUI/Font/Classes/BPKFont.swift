@@ -20,9 +20,14 @@ import SwiftUI
 
 public struct BPKFont {
     static var fontDefinition: BPKFontDefinition?
+    static var enableDynamicType: Bool = false
     
     public static func setFontDefinition(_ fontDefinition: BPKFontDefinition) {
         BPKFont.fontDefinition = fontDefinition
+    }
+    
+    public static func setDynamicType(enabled: Bool) {
+        BPKFont.enableDynamicType = enabled
     }
 }
 
