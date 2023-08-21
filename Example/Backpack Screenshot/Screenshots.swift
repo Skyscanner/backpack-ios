@@ -465,6 +465,10 @@ class Screenshots: BackpackSnapshotTestCase {
         }
         
         navigate(title: "Price") {
+            app.tables.staticTexts["ExtraSmall"].tap()
+            saveScreenshot(component: "price", scenario: "extraSmall", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
             app.tables.staticTexts["Small"].tap()
             saveScreenshot(component: "price", scenario: "small", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
