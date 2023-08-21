@@ -56,7 +56,9 @@ public struct BPKDismissableChip: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(text)
         .accessibilityAddTraits(.isButton)
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
         .onTapGesture(perform: onClick)
     }
     

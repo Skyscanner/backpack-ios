@@ -61,7 +61,9 @@ public struct BPKChip: View {
         )
         .accessibilityAddTraits(selected ? [.isSelected] : [])
         .disabled(disabled)
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     public func disabled(_ disabled: Bool) -> BPKChip {

@@ -35,7 +35,9 @@ struct BPKStickyChip: View {
             )
         )
         .accessibilityAddTraits(stickyChip.selected ? [.isSelected] : [])
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
         .accessibilityLabel(stickyChip.accessibilityLabel)
     }
 }
