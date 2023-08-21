@@ -49,6 +49,7 @@ struct PriceGroupsProvider {
     func swiftUIGroups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
+                presentablePrice("ExtraSmall", view: PriceExampleView(size: .extraSmall)),
                 presentablePrice("Small", view: PriceExampleView(size: .small)),
                 presentablePrice("Large", view: PriceExampleView(size: .large))
             ]
@@ -58,6 +59,7 @@ struct PriceGroupsProvider {
     func groups() -> [Components.Group] {
         SingleGroupProvider(
             cellDataSources: [
+                presentable("ExtraSmall", size: .extraSmall),
                 presentable("Small", size: .small),
                 presentable("Large", size: .large)
             ]

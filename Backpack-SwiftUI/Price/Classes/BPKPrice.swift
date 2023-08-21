@@ -69,7 +69,7 @@ private struct HorizontalPriceStack: View {
 
 public struct BPKPrice: View {
     public enum Size {
-        case large, small
+        case large, small, extraSmall
     }
     
     public enum Alignment {
@@ -133,11 +133,23 @@ public struct BPKPrice: View {
     }
     
     private func accessoryFontStyle() -> BPKFontStyle {
-        return size == .large ? .footnote : .caption
+        switch size {
+        case .large:
+            return .footnote
+        case .small, .extraSmall:
+            return .caption
+        }
     }
     
     private func priceFontStyle() -> BPKFontStyle {
-        return size == .large ? .heading2 : .heading4
+        switch size {
+        case .large:
+            return .heading2
+        case .small:
+            return .heading4
+        case .extraSmall:
+            return .heading5
+        }
     }
     
     private func topLabels() -> [String] {
