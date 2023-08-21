@@ -61,7 +61,9 @@ public struct BPKRating<Content: View>: View {
             }
         }
         .accessibilityElement()
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
 
     public init(

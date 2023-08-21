@@ -56,7 +56,9 @@ public struct BPKSwitch<Content: View>: View {
     public var body: some View {
         Toggle(isOn: $isOn) {
             content
-                .sizeCategory(.large)
+                .if(!BPKFont.enableDynamicType, transform: {
+                    $0.sizeCategory(.large)
+                })
         }
         .toggleStyle(SwitchToggleStyle(tint: Color(.coreAccentColor)))
     }

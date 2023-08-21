@@ -117,7 +117,9 @@ public struct BPKNudger: View {
         .onChange(of: value, perform: { _ in
             updateButtonStates()
         })
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     private func updateButtonStates() {

@@ -122,7 +122,9 @@ public struct BPKPrice: View {
                     accessoryFontStyle: accessoryFontStyle())
             }
         }
-        .sizeCategory(.large)
+        .if(!BPKFont.enableDynamicType, transform: {
+            $0.sizeCategory(.large)
+        })
     }
     
     private func accessoryText(_ text: String) -> BPKText {
