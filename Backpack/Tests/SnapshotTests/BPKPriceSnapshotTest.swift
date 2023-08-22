@@ -69,6 +69,11 @@ class BPKPriceSnapshotTest: XCTestCase {
         assertSnapshot(exampleView)
     }
     
+    func testViewSnapshotWithLeadingAndExtraSmall() {
+        let exampleView = createView(alignment: .leading, size: .extraSmall)
+        assertSnapshot(exampleView)
+    }
+    
     func testViewSnapshotWithTrailingAndLarge() {
         let exampleView = createView(alignment: .trailing, size: .large)
         assertSnapshot(exampleView)
@@ -76,6 +81,11 @@ class BPKPriceSnapshotTest: XCTestCase {
     
     func testViewSnapshotWithTrailingAndSmall() {
         let exampleView = createView(alignment: .trailing, size: .small)
+        assertSnapshot(exampleView)
+    }
+    
+    func testViewSnapshotWithTrailingAndExtraSmall() {
+        let exampleView = createView(alignment: .trailing, size: .extraSmall)
         assertSnapshot(exampleView)
     }
     

@@ -21,7 +21,7 @@ import UIKit
 
 public final class BPKPrice: UIView {
     public enum Size {
-        case large, small
+        case large, small, extraSmall
     }
     
     public enum Alignment {
@@ -181,7 +181,12 @@ public final class BPKPrice: UIView {
     }
     
     private func accessoryFontStyle() -> BPKFontStyle {
-        return size == .large ? .textFootnote : .textCaption
+        switch size {
+        case .large:
+            return .textFootnote
+        case .small, .extraSmall:
+            return .textCaption
+        }
     }
     
     private func applyLineThroughStyling() {
@@ -194,8 +199,16 @@ public final class BPKPrice: UIView {
     }
     
     private func stylePriceLabel() {
-        priceLabel.fontStyle = size == .large ? .textHeading2 : .textHeading4
         priceLabel.textColor = BPKColor.textPrimaryColor
+        
+        switch size {
+        case .large:
+            priceLabel.fontStyle = .textHeading2
+        case .small:
+            priceLabel.fontStyle = .textHeading4
+        case .extraSmall:
+            priceLabel.fontStyle = .textHeading5
+        }
     }
     
     private func styleAccessoryLabels() {
