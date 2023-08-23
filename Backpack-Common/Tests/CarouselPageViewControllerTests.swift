@@ -17,7 +17,7 @@
  */
 
 import XCTest
-@testable import Backpack
+@testable import Backpack_Common
 
 final class CarouselPageViewControllerTests: XCTestCase {
     

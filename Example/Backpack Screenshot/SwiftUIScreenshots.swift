@@ -67,7 +67,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             
             app.tables.staticTexts["Hero"].tap()
             saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
-            tapBackButton()
+tapBackButton()
         }
         
         navigate(title: "Buttons") {
@@ -292,6 +292,11 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
         navigate(title: "Progress bar") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "progress-bar", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Carousel") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "carousel", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         navigate(title: "Section header") {
