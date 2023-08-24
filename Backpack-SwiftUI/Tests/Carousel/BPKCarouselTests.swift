@@ -22,9 +22,9 @@ import SwiftUI
 
 class BPKCarouselTests: XCTestCase {
     private func createImage(_ name: String) -> some View {
-        Image(name, bundle: TestsBundle.bundle)
+        Image(systemName: "backpack.fill")
             .resizable()
-            .aspectRatio(contentMode: .fill)
+            .aspectRatio(1, contentMode: .fit)
     }
     
     func testWithOneImage() {
