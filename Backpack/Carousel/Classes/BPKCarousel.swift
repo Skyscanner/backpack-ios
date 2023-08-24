@@ -65,6 +65,7 @@ public final class BPKCarousel: UIView {
     }
     
     public func setCurrentImage(index: Int, animated: Bool = true) {
+        pageIndicator.currentIndex = index
         internalCarousel.setCurrentImage(index: index, animated: animated)
     }
 }

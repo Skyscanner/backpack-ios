@@ -27,7 +27,7 @@ class BPKCarouselSnapshotTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        isRecording = true
+        isRecording = false
     }
     
     func testViewSnapshotWithOneImage() {
