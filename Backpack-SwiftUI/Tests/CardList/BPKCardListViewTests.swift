@@ -205,74 +205,60 @@ class BPKCardListViewTests: XCTestCase {
 
 private struct TestLocation: Identifiable {
     let id: Int
-    let imageName: String
     let name: String
     let description: String?
 
     static let placeholders: [TestLocation] = [
         .init(
             id: 1,
-            imageName: "Amsterdam",
             name: "Amsterdam",
             description: "Fall in love with this artistic metropolis by boat or foot."),
         .init(
             id: 2,
-            imageName: "London-TowerBridge",
             name: "London",
             description: "Watch the city come alive in bloom as the warmer climes approach."),
         .init(
             id: 3,
-            imageName: "Dublin-TempleBar",
             name: "Dublin",
             description: "Immerse yourself in the rich history and culture of the Irish capital."),
         .init(
             id: 4,
-            imageName: "Paris",
             name: "Paris",
             description: nil),
         .init(
             id: 5,
-            imageName: "Mallorca-Palma",
             name: "Mallorca",
             description: nil),
         .init(
             id: 6,
-            imageName: "Alicante",
             name: "Alicante",
             description: nil),
         .init(
             id: 7,
-            imageName: "Barcelona-CasaBatllo",
             name: "Barcelona",
             description: nil),
         .init(
             id: 8,
-            imageName: "Berlin-Fernsehturm",
             name: "Berlin",
             description: nil),
         .init(
             id: 9,
-            imageName: "London-SaintPancrasStation",
             name: "London",
             description: "Watch the city come alive in bloom as the warmer climes approach."),
         .init(
             id: 10,
-            imageName: "Paris",
             name: "Paris",
             description: nil),
         .init(
             id: 11,
-            imageName: "Mallorca-Palma",
             name: "Mallorca",
             description: nil),
         .init(
             id: 12,
-            imageName: "Alicante",
             name: "Alicante",
             description: nil),
         .init(
             id: 13,
-            imageName: "Barcelona-CasaBatllo",
             name: "Barcelona",
             description: nil)
     ]
