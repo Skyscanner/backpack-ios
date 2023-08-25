@@ -21,16 +21,16 @@ import SwiftUI
 @testable import Backpack_SwiftUI
 
 class BPKCarouselTests: XCTestCase {
-    private func createImage(_ name: String) -> some View {
+    private func createImage() -> some View {
         Image("dialog_image", bundle: TestsBundle.bundle)
             .resizable()
-            .aspectRatio(1, contentMode: .fit)
+            .aspectRatio(contentMode: .fill)
     }
     
     func testWithOneImage() {
         assertSnapshot(
             BPKCarousel(
-                images: [createImage("Amsterdam")],
+                images: [createImage()],
                 currentIndex: .constant(0)
             )
             .frame(width: 300, height: 250)
@@ -41,9 +41,9 @@ class BPKCarouselTests: XCTestCase {
         assertSnapshot(
             BPKCarousel(
                 images: [
-                    createImage("Amsterdam"),
-                    createImage("Amsterdam"),
-                    createImage("Amsterdam")
+                    createImage(),
+                    createImage(),
+                    createImage()
                 ],
                 currentIndex: .constant(0)
             )
@@ -55,9 +55,9 @@ class BPKCarouselTests: XCTestCase {
         assertSnapshot(
             BPKCarousel(
                 images: [
-                    createImage("Amsterdam"),
-                    createImage("Amsterdam"),
-                    createImage("Amsterdam")
+                    createImage(),
+                    createImage(),
+                    createImage()
                 ],
                 currentIndex: .constant(1)
             )
