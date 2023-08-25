@@ -22,7 +22,7 @@ import SwiftUI
 
 class BPKCarouselTests: XCTestCase {
     private func createImage(_ name: String) -> some View {
-        Image(systemName: "backpack.fill")
+        Image("dialog_image", bundle: TestsBundle.bundle)
             .resizable()
             .aspectRatio(1, contentMode: .fit)
     }
