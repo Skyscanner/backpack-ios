@@ -37,7 +37,7 @@ public struct BPKGraphicPromo: View {
     
     // MARK: - Internal settings
     private let sponsorLogoHeight = 60.0
-    private let aspectRatio: CGFloat = 3/4
+    private let aspectRatio: CGFloat = 4/3
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
 
@@ -66,23 +66,28 @@ public struct BPKGraphicPromo: View {
     }
     
     public var body: some View {
-        image
-            .resizable()
-            .aspectRatio(aspectRatio, contentMode: .fill)
-            .background(backgroundColor)
-            .bpkOverlay(overlay)
-            .overlay(
-                contentView()
-                    .padding(padding),
-                alignment: verticalAlignment.contentAlignment
-            )
-            .cornerRadius(cornerRadius.value)
-            .onTapGesture {
-                action()
-            }
-            .accessibilityElement(children: .ignore)
-            .accessibilityAddTraits(type.accessibilityTraits)
-            .accessibilityLabel(contentAccessibilityLabel)
+        VStack {
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .bpkOverlay(overlay)
+                .onTapGesture {
+                    action()
+                }
+                .clipped()
+        }
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: UIScreen.main.bounds.width * aspectRatio, maxHeight: UIScreen.main.bounds.width * aspectRatio)
+        .background(backgroundColor)
+        .cornerRadius(cornerRadius.value)
+        .overlay(
+            contentView()
+                .padding(padding),
+            alignment: verticalAlignment.contentAlignment
+        )
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(type.accessibilityTraits)
+        .accessibilityLabel(contentAccessibilityLabel)
     }
     
     @ViewBuilder
@@ -181,7 +186,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
         ScrollView {
             BPKGraphicPromo(
                 headline: "Three peaks challenge",
-                image: Image(decorative: "Barcelona-CasaBatllo"),
+                image: Image(systemName: "heart.fill"),
                 overlay: .solid(.high)
             ) {
                 print("Test")
