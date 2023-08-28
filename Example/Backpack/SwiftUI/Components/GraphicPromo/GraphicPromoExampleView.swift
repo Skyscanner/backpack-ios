@@ -22,20 +22,23 @@ import Backpack_SwiftUI
 
 struct GraphicPromoExampleView: View {
     var body: some View {
-        BPKGraphicPromo(
-            kicker: "Travel tips",
-            headline: "Three peaks challenge",
-            subheadline: "How to complete the climb in 3 days",
-            image: Image(decorative: "canadian_rockies_canada"),
-            overlay: .solid(.high)
-        ) {
-            print("Hola!")
+        ScrollView {
+            BPKGraphicPromo(
+                kicker: "Travel tips",
+                headline: "Three peaks challenge",
+                subheadline: "How to complete the climb in 3 days",
+                image: Image(decorative: "canadian_rockies_canada"),
+                overlay: .solid(.medium)
+            ) {
+                print("Graphic promotion tap")
+            }
+            .sponsor(
+                title: "Sponsored",
+                logo: Image(decorative: "skyland"),
+                accessibilityLabel: "Sponsored by Skyland"
+            )
+            .padding(.horizontal, .base)
         }
-        .sponsor(
-            title: "Sponsored",
-            logo: Image(decorative: "skyland"),
-            accessibilityLabel: "Sponsored by Skyland"
-        )
     }
 }
 

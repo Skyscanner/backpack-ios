@@ -35,6 +35,7 @@ public struct BPKGraphicPromo: View {
     // Settings
     private let sponsorLogoHeight = 60.0
     private let aspectRatio: CGFloat = 3/4
+    private let padding = BPKSpacing.lg
     
     public init(
         kicker: String? = nil,
@@ -67,7 +68,7 @@ public struct BPKGraphicPromo: View {
             .background(.coreEcoColor)
             .bpkOverlay(overlay)
             .overlay(
-                contentView().padding(.lg),
+                contentView().padding(padding),
                 alignment: verticalAlignment.contentAlignment
             )
             .cornerRadius(BPKCornerRadius.md.value)
@@ -119,7 +120,7 @@ public struct BPKGraphicPromo: View {
     public func sponsor(title: String, logo: Image, accessibilityLabel: String) -> some View {
         return self
             .overlay(
-                sponsorOverlayView(title: title, logo: logo).padding(.lg),
+                sponsorOverlayView(title: title, logo: logo).padding(padding),
                 alignment: verticalAlignment.sponsorAlignment)
             .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
     }
