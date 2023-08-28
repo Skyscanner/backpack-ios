@@ -32,11 +32,15 @@ public struct BPKGraphicPromo: View {
     
     private let action: () -> Void
     
-    // Settings
+    // MARK: - Adjustable settings (modifiers)
+    private var backgroundColor = BPKColor.black
+    
+    // MARK: - Internal settings
     private let sponsorLogoHeight = 60.0
     private let aspectRatio: CGFloat = 3/4
     private let padding = BPKSpacing.lg
-    
+    private let cornerRadius = BPKCornerRadius.md
+
     public init(
         kicker: String? = nil,
         headline: String,
@@ -65,13 +69,13 @@ public struct BPKGraphicPromo: View {
         image
             .resizable()
             .aspectRatio(aspectRatio, contentMode: .fit)
-            .background(.coreEcoColor)
+            .background(backgroundColor)
             .bpkOverlay(overlay)
             .overlay(
                 contentView().padding(padding),
                 alignment: verticalAlignment.contentAlignment
             )
-            .cornerRadius(BPKCornerRadius.md.value)
+            .cornerRadius(cornerRadius.value)
             .accessibilityAddTraits(type.accessibilityTraits)
             .onTapGesture {
                 action()
@@ -124,6 +128,12 @@ public struct BPKGraphicPromo: View {
                 alignment: verticalAlignment.sponsorAlignment)
             .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
     }
+    
+    public func backgroundColor(_ color: BPKColor) -> BPKGraphicPromo {
+        var view = self
+        view.backgroundColor = color
+        return view
+    }
 }
 
 public extension BPKGraphicPromo {
@@ -171,6 +181,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
             ) {
                 print("Test")
             }
+            .backgroundColor(.coreEcoColor)
             .sponsor(
                 title: "Sponsored",
                 logo: Image(systemName: "heart.fill"),
