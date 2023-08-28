@@ -25,8 +25,9 @@ public struct BPKGraphicPromo: View {
     private let subheadline: String?
     private let image: Image
     
-    private let variant: Variant
+    private let type: `Type`
     private let overlay: BPKOverlayType
+    private let variant: Variant
     private let verticalAlignment: VerticalAlignment
     
     private let action: () -> Void
@@ -40,6 +41,7 @@ public struct BPKGraphicPromo: View {
         headline: String,
         subheadline: String? = nil,
         image: Image,
+        type: `Type` = .button,
         overlay: BPKOverlayType = .solid(.off),
         variant: Variant = .onDark,
         verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top,
@@ -49,8 +51,10 @@ public struct BPKGraphicPromo: View {
             self.subheadline = subheadline
             self.image = image
             
-            self.variant = variant
+            self.type = type
             self.overlay = overlay
+            self.variant = variant
+            
             self.verticalAlignment = verticalAlignment
             
             self.action = action
@@ -67,6 +71,7 @@ public struct BPKGraphicPromo: View {
                 alignment: verticalAlignment.contentAlignment
             )
             .cornerRadius(BPKCornerRadius.md.value)
+            .accessibilityAddTraits(type.accessibilityTraits)
             .onTapGesture {
                 action()
             }
@@ -121,6 +126,14 @@ public struct BPKGraphicPromo: View {
 }
 
 public extension BPKGraphicPromo {
+    enum `Type` {
+        case button, link
+        
+        var accessibilityTraits: AccessibilityTraits {
+            self == .button ? .isButton : .isLink
+        }
+    }
+    
     enum Variant {
         case onDark, onLight
         
