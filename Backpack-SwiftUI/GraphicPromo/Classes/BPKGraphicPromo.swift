@@ -99,7 +99,15 @@ public struct BPKGraphicPromo: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: sponsorLogoHeight)
+                .accessibilityLabel(contentAccessibilityLabel)
         }
+    }
+    
+    // MARK: - Helpers
+    private var contentAccessibilityLabel: String {
+        return [kicker, headline, subheadline]
+            .compactMap { $0 }
+            .joined(separator: ", ")
     }
     
     // MARK: - Public modifiers
@@ -108,6 +116,7 @@ public struct BPKGraphicPromo: View {
             .overlay(
                 sponsorOverlayView(title: title, logo: logo).padding(.lg),
                 alignment: verticalAlignment.sponsorAlignment)
+            .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
     }
 }
 
