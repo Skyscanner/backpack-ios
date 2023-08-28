@@ -17,9 +17,9 @@
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
-		5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */; };
 		534624382A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */; };
 		5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */; };
+		5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */; };
 		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */; };
 		5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */; };
@@ -113,6 +113,7 @@
 		7976E5C028BB0BCC00471AA2 /* ColorTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976E5BF28BB0BCC00471AA2 /* ColorTokensView.swift */; };
 		7976E5C228BB0E4700471AA2 /* ColorChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976E5C128BB0E4700471AA2 /* ColorChipView.swift */; };
 		797FA4F628312A00006E2A87 /* TextGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797FA4F528312A00006E2A87 /* TextGroups.swift */; };
+		79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */; };
 		79CE553329BB05DD00CC89D3 /* OverlayForegroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */; };
 		79CE553529BEF26400CC89D3 /* PriceGroupsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */; };
 		79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5129229AEFEB600D0997A /* LabelViewController.swift */; };
@@ -230,9 +231,9 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarExampleView.swift; sourceTree = "<group>"; };
 		534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectRailExampleView.swift; sourceTree = "<group>"; };
+		5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarExampleView.swift; sourceTree = "<group>"; };
 		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensViewController.swift; sourceTree = "<group>"; };
 		5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +334,7 @@
 		7976E5BF28BB0BCC00471AA2 /* ColorTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensView.swift; sourceTree = "<group>"; };
 		7976E5C128BB0E4700471AA2 /* ColorChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChipView.swift; sourceTree = "<group>"; };
 		797FA4F528312A00006E2A87 /* TextGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGroups.swift; sourceTree = "<group>"; };
+		79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicPromoExampleView.swift; sourceTree = "<group>"; };
 		79CE553229BB05DD00CC89D3 /* OverlayForegroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayForegroundViewController.swift; sourceTree = "<group>"; };
 		79CE553429BEF26400CC89D3 /* PriceGroupsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGroupsProvider.swift; sourceTree = "<group>"; };
 		79F5129229AEFEB600D0997A /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
@@ -489,14 +491,6 @@
 			path = Select;
 			sourceTree = "<group>";
 		};
-    5346243E2A7437AF0059A0B5 /* ProgressBar */ = {
-			isa = PBXGroup;
-			children = (
-				5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */,
-			);
-			path = ProgressBar;
-      sourceTree = "<group>";
-		};
 		5346243B2A7433040059A0B5 /* MultiSelect */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +498,14 @@
 				534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */,
 			);
 			path = MultiSelect;
+			sourceTree = "<group>";
+		};
+		5346243E2A7437AF0059A0B5 /* ProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */,
+			);
+			path = ProgressBar;
 			sourceTree = "<group>";
 		};
 		5390DB5B29098CD700F0F790 /* Tokens */ = {
@@ -874,6 +876,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				79AFEDA72A9C704F001615A2 /* GraphicPromo */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
 				5346243E2A7437AF0059A0B5 /* ProgressBar */,
 				A17006532A5BBEE900134458 /* BottomSheet */,
@@ -1215,6 +1218,14 @@
 				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		79AFEDA72A9C704F001615A2 /* GraphicPromo */ = {
+			isa = PBXGroup;
+			children = (
+				79AFEDA82A9C7063001615A2 /* GraphicPromoExampleView.swift */,
+			);
+			path = GraphicPromo;
 			sourceTree = "<group>";
 		};
 		A17006532A5BBEE900134458 /* BottomSheet */ = {
@@ -1630,6 +1641,7 @@
 				53C6621D29EA0DAB00BF1A62 /* SkeletonExampleView.swift in Sources */,
 				E35EA59624212F9900373CE4 /* BottomSheetResizableContentViewController.swift in Sources */,
 				D27EE92C2193163900C877EA /* ChipsViewController.swift in Sources */,
+				79AFEDA92A9C7063001615A2 /* GraphicPromoExampleView.swift in Sources */,
 				D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */,
 				79F5129329AEFEB600D0997A /* LabelViewController.swift in Sources */,
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
