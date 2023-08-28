@@ -17,9 +17,10 @@
 		3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D2D46214AB9F400ECBD5B /* BPKButtonsViewController.m */; };
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
-		5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */; };
+		530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530459F42A961F9E00244EA8 /* CarouselExampleView.swift */; };
 		534624382A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */; };
 		5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */; };
+		5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */; };
 		537ED1AF282D65A300032105 /* ShadowTokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537ED1AE282D65A300032105 /* ShadowTokensView.swift */; };
 		5390DB5D29098CE400F0F790 /* RadiusTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */; };
 		5390DB5F29098D7300F0F790 /* SpacingTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */; };
@@ -230,9 +231,10 @@
 		3AA018F3215D000700838FBB /* TextViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewsViewController.swift; sourceTree = "<group>"; };
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarExampleView.swift; sourceTree = "<group>"; };
+		530459F42A961F9E00244EA8 /* CarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselExampleView.swift; sourceTree = "<group>"; };
 		534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectRailExampleView.swift; sourceTree = "<group>"; };
+		5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarExampleView.swift; sourceTree = "<group>"; };
 		537ED1AE282D65A300032105 /* ShadowTokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowTokensView.swift; sourceTree = "<group>"; };
 		5390DB5C29098CE400F0F790 /* RadiusTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadiusTokensViewController.swift; sourceTree = "<group>"; };
 		5390DB5E29098D7300F0F790 /* SpacingTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokensViewController.swift; sourceTree = "<group>"; };
@@ -489,13 +491,13 @@
 			path = Select;
 			sourceTree = "<group>";
 		};
-    5346243E2A7437AF0059A0B5 /* ProgressBar */ = {
+		530459F32A961F8F00244EA8 /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
-				5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */,
+				530459F42A961F9E00244EA8 /* CarouselExampleView.swift */,
 			);
-			path = ProgressBar;
-      sourceTree = "<group>";
+			path = Carousel;
+			sourceTree = "<group>";
 		};
 		5346243B2A7433040059A0B5 /* MultiSelect */ = {
 			isa = PBXGroup;
@@ -504,6 +506,14 @@
 				534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */,
 			);
 			path = MultiSelect;
+			sourceTree = "<group>";
+		};
+		5346243E2A7437AF0059A0B5 /* ProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */,
+			);
+			path = ProgressBar;
 			sourceTree = "<group>";
 		};
 		5390DB5B29098CD700F0F790 /* Tokens */ = {
@@ -874,6 +884,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
 				5346243E2A7437AF0059A0B5 /* ProgressBar */,
 				A17006532A5BBEE900134458 /* BottomSheet */,
@@ -1748,6 +1759,7 @@
 				53C7F0B92A4C615D003A8740 /* ChipGroupSingleSelectRailExampleView.swift in Sources */,
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				53C6622129EA0DAB00BF1A62 /* BPKIconsExampleUtil.swift in Sources */,
+				530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */,
 				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
 				53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */,
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,

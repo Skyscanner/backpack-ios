@@ -466,7 +466,10 @@ extension ComponentCellsProvider {
             tabs: [
                 .uikit(presentable: CustomPresentable(
                     generateViewController: { CarouselViewController() }
-                ))
+                )),
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(CarouselExampleView())
+                }))
             ],
             showChildren: { showComponent(title: "Carousel", tabs: $0) }
         )
