@@ -32,14 +32,15 @@ struct GraphicPromoExampleView: View {
             ) {
                 print("Graphic promotion tap")
             }
-            .padding(.horizontal, .base)
+            .padding(.horizontal, .md)
             
             BPKGraphicPromo(
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the climb in 3 days",
                 image: Image(decorative: "canadian_rockies_canada"),
-                overlay: .solid(.medium)
+                overlay: .solid(.medium),
+                verticalAlignment: .bottom
             ) {
                 print("Graphic promotion tap")
             }
@@ -48,7 +49,7 @@ struct GraphicPromoExampleView: View {
                 logo: Image(decorative: "skyland"),
                 accessibilityLabel: "Sponsored by Skyland"
             )
-            .padding(.horizontal, .base)
+            .padding(.horizontal, .md)
         }
     }
 }

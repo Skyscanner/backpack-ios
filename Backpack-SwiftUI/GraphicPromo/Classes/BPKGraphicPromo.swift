@@ -106,6 +106,7 @@ public struct BPKGraphicPromo: View {
                     .foregroundColor(variant.foregroundColor)
             }
         }
+        .accessibilityElement(children: .ignore)
     }
     
     @ViewBuilder
