@@ -68,18 +68,21 @@ public struct BPKGraphicPromo: View {
     public var body: some View {
         image
             .resizable()
-            .aspectRatio(aspectRatio, contentMode: .fit)
+            .aspectRatio(aspectRatio, contentMode: .fill)
             .background(backgroundColor)
             .bpkOverlay(overlay)
             .overlay(
-                contentView().padding(padding),
+                contentView()
+                    .padding(padding),
                 alignment: verticalAlignment.contentAlignment
             )
             .cornerRadius(cornerRadius.value)
-            .accessibilityAddTraits(type.accessibilityTraits)
             .onTapGesture {
                 action()
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityAddTraits(type.accessibilityTraits)
+            .accessibilityLabel(contentAccessibilityLabel)
     }
     
     @ViewBuilder
@@ -126,6 +129,8 @@ public struct BPKGraphicPromo: View {
             .overlay(
                 sponsorOverlayView(title: title, logo: logo).padding(padding),
                 alignment: verticalAlignment.sponsorAlignment)
+            .accessibilityElement(children: .ignore)
+            .accessibilityAddTraits(type.accessibilityTraits)
             .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
     }
     

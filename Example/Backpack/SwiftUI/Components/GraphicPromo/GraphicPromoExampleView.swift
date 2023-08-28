@@ -32,6 +32,17 @@ struct GraphicPromoExampleView: View {
             ) {
                 print("Graphic promotion tap")
             }
+            .padding(.horizontal, .base)
+            
+            BPKGraphicPromo(
+                kicker: "Travel tips",
+                headline: "Three peaks challenge",
+                subheadline: "How to complete the climb in 3 days",
+                image: Image(decorative: "canadian_rockies_canada"),
+                overlay: .solid(.medium)
+            ) {
+                print("Graphic promotion tap")
+            }
             .sponsor(
                 title: "Sponsored",
                 logo: Image(decorative: "skyland"),
