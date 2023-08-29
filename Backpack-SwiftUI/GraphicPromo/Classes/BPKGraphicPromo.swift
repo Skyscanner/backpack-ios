@@ -19,6 +19,12 @@
 import SwiftUI
 
 public struct BPKGraphicPromo: View {
+    struct Sponsor {
+        let title: String
+        let logo: Image
+        let accessibilityLabel: String
+    }
+    
     private let kicker: String?
     private let headline: String
     private let subheadline: String?
@@ -33,6 +39,7 @@ public struct BPKGraphicPromo: View {
     
     // MARK: - Adjustable settings (modifiers)
     private var backgroundColor = BPKColor.surfaceContrastColor
+    private var sponsor: Sponsor?
     
     // MARK: - Internal settings
     private let sponsorLogoHeight = 60.0
@@ -94,9 +101,15 @@ public struct BPKGraphicPromo: View {
     @ViewBuilder
     private func contentView() -> some View {
         VStack(alignment: .leading, spacing: .md) {
+            if verticalAlignment == .bottom, let sponsor {
+                sponsorOverlayView(sponsor)
+                Spacer()
+            }
+            
             if let kicker {
                 BPKText(kicker, style: .label1)
                     .foregroundColor(variant.foregroundColor)
+                    .lineLimit(nil)
             }
             BPKText(headline, style: .heading2)
                 .foregroundColor(variant.foregroundColor)
@@ -106,15 +119,20 @@ public struct BPKGraphicPromo: View {
                     .lineLimit(nil)
                     .foregroundColor(variant.foregroundColor)
             }
+            
+            if verticalAlignment == .top, let sponsor {
+                Spacer()
+                sponsorOverlayView(sponsor)
+            }
         }
     }
     
     @ViewBuilder
-    private func sponsorOverlayView(title: String, logo: Image) -> some View {
+    private func sponsorOverlayView(_ sponsor: Sponsor) -> some View {
         VStack(alignment: .leading, spacing: .md) {
-            BPKText(title, style: .label1)
+            BPKText(sponsor.title, style: .label1)
                 .foregroundColor(variant.foregroundColor)
-            logo
+            sponsor.logo
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: sponsorLogoHeight)
@@ -123,20 +141,16 @@ public struct BPKGraphicPromo: View {
     
     // MARK: - Helpers
     private var contentAccessibilityLabel: String {
-        return [kicker, headline, subheadline]
+        return [kicker, headline, subheadline, sponsor?.accessibilityLabel]
             .compactMap { $0 }
             .joined(separator: ", ")
     }
     
     // MARK: - Public modifiers
-    public func sponsor(title: String, logo: Image, accessibilityLabel: String) -> some View {
-        return self
-            .overlay(
-                sponsorOverlayView(title: title, logo: logo).padding(padding),
-                alignment: verticalAlignment.sponsorAlignment)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
-            .accessibilityAddTraits(type.accessibilityTraits)
+    public func sponsor(title: String, logo: Image, accessibilityLabel: String) -> BPKGraphicPromo {
+        var view = self
+        view.sponsor = Sponsor(title: title, logo: logo, accessibilityLabel: accessibilityLabel)
+        return view
     }
     
     public func backgroundColor(_ color: BPKColor) -> BPKGraphicPromo {
@@ -181,6 +195,24 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                 accessibilityLabel: "Sponsored by: Skyland"
             )
             .previewDisplayName("Sponsored")
+            
+            ScrollView {
+                BPKGraphicPromo(
+                    kicker: "Travel tips",
+                    headline: "Three peaks challenge",
+                    subheadline: "How to complete the trip in three days",
+                    image: Image(systemName: "heart"),
+                    action: {}
+                )
+                .backgroundColor(.coreAccentColor)
+                .sponsor(
+                    title: "Sponsored",
+                    logo: Image(systemName: "heart.fill"),
+                    accessibilityLabel: "Sponsored by: Skyland"
+                )
+            }
+            .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+            .previewDisplayName("Accessibility")
         }
         .padding(.horizontal, .base)
     }
