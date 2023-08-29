@@ -91,7 +91,7 @@ public struct BPKGraphicPromo: View {
                 .padding(padding)
         }
         .cornerRadius(cornerRadius.value)
-        .if(sizeCategory < .accessibilityExtraExtraLarge, transform: {
+        .if(sizeCategory < .accessibilityExtraLarge, transform: {
             $0.aspectRatio(aspectRatio, contentMode: .fit)
         })
         .accessibilityElement(children: .ignore)
@@ -175,37 +175,40 @@ public struct BPKGraphicPromo: View {
 // swiftlint:disable closure_body_length
 struct BPKGraphicPromo_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            // swiftlint:disable redundant_discardable_let
-            let _ = BPKFont.setDynamicType(enabled: true)
+        Group {            
+            ScrollView {
+                BPKGraphicPromo(headline: "Three peaks challenge", image: Image(systemName: "backpack.fill"), action: {})
+                    .backgroundColor(.coreAccentColor)
+            }
+            .previewDisplayName("Headline")
             
-            BPKGraphicPromo(headline: "Three peaks challenge", image: Image(systemName: "backpack.fill"), action: {})
+            ScrollView {
+                BPKGraphicPromo(
+                    kicker: "Travel tips",
+                    headline: "Three peaks challenge",
+                    subheadline: "How to complete the trip in three days",
+                    image: Image(systemName: "backpack.fill"),
+                    action: {}
+                )
                 .backgroundColor(.coreAccentColor)
-                .previewDisplayName("Headline")
-            
-            BPKGraphicPromo(
-                kicker: "Travel tips",
-                headline: "Three peaks challenge",
-                subheadline: "How to complete the trip in three days",
-                image: Image(systemName: "backpack.fill"),
-                action: {}
-            )
-            .backgroundColor(.coreAccentColor)
+            }
             .previewDisplayName("All options")
             
-            BPKGraphicPromo(
-                kicker: "Travel tips",
-                headline: "Three peaks challenge",
-                subheadline: "How to complete the trip in three days",
-                image: Image(systemName: "heart"),
-                action: {}
-            )
-            .backgroundColor(.coreAccentColor)
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(systemName: "heart.fill"),
-                accessibilityLabel: "Sponsored by: Skyland"
-            )
+            ScrollView {
+                BPKGraphicPromo(
+                    kicker: "Travel tips",
+                    headline: "Three peaks challenge",
+                    subheadline: "How to complete the trip in three days",
+                    image: Image(systemName: "heart"),
+                    action: {}
+                )
+                .backgroundColor(.coreAccentColor)
+                .sponsor(
+                    title: "Sponsored",
+                    logo: Image(systemName: "heart.fill"),
+                    accessibilityLabel: "Sponsored by: Skyland"
+                )
+            }
             .previewDisplayName("Sponsored")
             
             ScrollView {
