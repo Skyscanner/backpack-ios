@@ -72,38 +72,40 @@ public struct BPKGraphicPromo: View {
     }
     
     public var body: some View {
-        Rectangle()
-            .fill(.clear)
-            .aspectRatio(aspectRatio, contentMode: .fit)
-            .background(backgroundColor)
-            .overlay(
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
-                    .bpkOverlay(overlay)
-            )
-            .accessibilityElement(children: .ignore)
-            .overlay(
-                contentView()
-                    .padding(padding),
-                alignment: verticalAlignment.contentAlignment
-            )
-            .cornerRadius(cornerRadius.value)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(contentAccessibilityLabel)
-            .accessibilityAddTraits(type.accessibilityTraits)
-            .onTapGesture {
-                action()
-            }
+        ZStack {
+            Rectangle()
+                .fill(.clear)
+                .background(backgroundColor)
+                .overlay(
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .bpkOverlay(overlay)
+                )
+                .accessibilityElement(children: .ignore)
+            contentView()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(padding)
+        }
+        .cornerRadius(cornerRadius.value)
+        .aspectRatio(aspectRatio, contentMode: .fit)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(contentAccessibilityLabel)
+        .accessibilityAddTraits(type.accessibilityTraits)
     }
     
+    // swiftlint:disable closure_body_length
     @ViewBuilder
     private func contentView() -> some View {
         VStack(alignment: .leading, spacing: .md) {
-            if verticalAlignment == .bottom, let sponsor {
-                sponsorOverlayView(sponsor)
-                Spacer()
+            if verticalAlignment == .bottom {
+                if let sponsor {
+                    sponsorOverlayView(sponsor)
+                    Spacer()
+                } else {
+                    Spacer()
+                }
             }
             
             if let kicker {
@@ -111,18 +113,24 @@ public struct BPKGraphicPromo: View {
                     .foregroundColor(variant.foregroundColor)
                     .lineLimit(nil)
             }
+            
             BPKText(headline, style: .heading2)
                 .foregroundColor(variant.foregroundColor)
                 .lineLimit(nil)
+
             if let subheadline {
                 BPKText(subheadline, style: .heading5)
                     .lineLimit(nil)
                     .foregroundColor(variant.foregroundColor)
             }
             
-            if verticalAlignment == .top, let sponsor {
-                Spacer()
-                sponsorOverlayView(sponsor)
+            if verticalAlignment == .top {
+                if let sponsor {
+                    Spacer()
+                    sponsorOverlayView(sponsor)
+                } else {
+                    Spacer()
+                }
             }
         }
     }
