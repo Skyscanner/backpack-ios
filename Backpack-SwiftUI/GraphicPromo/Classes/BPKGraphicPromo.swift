@@ -36,7 +36,7 @@ public struct BPKGraphicPromo: View {
     
     // MARK: - Internal settings
     private let sponsorLogoHeight = 60.0
-    private let aspectRatio: CGFloat = 4/3
+    private let aspectRatio: CGFloat = 3/4
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
 
@@ -67,7 +67,7 @@ public struct BPKGraphicPromo: View {
     public var body: some View {
         Rectangle()
             .fill(.clear)
-            .aspectRatio(3/4, contentMode: .fit)
+            .aspectRatio(aspectRatio, contentMode: .fit)
             .background(backgroundColor)
             .overlay(
                 image
