@@ -33,7 +33,7 @@ public struct BPKGraphicPromo: View {
     private let action: () -> Void
     
     // MARK: - Adjustable settings (modifiers)
-    private var backgroundColor = BPKColor.black
+    private var backgroundColor = BPKColor.surfaceContrastColor
     
     // MARK: - Internal settings
     private let sponsorLogoHeight = 60.0
@@ -66,31 +66,30 @@ public struct BPKGraphicPromo: View {
     }
     
     public var body: some View {
-        VStack {
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .bpkOverlay(overlay)
-                .accessibilityHidden(true)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(
-            minHeight: UIScreen.main.bounds.width * aspectRatio,
-            maxHeight: UIScreen.main.bounds.width * aspectRatio
-        )
-        .background(backgroundColor)
-        .cornerRadius(cornerRadius.value)
-        .overlay(
-            contentView()
-                .padding(padding),
-            alignment: verticalAlignment.contentAlignment
-        )
-        .accessibilityElement(children: .ignore)
-        .accessibilityAddTraits(type.accessibilityTraits)
-        .accessibilityLabel(contentAccessibilityLabel)
-        .onTapGesture {
-            action()
-        }
+        Rectangle()
+            .fill(.clear)
+            .aspectRatio(3/4, contentMode: .fit)
+            .background(backgroundColor)
+            .overlay(
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+                    .bpkOverlay(overlay)
+            )
+            .accessibilityElement(children: .ignore)
+            .overlay(
+                contentView()
+                    .padding(padding),
+                alignment: verticalAlignment.contentAlignment
+            )
+            .cornerRadius(cornerRadius.value)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(contentAccessibilityLabel)
+            .accessibilityAddTraits(type.accessibilityTraits)
+            .onTapGesture {
+                action()
+            }
     }
     
     @ViewBuilder
@@ -120,7 +119,6 @@ public struct BPKGraphicPromo: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: sponsorLogoHeight)
-                .accessibilityLabel(contentAccessibilityLabel)
         }
     }
     
@@ -138,8 +136,8 @@ public struct BPKGraphicPromo: View {
                 sponsorOverlayView(title: title, logo: logo).padding(padding),
                 alignment: verticalAlignment.sponsorAlignment)
             .accessibilityElement(children: .ignore)
-            .accessibilityAddTraits(type.accessibilityTraits)
             .accessibilityLabel(contentAccessibilityLabel + ", " + accessibilityLabel)
+            .accessibilityAddTraits(type.accessibilityTraits)
     }
     
     public func backgroundColor(_ color: BPKColor) -> BPKGraphicPromo {
@@ -186,44 +184,39 @@ public extension BPKGraphicPromo {
 // swiftlint:disable closure_body_length
 struct BPKGraphicPromo_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            BPKGraphicPromo(
-                headline: "Three peaks challenge",
-                image: Image(systemName: "heart.fill"),
-                overlay: .solid(.high)
-            ) {
-                print("Test")
-            }
-            .backgroundColor(.coreEcoColor)
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(systemName: "heart.fill"),
-                accessibilityLabel: "Hello!"
-            )
-            .padding(.horizontal, 16)
+        Group {
+            // swiftlint:disable redundant_discardable_let
+            let _ = BPKFont.setDynamicType(enabled: true)
             
-            BPKGraphicPromo(
-                headline: "Three peaks challenge",
-                image: Image(decorative: "Barcelona-CasaBatllo"),
-                verticalAlignment: .bottom
-            ) {
-                print("Test")
-            }
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(systemName: "heart.fill"),
-                accessibilityLabel: "Hello!"
-            )
-            .padding(.horizontal, 16)
+            BPKGraphicPromo(headline: "Three peaks challenge", image: Image(systemName: "backpack.fill"), action: {})
+                .backgroundColor(.coreAccentColor)
+                .previewDisplayName("Headline")
+            
             BPKGraphicPromo(
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
-                subheadline: "How to complete the climb in 3 days",
-                image: Image(decorative: "Barcelona-CasaBatllo")
-            ) {
-                print("Test")
-            }
-            .padding(.horizontal, 16)
+                subheadline: "How to complete the trip in three days",
+                image: Image(systemName: "backpack.fill"),
+                action: {}
+            )
+            .backgroundColor(.coreAccentColor)
+            .previewDisplayName("All options")
+            
+            BPKGraphicPromo(
+                kicker: "Travel tips",
+                headline: "Three peaks challenge",
+                subheadline: "How to complete the trip in three days",
+                image: Image(systemName: "heart"),
+                action: {}
+            )
+            .backgroundColor(.coreAccentColor)
+            .sponsor(
+                title: "Sponsored",
+                logo: Image(systemName: "heart.fill"),
+                accessibilityLabel: "Sponsored by: Skyland"
+            )
+            .previewDisplayName("Sponsored")
         }
+        .padding(.horizontal, .base)
     }
 }
