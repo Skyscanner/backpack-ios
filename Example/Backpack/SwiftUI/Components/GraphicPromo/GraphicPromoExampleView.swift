@@ -20,6 +20,7 @@
 import SwiftUI
 import Backpack_SwiftUI
 
+// swiftlint:disable closure_body_length
 struct GraphicPromoExampleView: View {
     var body: some View {
         ScrollView {

@@ -71,13 +71,13 @@ public struct BPKGraphicPromo: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .bpkOverlay(overlay)
-                .onTapGesture {
-                    action()
-                }
-                .clipped()
+                .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity)
-        .frame(minHeight: UIScreen.main.bounds.width * aspectRatio, maxHeight: UIScreen.main.bounds.width * aspectRatio)
+        .frame(
+            minHeight: UIScreen.main.bounds.width * aspectRatio,
+            maxHeight: UIScreen.main.bounds.width * aspectRatio
+        )
         .background(backgroundColor)
         .cornerRadius(cornerRadius.value)
         .overlay(
@@ -88,6 +88,9 @@ public struct BPKGraphicPromo: View {
         .accessibilityElement(children: .ignore)
         .accessibilityAddTraits(type.accessibilityTraits)
         .accessibilityLabel(contentAccessibilityLabel)
+        .onTapGesture {
+            action()
+        }
     }
     
     @ViewBuilder
@@ -106,7 +109,6 @@ public struct BPKGraphicPromo: View {
                     .foregroundColor(variant.foregroundColor)
             }
         }
-        .accessibilityElement(children: .ignore)
     }
     
     @ViewBuilder
