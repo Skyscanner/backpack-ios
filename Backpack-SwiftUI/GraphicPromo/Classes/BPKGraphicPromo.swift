@@ -19,7 +19,9 @@
 import SwiftUI
 
 public struct BPKGraphicPromo: View {
-    struct Sponsor {
+    @Environment(\.sizeCategory) var sizeCategory
+    
+    private struct Sponsor {
         let title: String
         let logo: Image
         let accessibilityLabel: String
@@ -89,7 +91,9 @@ public struct BPKGraphicPromo: View {
                 .padding(padding)
         }
         .cornerRadius(cornerRadius.value)
-        .aspectRatio(aspectRatio, contentMode: .fit)
+        .if(sizeCategory < .accessibilityExtraExtraLarge, transform: {
+            $0.aspectRatio(aspectRatio, contentMode: .fit)
+        })
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(contentAccessibilityLabel)
         .accessibilityAddTraits(type.accessibilityTraits)
