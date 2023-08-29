@@ -1,4 +1,3 @@
-//
 /*
  * Backpack - Skyscanner's Design System
  *
@@ -144,40 +143,6 @@ public struct BPKGraphicPromo: View {
         var view = self
         view.backgroundColor = color
         return view
-    }
-}
-
-public extension BPKGraphicPromo {
-    enum `Type` {
-        case button, link
-        
-        var accessibilityTraits: AccessibilityTraits {
-            self == .button ? .isButton : .isLink
-        }
-    }
-    
-    enum Variant {
-        case onDark, onLight
-        
-        var foregroundColor: BPKColor {
-            self == .onDark ? .textOnDarkColor : .textOnLightColor
-        }
-    }
-    
-    enum VerticalAlignment {
-        case top, bottom
-        
-        var contentAlignment: Alignment {
-            self == .top ? .topLeading : .bottomLeading
-        }
-        
-        var sponsorAlignment: Alignment {
-            self == .top ? .bottomLeading : .topLeading
-        }
-    }
-    
-    enum HorizontalAlignment {
-        case leading, center, trailing
     }
 }
 
