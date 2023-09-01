@@ -36,6 +36,8 @@ public struct BPKCard<Content: View>: View {
     private let padding: Padding
     private let cornerStyle: CornerStyle
     private var tapAction : () -> Void = {}
+    
+    @State private var selectionOverlayOpacity = 0.0
 
     public init(
         padding: Padding = .small,
@@ -54,15 +56,24 @@ public struct BPKCard<Content: View>: View {
     }
 
     public var body: some View {
-        Button(action: tapAction) {
-            content
-                .padding(padding.value)
-        }
-        .buttonStyle(CardButtonStyle(
-            cornerRadius: cornerRadius,
-            backgroundColor: elevation.backgroundColor
-        ))
-        .shadow(elevation.shadow)
+        content
+            .padding(padding.value)
+            .frame(maxWidth: .infinity)
+            .background(elevation.backgroundColor)
+            .overlay(
+                Color(.surfaceContrastColor)
+                    .opacity(selectionOverlayOpacity)
+                    .animation(.easeInOut)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .shadow(elevation.shadow)
+            .onTapGesture {
+                selectionOverlayOpacity = 1
+                withAnimation {
+                    selectionOverlayOpacity = 0
+                }
+                tapAction()
+            }
     }
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {
@@ -70,25 +81,6 @@ public struct BPKCard<Content: View>: View {
         result.tapAction = perform
         return result
     }
-}
-
-private struct CardButtonStyle: ButtonStyle {
-    let cornerRadius: BPKCornerRadius
-    let backgroundColor: BPKColor
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .background(backgroundColor)
-            .overlay(
-                Color(.surfaceContrastColor)
-                    .opacity(configuration.isPressed ? 0.2 : 0)
-                    .animation(.easeInOut)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-
 }
 
 struct BPKCard_Previews: PreviewProvider {
