@@ -68,7 +68,7 @@ public struct BPKCard<Content: View>: View {
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
             .shadow(elevation.shadow)
             .onTapGesture {
-                selectionOverlayOpacity = 1
+                selectionOverlayOpacity = 0.2
                 withAnimation {
                     selectionOverlayOpacity = 0
                 }

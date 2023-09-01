@@ -50,7 +50,7 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
                     .animation(.easeInOut)
             )
             .onTapGesture {
-                selectionOverlayOpacity = 1
+                selectionOverlayOpacity = 0.2
                 withAnimation {
                     selectionOverlayOpacity = 0
                 }
