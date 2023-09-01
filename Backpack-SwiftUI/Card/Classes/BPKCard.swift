@@ -74,6 +74,8 @@ public struct BPKCard<Content: View>: View {
                 }
                 tapAction()
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
     }
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKCard {
