@@ -84,6 +84,7 @@ private struct CardButtonStyle: ButtonStyle {
                 Color(.surfaceContrastColor)
                     .opacity(configuration.isPressed ? 0.2 : 0)
                     .animation(.easeInOut)
+                    .allowsHitTesting(false)
             )
             .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
