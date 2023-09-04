@@ -41,6 +41,7 @@ struct GraphicPromoExampleView: View {
             ) {
                 print("Graphic promotion tap")
             }
+            .fallbackColor(Color(.surfaceHighlightColor))
             .if(sponsored) { view in
                 view.sponsor(
                     title: "Sponsored",
