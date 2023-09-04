@@ -77,7 +77,7 @@ public struct BPKGraphicPromo: View {
         ZStack {
             Rectangle()
                 .fill(.clear)
-                .background(Color.red)
+                .background(backgroundColor)
                 .overlay(
                     image
                         .resizable()
