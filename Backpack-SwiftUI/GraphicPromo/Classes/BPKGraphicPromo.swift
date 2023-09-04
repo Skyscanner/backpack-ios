@@ -40,7 +40,7 @@ public struct BPKGraphicPromo: View {
     private let action: () -> Void
     
     // MARK: - Adjustable settings (modifiers)
-    private var backgroundColor = BPKColor.surfaceContrastColor
+    private var backgroundColor = Color(.surfaceContrastColor)
     private var sponsor: Sponsor?
     
     // MARK: - Internal settings
@@ -77,7 +77,7 @@ public struct BPKGraphicPromo: View {
         ZStack {
             Rectangle()
                 .fill(.clear)
-                .background(backgroundColor)
+                .background(Color.red)
                 .overlay(
                     image
                         .resizable()
@@ -165,20 +165,23 @@ public struct BPKGraphicPromo: View {
         return view
     }
     
-    public func backgroundColor(_ color: BPKColor) -> BPKGraphicPromo {
+    public func fallbackColor(_ color: Color) -> BPKGraphicPromo {
         var view = self
         view.backgroundColor = color
         return view
     }
 }
 
-// swiftlint:disable closure_body_length
 struct BPKGraphicPromo_Previews: PreviewProvider {
     static var previews: some View {
-        Group {            
+        Group {
             ScrollView {
-                BPKGraphicPromo(headline: "Three peaks challenge", image: Image(systemName: "backpack.fill"), action: {})
-                    .backgroundColor(.coreAccentColor)
+                BPKGraphicPromo(
+                    headline: "Three peaks challenge",
+                    image: Image(systemName: "backpack.fill"),
+                    action: {}
+                )
+                .fallbackColor(Color(.coreAccentColor))
             }
             .previewDisplayName("Headline")
             
@@ -190,7 +193,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     image: Image(systemName: "backpack.fill"),
                     action: {}
                 )
-                .backgroundColor(.coreAccentColor)
+                .fallbackColor(Color(.coreAccentColor))
             }
             .previewDisplayName("All options")
             
@@ -202,7 +205,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     image: Image(systemName: "heart"),
                     action: {}
                 )
-                .backgroundColor(.coreAccentColor)
+                .fallbackColor(Color(.coreAccentColor))
                 .sponsor(
                     title: "Sponsored",
                     logo: Image(systemName: "heart.fill"),
@@ -219,12 +222,12 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     image: Image(systemName: "heart"),
                     action: {}
                 )
-                .backgroundColor(.coreAccentColor)
                 .sponsor(
                     title: "Sponsored",
                     logo: Image(systemName: "heart.fill"),
                     accessibilityLabel: "Sponsored by: Skyland"
                 )
+                .fallbackColor(Color(.coreAccentColor))
             }
             .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
             .previewDisplayName("Accessibility")
