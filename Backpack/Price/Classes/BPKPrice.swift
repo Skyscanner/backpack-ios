@@ -136,7 +136,14 @@ public final class BPKPrice: UIView {
         
         previousPriceLabel.isHidden = previousPrice == nil
         leadingTextLabel.isHidden = leadingText == nil
-        trailingTextLabel.isHidden = trailingText == nil
+        
+        if trailingText == nil {
+            priceStackView.removeArrangedSubview(trailingTextLabel)
+            trailingTextLabel.removeFromSuperview()
+        } else {
+            priceStackView.addArrangedSubview(trailingTextLabel)
+        }
+        
         separatorLabel.isHidden = previousPriceLabel.isHidden || leadingTextLabel.isHidden
         
         updateAlignmentPositioning()

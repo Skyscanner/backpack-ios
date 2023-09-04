@@ -43,6 +43,7 @@ public struct BPKPageIndicator: UIViewRepresentable {
     
     public func updateUIView(_ uiView: UIPageControl, context: Context) {
         uiView.isUserInteractionEnabled = false
+        uiView.hidesForSinglePage = true
         uiView.numberOfPages = totalIndicators
         uiView.currentPage = currentIndex
         

@@ -24,6 +24,8 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
     private let secondaryContent: SecondaryContent
     private var tapAction: () -> Void = {}
 
+    @State private var selectionOverlayOpacity = 0.0
+    
     public init(
         elevation: BPKCardElevation = .default,
         @ViewBuilder primaryContent: () -> PrimaryContent,
@@ -42,7 +44,16 @@ public struct BPKDividedCard<PrimaryContent: View, SecondaryContent: View>: View
                     .frame(height: 1)
                 secondaryContent
             }
+            .overlay(
+                Color(.surfaceContrastColor)
+                    .opacity(selectionOverlayOpacity)
+                    .animation(.easeInOut)
+            )
             .onTapGesture {
+                selectionOverlayOpacity = 0.2
+                withAnimation {
+                    selectionOverlayOpacity = 0
+                }
                 tapAction()
             }
         }
