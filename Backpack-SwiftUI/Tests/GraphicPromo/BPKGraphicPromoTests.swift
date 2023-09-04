@@ -108,5 +108,30 @@ class BPKGraphicPromoTests: XCTestCase {
         // When
         assertSnapshot(sut)
     }
+    
+    func test_topAligned_sponsored_a11y() {
+        // Given
+        let sut = VStack {
+            BPKGraphicPromo(
+                kicker: "Travel tips",
+                headline: "Three peaks challenge",
+                subheadline: "How to complete the trip in three days",
+                image: Image("dialog_image", bundle: TestsBundle.bundle),
+                action: {}
+            )
+            .fallbackColor(Color(.statusDangerFillColor))
+            .sponsor(
+                title: "Sponsored",
+                logo: Image(decorative: "skyland", bundle: TestsBundle.bundle),
+                accessibilityLabel: "Sponsored by: Skyland"
+            )
+        }
+        .frame(width: 375, height: 1000)
+        .padding()
+        .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
+        
+        // When
+        assertSnapshot(sut)
+    }
 
 }
