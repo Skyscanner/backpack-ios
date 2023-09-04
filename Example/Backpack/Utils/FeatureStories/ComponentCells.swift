@@ -189,9 +189,7 @@ extension ComponentCellsProvider {
         ComponentCellDataSource(
             title: "Graphic promo",
             tabs: [
-                .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(GraphicPromoExampleView())
-                }))
+                .swiftui(groups: GraphicPromoGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Graphic promo", tabs: $0) }
         )

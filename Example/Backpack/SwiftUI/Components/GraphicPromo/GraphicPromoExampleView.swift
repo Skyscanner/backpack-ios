@@ -20,8 +20,15 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-// swiftlint:disable closure_body_length
 struct GraphicPromoExampleView: View {
+    let verticalAlignment: BPKGraphicPromo.VerticalAlignment
+    let sponsored: Bool
+
+    init(verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top, sponsored: Bool = false) {
+        self.verticalAlignment = verticalAlignment
+        self.sponsored = sponsored
+    }
+    
     var body: some View {
         ScrollView {
             BPKGraphicPromo(
@@ -29,27 +36,18 @@ struct GraphicPromoExampleView: View {
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the climb in 3 days",
                 image: Image(decorative: "canadian_rockies_canada"),
-                overlay: .solid(.medium)
-            ) {
-                print("Graphic promotion tap")
-            }
-            .padding(.horizontal, .md)
-            
-            BPKGraphicPromo(
-                kicker: "Travel tips",
-                headline: "Three peaks challenge",
-                subheadline: "How to complete the climb in 3 days",
-                image: Image(decorative: "canadian_rockies_canada"),
                 overlay: .solid(.medium),
-                verticalAlignment: .bottom
+                verticalAlignment: verticalAlignment
             ) {
                 print("Graphic promotion tap")
             }
-            .sponsor(
-                title: "Sponsored",
-                logo: Image(decorative: "skyland"),
-                accessibilityLabel: "Sponsored by Skyland"
-            )
+            .if(sponsored) { view in
+                view.sponsor(
+                    title: "Sponsored",
+                    logo: Image(decorative: "skyland"),
+                    accessibilityLabel: "Sponsored by Skyland"
+                )
+            }
             .padding(.horizontal, .md)
         }
     }
@@ -57,7 +55,7 @@ struct GraphicPromoExampleView: View {
 
 struct GraphicPromoExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        GraphicPromoExampleView()
+        GraphicPromoExampleView(verticalAlignment: .top, sponsored: false)
             .padding(.horizontal, .base)
     }
 }
