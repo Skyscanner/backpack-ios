@@ -47,7 +47,7 @@ public struct BPKGraphicPromo: View {
     private let aspectRatio: CGFloat = 3/4
     private let padding = BPKSpacing.lg
     private let cornerRadius = BPKCornerRadius.md
-
+    
     public init(
         kicker: String? = nil,
         headline: String,
@@ -56,17 +56,18 @@ public struct BPKGraphicPromo: View {
         type: `Type` = .button,
         overlay: BPKOverlayType = .solid(.off),
         variant: Variant = .onDark,
-        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top) {
-            self.kicker = kicker
-            self.headline = headline
-            self.subheadline = subheadline
-            self.image = image
+        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top
+    ) {
+        self.kicker = kicker
+        self.headline = headline
+        self.subheadline = subheadline
+        self.image = image
             
-            self.type = type
-            self.overlay = overlay
-            self.variant = variant
+        self.type = type
+        self.overlay = overlay
+        self.variant = variant
             
-            self.verticalAlignment = verticalAlignment
+        self.verticalAlignment = verticalAlignment
     }
     
     public var body: some View {
