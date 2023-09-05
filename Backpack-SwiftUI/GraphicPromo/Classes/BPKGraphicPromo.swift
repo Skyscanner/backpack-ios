@@ -187,7 +187,7 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
                         .clipped()
                         .bpkOverlay(overlay)
                         .overlay(
-                            Color(.surfaceContrastColor)
+                            Color(.scrimColor)
                                 .opacity(configuration.isPressed ? 0.3 : 0)
                                 .animation(.easeInOut)
                                 .allowsHitTesting(false)
@@ -198,7 +198,11 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
             configuration.label
         }
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-        .animation(.interpolatingSpring(mass: 1, stiffness: 800, damping: 100), value: configuration.isPressed)
+        .animation(.interpolatingSpring(
+            mass: 1,
+            stiffness: 800,
+            damping: 100
+        ), value: configuration.isPressed)
     }
 }
 
