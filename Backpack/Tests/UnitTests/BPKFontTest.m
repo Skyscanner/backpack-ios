@@ -66,8 +66,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)testAttributesForFontStyleWithCustomFontDefinitionInjected {
     BPKFontManager *mockFontManager = OCMClassMock(BPKFontManager.class);
     OCMStub([mockFontManager regularFontWithSize:20.0 textStyle:UIFontTextStyleBody]).andReturn([UIFont fontWithName:@"SnellRoundhand" size:16.0]);
-    OCMStub([mockFontManager semiboldFontWithSize:20.0 textStyle:UIFontTextStyleTitle3]).andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
-    OCMStub([mockFontManager semiboldFontWithSize:24.0 textStyle:UIFontTextStyleTitle3]).andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
+    OCMStub([mockFontManager semiboldFontWithSize:20.0 textStyle:UIFontTextStyleTitle3])
+        .andReturn([UIFont fontWithName:@"SnellRoundhand-Bold" size:20.0]);
+    OCMStub([mockFontManager semiboldFontWithSize:24.0 textStyle:UIFontTextStyleTitle3])
+        .andReturn([UIFont fontWithName:@"SnellRoundhand-Black" size:24.0]);
 
     NSDictionary *regularAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextBodyLongform fontManager:mockFontManager];
     NSDictionary *semiboldAttributes = [BPKFont attributesForFontStyle:BPKFontStyleTextHeading4 fontManager:mockFontManager];
