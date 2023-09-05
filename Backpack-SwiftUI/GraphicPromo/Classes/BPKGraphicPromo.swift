@@ -164,7 +164,11 @@ public struct BPKGraphicPromo: View {
     
     public func onTapGesture(perform: @escaping () -> Void) -> BPKGraphicPromo {
         var result = self
-        result.tapAction = perform
+        result.tapAction = {
+            let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+            hapticFeedbackGenerator.impactOccurred()
+            perform()
+        }
         return result
     }
 }
@@ -188,7 +192,7 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
                         .bpkOverlay(overlay)
                         .overlay(
                             Color(.scrimColor)
-                                .opacity(configuration.isPressed ? 0.3 : 0)
+                                .opacity(configuration.isPressed ? 1 : 0)
                                 .animation(.easeInOut)
                                 .allowsHitTesting(false)
                         )
