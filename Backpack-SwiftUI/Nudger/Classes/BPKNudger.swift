@@ -94,6 +94,7 @@ public struct BPKNudger: View {
                 HStack(alignment: subtitle == nil ? .center : .top, spacing: .md) {
                     if let icon {
                         BPKIconView(icon, size: .large)
+                            .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading) {
                         BPKText(title, style: .heading5)
