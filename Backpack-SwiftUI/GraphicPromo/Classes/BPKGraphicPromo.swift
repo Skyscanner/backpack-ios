@@ -192,7 +192,7 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
                         .bpkOverlay(overlay)
                         .overlay(
                             Color(.scrimColor)
-                                .opacity(configuration.isPressed ? 1 : 0)
+                                .opacity(configuration.isPressed ? 0.2 : 0)
                                 .animation(.easeInOut)
                                 .allowsHitTesting(false)
                         )
