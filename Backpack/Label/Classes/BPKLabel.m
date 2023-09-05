@@ -22,6 +22,7 @@
 #import <Backpack/Common.h>
 
 #import "BPKTextDefinition.h"
+#import "BPKFontManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface BPKLabel ()
@@ -126,6 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.persistentStyleRanges = [[NSMutableArray alloc] init];
     self.fontStyle = style;
     self.textColor = BPKColor.textPrimaryColor;
+    self.adjustsFontForContentSizeCategory = [[BPKFontManager sharedInstance] dynamicTypeEnabled];
 }
 
 @end

@@ -8,6 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKFontManager : NSObject
 
 @property(nullable, nonatomic) id<BPKFontDefinitionProtocol> fontDefinition;
+@property(nonatomic) BOOL dynamicTypeEnabled;
 
 + (instancetype)sharedInstance;
 

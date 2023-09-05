@@ -50,4 +50,10 @@
     }
 }
 
+- (void)setDynamicTypeEnabled:(BOOL)enabled {
+    if (_dynamicTypeEnabled != enabled) {
+        _dynamicTypeEnabled = enabled;
+    }
+}
+
 @end
