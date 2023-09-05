@@ -29,19 +29,19 @@
     return [UIFont systemFontOfSize:size weight:weight];
 }
 
-- (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style{
+- (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.regularFontFace : nil;
-    return [[UIFontMetrics metricsForTextStyle: style] scaledFontForFont: [self fontWithName:fontName size:size weight:UIFontWeightRegular]];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightRegular]];
 }
 
-- (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style{
+- (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.semiboldFontFace : nil;
-    return [[UIFontMetrics metricsForTextStyle: style] scaledFontForFont: [self fontWithName:fontName size:size weight:UIFontWeightSemibold]];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightSemibold]];
 }
 
-- (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style{
+- (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.heavyFontFace : nil;
-    return [[UIFontMetrics metricsForTextStyle: style] scaledFontForFont: [self fontWithName:fontName size:size weight:UIFontWeightHeavy]];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightHeavy]];
 }
 
 - (void)setFontDefinition:(id<BPKFontDefinitionProtocol>)fontDefinition {
