@@ -26,6 +26,7 @@ public struct BPKNudger: View {
     
     private let title: String?
     private let subtitle: String?
+    private let icon: BPKIcon?
 
     private var minValue: Int
     private var maxValue: Int
@@ -46,6 +47,7 @@ public struct BPKNudger: View {
     public init(value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
         self.title = nil
         self.subtitle = nil
+        self.icon = nil
         
         minValue = min
         maxValue = max
@@ -58,6 +60,7 @@ public struct BPKNudger: View {
     ///   - title: The value of the `BPKNudger` title label
     ///   - subtitle: The value of the `BPKNudger` subtitle label
     ///     Optional, when not set, the title will vertically center
+    ///   - icon: An optional icon
     ///   - value: The value of the `BPKNudger`.
     ///     Must be between `min` and `max`.
     ///     If changed, the value will be clamped to be between `min` and `max`.
@@ -67,9 +70,18 @@ public struct BPKNudger: View {
     ///     Must be greater than `min`.
     ///   - step: The step value of the `BPKNudger`.
     ///     Defaults to `1`.
-    public init(title: String, subtitle: String? = nil, value: Binding<Int>, min: Int, max: Int, step: Int = 1) {
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        icon: BPKIcon? = nil,
+        value: Binding<Int>,
+        min: Int,
+        max: Int,
+        step: Int = 1
+    ) {
         self.title = title
         self.subtitle = subtitle
+        self.icon = icon
         self.minValue = min
         self.maxValue = max
         self.step = step
@@ -79,12 +91,17 @@ public struct BPKNudger: View {
     public var body: some View {
         HStack(spacing: .md) {
             if let title {
-                VStack(alignment: .leading) {
-                    BPKText(title, style: .heading5)
-                    
-                    if let subtitle {
-                        BPKText(subtitle)
-                            .foregroundColor(.textSecondaryColor)
+                HStack(alignment: subtitle == nil ? .center : .top, spacing: .md) {
+                    if let icon {
+                        BPKIconView(icon, size: .large)
+                    }
+                    VStack(alignment: .leading) {
+                        BPKText(title, style: .heading5)
+                        
+                        if let subtitle {
+                            BPKText(subtitle)
+                                .foregroundColor(.textSecondaryColor)
+                        }
                     }
                 }
                 Spacer()
@@ -144,6 +161,16 @@ struct BPKNudger_Previews: PreviewProvider {
             BPKNudger(value: .constant(0), min: 0, max: 10)
             BPKNudger(value: .constant(5), min: 0, max: 10)
             BPKNudger(value: .constant(10), min: 0, max: 10)
+            BPKNudger(title: "Adults", subtitle: "Aged 16 and older", value: .constant(1), min: 1, max: 10)
+            BPKNudger(
+                title: "Travellers",
+                subtitle: "Aged 16 and older",
+                icon: .adult,
+                value: .constant(1),
+                min: 1,
+                max: 10
+            )
+            BPKNudger(title: "Rooms", icon: .room, value: .constant(1), min: 1, max: 10)
         }
     }
 }
