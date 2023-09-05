@@ -64,7 +64,7 @@ private extension BPKIcon.Size {
 private extension Image {
     init(icon: BPKIcon, size: BPKIcon.Size = .small) {
         let iconName = "\(icon.name)-\(size.suffix)"
-        self.init(iconName, bundle: BPKCommonBundle.iconsBundle)
+        self.init(decorative: iconName, bundle: BPKCommonBundle.iconsBundle)
     }
 }
 
