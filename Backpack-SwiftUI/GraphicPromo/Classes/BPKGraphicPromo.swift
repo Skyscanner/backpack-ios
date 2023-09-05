@@ -174,6 +174,8 @@ public struct BPKGraphicPromo: View {
 }
 
 private struct GraphicPromoButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
+
     let image: Image
     let overlay: BPKOverlayType
     let backgroundColor: Color
@@ -196,7 +198,9 @@ private struct GraphicPromoButtonStyle: ButtonStyle {
                                 .animation(.easeInOut)
                                 .allowsHitTesting(false)
                         )
-                        .scaleEffect(configuration.isPressed ? 1.05 : 1)
+                        .if(!reduceMotion, transform: {
+                            $0.scaleEffect(configuration.isPressed ? 1.05 : 1)
+                        })
                 )
                 .accessibilityElement(children: .ignore)
             configuration.label
