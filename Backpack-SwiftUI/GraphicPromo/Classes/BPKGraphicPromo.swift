@@ -37,9 +37,8 @@ public struct BPKGraphicPromo: View {
     private let variant: Variant
     private let verticalAlignment: VerticalAlignment
     
-    private let action: () -> Void
-    
     // MARK: - Adjustable settings (modifiers)
+    private var tapAction : () -> Void = {}
     private var backgroundColor = Color(.surfaceContrastColor)
     private var sponsor: Sponsor?
     
@@ -57,8 +56,7 @@ public struct BPKGraphicPromo: View {
         type: `Type` = .button,
         overlay: BPKOverlayType = .solid(.off),
         variant: Variant = .onDark,
-        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top,
-        action: @escaping () -> Void) {
+        verticalAlignment: BPKGraphicPromo.VerticalAlignment = .top) {
             self.kicker = kicker
             self.headline = headline
             self.subheadline = subheadline
@@ -69,28 +67,20 @@ public struct BPKGraphicPromo: View {
             self.variant = variant
             
             self.verticalAlignment = verticalAlignment
-            
-            self.action = action
     }
     
     public var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(.clear)
-                .background(backgroundColor)
-                .overlay(
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipped()
-                        .bpkOverlay(overlay)
-                )
-                .accessibilityElement(children: .ignore)
+        Button(action: tapAction) {
             contentView()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(padding)
         }
-        .cornerRadius(cornerRadius.value)
+        .buttonStyle(GraphicPromoButtonStyle(
+            image: image,
+            overlay: overlay,
+            backgroundColor: backgroundColor,
+            cornerRadius: cornerRadius
+        ))
         .if(sizeCategory < .accessibilityExtraLarge, transform: {
             $0.aspectRatio(aspectRatio, contentMode: .fit)
         })
@@ -170,6 +160,45 @@ public struct BPKGraphicPromo: View {
         view.backgroundColor = color
         return view
     }
+    
+    public func onTapGesture(perform: @escaping () -> Void) -> BPKGraphicPromo {
+        var result = self
+        result.tapAction = perform
+        return result
+    }
+}
+
+private struct GraphicPromoButtonStyle: ButtonStyle {
+    let image: Image
+    let overlay: BPKOverlayType
+    let backgroundColor: Color
+    let cornerRadius: BPKCornerRadius
+
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            Rectangle()
+                .fill(.clear)
+                .background(backgroundColor)
+                .overlay(
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .bpkOverlay(overlay)
+                        .overlay(
+                            Color(.surfaceContrastColor)
+                                .opacity(configuration.isPressed ? 0.3 : 0)
+                                .animation(.easeInOut)
+                                .allowsHitTesting(false)
+                        )
+                        .scaleEffect(configuration.isPressed ? 1.05 : 1)
+                )
+                .accessibilityElement(children: .ignore)
+            configuration.label
+        }
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        .animation(.interpolatingSpring(mass: 1, stiffness: 800, damping: 100), value: configuration.isPressed)
+    }
 }
 
 struct BPKGraphicPromo_Previews: PreviewProvider {
@@ -178,8 +207,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
             ScrollView {
                 BPKGraphicPromo(
                     headline: "Three peaks challenge",
-                    image: Image(systemName: "backpack.fill"),
-                    action: {}
+                    image: Image(systemName: "backpack.fill")
                 )
                 .fallbackColor(Color(.coreAccentColor))
             }
@@ -190,8 +218,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     kicker: "Travel tips",
                     headline: "Three peaks challenge",
                     subheadline: "How to complete the trip in three days",
-                    image: Image(systemName: "backpack.fill"),
-                    action: {}
+                    image: Image(systemName: "backpack.fill")
                 )
                 .fallbackColor(Color(.coreAccentColor))
             }
@@ -202,8 +229,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     kicker: "Travel tips",
                     headline: "Three peaks challenge",
                     subheadline: "How to complete the trip in three days",
-                    image: Image(systemName: "heart"),
-                    action: {}
+                    image: Image(systemName: "heart")
                 )
                 .fallbackColor(Color(.coreAccentColor))
                 .sponsor(
@@ -219,8 +245,7 @@ struct BPKGraphicPromo_Previews: PreviewProvider {
                     kicker: "Travel tips",
                     headline: "Three peaks challenge",
                     subheadline: "How to complete the trip in three days",
-                    image: Image(systemName: "heart"),
-                    action: {}
+                    image: Image(systemName: "heart")
                 )
                 .sponsor(
                     title: "Sponsored",

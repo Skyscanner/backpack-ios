@@ -29,8 +29,4 @@ public extension BPKGraphicPromo {
             self == .top ? .bottomLeading : .topLeading
         }
     }
-    
-    enum HorizontalAlignment {
-        case leading, center, trailing
-    }
 }

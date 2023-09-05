@@ -38,8 +38,9 @@ struct GraphicPromoExampleView: View {
                 image: Image(decorative: "canadian_rockies_canada"),
                 overlay: .solid(.medium),
                 verticalAlignment: verticalAlignment
-            ) {
-                print("Graphic promotion tap")
+            )
+            .onTapGesture {
+                print("Graphic promo tap")
             }
             .fallbackColor(Color(.surfaceHighlightColor))
             .if(sponsored) { view in
