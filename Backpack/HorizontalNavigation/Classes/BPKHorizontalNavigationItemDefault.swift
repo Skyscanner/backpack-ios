@@ -51,12 +51,12 @@ class BPKHorizontalNavigationItemDefault<
 
     private var contentColor: UIColor {
         if isSelected {
-            return selectedColor ?? .bpk_coreAccent
+            return selectedColor ?? BPKColor.coreAccentColor
         }
         
         switch appearance {
-        case .normal: return .bpk_textPrimary
-        case .alternate: return .bpk_textOnDark
+        case .normal: return BPKColor.textPrimaryColor
+        case .alternate: return BPKColor.textOnDarkColor
         }
     }
 

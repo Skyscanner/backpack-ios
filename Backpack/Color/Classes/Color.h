@@ -20,5 +20,4 @@
 #define __BACKPACK_COLOR__
 
 #import "BPKColor.h"
-#import "UIColor+Backpack.h"
 #endif

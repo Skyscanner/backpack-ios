@@ -204,7 +204,7 @@ class HorizontalNavViewController: UIViewController, BPKTappableLinkLabelDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .bpk_background
+        view.backgroundColor = BPKColor.canvasColor
 
         if small {
             view.addSubview(smallHorizontalNav)
