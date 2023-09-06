@@ -8,12 +8,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKFontManager : NSObject
 
 @property(nullable, nonatomic) id<BPKFontDefinitionProtocol> fontDefinition;
+@property(nonatomic) BOOL dynamicTypeEnabled;
 
 + (instancetype)sharedInstance;
 
-- (UIFont *)regularFontWithSize:(CGFloat)size;
-- (UIFont *)semiboldFontWithSize:(CGFloat)size;
-- (UIFont *)heavyFontWithSize:(CGFloat)size;
+- (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style;
+- (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style;
+- (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style;
 
 @end
 

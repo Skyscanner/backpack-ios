@@ -122,6 +122,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setFontDefinition:(id<BPKFontDefinitionProtocol>_Nullable)fontDefinition;
 
 /**
+ *  Enable/disable dynamic type for UIKit components
+ *
+ * @param enabled When true, all text will scale to user preference
+*/
++ (void)setDyanmicTypeEnabled:(BOOL)enabled;
+
+/**
  * Create a `UIFont` instance for a specific text style.
  *
  *

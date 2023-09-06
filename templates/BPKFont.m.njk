@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
     [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
 
++ (void)setDyanmicTypeEnabled:(BOOL)enabled {
+    [BPKFontManager sharedInstance].dynamicTypeEnabled = enabled;
+}
+
 + (NSAttributedString *)attributedStringWithFontStyle:(BPKFontStyle)fontStyle
                                               content:(NSString *)content {
     return [self attributedStringWithFontStyle:fontStyle
@@ -122,11 +126,11 @@ NS_ASSUME_NONNULL_BEGIN
        {% for f in font %}
            case {{f.enumName}}:
              {% if f.weight.includes("UIFontWeightBlack") -%}
-               return [fontManager heavyFontWithSize:{{f.size}}];
+               return [fontManager heavyFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
              {% elif f.weight.includes("UIFontWeightBold") -%}
-               return [fontManager semiboldFontWithSize:{{f.size}}];
+               return [fontManager semiboldFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
              {% else -%}
-               return [fontManager regularFontWithSize:{{f.size}}];
+               return [fontManager regularFontWithSize:{{f.size}} textStyle:{{f.textStyle}}];
              {% endif %}{% endfor %}
             default:
               NSAssert(NO, @"Unknown fontStyle %ld", (unsigned long)style);

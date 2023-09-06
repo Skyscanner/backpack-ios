@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BPKFont.setFontDefinition(relativeFontDefinition)
             BPKFont.setFontDefinition(Backpack_SwiftUI.BPKRelativeFontDefinition())
         }
+        Backpack.BPKFont.setDyanmicTypeEnabled(true)
+        Backpack_SwiftUI.BPKFont.setDynamicType(enabled: true)
     }
     
     func application(

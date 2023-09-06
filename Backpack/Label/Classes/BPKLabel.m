@@ -21,6 +21,7 @@
 #import <Backpack/Color.h>
 #import <Backpack/Common.h>
 
+#import "BPKFontManager.h"
 #import "BPKTextDefinition.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -126,6 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.persistentStyleRanges = [[NSMutableArray alloc] init];
     self.fontStyle = style;
     self.textColor = BPKColor.textPrimaryColor;
+    self.adjustsFontForContentSizeCategory = [[BPKFontManager sharedInstance] dynamicTypeEnabled];
 }
 
 @end

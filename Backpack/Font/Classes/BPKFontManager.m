@@ -29,24 +29,30 @@
     return [UIFont systemFontOfSize:size weight:weight];
 }
 
-- (UIFont *)regularFontWithSize:(CGFloat)size {
+- (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.regularFontFace : nil;
-    return [self fontWithName:fontName size:size weight:UIFontWeightRegular];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightRegular]];
 }
 
-- (UIFont *)semiboldFontWithSize:(CGFloat)size {
+- (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.semiboldFontFace : nil;
-    return [self fontWithName:fontName size:size weight:UIFontWeightSemibold];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightSemibold]];
 }
 
-- (UIFont *)heavyFontWithSize:(CGFloat)size {
+- (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.heavyFontFace : nil;
-    return [self fontWithName:fontName size:size weight:UIFontWeightHeavy];
+    return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightHeavy]];
 }
 
 - (void)setFontDefinition:(id<BPKFontDefinitionProtocol>)fontDefinition {
     if (_fontDefinition != fontDefinition) {
         _fontDefinition = fontDefinition;
+    }
+}
+
+- (void)setDynamicTypeEnabled:(BOOL)enabled {
+    if (_dynamicTypeEnabled != enabled) {
+        _dynamicTypeEnabled = enabled;
     }
 }
 
