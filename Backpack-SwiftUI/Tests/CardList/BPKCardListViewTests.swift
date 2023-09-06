@@ -179,7 +179,7 @@ class BPKCardListViewTests: XCTestCase {
         BPKSnippet(
             image: Image(systemName: "backpack.fill"),
             headline: element.name,
-            description: element.description,
+            bodyText: element.description,
             imageOrientation: .landscape)
         .frame(width: 281)
     }
