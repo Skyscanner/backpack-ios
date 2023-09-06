@@ -48,7 +48,7 @@ struct GraphicPromoExampleView: View {
                 print("Tap on graphic promo")
             }
             .fallbackColor(Color(.surfaceHighlightColor))
-            sponsor(
+            .sponsor(
                 title: "Sponsored",
                 logo: Image(decorative: "skyland"),
                 accessibilityLabel: "Sponsored by Skyland"
