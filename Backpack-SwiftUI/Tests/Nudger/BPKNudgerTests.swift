@@ -51,4 +51,24 @@ class BPKNudgerTests: XCTestCase {
             BPKNudger(title: "Adults", subtitle: "Aged 16+", value: .constant(5), min: 0, max: 10, step: 1)
         )
     }
+    
+    func test_title_and_icon() {
+        assertSnapshot(
+            BPKNudger(title: "Room", icon: .room, value: .constant(5), min: 0, max: 10, step: 1)
+        )
+    }
+    
+    func test_title_subtitle_and_icon() {
+        assertSnapshot(
+            BPKNudger(
+                title: "Adults",
+                subtitle: "Aged 16+",
+                icon: .adult,
+                value: .constant(5),
+                min: 0,
+                max: 10,
+                step: 1
+            )
+        )
+    }
 }
