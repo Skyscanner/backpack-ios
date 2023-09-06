@@ -19,17 +19,6 @@
 #ifndef __BACKPACK_THEMES__
 #define __BACKPACK_THEMES__
 
-// Themes
-
-// Dummy `London` theme
-#import "BPKLondonTheme.h"
-// Dummy `Hong Kong` theme
-#import "BPKHongKongTheme.h"
-// Dummy `Doha` theme
-#import "BPKDohaTheme.h"
-// Skyscanner old default theme
-#import "BPKSpringCleanTheme.h"
-
 // Skyscanner default theme
 #import "BPKDefaultTheme.h"
 

@@ -22,7 +22,6 @@ import Backpack
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    private let settingsScreenFactory = SettingsScreenFactory()
     
     func scene(
         _ scene: UIScene,
@@ -57,19 +56,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard ThemeHelpers.isThemingSupported() else { return navigationController }
         
         let themed = ThemedViewControllerFactoryDecorator { navigationController }.create()
-        let settingsButton = UIBarButtonItem()
-        settingsButton.image = BPKIcon.makeLargeTemplateIcon(name: .settings)
-        settingsButton.accessibilityLabel = "Settings"
-        settingsButton.target = self
-        settingsButton.action = #selector(didTapSettingsButton)
-        defaultController.navigationItem.setRightBarButtonItems([settingsButton], animated: false)
-        settingsScreenFactory.rootThemedController = themed as? BPKContainerController
         return themed
-    }
-    
-    @objc
-    private func didTapSettingsButton() {
-        let settings = settingsScreenFactory.settingsViewController()
-        self.window?.topMostController()?.present(settings, animated: true, completion: nil)
     }
 }
