@@ -221,7 +221,7 @@ class BPKHorizontalNavigationSnapshotTests: XCTestCase {
 
     func testWithTheming() {
         let testView: NavContainer<BPKHorizontalNavigationSizeDefault> = createWithIcons()
-        testView.nav?.selectedColor = .bpk_erfoud
+        testView.nav?.selectedColor = BPKColor.statusWarningFillColor
         assertSnapshot(testView)
     }
 
