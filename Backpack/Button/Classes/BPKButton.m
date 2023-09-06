@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.isAccessibilityElement = YES;
 
     self.accessibilityTraits = self.isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitNotEnabled | UIAccessibilityTraitButton);
-    self.accessibilityLabel = self.title;
+
     self.titleLabel.isAccessibilityElement = NO;
     self.imageView.isAccessibilityElement = NO;
     self.spinner.isAccessibilityElement = NO;
@@ -335,6 +335,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
+
+    if (self.accessibilityLabel == _title) {
+        self.accessibilityLabel = title;
+    }
 
     self.titleLabel.text = title;
     _title = [title copy];
