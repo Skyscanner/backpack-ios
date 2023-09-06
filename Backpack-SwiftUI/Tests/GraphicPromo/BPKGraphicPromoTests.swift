@@ -28,8 +28,7 @@ class BPKGraphicPromoTests: XCTestCase {
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the trip in three days",
-                image: Image("dialog_image", bundle: TestsBundle.bundle),
-                action: {}
+                image: Image("dialog_image", bundle: TestsBundle.bundle)
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
@@ -48,8 +47,7 @@ class BPKGraphicPromoTests: XCTestCase {
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the trip in three days",
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                verticalAlignment: .bottom,
-                action: {}
+                verticalAlignment: .bottom
             )
             .fallbackColor(Color(.statusDangerFillColor))
         }
@@ -67,8 +65,7 @@ class BPKGraphicPromoTests: XCTestCase {
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the trip in three days",
-                image: Image("dialog_image", bundle: TestsBundle.bundle),
-                action: {}
+                image: Image("dialog_image", bundle: TestsBundle.bundle)
             )
             .fallbackColor(Color(.statusDangerFillColor))
             .sponsor(
@@ -92,8 +89,7 @@ class BPKGraphicPromoTests: XCTestCase {
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the trip in three days",
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
-                verticalAlignment: .bottom,
-                action: {}
+                verticalAlignment: .bottom
             )
             .fallbackColor(Color(.statusDangerFillColor))
             .sponsor(
@@ -116,8 +112,7 @@ class BPKGraphicPromoTests: XCTestCase {
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the trip in three days",
-                image: Image("dialog_image", bundle: TestsBundle.bundle),
-                action: {}
+                image: Image("dialog_image", bundle: TestsBundle.bundle)
             )
             .fallbackColor(Color(.statusDangerFillColor))
             .sponsor(
