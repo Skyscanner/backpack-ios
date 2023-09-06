@@ -177,7 +177,7 @@ class BPKCardListViewTests: XCTestCase {
 
     private func locationRailCard(element: TestLocation) -> some View {
         BPKSnippet(
-            image: Image(systemName: "backpack.fill"),
+            image: Image("dialog_image", bundle: TestsBundle.bundle),
             headline: element.name,
             bodyText: element.description,
             imageOrientation: .landscape)
@@ -187,7 +187,7 @@ class BPKCardListViewTests: XCTestCase {
     private func locationStackCard(element: TestLocation) -> some View {
         BPKCard(padding: .none) {
             HStack {
-                Image(systemName: "backpack.fill")
+                Image("dialog_image", bundle: TestsBundle.bundle)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                 VStack(alignment: .leading) {
