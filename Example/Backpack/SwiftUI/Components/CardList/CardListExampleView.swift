@@ -92,7 +92,7 @@ struct CardListExampleView: View {
         BPKSnippet(
             image: Image(decorative: element.imageName),
             headline: element.name,
-            description: element.description,
+            bodyText: element.description,
             imageOrientation: .landscape)
         .frame(width: 281)
     }
