@@ -1,7 +1,7 @@
 /*
  * Backpack - Skyscanner's Design System
  *
- * Copyright 2018 Skyscanner Ltd
+ * Copyright © 2023 Skyscanner Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import SwiftUI
 
-public extension View {
-    @ViewBuilder
-    func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
+public extension BPKGraphicPromo {
+    enum VerticalAlignment {
+        case top, bottom
+        
+        var contentAlignment: Alignment {
+            self == .top ? .topLeading : .bottomLeading
+        }
+        
+        var sponsorAlignment: Alignment {
+            self == .top ? .bottomLeading : .topLeading
         }
     }
 }

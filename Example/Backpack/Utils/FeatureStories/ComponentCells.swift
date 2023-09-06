@@ -52,6 +52,7 @@ struct ComponentCellsProvider {
             flightLeg(),
             flare(),
             floatingNotification(),
+            graphicPromo(),
             dialog(),
             horizontalNavigation(),
             icon(),
@@ -182,6 +183,15 @@ extension ComponentCellsProvider {
                 }))
             ],
             showChildren: { showComponent(title: "Flare views", tabs: $0) }
+        )
+    }
+    private func graphicPromo() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Graphic promo",
+            tabs: [
+                .swiftui(groups: GraphicPromoGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
+            ],
+            showChildren: { showComponent(title: "Graphic promo", tabs: $0) }
         )
     }
     private func dialog() -> CellDataSource {

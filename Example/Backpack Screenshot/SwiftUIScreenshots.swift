@@ -334,5 +334,24 @@ tapBackButton()
             saveScreenshot(component: "card-list", scenario: "stack-accessory-expand-with-section-header-button", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "Graphic promo") {
+            switchTab(title: "SwiftUI")
+            app.tables.staticTexts["Top aligned"].tap()
+            saveScreenshot(component: "graphic-promo", scenario: "top-aligned", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Bottom aligned"].tap()
+            saveScreenshot(component: "graphic-promo", scenario: "bottom-aligned", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Top aligned - Sponsored"].tap()
+            saveScreenshot(component: "graphic-promo", scenario: "top-aligned-sponsored", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+            
+            app.tables.staticTexts["Bottom aligned - Sponsored"].tap()
+            saveScreenshot(component: "graphic-promo", scenario: "bottom-aligned-sponsored", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
