@@ -43,6 +43,44 @@ const hasOldSemanticSuffix = entity => entity.name.toLowerCase().endsWith("light
 const hasNewSemanticSuffix = entity => entity.name.endsWith("Day") || entity.name.endsWith("Night");
 const isPrivateColor = entity => entity.name.startsWith("private");
 
+
+const removedColors = [
+  "colorPrimaryGradientLight",
+  "colorErfoud",
+  "colorSkyGrayTint02",
+  "colorSkyGrayTint03",
+  "colorPetra",
+  "colorSkyGrayTint05",
+  "colorValensole",
+  "colorSkyBlueTint02",
+  "colorSkyBlueTint03",
+  "colorBlackTint02",
+  "backgroundElevation01DarkColor",
+  "backgroundSecondaryDarkColor",
+  "backgroundAlternativeDarkColor",
+  "backgroundElevation01LightColor",
+  "backgroundAlternativeSecondaryLightColor",
+  "backgroundLightColor",
+  "backgroundElevation02LightColor",
+  "backgroundElevation03LightColor",
+  "textPrimaryDarkColor",
+  "backgroundTertiaryLightColor",
+  "colorSystemRed",
+  "colorSystemGreen",
+  "colorBunol",
+  "colorNara",
+  "colorSkyBlueShade01",
+  "primaryLightColor",
+  "textSecondaryLightColor",
+  "backgroundElevation02DarkColor",
+  "backgroundElevation03DarkColor",
+  "backgroundAlternativeSecondaryDarkColor",
+  "backgroundDarkColor",
+  "backgroundTertiaryDarkColor"
+];
+
+const isRemovedColor = entity => removedColors.indexOf(entity.name) !== -1;
+
 module.exports = {
   capitaliseFirstLetter,
   lowercaseFirstLetter,
@@ -52,5 +90,6 @@ module.exports = {
   hasNewSemanticSuffix,
   hasOldSemanticSuffix,
   formatPrefixedConstName,
-  isPrivateColor
+  isPrivateColor,
+  isRemovedColor
 }

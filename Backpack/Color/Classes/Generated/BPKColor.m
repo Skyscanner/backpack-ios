@@ -30,18 +30,6 @@
     return [UIColor colorWithRed:0.020 green:0.125 blue:0.235 alpha:1];
 }
 
-+ (UIColor *)primaryGradientLight {
-    return [UIColor colorWithRed:0.000 green:0.384 blue:0.890 alpha:1];
-}
-
-+ (UIColor *)erfoud {
-    return [UIColor colorWithRed:0.996 green:0.922 blue:0.529 alpha:1];
-}
-
-+ (UIColor *)valensole {
-    return [UIColor colorWithRed:0.878 green:0.890 blue:0.898 alpha:1];
-}
-
 + (UIColor *)monteverde {
     return [UIColor colorWithRed:0.047 green:0.514 blue:0.541 alpha:1];
 }
@@ -64,6 +52,10 @@
 
 + (UIColor *)harbour {
     return [UIColor colorWithRed:1.000 green:0.914 blue:0.976 alpha:1];
+}
+
++ (UIColor *)skyGrayTint06 {
+    return [UIColor colorWithRed:0.878 green:0.890 blue:0.898 alpha:1];
 }
 
 + (UIColor *)blackTint01 {
@@ -102,6 +94,10 @@
     return [UIColor colorWithRed:0.384 green:0.945 blue:0.776 alpha:1];
 }
 
++ (UIColor *)skyBlue {
+    return [UIColor colorWithRed:0.000 green:0.384 blue:0.890 alpha:1];
+}
+
 + (UIColor *)bagan {
     return [UIColor colorWithRed:1.000 green:0.969 blue:0.812 alpha:1];
 }
@@ -127,26 +123,6 @@
 }
 
 
-+ (UIColor *)skyGrayTint02 {
-    return self.class.skyGrayTint01;
-}
-
-+ (UIColor *)skyGrayTint03 {
-    return self.class.skyGrayTint01;
-}
-
-+ (UIColor *)skyGrayTint05 {
-    return self.class.skyGrayTint04;
-}
-
-+ (UIColor *)skyGrayTint06 {
-    return self.class.valensole;
-}
-
-+ (UIColor *)blackTint02 {
-    return self.class.blackTint01;
-}
-
 + (UIColor *)abisko {
     return self.class.skyBlueShade03;
 }
@@ -159,40 +135,8 @@
     return self.class.skyGrayTint07;
 }
 
-+ (UIColor *)petra {
-    return self.class.erfoud;
-}
-
-+ (UIColor *)skyBlue {
-    return self.class.primaryGradientLight;
-}
-
-+ (UIColor *)skyBlueTint02 {
-    return self.class.valensole;
-}
-
-+ (UIColor *)bunol {
-    return self.class.kolkata;
-}
-
-+ (UIColor *)skyBlueTint03 {
-    return self.class.valensole;
-}
-
-+ (UIColor *)nara {
-    return self.class.bagan;
-}
-
-+ (UIColor *)skyBlueShade01 {
-    return self.class.primaryGradientLight;
-}
-
 + (UIColor *)skyBlueShade02 {
     return self.class.skyBlueShade03;
-}
-
-+ (UIColor *)textPrimaryDarkColor {
-    return self.class.white;
 }
 
 + (UIColor *)textPrimaryLightColor {
@@ -207,72 +151,16 @@
     return self.class.blackTint06;
 }
 
-+ (UIColor *)textSecondaryLightColor {
-    return self.class.skyGrayTint01;
-}
-
 + (UIColor *)textTertiaryLightColor {
     return self.class.textQuaternaryLightColor;
-}
-
-+ (UIColor *)backgroundElevation03DarkColor {
-    return self.class.blackTint03;
-}
-
-+ (UIColor *)backgroundElevation02DarkColor {
-    return self.class.blackTint03;
 }
 
 + (UIColor *)lineDarkColor {
     return self.class.blackTint04;
 }
 
-+ (UIColor *)backgroundElevation01DarkColor {
-    return self.class.blackTint01;
-}
-
-+ (UIColor *)backgroundAlternativeSecondaryDarkColor {
-    return self.class.black;
-}
-
-+ (UIColor *)backgroundLightColor {
-    return self.class.white;
-}
-
-+ (UIColor *)backgroundDarkColor {
-    return self.class.black;
-}
-
-+ (UIColor *)backgroundAlternativeSecondaryLightColor {
-    return self.class.white;
-}
-
-+ (UIColor *)systemGreen {
-    return self.class.monteverde;
-}
-
-+ (UIColor *)backgroundElevation01LightColor {
-    return self.class.white;
-}
-
 + (UIColor *)lineLightColor {
     return self.class.skyGrayTint04;
-}
-
-+ (UIColor *)backgroundElevation02LightColor {
-    return self.class.white;
-}
-
-+ (UIColor *)backgroundElevation03LightColor {
-    return self.class.white;
-}
-
-+ (UIColor *)backgroundTertiaryDarkColor {
-    return self.class.black;
-}
-
-+ (UIColor *)backgroundSecondaryDarkColor {
-    return self.class.blackTint01;
 }
 
 + (UIColor *)backgroundAlternativeLightColor {
@@ -281,22 +169,6 @@
 
 + (UIColor *)primaryDarkColor {
     return self.class.skyBlueTint01;
-}
-
-+ (UIColor *)systemRed {
-    return self.class.panjin;
-}
-
-+ (UIColor *)backgroundAlternativeDarkColor {
-    return self.class.blackTint01;
-}
-
-+ (UIColor *)primaryLightColor {
-    return self.class.primaryGradientLight;
-}
-
-+ (UIColor *)backgroundTertiaryLightColor {
-    return self.class.white;
 }
 
 + (UIColor *)backgroundSecondaryLightColor {
