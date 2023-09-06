@@ -42,7 +42,7 @@
 }
 
 - (UIColor *)primaryColor {
-    return BPKColor.skyBlueTint03;
+    return BPKColor.skyGrayTint06;
 }
 
 - (UIColor *_Nullable)progressBarPrimaryColor {
@@ -78,7 +78,7 @@
  * Gray500 colour, #68697F
  */
 - (UIColor *)gray500 {
-    return BPKColor.skyGrayTint02;
+    return BPKColor.skyGrayTint01;
 }
 
 /**
@@ -104,7 +104,7 @@
 }
 
 - (BPKGradient *)primaryGradient {
-    UIColor *startColor = BPKColor.skyGrayTint05;
+    UIColor *startColor = BPKColor.skyGrayTint04;
     UIColor *endColor = BPKColor.skyGray;
     CGPoint startPoint = [BPKGradient startPointForDirection:BPKGradientDirectionBottomLeft];
     CGPoint endPoint = [BPKGradient endPointForDirection:BPKGradientDirectionBottomLeft];
@@ -121,7 +121,7 @@
 }
 
 - (UIColor *)buttonFeaturedContentColor {
-    return BPKColor.skyGrayTint05;
+    return BPKColor.skyGrayTint04;
 }
 
 - (UIColor *)buttonFeaturedGradientStartColor {
@@ -129,7 +129,7 @@
 }
 
 - (UIColor *)buttonFeaturedGradientEndColor {
-    return BPKColor.skyBlueShade01;
+    return BPKColor.skyBlue;
 }
 
 - (UIColor *)buttonDestructiveContentColor {
@@ -145,7 +145,7 @@
 }
 
 - (UIColor *)buttonPrimaryContentColor {
-    return BPKColor.skyBlueShade01;
+    return BPKColor.skyBlue;
 }
 
 - (UIColor *)buttonPrimaryGradientStartColor {
@@ -153,11 +153,11 @@
 }
 
 - (UIColor *)buttonPrimaryGradientEndColor {
-    return BPKColor.skyGrayTint05;
+    return BPKColor.skyGrayTint04;
 }
 
 - (UIColor *)buttonSecondaryContentColor {
-    return BPKColor.skyBlueShade01;
+    return BPKColor.skyBlue;
 }
 
 - (UIColor *)buttonSecondaryBackgroundColor {

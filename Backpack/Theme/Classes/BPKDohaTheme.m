@@ -75,7 +75,7 @@
  * Gray500 colour, #68697F
  */
 - (UIColor *)gray500 {
-    return BPKColor.skyGrayTint02;
+    return BPKColor.skyGrayTint01;
 }
 
 /**

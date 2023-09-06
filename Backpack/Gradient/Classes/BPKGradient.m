@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)initPrimaryWithDirection:(BPKGradientDirection)direction {
-    return [self initWithColors:@[BPKColor.skyBlue, BPKColor.primaryGradientLight]
+    return [self initWithColors:@[BPKColor.skyBlue, BPKColor.skyBlue]
                      startPoint:[[self class] startPointForDirection:direction]
                        endPoint:[[self class] endPointForDirection:direction]];
 }

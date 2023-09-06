@@ -64,7 +64,7 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)gray300 {
-    return BPKColor.skyGrayTint05;
+    return BPKColor.skyGrayTint04;
 }
 
 - (UIColor *)gray500 {
@@ -72,7 +72,7 @@ NSString *const BPKSpringCleanThemeName = @"Spring clean";
 }
 
 - (UIColor *)gray700 {
-    return BPKColor.skyGrayTint03;
+    return BPKColor.skyGrayTint01;
 }
 
 - (UIColor *)systemGreen {
