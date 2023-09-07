@@ -89,4 +89,16 @@ final class BPKButtonTest: XCTestCase {
         // Then
         XCTAssertEqual(sut.accessibilityLabel, expectedLabel)
     }
+    
+    func test_regularButton_setTitle_nil() {
+        // Given
+        let sut = BPKButton(size: .default, style: .primary)
+        
+        // When
+        sut.title = "Other test button"
+        sut.title = nil
+        
+        // Then
+        XCTAssertNil(sut.accessibilityLabel)
+    }
 }

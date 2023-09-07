@@ -336,7 +336,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTitle:(NSString *_Nullable)title {
     BPKAssertMainThread();
 
-    if (self.accessibilityLabel == _title) {
+    if ([self.accessibilityLabel isEqualToString:_title]) {
         self.accessibilityLabel = title;
     }
 
