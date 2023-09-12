@@ -132,7 +132,6 @@
 		B31283842A780A1F0034EE29 /* CardListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31283832A780A1F0034EE29 /* CardListGroups.swift */; };
 		B3E50A2B2A618A400083FBFE /* SectionHeaderExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */; };
 		BAD421BC299CBCEB00B45668 /* CardWrappersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */; };
-		D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */; };
 		D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D205510722675DAE00BC5BCC /* LaunchScreen.xib */; };
 		D211A90C22D8B42B00447B64 /* HorizontalNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */; };
 		D216C21322E974B100045A9E /* HorizontalNavigationUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */; };
@@ -162,8 +161,6 @@
 		D28B3611219C209000E82A79 /* ChipUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B3610219C209000E82A79 /* ChipUITest.swift */; };
 		D297B8FD23B9038D008D094A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */; };
 		D297B8FE23B9038D008D094A /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D0E8123B2183D008B4C09 /* Screenshots.swift */; };
-		D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A350B522143F0700DEA01F /* Settings.storyboard */; };
-		D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A350B92214435A00DEA01F /* SettingsViewController.swift */; };
 		D2B70FA42434EB350026282A /* TabBarControllers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B70FA32434EB350026282A /* TabBarControllers.storyboard */; };
 		D2B8A01B2147FF6A002290DE /* PreviewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */; };
 		D2BBC1C922560FDD002DA71A /* BPKTableViewSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */; };
@@ -356,7 +353,6 @@
 		B3E50A2A2A618A400083FBFE /* SectionHeaderExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderExampleView.swift; sourceTree = "<group>"; };
 		BAD421BB299CBCEB00B45668 /* CardWrappersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrappersViewController.swift; sourceTree = "<group>"; };
 		C663CF67A51D3C1D5CCA2BD1 /* Pods-Backpack Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack Native/Pods-Backpack Native.release.xcconfig"; sourceTree = "<group>"; };
-		D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
 		D205510822675DAE00BC5BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D211A90A22D8B42B00447B64 /* HorizontalNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavViewController.swift; sourceTree = "<group>"; };
 		D216C21222E974B100045A9E /* HorizontalNavigationUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalNavigationUITest.swift; sourceTree = "<group>"; };
@@ -388,8 +384,6 @@
 		D28D0E8323B21BE4008B4C09 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "Backpack Screenshot/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		D297B8F323B90379008D094A /* Backpack Screenshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backpack Screenshot.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D297B8F723B90379008D094A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2A350B522143F0700DEA01F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		D2A350B92214435A00DEA01F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2B70FA32434EB350026282A /* TabBarControllers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBarControllers.storyboard; sourceTree = "<group>"; };
 		D2B8A01A2147FF6A002290DE /* PreviewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D2BBC1C822560FDD002DA71A /* BPKTableViewSelectableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPKTableViewSelectableCell.swift; sourceTree = "<group>"; };
@@ -1224,16 +1218,6 @@
 			path = "Text view";
 			sourceTree = "<group>";
 		};
-		793EC57028361CA200D627F6 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D2046EB02253FE2A002B7165 /* SettingsScreenFactory.swift */,
-				D2A350B522143F0700DEA01F /* Settings.storyboard */,
-				D2A350B92214435A00DEA01F /* SettingsViewController.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		79AFEDA72A9C704F001615A2 /* GraphicPromo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1345,7 +1329,6 @@
 		D29F9C47221B1B3200773A6D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				793EC57028361CA200D627F6 /* Settings */,
 				53E075BD27FCBE8C0033147C /* RootViewControllerFactory.swift */,
 				794E1FF5280A8A0000B965FF /* ContentUIHostingController.swift */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -1551,7 +1534,6 @@
 				D2CCB828243F538400788DEC /* BarCharts.storyboard in Resources */,
 				D233F00F2162159E00A07D9B /* Cards.storyboard in Resources */,
 				D261F26822C0E52300A4A476 /* TappableLinkLabels.storyboard in Resources */,
-				D2A350B622143F0700DEA01F /* Settings.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				D2C49DB723856A55008D41FB /* Calendar.storyboard in Resources */,
 				D205510922675DAE00BC5BCC /* LaunchScreen.xib in Resources */,
@@ -1661,7 +1643,6 @@
 				53B6DB6627FC47290042B7C0 /* DialogGroups.swift in Sources */,
 				53C6621229EA0DAB00BF1A62 /* SwitchExampleView.swift in Sources */,
 				D61ACE052306E238001C976E /* NavigationBarViewController.swift in Sources */,
-				D2A350BA2214435A00DEA01F /* SettingsViewController.swift in Sources */,
 				D26B8B86219EAC72006FE706 /* BadgesViewController.swift in Sources */,
 				D282E867259E04F4000AD77E /* TextFieldsViewController.swift in Sources */,
 				53C6621029EA0DAB00BF1A62 /* RatingExampleViewWithTitle.swift in Sources */,
@@ -1775,7 +1756,6 @@
 				D2CCB82B243F544300788DEC /* BarChartViewController.swift in Sources */,
 				53C6622129EA0DAB00BF1A62 /* BPKIconsExampleUtil.swift in Sources */,
 				530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */,
-				D2046EB12253FE2A002B7165 /* SettingsScreenFactory.swift in Sources */,
 				53E075B927FC9FAF0033147C /* StoryboardPresentable.swift in Sources */,
 				53E075A727FC95D70033147C /* MapGroups.swift in Sources */,
 				E397BEA622F5FFDD00C8EC04 /* Storyboards.swift in Sources */,

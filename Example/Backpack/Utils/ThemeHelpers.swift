@@ -23,16 +23,11 @@ import Backpack.Theme
 class ThemeHelpers: NSObject {
 
     enum ThemeName: Int {
-        case none = 0, springClean, london, hongKong, doha, silver
+        case none = 0
     }
 
     class func applyAllThemes() {
         apply(theme: BPKDefaultTheme())
-        apply(theme: BPKSpringCleanTheme())
-        apply(theme: BPKLondonTheme())
-        apply(theme: BPKHongKongTheme())
-        apply(theme: BPKDohaTheme())
-        apply(theme: BPKSilverTheme())
     }
 
     class func apply(theme: BPKThemeDefinition) {
@@ -57,16 +52,6 @@ class ThemeHelpers: NSObject {
         switch forTheme {
         case .none:
             return BPKDefaultTheme()
-        case .springClean:
-            return BPKSpringCleanTheme()
-        case .london:
-            return BPKLondonTheme()
-        case .hongKong:
-            return BPKHongKongTheme()
-        case .doha:
-            return BPKDohaTheme()
-        case .silver:
-            return BPKSilverTheme()
         }
     }
 }
