@@ -35,8 +35,8 @@ struct GraphicPromoExampleView: View {
                 kicker: "Travel tips",
                 headline: "Three peaks challenge",
                 subheadline: "How to complete the climb in 3 days",
-                image: Image(decorative: "canadian_rockies_canada"),
-                overlay: .solid(.medium),
+                image: Image(decorative: "graphic_promo"),
+                overlay: .solid(.off),
                 verticalAlignment: verticalAlignment
             )
             .onTapGesture {
