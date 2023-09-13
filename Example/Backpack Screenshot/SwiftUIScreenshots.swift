@@ -353,5 +353,19 @@ tapBackButton()
             saveScreenshot(component: "graphic-promo", scenario: "bottom-aligned-sponsored", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+
+        navigate(title: "Snippet") {
+            app.tables.staticTexts["Landscape"].tap()
+            saveScreenshot(component: "snippet", scenario: "landscape", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Square"].tap()
+            saveScreenshot(component: "snippet", scenario: "square", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+
+            app.tables.staticTexts["Portrait"].tap()
+            saveScreenshot(component: "snippet", scenario: "portrait", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
