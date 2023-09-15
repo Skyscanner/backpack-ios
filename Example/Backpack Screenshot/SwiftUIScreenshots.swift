@@ -231,30 +231,30 @@ tapBackButton()
         
         navigate(title: "Dialogs") {
             switchTab(title: "SwiftUI")
-            app.buttons["Open Success"].tap()
+            app.buttons["Modal Success"].tap()
             saveScreenshot(component: "dialog", scenario: "success", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Confirmation"].tap()
             
-            _ = app.buttons["Open Warning"].waitForExistence(timeout: 1)
-            app.buttons["Open Warning"].tap()
+            _ = app.buttons["Modal Warning"].waitForExistence(timeout: 1)
+            app.buttons["Modal Warning"].tap()
             saveScreenshot(component: "dialog", scenario: "warning", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Confirmation"].tap()
             
-            _ = app.buttons["Open Destructive"].waitForExistence(timeout: 1)
-            app.buttons["Open Destructive"].tap()
+            _ = app.buttons["Modal Destructive"].waitForExistence(timeout: 1)
+            app.buttons["Modal Destructive"].tap()
             saveScreenshot(component: "dialog", scenario: "destructive", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Delete"].tap()
             
-            _ = app.buttons["Open Flare"].waitForExistence(timeout: 1)
-            app.buttons["Open Flare"].tap()
+            _ = app.buttons["Modal Flare"].waitForExistence(timeout: 1)
+            app.buttons["Modal Flare"].tap()
             saveScreenshot(component: "dialog", scenario: "flare", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Confirmation"].tap()
             
-            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
-            app.buttons["Open Image"].tap()
+            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
+            app.buttons["Modal Image"].tap()
             saveScreenshot(component: "dialog", scenario: "image", userInterfaceStyle: userInterfaceStyle)
             app.buttons["Confirmation"].tap()
-            _ = app.buttons["Open Image"].waitForExistence(timeout: 1)
+            _ = app.buttons["Modal Image"].waitForExistence(timeout: 1)
         }
         
         navigate(title: "Flare views") {

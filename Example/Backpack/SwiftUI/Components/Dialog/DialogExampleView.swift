@@ -27,21 +27,118 @@ struct DialogExampleView: View {
     @State var presentingImageDialog = false
     @State var presentingFlareDialog = false
     
+    @State var presentingSuccessDialogView = false
+    @State var presentingWarningDialogView = false
+    @State var presentingDestructiveDialogView = false
+    @State var presentingImageDialogView = false
+    @State var presentingFlareDialogView = false
+    
     var body: some View {
+        HStack {
+            viewDialogs
+            modalDialogs
+        }
+        .bpkSuccessDialogView(
+            presented: $presentingSuccessDialogView,
+            icon: .tick,
+            title: "Title in here",
+            text: "Desription that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            onTouchOutside: dismissDialogs
+        )
+        .bpkWarningDialogView(
+            presented: $presentingWarningDialogView,
+            icon: .alertAdd,
+            title: "Title in here",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            onTouchOutside: dismissDialogs
+        )
+        .bpkDestructiveDialogView(
+            presented: $presentingDestructiveDialogView,
+            icon: .trash,
+            title: "Title in here",
+            text: "Description that goes two lines ideally, but sometimes it can go longer",
+            confirmButton: BPKDialogButton("Delete", action: dismissDialogs),
+            linkButton: BPKDialogButton("Cancel", action: dismissDialogs),
+            onTouchOutside: dismissDialogs
+        )
+        .bpkImageDialogView(
+            presented: $presentingImageDialogView,
+            image: Image("dialog_image"),
+            title: "Image Dialog!",
+            text: "You're about to delete this item. This action cannot be undone.",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            onTouchOutside: dismissDialogs
+        )
+        .bpkFlareDialogView(
+            presented: $presentingFlareDialogView,
+            image: Image("dialog_flare"),
+            title: "Flare Dialog!",
+            text: "You're about to delete this item. This action cannot be undone.",
+            confirmButton: confirmButton,
+            secondaryActions: BPKDialogSecondaryActions(
+                secondaryButton: secondaryButton,
+                linkButton: linkButton
+            ),
+            onTouchOutside: dismissDialogs
+        )
+    }
+    
+    private var confirmButton: BPKDialogButton {
+        BPKDialogButton("Confirmation", action: dismissDialogs)
+    }
+    
+    private var secondaryButton: BPKDialogButton {
+        BPKDialogButton("Skip", action: dismissDialogs)
+    }
+    
+    private var linkButton: BPKDialogButton {
+        BPKDialogButton("Link opitonal", action: dismissDialogs)
+    }
+    
+    private func dismissDialogs() {
+        presentingSuccessDialog = false
+        presentingWarningDialog = false
+        presentingDestructiveDialog = false
+        presentingImageDialog = false
+        presentingFlareDialog = false
+        
+        presentingSuccessDialogView = false
+        presentingWarningDialogView = false
+        presentingDestructiveDialogView = false
+        presentingImageDialogView = false
+        presentingFlareDialogView = false
+    }
+    
+    var modalDialogs: some View {
         VStack {
-            BPKButton("Open Success") {
+            BPKText("As Modal")
+            BPKButton("Modal Success") {
                 presentingSuccessDialog.toggle()
             }
-            BPKButton("Open Warning") {
+            BPKButton("Modal Warning") {
                 presentingWarningDialog.toggle()
             }
-            BPKButton("Open Destructive") {
+            BPKButton("Modal Destructive") {
                 presentingDestructiveDialog.toggle()
             }
-            BPKButton("Open Image") {
+            BPKButton("Modal Image") {
                 presentingImageDialog.toggle()
             }
-            BPKButton("Open Flare") {
+            BPKButton("Modal Flare") {
                 presentingFlareDialog.toggle()
             }
         }
@@ -104,24 +201,25 @@ struct DialogExampleView: View {
         )
     }
     
-    private var confirmButton: BPKDialogButton {
-        BPKDialogButton("Confirmation", action: dismissDialogs)
-    }
-    
-    private var secondaryButton: BPKDialogButton {
-        BPKDialogButton("Skip", action: dismissDialogs)
-    }
-    
-    private var linkButton: BPKDialogButton {
-        BPKDialogButton("Link opitonal", action: dismissDialogs)
-    }
-    
-    private func dismissDialogs() {
-        presentingSuccessDialog = false
-        presentingWarningDialog = false
-        presentingDestructiveDialog = false
-        presentingImageDialog = false
-        presentingFlareDialog = false
+    var viewDialogs: some View {
+        VStack {
+            BPKText("As View")
+            BPKButton("View Success") {
+                presentingSuccessDialogView.toggle()
+            }
+            BPKButton("View Warning") {
+                presentingWarningDialogView.toggle()
+            }
+            BPKButton("View Destructive") {
+                presentingDestructiveDialogView.toggle()
+            }
+            BPKButton("View Image") {
+                presentingImageDialogView.toggle()
+            }
+            BPKButton("View Flare") {
+                presentingFlareDialogView.toggle()
+            }
+        }
     }
 }
 

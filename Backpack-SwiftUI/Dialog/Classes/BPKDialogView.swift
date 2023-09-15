@@ -18,9 +18,13 @@
 
 import SwiftUI
 
+/// This extension provides a set of convenience methods to display a dialog that works as a view.
+/// It's usage is discouraged in favour of the `BPKDialog` view. Usage of this view should be limited to cases where
+/// presenting a new view controller is not possible. (`BPKDialog` uses a view controller to present the dialog
+/// behind the scenes).
 public extension View {
     /// Displays a success dialog with a title, text and a list of buttons.
-    func bpkSuccessDialog(
+    func bpkSuccessDialogView(
         presented: Binding<Bool>,
         icon: BPKIcon,
         title: String,
@@ -36,7 +40,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .coreAccentColor,
@@ -47,7 +51,7 @@ public extension View {
     }
     
     /// Displays a warning dialog with a title, text and a list of buttons.
-    func bpkWarningDialog(
+    func bpkWarningDialogView(
         presented: Binding<Bool>,
         icon: BPKIcon,
         title: String,
@@ -63,7 +67,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .statusWarningSpotColor,
@@ -74,7 +78,7 @@ public extension View {
     }
     
     /// Displays a destructive dialog with a title, text and a list of buttons.
-    func bpkDestructiveDialog(
+    func bpkDestructiveDialogView(
         presented: Binding<Bool>,
         icon: BPKIcon,
         title: String,
@@ -87,7 +91,7 @@ public extension View {
         if let linkButton {
             buttons.append(BPKDialogButton(button: linkButton, style: .link))
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .statusDangerSpotColor,
@@ -98,7 +102,7 @@ public extension View {
     }
     
     /// Displays a dialog with an image, title, text and a list of buttons.
-    func bpkImageDialog(
+    func bpkImageDialogView(
         presented: Binding<Bool>,
         image: Image,
         title: String,
@@ -114,7 +118,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .leading)
                     .spacing(.md),
@@ -124,7 +128,7 @@ public extension View {
     }
     
     /// Displays a dialog with an image with a flare, title, text and a list of buttons.
-    func bpkFlareDialog(
+    func bpkFlareDialogView(
         presented: Binding<Bool>,
         image: Image,
         title: String,
@@ -140,7 +144,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)
@@ -153,10 +157,10 @@ public extension View {
     }
 }
 
-struct BPKDialog_Previews: PreviewProvider {
+struct BPKDialogView_Previews: PreviewProvider {
     static var previews: some View {
         Color(.canvasColor)
-            .bpkSuccessDialog(
+            .bpkSuccessDialogView(
                 presented: .constant(true),
                 icon: .tick,
                 title: "Title in here",
