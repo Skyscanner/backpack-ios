@@ -48,7 +48,7 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
                 // This keeps the dialog on top of everything while animating out.
                 .zIndex(.infinity)
                 .transition(.opacity)
-            }            
+            }
         }
         .animation(.easeIn, value: isPresented)
     }
