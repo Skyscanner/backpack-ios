@@ -77,6 +77,7 @@ struct ComponentCellsProvider {
             switches(),
             tabBarControllers(),
             tappableLinkLabels(),
+            textEditor(),
             textField(),
             textViews(),
             toasts(duration: toastDuration)
@@ -423,6 +424,17 @@ extension ComponentCellsProvider {
             title: "Tappable link labels",
             storyboard: .named("TappableLinkLabels", on: "TappableLinkLabelsViewController"),
             showPresentable: show(presentable:)
+        )
+    }
+    private func textEditor() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Text editor",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(TextEditorExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Text Editor", tabs: $0) }
         )
     }
     private func textField() -> CellDataSource {

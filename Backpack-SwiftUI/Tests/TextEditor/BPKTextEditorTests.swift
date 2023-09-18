@@ -24,25 +24,25 @@ class BPKTextEditorTests: XCTestCase {
     func test_defaultSettings() {
         assertSnapshot(
             BPKTextEditor(.constant("Sample Text"), charLimit: 1000)
-                .frame(width: 300, height: 400))
+                .frame(width: 300, height: 200))
     }
 
     func test_emptyEditor() {
         assertSnapshot(
             BPKTextEditor(.constant(""), charLimit: 1000)
-                .frame(width: 300, height: 400))
+                .frame(width: 300, height: 200))
     }
     
     func test_exceedingCharLimit() {
         let longText = String(repeating: "a", count: 1100) // 1100 characters long
         assertSnapshot(
             BPKTextEditor(.constant(longText), charLimit: 1000)
-                .frame(width: 300, height: 400))
+                .frame(width: 300, height: 200))
     }
 
     func test_withPlaceholder() {
         assertSnapshot(
             BPKTextEditor(.constant(""), placeholder: "Enter your text", charLimit: 1000)
-                .frame(width: 300, height: 400))
+                .frame(width: 300, height: 200))
     }
 }

@@ -20,18 +20,13 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct BPKTextEditorExampleView: View {
+struct TextEditorExampleView: View {
     @State private var text: String = ""
 
     var body: some View {
         VStack(spacing: 20) {
-            BPKTextEditor($text, placeholder: "Enter your text", charLimit: 100)
+            BPKTextEditor($text, placeholder: "Enter your text", charLimit: 3000)
                 .frame(height: 200)
-                .padding()
-            
-            Text("Entered text: \(text)")
-                .font(.body)
-                .foregroundColor(.black)
                 .padding()
         }
         .background(Color.white)
@@ -39,8 +34,8 @@ struct BPKTextEditorExampleView: View {
     }
 }
 
-struct BPKTextEditorExampleView_Previews: PreviewProvider {
+struct TextEditorExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        BPKTextEditorExampleView()
+        TextEditorExampleView()
     }
 }

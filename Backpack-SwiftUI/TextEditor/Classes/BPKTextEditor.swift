@@ -81,6 +81,7 @@ fileprivate extension TextEditor {
 struct BPKTextEditor_Previews: PreviewProvider {
     @State static var text: String = "please work"
     static var previews: some View {
-        BPKTextEditor($text, charLimit: 1000)
+        BPKTextEditor($text, charLimit: 1000).frame(height: 200)
+            .padding()
     }
 }
