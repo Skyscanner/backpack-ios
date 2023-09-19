@@ -29,7 +29,6 @@ struct TextEditorExampleView: View {
                 .frame(height: 200)
                 .padding()
         }
-        .background(Color.white)
         .padding()
     }
 }
