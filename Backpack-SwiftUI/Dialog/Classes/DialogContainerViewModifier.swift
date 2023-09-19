@@ -44,6 +44,7 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
                             .frame(maxWidth: 400)
                         Spacer(minLength: .lg)
                     }
+                    .accessibilityAddTraits(.isModal)
                 }
                 // This keeps the dialog on top of everything while animating out.
                 .zIndex(.infinity)
