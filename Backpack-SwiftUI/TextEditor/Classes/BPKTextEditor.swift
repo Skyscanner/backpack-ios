@@ -105,6 +105,6 @@ struct BPKTextEditor_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
         BPKTextEditor($text, placeholder: "testing", charLimit: 1000).frame(height: 200)
-            .padding().preferredColorScheme(.dark)
+            .padding()
     }
 }
