@@ -26,9 +26,9 @@ public struct BPKTextEditor: View {
     /// Creates a `BPKTextEditor`.
     ///
     /// - Parameters:
+    ///   - text: The text to display in the text field.
     ///   - placeholder: The placeholder text to display when the text field is empty.
     ///   - charLimit: Limit of character allowed to enter
-    ///   - text: The text to display in the text field.
     public init(
         _ text: Binding<String>,
         placeholder: String = "",
