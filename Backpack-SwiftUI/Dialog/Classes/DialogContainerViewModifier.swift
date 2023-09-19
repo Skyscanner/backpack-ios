@@ -30,57 +30,41 @@ struct DialogContainerViewModifier<DialogContent: View>: ViewModifier {
     @ViewBuilder let dialogContent: DialogContent
     let onTouchOutside: (() -> Void)?
     
-    @State private var controller: UIViewController?
-    
     func body(content: Content) -> some View {
-        content
-            .onChange(of: isPresented) { _ in
-                if isPresented {
-                    showDialogWithContent {
-                        ZStack {
-                            Color(.scrimColor)
-                                .ignoresSafeArea()
-                                .onTapGesture { onTouchOutside?() }
-                            HStack {
-                                Spacer(minLength: .lg)
-                                dialogContent
-                                    .frame(maxWidth: 400)
-                                Spacer(minLength: .lg)
-                            }
-                        }
+        ZStack {
+            content
+            if isPresented {
+                ZStack {
+                    Color(.scrimColor)
+                        .ignoresSafeArea()
+                        .onTapGesture { onTouchOutside?() }
+                    HStack {
+                        Spacer(minLength: .lg)
+                        dialogContent
+                            .frame(maxWidth: 400)
+                        Spacer(minLength: .lg)
                     }
-                } else {
-                    controller?.dismiss(animated: true)
+                    .accessibilityAddTraits(.isModal)
                 }
+                // This keeps the dialog on top of everything while animating out.
+                .zIndex(.infinity)
+                .transition(.opacity)
             }
-    }
-    
-    private func showDialogWithContent<Content: View>(_ content: () -> Content) {
-        let controller = UIHostingController(rootView: content())
-        controller.view.backgroundColor = .clear
-        controller.modalTransitionStyle = .crossDissolve
-        controller.modalPresentationStyle = .overFullScreen
-
-        rootViewController?.present(controller, animated: true)
-        self.controller = controller
-    }
-    
-    private var rootViewController: UIViewController? {
-        UIApplication.shared
-            .windows
-            .filter { $0.isKeyWindow }
-            .first?
-            .rootViewController
+        }
+        .animation(.easeIn, value: isPresented)
     }
 }
 
 struct DialogContainerViewModifier_Previews: PreviewProvider {
     static var previews: some View {
         Color(.canvasColor)
-            .modifier(DialogContainerViewModifier(isPresented: .constant(true)) {
-                BPKText("This is the content of a dialog!")
-                    .background(.surfaceDefaultColor)
-        } onTouchOutside: {
-            })
+            .modifier(DialogContainerViewModifier(
+                isPresented: .constant(true),
+                dialogContent: {
+                    BPKText("This is the content of a dialog!")
+                        .background(.surfaceDefaultColor)
+                },
+                onTouchOutside: {}
+            ))
     }
 }
