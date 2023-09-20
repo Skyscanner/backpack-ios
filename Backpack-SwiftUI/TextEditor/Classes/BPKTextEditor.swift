@@ -42,12 +42,12 @@ public struct BPKTextEditor: View {
         }
     }
     
-    var backgroundColor: BPKColor {
-        if #unavailable(iOS 16.0), colorScheme == .dark {
-            return .clear
-        }
-        return .surfaceDefaultColor
-    }
+//    var backgroundColor: BPKColor {
+//        if #unavailable(iOS 16.0), colorScheme == .dark {
+//            return .clear
+//        }
+//        return .surfaceDefaultColor
+//    }
     
     @ViewBuilder
     var textEditorContent: some View {
@@ -73,7 +73,7 @@ public struct BPKTextEditor: View {
                         text = String(newValue.prefix(charLimit))
                     }
                 }
-
+            
             // Placeholder
             BPKText(placeholder, style: .bodyDefault)
                 .foregroundColor(.textSecondaryColor)
@@ -85,8 +85,8 @@ public struct BPKTextEditor: View {
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
                 .strokeBorder(.lineColor, lineWidth: BorderConstants.lineWidth)
         }
-        //        .background(.surfaceDefaultColor)
-        .background(backgroundColor)
+        .background(.surfaceDefaultColor)
+        //        .background(backgroundColor)
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
