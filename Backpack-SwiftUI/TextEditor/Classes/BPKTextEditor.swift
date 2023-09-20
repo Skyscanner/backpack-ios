@@ -37,17 +37,7 @@ public struct BPKTextEditor: View {
         self._text = text
         self.placeholder = placeholder
         self.charLimit = charLimit
-        if #unavailable(iOS 16.0) {
-            UITextView.appearance().backgroundColor = .clear
-        }
     }
-    
-//    var backgroundColor: BPKColor {
-//        if #unavailable(iOS 16.0), colorScheme == .dark {
-//            return .clear
-//        }
-//        return .surfaceDefaultColor
-//    }
     
     @ViewBuilder
     var textEditorContent: some View {
@@ -86,7 +76,6 @@ public struct BPKTextEditor: View {
                 .strokeBorder(.lineColor, lineWidth: BorderConstants.lineWidth)
         }
         .background(.surfaceDefaultColor)
-        //        .background(backgroundColor)
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
@@ -105,6 +94,6 @@ struct BPKTextEditor_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
         BPKTextEditor($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
-            .padding()
+            .padding().preferredColorScheme(.dark)
     }
 }
