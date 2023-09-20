@@ -81,16 +81,16 @@ public struct BPKTextEditor: View {
                 .padding(.vertical, PlaceholderConstants.verticalPadding)
                 .padding(.horizontal, PlaceholderConstants.horizontalPadding)
                 .opacity(text.isEmpty ? 1 : 0)
-
             // Border
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
                 .strokeBorder(.lineColor, lineWidth: BorderConstants.lineWidth)
         }
-//        .background(.surfaceDefaultColor)
+        //        .background(.surfaceDefaultColor)
         .background(backgroundColor)
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
+        .accessibilityLabel(placeholder)
     }
     
 }
@@ -104,7 +104,7 @@ fileprivate extension TextEditor {
 struct BPKTextEditor_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
-        BPKTextEditor($text, placeholder: "testing", charLimit: 1000).frame(height: 200)
+        BPKTextEditor($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
             .padding()
     }
 }
