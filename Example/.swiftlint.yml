@@ -82,11 +82,12 @@ custom_rules:
     message: "Use BPKTextField instead of UITextField."
     severity: warning # default is warning
 
-  bpk_text_view:
-    name: "Prefer BPKTextView to UITextView"
-    regex: "(UITextView)\\("
-    message: "Use BPKTextView instead of UITextView."
-    severity: warning # default is warning
+  # disabling to create wrapper around UItextView 
+  # bpk_text_view:
+  #   name: "Prefer BPKTextView to UITextView"
+  #   regex: "(UITextView)\\("
+  #   message: "Use BPKTextView instead of UITextView."
+  #   severity: warning # default is warning
     # Try it out at https://regex101.com/r/F8sAgX/1
 
   # Size token rules

@@ -37,9 +37,6 @@ public struct BPKTextEditor: View {
         self._text = text
         self.placeholder = placeholder
         self.charLimit = charLimit
-        if #unavailable(iOS 16.0) {
-            UITextView.appearance().backgroundColor = .clear
-        }
     }
     
 //    var backgroundColor: BPKColor {
@@ -51,14 +48,7 @@ public struct BPKTextEditor: View {
     
     @ViewBuilder
     var textEditorContent: some View {
-        if #available(iOS 16.0, *) {
-            TextEditor(text: $text)
-                .font(style: .bodyDefault)
-                .scrollContentBackground(.hidden)
-        } else {
-            TextEditor(text: $text)
-                .font(style: .bodyDefault)
-        }
+        UITextViewRepresentable(text: $text, charLimit: charLimit)
     }
     
     public var body: some View {
@@ -107,4 +97,25 @@ struct BPKTextEditor_Previews: PreviewProvider {
         BPKTextEditor($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
             .padding()
     }
+}
+
+// TEMP: Suggestion for using UIViewRepresentable to style UITextView
+struct UITextViewRepresentable: UIViewRepresentable {
+    @Binding var text: String
+    let charLimit: Int
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.backgroundColor = .clear
+        textView.text = text
+        textView.font = UIFont.init(descriptor: .init(name: BPKRelativeFontDefinition().fontFamily, size: 16), size: 16)
+        textView.adjustsFontForContentSizeCategory = false
+        return textView
+    }
+    
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        if text.count > charLimit {
+            uiView.text = String(text.prefix(charLimit))
+        }
+    }
+    typealias UIViewType = UITextView
 }
