@@ -507,5 +507,10 @@ class Screenshots: BackpackSnapshotTestCase {
             saveScreenshot(component: "snippet", scenario: "portrait", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
+        
+        navigate(title: "Sponsored Banner") {
+            saveScreenshot(component: "sponsored-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+            tapBackButton()
+        }
     }
 }
