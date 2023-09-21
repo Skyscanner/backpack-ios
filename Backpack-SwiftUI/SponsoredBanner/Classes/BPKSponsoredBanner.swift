@@ -93,13 +93,11 @@ public struct BPKSponsoredBanner: View {
             }
             .accessibilityElement(children: .combine)
             if callToAction != nil {
-                ZStack {
-                    Text(" ")
-                    BPKIconView(.informationCircle)
-                        .foregroundColor(variant.color)
-                }
-                .accessibilityAddTraits(.isButton)
-                .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+                BPKButton(
+                    icon: .informationCircle,
+                    accessibilityLabel: callToAction?.accessibilityLabel ?? "",
+                    action: toggleBodyText)
+                .buttonStyle(.linkOnDark)
                 .frame(height: 22)
             }
         }
@@ -154,7 +152,6 @@ extension BPKSponsoredBanner {
 struct BPKSponsoredBanner_Previews: PreviewProvider {
     static var previews: some View {
         BPKSponsoredBanner(
-            logo: Image(uiImage: UIImage(systemName: "applelogo")!),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
