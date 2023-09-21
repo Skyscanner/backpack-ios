@@ -6,9 +6,9 @@
 
 ## Default
 
-| Day                                                                                                                                                                                         | Night                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/bae8133c95fc52e7b4662dc77134019746230c51/screenshots/iPhone-swiftui_text-editor___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/bae8133c95fc52e7b4662dc77134019746230c51/screenshots/iPhone-swiftui_text-editor___default_dm.png" alt="" width="375" /> |
+| Day                                                                                                                                                     | Night                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_text-editor___default_lm.png" alt="" width="375" /> | <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_text-editor___default_dm.png" alt="" width="375" /> |
 
 # Usage
 
