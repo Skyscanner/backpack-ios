@@ -6,8 +6,9 @@
 
 ## Default
 
-| Day | Night |
-| --- | ----- |
+| Day                                                                                                                                                        | Night                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| https://raw.githubusercontent.com/Skyscanner/backpack-ios/bae8133c95fc52e7b4662dc77134019746230c51/screenshots/iPhone-swiftui_text-editor___default_lm.png | https://raw.githubusercontent.com/Skyscanner/backpack-ios/bae8133c95fc52e7b4662dc77134019746230c51/screenshots/iPhone-swiftui_text-editor___default_dm.png |
 
 # Usage
 
