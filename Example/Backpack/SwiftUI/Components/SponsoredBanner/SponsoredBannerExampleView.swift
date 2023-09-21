@@ -58,7 +58,7 @@ struct SponsoredBannerExampleView: View {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityLabel: "Sponsored Banner"),
+                accessibilityLabel: "More Information"),
             bodyText: "You can change your destination, date of travel," +
             " or both, with no change fee. Valid for all " +
             "new bookings made up to 31 May for travel between now and 31 December 2020.",

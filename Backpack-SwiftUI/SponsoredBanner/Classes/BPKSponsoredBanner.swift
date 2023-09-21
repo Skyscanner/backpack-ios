@@ -56,11 +56,7 @@ public struct BPKSponsoredBanner: View {
                 .padding(.base)
                 .background(backgroundColor)
                 .zIndex(1)
-                .onTapGesture {
-                    withAnimation(.spring()) {
-                        showTerms.toggle()
-                    }
-                }
+                .onTapGesture { toggleBodyText() }
             if let bodyText = bodyText, showTerms {
                 BPKText(bodyText, style: .caption)
                     .lineLimit(4)
@@ -81,29 +77,43 @@ public struct BPKSponsoredBanner: View {
     
     private var topView: some View {
         HStack(spacing: .md) {
-            if let logo = logo {
-                logo
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 22)
-            }
-            VStack(alignment: .leading, spacing: .sm) {
-                if let title = title {
-                    BPKText(title, style: .label2)
-                        .foregroundColor(variant.color)
+            HStack {
+                if let logo = logo {
+                    logo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 22)
                 }
-                if let subheadline = subheadline {
-                    BPKText(subheadline, style: .caption)
+                titlesView
+                Spacer()
+                if let callToAction = callToAction {
+                    BPKText(callToAction.text, style: .caption)
                         .foregroundColor(variant.color)
                 }
             }
-            Spacer()
-            if let callToAction = callToAction {
-                BPKText(callToAction.text, style: .caption)
+            .accessibilityElement(children: .combine)
+            if callToAction != nil {
+                ZStack {
+                    Text(" ")
+                    BPKIconView(.informationCircle)
+                        .foregroundColor(variant.color)
+                }
+                .accessibilityAddTraits(.isButton)
+                .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+                .frame(height: 22)
+            }
+        }
+    }
+    
+    private var titlesView: some View {
+        VStack(alignment: .leading, spacing: .sm) {
+            if let title = title {
+                BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
             }
-            if callToAction != nil {
-                iconView
+            if let subheadline = subheadline {
+                BPKText(subheadline, style: .caption)
+                    .foregroundColor(variant.color)
             }
         }
     }
@@ -111,6 +121,12 @@ public struct BPKSponsoredBanner: View {
     private var iconView: some View {
         BPKIconView(.informationCircle)
             .foregroundColor(variant.color)
+    }
+    
+    private func toggleBodyText() {
+        withAnimation(.spring()) {
+            showTerms.toggle()
+        }
     }
 }
 
@@ -138,11 +154,12 @@ extension BPKSponsoredBanner {
 struct BPKSponsoredBanner_Previews: PreviewProvider {
     static var previews: some View {
         BPKSponsoredBanner(
+            logo: Image(uiImage: UIImage(systemName: "applelogo")!),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityLabel: "Sponsored Banner"),
+                accessibilityLabel: "More Information"),
             bodyText: "You can change your destination, date of travel," +
             " or both, with no change fee. Valid for all " +
             "new bookings made up to 31 May for travel between now and 31 December 2020.",
