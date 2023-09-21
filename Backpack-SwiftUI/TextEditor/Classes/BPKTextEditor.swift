@@ -71,6 +71,7 @@ public struct BPKTextEditor: View {
                 .padding(.vertical, PlaceholderConstants.verticalPadding)
                 .padding(.horizontal, PlaceholderConstants.horizontalPadding)
                 .opacity(text.isEmpty ? 1 : 0)
+            
             // Border
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
                 .strokeBorder(.lineColor, lineWidth: BorderConstants.lineWidth)

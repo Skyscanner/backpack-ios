@@ -34,7 +34,7 @@ class BPKTextEditorTests: XCTestCase {
     }
     
     func test_exceedingCharLimit() {
-        let longText = String(repeating: "a", count: 1100) // 1100 characters long
+        let longText = String(repeating: "a", count: 1100)
         assertSnapshot(
             BPKTextEditor(.constant(longText), charLimit: 1000)
                 .frame(width: 300, height: 200))
