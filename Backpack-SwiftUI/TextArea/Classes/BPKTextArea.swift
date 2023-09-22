@@ -62,8 +62,8 @@ public struct BPKTextArea: View {
     }
     
     var threeLineHeight: CGFloat {
-        let font = BPKFontStyle.bodyDefault // Adjust font size as required
-        return font.lineHeight * 3 // 3 lines
+        let font = BPKFontStyle.bodyDefault
+        return font.lineHeight * 3
     }
     
     @ViewBuilder
@@ -84,8 +84,8 @@ public struct BPKTextArea: View {
             textEditorContent
                 .frame(height: threeLineHeight)
                 .foregroundColor(.textPrimaryColor)
-                .padding(.vertical, TextEditorConstants.verticalPadding) // 4
-                .padding(.horizontal, TextEditorConstants.horizontalPadding) // 12
+                .padding(.vertical, TextEditorConstants.verticalPadding)
+                .padding(.horizontal, TextEditorConstants.horizontalPadding)
                 .onChange(of: value) { newValue in
                     if newValue.count > charLimit {
                         onValueChange(String(newValue.prefix(charLimit)))
@@ -98,8 +98,8 @@ public struct BPKTextArea: View {
             BPKText(placeholder, style: .bodyDefault)
                 .foregroundColor(.textSecondaryColor)
                 .allowsHitTesting(false)
-                .padding(.vertical, PlaceholderConstants.verticalPadding) // 12
-                .padding(.horizontal, PlaceholderConstants.horizontalPadding) // 16
+                .padding(.vertical, PlaceholderConstants.verticalPadding)
+                .padding(.horizontal, PlaceholderConstants.horizontalPadding)
                 .opacity(value.isEmpty ? 1 : 0)
             
             // Border
