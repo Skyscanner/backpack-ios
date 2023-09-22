@@ -37,9 +37,11 @@ public struct BPKTextEditor: View {
     }
     
     @Environment(\.colorScheme) var colorScheme
-    @Binding private var text: String
+    @Binding private var value: String
     private let charLimit: Int
     private let placeholder: String
+    private var onValueChange: (String) -> Void = { _ in }
+
     
     /// Creates a `BPKTextEditor`.
     ///
@@ -48,23 +50,25 @@ public struct BPKTextEditor: View {
     ///   - placeholder: The placeholder text to display when the text field is empty.
     ///   - charLimit: Limit of character allowed to enter
     public init(
-        _ text: Binding<String>,
+        _ value: Binding<String>,
         placeholder: String = "",
-        charLimit: Int
+        charLimit: Int,
+        onValueChange: @escaping (String) -> Void = { _ in }
     ) {
-        self._text = text
+        self._value = value
         self.placeholder = placeholder
         self.charLimit = charLimit
+        self.onValueChange = onValueChange
     }
     
     @ViewBuilder
     var textEditorContent: some View {
         if #available(iOS 16.0, *) {
-            TextEditor(text: $text)
+            TextEditor(text: $value)
                 .font(style: .bodyDefault)
                 .scrollContentBackground(.hidden)
         } else {
-            TextEditor(text: $text)
+            TextEditor(text: $value)
                 .font(style: .bodyDefault)
         }
     }
@@ -76,9 +80,11 @@ public struct BPKTextEditor: View {
                 .foregroundColor(.textPrimaryColor)
                 .padding(.vertical, TextEditorConstants.verticalPadding)
                 .padding(.horizontal, TextEditorConstants.horizontalPadding)
-                .onChange(of: text) { newValue in
+                .onChange(of: value) { newValue in
                     if newValue.count > charLimit {
-                        text = String(newValue.prefix(charLimit))
+                        onValueChange(String(newValue.prefix(charLimit)))
+                    } else {
+                        onValueChange(newValue)
                     }
                 }
             
@@ -88,7 +94,7 @@ public struct BPKTextEditor: View {
                 .allowsHitTesting(false)
                 .padding(.vertical, PlaceholderConstants.verticalPadding)
                 .padding(.horizontal, PlaceholderConstants.horizontalPadding)
-                .opacity(text.isEmpty ? 1 : 0)
+                .opacity(value.isEmpty ? 1 : 0)
             
             // Border
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
