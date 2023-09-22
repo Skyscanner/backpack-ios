@@ -114,4 +114,21 @@ class BPKSponsoredBannerViewTests: XCTestCase {
             .padding()
         )
     }
+    
+    func testSponsoredBannerOnLightWithoutInfoButton() {
+        assertSnapshot(
+            BPKSponsoredBanner(
+                title: "On Light variant",
+                subheadline: "Subheadline",
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityLabel: "More Info",
+                    showIcon: false),
+                bodyText: "This is a body text",
+                variant: .onLight,
+                backgroundColor: yellowColor)
+            .frame(width: 375)
+            .padding()
+        )
+    }
 }
