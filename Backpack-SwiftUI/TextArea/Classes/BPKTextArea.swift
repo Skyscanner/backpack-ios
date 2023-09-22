@@ -61,6 +61,11 @@ public struct BPKTextArea: View {
         self.onValueChange = onValueChange
     }
     
+    var threeLineHeight: CGFloat {
+        let font = BPKFontStyle.bodyDefault // Adjust font size as required
+        return font.lineHeight * 3 // 3 lines
+    }
+    
     @ViewBuilder
     var textEditorContent: some View {
         if #available(iOS 16.0, *) {
@@ -77,6 +82,7 @@ public struct BPKTextArea: View {
         ZStack(alignment: .topLeading) {
             // Text editor
             textEditorContent
+                .frame(height: threeLineHeight)
                 .foregroundColor(.textPrimaryColor)
                 .padding(.vertical, TextEditorConstants.verticalPadding) // 4
                 .padding(.horizontal, TextEditorConstants.horizontalPadding) // 12
@@ -105,6 +111,7 @@ public struct BPKTextArea: View {
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
         .accessibilityLabel(placeholder)
+        .frame(height: threeLineHeight)
     }
     
 }

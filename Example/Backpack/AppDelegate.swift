@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
         if #unavailable(iOS 16.0) {
-            // Temp solution for BPKTextEditor background colour in dark mode for iOS 15 or below
+            // Temp solution for BPKTextArea background colour in dark mode for iOS 15 or below
             UITextView.appearance().backgroundColor = BPKColor.surfaceDefaultColor
         }
         BPKAppearance.apply()

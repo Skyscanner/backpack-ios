@@ -24,25 +24,25 @@ class BPKTextAreaTests: XCTestCase {
     func test_defaultSettings() {
         assertSnapshot(
             BPKTextArea(.constant("Sample Text"), charLimit: 1000)
-                .frame(width: 300, height: 200))
+                .frame(width: 327))
     }
 
     func test_emptyArea() {
         assertSnapshot(
             BPKTextArea(.constant(""), charLimit: 1000)
-                .frame(width: 300, height: 200))
+                .frame(width: 327))
     }
     
     func test_exceedingCharLimit() {
         let longText = String(repeating: "a", count: 1100)
         assertSnapshot(
             BPKTextArea(.constant(longText), charLimit: 1000)
-                .frame(width: 300, height: 200))
+                .frame(width: 327))
     }
 
     func test_withPlaceholder() {
         assertSnapshot(
             BPKTextArea(.constant(""), placeholder: "Enter your text", charLimit: 1000)
-                .frame(width: 300, height: 200))
+                .frame(width: 327))
     }
 }
