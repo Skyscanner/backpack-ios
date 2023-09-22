@@ -20,29 +20,29 @@ import XCTest
 import SwiftUI
 @testable import Backpack_SwiftUI
 
-class BPKTextEditorTests: XCTestCase {
+class BPKTextAreaTests: XCTestCase {
     func test_defaultSettings() {
         assertSnapshot(
-            BPKTextEditor(.constant("Sample Text"), charLimit: 1000)
+            BPKTextArea(.constant("Sample Text"), charLimit: 1000)
                 .frame(width: 300, height: 200))
     }
 
-    func test_emptyEditor() {
+    func test_emptyArea() {
         assertSnapshot(
-            BPKTextEditor(.constant(""), charLimit: 1000)
+            BPKTextArea(.constant(""), charLimit: 1000)
                 .frame(width: 300, height: 200))
     }
     
     func test_exceedingCharLimit() {
         let longText = String(repeating: "a", count: 1100)
         assertSnapshot(
-            BPKTextEditor(.constant(longText), charLimit: 1000)
+            BPKTextArea(.constant(longText), charLimit: 1000)
                 .frame(width: 300, height: 200))
     }
 
     func test_withPlaceholder() {
         assertSnapshot(
-            BPKTextEditor(.constant(""), placeholder: "Enter your text", charLimit: 1000)
+            BPKTextArea(.constant(""), placeholder: "Enter your text", charLimit: 1000)
                 .frame(width: 300, height: 200))
     }
 }

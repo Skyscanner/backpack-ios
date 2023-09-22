@@ -19,7 +19,7 @@
 import SwiftUI
 import UIKit
 
-public struct BPKTextEditor: View {
+public struct BPKTextArea: View {
     
     private enum TextEditorConstants {
         static let verticalPadding: BPKSpacing = .sm
@@ -41,14 +41,14 @@ public struct BPKTextEditor: View {
     private let charLimit: Int
     private let placeholder: String
     private var onValueChange: (String) -> Void = { _ in }
-
     
-    /// Creates a `BPKTextEditor`.
+    /// Creates a `BPKTextArea`.
     ///
     /// - Parameters:
     ///   - text: The text to display in the text field.
     ///   - placeholder: The placeholder text to display when the text field is empty.
     ///   - charLimit: Limit of character allowed to enter
+    ///   - onValueChange: Callback
     public init(
         _ value: Binding<String>,
         placeholder: String = "",
@@ -78,8 +78,8 @@ public struct BPKTextEditor: View {
             // Text editor
             textEditorContent
                 .foregroundColor(.textPrimaryColor)
-                .padding(.vertical, TextEditorConstants.verticalPadding)
-                .padding(.horizontal, TextEditorConstants.horizontalPadding)
+                .padding(.vertical, TextEditorConstants.verticalPadding) // 4
+                .padding(.horizontal, TextEditorConstants.horizontalPadding) // 12
                 .onChange(of: value) { newValue in
                     if newValue.count > charLimit {
                         onValueChange(String(newValue.prefix(charLimit)))
@@ -92,8 +92,8 @@ public struct BPKTextEditor: View {
             BPKText(placeholder, style: .bodyDefault)
                 .foregroundColor(.textSecondaryColor)
                 .allowsHitTesting(false)
-                .padding(.vertical, PlaceholderConstants.verticalPadding)
-                .padding(.horizontal, PlaceholderConstants.horizontalPadding)
+                .padding(.vertical, PlaceholderConstants.verticalPadding) // 12
+                .padding(.horizontal, PlaceholderConstants.horizontalPadding) // 16
                 .opacity(value.isEmpty ? 1 : 0)
             
             // Border
@@ -115,10 +115,10 @@ fileprivate extension TextEditor {
     }
 }
 
-struct BPKTextEditor_Previews: PreviewProvider {
+struct BPKTextArea_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
-        BPKTextEditor($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
+        BPKTextArea($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
             .padding().preferredColorScheme(.dark)
     }
 }

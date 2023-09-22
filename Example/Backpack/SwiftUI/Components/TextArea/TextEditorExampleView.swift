@@ -20,12 +20,12 @@
 import SwiftUI
 import Backpack_SwiftUI
 
-struct TextEditorExampleView: View {
+struct TextAreaExampleView: View {
     @State private var text: String = ""
 
     var body: some View {
         VStack(spacing: 20) {
-            BPKTextEditor($text, placeholder: "Enter your text", charLimit: 3000)
+            BPKTextArea($text, placeholder: "Enter your text", charLimit: 3000)
                 .frame(height: 200)
                 .padding()
         }
@@ -33,8 +33,8 @@ struct TextEditorExampleView: View {
     }
 }
 
-struct TextEditorExampleView_Previews: PreviewProvider {
+struct TextAreaExampleView_Previews: PreviewProvider {
     static var previews: some View {
-        TextEditorExampleView()
+        TextAreaExampleView()
     }
 }

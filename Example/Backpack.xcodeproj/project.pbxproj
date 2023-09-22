@@ -491,12 +491,12 @@
 			path = Select;
 			sourceTree = "<group>";
 		};
-		2A8000102AB3DC3B009FDB10 /* TextEditor */ = {
+		2A8000102AB3DC3B009FDB10 /* TextArea */ = {
 			isa = PBXGroup;
 			children = (
 				2A62FDDC2AB89F4500D545E5 /* TextEditorExampleView.swift */,
 			);
-			path = TextEditor;
+			path = TextArea;
 			sourceTree = "<group>";
 		};
 		530459F32A961F8F00244EA8 /* Carousel */ = {
@@ -893,7 +893,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2A8000102AB3DC3B009FDB10 /* TextEditor */,
+				2A8000102AB3DC3B009FDB10 /* TextArea */,
 				79AFEDA72A9C704F001615A2 /* GraphicPromo */,
 				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,

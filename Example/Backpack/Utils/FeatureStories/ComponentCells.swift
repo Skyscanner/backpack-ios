@@ -77,7 +77,7 @@ struct ComponentCellsProvider {
             switches(),
             tabBarControllers(),
             tappableLinkLabels(),
-            textEditor(),
+            textArea(),
             textField(),
             textViews(),
             toasts(duration: toastDuration)
@@ -426,15 +426,15 @@ extension ComponentCellsProvider {
             showPresentable: show(presentable:)
         )
     }
-    private func textEditor() -> CellDataSource {
+    private func textArea() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Text editor",
+            title: "Text area",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(TextEditorExampleView())
+                    ContentUIHostingController(TextAreaExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Text Editor", tabs: $0) }
+            showChildren: { showComponent(title: "Text Area", tabs: $0) }
         )
     }
     private func textField() -> CellDataSource {
