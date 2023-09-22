@@ -125,7 +125,7 @@ fileprivate extension TextEditor {
 struct BPKTextArea_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
-        BPKTextArea($text, placeholder: "Enter your text", charLimit: 1000).frame(height: 200)
-            .padding().preferredColorScheme(.dark)
+        BPKTextArea($text, placeholder: "Enter your text", charLimit: 1000)
+            .padding()
     }
 }
