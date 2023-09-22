@@ -29,6 +29,7 @@ struct SponsoredBannerExampleView: View {
                 titleOnlyView
                 allTitlesView
                 onLightView
+                sponsoredWithoutCTAOnLightView
                 imageAndCTAView
             }
             .padding(.base)
@@ -72,6 +73,19 @@ struct SponsoredBannerExampleView: View {
         BPKSponsoredBanner(
             title: "On Light variant",
             subheadline: "Subheadline",
+            bodyText: "This is a body text",
+            variant: .onLight,
+            backgroundColor: yellowColor)
+    }
+    
+    private var sponsoredWithoutCTAOnLightView: some View {
+        BPKSponsoredBanner(
+            title: "On Light Variant",
+            subheadline: "Without info icon",
+            callToAction: .init(
+                text: "Sponsored",
+                accessibilityLabel: "More information",
+                showIcon: false),
             bodyText: "This is a body text",
             variant: .onLight,
             backgroundColor: yellowColor)

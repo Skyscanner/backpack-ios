@@ -92,13 +92,8 @@ public struct BPKSponsoredBanner: View {
                 }
             }
             .accessibilityElement(children: .combine)
-            if callToAction != nil {
-                BPKButton(
-                    icon: .informationCircle,
-                    accessibilityLabel: callToAction?.accessibilityLabel ?? "",
-                    action: toggleBodyText)
-                .buttonStyle(.linkOnDark)
-                .frame(height: 22)
+            if callToAction?.showIcon == true {
+                iconView
             }
         }
     }
@@ -117,8 +112,15 @@ public struct BPKSponsoredBanner: View {
     }
     
     private var iconView: some View {
-        BPKIconView(.informationCircle)
-            .foregroundColor(variant.color)
+        ZStack {
+            Text("")
+            BPKIconView(.informationCircle)
+                .foregroundColor(variant.color)
+        }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+        .frame(height: 22)
+        .frame(height: 22)
     }
     
     private func toggleBodyText() {
@@ -141,10 +143,12 @@ extension BPKSponsoredBanner {
     public struct CallToAction {
         public let text: String
         public let accessibilityLabel: String
+        public let showIcon: Bool
         
-        public init(text: String, accessibilityLabel: String) {
+        public init(text: String, accessibilityLabel: String, showIcon: Bool = true) {
             self.text = text
             self.accessibilityLabel = accessibilityLabel
+            self.showIcon = showIcon
         }
     }
 }
@@ -156,10 +160,10 @@ struct BPKSponsoredBanner_Previews: PreviewProvider {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityLabel: "More Information"),
+                accessibilityLabel: "More Information", showIcon: false),
             bodyText: "You can change your destination, date of travel," +
             " or both, with no change fee. Valid for all " +
-            "new bookings made up to 31 May for travel between now and 31 December 2020.",
+            "new bookings made up to 31 May for travel between now and 31 December 2023.",
             variant: .onDark,
             backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
         .padding()
