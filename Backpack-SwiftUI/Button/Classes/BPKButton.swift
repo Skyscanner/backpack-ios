@@ -80,7 +80,6 @@ public struct BPKButton: View {
                     .opacity(loading ? 0 : 1)
             }
         }
-        .accessibilityElement()
         .accessibilityLabel(accessibilityLabel)
         .buttonStyle(buttonStyle)
         .disabled(!enabled || loading)
