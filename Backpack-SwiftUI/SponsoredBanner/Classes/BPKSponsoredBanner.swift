@@ -56,15 +56,8 @@ public struct BPKSponsoredBanner: View {
                 .padding(.base)
                 .background(backgroundColor)
                 .zIndex(1)
-                .onTapGesture { toggleBodyText() }
-            if let bodyText = bodyText, showTerms {
-                BPKText(bodyText, style: .caption)
-                    .lineLimit(4)
-                    .frame(maxWidth: .infinity)
-                    .padding(.base)
-                    .background(Color.clear)
-                    .zIndex(0)
-            }
+            bodyTextView
+                
         }
         .background(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
@@ -75,7 +68,33 @@ public struct BPKSponsoredBanner: View {
         )
     }
     
+    private var bodyTextView: some View {
+        Group {
+            if hasBody && showTerms == true {
+                BPKText(bodyText ?? "", style: .caption)
+                    .lineLimit(4)
+                    .frame(maxWidth: .infinity)
+                    .padding(.base)
+                    .background(Color.clear)
+                    .zIndex(0)
+            }
+        }
+    }
+    
+    private var hasBody: Bool {
+        return bodyText != nil
+    }
+    
     private var topView: some View {
+        Button(action: toggleBodyText) {
+            buttonContent
+        }
+        .accessibilityRemoveTraits(hasBody ? [] : .isButton)
+        .accessibilityElement(children: .combine)
+        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+    }
+    
+    private var buttonContent: some View {
         HStack(spacing: .md) {
             HStack {
                 if let logo = logo {
@@ -91,7 +110,7 @@ public struct BPKSponsoredBanner: View {
                         .foregroundColor(variant.color)
                 }
             }
-            .accessibilityElement(children: .combine)
+            
             if callToAction?.showIcon == true {
                 iconView
             }
@@ -112,14 +131,8 @@ public struct BPKSponsoredBanner: View {
     }
     
     private var iconView: some View {
-        BPKButton(
-            icon: .informationCircle,
-            accessibilityLabel: callToAction?.accessibilityLabel ?? "",
-            loading: .constant(false),
-            enabled: .constant(true),
-            size: .default) {
-            print("TAP") // We might need to hook this up to the expand action?
-        }
+        BPKIconView(.informationCircle)
+            .foregroundColor(variant.color)
     }
     
     private func toggleBodyText() {
@@ -136,6 +149,10 @@ extension BPKSponsoredBanner {
         
         var color: Backpack_SwiftUI.BPKColor {
             (self == .onDark) ? BPKColor.textOnDarkColor : BPKColor.textOnLightColor
+        }
+        
+        var buttonStyle: BPKButton.Style {
+            (self == .onDark) ? .linkOnDark : .link
         }
     }
     
@@ -159,7 +176,8 @@ struct BPKSponsoredBanner_Previews: PreviewProvider {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityLabel: "More Information", showIcon: false),
+                accessibilityLabel: "More Information",
+                showIcon: true),
             bodyText: "You can change your destination, date of travel," +
             " or both, with no change fee. Valid for all " +
             "new bookings made up to 31 May for travel between now and 31 December 2023.",
