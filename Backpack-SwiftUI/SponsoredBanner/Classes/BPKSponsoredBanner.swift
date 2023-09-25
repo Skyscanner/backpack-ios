@@ -112,15 +112,23 @@ public struct BPKSponsoredBanner: View {
     }
     
     private var iconView: some View {
-        ZStack {
-            Text("")
-            BPKIconView(.informationCircle)
-                .foregroundColor(variant.color)
+        BPKButton(
+            icon: .informationCircle,
+            accessibilityLabel: callToAction?.accessibilityLabel ?? "",
+            loading: .constant(false),
+            enabled: .constant(true),
+            size: .default) {
+            print("TAP")
         }
-        .accessibilityAddTraits(.isButton)
-        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
-        .frame(height: 22)
-        .frame(height: 22)
+//        ZStack {
+//            Text("")
+//            BPKIconView(.informationCircle)
+//                .foregroundColor(variant.color)
+//        }
+//        .accessibilityAddTraits(.isButton)
+//        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+//        .frame(height: 22)
+//        .frame(height: 22)
     }
     
     private func toggleBodyText() {
