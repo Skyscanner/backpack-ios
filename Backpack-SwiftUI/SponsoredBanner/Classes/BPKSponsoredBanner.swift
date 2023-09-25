@@ -118,17 +118,8 @@ public struct BPKSponsoredBanner: View {
             loading: .constant(false),
             enabled: .constant(true),
             size: .default) {
-            print("TAP")
+            print("TAP") // We might need to hook this up to the expand action?
         }
-//        ZStack {
-//            Text("")
-//            BPKIconView(.informationCircle)
-//                .foregroundColor(variant.color)
-//        }
-//        .accessibilityAddTraits(.isButton)
-//        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
-//        .frame(height: 22)
-//        .frame(height: 22)
     }
     
     private func toggleBodyText() {
