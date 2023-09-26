@@ -90,8 +90,8 @@ public struct BPKTextArea: View {
                 .padding(.vertical, TextEditorConstants.verticalPadding)
                 .padding(.horizontal, TextEditorConstants.horizontalPadding)
                 .onChange(of: value) { newValue in
-                    if newValue.count > charLimit {
-                        onValueChange(String(newValue.prefix(charLimit)))
+                    if let limit = charLimit, newValue.count > limit {
+                        onValueChange(String(newValue.prefix(limit)))
                     } else {
                         onValueChange(newValue)
                     }
@@ -113,7 +113,8 @@ public struct BPKTextArea: View {
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
-        .accessibilityLabel(placeholder)
+        .accessibilityLabel(value.isEmpty ? placeholder : value)
+        .accessibilityValue(value.isEmpty ? "Placeholder Text" : "Text")
         .frame(minHeight: threeLineHeight)
     }
     
