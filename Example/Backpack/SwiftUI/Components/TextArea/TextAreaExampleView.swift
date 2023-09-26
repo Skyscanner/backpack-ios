@@ -26,7 +26,7 @@ struct TextAreaExampleView: View {
     var body: some View {
         VStack(spacing: 20) {
             BPKTextArea($text, placeholder: "Enter your text", charLimit: 3000)
-                .frame(height: 200)
+                .frame(height: 100)
                 .padding()
         }
         .padding()

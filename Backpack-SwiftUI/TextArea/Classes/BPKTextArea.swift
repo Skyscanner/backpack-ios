@@ -38,7 +38,7 @@ public struct BPKTextArea: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Binding private var value: String
-    private let charLimit: Int
+    private let charLimit: Int?
     private let placeholder: String
     private var onValueChange: (String) -> Void = { _ in }
     
@@ -52,7 +52,7 @@ public struct BPKTextArea: View {
     public init(
         _ value: Binding<String>,
         placeholder: String = "",
-        charLimit: Int,
+        charLimit: Int? = nil,
         onValueChange: @escaping (String) -> Void = { _ in }
     ) {
         self._value = value
@@ -86,7 +86,6 @@ public struct BPKTextArea: View {
         ZStack(alignment: .topLeading) {
             // Text editor
             textEditorContent
-                .frame(height: threeLineHeight)
                 .foregroundColor(.textPrimaryColor)
                 .padding(.vertical, TextEditorConstants.verticalPadding)
                 .padding(.horizontal, TextEditorConstants.horizontalPadding)
