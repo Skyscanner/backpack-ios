@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension InsettableShape {
+extension InsettableShape {
     func strokeBorder(
         _ color: BPKColor,
         lineWidth: CGFloat = 1,
