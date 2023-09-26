@@ -60,7 +60,7 @@ public struct BPKSponsoredBanner: View {
         }
         .background(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
-                .foregroundColor(.canvasContrastColor)
+                .foregroundColor(.sponsoredBannerBackgroundColor)
         )
         .clipShape(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
