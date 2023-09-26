@@ -8,7 +8,7 @@
 
 | Day | Night |
 | --- | --- |
-| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-sponsored-banner___landscape_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-sponsored-banner___landscape_dm.png" alt="" width="375" /> |
+| <img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_sponsored-banner___landscape_lm.png" alt="" width="375" /> |<img src="https://raw.githubusercontent.com/Skyscanner/backpack-ios/main/screenshots/iPhone-swiftui_sponsored-banner___landscape_dm.png" alt="" width="375" /> |
 
 
 ## Usage
@@ -29,7 +29,6 @@ BPKSponsoredBanner(
 ```
 
 The info icon can be disabled passing the `showIcon` value in `callToAction`: 
-
 
 ```swift 
 BPKSponsoredBanner(
