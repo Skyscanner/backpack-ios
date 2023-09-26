@@ -53,8 +53,9 @@ class BPKSponsoredBannerViewTests: XCTestCase {
             BPKSponsoredBanner(
                 title: "Title",
                 subheadline: "Subheadline",
-                callToAction: .init(text: "Sponsored",
-                                    accessibilityLabel: "More information"),
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityLabel: "More information"),
                 bodyText: "This is a body text",
                 variant: .onDark,
                 backgroundColor: orangeColor)
