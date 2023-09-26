@@ -136,8 +136,11 @@ public struct BPKSponsoredBanner: View {
     private var iconView: some View {
         BPKIconView(.informationCircle)
             .foregroundColor(variant.color)
-            .accessibilityElement()
-            .accessibilityHint(callToAction?.accessibilityLabel ?? "")
+            .if(callToAction?.accessibilityLabel != nil) { icon in
+                icon
+                    .accessibilityElement()
+                    .accessibilityHint(callToAction?.accessibilityLabel ?? "")
+            }
     }
     
     private func toggleBodyText() {
