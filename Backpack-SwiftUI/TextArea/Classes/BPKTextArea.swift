@@ -113,9 +113,9 @@ public struct BPKTextArea: View {
         .clipShape(
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
+        .frame(minHeight: threeLineHeight)
         .accessibilityLabel(value.isEmpty ? placeholder : value)
         .accessibilityValue(value.isEmpty ? "Placeholder Text" : "Text")
-        .frame(minHeight: threeLineHeight)
     }
     
 }

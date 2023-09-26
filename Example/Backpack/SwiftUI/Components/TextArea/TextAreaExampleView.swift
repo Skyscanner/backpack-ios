@@ -22,7 +22,7 @@ import Backpack_SwiftUI
 
 struct TextAreaExampleView: View {
     @State private var text: String = ""
-
+    
     var body: some View {
         VStack(spacing: 20) {
             BPKTextArea($text, placeholder: "Enter your text", charLimit: 3000)
