@@ -90,7 +90,6 @@ public struct BPKSponsoredBanner: View {
         }
         .accessibilityRemoveTraits(hasBody ? [] : .isButton)
         .accessibilityElement(children: .combine)
-        .accessibilityValue(callToAction?.accessibilityLabel ?? "")
         .buttonStyle(SponsoredBannerButtonStyle(
             foregroundColor: (variant == .onDark) ? Color(BPKColor.textOnDarkColor) : Color(BPKColor.textOnLightColor),
             backgroundColor: backgroundColor
@@ -137,6 +136,8 @@ public struct BPKSponsoredBanner: View {
     private var iconView: some View {
         BPKIconView(.informationCircle)
             .foregroundColor(variant.color)
+            .accessibilityElement()
+            .accessibilityHint(callToAction?.accessibilityLabel ?? "")
     }
     
     private func toggleBodyText() {
