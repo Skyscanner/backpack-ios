@@ -115,7 +115,7 @@ public struct BPKTextArea: View {
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
         .accessibilityLabel(placeholder)
-        .frame(height: threeLineHeight)
+        .frame(minHeight: threeLineHeight)
     }
     
 }
@@ -130,6 +130,7 @@ struct BPKTextArea_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
         BPKTextArea($text, placeholder: "Enter your text", charLimit: 1000)
+            .frame(height: 100)
             .padding()
     }
 }
