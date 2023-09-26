@@ -106,21 +106,18 @@ public struct BPKSponsoredBanner: View {
     
     private var buttonContent: some View {
         HStack(spacing: .md) {
-            HStack {
-                if let logo = logo {
-                    logo
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 22)
-                }
-                titlesView
-                Spacer()
-                if let callToAction = callToAction {
-                    BPKText(callToAction.text, style: .caption)
-                        .foregroundColor(variant.color)
-                }
+            if let logo = logo {
+                logo
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 22)
             }
-            
+            titlesView
+            Spacer()
+            if let callToAction = callToAction {
+                BPKText(callToAction.text, style: .caption)
+                    .foregroundColor(variant.color)
+            }
             if callToAction?.showIcon == true {
                 iconView
             }
