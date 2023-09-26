@@ -33,7 +33,7 @@ struct SnippetExampleView: View {
         BPKSnippet(
             image: Image("dialog_image"),
             headline: "Headline Text",
-            description: "Subheading",
+            subheading: "Subheading",
             bodyText: "Body Text",
             imageOrientation: imageOrientation,
             onClick: {
