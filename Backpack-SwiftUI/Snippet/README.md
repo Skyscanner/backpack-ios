@@ -40,7 +40,7 @@ BPKSnippet(
 BPKSnippet(
     image: Image("dialog_image", bundle: TestsBundle.bundle),
     headline: "Headline Text",
-    description: "Description",
+    subheading: "Description",
     bodyText: "Body Text"
 )
 ```
