@@ -27,6 +27,7 @@ public struct BPKSponsoredBanner: View {
     let bodyText: String?
     let variant: Variant
     let backgroundColor: Color
+    let customAccessibilityLabel: String?
     
     @State var showTerms: Bool
     
@@ -38,7 +39,8 @@ public struct BPKSponsoredBanner: View {
         bodyText: String? = nil,
         variant: Variant,
         backgroundColor: Color,
-        showTerms: Bool = false
+        showTerms: Bool = false,
+        customAccessibilityLabel: String? = nil
     ) {
         self.logo = logo
         self.title = title
@@ -48,6 +50,7 @@ public struct BPKSponsoredBanner: View {
         self.variant = variant
         self.backgroundColor = backgroundColor
         self.showTerms = showTerms
+        self.customAccessibilityLabel = customAccessibilityLabel
     }
     
     public var body: some View {
@@ -56,7 +59,7 @@ public struct BPKSponsoredBanner: View {
                 .background(backgroundColor)
                 .zIndex(1)
             bodyTextView
-                
+            
         }
         .background(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
@@ -65,6 +68,11 @@ public struct BPKSponsoredBanner: View {
         .clipShape(
             RoundedRectangle(cornerRadius: .sm, style: .continuous)
         )
+        .if(customAccessibilityLabel != nil) { view in
+            view
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(customAccessibilityLabel ?? "")
+        }
     }
     
     private var bodyTextView: some View {
