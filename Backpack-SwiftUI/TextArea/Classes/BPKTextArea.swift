@@ -22,12 +22,12 @@ import UIKit
 public struct BPKTextArea: View {
     
     private enum TextEditorConstants {
-        static let verticalPadding: BPKSpacing = .sm
+        static let verticalPadding: BPKSpacing = .md
         static let horizontalPadding: CGFloat = 12
     }
     
     private enum PlaceholderConstants {
-        static let verticalPadding: CGFloat = 12
+        static let verticalPadding: BPKSpacing = .base
         static let horizontalPadding: BPKSpacing = .base
     }
     
@@ -59,6 +59,10 @@ public struct BPKTextArea: View {
         self.placeholder = placeholder
         self.charLimit = charLimit
         self.onValueChange = onValueChange
+        if #unavailable(iOS 16.0) {
+            // Temp solution for BPKTextArea background colour in dark mode for iOS 15 or below
+            UITextView.appearance().backgroundColor = BPKColor.surfaceDefaultColor.value
+        }
     }
     
     var threeLineHeight: CGFloat {

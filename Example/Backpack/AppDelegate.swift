@@ -30,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // swiftlint:disable indentation_width
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = BPKColor.textPrimaryColor
-        if #unavailable(iOS 16.0) {
-            // Temp solution for BPKTextArea background colour in dark mode for iOS 15 or below
-            UITextView.appearance().backgroundColor = BPKColor.surfaceDefaultColor
-        }
         BPKAppearance.apply()
     }
     
