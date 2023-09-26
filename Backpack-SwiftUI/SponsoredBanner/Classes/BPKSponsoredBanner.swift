@@ -53,7 +53,6 @@ public struct BPKSponsoredBanner: View {
     public var body: some View {
         VStack(spacing: 0) {
             topView
-                .padding(.base)
                 .background(backgroundColor)
                 .zIndex(1)
             bodyTextView
@@ -92,6 +91,10 @@ public struct BPKSponsoredBanner: View {
         .accessibilityRemoveTraits(hasBody ? [] : .isButton)
         .accessibilityElement(children: .combine)
         .accessibilityValue(callToAction?.accessibilityLabel ?? "")
+        .buttonStyle(SponsoredBannerButtonStyle(
+            foregroundColor: (variant == .onDark) ? Color(BPKColor.textOnDarkColor) : Color(BPKColor.textOnLightColor),
+            backgroundColor: backgroundColor
+        ))
     }
     
     private var buttonContent: some View {
@@ -115,6 +118,7 @@ public struct BPKSponsoredBanner: View {
                 iconView
             }
         }
+        .padding(.base)
     }
     
     private var titlesView: some View {
