@@ -253,4 +253,10 @@ internal extension BPKColor {
     static let skeletonShimmerCenterColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.6),
         darkVariant: UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2))
+
+    /// The `sponsoredBannerBackgroundColor` internal color.
+    
+    static let sponsoredBannerBackgroundColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1),
+        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 }
