@@ -115,7 +115,7 @@ public struct BPKTextArea: View {
         )
         .frame(minHeight: threeLineHeight)
         .accessibilityLabel(value.isEmpty ? placeholder : value)
-        .accessibilityValue(value.isEmpty ? "Placeholder Text" : "Text")
+        .accessibilityHint(value.isEmpty ? "Placeholder Text" : "Text")
     }
     
 }
