@@ -110,7 +110,7 @@ class BPKSponsoredBannerViewTests: XCTestCase {
                 "new bookings made up to 31 May for travel between now and 31 December 2020.",
                 variant: .onDark,
                 backgroundColor: orangeColor,
-                showTerms: true)
+                isExpanded: true)
             .frame(width: 375)
             .padding()
         )

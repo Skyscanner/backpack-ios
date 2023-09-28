@@ -29,7 +29,7 @@ public struct BPKSponsoredBanner: View {
     let backgroundColor: Color
     let customAccessibilityLabel: String?
     
-    @State var showTerms: Bool
+    @State var isExpanded: Bool
     
     public init(
         logo: Image? = nil,
@@ -39,7 +39,7 @@ public struct BPKSponsoredBanner: View {
         bodyText: String? = nil,
         variant: Variant,
         backgroundColor: Color,
-        showTerms: Bool = false,
+        isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
         self.logo = logo
@@ -49,7 +49,7 @@ public struct BPKSponsoredBanner: View {
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.showTerms = showTerms
+        self.isExpanded = isExpanded
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
@@ -77,7 +77,7 @@ public struct BPKSponsoredBanner: View {
     
     private var bodyTextView: some View {
         Group {
-            if hasBody && showTerms == true {
+            if hasBody && isExpanded == true {
                 BPKText(bodyText ?? "", style: .caption)
                     .lineLimit(4)
                     .frame(maxWidth: .infinity)
@@ -150,7 +150,7 @@ public struct BPKSponsoredBanner: View {
     
     private func toggleBodyText() {
         withAnimation(.spring()) {
-            showTerms.toggle()
+            isExpanded.toggle()
         }
     }
 }
