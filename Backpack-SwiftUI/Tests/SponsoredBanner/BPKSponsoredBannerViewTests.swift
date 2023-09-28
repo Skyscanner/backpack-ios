@@ -132,4 +132,35 @@ class BPKSponsoredBannerViewTests: XCTestCase {
             .padding()
         )
     }
+    
+    func testSponsoredBannerOnDarkWithSubheadlineOnly() {
+        assertSnapshot(
+            BPKSponsoredBanner(
+                subheadline: "Subheadline only",
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    showIcon: true),
+                bodyText: "This is a body text",
+                variant: .onDark,
+                backgroundColor: orangeColor)
+            .frame(width: 375)
+            .padding()
+        )
+    }
+    
+    func testSponsoredBannerOnDarkWithImageWithoutTitleOrSubheadline() {
+        assertSnapshot(
+            BPKSponsoredBanner(
+                logo: Image("skyland", bundle: TestsBundle.bundle),
+                callToAction: .init(
+                    text: "Sponsored",
+                    accessibilityHint: "Double tap for more information",
+                    showIcon: true),
+                variant: .onDark,
+                backgroundColor: orangeColor)
+            .frame(width: 375)
+            .padding()
+        )
+    }
 }

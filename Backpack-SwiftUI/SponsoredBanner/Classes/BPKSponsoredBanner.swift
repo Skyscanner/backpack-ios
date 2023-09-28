@@ -33,7 +33,7 @@ public struct BPKSponsoredBanner: View {
     
     public init(
         logo: Image? = nil,
-        title: String? = nil,
+        title: String,
         subheadline: String? = nil,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
@@ -45,6 +45,47 @@ public struct BPKSponsoredBanner: View {
         self.logo = logo
         self.title = title
         self.subheadline = subheadline
+        self.callToAction = callToAction
+        self.bodyText = bodyText
+        self.variant = variant
+        self.backgroundColor = backgroundColor
+        self.isExpanded = isExpanded
+        self.customAccessibilityLabel = customAccessibilityLabel
+    }
+    
+    public init(
+        logo: Image? = nil,
+        subheadline: String,
+        callToAction: CallToAction? = nil,
+        bodyText: String? = nil,
+        variant: Variant,
+        backgroundColor: Color,
+        isExpanded: Bool = false,
+        customAccessibilityLabel: String? = nil
+    ) {
+        self.logo = logo
+        self.title = nil
+        self.subheadline = subheadline
+        self.callToAction = callToAction
+        self.bodyText = bodyText
+        self.variant = variant
+        self.backgroundColor = backgroundColor
+        self.isExpanded = isExpanded
+        self.customAccessibilityLabel = customAccessibilityLabel
+    }
+    
+    public init(
+        logo: Image,
+        callToAction: CallToAction? = nil,
+        bodyText: String? = nil,
+        variant: Variant,
+        backgroundColor: Color,
+        isExpanded: Bool = false,
+        customAccessibilityLabel: String? = nil
+    ) {
+        self.logo = logo
+        self.title = nil
+        self.subheadline = nil
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
