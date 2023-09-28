@@ -20,16 +20,16 @@
 import SwiftUI
 
 public struct BPKSponsoredBanner: View {
-    let logo: Image?
-    let title: String?
-    let subheadline: String?
-    let callToAction: CallToAction?
-    let bodyText: String?
-    let variant: Variant
-    let backgroundColor: Color
-    let customAccessibilityLabel: String?
+    private let logo: Image?
+    private let title: String?
+    private let subheadline: String?
+    private let callToAction: CallToAction?
+    private let bodyText: String?
+    private let variant: Variant
+    private let backgroundColor: Color
+    private let customAccessibilityLabel: String?
     
-    @State var isExpanded: Bool
+    @State private var isExpanded: Bool
     
     public init(
         logo: Image? = nil,
