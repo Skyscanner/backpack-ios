@@ -23,7 +23,7 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
     private let backgroundColor: BPKColor
     private let header: HeaderContent
     private let card: WrappedContent
-    
+
     private let lineWidth = 2.0
     
     public init(
@@ -32,16 +32,6 @@ public struct BPKCardWrapper<HeaderContent: View, WrappedContent: CardWrappable>
         @ViewBuilder card: () -> WrappedContent
     ) {
         self.backgroundColor = backgroundColor
-        self.header = header()
-        self.card = card()
-    }
-    
-    public init(
-        backgroundColor: UIColor,
-        @ViewBuilder header: () -> HeaderContent,
-        @ViewBuilder card: () -> WrappedContent
-    ) {
-        self.backgroundColor = BPKColor.init(value: backgroundColor)
         self.header = header()
         self.card = card()
     }
@@ -112,22 +102,6 @@ struct BPKCardWrapper_Previews: PreviewProvider {
                     Text("Secondary Content")
                 }
             }
-            
-            BPKCardWrapper(backgroundColor: UIColor.magenta) {
-                HStack(spacing: 5) {
-                    BPKIconView(.flag)
-                    BPKText("Custom Color", style: .caption)
-                        .foregroundColor(.white)
-                    Spacer()
-                }
-                .foregroundColor(.white)
-                .padding(.md)
-            } card: {
-                BPKCard(elevation: .none) {
-                    Text("Card Content")
-                }
-            }
-            
         }
         .padding()
     }
