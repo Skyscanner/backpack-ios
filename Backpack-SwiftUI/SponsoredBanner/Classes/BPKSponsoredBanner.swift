@@ -8,7 +8,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.a=pache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -75,16 +75,14 @@ public struct BPKSponsoredBanner: View {
         }
     }
     
-    private var bodyTextView: some View {
-        Group {
-            if hasBody && isExpanded == true {
-                BPKText(bodyText ?? "", style: .caption)
-                    .lineLimit(4)
-                    .frame(maxWidth: .infinity)
-                    .padding(.base)
-                    .background(Color.clear)
-                    .zIndex(0)
-            }
+    @ViewBuilder private var bodyTextView: some View {
+        if isExpanded == true, let bodyText = bodyText {
+            BPKText(bodyText, style: .caption)
+                .lineLimit(4)
+                .frame(maxWidth: .infinity)
+                .padding(.base)
+                .background(Color.clear)
+                .zIndex(0)
         }
     }
     
@@ -117,10 +115,11 @@ public struct BPKSponsoredBanner: View {
             if let callToAction = callToAction {
                 BPKText(callToAction.text, style: .caption)
                     .foregroundColor(variant.color)
+                if callToAction.showIcon {
+                    iconView
+                }
             }
-            if callToAction?.showIcon == true {
-                iconView
-            }
+            
         }
         .padding(.base)
     }
@@ -151,33 +150,6 @@ public struct BPKSponsoredBanner: View {
     private func toggleBodyText() {
         withAnimation(.spring()) {
             isExpanded.toggle()
-        }
-    }
-}
-
-extension BPKSponsoredBanner {
-    public enum Variant {
-        case onLight
-        case onDark
-        
-        var color: Backpack_SwiftUI.BPKColor {
-            (self == .onDark) ? BPKColor.textOnDarkColor : BPKColor.textOnLightColor
-        }
-        
-        var buttonStyle: BPKButton.Style {
-            (self == .onDark) ? .linkOnDark : .link
-        }
-    }
-    
-    public struct CallToAction {
-        public let text: String
-        public let accessibilityHint: String
-        public let showIcon: Bool
-        
-        public init(text: String, accessibilityHint: String, showIcon: Bool = true) {
-            self.text = text
-            self.accessibilityHint = accessibilityHint
-            self.showIcon = showIcon
         }
     }
 }
