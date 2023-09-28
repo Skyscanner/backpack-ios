@@ -141,10 +141,10 @@ public struct BPKSponsoredBanner: View {
     private var iconView: some View {
         BPKIconView(.informationCircle)
             .foregroundColor(variant.color)
-            .if(callToAction?.accessibilityLabel != nil) { icon in
+            .if(callToAction?.accessibilityHint != nil) { icon in
                 icon
                     .accessibilityElement()
-                    .accessibilityHint(callToAction?.accessibilityLabel ?? "")
+                    .accessibilityHint(callToAction?.accessibilityHint ?? "")
             }
     }
     
@@ -171,12 +171,12 @@ extension BPKSponsoredBanner {
     
     public struct CallToAction {
         public let text: String
-        public let accessibilityLabel: String
+        public let accessibilityHint: String
         public let showIcon: Bool
         
-        public init(text: String, accessibilityLabel: String, showIcon: Bool = true) {
+        public init(text: String, accessibilityHint: String, showIcon: Bool = true) {
             self.text = text
-            self.accessibilityLabel = accessibilityLabel
+            self.accessibilityHint = accessibilityHint
             self.showIcon = showIcon
         }
     }
@@ -189,7 +189,7 @@ struct BPKSponsoredBanner_Previews: PreviewProvider {
             subheadline: "Subheading",
             callToAction: .init(
                 text: "Sponsored",
-                accessibilityLabel: "More Information",
+                accessibilityHint: "Double tap for more information",
                 showIcon: true),
             bodyText: "You can change your destination, date of travel," +
             " or both, with no change fee. Valid for all " +

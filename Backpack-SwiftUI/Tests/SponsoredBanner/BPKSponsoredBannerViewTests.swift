@@ -55,7 +55,7 @@ class BPKSponsoredBannerViewTests: XCTestCase {
                 subheadline: "Subheadline",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityLabel: "More information"),
+                    accessibilityHint: "Double tap for more information"),
                 bodyText: "This is a body text",
                 variant: .onDark,
                 backgroundColor: orangeColor)
@@ -85,7 +85,7 @@ class BPKSponsoredBannerViewTests: XCTestCase {
                 subheadline: "Subheading",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityLabel: "Sponsored Banner"),
+                    accessibilityHint: "Sponsored Banner"),
                 bodyText: "You can change your destination, date of travel," +
                 " or both, with no change fee. Valid for all " +
                 "new bookings made up to 31 May for travel between now and 31 December 2020.",
@@ -104,7 +104,7 @@ class BPKSponsoredBannerViewTests: XCTestCase {
                 subheadline: "Subheading",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityLabel: "Sponsored Banner"),
+                    accessibilityHint: "Sponsored Banner"),
                 bodyText: "You can change your destination, date of travel," +
                 " or both, with no change fee. Valid for all " +
                 "new bookings made up to 31 May for travel between now and 31 December 2020.",
@@ -123,7 +123,7 @@ class BPKSponsoredBannerViewTests: XCTestCase {
                 subheadline: "Subheadline",
                 callToAction: .init(
                     text: "Sponsored",
-                    accessibilityLabel: "More Info",
+                    accessibilityHint: "More Info",
                     showIcon: false),
                 bodyText: "This is a body text",
                 variant: .onLight,
