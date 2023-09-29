@@ -65,7 +65,7 @@ public struct BPKTextArea: View {
         }
     }
     
-    var threeLineHeight: CGFloat {
+    private var threeLineHeight: CGFloat {
         let font = BPKFontStyle.bodyDefault
         return font.lineHeight * 3
     }
