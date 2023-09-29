@@ -38,27 +38,27 @@ public struct BPKTextArea: View {
     
     @Environment(\.colorScheme) var colorScheme
     @Binding private var value: String
-    private let charLimit: Int?
-    private let placeholder: String
-    private var onValueChange: (String) -> Void = { _ in }
+    private let placeholder: String?
+    private var accessibilityLabelText: String {
+        if let placeholder = placeholder, value.isEmpty {
+            return placeholder
+        }
+        return value
+    }
     
     /// Creates a `BPKTextArea`.
     ///
     /// - Parameters:
     ///   - text: The text to display in the text field.
     ///   - placeholder: The placeholder text to display when the text field is empty.
-    ///   - charLimit: Limit of character allowed to enter
     ///   - onValueChange: Callback
     public init(
         _ value: Binding<String>,
-        placeholder: String = "",
-        charLimit: Int? = nil,
-        onValueChange: @escaping (String) -> Void = { _ in }
+        placeholder: String? = nil
     ) {
         self._value = value
         self.placeholder = placeholder
-        self.charLimit = charLimit
-        self.onValueChange = onValueChange
+        
         if #unavailable(iOS 16.0) {
             // Temp solution for BPKTextArea background colour in dark mode for iOS 15 or below
             UITextView.appearance().backgroundColor = BPKColor.surfaceDefaultColor.value
@@ -89,21 +89,16 @@ public struct BPKTextArea: View {
                 .foregroundColor(.textPrimaryColor)
                 .padding(.vertical, TextEditorConstants.verticalPadding)
                 .padding(.horizontal, TextEditorConstants.horizontalPadding)
-                .onChange(of: value) { newValue in
-                    if let limit = charLimit, newValue.count > limit {
-                        onValueChange(String(newValue.prefix(limit)))
-                    } else {
-                        onValueChange(newValue)
-                    }
-                }
             
             // Placeholder
-            BPKText(placeholder, style: .bodyDefault)
-                .foregroundColor(.textSecondaryColor)
-                .allowsHitTesting(false)
-                .padding(.vertical, PlaceholderConstants.verticalPadding)
-                .padding(.horizontal, PlaceholderConstants.horizontalPadding)
-                .opacity(value.isEmpty ? 1 : 0)
+            if let unwrappedPlaceholder = placeholder {
+                BPKText(unwrappedPlaceholder, style: .bodyDefault)
+                    .foregroundColor(.textSecondaryColor)
+                    .allowsHitTesting(false)
+                    .padding(.vertical, PlaceholderConstants.verticalPadding)
+                    .padding(.horizontal, PlaceholderConstants.horizontalPadding)
+                    .opacity(value.isEmpty ? 1 : 0)
+            }
             
             // Border
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
@@ -114,8 +109,7 @@ public struct BPKTextArea: View {
             RoundedRectangle(cornerRadius: BorderConstants.cornerRadius)
         )
         .frame(minHeight: threeLineHeight)
-        .accessibilityLabel(value.isEmpty ? placeholder : value)
-        .accessibilityHint(value.isEmpty ? "Placeholder Text" : "Text")
+        .accessibilityLabel(accessibilityLabelText)
     }
     
 }
@@ -129,7 +123,7 @@ fileprivate extension TextEditor {
 struct BPKTextArea_Previews: PreviewProvider {
     @State static var text: String = ""
     static var previews: some View {
-        BPKTextArea($text, placeholder: "Enter your text", charLimit: 1000)
+        BPKTextArea($text, placeholder: "Enter your text")
             .frame(height: 100)
             .padding()
     }
