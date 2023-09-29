@@ -67,7 +67,7 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             
             app.tables.staticTexts["Hero"].tap()
             saveScreenshot(component: "text", scenario: "hero", userInterfaceStyle: userInterfaceStyle)
-tapBackButton()
+            tapBackButton()
         }
         
         navigate(title: "Buttons") {
@@ -163,6 +163,11 @@ tapBackButton()
         navigate(title: "Skeleton") {
             switchTab(title: "SwiftUI")
             saveScreenshot(component: "skeleton", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        }
+
+        navigate(title: "Text area") {
+            switchTab(title: "SwiftUI")
+            saveScreenshot(component: "text-area", scenario: "default", userInterfaceStyle: userInterfaceStyle)
         }
         
         navigate(title: "Text fields") {
