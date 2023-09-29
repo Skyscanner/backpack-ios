@@ -36,7 +36,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .coreAccentColor,
@@ -63,7 +63,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .statusWarningSpotColor,
@@ -87,7 +87,7 @@ public extension View {
         if let linkButton {
             buttons.append(BPKDialogButton(button: linkButton, style: .link))
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithIconContent(
                 icon: icon,
                 iconColor: .statusDangerSpotColor,
@@ -114,7 +114,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .leading)
                     .spacing(.md),
@@ -140,7 +140,7 @@ public extension View {
                 buttons.append(BPKDialogButton(button: linkButton, style: .link))
             }
         }
-        return self.modifier(DialogContainerViewModifier(isPresented: presented, dialogContent: {
+        return self.modifier(UIKitDialogContainerViewModifier(isPresented: presented, dialogContent: {
             DialogWithHeaderContent(
                 textContent: DialogTextContent(title: title, text: text, contentAlignment: .center),
                 actions: DialogActionsView(buttons: buttons)

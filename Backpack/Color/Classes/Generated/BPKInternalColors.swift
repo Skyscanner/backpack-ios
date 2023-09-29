@@ -50,11 +50,35 @@ internal extension BPKColor {
         withLightVariant: UIColor(red: 0.329, green: 0.345, blue: 0.376, alpha: 1),
         darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.5019607843137255))
 
+    /// The `mapPreviousSelectionColor` internal color.
+    
+    static let mapPreviousSelectionColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.812, green: 0.894, blue: 1.000, alpha: 1))
+
+    /// The `mapClusterPinColor` internal color.
+    
+    static let mapClusterPinColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.020, green: 0.125, blue: 0.235, alpha: 1),
+        darkVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1))
+
+    /// The `mapClusterPinPreviousSelectionColor` internal color.
+    
+    static let mapClusterPinPreviousSelectionColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.580, green: 0.765, blue: 1.000, alpha: 1),
+        darkVariant: UIColor(red: 0.580, green: 0.765, blue: 1.000, alpha: 1))
+
     /// The `mapMarkerViewedForegroundColor` internal color.
     
     static let mapMarkerViewedForegroundColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.8),
         darkVariant: UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.8))
+
+    /// The `mapPoiPinColor` internal color.
+    
+    static let mapPoiPinColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.557, green: 0.278, blue: 0.729, alpha: 1),
+        darkVariant: UIColor(red: 0.557, green: 0.278, blue: 0.729, alpha: 1))
 
     /// The `buttonSecondaryPressedBackgroundColor` internal color.
     
@@ -229,4 +253,10 @@ internal extension BPKColor {
     static let skeletonShimmerCenterColor = BPKColor.dynamicColor(
         withLightVariant: UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 0.6),
         darkVariant: UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.2))
+
+    /// The `sponsoredBannerBackgroundColor` internal color.
+    
+    static let sponsoredBannerBackgroundColor = BPKColor.dynamicColor(
+        withLightVariant: UIColor(red: 0.937, green: 0.945, blue: 0.949, alpha: 1),
+        darkVariant: UIColor(red: 0.141, green: 0.200, blue: 0.275, alpha: 1))
 }

@@ -59,7 +59,7 @@ class BPKSnippetViewTests: XCTestCase {
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 headline: "Headline Text",
-                description: "Description",
+                subheading: "Description",
                 bodyText: "Body Text"
             )
             .frame(width: 375)
@@ -72,7 +72,7 @@ class BPKSnippetViewTests: XCTestCase {
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 headline: "Headline Text",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
                 "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
                 "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
                 bodyText: "Body Text"
@@ -87,7 +87,7 @@ class BPKSnippetViewTests: XCTestCase {
             BPKSnippet(
                 image: Image("dialog_image", bundle: TestsBundle.bundle),
                 headline: "Headline Text",
-                description: "Description",
+                subheading: "Description",
                 bodyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
                 "Nulla tempus nec velit sit amet volutpat. Suspendisse potenti." +
                 "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."

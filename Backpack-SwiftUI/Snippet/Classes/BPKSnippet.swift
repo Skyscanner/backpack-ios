@@ -21,7 +21,7 @@ import SwiftUI
 public struct BPKSnippet: View {
     let image: Image
     let headline: String?
-    let description: String?
+    let subheading: String?
     let bodyText: String?
     let imageOrientation: ImageOrientation
     let onClick: (() -> Void)?
@@ -29,43 +29,38 @@ public struct BPKSnippet: View {
     public init(
         image: Image,
         headline: String? = nil,
-        description: String? = nil,
+        subheading: String? = nil,
         bodyText: String? = nil,
         imageOrientation: ImageOrientation = .landscape,
         onClick: (() -> Void)? = nil
     ) {
         self.image = image
         self.headline = headline
-        self.description = description
+        self.subheading = subheading
         self.bodyText = bodyText
         self.imageOrientation = imageOrientation
         self.onClick = onClick
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: .md) {
-            GeometryReader { geo in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .background(.surfaceHighlightColor)
-                    .frame(width: geo.size.width)
-            }
-            .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
-            .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
+        VStack(alignment: .leading) {
+            imageView
+
             if let headline {
                 BPKText(headline, style: .heading4)
                     .lineLimit(nil)
                     .accessibilityAddTraits(.isHeader)
+                    .padding(.bottom, .sm)
             }
-            if let description {
-                BPKText(description, style: .subheading)
+            if let subheading {
+                BPKText(subheading, style: .subheading)
                     .lineLimit(nil)
                     .padding(.bottom, .xl)
             }
             if let bodyText {
                 BPKText(bodyText, style: .bodyDefault)
                     .lineLimit(nil)
+                    .padding(.bottom, .base)
             }
         }
         .accessibilityElement(children: .combine)
@@ -74,6 +69,19 @@ public struct BPKSnippet: View {
             onClick?()
         }
        
+    }
+
+    private var imageView: some View {
+        GeometryReader { geo in
+            image
+                .resizable()
+                .scaledToFill()
+                .background(.surfaceHighlightColor)
+                .frame(width: geo.size.width)
+        }
+        .aspectRatio(aspectRatio(for: imageOrientation), contentMode: .fit)
+        .clipShape(RoundedRectangle(cornerRadius: .md, style: .continuous))
+        .padding(.bottom, .base)
     }
     
     private func aspectRatio(for imageOrientation: ImageOrientation) -> CGFloat {
@@ -93,7 +101,7 @@ struct BPKSnippet_Previews: PreviewProvider {
         BPKSnippet(
             image: Image("dialog_image"),
             headline: "Headline Text?",
-            description: "Description",
+            subheading: "Description",
             bodyText: "Body Text"
         )
         .padding()
