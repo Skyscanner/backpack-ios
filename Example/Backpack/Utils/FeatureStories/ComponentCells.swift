@@ -72,6 +72,7 @@ struct ComponentCellsProvider {
             skeleton(),
             sliders(),
             snippets(),
+            sponsoredBanner(),
             spinners(),
             starRatings(),
             switches(),
@@ -532,6 +533,17 @@ extension ComponentCellsProvider {
                 .swiftui(groups: CardListGroupsProvider(showPresentable: show(presentable:)).swiftUIGroups())
             ],
             showChildren: { showComponent(title: "Card list", tabs: $0) }
+        )
+    }
+    private func sponsoredBanner() -> CellDataSource {
+        ComponentCellDataSource(
+            title: "Sponsored Banner",
+            tabs: [
+                .swiftui(presentable: CustomPresentable(generateViewController: {
+                    ContentUIHostingController(SponsoredBannerExampleView())
+                }))
+            ],
+            showChildren: { showComponent(title: "Sponsored Banner", tabs: $0) }
         )
     }
 }
