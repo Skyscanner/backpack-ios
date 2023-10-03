@@ -41,6 +41,16 @@ struct SliderExampleView: View {
             )
             .trailingAccessibility(label: "Trailing")
             .leadingAccessibility(label: "Leading")
+            
+            BPKText("Range With Thumbnails")
+            BPKRangeSlider(
+                selectedRange: $selectedRange,
+                sliderBounds: -50...50,
+                minSpacing: 5,
+                thumbnailLabels: .init(lowerThumbnail: "abc", upperThumbnail: "xyz")
+            )
+            .trailingAccessibility(label: "Trailing")
+            .leadingAccessibility(label: "Leading")
         }
         .padding()
     }
