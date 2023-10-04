@@ -72,8 +72,12 @@ public struct BPKRangeSlider: View {
     public var body: some View {
         GeometryReader { geomentry in
             sliderView(sliderSize: geomentry.size)
+                .background(GeometryReader { proxy in
+                    Color.clear.onAppear {
+                        height = proxy.size.height
+                    }
+                })
         }
-        .fixedSize(horizontal: false, vertical: true)
         .frame(height: height)
         .padding([.leading, .trailing], thumbSize / 2)
         .onAppear(perform: clampSelectedRangeToBounds)
@@ -91,14 +95,16 @@ public struct BPKRangeSlider: View {
     // swiftlint:disable closure_body_length
     // swiftlint:disable function_body_length
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Capsule()
                 .fill(Color(.lineColor))
                 .frame(width: sliderSize.width, height: sliderHeight)
+                .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
             Rectangle()
                 .fill(Color(.coreAccentColor))
                 .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
                 .offset(x: fillLineOffset(sliderSize: sliderSize))
+                .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
             SliderThumbView(
                 size: thumbSize,
                 offset: trailingThumbOffset(sliderSize: sliderSize)
@@ -139,14 +145,6 @@ public struct BPKRangeSlider: View {
                     .offset(x: leadingThumbOffset(sliderSize: sliderSize))
                     .accessibilityHidden(true)
             }
-            // This calculates the height of the ZStack which is based on it's content size,
-            // and uses this plus any offset to set the height of the parent GeometryReader
-            GeometryReader { proxy in
-                HStack {}
-                    .onAppear {
-                        height = proxy.size.height + thumbnailsYOffset
-                    }
-            }
         }
     }
     
@@ -159,11 +157,7 @@ public struct BPKRangeSlider: View {
             .padding(.bottom, flareHeight)
             .background(.coreAccentColor)
             .clipShape(LabelFlareShape(flareHeight: flareHeight))
-            .offset(y: -thumbnailsYOffset)
-    }
-    
-    private var thumbnailsYOffset: CGFloat {
-        thumbnailLabels != nil ? (thumbSize + BPKSpacing.sm.value + flareHeight) : 0
+            .padding(.bottom, thumbSize + BPKSpacing.sm.value)
     }
     
     /// Sets the accessibility label for the trailing thumb.
