@@ -55,6 +55,7 @@ public struct BPKRangeSlider: View {
     ///   - sliderBounds: The bounds of the slider.
     ///   - step: The step size of the slider. Defaults to 1.
     ///   - minSpacing: The minimum spacing between the two thumbs. Defaults to 0.
+    ///   - thumbnailLabels: The minimum spacing between the two thumbs. Defaults to 0.
     public init(
         selectedRange: Binding<ClosedRange<Float>>,
         sliderBounds: ClosedRange<Float>,
