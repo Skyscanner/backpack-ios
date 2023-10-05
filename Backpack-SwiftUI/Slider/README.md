@@ -66,3 +66,17 @@ BPKRangeSlider(selectedRange: $rangeValue, sliderBounds: 0...100)
     .leadingAccessibilityLabel("Min temperature")
     .trailingAccessibilityLabel("Max temperature")
 ```
+
+### Adding Thumbnail Labels over the thumbs
+```swift
+@State var rangeValue: ClosedRange<Float> = 0...100
+
+BPKRangeSlider(
+    selectedRange: $rangeValue,
+    sliderBounds: -20...20,
+    thumbnailLabels: .init(
+        lowerThumbnail: "BPK",
+        upperThumbnail: "OK"
+        )
+    )
+```

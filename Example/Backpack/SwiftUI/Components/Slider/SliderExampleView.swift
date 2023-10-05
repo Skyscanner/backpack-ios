@@ -23,8 +23,10 @@ import Backpack_SwiftUI
 struct SliderExampleView: View {
     @State var changed: Bool = false
     @State var selectedRange: ClosedRange<Float> = -20...20
+    @State var selectedRangeLabels: ClosedRange<Float> = -20...20
     @State var selectedValue: Float = 20
     
+    // swiftlint:disable closure_body_length
     var body: some View {
         VStack(alignment: .leading) {
             BPKText("Standard")
@@ -38,6 +40,18 @@ struct SliderExampleView: View {
                 selectedRange: $selectedRange,
                 sliderBounds: -50...50,
                 minSpacing: 5
+            )
+            .trailingAccessibility(label: "Trailing")
+            .leadingAccessibility(label: "Leading")
+            
+            BPKText("Range With Thumbnails")
+            BPKRangeSlider(
+                selectedRange: $selectedRangeLabels,
+                sliderBounds: -50...50,
+                minSpacing: 5,
+                thumbnailLabels: .init(
+                    lowerThumbnail: "\(selectedRangeLabels.lowerBound)",
+                    upperThumbnail: "\(selectedRangeLabels.upperBound)")
             )
             .trailingAccessibility(label: "Trailing")
             .leadingAccessibility(label: "Leading")

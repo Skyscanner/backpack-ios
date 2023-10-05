@@ -38,7 +38,22 @@ class SliderTests: XCTestCase {
                 selectedRange: .constant(0.5...0.7),
                 sliderBounds: 0...1
             )
-            .frame(width: 200)
+            .frame(width: 200, height: .zero)
+            .padding()
+        )
+    }
+    
+    func testRangeSliderWithThumbnailLabels() {
+        assertSnapshot(
+            BPKRangeSlider(
+                selectedRange: .constant(-5...5),
+                sliderBounds: -20...20,
+                thumbnailLabels: .init(
+                    lowerThumbnail: "BPK",
+                    upperThumbnail: "OK"
+                )
+            )
+            .frame(width: 200, height: 70)
             .padding()
         )
     }

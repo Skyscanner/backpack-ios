@@ -33,11 +33,11 @@ public struct BPKPriceMapMarker: View {
         labelView
             .if(state == .focused) { label in
                 label.overlay(
-                    MarkerShape(flareHeight: flareHeight)
+                    LabelFlareShape(flareHeight: flareHeight)
                         .stroke(Color(state.foregroundColor), lineWidth: BPKSpacing.sm.value)
                 )
             }
-            .clipShape(MarkerShape(flareHeight: flareHeight))
+            .clipShape(LabelFlareShape(flareHeight: flareHeight))
             .shadow(.sm)
     }
     
@@ -58,7 +58,7 @@ struct BPKPriceMapMarker_Previews: PreviewProvider {
             BPKPriceMapMarker(state: .default, price: "£200")
             BPKPriceMapMarker(state: .focused, price: "£200")
             BPKPriceMapMarker(state: .viewed, price: "£200")
-            BPKPriceMapMarker(state: .disabled, price: "Sould out")
+            BPKPriceMapMarker(state: .disabled, price: "Sold out")
         }
     }
 }
