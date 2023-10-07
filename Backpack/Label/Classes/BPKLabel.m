@@ -72,8 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
         self.attributedText = nil;
         return;
     }
-    
-    if(self.fontStyle <= 0) {
+
+    if (self.fontStyle <= 0) {
         return;
     }
 
