@@ -117,14 +117,15 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat lineHeight = [self lineHeightForStyle:style];
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
     [paragraphStyle setMinimumLineHeight:font.capHeight];
-    // When DynamicType is not enabled, or set to the default size
-    // We apply our custom line height restrictions.
-    // Once smaller or larger dynamic types are selected, we fallback to the 'natural' line-height as decided by the font.
-    UIContentSizeCategory currentPreferredContentSize = [UIApplication sharedApplication].preferredContentSizeCategory;
-    if (currentPreferredContentSize == UIContentSizeCategoryUnspecified || currentPreferredContentSize == UIContentSizeCategoryLarge) {
-        [paragraphStyle setMaximumLineHeight:lineHeight];
-    } else {
-        [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
+    [paragraphStyle setMaximumLineHeight:lineHeight];
+        
+    // When dynamic type is enabled, and the size is different from 'default'
+    // We apply the largest line height, this is to prevent line clipping on larger DynamicType sizess
+    if ([[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        UIContentSizeCategory _Nullable currentPreferredContentSize = [UIApplication sharedApplication].preferredContentSizeCategory;
+        if(currentPreferredContentSize > UIContentSizeCategoryLarge) {
+            [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
+        }
     }
     return paragraphStyle;
 }
