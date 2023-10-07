@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat lineHeight = [self lineHeightForStyle:style];
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
     [paragraphStyle setMinimumLineHeight:font.capHeight];
-    [paragraphStyle setMaximumLineHeight:lineHeight];
+    [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
     return paragraphStyle;
 }
 

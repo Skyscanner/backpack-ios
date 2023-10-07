@@ -130,5 +130,13 @@ NS_ASSUME_NONNULL_BEGIN
     self.adjustsFontForContentSizeCategory = [[BPKFontManager sharedInstance] dynamicTypeEnabled];
 }
 
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    if(self.traitCollection.preferredContentSizeCategory == previousTraitCollection.preferredContentSizeCategory) {
+        return;
+    }
+    
+    [self updateTextStyle];
+}
+
 @end
 NS_ASSUME_NONNULL_END
