@@ -73,6 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
+    if (self.fontStyle <= 0) {
+        return;
+    }
+
     NSMutableAttributedString *newAttributedString = [[BPKFont attributedStringWithFontStyle:self.fontStyle
                                                                                     andColor:self.textColor
                                                                           onAttributedString:self.attributedText] mutableCopy];
@@ -128,6 +132,14 @@ NS_ASSUME_NONNULL_BEGIN
     self.fontStyle = style;
     self.textColor = BPKColor.textPrimaryColor;
     self.adjustsFontForContentSizeCategory = [[BPKFontManager sharedInstance] dynamicTypeEnabled];
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
+    if (self.traitCollection.preferredContentSizeCategory == previousTraitCollection.preferredContentSizeCategory) {
+        return;
+    }
+
+    [self updateTextStyle];
 }
 
 @end

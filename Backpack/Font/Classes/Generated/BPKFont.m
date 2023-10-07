@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
 
-+ (void)setDyanmicTypeEnabled:(BOOL)enabled {
++ (void)setDynamicTypeEnabled:(BOOL)enabled {
     [BPKFontManager sharedInstance].dynamicTypeEnabled = enabled;
 }
 
@@ -118,6 +118,15 @@ NS_ASSUME_NONNULL_BEGIN
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
     [paragraphStyle setMinimumLineHeight:font.capHeight];
     [paragraphStyle setMaximumLineHeight:lineHeight];
+        
+    // When dynamic type is enabled, and the size is different from 'default'
+    // We apply the largest line height, this is to prevent line clipping on larger DynamicType sizess
+    if ([[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        UIContentSizeCategory _Nullable currentPreferredContentSize = [UIApplication sharedApplication].preferredContentSizeCategory;
+        if(currentPreferredContentSize > UIContentSizeCategoryLarge) {
+            [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
+        }
+    }
     return paragraphStyle;
 }
 

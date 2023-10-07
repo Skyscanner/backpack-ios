@@ -31,16 +31,31 @@
 
 - (UIFont *)regularFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.regularFontFace : nil;
+
+    if (![[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        return [self fontWithName:fontName size:size weight:UIFontWeightRegular];
+    }
+
     return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightRegular]];
 }
 
 - (UIFont *)semiboldFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.semiboldFontFace : nil;
+
+    if (![[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        return [self fontWithName:fontName size:size weight:UIFontWeightSemibold];
+    }
+
     return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightSemibold]];
 }
 
 - (UIFont *)heavyFontWithSize:(CGFloat)size textStyle:(UIFontTextStyle)style {
     NSString *fontName = self.fontDefinition ? self.fontDefinition.heavyFontFace : nil;
+
+    if (![[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        return [self fontWithName:fontName size:size weight:UIFontWeightHeavy];
+    }
+
     return [[UIFontMetrics metricsForTextStyle:style] scaledFontForFont:[self fontWithName:fontName size:size weight:UIFontWeightHeavy]];
 }
 
