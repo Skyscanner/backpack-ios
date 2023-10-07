@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param enabled When true, all text will scale to user preference
 */
-+ (void)setDyanmicTypeEnabled:(BOOL)enabled;
++ (void)setDynamicTypeEnabled:(BOOL)enabled;
 
 /**
  * Create a `UIFont` instance for a specific text style.

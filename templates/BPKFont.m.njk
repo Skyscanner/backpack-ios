@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     [BPKFontManager sharedInstance].fontDefinition = fontDefinition;
 }
 
-+ (void)setDyanmicTypeEnabled:(BOOL)enabled {
++ (void)setDynamicTypeEnabled:(BOOL)enabled {
     [BPKFontManager sharedInstance].dynamicTypeEnabled = enabled;
 }
 
