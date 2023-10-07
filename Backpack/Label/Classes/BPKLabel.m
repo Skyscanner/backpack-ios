@@ -131,10 +131,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *_Nullable)previousTraitCollection {
-    if(self.traitCollection.preferredContentSizeCategory == previousTraitCollection.preferredContentSizeCategory) {
+    if (self.traitCollection.preferredContentSizeCategory == previousTraitCollection.preferredContentSizeCategory) {
         return;
     }
-    
+
     [self updateTextStyle];
 }
 
