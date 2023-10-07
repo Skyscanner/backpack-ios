@@ -117,7 +117,15 @@ NS_ASSUME_NONNULL_BEGIN
     CGFloat lineHeight = [self lineHeightForStyle:style];
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
     [paragraphStyle setMinimumLineHeight:font.capHeight];
-    [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
+    // When DynamicType is not enabled, or set to the default size
+    // We apply our custom line height restrictions.
+    // Once smaller or larger dynamic types are selected, we fallback to the 'natural' line-height as decided by the font.
+    UIContentSizeCategory currentPreferredContentSize = [UIApplication sharedApplication].preferredContentSizeCategory;
+    if (currentPreferredContentSize == UIContentSizeCategoryUnspecified || currentPreferredContentSize == UIContentSizeCategoryLarge) {
+        [paragraphStyle setMaximumLineHeight:lineHeight];
+    } else {
+        [paragraphStyle setMaximumLineHeight:fmax(lineHeight, font.lineHeight)];
+    }
     return paragraphStyle;
 }
 
