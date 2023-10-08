@@ -116,6 +116,11 @@ NS_ASSUME_NONNULL_BEGIN
     UIFont *font = [self fontForFontStyle:style];
     CGFloat lineHeight = [self lineHeightForStyle:style];
     [paragraphStyle setLineSpacing:lineHeight - font.lineHeight];
+
+    if (![[BPKFontManager sharedInstance] dynamicTypeEnabled]) {
+        [paragraphStyle setMinimumLineHeight:font.capHeight];
+        [paragraphStyle setMaximumLineHeight:lineHeight];
+    }
     return paragraphStyle;
 }
 
