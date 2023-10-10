@@ -194,9 +194,9 @@ extension BPKChip {
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chipLeadingSpacing),
             trailingConstraint!,
             containerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            heightAnchor.constraint(equalToConstant: BPKSpacingXl),
-            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerStackView.topAnchor.constraint(equalTo: topAnchor)
+            heightAnchor.constraint(greaterThanOrEqualToConstant: BPKSpacingXl),
+            containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -BPKSpacingSm),
+            containerStackView.topAnchor.constraint(equalTo: topAnchor, constant: BPKSpacingSm)
         ])
         
         addTarget(self, action: #selector(handleSingleTap), for: .touchUpInside)

@@ -39,6 +39,17 @@ class ChipsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let stackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .equalSpacing
+        stack.spacing = BPKSpacingSm
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stack
+    }()
+    
     private let chips: [ChipConfig] = [
         ChipConfig(
             title: "Option",
@@ -74,6 +85,11 @@ class ChipsViewController: UIViewController {
         setupDemo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStackViewOrientation()
+    }
+    
     private func setupDemo() {
         if style == .onImage {
             let backgroundImageView = UIImageView(image: UIImage(named: "canadian_rockies_canada"))
@@ -90,20 +106,26 @@ class ChipsViewController: UIViewController {
             ])
         }
         
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.spacing = BPKSpacingSm
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stack)
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stackView)
+        view.addSubview(scrollView)
+        
         NSLayoutConstraint.activate([
-            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: BPKSpacingBase),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: BPKSpacingMd),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -BPKSpacingMd),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -BPKSpacingBase)
         ])
         
-        stack.addArrangedSubview(createColumn(title: "Off", selected: false, enabled: true))
-        stack.addArrangedSubview(createColumn(title: "On", selected: true, enabled: true))
-        stack.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
+        stackView.addArrangedSubview(createColumn(title: "Off", selected: false, enabled: true))
+        stackView.addArrangedSubview(createColumn(title: "On", selected: true, enabled: true))
+        stackView.addArrangedSubview(createColumn(title: "Disabled", selected: false, enabled: false))
     }
     
     private func createColumn(title: String, selected: Bool, enabled: Bool) -> UIView {
@@ -140,5 +162,21 @@ class ChipsViewController: UIViewController {
         }.forEach(stack.addArrangedSubview)
         
         return stack
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.preferredContentSizeCategory == previousTraitCollection?.preferredContentSizeCategory {
+            return
+        }
+        
+        updateStackViewOrientation()
+    }
+    
+    private func updateStackViewOrientation() {
+        if traitCollection.preferredContentSizeCategory > .large {
+            stackView.axis = .vertical
+        } else {
+            stackView.axis = .horizontal
+        }
     }
 }
