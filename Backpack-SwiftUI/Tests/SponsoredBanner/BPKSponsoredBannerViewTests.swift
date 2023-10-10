@@ -163,4 +163,23 @@ class BPKSponsoredBannerViewTests: XCTestCase {
             .padding()
         )
     }
+    
+    func testSponsoredBannerWithLongTitleAndSubHeadline() {
+        assertSnapshot(
+            BPKSponsoredBanner(
+                logo: Image("skyland", bundle: TestsBundle.bundle),
+                title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Sed sit amet sagittis tellus, quis pharetra massa." +
+                " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. " +
+                "Nullam ut tellus sed tortor eleifend accumsan sed nec enim." +
+                " Nullam nec rhoncus nulla. Fusce placerat blandit semper.",
+                subheadline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Sed sit amet sagittis tellus, quis pharetra massa." +
+                " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. ",
+                variant: .onDark,
+                backgroundColor: orangeColor)
+            .frame(width: 375)
+            .padding()
+        )
+    }
 }

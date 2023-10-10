@@ -170,10 +170,12 @@ public struct BPKSponsoredBanner: View {
             if let title = title {
                 BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
+                    .lineLimit(20)
             }
             if let subheadline = subheadline {
                 BPKText(subheadline, style: .caption)
                     .foregroundColor(variant.color)
+                    .lineLimit(20)
             }
         }
     }
