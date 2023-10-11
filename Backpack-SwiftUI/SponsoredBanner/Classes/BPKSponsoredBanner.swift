@@ -150,6 +150,8 @@ public struct BPKSponsoredBanner: View {
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 22)
+                    .frame(maxWidth: 88)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             titlesView
             Spacer()
