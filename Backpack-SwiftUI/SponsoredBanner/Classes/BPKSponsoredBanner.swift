@@ -149,8 +149,7 @@ public struct BPKSponsoredBanner: View {
                 logo
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 22)
-                    .frame(maxWidth: 88)
+                    .frame(maxWidth: 88, maxHeight: 22)
                     .fixedSize(horizontal: true, vertical: false)
             }
             titlesView
@@ -172,12 +171,12 @@ public struct BPKSponsoredBanner: View {
             if let title = title {
                 BPKText(title, style: .label2)
                     .foregroundColor(variant.color)
-                    .lineLimit(20)
+                    .lineLimit(nil)
             }
             if let subheadline = subheadline {
                 BPKText(subheadline, style: .caption)
                     .foregroundColor(variant.color)
-                    .lineLimit(20)
+                    .lineLimit(nil)
             }
         }
     }
