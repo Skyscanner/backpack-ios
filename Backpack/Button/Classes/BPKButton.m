@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.spinner.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.spinner];
 
-    self.heightConstraint = [self.heightAnchor constraintEqualToConstant:[self heightForSize:self.size]];
+    self.heightConstraint = [self.heightAnchor constraintGreaterThanOrEqualToConstant:[self heightForSize:self.size]];
     // To use when just icon
     self.widthConstraint = [self.widthAnchor constraintEqualToConstant:[self heightForSize:self.size]];
     self.stackLeadingFallbackConstraint = [self.contentStack.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor

@@ -49,7 +49,8 @@ struct CurrentStateButtonStyle: ButtonStyle {
         let foreground = colors(forConfiguration: configuration).foreground
         
         configuration.label
-            .frame(width: width, height: height)
+            .frame(width: width)
+            .frame(minHeight: height)
             .frame(maxWidth: matchesParentWidth ? .infinity : nil)
             .padding([.leading, .trailing], sidesPadding)
             .background(background)
