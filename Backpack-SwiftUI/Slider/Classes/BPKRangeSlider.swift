@@ -37,7 +37,8 @@ public struct BPKRangeSlider: View {
     private let step: Float
     private let minSpacing: Float
     private let thumbnailLabels: ThumbnailLabels?
-    
+    private let onDragEnded: (ClosedRange<Float>) -> Void
+
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
     private let flareHeight: CGFloat = 6
@@ -56,18 +57,21 @@ public struct BPKRangeSlider: View {
     ///   - step: The step size of the slider. Defaults to 1.
     ///   - minSpacing: The minimum spacing between the two thumbs. Defaults to 0.
     ///   - thumbnailLabels: The minimum spacing between the two thumbs. Defaults to 0.
+    ///   - onDragEnded: A closure that is called when the user stops dragging the slider.
     public init(
         selectedRange: Binding<ClosedRange<Float>>,
         sliderBounds: ClosedRange<Float>,
         step: Float = 1,
         minSpacing: Float = 0,
-        thumbnailLabels: ThumbnailLabels? = nil
+        thumbnailLabels: ThumbnailLabels? = nil,
+        onDragEnded: @escaping (ClosedRange<Float>) -> Void = { _ in }
     ) {
         self._selectedRange = selectedRange
         self.sliderBounds = sliderBounds
         self.step = step
         self.minSpacing = minSpacing
         self.thumbnailLabels = thumbnailLabels
+        self.onDragEnded = onDragEnded
     }
     
     public var body: some View {
@@ -108,10 +112,13 @@ public struct BPKRangeSlider: View {
                 .padding(.bottom, (thumbSize / 2) - (sliderHeight / 2))
             SliderThumbView(
                 size: thumbSize,
-                offset: trailingThumbOffset(sliderSize: sliderSize)
-            ) { value in
-                handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
-            }
+                offset: trailingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    handleTrailingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: { onDragEnded(selectedRange) }
+            )
+            
             .accessibilityLabel(trailingAccessibilityLabel)
             .accessibility(value: Text("\(selectedRange.upperBound)"))
             .accessibilityAdjustableAction { direction in
@@ -128,10 +135,12 @@ public struct BPKRangeSlider: View {
             }
             SliderThumbView(
                 size: thumbSize,
-                offset: leadingThumbOffset(sliderSize: sliderSize)
-            ) { value in
-                handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
-            }
+                offset: leadingThumbOffset(sliderSize: sliderSize),
+                onDrag: { value in
+                    handleLeadingThumbDrag(value: value, sliderSize: sliderSize)
+                },
+                onDragEnded: { onDragEnded(selectedRange) }
+            )
             .accessibilityLabel(leadingAccessibilityLabel)
             .accessibility(value: Text("\(selectedRange.lowerBound)"))
             .accessibilityAdjustableAction { direction in

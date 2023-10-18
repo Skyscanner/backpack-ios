@@ -22,6 +22,7 @@ struct SliderThumbView: View {
     let size: CGFloat
     let offset: CGFloat
     let onDrag: (DragGesture.Value) -> Void
+    let onDragEnded: () -> Void
     
     var body: some View {
         Circle()
@@ -34,12 +35,15 @@ struct SliderThumbView: View {
                     .onChanged { value in
                         onDrag(value)
                     }
+                    .onEnded { _ in
+                        onDragEnded()
+                    }
             )
     }
 }
 
 struct SliderThumbView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderThumbView(size: 20, offset: 0) { _ in }
+        SliderThumbView(size: 20, offset: 0) { _ in } onDragEnded: {}
     }
 }

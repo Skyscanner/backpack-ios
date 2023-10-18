@@ -24,7 +24,8 @@ public struct BPKSlider: View {
     @Binding private var value: Float
     private let sliderBounds: ClosedRange<Float>
     private let step: Float
-    
+    private let onDragEnded: (Float) -> Void
+
     private let sliderHeight: CGFloat = 4
     private let thumbSize: CGFloat = 20
     private var thumbAccessibilityLabel = ""
@@ -37,14 +38,17 @@ public struct BPKSlider: View {
     ///   - value: Binding of the value of the slider.
     ///   - sliderBounds: The bounds of the slider.
     ///   - step: The step size of the slider. Defaults to 1.
+    ///   - onDragEnded: A closure that will be called when the user stops dragging the slider.
     public init(
         value: Binding<Float>,
         sliderBounds: ClosedRange<Float>,
-        step: Float = 1
+        step: Float = 1,
+        onDragEnded: @escaping (Float) -> Void = { _ in }
     ) {
         self._value = value
         self.sliderBounds = sliderBounds
         self.step = step
+        self.onDragEnded = onDragEnded
     }
     
     public var body: some View {
@@ -70,6 +74,8 @@ public struct BPKSlider: View {
                 offset: thumbOffset(sliderSize: sliderSize)
             ) { dragValue in
                 handleThumbDrag(value: dragValue, sliderSize: sliderSize)
+            } onDragEnded: {
+                onDragEnded(value)
             }
             .accessibilityLabel(thumbAccessibilityLabel)
             .accessibility(value: Text("\(value)"))
