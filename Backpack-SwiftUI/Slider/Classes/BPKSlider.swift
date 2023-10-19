@@ -102,10 +102,12 @@ public struct BPKSlider: View {
     
     private func increment() {
         value = min(value + step, sliderBounds.upperBound)
+        onDragEnded(value)
     }
     
     private func decrement() {
         value = max(value - step, sliderBounds.lowerBound)
+        onDragEnded(value)
     }
     
     private func fillLineWidth(sliderSize: CGSize) -> CGFloat {

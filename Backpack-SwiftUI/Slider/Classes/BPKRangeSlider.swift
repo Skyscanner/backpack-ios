@@ -187,21 +187,25 @@ public struct BPKRangeSlider: View {
     private func incrementLeading() {
         let newValue = min($selectedRange.wrappedValue.lowerBound + step, selectedRange.upperBound)
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
+        onDragEnded(selectedRange)
     }
     
     private func decrementLeading() {
         let newValue = max($selectedRange.wrappedValue.lowerBound - step, sliderBounds.lowerBound)
         $selectedRange.wrappedValue = newValue...$selectedRange.wrappedValue.upperBound
+        onDragEnded(selectedRange)
     }
     
     private func incrementTrailing() {
         let newValue = min($selectedRange.wrappedValue.upperBound + step, sliderBounds.upperBound)
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        onDragEnded(selectedRange)
     }
     
     private func decrementTrailing() {
         let newValue = max($selectedRange.wrappedValue.upperBound - step, selectedRange.lowerBound)
         $selectedRange.wrappedValue = $selectedRange.wrappedValue.lowerBound...newValue
+        onDragEnded(selectedRange)
     }
     
     private func handleTrailingThumbDrag(value: DragGesture.Value, sliderSize: CGSize) {
