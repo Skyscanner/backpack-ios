@@ -69,23 +69,7 @@ public struct BPKSlider: View {
                 .fill(Color(.coreAccentColor))
                 .frame(width: fillLineWidth(sliderSize: sliderSize), height: sliderHeight)
                 .offset(x: fillLineOffset(sliderSize: sliderSize))
-            SliderThumbView(
-                size: thumbSize,
-                offset: thumbOffset(sliderSize: sliderSize)
-            ) { dragValue in
-                handleThumbDrag(value: dragValue, sliderSize: sliderSize)
-            } onDragEnded: {
-                onDragEnded(value)
-            }
-            .accessibilityLabel(thumbAccessibilityLabel)
-            .accessibility(value: Text("\(value)"))
-            .accessibilityAdjustableAction { direction in
-                switch direction {
-                case .increment: increment()
-                case .decrement: decrement()
-                @unknown default: break
-                }
-            }
+            thumbView(sliderSize: sliderSize)
         }
     }
     
@@ -94,6 +78,26 @@ public struct BPKSlider: View {
         var result = self
         result.thumbAccessibilityLabel = label
         return result
+    }
+    
+    private func thumbView(sliderSize: CGSize) -> some View {
+        SliderThumbView(
+            size: thumbSize,
+            offset: thumbOffset(sliderSize: sliderSize)
+        ) { dragValue in
+            handleThumbDrag(value: dragValue, sliderSize: sliderSize)
+        } onDragEnded: {
+            onDragEnded(value)
+        }
+        .accessibilityLabel(thumbAccessibilityLabel)
+        .accessibility(value: Text("\(value)"))
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: increment()
+            case .decrement: decrement()
+            @unknown default: break
+            }
+        }
     }
     
     private func increment() {
