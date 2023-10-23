@@ -26,6 +26,21 @@ BPKSlider(value: $value, sliderBounds: 0...1)
 BPKRangeSlider(selectedRange: $value, sliderBounds: 0...1)
 ```
 
+### Listening to changes after the user has finished interacting with the slider
+```swift
+BPKSlider(
+    value: $value,
+    sliderBounds: 0...1,
+    onDragEnded: { newValue in print("Slider value changed to \(newValue)") }
+)
+
+BPKRangeSlider(
+    selectedRange: $value,
+    sliderBounds: 0...1,
+    onDragEnded: { newRange in print("Slider range changed to \(newRange)") }
+)
+```
+
 ### Changing the step size
 ```swift
 @State var value: Float = 50
