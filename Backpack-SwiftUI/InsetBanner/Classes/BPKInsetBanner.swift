@@ -157,6 +157,7 @@ public struct BPKInsetBanner: View {
             if let callToAction = callToAction {
                 BPKText(callToAction.text, style: .caption)
                     .foregroundColor(variant.color)
+                    .lineLimit(nil)
                 if callToAction.showIcon {
                     iconView
                 }
