@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct SponsoredBannerButtonStyle: ButtonStyle {
+struct InsetBannerButtonStyle: ButtonStyle {
     let foregroundColor: Color
     let backgroundColor: Color
     typealias ButtonColors = (foreground: Color, background: Color)

@@ -19,7 +19,7 @@
 
 import SwiftUI
 
-public struct BPKSponsoredBanner: View {
+public struct BPKInsetBanner: View {
     private let logo: Image?
     private let title: String?
     private let subheadline: String?
@@ -137,7 +137,7 @@ public struct BPKSponsoredBanner: View {
         }
         .accessibilityRemoveTraits(hasBody ? [] : .isButton)
         .accessibilityElement(children: .combine)
-        .buttonStyle(SponsoredBannerButtonStyle(
+        .buttonStyle(InsetBannerButtonStyle(
             foregroundColor: (variant == .onDark) ? Color(BPKColor.textOnDarkColor) : Color(BPKColor.textOnLightColor),
             backgroundColor: backgroundColor
         ))
@@ -198,9 +198,9 @@ public struct BPKSponsoredBanner: View {
     }
 }
 
-struct BPKSponsoredBanner_Previews: PreviewProvider {
+struct BPKInsetBanner_Previews: PreviewProvider {
     static var previews: some View {
-        BPKSponsoredBanner(
+        BPKInsetBanner(
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(

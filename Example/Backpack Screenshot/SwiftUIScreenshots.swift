@@ -373,8 +373,8 @@ class SwiftUIScreenshots: BackpackSnapshotTestCase {
             tapBackButton()
         }
         
-        navigate(title: "Sponsored Banner") {
-            saveScreenshot(component: "sponsored-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
+        navigate(title: "Inset Banner") {
+            saveScreenshot(component: "inset-banner", scenario: "default", userInterfaceStyle: userInterfaceStyle)
             tapBackButton()
         }
     }

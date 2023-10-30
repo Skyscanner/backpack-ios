@@ -56,6 +56,7 @@ struct ComponentCellsProvider {
             dialog(),
             horizontalNavigation(),
             icon(),
+            insetBanner(),
             label(),
             navBar(),
             nudger(),
@@ -72,7 +73,6 @@ struct ComponentCellsProvider {
             skeleton(),
             sliders(),
             snippets(),
-            sponsoredBanner(),
             spinners(),
             starRatings(),
             switches(),
@@ -547,15 +547,15 @@ extension ComponentCellsProvider {
             showChildren: { showComponent(title: "Card list", tabs: $0) }
         )
     }
-    private func sponsoredBanner() -> CellDataSource {
+    private func insetBanner() -> CellDataSource {
         ComponentCellDataSource(
-            title: "Sponsored Banner",
+            title: "Inset Banner",
             tabs: [
                 .swiftui(presentable: CustomPresentable(generateViewController: {
-                    ContentUIHostingController(SponsoredBannerExampleView())
+                    ContentUIHostingController(InsetBannerExampleView())
                 }))
             ],
-            showChildren: { showComponent(title: "Sponsored Banner", tabs: $0) }
+            showChildren: { showComponent(title: "Inset Banner", tabs: $0) }
         )
     }
 }
