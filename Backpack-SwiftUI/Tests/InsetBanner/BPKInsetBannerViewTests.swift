@@ -26,7 +26,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     private let yellowColor = Color(red: 1.000, green: 0.890, blue: 0.000, opacity: 1.000)
     func testInsetBannerWithTitle() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 variant: .onDark,
                 backgroundColor: orangeColor)
@@ -37,7 +37,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     
     func testInsetBannerWithSubheadlineAndBody() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 subheadline: "Subheadline",
                 bodyText: "This is a body text",
@@ -50,7 +50,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     
     func testInsetBannerWithTitlesAndCallToAction() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "Title",
                 subheadline: "Subheadline",
                 callToAction: .init(
@@ -66,7 +66,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     
     func testInsetBannerOnLightVariant() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "On Light variant",
                 subheadline: "Subheadline",
                 bodyText: "This is a body text",
@@ -80,7 +80,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     func testInsetBannerWithImageTitlesAndCallToAction() {
         assertSnapshot(
             BPKInsetBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Title",
                 subheadline: "Subheading",
                 callToAction: .init(
@@ -99,7 +99,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     func testInsetBannerShowingTermsAndConditions() {
         assertSnapshot(
             BPKInsetBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Title",
                 subheadline: "Subheading",
                 callToAction: .init(
@@ -118,7 +118,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     
     func testInsetBannerOnLightWithoutInfoButton() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 title: "On Light variant",
                 subheadline: "Subheadline",
                 callToAction: .init(
@@ -135,7 +135,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     
     func testInsetBannerOnDarkWithSubheadlineOnly() {
         assertSnapshot(
-            BPKInsetBanner(
+            BPKInsetBanner<EmptyView>(
                 subheadline: "Subheadline only",
                 callToAction: .init(
                     text: "Sponsored",
@@ -152,7 +152,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     func testInsetBannerOnDarkWithImageWithoutTitleOrSubheadline() {
         assertSnapshot(
             BPKInsetBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 callToAction: .init(
                     text: "Sponsored",
                     accessibilityHint: "Double tap for more information",
@@ -167,7 +167,7 @@ class BPKInsetBannerViewTests: XCTestCase {
     func testInsetBannerWithLongTitleAndSubHeadline() {
         assertSnapshot(
             BPKInsetBanner(
-                logo: Image("skyland", bundle: TestsBundle.bundle),
+                logoContent: Image("skyland", bundle: TestsBundle.bundle).resizable().scaledToFit(),
                 title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                 "Sed sit amet sagittis tellus, quis pharetra massa." +
                 " Nunc nec nisl condimentum, efficitur sem vitae, facilisis erat. " +

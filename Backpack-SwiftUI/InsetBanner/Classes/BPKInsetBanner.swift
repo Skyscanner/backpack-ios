@@ -19,8 +19,8 @@
 
 import SwiftUI
 
-public struct BPKInsetBanner: View {
-    private let logo: Image?
+public struct BPKInsetBanner<Content: View>: View {
+    private let logo: Content?
     private let title: String?
     private let subheadline: String?
     private let callToAction: CallToAction?
@@ -32,7 +32,7 @@ public struct BPKInsetBanner: View {
     @State private var isExpanded: Bool
     
     public init(
-        logo: Image? = nil,
+        logoContent: Content? = nil,
         title: String,
         subheadline: String? = nil,
         callToAction: CallToAction? = nil,
@@ -42,19 +42,19 @@ public struct BPKInsetBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = title
         self.subheadline = subheadline
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
     public init(
-        logo: Image? = nil,
+        logoContent: Content? = nil,
         subheadline: String,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
@@ -63,19 +63,19 @@ public struct BPKInsetBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = nil
         self.subheadline = subheadline
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
     public init(
-        logo: Image,
+        logoContent: Content,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
         variant: Variant,
@@ -83,14 +83,14 @@ public struct BPKInsetBanner: View {
         isExpanded: Bool = false,
         customAccessibilityLabel: String? = nil
     ) {
-        self.logo = logo
+        self.logo = logoContent
         self.title = nil
         self.subheadline = nil
         self.callToAction = callToAction
         self.bodyText = bodyText
         self.variant = variant
         self.backgroundColor = backgroundColor
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.customAccessibilityLabel = customAccessibilityLabel
     }
     
@@ -147,8 +147,8 @@ public struct BPKInsetBanner: View {
         HStack(spacing: .md) {
             if let logo = logo {
                 logo
-                    .resizable()
-                    .scaledToFit()
+//                    .resizable()
+//                    .scaledToFit()
                     .frame(maxWidth: 88, maxHeight: 22)
                     .fixedSize(horizontal: true, vertical: false)
             }
@@ -201,7 +201,7 @@ public struct BPKInsetBanner: View {
 
 struct BPKInsetBanner_Previews: PreviewProvider {
     static var previews: some View {
-        BPKInsetBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
@@ -213,6 +213,6 @@ struct BPKInsetBanner_Previews: PreviewProvider {
             "new bookings made up to 31 May for travel between now and 31 December 2023.",
             variant: .onDark,
             backgroundColor: Color(red: 1.000, green: 0.400, blue: 0.004, opacity: 1.000))
-        .padding()
+        .padding(.base)
     }
 }

@@ -37,14 +37,14 @@ struct InsetBannerExampleView: View {
     }
     
     private var titleOnlyView: some View {
-        BPKInsetBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             variant: .onDark,
             backgroundColor: orangeColor)
     }
     
     private var allTitlesView: some View {
-        BPKInsetBanner(
+        BPKInsetBanner<EmptyView>(
             title: "Title",
             subheadline: "Subheadline",
             bodyText: "This is a body text",
@@ -54,7 +54,7 @@ struct InsetBannerExampleView: View {
     
     private var imageAndCTAView: some View {
         BPKInsetBanner(
-            logo: Image("skyland"),
+            logoContent: Image("skyland"),
             title: "Title",
             subheadline: "Subheading",
             callToAction: .init(
@@ -70,7 +70,7 @@ struct InsetBannerExampleView: View {
     }
     
     private var onLightView: some View {
-        BPKInsetBanner(
+        BPKInsetBanner<EmptyView>(
             title: "On Light variant",
             subheadline: "Subheadline",
             bodyText: "This is a body text",
@@ -79,7 +79,7 @@ struct InsetBannerExampleView: View {
     }
     
     private var sponsoredWithoutCTAOnLightView: some View {
-        BPKInsetBanner(
+        BPKInsetBanner<EmptyView>(
             title: "On Light Variant",
             subheadline: "Without info icon",
             callToAction: .init(
