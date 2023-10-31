@@ -19,8 +19,8 @@
 
 import SwiftUI
 
-public struct BPKInsetBanner<Content: View>: View {
-    private let logo: Content?
+public struct BPKInsetBanner<LogoContent: View>: View {
+    private let logo: LogoContent?
     private let title: String?
     private let subheadline: String?
     private let callToAction: CallToAction?
@@ -32,7 +32,7 @@ public struct BPKInsetBanner<Content: View>: View {
     @State private var isExpanded: Bool
     
     public init(
-        logoContent: Content? = nil,
+        logoContent: LogoContent? = nil,
         title: String,
         subheadline: String? = nil,
         callToAction: CallToAction? = nil,
@@ -54,7 +54,7 @@ public struct BPKInsetBanner<Content: View>: View {
     }
     
     public init(
-        logoContent: Content? = nil,
+        logoContent: LogoContent? = nil,
         subheadline: String,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
@@ -75,7 +75,7 @@ public struct BPKInsetBanner<Content: View>: View {
     }
     
     public init(
-        logoContent: Content,
+        logoContent: LogoContent,
         callToAction: CallToAction? = nil,
         bodyText: String? = nil,
         variant: Variant,
