@@ -39,7 +39,7 @@ struct CalendarExampleView: View {
     }
     
     var body: some View {
-        BPKCalendar(
+        BPKRangeCalendar(
             selection: $selectedRange,
             validRange: validRange
         )
