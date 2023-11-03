@@ -20,6 +20,7 @@
 		3AA018EF215BE26600838FBB /* SpinnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018EE215BE26500838FBB /* SpinnersViewController.swift */; };
 		3AA018F4215D000700838FBB /* TextViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA018F3215D000700838FBB /* TextViewsViewController.swift */; };
 		530459F52A961F9E00244EA8 /* CarouselExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530459F42A961F9E00244EA8 /* CarouselExampleView.swift */; };
+		5318E3342AF506FA00C66D18 /* CalendarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5318E3332AF506FA00C66D18 /* CalendarExampleView.swift */; };
 		534624382A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */; };
 		5346243A2A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */; };
 		5346243D2A7437A10059A0B5 /* ProgressBarExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */; };
@@ -235,6 +236,7 @@
 		3DDD5D1DB6A77816BAA9481F /* Pods-Backpack-Native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Backpack-Native.release.xcconfig"; path = "Pods/Target Support Files/Pods-Backpack-Native/Pods-Backpack-Native.release.xcconfig"; sourceTree = "<group>"; };
 		455FB6E0E01310446E946427 /* Backpack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Backpack.podspec; path = ../Backpack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		530459F42A961F9E00244EA8 /* CarouselExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselExampleView.swift; sourceTree = "<group>"; };
+		5318E3332AF506FA00C66D18 /* CalendarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExampleView.swift; sourceTree = "<group>"; };
 		534624372A7429080059A0B5 /* ChipGroupMultipleSelectWrapExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectWrapExampleView.swift; sourceTree = "<group>"; };
 		534624392A74292D0059A0B5 /* ChipGroupMultipleSelectRailExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupMultipleSelectRailExampleView.swift; sourceTree = "<group>"; };
 		5346243C2A7437A10059A0B5 /* ProgressBarExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarExampleView.swift; sourceTree = "<group>"; };
@@ -515,6 +517,14 @@
 				530459F42A961F9E00244EA8 /* CarouselExampleView.swift */,
 			);
 			path = Carousel;
+			sourceTree = "<group>";
+		};
+		5318E3352AF5070300C66D18 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				5318E3332AF506FA00C66D18 /* CalendarExampleView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		5346243B2A7433040059A0B5 /* MultiSelect */ = {
@@ -903,6 +913,7 @@
 		793EC5502836139A00D627F6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5318E3352AF5070300C66D18 /* Calendar */,
 				2A8000102AB3DC3B009FDB10 /* TextArea */,
 				530459F32A961F8F00244EA8 /* Carousel */,
 				53D6396D2A7D46DC007EF376 /* MapMarker */,
@@ -1743,6 +1754,7 @@
 				53C6622429EA0DAB00BF1A62 /* ButtonsPlaygroundView.swift in Sources */,
 				02D34C4A2A712A2200F99085 /* SnippetGroups.swift in Sources */,
 				53B6DB5A27FB6F930042B7C0 /* TokenCells.swift in Sources */,
+				5318E3342AF506FA00C66D18 /* CalendarExampleView.swift in Sources */,
 				3A7D2D47214AB9F400ECBD5B /* BPKButtonsViewController.m in Sources */,
 				D2644E3022C0EB4E008B50C0 /* TappableLinkLabelsSelectorViewController.swift in Sources */,
 				53C6622529EA0DAB00BF1A62 /* PanelExampleView.swift in Sources */,

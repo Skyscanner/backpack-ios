@@ -23,11 +23,19 @@ public struct BPKCalendar: View {
     let formatter: DateFormatter
     let calendar: Calendar
     
-    @Binding var selection: ClosedRange<Date>
+    @Binding var selection: ClosedRange<Date>?
     let validRange: ClosedRange<Date>
+    var accessoryAction: (String, (Date) -> Void)?
     
-    public init(selection: Binding<ClosedRange<Date>>, validRange: ClosedRange<Date>) {
+    @State private var currentlyShownMonth: Date
+    
+    public init(
+        selection: Binding<ClosedRange<Date>?>,
+        validRange: ClosedRange<Date>
+    ) {
+        _currentlyShownMonth = State(initialValue: validRange.lowerBound)
         _selection = selection
+        
         self.validRange = validRange
         
         formatter = DateFormatter()
@@ -35,48 +43,62 @@ public struct BPKCalendar: View {
         calendar = Calendar(identifier: .gregorian)
     }
     
+    public func monthAccessoryAction(title: String, action: @escaping (Date) -> Void) -> BPKCalendar {
+        var result = self
+        result.accessoryAction = (title, action)
+        return result
+    }
+    
     public var body: some View {
         // swiftlint:disable closure_body_length
-        VStack(spacing: BPKSpacing.none) {
-            CalendarHeader()
-            ZStack {
-                CalendarGrid(
-                    calendar: calendar,
-                    validRange: validRange,
-                    monthHeader: { monthDate in
-                        MonthHeader(
-                            monthDate: monthDate,
-                            formatter: formatter,
-                            calendar: calendar,
-                            accessoryAction: ("Select whole month", {})
+        GeometryReader { calendarProxy in
+            VStack(spacing: BPKSpacing.none) {
+                CalendarHeader()
+                ZStack {
+                    CalendarGrid(
+                        calendar: calendar,
+                        validRange: validRange,
+                        monthHeader: { monthDate in
+                            MonthHeader(
+                                monthDate: monthDate,
+                                formatter: formatter,
+                                calendar: calendar,
+                                accessoryAction: accessoryAction,
+                                currentlyShownMonth: $currentlyShownMonth,
+                                parentProxy: calendarProxy
+                            )
+                        }, selectableGrid: { monthIndex in
+                            CoreCalendarMonthGrid(
+                                validRange: validRange,
+                                monthDate: monthDate(forMonthIndex: monthIndex),
+                                calendar: calendar,
+                                dayCell: { day in
+                                    RangeSelectionCalendarDayCell(
+                                        date: day,
+                                        selection: $selection,
+                                        validRange: validRange,
+                                        calendar: calendar
+                                    )
+                                },
+                                emptyDayCell: { correspondingDate, cellIndex, firstDayOfMonth in
+                                    EmptyRangeSelectionCalendarDayCell(
+                                        cellIndex: cellIndex,
+                                        correspondingDate: correspondingDate,
+                                        selection: selection,
+                                        firstDayOfMonth: firstDayOfMonth
+                                    )
+                                }
+                            )
+                        }
+                    )
+                    VStack {
+                        CalendarBadge(
+                            currentlyShownMonth: currentlyShownMonth,
+                            calendar: calendar
                         )
-                    }, selectableGrid: { monthIndex in
-                        CoreCalendarMonthGrid(
-                            selection: $selection,
-                            validRange: validRange,
-                            monthDate: monthDate(forMonthIndex: monthIndex),
-                            calendar: calendar,
-                            dayCell: { day in
-                                RangeSelectionCalendarDayCell(
-                                    date: day,
-                                    selection: $selection,
-                                    validRange: validRange,
-                                    calendar: calendar
-                                )
-                            },
-                            emptyDayCell: { correspondingDate, cellIndex in
-                                EmptyRangeSelectionCalendarDayCell(
-                                    cellIndex: cellIndex,
-                                    correspondingDate: correspondingDate,
-                                    selection: selection)
-                            }
-                        )
-                    }
-                )
-                VStack {
-                    CalendarBadge()
                         .padding(.top, .base)
-                    Spacer()
+                        Spacer()
+                    }
                 }
             }
         }
@@ -135,14 +157,25 @@ struct CalendarGrid<MonthHeader: View, SelectableMonthGrid: View>: View {
     // swiftlint:disable all
     var body: some View {
         ScrollView {
+            
+            
             VStack(spacing: BPKSpacing.none) {
+                
                 ForEach(0..<monthsToShow, id: \.self) { month in
                     let theDate = calendar.date(
                         byAdding: .init(month: month),
                         to: validRange.lowerBound
                     )!
                     monthHeader(theDate)
+                    //                        GeometryReader { proxy in
+                    //                            let global = proxy.frame(of: .global)
+                    //                            VStack {
+                    //                                Text("\(global.debugDescription) \(global.size.height)")
+                    //                            }
+                    //                        }
+                        .fixedSize(horizontal: false, vertical: false)
                     selectableGrid(month)
+                    
                 }
             }
         }
@@ -150,12 +183,11 @@ struct CalendarGrid<MonthHeader: View, SelectableMonthGrid: View>: View {
 }
 
 struct CoreCalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
-    @Binding var selection: ClosedRange<Date>
     let validRange: ClosedRange<Date>
     let monthDate: Date
     let calendar: Calendar
     let dayCell: (Date) -> DayCell
-    let emptyDayCell: (Date, Int) -> EmptyDayCell
+    let emptyDayCell: (Date, Int, Date) -> EmptyDayCell
     
     var body: some View {
         let firstDayOfMonth = calendar.date(
@@ -176,7 +208,7 @@ struct CoreCalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
                 if calendar.component(.month, from: firstDayOfMonth) == calendar.component(.month, from: theDate) {
                     dayCell(theDate)
                 } else {
-                    emptyDayCell(theDate, cellIndex)
+                    emptyDayCell(theDate, cellIndex, firstDayOfMonth)
                 }
             }
         }
@@ -186,10 +218,11 @@ struct CoreCalendarMonthGrid<DayCell: View, EmptyDayCell: View>: View {
 struct EmptyRangeSelectionCalendarDayCell: View {
     let cellIndex: Int
     let correspondingDate: Date
-    let selection: ClosedRange<Date>
+    let selection: ClosedRange<Date>?
+    let firstDayOfMonth: Date
     
     var body: some View {
-        if selection.contains(correspondingDate) {
+        if let selection, selection.contains(correspondingDate), selection.contains(firstDayOfMonth) {
             if cellIndex < 8 {
                 Color(.surfaceSubtleColor)
             } else if cellIndex < 35 {
@@ -203,18 +236,18 @@ struct EmptyRangeSelectionCalendarDayCell: View {
 
 struct RangeSelectionCalendarDayCell: View {
     let date: Date
-    @Binding var selection: ClosedRange<Date>
+    @Binding var selection: ClosedRange<Date>?
     let validRange: ClosedRange<Date>
     let calendar: Calendar
     
     var body: some View {
         if !validRange.contains(date) {
-                BPKText("\(calendar.component(.day, from: date))", style: .label1)
+            BPKText("\(calendar.component(.day, from: date))", style: .label1)
                 .foregroundColor(.textDisabledColor)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity)
-                    .padding(.md)
-        } else if selection.contains(date) {
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .padding(.md)
+        } else if let selection, selection.contains(date) {
             ZStack {
                 if date == selection.lowerBound {
                     GeometryReader { geometry in
@@ -229,8 +262,6 @@ struct RangeSelectionCalendarDayCell: View {
                         .padding(.vertical, .md)
                         .background(.coreAccentColor)
                         .clipShape(Circle())
-                        
-                        
                 } else if date == selection.upperBound {
                     GeometryReader { geometry in
                         Color(.surfaceSubtleColor)
@@ -244,7 +275,6 @@ struct RangeSelectionCalendarDayCell: View {
                         .background(.coreAccentColor)
                         .clipShape(Circle())
                 } else {
-                    
                     BPKText("\(calendar.component(.day, from: date))", style: .label1)
                         .lineLimit(1)
                         .padding(.vertical, .md)
@@ -270,27 +300,54 @@ struct MonthHeader: View {
     let monthDate: Date
     let formatter: DateFormatter
     let calendar: Calendar
-    let accessoryAction: (String, () -> Void)?
+    let accessoryAction: (String, (Date) -> Void)?
+    @Binding var currentlyShownMonth: Date
+    
+    let parentProxy: GeometryProxy
     
     var body: some View {
         HStack {
             let form = formatter.string(from: monthDate)
             BPKText(form, style: .heading4)
             Spacer()
+            GeometryReader { monthProxy in
+                if isCurrentlyShowingMonth(proxy: monthProxy) {
+                    Color.clear
+                        .onAppear { currentlyShownMonth = monthDate }
+                }
+            }
             if let accessoryAction {
-                BPKButton(accessoryAction.0, action: accessoryAction.1)
-                    .buttonStyle(.link)
+                BPKButton(accessoryAction.0) {
+                    accessoryAction.1(monthDate)
+                }
+                .buttonStyle(.link)
             }
         }
         .padding(.horizontal, .base)
         .padding(.vertical, .lg)
     }
+    
+    private func isCurrentlyShowingMonth(proxy: GeometryProxy) -> Bool {
+        let parentGlobalFrame = parentProxy.frame(in: .global)
+        let yParentOrigin = parentGlobalFrame.origin.y
+        let parentHeight = parentGlobalFrame.height
+        let calendarVerticalCenter = yParentOrigin + parentHeight / 2
+        let currentlyShownValidationRange = yParentOrigin...calendarVerticalCenter
+        let yOrigin = proxy.frame(in: .global).origin.y
+        return currentlyShownValidationRange.contains(yOrigin)
+    }
 }
 
 struct CalendarBadge: View {
+    let currentlyShownMonth: Date
+    let calendar: Calendar
+    
     var body: some View {
-        BPKBadge("2023")
-            .badgeStyle(.brand)
+        let shownYear = calendar.component(.year, from: currentlyShownMonth)
+        if shownYear != calendar.component(.year, from: Date()) {
+            BPKBadge("\(shownYear)")
+                .badgeStyle(.brand)
+        }
     }
 }
 
@@ -298,14 +355,15 @@ struct BPKCalendar_Previews: PreviewProvider {
     static var previews: some View {
         let calendar = Calendar(identifier: .gregorian)
         let minValidDate = calendar.date(from: .init(year: 2023, month: 10, day: 12))!
-        let maxValidDate = calendar.date(from: .init(year: 2023, month: 12, day: 2))!
+        let maxValidDate = calendar.date(from: .init(year: 2025, month: 12, day: 2))!
         
-        let minSelectedDate = calendar.date(from: .init(year: 2023, month: 10, day: 23))!
-        let maxSelectedDate = calendar.date(from: .init(year: 2023, month: 11, day: 8))!
+        let minSelectedDate = calendar.date(from: .init(year: 2023, month: 10, day: 19))!
+        let maxSelectedDate = calendar.date(from: .init(year: 2023, month: 10, day: 30))!
         
         BPKCalendar(
             selection: .constant(minSelectedDate...maxSelectedDate),
             validRange: minValidDate...maxValidDate
         )
+        .frame(height: 500)
     }
 }
