@@ -23,28 +23,40 @@ import Backpack_SwiftUI
 struct CalendarExampleView: View {
     @State var selectedRange: ClosedRange<Date>? = Self.initialSelection
     let validRange = Self.validRange
+    let calendar = Calendar.current
     
     private static var initialSelection: ClosedRange<Date> {
-        let calendar = Calendar(identifier: .gregorian)
+        let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 11, day: 13))!
         let end = calendar.date(from: .init(year: 2023, month: 11, day: 28))!
         return start...end
     }
     
     private static var validRange: ClosedRange<Date> {
-        let calendar = Calendar(identifier: .gregorian)
+        let calendar = Calendar.current
         let start = calendar.date(from: .init(year: 2023, month: 10, day: 6))!
         let end = calendar.date(from: .init(year: 2024, month: 10, day: 28))!
         return start...end
     }
     
     var body: some View {
-        BPKCalendar(
-            selectionType: .range(selectedRange: $selectedRange),
-            calendar: Calendar(identifier: .gregorian),
-            validRange: validRange
-        )
-        .monthAccessoryAction(title: "Select whole month") { _ in
+        VStack {
+            if let selectedRange {
+                Text("Selected range: \(selectedRange.lowerBound) - \(selectedRange.upperBound)")
+            } else {
+                Text("No selection")
+            }
+            BPKCalendar(
+                selectionType: .range(selectedRange: $selectedRange),
+                calendar: calendar,
+                validRange: validRange
+            )
+            .monthAccessoryAction(title: "Select whole month") { monthDate in
+                let start = calendar.date(from: calendar.dateComponents([.year, .month], from: monthDate))!
+                let nextMonth = calendar.date(byAdding: .init(month: 1), to: start)!
+                let end = calendar.date(byAdding: .init(day: -1), to: nextMonth)!
+                selectedRange = start...end
+            }
         }
     }
 }
